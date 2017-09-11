@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All" verbose="4" parallel="classes" thread-count="3">
+
+    <test name="Regression1"   >
+        <packages>
+            <package name="com.acurian.selenium.tests" />
+        </packages>
+    </test>
+
+    <!--<test name="TC A">-->
+        <!--<classes>-->
+            <!--<class name="ch."/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="TC C 020">-->
+        <!--<classes>-->
+            <!--<class name="ch."/>-->
+        <!--</classes>-->
+    <!--</test>-->
+</suite>
