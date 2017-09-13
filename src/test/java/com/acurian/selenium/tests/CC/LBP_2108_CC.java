@@ -1,10 +1,10 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.LBP_2108.InTotalHowMany;
-import com.acurian.selenium.pages.CC.LBP_2108.WhatTypeOfHealthcare;
-import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.CC.LBP_2108.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -26,6 +26,7 @@ public class LBP_2108_CC extends BaseTest{
         List<String> protocols = Arrays.asList("A4091059");
         String protocol = "A4091059";
         String studyName = "low back pain";
+        String siteName = "AUTLBP1";
 
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -113,7 +114,7 @@ public class LBP_2108_CC extends BaseTest{
         transitionStatementCC
                 .waitForPageLoad(studyName);
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(howLongHaveLbpPageCC.titleExpected), protocol, "Protocol is diff");
-        debugPageCC.back();
+        transitionStatementCC.back();
 
         WhatTypeOfHealthcare whatTypeOfHealthcare = howLongHaveLbpPageCC
                 .waitForPageLoad()
@@ -137,7 +138,137 @@ public class LBP_2108_CC extends BaseTest{
         transitionStatementCC
                 .waitForPageLoad(studyName);
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowMany.titleExpected), protocol, "Protocol is diff");
+        transitionStatementCC.back();
+
+        inTotalHowMany
+                .waitForPageLoad()
+                .clickOnAnswer("1")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoad(studyName);
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowMany.titleExpected), protocol, "Protocol is diff");
         debugPageCC.back();
+
+        inTotalHowMany
+                .waitForPageLoad()
+                .clickOnAnswer("2")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoad(studyName);
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowMany.titleExpected), protocol, "Protocol is diff");
+        transitionStatementCC.back();
+
+        OfMedicationsYou ofMedicationsYou = inTotalHowMany
+                .waitForPageLoad()
+                .clickOnAnswer("3")
+                .clickNextButton(new OfMedicationsYou());
+
+        ofMedicationsYou
+                .waitForPageLoad();
+        Assert.assertEquals(ofMedicationsYou.getTitleText(), ofMedicationsYou.titleExpected, "Title is diff");
+        AreYouCurrentlyOnPageCC areYouCurrentlyOn = ofMedicationsYou
+                .clickOnAnswer("0")
+                .clickNextButton(new AreYouCurrentlyOnPageCC());
+
+        areYouCurrentlyOn
+                .waitForPageLoad();
+        Assert.assertEquals(areYouCurrentlyOn.getTitleText(), areYouCurrentlyOn.titleExpected, "Title is diff");
+        areYouCurrentlyOn
+                .clickOnAnswer("Yes, for another chronic condition")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoad(studyName);
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(areYouCurrentlyOn.titleExpected), protocol, "Protocol is diff");
+        transitionStatementCC.back();
+
+        InPastYear inPastYear = areYouCurrentlyOn
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, for low back pain")
+                .clickNextButton(new InPastYear());
+
+        inPastYear
+                .waitForPageLoad();
+        Assert.assertEquals(inPastYear.getTitleText(), inPastYear.titleExpected, "Title is diff");
+        InPast6MonthsPageCC inPast6MonthsPageCC = inPastYear
+                .clickOnAnswers("An unplanned visit to your doctor")
+                .clickNextButton(new InPast6MonthsPageCC());
+
+        inPast6MonthsPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(inPast6MonthsPageCC.getTitleText(), inPast6MonthsPageCC.titleExpected, "Title is diff");
+        inPast6MonthsPageCC
+                .clickOnAnswers("Back surgery")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoad(studyName);
+        //in this case text is used because bug of debug text window
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion("In the past 6 months, did you have any of the following?Agent Note: Select all that applyIn the past..."), protocol, "Protocol is diff");
+        transitionStatementCC.back();
+
+        HasYourLbpPainCausedPageCC hasYourLbpPainCausedPageCC = inPast6MonthsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Knee surgery", "Back surgery")
+                .clickNextButton(new HasYourLbpPainCausedPageCC());
+
+        hasYourLbpPainCausedPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(hasYourLbpPainCausedPageCC.getTitleText(), hasYourLbpPainCausedPageCC.titleExpected, "Title is diff");
+        AreYouCurrentlyReceivingWorkersPageCC areYouCurrentlyReceivingWorkersPageCC = hasYourLbpPainCausedPageCC
+                .clickOnAnswers("Inability to lift heavy objects (suitcase, grocery bags, etc.) without help")
+                .clickNextButton(new AreYouCurrentlyReceivingWorkersPageCC());
+
+        areYouCurrentlyReceivingWorkersPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(areYouCurrentlyReceivingWorkersPageCC.getTitleText(), areYouCurrentlyReceivingWorkersPageCC.titleExpected, "Title is diff");
+        areYouCurrentlyReceivingWorkersPageCC
+                .clickOnAnswer("Yes")
+                .clickNextButton(transitionStatementCC);
+
+        transitionStatementCC
+                .waitForPageLoad(studyName);
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(areYouCurrentlyReceivingWorkersPageCC.titleExpected), protocol, "Protocol is diff");
+        transitionStatementCC.back();
+
+        areYouCurrentlyReceivingWorkersPageCC
+                .clickOnAnswer("No")
+                .clickNextButton(transitionStatementCC);
+
+        transitionStatementCC
+                .waitForPageLoad(studyName);
+        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is difff");
+        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
+                .clickNextButton(new HasHealthcareProfessionalPageCC());
+
+
+        hasHealthcareProfessionalPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouUndergoneAnyPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartFailureIsAlsoPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new AffectingYourMetabolismPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingNeurologicalConditions())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AffectYourLungsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingDigestiveConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SleepRelatedConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingSkinConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingViralConditionsPageCC());
+
+
 
     }
 }

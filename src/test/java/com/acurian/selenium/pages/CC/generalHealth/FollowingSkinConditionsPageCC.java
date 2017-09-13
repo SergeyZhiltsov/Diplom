@@ -10,9 +10,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Arrays;
 import java.util.List;
 
-public class HasHealthcareProfessionalPageCC extends BasePage{
+public class FollowingSkinConditionsPageCC extends BasePage{
 
-    public final String titleExpected = "Has a healthcare professional told you that you have any of the following heart-related medical conditions?\n" +
+    public final String titleExpected = "Do you suffer from any of the following skin conditions?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
@@ -21,19 +21,19 @@ public class HasHealthcareProfessionalPageCC extends BasePage{
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
 
-    public HasHealthcareProfessionalPageCC() {
+    public FollowingSkinConditionsPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HasHealthcareProfessionalPageCC waitForPageLoad() {
+    public FollowingSkinConditionsPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public HasHealthcareProfessionalPageCC clickOnAnswers(String ...answerText) {
+    public FollowingSkinConditionsPageCC clickOnAnswers(String ...answerText) {
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
                 .forEach(el -> el.click());
@@ -45,4 +45,6 @@ public class HasHealthcareProfessionalPageCC extends BasePage{
     public String getTitleText(){
         return getText(titleText);
     }
+
+
 }

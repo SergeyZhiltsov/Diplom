@@ -1,6 +1,7 @@
-package com.acurian.selenium.pages.CC.generalHealth;
+package com.acurian.selenium.pages.CC.LBP_2108;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.shared.InPast6MonthsPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,9 +11,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Arrays;
 import java.util.List;
 
-public class HasHealthcareProfessionalPageCC extends BasePage{
+public class HasYourLbpPainCausedPageCC extends BasePage{
 
-    public final String titleExpected = "Has a healthcare professional told you that you have any of the following heart-related medical conditions?\n" +
+    public final String titleExpected = "We would like to understand how low back pain affects your life.\n" +
+            "Has your low back pain caused any of the following problems or limitations?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
@@ -21,19 +23,19 @@ public class HasHealthcareProfessionalPageCC extends BasePage{
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
 
-    public HasHealthcareProfessionalPageCC() {
+    public HasYourLbpPainCausedPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HasHealthcareProfessionalPageCC waitForPageLoad() {
+    public HasYourLbpPainCausedPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public HasHealthcareProfessionalPageCC clickOnAnswers(String ...answerText) {
+    public HasYourLbpPainCausedPageCC clickOnAnswers(String ...answerText) {
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
                 .forEach(el -> el.click());
@@ -45,4 +47,5 @@ public class HasHealthcareProfessionalPageCC extends BasePage{
     public String getTitleText(){
         return getText(titleText);
     }
+
 }

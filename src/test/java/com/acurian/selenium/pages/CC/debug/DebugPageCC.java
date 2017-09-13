@@ -38,7 +38,9 @@ public class DebugPageCC extends BasePage {
     public String getProtocolForQuestion(String questionText){
         openDebugWindow();
         waitForAnimation();
-        String temp = questionList.stream().filter(el -> el.getText().contains(questionText))
+        String questionTextMod = questionText.replace("\n", "");
+        String temp = questionList.stream()
+                .filter(el -> questionTextMod.contains(el.getText().replace("...","")))
                 .findFirst()
                 .get()
                 .findElement(By.xpath("following-sibling::*[3]"))
