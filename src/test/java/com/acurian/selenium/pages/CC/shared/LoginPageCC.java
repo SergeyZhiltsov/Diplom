@@ -11,7 +11,6 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class LoginPageCC extends BasePage {
 
 
-
     @FindBy(id = "username")
     WebElement userNameInput;
 

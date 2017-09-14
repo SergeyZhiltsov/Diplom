@@ -2,6 +2,8 @@ package com.acurian.selenium.pages;
 
 
 import com.acurian.selenium.listeners.TestListener;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirth;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -235,6 +237,12 @@ public abstract class BasePage {
 
     public void back(){
         driver.navigate().back();
+    }
+    
+    @Step
+    public void maximizePage(){
+    driver.manage().window().maximize();
+    
     }
 
 
