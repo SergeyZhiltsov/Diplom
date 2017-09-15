@@ -196,10 +196,13 @@ public abstract class BasePage {
     }
 
     public void waitForAnimation() {
-        threadSleep(3000);
+//        threadSleep(3000);
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
                 "return document.readyState"
         ).equals("complete"));
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) driver).executeScript(
+                "return jQuery.active == 0"
+        ));
     }
 
     /**
@@ -224,6 +227,12 @@ public abstract class BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    //logs
+    @Step("{0}")
+    public void logTextToAllure(String text) {
+        //empty method
     }
 
     // navigation
