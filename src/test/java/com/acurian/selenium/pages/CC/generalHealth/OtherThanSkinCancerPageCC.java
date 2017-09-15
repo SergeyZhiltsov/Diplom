@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.LBP_2108.InTotalHowMany;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,33 +11,33 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Arrays;
 import java.util.List;
 
-public class FollowingViralConditionsPageCC extends BasePage{
+public class OtherThanSkinCancerPageCC extends BasePage{
 
-    public final String titleExpected = "Have you ever been diagnosed with any of the following viral conditions?\n" +
-            "Agent Note: Select all that apply";
+    public final String titleExpected = "Have you ever been diagnosed with cancer, other than skin cancer?";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
-    List<WebElement> checkBoxList;
+    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
+    List<WebElement> radioButtonsList;
 
-    public FollowingViralConditionsPageCC() {
+    public OtherThanSkinCancerPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public FollowingViralConditionsPageCC waitForPageLoad() {
+    public OtherThanSkinCancerPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public FollowingViralConditionsPageCC clickOnAnswers(String ...answerText) {
-        List<String> answerTextList = Arrays.asList(answerText);
-        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-                .forEach(el -> el.click());
+    public OtherThanSkinCancerPageCC clickOnAnswer(String answerText) {
+        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+                .findFirst()
+                .get()
+                .click();
         waitForAnimation();
         return this;
     }
@@ -45,5 +46,4 @@ public class FollowingViralConditionsPageCC extends BasePage{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.LBP_2108.*;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -26,7 +28,7 @@ public class LBP_2108_CC extends BaseTest{
         List<String> protocols = Arrays.asList("A4091059");
         String protocol = "A4091059";
         String studyName = "low back pain";
-        String siteName = "AUTLBP1";
+        String siteName = "AUT_LBP_2108_Site";
 
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -266,8 +268,45 @@ public class LBP_2108_CC extends BaseTest{
                 .clickNextButton(new FollowingSkinConditionsPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingViralConditionsPageCC());
-
+                .clickNextButton(new FollowingViralConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingMentalHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingWomensHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OtherThanSkinCancerPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new SmokedCigarettesPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No, I never smoked")
+                .clickNextButton(new HistoryOfDrugPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ApproximateHeightPageCC())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", "19044")
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad()
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad();
 
 
     }
