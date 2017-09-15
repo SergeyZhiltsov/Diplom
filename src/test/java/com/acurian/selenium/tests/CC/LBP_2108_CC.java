@@ -29,11 +29,12 @@ public class LBP_2108_CC extends BaseTest{
         String protocol = "A4091059";
         String studyName = "low back pain";
         String siteName = "AUT_LBP_2108_Site";
+        String env = "STG";
 
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
-                .openPage()
+                .openPage(env)
                 .waitForPageLoad();
 
         Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");
