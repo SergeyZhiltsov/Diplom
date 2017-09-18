@@ -1,7 +1,7 @@
-package com.acurian.selenium.pages.CC.shared;
+package com.acurian.selenium.pages.CC.generalHealth;
 
-import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.LBP_2108.InTotalHowMany;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,31 +9,30 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class DoYouSufferFromLbpPageCC extends BasePage{
+public class ChildrenUnderPageCC extends BasePage{
 
-    public final String titleExpected = "Do you suffer from low back pain?";
+    public final String titleExpected = "Do you have any children under the age of 18 in your household?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public DoYouSufferFromLbpPageCC() {
+    public ChildrenUnderPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DoYouSufferFromLbpPageCC waitForPageLoad() {
+    public ChildrenUnderPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public DoYouSufferFromLbpPageCC clickOnAnswer(String answerText) {
+    public ChildrenUnderPageCC clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()
@@ -42,7 +41,10 @@ public class DoYouSufferFromLbpPageCC extends BasePage{
         return this;
     }
 
-
+    @Step
+    public String getTitleText(){
+        return getText(titleText);
+    }
 
 
 }

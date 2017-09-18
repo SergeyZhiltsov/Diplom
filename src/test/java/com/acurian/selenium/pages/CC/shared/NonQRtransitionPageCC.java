@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class NonQRtransitionPageCC extends BasePage{
 
-    public final String titleExpected = "Do you suffer from low back pain?";
+    public final String titleExpected = "We may have other studies going on in your area. Let's see if there's something else that would be a better fit.";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -22,7 +22,12 @@ public class NonQRtransitionPageCC extends BasePage{
     @Step
     public NonQRtransitionPageCC waitForPageLoad() {
         waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
+    }
+
+    @Step
+    public String getTitleText(){
+        return getText(titleText);
     }
 }

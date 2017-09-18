@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.LBP_2108.*;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -26,12 +28,14 @@ public class LBP_2108_CC extends BaseTest{
         List<String> protocols = Arrays.asList("A4091059");
         String protocol = "A4091059";
         String studyName = "low back pain";
-        String siteName = "AUTLBP1";
+        String siteName = "AUT_LBP_2108_Site";
+        String env = "STG";
+        String zipCode = "19044";
 
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
-                .openPage()
+                .openPage(env)
                 .waitForPageLoad();
 
         Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");
@@ -48,8 +52,10 @@ public class LBP_2108_CC extends BaseTest{
                 .clickPopupPhoneNumber(phoneNumberLBP)
                 .clickBeginButton();
 
+        callCenterIntroductionPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-                .waitForPageLoad()
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
 
@@ -57,16 +63,7 @@ public class LBP_2108_CC extends BaseTest{
                 .waitForPageLoad();
 
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),"If you qualify and participate in a low back pain study, you may receive:\n" +
-//                "Study medication or placebo, at no-cost to you\n" +
-//                "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-//                "And depending on the study, compensation of up to $900 for time and travel, for qualified participants who complete study-related visits\n" +
-//                "\n" +
-//                "Agent Note: If caller has questions about the process,"+
-//                "or availability of sites in their area, read: \"If you qualify,"+
-//                "I'll let you know which research doctor's offices in your area are participating in the study,"+
-//                "and you can select the one that is most convenient for you. Then we'll send them your information,"+
-//                "so they can get in touch with you to continue the screening process.\"","Title text is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedLBP, "Title is diff");
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
@@ -94,6 +91,7 @@ public class LBP_2108_CC extends BaseTest{
 
         nonQRtransitionPageCC.
                 waitForPageLoad();
+        Assert.assertEquals(nonQRtransitionPageCC.getTitleText(), nonQRtransitionPageCC.titleExpected, "Title is diff");
 
         DebugPageCC debugPageCC = new DebugPageCC();
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(doYouSufferFromLbpPageCC.titleExpected), protocol, "Protocols are diff");
@@ -266,8 +264,45 @@ public class LBP_2108_CC extends BaseTest{
                 .clickNextButton(new FollowingSkinConditionsPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingViralConditionsPageCC());
-
+                .clickNextButton(new FollowingViralConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingMentalHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingWomensHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OtherThanSkinCancerPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new SmokedCigarettesPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No, I never smoked")
+                .clickNextButton(new HistoryOfDrugPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ApproximateHeightPageCC())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad()
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad();
 
 
     }

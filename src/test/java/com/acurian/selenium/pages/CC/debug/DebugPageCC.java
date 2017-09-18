@@ -46,6 +46,7 @@ public class DebugPageCC extends BasePage {
                 .findElement(By.xpath("following-sibling::*[3]"))
                 .getText();
         closeDebugWindow();
+        logTextToAllure("Protocol="+temp);
         return temp;
     }
 

@@ -4,7 +4,7 @@ public interface URLs {
 
     String CC_STG = "https://stg-cc.acuriancalls.com";
     String CC_QA = "http://qa-cc.acurian.com:8091/login.htm";
-    String CC_PROD = "www.acuriancalls.com";
+    String CC_PROD = "http://acuriancalls.com";
     // rewrite to use this link with variables : phone number and testing key
     String OLS_STG = "http://acurianhealth-com.ahbrands.staging.wpengine.com/questionnaire_test_staging/welcome?pn=AUTAMS1RA1";
     String OLS_QA = "http://acurianhealth-com.ahbrands.staging.wpengine.com/questionnaire_test_qa/welcome?pn=AUTAMS1RA1";
