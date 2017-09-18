@@ -30,6 +30,7 @@ public class LBP_2108_CC extends BaseTest{
         String studyName = "low back pain";
         String siteName = "AUT_LBP_2108_Site";
         String env = "STG";
+        String zipCode = "19044";
 
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -51,8 +52,10 @@ public class LBP_2108_CC extends BaseTest{
                 .clickPopupPhoneNumber(phoneNumberLBP)
                 .clickBeginButton();
 
+        callCenterIntroductionPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-                .waitForPageLoad()
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
 
@@ -60,16 +63,7 @@ public class LBP_2108_CC extends BaseTest{
                 .waitForPageLoad();
 
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),"If you qualify and participate in a low back pain study, you may receive:\n" +
-//                "Study medication or placebo, at no-cost to you\n" +
-//                "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-//                "And depending on the study, compensation of up to $900 for time and travel, for qualified participants who complete study-related visits\n" +
-//                "\n" +
-//                "Agent Note: If caller has questions about the process,"+
-//                "or availability of sites in their area, read: \"If you qualify,"+
-//                "I'll let you know which research doctor's offices in your area are participating in the study,"+
-//                "and you can select the one that is most convenient for you. Then we'll send them your information,"+
-//                "so they can get in touch with you to continue the screening process.\"","Title text is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedLBP, "Title is diff");
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
@@ -97,6 +91,7 @@ public class LBP_2108_CC extends BaseTest{
 
         nonQRtransitionPageCC.
                 waitForPageLoad();
+        Assert.assertEquals(nonQRtransitionPageCC.getTitleText(), nonQRtransitionPageCC.titleExpected, "Title is diff");
 
         DebugPageCC debugPageCC = new DebugPageCC();
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(doYouSufferFromLbpPageCC.titleExpected), protocol, "Protocols are diff");
@@ -297,7 +292,7 @@ public class LBP_2108_CC extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", "19044")
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad()
                 .getPID()
