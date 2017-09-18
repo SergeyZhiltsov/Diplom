@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,10 +15,10 @@ public class DoYouSufferFromLbpPageCC extends BasePage{
 
     public final String titleExpected = "Do you suffer from low back pain?";
 
-    @FindBy(xpath = "//div[@class='question_text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
     public DoYouSufferFromLbpPageCC() {

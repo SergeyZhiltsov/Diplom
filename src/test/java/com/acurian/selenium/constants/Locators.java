@@ -9,4 +9,11 @@ public @interface Locators {
     //Login Page
     String LOGIN_INPUT = "input[ng-model='user.Username']";
 
+    //Base CC
+    String BASIC_TITLE_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']";
+    String RADIO_BUTTON_LIST_CC = "//div[@class='radio_btns_container']//label";
+
+    String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC = "//div[@class='question_text']//div[@class='show-in-cc']";
+    String CHEKBOX_LIST_CC = "//div[@class='radio_btns_container']//label";
+
 }
