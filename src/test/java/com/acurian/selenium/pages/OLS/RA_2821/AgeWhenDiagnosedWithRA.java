@@ -3,9 +3,7 @@ package com.acurian.selenium.pages.OLS.RA_2821;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.acurian.selenium.pages.BasePage;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class AgeWhenDiagnosedWithRA extends BasePage {
@@ -14,7 +12,7 @@ public class AgeWhenDiagnosedWithRA extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
     
-    @FindBy(xpath = "//input[@id='QS504")
+    @FindBy(xpath = "//div[contains(@class,'center-block')]//input")
     WebElement enterAge;		
     
     public AgeWhenDiagnosedWithRA() {
@@ -29,8 +27,8 @@ public class AgeWhenDiagnosedWithRA extends BasePage {
     }
 
     @Step
-    public AgeWhenDiagnosedWithRA clickOnAnswer(String answerText) {
-       
+    public AgeWhenDiagnosedWithRA setAge(String age) {
+       typeText(enterAge,age);
         return this;
     }
 

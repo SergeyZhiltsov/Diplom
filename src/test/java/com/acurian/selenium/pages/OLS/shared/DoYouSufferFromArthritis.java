@@ -13,7 +13,7 @@ public class DoYouSufferFromArthritis extends BasePage {
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
 
     public DoYouSufferFromArthritis() {

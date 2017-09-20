@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class WhenYouDiagnosedWithRA extends BasePage {
 	public final String titleExpected = "When were you diagnosed with RA? ";
 
-    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
     @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
