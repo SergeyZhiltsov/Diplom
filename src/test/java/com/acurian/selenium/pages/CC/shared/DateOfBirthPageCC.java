@@ -70,7 +70,7 @@ public class DateOfBirthPageCC extends BasePage{
 
     @Step
     public DateOfBirthPageCC setYear(String year) {
-        typeTextWithoutClear(yearField,year);
+        typeTextWithoutClear(yearField, year);
         return this;
     }
 
