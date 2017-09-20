@@ -7,28 +7,28 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.BasePage;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class GenderPageOLS extends BasePage {
-	public final String titleExpected = "Please select your gender: ";
+public class WhatKindOfArthritisPage extends BasePage {
+	public final String titleExpected = "What kind of arthritis do you have?";
 
-    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> radioButtonsList;
 
-    public GenderPageOLS() {
+    public WhatKindOfArthritisPage() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public GenderPageOLS waitForPageLoad() {
+    public WhatKindOfArthritisPage waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public GenderPageOLS clickOnAnswer(String answerText) {
+    public WhatKindOfArthritisPage clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()
@@ -42,6 +42,4 @@ public class GenderPageOLS extends BasePage {
         return getText(titleText);
     }
 
-
 }
-

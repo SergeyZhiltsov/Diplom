@@ -25,7 +25,7 @@ public abstract class BasePage {
     protected WebDriverWaitLogged driverWait;
     private Actions actions;
 
-    @FindBy(xpath = "//input[@class='next_btn']")
+    @FindBy(xpath = "//button[@id='submit']")
     WebElement nextButton;
 
     public BasePage() {
