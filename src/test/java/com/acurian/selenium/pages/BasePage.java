@@ -25,8 +25,10 @@ public abstract class BasePage {
     protected WebDriverWaitLogged driverWait;
     private Actions actions;
 
-    @FindBy(xpath = "//button[@id='submit']")
-    WebElement nextButton;
+//    @FindBy(xpath = "//input[@class='next_btn']")
+//    WebElement nextButton;
+
+
 
     public BasePage() {
         driver = BaseTest.getDriver();
@@ -37,6 +39,10 @@ public abstract class BasePage {
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    protected Actions getActions(){
+        return actions;
     }
 
     @Step
@@ -198,10 +204,13 @@ public abstract class BasePage {
     }
 
     public void waitForAnimation() {
-        threadSleep(3000);
+//        threadSleep(3000);
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
                 "return document.readyState"
         ).equals("complete"));
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) driver).executeScript(
+                "return jQuery.active == 0"
+        ));
     }
 
     /**
@@ -228,12 +237,24 @@ public abstract class BasePage {
         }
     }
 
-    // navigation
-    @Step
-    public <T extends BasePage> T clickNextButton(T page) {
-        nextButton.click();
-        return (T)page;
+    //logs
+    @Step("{0}")
+    public void logTextToAllure(String text) {
+        //empty method
     }
+
+    // navigation
+//    @Step
+//    public <T extends BasePage> T clickNextButton(T page) {
+//        nextButton.click();
+//        return (T)page;
+//    }
+
+//    @Step
+//    public <T extends BasePage> T clickNextButtonOLS(T page) {
+//        nextButtonOLS.click();
+//        return (T)page;
+//    }
 
     public void back(){
         driver.navigate().back();

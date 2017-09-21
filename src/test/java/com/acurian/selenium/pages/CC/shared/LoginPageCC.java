@@ -1,14 +1,16 @@
 package com.acurian.selenium.pages.CC.shared;
 
-import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.MainPage;
+import com.acurian.selenium.constants.URLs;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.utils.Properties;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class LoginPageCC extends BasePage {
+
+public class LoginPageCC extends MainPageCC {
+
 
     @FindBy(id = "username")
     WebElement userNameInput;
@@ -32,6 +34,21 @@ public class LoginPageCC extends BasePage {
     @Step
     public LoginPageCC openPage(){
         openURL(Properties.getBaseURL());
+        return this;
+    }
+
+    @Step
+    public LoginPageCC openPage(String environment){
+        switch (environment) {
+            case "QA":openURL(URLs.CC_QA);
+                break;
+            case "STG":openURL(URLs.CC_STG);
+                break;
+            case "PRD":openURL(URLs.CC_PROD);
+                break;
+            default:openURL(Properties.getBaseURL());
+                break;
+        }
         return this;
     }
 

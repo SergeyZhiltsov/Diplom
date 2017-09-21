@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.shared;
+package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
@@ -7,32 +7,27 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ZipCodePageCC extends MainPageCC {
+public class LetMeSeePageCC extends MainPageCC {
 
-    public final String titleExpected = "Zip Code";
+    public final String titleExpected = "Thank you, let me see if there are any follow-up questions that we need to ask based on the conditions that you experience.\n" +
+            "Agent Note: Click \"Next\" to continue";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//input[contains(@class,'input-text')]")
-    WebElement zipField;
-
-    public ZipCodePageCC() {
+    public LetMeSeePageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ZipCodePageCC waitForPageLoad() {
+    public LetMeSeePageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public ZipCodePageCC typeZipCode(String text) {
-        typeTextWithoutClear(zipField, text);
-        return this;
+    public String getTitleText(){
+        return getText(titleText);
     }
-
-
 }

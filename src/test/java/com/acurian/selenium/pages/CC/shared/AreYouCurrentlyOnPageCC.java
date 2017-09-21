@@ -1,6 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class AreYouCurrentlyOnPageCC extends BasePage{
+public class AreYouCurrentlyOnPageCC extends MainPageCC {
 
     public final String titleExpected = "Are you currently on a long term steroid prescription medication for more than 10 days?\n" +
             "Commonly used types of steroids include prednisone, prednisolone, dexamethasone, methylprednisolone, and Medrol.";

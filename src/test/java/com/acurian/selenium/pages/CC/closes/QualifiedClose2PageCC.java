@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.shared;
+package com.acurian.selenium.pages.CC.closes;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
@@ -7,31 +7,30 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ZipCodePageCC extends MainPageCC {
+public class QualifiedClose2PageCC extends MainPageCC{
 
-    public final String titleExpected = "Zip Code";
+    //Qualified Close 2: No Pediatric Study Switch - 35_number
+
+    public final String titleExpected = "We're glad the location is convenient for you.\n" +
+            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//input[contains(@class,'input-text')]")
-    WebElement zipField;
-
-    public ZipCodePageCC() {
+    public QualifiedClose2PageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ZipCodePageCC waitForPageLoad() {
+    public QualifiedClose2PageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public ZipCodePageCC typeZipCode(String text) {
-        typeTextWithoutClear(zipField, text);
-        return this;
+    public String getTitleText(){
+        return getText(titleText);
     }
 
 

@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.shared;
+package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class AreYouCurrentlyReceivingWorkersPageCC extends MainPageCC {
+public class SmokedCigarettesPageCC extends MainPageCC {
 
-    public final String titleExpected = "Are you currently receiving worker's compensation, or involved in litigation or a lawsuit related to your pain?";
+    public final String titleExpected = "Have you ever smoked cigarettes, cigars, or e-cigarettes?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -19,19 +19,19 @@ public class AreYouCurrentlyReceivingWorkersPageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public AreYouCurrentlyReceivingWorkersPageCC() {
+    public SmokedCigarettesPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AreYouCurrentlyReceivingWorkersPageCC waitForPageLoad() {
+    public SmokedCigarettesPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public AreYouCurrentlyReceivingWorkersPageCC clickOnAnswer(String answerText) {
+    public SmokedCigarettesPageCC clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

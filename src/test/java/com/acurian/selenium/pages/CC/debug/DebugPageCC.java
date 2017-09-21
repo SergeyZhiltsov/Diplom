@@ -1,6 +1,6 @@
 package com.acurian.selenium.pages.CC.debug;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DebugPageCC extends BasePage {
+public class DebugPageCC extends MainPageCC{
 
     @FindBy(id = "debug_toolbar_questions_lnk")
     WebElement questionLink;
@@ -46,6 +46,7 @@ public class DebugPageCC extends BasePage {
                 .findElement(By.xpath("following-sibling::*[3]"))
                 .getText();
         closeDebugWindow();
+        logTextToAllure("Protocol="+temp);
         return temp;
     }
 
