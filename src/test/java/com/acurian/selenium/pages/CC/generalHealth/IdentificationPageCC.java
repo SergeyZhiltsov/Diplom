@@ -1,13 +1,13 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class IdentificationPageCC extends BasePage{
+public class IdentificationPageCC extends MainPageCC {
 
     public final String titleExpected = "Good news! You have prequalified for a study. The next step is to select a doctor's office in your area so that they can contact you.\n" +
             "\n" +

@@ -23,8 +23,9 @@ public abstract class BasePage {
     protected WebDriverWaitLogged driverWait;
     private Actions actions;
 
-    @FindBy(xpath = "//input[@class='next_btn']")
-    WebElement nextButton;
+//    @FindBy(xpath = "//input[@class='next_btn']")
+//    WebElement nextButton;
+
 
     public BasePage() {
         driver = BaseTest.getDriver();
@@ -35,6 +36,10 @@ public abstract class BasePage {
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    protected Actions getActions(){
+        return actions;
     }
 
     @Step
@@ -236,11 +241,17 @@ public abstract class BasePage {
     }
 
     // navigation
-    @Step
-    public <T extends BasePage> T clickNextButton(T page) {
-        nextButton.click();
-        return (T)page;
-    }
+//    @Step
+//    public <T extends BasePage> T clickNextButton(T page) {
+//        nextButton.click();
+//        return (T)page;
+//    }
+
+//    @Step
+//    public <T extends BasePage> T clickNextButtonOLS(T page) {
+//        nextButtonOLS.click();
+//        return (T)page;
+//    }
 
     public void back(){
         driver.navigate().back();

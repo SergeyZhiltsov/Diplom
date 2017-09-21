@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
-import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.CC.LBP_2108.InTotalHowMany;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SmokedCigarettesPageCC extends BasePage{
+public class SmokedCigarettesPageCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever smoked cigarettes, cigars, or e-cigarettes?";
 

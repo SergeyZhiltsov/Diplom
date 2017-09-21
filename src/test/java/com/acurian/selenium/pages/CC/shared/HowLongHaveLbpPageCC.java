@@ -1,6 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HowLongHaveLbpPageCC extends BasePage{
+public class HowLongHaveLbpPageCC extends MainPageCC {
 
     public final String titleExpected = "How long have you been experiencing low back pain?";
 

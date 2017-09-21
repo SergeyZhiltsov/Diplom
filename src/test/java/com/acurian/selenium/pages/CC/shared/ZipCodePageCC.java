@@ -1,15 +1,13 @@
 package com.acurian.selenium.pages.CC.shared;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.List;
-
-public class ZipCodePageCC extends BasePage{
+public class ZipCodePageCC extends MainPageCC {
 
     public final String titleExpected = "Zip Code";
 

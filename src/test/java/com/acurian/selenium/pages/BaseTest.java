@@ -3,6 +3,7 @@ package com.acurian.selenium.pages;
 import com.acurian.selenium.listeners.EventHandler;
 import com.acurian.selenium.utils.DriverFactory;
 import com.acurian.selenium.utils.Properties;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterClass;
@@ -13,7 +14,7 @@ public abstract class BaseTest {
 
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
-    private static EventFiringWebDriver driver;
+    private  EventFiringWebDriver driver;
 
     public static WebDriver getDriver() {
 //        return driver;
@@ -27,6 +28,7 @@ public abstract class BaseTest {
                 : new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
+        driver.manage().window().setSize(new Dimension(1400,1050));
 //        System.setProperty(ESCAPE_PROPERTY, "false");
         DRIVER.set(driver);
     }

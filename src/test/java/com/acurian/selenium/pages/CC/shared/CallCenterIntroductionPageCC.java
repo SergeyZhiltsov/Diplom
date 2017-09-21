@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.CC.shared;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class CallCenterIntroductionPageCC extends BasePage{
+public class CallCenterIntroductionPageCC extends MainPageCC{
 
     public final String titleExpected = "Thank you for calling Acurian Health's research study line. My name is AUTOTEST AUTOTEST and I'll be able to help you today. Are you calling about a research study?\n" +
             "\n" +

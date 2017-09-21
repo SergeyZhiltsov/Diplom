@@ -1,6 +1,6 @@
 package com.acurian.selenium.pages.CC.LBP_2108;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Arrays;
 import java.util.List;
 
-public class InPastYear extends BasePage{
+public class InPastYear extends MainPageCC {
 
     public final String titleExpected = "In the past year, did you have to seek medical attention for your low back pain at any of the following locations?\n" +
             "Agent Note: Select all that apply";

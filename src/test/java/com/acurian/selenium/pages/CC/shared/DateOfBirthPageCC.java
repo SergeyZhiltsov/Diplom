@@ -1,13 +1,14 @@
 package com.acurian.selenium.pages.CC.shared;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DateOfBirthPageCC extends BasePage{
+public class DateOfBirthPageCC extends MainPageCC{
 
     public final String titleExpected = "May I have your date of birth?";
 
@@ -70,7 +71,7 @@ public class DateOfBirthPageCC extends BasePage{
 
     @Step
     public DateOfBirthPageCC setYear(String year) {
-        typeTextWithoutClear(yearField,year);
+        typeTextWithoutClear(yearField, year);
         return this;
     }
 

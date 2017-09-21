@@ -1,6 +1,6 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Arrays;
 import java.util.List;
 
-public class AffectYourLungsPageCC extends BasePage{
+public class AffectYourLungsPageCC extends MainPageCC{
 
     public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following conditions which affect your lungs or breathing?\n" +
             "Agent Note: Select all that apply";

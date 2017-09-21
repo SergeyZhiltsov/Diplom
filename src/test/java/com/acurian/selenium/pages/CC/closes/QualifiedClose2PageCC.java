@@ -1,14 +1,13 @@
 package com.acurian.selenium.pages.CC.closes;
 
-import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class QualifiedClose2PageCC extends BasePage{
+public class QualifiedClose2PageCC extends MainPageCC{
 
     //Qualified Close 2: No Pediatric Study Switch - 35_number
 

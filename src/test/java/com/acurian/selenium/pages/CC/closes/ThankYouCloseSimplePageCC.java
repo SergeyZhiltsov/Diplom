@@ -1,13 +1,13 @@
 package com.acurian.selenium.pages.CC.closes;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ThankYouCloseSimplePageCC extends BasePage{
+public class ThankYouCloseSimplePageCC extends MainPageCC{
 
     //Thank You Close - AWR/SEN - 65_number
 
