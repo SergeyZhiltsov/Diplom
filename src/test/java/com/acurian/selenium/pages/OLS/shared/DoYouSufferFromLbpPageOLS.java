@@ -6,36 +6,37 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ZipCodePageOLS extends MainPageOLS{
+import java.util.List;
 
-    public final String titleExpected = "Zip Code";
+public class DoYouSufferFromLbpPageOLS extends MainPageOLS{
+
+    public final String titleExpected = "Do you suffer from low back pain?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='question']//input")
-    WebElement zipField;
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    List<WebElement> radioButtonsList;
 
-    public ZipCodePageOLS() {
+    public DoYouSufferFromLbpPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ZipCodePageOLS waitForPageLoad() {
+    public DoYouSufferFromLbpPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
-//        waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public ZipCodePageOLS typeZipCode(String text) {
-        typeTextWithoutClear(zipField, text);
+    public DoYouSufferFromLbpPageOLS clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText(){
         return getText(titleText);
     }
+
 }

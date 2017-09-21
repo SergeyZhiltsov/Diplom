@@ -40,6 +40,10 @@ public abstract class BasePage {
         return driver;
     }
 
+    protected Actions getActions(){
+        return actions;
+    }
+
     @Step
     protected void openURL(String url) {
         driver.navigate().to(url);

@@ -1,8 +1,11 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.shared.GenderPageCC;
+import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -38,6 +41,37 @@ public class LBP_2108_OLS extends BaseTest{
         zipCodePageOLS
                 .waitForPageLoad();
         Assert.assertEquals(zipCodePageOLS.getTitleText(),zipCodePageOLS.titleExpected, "Title is diff");
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .typeZipCode(zipCode)
+                .clickNextButton(new GenderPageOLS());
+
+        genderPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
+        DoYouSufferFromLbpPageOLS doYouSufferFromLbpPageOLS = genderPageOLS
+                .clickOnAnswer("Female")
+                .clickNextButton(new DoYouSufferFromLbpPageOLS());
+
+        doYouSufferFromLbpPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(doYouSufferFromLbpPageOLS.getTitleText(),doYouSufferFromLbpPageOLS.titleExpected, "Title is diff");
+        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = doYouSufferFromLbpPageOLS
+                .clickOnAnswer("No")
+                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad();
+        DebugPageOLS debugPageCC = new DebugPageOLS();
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(doYouSufferFromLbpPageOLS.titleExpected), protocol, "Protocol is diff");
+        debugPageCC.back();
+
+        doYouSufferFromLbpPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new HowLongHaveLbpPageOLS());
+
+
+
 
 
     }
