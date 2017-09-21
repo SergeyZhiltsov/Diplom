@@ -1,6 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class AreYouCurrentlyReceivingWorkersPageCC extends BasePage{
+public class AreYouCurrentlyReceivingWorkersPageCC extends MainPageCC {
 
     public final String titleExpected = "Are you currently receiving worker's compensation, or involved in litigation or a lawsuit related to your pain?";
 

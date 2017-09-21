@@ -1,6 +1,6 @@
 package com.acurian.selenium.pages.CC.LBP_2108;
 
-import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class OfMedicationsYou extends BasePage{
+public class OfMedicationsYou extends MainPageCC {
 
     public final String titleExpected = "Of the medications you have tried for your low back pain, how many were prescription medications?";
 

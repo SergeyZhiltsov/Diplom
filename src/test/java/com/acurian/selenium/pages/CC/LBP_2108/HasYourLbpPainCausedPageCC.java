@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC.LBP_2108;
 
-import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.CC.shared.InPast6MonthsPageCC;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Arrays;
 import java.util.List;
 
-public class HasYourLbpPainCausedPageCC extends BasePage{
+public class HasYourLbpPainCausedPageCC extends MainPageCC {
 
     public final String titleExpected = "We would like to understand how low back pain affects your life.\n" +
             "Has your low back pain caused any of the following problems or limitations?\n" +

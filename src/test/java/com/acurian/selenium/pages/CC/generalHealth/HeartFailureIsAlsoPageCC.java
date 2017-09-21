@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
-import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.CC.shared.AreYouCurrentlyOnPageCC;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HeartFailureIsAlsoPageCC extends BasePage{
+public class HeartFailureIsAlsoPageCC extends MainPageCC {
 
     public final String titleExpected = "Heart failure is also called congestive heart failure or CHF. It is an ongoing health problem. It happens when your heart cannot pump as well as it should. Common symptoms of CHF include: fluid retention, swelling of the feet and ankles, bloating, and difficulty breathing.\n" +
             "\n" +
