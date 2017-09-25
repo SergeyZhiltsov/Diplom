@@ -5,31 +5,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhatKindOfArthritisPage extends MainPageOLS {
-	public final String titleExpected = "What kind of arthritis do you have?";
+public class LastReceivedTysabri extends MainPageOLS {
+	public final String titleExpected = "Which of the following best describes when you last received Tysabri (natalizumab)? You….";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = "//label[contains(@for,'QS545N_')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
 
-    public WhatKindOfArthritisPage() {
+    public LastReceivedTysabri() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhatKindOfArthritisPage waitForPageLoad() {
+    public LastReceivedTysabri waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public WhatKindOfArthritisPage clickOnAnswer(String answerText) {
+    public LastReceivedTysabri clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()
