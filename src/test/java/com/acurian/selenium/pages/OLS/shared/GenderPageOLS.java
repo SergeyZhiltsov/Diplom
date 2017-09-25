@@ -1,6 +1,6 @@
 package com.acurian.selenium.pages.OLS.shared;
 
-import com.acurian.selenium.pages.BasePage;
+
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
@@ -49,4 +49,6 @@ public class GenderPageOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
+
 }
+

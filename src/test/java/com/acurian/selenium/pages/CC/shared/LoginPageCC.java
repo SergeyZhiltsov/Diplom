@@ -8,7 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
+
 public class LoginPageCC extends MainPageCC {
+
 
     @FindBy(id = "username")
     WebElement userNameInput;

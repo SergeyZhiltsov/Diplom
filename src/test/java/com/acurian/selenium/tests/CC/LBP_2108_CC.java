@@ -1,18 +1,21 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.URLs;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.LBP_2108.InTotalHowMany;
+import com.acurian.selenium.pages.CC.LBP_2108.WhatTypeOfHealthcare;
 import com.acurian.selenium.pages.CC.LBP_2108.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,14 +31,12 @@ public class LBP_2108_CC extends BaseTest{
         List<String> protocols = Arrays.asList("A4091059");
         String protocol = "A4091059";
         String studyName = "low back pain";
-        String siteName = "AUT_LBP_2108_Site";
-        String env = "STG";
-        String zipCode = "19044";
+
 
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
-                .openPage(env)
+                .openPage(URLs.CC_QA)
                 .waitForPageLoad();
 
         Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");
@@ -112,7 +113,7 @@ public class LBP_2108_CC extends BaseTest{
         transitionStatementCC
                 .waitForPageLoad(studyName);
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(howLongHaveLbpPageCC.titleExpected), protocol, "Protocol is diff");
-        transitionStatementCC.back();
+        debugPageCC.back();
 
         WhatTypeOfHealthcare whatTypeOfHealthcare = howLongHaveLbpPageCC
                 .waitForPageLoad()
@@ -136,15 +137,8 @@ public class LBP_2108_CC extends BaseTest{
         transitionStatementCC
                 .waitForPageLoad(studyName);
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowMany.titleExpected), protocol, "Protocol is diff");
-        transitionStatementCC.back();
-
-        inTotalHowMany
-                .waitForPageLoad()
-                .clickOnAnswer("1")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoad(studyName);
-        Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowMany.titleExpected), protocol, "Protocol is diff");
         debugPageCC.back();
+
 
         inTotalHowMany
                 .waitForPageLoad()
@@ -303,6 +297,7 @@ public class LBP_2108_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
+
 
 
     }

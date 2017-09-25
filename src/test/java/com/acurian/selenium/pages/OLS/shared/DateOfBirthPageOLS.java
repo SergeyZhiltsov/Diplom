@@ -61,7 +61,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 
     @Step
     public DateOfBirthPageOLS setDate(String date) {
-        typeTextWithoutClear(dateField, date);
+        typeText(dateField, date);
         return this;
     }
 
