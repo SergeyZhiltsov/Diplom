@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.RA_2821;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
@@ -8,28 +8,28 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhatKindOfArthritisPage extends MainPageOLS {
-	public final String titleExpected = "What kind of arthritis do you have?";
+public class InPastDidYouTakeSteroids extends MainPageOLS {
+	public final String titleExpected = "In the past, did you have to take any steroids for your RA?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = "//label[contains(@for,'QS513_')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
 
-    public WhatKindOfArthritisPage() {
+    public InPastDidYouTakeSteroids() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhatKindOfArthritisPage waitForPageLoad() {
+    public InPastDidYouTakeSteroids waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public WhatKindOfArthritisPage clickOnAnswer(String answerText) {
+    public InPastDidYouTakeSteroids clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

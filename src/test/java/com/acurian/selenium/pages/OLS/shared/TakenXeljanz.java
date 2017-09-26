@@ -5,31 +5,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhatKindOfArthritisPage extends MainPageOLS {
-	public final String titleExpected = "What kind of arthritis do you have?";
+public class TakenXeljanz extends MainPageOLS {
+	public final String titleExpected = "Have you ever taken Xeljanz?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = "//label[contains(@for,'QS527_')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
 
-    public WhatKindOfArthritisPage() {
+    public TakenXeljanz() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhatKindOfArthritisPage waitForPageLoad() {
+    public TakenXeljanz waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public WhatKindOfArthritisPage clickOnAnswer(String answerText) {
+    public TakenXeljanz clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

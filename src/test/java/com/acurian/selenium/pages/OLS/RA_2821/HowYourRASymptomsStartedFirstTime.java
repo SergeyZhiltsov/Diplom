@@ -1,40 +1,34 @@
 package com.acurian.selenium.pages.OLS.RA_2821;
 
-import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhenYouDiagnosedWithRA extends MainPageOLS {
-	public final String titleExpected = "When were you diagnosed with RA? ";
+public class HowYourRASymptomsStartedFirstTime extends MainPageOLS {
+	public final String titleExpected = "Which of the following best describes how your RA symptoms started for the very first time?";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
-
-    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
-    List<WebElement> radioButtonsList;
-
-    public WhenYouDiagnosedWithRA() {
+    
+    @FindBy(xpath = "//label[contains(@for,'QS505_')]/span[@class='copy']")
+    WebElement enterAge;		
+    
+    public HowYourRASymptomsStartedFirstTime() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhenYouDiagnosedWithRA waitForPageLoad() {
+    public HowYourRASymptomsStartedFirstTime waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public WhenYouDiagnosedWithRA clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+    public HowYourRASymptomsStartedFirstTime clickOnAnswer(String answerText) {
+       
         return this;
     }
 
@@ -42,5 +36,6 @@ public class WhenYouDiagnosedWithRA extends MainPageOLS {
     public String getTitleText(){
         return getText(titleText);
     }
+
 
 }
