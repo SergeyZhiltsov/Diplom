@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.OLS;
 
 import com.acurian.selenium.pages.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,9 +22,20 @@ public class MainPageOLS extends BasePage{
         PageFactory.initElements(getDriver(), this);
     }
 
+    public void waitForAnimation(){
+        ngDriver.waitForAngularRequestsToFinish();
+    }
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        driverWait.waitforVisibility(titleText);
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+//        try {
+//            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+//        }
+//        catch (NullPointerException ex){
+//            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+//        }
+        waitForAnimation();
     }
 
     @Step
@@ -44,7 +56,20 @@ public class MainPageOLS extends BasePage{
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
                 .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label")),5,5).click().build().perform());
+//            for (WebElement el : checkBoxList) {
+//                if (answerTextList.contains(el.getText())) {
+////                scrollToElement(el, true);
+//                    threadSleep(1000);
+//                    getActions().moveToElement(el.findElement(By.xpath("ancestor::label")), 5, 5).click().perform();
+//                    threadSleep(5000);
+//                }
+//            }
         waitForAnimation();
+    }
+
+    @Step
+    public <T extends MainPageOLS> T getPage(T page) {
+        return (T)page;
     }
 
 
