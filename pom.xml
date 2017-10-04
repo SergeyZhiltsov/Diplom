@@ -18,7 +18,7 @@
     <testng.version>6.11</testng.version>
     <aspectj.version>1.8.10</aspectj.version>
     <allure.version>1.5.4</allure.version>
-    <browser>firefox</browser>
+    <browser>chrome</browser>
     <base.url>https://stg-cc.acuriancalls.com</base.url>
     <login>LOGIN</login>
     <password>PASSWORD</password>

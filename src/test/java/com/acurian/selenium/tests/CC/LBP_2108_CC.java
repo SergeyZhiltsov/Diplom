@@ -31,12 +31,15 @@ public class LBP_2108_CC extends BaseTest{
         List<String> protocols = Arrays.asList("A4091059");
         String protocol = "A4091059";
         String studyName = "low back pain";
+        String env = "STG";
+        String siteName = "hfghfgh";
+        String zipCode = "19044";
 
 
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
-                .openPage(URLs.CC_QA)
+                .openPage(env)
                 .waitForPageLoad();
 
         Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");

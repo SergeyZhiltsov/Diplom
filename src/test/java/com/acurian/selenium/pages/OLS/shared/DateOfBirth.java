@@ -56,7 +56,7 @@ public class DateOfBirth extends BasePage{
     
     @Step
     public DateOfBirth openPage(){
-    openURL(URLs.OLS_QA_RA);
+//    openURL(URLs.OLS_QA_RA);
     return this;
     }   
      
