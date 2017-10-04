@@ -1,38 +1,35 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
 import java.util.List;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class AffectingYourMetabolism extends MainPageOLS{
+public class WomenHealthConditions extends MainPageOLS{
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following conditions affecting your metabolism and general health?\n" + 
-    		"Please select all that apply.";
-    		
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    public final String titleExpected = "Have you ever been diagnosed with any of the following women's health conditions?\n" +
+            "Please select all that apply.";
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public AffectingYourMetabolism() {
+    public WomenHealthConditions() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AffectingYourMetabolism waitForPageLoad() {
+    public WomenHealthConditions waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AffectingYourMetabolism clickOnAnswers(String answerText) {
+    public WomenHealthConditions clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
@@ -42,7 +39,7 @@ public class AffectingYourMetabolism extends MainPageOLS{
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText(){
         return getText(titleText);
     }
 

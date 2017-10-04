@@ -31,7 +31,7 @@ public class SkinConditions  extends MainPageOLS{
     }
 
     @Step
-    public SkinConditions clickOnAnswers(String ...answerText) {
+    public SkinConditions clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))

@@ -29,7 +29,7 @@ public class ViralConditions  extends MainPageOLS{
     }
 
     @Step
-    public ViralConditions clickOnAnswers(String ...answerText) {
+    public ViralConditions clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))

@@ -29,7 +29,7 @@ public class MentalHealthConditions  extends MainPageOLS{
     }
 
     @Step
-    public MentalHealthConditions clickOnAnswers(String ...answerText) {
+    public MentalHealthConditions clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
