@@ -18,7 +18,7 @@
     <testng.version>6.11</testng.version>
     <aspectj.version>1.8.10</aspectj.version>
     <allure.version>1.5.4</allure.version>
-    <browser>firefox</browser>
+    <browser>chrome</browser>
     <base.url>https://stg-cc.acuriancalls.com</base.url>
     <login>LOGIN</login>
     <password>PASSWORD</password>
@@ -43,6 +43,17 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>ru.stqa.selenium</groupId>
+      <artifactId>decorated-webdriver</artifactId>
+      <version>4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.paulhammant</groupId>
+      <artifactId>ngwebdriver</artifactId>
+      <version>1.0</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>

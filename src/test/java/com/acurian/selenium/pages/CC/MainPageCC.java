@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class MainPageCC extends BasePage{
 
-    @FindBy(xpath = "//input[@class='next_btn']")
+    @FindBy(xpath = "//button[text()='Next']")
     WebElement nextButton;
 
 

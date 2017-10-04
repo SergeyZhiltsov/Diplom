@@ -28,6 +28,8 @@ public abstract class BaseTest {
                 : new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
+//        driverch.register(new EventHandler());
+//        driver =  new StaleTolerantWebDriver(driverch);
         driver.manage().window().setSize(new Dimension(1400,1050));
 //        System.setProperty(ESCAPE_PROPERTY, "false");
         DRIVER.set(driver);
