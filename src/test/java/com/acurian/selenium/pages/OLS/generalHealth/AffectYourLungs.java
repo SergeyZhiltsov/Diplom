@@ -29,7 +29,7 @@ public class AffectYourLungs extends MainPageOLS{
     }
 
     @Step
-    public AffectYourLungs clickOnAnswers(String ...answerText) {
+    public AffectYourLungs clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
