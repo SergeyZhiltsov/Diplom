@@ -30,7 +30,7 @@ public class DigestiveConditions extends MainPageOLS{
     }
 
     @Step
-    public DigestiveConditions clickOnAnswers(String ...answerText) {
+    public DigestiveConditions clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))

@@ -1,42 +1,43 @@
-package com.acurian.selenium.pages.OLS.Diabetes_4356A;
+package com.acurian.selenium.pages.OLS.DY_4356;
 
-import com.acurian.selenium.pages.OLS.MainPageOLS;
+import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.List;
+public class NonPrescriptionSupplements extends MainPageOLS{
 
-public class ApartFromMetforminPageOLS extends MainPageOLS{
-
-    public final String titleExpected = "Apart from metformin, what other oral (taken by mouth) medications do you currently take for your diabetes?\n" +
+    public final String titleExpected = "Are you currently taking any of the following non-prescription supplements or food products on a daily basis?\n" +
             "Please select all that apply.";
-
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    
+    		
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public ApartFromMetforminPageOLS() {
+    public NonPrescriptionSupplements() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ApartFromMetforminPageOLS waitForPageLoad() {
+    public NonPrescriptionSupplements waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ApartFromMetforminPageOLS clickOnAnswers(String ...answerText) {
+    public NonPrescriptionSupplements clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
+
 }

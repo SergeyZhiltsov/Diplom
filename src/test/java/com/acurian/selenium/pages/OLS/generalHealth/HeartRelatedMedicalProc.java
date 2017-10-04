@@ -29,7 +29,7 @@ public class HeartRelatedMedicalProc extends MainPageOLS{
     }
 
     @Step
-    public HeartRelatedMedicalProc clickOnAnswers(String ...answerText) {
+    public HeartRelatedMedicalProc clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))

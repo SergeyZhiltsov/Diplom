@@ -29,7 +29,7 @@ public class SleepRelatedConditions  extends MainPageOLS{
     }
 
     @Step
-    public SleepRelatedConditions clickOnAnswers(String ...answerText) {
+    public SleepRelatedConditions clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
