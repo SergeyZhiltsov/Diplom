@@ -2,6 +2,7 @@ package com.acurian.selenium.pages;
 
 
 import com.acurian.selenium.listeners.TestListener;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,7 @@ public abstract class BasePage {
     private WebDriver driver;
     protected WebDriverWaitLogged driverWait;
     private Actions actions;
+    protected NgWebDriver ngDriver;
 
 //    @FindBy(xpath = "//input[@class='next_btn']")
 //    WebElement nextButton;
@@ -31,6 +33,7 @@ public abstract class BasePage {
         driver = BaseTest.getDriver();
         actions = new Actions(driver);
         driverWait = new WebDriverWaitLogged(driver);
+        ngDriver = new NgWebDriver((JavascriptExecutor) driver);
         PageFactory.initElements(getDriver(), this);
     }
 

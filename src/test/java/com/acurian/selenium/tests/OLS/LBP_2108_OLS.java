@@ -1,8 +1,13 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.LBP_2108.OfMedicationsYou;
 import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
+import com.acurian.selenium.pages.OLS.LBP_2108.InPastYearPageOLS;
+import com.acurian.selenium.pages.OLS.LBP_2108.InTotalHowManyPageOLS;
+import com.acurian.selenium.pages.OLS.LBP_2108.OfMedicationsYouPageOLS;
+import com.acurian.selenium.pages.OLS.LBP_2108.WhatTypeOfHealthcarePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -65,11 +70,98 @@ public class LBP_2108_OLS extends BaseTest{
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(doYouSufferFromLbpPageOLS.titleExpected), protocol, "Protocol is diff");
         debugPageCC.back();
 
-        doYouSufferFromLbpPageOLS
+        HowLongHaveLbpPageOLS howLongHaveLbpPageOLS = doYouSufferFromLbpPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveLbpPageOLS());
 
+        howLongHaveLbpPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(howLongHaveLbpPageOLS.getTitleText(), howLongHaveLbpPageOLS.titleExpected, "Title is diff");
+        howLongHaveLbpPageOLS
+                .clickOnAnswer("Less than 3 months")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
+
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(hasHealthcareProfessionalPageOLS.titleExpected), protocol, "Protocol is diff");
+        debugPageCC.back();
+
+        WhatTypeOfHealthcarePageOLS whatTypeOfHealthcarePageOLS =howLongHaveLbpPageOLS
+                .clickOnAnswer("3 - 6 months")
+                .clickNextButton(new WhatTypeOfHealthcarePageOLS());
+
+        whatTypeOfHealthcarePageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(whatTypeOfHealthcarePageOLS.getTitleText(), whatTypeOfHealthcarePageOLS.titleExpected, "Title is diff");
+        InTotalHowManyPageOLS inTotalHowManyPageOLS = whatTypeOfHealthcarePageOLS
+                .clickOnAnswers("Family doctor or general practitioner")
+                .clickNextButton(new InTotalHowManyPageOLS());
+
+        inTotalHowManyPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("0")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
+
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowManyPageOLS.titleExpected), protocol, "Protocol is diff");
+        hasHealthcareProfessionalPageOLS.back();
+
+        inTotalHowManyPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("1")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
+
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowManyPageOLS.titleExpected), protocol, "Protocol is diff");
+        hasHealthcareProfessionalPageOLS.back();
+
+        inTotalHowManyPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("2")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
+
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowManyPageOLS.titleExpected), protocol, "Protocol is diff");
+        hasHealthcareProfessionalPageOLS.back();
+
+        OfMedicationsYouPageOLS ofMedicationsYouPageOLS = inTotalHowManyPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("3")
+                .clickNextButton(new OfMedicationsYouPageOLS());
+
+        ofMedicationsYouPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(ofMedicationsYouPageOLS.getTitleText(), ofMedicationsYouPageOLS.titleExpected, "Title is diff");
+        AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = ofMedicationsYouPageOLS
+                .clickOnAnswer("0")
+                .clickNextButton(new AreYouCurrentlyOnPageOLS());
+
+        areYouCurrentlyOnPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(areYouCurrentlyOnPageOLS.getTitleText(), areYouCurrentlyOnPageOLS.titleExpected, "Title is diff");
+        areYouCurrentlyOnPageOLS
+                .clickOnAnswer("Yes, for another chronic condition")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
+
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(areYouCurrentlyOnPageOLS.titleExpected), protocol, "Protocol is diff");
+        hasHealthcareProfessionalPageOLS.back();
+
+        InPastYearPageOLS inPastYearPageOLS = areYouCurrentlyOnPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, for low back pain")
+                .clickNextButton(new InPastYearPageOLS());
+
+        inPastYearPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(areYouCurrentlyOnPageOLS.getTitleText(), areYouCurrentlyOnPageOLS.titleExpected, "Title is diff");
+        inPastYearPageOLS
+                .clickOnAnswers("");
 
 
 
