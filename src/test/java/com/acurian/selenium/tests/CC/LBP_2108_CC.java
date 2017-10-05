@@ -31,9 +31,9 @@ public class LBP_2108_CC extends BaseTest{
         List<String> protocols = Arrays.asList("A4091059");
         String protocol = "A4091059";
         String studyName = "low back pain";
-        String siteName = "AUT_LBP_2108_Site";
-        String zipCode = "19044";
-        String env  = "STG";
+        String env = "STG";
+        String siteName = "hfghfgh";
+        String zipCode  = "19044";
 
 
         LoginPageCC loginPageCC = new LoginPageCC();
