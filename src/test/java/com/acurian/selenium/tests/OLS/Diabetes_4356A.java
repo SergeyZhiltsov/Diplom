@@ -3,9 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -535,9 +533,47 @@ public class Diabetes_4356A extends BaseTest{
                 .clickOnAnswer("7 - 12 months ago")
                 .clickNextButton(congestiveHeartFailurePageOLS);
 
+
         congestiveHeartFailurePageOLS
                 .waitForPageLoad()
-                .threadSleep(10000);
+                .clickOnAnswer("No")
+                .clickNextButton(new AffectingYourMetabolismPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ConditionsRelatedToYourDiabetesPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingNeurologicalConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AffectYourLungsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DigestiveConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SleepRelatedConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SkinConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ViralConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new MentalHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WomensHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OtherThanSkinCancerPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new SmokedCigarettesPageOLS());
 
 
 
