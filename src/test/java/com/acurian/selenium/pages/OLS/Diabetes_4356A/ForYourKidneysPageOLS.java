@@ -8,29 +8,30 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class ToLoseWeightPageOLS extends MainPageOLS{
+public class ForYourKidneysPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Are you currently using any of the following to lose weight?";
+    public final String titleExpected = "Do you take medication for high blood pressure or for your kidneys?\n" +
+            "Some of these medications are called diuretics or \"water pills.\"";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]")
-    List<WebElement> checkBoxList;
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    List<WebElement> radioButtonsList;
 
-    public ToLoseWeightPageOLS() {
+    public ForYourKidneysPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ToLoseWeightPageOLS waitForPageLoad() {
+    public ForYourKidneysPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ToLoseWeightPageOLS clickOnAnswers(String ...answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+    public ForYourKidneysPageOLS clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

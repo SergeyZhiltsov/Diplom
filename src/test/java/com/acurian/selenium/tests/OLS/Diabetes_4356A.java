@@ -3,7 +3,9 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -325,34 +327,217 @@ public class Diabetes_4356A extends BaseTest{
         procedureForWeightLossPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(),procedureForWeightLossPageOLS.titleExpected, "Title is diff");
-        procedureForWeightLossPageOLS
+        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = procedureForWeightLossPageOLS
                 .clickOnAnswer("Within the past 3 months")
                 .clickNextButton(new StatinMedicationsOnPageOLS());
+        statinMedicationsOnPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol4,protocol6)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(statinMedicationsOnPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol4,protocol6)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 12 months ago")
+                .clickNextButton(statinMedicationsOnPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol4,protocol6)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("More than 1 year ago")
+                .clickNextButton(statinMedicationsOnPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol4,protocol6)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .back();
 
+        weightLossSurgeryPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(statinMedicationsOnPageOLS);
 
+        statinMedicationsOnPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(statinMedicationsOnPageOLS.getTitleText(),statinMedicationsOnPageOLS.titleExpected, "Title is diff");
+        DiabeticNephropathyPageOLS diabeticNephropathyPageOLS = statinMedicationsOnPageOLS
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DiabeticNephropathyPageOLS());
+        diabeticNephropathyPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(statinMedicationsOnPageOLS.titleExpected, protocol7)
+                .back();
+        StatinMedicationPreviousQuestionPageOLS statinMedicationPreviousQuestionPageOLS = statinMedicationsOnPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Atorvastatin","Simcor (simvastatin and niacin)")
+                .clickNextButton(new StatinMedicationPreviousQuestionPageOLS());
 
+        statinMedicationPreviousQuestionPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(statinMedicationPreviousQuestionPageOLS.getTitleText(),statinMedicationPreviousQuestionPageOLS.titleExpected, "Title is diff");
+        statinMedicationPreviousQuestionPageOLS
+                .clickOnAnswer("1 month or less")
+                .clickNextButton(diabeticNephropathyPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
+                .back();
+        statinMedicationPreviousQuestionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("2 months")
+                .clickNextButton(diabeticNephropathyPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
+                .back();
+        statinMedicationPreviousQuestionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("4 months")
+                .clickNextButton(diabeticNephropathyPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
+                .back();
+        statinMedicationPreviousQuestionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("6 months - 11 months")
+                .clickNextButton(diabeticNephropathyPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
+                .back();
+        statinMedicationPreviousQuestionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("1 year or more")
+                .clickNextButton(diabeticNephropathyPageOLS);
 
+        diabeticNephropathyPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(diabeticNephropathyPageOLS.getTitleText(),diabeticNephropathyPageOLS.titleExpected, "Title is diff");
+        ForYourKidneysPageOLS forYourKidneysPageOLS = diabeticNephropathyPageOLS
+                .clickOnAnswer("No")
+                .clickNextButton(new ForYourKidneysPageOLS());
+        forYourKidneysPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(diabeticNephropathyPageOLS.titleExpected, protocol1)
+                .back();
+        diabeticNephropathyPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(forYourKidneysPageOLS);
 
+        forYourKidneysPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(forYourKidneysPageOLS.getTitleText(),forYourKidneysPageOLS.titleExpected, "Title is diff");
+        forYourKidneysPageOLS
+                .clickOnAnswer("No")
+                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Do you take medication for high blood pressure or for your kidneys? Some of these medications are ca", protocol1)
+                .back();
+        forYourKidneysPageOLS
+                .clickOnAnswer("Yes")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
 
-//        weightLossSurgeryPageOLS
-//                .waitForPageLoad();
-//        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = weightLossSurgeryPageOLS
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new StatinMedicationsOnPageOLS());
-//        statinMedicationsOnPageOLS
-//                .waitForPageLoad()
-//                .back();
-//        weightLossSurgeryPageOLS
-//                .waitForPageLoad();
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(hasHealthcareProfessionalPageOLS.getTitleText(),hasHealthcareProfessionalPageOLS.titleExpected, "Title is diff");
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = hasHealthcareProfessionalPageOLS
+                .clickOnAnswers("Heart Attack",
+                        "Stroke",
+                        "TIA or \"Mini-Stroke\"",
+                        "Angina (heart-related chest pain) that required an overnight stay in a hospital")
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(1),subquestionExperiencedHeartPageOLS.titleExpected1, "Title is diff");
+        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(2),subquestionExperiencedHeartPageOLS.titleExpected2, "Title is diff");
+        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(3),subquestionExperiencedHeartPageOLS.titleExpected3, "Title is diff");
+        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(4),subquestionExperiencedHeartPageOLS.titleExpected4, "Title is diff");
+        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(5),subquestionExperiencedHeartPageOLS.titleExpected5, "Title is diff");
+        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Yes")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5,"Less than 30 days ago")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+        heartrelatedMedicalProceduresPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("null", protocol1,protocol2,protocol3,protocol4,protocol6,protocol7)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"5 years ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"5 years ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Yes")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"5 years ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("null", protocol1,protocol2,protocol3,protocol4,protocol6)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5,"5 years ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
+        heartrelatedMedicalProceduresPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(heartrelatedMedicalProceduresPageOLS.getTitleText(),heartrelatedMedicalProceduresPageOLS.titleExpected, "Title is diff");
+        CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = heartrelatedMedicalProceduresPageOLS
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new CongestiveHeartFailurePageOLS());
+        congestiveHeartFailurePageOLS
+                .waitForPageLoad()
+                .back();
+        HeartProceduresFromLastPageOLS heartProceduresFromLastPageOLS = heartrelatedMedicalProceduresPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Stent placement")
+                .clickNextButton(new HeartProceduresFromLastPageOLS());
 
+        heartProceduresFromLastPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(heartProceduresFromLastPageOLS.getTitleText(),heartProceduresFromLastPageOLS.titleExpected, "Title is diff");
+        heartProceduresFromLastPageOLS
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(congestiveHeartFailurePageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)// there checkProtocolsEqualsForQNumber is used because to same questions in debug window
+                .checkProtocolsEqualsForQNumber("QS4220", protocol1,protocol2,protocol3,protocol4,protocol6,protocol7)
+                .back();
+        heartProceduresFromLastPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(congestiveHeartFailurePageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEqualsForQNumber("QS4220", protocol2,protocol3,protocol4,protocol6)
+                .back();
+        heartProceduresFromLastPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 12 months ago")
+                .clickNextButton(congestiveHeartFailurePageOLS);
 
-
-
-
-
-
+        congestiveHeartFailurePageOLS
+                .waitForPageLoad()
+                .threadSleep(10000);
 
 
 

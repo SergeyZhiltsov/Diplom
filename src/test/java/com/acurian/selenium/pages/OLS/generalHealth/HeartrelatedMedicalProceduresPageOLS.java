@@ -1,5 +1,6 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.generalHealth;
 
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.InsulinForYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,10 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class StatinMedicationsOnPageOLS extends MainPageOLS{
+public class HeartrelatedMedicalProceduresPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a medicine called a statin. Most people with these conditions are prescribed this kind of medicine for their condition. Statins are prescribed in many different names.\n" +
-            "Are you currently taking any of the following statin medications on a daily basis?\n" +
+    public final String titleExpected = "Have you undergone any of the following heart-related medical procedures?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
@@ -20,18 +20,18 @@ public class StatinMedicationsOnPageOLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public StatinMedicationsOnPageOLS() {
+    public HeartrelatedMedicalProceduresPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public StatinMedicationsOnPageOLS waitForPageLoad() {
+    public HeartrelatedMedicalProceduresPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public StatinMedicationsOnPageOLS clickOnAnswers(String ...answerText) {
+    public HeartrelatedMedicalProceduresPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
