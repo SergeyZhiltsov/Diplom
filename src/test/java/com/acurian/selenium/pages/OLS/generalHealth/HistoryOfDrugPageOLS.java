@@ -8,9 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SmokedCigarettesPageOLS extends MainPageOLS{
+public class HistoryOfDrugPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever smoked cigarettes, cigars, or e-cigarettes?";
+    public final String titleExpected = "Do you have a history of drug or alcohol abuse?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -18,18 +18,18 @@ public class SmokedCigarettesPageOLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public SmokedCigarettesPageOLS() {
+    public HistoryOfDrugPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SmokedCigarettesPageOLS waitForPageLoad() {
+    public HistoryOfDrugPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public SmokedCigarettesPageOLS clickOnAnswer(String answerText) {
+    public HistoryOfDrugPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -38,4 +38,6 @@ public class SmokedCigarettesPageOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
+
+
 }

@@ -2,6 +2,9 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -28,8 +31,9 @@ public class Diabetes_4356A extends BaseTest{
         String protocol5 = "EFC14835";
         String protocol6 = "ITCA 650_CLP_203";
         String protocol7 = "K_877_302";
-        String studyName = "Diabetes study";
-        String siteName = "AUT_LBP_2108_Site";
+        String studyName = "Diabetes";//Diabetes study
+        String siteName = "AUT_DIA_4356A";
+        String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
         String env = "STG";
         String zipCode = "19044";
 
@@ -573,7 +577,32 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(new OtherThanSkinCancerPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new SmokedCigarettesPageOLS());
+                .clickNextButton(new SmokedCigarettesPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No, I never smoked")
+                .clickNextButton(new HistoryOfDrugPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new ChildrenUnderPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new SynexusQualifiedClose4356PageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .threadSleep(5000);
 
 
 

@@ -8,9 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SmokedCigarettesPageOLS extends MainPageOLS{
+public class ChildrenUnderPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever smoked cigarettes, cigars, or e-cigarettes?";
+    public final String titleExpected = "Do you have any children under the age of 18 in your household?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -18,18 +18,18 @@ public class SmokedCigarettesPageOLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public SmokedCigarettesPageOLS() {
+    public ChildrenUnderPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SmokedCigarettesPageOLS waitForPageLoad() {
+    public ChildrenUnderPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public SmokedCigarettesPageOLS clickOnAnswer(String answerText) {
+    public ChildrenUnderPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
