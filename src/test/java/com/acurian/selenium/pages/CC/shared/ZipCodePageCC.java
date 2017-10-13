@@ -4,7 +4,6 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class ZipCodePageCC extends MainPageCC {
@@ -23,8 +22,7 @@ public class ZipCodePageCC extends MainPageCC {
 
     @Step
     public ZipCodePageCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
@@ -34,5 +32,8 @@ public class ZipCodePageCC extends MainPageCC {
         return this;
     }
 
-
+    @Step
+    public String getTitleText(){
+        return getText(titleText);
+    }
 }

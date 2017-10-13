@@ -40,11 +40,12 @@ public class CallCenterIntroductionPageCC extends MainPageCC{
 
     @Step
     public CallCenterIntroductionPageCC clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
+//        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+//                .findFirst()
+//                .get()
+//                .click();
+//        waitForAnimation();
         return this;
     }
 
