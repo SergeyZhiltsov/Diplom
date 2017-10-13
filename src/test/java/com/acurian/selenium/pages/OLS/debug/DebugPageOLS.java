@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.OLS.debug;
 
-import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,6 +21,12 @@ public class DebugPageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[3]")
     List<WebElement> questionList;
+
+    @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='VK2809_201']")
+    WebElement protocolVK;
+
+    @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='20150230']")
+    WebElement protocol201;
 
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[1]")
     List<WebElement> questionNumberList;
@@ -78,6 +83,17 @@ public class DebugPageOLS extends MainPageOLS{
                 + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
         return this;
     }
+
+    @Step
+    public String getProtocolVK() {
+        return getText(protocolVK);
+    }
+
+    @Step
+    public String getProtocol201() {
+        return getText(protocol201);
+    }
+
 
     private List<String> getProtocolsForQuestionNumber(String questionNumber){
         openDebugWindow();
