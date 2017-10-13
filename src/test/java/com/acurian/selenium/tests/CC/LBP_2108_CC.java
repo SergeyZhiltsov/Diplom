@@ -291,7 +291,7 @@ public class LBP_2108_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad()
+                .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new QualifiedClose2PageCC())
