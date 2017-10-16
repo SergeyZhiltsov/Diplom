@@ -28,6 +28,9 @@ public class SiteSelectionPageCC extends MainPageCC {
 
     @FindBy(xpath = "//div[@class='site_selection_container']//span[@class='site_sel_radio_facilityName']")
     List<WebElement> radioButtonsList;
+    
+    @FindBy(xpath = "//div[@class='site_selection_container']//span[@class='question_helper']")
+    List<WebElement> radioButtonsList1;
 
     @FindBy(xpath = "//em[@id='debug-pid']")
     WebElement pidNumberPath;
@@ -53,6 +56,16 @@ public class SiteSelectionPageCC extends MainPageCC {
         waitForAnimation();
         return this;
     }
+    
+    @Step
+    public SiteSelectionPageCC selectAnswer(String answerText) {
+        radioButtonsList1.stream().filter(el -> el.getText().equals(answerText))
+                .findFirst()
+                .get()
+                .click();
+        waitForAnimation();
+        return this;
+    }
 
     @Step
     public String getTitleText(){
@@ -70,4 +83,5 @@ public class SiteSelectionPageCC extends MainPageCC {
 //    private void logTextToAllure(String text) {
 //        //empty method
 //    }
+    
 }

@@ -23,6 +23,9 @@ public class DebugPageCC extends MainPageCC{
 
     @FindBy(xpath = "//div[@class='debug_toolbar_content']//tbody//tr/td[@class='question_txt']")
     List<WebElement> questionList;
+    
+    @FindBy(xpath = "//div[@class='debug_toolbar_content']//tbody//tr/td[@class='question_dq question_pdq_true']")
+    WebElement protocolList;
 
     @FindBy(xpath = "//div[@class='debug_toolbar_content']//tbody//tr/td[@class='question_code']")
     List<WebElement> questionNumberList;
@@ -56,6 +59,11 @@ public class DebugPageCC extends MainPageCC{
         logTextToAllure("Protocol="+temp);
         return temp;
     }
+    
+    @Step
+    public String getProtocol() {
+    	return getText(protocolList);
+    } 
 
     private List<String> getProtocolsForQuestion(String questionText){
         openDebugWindow();

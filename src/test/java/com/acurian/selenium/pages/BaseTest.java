@@ -3,6 +3,9 @@ package com.acurian.selenium.pages;
 import com.acurian.selenium.listeners.EventHandler;
 import com.acurian.selenium.utils.DriverFactory;
 import com.acurian.selenium.utils.Properties;
+
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -31,6 +34,7 @@ public abstract class BaseTest {
 //        driverch.register(new EventHandler());
 //        driver =  new StaleTolerantWebDriver(driverch);
         driver.manage().window().setSize(new Dimension(1400,1050));
+        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
 //        System.setProperty(ESCAPE_PROPERTY, "false");
         DRIVER.set(driver);
     }
@@ -59,6 +63,7 @@ public abstract class BaseTest {
             default:
                 return false;
         }
+        
     }
 
 }

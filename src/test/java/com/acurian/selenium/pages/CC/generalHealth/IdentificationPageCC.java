@@ -13,9 +13,14 @@ public class IdentificationPageCC extends MainPageCC {
             "\n" +
             "Now, I just want to confirm that your name and contact information were entered correctly.\n" +
             "[Read the name, address and phone number to the caller. Make any corrections noted by the caller.]";
+    
+    public final String titleExpected1 = "After saying the language above, please abort screening.";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
+    
+    @FindBy(xpath = "//div[@class='question_container']//div[@class='show-in-cc']/span[@class='agent-note']")
+    WebElement titleTextt;
 
     @FindBy(xpath = "//input[contains(@class,'input-text-first-name')]")
     WebElement firstNameField;
@@ -40,6 +45,13 @@ public class IdentificationPageCC extends MainPageCC {
     public IdentificationPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        return this;
+    }
+    
+    @Step
+    public IdentificationPageCC waitForPageLoad1() {
+        waitForAnimation();
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleTextt.getText().contains(titleExpected1));
         return this;
     }
 
@@ -88,4 +100,5 @@ public class IdentificationPageCC extends MainPageCC {
         waitForAnimation();
         return this;
     }
+    
 }

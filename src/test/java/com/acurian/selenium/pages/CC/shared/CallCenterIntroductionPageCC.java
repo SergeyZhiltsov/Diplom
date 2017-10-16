@@ -17,6 +17,11 @@ public class CallCenterIntroductionPageCC extends MainPageCC{
             "Agent Notes:\n" +
             "If at any point during the call, the respondent indicates that he or she is providing information on behalf of someone else, follow the call center SOP for obtaining verbal consent before continuing with the call.\n" +
             "Always select \"Learn more about matching to clinical trials\" unless prompted by a caller to pick another selection.";
+    
+    public final String titleExpectedDYS = "Thank you for calling Acurian Health's research study line. My name is AUTOTEST AUTOTEST and I'll be able to walk you through our questionnaire today.\n" +
+            "\n" +
+            "May I ask your name please?";
+    
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -52,6 +57,7 @@ public class CallCenterIntroductionPageCC extends MainPageCC{
     @Step
     public String getTitleText(){
         return getText(titleText);
-    }
+    } 
+    
 
 }
