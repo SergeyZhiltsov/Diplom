@@ -29,10 +29,8 @@ public class DebugPageOLS extends MainPageOLS{
     WebElement protocolVK;
     
     @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='20150230']")
-    WebElement protocol201;
-    
-    @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='R475_PN_1523']")
-    WebElement protocolOA;
+    WebElement protocol201;  
+   
 
 
 
@@ -100,10 +98,6 @@ public class DebugPageOLS extends MainPageOLS{
         return getText(protocol201);
     }
     
-    @Step
-    public String getProtocolOA() {
-        return getText(protocolOA);
-    }
-
+    
 }
 
