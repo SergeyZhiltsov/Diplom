@@ -259,6 +259,12 @@ public abstract class BasePage {
     public void back(){
         driver.navigate().back();
     }
+    
+    @Step
+    public void maximizePage(){
+    driver.manage().window().maximize();
+    
+    }
 
 
 }
