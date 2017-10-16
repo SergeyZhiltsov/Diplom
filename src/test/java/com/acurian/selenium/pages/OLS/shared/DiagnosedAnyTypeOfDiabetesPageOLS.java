@@ -15,7 +15,7 @@ public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    @FindBy(xpath = "//label[contains(@for,'QS4520_')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> radioButtonsList;
 
     public DiagnosedAnyTypeOfDiabetesPageOLS() {
