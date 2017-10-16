@@ -37,6 +37,5 @@ public class ThankYouForAnsweringCC extends MainPageCC {
        nextButton.click();
        return this;    
        
-    }
-    
+    }    
  }

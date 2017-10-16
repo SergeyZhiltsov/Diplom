@@ -45,5 +45,4 @@ public class AreYouTakingAnyOfMedicationsCC extends MainPageCC {
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

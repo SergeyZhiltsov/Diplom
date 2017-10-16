@@ -100,4 +100,5 @@ public class IdentificationPageCC extends MainPageCC {
         waitForAnimation();
         return this;
     }
+    
 }

@@ -88,8 +88,7 @@ public class DebugPageOLS extends MainPageOLS{
                 + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
         return this;
     }
-
-
+    
     
     @Step
     public String getProtocolVK() {

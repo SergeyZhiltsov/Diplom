@@ -81,4 +81,5 @@ public class SiteSelectionPageCC extends MainPageCC {
 //    private void logTextToAllure(String text) {
 //        //empty method
 //    }
+    
 }

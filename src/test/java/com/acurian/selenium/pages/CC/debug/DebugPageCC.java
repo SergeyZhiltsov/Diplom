@@ -56,8 +56,7 @@ public class DebugPageCC extends MainPageCC{
     @Step
     public String getProtocol() {
     	return getText(protocolList);
-    }
-    
+    } 
 
 
 }

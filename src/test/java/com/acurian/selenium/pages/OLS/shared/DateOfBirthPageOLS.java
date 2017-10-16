@@ -93,5 +93,4 @@ public class DateOfBirthPageOLS extends MainPageOLS{
         return getText(titleText);
     }
 
-
 }
