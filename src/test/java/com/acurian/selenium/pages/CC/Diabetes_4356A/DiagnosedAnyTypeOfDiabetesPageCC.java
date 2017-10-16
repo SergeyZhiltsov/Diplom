@@ -1,18 +1,17 @@
-package com.acurian.selenium.pages.CC.shared;
+package com.acurian.selenium.pages.CC.Diabetes_4356A;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DoYouSufferFromLbpPageCC extends MainPageCC {
+public class DiagnosedAnyTypeOfDiabetesPageCC extends MainPageCC{
 
-    public final String titleExpected = "Do you suffer from low back pain?";
+    public final String titleExpected = "Have you been diagnosed with any type of diabetes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -20,18 +19,18 @@ public class DoYouSufferFromLbpPageCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public DoYouSufferFromLbpPageCC() {
+    public DiagnosedAnyTypeOfDiabetesPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DoYouSufferFromLbpPageCC waitForPageLoad() {
+    public DiagnosedAnyTypeOfDiabetesPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DoYouSufferFromLbpPageCC clickOnAnswer(String answerText) {
+    public DiagnosedAnyTypeOfDiabetesPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,6 +39,4 @@ public class DoYouSufferFromLbpPageCC extends MainPageCC {
     public String getTitleText(){
         return getText(titleText);
     }
-
-
 }

@@ -49,8 +49,9 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     @Step
     public DateOfBirthPageCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> questionText.getText().contains(titleExpected));
+        waitForPageLoadMain(questionText, titleExpected);
+//        waitForAnimation();
+//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> questionText.getText().contains(titleExpected));
         return this;
     }
 

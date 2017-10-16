@@ -25,18 +25,13 @@ public class GenderPageCC extends MainPageCC {
 
     @Step
     public GenderPageCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public GenderPageCC clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
