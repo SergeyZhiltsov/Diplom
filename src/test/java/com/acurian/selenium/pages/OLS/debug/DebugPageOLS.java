@@ -20,13 +20,13 @@ public class DebugPageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[3]")
     List<WebElement> questionList;
-    
+
     @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='VK2809_201']")
     WebElement protocolVK;
-    
+
     @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='20150230']")
     WebElement protocol201;   
-
+    
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[1]")
     List<WebElement> questionNumberList;
 
@@ -59,7 +59,6 @@ public class DebugPageOLS extends MainPageOLS{
         return temp;
     }
 
-
     @Step
     public List<String> getProtocolsForQuestion(String questionText){
         openDebugWindow();
@@ -76,23 +75,47 @@ public class DebugPageOLS extends MainPageOLS{
         return temp;
     }
 
+    @Step
     public DebugPageOLS checkProtocolsEquals(String previousPageTitle, String...expectedProtocols){
         Object[] actualProtocols =  getProtocolsForQuestion(previousPageTitle).toArray();
         Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
                 + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
         return this;
     }
-    
-    
+
     @Step
     public String getProtocolVK() {
         return getText(protocolVK);
     }
-    
+
     @Step
     public String getProtocol201() {
         return getText(protocol201);
-    }    
-    
-}
 
+    }   
+ 
+
+    private List<String> getProtocolsForQuestionNumber(String questionNumber){
+        openDebugWindow();
+        waitForAnimation();
+        List<String> temp = questionNumberList.stream()
+                .filter(el -> questionNumber.contains(el.getText()))
+                .findFirst()
+                .get()
+                .findElements(By.xpath("following-sibling::*[4]//tbody/tr/td"))
+                .stream().map(el -> el.getText()).collect(Collectors.toList());
+        closeDebugWindow();
+        logTextToAllure("Protocol="+temp);
+        return temp;
+    }
+
+//use checkProtocolsEqualsForQNumber if same questions in debug window
+    @Step
+    public DebugPageOLS checkProtocolsEqualsForQNumber(String questionNumber, String...expectedProtocols){
+        Object[] actualProtocols =  getProtocolsForQuestionNumber(questionNumber).toArray();
+        Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
+                + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
+        return this;
+    }
+
+}

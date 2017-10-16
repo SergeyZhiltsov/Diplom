@@ -262,7 +262,8 @@ public abstract class BasePage {
     
     @Step
     public void maximizePage() {
-    driver.manage().window().maximize();    
+    driver.manage().window().maximize();
+
     
     }
 
