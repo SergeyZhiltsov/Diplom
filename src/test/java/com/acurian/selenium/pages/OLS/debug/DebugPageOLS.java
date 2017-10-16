@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,10 +25,10 @@ public class DebugPageOLS extends MainPageOLS{
     WebElement protocolVK;
     
     @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='20150230']")
-    WebElement protocol201;  
-   
+    WebElement protocol201;   
 
-
+    @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[1]")
+    List<WebElement> questionNumberList;
 
     public DebugPageOLS() {
     }
@@ -93,8 +92,7 @@ public class DebugPageOLS extends MainPageOLS{
     @Step
     public String getProtocol201() {
         return getText(protocol201);
-    }
-    
+    }    
     
 }
 
