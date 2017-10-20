@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -35,6 +36,9 @@ public class SiteSelectionPageCC extends MainPageCC {
     @FindBy(xpath = "//em[@id='debug-pid']")
     WebElement pidNumberPath;
 
+    @FindBy(xpath = "//div[@class='site_selection_container']//span[@class='question_helper']")
+    List<WebElement> debuqQuestionList;
+
     public SiteSelectionPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -64,6 +68,12 @@ public class SiteSelectionPageCC extends MainPageCC {
                 .get()
                 .click();
         waitForAnimation();
+        return this;
+    }
+
+    @Step
+    public SiteSelectionPageCC clickOnDebugSiteName(String debugSiteName) {
+        clickOnRadioButton(debuqQuestionList, debugSiteName);
         return this;
     }
 

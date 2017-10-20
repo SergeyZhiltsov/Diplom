@@ -65,47 +65,49 @@ public class DebugPageCC extends MainPageCC{
     	return getText(protocolList);
     } 
 
-    private List<String> getProtocolsForQuestion(String questionText){
+    private String[] getProtocolsForQuestion(String questionText){
         openDebugWindow();
         waitForAnimation();
         String questionTextMod = questionText.replace("\n", "");
-        List<String> temp = questionList.stream()
+        String temp = questionList.stream()
                 .filter(el -> questionTextMod.contains(el.getText().replace("...","")))
                 .findFirst()
                 .get()
-                .findElements(By.xpath("following-sibling::*[3]/text()"))
-                .stream().map(el -> el.getText()).collect(Collectors.toList());
+                .findElement(By.xpath("following-sibling::*[3]"))
+                .getText();
+        String[] tempArr = temp.split("\n");
         closeDebugWindow();
-        logTextToAllure("Protocol="+temp);
-        return temp;
+        logTextToAllure("Protocol(s)="+tempArr);
+        return tempArr;
     }
 
     @Step
     public DebugPageCC checkProtocolsEquals(String previousPageTitle, String...expectedProtocols){
-        Object[] actualProtocols =  getProtocolsForQuestion(previousPageTitle).toArray();
+        Object[] actualProtocols =  getProtocolsForQuestion(previousPageTitle);
         Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
                 + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
         return this;
     }
 
-    private List<String> getProtocolsForQuestionNumber(String questionNumber){
+    private String[] getProtocolsForQuestionNumber(String questionNumber){
         openDebugWindow();
         waitForAnimation();
-        List<String> temp = questionNumberList.stream()
-                .filter(el -> questionNumber.contains(el.getText()))
+        String temp = questionNumberList.stream()
+                .filter(el -> questionNumber.equals(el.getText()))
                 .findFirst()
                 .get()
-                .findElements(By.xpath("following-sibling::*[5]/text()"))
-                .stream().map(el -> el.getText()).collect(Collectors.toList());
+                .findElement(By.xpath("following-sibling::*[5]"))
+                .getText();
+        String[] tempArr = temp.split("\n");
         closeDebugWindow();
-        logTextToAllure("Protocol="+temp);
-        return temp;
+        logTextToAllure("Protocol(s)="+tempArr);
+        return tempArr;
     }
 
     //use checkProtocolsEqualsForQNumber if same questions in debug window
     @Step
     public DebugPageCC checkProtocolsEqualsForQNumber(String questionNumber, String...expectedProtocols){
-        Object[] actualProtocols =  getProtocolsForQuestionNumber(questionNumber).toArray();
+        Object[] actualProtocols =  getProtocolsForQuestionNumber(questionNumber);
         Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
                 + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
         return this;

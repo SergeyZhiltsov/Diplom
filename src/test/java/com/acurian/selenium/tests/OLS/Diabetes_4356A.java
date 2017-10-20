@@ -22,7 +22,7 @@ public class Diabetes_4356A extends BaseTest{
     @TestCaseId("00003")
     @Description("Diabetes_4356A_Synexus")
     public void tc003Test() {
-        String phoneNumberLBP = "AUTAMS1HFL";
+        String phoneNumberLBP = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14835", "ITCA 650_CLP_203","K_877_302","17530","EFC13794","NN2211_4315","NN9535_4269");
         String protocol1 = "17530";
         String protocol2 = "NN9535_4269";
@@ -152,8 +152,10 @@ public class Diabetes_4356A extends BaseTest{
                 .clickOnAnswer("More than 1 year ago")
                 .clickNextButton(treatingYourDiabetesPageOLS);
 
+        treatingYourDiabetesPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(treatingYourDiabetesPageOLS.getTitleText(),treatingYourDiabetesPageOLS.titleExpected, "Title is diff");
         FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
-                .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
                 .clickNextButton(new FollowingToLoseWeightPageOLS());
         followingToLoseWeightPageOLS
@@ -282,10 +284,9 @@ public class Diabetes_4356A extends BaseTest{
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Combination Oral and Injectable Medication Logic", protocol4);
         Assert.assertEquals(combinationWithEachOtherPageOLS.getTitleText(),combinationWithEachOtherPageOLS.titleExpected, "Title is diff");
-        ToLoseWeightPageOLS toLoseWeightPageOLS = combinationWithEachOtherPageOLS
+        combinationWithEachOtherPageOLS
                 .clickOnAnswer("1 month or less")
-                .clickNextButton(new ToLoseWeightPageOLS());
-        toLoseWeightPageOLS
+                .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(combinationWithEachOtherPageOLS.titleExpected, protocol2,protocol3,protocol4,protocol6)
@@ -293,7 +294,7 @@ public class Diabetes_4356A extends BaseTest{
         combinationWithEachOtherPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months")
-                .clickNextButton(toLoseWeightPageOLS)
+                .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(combinationWithEachOtherPageOLS.titleExpected, protocol2,protocol3,protocol4,protocol6)
@@ -301,20 +302,20 @@ public class Diabetes_4356A extends BaseTest{
         combinationWithEachOtherPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 months")
-                .clickNextButton(toLoseWeightPageOLS);
+                .clickNextButton(followingToLoseWeightPageOLS);
 
-        toLoseWeightPageOLS
+        followingToLoseWeightPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(toLoseWeightPageOLS.getTitleText(),toLoseWeightPageOLS.titleExpected, "Title is diff");
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = toLoseWeightPageOLS
+        Assert.assertEquals(followingToLoseWeightPageOLS.getTitleText(),followingToLoseWeightPageOLS.titleExpected, "Title is diff");
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
                 .clickOnAnswers("Prescription weight loss medication")
                 .clickNextButton(new WeightLossSurgeryPageOLS());
         weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(toLoseWeightPageOLS.titleExpected, protocol2,protocol3,protocol4,protocol6)
+                .checkProtocolsEquals(followingToLoseWeightPageOLS.titleExpected, protocol2,protocol3,protocol4,protocol6)
                 .back();
-        toLoseWeightPageOLS
+        followingToLoseWeightPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("No")
                 .clickNextButton(weightLossSurgeryPageOLS);
