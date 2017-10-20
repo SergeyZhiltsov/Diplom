@@ -223,6 +223,13 @@ public abstract class BasePage {
         alert.accept();
     }
 
+    protected void typeAndAcceptAlert(String text) {
+        driverWait.getWaitDriver().until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys(text);
+        alert.accept();
+    }
+
     protected boolean isCheckBoxChecked(WebElement element) {
         return (Boolean) ((JavascriptExecutor) driver).executeScript("return arguments[0].checked", element);
     }

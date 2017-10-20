@@ -99,7 +99,7 @@ public class DebugPageOLS extends MainPageOLS{
         openDebugWindow();
         waitForAnimation();
         List<String> temp = questionNumberList.stream()
-                .filter(el -> questionNumber.contains(el.getText()))
+                .filter(el -> questionNumber.equals(el.getText()))
                 .findFirst()
                 .get()
                 .findElements(By.xpath("following-sibling::*[4]//tbody/tr/td"))
