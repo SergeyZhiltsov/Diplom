@@ -2,7 +2,6 @@ package com.acurian.selenium.pages.OLS;
 
 import com.acurian.selenium.pages.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,6 +24,7 @@ public class MainPageOLS extends BasePage{
     public void waitForAnimation(){
         ngDriver.waitForAngularRequestsToFinish();
     }
+
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
