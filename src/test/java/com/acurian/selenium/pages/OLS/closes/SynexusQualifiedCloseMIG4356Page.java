@@ -25,7 +25,7 @@ public class SynexusQualifiedCloseMIG4356Page extends MainPageOLS{
     @Step
     public SynexusQualifiedCloseMIG4356Page waitForPageLoad() {
         String titleExpectedMig4356 = String.format(titleExpected, "625252");
-        waitForPageLoadMainMig4356(titleText, titleExpectedMig4356);
+        waitForPageLoadMain(titleText, titleExpectedMig4356);
         return this;
     }
 

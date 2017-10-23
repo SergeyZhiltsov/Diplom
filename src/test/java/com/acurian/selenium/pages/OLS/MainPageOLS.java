@@ -38,13 +38,6 @@ public class MainPageOLS extends BasePage{
         waitForAnimation();
     }
     
-    protected void waitForPageLoadMainMig4356(WebElement titleText, String titleExpected) {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
-        waitForAnimation();
-    }
-
     @Step
     public <T extends MainPageOLS> T clickNextButton(T page) {
         nextButton.click();
