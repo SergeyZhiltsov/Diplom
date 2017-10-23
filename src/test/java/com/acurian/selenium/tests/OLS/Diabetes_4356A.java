@@ -602,10 +602,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .threadSleep(5000);
-
-
+                .waitForPageLoad();
 
     }
 }

@@ -36,7 +36,7 @@ public class HasHealthcareProfessionalPageOLS extends MainPageOLS{
     }
 
     @Step
-    public HasHealthcareProfessionalPageOLS clickOnAnswers(String answerText) {
+    public HasHealthcareProfessionalPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
