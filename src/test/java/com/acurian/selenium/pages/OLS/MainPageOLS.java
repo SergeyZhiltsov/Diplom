@@ -37,7 +37,7 @@ public class MainPageOLS extends BasePage{
 //        }
         waitForAnimation();
     }
-
+    
     @Step
     public <T extends MainPageOLS> T clickNextButton(T page) {
         nextButton.click();
