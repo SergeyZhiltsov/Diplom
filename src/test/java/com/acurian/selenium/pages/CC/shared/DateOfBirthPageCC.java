@@ -64,7 +64,6 @@ public class DateOfBirthPageCC extends MainPageCC{
     WebElement yearField;
 
 
-
     public DateOfBirthPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
