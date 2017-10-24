@@ -5,7 +5,6 @@ import com.acurian.selenium.listeners.TestListener;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -223,6 +222,13 @@ public abstract class BasePage {
         alert.accept();
     }
 
+    protected void typeAndAcceptAlert(String text) {
+        driverWait.getWaitDriver().until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys(text);
+        alert.accept();
+    }
+
     protected boolean isCheckBoxChecked(WebElement element) {
         return (Boolean) ((JavascriptExecutor) driver).executeScript("return arguments[0].checked", element);
     }
@@ -259,12 +265,10 @@ public abstract class BasePage {
     public void back(){
         driver.navigate().back();
     }
-    
+
     @Step
     public void maximizePage() {
-    driver.manage().window().maximize();
-
-    
+        driver.manage().window().maximize();
     }
 
 

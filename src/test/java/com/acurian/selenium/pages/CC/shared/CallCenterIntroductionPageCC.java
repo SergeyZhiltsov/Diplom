@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
+import com.acurian.selenium.constants.URLs;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -29,6 +30,9 @@ public class CallCenterIntroductionPageCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
+    @FindBy(id = "activate_debug")
+    WebElement activateDebugLink;
+
 //    @FindBy(xpath = "//input[@class='next_btn']")
 //    WebElement nextButton;
 
@@ -40,6 +44,17 @@ public class CallCenterIntroductionPageCC extends MainPageCC{
     public CallCenterIntroductionPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
+        return this;
+    }
+
+    @Step
+    public CallCenterIntroductionPageCC activateDebugOnProd(String environment){
+        if(environment.equals("PRD")){
+            activateDebugLink.click();
+            typeAndAcceptAlert(URLs.CODE_FOR_DEBUG_CC);
+            acceptAlert();
+        }
+        waitForAnimation();
         return this;
     }
 

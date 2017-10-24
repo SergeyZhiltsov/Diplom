@@ -11,7 +11,8 @@ import java.util.List;
 
 public class TreatingYourDiabetesPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "How are you currently treating your diabetes?";
+    public final String titleExpected = "How are you currently treating your diabetes?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
