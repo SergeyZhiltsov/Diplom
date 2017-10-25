@@ -247,10 +247,195 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(statementsBestDescribesPageOLS);
         HowManyLiquidPageOLS howManyLiquidPageOLS = statementsBestDescribesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No, I am not currently in a flare with my Crohn’s ")
+                .clickOnAnswer("No, I am not currently in a flare with my Crohn’s")
                 .clickNextButton(new HowManyLiquidPageOLS());
         howManyLiquidPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol2,protocol3)
+                .back();
+        statementsBestDescribesPageOLS
+                .waitForPageLoad()
+                .back();
+        youIndicatedThatPageOLS
+                .waitForPageLoad(youIndicatedThatPageOLS.titleExpected1)
+                .back();
+
+        onA0To10ScalePageOLS
+                .waitForPageLoad()
+                .setRating("01")
+                .clickNextButton(youIndicatedThatPageOLS)
+                .waitForPageLoad(youIndicatedThatPageOLS.titleExpected2)
+                .clickOnAnswer("Yes - I am in remission")
+                .clickNextButton(statementsBestDescribesPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No, I am not currently in a flare with my Crohn’s")
+                .clickNextButton(howManyLiquidPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol2,protocol3)
+                .back();
+        statementsBestDescribesPageOLS
+                .waitForPageLoad()
+                .back();
+        youIndicatedThatPageOLS
+                .waitForPageLoad(youIndicatedThatPageOLS.titleExpected2)
+                .back();
+
+        onA0To10ScalePageOLS
+                .waitForPageLoad()
+                .setRating("02")
+                .clickNextButton(youIndicatedThatPageOLS)
+                .waitForPageLoad(youIndicatedThatPageOLS.titleExpected3)
+                .clickOnAnswer("Yes - I am in remission")
+                .clickNextButton(statementsBestDescribesPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No, I am not currently in a flare with my Crohn’s")
+                .clickNextButton(howManyLiquidPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol2,protocol3)
+                .back();
+        statementsBestDescribesPageOLS
+                .waitForPageLoad()
+                .back();
+
+        youIndicatedThatPageOLS
+                .waitForPageLoad(youIndicatedThatPageOLS.titleExpected3)
+                .clickOnAnswer("No - Even though I gave my symptoms a low rating, I am NOT in remission")
+                .clickNextButton(statementsBestDescribesPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(howManyLiquidPageOLS);
+
+        StoolAndIndicatePageOLS stoolAndIndicatePageOLS = howManyLiquidPageOLS
+                .waitForPageLoad()
+                .setDayRating("03")
+                .setHoursRating("03")
+                .clickNextButton(new StoolAndIndicatePageOLS());
+
+        stoolAndIndicatePageOLS
                 .waitForPageLoad();
+        Assert.assertEquals(stoolAndIndicatePageOLS.getTitleText(), stoolAndIndicatePageOLS.titleExpected, "Title is diff");
+        LevelOfPainPageOLS levelOfPainPageOLS = stoolAndIndicatePageOLS
+                .clickOnAnswer("Type 1")
+                .clickNextButton(new LevelOfPainPageOLS());
+
+        FollowingImagesMostPageOLS followingImagesMostPageOLS = levelOfPainPageOLS
+                .waitForPageLoad()
+                .setRating("04")
+                .clickNextButton(new FollowingImagesMostPageOLS());
+        YouExperienceAbdominalPageOLS youExperienceAbdominalPageOLS = followingImagesMostPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1")
+                .clickNextButton(new YouExperienceAbdominalPageOLS());
+        WhenItOccursPageOLS whenItOccursPageOLS = youExperienceAbdominalPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("1 - Never")
+                .clickNextButton(new WhenItOccursPageOLS());
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = whenItOccursPageOLS
+                .waitForPageLoad()
+                .setRating("01")
+                .clickNextButton(new WeightLossSurgeryPageOLS());
+        weightLossSurgeryPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Qualifying Logic", protocol2,protocol3)
+                .back();
+        whenItOccursPageOLS
+                .waitForPageLoad()
+                .back();
+        youExperienceAbdominalPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("2 - Rarely")
+                .clickNextButton(whenItOccursPageOLS);
+        AverageWeekPageOLS averageWeekPageOLS = whenItOccursPageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AverageWeekPageOLS());
+        YourNormalBaselinePageOLS yourNormalBaselinePageOLS = averageWeekPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Only 1 day or less")
+                .clickNextButton(new YourNormalBaselinePageOLS());
+        yourNormalBaselinePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Much less severe")
+                .clickNextButton(weightLossSurgeryPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Qualifying Logic", protocol2,protocol3)
+                .back();
+
+        yourNormalBaselinePageOLS
+                .waitForPageLoad()
+                .back();
+        averageWeekPageOLS
+                .waitForPageLoad()
+                .back();
+        whenItOccursPageOLS
+                .waitForPageLoad()
+                .back();
+        youExperienceAbdominalPageOLS
+                .waitForPageLoad()
+                .back();
+        followingImagesMostPageOLS
+                .waitForPageLoad()
+                .back();
+        levelOfPainPageOLS
+                .waitForPageLoad()
+                .back();
+        stoolAndIndicatePageOLS
+                .waitForPageLoad()
+                .back();
+        howManyLiquidPageOLS
+                .waitForPageLoad()
+                .back();
+
+        statementsBestDescribesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, I am currently in a flare with my Crohn’s")
+                .clickNextButton(howManyLiquidPageOLS)
+                .waitForPageLoad()
+                .setHoursRating("04")
+                .clickNextButton(stoolAndIndicatePageOLS)
+                .waitForPageLoad()
+                .clickNextButton(levelOfPainPageOLS)
+                .waitForPageLoad()
+                .setRating("01")
+                .clickNextButton(youExperienceAbdominalPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("3 - Sometimes")
+                .clickNextButton(whenItOccursPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(averageWeekPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("2 - 3 days")
+                .clickNextButton(yourNormalBaselinePageOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("About the same")
+                .clickNextButton(weightLossSurgeryPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Non-Flare Logic - \"I6T-MC-AMAG\"", protocol3)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol1)
+                .back();
+
+        yourNormalBaselinePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less severe")
+                .clickNextButton(weightLossSurgeryPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2);
+
+
+
+
+
+
+
+
+
 
 
 

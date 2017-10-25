@@ -7,18 +7,23 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.List;
+
 public class HowManyLiquidPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "What is your approximate height?";
+    public final String titleExpected = "How many liquid or very soft bowel movements (episodes of diarrhea) do you have in an average day?";
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//input[contains(@class,'text-height-input-feet')]")
-    WebElement featField;
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
+    List<WebElement> titlesText;
 
-    @FindBy(xpath = "//input[contains(@class,'text-height-input-inches')]")
-    WebElement inchesField;
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//input")
+    WebElement dayField;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//input")
+    WebElement hoursField;
 
     public HowManyLiquidPageOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -31,16 +36,21 @@ public class HowManyLiquidPageOLS extends MainPageOLS{
     }
 
     @Step
-    public HowManyLiquidPageOLS setFeat(String number) {
-        typeTextWithoutClear(featField, number);
+    public HowManyLiquidPageOLS setDayRating(String number) {
+        typeText(dayField, number);
         waitForAnimation();
         return this;
     }
 
     @Step
-    public HowManyLiquidPageOLS setInches(String number) {
-        typeTextWithoutClear(inchesField, number);
+    public HowManyLiquidPageOLS setHoursRating(String number) {
+        typeText(hoursField, number);
         waitForAnimation();
         return this;
+    }
+
+    @Step
+    public String getTitleText(int titleIndex){
+        return getText(titlesText.get(titleIndex-1));
     }
 }
