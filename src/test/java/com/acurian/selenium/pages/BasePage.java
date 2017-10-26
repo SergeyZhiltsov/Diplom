@@ -16,6 +16,7 @@ import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public abstract class BasePage {
@@ -231,6 +232,19 @@ public abstract class BasePage {
 
     protected boolean isCheckBoxChecked(WebElement element) {
         return (Boolean) ((JavascriptExecutor) driver).executeScript("return arguments[0].checked", element);
+    }
+
+    protected boolean isElementPresent(int timeout, By by) {
+        boolean isPresent = false;
+        try {
+//            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            driverWait.getWaitDriver().withTimeout(timeout, TimeUnit.SECONDS).until(ExpectedConditions.presenceOfElementLocated(by));
+            isPresent = true;
+        } catch (WebDriverException e) {
+        } finally {
+//            driver().manage().timeouts().implicitlyWait(ELEMENT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        }
+        return isPresent;
     }
 
 

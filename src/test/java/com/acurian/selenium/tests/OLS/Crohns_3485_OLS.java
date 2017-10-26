@@ -2,7 +2,9 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.*;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -23,7 +25,7 @@ public class Crohns_3485_OLS extends BaseTest{
         String protocol2 = "RF_I6T_MC_AMAG";
         String protocol3 = "I6T_MC_AMAG";
         List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3);
-        String studyName = "Crohn's Disease";
+        String studyName = "Crohn's";
         String siteName = "AUT_CRN_3638C_Site";
         String debugSiteName = "";
         String env = "STG";
@@ -426,24 +428,153 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2);
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2)
+                .getPage(weightLossSurgeryPageOLS);
 
+        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Gastric bypass")
+                .clickNextButton(new ProcedureForWeightLossPageOLS());
+        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 3 months ago")
+                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
+        haveAnyOfTheFollowingPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("3 - 6 months ago")
+                .clickNextButton(haveAnyOfTheFollowingPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(haveAnyOfTheFollowingPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("1 - 2 years ago")
+                .clickNextButton(haveAnyOfTheFollowingPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("More than 2 years ago")
+                .clickNextButton(haveAnyOfTheFollowingPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .back();
+        weightLossSurgeryPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(haveAnyOfTheFollowingPageOLS);
 
+        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = haveAnyOfTheFollowingPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy","Another type of stomach or colon surgery")
+                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEqualsForQNumber("QS3759",protocol1,protocol2,protocol3)
+                .back();
+        haveAnyOfTheFollowingPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy")
+                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEqualsForQNumber("QS3759", protocol2,protocol3)
+                .back();
+        haveAnyOfTheFollowingPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new CongestiveHeartFailurePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new AffectingYourMetabolismPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingNeurologicalConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AffectYourLungsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DigestiveConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SleepRelatedConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SkinConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ViralConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new MentalHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WomensHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OtherThanSkinCancerPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new SmokedCigarettesPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No, I never smoked")
+                .clickNextButton(new HistoryOfDrugPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new ChildrenUnderPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new HSCrohnsPageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())// need add hello sign
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
 
 
 

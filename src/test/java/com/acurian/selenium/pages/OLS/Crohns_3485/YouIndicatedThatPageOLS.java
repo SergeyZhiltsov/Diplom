@@ -16,7 +16,7 @@ public class YouIndicatedThatPageOLS extends MainPageOLS{
     public final String titleExpected3 = "You indicated that you would rate your current Crohn’s as 2. Based on this, do you feel your Crohn’s is currently in remission?";
 
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
