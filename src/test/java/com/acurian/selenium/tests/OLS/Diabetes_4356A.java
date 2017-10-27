@@ -171,9 +171,24 @@ public class Diabetes_4356A extends BaseTest{
                 .getPage(debugPageOLS)// copy text from previous question until "..."(white space should be include)
                 .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol2, protocol3, protocol4, protocol6)
                 .back();
-        MetforminMedicationsPageOLS metforminMedicationsPageOLS = treatingYourDiabetesPageOLS
+        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Medication")
+                .clickNextButton(new LastTimeYouTookPageOLS());
+
+        lastTimeYouTookPageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(lastTimeYouTookPageOLS.getTitleText(),lastTimeYouTookPageOLS.titleExpected, "Title is diff");
+        lastTimeYouTookPageOLS
+                .clickOnAnswer("2 - 3 months ago")
+                .clickNextButton(followingToLoseWeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocol4)
+                .back();
+        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
                 .clickNextButton(new MetforminMedicationsPageOLS());
 
         metforminMedicationsPageOLS
@@ -331,7 +346,7 @@ public class Diabetes_4356A extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(),procedureForWeightLossPageOLS.titleExpected, "Title is diff");
         StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = procedureForWeightLossPageOLS
-                .clickOnAnswer("Within the past 3 months")
+                .clickOnAnswer("Less than 3 months ago")
                 .clickNextButton(new StatinMedicationsOnPageOLS());
         statinMedicationsOnPageOLS
                 .waitForPageLoad()
@@ -340,7 +355,7 @@ public class Diabetes_4356A extends BaseTest{
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("4 - 6 months ago")
+                .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(statinMedicationsOnPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -348,7 +363,7 @@ public class Diabetes_4356A extends BaseTest{
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
+                .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(statinMedicationsOnPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -356,7 +371,7 @@ public class Diabetes_4356A extends BaseTest{
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("More than 1 year ago")
+                .clickOnAnswer("1 - 2 years ago")
                 .clickNextButton(statinMedicationsOnPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

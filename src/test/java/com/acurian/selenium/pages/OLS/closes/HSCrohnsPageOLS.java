@@ -17,7 +17,7 @@ public class HSCrohnsPageOLS extends MainPageOLS{
             "\n" +
             "We realize that gathering all of this information may take time, so if you complete the authorization form today, Acurian will send you a $25 Amazon electronic gift card after the information has been verified. The Amazon gift card is not related to the study or your choice to participate in the study – just our way of saying thanks for your time and for helping expedite the record release process.\n" +
             "\n" +
-            "Please be assured your records will be kept confidential and only be used to evaluate you for participation. ";
+            "Please be assured your records will be kept confidential and only be used to evaluate you for participation.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
