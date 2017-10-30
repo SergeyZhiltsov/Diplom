@@ -31,11 +31,24 @@ public class HS1PageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='22']")
     WebElement nameField;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//div[@id='signer-mobile-application']//span[text()='Click to sign']")
     WebElement clickToSignButton;
 
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
-    List<WebElement> radioButtonsList;
+    @FindBy(xpath = "//div[@class='m-sign-modal-popup']//div[@class='m-sign-modal--menu']//span[text()='Type it in']")
+    WebElement typeItInButton;
+
+    @FindBy(xpath = "//button[@id='insertButton']")
+    WebElement insertButton;
+
+    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signer-mobile-header-alert-message']")
+    WebElement messageAllRequred;
+
+    @FindBy(xpath = "//div[@id='signer-mobile-application']//button[//text()='Continue']")
+    WebElement continueButton;
+
+    @FindBy(xpath = "//div[@id='signer-mobile-application']//button[//text()='I agree']")
+    WebElement agreeButton;
+
 
     public HS1PageOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -71,16 +84,33 @@ public class HS1PageOLS extends MainPageOLS{
     @Step
     public HS1PageOLS setSignature() {
         waitForAnimation();
-        WebElement el = getDriver().findElement(By.xpath(""));
-        for (int i = 0; i < 3; i++) {
-            el.sendKeys(Keys.TAB);
+        firstNameField.click();
+        for (int i = 0; i < 21; i++) {
+            threadSleep(300);
+            getActions().sendKeys(Keys.TAB).build().perform();
         }
-        return this;
-    }
-
-    @Step
-    public HS1PageOLS clickOnAnswer(String answerText) {
-        clickOnRadioButton(radioButtonsList, answerText);
+        waitForAnimation();
+        nameField.click();
+        typeTextWithoutClear(nameField,"Acurian trial");
+        waitForAnimation();
+        waitJQuery();
+        driverWait.waitforVisibility(clickToSignButton);
+        clickToSignButton.click();
+        waitJQuery();
+        waitForAnimation();
+        driverWait.waitforVisibility(typeItInButton);
+        typeItInButton.click();
+        waitJQuery();
+        waitForAnimation();
+        driverWait.waitforVisibility(insertButton);
+        insertButton.click();
+        waitForAnimation();
+        driverWait.waitforVisibility(continueButton);
+        continueButton.click();
+        waitForAnimation();
+        driverWait.waitforVisibility(agreeButton);
+        agreeButton.click();
+        waitForAnimation();
         return this;
     }
 

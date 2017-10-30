@@ -49,7 +49,7 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     }
 
     private void clickOnAddLocLinkIfExist(){
-        if(isElementPresent(10, By.xpath("//b[@id='additional-sites-toggle']"))){
+        if(isElementPresent(7, By.xpath("//b[@id='additional-sites-toggle']"))){
             additionalLocationLink.click();
             waitForAnimation();
         }

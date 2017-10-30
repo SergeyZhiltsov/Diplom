@@ -575,8 +575,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
-
-                .clickNextButton(new ThankYouCloseSimplePageOLS())// need add hello sign
+                .getPage(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
