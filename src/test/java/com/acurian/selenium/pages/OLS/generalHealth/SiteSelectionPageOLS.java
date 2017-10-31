@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.OLS.generalHealth;
 
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -48,7 +49,7 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     }
 
     private void clickOnAddLocLinkIfExist(){
-        if(additionalLocationLink.isDisplayed()){
+        if(isElementPresent(7, By.xpath("//b[@id='additional-sites-toggle']"))){
             additionalLocationLink.click();
             waitForAnimation();
         }
