@@ -3,8 +3,12 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -24,7 +28,7 @@ public class DIA_4241_OLS extends BaseTest{
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
         String studyName = "Diabetes";
-        String siteName = "AUT_DIA_4356A";
+        String siteName = "AUT_DIA_4241";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
         String env = "STG";
         String zipCode = "19044";
@@ -152,7 +156,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .back();
         MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Unsure")
+                .clickOnAnswer("Currently taking / have taken within the past month")
                 .clickNextButton(new MetforminMedicationsPageOLS());
         metforminMedicationsPageOLS
                 .waitForPageLoad()
@@ -306,16 +310,116 @@ public class DIA_4241_OLS extends BaseTest{
         areYouCurrentlyOnPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(areYouCurrentlyOnPageOLS.getTitleText(),areYouCurrentlyOnPageOLS.titleExpected, "Title is diff");
+        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = areYouCurrentlyOnPageOLS
+                .clickOnAnswer("Yes, for arthritis")
+                .clickNextButton(new StatinMedicationsOnPageOLS());
+        statinMedicationsOnPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
+                .back();
         areYouCurrentlyOnPageOLS
-                .clickOnAnswer("Yes, for arthritis");
-//                .clickNextButton(new )
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, for low back pain")
+                .clickNextButton(statinMedicationsOnPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
+                .back();
+        areYouCurrentlyOnPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, for another chronic condition")
+                .clickNextButton(statinMedicationsOnPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
+                .back();
+        areYouCurrentlyOnPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(statinMedicationsOnPageOLS);
 
+        CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = statinMedicationsOnPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DiabeticNephropathyPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ForYourKidneysPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new HasHealthcareProfessionalPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new CongestiveHeartFailurePageOLS());
 
-
-
-
-
-
+        congestiveHeartFailurePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new AffectingYourMetabolismPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ConditionsRelatedToYourDiabetesPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingNeurologicalConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AffectYourLungsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DigestiveConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SleepRelatedConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SkinConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ViralConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new MentalHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WomensHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OtherThanSkinCancerPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new SmokedCigarettesPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No, I never smoked")
+                .clickNextButton(new HistoryOfDrugPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new ChildrenUnderPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
 
     }
 }
