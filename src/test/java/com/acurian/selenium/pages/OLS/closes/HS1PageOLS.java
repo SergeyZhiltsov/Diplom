@@ -66,8 +66,13 @@ public class HS1PageOLS extends MainPageOLS{
     @Step
     public HS1PageOLS waitForPageLoad() {
         waitForAnimation();
-        acceptAlert();
-        acceptAlert();
+        try {
+            acceptAlert();
+            acceptAlert();
+        }
+        catch (Exception ex){
+            logTextToAllure("alerts was not appeared");
+        }
         waitForAnimation();
         return this;
     }
