@@ -35,7 +35,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,12 +50,12 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         //List<String> protocol = Arrays.asList("BHV3000_302\n"+"UBR_MD_01");
         String protocol1 = "20150133";
         String protocol2 = "BHV3000_301";
-        //String protocol3 = "BHV3000_302";
+        String protocol3 = "BHV3000_302";
         String protocol4 = "CGP_MD_01";
         String protocol5 = "UBR_MD_01";
         String protocol6 = "UBR_MD_02";
         String studyName =  "migraine";  //"Migraine 4356B Synexus";
-        String env = "STG";  //Enter which CC environment to use for testing
+        String env = "PRD";  //Enter which CC environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
         
@@ -85,6 +84,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         //------------Call Center Introduction Page---------------      
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC   // RUN below mentioned methods for Right side page and then create object for the NEXT page (on Left side) = [create NEXT PAGE Object = THIS page object] 
                 .waitForPageLoad()
+                .activateDebugOnProd(env)
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
         
@@ -130,7 +130,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         DebugPageCC debugPageCC = new DebugPageCC();
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol1));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol2));
-        //Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol3));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol3));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol6));
@@ -156,7 +156,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         //System.out.println("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol1));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol2));
-        //Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol3));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol3));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol6));
@@ -179,7 +179,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         //********Validate Question History for DQ and then click BACK button            
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol1));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol2));
-        //Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol3));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol3));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol6));
@@ -260,7 +260,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         .clickNextButton(new HaveUeverHadBotoxMigCC()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button            
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol2));
-        //Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol3));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol3));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol6));
@@ -336,7 +336,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         //********Validate Question History for DQ and then click BACK button     
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol1));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol2));
-        //Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol3));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol3));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol6));

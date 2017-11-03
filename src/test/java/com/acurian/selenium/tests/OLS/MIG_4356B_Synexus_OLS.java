@@ -1,5 +1,4 @@
 package com.acurian.selenium.tests.OLS;
-
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.MainPage;
 import com.acurian.selenium.pages.CC.closes.WarmTransfer1;
@@ -101,12 +100,12 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         String phoneNumberLBP = "AUTAMS1MIG";
         String protocol1 = "20150133";
         String protocol2 = "BHV3000_301";
-//        String protocol3 = "BHV3000_302";
+        String protocol3 = "BHV3000_302";
         String protocol4 = "CGP_MD_01";
         String protocol5 = "UBR_MD_01";
         String protocol6 = "UBR_MD_02";
         String studyName =  "Migraine";  //"Migraine 4356B Synexus";
-        String env = "STG";  //Enter which OLS environment to use for testing
+        String env = "PRD";  //Enter which OLS environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
 
@@ -148,7 +147,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         hasHealthcareProfessionalPageOLS
         .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(doYouSufferFromMigHeadachesOLS.titleExpected, protocol1, protocol2, protocol4, protocol5, protocol6);
+        debugPageOLS.checkProtocolsEquals(doYouSufferFromMigHeadachesOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol5, protocol6);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
         doYouSufferFromMigHeadachesOLS
@@ -167,7 +166,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //------Validate protocol DQs in debug window----------
         approxHowLongSufferingFromMIG
         .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals(ageWhenDiagnosedWithMigOLS.titleExpected, protocol5, protocol1, protocol2, protocol4, protocol6);
+        debugPageOLS.checkProtocolsEquals(ageWhenDiagnosedWithMigOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
         ageWhenDiagnosedWithMigOLS.waitForPageLoad();
@@ -185,7 +184,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //------Validate protocol DQs in debug window----------
         mIGAttackFrequencyOLS
         .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals(approxHowLongSufferingFromMIG.titleExpected, protocol5, protocol1, protocol2, protocol4, protocol6);
+        debugPageOLS.checkProtocolsEquals(approxHowLongSufferingFromMIG.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
         approxHowLongSufferingFromMIG.waitForPageLoad();
@@ -205,7 +204,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         .clickNextButton(new CurrentlyTakeAnyMedicationsTreatMIG()); 
         //------Validate protocol DQs in debug window----------
         currentlyTakeAnyMedicationsTreatMIG.waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals("The next few questions are about migraines, regular headaches, and how often you have them. If you ...", protocol2, protocol5, protocol6);
+        debugPageOLS.checkProtocolsEquals("The next few questions are about migraines, regular headaches, and how often you have them. If you ...", protocol3, protocol5, protocol2, protocol6);
         //debugPageOLS.checkProtocolsEquals(approxHowLongSufferingFromMIG.titleExpected, protocol2, protocol5, protocol6);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
@@ -261,7 +260,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //********Validate Question History for DQ and then click BACK button            
         haveYouHadBotoxInjection1.waitForPageLoad();
         Assert.assertEquals(haveYouHadBotoxInjection1.getTitleText(),haveYouHadBotoxInjection1.titleExpected, "Title is diff");           
-        debugPageOLS.checkProtocolsEquals(inPast3MonthsMedicationToStopActiveMIG.titleExpected, protocol2, protocol4, protocol5, protocol6);
+        debugPageOLS.checkProtocolsEquals(inPast3MonthsMedicationToStopActiveMIG.titleExpected, protocol2, protocol3, protocol4, protocol5, protocol6);
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in 'MedicationToStopActiveMigraineCC'---------------        
         inPast3MonthsMedicationToStopActiveMIG.clickOnAnswer("Less than half the days in a month")
@@ -329,7 +328,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //TransitionStatementCC transitionStatementCC = areYouCurrentlyPregnantCC //[create NEXT PAGE Object = THIS page object]    
         .clickNextButton(new HasHealthcareProfessionalPageOLS()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button     
-        debugPageOLS.checkProtocolsEquals(areYouCurrentlyPregnantOLS.titleExpected, protocol5, protocol1, protocol2, protocol4, protocol6);
+        debugPageOLS.checkProtocolsEquals(areYouCurrentlyPregnantOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6);
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in page 'areYouCurrentlyPregnantCC'---------------  
         areYouCurrentlyPregnantOLS.waitForPageLoad();

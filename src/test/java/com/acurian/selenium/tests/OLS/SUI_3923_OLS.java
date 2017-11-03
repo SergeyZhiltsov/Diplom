@@ -140,20 +140,18 @@ public class SUI_3923_OLS extends BaseTest{
         Assert.assertTrue(debugPageOLS.getProtocolForQuestion(howFrequentlyYouExperienceUrinaryLeakageOLS.titleExpected).contains(protocol1));
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
-        HaveYouEverUsedTherapiesTreatOLS haveYouEverUsedTherapiesTreatOLS = howFrequentlyYouExperienceUrinaryLeakageOLS //[create NEXT PAGE Object = THIS page object]      
+        HaveYouEverUsedTherapiesTreatOLS haveYouEverUsedTherapiesTreatOLS = howFrequentlyYouExperienceUrinaryLeakageOLS //[create NEXT PAGE Object = THIS page object]
+        .waitForPageLoad()
         .clickOnAnswer("More than once per day")
         .clickNextButton(new HaveYouEverUsedTherapiesTreatOLS());
-
         
-        
-        //----------Q6 Have you ever used any of the following therapies to treat urinary leakage? Page ---------------   
+         //----------Q6 Have you ever used any of the following therapies to treat urinary leakage? Page ---------------   
         haveYouEverUsedTherapiesTreatOLS.waitForPageLoad();     
         Assert.assertEquals(haveYouEverUsedTherapiesTreatOLS.getTitleText(),haveYouEverUsedTherapiesTreatOLS.titleExpected, "Title is diff");  
         haveYouEverUsedTherapiesTreatOLS
         .clickOnAnswers("Pelvic floor exercises - Kegel or other pelvic muscle exercises designed to improve bladder control and reduce or stop leakage of urine","Urethral bulking - material such as collagen or a water-based gel is injected around the urethra; this narrows the urethra so leakage is less likely to occur");
         HaveYouEverHadAnyPelvicSurgeriesOLS haveYouEverHadAnyPelvicSurgeriesOLS = haveYouEverUsedTherapiesTreatOLS   //[create NEXT PAGE Object = THIS page object]    
         .clickNextButton(new HaveYouEverHadAnyPelvicSurgeriesOLS()); // Click NEXT button and wait for the NEXT page
- 
         
         //----------Q7 "SUI_SubQuestions" page -   Have you ever had any of the following pelvic surgeries or procedures? ---------------   
         haveYouEverHadAnyPelvicSurgeriesOLS.waitForPageLoad();     

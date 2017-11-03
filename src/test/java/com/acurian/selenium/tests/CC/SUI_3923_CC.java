@@ -82,6 +82,7 @@ public class SUI_3923_CC extends BaseTest{
         //------------Call Center Introduction Page---------------      
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC   // RUN below mentioned methods for Right side page and then create object for the NEXT page (on Left side) = [create NEXT PAGE Object = THIS page object] 
                 .waitForPageLoad()
+                .activateDebugOnProd(env)
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
         
@@ -197,7 +198,6 @@ public class SUI_3923_CC extends BaseTest{
         .clickOnAnswer("More than once per day")
         .clickNextButton(new HaveYouEverUsedTherapiesTreatCC());
 
-        
         
         //----------Q6 Have you ever used any of the following therapies to treat urinary leakage? Page ---------------   
         haveYouEverUsedTherapiesTreatCC.waitForPageLoad();     
