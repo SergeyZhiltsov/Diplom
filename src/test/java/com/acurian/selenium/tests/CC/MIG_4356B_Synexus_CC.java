@@ -1,7 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.LBP_2108.HasYourLbpPainCausedPageCC;
 import com.acurian.selenium.pages.CC.LBP_2108.InPastYear;
