@@ -2,7 +2,12 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.*;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSCrohnsPageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -24,7 +29,7 @@ public class Crohns_3485_CC extends BaseTest{
         String protocol1 = "APD371_004";
         String protocol2 = "RF_I6T_MC_AMAG";
         String protocol3 = "I6T_MC_AMAG";
-        String studyName = "Crohn's";
+        String studyName = "Crohn's disease";
         String siteName = "AUT_CRN_3638C_Site";
         String debugSiteName = "";
         String env = "STG";
@@ -134,6 +139,465 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("Family doctor or general practitioner")
                 .clickNextButton(typeOfTestsPageCC);
+
+        typeOfTestsPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(typeOfTestsPageCC.getTitleText(), typeOfTestsPageCC.titleExpected, "Title is diff");
+        ManageYourCrohnsPageCC manageYourCrohnsPageCC = typeOfTestsPageCC
+                .clickOnAnswers("Blood test","CT","MRI","XRay")
+                .clickNextButton(new ManageYourCrohnsPageCC());
+        manageYourCrohnsPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Next, please tell me which of the following types of tests/procedures have you ever had to diagnose ", protocol1)
+                .back();
+        typeOfTestsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Colonoscopy")
+                .clickNextButton(manageYourCrohnsPageCC);
+
+        manageYourCrohnsPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(manageYourCrohnsPageCC.getTitleText(), manageYourCrohnsPageCC.titleExpected, "Title is diff");
+        OnA0To10ScalePageCC onA0To10ScalePageCC = manageYourCrohnsPageCC
+                .clickOnAnswer("No")
+                .clickNextButton(new OnA0To10ScalePageCC());
+        onA0To10ScalePageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(manageYourCrohnsPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        SteroidMedicationsPageCC steroidMedicationsPageCC = manageYourCrohnsPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new SteroidMedicationsPageCC());
+
+        steroidMedicationsPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(steroidMedicationsPageCC.getTitleText(), steroidMedicationsPageCC.titleExpected, "Title is diff");
+        FollowingMedicationsCrohnsPageCC followingMedicationsCrohnsPageCC = steroidMedicationsPageCC
+                .clickOnAnswers("I have never treated my Crohn’s with steroids")
+                .clickNextButton(new FollowingMedicationsCrohnsPageCC());
+
+        followingMedicationsCrohnsPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(followingMedicationsCrohnsPageCC.getTitleText(), followingMedicationsCrohnsPageCC.titleExpected, "Title is diff");
+        BiologicMedicationsPageCC biologicMedicationsPageCC = followingMedicationsCrohnsPageCC
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BiologicMedicationsPageCC());
+
+        biologicMedicationsPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(biologicMedicationsPageCC.getTitleText(), biologicMedicationsPageCC.titleExpected, "Title is diff");
+        biologicMedicationsPageCC
+                .clickOnAnswers("Cosentyx","Prolia or Xgeva")
+                .clickNextButton(onA0To10ScalePageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol2,protocol3)
+                .back();
+        biologicMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(onA0To10ScalePageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol2,protocol3)
+                .back();
+        SubquestionLastReceivedPageCC subquestionLastReceivedPageCC = biologicMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Stelara")
+                .clickNextButton(new SubquestionLastReceivedPageCC());
+        subquestionLastReceivedPageCC
+                .waitForPageLoad(1, subquestionLastReceivedPageCC.titleExpected13)
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(biologicMedicationsPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        biologicMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Actemra",
+                        "Benlysta",
+                        "Cimzia",
+                        "Enbrel",
+                        "Entyvio",
+                        "Humira",
+                        "Kineret",
+                        "Orencia",
+                        "Raptiva",
+                        "Remicade",
+                        "Rituxan",
+                        "Simponi",
+                        "Stelara",
+                        "Tysabri")
+                .clickNextButton(subquestionLastReceivedPageCC);
+
+        subquestionLastReceivedPageCC
+                .waitForPageLoad(1,subquestionLastReceivedPageCC.titleExpected1);
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(1),subquestionLastReceivedPageCC.titleExpected1, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(2),subquestionLastReceivedPageCC.titleExpected2, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(3),subquestionLastReceivedPageCC.titleExpected3, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(4),subquestionLastReceivedPageCC.titleExpected4, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(5),subquestionLastReceivedPageCC.titleExpected5, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(6),subquestionLastReceivedPageCC.titleExpected6, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(7),subquestionLastReceivedPageCC.titleExpected7, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(8),subquestionLastReceivedPageCC.titleExpected8, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(9),subquestionLastReceivedPageCC.titleExpected9, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(10),subquestionLastReceivedPageCC.titleExpected10, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(11),subquestionLastReceivedPageCC.titleExpected11, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(12),subquestionLastReceivedPageCC.titleExpected12, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(13),subquestionLastReceivedPageCC.titleExpected14, "Title is diff");
+        subquestionLastReceivedPageCC
+                .back();
+
+        biologicMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Entyvio")
+                .clickNextButton(subquestionLastReceivedPageCC);
+
+        subquestionLastReceivedPageCC
+                .waitForPageLoad(1,subquestionLastReceivedPageCC.titleExpected5)
+                .clickOnAnswerForSubQuestion("Which of the following best describes when you last received Entyvio? You….","Last received 1 year ago or more")
+                .clickNextButton(onA0To10ScalePageCC);
+
+        onA0To10ScalePageCC
+                .waitForPageLoad();
+        Assert.assertEquals(onA0To10ScalePageCC.getTitleText(), onA0To10ScalePageCC.titleExpected, "Title is diff");
+        StatementsBestDescribesPageCC statementsBestDescribesPageCC = onA0To10ScalePageCC
+                .setRating("03")
+                .clickNextButton(new StatementsBestDescribesPageCC());
+        statementsBestDescribesPageCC
+                .waitForPageLoad()
+                .back();
+        YouIndicatedThatPageCC youIndicatedThatPageCC = onA0To10ScalePageCC
+                .waitForPageLoad()
+                .setRating("00")
+                .clickNextButton(new YouIndicatedThatPageCC());
+        youIndicatedThatPageCC
+                .waitForPageLoad(youIndicatedThatPageCC.titleExpected1)
+                .clickOnAnswer("Yes - I am in remission")
+                .clickNextButton(statementsBestDescribesPageCC);
+        HowManyLiquidPageCC howManyLiquidPageCC = statementsBestDescribesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("No, I am not currently in a flare with my Crohn’s")
+                .clickNextButton(new HowManyLiquidPageCC());
+        howManyLiquidPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(statementsBestDescribesPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        statementsBestDescribesPageCC
+                .waitForPageLoad()
+                .back();
+        youIndicatedThatPageCC
+                .waitForPageLoad(youIndicatedThatPageCC.titleExpected1)
+                .back();
+
+        onA0To10ScalePageCC
+                .waitForPageLoad()
+                .setRating("01")
+                .clickNextButton(youIndicatedThatPageCC)
+                .waitForPageLoad(youIndicatedThatPageCC.titleExpected2)
+                .clickOnAnswer("Yes - I am in remission")
+                .clickNextButton(statementsBestDescribesPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("No, I am not currently in a flare with my Crohn’s")
+                .clickNextButton(howManyLiquidPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(statementsBestDescribesPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        statementsBestDescribesPageCC
+                .waitForPageLoad()
+                .back();
+        youIndicatedThatPageCC
+                .waitForPageLoad(youIndicatedThatPageCC.titleExpected2)
+                .back();
+
+        onA0To10ScalePageCC
+                .waitForPageLoad()
+                .setRating("02")
+                .clickNextButton(youIndicatedThatPageCC)
+                .waitForPageLoad(youIndicatedThatPageCC.titleExpected3)
+                .clickOnAnswer("Yes - I am in remission")
+                .clickNextButton(statementsBestDescribesPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("No, I am not currently in a flare with my Crohn’s")
+                .clickNextButton(howManyLiquidPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(statementsBestDescribesPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        statementsBestDescribesPageCC
+                .waitForPageLoad()
+                .back();
+
+        youIndicatedThatPageCC
+                .waitForPageLoad(youIndicatedThatPageCC.titleExpected3)
+                .clickOnAnswer("No - Even though I gave my symptoms a low rating, I am NOT in remission")
+                .clickNextButton(statementsBestDescribesPageCC)
+                .waitForPageLoad()
+                .clickNextButton(howManyLiquidPageCC);
+
+        LevelOfPainPageCC levelOfPainPageCC = howManyLiquidPageCC
+                .waitForPageLoad()
+                .setDayRating("03")
+                .setHoursRating("03")
+                .clickNextButton(new LevelOfPainPageCC());
+
+        YouExperienceAbdominalPageCC youExperienceAbdominalPageCC = levelOfPainPageCC
+                .waitForPageLoad()
+                .setRating("04")
+                .clickNextButton(new YouExperienceAbdominalPageCC());
+        WhenItOccursPageCC whenItOccursPageCC = youExperienceAbdominalPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("1 - Never")
+                .clickNextButton(new WhenItOccursPageCC());
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = whenItOccursPageCC
+                .waitForPageLoad()
+                .setRating("01")
+                .clickNextButton(new WeightLossSurgeryPageCC());
+        weightLossSurgeryPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Qualifying Logic", protocol2,protocol3)
+                .back();
+        whenItOccursPageCC
+                .waitForPageLoad()
+                .back();
+        youExperienceAbdominalPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("2 - Rarely")
+                .clickNextButton(whenItOccursPageCC);
+        AverageWeekPageCC averageWeekPageCC = whenItOccursPageCC
+                .waitForPageLoad()
+                .clickNextButton(new AverageWeekPageCC());
+        YourNormalBaselinePageCC yourNormalBaselinePageCC = averageWeekPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Only 1 day or less")
+                .clickNextButton(new YourNormalBaselinePageCC());
+        yourNormalBaselinePageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Much less severe")
+                .clickNextButton(weightLossSurgeryPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Qualifying Logic", protocol2,protocol3)
+                .back();
+
+        yourNormalBaselinePageCC
+                .waitForPageLoad()
+                .back();
+        averageWeekPageCC
+                .waitForPageLoad()
+                .back();
+        whenItOccursPageCC
+                .waitForPageLoad()
+                .back();
+        youExperienceAbdominalPageCC
+                .waitForPageLoad()
+                .back();
+        levelOfPainPageCC
+                .waitForPageLoad()
+                .back();
+        howManyLiquidPageCC
+                .waitForPageLoad()
+                .back();
+
+        statementsBestDescribesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, I am currently in a flare with my Crohn’s")
+                .clickNextButton(howManyLiquidPageCC)
+                .waitForPageLoad()
+                .setHoursRating("04")
+                .clickNextButton(levelOfPainPageCC)
+                .waitForPageLoad()
+                .setRating("01")
+                .clickNextButton(youExperienceAbdominalPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("3 - Sometimes")
+                .clickNextButton(whenItOccursPageCC)
+                .waitForPageLoad()
+                .clickNextButton(averageWeekPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("2 - 3 days")
+                .clickNextButton(yourNormalBaselinePageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("About the same")
+                .clickNextButton(weightLossSurgeryPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Non-Flare Logic - \"I6T-MC-AMAG\"", protocol3)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol1)
+                .back();
+
+        yourNormalBaselinePageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Less severe")
+                .clickNextButton(weightLossSurgeryPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2)
+                .getPage(weightLossSurgeryPageCC);
+
+        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Gastric bypass")
+                .clickNextButton(new ProcedureForWeightLossPageCC());
+        HaveAnyOfTheFollowingPageCC haveAnyOfTheFollowingPageCC = procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 3 months ago")
+                .clickNextButton(new HaveAnyOfTheFollowingPageCC());
+        haveAnyOfTheFollowingPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("3 - 6 months ago")
+                .clickNextButton(haveAnyOfTheFollowingPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(haveAnyOfTheFollowingPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("1 - 2 years ago")
+                .clickNextButton(haveAnyOfTheFollowingPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("More than 2 years ago")
+                .clickNextButton(haveAnyOfTheFollowingPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol2,protocol3)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .back();
+        weightLossSurgeryPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(haveAnyOfTheFollowingPageCC);
+
+        TransitionStatementCC transitionStatementCC = haveAnyOfTheFollowingPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy","Another type of stomach or colon surgery")
+                .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoad(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES",protocol1,protocol2,protocol3)
+                .back();
+        haveAnyOfTheFollowingPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoad(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol2,protocol3)
+                .back();
+        haveAnyOfTheFollowingPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(transitionStatementCC);
+
+        transitionStatementCC
+                .waitForPageLoad(studyName);
+        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is difff");
+        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
+                .clickNextButton(new HasHealthcareProfessionalPageCC());
+
+        hasHealthcareProfessionalPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouUndergoneAnyPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartFailureIsAlsoPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new AffectingYourMetabolismPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingNeurologicalConditions())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AffectYourLungsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingDigestiveConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SleepRelatedConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingSkinConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingViralConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingMentalHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingWomensHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OtherThanSkinCancerPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new SmokedCigarettesPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No, I never smoked")
+                .clickNextButton(new HistoryOfDrugPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ApproximateHeightPageCC())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad("Crohn's study")
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new HSCrohnsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+
+
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad();
 
 
 
