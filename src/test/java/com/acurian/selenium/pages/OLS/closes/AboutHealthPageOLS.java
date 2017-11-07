@@ -10,7 +10,7 @@ public class AboutHealthPageOLS extends MainPageOLS{
 
     public final String titleExpected = "Health Topics";
 
-    @FindBy(xpath = "(//h3[@class='top'])[1]")
+    @FindBy(xpath = "(//article//h3)[1]")//(//h3[@class='top'])[1]
     WebElement titleText;
 
     public AboutHealthPageOLS() {

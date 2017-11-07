@@ -45,7 +45,25 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "Payment which varies by study up to $1,000\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
+    
+    public final String titleCrohns_3485_Expected = "Let's get started to see if you qualify for a Crohn's study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $750\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
 
+    public final String titleSUI_Expected = "Let's get started to see if you qualify for a women's bladder control study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $500\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+    
+    public final String titleInsomnia_Expected = "Let's get started to see if you qualify for a women's bladder control study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $1,250\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+    
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText;
