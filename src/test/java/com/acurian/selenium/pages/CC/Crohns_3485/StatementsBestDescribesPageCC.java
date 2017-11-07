@@ -16,7 +16,7 @@ public class StatementsBestDescribesPageCC extends MainPageCC{
             "A flare is defined as when symptoms such as strong abdominal cramps, bloody diarrhea, fever, unusual gas and even weight loss reappear.\n" +
             "\n" +
             "The statements are:\n" +
-            "Agent Note: Read list ";
+            "Agent Note: Read list";
 
     @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

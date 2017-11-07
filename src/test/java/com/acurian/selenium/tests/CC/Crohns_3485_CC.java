@@ -2,10 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.*;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSCrohnsPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -105,7 +102,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(followingMedicalConditionsPageCC.getTitleText(), followingMedicalConditionsPageCC.titleExpected, "Title is diff");
         WhenDiagnosedCrohnsPageCC whenDiagnosedCrohnsPageCC = followingMedicalConditionsPageCC
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("None of the above Agent Note: DO NOT READ")
                 .clickNextButton(new WhenDiagnosedCrohnsPageCC());
 
         whenDiagnosedCrohnsPageCC
@@ -228,6 +225,7 @@ public class Crohns_3485_CC extends BaseTest{
                         "Rituxan",
                         "Simponi",
                         "Stelara",
+                        "Taltz",
                         "Tysabri")
                 .clickNextButton(subquestionLastReceivedPageCC);
 
@@ -246,6 +244,7 @@ public class Crohns_3485_CC extends BaseTest{
         Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(11),subquestionLastReceivedPageCC.titleExpected11, "Title is diff");
         Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(12),subquestionLastReceivedPageCC.titleExpected12, "Title is diff");
         Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(13),subquestionLastReceivedPageCC.titleExpected14, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageCC.getTitleText(14),subquestionLastReceivedPageCC.titleExpected15, "Title is diff");
         subquestionLastReceivedPageCC
                 .back();
 
@@ -599,16 +598,12 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
-
-
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
-
-
 
     }
 }

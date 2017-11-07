@@ -14,10 +14,8 @@ public class BiologicMedicationsPageCC extends MainPageCC{
     public final String titleExpected = "\"Biologics\" are medications that affect the body's immune system. They are usually given as an infusion (into a vein) or a shot (injection).\n" +
             "Have you ever received any of the following \"biologic\" medications?\n" +
             "Agent Notes:\n" +
-            "\n" +
-            "    Read medications in the following way: \"Actemra, also known as tocilizumab\" etc.\n" +
-            "    Please read the full list of medications to the respondent\n" +
-            "    Select all that apply";
+            "Please read the full list of medications to the respondent\n" +
+            "Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;

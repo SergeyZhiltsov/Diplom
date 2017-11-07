@@ -14,10 +14,9 @@ public class SteroidMedicationsPageCC extends MainPageCC{
     public final String titleExpected = "Have you ever treated your Crohn's with any of the following steroid medications?\n" +
             "Steroids can come as pills or tablets, or occasionally as an IV, usually given in the hospital.\n" +
             "Agent Notes:\n" +
-            "\n" +
-            "    Read medications in the following way: \"Prednisone, also known as Deltasone or Rayos\" etc.\n" +
-            "    Please read the full list of medications to the respondent\n" +
-            "    Select all that apply";
+            "Read medications in the following way: \"Prednisone, also known as Deltasone or Rayos\" etc.\n" +
+            "Please read the full list of medications to the respondent\n" +
+            "Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;

@@ -15,7 +15,7 @@ public class YouIndicatedThatPageCC extends MainPageCC{
     public final String titleExpected2 = "You indicated that you would rate your current Crohn’s as 1. Based on this, do you feel your Crohn’s is currently in remission?";
     public final String titleExpected3 = "You indicated that you would rate your current Crohn’s as 2. Based on this, do you feel your Crohn’s is currently in remission?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    @FindBy(xpath = "//div[@class='subquestion']//span[@class='sub_question_text']")
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
