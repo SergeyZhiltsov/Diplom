@@ -6,8 +6,9 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.AreYouTakingMedications;
 import com.acurian.selenium.pages.OLS.DY_4356.NonPrescriptionSupplements;
 import com.acurian.selenium.pages.OLS.DY_4356.PregnancyAndFertilityPage;
-import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
-import com.acurian.selenium.pages.OLS.closes.SiteSelection;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseDYSPageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.AffectYourLungs;
 import com.acurian.selenium.pages.OLS.generalHealth.AffectingYourMetabolism;
@@ -20,6 +21,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.HaveYouSmokedCigarettes;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartRelatedMedicalProc;
 import com.acurian.selenium.pages.OLS.generalHealth.MentalHealthConditions;
 import com.acurian.selenium.pages.OLS.generalHealth.NeurologicalConditions;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SkinConditions;
 import com.acurian.selenium.pages.OLS.generalHealth.SleepRelatedConditions;
 import com.acurian.selenium.pages.OLS.generalHealth.ViralConditions;
@@ -33,7 +35,8 @@ import com.acurian.selenium.pages.OLS.shared.HowLongTakingStatin;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
 import com.acurian.selenium.pages.OLS.shared.StatinMedicationsPage;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.OLS.shared.WhenLastTimeYouHadHeartProceduresOLS;
+
 
 public class DYSLI_4356 extends BaseTest {
 	
@@ -41,6 +44,8 @@ public class DYSLI_4356 extends BaseTest {
 	public void tc01() {
 		String phoneNumberDY = "AUTAMS1DYS";
 		String env = "STG";
+		String studyName = "cholesterol or heart health";
+	    String siteName = "AUT_4356C";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberDY)		           
@@ -70,18 +75,21 @@ public class DYSLI_4356 extends BaseTest {
 				.clickOnAnswers("Unsure")
 				.clickNextButton(new HasHealthcareProfessionalPageOLS());
 		
+		System.out.println(hasHealthcareProfessionalPageOLS.getTitleText());
 		Assert.assertEquals(hasHealthcareProfessionalPageOLS.getTitleText(),hasHealthcareProfessionalPageOLS.titleExpected, "Title is diff");
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
 		debugPageOLS.openDebugWindow();
+		debugPageOLS.threadSleep(2000);
 		Assert.assertEquals(debugPageOLS.getProtocol201(), "20150230", "Protocol not displayed");
 		Assert.assertEquals(debugPageOLS.getProtocolVK(), "VK2809_201", "Protocol not displayed");
 		debugPageOLS.closeDebugWindow();
 		
 		hasHealthcareProfessionalPageOLS.back();
-		
+		hasHealthcareProfessionalPageOLS.threadSleep(2000);		
 		
 		StatinMedicationsPage statinMedicationsPage = dyslipidemiaHealthcarePage
-				.waitForPageLoad()				
+				.waitForPageLoad()
+				.clickOnAnswers("Unsure")
 				.clickOnAnswers("High fats or lipids, or hyperlipidemia")				
 				.clickNextButton(new StatinMedicationsPage());
 		
@@ -102,32 +110,34 @@ public class DYSLI_4356 extends BaseTest {
 		
 		
 		debugPageOLS.openDebugWindow();
+		debugPageOLS.threadSleep(2000);
 		Assert.assertEquals(debugPageOLS.getProtocol201(), "20150230", "Protocol not displayed");
 		Assert.assertEquals(debugPageOLS.getProtocolVK(), "VK2809_201", "Protocol not displayed");
 		debugPageOLS.closeDebugWindow();
-				
+		
+		hasHealthcareProfessionalPageOLS1.back();
 		nonPrescriptionSupplements.back();
 		areYouTakingMedications.back();
 		
 	
 		HowLongTakingStatin howLongTakingStatin = statinMedicationsPage
 				.waitForPageLoad()
+				.clickOnAnswers("None of the above")
 				.clickOnAnswers("Rosuvastatin")
-				.clickNextButton(new HowLongTakingStatin());
+				.clickNextButton(new HowLongTakingStatin());		
 		
+		howLongTakingStatin.threadSleep(2000);
 		AreYouTakingMedications areYouTakingMedications1 = howLongTakingStatin
 				.waitForPageLoad()
-				.clickOnAnswers("5 months")
+				.clickOnAnswers("6 months - 11 months")				
 				.clickNextButton(new AreYouTakingMedications());
 		
 		NonPrescriptionSupplements nonPrescriptionSupplements1 = areYouTakingMedications1
 				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
 				.clickNextButton(new NonPrescriptionSupplements());
 		
 		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS2 = nonPrescriptionSupplements1
 				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
 				.clickNextButton(new HasHealthcareProfessionalPageOLS());
 		
 		HeartRelatedMedicalProc heartRelatedMedicalProc = hasHealthcareProfessionalPageOLS2
@@ -137,14 +147,21 @@ public class DYSLI_4356 extends BaseTest {
 		
 		PregnancyAndFertilityPage pregnancyAndFertilityPage = heartRelatedMedicalProc
 				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
+				.clickOnAnswers("Stent placement")
 				.clickNextButton(new PregnancyAndFertilityPage());
+		
+		WhenLastTimeYouHadHeartProceduresOLS whenLastTimeYouHadHeartProceduresOLS = new WhenLastTimeYouHadHeartProceduresOLS();
+		whenLastTimeYouHadHeartProceduresOLS.waitForPageLoad()
+		                                    .clickOnAnswer("7 - 12 months ago")
+		                                    .clickNextButton(new WhenLastTimeYouHadHeartProceduresOLS());
 		
 		YouHaveCHF youHaveCHF = pregnancyAndFertilityPage
 				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
+				.clickOnAnswers("I currently have my \"tubes tied\" (also called bilateral tubal ligation, a sterilization procedure)")
 				.clickNextButton(new YouHaveCHF());
 		
+		youHaveCHF.threadSleep(2000);
+		System.out.println(youHaveCHF.getTitleText());
 		AffectingYourMetabolism affectingYourMetabolism = youHaveCHF
 				.waitForPageLoad()
 				.clickOnAnswers("No")
@@ -214,7 +231,7 @@ public class DYSLI_4356 extends BaseTest {
 		
 		ProvideHeightWeight provideHeightWeight = drugOrAlcoholAbuse
 				.waitForPageLoad()
-				.clickOnAnswers("No, I never smoked")
+				.clickOnAnswers("No")
 				.clickNextButton(new ProvideHeightWeight());
 		
 		ChildrenUnderTheAge childrenUnderTheAge = provideHeightWeight
@@ -229,19 +246,27 @@ public class DYSLI_4356 extends BaseTest {
 				.clickOnAnswers("No")
 				.clickNextButton(new PersonalDetails());
 		
-		SiteSelection siteSelection = personalDetails1
+		SiteSelectionPageOLS siteSelectionPageOLS = personalDetails1
 				.waitForPageLoad()
 				.clickConfirm()				
-				.clickNextButton(new SiteSelection());
+				.clickNextButton(new SiteSelectionPageOLS());
 		
-		GladLocationIsConvenient gladLocationIsConvenient = siteSelection
+		SynexusQualifiedCloseDYSPageOLS synexusQualifiedCloseDYSPageOLS = siteSelectionPageOLS
+				.waitForPageLoad(studyName)
+				.getPID()
+				.clickOnFacilityName(siteName)
+				.clickNextButton(new SynexusQualifiedCloseDYSPageOLS());
+		
+		ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusQualifiedCloseDYSPageOLS
 				.waitForPageLoad()
-				.clickAdditional()
-				.selectExton()
-				.clickNextButton(new GladLocationIsConvenient());
+				.clickNextButton(new ThankYouCloseSimplePageOLS());
+		
+		AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+				.waitForPageLoad()
+				.clickNextButton(new AboutHealthPageOLS());
 		
 		
-		
+		aboutHealthPageOLS.waitForPageLoad();
 		
 	}
 

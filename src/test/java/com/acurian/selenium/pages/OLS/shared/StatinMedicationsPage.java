@@ -9,8 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class StatinMedicationsPage extends MainPageOLS{
 
-    public final String titleExpected = "One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a medicine called a statin. Most people with\n" + 
-    		"these conditions are prescribed this kind of medicine for their condition. Statins are prescribed in many different names.\n" +
+    public final String titleExpected = "One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a medicine called a statin. Most people with these conditions are prescribed this kind of medicine for their condition. Statins are prescribed in many different names.\n" +
     		"Are you currently taking any of the following statin medications on a daily basis?\n" +
     		"Please select all that apply.";
     		

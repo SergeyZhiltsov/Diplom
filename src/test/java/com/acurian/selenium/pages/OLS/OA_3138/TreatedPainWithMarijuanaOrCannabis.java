@@ -1,35 +1,35 @@
-package com.acurian.selenium.pages.OLS.shared;
-
-import com.acurian.selenium.pages.OLS.MainPageOLS;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import ru.yandex.qatools.allure.annotations.Step;
+package com.acurian.selenium.pages.OLS.OA_3138;
 
 import java.util.List;
 
-public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
+import ru.yandex.qatools.allure.annotations.Step;
 
-    public final String titleExpected = "Have you been diagnosed with any type of diabetes?";
+public class TreatedPainWithMarijuanaOrCannabis extends MainPageOLS{
+
+    public final String titleExpected = "During the past month, have you treated your pain with marijuana or cannabis?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS4520_')]//span[contains(@class,'visible-md-inline')]")
+    @FindBy(xpath = "//label[contains(@for,'QS1329_')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> radioButtonsList;
 
-    public DiagnosedAnyTypeOfDiabetesPageOLS() {
+    public TreatedPainWithMarijuanaOrCannabis() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS waitForPageLoad() {
+    public TreatedPainWithMarijuanaOrCannabis waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS clickOnAnswer(String answerText) {
+    public TreatedPainWithMarijuanaOrCannabis clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -38,4 +38,5 @@ public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
+
 }
