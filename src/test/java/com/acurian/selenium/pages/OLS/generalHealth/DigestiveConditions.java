@@ -10,13 +10,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class DigestiveConditions extends MainPageOLS{
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following conditions which affect your lungs or breathing?\n" + 
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following digestive conditions?\n" + 
     		"Please select all that apply.";
     		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    @FindBy(xpath = "//label[contains(@for,'QS10_')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> checkBoxList;
 
     public DigestiveConditions() {

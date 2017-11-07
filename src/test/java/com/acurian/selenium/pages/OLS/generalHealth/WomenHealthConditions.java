@@ -15,7 +15,7 @@ public class WomenHealthConditions extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = "//label[contains(@for,'QS18_')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> checkBoxList;
 
     public WomenHealthConditions() {

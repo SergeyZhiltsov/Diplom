@@ -7,35 +7,34 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HowLongTakingStatin extends MainPageOLS{
+public class TreatedYourArthritisPainAcetaminophen extends MainPageOLS{
 
-    public final String titleExpected = "How long have you been taking your statin medication(s) from the previous question?";
-    
-    		
+    public final String titleExpected = "Have you ever treated your arthritis pain with medications containing acetaminophen, also known as Tylenol?";
+
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[contains(@class,'radio-question')]//span[contains(@class,'visible-md-inline')]")
-    List<WebElement> checkBoxList;
+    @FindBy(xpath = "//label[contains(@for,'QS4509_')]//span[contains(@class,'visible-md-inline')]")
+    List<WebElement> radioButtonsList;
 
-    public HowLongTakingStatin() {
+    public TreatedYourArthritisPainAcetaminophen() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HowLongTakingStatin waitForPageLoad() {
+    public TreatedYourArthritisPainAcetaminophen waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HowLongTakingStatin clickOnAnswers(String answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+    public TreatedYourArthritisPainAcetaminophen clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText(){
         return getText(titleText);
     }
 
