@@ -14,7 +14,7 @@ public class CancerPage extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    @FindBy(xpath = "//label[contains(@for,'QS20_')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> checkBoxList;
 
     public CancerPage() {

@@ -15,7 +15,7 @@ public class WhereYouHaveArthritis extends MainPageOLS {
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
-    List<WebElement> radioButtonsList;
+    List<WebElement> checkBoxList;
 
     public WhereYouHaveArthritis() {
         PageFactory.initElements(getDriver(), this);
@@ -29,13 +29,9 @@ public class WhereYouHaveArthritis extends MainPageOLS {
     }
 
     @Step
-    public WhereYouHaveArthritis clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
-        return this;
+    public WhereYouHaveArthritis clickOnAnswer(String ...answerText) {
+    	clickOnCheckBoxes(checkBoxList, answerText);
+        return this;   
     }
 
     @Step
