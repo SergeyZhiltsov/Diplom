@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.generalHealth;
+package com.acurian.selenium.pages.OLS.pediatric;
 
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
@@ -10,6 +10,7 @@ import java.util.List;
 
 public class ChildrenUnderPageOLS extends MainPageOLS{
 
+    //Pediatric module
     public final String titleExpected = "Do you have any children under the age of 18 in your household?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
