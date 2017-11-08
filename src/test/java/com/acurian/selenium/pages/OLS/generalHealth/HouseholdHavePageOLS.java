@@ -1,7 +1,7 @@
-package com.acurian.selenium.pages.CC.generalHealth;
+package com.acurian.selenium.pages.OLS.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,30 +9,30 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class TheStudySitePageCC extends MainPageCC{
+public class HouseholdHavePageOLS extends MainPageOLS{
 
     //Pediatric module
-    public final String titleExpected = "If you qualify for a study, how would you plan to travel to and from the study site?\n" +
-            "Agent Note: Select all that apply";
+    public final String titleExpected = "Does a child or teen in your household have any of the following conditions?\n" +
+            "Please select all that apply.";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public TheStudySitePageCC() {
+    public HouseholdHavePageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TheStudySitePageCC waitForPageLoad() {
+    public HouseholdHavePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TheStudySitePageCC clickOnAnswers(String ...answerText) {
+    public HouseholdHavePageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

@@ -9,10 +9,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class TheStudySitePageCC extends MainPageCC{
+public class HouseholdHavePageCC extends MainPageCC{
 
     //Pediatric module
-    public final String titleExpected = "If you qualify for a study, how would you plan to travel to and from the study site?\n" +
+    public final String titleExpected = "Does a child or teen in your household have any of the following conditions?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
@@ -21,18 +21,18 @@ public class TheStudySitePageCC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public TheStudySitePageCC() {
+    public HouseholdHavePageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TheStudySitePageCC waitForPageLoad() {
+    public HouseholdHavePageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TheStudySitePageCC clickOnAnswers(String ...answerText) {
+    public HouseholdHavePageCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
