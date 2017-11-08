@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.generalHealth;
+package com.acurian.selenium.pages.CC.pediatric;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;

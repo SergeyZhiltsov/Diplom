@@ -1,14 +1,10 @@
 package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ChildrenUnderPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
-
-import java.util.List;
 
 public class SynexusQualifiedClose4356PageOLS extends MainPageOLS{
 
