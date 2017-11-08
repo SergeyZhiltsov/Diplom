@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.generalHealth;
+package com.acurian.selenium.pages.OLS.pediatric;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,10 +9,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhatSortPageOLS extends MainPageOLS{
+public class EthnicBackgroundPageOLS extends MainPageOLS{
 
     //Pediatric module
-    public final String titleExpected = "What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?\n" +
+    public final String titleExpected = "Which of the following describes your ethnic background?\n" +
             "Please note that this is for informational purposes only.\n" +
             "Please select all that apply.";
 
@@ -22,18 +22,18 @@ public class WhatSortPageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public WhatSortPageOLS() {
+    public EthnicBackgroundPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhatSortPageOLS waitForPageLoad() {
+    public EthnicBackgroundPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhatSortPageOLS clickOnAnswers(String ...answerText) {
+    public EthnicBackgroundPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

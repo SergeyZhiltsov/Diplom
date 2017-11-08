@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.generalHealth;
+package com.acurian.selenium.pages.CC.pediatric;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
@@ -9,10 +9,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhatSortPageCC extends MainPageCC{
+public class TheStudySitePageCC extends MainPageCC{
 
-    public final String titleExpected = "What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?\n" +
-            "Please note that this is for informational purposes only.\n" +
+    //Pediatric module
+    public final String titleExpected = "If you qualify for a study, how would you plan to travel to and from the study site?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
@@ -21,18 +21,18 @@ public class WhatSortPageCC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public WhatSortPageCC() {
+    public TheStudySitePageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhatSortPageCC waitForPageLoad() {
+    public TheStudySitePageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhatSortPageCC clickOnAnswers(String ...answerText) {
+    public TheStudySitePageCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
