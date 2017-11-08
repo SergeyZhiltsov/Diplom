@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,30 +9,31 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class ChildrenUnderPageOLS extends MainPageOLS{
+public class TheStudySitePageOLS extends MainPageOLS{
 
     //Pediatric module
-    public final String titleExpected = "Do you have any children under the age of 18 in your household?";
+    public final String titleExpected = "If you qualify for a study, how would you plan to travel to and from the study site?\n" +
+            "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
-    List<WebElement> radioButtonsList;
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
+    List<WebElement> checkBoxList;
 
-    public ChildrenUnderPageOLS() {
+    public TheStudySitePageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ChildrenUnderPageOLS waitForPageLoad() {
+    public TheStudySitePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ChildrenUnderPageOLS clickOnAnswer(String answerText) {
-        clickOnRadioButton(radioButtonsList, answerText);
+    public TheStudySitePageOLS clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
