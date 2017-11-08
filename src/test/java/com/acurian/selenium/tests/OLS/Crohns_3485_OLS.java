@@ -198,6 +198,7 @@ public class Crohns_3485_OLS extends BaseTest{
                         "Rituxan",
                         "Simponi",
                         "Stelara",
+                        "Taltz",
                         "Tysabri")
                 .clickNextButton(subquestionLastReceivedPageOLS);
 
@@ -216,6 +217,7 @@ public class Crohns_3485_OLS extends BaseTest{
         Assert.assertEquals(subquestionLastReceivedPageOLS.getTitleText(11),subquestionLastReceivedPageOLS.titleExpected11, "Title is diff");
         Assert.assertEquals(subquestionLastReceivedPageOLS.getTitleText(12),subquestionLastReceivedPageOLS.titleExpected12, "Title is diff");
         Assert.assertEquals(subquestionLastReceivedPageOLS.getTitleText(13),subquestionLastReceivedPageOLS.titleExpected14, "Title is diff");
+        Assert.assertEquals(subquestionLastReceivedPageOLS.getTitleText(14),subquestionLastReceivedPageOLS.titleExpected15, "Title is diff");
         subquestionLastReceivedPageOLS
                 .back();
 
@@ -559,7 +561,19 @@ public class Crohns_3485_OLS extends BaseTest{
                 .setAll("5", "5", "160")
                 .clickNextButton(new ChildrenUnderPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes")
+                .clickNextButton(new HouseholdHavePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new TheStudySitePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
