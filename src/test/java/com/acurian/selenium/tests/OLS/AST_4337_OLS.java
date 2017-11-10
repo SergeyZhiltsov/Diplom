@@ -2,9 +2,10 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.AST_4337.*;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SmokedCigarettesPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
@@ -25,8 +26,8 @@ public class AST_4337_OLS extends BaseTest{
         String phoneNumberLBP = "AUTAMS1HFL";
         List<String> protocols = Arrays.asList("205715");
         String protocol1 = "205715";
-        String studyName = "Asthma";
-        String siteName = "AUT";
+        String studyName = "an asthma";
+        String siteName = "AUT_AST_4337_Site";
         String debugSiteName = "";
         String env = "STG";
         String zipCode = "19044";
@@ -254,16 +255,111 @@ public class AST_4337_OLS extends BaseTest{
                 .clickNextButton(hasHealthcareProfessionalPageOLS)
                 .waitForPageLoad()
                 .back();
-        smokedCigarettesPageOLS
+        SubquestionSmokedCigarettePageOLS subquestionSmokedCigarettePageOLS = smokedCigarettesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickNextButton(new SubquestionSmokedCigarettePageOLS());
+        subquestionSmokedCigarettePageOLS
+                .waitForPageLoad(1,subquestionSmokedCigarettePageOLS.titleExpected1)
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(smokedCigarettesPageOLS.titleExpected, protocol1)
+                .back();
+        smokedCigarettesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("I used to smoke, but have since quit")
+                .clickNextButton(subquestionSmokedCigarettePageOLS);
+
+        subquestionSmokedCigarettePageOLS
+                .waitForPageLoad(1,subquestionSmokedCigarettePageOLS.titleExpected2);
+        Assert.assertEquals(subquestionSmokedCigarettePageOLS.getTitleText(1),subquestionSmokedCigarettePageOLS.titleExpected2, "Title is diff");
+        Assert.assertEquals(subquestionSmokedCigarettePageOLS.getTitleText(2),subquestionSmokedCigarettePageOLS.titleExpected4, "Title is diff");
+        subquestionSmokedCigarettePageOLS
+                .setFirst("10")
+                .setSecond("20")
+                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Asthma Smoking History Logic", protocol1)
+                .back();
+        subquestionSmokedCigarettePageOLS
+                .waitForPageLoad(1,subquestionSmokedCigarettePageOLS.titleExpected2)
+                .setFirst("9")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
 
 
-
-
-
-
+        hasHealthcareProfessionalPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new CongestiveHeartFailurePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new AffectingYourMetabolismPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingNeurologicalConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AffectYourLungsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DigestiveConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SleepRelatedConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SkinConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ViralConditionsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new MentalHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WomensHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OtherThanSkinCancerPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new HistoryOfDrugPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new ChildrenUnderPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
 
     }
 }

@@ -40,7 +40,7 @@ public class SubquestionTheHospitalPageOLS extends MainPageOLS{
     @Step
     public SubquestionTheHospitalPageOLS clickOnAnswersForSubQuestion(int questionNumber, String ...answerText) {
         List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber-1)
-                .findElements(By.xpath("//ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
+                .findElements(By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
         clickOnCheckBoxes(checkBoxListFromTitle, answerText);
         return this;
     }
@@ -50,7 +50,7 @@ public class SubquestionTheHospitalPageOLS extends MainPageOLS{
         List<WebElement> checkBoxListFromTitle = titlesText.stream().filter(el -> questionText.contains(el.getText()))
                 .findFirst()
                 .get()
-                .findElements(By.xpath("//ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
+                .findElements(By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
         clickOnCheckBoxes(checkBoxListFromTitle, answerText);
         return this;
     }

@@ -9,6 +9,9 @@ import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -27,7 +30,7 @@ public class DIA_4241_OLS extends BaseTest{
         String phoneNumberLBP = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
-        String studyName = "Diabetes";
+        String studyName = "a Diabetes";
         String siteName = "AUT_DIA_4241";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
         String env = "STG";
@@ -407,6 +410,15 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(new ChildrenUnderPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
