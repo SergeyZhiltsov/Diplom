@@ -1,9 +1,15 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.AST_4337.*;
-import com.acurian.selenium.pages.CC.Crohns_3485.DiagnosedWithCrohnsPageCC;
-import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
+import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -14,16 +20,16 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
-public class AST_4337_CC extends MainPageCC{
+public class AST_4337_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
-    @Description("Crohn's_3485 for CC")
+    @Description("Asthma_4337 for CC")
     public void tc004Test(final String username, final String password) {
         String phoneNumber = "AUTAMS1HFL";
         List<String> protocols = Arrays.asList("205715");
         String protocol1 = "205715";
-        String studyName = "an asthma";
+        String studyName = "an asthma study";
         String siteName = "AUT_AST_4337_Site";
         String debugSiteName = "";
         String env = "STG";
@@ -247,7 +253,149 @@ public class AST_4337_CC extends MainPageCC{
                 .clickOnAnswersForSubQuestion(subquestionTheHospitalPageCC.titleExpected3,"Unsure")
                 .clickNextButton(new SeekMedicalPageCC());
 
+        seekMedicalPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(seekMedicalPageCC.getTitleText(),seekMedicalPageCC.titleExpected, "Title is diff");
+        seekMedicalPageCC
+                .clickOnAnswer("Once")
+                .clickNextButton(theseSymptomsPageCC);
 
+        theseSymptomsPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(theseSymptomsPageCC.getTitleText(),theseSymptomsPageCC.titleExpected, "Title is diff");
+        SmokedCigarettesPageCC smokedCigarettesPageCC = theseSymptomsPageCC
+                .clickOnAnswer("Less than once a week")
+                .clickNextButton(new SmokedCigarettesPageCC());
+        smokedCigarettesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(theseSymptomsPageCC.titleExpected, protocol1)
+                .back();
+        theseSymptomsPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Every day")
+                .clickNextButton(smokedCigarettesPageCC);
+
+        smokedCigarettesPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(smokedCigarettesPageCC.getTitleText(),smokedCigarettesPageCC.titleExpected, "Title is diff");
+        TransitionStatementCC transitionStatementCC = smokedCigarettesPageCC
+                .clickOnAnswer("No, I never smoked")
+                .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoad("asthma")
+                .back();
+        SubquestionSmokedCigarettePageCC subquestionSmokedCigarettePageCC = smokedCigarettesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, I currently smoke")
+                .clickNextButton(new SubquestionSmokedCigarettePageCC());
+        subquestionSmokedCigarettePageCC
+                .waitForPageLoad(1,subquestionSmokedCigarettePageCC.titleExpected1)
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(smokedCigarettesPageCC.titleExpected, protocol1)
+                .back();
+        smokedCigarettesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("I used to smoke, but have since quit")
+                .clickNextButton(subquestionSmokedCigarettePageCC);
+
+        subquestionSmokedCigarettePageCC
+                .waitForPageLoad(1,subquestionSmokedCigarettePageCC.titleExpected2);
+        Assert.assertEquals(subquestionSmokedCigarettePageCC.getTitleText(1),subquestionSmokedCigarettePageCC.titleExpected2, "Title is diff");
+        Assert.assertEquals(subquestionSmokedCigarettePageCC.getTitleText(2),subquestionSmokedCigarettePageCC.titleExpected4, "Title is diff");
+        subquestionSmokedCigarettePageCC
+                .setFirst("10")
+                .setSecond("20")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoad("asthma")
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Ghost Question - Asthma Smoking History Logic", protocol1)
+                .back();
+        subquestionSmokedCigarettePageCC
+                .waitForPageLoad(1,subquestionSmokedCigarettePageCC.titleExpected2)
+                .setFirst("9")
+                .clickNextButton(transitionStatementCC);
+
+        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
+                .waitForPageLoad("asthma")
+                .clickNextButton(new HasHealthcareProfessionalPageCC());
+
+
+        hasHealthcareProfessionalPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouUndergoneAnyPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartFailureIsAlsoPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new AffectingYourMetabolismPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingNeurologicalConditions())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AffectYourLungsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingDigestiveConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new SleepRelatedConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingSkinConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingViralConditionsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingMentalHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingWomensHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new OtherThanSkinCancerPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new HistoryOfDrugPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ApproximateHeightPageCC())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad();
 
     }
 }

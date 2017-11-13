@@ -519,7 +519,7 @@ public class Crohns_3485_CC extends BaseTest{
 
         transitionStatementCC
                 .waitForPageLoad(studyName);
-        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is difff");
+        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is diff");
         HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
                 .clickNextButton(new HasHealthcareProfessionalPageCC());
 

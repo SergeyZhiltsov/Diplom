@@ -1,6 +1,6 @@
-package com.acurian.selenium.pages.OLS.AST_4337;
+package com.acurian.selenium.pages.CC.AST_4337;
 
-import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,31 +8,31 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SubquestionSmokedCigarettePageOLS extends MainPageOLS{
+public class SubquestionSmokedCigarettePageCC extends MainPageCC{
 
     public final String titleExpected1 = "How many years have you been smoking cigarettes?";
     public final String titleExpected2 = "How many years did you smoke cigarettes?";
     public final String titleExpected3 = "About how many cigarettes per day do you smoke?";
     public final String titleExpected4 = "About how many cigarettes per day did you smoke?";
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='sub_question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "//div[@class='subquestion']//span[@class='sub_question_text']")
     List<WebElement> titlesText;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//input")
+    @FindBy(xpath = "//div[@class='subquestion'][1]//input[contains(@class,'input-text')]")
     WebElement firstField;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//input")
+    @FindBy(xpath = "//div[@class='subquestion'][2]//input[contains(@class,'input-text')]")
     WebElement secondField;
 
-    public SubquestionSmokedCigarettePageOLS() {
+    public SubquestionSmokedCigarettePageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SubquestionSmokedCigarettePageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
+    public SubquestionSmokedCigarettePageCC waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
@@ -40,14 +40,14 @@ public class SubquestionSmokedCigarettePageOLS extends MainPageOLS{
     }
 
     @Step
-    public SubquestionSmokedCigarettePageOLS setFirst(String number) {
+    public SubquestionSmokedCigarettePageCC setFirst(String number) {
         typeText(firstField, number);
         waitForAnimation();
         return this;
     }
 
     @Step
-    public SubquestionSmokedCigarettePageOLS setSecond(String number) {
+    public SubquestionSmokedCigarettePageCC setSecond(String number) {
         typeText(secondField, number);
         waitForAnimation();
         return this;
