@@ -9,6 +9,9 @@ import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
+import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
@@ -47,7 +50,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         String protocol4 = "CGP_MD_01";
         String protocol5 = "UBR_MD_01";
         String protocol6 = "UBR_MD_02";
-        String studyName =  "migraine";  //"Migraine 4356B Synexus";
+        String studyName =  "a migraine";  //"Migraine 4356B Synexus";
         String env = "PRD";  //Enter which CC environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
@@ -403,6 +406,17 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickNextButton(new ChildrenUnderPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+         //----------PEDIATRIC HEALTH Questions----------    
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+         //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              

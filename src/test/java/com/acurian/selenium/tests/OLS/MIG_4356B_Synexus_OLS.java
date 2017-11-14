@@ -26,6 +26,10 @@ import com.acurian.selenium.pages.OLS.generalHealth.SleepRelatedConditionsPageOL
 import com.acurian.selenium.pages.OLS.generalHealth.SmokedCigarettesPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ViralConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ChildrenUnderTheAge;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
@@ -46,7 +50,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         String protocol4 = "CGP_MD_01";
         String protocol5 = "UBR_MD_01";
         String protocol6 = "UBR_MD_02";
-        String studyName =  "Migraine";  //"Migraine 4356B Synexus";
+        String studyName =  "a Migraine";  //"Migraine 4356B Synexus";
         String env = "PRD";  //Enter which OLS environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
@@ -383,21 +387,36 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
 				.clickNextButton(new ProvideHeightWeight());
 
 		//----------ProvideHeight-Weight Page--------------------
-		ChildrenUnderTheAge childrenUnderTheAge = provideHeightWeight
+		ChildrenUnderPageOLS childrenUnderPageOLS = provideHeightWeight
 				.waitForPageLoad()
 				.setFT("5")
 				.setIN("5")
 				.setWeight("155")
-				.clickNextButton(new ChildrenUnderTheAge());
+				.clickNextButton(new ChildrenUnderPageOLS());
 		
 		//----------ChildrenUnderTheAge Page--------------------
-		IdentificationPageOLS identificationPageOLS =  childrenUnderTheAge
+		TheStudySitePageOLS theStudySitePageOLS = childrenUnderPageOLS
 				.waitForPageLoad()
-				.clickOnAnswers("No")
-				.clickNextButton(new IdentificationPageOLS());
-
+				.clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageOLS());
+                
+        //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
+				theStudySitePageOLS.waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageOLS())
+                
+		//-----"WhatSortPageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                
+       //----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new IdentificationPageOLS())		
+				
 		//----------PII (IdentificationPageOLS) Page--------------------
-		identificationPageOLS.waitForPageLoad()
+		.waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
         .clickNextButton(new SiteSelectionPageOLS())
         
@@ -405,7 +424,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         .waitForPageLoad(studyName)
         .getPID()
         .clickOnFacilityName(siteName)
-        .clickNextButton(new SynexusQualifiedCloseMIG4356Page())
+        .clickNextButton(new GladLocationIsConvenient())
         
         //----------GladLocationIsConvenient Page--------------------
         .waitForPageLoad()
