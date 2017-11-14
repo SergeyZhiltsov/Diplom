@@ -79,6 +79,13 @@
       <artifactId>ashot</artifactId>
       <version>1.5.2</version>
     </dependency>
+    <dependency>
+      <groupId>com.oracle</groupId>
+      <artifactId>ojdbc7</artifactId>
+      <version>12.2.0.2</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}${file.separator}lib${file.separator}ojdbc7.jar</systemPath> <!-- must match file name -->
+    </dependency>
   </dependencies>
 
   <build>

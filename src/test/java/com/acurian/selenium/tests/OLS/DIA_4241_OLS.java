@@ -13,6 +13,8 @@ import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.utils.DBConnection;
+import com.acurian.selenium.utils.PassPID;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -431,7 +433,8 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
 
     }
 }

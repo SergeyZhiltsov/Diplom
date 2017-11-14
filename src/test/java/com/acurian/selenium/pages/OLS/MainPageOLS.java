@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.OLS;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.utils.DBConnection;
+import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -72,11 +74,17 @@ public class MainPageOLS extends BasePage{
         return (T)page;
     }
 
+    public void pidFromDbToLog(String env){
+        DBConnection dbCon = new DBConnection();
+        String pid = PassPID.getInstance().getPidNumber();
+        dbCon.dbRead(env, pid);
+        logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
+    }
+
 
 //MainPageOLS<Z> and DateOfBirthPageOLS extends MainPageOLS<DateOfBirthPageOLS>
 //    public Z assertSome(){
 //        return (Z)this;
 //    }
-
 
 }
