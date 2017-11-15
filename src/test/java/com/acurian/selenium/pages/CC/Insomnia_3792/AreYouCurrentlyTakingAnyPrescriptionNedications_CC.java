@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.CC.Insomnia_3792;
 
-
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;

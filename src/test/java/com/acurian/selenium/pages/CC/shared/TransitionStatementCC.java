@@ -30,6 +30,14 @@ public class TransitionStatementCC extends MainPageCC {
     }
 
     @Step
+    public TransitionStatementCC waitForPageLoad1(String studyName1) {
+        waitForAnimation();
+        String titleExpectedMod = String.format(titleExpected, studyName1);
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        return this;
+    }
+    
+    @Step
     public String getTitleText(){
         return getText(titleText);
     }

@@ -53,6 +53,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Insomnia_3792_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
@@ -65,6 +66,7 @@ public class Insomnia_3792_CC extends BaseTest{
         String protocol1 = "E2006_G000_303";
         String protocol2 = "E2006_G000_304";
         String studyName = "an insomnia";  
+        String studyName1 = "insomnia";  
         String env = "STG";  //Enter which CC environment to use for testing
         String siteName = "AUT_INSO_3792_Site";
         String zip_Code = "19044";
@@ -297,7 +299,7 @@ public class Insomnia_3792_CC extends BaseTest{
      		
       //----------Q11 -Transition Statement - Display for Call Center only-------------
         transitionStatementCC
-        .waitForPageLoad(studyName);
+        .waitForPageLoad1(studyName1);
         Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is difff");
         HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
         .clickNextButton(new HasHealthcareProfessionalPageCC());

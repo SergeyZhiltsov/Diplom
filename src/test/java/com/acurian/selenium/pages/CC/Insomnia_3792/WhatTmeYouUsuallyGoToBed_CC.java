@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.pages.OLS.Insomnia_3792.WhatTmeYouUsuallyGoToBed_OLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
 
