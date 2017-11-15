@@ -14,7 +14,6 @@ import com.acurian.selenium.pages.OLS.SUI_3923.DoYouExperienceUrinaryIncontinenc
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 
-
 public class Insomnia_3792_OLS extends BaseTest{
 
     @Test
@@ -359,7 +358,7 @@ public class Insomnia_3792_OLS extends BaseTest{
        //------------------PII Page-------------------
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
-                .clickNextButton(new SiteSelectionPageInsomniaOLS())
+                .clickNextButton(new SiteSelectionPageOLS())
        
        //-----------------Site selection Page-------------------
                 .waitForPageLoad(studyName)
