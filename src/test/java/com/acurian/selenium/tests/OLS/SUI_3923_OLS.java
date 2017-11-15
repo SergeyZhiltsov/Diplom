@@ -18,7 +18,6 @@ import com.acurian.selenium.pages.OLS.pediatric.*;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class SUI_3923_OLS extends BaseTest{
 
     @Test
