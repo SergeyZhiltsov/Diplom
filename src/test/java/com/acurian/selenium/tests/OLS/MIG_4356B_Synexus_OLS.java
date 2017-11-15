@@ -1,6 +1,5 @@
 package com.acurian.selenium.tests.OLS;
 
-
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
