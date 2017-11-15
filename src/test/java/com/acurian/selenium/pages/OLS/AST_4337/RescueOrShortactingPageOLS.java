@@ -1,5 +1,6 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.AST_4337;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,28 +9,28 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
+public class RescueOrShortactingPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you been diagnosed with any type of diabetes?";
+    public final String titleExpected = "How often do you need to use your rescue or short-acting inhaler(s)?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public DiagnosedAnyTypeOfDiabetesPageOLS() {
+    public RescueOrShortactingPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS waitForPageLoad() {
+    public RescueOrShortactingPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS clickOnAnswer(String answerText) {
+    public RescueOrShortactingPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

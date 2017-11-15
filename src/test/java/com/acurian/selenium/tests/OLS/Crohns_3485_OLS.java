@@ -26,7 +26,7 @@ public class Crohns_3485_OLS extends BaseTest{
         String protocol2 = "RF_I6T_MC_AMAG";
         String protocol3 = "I6T_MC_AMAG";
         List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3);
-        String studyName = "Crohn's";
+        String studyName = "a Crohn's";
         String siteName = "AUT_CRN_3638C_Site";
         String debugSiteName = "";
         String env = "STG";

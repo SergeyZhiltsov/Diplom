@@ -18,7 +18,7 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     private String pidNumber;
 
     //%s = studyName variable
-    public final String titleExpected = "Good news! You have been matched with the doctor(s) below for a %s study!\n" +
+    public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s study!\n" +
             "Please select a doctor and click the \"Next\" button.";
 
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")

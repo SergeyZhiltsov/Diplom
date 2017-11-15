@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -17,7 +16,7 @@ public class SiteSelectionPageCC extends MainPageCC {
     private String pidNumber;
 
     //%s = studyName variable
-    public final String titleExpected = "The closest doctor's office available for a %s is located at [name of street and city]. Is that convenient for you?\n" +
+    public final String titleExpected = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
             "\n" +
             "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered: \"You may have seen a letter or ad that mentioned a specific diabetes complication such as stomach problems due to diabetes or foot sores or ulcers due to diabetes. Based on your answers, you are not an exact match for that study; however, you have prequalified for another study for people with diabetes.\"]\n" +
             "\n" +
