@@ -31,7 +31,7 @@ public class Diabetes_4356A extends BaseTest{
         String protocol5 = "EFC14835";
         String protocol6 = "ITCA 650_CLP_203";
         String protocol7 = "K_877_302";
-        String studyName = "a Diabetes"; //Diabetes study
+        String studyName = "a Diabetes";  //Diabetes study
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
         String env = "STG";
