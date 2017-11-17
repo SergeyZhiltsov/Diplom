@@ -500,7 +500,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy","Another type of stomach or colon surgery")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoad(studyName)
+                .waitForPageLoadWithCurves(studyName)
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES",protocol1,protocol2,protocol3)
                 .back();
@@ -508,7 +508,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy")
                 .clickNextButton(transitionStatementCC)
-                .waitForPageLoad(studyName)
+                .waitForPageLoadWithCurves(studyName)
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol2,protocol3)
                 .back();
@@ -518,8 +518,8 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickNextButton(transitionStatementCC);
 
         transitionStatementCC
-                .waitForPageLoad(studyName);
-        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is diff");
+                .waitForPageLoadWithCurves(studyName);
+        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpectedWithCurves(studyName), "Title is diff");
         HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
                 .clickNextButton(new HasHealthcareProfessionalPageCC());
 
@@ -595,7 +595,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("Crohn's study")
+                .waitForPageLoad("a Crohn's study")
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSCrohnsPageCC())
