@@ -299,8 +299,8 @@ public class Insomnia_3792_CC extends BaseTest{
      		
       //----------Q11 -Transition Statement - Display for Call Center only-------------
         transitionStatementCC
-        .waitForPageLoad1(studyName1);
-        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is difff");
+        .getTitleExpectedWithCurves(studyName1);
+        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpectedWithCurves(studyName1), "Title is difff");
         HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
         .clickNextButton(new HasHealthcareProfessionalPageCC());
 
