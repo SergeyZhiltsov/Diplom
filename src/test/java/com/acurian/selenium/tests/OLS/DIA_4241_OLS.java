@@ -13,8 +13,6 @@ import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
-import com.acurian.selenium.utils.DBConnection;
-import com.acurian.selenium.utils.PassPID;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -27,14 +25,14 @@ public class DIA_4241_OLS extends BaseTest{
 
     @Test
     @TestCaseId("00007")
-    @Description("Diabetes_4241")
+    @Description("Diabetes_4241 OLS")
     public void tc007Test() {
         String phoneNumberLBP = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
         String studyName = "a Diabetes";
         String siteName = "AUT_DIA_4241";
-        String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
+        String debugSiteName = "";
         String env = "STG";
         String zipCode = "19044";
 
@@ -68,13 +66,11 @@ public class DIA_4241_OLS extends BaseTest{
         HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new HasHealthcareProfessionalPageOLS());
-
         hasHealthcareProfessionalPageOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1);
         debugPageOLS.back();
-
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")

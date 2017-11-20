@@ -20,7 +20,7 @@ public class Crohns_3485_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
-    @Description("Crohn's_3485 for CC")
+    @Description("Crohn's_3485 for CC with HS")
     public void tc004Test(final String username, final String password) {
         String phoneNumber = "AUTAMS1CRN";
         List<String> protocols = Arrays.asList("APD371_004","RF_I6T_MC_AMAG","I6T_MC_AMAG");
