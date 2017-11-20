@@ -19,7 +19,7 @@ public class Crohns_3485_OLS extends BaseTest{
 
     @Test
     @TestCaseId("00005")
-    @Description("Crohn's_3485")
+    @Description("Crohn's_3485 OLS with HS")
     public void tc005Test() {
         String phoneNumberLBP = "AUTAMS1CRN";
         String protocol1 = "APD371_004";

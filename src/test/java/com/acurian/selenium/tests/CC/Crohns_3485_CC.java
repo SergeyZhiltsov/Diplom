@@ -20,7 +20,7 @@ public class Crohns_3485_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
-    @Description("Crohn's_3485 for CC")
+    @Description("Crohn's_3485 for CC with HS")
     public void tc004Test(final String username, final String password) {
         String phoneNumber = "AUTAMS1CRN";
         List<String> protocols = Arrays.asList("APD371_004","RF_I6T_MC_AMAG","I6T_MC_AMAG");
@@ -500,7 +500,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy","Another type of stomach or colon surgery")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoad(studyName)
+                .waitForPageLoadWithCurves(studyName)
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES",protocol1,protocol2,protocol3)
                 .back();
@@ -508,7 +508,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy")
                 .clickNextButton(transitionStatementCC)
-                .waitForPageLoad(studyName)
+                .waitForPageLoadWithCurves(studyName)
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol2,protocol3)
                 .back();
@@ -518,8 +518,8 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickNextButton(transitionStatementCC);
 
         transitionStatementCC
-                .waitForPageLoad(studyName);
-        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is diff");
+                .waitForPageLoadWithCurves(studyName);
+        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpectedWithCurves(studyName), "Title is diff");
         HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
                 .clickNextButton(new HasHealthcareProfessionalPageCC());
 
@@ -595,7 +595,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("Crohn's study")
+                .waitForPageLoad("a Crohn's study")
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSCrohnsPageCC())
