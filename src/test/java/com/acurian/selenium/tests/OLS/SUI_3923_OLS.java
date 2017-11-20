@@ -1,32 +1,34 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.MainPage;
-import com.acurian.selenium.pages.OLS.SUI_3923.WhichTypeOfUrinaryLeakageYouExperienceOLS;
 import com.acurian.selenium.pages.OLS.SUI_3923.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.shared.*;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-import com.acurian.selenium.pages.OLS.SUI_3923.DoYouExperienceUrinaryIncontinenceOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.shared.*;
-import com.acurian.selenium.pages.OLS.pediatric.*;
-import java.util.Arrays;
-import java.util.List;
 
 public class SUI_3923_OLS extends BaseTest{
 
     @Test
-    @TestCaseId("00003")
-    @Description("Stress Urinary Incontinence (SUI) - 3923")
+    @TestCaseId("00016")
+    @Description("Stress Urinary Incontinence (SUI) - 3923 OLS")
     public void tc002Test() {
         String phoneNumberLBP = "AUTAMS1SUI";
         String protocol1 = "G201002";
-        String studyName =  "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
+        String studyName = "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
         String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_SUI_3923";
         String zip_Code = "19044";
@@ -361,7 +363,7 @@ public class SUI_3923_OLS extends BaseTest{
 		//----------ThankYouCloseSimplePageOLS Page--------------------
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad()
-        .threadSleep(5000);
+        .waitForPageLoad();
+
     }
 }
