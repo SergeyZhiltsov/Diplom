@@ -40,10 +40,8 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class SUI_3923_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("00001")
-    @Description(" 1. Open the page, URL: " +
-            	 " 2. Type login and correct password of registered user" +
-    			 " 3. Click the Sign In button")
+    @TestCaseId("00015")
+    @Description("Stress Urinary Incontinence (SUI) - 3923 CC")
     public void tc001Test(final String username, final String password) {
         String phoneNumberSUI = "AUTAMS1SUI";
         //List<String> protocol = Arrays.asList("BHV3000_302\n"+"UBR_MD_01");
@@ -344,8 +342,7 @@ public class SUI_3923_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
                 .clickNextButton(new SiteSelectionPageCC())
-                .threadSleep(6000);  //wait 15  secs
-                 new SiteSelectionPageCC()
+                .waitForPageLoad("a women's bladder control study")
                 .getPID()
                 .clickOnAnswer(siteName)
                  //QualifiedClose2PageCC
