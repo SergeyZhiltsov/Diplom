@@ -1,5 +1,4 @@
 package com.acurian.selenium.tests.OLS;
-
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.MainPage;
 import com.acurian.selenium.pages.OLS.Insomnia_3792.*;
@@ -20,7 +19,7 @@ public class Insomnia_3792_OLS extends BaseTest{
     @TestCaseId("00003")
     @Description("Stress Urinary Incontinence (SUI) - 3923")
     public void tc002Test() {
-        String phoneNumberLBP = "AUTAMS1INS";
+        String phoneNumberINS = "AUTAMS1INS";
         String protocol1 = "E2006_G000_303";
         String protocol2 = "E2006_G000_304";
         String studyName =  "an insomnia";  
@@ -30,7 +29,7 @@ public class Insomnia_3792_OLS extends BaseTest{
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberLBP)
+                .openPage(env, phoneNumberINS)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleInsomnia_Expected, "Title is diff");
