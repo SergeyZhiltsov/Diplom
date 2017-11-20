@@ -5,7 +5,6 @@ import com.acurian.selenium.pages.MainPage;
 import com.acurian.selenium.pages.OLS.SUI_3923.WhichTypeOfUrinaryLeakageYouExperienceOLS;
 import com.acurian.selenium.pages.OLS.SUI_3923.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import org.testng.Assert;
@@ -15,9 +14,9 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import com.acurian.selenium.pages.OLS.SUI_3923.DoYouExperienceUrinaryIncontinenceOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.pediatric.*;
 import java.util.Arrays;
 import java.util.List;
-
 
 public class SUI_3923_OLS extends BaseTest{
 
@@ -27,7 +26,7 @@ public class SUI_3923_OLS extends BaseTest{
     public void tc002Test() {
         String phoneNumberLBP = "AUTAMS1SUI";
         String protocol1 = "G201002";
-        String studyName =  "women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
+        String studyName =  "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
         String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_SUI_3923";
         String zip_Code = "19044";
@@ -316,21 +315,36 @@ public class SUI_3923_OLS extends BaseTest{
 				.clickNextButton(new ProvideHeightWeight());
 
 		//----------ProvideHeight-Weight Page--------------------
-		ChildrenUnderTheAge childrenUnderTheAge = provideHeightWeight
+		ChildrenUnderPageOLS childrenUnderPageOLS = provideHeightWeight
 				.waitForPageLoad()
 				.setFT("5")
 				.setIN("5")
 				.setWeight("155")
-				.clickNextButton(new ChildrenUnderTheAge());
+				.clickNextButton(new ChildrenUnderPageOLS());
 		
 		//----------ChildrenUnderTheAge Page--------------------
-		IdentificationPageOLS identificationPageOLS =  childrenUnderTheAge
+		TheStudySitePageOLS theStudySitePageOLS = childrenUnderPageOLS
 				.waitForPageLoad()
-				.clickOnAnswers("No")
-				.clickNextButton(new IdentificationPageOLS());
-
+				.clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageOLS());
+                
+        //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
+				theStudySitePageOLS.waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageOLS())
+                
+		//-----"WhatSortPageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                
+       //----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new IdentificationPageOLS())		
+				
 		//----------PII (IdentificationPageOLS) Page--------------------
-		identificationPageOLS.waitForPageLoad()
+		.waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
         .clickNextButton(new SiteSelectionPageOLS())
         

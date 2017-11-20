@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.SUI_3923.*;
@@ -11,6 +12,9 @@ import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
+import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
@@ -44,7 +48,7 @@ public class SUI_3923_CC extends BaseTest{
         String phoneNumberSUI = "AUTAMS1SUI";
         //List<String> protocol = Arrays.asList("BHV3000_302\n"+"UBR_MD_01");
         String protocol1 = "G201002";
-        String studyName =  "women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
+        String studyName =  "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
         String env = "STG";  //Enter which CC environment to use for testing
         String siteName = "AUT_SUI_3923";
         String zip_Code = "19044";
@@ -325,6 +329,17 @@ public class SUI_3923_CC extends BaseTest{
                 .clickNextButton(new ChildrenUnderPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+         //----------PEDIATRIC HEALTH Questions----------    
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+         //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
