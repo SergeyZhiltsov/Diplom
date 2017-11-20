@@ -1,12 +1,11 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -78,6 +77,11 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     public SiteSelectionPageOLS getPID(){
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID="+pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
         return this;
+    }
+
+    public String getPidNumber(){
+        return pidNumber;
     }
 }
