@@ -103,14 +103,14 @@ public class DIA_4241_OLS extends BaseTest{
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
                 .back();
-        whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
-                .back();
+//        whatKindOfDiabetesPageOLS //rel 46.2
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(hasHealthcareProfessionalPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
+//                .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -136,9 +136,9 @@ public class DIA_4241_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(followingToLoseWeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)// copy text from previous question until "..."(white space should be include)
-                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol1)
+                .waitForPageLoad()//rel 46.2
+//                .getPage(debugPageOLS)// copy text from previous question until "..."(white space should be include)
+//                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol1)
                 .back();
         LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -315,26 +315,26 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickOnAnswer("Yes, for arthritis")
                 .clickNextButton(new StatinMedicationsOnPageOLS());
         statinMedicationsOnPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
+                .waitForPageLoad()//rel 46.2
+//                .getPage(debugPageOLS)
+//                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
                 .back();
-        areYouCurrentlyOnPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, for low back pain")
-                .clickNextButton(statinMedicationsOnPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
-                .back();
-        areYouCurrentlyOnPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, for another chronic condition")
-                .clickNextButton(statinMedicationsOnPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
-                .back();
+//        areYouCurrentlyOnPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes, for low back pain")
+//                .clickNextButton(statinMedicationsOnPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
+//                .back();
+//        areYouCurrentlyOnPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes, for another chronic condition")
+//                .clickNextButton(statinMedicationsOnPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsEquals(areYouCurrentlyOnPageOLS.titleExpected, protocol1)
+//                .back();
         areYouCurrentlyOnPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -429,8 +429,8 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .waitForPageLoad();
+//                .pidFromDbToLog(env);
 
     }
 }
