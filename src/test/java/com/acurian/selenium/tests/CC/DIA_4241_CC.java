@@ -127,14 +127,14 @@ public class DIA_4241_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
                 .back();
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(hasHealthcareProfessionalPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
-                .back();
+//        whatKindOfDiabetesPageCC //rel 46.2
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(hasHealthcareProfessionalPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
+//                .back();
         WithType2DiabetesPageCC withType2DiabetesPageCC =  whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -160,9 +160,9 @@ public class DIA_4241_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(followingToLoseWeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)// copy text from previous question until "..."(white space should be include)
-                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol1)
+                .waitForPageLoad() //rel 46.2
+//                .getPage(debugPageCC)// copy text from previous question until "..."(white space should be include)
+//                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol1)
                 .back();
         LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
                 .waitForPageLoad()
@@ -339,26 +339,26 @@ public class DIA_4241_CC extends BaseTest{
                 .clickOnAnswer("Yes, for arthritis")
                 .clickNextButton(new StatinMedicationsOnPageCC());
         statinMedicationsOnPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(areYouCurrentlyOnPageCC.titleExpected, protocol1)
+                .waitForPageLoad() //rel 46.2
+//                .getPage(debugPageCC)
+//                .checkProtocolsEquals(areYouCurrentlyOnPageCC.titleExpected, protocol1)
                 .back();
-        areYouCurrentlyOnPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, for low back pain")
-                .clickNextButton(statinMedicationsOnPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(areYouCurrentlyOnPageCC.titleExpected, protocol1)
-                .back();
-        areYouCurrentlyOnPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, for another chronic condition")
-                .clickNextButton(statinMedicationsOnPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(areYouCurrentlyOnPageCC.titleExpected, protocol1)
-                .back();
+//        areYouCurrentlyOnPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes, for low back pain")
+//                .clickNextButton(statinMedicationsOnPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsEquals(areYouCurrentlyOnPageCC.titleExpected, protocol1)
+//                .back();
+//        areYouCurrentlyOnPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes, for another chronic condition")
+//                .clickNextButton(statinMedicationsOnPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsEquals(areYouCurrentlyOnPageCC.titleExpected, protocol1)
+//                .back();
         areYouCurrentlyOnPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
