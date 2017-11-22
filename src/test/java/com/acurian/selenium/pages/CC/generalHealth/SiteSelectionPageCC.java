@@ -91,6 +91,5 @@ public class SiteSelectionPageCC extends MainPageCC {
 //    @Step("{0}")
 //    private void logTextToAllure(String text) {
 //        //empty method
-//    }
-    
+//    }    
 }
