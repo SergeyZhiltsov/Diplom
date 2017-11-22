@@ -9,13 +9,14 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class FollowingJointSymptoms  extends MainPageOLS {
-	public final String titleExpected = "Are you currently experiencing any of the following joint symptoms associated with your RA?";
+	public final String titleExpected = "Are you currently experiencing any of the following joint symptoms associated with your RA?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
     @FindBy(xpath = "//label[contains(@for,'QS508_')]/span[@class='copy']")
-    List<WebElement> radioButtonsList;
+    List<WebElement> checkBoxList;
 
     public FollowingJointSymptoms() {
         PageFactory.initElements(getDriver(), this);
@@ -29,12 +30,8 @@ public class FollowingJointSymptoms  extends MainPageOLS {
     }
 
     @Step
-    public FollowingJointSymptoms clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+    public FollowingJointSymptoms clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 

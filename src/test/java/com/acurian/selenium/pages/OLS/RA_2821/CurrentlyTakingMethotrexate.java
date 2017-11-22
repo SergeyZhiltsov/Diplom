@@ -8,7 +8,8 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class CurrentlyTakingMethotrexate extends MainPageOLS {
-	public final String titleExpected = "Methotrexate is a common RA medication. It is usually taken once a week. Methotrexate can come as a shot or as pills or tablets. The brand names include Otrexup, Rasuvo, Rheumatrex, or Trexall.";
+	public final String titleExpected = "Methotrexate is a common RA medication. It is usually taken once a week. Methotrexate can come as a shot or as pills or tablets. The brand names include Otrexup, Rasuvo, Rheumatrex, or Trexall.\n" +
+            "Are you currently taking methotrexate for your Rheumatoid Arthritis?";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

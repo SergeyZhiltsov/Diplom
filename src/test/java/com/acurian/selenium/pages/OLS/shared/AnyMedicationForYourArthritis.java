@@ -15,7 +15,7 @@ public class AnyMedicationForYourArthritis extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS4520_')]//span[contains(@class,'visible-md-inline')]")
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
     public AnyMedicationForYourArthritis() {
