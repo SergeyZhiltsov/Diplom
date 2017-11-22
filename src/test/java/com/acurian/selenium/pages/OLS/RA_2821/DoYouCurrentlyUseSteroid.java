@@ -9,7 +9,8 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class DoYouCurrentlyUseSteroid extends MainPageOLS {
-	public final String titleExpected = "Do you currently use any oral (taken by mouth) steroid medications every day or every other day to treat or manage your RA?";
+	public final String titleExpected = "Do you currently use any oral (taken by mouth) steroid medications every day or every other day to treat or manage your RA?\n" +
+             "Commonly used types of steroids include prednisone, prednisolone, dexamethasone, methylprednisolone, and Medrol.";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

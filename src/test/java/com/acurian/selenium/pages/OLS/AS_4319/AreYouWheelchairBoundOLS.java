@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.AS_4319;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
@@ -7,9 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class TreatedYourArthritisPainAcetaminophen extends MainPageOLS{
+public class AreYouWheelchairBoundOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever treated your arthritis pain with medications containing acetaminophen, also known as Tylenol?";
+    public final String titleExpected = "Are you permanently wheelchair-bound, bedridden, or otherwise completely unable to walk due to your back pain or another medical condition?";
+    
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -17,18 +18,18 @@ public class TreatedYourArthritisPainAcetaminophen extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public TreatedYourArthritisPainAcetaminophen() {
+    public AreYouWheelchairBoundOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TreatedYourArthritisPainAcetaminophen waitForPageLoad() {
+    public AreYouWheelchairBoundOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TreatedYourArthritisPainAcetaminophen clickOnAnswer(String answerText) {
+    public AreYouWheelchairBoundOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
