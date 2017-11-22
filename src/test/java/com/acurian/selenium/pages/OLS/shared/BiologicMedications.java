@@ -8,13 +8,15 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class BiologicMedications extends MainPageOLS {
-	public final String titleExpected = "Have you ever received any of the following \"biologic\" medications?";
+	public final String titleExpected = "\"Biologics\" are medications that affect the body's immune system. They are usually given as an infusion (into a vein) or a shot (injection).\n" +
+			"Have you ever received any of the following \"biologic\" medications?\n"  +
+			"Please select all that apply";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
-    List<WebElement> radioButtonsList;
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    List<WebElement> checkBoxList;
 
     public BiologicMedications() {
         PageFactory.initElements(getDriver(), this);
@@ -28,8 +30,8 @@ public class BiologicMedications extends MainPageOLS {
     }
 
     @Step
-    public BiologicMedications clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+    public BiologicMedications clickOnAnswers(String answerText) {
+    	checkBoxList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()
                 .click();

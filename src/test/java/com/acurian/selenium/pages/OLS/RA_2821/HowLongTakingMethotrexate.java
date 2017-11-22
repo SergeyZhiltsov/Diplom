@@ -1,5 +1,7 @@
 package com.acurian.selenium.pages.OLS.RA_2821;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -14,9 +16,9 @@ public class HowLongTakingMethotrexate extends MainPageOLS{
     WebElement titleText;
     
     @FindBy(xpath = "//label[contains(@for,'QS517_')]/span[@class='copy']")
-    WebElement enterAge;		
-    
-    public HowLongTakingMethotrexate () {
+    List<WebElement> radioButtonsList;
+
+    public HowLongTakingMethotrexate() {
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -29,7 +31,11 @@ public class HowLongTakingMethotrexate extends MainPageOLS{
 
     @Step
     public HowLongTakingMethotrexate clickOnAnswer(String answerText) {
-       
+        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+                .findFirst()
+                .get()
+                .click();
+        waitForAnimation();
         return this;
     }
 
@@ -37,6 +43,5 @@ public class HowLongTakingMethotrexate extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
-	
 
 }

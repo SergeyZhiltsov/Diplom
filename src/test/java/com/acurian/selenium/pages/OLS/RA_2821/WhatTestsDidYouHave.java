@@ -1,20 +1,25 @@
 package com.acurian.selenium.pages.OLS.RA_2821;
 
+import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhatTestsDidYouHave extends MainPageOLS {
-	public final String titleExpected = "What tests did you have that led to your doctor diagnosing your Rheumatoid Arthritis?";
+	
+	public final String titleExpected = "What tests did you have that led to your doctor diagnosing your Rheumatoid Arthritis?\n" +
+            "Please select all that apply.";
 
-    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
-    
-    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
-    WebElement enterAge;		
-    
+
+    @FindBy(xpath = "//label[contains(@for,'QS506_')]/span[@class='copy']")
+    List<WebElement> checkBoxList;
+
     public WhatTestsDidYouHave() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -27,8 +32,8 @@ public class WhatTestsDidYouHave extends MainPageOLS {
     }
 
     @Step
-    public WhatTestsDidYouHave clickOnAnswer(String answerText) {
-       
+    public WhatTestsDidYouHave clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 

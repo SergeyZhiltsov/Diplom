@@ -1,5 +1,7 @@
 package com.acurian.selenium.pages.OLS.RA_2821;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -15,7 +17,7 @@ public class HowLongTakingPlaquenil extends MainPageOLS {
     WebElement titleText;
     
     @FindBy(xpath = "//label[contains(@for,'QS521D_')]/span[@class='copy']")
-    WebElement enterAge;		
+    List<WebElement> radioButtonsList;		
     
     public HowLongTakingPlaquenil () {
         PageFactory.initElements(getDriver(), this);
@@ -30,7 +32,11 @@ public class HowLongTakingPlaquenil extends MainPageOLS {
 
     @Step
     public HowLongTakingPlaquenil clickOnAnswer(String answerText) {
-       
+    	radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+        .findFirst()
+        .get()
+        .click();
+        waitForAnimation();
         return this;
     }
 

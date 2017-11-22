@@ -1,9 +1,13 @@
 package com.acurian.selenium.pages.OLS.RA_2821;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowYourRASymptomsStartedFirstTime extends MainPageOLS {
@@ -12,23 +16,22 @@ public class HowYourRASymptomsStartedFirstTime extends MainPageOLS {
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
     
-    @FindBy(xpath = "//label[contains(@for,'QS505_')]/span[@class='copy']")
-    WebElement enterAge;		
-    
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    List<WebElement> radioButtonsList;
+
     public HowYourRASymptomsStartedFirstTime() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
     public HowYourRASymptomsStartedFirstTime waitForPageLoad() {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public HowYourRASymptomsStartedFirstTime clickOnAnswer(String answerText) {
-       
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
@@ -36,6 +39,5 @@ public class HowYourRASymptomsStartedFirstTime extends MainPageOLS {
     public String getTitleText(){
         return getText(titleText);
     }
-
 
 }
