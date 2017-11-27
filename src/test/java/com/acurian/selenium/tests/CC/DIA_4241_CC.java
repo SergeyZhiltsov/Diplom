@@ -3,10 +3,18 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
+import com.acurian.selenium.pages.CC.closes.Synexus4241DSWTC2PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.*;
+import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
+import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
+import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -127,14 +135,13 @@ public class DIA_4241_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
                 .back();
-//        whatKindOfDiabetesPageCC //rel 46.2
-//                .waitForPageLoad()
-//                .clickOnAnswer("Unsure")
-//                .clickNextButton(hasHealthcareProfessionalPageCC)
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
-//                .back();
+        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC //rel 47
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new TreatingYourDiabetesPageCC())
+                .waitForPageLoad();
+        treatingYourDiabetesPageCC
+                .back();
         WithType2DiabetesPageCC withType2DiabetesPageCC =  whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -143,9 +150,9 @@ public class DIA_4241_CC extends BaseTest{
         withType2DiabetesPageCC
                 .waitForPageLoad();
         Assert.assertEquals(withType2DiabetesPageCC.getTitleText(),withType2DiabetesPageCC.titleExpected, "Title is diff");
-        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = withType2DiabetesPageCC
+        withType2DiabetesPageCC
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(new TreatingYourDiabetesPageCC());
+                .clickNextButton(treatingYourDiabetesPageCC);
 
         treatingYourDiabetesPageCC
                 .waitForPageLoad();
@@ -319,6 +326,55 @@ public class DIA_4241_CC extends BaseTest{
         poundsOrMorePageCC
                 .waitForPageLoad();
         Assert.assertEquals(poundsOrMorePageCC.getTitleText(),poundsOrMorePageCC.titleExpected, "Title is diff");
+        poundsOrMorePageCC
+                .clickOnAnswer("Yes")
+                .clickNextButton(new StatinMedicationsOnPageCC())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(poundsOrMorePageCC.titleExpected, protocol1)
+                .back();
+        ChildrenUnderPageCC childrenUnderPageCC = poundsOrMorePageCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ChildrenUnderPageCC());
+
+        childrenUnderPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new RadiantWarmTransferClose1PageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("[patient agrees to be transferred]")
+                .clickNextButton(new Synexus4241DSWTC2PageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new SynexusDirectScheduleWTC3PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new SRDirectScheduleWTTCPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Transferred for Scheduling")
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad();
+
+/* rel 47
+        poundsOrMorePageCC
+                .waitForPageLoad();
+        Assert.assertEquals(poundsOrMorePageCC.getTitleText(),poundsOrMorePageCC.titleExpected, "Title is diff");
         AreYouCurrentlyOnPageCC areYouCurrentlyOnPageCC = poundsOrMorePageCC
                 .clickOnAnswer("Yes")
                 .clickNextButton(new AreYouCurrentlyOnPageCC());
@@ -465,6 +521,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
+                */
 
     }
 }
