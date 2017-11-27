@@ -103,14 +103,13 @@ public class DIA_4241_OLS extends BaseTest{
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
                 .back();
-//        whatKindOfDiabetesPageOLS //rel 46.2
-//                .waitForPageLoad()
-//                .clickOnAnswer("Unsure")
-//                .clickNextButton(hasHealthcareProfessionalPageOLS)
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
-//                .back();
+        TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS //rel 47
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new TreatingYourDiabetesPageOLS())
+                .waitForPageLoad();
+        treatingYourDiabetesPageOLS
+                .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -119,9 +118,9 @@ public class DIA_4241_OLS extends BaseTest{
         withType2DiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(withType2DiabetesPageOLS.getTitleText(),withType2DiabetesPageOLS.titleExpected, "Title is diff");
-        TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = withType2DiabetesPageOLS
+        withType2DiabetesPageOLS
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
+                .clickNextButton(treatingYourDiabetesPageOLS);
 
         treatingYourDiabetesPageOLS
                 .waitForPageLoad();
@@ -295,6 +294,49 @@ public class DIA_4241_OLS extends BaseTest{
         poundsOrMorePageOLS
                 .waitForPageLoad();
         Assert.assertEquals(poundsOrMorePageOLS.getTitleText(),poundsOrMorePageOLS.titleExpected, "Title is diff");
+        poundsOrMorePageOLS
+                .clickOnAnswer("Yes")
+                .clickNextButton(new StatinMedicationsOnPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(poundsOrMorePageOLS.titleExpected, protocol1)
+                .back();
+        ChildrenUnderPageOLS childrenUnderPageOLS = poundsOrMorePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ChildrenUnderPageOLS());
+
+        childrenUnderPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new WhatSortPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
+//                .pidFromDbToLog(env);
+
+        /* rel 47
+        poundsOrMorePageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(poundsOrMorePageOLS.getTitleText(),poundsOrMorePageOLS.titleExpected, "Title is diff");
         AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = poundsOrMorePageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new AreYouCurrentlyOnPageOLS());
@@ -431,6 +473,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
 //                .pidFromDbToLog(env);
+*/
 
     }
 }
