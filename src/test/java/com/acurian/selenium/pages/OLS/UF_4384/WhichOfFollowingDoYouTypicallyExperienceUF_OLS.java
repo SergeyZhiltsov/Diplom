@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.UF_4384;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
@@ -7,33 +7,30 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DiagnosedWithGynecologicalConditionOLS extends MainPageOLS{
-    
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of these other gynecological or women's health conditions?\n" +
-            "Please select all that apply.";
+public class WhichOfFollowingDoYouTypicallyExperienceUF_OLS extends MainPageOLS{
 
-
+    public final String titleExpected = "Heavy menstrual bleeding often affects a woman's quality of life.\n"+
+    		"Which of the following do you typically experience during your period?\n"+
+    		"Please select all that apply."; 
+    		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath ="//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    
-    public DiagnosedWithGynecologicalConditionOLS() {
+    public WhichOfFollowingDoYouTypicallyExperienceUF_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    
-    public DiagnosedWithGynecologicalConditionOLS waitForPageLoad() {
+    public WhichOfFollowingDoYouTypicallyExperienceUF_OLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    
-    public DiagnosedWithGynecologicalConditionOLS clickOnAnswers(String ...answerText) {
+    public WhichOfFollowingDoYouTypicallyExperienceUF_OLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
