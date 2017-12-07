@@ -9,31 +9,29 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhatSortPageOLS extends MainPageOLS{
+public class WouldYouUsePageOLS extends MainPageOLS{
 
-    // rel 38 deactivated
-    public final String titleExpected = "What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?\n" +
-            "Please note that this is for informational purposes only.\n" +
-            "Please select all that apply.";
+    //Pediatric module
+    public final String titleExpected = "Would you use either of the following?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
+    @FindBy(xpath = Locators.CHEKBOX_LIST2_OLS)
     List<WebElement> checkBoxList;
 
-    public WhatSortPageOLS() {
+    public WouldYouUsePageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhatSortPageOLS waitForPageLoad() {
+    public WouldYouUsePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhatSortPageOLS clickOnAnswers(String ...answerText) {
+    public WouldYouUsePageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

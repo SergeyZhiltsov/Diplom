@@ -343,7 +343,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswer("Other")
                 .clickNextButton(new WhatSortPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above (no coverage at all)")

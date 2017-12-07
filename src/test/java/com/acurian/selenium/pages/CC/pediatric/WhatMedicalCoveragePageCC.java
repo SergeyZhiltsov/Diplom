@@ -9,10 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhatSortPageCC extends MainPageCC{
+public class WhatMedicalCoveragePageCC extends MainPageCC{
 
-    // rel 38 deactivated
-    public final String titleExpected = "What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?\n" +
+    public final String titleExpected = "What medical coverage do you have for your doctor visits, medication, surgery, and/or testing?\n" +
             "Please note that this is for informational purposes only.\n" +
             "Agent Note: Select all that apply";
 
@@ -22,18 +21,18 @@ public class WhatSortPageCC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public WhatSortPageCC() {
+    public WhatMedicalCoveragePageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhatSortPageCC waitForPageLoad() {
+    public WhatMedicalCoveragePageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhatSortPageCC clickOnAnswers(String ...answerText) {
+    public WhatMedicalCoveragePageCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

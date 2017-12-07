@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.SUI_3923.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
@@ -11,10 +12,6 @@ import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
@@ -328,15 +325,18 @@ public class SUI_3923_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
-         //----------PEDIATRIC HEALTH Questions----------    
+         //----------PEDIATRIC HEALTH Questions----------
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(new WhatSortPageCC())
+                .clickOnAnswer("No")
+                .clickNextButton(new WouldYouUsePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("Neither")
+                .clickNextButton(new WhatMedicalCoveragePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswers("Prefer not to answer")
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()

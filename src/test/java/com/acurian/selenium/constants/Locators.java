@@ -32,4 +32,7 @@ public @interface Locators {
     String BASIC_TITLE2_WITH_RADIO_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']";
     String RADIO_BUTTON_LIST2_OLS = "";
 
+    String BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]";
+    String CHEKBOX_LIST2_OLS = "//span[contains(@class,'visible-md-inline')]";
+
 }

@@ -409,7 +409,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickNextButton(new TheStudySitePageCC())
          //----------PEDIATRIC HEALTH Questions----------    
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswer("Other")
                 .clickNextButton(new WhatSortPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above (no coverage at all)")

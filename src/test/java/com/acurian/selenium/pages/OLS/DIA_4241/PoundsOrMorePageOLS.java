@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.OLS.DIA_4241;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.OLS.Crohns_3485.DiagnosedWithCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
