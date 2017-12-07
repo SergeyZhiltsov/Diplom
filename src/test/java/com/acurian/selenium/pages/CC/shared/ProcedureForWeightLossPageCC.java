@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.CombinationWithEachOtherPageCC;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

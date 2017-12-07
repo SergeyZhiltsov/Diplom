@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.acurian.selenium.pages.CC.pediatric.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -33,10 +35,6 @@ import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.BiologicMedicationsCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
@@ -306,15 +304,18 @@ public class AS_4319_CC extends BaseTest{
        .clickNextButton(new ChildrenUnderPageCC())
        .waitForPageLoad()
        .clickOnAnswer("No")
-       .clickNextButton(new TheStudySitePageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("Other")
-       .clickNextButton(new WhatSortPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above (no coverage at all)")
-       .clickNextButton(new EthnicBackgroundPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("Other")
+               .clickNextButton(new TheStudySitePageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("No")
+               .clickNextButton(new WouldYouUsePageCC())
+               .waitForPageLoad()
+               .clickOnAnswers("Neither")
+               .clickNextButton(new WhatMedicalCoveragePageCC())
+               .waitForPageLoad()
+               .clickOnAnswers("No, I have no coverage")
+               .clickNextButton(new EthnicBackgroundPageCC())
+               .waitForPageLoad()
+               .clickOnAnswers("Prefer not to answer")
        .clickNextButton(new IdentificationPageCC())
        .waitForPageLoad()
        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

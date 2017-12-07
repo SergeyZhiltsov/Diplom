@@ -12,14 +12,13 @@ import java.util.List;
 public class TheStudySitePageCC extends MainPageCC{
 
     //Pediatric module
-    public final String titleExpected = "If you qualify for a study, how would you plan to travel to and from the study site?\n" +
-            "Agent Note: Select all that apply";
+    public final String titleExpected = "If you qualify for a study, would you need help in getting transportation to / from the study site?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
-    List<WebElement> checkBoxList;
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    List<WebElement> radioButtonsList;
 
     public TheStudySitePageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -32,8 +31,8 @@ public class TheStudySitePageCC extends MainPageCC{
     }
 
     @Step
-    public TheStudySitePageCC clickOnAnswers(String ...answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+    public TheStudySitePageCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
