@@ -601,7 +601,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new HSCrohnsPageOLS())
+                .clickNextButton(new HSCrohns2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
