@@ -9,6 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HSCrohnsPageOLS extends MainPageOLS{
 
+    //3638UC and 3638C
     public final String titleExpected = "Your medical records related to your Crohn's Disease are required for this study. The study doctor will not be able to contact you until they have reviewed these records.\n" +
             "\n" +
             "On the next page please provide:\n" +

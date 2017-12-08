@@ -617,7 +617,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad("a Crohn's study")
                 .getPID()
                 .clickOnAnswer(siteName)
-                .clickNextButton(new HSCrohnsPageCC())
+                .clickNextButton(new HSCrohns2PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
