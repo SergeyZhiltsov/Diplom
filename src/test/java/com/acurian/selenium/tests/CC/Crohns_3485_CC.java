@@ -600,7 +600,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new WouldYouUsePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
