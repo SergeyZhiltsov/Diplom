@@ -13,20 +13,34 @@ public class DateGHPageOLS extends MainPageOLS{
 
     public final String titleExpected = "What is your date of birth?";
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    //    public final String titleGHExpected = "Let's get started to see if you qualify for a study!\n" +
+//            "Those who qualify may receive*:\n" +
+//            "Payment which varies by study up to $1,000\n" +
+//            "No-cost study-related care from doctors\n" +
+//            "No-cost study medication";
+
+//    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+//    WebElement questionText;
+//
+//    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+//    WebElement titleText;
+
+    public final String titleHTNExpected = "Let's get started to see if you qualify for a high blood pressure study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $550\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
     @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
     WebElement dateField;
 
-    public final String titleGHExpected = "Let's get started to see if you qualify for a study!\n" +
-            "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $1,000\n" +
-            "No-cost study-related care from doctors\n" +
-            "No-cost study medication";
+
 
     public DateGHPageOLS() {
         PageFactory.initElements(getDriver(), this);

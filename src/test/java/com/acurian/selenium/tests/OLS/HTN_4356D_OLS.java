@@ -2,7 +2,9 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
@@ -17,17 +19,16 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
-public class GeneralH_OLS extends BaseTest{
+public class HTN_4356D_OLS extends BaseTest{
 
     @Test
-    @TestCaseId("00030")
-    @Description("General Health test OLS")
+    @TestCaseId("00031")
+    @Description("HTN_4356D_Synexus test OLS")
     public void generalHealthTest() {
-        String phoneNumberLBP = "AUTAMS1GEN";
-        String protocol1 = "M16_006";
-        String protocol2 = "RF_I6T_MC_AMAG";
-        String protocol3 = "I6T_MC_AMAG";
-        List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3);
+        String phoneNumberLBP = "AUTAMS1HTN";
+        String protocol1 = "THR_1442_C_603";
+        String protocol2 = "";
+        List<String> protocols = Arrays.asList(protocol1,protocol2);
         String studyName = "a high blood pressure";
         String siteName = "AUT_HTN_4356D_Site";
         String debugSiteName = "";
@@ -39,7 +40,7 @@ public class GeneralH_OLS extends BaseTest{
                 .openPage(env, phoneNumberLBP)
                 .waitForPageLoad();
         Assert.assertEquals(dateGHPageOLS.getQuestionText(),dateGHPageOLS.titleExpected, "Question is diff");
-//        Assert.assertEquals(dateGHPageOLS.getTitleText(), dateGHPageOLS.titleGHExpected, "Title is diff");
+        Assert.assertEquals(dateGHPageOLS.getTitleText(), dateGHPageOLS.titleHTNExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateGHPageOLS
                 .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());
@@ -60,6 +61,9 @@ public class GeneralH_OLS extends BaseTest{
 
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = hasHealthcareProfessionalPageOLS
                 .waitForPageLoad()
+                .getPage(new DebugPageOLS())
+                .checkIsNoProtocolsForQuestion("Ghost Question - HTN_4356D_Synexus End of Module Logic")
+                .getPage(hasHealthcareProfessionalPageOLS)
                 .clickOnAnswers("Heart Attack","Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
@@ -75,11 +79,7 @@ public class GeneralH_OLS extends BaseTest{
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS29", "M13_545","R475_PN_1523","I6T_MC_AMAG","RF_I6T_MC_AMAG",
-                        "E2006_G000_304","M15_925","E2006_G000_303","ITCA 650_CLP_203","K_877_302","BHV3000_302","UBR_MD_01","17530",
-                        "EFC13794","NN2211_4315","NN9535_4269","BHV3000_301","CGP_MD_01","UBR_MD_02","VK2809_201","G201002","R475_OA_1611",
-                        "R475_OA_1688","EFC14822","M16_098","MVT_601_3001","MVT_601_3002","MVT_601_3101","MVT_601_3102","AXS_05_301",
-                        "M16_006","MDCO_PCS_17_04","EFC14833","EFC14837","EFC14868","EFC15166","BHV3000_201","R727_CL_1532","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS29", protocol1)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -88,10 +88,7 @@ public class GeneralH_OLS extends BaseTest{
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS29", "M13_545","R475_PN_1523","I6T_MC_AMAG","RF_I6T_MC_AMAG",
-                        "M15_925","ITCA 650_CLP_203","BHV3000_302","UBR_MD_01","EFC13794","NN2211_4315","NN9535_4269","BHV3000_301","CGP_MD_01",
-                        "UBR_MD_02","VK2809_201","G201002","R475_OA_1611","R475_OA_1688","M16_098","MVT_601_3001","MVT_601_3002",
-                        "MVT_601_3101","MVT_601_3102","M16_006","BHV3000_201","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS29", protocol1)
                 .back();
         AffectingYourMetabolismPageOLS affectingYourMetabolismPageOLS = subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -110,7 +107,7 @@ public class GeneralH_OLS extends BaseTest{
                 .clickNextButton(new WhatKindOfDiabetesPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4","20150230","VK2809_201","MDCO_PCS_17_04","R727_CL_1532","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS4",protocol1)
                 .back();
         FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = affectingYourMetabolismPageOLS
                 .waitForPageLoad()
@@ -119,8 +116,7 @@ public class GeneralH_OLS extends BaseTest{
         followingNeurologicalConditionsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4","ITCA 650_CLP_203","K_877_302","17530","EFC13794",
-                        "NN2211_4315","NN9535_4269","EFC14822","EFC14833","EFC14837","EFC14868","EFC15166","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS4",protocol1)
                 .back();
         SubquestionMetabolismPageOLS subquestionMetabolismPageOLS = affectingYourMetabolismPageOLS
                 .waitForPageLoad()
@@ -129,10 +125,7 @@ public class GeneralH_OLS extends BaseTest{
         subquestionMetabolismPageOLS
                 .waitForPageLoad(1,subquestionMetabolismPageOLS.titleExpected1)
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4","I6T_MC_AMAG","RF_I6T_MC_AMAG","E2006_G000_304","E2006_G000_303",
-                        "ITCA 650_CLP_203","K_877_302","17530","EFC13794","NN2211_4315","NN9535_4269","20150230","VK2809_201","G201002",
-                        "R475_OA_1611","R475_OA_1688","EFC14822","M16_098","MVT_601_3001","MVT_601_3002","MVT_601_3101","MVT_601_3102","AXS_05_301",
-                        "M16_006","MDCO_PCS_17_04","EFC14833","EFC14837","EFC14868","EFC15166","BHV3000_201","R727_CL_1532","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS4",protocol1)
                 .back();
         affectingYourMetabolismPageOLS
                 .waitForPageLoad()
@@ -146,7 +139,7 @@ public class GeneralH_OLS extends BaseTest{
                 .clickNextButton(followingNeurologicalConditionsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS7","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS7",protocol1)
                 .back();
         subquestionMetabolismPageOLS
                 .waitForPageLoad(1,subquestionMetabolismPageOLS.titleExpected1)
@@ -155,11 +148,7 @@ public class GeneralH_OLS extends BaseTest{
                 .clickNextButton(followingNeurologicalConditionsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS7","M13_545","R475_PN_1523","I6T_MC_AMAG","RF_I6T_MC_AMAG",
-                        "M15_925","ITCA 650_CLP_203","K_877_302","BHV3000_302","UBR_MD_01","17530","EFC13794","NN2211_4315","NN9535_4269",
-                        "BHV3000_301","CGP_MD_01","UBR_MD_02","20150230","G201002","R475_OA_1611","R475_OA_1688","EFC14822","M16_098","MVT_601_3001",
-                        "MVT_601_3002","MVT_601_3101","MVT_601_3102","AXS_05_301","M16_006","MDCO_PCS_17_04","EFC14833","EFC14837",
-                        "EFC14868","EFC15166","R727_CL_1532","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS7",protocol1)
                 .back();
 
         ViralConditionsPageOLS viralConditionsPageOLS = subquestionMetabolismPageOLS
@@ -192,12 +181,7 @@ public class GeneralH_OLS extends BaseTest{
                 .clickNextButton(new InfectionClearedPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS15","M13_545", "R475_PN_1523", "I6T_MC_AMAG", "RF_I6T_MC_AMAG",
-                        "E2006_G000_304", "M15_925","E2006_G000_303", "ITCA 650_CLP_203", "K_877_302", "BHV3000_302",
-                        "UBR_MD_01", "EFC13794", "BHV3000_301", "CGP_MD_01", "UBR_MD_02", "20150230", "VK2809_201", "G201002",
-                        "R475_OA_1611", "R475_OA_1688", "M16_098", "MVT_601_3001", "MVT_601_3002", "MVT_601_3101", "MVT_601_3102",
-                        "AXS_05_301", "M16_006", "MDCO_PCS_17_04", "EFC14833", "EFC14837", "EFC14868", "EFC15166", "BHV3000_201",
-                        "R727_CL_1532", "THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS15",protocol1)
                 .back();
         MentalHealthPageOLS mentalHealthPageOLS = viralConditionsPageOLS
                 .waitForPageLoad()
@@ -206,12 +190,7 @@ public class GeneralH_OLS extends BaseTest{
         mentalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS15","M13_545", "R475_PN_1523", "I6T_MC_AMAG",
-                        "RF_I6T_MC_AMAG","E2006_G000_304", "M15_925", "E2006_G000_303", "ITCA 650_CLP_203", "K_877_302",
-                        "BHV3000_302", "UBR_MD_01", "EFC13794", "BHV3000_301", "CGP_MD_01", "UBR_MD_02", "20150230", "VK2809_201",
-                        "G201002", "R475_OA_1611", "R475_OA_1688", "EFC14822", "M16_098", "MVT_601_3001", "MVT_601_3002",
-                        "MVT_601_3101", "MVT_601_3102", "AXS_05_301", "M16_006", "MDCO_PCS_17_04", "EFC14833", "EFC14837",
-                        "EFC14868", "EFC15166", "BHV3000_201", "R727_CL_1532", "THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS15",protocol1)
                 .back();
         viralConditionsPageOLS
                 .waitForPageLoad()
@@ -225,10 +204,7 @@ public class GeneralH_OLS extends BaseTest{
         womensHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS17","I6T_MC_AMAG","RF_I6T_MC_AMAG","E2006_G000_304",
-                        "E2006_G000_303","EFC13794","20150230","VK2809_201","G201002","R475_OA_1611","R475_OA_1688","MVT_601_3001",
-                        "MVT_601_3002","MVT_601_3101","MVT_601_3102","AXS_05_301","M16_006","MDCO_PCS_17_04","EFC14833",
-                        "EFC14837","EFC14868","EFC15166","BHV3000_201","R727_CL_1532","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS17",protocol1)
                 .back();
         mentalHealthPageOLS
                 .waitForPageLoad()
@@ -236,10 +212,7 @@ public class GeneralH_OLS extends BaseTest{
                 .clickNextButton(womensHealthPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS17","I6T_MC_AMAG", "RF_I6T_MC_AMAG", "E2006_G000_304",
-                        "E2006_G000_303", "BHV3000_302", "EFC13794", "BHV3000_301", "20150230", "VK2809_201", "G201002", "MVT_601_3001",
-                        "MVT_601_3002", "MVT_601_3101", "MVT_601_3102", "AXS_05_301", "M16_006", "MDCO_PCS_17_04", "EFC14833",
-                        "EFC14837", "EFC14868", "EFC15166", "BHV3000_201", "R727_CL_1532", "THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS17",protocol1)
                 .back();
 
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = mentalHealthPageOLS
@@ -257,12 +230,7 @@ public class GeneralH_OLS extends BaseTest{
         smokedCigarettesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS20","M13_545", "R475_PN_1523", "I6T_MC_AMAG",
-                        "RF_I6T_MC_AMAG", "E2006_G000_304", "M15_925", "E2006_G000_303", "ITCA 650_CLP_203", "K_877_302", "BHV3000_302",
-                        "UBR_MD_01", "EFC13794", "NN2211_4315", "NN9535_4269", "BHV3000_301", "CGP_MD_01", "UBR_MD_02",
-                        "20150230", "VK2809_201", "G201002", "R475_OA_1611", "R475_OA_1688", "EFC14822", "M16_098", "MVT_601_3001",
-                        "MVT_601_3002", "MVT_601_3101", "MVT_601_3102", "AXS_05_301", "M16_006", "MDCO_PCS_17_04", "EFC14833",
-                        "EFC14837", "EFC14868", "EFC15166", "R727_CL_1532", "THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS20",protocol1)
                 .back();
 
         HistoryOfDrugPageOLS historyOfDrugPageOLS = otherThanSkinCancerPageOLS
@@ -280,12 +248,7 @@ public class GeneralH_OLS extends BaseTest{
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS22","M13_545", "R475_PN_1523", "I6T_MC_AMAG",
-                        "RF_I6T_MC_AMAG", "E2006_G000_304", "M15_925", "E2006_G000_303", "ITCA 650_CLP_203", "K_877_302", "BHV3000_302",
-                        "UBR_MD_01", "EFC13794", "NN2211_4315", "20150133", "BHV3000_301", "CGP_MD_01", "UBR_MD_02", "20150230", "VK2809_201",
-                        "R475_OA_1611", "R475_OA_1688", "EFC14822", "M16_098", "MVT_601_3001", "MVT_601_3002", "MVT_601_3101",
-                        "MVT_601_3102", "AXS_05_301", "M16_006", "MDCO_PCS_17_04", "EFC14833", "EFC14837", "EFC14868", "EFC15166",
-                        "BHV3000_201", "R727_CL_1532", "THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS22",protocol1)
                 .back();
         historyOfDrugPageOLS
                 .waitForPageLoad()
@@ -293,11 +256,7 @@ public class GeneralH_OLS extends BaseTest{
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS22","R475_PN_1523", "I6T_MC_AMAG", "RF_I6T_MC_AMAG",
-                        "E2006_G000_304", "E2006_G000_303", "ITCA 650_CLP_203", "K_877_302", "BHV3000_302", "UBR_MD_01", "NN2211_4315",
-                        "20150133", "BHV3000_301", "CGP_MD_01", "UBR_MD_02", "20150230", "VK2809_201", "R475_OA_1611", "R475_OA_1688",
-                        "MVT_601_3001", "MVT_601_3002", "MVT_601_3101", "MVT_601_3102", "AXS_05_301", "M16_006", "MDCO_PCS_17_04",
-                        "BHV3000_201", "R727_CL_1532", "THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS22",protocol1)
                 .back();
         historyOfDrugPageOLS
                 .waitForPageLoad()
@@ -305,8 +264,7 @@ public class GeneralH_OLS extends BaseTest{
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS22","R475_PN_1523","E2006_G000_304","E2006_G000_303",
-                        "K_877_302","NN2211_4315","R475_OA_1611","R475_OA_1688","MDCO_PCS_17_04","THR_1442_C_603")
+                .checkProtocolsContainsForQNumber("QS22",protocol1)
                 .back();
 
         historyOfDrugPageOLS

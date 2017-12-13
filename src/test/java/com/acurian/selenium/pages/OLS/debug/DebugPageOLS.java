@@ -59,6 +59,22 @@ public class DebugPageOLS extends MainPageOLS{
         return temp;
     }
 
+    private String getTextFromProtocolColumn(String questionText){
+        openDebugWindow();
+        waitForAnimation();
+        String questionTextMod = questionText.replace("\n", "");
+        Assert.assertTrue(questionList.stream().anyMatch(el -> el.getText().equals(questionTextMod)),"Q Text is not found");
+        String temp = questionList.stream()
+                .filter(el -> questionTextMod.contains(el.getText().replace("...","")))
+                .findFirst()
+                .get()
+                .findElement(By.xpath("following-sibling::td[2]"))
+                .getText();
+        closeDebugWindow();
+        logTextToAllure("Protocol="+temp);
+        return temp;
+    }
+
     @Step
     public List<String> getProtocolsForQuestion(String questionText){
         openDebugWindow();
@@ -115,6 +131,21 @@ public class DebugPageOLS extends MainPageOLS{
         Object[] actualProtocols =  getProtocolsForQuestionNumber(questionNumber).toArray();
         Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
                 + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
+        return this;
+    }
+
+    @Step
+    public DebugPageOLS checkProtocolsContainsForQNumber(String questionNumber, String...expectedProtocols){
+        List<String> actualProtocols =  getProtocolsForQuestionNumber(questionNumber);
+        Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
+                + Arrays.toString(expectedProtocols)+" are not included in actual "+actualProtocols.toString());
+        return this;
+    }
+
+    @Step
+    public DebugPageOLS checkIsNoProtocolsForQuestion(String previousPageTitle){
+        String actualText = getTextFromProtocolColumn(previousPageTitle);
+        Assert.assertTrue("".equals(actualText), "Actual text is "+actualText);
         return this;
     }
 
