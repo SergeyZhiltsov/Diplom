@@ -2,7 +2,9 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.*;
-import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.*;
@@ -16,19 +18,19 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
-public class Crohns_3485_CC extends BaseTest{
+public class Crohns_3889_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("00011")
-    @Description("Crohn's_3485 for CC with HS")
-    public void crohns3485ccTest(final String username, final String password) {
+    @TestCaseId("00012")
+    @Description("Crohn's 3889 for CC with HS")
+    public void crohns3889ccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1CRN";
         String protocol1 = "M16_006";
         String protocol2 = "RF_I6T_MC_AMAG";
         String protocol3 = "I6T_MC_AMAG";
         List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3);
         String studyName = "Crohn's disease";
-        String siteName = "AUT_CRN_3485_HS_Site";
+        String siteName = "AUT_CRN_3889_HS";
         String debugSiteName = "";
         String env = "STG";
         String zipCode = "19044";
@@ -526,8 +528,12 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithCurves(studyName)
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol1);
-        //DQ for M16_006 and I6T_MC_AMAG
+                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol1)
+                .back();
+        haveAnyOfTheFollowingPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(transitionStatementCC);
 
         transitionStatementCC
                 .waitForPageLoadWithCurves(studyName);
