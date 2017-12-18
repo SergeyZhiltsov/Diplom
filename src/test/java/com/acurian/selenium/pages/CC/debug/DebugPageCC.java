@@ -113,4 +113,20 @@ public class DebugPageCC extends MainPageCC{
         return this;
     }
 
+    @Step
+    public DebugPageCC checkProtocolsContainsForQNumber(String questionNumber, String...expectedProtocols){
+        List<String> actualProtocols =  Arrays.asList(getProtocolsForQuestionNumber(questionNumber));
+        Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
+                + Arrays.toString(expectedProtocols)+" are not included in actual "+actualProtocols.toString());
+        return this;
+    }
+
+    @Step
+    public DebugPageCC checkIsNoProtocolsForQuestion(String previousPageTitle){
+        Object[] actualProtocols = getProtocolsForQuestion(previousPageTitle);
+        Object[] expected = {"false"};
+        Assert.assertEqualsNoOrder(actualProtocols, expected, "Protocols are present ");
+        return this;
+    }
+
 }

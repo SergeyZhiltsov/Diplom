@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
@@ -35,13 +36,13 @@ public class HTN_4356D_OLS extends BaseTest{
         String env = "STG";
         String zipCode = "19044";
 
-        DateGHPageOLS dateGHPageOLS = new DateGHPageOLS();
-        dateGHPageOLS
+        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+        dateOfBirthPageOLS
                 .openPage(env, phoneNumberLBP)
                 .waitForPageLoad();
-        Assert.assertEquals(dateGHPageOLS.getQuestionText(),dateGHPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateGHPageOLS.getTitleText(), dateGHPageOLS.titleHTNExpected, "Title is diff");
-        ZipCodePageOLS zipCodePageOLS = dateGHPageOLS
+        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleHTNExpected, "Title is diff");
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());
 
