@@ -613,7 +613,7 @@ public class Diabetes_4356A extends BaseTest{
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new SynexusQualifiedClose4356PageOLS())
-                .waitForPageLoad()
+                .waitForPageLoad("625263")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

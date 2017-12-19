@@ -15,19 +15,19 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
-public class Crohns_3485_OLS extends BaseTest{
+public class Crohns_3889_OLS extends BaseTest{
 
     @Test
     @TestCaseId("00005")
-    @Description("Crohn's_3485 OLS with HS")
-    public void crohns3485olsTest() {
+    @Description("Crohn's_3889 OLS with HS")
+    public void crohns3889olsTest() {
         String phoneNumberLBP = "AUTAMS1CRN";
         String protocol1 = "M16_006";
         String protocol2 = "RF_I6T_MC_AMAG";
         String protocol3 = "I6T_MC_AMAG";
         List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3);
         String studyName = "a Crohn's";
-        String siteName = "AUT_CRN_3485_HS";
+        String siteName = "AUT_CRN_3889_HS";
         String debugSiteName = "";
         String env = "STG";
         String zipCode = "19044";
@@ -518,8 +518,12 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(hasHealthcareProfessionalPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS3759", protocol1);
-        //DQ for M16_006 and I6T_MC_AMAG
+                .checkProtocolsEqualsForQNumber("QS3759", protocol1)
+                .back();
+        haveAnyOfTheFollowingPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(hasHealthcareProfessionalPageOLS);
 
         hasHealthcareProfessionalPageOLS
                 .waitForPageLoad()
@@ -609,8 +613,6 @@ public class Crohns_3485_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
-
-
 
     }
 }

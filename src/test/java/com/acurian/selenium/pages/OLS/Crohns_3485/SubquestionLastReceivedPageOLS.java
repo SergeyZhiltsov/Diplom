@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.OLS.Crohns_3485;
 
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

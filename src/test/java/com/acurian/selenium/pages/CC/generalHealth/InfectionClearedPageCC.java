@@ -1,7 +1,8 @@
-package com.acurian.selenium.pages.OLS.Crohns_3485;
+package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.shared.ProcedureForWeightLossPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,28 +10,28 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DiagnosedWithCrohnsPageOLS extends MainPageOLS{
+public class InfectionClearedPageCC extends MainPageCC{
 
-    public final String titleExpected = "Have you ever been officially diagnosed with Crohn's disease by a doctor at a hospital or doctor's office?";
+    public final String titleExpected = "Is your hepatitis currently active or has your infection cleared?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public DiagnosedWithCrohnsPageOLS() {
+    public InfectionClearedPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnosedWithCrohnsPageOLS waitForPageLoad() {
+    public InfectionClearedPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedWithCrohnsPageOLS clickOnAnswer(String answerText) {
+    public InfectionClearedPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

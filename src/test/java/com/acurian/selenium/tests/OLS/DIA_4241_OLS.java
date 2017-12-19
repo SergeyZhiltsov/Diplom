@@ -23,7 +23,7 @@ public class DIA_4241_OLS extends BaseTest{
     @Test
     @TestCaseId("00007")
     @Description("Diabetes_4241 OLS")
-    public void tc007Test() {
+    public void dia4241olsTest() {
         String phoneNumberLBP = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
@@ -308,7 +308,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new WouldYouUsePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")

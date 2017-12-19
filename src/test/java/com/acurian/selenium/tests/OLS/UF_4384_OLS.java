@@ -1,31 +1,27 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.*;
-import com.acurian.selenium.pages.OLS.UF_4384.*;
-import com.acurian.selenium.pages.OLS.MDD_3159.*;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.UF_4384.HaveYouHadSurgicalProcedurePast6MonthsUF_OLS;
+import com.acurian.selenium.pages.OLS.UF_4384.HowWouldYouDescribeAvgPeriodUF_OLS;
+import com.acurian.selenium.pages.OLS.UF_4384.WhichOfFollowingDoYouTypicallyExperienceUF_OLS;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class UF_4384_OLS extends BaseTest{
 	
 	@Test
     @TestCaseId("00022")
     @Description("UF_4384_OLS")
-    public void tc004Test() {
+    public void uf4384olsTest() {
         String phoneNumber = "AUTAMS1UF1";
         String protocol1 = "MVT_601_3001";
 		String protocol2 = "MVT_601_3002";
@@ -299,13 +295,16 @@ public class UF_4384_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(new WhatSortPageOLS())
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WouldYouUsePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("Neither")
+                .clickNextButton(new WhatMedicalCoveragePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

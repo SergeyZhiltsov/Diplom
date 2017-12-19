@@ -19,8 +19,8 @@ public class SynexusQualifiedClose4356PageOLS extends MainPageOLS{
     }
 
     @Step
-    public SynexusQualifiedClose4356PageOLS waitForPageLoad() {
-        String titleExpectedMod = String.format(titleExpected, "625263");
+    public SynexusQualifiedClose4356PageOLS waitForPageLoad(String idNumber) {
+        String titleExpectedMod = String.format(titleExpected, idNumber);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
