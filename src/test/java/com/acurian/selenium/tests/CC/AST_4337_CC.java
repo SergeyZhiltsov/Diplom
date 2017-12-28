@@ -25,7 +25,7 @@ public class AST_4337_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
     @Description("Asthma_4337 for CC")
-    public void tc004Test(final String username, final String password) {
+    public void ast4337ccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1HFL";
         List<String> protocols = Arrays.asList("205715");
         String protocol1 = "205715";

@@ -21,7 +21,7 @@ public class Diabetes_4356A_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
-    public void tc004Test(final String username, final String password) {
+    public void dia4356AccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14835", "ITCA 650_CLP_203","K_877_302","17530","EFC13794","NN2211_4315","NN9535_4269");
         String protocol1 = "17530";
