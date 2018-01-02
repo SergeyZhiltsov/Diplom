@@ -31,6 +31,7 @@ public class UF_4384_OLS extends BaseTest{
 		String protocol2 = "MVT_601_3002";
         String studyName = "a uterine fibroids";
         String studyName1 = "uterine fibroids"; 
+        String site_Indication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
         String env = "STG";
         String zipCode = "19044";  
@@ -299,13 +300,13 @@ public class UF_4384_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(new WhatSortPageOLS())
+                .clickOnAnswer("No")
+                .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
@@ -313,11 +314,18 @@ public class UF_4384_OLS extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClosedPageOLS())
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoad(site_Indication)
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
+                .clickOkInPopUp()
+                .setSignature()
+                .getPage(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+		        .clickNextButton(new AboutHealthPageOLS())
+		        .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

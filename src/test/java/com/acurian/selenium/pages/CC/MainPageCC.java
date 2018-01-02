@@ -1,6 +1,9 @@
 package com.acurian.selenium.pages.CC;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.utils.DBConnection;
+import com.acurian.selenium.utils.PassPID;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +45,13 @@ public class MainPageCC extends BasePage{
                 .click();
         waitForAnimation();
     }
+    public void pidFromDbToLog(String env){
+        DBConnection dbCon = new DBConnection();
+        String pid = PassPID.getInstance().getPidNumber();
+        dbCon.dbRead(env, pid);
+        logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
+    }
+
 
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String ...answerText){
         List<String> answerTextList = Arrays.asList(answerText);
