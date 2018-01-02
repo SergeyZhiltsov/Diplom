@@ -21,7 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Diabetes_4356A extends BaseTest{
-    @Test
+
+	@Test
     @TestCaseId("00003")
     @Description("Diabetes_4356A_Synexus")
     public void tc003Test() {

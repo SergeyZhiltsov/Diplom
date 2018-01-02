@@ -50,7 +50,6 @@ public class Diabetes_4356A_CC extends BaseTest{
         String env = "STG";
         String zipCode = "19044";
 
-
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)

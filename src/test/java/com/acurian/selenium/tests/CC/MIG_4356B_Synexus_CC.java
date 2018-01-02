@@ -37,6 +37,7 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
+
 public class MIG_4356B_Synexus_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)

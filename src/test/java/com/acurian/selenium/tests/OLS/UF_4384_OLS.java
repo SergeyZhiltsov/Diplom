@@ -20,6 +20,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class UF_4384_OLS extends BaseTest{
+
 	@Test
     @TestCaseId("00022")
     @Description("UF_4384_OLS")
