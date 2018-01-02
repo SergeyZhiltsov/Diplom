@@ -60,9 +60,9 @@ public class AS_4319_CC extends BaseTest{
         String protocol1 = "M16_098";        
         String studyName = "ankylosing spondylitis or AS";
         String studyName1 = "arthritis";
-        String env = "STG";
-        String siteName = "AUT_OA_3138_Site";
-        String zipCode  = "99546";
+        String env = "PRD";
+        String siteName = "AUT_As_4319";
+        String zipCode  = "19044";
         
         LoginPageCC loginPageCC = new LoginPageCC();
 

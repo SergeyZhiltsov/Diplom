@@ -19,6 +19,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.DrugOrAlcoholAbuse;
 import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouSmokedCigarettes;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartRelatedMedicalProc;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.MentalHealthConditions;
 import com.acurian.selenium.pages.OLS.generalHealth.NeurologicalConditions;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
@@ -46,6 +47,7 @@ public class DYSLI_4356 extends BaseTest {
 		String env = "STG";
 		String studyName = "cholesterol or heart health";
 	    String siteName = "AUT_4356C";
+	    String zipCode = "19044";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberDY)		           
@@ -53,16 +55,14 @@ public class DYSLI_4356 extends BaseTest {
 		           .maximizePage();
 		Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleDYExpected, "Title is diff");
 		
-		PersonalDetails personalDetails = dateOfBirthPageOLS
+		IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
 		           .setDate("10/10/1975")
-		           .clickNextButton(new PersonalDetails());
+		           .clickNextButton(new IdentificationPageOLS());
 		
-		GenderPageOLS genderPageOLS = personalDetails
-				.waitForPageLoad()
-				.setZip("19044")
-				.setFirstName("Test")
-				.setLastName("Acurian")
-				.setPhone("2564859854")								
+		identificationPageOLS.threadSleep(3000);
+		
+		GenderPageOLS genderPageOLS = identificationPageOLS				
+				.setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
 				.clickNextButton(new GenderPageOLS());
 		
 		DyslipidemiaHealthcarePage dyslipidemiaHealthcarePage = genderPageOLS
