@@ -52,3 +52,11 @@ report
 
 # include lib folder
 !/lib/*
+
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+RemoteSystemsTempFiles/
+test-output/

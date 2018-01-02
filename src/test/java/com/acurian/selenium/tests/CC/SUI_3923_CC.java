@@ -1,6 +1,5 @@
 package com.acurian.selenium.tests.CC;
 
-
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -33,6 +32,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
+
 
 public class SUI_3923_CC extends BaseTest{
 
@@ -323,9 +323,12 @@ public class SUI_3923_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new ChildrenUnderPageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new TheStudySitePageCC())
+                .clickOnAnswer("Yes")
          //----------PEDIATRIC HEALTH Questions----------
+                .clickNextButton(new HouseholdHavePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new WouldYouUsePageCC())
@@ -352,5 +355,6 @@ public class SUI_3923_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
+        //.pidFromDbToLog(env);
     }
 }

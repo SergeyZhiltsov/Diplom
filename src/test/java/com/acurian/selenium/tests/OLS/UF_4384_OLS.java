@@ -5,6 +5,9 @@ import com.acurian.selenium.pages.OLS.UF_4384.HaveYouHadSurgicalProcedurePast6Mo
 import com.acurian.selenium.pages.OLS.UF_4384.HowWouldYouDescribeAvgPeriodUF_OLS;
 import com.acurian.selenium.pages.OLS.UF_4384.WhichOfFollowingDoYouTypicallyExperienceUF_OLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -16,8 +19,9 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
+
 public class UF_4384_OLS extends BaseTest{
-	
+
 	@Test
     @TestCaseId("00022")
     @Description("UF_4384_OLS")
@@ -27,6 +31,7 @@ public class UF_4384_OLS extends BaseTest{
 		String protocol2 = "MVT_601_3002";
         String studyName = "a uterine fibroids";
         String studyName1 = "uterine fibroids"; 
+        String site_Indication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
         String env = "STG";
         String zipCode = "19044";  
@@ -295,6 +300,7 @@ public class UF_4384_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WouldYouUsePageOLS())
                 .waitForPageLoad()
@@ -312,11 +318,18 @@ public class UF_4384_OLS extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClosedPageOLS())
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoad(site_Indication)
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
+                .clickOkInPopUp()
+                .setSignature()
+                .getPage(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+		        .clickNextButton(new AboutHealthPageOLS())
+		        .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

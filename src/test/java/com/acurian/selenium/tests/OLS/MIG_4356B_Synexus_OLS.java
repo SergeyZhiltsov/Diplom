@@ -29,6 +29,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ChildrenUnderTheAge;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -36,6 +37,7 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.OLS.shared.MIGAttackFrequencyOLS;
+
 
 public class MIG_4356B_Synexus_OLS extends BaseTest{
 
@@ -50,6 +52,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         String protocol4 = "CGP_MD_01";
         String protocol5 = "UBR_MD_01";
         String protocol6 = "UBR_MD_02";
+        String protocol7 = "BHV3000_201";
         String studyName =  "a Migraine";  //"Migraine 4356B Synexus";
         String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
@@ -93,7 +96,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         hasHealthcareProfessionalPageOLS
         .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(doYouSufferFromMigHeadachesOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol5, protocol6);
+        debugPageOLS.checkProtocolsEquals(doYouSufferFromMigHeadachesOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol5, protocol6,protocol7);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
         doYouSufferFromMigHeadachesOLS
@@ -112,7 +115,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //------Validate protocol DQs in debug window----------
         approxHowLongSufferingFromMIG
         .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals(ageWhenDiagnosedWithMigOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6);
+        debugPageOLS.checkProtocolsEquals(ageWhenDiagnosedWithMigOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6,protocol7);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
         ageWhenDiagnosedWithMigOLS.waitForPageLoad();
@@ -130,7 +133,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //------Validate protocol DQs in debug window----------
         mIGAttackFrequencyOLS
         .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals(approxHowLongSufferingFromMIG.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6);
+        debugPageOLS.checkProtocolsEquals(approxHowLongSufferingFromMIG.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6,protocol7);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
         approxHowLongSufferingFromMIG.waitForPageLoad();
@@ -206,7 +209,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //********Validate Question History for DQ and then click BACK button            
         haveYouHadBotoxInjection1.waitForPageLoad();
         Assert.assertEquals(haveYouHadBotoxInjection1.getTitleText(),haveYouHadBotoxInjection1.titleExpected, "Title is diff");           
-        debugPageOLS.checkProtocolsEquals(inPast3MonthsMedicationToStopActiveMIG.titleExpected, protocol2, protocol3, protocol4, protocol5, protocol6);
+        debugPageOLS.checkProtocolsEquals(inPast3MonthsMedicationToStopActiveMIG.titleExpected, protocol2, protocol3, protocol4, protocol5, protocol6,protocol7);
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in 'MedicationToStopActiveMigraineCC'---------------        
         inPast3MonthsMedicationToStopActiveMIG.clickOnAnswer("Less than half the days in a month")
@@ -274,7 +277,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //TransitionStatementCC transitionStatementCC = areYouCurrentlyPregnantCC //[create NEXT PAGE Object = THIS page object]    
         .clickNextButton(new HasHealthcareProfessionalPageOLS()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button     
-        debugPageOLS.checkProtocolsEquals(areYouCurrentlyPregnantOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6);
+        debugPageOLS.checkProtocolsEquals(areYouCurrentlyPregnantOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6,protocol7);
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in page 'areYouCurrentlyPregnantCC'---------------  
         areYouCurrentlyPregnantOLS.waitForPageLoad();
@@ -400,40 +403,42 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
 				.clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS());
                 
-        //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
+			
+		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
+		//----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
 				theStudySitePageOLS.waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageOLS())
-                
-		//-----"WhatSortPageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                
-       //----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
-                .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(new IdentificationPageOLS())		
-				
+		        .clickOnAnswer("No")
+		        .clickNextButton(new WhatMedicalCoveragePageOLS())
+		                
+		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
+		         .waitForPageLoad()
+		         .clickOnAnswers("No, I have no coverage")
+		         .clickNextButton(new EthnicBackgroundPageOLS())
+		                
+		//----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
+		         .waitForPageLoad()
+		         .clickOnAnswers("Prefer not to answer")
+		         .clickNextButton(new IdentificationPageOLS())	
+						
 		//----------PII (IdentificationPageOLS) Page--------------------
-		.waitForPageLoad()
-        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
-        .clickNextButton(new SiteSelectionPageOLS())
-        
+				.waitForPageLoad()
+		        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
+		        .clickNextButton(new SiteSelectionPageOLS())
+		        
 		//----------SiteSelection Page--------------------
-        .waitForPageLoad(studyName)
-        .getPID()
-        .clickOnFacilityName(siteName)
-        .clickNextButton(new GladLocationIsConvenient())
-        
-        //----------GladLocationIsConvenient Page--------------------
-        .waitForPageLoad()
-        .clickNextButton(new ThankYouCloseSimplePageOLS())
-        
+		        .waitForPageLoad(studyName)
+		        .getPID()
+		        .clickOnFacilityName(siteName)
+		        .clickNextButton(new SynexusQualifiedCloseMIG4356Page())
+		        
+		//----------GladLocationIsConvenient Page--------------------
+		        .waitForPageLoad()
+		        .clickNextButton(new ThankYouCloseSimplePageOLS())
+		        
 		//----------ThankYouCloseSimplePageOLS Page--------------------
-        .waitForPageLoad()
-        .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad()
-        .threadSleep(5000);
+		        .waitForPageLoad()
+		        .clickNextButton(new AboutHealthPageOLS())
+		        .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

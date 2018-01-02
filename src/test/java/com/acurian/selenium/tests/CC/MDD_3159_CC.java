@@ -2,14 +2,21 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.MDD_3159.*;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSCrohnsPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
+import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -18,6 +25,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
+
 
 public class MDD_3159_CC extends BaseTest{
 
@@ -29,7 +37,8 @@ public class MDD_3159_CC extends BaseTest{
         List<String> protocols = Arrays.asList("AXS_05_301");
         String protocol1 = "AXS_05_301";
         String studyName = "a depression";
-        String studyName1 = "depression"; 
+        String studyName1 = "depression";
+        String site_Indication = "Major Depressive Disorder (MDD)";
         String siteName = "AUT_MDD_3159";
         String env = "STG";
         String zipCode = "19044";
@@ -304,13 +313,13 @@ public class MDD_3159_CC extends BaseTest{
                 .clickNextButton(new TheStudySitePageCC())
          //----------PEDIATRIC HEALTH Questions----------    
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageCC())
+                .clickOnAnswer("No")
+                .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswers("Prefer not to answer")
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
@@ -320,12 +329,16 @@ public class MDD_3159_CC extends BaseTest{
                  new SiteSelectionPageCC()
                 .getPID()
                 .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoad(site_Indication)
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
-                .clickNextButton(new SelectActionPageCC())
+                .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
-
+                 //.pidFromDbToLog(env);
     }
 }

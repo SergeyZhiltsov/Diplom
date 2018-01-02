@@ -2,6 +2,10 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.UF_4384.*;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSCrohnsPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -9,7 +13,9 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
+import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -18,6 +24,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
+
 
 public class UF_4384_CC extends BaseTest{
 
@@ -31,6 +38,7 @@ public class UF_4384_CC extends BaseTest{
 		String protocol2 = "MVT_601_3002";
         String studyName = "a uterine fibroids";
         String studyName1 = "uterine fibroids"; 
+        String studyIndication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
         String env = "STG";
         String zipCode = "19044";
@@ -237,8 +245,8 @@ public class UF_4384_CC extends BaseTest{
                 .clickNextButton(new AreYouCurrentlyPregnantUF_CC());
         		areYouCurrentlyPregnantUF_CC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of these other gynecological or women's he...", protocol1, protocol2)
+                //.getPage(debugPageCC)
+                //.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of these other gynecological or women's he...", protocol1, protocol2)
                 .back();
         hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC.waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -325,27 +333,32 @@ public class UF_4384_CC extends BaseTest{
                 .clickNextButton(new TheStudySitePageCC())
          //----------PEDIATRIC HEALTH Questions----------    
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageCC())
+                .clickOnAnswer("No")
+                .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswers("Prefer not to answer")
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
                 .clickNextButton(new SiteSelectionPageCC())
-                .threadSleep(12000);  //wait 12  secs
+                .threadSleep(15000);  //wait 15  secs
                  new SiteSelectionPageCC()
                 .getPID()
                 .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoad(studyIndication)
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
-                .clickNextButton(new SelectActionPageCC())
+                .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
+                 //.pidFromDbToLog(env);
     }
 }
