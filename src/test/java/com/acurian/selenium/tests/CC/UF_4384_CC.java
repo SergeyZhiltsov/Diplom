@@ -358,5 +358,6 @@ public class UF_4384_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
+                 //.pidFromDbToLog(env);
     }
 }

@@ -466,6 +466,6 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
-
+                //.pidFromDbToLog(env);
     }
 }

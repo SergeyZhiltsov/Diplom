@@ -355,5 +355,6 @@ public class SUI_3923_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
+        //.pidFromDbToLog(env);
     }
 }

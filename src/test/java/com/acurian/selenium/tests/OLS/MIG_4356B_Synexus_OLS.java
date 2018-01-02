@@ -39,7 +39,6 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.OLS.shared.MIGAttackFrequencyOLS;
 
 public class MIG_4356B_Synexus_OLS extends BaseTest{
-
     @Test
     @TestCaseId("00002")
     @Description("MIG_4356B_Synexus_OLS module")

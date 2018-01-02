@@ -367,6 +367,5 @@ public class SUI_3923_OLS extends BaseTest{
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
         .pidFromDbToLog(env);
-
     }
 }

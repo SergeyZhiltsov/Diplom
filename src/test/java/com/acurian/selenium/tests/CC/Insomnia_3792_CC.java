@@ -392,5 +392,6 @@ public class Insomnia_3792_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad();
+                 //.pidFromDbToLog(env);
     }
 }

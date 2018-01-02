@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MDD_3159_OLS extends BaseTest{
-
     @Test
     @TestCaseId("00009")
     @Description("MDD_3159_OLS")
