@@ -22,6 +22,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Diabetes_4356A_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)

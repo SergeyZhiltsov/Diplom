@@ -20,6 +20,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Diabetes_4356A extends BaseTest{
 
 	@Test
