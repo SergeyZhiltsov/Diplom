@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC.Diabetes_4356A;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

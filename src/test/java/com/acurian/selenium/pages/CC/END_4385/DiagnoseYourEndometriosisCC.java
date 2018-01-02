@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.End_4385;
+package com.acurian.selenium.pages.CC.END_4385;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;

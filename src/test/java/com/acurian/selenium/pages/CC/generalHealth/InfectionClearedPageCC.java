@@ -1,16 +1,18 @@
-package com.acurian.selenium.pages.CC.END_4385;
+package com.acurian.selenium.pages.CC.generalHealth;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.shared.ProcedureForWeightLossPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class PelvicPainDuringMenstrualCC extends MainPageCC{
+import java.util.List;
 
-    public final String titleExpected = "Do you experience pelvic pain during your menstrual period?";
+public class InfectionClearedPageCC extends MainPageCC{
+
+    public final String titleExpected = "Is your hepatitis currently active or has your infection cleared?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -18,18 +20,18 @@ public class PelvicPainDuringMenstrualCC extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public PelvicPainDuringMenstrualCC() {
+    public InfectionClearedPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public PelvicPainDuringMenstrualCC waitForPageLoad() {
+    public InfectionClearedPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public PelvicPainDuringMenstrualCC clickOnAnswer(String answerText) {
+    public InfectionClearedPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -38,5 +40,4 @@ public class PelvicPainDuringMenstrualCC extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

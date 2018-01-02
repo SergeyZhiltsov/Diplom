@@ -11,10 +11,7 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
+import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -30,7 +27,7 @@ public class DIA_4241_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00012")
     @Description("Diabetes_4241 CC")
-    public void tc004Test(final String username, final String password) {
+    public void dia4241ccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
@@ -343,13 +340,16 @@ public class DIA_4241_CC extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageCC())
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WouldYouUsePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("Neither")
+                .clickNextButton(new WhatMedicalCoveragePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

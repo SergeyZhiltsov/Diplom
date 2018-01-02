@@ -8,8 +8,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class ThankYouCloseSimplePageOLS extends MainPageOLS{
 
+    //Thank You Close - AWR/SEN - 65
     public final String titleExpected = "Thank you. Clinical research studies greatly contribute to the overall progress in understanding and finding future treatments for diseases and we appreciate your interest in participation.";
 
+    //Thank You Close - SEN-R - 66
     public final String titleExpected_OA3138 = "Thank you again for contacting Acurian's Research Information Center. Goodbye.";
     
     
@@ -30,7 +32,7 @@ public class ThankYouCloseSimplePageOLS extends MainPageOLS{
     }
     
     @Step
-    public ThankYouCloseSimplePageOLS waitForOAPageLoad() {
+    public ThankYouCloseSimplePageOLS waitForSENRPageLoad() {
         waitForPageLoadMain(titleText_OA3138, titleExpected_OA3138);
         return this;
     }

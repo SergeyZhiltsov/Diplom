@@ -720,7 +720,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(new SynexusQualifiedClose4356PageOLS())
 
              //----------GladLocationIsConvenient Page--------------------
-                .waitForPageLoad()
+                .waitForPageLoad("625263")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
 
 	          //----------ThankYouCloseSimplePageOLS Page--------------------
