@@ -1,13 +1,20 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
+import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
+import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -31,11 +38,19 @@ public class Diabetes_4356A_CC extends BaseTest{
         String protocol5 = "EFC14835";
         String protocol6 = "ITCA 650_CLP_203";
         String protocol7 = "K_877_302";
-        String studyName = "a diabetes";//Diabetes study
+        String protocol8 = "EFC14833";
+        String protocol9 = "EFC14835";
+        String protocol10 = "EFC15166";
+        String protocol11 = "EFC14868";
+        String protocol12 = "EFC14837";
+        String DIA_4241 = "EFC14822";
+        String studyName = "a Diabetes"; //Diabetes study
+        String studyName1 = "Diabetes";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
         String env = "STG";
         String zipCode = "19044";
+
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -97,7 +112,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC
-                .checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageCC.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7)
+                .checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageCC.titleExpected, DIA_4241)
                 .back();
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
@@ -114,7 +129,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         hasHealthcareProfessionalPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7)
+                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -122,7 +137,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(hasHealthcareProfessionalPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7)
+                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -130,15 +145,16 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(hasHealthcareProfessionalPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7)
+                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
                 .back();
         whatKindOfDiabetesPageCC
-                .waitForPageLoad()
+                .waitForPageLoad();
+                TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .clickOnAnswer("Unsure")
-                .clickNextButton(hasHealthcareProfessionalPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7)
+                .clickNextButton(new TreatingYourDiabetesPageCC());
+                treatingYourDiabetesPageCC.waitForPageLoad()
+                //.getPage(debugPageCC)
+                //.checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
                 .back();
         WithType2DiabetesPageCC withType2DiabetesPageCC =  whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -148,29 +164,28 @@ public class Diabetes_4356A_CC extends BaseTest{
         withType2DiabetesPageCC
                 .waitForPageLoad();
         Assert.assertEquals(withType2DiabetesPageCC.getTitleText(),withType2DiabetesPageCC.titleExpected, "Title is diff");
-        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = withType2DiabetesPageCC
-                .clickOnAnswer("Within the past 2 months")
+        withType2DiabetesPageCC.clickOnAnswer("Within the past 2 months")
                 .clickNextButton(new TreatingYourDiabetesPageCC());
         treatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol4,protocol6,protocol7)
+                //.getPage(debugPageCC)
+                //.checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, DIA_4241)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(treatingYourDiabetesPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol4)
+                //.getPage(debugPageCC)
+                //.checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol4)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 12 months ago")
                 .clickNextButton(treatingYourDiabetesPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol4)
+                //.getPage(debugPageCC)
+                //.checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol4)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -185,21 +200,37 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(new FollowingToLoseWeightPageCC());
         followingToLoseWeightPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)//for protocol check I manually copied text from the question debug because the issue with debug questions
-                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol2, protocol3, protocol4, protocol6)
+                //.getPage(debugPageCC)//for protocol check I manually copied text from the question debug because the issue with debug questions
+                //.checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol2, protocol3, protocol4, protocol6)
                 .back();
         treatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)// copy text from previous question until "..."(white space should be include)
-                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol2, protocol3, protocol4, protocol6)
+                //.getPage(debugPageCC)// copy text from previous question until "..."(white space should be include)
+                //.checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol2, protocol3, protocol4, protocol6)
                 .back();
-        MetforminMedicationsPageCC metforminMedicationsPageCC = treatingYourDiabetesPageCC
+        LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Medication")
+                .clickNextButton(new LastTimeYouTookPageCC());
+
+        //---------------------------------------lastTimeYouTookPageOLS------------------------------------------------------ 
+        lastTimeYouTookPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(lastTimeYouTookPageCC.getTitleText(),lastTimeYouTookPageCC.titleExpected, "Title is diff");
+                MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
+		.clickOnAnswer("Currently taking / have taken within the past month")
                 .clickNextButton(new MetforminMedicationsPageCC());
+                 metforminMedicationsPageCC.waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals(lastTimeYouTookPageCC.titleExpected, DIA_4241)
+                .back();
+                lastTimeYouTookPageCC.waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new MetforminMedicationsPageCC());
+
 
         metforminMedicationsPageCC
                 .waitForPageLoad();
@@ -216,7 +247,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         apartFromMetforminPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(metforminMedicationsPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
+                //.checkProtocolsEquals(metforminMedicationsPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
                 .back();
         metforminMedicationsPageCC
                 .waitForPageLoad()
@@ -224,7 +255,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(apartFromMetforminPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(metforminMedicationsPageCC.titleExpected, protocol6)
+                //.checkProtocolsEquals(metforminMedicationsPageCC.titleExpected, protocol6)
                 .back();
         metforminMedicationsPageCC
                 .waitForPageLoad()
@@ -244,8 +275,8 @@ public class Diabetes_4356A_CC extends BaseTest{
         insulinForYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(apartFromMetforminPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
-                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Combination Oral Medication Logic", protocol2,protocol3)
+                //.checkProtocolsEquals(apartFromMetforminPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6,protocol8,protocol9,protocol10,protocol11)
+                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Combination Oral Medication Logic", protocol2,protocol3)
                 .back();
         apartFromMetforminPageCC
                 .waitForPageLoad()
@@ -253,7 +284,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(insulinForYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Combination Oral Medication Logic", protocol2,protocol3)
+                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Combination Oral Medication Logic", protocol2,protocol3)
                 .back();
         apartFromMetforminPageCC
                 .waitForPageLoad()
@@ -262,8 +293,8 @@ public class Diabetes_4356A_CC extends BaseTest{
 
         insulinForYourDiabetesPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(apartFromMetforminPageCC.titleExpected, protocol6);
+                .getPage(debugPageCC);
+                //.checkProtocolsEquals(apartFromMetforminPageCC.titleExpected, protocol6);
         Assert.assertEquals(insulinForYourDiabetesPageCC.getTitleText(),insulinForYourDiabetesPageCC.titleExpected, "Title is diff");
         SubquestionsHumalogPageCC subquestionsHumalogPageCC = insulinForYourDiabetesPageCC
                 .clickOnAnswers("Humalog","Humulin","Novolin","Novolog")
@@ -297,7 +328,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         combinationWithEachOtherPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
+                //.checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -306,15 +337,15 @@ public class Diabetes_4356A_CC extends BaseTest{
 
         combinationWithEachOtherPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Combination Oral and Injectable Medication Logic", protocol4);
+                .getPage(debugPageCC);
+                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Combination Oral and Injectable Medication Logic", protocol4);
         Assert.assertEquals(combinationWithEachOtherPageCC.getTitleText(),combinationWithEachOtherPageCC.titleExpected, "Title is diff");
         combinationWithEachOtherPageCC
                 .clickOnAnswer("1 month or less")
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(combinationWithEachOtherPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
+                .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic",DIA_4241)
                 .back();
         combinationWithEachOtherPageCC
                 .waitForPageLoad()
@@ -322,7 +353,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(combinationWithEachOtherPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
+                .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic",DIA_4241)
                 .back();
         combinationWithEachOtherPageCC
                 .waitForPageLoad()
@@ -338,7 +369,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(followingToLoseWeightPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
+                .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic",DIA_4241)
                 .back();
         followingToLoseWeightPageCC
                 .waitForPageLoad()
@@ -355,46 +386,42 @@ public class Diabetes_4356A_CC extends BaseTest{
         procedureForWeightLossPageCC
                 .waitForPageLoad();
         Assert.assertEquals(procedureForWeightLossPageCC.getTitleText(),procedureForWeightLossPageCC.titleExpected, "Title is diff");
-        StatinMedicationsOnPageCC statinMedicationsOnPageCC  = procedureForWeightLossPageCC
-                .clickOnAnswer("Within the past 3 months")
-                .clickNextButton(new StatinMedicationsOnPageCC());
-        statinMedicationsOnPageCC
+        PoundsOrMorePageCC poundsOrMorePageCC  = procedureForWeightLossPageCC
+                .clickOnAnswer("Less than 3 months ago")
+                .clickNextButton(new PoundsOrMorePageCC());
+        poundsOrMorePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol4,protocol6)
+                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, DIA_4241)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(statinMedicationsOnPageCC)
+                .clickOnAnswer("3 - 6 months ago")
+                .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol4,protocol6)
+                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, DIA_4241)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
-                .clickNextButton(statinMedicationsOnPageCC)
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol4,protocol6)
+                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, DIA_4241)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(statinMedicationsOnPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol4,protocol6)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .back();
+                .clickOnAnswer("More than 2 years ago")
+                .clickNextButton(poundsOrMorePageCC);
 
-        weightLossSurgeryPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(statinMedicationsOnPageCC);
+        //---------------------------------------PoundsOrMorePageOLS----------------------------------------------------- 
+        poundsOrMorePageCC
+                .waitForPageLoad();
+                StatinMedicationsOnPageCC statinMedicationsOnPageCC = poundsOrMorePageCC
+                .clickOnAnswer("Yes")
+                .clickNextButton(new StatinMedicationsOnPageCC());
+
 
         statinMedicationsOnPageCC
                 .waitForPageLoad();
@@ -412,6 +439,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickOnAnswers("Atorvastatin","Simcor (simvastatin and niacin)")
                 .clickNextButton(new StatinMedicationPreviousQuestionPageCC());
 
+      //---------------------------------------statinMedicationPreviousQuestionPageOLS------------------------------------------------------ 
         statinMedicationPreviousQuestionPageCC
                 .waitForPageLoad();
         Assert.assertEquals(statinMedicationPreviousQuestionPageCC.getTitleText(),statinMedicationPreviousQuestionPageCC.titleExpected, "Title is diff");
@@ -451,6 +479,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(diabeticNephropathyPageCC);
 
+      //---------------------------------------diabeticNephropathyPageOLS------------------------------------------------------ 
         diabeticNephropathyPageCC
                 .waitForPageLoad();
         Assert.assertEquals(diabeticNephropathyPageCC.getTitleText(),diabeticNephropathyPageCC.titleExpected, "Title is diff");
@@ -460,13 +489,14 @@ public class Diabetes_4356A_CC extends BaseTest{
         forYourKidneysPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(diabeticNephropathyPageCC.titleExpected, protocol1)
+                .checkProtocolsEquals(diabeticNephropathyPageCC.titleExpected, protocol1, protocol12, protocol10)
                 .back();
         diabeticNephropathyPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(forYourKidneysPageCC);
 
+        //---------------------------------------forYourKidneysPageOLS------------------------------------------------------ 
         forYourKidneysPageCC
                 .waitForPageLoad();
         Assert.assertEquals(forYourKidneysPageCC.getTitleText(),forYourKidneysPageCC.titleExpected, "Title is diff");
@@ -479,96 +509,18 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .back();
         forYourKidneysPageCC
                 .clickOnAnswer("Yes")
-                .clickNextButton(hasHealthcareProfessionalPageCC);
+                .clickNextButton(new HasHealthcareProfessionalPageCC());
 
+
+      //---------------------------------------GENERAL HEALTH------------------------------------------------------ 
         hasHealthcareProfessionalPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(hasHealthcareProfessionalPageCC.getTitleText(),hasHealthcareProfessionalPageCC.titleExpected, "Title is diff");
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = hasHealthcareProfessionalPageCC
-                .clickOnAnswers("Heart Attack",
-                        "Stroke",
-                        "TIA or \"Mini-Stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight stay in a hospital")
-                .clickNextButton(new SubquestionExperiencedHeartPageCC());
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(1),subquestionExperiencedHeartPageCC.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(2),subquestionExperiencedHeartPageCC.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(3),subquestionExperiencedHeartPageCC.titleExpected3, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(4),subquestionExperiencedHeartPageCC.titleExpected4, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(5),subquestionExperiencedHeartPageCC.titleExpected5, "Title is diff");
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC  = subquestionExperiencedHeartPageCC
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"Yes")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"Less than 30 days ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("null", protocol1,protocol2,protocol3,protocol4,protocol6,protocol7)
-                .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"5 years ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"5 years ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"Yes")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"5 years ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("null", protocol1,protocol2,protocol3,protocol4,protocol6)
-                .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"5 years ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
-
-        heartrelatedMedicalProceduresPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(heartrelatedMedicalProceduresPageCC.getTitleText(),heartrelatedMedicalProceduresPageCC.titleExpected, "Title is diff");
-        TransitionStatementCC transitionStatementCC  = heartrelatedMedicalProceduresPageCC
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC());
-        transitionStatementCC
-                .waitForPageLoad(studyName)
-                .back();
-        HeartProceduresFromLastPageCC heartProceduresFromLastPageCC = heartrelatedMedicalProceduresPageCC
+                .clickNextButton(new HaveYouUndergoneAnyPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Stent placement")
-                .clickNextButton(new HeartProceduresFromLastPageCC());
-
-        heartProceduresFromLastPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(heartProceduresFromLastPageCC.getTitleText(),heartProceduresFromLastPageCC.titleExpected, "Title is diff");
-        heartProceduresFromLastPageCC
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoad(studyName)
-                .getPage(debugPageCC)// there checkProtocolsEqualsForQNumber is used because to same questions in debug window
-                .checkProtocolsEqualsForQNumber("Q0005130-QS4220-STUDYQUES", protocol1,protocol2,protocol3,protocol4,protocol6,protocol7)
-                .back();
-        heartProceduresFromLastPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoad(studyName)
-                .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0005130-QS4220-STUDYQUES", protocol2,protocol3,protocol4,protocol6)
-                .back();
-        heartProceduresFromLastPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
-                .clickNextButton(transitionStatementCC);
-
-        transitionStatementCC
-                .waitForPageLoad(studyName);
-        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is difff");
-        HeartFailureIsAlsoPageCC heartFailureIsAlsoPageCC = transitionStatementCC
-                .clickNextButton(new HeartFailureIsAlsoPageCC());
-        heartFailureIsAlsoPageCC
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new TransitionStatementCC())
+                .clickNextButton(new HeartFailureIsAlsoPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new AffectingYourMetabolismPageCC())
@@ -621,26 +573,50 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(new ChildrenUnderPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
+         //----------PEDIATRIC HEALTH Questions----------
+                .clickNextButton(new TheStudySitePageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new WhatMedicalCoveragePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("No, I have no coverage")
+                .clickNextButton(new EthnicBackgroundPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageCC())
+         //----------Resume GENERAL HEALTH Questions----------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("Diabetes study")
+                .threadSleep(6000);  //wait 15  secs
+                 new SiteSelectionPageCC()
                 .getPID()
-                .clickOnDebugSiteName("(QSC9004_4356A_AUT_MIG_4356A)")
-                .clickNextButton(new RadiantWarmTransferClose1PageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("[patient agrees to be transferred]")
-                .clickNextButton(new SynexusDirectScheduleWTC2PageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new SynexusDirectScheduleWTC3PageCC())
-                .waitForPageLoad()
-                .clickNextButton(new SRDirectScheduleWTTCPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("Transferred for Scheduling")
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad();
+                .clickOnAnswer(siteName)
+                .clickNextButton(new WarmTransfer1())
+                //Warm Transfer Questions ----- //Warm Transfer Page#2
+               .threadSleep(10000);  //wait 15  secs
+                new WarmTransfer1()
+               //.waitForPageLoad()
+               .clickOnAnswer("[patient agrees to be transferred]")
+               .clickNextButton(new WarmTransfer2())
+               //Warm Transfer Page#2
+               .threadSleep(8000);  //wait 10  secs
+               new WarmTransfer2()
+               //.waitForPageLoad()
+               .clickOnAnswer("Yes")
+               .clickNextButton(new WarmTransfer3())
+               //Warm Transfer Page#3
+               .threadSleep(8000);  //wait 10  secs
+               new WarmTransfer3()
+               //.waitForPageLoad()
+               .clickNextButton(new WarmTransfer4())
+               //Warm Transfer Page#4
+               .threadSleep(8000);  //wait 10  secs
+               new WarmTransfer4()
+               //.waitForPageLoad()
+               .clickOnAnswer("Transferred for Scheduling")
+               .clickNextButton(selectActionPageCC)
+               .waitForPageLoad();
+               //.pidFromDbToLog(env);
     }
-
 }

@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
@@ -330,20 +331,21 @@ public class SUI_3923_OLS extends BaseTest{
 				.clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS());
                 
+		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
         //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
 				theStudySitePageOLS.waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageOLS())
+                .clickOnAnswer("No")
+                .clickNextButton(new WhatMedicalCoveragePageOLS())
                 
-		//-----"WhatSortPageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
+		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 
        //----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(new IdentificationPageOLS())		
+                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS())	
 				
 		//----------PII (IdentificationPageOLS) Page--------------------
 		.waitForPageLoad()
@@ -363,7 +365,8 @@ public class SUI_3923_OLS extends BaseTest{
 		//----------ThankYouCloseSimplePageOLS Page--------------------
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad();
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
 
     }
 }

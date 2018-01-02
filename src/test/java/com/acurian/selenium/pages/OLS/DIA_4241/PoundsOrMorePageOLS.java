@@ -13,7 +13,8 @@ public class PoundsOrMorePageOLS extends MainPageOLS{
 
     public final String titleExpected = "Have you lost or gained 15 pounds or more in the past 3 months?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    //@FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)

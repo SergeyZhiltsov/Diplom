@@ -46,6 +46,7 @@ import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -365,18 +366,18 @@ public class Insomnia_3792_CC extends BaseTest{
                 .clickNextButton(new ChildrenUnderPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new TheStudySitePageCC())
          //----------PEDIATRIC HEALTH Questions----------    
+                .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageCC())
+                .clickOnAnswer("No")
+                .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
-         //----------Resume GENERAL HEALTH Questions----------
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageCC())
+         //----------Resume GENERAL HEALTH Questions----------
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
                 .clickNextButton(new SiteSelectionPageCC())

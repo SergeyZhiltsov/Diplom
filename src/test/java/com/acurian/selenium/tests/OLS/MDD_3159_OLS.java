@@ -27,6 +27,7 @@ public class MDD_3159_OLS extends BaseTest{
         List<String> protocols = Arrays.asList("AXS_05_301");
         String protocol1 = "AXS_05_301";
         String studyName = "a depression";
+        String site_Indication = "Major Depressive Disorder (MDD)";
         String siteName = "AUT_MDD_3159";
         String debugSiteName = "";
         String env = "STG";
@@ -271,9 +272,6 @@ public class MDD_3159_OLS extends BaseTest{
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new WouldYouUsePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -287,12 +285,18 @@ public class MDD_3159_OLS extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoad(site_Indication)
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
-
+                .clickOkInPopUp()
+                .setSignature()
+                .getPage(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+        		.clickNextButton(new AboutHealthPageOLS())
+        		.waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

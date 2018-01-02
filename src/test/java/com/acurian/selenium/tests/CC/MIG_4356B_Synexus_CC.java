@@ -10,8 +10,11 @@ import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
+import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
@@ -50,7 +53,9 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         String protocol4 = "CGP_MD_01";
         String protocol5 = "UBR_MD_01";
         String protocol6 = "UBR_MD_02";
+        String protocol7 = "BHV3000_201";
         String studyName =  "a migraine";  //"Migraine 4356B Synexus";
+        String studyName1 =  "migraine"; 
         String env = "STG";  //Enter which CC environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
@@ -130,6 +135,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol6));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol7));
         debugPageCC.back();   
         //------------ Change your answer to correct option in DoYouSufferFromMigPageCC---------------          
         HowOldWereYouMigHeadachePageCC howOldWereYouMigHeadachePageCC = doYouSufferFromMigPageCC  //[create NEXT PAGE Object = THIS page object] 
@@ -156,6 +162,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol6));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol7));
         debugPageCC.back();
         //------------ Change your answer to correct QR age in howOldWereYouMigHeadachePageCC---------------   
         howOldWereYouMigHeadachePageCC        
@@ -179,6 +186,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol6));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol7));
         debugPageCC.back();
         //------------ Change your answer to correct QR age in 'howOldWereYouMigHeadachePageCC'---------------   
         StudyQuestionMigPageCC studyQuestionMigPageCC = howLongSufferingFromMigraineCC //[create NEXT PAGE Object = THIS page object]      
@@ -260,6 +268,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol6));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(medicationToStopActiveMigraineCC.titleExpected).contains(protocol7));
         debugPageCC.back();
         //------------ Change your answer to correct QR age in 'MedicationToStopActiveMigraineCC'---------------   
         HaveUeverHadBotoxMigCC haveUeverHadBotoxMigCC3 = medicationToStopActiveMigraineCC //[create NEXT PAGE Object = THIS page object]      
@@ -336,6 +345,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol4));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol5));
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol6));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(areYouCurrentlyPregnantCC.titleExpected).contains(protocol7));
         debugPageCC.back();
         //------------ Change your answer to correct QR age in page 'areYouCurrentlyPregnantCC'---------------  
         //TransitionStatementCC transitionStatementCC = areYouCurrentlyPregnantCC //[create NEXT PAGE Object = THIS page object]    
@@ -344,10 +354,10 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
        
       //----------Q13 -Transition Statement - Display for Call Center only
         transitionStatementCC
-                .waitForPageLoad(studyName);
-        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is difff");
+        .waitForPageLoad(studyName1);
+        Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName1), "Title is difff");
         HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
+        .clickNextButton(new HasHealthcareProfessionalPageCC());
 
         //----------GENERAL HEALTH Questions----------
         hasHealthcareProfessionalPageCC
@@ -405,17 +415,23 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new ChildrenUnderPageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes")
+                //----------PEDIATRIC HEALTH Questions----------   
+                .clickNextButton(new HouseholdHavePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageCC())
-         //----------PEDIATRIC HEALTH Questions----------    
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageCC())
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WouldYouUsePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("Neither")
+                .clickNextButton(new WhatMedicalCoveragePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswers("Prefer not to answer")
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()

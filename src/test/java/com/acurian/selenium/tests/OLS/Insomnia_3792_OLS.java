@@ -338,23 +338,25 @@ public class Insomnia_3792_OLS extends BaseTest{
 				.waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS());
-                              
+
+		
+		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
         //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
 				theStudySitePageOLS.waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageOLS())
+                .clickOnAnswer("No")
+                .clickNextButton(new WhatMedicalCoveragePageOLS())
                 
-		//-----"WhatSortPageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
+		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 
        //----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
                 .waitForPageLoad()
-                .clickOnAnswers("Other")
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 
-       //------------------PII Page-------------------
+       //------------------PII (IdentificationPageOLS) Page-------------------
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
                 .clickNextButton(new SiteSelectionPageOLS())
@@ -373,6 +375,6 @@ public class Insomnia_3792_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .threadSleep(5000);
+                .pidFromDbToLog(env);
     }
 }
