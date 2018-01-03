@@ -47,6 +47,7 @@ import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WouldYouUsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.AreYouCurrentlyPregnantOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.DiagnosedWithGynecologicalConditionOLS;
 import com.acurian.selenium.pages.OLS.shared.FollowingGynecologicalConditionOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveRegularMenstrualCyclesOLS;
@@ -87,6 +88,7 @@ public class END_4385_OLS extends BaseTest {
 				.clickNextButton(new FollowingGynecologicalConditionOLS());
 		
 		 HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = followingGynecologicalConditionOLS
+				    .waitForPageLoad()
 	                .clickOnAnswers("None of the above")
 	                .clickNextButton(new HasHealthcareProfessionalPageOLS());
 	        hasHealthcareProfessionalPageOLS
@@ -220,16 +222,19 @@ public class END_4385_OLS extends BaseTest {
         		.clickOnAnswer("7 - 11 months ago")
         		.clickNextButton(new FollowingGynecologicalConditionOLS());
         
-        AreYouCurrentlyPregnantOLS areYouCurrentlyPregnantOLS = followingGynecologicalConditionOLS
+        DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = new DiagnosedWithGynecologicalConditionOLS();
+        
+        AreYouCurrentlyPregnantOLS areYouCurrentlyPregnantOLS = diagnosedWithGynecologicalConditionOLS
         		.waitForPageLoad()
-        		.clickOnAnswers("Vaginismus")
+        		.clickOnAnswers("Vaginismus")        		
         		.clickNextButton(new AreYouCurrentlyPregnantOLS());
         
         debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of these other gynecological or women's he...", protocol1,protocol2);
         debugPageCC.back();
         
-        followingGynecologicalConditionOLS
+        diagnosedWithGynecologicalConditionOLS
         		.waitForPageLoad()
+        		.clickOnAnswers("Vaginismus")
         		.clickOnAnswers("Endometrioma, also known as endometrial or endometrioid cyst or \"chocolate cyst\"")
         		.clickNextButton(new AreYouCurrentlyPregnantOLS());
         
