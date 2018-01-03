@@ -9,7 +9,6 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HSGeneralPageOLS extends MainPageOLS{
 
-
     //3159
     public final String titleExpected = "Your medical records related to your %s history are required for the study doctor to evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
             "\n" +
