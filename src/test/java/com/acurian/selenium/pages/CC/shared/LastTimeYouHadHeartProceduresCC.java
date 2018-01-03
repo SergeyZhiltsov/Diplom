@@ -8,6 +8,7 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
+
 public class LastTimeYouHadHeartProceduresCC extends MainPageCC {
 
     public final String titleExpected = "When was the last time that you had one of the heart procedures from the last question?";
