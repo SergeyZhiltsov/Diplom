@@ -174,8 +174,8 @@ public class UF_4384_CC extends BaseTest{
                 .clickNextButton(new HowWouldYouDescribeAvgPeriodUF_CC());
         		howWouldYouDescribeAvgPeriodUF_CC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Do you have regular menstrual cycles, meaning that you get your period each month on a predictable s...", protocol1, protocol2)
+                //.getPage(debugPageCC)
+                //.checkProtocolsEquals("Do you have regular menstrual cycles, meaning that you get your period each month on a predictable s...", protocol1, protocol2)
                 .back();
         doYouHaveRegularMenstrualCyclesUF_CC
                 .waitForPageLoad()
@@ -358,7 +358,7 @@ public class UF_4384_CC extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad();
-                 //.pidFromDbToLog(env);
+                .waitForPageLoad()
+                 .pidFromDbToLog(env);
     }
 }

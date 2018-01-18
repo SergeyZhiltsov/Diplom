@@ -369,7 +369,7 @@ public class Insomnia_3792_CC extends BaseTest{
          //----------PEDIATRIC HEALTH Questions----------    
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Other")
                 .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -391,7 +391,7 @@ public class Insomnia_3792_CC extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad();
-                 //.pidFromDbToLog(env);
+                .waitForPageLoad()
+                 .pidFromDbToLog(env);
     }
 }

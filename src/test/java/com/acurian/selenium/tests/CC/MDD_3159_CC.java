@@ -313,7 +313,7 @@ public class MDD_3159_CC extends BaseTest{
                 .clickNextButton(new TheStudySitePageCC())
          //----------PEDIATRIC HEALTH Questions----------    
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Other")
                 .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -338,7 +338,7 @@ public class MDD_3159_CC extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad();
-                 //.pidFromDbToLog(env);
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

@@ -330,10 +330,10 @@ public class SUI_3923_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new WouldYouUsePageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
+                .clickOnAnswer("Other")
+//                .clickNextButton(new WouldYouUsePageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -354,7 +354,7 @@ public class SUI_3923_CC extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad();
-        //.pidFromDbToLog(env);
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

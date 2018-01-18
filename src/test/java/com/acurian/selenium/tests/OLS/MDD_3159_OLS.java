@@ -270,7 +270,7 @@ public class MDD_3159_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Other")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")

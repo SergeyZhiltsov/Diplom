@@ -146,8 +146,8 @@ public class UF_4384_OLS extends BaseTest{
                 .clickNextButton(new HowWouldYouDescribeAvgPeriodUF_OLS());
         		howWouldYouDescribeAvgPeriodUF_OLS
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Do you have regular menstrual cycles, meaning that you get your period each month on a predictable s...", protocol1, protocol2)
+                //.getPage(debugPageCC)
+                //.checkProtocolsEquals("Do you have regular menstrual cycles, meaning that you get your period each month on a predictable s...", protocol1, protocol2)
                 .back();
         haveRegularMenstrualCyclesOLS
                 .waitForPageLoad()
@@ -300,11 +300,10 @@ public class UF_4384_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WouldYouUsePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
+                .clickOnAnswer("Other")
+//                .clickNextButton(new WouldYouUsePageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
