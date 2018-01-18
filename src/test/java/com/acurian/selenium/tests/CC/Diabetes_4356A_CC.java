@@ -575,7 +575,7 @@ public class Diabetes_4356A_CC extends BaseTest{
          //----------PEDIATRIC HEALTH Questions----------
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Other")
                 .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -615,7 +615,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                //.waitForPageLoad()
                .clickOnAnswer("Transferred for Scheduling")
                .clickNextButton(selectActionPageCC)
-               .waitForPageLoad();
-               //.pidFromDbToLog(env);
+               .waitForPageLoad()
+               .pidFromDbToLog(env);
     }
 }

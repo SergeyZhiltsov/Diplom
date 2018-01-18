@@ -344,7 +344,7 @@ public class Insomnia_3792_OLS extends BaseTest{
 		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
         //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
 				theStudySitePageOLS.waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Other")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 
 		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-

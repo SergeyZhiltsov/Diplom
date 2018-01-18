@@ -7,39 +7,35 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
+public class StandAlone4295SwitchOLS extends MainPageOLS{
 
-public class HaveRegularMenstrualCyclesOLS extends MainPageOLS{
+    public final String titleExpected = "What is your date of birth?";
 
-    public final String titleExpected = "Do you have regular menstrual cycles, meaning you are able to predict when you are getting your period every month and it usually lasts about the same number of days each month?";
-    
-    		
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[@class='show-in-ols'])[2]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
-    List<WebElement> checkBoxList;
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    
-    public HaveRegularMenstrualCyclesOLS() {
+    public StandAlone4295SwitchOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
-    @Step    
-    public HaveRegularMenstrualCyclesOLS waitForPageLoad() {
+    @Step
+    public StandAlone4295SwitchOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
-    @Step    
-    public HaveRegularMenstrualCyclesOLS clickOnAnswer(String answerText) {
+    @Step
+    public StandAlone4295SwitchOLS clickOnAnswers(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
-    @Step    
+    @Step
     public String getTitleText(){
         return getText(titleText);
     }
+
 }

@@ -8,9 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class AboutHealthPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Health Topics";
+    public final String titleExpected = "Join Our Community";
 
-    @FindBy(xpath = "(//img[contains(@src,'//alotabouthealth.com')])[1]") //"(//article//h3)[1]")
+    @FindBy(xpath = "//*[@id='menu-primary_menu']//span[contains(.,'Join Our Community')]")    //"//img[contains(@src,'//alotabouthealth.com')]")
     WebElement titleText;
 
     public AboutHealthPageOLS() {

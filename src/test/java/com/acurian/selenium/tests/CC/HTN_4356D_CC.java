@@ -311,10 +311,10 @@ public class HTN_4356D_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WouldYouUsePageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
+                .clickOnAnswer("Other")
+//                .clickNextButton(new WouldYouUsePageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -340,7 +340,7 @@ public class HTN_4356D_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad();
-
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }
