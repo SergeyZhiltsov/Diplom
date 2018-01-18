@@ -23,7 +23,7 @@ public class AST_4337_OLS extends BaseTest{
     @TestCaseId("00008")
     @Description("Asthma_4337_OLS")
     public void ast4337olsTest() {
-        String phoneNumberLBP = "AUTAMS1HFL";
+        String phoneNumberLBP = "AUTAMS1AST";
         List<String> protocols = Arrays.asList("205715");
         String protocol1 = "205715";
         String studyName = "an asthma";
@@ -31,6 +31,7 @@ public class AST_4337_OLS extends BaseTest{
         String debugSiteName = "";
         String env = "STG";
         String zipCode = "19044";
+        String Siteindicator = "Rheumatoid Arthritis";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -357,12 +358,18 @@ public class AST_4337_OLS extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoad(Siteindicator)
+                .clickNextButton(new DoctorInformationCollectionPageOLS())        
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()        
+                .clickOkInPopUp()
+                .setSignature()
+                .getPage(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
+                .waitForPageLoad();	
 
     }
 }

@@ -1,18 +1,21 @@
-package com.acurian.selenium.pages.CC.END_4385;
+package com.acurian.selenium.pages.CC.RA_2821;
 
 import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DiagnoseYourEndometriosisCC extends MainPageCC{
+public class FollowingMedicationsToTreatYourRACC extends MainPageCC{
 
-    public final String titleExpected = "Did your doctor perform any of the following procedures to help diagnose your endometriosis?\n" + 
-    		"Please do not report any procedures you may have had to treat your endometriosis.\n" +
-            "Agent Note: Select all that apply";
+    public final String titleExpected = "Are you currently taking any of the following medications to treat your RA?\n" +
+            "Agent Note: Read medications in the following way: \"Aralen, also known as chloroquine\" etc.\n" +
+    		"Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
@@ -20,18 +23,18 @@ public class DiagnoseYourEndometriosisCC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public DiagnoseYourEndometriosisCC() {
+    public FollowingMedicationsToTreatYourRACC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnoseYourEndometriosisCC waitForPageLoad() {
+    public FollowingMedicationsToTreatYourRACC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnoseYourEndometriosisCC clickOnAnswers(String ...answerText) {
+    public FollowingMedicationsToTreatYourRACC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

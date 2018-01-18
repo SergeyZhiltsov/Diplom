@@ -1,16 +1,19 @@
 package com.acurian.selenium.pages.CC.RA_2821;
 
 import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class TenderPainfulOrSwollenJointsCC extends MainPageCC{
+public class AnySteroidsForYourRACC extends MainPageCC{
 
-    public final String titleExpected = "Are you currently experiencing tender, painful, or swollen joints because of your RA?";
+    public final String titleExpected = "In the past, did you have to take any steroids for your RA?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -18,18 +21,18 @@ public class TenderPainfulOrSwollenJointsCC extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public TenderPainfulOrSwollenJointsCC() {
+    public AnySteroidsForYourRACC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TenderPainfulOrSwollenJointsCC waitForPageLoad() {
+    public AnySteroidsForYourRACC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TenderPainfulOrSwollenJointsCC clickOnAnswer(String answerText) {
+    public AnySteroidsForYourRACC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

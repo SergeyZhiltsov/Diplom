@@ -8,28 +8,29 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class TenderPainfulOrSwollenJointsCC extends MainPageCC{
+public class AreYouCurrentlyTakingMethotrexateCC extends MainPageCC{
 
-    public final String titleExpected = "Are you currently experiencing tender, painful, or swollen joints because of your RA?";
-
+    public final String titleExpected = "Methotrexate is a common RA medication. It is usually taken once a week. Methotrexate can come as a shot or as pills or tablets. The brand names include Otrexup, Rasuvo, Rheumatrex, or Trexall.\n" +
+            "Are you currently taking methotrexate for your Rheumatoid Arthritis?";
+    
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public TenderPainfulOrSwollenJointsCC() {
+    public AreYouCurrentlyTakingMethotrexateCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TenderPainfulOrSwollenJointsCC waitForPageLoad() {
+    public AreYouCurrentlyTakingMethotrexateCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TenderPainfulOrSwollenJointsCC clickOnAnswer(String answerText) {
+    public AreYouCurrentlyTakingMethotrexateCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

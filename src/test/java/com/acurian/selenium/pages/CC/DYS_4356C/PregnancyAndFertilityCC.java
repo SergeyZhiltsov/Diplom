@@ -1,12 +1,14 @@
 package com.acurian.selenium.pages.CC.DYS_4356C;
 
-import java.util.Arrays;
+
 import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import com.acurian.selenium.pages.CC.MainPageCC;
+
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class PregnancyAndFertilityCC extends MainPageCC {
@@ -17,8 +19,8 @@ public class PregnancyAndFertilityCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='question_container']//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[@for='QS4312_']")
-    List<WebElement> radiobtnList;
+    @FindBy(xpath = "//div[@class='radio_btn_container']//label")
+    List<WebElement> radioButtonsList;
 
     public PregnancyAndFertilityCC() {
         PageFactory.initElements(getDriver(), this);
@@ -32,11 +34,8 @@ public class PregnancyAndFertilityCC extends MainPageCC {
     }
 
     @Step
-    public PregnancyAndFertilityCC clickOnAnswers(String ...answerText) {
-        List<String> answerTextList = Arrays.asList(answerText);
-        radiobtnList.stream().filter(el -> answerTextList.contains(el.getText()))
-                .forEach(el -> el.click());
-        waitForAnimation();
+    public PregnancyAndFertilityCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
