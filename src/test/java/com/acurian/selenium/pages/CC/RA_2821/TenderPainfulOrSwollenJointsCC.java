@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class TenderPainfulOrSwollenJointsCC extends MainPageCC{
 
-    public final String titleExpected = "When were you diagnosed with RA?";
+    public final String titleExpected = "Are you currently experiencing tender, painful, or swollen joints because of your RA?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

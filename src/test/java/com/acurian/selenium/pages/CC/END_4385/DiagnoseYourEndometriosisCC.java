@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class DiagnoseYourEndometriosisCC extends MainPageCC{
 
-    public final String titleExpected = "Did your doctor perform any of the following procedures to help diagnose your endometriosis? \r\n" + 
+    public final String titleExpected = "Did your doctor perform any of the following procedures to help diagnose your endometriosis?\n" + 
     		"Please do not report any procedures you may have had to treat your endometriosis.\n" +
             "Agent Note: Select all that apply";
 

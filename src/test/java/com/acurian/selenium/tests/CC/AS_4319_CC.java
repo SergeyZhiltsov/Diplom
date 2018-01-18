@@ -60,7 +60,7 @@ public class AS_4319_CC extends BaseTest{
         String protocol1 = "M16_098";        
         String studyName = "ankylosing spondylitis or AS";
         String studyName1 = "arthritis";
-        String env = "PRD";
+        String env = "STG";
         String siteName = "AUT_As_4319";
         String zipCode  = "19044";
         
@@ -241,11 +241,11 @@ public class AS_4319_CC extends BaseTest{
        
        TransitionStatementCC transitionStatementCC1 = devicesInYourBodyCC1
     		   .waitForPageLoad()
-    		   .clickOnAnswers("A pacemaker")
+    		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new TransitionStatementCC());
        
        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC =  transitionStatementCC1
-    		   .waitForPageLoadWithCurves(studyName)
+    		   .waitForPageLoad(studyName)
     		   .clickNextButton(new HasHealthcareProfessionalPageCC()); 
        
        hasHealthcareProfessionalPageCC

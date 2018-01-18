@@ -29,7 +29,7 @@ public class WhereYouHaveArthritis extends MainPageOLS {
     }
 
     @Step
-    public WhereYouHaveArthritis clickOnAnswer(String ...answerText) {
+    public WhereYouHaveArthritis clickOnAnswer(String answerText) {
     	clickOnCheckBoxes(checkBoxList, answerText);
         return this;   
     }

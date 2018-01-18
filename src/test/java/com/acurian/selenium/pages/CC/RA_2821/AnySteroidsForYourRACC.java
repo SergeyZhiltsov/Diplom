@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class AnySteroidsForYourRACC extends MainPageCC{
 
-    public final String titleExpected = "In the past, did you have to take any steroids for your RA? ";
+    public final String titleExpected = "In the past, did you have to take any steroids for your RA?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

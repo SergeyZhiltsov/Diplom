@@ -19,8 +19,8 @@ public class FollowingDevicesInYourBody extends MainPageOLS {
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS4514_')]/span[@class='copy']")
-    List<WebElement> radioButtonsList;
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    List<WebElement> checkBoxList;
 
     public FollowingDevicesInYourBody() {
         PageFactory.initElements(getDriver(), this);
@@ -35,12 +35,8 @@ public class FollowingDevicesInYourBody extends MainPageOLS {
 
     @Step
     public FollowingDevicesInYourBody clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
-        return this;
+    	 clickOnCheckBoxes(checkBoxList, answerText);
+         return this;
     }
 
     @Step

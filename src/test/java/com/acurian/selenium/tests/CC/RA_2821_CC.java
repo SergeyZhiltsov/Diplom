@@ -19,6 +19,9 @@ import com.acurian.selenium.pages.CC.RA_2821.HowOldWereUWhenDiagnosedWithRACC;
 import com.acurian.selenium.pages.CC.RA_2821.TenderPainfulOrSwollenJointsCC;
 import com.acurian.selenium.pages.CC.RA_2821.WhatTestsDoctorLedToDiagnosingRACC;
 import com.acurian.selenium.pages.CC.RA_2821.WhenWereYouDiagnosedWithRACC;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
@@ -40,6 +43,7 @@ import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
@@ -63,11 +67,12 @@ public class RA_2821_CC extends BaseTest{
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void tc001Test(final String username, final String password) {
-        String phoneNumberOA = "AUTAMS1OA1";
+        String phoneNumberOA = "AUTAMS1RA1";
         List<String> protocols = Arrays.asList("M15_925","M13_545");
         String protocol1 = "M15_925";
         String protocol2 = "M13_545";
-        String studyName = "arthritis";        
+        String studyName = "arthritis";
+        String studyName1 = "a rheumatoid arthritis (RA) study";
         String env = "PRD";
         String siteName = "AUT_RA2821_Site";
         String zipCode  = "19044";
@@ -129,7 +134,7 @@ public class RA_2821_CC extends BaseTest{
        
        WhenWereYouDiagnosedWithRACC whenWereYouDiagnosedWithRACC = whatKindOfArthritisCC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Rheumatoid arthritis")
+    		   .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
     		   .clickNextButton(new WhenWereYouDiagnosedWithRACC());
        
        HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenWereYouDiagnosedWithRACC
@@ -159,7 +164,7 @@ public class RA_2821_CC extends BaseTest{
        
        DoYouUseAnyOralSteroidCC doYouUseAnyOralSteroidCC = currentlyExperiencingJointSymptomsYourRACC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Pain or swelling in at least 3 separate joints ")
+    		   .clickOnAnswers("Pain or swelling in at least 3 separate joints")
     		   .clickNextButton(new DoYouUseAnyOralSteroidCC());
        
        AnySteroidsForYourRACC anySteroidsForYourRACC = doYouUseAnyOralSteroidCC
@@ -174,7 +179,7 @@ public class RA_2821_CC extends BaseTest{
        
        HowLongTakingMethotrexateCC howLongTakingMethotrexateCC = areYouCurrentlyTakingMethotrexateCC
     		   .waitForPageLoad()
-    		   .clickOnAnswer("")
+    		   .clickOnAnswer("Yes, I am taking methotrexate tablets or pills")
     		   .clickNextButton(new HowLongTakingMethotrexateCC());
        
        FollowingMedicationsToTreatYourRACC followingMedicationsToTreatYourRACC = howLongTakingMethotrexateCC
@@ -185,17 +190,17 @@ public class RA_2821_CC extends BaseTest{
        HowLongTakingPlaquenilCC howLongTakingPlaquenilCC = followingMedicationsToTreatYourRACC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Plaquenil (hydroxychloroquine)")
-    		   .clickNextButton(new HowLongTakingPlaquenilCC());
+    		   .clickNextButton(new HowLongTakingPlaquenilCC());      
        
        BiologicMedicationsCC biologicMedicationsCC = howLongTakingPlaquenilCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("4 - 6 months")
-    		   .clickNextButton(new BiologicMedicationsCC());
+    		   .clickNextButton(new BiologicMedicationsCC());       
        
        WhenLastReceivedTysabriCC whenLastReceivedTysabriCC = biologicMedicationsCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Tysabri")
-    		   .clickNextButton(new WhenLastReceivedTysabriCC());
+    		   .clickNextButton(new WhenLastReceivedTysabriCC());       
        
        EverTakenXeljanzCC EverTakenXeljanzCC = whenLastReceivedTysabriCC
     		   .waitForPageLoad()
@@ -254,6 +259,9 @@ public class RA_2821_CC extends BaseTest{
                .clickNextButton(new OtherThanSkinCancerPageCC())
                .waitForPageLoad()
                .clickOnAnswer("No")
+               .clickNextButton(new SmokedCigarettesPageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("No, I never smoked")
                .clickNextButton(new HistoryOfDrugPageCC())
                .waitForPageLoad()
                .clickOnAnswer("No")
@@ -278,10 +286,15 @@ public class RA_2821_CC extends BaseTest{
                .waitForPageLoad()
                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                .clickNextButton(new SiteSelectionPageCC())
-               .waitForPageLoad(studyName)
+               .waitForPageLoad(studyName1)
                .getPID()
                .clickOnAnswer(siteName)
-               .clickNextButton(new QualifiedClose2PageCC())
+               .clickNextButton(new HSGeneralCC())
+               .waitForPageLoadRA()
+               .typeEmail("qa.acurian@gmail.com")
+               .clickNextButton(new DoctorInformationCollectionPageCC())
+               .waitForPageLoad()
+               .clickNextButton(new HSMedicalRecordsPageCC())
                .waitForPageLoad()
                .clickNextButton(new ThankYouCloseSimplePageCC())
                .waitForPageLoad()

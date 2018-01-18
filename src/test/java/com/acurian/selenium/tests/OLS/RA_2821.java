@@ -19,6 +19,7 @@ import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSCrohns2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SiteSelection;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
@@ -82,9 +83,10 @@ public class RA_2821 extends BaseTest {
 		String protocol1 = "M13_545";
         String protocol2 = "M15_925";        
         List<String> protocols = Arrays.asList(protocol1,protocol2);
-        String studyName = "rheumatoid";
-        String siteName = "AUT_CRN_3638C_Site";
+        String studyName = "a rheumatoid arthritis (RA)";
+        String siteName = "AUT_RA2821_HS_Site";
         String zipCode = "19044";
+        String Siteindicator = "Rheumatoid Arthritis";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           
@@ -274,13 +276,18 @@ public class RA_2821 extends BaseTest {
         .waitForPageLoad(studyName)
         .getPID()
         .clickOnFacilityName(siteName)
-        .clickNextButton(new QualifiedClose2PageOLS())
+        .clickNextButton(new HSGeneralPageOLS())
+        .waitForPageLoad(Siteindicator)
+        .clickNextButton(new DoctorInformationCollectionPageOLS())        
         .waitForPageLoad()
-        .clickNextButton(new ThankYouCloseSimplePageOLS())        
+        .clickNextButton(new HS1PageOLS())
+        .waitForPageLoad()        
+        .clickOkInPopUp()
+        .setSignature()
+        .getPage(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad();
-		               
+        .waitForPageLoad();	               
 				
 			
 	}

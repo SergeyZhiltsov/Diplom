@@ -11,8 +11,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class AreYouTakingAnyOfMedicationsCC extends MainPageCC {
 
-    public final String titleExpected = "Many people are prescribed other kinds of medications to manage high cholesterol, triglycerides, or lipids. They may be taken instead of or in addition to a statin.\n" +
-            "Are you currently taking any of the following medications on a daily basis?\n" +
+    public final String titleExpected = "Many people are prescribed other kinds of medications to manage high cholesterol, triglycerides, or lipids. They may be taken instead of or in addition to a statin. \n" +
+            "Are you currently taking any of the following medications on a daily basis? \n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
@@ -27,7 +27,7 @@ public class AreYouTakingAnyOfMedicationsCC extends MainPageCC {
 
     @Step
     public  AreYouTakingAnyOfMedicationsCC waitForPageLoad() {
-        waitForAnimation();
+        waitForAnimation();       
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }

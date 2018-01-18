@@ -2,32 +2,20 @@ package com.acurian.selenium.tests.CC;
 
 import java.util.Arrays;
 import java.util.List;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DYS_4356C.AreYouTakingAnyOfMedicationsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.NonPrescriptionSupplementsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.PregnancyAndFertilityCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.ThankYouForAnsweringCC;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
-import com.acurian.selenium.pages.CC.closes.WarmTransfer4;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
@@ -44,29 +32,36 @@ import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
+import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
+import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.HasAHealthcareProfessionalDYS4356;
+import com.acurian.selenium.pages.CC.shared.LastTimeYouHadHeartProceduresCC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
+import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
+import com.acurian.selenium.pages.CC.shared.StatinMedicationPreviousQuestionPageCC;
 import com.acurian.selenium.pages.CC.shared.StatinMedicationsCC;
+import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 
-public class DYS_4356_CC extends BaseTest{
+public class MedCo_3962_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void tc001Test(final String username, final String password) {
-        String phoneNumberDYS = "AUTAMS1DYS";
-        List<String> protocols = Arrays.asList("20150230","VK2809-201");
-        String protocol1 = "VK2809-201";
-        String protocol2 = "20150230";
-        String studyName = "Dyslipidemia";
+        String phoneNumberDYS = "AUTAMS1MED";
+        List<String> protocols = Arrays.asList("MDCO_PCS_17_04");
+        String protocol1 = "MDCO_PCS_17_04";        
+        String studyName = "a high cholesterol and heart disease";
         String env = "STG";
         String siteName = "(QSC9004_4356C_AUT_DYSL)";
         String zipCode  = "19044";
-        String studyName1 = "a cholesterol or heart health study";
         
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -99,7 +94,7 @@ public class DYS_4356_CC extends BaseTest{
        .waitForPageLoad();
 
        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-       Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedDYS, "Title is diff");
+     //  Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedMED_3962, "Title is diff");
 
        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                .setMonth("Sep")
@@ -117,59 +112,81 @@ public class DYS_4356_CC extends BaseTest{
     		   .clickOnAnswer("Female")
     		   .clickNextButton(new HasAHealthcareProfessionalDYS4356());
        
-       StatinMedicationsCC statinMedicationsCC =  hasAHealthcareProfessionalDYS4356
+       NonQRtransitionPageCC nonQRtransitionPageCC =  hasAHealthcareProfessionalDYS4356
     		   .waitForPageLoad()
-    		   .clickOnAnswers("High fats or lipids, or hyperlipidemia")
+    		   .clickOnAnswers("Unsure")
+    		   .clickNextButton(new NonQRtransitionPageCC());
+       
+       nonQRtransitionPageCC.waitForPageLoad();
+       
+       DebugPageCC debugPageCC = new DebugPageCC();       
+       debugPageCC.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);
+       debugPageCC.back();
+       
+       NonQRtransitionPageCC nonQRtransitionPageCC1 =  hasAHealthcareProfessionalDYS4356
+    		   .waitForPageLoad()
+    		   .clickOnAnswers("None of the above")
+    		   .clickNextButton(new NonQRtransitionPageCC());       
+       
+       debugPageCC.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);
+       debugPageCC.back();
+       
+       StatinMedicationsCC statinMedicationsCC = hasAHealthcareProfessionalDYS4356
+    		   .waitForPageLoad()
+    		   .clickOnAnswers("High cholesterol, or hypercholesterolemia")
     		   .clickNextButton(new StatinMedicationsCC());
        
        AreYouTakingAnyOfMedicationsCC areYouTakingAnyOfMedicationsCC = statinMedicationsCC       
                .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
-    		   .clickNextButton(new AreYouTakingAnyOfMedicationsCC());      
-      
-       NonPrescriptionSupplementsCC nonPrescriptionSupplementsCC = areYouTakingAnyOfMedicationsCC
+    		   .clickNextButton(new AreYouTakingAnyOfMedicationsCC());       
+       
+       debugPageCC.checkProtocolsEquals("One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a ...", protocol1);
+       debugPageCC.back();
+       
+       StatinMedicationPreviousQuestionPageCC statinMedicationPreviousQuestionPageCC = statinMedicationsCC       
+               .waitForPageLoad()
+    		   .clickOnAnswers("Rosuvastatin")
+    		   .clickNextButton(new StatinMedicationPreviousQuestionPageCC());
+       
+       AreYouTakingAnyOfMedicationsCC areYouTakingAnyOfMedicationsCC1 = statinMedicationPreviousQuestionPageCC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("None of the above")
+    		   .clickOnAnswer("5 months")
+    		   .clickNextButton(new AreYouTakingAnyOfMedicationsCC());
+       
+       NonPrescriptionSupplementsCC nonPrescriptionSupplementsCC = areYouTakingAnyOfMedicationsCC1
+    		   .waitForPageLoad()
+    		   .clickOnAnswers("Repatha (evolocumab)")
     		   .clickNextButton(new NonPrescriptionSupplementsCC());
        
        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = nonPrescriptionSupplementsCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
-    		   .clickNextButton(new HasHealthcareProfessionalPageCC());
-        
-       DebugPageCC debugPageCC = new DebugPageCC();
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "20150230\n" + "VK2809_201", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
-       
-       hasHealthcareProfessionalPageCC.back();
-       nonPrescriptionSupplementsCC.back();
-       
-       areYouTakingAnyOfMedicationsCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Praluent (alirocumab)")
-    		   .clickNextButton(nonPrescriptionSupplementsCC);
-       
-       nonPrescriptionSupplementsCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Psyllium")
-    		   .clickNextButton(hasHealthcareProfessionalPageCC);    
+    		   .clickNextButton(new HasHealthcareProfessionalPageCC()); 
       
-       hasHealthcareProfessionalPageCC.waitForPageLoad();
-       debugPageCC.openDebugWindow();
-       Assert.assertNotEquals(debugPageCC.getProtocol(), "20150230\n" + "VK2809_201", "Protocol displayed");
-       debugPageCC.closeDebugWindow();
        
-       hasHealthcareProfessionalPageCC
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new HaveYouUndergoneAnyPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new PregnancyAndFertilityCC())
-       .waitForPageLoad()
-       .clickOnAnswer("I currently have my \"tubes tied\" (also called bilateral tubal ligation, a sterilization procedure)")
-       .clickNextButton(new ThankYouForAnsweringCC())
+       HaveYouUndergoneAnyPageCC haveYouUndergoneAnyPageCC = hasHealthcareProfessionalPageCC
+               .waitForPageLoad()
+               .clickOnAnswers("None of the above")
+               .clickNextButton(new HaveYouUndergoneAnyPageCC());
+       
+       LastTimeYouHadHeartProceduresCC lastTimeYouHadHeartProceduresCC = haveYouUndergoneAnyPageCC
+    		   .waitForPageLoad()
+    		   .clickOnAnswers("Stent placement")
+    		   .clickNextButton(new LastTimeYouHadHeartProceduresCC());
+       
+       ThankYouForAnsweringCC thankYouForAnsweringCC = lastTimeYouHadHeartProceduresCC
+    		    .waitForPageLoad()
+    		    .clickOnAnswer("Less than 30 days ago")
+    		    .clickNextButton(new ThankYouForAnsweringCC());       
+       
+       debugPageCC.checkProtocolsEquals(lastTimeYouHadHeartProceduresCC.getTitleText(), protocol1);
+       debugPageCC.back();
+       
+       lastTimeYouHadHeartProceduresCC
+   	   .waitForPageLoad()
+   	   .clickOnAnswer("7 - 12 months ago")
+   	   .clickNextButton(new ThankYouForAnsweringCC()) 
        .waitForPageLoad()
        .clickNextButton(new HeartFailureIsAlsoPageCC())
        .waitForPageLoad()
@@ -224,31 +241,29 @@ public class DYS_4356_CC extends BaseTest{
        .clickNextButton(new TheStudySitePageCC())
        .waitForPageLoad()
        .clickOnAnswer("No")
-       .clickNextButton(new WhatSortPageCC())
+       .clickNextButton(new WouldYouUsePageCC())
+       .waitForPageLoad()
+       .clickOnAnswers("Neither")
+       .clickNextButton(new WhatMedicalCoveragePageCC())
        .waitForPageLoad()
        .clickOnAnswers("No, I have no coverage")
        .clickNextButton(new EthnicBackgroundPageCC())
        .waitForPageLoad()
-       .clickOnAnswers("Other")
+       .clickOnAnswers("Prefer not to answer")
        .clickNextButton(new IdentificationPageCC())
        .waitForPageLoad()       
        .clickNextButton(new SiteSelectionPageCC())
-       .waitForPageLoad(studyName1)
+       .waitForPageLoad(studyName)
        .getPID()
        .selectAnswer(siteName)
-       .clickNextButton(new RadiantWarmTransferClose1PageCC())
+       .clickNextButton(new QualifiedClose2PageCC())
        .waitForPageLoad()
-       .clickOnAnswer("[direct schedule in clinical conductor]")
-       .clickNextButton(new SynexusRadiantDirectScheduleCC())
+       .clickNextButton(new ThankYouCloseSimplePageCC())
        .waitForPageLoad()
-       .clickNextButton(new WarmTransfer4())
-       .waitForPageLoad()
-       .clickOnAnswer("Transferred for Scheduling")
        .clickNextButton(selectActionPageCC)
-       .waitForPageLoad(); 
+       .waitForPageLoad();
        
+       
+	}
 
-}
-        
-	
 }

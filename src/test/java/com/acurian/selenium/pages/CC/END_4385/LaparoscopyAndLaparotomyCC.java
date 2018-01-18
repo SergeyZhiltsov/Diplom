@@ -10,9 +10,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class LaparoscopyAndLaparotomyCC extends MainPageCC{
 
-    public final String titleExpected = "Laparoscopy and laparotomy are the surgical procedures used to confirm a diagnosis of endometriosis. When was the surgical procedure which confirmed your endometriosis performed?";    
+    public final String titleExpected = "Laparoscopy and laparotomy are the surgical procedures used to confirm a diagnosis of endometriosis.\n" +
+    		"When was the surgical procedure which confirmed your endometriosis performed?";    
 
-    @FindBy(xpath = "//div[@class='subquestion']//span[@class='sub_question_text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)

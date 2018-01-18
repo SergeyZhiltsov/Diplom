@@ -12,9 +12,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhenLastReceivedTysabriCC extends MainPageCC{
 
-    public final String titleExpected = "Which of the following best describes when you last received Tysabri? You….*";
+    public final String titleExpected = "Which of the following best describes when you last received Tysabri? You….";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    @FindBy(xpath = "//div[@class='subquestion']/span[1]")
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)

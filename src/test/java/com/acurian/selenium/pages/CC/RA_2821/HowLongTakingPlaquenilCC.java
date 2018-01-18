@@ -15,7 +15,7 @@ public class HowLongTakingPlaquenilCC extends MainPageCC{
 
     public final String titleExpected = "How long have you been taking Plaquenil (hydroxychloroquine)?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    @FindBy(xpath = "//div[@class='subquestion']/span[1]")
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
