@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.utils.PassPID;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -85,6 +87,8 @@ public class SiteSelectionPageCC extends MainPageCC {
     public SiteSelectionPageCC getPID(){
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID="+pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
+        System.out.println("PID = "+pidNumber);
         return this;
     }
 

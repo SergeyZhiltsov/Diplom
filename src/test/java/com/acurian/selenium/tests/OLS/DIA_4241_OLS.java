@@ -308,10 +308,10 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WouldYouUsePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
+                .clickOnAnswer("Other")
+//                .clickNextButton(new WouldYouUsePageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -330,8 +330,8 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
-//                .pidFromDbToLog(env);
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
 
         /* rel 47
         poundsOrMorePageOLS
@@ -471,9 +471,9 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
-//                .pidFromDbToLog(env);
-*/
+                .waitForPageLoad(); */
+                //.pidFromDbToLog(env);
+
 
     }
 }

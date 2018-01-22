@@ -21,11 +21,12 @@ public class Crohns_3485_OLS extends BaseTest{
     @TestCaseId("00005")
     @Description("Crohn's_3485 OLS with HS")
     public void crohns3485olsTest() {
-        String phoneNumberLBP = "AUTAMS1CRN";
-        String protocol1 = "M16_006";
+        String phoneNumber = "AUTAMS1CRN";
+        String protocol1 = "I6T_MC_AMAG";
         String protocol2 = "RF_I6T_MC_AMAG";
-        String protocol3 = "I6T_MC_AMAG";
-        List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3);
+        String protocol3 = "M16_006";
+        String protocol4 = "M15_991";
+        List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3,protocol4);
         String studyName = "a Crohn's";
         String siteName = "AUT_CRN_3485_HS";
         String debugSiteName = "";
@@ -34,7 +35,7 @@ public class Crohns_3485_OLS extends BaseTest{
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberLBP)
+                .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleCrohns_3485_Expected, "Title is diff");
@@ -65,7 +66,7 @@ public class Crohns_3485_OLS extends BaseTest{
         followingMedicalConditionsPageOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(diagnosedWithCrohnsPageOLS.titleExpected, protocol1, protocol2, protocol3);
+        debugPageOLS.checkProtocolsEquals(diagnosedWithCrohnsPageOLS.titleExpected, protocol1,protocol2,protocol3,protocol4);
         debugPageOLS.back();
         diagnosedWithCrohnsPageOLS
                 .waitForPageLoad()
@@ -88,7 +89,7 @@ public class Crohns_3485_OLS extends BaseTest{
         typeOfDoctorPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Next, please tell me, when were you diagnosed with Crohn’s disease by a doctor at a hospital or doct", protocol1, protocol2, protocol3)
+                .checkProtocolsEquals("Next, please tell me, when were you diagnosed with Crohn’s disease by a doctor at a hospital or doct", protocol1,protocol2,protocol3,protocol4)
                 .back();
         whenDiagnosedCrohnsPageOLS
                 .waitForPageLoad()
@@ -104,7 +105,7 @@ public class Crohns_3485_OLS extends BaseTest{
         typeOfTestsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(typeOfDoctorPageOLS.titleExpected, protocol2, protocol3)
+                .checkProtocolsEquals(typeOfDoctorPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         typeOfDoctorPageOLS
                 .waitForPageLoad()
@@ -120,7 +121,7 @@ public class Crohns_3485_OLS extends BaseTest{
         manageYourCrohnsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Next, please tell me which of the following types of tests/procedures have you ever had to diagnose ", protocol1)
+                .checkProtocolsEquals("Next, please tell me which of the following types of tests/procedures have you ever had to diagnose ", protocol3, protocol4)
                 .back();
         typeOfTestsPageOLS
                 .waitForPageLoad()
@@ -136,7 +137,7 @@ public class Crohns_3485_OLS extends BaseTest{
         onA0To10ScalePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(manageYourCrohnsPageOLS.titleExpected, protocol1, protocol2,protocol3)
+                .checkProtocolsEquals(manageYourCrohnsPageOLS.titleExpected, protocol1,protocol2,protocol3,protocol4)
                 .back();
         SteroidMedicationsPageOLS steroidMedicationsPageOLS = manageYourCrohnsPageOLS
                 .waitForPageLoad()
@@ -165,7 +166,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(onA0To10ScalePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol1, protocol2,protocol3)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol1,protocol2,protocol3,protocol4)
                 .back();
         biologicMedicationsPageOLS
                 .waitForPageLoad()
@@ -173,7 +174,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(onA0To10ScalePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol1, protocol2,protocol3)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol1,protocol2,protocol3,protocol4)
                 .back();
         SubquestionLastReceivedPageOLS subquestionLastReceivedPageOLS = biologicMedicationsPageOLS
                 .waitForPageLoad()
@@ -182,7 +183,7 @@ public class Crohns_3485_OLS extends BaseTest{
         subquestionLastReceivedPageOLS
                 .waitForPageLoad(1, subquestionLastReceivedPageOLS.titleExpected13)
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(biologicMedicationsPageOLS.titleExpected, protocol1, protocol2,protocol3)
+                .checkProtocolsEquals(biologicMedicationsPageOLS.titleExpected, protocol1,protocol2,protocol3,protocol4)
                 .back();
         biologicMedicationsPageOLS
                 .waitForPageLoad()
@@ -257,7 +258,7 @@ public class Crohns_3485_OLS extends BaseTest{
         howManyLiquidPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol2,protocol3)
+                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         statementsBestDescribesPageOLS
                 .waitForPageLoad()
@@ -278,7 +279,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(howManyLiquidPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol2,protocol3)
+                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         statementsBestDescribesPageOLS
                 .waitForPageLoad()
@@ -299,7 +300,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(howManyLiquidPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol2,protocol3)
+                .checkProtocolsEquals(statementsBestDescribesPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         statementsBestDescribesPageOLS
                 .waitForPageLoad()
@@ -345,7 +346,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
 //                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2)
-                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Qualifying Logic", protocol2,protocol3)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Qualifying Logic", protocol1, protocol2)
                 .back();
         whenItOccursPageOLS
                 .waitForPageLoad()
@@ -368,7 +369,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
 //                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol2)
-                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Qualifying Logic", protocol2,protocol3)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Qualifying Logic", protocol1, protocol2)
                 .back();
         yourNormalBaselinePageOLS//rel 48
                 .waitForPageLoad()
@@ -429,7 +430,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Non-Flare Logic - \"I6T-MC-AMAG\"", protocol3)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Non-Flare Logic - \"I6T-MC-AMAG\"", protocol1)
 //                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Flare Requirements Logic - \"RF_I6T-MC-AMAG\"", protocol1)
                 .back();
 
@@ -453,7 +454,7 @@ public class Crohns_3485_OLS extends BaseTest{
         haveAnyOfTheFollowingPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -461,7 +462,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(haveAnyOfTheFollowingPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -469,7 +470,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(haveAnyOfTheFollowingPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -477,7 +478,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(haveAnyOfTheFollowingPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -485,7 +486,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(haveAnyOfTheFollowingPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol2,protocol3)
+                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1, protocol2)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -502,7 +503,7 @@ public class Crohns_3485_OLS extends BaseTest{
         hasHealthcareProfessionalPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS3759",protocol1,protocol2,protocol3)
+                .checkProtocolsEqualsForQNumber("QS3759",protocol1,protocol2,protocol3,protocol4)
                 .back();
         haveAnyOfTheFollowingPageOLS
                 .waitForPageLoad()
@@ -510,7 +511,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(hasHealthcareProfessionalPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS3759", protocol1, protocol2, protocol3)
+                .checkProtocolsEqualsForQNumber("QS3759", protocol1,protocol2,protocol3,protocol4)
                 .back();
         haveAnyOfTheFollowingPageOLS// rel 48
                 .waitForPageLoad()
@@ -518,7 +519,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickNextButton(hasHealthcareProfessionalPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS3759", protocol1);
+                .checkProtocolsEqualsForQNumber("QS3759", protocol3, protocol4);
         //DQ for M16_006 and I6T_MC_AMAG
 
         hasHealthcareProfessionalPageOLS
@@ -580,10 +581,10 @@ public class Crohns_3485_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WouldYouUsePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
+                .clickOnAnswer("Other")
+//                .clickNextButton(new WouldYouUsePageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -608,9 +609,7 @@ public class Crohns_3485_OLS extends BaseTest{
                 .getPage(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
-
-
-
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }
