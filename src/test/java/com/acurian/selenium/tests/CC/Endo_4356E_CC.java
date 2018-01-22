@@ -15,6 +15,10 @@ import com.acurian.selenium.pages.CC.END_4385.PelvicPainDuringMenstrualCC;
 import com.acurian.selenium.pages.CC.END_4385.PelvicPainOtherTimesCC;
 import com.acurian.selenium.pages.CC.END_4385.SurgicalProceduresCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC2PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
@@ -40,6 +44,7 @@ import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.AreYouCurrentlyPregnantCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
@@ -47,6 +52,7 @@ import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.DoYouHaveRegularMenstrualCyclesUF_CC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.HasHealthcareProfEverDiagnosedFollowingGynoUF_CC;
+import com.acurian.selenium.pages.CC.shared.HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC;
 import com.acurian.selenium.pages.CC.shared.HaveYouGoneThroughMenopauseUF_CC;
 import com.acurian.selenium.pages.CC.shared.HaveYouHadHysterectomyUF_CC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
@@ -102,9 +108,8 @@ public class Endo_4356E_CC extends BaseTest{
        
        dateOfBirthPageCC
        .waitForPageLoad();
-
+       
        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-      // Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedOA, "Title is diff");
 
        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                .setMonth("Sep")
@@ -125,13 +130,12 @@ public class Endo_4356E_CC extends BaseTest{
        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
     		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
-    		   .clickNextButton(new NonQRtransitionPageCC());
-       
-       DebugPageCC debugPageCC = new DebugPageCC();
-       debugPageCC.openDebugWindow();
+    		   .clickNextButton(new NonQRtransitionPageCC())
+       		   .waitForPageLoad();
+            
+       DebugPageCC debugPageCC = new DebugPageCC();       
        debugPageCC.checkProtocolsEquals(hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.titleExpected, protocol1, protocol2);
-       debugPageCC.back();
-       nonQRtransitionPageCC.back();
+       debugPageCC.back(); 
        
        DiagnoseYourEndometriosisCC diagnoseYourEndometriosisCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
     		   .waitForPageLoad()
@@ -143,26 +147,14 @@ public class Endo_4356E_CC extends BaseTest{
     		   .clickOnAnswers("Unsure")
     		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
        
-       debugPageCC.openDebugWindow();
-       debugPageCC.checkProtocolsEquals(hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.titleExpected, protocol1, protocol2);
+       debugPageCC.checkProtocolsEquals("Did your doctor perform any of the following procedures to help diagnose your endometriosis? Please ...", protocol1, protocol2);
        debugPageCC.back();
-       haveYouGoneThroughMenopauseUF_CC.back();
        
        LaparoscopyAndLaparotomyCC laparoscopyAndLaparotomyCC = diagnoseYourEndometriosisCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Laparotomy, a surgical procedure in which a large cut is made into the abdomen")
     		   .clickNextButton(new LaparoscopyAndLaparotomyCC());
-       
-       laparoscopyAndLaparotomyCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("11 or more years ago")
-    		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());       
-       
-       debugPageCC.openDebugWindow();
-       debugPageCC.checkProtocolsEquals(haveYouGoneThroughMenopauseUF_CC.titleExpected, protocol1, protocol2);
-       debugPageCC.back();
-       haveYouGoneThroughMenopauseUF_CC.back();
-       
+            
        laparoscopyAndLaparotomyCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("4 - 6 years ago")
@@ -173,10 +165,8 @@ public class Endo_4356E_CC extends BaseTest{
     		   .clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
     		   .clickNextButton(new HaveYouHadHysterectomyUF_CC());
        
-       debugPageCC.openDebugWindow();
        debugPageCC.checkProtocolsEquals(haveYouGoneThroughMenopauseUF_CC.titleExpected, protocol1, protocol2);
        debugPageCC.back();
-       haveYouHadHysterectomyUF_CC.back();
        
        haveYouGoneThroughMenopauseUF_CC
     		   .waitForPageLoad()
@@ -187,12 +177,10 @@ public class Endo_4356E_CC extends BaseTest{
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
     		   .clickNextButton(new NonQRtransitionPageCC());
-       
-       debugPageCC.openDebugWindow();
+
        debugPageCC.checkProtocolsEquals(haveYouHadHysterectomyUF_CC.titleExpected, protocol1, protocol2);
        debugPageCC.back();
-       nonQRtransitionPageCC1.back();
-       
+     
        DoYouHaveRegularMenstrualCyclesUF_CC doYouHaveRegularMenstrualCyclesUF_CC = haveYouHadHysterectomyUF_CC
     		   .waitForPageLoad()
     		   .clickOnAnswer("No")
@@ -203,15 +191,11 @@ public class Endo_4356E_CC extends BaseTest{
     		   .clickOnAnswer("No")
     		   .clickNextButton(new PelvicPainDuringMenstrualCC());
        
-       debugPageCC.openDebugWindow();
-       debugPageCC.checkProtocolsEquals(pelvicPainDuringMenstrualCC.titleExpected, protocol1, protocol2);
-       debugPageCC.back();
-       pelvicPainDuringMenstrualCC.back();
-       
-       doYouHaveRegularMenstrualCyclesUF_CC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Yes")
-    		   .clickNextButton(new PelvicPainDuringMenstrualCC());
+      
+//       pelvicPainDuringMenstrualCC
+//    		   .waitForPageLoad()
+//    		   .clickOnAnswer("Yes")
+//    		   .clickNextButton(new PelvicPainDuringMenstrualCC());
        
        DescribesThePelvicPainCC describesThePelvicPainCC = pelvicPainDuringMenstrualCC
     		   .waitForPageLoad()
@@ -240,16 +224,17 @@ public class Endo_4356E_CC extends BaseTest{
        
        MostRecentSurgeryCC mostRecentSurgeryCC = surgicalProceduresCC
     		   .waitForPageLoad()
-    		   .clickOnAnswer("1")
+    		   .clickOnAnswer("2")
     		   .clickNextButton(new  MostRecentSurgeryCC());
        
        
        mostRecentSurgeryCC
-               .waitForPageLoad()
+               .waitForPageLoad();
+               HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = mostRecentSurgeryCC
                .clickOnAnswer("7 - 11 months ago")
-               .clickNextButton(new HasHealthcareProfEverDiagnosedFollowingGynoUF_CC());
+               .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());
        
-       AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+       AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Endometrioma, also known as endometrial or endometrioid cyst or \"chocolate cyst\"")
     		   .clickNextButton(new AreYouCurrentlyPregnantCC());
@@ -320,8 +305,11 @@ public class Endo_4356E_CC extends BaseTest{
     	                .clickOnAnswer("No")
     	                .clickNextButton(new TheStudySitePageCC())    	           
     	                .waitForPageLoad()
-    	                .clickOnAnswer("Other")
-    	                .clickNextButton(new WhatSortPageCC())
+    	                .clickOnAnswers("Public transportation")
+//    	                .clickNextButton(new WouldYouUsePageCC())
+//    	                .waitForPageLoad()
+//    	                .clickOnAnswers("Neither")
+    	                .clickNextButton(new WhatMedicalCoveragePageCC())
     	                .waitForPageLoad()
     	                .clickOnAnswers("No, I have no coverage")
     	                .clickNextButton(new EthnicBackgroundPageCC())
@@ -335,14 +323,20 @@ public class Endo_4356E_CC extends BaseTest{
     	                 new SiteSelectionPageCC()
     	                .getPID()
     	                .clickOnAnswer(siteName)
-    	                .clickNextButton(new QualifiedClose2PageCC())
+    	                .clickNextButton(new RadiantWarmTransferClose1PageCC())
     	                .waitForPageLoad()
-    	                .clickNextButton(new ThankYouCloseSimplePageCC())
+    	                .clickOnAnswer("[patient agrees to be transferred]")
+    	                .clickNextButton(new SynexusDirectScheduleWTC2PageCC())
     	                .waitForPageLoad()
-    	                .clickNextButton(new SelectActionPageCC())
+    	                .clickOnAnswer("Yes")
+    	                .clickNextButton(new SynexusDirectScheduleWTC3PageCC())
+    	                .waitForPageLoad()
+    	                .clickNextButton(new SRDirectScheduleWTTCPageCC())
+    	                .waitForPageLoad()
+    	                .clickOnAnswer("Transferred for Scheduling")
+    	                .clickNextButton(selectActionPageCC)
     	                .waitForPageLoad()
     	                .pidFromDbToLog(env);
-       
 	}
 
 }

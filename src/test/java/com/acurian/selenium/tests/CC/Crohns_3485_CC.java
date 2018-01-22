@@ -597,7 +597,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswers("Public transportation")
 //                .clickNextButton(new WouldYouUsePageCC())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Neither")
@@ -623,6 +623,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

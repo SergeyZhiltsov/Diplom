@@ -334,7 +334,7 @@ public class SUI_3923_OLS extends BaseTest{
 		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
         //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site??
 				theStudySitePageOLS.waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswer("Public transportation")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 
 		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
