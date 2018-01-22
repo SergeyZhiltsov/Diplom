@@ -2,6 +2,9 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.AST_4337.*;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -34,6 +37,7 @@ public class AST_4337_CC extends BaseTest{
         String debugSiteName = "";
         String env = "STG";
         String zipCode = "19044";
+        String studyIndication = "Asthma";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -376,10 +380,10 @@ public class AST_4337_CC extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswers("Public transportation")
                 .clickNextButton(new WhatSortPageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above (no coverage at all)")
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new EthnicBackgroundPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("Other")
@@ -390,12 +394,16 @@ public class AST_4337_CC extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoad(studyIndication)
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
-                .waitForPageLoad();
-
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

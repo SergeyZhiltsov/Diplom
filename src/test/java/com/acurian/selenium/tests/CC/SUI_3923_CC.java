@@ -330,7 +330,7 @@ public class SUI_3923_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswers("Public transportation")
 //                .clickNextButton(new WouldYouUsePageCC())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Neither")

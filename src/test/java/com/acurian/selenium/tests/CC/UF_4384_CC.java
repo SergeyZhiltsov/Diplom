@@ -333,7 +333,7 @@ public class UF_4384_CC extends BaseTest{
                 .clickNextButton(new TheStudySitePageCC())
          //----------PEDIATRIC HEALTH Questions----------    
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswers("Public transportation")
                 .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")

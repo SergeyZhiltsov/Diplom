@@ -575,7 +575,7 @@ public class Diabetes_4356A_CC extends BaseTest{
          //----------PEDIATRIC HEALTH Questions----------
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswers("Public transportation")
                 .clickNextButton(new WhatMedicalCoveragePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")

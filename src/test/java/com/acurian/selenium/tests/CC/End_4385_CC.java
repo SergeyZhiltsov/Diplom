@@ -43,6 +43,7 @@ import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
+import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.AreYouCurrentlyPregnantCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
@@ -50,6 +51,7 @@ import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.DoYouHaveRegularMenstrualCyclesUF_CC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.HasHealthcareProfEverDiagnosedFollowingGynoUF_CC;
+import com.acurian.selenium.pages.CC.shared.HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC;
 import com.acurian.selenium.pages.CC.shared.HaveYouGoneThroughMenopauseUF_CC;
 import com.acurian.selenium.pages.CC.shared.HaveYouHadHysterectomyUF_CC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
@@ -190,15 +192,6 @@ public class End_4385_CC extends BaseTest{
        
        PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = doYouHaveRegularMenstrualCyclesUF_CC
     		   .waitForPageLoad()
-    		   .clickOnAnswer("No")
-    		   .clickNextButton(new PelvicPainDuringMenstrualCC());
-       
-       
-       debugPageCC.checkProtocolsEquals("Do you have regular menstrual cycles, meaning that you get your period each month on a predictable s...", protocol1, protocol2);
-       debugPageCC.back();
-             
-       doYouHaveRegularMenstrualCyclesUF_CC
-    		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
     		   .clickNextButton(new PelvicPainDuringMenstrualCC());
        
@@ -228,11 +221,12 @@ public class End_4385_CC extends BaseTest{
     		   .clickNextButton(new SurgicalProceduresCC());
        
        surgicalProceduresCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("1")
-    		   .clickNextButton(new  HasHealthcareProfEverDiagnosedFollowingGynoUF_CC());      
+    		   .waitForPageLoad();
+               HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = surgicalProceduresCC
+                .clickOnAnswer("1")
+    		   .clickNextButton(new  HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());      
        
-       AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+       AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Endometrioma, also known as endometrial or endometrioid cyst or \"chocolate cyst\"")
     		   .clickNextButton(new AreYouCurrentlyPregnantCC());
@@ -243,9 +237,10 @@ public class End_4385_CC extends BaseTest{
     		   .clickNextButton(new TransitionStatementCC());
        
        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-    		   .waitForPageLoadWithCurves(studyName1)
+    		    //.waitForPageLoad(studyName1)
     	        .clickNextButton(new HasHealthcareProfessionalPageCC());
-    	       
+    	            
+       
     	        hasHealthcareProfessionalPageCC
     	                .waitForPageLoad()
     	                .clickOnAnswers("None of the above")
@@ -304,8 +299,8 @@ public class End_4385_CC extends BaseTest{
     	                .clickOnAnswer("No")
     	                .clickNextButton(new TheStudySitePageCC())    	           
     	                .waitForPageLoad()
-    	                .clickOnAnswer("No")
-    	                .clickNextButton(new WhatSortPageCC())
+    	                .clickOnAnswers("Public transportation")
+    	                .clickNextButton(new WhatMedicalCoveragePageCC())
     	                .waitForPageLoad()
     	                .clickOnAnswers("No, I have no coverage")
     	                .clickNextButton(new EthnicBackgroundPageCC())
@@ -328,8 +323,8 @@ public class End_4385_CC extends BaseTest{
     	                .clickNextButton(new ThankYouCloseSimplePageCC())
     	                .waitForPageLoad()
     	                .clickNextButton(selectActionPageCC)
-    	                .waitForPageLoad();
-       
+    	                .waitForPageLoad()
+    	                .pidFromDbToLog(env);
        
 	}
 

@@ -268,7 +268,7 @@ public class RA_4356F_CC extends BaseTest{
                .clickOnAnswer("No")
                .clickNextButton(new TheStudySitePageCC())
                .waitForPageLoad()
-               .clickOnAnswer("No")
+               .clickOnAnswers("Public transportation")
                .clickNextButton(new WhatSortPageCC())
                .waitForPageLoad()
                .clickOnAnswers("No, I have no coverage")

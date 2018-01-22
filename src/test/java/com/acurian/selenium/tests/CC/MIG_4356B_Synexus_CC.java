@@ -198,21 +198,20 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         studyQuestionMigPageCC.waitForPageLoad();
         Assert.assertEquals(studyQuestionMigPageCC.getTitleText(),studyQuestionMigPageCC.titleExpected, "Title is diff");    
         studyQuestionMigPageCC
-        .selectAttacks("10")
+        .selectAttacks("15")
         .selectDays("8")
         .selectHeadaches("8")
         .clickNextButton(new CurrentlyTakeMedicationsForMigraineCC()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button     
-        /*Assert.assertTrue(debugPageCC.getProtocolForQuestion(studyQuestionMigPageCC.titleExpectedParagraphs).contains(protocol1));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(studyQuestionMigPageCC.titleExpectedParagraphs).contains(protocol2));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(studyQuestionMigPageCC.titleExpectedParagraphs).contains(protocol3));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(studyQuestionMigPageCC.titleExpectedParagraphs).contains(protocol4));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(studyQuestionMigPageCC.titleExpectedParagraphs).contains(protocol5));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(studyQuestionMigPageCC.titleExpectedParagraphs).contains(protocol6));*/
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion("The next few questions are about migraines, regular headaches, and how often you have them. If you d...").contains(protocol7));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion("The next few questions are about migraines, regular headaches, and how often you have them. If you d...").contains(protocol2));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion("The next few questions are about migraines, regular headaches, and how often you have them. If you d...").contains(protocol3));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion("The next few questions are about migraines, regular headaches, and how often you have them. If you d...").contains(protocol5));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion("The next few questions are about migraines, regular headaches, and how often you have them. If you d...").contains(protocol6));
         debugPageCC.back();
         //------------ Change your answer to correct QR age in page 'studyQuestionMigPageCC'---------------   
         CurrentlyTakeMedicationsForMigraineCC currentlyTakeMedicationsForMigraineCC = studyQuestionMigPageCC //[create NEXT PAGE Object = THIS page object]      
-        .selectAttacks("8")
+        .selectAttacks("9")
         .selectDays("8")
         .selectHeadaches("8")
         .clickNextButton(new CurrentlyTakeMedicationsForMigraineCC());
@@ -422,7 +421,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswers("Public transportation")
 //                .clickNextButton(new WouldYouUsePageCC())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Neither")
@@ -443,7 +442,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickOnAnswer(siteName)
                 .clickNextButton(new WarmTransfer1())
                  //Warm Transfer Questions ----- //Warm Transfer Page#2 
-                .threadSleep(15000);  //wait 15  secs
+                .threadSleep(20000);  //wait 15  secs
                  new WarmTransfer1()
                 //.waitForPageLoad() 
                 .clickOnAnswer("[patient agrees to be transferred]")

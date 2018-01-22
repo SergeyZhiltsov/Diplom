@@ -306,10 +306,10 @@ public class AS_4319_CC extends BaseTest{
        .clickOnAnswer("No")
                .clickNextButton(new TheStudySitePageCC())
                .waitForPageLoad()
-               .clickOnAnswer("No")
-               .clickNextButton(new WouldYouUsePageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("Neither")
+               .clickOnAnswers("Public transportation")
+//               .clickNextButton(new WouldYouUsePageCC())
+//               .waitForPageLoad()
+//               .clickOnAnswers("Neither")
                .clickNextButton(new WhatMedicalCoveragePageCC())
                .waitForPageLoad()
                .clickOnAnswers("No, I have no coverage")
@@ -330,7 +330,8 @@ public class AS_4319_CC extends BaseTest{
        .waitForPageLoad()
        .clickOnAnswer("Transferred for Scheduling")
        .clickNextButton(selectActionPageCC)
-       .waitForPageLoad();     
+       .waitForPageLoad()
+       .pidFromDbToLog(env);
        
        
 	}

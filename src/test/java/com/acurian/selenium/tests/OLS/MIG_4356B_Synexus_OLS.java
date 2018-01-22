@@ -45,7 +45,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
     @TestCaseId("00002")
     @Description("MIG_4356B_Synexus_OLS module")
     public void tc002Test() {
-        String phoneNumberLBP = "AUTAMS1MIG";
+        String phoneNumberMIG = "AUTAMS1MIG";
         String protocol1 = "20150133";
         String protocol2 = "BHV3000_301";
         String protocol3 = "BHV3000_302";
@@ -60,7 +60,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberLBP)
+                .openPage(env, phoneNumberMIG)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleMIGExpected, "Title is diff");
@@ -147,17 +147,17 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         .waitForPageLoad();
         Assert.assertEquals(mIGAttackFrequencyOLS.getTitleText(),mIGAttackFrequencyOLS.titleExpected, "Title is diff");
         CurrentlyTakeAnyMedicationsTreatMIG currentlyTakeAnyMedicationsTreatMIG = mIGAttackFrequencyOLS  //[create NEXT PAGE Object = THIS page object] 
-        .selectAttacks("10")
+        .selectAttacks("15")
         .selectDays("8")
         .selectHeadaches("8")
         .clickNextButton(new CurrentlyTakeAnyMedicationsTreatMIG()); 
         //------Validate protocol DQs in debug window----------
         currentlyTakeAnyMedicationsTreatMIG.waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals("The next few questions are about migraines, regular headaches, and how often you have them. If you ...", protocol3, protocol5, protocol2, protocol6);
+        debugPageOLS.checkProtocolsEquals("The next few questions are about migraines, regular headaches, and how often you have them. If you ...", protocol3, protocol5, protocol2, protocol6,protocol7);
         //debugPageOLS.checkProtocolsEquals(approxHowLongSufferingFromMIG.titleExpected, protocol2, protocol5, protocol6);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
-        mIGAttackFrequencyOLS.selectAttacks("8")
+        mIGAttackFrequencyOLS.selectAttacks("9")
         .selectDays("8")
         .selectHeadaches("8")
         .clickNextButton(new CurrentlyTakeAnyMedicationsTreatMIG()); 
@@ -407,7 +407,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
 		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
 		//----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
 				theStudySitePageOLS.waitForPageLoad()
-		        .clickOnAnswer("Other")
+		        .clickOnAnswer("Public transportation")
 		        .clickNextButton(new WhatMedicalCoveragePageOLS())
 		                
 		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-

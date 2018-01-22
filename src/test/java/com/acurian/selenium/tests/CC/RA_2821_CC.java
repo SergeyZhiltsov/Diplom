@@ -275,7 +275,7 @@ public class RA_2821_CC extends BaseTest{
                .clickOnAnswer("No")
                .clickNextButton(new TheStudySitePageCC())
                .waitForPageLoad()
-               .clickOnAnswer("No")
+               .clickOnAnswers("Public transportation")
                .clickNextButton(new WhatSortPageCC())
                .waitForPageLoad()
                .clickOnAnswers("No, I have no coverage")
@@ -299,7 +299,8 @@ public class RA_2821_CC extends BaseTest{
                .clickNextButton(new ThankYouCloseSimplePageCC())
                .waitForPageLoad()
                .clickNextButton(selectActionPageCC)
-               .waitForPageLoad();
+               .waitForPageLoad()
+               .pidFromDbToLog(env);
        
        
 	}

@@ -41,6 +41,7 @@ import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BiologicMedications;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -214,19 +215,19 @@ public class AS_4319_OLS extends BaseTest {
         .setAll("5", "5", "160")
         .clickNextButton(new ChildrenUnderPageOLS())
         .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
+        .clickOnAnswer("No")
         .clickNextButton(new TheStudySitePageOLS())
         .waitForPageLoad()
-        .clickOnAnswer("No")
-        .clickNextButton(new WhatSortPageOLS())
+        .clickOnAnswer("Public transportation")
+//        .clickNextButton(new WouldYouUsePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("Neither")
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
         .waitForPageLoad()
         .clickOnAnswers("No, I have no coverage")
         .clickNextButton(new EthnicBackgroundPageOLS())
         .waitForPageLoad()
-        .clickOnAnswers("Other")
+        .clickOnAnswers("Prefer not to answer")
         .clickNextButton(new IdentificationPageOLS())
         .waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
@@ -245,7 +246,9 @@ public class AS_4319_OLS extends BaseTest {
         .getPage(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad();	
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
+        
       
 	}
 

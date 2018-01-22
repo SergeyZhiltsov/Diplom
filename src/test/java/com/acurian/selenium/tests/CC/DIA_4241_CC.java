@@ -340,7 +340,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswers("Public transportation")
 //                .clickNextButton(new WouldYouUsePageCC())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Neither")
