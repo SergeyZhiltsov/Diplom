@@ -261,7 +261,7 @@ public class RA_4356F_OLS extends BaseTest {
         .clickOnAnswers("None of the above")
         .clickNextButton(new TheStudySitePageOLS())
         .waitForPageLoad()
-        .clickOnAnswer("No")        
+        .clickOnAnswer("Public transportation")        
         .clickNextButton(new WhatMedicalCoveragePageOLS())
         .waitForPageLoad()
         .clickOnAnswers("No, I have no coverage")

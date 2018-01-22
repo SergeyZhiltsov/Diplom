@@ -306,10 +306,10 @@ public class END_4385_OLS extends BaseTest {
         .clickOnAnswer("No")
         .clickNextButton(new TheStudySitePageOLS())
         .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new WouldYouUsePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Neither")
+        .clickOnAnswer("Public transportation")
+//        .clickNextButton(new WouldYouUsePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("Neither")
         .clickNextButton(new WhatMedicalCoveragePageOLS())
         .waitForPageLoad()
         .clickOnAnswers("No, I have no coverage")
@@ -328,8 +328,8 @@ public class END_4385_OLS extends BaseTest {
         .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad();        
-       
+        .waitForPageLoad()       
+        .pidFromDbToLog(env);
 	}
 
 }

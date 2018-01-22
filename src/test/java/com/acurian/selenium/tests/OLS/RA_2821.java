@@ -262,7 +262,7 @@ public class RA_2821 extends BaseTest {
         .clickOnAnswers("None of the above")
         .clickNextButton(new TheStudySitePageOLS())
         .waitForPageLoad()
-        .clickOnAnswer("No")        
+        .clickOnAnswer("Public transportation")        
         .clickNextButton(new WhatMedicalCoveragePageOLS())
         .waitForPageLoad()
         .clickOnAnswers("No, I have no coverage")
@@ -287,7 +287,8 @@ public class RA_2821 extends BaseTest {
         .getPage(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad();	               
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
 				
 			
 	}

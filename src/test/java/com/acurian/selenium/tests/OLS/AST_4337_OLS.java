@@ -31,7 +31,7 @@ public class AST_4337_OLS extends BaseTest{
         String debugSiteName = "";
         String env = "STG";
         String zipCode = "19044";
-        String Siteindicator = "Rheumatoid Arthritis";
+        String Siteindicator = "Asthma";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -341,10 +341,10 @@ public class AST_4337_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new WouldYouUsePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
+                .clickOnAnswer("Public transportation")
+//                .clickNextButton(new WouldYouUsePageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -369,7 +369,7 @@ public class AST_4337_OLS extends BaseTest{
                 .getPage(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();	
-
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

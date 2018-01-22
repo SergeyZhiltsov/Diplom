@@ -240,10 +240,10 @@ public class MedCo_3962_CC extends BaseTest{
        .clickOnAnswer("No")
        .clickNextButton(new TheStudySitePageCC())
        .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new WouldYouUsePageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("Neither")
+       .clickOnAnswers("Public transportation")
+//       .clickNextButton(new WouldYouUsePageCC())
+//       .waitForPageLoad()
+//       .clickOnAnswers("Neither")
        .clickNextButton(new WhatMedicalCoveragePageCC())
        .waitForPageLoad()
        .clickOnAnswers("No, I have no coverage")
@@ -261,8 +261,8 @@ public class MedCo_3962_CC extends BaseTest{
        .clickNextButton(new ThankYouCloseSimplePageCC())
        .waitForPageLoad()
        .clickNextButton(selectActionPageCC)
-       .waitForPageLoad();
-       
+       .waitForPageLoad()
+       .pidFromDbToLog(env);
        
 	}
 

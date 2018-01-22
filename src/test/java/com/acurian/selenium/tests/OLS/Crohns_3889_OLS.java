@@ -585,7 +585,7 @@ public class Crohns_3889_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswer("Public transportation")
 /*                .clickNextButton(new WouldYouUsePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")*/

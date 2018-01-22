@@ -266,8 +266,8 @@ public class DYSLI_4356 extends BaseTest {
 				.clickNextButton(new AboutHealthPageOLS());
 		
 		
-		aboutHealthPageOLS.waitForPageLoad();
-		
+		aboutHealthPageOLS.waitForPageLoad()
+		.pidFromDbToLog(env);
 	}
 
 }

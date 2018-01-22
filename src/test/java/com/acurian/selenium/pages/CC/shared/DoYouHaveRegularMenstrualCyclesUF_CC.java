@@ -11,7 +11,7 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 
 public class DoYouHaveRegularMenstrualCyclesUF_CC extends MainPageCC{
 
-    public final String titleExpected = "Do you have regular menstrual cycles, meaning that you get your period each month on a predictable schedule?";
+    public final String titleExpected = "Do you have regular menstrual cycles, meaning you are able to predict when you are getting your period every month and it usually lasts about the same number of days each month?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

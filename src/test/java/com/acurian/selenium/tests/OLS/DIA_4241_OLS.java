@@ -308,7 +308,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
+                .clickOnAnswer("Public transportation")
 //                .clickNextButton(new WouldYouUsePageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Neither")
