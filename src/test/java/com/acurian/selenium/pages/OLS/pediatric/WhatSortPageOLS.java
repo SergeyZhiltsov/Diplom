@@ -12,7 +12,7 @@ import java.util.List;
 public class WhatSortPageOLS extends MainPageOLS{
 
     // rel 38 deactivated
-    public final String titleExpected = "What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?\n" +
+    public final String titleExpected = "What medical coverage do you have for your doctor visits, medication, surgery, and/or testing?\n" +
             "Please note that this is for informational purposes only.\n" +
             "Please select all that apply.";
 

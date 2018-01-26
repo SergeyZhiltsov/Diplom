@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class PersonalDetails extends MainPageOLS{
@@ -11,23 +13,22 @@ public class PersonalDetails extends MainPageOLS{
     public final String titleExpected = "Personal details (*required fields)";
 
     @FindBy(xpath = "//h2[@id='patient-title']")
-    
     WebElement titleText;
 
-    @FindBy(xpath = "//input[contains(@name,'QI3')]")
-    WebElement firstName;
-    
-    @FindBy(xpath = "//input[contains(@name,'QI5')]")
-    WebElement lastName;
-    
-    @FindBy(xpath = "//input[contains(@name,'QI7')]")
-    WebElement phone;
-    
-    @FindBy(xpath = "//input[contains(@name,'QI16')]")
-    WebElement zipCode;
-    
-    @FindBy(xpath = "//button[contains(.,'Confirm')]")
-    WebElement confirmButton;
+    @FindBy(xpath = "//input[@id='QI3']")
+    WebElement firstNameField;
+
+    @FindBy(xpath = "//input[@id='QI5']")
+    WebElement lastNameField;
+
+    @FindBy(xpath = "//input[@id='QI20']")
+    WebElement emailAddressField;
+
+    @FindBy(xpath = "//input[@id='QI7']")
+    WebElement phoneField;
+
+    @FindBy(xpath = "//input[@id='QI16']")
+    WebElement zipCodeField;
 
     public PersonalDetails() {
         PageFactory.initElements(getDriver(), this);
@@ -38,41 +39,52 @@ public class PersonalDetails extends MainPageOLS{
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
-    
+
     @Step
-    public PersonalDetails setFirstName(String firstN) {
-        typeText(firstName, firstN);
+    public PersonalDetails setAllFields(String firstName, String lastName, String email, String phoneNumber, String zipCode) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmailAddress(email);
+        setPhone(phoneNumber);
+        setZipCode(zipCode);
+        waitForAnimation();
         return this;
     }
-    
+
     @Step
-    public PersonalDetails setLastName(String lastN) {
-        typeText(lastName, lastN);
+    public PersonalDetails setFirstName(String name) {
+        typeTextWithoutClear(firstNameField, name);
+        waitForAnimation();
         return this;
     }
-    
+
     @Step
-    public PersonalDetails setPhone(String ph) {
-        typeText(phone, ph);
+    public PersonalDetails setLastName(String name) {
+        typeTextWithoutClear(lastNameField, name);
+        waitForAnimation();
         return this;
     }
-    
+
     @Step
-    public PersonalDetails setZip(String zip) {
-        typeText(zipCode, zip);
+    public PersonalDetails setEmailAddress(String address) {
+        typeTextWithoutClear(emailAddressField, address);
+        waitForAnimation();
         return this;
     }
-   
+
     @Step
-    public String getTitleText(){
-        return getText(titleText);
-    } 
-    
-    @Step
-    public PersonalDetails clickConfirm(){
-    	confirmButton.click();
+    public PersonalDetails setPhone(String phoneNumber) {
+        typeTextWithoutClear(phoneField, phoneNumber);
+        waitForAnimation();
         return this;
-    }  
+    }
+
+    @Step
+    public PersonalDetails setZipCode(String zipCode) {
+        typeTextWithoutClear(zipCodeField, zipCode);
+        waitForAnimation();
+        return this;
+    }
     
 
 }

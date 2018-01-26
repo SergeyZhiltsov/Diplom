@@ -14,7 +14,7 @@ public class HowLongYouBeenExperiencingUrinaryLeakageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
+    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> radioButtonsList;
 
     public HowLongYouBeenExperiencingUrinaryLeakageOLS() {
