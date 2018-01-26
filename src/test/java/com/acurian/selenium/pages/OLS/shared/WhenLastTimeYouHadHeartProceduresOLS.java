@@ -15,7 +15,7 @@ public class WhenLastTimeYouHadHeartProceduresOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS4310_')]//span[contains(@class,'visible-md-inline')]")
+    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> radioButtonsList;
 
     public WhenLastTimeYouHadHeartProceduresOLS() {

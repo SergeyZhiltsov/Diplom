@@ -223,7 +223,7 @@ public class DYS_4356_CC extends BaseTest{
        .clickOnAnswer("No")
        .clickNextButton(new TheStudySitePageCC())
        .waitForPageLoad()
-       .clickOnAnswer("No")
+       .clickOnAnswers("No")
        .clickNextButton(new WhatSortPageCC())
        .waitForPageLoad()
        .clickOnAnswers("No, I have no coverage")
