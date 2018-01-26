@@ -247,8 +247,7 @@ public class DYSLI_4356 extends BaseTest {
 				.clickNextButton(new PersonalDetails());
 		
 		SiteSelectionPageOLS siteSelectionPageOLS = personalDetails1
-				.waitForPageLoad()
-				.clickConfirm()				
+				.waitForPageLoad()							
 				.clickNextButton(new SiteSelectionPageOLS());
 		
 		SynexusQualifiedCloseDYSPageOLS synexusQualifiedCloseDYSPageOLS = siteSelectionPageOLS
