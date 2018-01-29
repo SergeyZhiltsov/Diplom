@@ -42,6 +42,7 @@ import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.BiologicMedicationsCC;
@@ -64,12 +65,12 @@ public class RA_4356F_CC extends BaseTest{
 	
 	public void tc001Test(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
-        List<String> protocols = Arrays.asList("M15_925","M13_545");
+        List<String> protocols = Arrays.asList("M15_925");//,"M13_545");
         String protocol1 = "M15_925";
-        String protocol2 = "M13_545";
+        //String protocol2 = "M13_545";
         String protocol3 = "CL04041023";
         String studyName = "arthritis";        
-        String env = "STG";
+        String env = "PRD";
         String siteName = "AUT_RA_4356F_Site";
         String zipCode  = "19044";
         
@@ -266,15 +267,20 @@ public class RA_4356F_CC extends BaseTest{
                .clickNextButton(new ChildrenUnderPageCC())
                .waitForPageLoad()
                .clickOnAnswer("No")
-               .clickNextButton(new TheStudySitePageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("Public transportation")
-               .clickNextButton(new WhatSortPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("No, I have no coverage")
-               .clickNextButton(new EthnicBackgroundPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("Other")
+               //----------PEDIATRIC HEALTH Questions----------
+               //.clickNextButton(new HouseholdHavePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("None of the above")
+               //.clickNextButton(new TheStudySitePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("Public transportation")
+               //.clickNextButton(new WhatMedicalCoveragePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("No, I have no coverage")
+               //.clickNextButton(new EthnicBackgroundPageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("Prefer not to answer")
+        //----------Resume GENERAL HEALTH Questions----------
                .clickNextButton(new IdentificationPageCC())
                .waitForPageLoad()
                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

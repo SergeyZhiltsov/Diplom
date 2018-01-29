@@ -78,6 +78,7 @@ public class SiteSelectionPageOLS extends MainPageOLS{
         pidNumber = getText(pidNumberPath);
         logTextToAllure("PID="+pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
+        System.out.println("PID = "+pidNumber);
         return this;
     }
 

@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WarmTransfer1 extends MainPageCC{
+public class RadiantWarmTransfer4 extends MainPageCC{
 
-    public final String titleExpected ="We're glad the location is convenient for you. \n\nAgent Note: \nIf CSR has ability to direct schedule in clinical conductor, then Follow the Scheduling Script \n\nIf CSR does NOT have ability to direct schedule in clinical conductor, then Continue with the Warm Transfer\n\nI would like to transfer you to the doctor's scheduling center.\nPlease hold for just a minute while I try to reach the scheduling center.";
+    public final String titleExpected = "For Call Center Tracking of Direct Scheduling - Please select one of the following dispositions:";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -19,19 +19,19 @@ public class WarmTransfer1 extends MainPageCC{
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public WarmTransfer1() {
+    public RadiantWarmTransfer4() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WarmTransfer1 waitForPageLoad() {
+    public RadiantWarmTransfer4 waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public WarmTransfer1 clickOnAnswer(String answerText) {
+    public RadiantWarmTransfer4 clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()
@@ -47,4 +47,3 @@ public class WarmTransfer1 extends MainPageCC{
 
 
 }
-

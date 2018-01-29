@@ -79,10 +79,10 @@ public class RA_4356F_OLS extends BaseTest {
 	public void tc01() {
 		String phoneNumberRA = "AUTAMS1RA1";
 		String env = "STG";
-		String protocol1 = "M13_545";
+		//String protocol1 = "M13_545";
         String protocol2 = "M15_925";        
         String protocol3 = "CL04041023";
-        List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3);
+        //List<String> protocols = Arrays.asList(protocol2,protocol3);
         String studyName = "rheumatoid";
         String siteName = "AUT_RA_4356F_Site";
         String zipCode = "19044";
@@ -112,7 +112,7 @@ public class RA_4356F_OLS extends BaseTest {
 				 .clickNextButton(new HasHealthcareProfessionalPageOLS());
 		
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, protocol1, protocol2);
+        debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, protocol2);
         debugPageOLS.back();
                 
         WhatKindOfArthritisPage whatKindOfArthritisPage = doYouSufferFromArthritis
