@@ -433,8 +433,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
                 .clickNextButton(new SiteSelectionPageCC())
-                .threadSleep(15000);  //wait 15  secs
-                 new SiteSelectionPageCC()
+                .waitForPageLoad("a migraine study")
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new RadiantWarmTransfer1())
