@@ -321,8 +321,7 @@ public class Endo_4356E_CC extends BaseTest{
     	                .waitForPageLoad()
     	                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
     	                .clickNextButton(new SiteSelectionPageCC())
-    	                .threadSleep(12000);
-    	                 new SiteSelectionPageCC()
+    	                .waitForPageLoad("an endometriosis study")
     	                .getPID()
     	                .clickOnAnswer(siteName)
     	                .clickNextButton(new RadiantWarmTransferClose1PageCC())

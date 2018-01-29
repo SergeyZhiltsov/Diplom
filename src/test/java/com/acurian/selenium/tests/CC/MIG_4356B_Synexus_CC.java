@@ -438,27 +438,16 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new RadiantWarmTransfer1())
-                 //Warm Transfer Questions ----- //Warm Transfer Page#2 
-                .threadSleep(20000);  //wait 15  secs
-                 new RadiantWarmTransfer1()
-                //.waitForPageLoad() 
+                //Warm Transfer Questions ----- 
+                .waitForPageLoad()
                 .clickOnAnswer("[patient agrees to be transferred]")
                 .clickNextButton(new RadiantWarmTransfer2())
-                //Warm Transfer Page#2 
-                .threadSleep(10000);  //wait 10  secs
-                new RadiantWarmTransfer2()
-                //.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new RadiantWarmTransfer3())
-                //Warm Transfer Page#3
-                .threadSleep(10000);  //wait 10  secs
-                new RadiantWarmTransfer3()
-                //.waitForPageLoad()
+                .waitForPageLoad()
                 .clickNextButton(new RadiantWarmTransfer4())
-                //Warm Transfer Page#4 
-                .threadSleep(10000);  //wait 10  secs
-                new RadiantWarmTransfer4()
-                //.waitForPageLoad()                
+                .waitForPageLoad()
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

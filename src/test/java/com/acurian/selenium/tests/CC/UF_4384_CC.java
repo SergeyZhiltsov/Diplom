@@ -349,8 +349,7 @@ public class UF_4384_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
                 .clickNextButton(new SiteSelectionPageCC())
-                .threadSleep(15000);  //wait 15  secs
-                 new SiteSelectionPageCC()
+                .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSGeneralCC())
