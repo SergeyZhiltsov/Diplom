@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
@@ -66,10 +67,9 @@ public class UF_4384_CC extends BaseTest{
                 .activateDebugOnProd(env);
         Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-                .activateDebugOnProd(env)
-                .clickOnAnswer("Learn more about matching to clinical trials")
-                .clickNextButton(new DateOfBirthPageCC());
-
+               .clickOnAnswer("Learn more about matching to clinical trials")
+               .clickNextButton(new DateOfBirthPageCC());
+ 
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
@@ -331,22 +331,25 @@ public class UF_4384_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
-         //----------PEDIATRIC HEALTH Questions----------    
-                .waitForPageLoad()
-                .clickOnAnswers("Public transportation")
-                .clickNextButton(new WhatMedicalCoveragePageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("No, I have no coverage")
-                .clickNextButton(new EthnicBackgroundPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+                //----------PEDIATRIC HEALTH Questions----------
+                //.clickNextButton(new HouseholdHavePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("None of the above")
+                //.clickNextButton(new TheStudySitePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Public transportation")
+                //.clickNextButton(new WhatMedicalCoveragePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("No, I have no coverage")
+                //.clickNextButton(new EthnicBackgroundPageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Prefer not to answer")
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
                 .clickNextButton(new SiteSelectionPageCC())
-                .threadSleep(15000);  //wait 15  secs
-                 new SiteSelectionPageCC()
+                .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSGeneralCC())

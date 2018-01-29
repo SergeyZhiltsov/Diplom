@@ -415,53 +415,38 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickNextButton(new ChildrenUnderPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                //----------PEDIATRIC HEALTH Questions----------   
+                //----------PEDIATRIC HEALTH Questions----------
                 .clickNextButton(new HouseholdHavePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TheStudySitePageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("Public transportation")
-//                .clickNextButton(new WouldYouUsePageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("Neither")
-                .clickNextButton(new WhatMedicalCoveragePageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("No, I have no coverage")
-                .clickNextButton(new EthnicBackgroundPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+                //.clickNextButton(new TheStudySitePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Public transportation")
+                //.clickNextButton(new WhatMedicalCoveragePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("No, I have no coverage")
+                //.clickNextButton(new EthnicBackgroundPageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Prefer not to answer")
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
                 .clickNextButton(new SiteSelectionPageCC())
-                .threadSleep(15000);  //wait 15  secs
-                 new SiteSelectionPageCC()
+                .waitForPageLoad("a migraine study")
                 .getPID()
                 .clickOnAnswer(siteName)
-                .clickNextButton(new WarmTransfer1())
-                 //Warm Transfer Questions ----- //Warm Transfer Page#2 
-                .threadSleep(20000);  //wait 15  secs
-                 new WarmTransfer1()
-                //.waitForPageLoad() 
+                .clickNextButton(new RadiantWarmTransfer1())
+                //Warm Transfer Questions ----- 
+                .waitForPageLoad()
                 .clickOnAnswer("[patient agrees to be transferred]")
-                .clickNextButton(new WarmTransfer2())
-                //Warm Transfer Page#2 
-                .threadSleep(10000);  //wait 10  secs
-                new WarmTransfer2()
-                //.waitForPageLoad()
+                .clickNextButton(new RadiantWarmTransfer2())
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WarmTransfer3())
-                //Warm Transfer Page#3
-                .threadSleep(10000);  //wait 10  secs
-                new WarmTransfer3()
-                //.waitForPageLoad()
-                .clickNextButton(new WarmTransfer4())
-                //Warm Transfer Page#4 
-                .threadSleep(10000);  //wait 10  secs
-                new WarmTransfer4()
-                //.waitForPageLoad()                
+                .clickNextButton(new RadiantWarmTransfer3())
+                .waitForPageLoad()
+                .clickNextButton(new RadiantWarmTransfer4())
+                .waitForPageLoad()
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

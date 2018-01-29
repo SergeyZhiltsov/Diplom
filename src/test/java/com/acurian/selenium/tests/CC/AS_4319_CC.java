@@ -12,8 +12,9 @@ import com.acurian.selenium.pages.CC.AS_4319.PermanentlyWheelchairBoundCC;
 import com.acurian.selenium.pages.CC.AS_4319.ResultsOfYouXrayOrMRICC;
 import com.acurian.selenium.pages.CC.AS_4319.SignsOfAnkylosingSpondylitisCC;
 import com.acurian.selenium.pages.CC.AS_4319.YouBeenDiagnosedWithCC;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.WarmTransfer4;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
@@ -304,18 +305,20 @@ public class AS_4319_CC extends BaseTest{
        .clickNextButton(new ChildrenUnderPageCC())
        .waitForPageLoad()
        .clickOnAnswer("No")
-               .clickNextButton(new TheStudySitePageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("Public transportation")
-//               .clickNextButton(new WouldYouUsePageCC())
-//               .waitForPageLoad()
-//               .clickOnAnswers("Neither")
-               .clickNextButton(new WhatMedicalCoveragePageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("No, I have no coverage")
-               .clickNextButton(new EthnicBackgroundPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("Prefer not to answer")
+       //----------PEDIATRIC HEALTH Questions----------
+       //.clickNextButton(new HouseholdHavePageCC())
+       //.waitForPageLoad()
+       //.clickOnAnswers("None of the above")
+       //.clickNextButton(new TheStudySitePageCC())
+       //.waitForPageLoad()
+       //.clickOnAnswers("Public transportation")
+       //.clickNextButton(new WhatMedicalCoveragePageCC())
+       //.waitForPageLoad()
+       //.clickOnAnswers("No, I have no coverage")
+       //.clickNextButton(new EthnicBackgroundPageCC())
+       //.waitForPageLoad()
+       //.clickOnAnswers("Prefer not to answer")
+//----------Resume GENERAL HEALTH Questions----------
        .clickNextButton(new IdentificationPageCC())
        .waitForPageLoad()
        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
@@ -326,7 +329,7 @@ public class AS_4319_CC extends BaseTest{
        .clickNextButton(new RadiantWarmTransferClose1PageCC())
        .waitForPageLoad()
        .clickOnAnswer("[direct schedule in clinical conductor]")
-       .clickNextButton(new WarmTransfer4())
+       .clickNextButton(new RadiantWarmTransfer4())
        .waitForPageLoad()
        .clickOnAnswer("Transferred for Scheduling")
        .clickNextButton(selectActionPageCC)
