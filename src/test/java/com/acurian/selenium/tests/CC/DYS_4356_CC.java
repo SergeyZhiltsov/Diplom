@@ -15,10 +15,11 @@ import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
-import com.acurian.selenium.pages.CC.closes.WarmTransfer4;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
@@ -221,15 +222,6 @@ public class DYS_4356_CC extends BaseTest{
        .clickNextButton(new ChildrenUnderPageCC())
        .waitForPageLoad()
        .clickOnAnswer("No")
-       .clickNextButton(new TheStudySitePageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("No")
-       .clickNextButton(new WhatSortPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("No, I have no coverage")
-       .clickNextButton(new EthnicBackgroundPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("Other")
        .clickNextButton(new IdentificationPageCC())
        .waitForPageLoad()       
        .clickNextButton(new SiteSelectionPageCC())
@@ -241,14 +233,11 @@ public class DYS_4356_CC extends BaseTest{
        .clickOnAnswer("[direct schedule in clinical conductor]")
        .clickNextButton(new SynexusRadiantDirectScheduleCC())
        .waitForPageLoad()
-       .clickNextButton(new WarmTransfer4())
+       .clickNextButton(new RadiantWarmTransfer4())
        .waitForPageLoad()
        .clickOnAnswer("Transferred for Scheduling")
        .clickNextButton(selectActionPageCC)
-       .waitForPageLoad(); 
-       
-
-}
-        
-	
+       .waitForPageLoad()
+       .pidFromDbToLog(env);
+	}
 }

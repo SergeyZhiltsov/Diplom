@@ -87,15 +87,11 @@ public class MedCo_3962_CC extends BaseTest{
                 .waitForPageLoad();
        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS, "Title is diff");
        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
+        .activateDebugOnProd(env)
         .clickOnAnswer("Learn more about matching to clinical trials")
         .clickNextButton(new DateOfBirthPageCC());
        
-       dateOfBirthPageCC
-        .threadSleep(2000);
-
-       //Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-       //Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpected3962Med, "Title is diff");
-
+       //dateOfBirthPageCC.waitForPageLoad();
        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                .setMonth("Sep")
                .setDay("9")
@@ -186,7 +182,7 @@ public class MedCo_3962_CC extends BaseTest{
        lastTimeYouHadHeartProceduresCC
    	   .waitForPageLoad()
    	   .clickOnAnswer("7 - 12 months ago")
-   	   .clickNextButton(new ThankYouForAnsweringCC()) 
+/*     .clickNextButton(new ThankYouForAnsweringCC())
        .waitForPageLoad()
        .clickNextButton(new HeartFailureIsAlsoPageCC())
        .waitForPageLoad()
@@ -235,29 +231,18 @@ public class MedCo_3962_CC extends BaseTest{
        .setAll("5", "5", "160")
        .clickNextButton(new LetMeSeePageCC())
        .waitForPageLoad()
-       .clickNextButton(new ChildrenUnderPageCC())
+       .clickNextButton(new PregnancyAndFertilityCC())
        .waitForPageLoad()
+       .clickOnAnswer("None of the above")*/
+   	   .clickNextButton(new ChildrenUnderPageCC())
+   	   .waitForPageLoad()
        .clickOnAnswer("No")
-   /*    .clickNextButton(new IdentificationPageCC())
-       .waitForPageLoad()
-       .clickNextButton(new TheStudySitePageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("Public transportation")
-//       .clickNextButton(new WouldYouUsePageCC())
-//       .waitForPageLoad()
-//       .clickOnAnswers("Neither")
-       .clickNextButton(new WhatMedicalCoveragePageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("No, I have no coverage")
-       .clickNextButton(new EthnicBackgroundPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("Prefer not to answer")*/
        .clickNextButton(new IdentificationPageCC())
        .waitForPageLoad()       
        .clickNextButton(new SiteSelectionPageCC())
-       .waitForPageLoad(studyName)
+       .waitForPageLoad("a high cholesterol and heart disease study")
+       .clickOnAnswer(siteName)
        .getPID()
-       .selectAnswer(siteName)
        .clickNextButton(new QualifiedClose2PageCC())
        .waitForPageLoad()
        .clickNextButton(new ThankYouCloseSimplePageCC())
@@ -265,7 +250,5 @@ public class MedCo_3962_CC extends BaseTest{
        .clickNextButton(selectActionPageCC)
        .waitForPageLoad()
        .pidFromDbToLog(env);
-       
 	}
-
 }
