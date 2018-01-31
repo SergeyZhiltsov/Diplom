@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.OLS.DY_4356.NonPrescriptionSupplements;
 import com.acurian.selenium.pages.OLS.DY_4356.PregnancyAndFertilityPage;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
+import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
@@ -106,7 +107,6 @@ public class MedCo_3962_OLS extends BaseTest {
 		DebugPageOLS debugPageOLS = new DebugPageOLS();		
 		debugPageOLS.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);		
 		debugPageOLS.back();		
-		
 		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 =  dyslipidemiaHealthcarePage
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
@@ -114,10 +114,8 @@ public class MedCo_3962_OLS extends BaseTest {
 		
 		hasHealthcareProfessionalPageOLS1
 		        .waitForPageLoad();		
-				
 		debugPageOLS.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);		
 		debugPageOLS.back();			
-		
 		StatinMedicationsPage statinMedicationsPage = dyslipidemiaHealthcarePage
 				.waitForPageLoad()
 				.clickOnAnswers("High fats or lipids, or hyperlipidemia")				
@@ -127,12 +125,9 @@ public class MedCo_3962_OLS extends BaseTest {
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new AreYouTakingMedications());	
-		
-		
-		areYouTakingMedications.threadSleep(2000);
+		areYouTakingMedications.waitForPageLoad();
 		debugPageOLS.checkProtocolsEquals("One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a ...", protocol1);		
 		debugPageOLS.back();	
-	
 		HowLongTakingStatin howLongTakingStatin = statinMedicationsPage
 				.waitForPageLoad()				
 				.clickOnAnswers("Rosuvastatin")
@@ -167,7 +162,6 @@ public class MedCo_3962_OLS extends BaseTest {
 		youHaveCHF.waitForPageLoad();
 		debugPageOLS.checkProtocolsEquals("Ghost Question - Atherosclerotic Cardiovascular Disease Qualifying Logic", protocol1);		
 		debugPageOLS.back();
-		
 		WhenLastTimeYouHadHeartProceduresOLS whenLastTimeYouHadHeartProceduresOLS = heartRelatedMedicalProc
 				.waitForPageLoad()
 				.clickOnAnswers("Stent placement")
@@ -177,15 +171,13 @@ public class MedCo_3962_OLS extends BaseTest {
 				.waitForPageLoad()
 				.clickOnAnswer("1 - 3 months ago")
 				.clickNextButton(new YouHaveCHF());
-		
 		youHaveCHF1.waitForPageLoad();
 		debugPageOLS.checkProtocolsEqualsForQNumber("QS5210", protocol1);		
 		debugPageOLS.back();
-		
-		YouHaveCHF youHaveCHF2 = whenLastTimeYouHadHeartProceduresOLS
-				.waitForPageLoad()
+		//YouHaveCHF youHaveCHF2 = whenLastTimeYouHadHeartProceduresOLS
+				whenLastTimeYouHadHeartProceduresOLS.waitForPageLoad()
 				.clickOnAnswer("7 - 12 months ago")
-				.clickNextButton(new YouHaveCHF());
+				/*.clickNextButton(new YouHaveCHF());
 		
 		AffectingYourMetabolismPageOLS affectingYourMetabolismPageOLS = youHaveCHF2
 				.waitForPageLoad()
@@ -233,7 +225,7 @@ public class MedCo_3962_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad()
-                .setAll("5", "5", "160")
+                .setAll("5", "5", "160")*/
                 .clickNextButton(new ChildrenUnderPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -255,13 +247,14 @@ public class MedCo_3962_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()                
-                .getPage(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new GladLocationIsConvenient())
+                //----------GladLocationIsConvenient Page--------------------
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+        		//----------ThankYouCloseSimplePageOLS Page--------------------
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
-		
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
 	}
-
 }

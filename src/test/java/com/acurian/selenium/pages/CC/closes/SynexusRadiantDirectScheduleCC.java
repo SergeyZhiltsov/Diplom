@@ -14,9 +14,9 @@ import java.util.List;
 
 public class SynexusRadiantDirectScheduleCC extends MainPageCC{
 
-    public final String titleExpected = "The next step is to get you scheduled for an appointment with the study doctor. During this visit, the study doctor will further discuss the study requirements and answer any questions you may have. Let me look at the study doctor’s calendar..\n" +
+    public final String titleExpected = "The next step is to get you scheduled for an appointment with the study doctor. During this visit, the study doctor will further discuss the study requirements and answer any questions you may have. Let me look at the study doctor’s calendar.\n" +
             "\n" +
-            "Agent note: Go to Clinical Conductor and enter the required Acurian information\n";
+            "Agent note: Go to Clinical Conductor and enter the required Acurian information";
             
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
