@@ -30,9 +30,12 @@ public class SUI_3923_OLS extends BaseTest{
         String phoneNumberLBP = "AUTAMS1SUI";
         String protocol1 = "G201002";
         String studyName = "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
-        String env = "STG";  //Enter which OLS environment to use for testing
+  //      String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_SUI_3923";
         String zip_Code = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

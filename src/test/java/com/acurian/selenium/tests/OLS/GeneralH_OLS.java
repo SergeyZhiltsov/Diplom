@@ -32,8 +32,11 @@ public class GeneralH_OLS extends BaseTest{
         String studyName = "a high blood pressure";
         String siteName = "AUT_HTN_4356D_Site";
         String debugSiteName = "";
-        String env = "STG";
+  //      String env = "STG";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

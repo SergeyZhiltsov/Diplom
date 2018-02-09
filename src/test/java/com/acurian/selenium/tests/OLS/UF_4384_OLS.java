@@ -33,8 +33,11 @@ public class UF_4384_OLS extends BaseTest{
         String studyName1 = "uterine fibroids"; 
         String site_Indication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
-        String env = "STG";
-        String zipCode = "19044";  
+    //    String env = "STG";
+        String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         
         //---------------Date of Birth Question-------------------

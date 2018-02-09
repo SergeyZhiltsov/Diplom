@@ -60,13 +60,16 @@ public class END_4385_OLS extends BaseTest {
 	@Test
 	public void tc01() {
 		String phoneNumberRA = "AUTAMS1END";
-		String env = "STG";
+	//	String env = "STG";
 		String protocol1 = "MVT_601_3101";
         String protocol2 = "MVT_601_3102";        
         List<String> protocols = Arrays.asList(protocol1,protocol2);
         String studyName = "an endometriosis";
         String siteName = "AUT_END_4385";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           

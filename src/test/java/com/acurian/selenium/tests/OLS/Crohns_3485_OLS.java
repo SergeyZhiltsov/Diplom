@@ -29,9 +29,11 @@ public class Crohns_3485_OLS extends BaseTest{
         List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3,protocol4);
         String studyName = "a Crohn's";
         String siteName = "AUT_CRN_3485_HS";
-        String debugSiteName = "";
-        String env = "STG";
+        String debugSiteName = "";        
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

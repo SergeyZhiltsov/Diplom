@@ -54,9 +54,12 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         String protocol6 = "UBR_MD_02";
         String protocol7 = "BHV3000_201";
         String studyName =  "a Migraine";  //"Migraine 4356B Synexus";
-        String env = "STG";  //Enter which OLS environment to use for testing
+ //       String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

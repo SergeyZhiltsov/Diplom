@@ -72,10 +72,13 @@ public class End_4385_CC extends BaseTest{
         String protocol2 = "MVT_601_3102";
         String studyName = "an endometriosis";
         String studyName1 = "endometriosis";
-        String env = "STG";
+   //     String env = "STG";
         String siteName = "AUT_END_4385";
         String zipCode  = "19044";
         String site_Indication = "Endometriosis";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         LoginPageCC loginPageCC = new LoginPageCC();
 

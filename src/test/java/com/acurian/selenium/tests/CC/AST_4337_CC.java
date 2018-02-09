@@ -35,9 +35,12 @@ public class AST_4337_CC extends BaseTest{
         String studyName = "an asthma study";
         String siteName = "AUT_AST_4337_Site";
         String debugSiteName = "";
-        String env = "STG";
+     //   String env = "STG";
         String zipCode = "19044";
         String studyIndication = "Asthma";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

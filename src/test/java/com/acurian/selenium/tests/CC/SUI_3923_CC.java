@@ -44,9 +44,12 @@ public class SUI_3923_CC extends BaseTest{
         //List<String> protocol = Arrays.asList("BHV3000_302\n"+"UBR_MD_01");
         String protocol1 = "G201002";
         String studyName =  "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
-        String env = "STG";  //Enter which CC environment to use for testing
+     //   String env = "STG";  //Enter which CC environment to use for testing
         String siteName = "AUT_SUI_3923";
         String zip_Code = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         
         //------------LOGIN Page for CC---------------   

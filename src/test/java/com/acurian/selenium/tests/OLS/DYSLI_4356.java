@@ -44,10 +44,13 @@ public class DYSLI_4356 extends BaseTest {
 	@Test
 	public void tc01() {
 		String phoneNumberDY = "AUTAMS1DYS";
-		String env = "STG";
+	//	String env = "STG";
 		String studyName = "cholesterol or heart health";
 	    String siteName = "AUT_4356C";
 	    String zipCode = "19044";
+	    
+	    String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberDY)		           

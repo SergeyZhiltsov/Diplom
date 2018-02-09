@@ -48,8 +48,11 @@ public class Diabetes_4356A_CC extends BaseTest{
         String studyName1 = "Diabetes";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
-        String env = "STG";
+   //     String env = "STG";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

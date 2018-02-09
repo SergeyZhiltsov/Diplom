@@ -59,9 +59,12 @@ public class MedCo_3962_CC extends BaseTest{
         List<String> protocols = Arrays.asList("MDCO_PCS_17_04");
         String protocol1 = "MDCO_PCS_17_04";        
         String studyName = "a high cholesterol and heart disease";
-        String env = "STG";
+     //   String env = "STG";
         String siteName = "AUT_MEDCO_3962_site";
         String zipCode  = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         LoginPageCC loginPageCC = new LoginPageCC();
 

@@ -33,8 +33,11 @@ public class Crohns_3889_CC extends BaseTest{
         String studyName = "Crohn's disease";
         String siteName = "AUT_CRN_3889_HS";
         String debugSiteName = "";
-        String env = "STG";
+  //      String env = "STG";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

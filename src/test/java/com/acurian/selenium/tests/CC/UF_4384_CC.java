@@ -41,8 +41,11 @@ public class UF_4384_CC extends BaseTest{
         String studyName1 = "uterine fibroids"; 
         String studyIndication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
-        String env = "STG";
+   //     String env = "STG";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

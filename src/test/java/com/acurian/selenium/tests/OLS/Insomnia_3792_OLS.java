@@ -24,9 +24,12 @@ public class Insomnia_3792_OLS extends BaseTest{
         String protocol1 = "E2006_G000_303";
         String protocol2 = "E2006_G000_304";
         String studyName =  "an insomnia";  
-        String env = "STG";  //Enter which OLS environment to use for testing
+   //     String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_INSO_3792_Site";
         String zip_Code = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

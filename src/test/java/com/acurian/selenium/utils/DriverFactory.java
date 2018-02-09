@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.SkipException;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class DriverFactory {
@@ -45,9 +46,13 @@ public class DriverFactory {
                 return new PhantomJSDriver();
             case "chrome":
             default:
+            	try {
                 System.setProperty(
                         "webdriver.chrome.driver",
-                        new File(DriverFactory.class.getResource("/chromedriver" + getExecutableExtension()).getFile()).getPath());
+                        new File(DriverFactory.class.getResource("/chromedriver" + getExecutableExtension()).toURI()).getPath());
+            	} catch (URISyntaxException e) {
+            		e.printStackTrace();
+            	}
                 return new ChromeDriver();
         }
     }

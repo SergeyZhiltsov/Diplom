@@ -68,9 +68,12 @@ public class Insomnia_3792_CC extends BaseTest{
         String protocol2 = "E2006_G000_304";
         String studyName = "an insomnia";  
         String studyName1 = "insomnia";  
-        String env = "STG";  //Enter which CC environment to use for testing
+     //   String env = "STG";  //Enter which CC environment to use for testing
         String siteName = "AUT_INSO_3792_Site";
         String zip_Code = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
      
         
         //------------LOGIN Page for CC---------------   

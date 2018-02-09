@@ -28,10 +28,12 @@ public class AST_4337_OLS extends BaseTest{
         String protocol1 = "205715";
         String studyName = "an asthma";
         String siteName = "AUT_AST_4337_Site";
-        String debugSiteName = "";
-        String env = "STG";
+        String debugSiteName = "";       
         String zipCode = "19044";
         String Siteindicator = "Asthma";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
