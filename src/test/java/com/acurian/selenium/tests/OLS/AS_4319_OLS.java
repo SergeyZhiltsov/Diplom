@@ -57,14 +57,16 @@ public class AS_4319_OLS extends BaseTest {
 	
 	@Test
 	public void tc01() {
-		String phoneNumberRA = "AUTAMS1AS1";
-		String env = "STG";
+		String phoneNumberRA = "AUTAMS1AS1";		
 		String protocol1 = "M16_098";               
         List<String> protocols = Arrays.asList(protocol1);
         String studyName = "an ankylosing spondylitis (AS)";
         String siteName = "AUT_AS_4319";
         String zipCode = "19044";
         String Siteindicator = "Ankylosing Spondylitis";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           

@@ -56,9 +56,12 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         String protocol7 = "BHV3000_201";
         String studyName =  "a migraine";  //"Migraine 4356B Synexus";
         String studyName1 =  "migraine"; 
-        String env = "STG";  //Enter which CC environment to use for testing
+//        String env = "STG";  //Enter which CC environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         
         //------------LOGIN Page for CC---------------   

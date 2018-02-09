@@ -19,7 +19,6 @@ import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
@@ -64,10 +63,13 @@ public class DYS_4356_CC extends BaseTest{
         String protocol1 = "VK2809-201";
         String protocol2 = "20150230";
         String studyName = "Dyslipidemia";
-        String env = "STG";
+     //   String env = "STG";
         String siteName = "(QSC9004_4356C_AUT_DYSL)";
         String zipCode  = "19044";
         String studyName1 = "a cholesterol or heart health study";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         LoginPageCC loginPageCC = new LoginPageCC();
 

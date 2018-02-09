@@ -70,11 +70,14 @@ public class MedCo_3962_OLS extends BaseTest {
 	public void tc01() {
 		String phoneNumberDY = "AUTAMS1MED";		
 		String protocol1 = "MDCO_PCS_17_04";
-		String env = "STG";
+	//	String env = "STG";
 		List<String> protocols = Arrays.asList(protocol1);
 		String studyName = "a high cholesterol and heart disease";
 	    String siteName = "AUT_MEDCO_3962_site";
 	    String zipCode = "19044";
+	    
+	    String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberDY)		           

@@ -42,8 +42,11 @@ public class DIA_4241_CC extends BaseTest{
         String studyName = "a Diabetes study";
         String siteName = "AUT_DIA_4241";
         String debugSiteName = "";
-        String env = "STG";
+    //    String env = "STG";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

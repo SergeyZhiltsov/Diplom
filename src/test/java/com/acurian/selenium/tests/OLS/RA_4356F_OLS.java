@@ -78,7 +78,7 @@ public class RA_4356F_OLS extends BaseTest {
 	@Test
 	public void tc01() {
 		String phoneNumberRA = "AUTAMS1RA1";
-		String env = "STG";
+	//	String env = "STG";
 		//String protocol1 = "M13_545";
         String protocol2 = "M15_925";        
         String protocol3 = "CL04041023";
@@ -86,6 +86,9 @@ public class RA_4356F_OLS extends BaseTest {
         String studyName = "rheumatoid";
         String siteName = "AUT_RA_4356F_Site";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           

@@ -79,14 +79,17 @@ public class RA_2821 extends BaseTest {
 	@Test
 	public void tc01() {
 		String phoneNumberRA = "AUTAMS1RA1";
-		String env = "STG";
-		String protocol1 = "M13_545";
-        String protocol2 = "M15_925";        
-        List<String> protocols = Arrays.asList(protocol1,protocol2);
+//		String env = "STG";
+//		String protocol2 = "M13_545";  Protocol Disabled
+        String protocol1 = "M15_925";        
+        List<String> protocols = Arrays.asList(protocol1);
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_RA2821_HS_Site";
         String zipCode = "19044";
         String Siteindicator = "Rheumatoid Arthritis";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           
@@ -113,7 +116,7 @@ public class RA_2821 extends BaseTest {
 				 .clickNextButton(new HasHealthcareProfessionalPageOLS());
 		
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, protocol1, protocol2);
+        debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, protocol1);
         debugPageOLS.back();
                 
         WhatKindOfArthritisPage whatKindOfArthritisPage = doYouSufferFromArthritis
@@ -129,13 +132,21 @@ public class RA_2821 extends BaseTest {
 		
 		AgeWhenDiagnosedWithRA ageWhenDiagnosedWithRA = whenYouDiagnosedWithRA
 				.waitForPageLoad()
-				.clickOnAnswer("7 - 11 months ago")
+				.clickOnAnswer("Within the past 2 months")
 				.clickNextButton(new AgeWhenDiagnosedWithRA());
 		
 		HowYourRASymptomsStartedFirstTime howYourRASymptomsStartedFirstTime = ageWhenDiagnosedWithRA
 				.waitForPageLoad()
-				.setAge("28")
+				.setAge("16")
 				.clickNextButton(new HowYourRASymptomsStartedFirstTime());
+		
+		debugPageOLS.checkProtocolsEquals("Approximately how old were you when you were diagnosed with RA?Agent Note: If patient is unsure, sa...", protocol1); //protocol2
+        debugPageOLS.back();
+        
+        ageWhenDiagnosedWithRA
+		.waitForPageLoad()
+		.setAge("28")
+		.clickNextButton(new HowYourRASymptomsStartedFirstTime());
 		
 		WhatTestsDidYouHave whatTestsDidYouHave = howYourRASymptomsStartedFirstTime
 				.waitForPageLoad()
@@ -149,8 +160,16 @@ public class RA_2821 extends BaseTest {
 		
 		FollowingJointSymptoms followingJointSymptoms = areYouCurrentlyExperiencing
 				.waitForPageLoad()
-				.clickOnAnswer("Yes")
+				.clickOnAnswer("No")
 				.clickNextButton(new FollowingJointSymptoms());
+		
+		debugPageOLS.checkProtocolsEquals(areYouCurrentlyExperiencing.titleExpected, protocol1); //protocol2
+        debugPageOLS.back();
+        
+        areYouCurrentlyExperiencing
+		        .waitForPageLoad()
+		        .clickOnAnswer("Yes")
+		        .clickNextButton(new FollowingJointSymptoms());
 		
 		DoYouCurrentlyUseSteroid doYouCurrentlyUseSteroid = followingJointSymptoms
 				.waitForPageLoad()
@@ -174,34 +193,75 @@ public class RA_2821 extends BaseTest {
 		
 		MedicationsToTreatYourRA medicationsToTreatYourRA = howLongTakingMethotrexate
 				.waitForPageLoad()
-				.clickOnAnswer("4 - 6 months")
+				.clickOnAnswer("Less than 1 month")
 				.clickNextButton(new MedicationsToTreatYourRA());
 		
+		debugPageOLS.checkProtocolsEquals(howLongTakingMethotrexate.titleExpected, protocol1); //protocol2
+        debugPageOLS.back();
+        
+        howLongTakingMethotrexate
+		       .waitForPageLoad()
+		       .clickOnAnswer("4 - 6 months")
+		       .clickNextButton(new MedicationsToTreatYourRA());		
 		
-		HowLongTakingPlaquenil HowLongTakingPlaquenil = medicationsToTreatYourRA
+        BiologicMedications biologicMedications = medicationsToTreatYourRA
 				.waitForPageLoad()
+				.clickOnAnswers("Leukeran (chlorambucil)")
+				.clickNextButton(new BiologicMedications());
+        
+        debugPageOLS.checkProtocolsEquals("Are you currently taking any of the following medications to treat your RA?Agent Note: Read medicat...", protocol1); //protocol2
+        debugPageOLS.back();
+        
+        medicationsToTreatYourRA
+				.waitForPageLoad()
+				.clickOnAnswers("Leukeran (chlorambucil)")
 				.clickOnAnswers("Plaquenil (hydroxychloroquine)")
 				.clickNextButton(new HowLongTakingPlaquenil());
-		
-		BiologicMedications biologicMedications = HowLongTakingPlaquenil
-				.waitForPageLoad()
-				.clickOnAnswer("4 - 6 months")
+        
+        HowLongTakingPlaquenil howLongTakingPlaquenil = new HowLongTakingPlaquenil();		
+		howLongTakingPlaquenil
+				.waitForPageLoad()				
+				.clickOnAnswer("Less than 1 month")
 				.clickNextButton(new BiologicMedications());
 		
-		LastReceivedTysabri lastReceivedTysabri = biologicMedications
+		debugPageOLS.checkProtocolsEqualsForQNumber("QS521", protocol1); //protocol2
+        debugPageOLS.back();
+        
+        howLongTakingPlaquenil
+				.waitForPageLoad()
+				.clickOnAnswer("4 - 6 months")
+				.clickNextButton(new BiologicMedications());		
+		
+		biologicMedications
+				.waitForPageLoad()
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new TakenXeljanz());
+		
+		debugPageOLS.checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-549, (\"Biol...", protocol1); //protocol2
+        debugPageOLS.back();
+        
+        LastReceivedTysabri lastReceivedTysabri = biologicMedications
 				.waitForPageLoad()
 				.clickOnAnswers("Tysabri")
 				.clickNextButton(new LastReceivedTysabri());
-		
-		TakenXeljanz TakenXeljanz = lastReceivedTysabri
+        
+        TakenXeljanz takenXeljanz = lastReceivedTysabri
 				.waitForPageLoad()
 				.clickOnAnswer("Last received 7 to 11 months ago")
 				.clickNextButton(new TakenXeljanz());
+        
+        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = takenXeljanz
+				.waitForPageLoad()
+				.clickOnAnswer("Yes, I am currently taking it")
+				.clickNextButton(new HasHealthcareProfessionalPageOLS());
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = TakenXeljanz
+		debugPageOLS.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", protocol1); //protocol2
+        debugPageOLS.back();
+        
+        takenXeljanz
 				.waitForPageLoad()
 				.clickOnAnswer("No, I have never taken it")
-				.clickNextButton(new HasHealthcareProfessionalPageOLS());
+				.clickNextButton(new HasHealthcareProfessionalPageOLS());	
 		
 		hasHealthcareProfessionalPageOLS
         .waitForPageLoad()

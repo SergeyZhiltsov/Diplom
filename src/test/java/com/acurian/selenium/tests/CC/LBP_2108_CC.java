@@ -30,9 +30,12 @@ public class LBP_2108_CC extends BaseTest{
         List<String> protocols = Arrays.asList("A4091059");
         String protocol = "A4091059";
         String studyName = "low back pain";
-        String env = "STG";
+//        String env = "STG";
         String siteName = "hfghfgh";
         String zipCode  = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
 
         LoginPageCC loginPageCC = new LoginPageCC();

@@ -40,8 +40,11 @@ public class MDD_3159_CC extends BaseTest{
         String studyName1 = "depression";
         String site_Indication = "Major Depressive Disorder (MDD)";
         String siteName = "AUT_MDD_3159";
-        String env = "STG";
+     //   String env = "STG";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

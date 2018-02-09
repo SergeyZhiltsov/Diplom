@@ -45,8 +45,11 @@ public class Diabetes_4356A extends BaseTest{
         String studyName = "a Diabetes"; //Diabetes study
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
-        String env = "STG";
+      //  String env = "STG";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

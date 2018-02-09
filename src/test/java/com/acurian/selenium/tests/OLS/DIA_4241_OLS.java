@@ -29,9 +29,11 @@ public class DIA_4241_OLS extends BaseTest{
         String protocol1 = "EFC14822";
         String studyName = "a Diabetes";
         String siteName = "AUT_DIA_4241";
-        String debugSiteName = "";
-        String env = "STG";
+        String debugSiteName = "";        
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

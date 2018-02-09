@@ -29,8 +29,11 @@ public class MDD_3159_OLS extends BaseTest{
         String site_Indication = "Major Depressive Disorder (MDD)";
         String siteName = "AUT_MDD_3159";
         String debugSiteName = "";
-        String env = "STG";
+   //     String env = "STG";
         String zipCode = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();

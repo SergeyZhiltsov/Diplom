@@ -61,9 +61,12 @@ public class AS_4319_CC extends BaseTest{
         String protocol1 = "M16_098";        
         String studyName = "ankylosing spondylitis or AS";
         String studyName1 = "arthritis";
-        String env = "STG";
+    //    String env = "STG";
         String siteName = "AUT_As_4319";
         String zipCode  = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         LoginPageCC loginPageCC = new LoginPageCC();
 
