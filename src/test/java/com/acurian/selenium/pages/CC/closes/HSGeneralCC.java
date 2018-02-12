@@ -10,15 +10,18 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class HSGeneralCC extends MainPageCC{
 
     //MDD
-    public final String titleExpected = "Your medical records related to your %s history are required for the study doctor to evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
-            "\n" +
-            "Please be assured that your records will be kept confidential and only shared with the research facility.";
+	public final String titleExpected = "We're glad the location is convenient for you.\n" +
+    		"\n" +
+    		"The last step is to provide information about the doctors who are currently treating, or have previously treated, your %s so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
+    		"\n" +
+    		"Please be assured that your records will be kept confidential and only shared with the research facility.";
     
   //RA
-    public final String titleExpectedRA = "Your medical records related to your %s history are required for the study doctor to evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
-            "\n" +
-            "Please be assured that your records will be kept confidential and only shared with the research facility." +
-            "\n" +
+	public final String titleExpectedRA = "We're glad the location is convenient for you.\n" +
+    		"\n" +
+    		"The last step is to provide information about the doctors who are currently treating, or have previously treated, your %s so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
+    		"\n" +
+    		"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
             "You will need to provide us with an email address to start this process. What email address should we use:";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

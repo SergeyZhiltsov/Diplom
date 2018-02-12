@@ -9,6 +9,9 @@ import com.acurian.selenium.pages.CC.DYS_4356C.AreYouTakingAnyOfMedicationsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.NonPrescriptionSupplementsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.PregnancyAndFertilityCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.ThankYouForAnsweringCC;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -55,13 +58,14 @@ public class MedCo_3962_CC extends BaseTest{
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void tc001Test(final String username, final String password) {
-        String phoneNumberDYS = "AUTAMS1MED";
+        String phoneNumber = "AUTAMS1MED";
         List<String> protocols = Arrays.asList("MDCO_PCS_17_04");
         String protocol1 = "MDCO_PCS_17_04";        
         String studyName = "a high cholesterol and heart disease";
      //   String env = "STG";
         String siteName = "AUT_MEDCO_3962_site";
-        String zipCode  = "19044";
+        String site_Indication = "Hypercholesterolemia, Cardiovascular Disease";
+        String zipCode  = "19044";  //"45203" cincinnati, OH
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -82,8 +86,8 @@ public class MedCo_3962_CC extends BaseTest{
                 .waitForPageLoad()
                 .typeStudyName("AMS1")
                 .clickPopupStudy("AMS1")
-                .typePhoneNumber(phoneNumberDYS)
-                .clickPopupPhoneNumber(phoneNumberDYS)
+                .typePhoneNumber(phoneNumber)
+                .clickPopupPhoneNumber(phoneNumber)
                 .clickBeginButton();
         
         callCenterIntroductionPageCC
@@ -246,7 +250,12 @@ public class MedCo_3962_CC extends BaseTest{
        .waitForPageLoad("a high cholesterol and heart disease study")
        .clickOnAnswer(siteName)
        .getPID()
-       .clickNextButton(new QualifiedClose2PageCC())
+       //Medical release Hello Sign CLose
+       .clickNextButton(new HSGeneralCC())
+       .waitForPageLoad(site_Indication)
+       .clickNextButton(new DoctorInformationCollectionPageCC())
+       .waitForPageLoad()
+       .clickNextButton(new HSMedicalRecordsPageCC())
        .waitForPageLoad()
        .clickNextButton(new ThankYouCloseSimplePageCC())
        .waitForPageLoad()

@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
+import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
+import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -48,7 +50,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         String studyName1 = "Diabetes";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
-   //     String env = "STG";
+       // String env = "QA";
         String zipCode = "19044";
         
         String env = System.getProperty("acurian.env");
@@ -420,11 +422,26 @@ public class Diabetes_4356A_CC extends BaseTest{
         //---------------------------------------PoundsOrMorePageOLS----------------------------------------------------- 
         poundsOrMorePageCC
                 .waitForPageLoad();
-                StatinMedicationsOnPageCC statinMedicationsOnPageCC = poundsOrMorePageCC
+        		DoYouExperienceDPN_CC doYouExperienceDPN_CC = poundsOrMorePageCC
                 .clickOnAnswer("Yes")
-                .clickNextButton(new StatinMedicationsOnPageCC());
+                .clickNextButton(new DoYouExperienceDPN_CC());
+                
+                         
+		// ---------------------------------------doYouExperienceDPN_OLS-----------------------------------------------------
+		doYouExperienceDPN_CC
+				.waitForPageLoad();
+				WhereDoYouExperienceDiabeticNervePain_CC whereDoYouExperienceDiabeticNervePain_CC = doYouExperienceDPN_CC
+				.clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+				.clickNextButton(new WhereDoYouExperienceDiabeticNervePain_CC());
+
+		// ---------------------------------------WhereDoYouExperienceDiabeticNervePain_OLS-----------------------------------------------------
+		whereDoYouExperienceDiabeticNervePain_CC
+				.waitForPageLoad();
+				StatinMedicationsOnPageCC statinMedicationsOnPageCC = whereDoYouExperienceDiabeticNervePain_CC
+				.clickOnAnswers("None of the above").clickNextButton(new StatinMedicationsOnPageCC());
 
 
+        //---------------------------------------statinMedicationsOnPageOLS-----------
         statinMedicationsOnPageCC
                 .waitForPageLoad();
         Assert.assertEquals(statinMedicationsOnPageCC.getTitleText(),statinMedicationsOnPageCC.titleExpected, "Title is diff");
