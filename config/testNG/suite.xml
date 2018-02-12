@@ -9,9 +9,10 @@
         </packages>
     </test>
 
-    <!--<test name="TC A">-->
+    <!--<test name="TC inner test">-->
         <!--<classes>-->
-            <!--<class name="ch."/>-->
+            <!--<class name="com.acurian.selenium.tests.OLS.Test1"/>-->
+            <!--<class name="com.acurian.selenium.tests.OLS.Test2"/>-->
         <!--</classes>-->
     <!--</test>-->
 

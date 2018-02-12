@@ -18,18 +18,16 @@ public class Insomnia_3792_OLS extends BaseTest{
 
     @Test
     @TestCaseId("00003")
-    @Description("Stress Urinary Incontinence (SUI) - 3923")
-    public void tc002Test() {
+    @Description("Insomnia - 3792 OLS")
+    public void insomnia3792olsTest() {
         String phoneNumberINS = "AUTAMS1INS";
         String protocol1 = "E2006_G000_303";
         String protocol2 = "E2006_G000_304";
         String studyName =  "an insomnia";  
-   //     String env = "STG";  //Enter which OLS environment to use for testing
+        String env = System.getProperty("acurian.env","STG");  //Enter which OLS environment to use for testing
         String siteName = "AUT_INSO_3792_Site";
         String zip_Code = "19044";
-        
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

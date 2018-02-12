@@ -2,6 +2,7 @@ package com.acurian.selenium.utils;
 
 public class PassPID {
 
+    public static ThreadLocal<String> th = new ThreadLocal();
     private String pidNumber = "null";
 
     private PassPID() {
@@ -16,12 +17,13 @@ public class PassPID {
     }
 
     public void setPidNumber(String pidNumber) {
-        this.pidNumber = pidNumber;
+        th.set(pidNumber);
     }
 
     public String getPidNumber() {
-        String pid = pidNumber;
+        String pid = th.get();
         pidNumber = "null";
+        th.remove();
         return pid;
     }
 }

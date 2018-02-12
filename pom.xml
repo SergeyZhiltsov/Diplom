@@ -18,6 +18,7 @@
     <allure.version>1.5.4</allure.version>
     <browser>chrome</browser>
     <base.url>https://stg-cc.acuriancalls.com</base.url>
+    <base.env>STG</base.env>
     <login>LOGIN</login>
     <password>PASSWORD</password>
     <!--<selenium.grid>http://127.0.0.1:4444/wd/hub</selenium.grid>-->
@@ -111,6 +112,7 @@
             <browser>${browser}</browser>
             <env.url>${base.url}</env.url>
             <selenium.grid>${selenium.grid}</selenium.grid>
+            <acurian.env>${base.env}</acurian.env>
           </systemPropertyVariables>
           <properties>
             <property>
