@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
+import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
+import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
@@ -45,7 +47,7 @@ public class Diabetes_4356A extends BaseTest{
         String studyName = "a Diabetes"; //Diabetes study
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
-      //  String env = "STG";
+    //    String env = "STG";
         String zipCode = "19044";
         
         String env = System.getProperty("acurian.env");
@@ -416,12 +418,27 @@ public class Diabetes_4356A extends BaseTest{
         //---------------------------------------PoundsOrMorePageOLS----------------------------------------------------- 
         poundsOrMorePageOLS
                 .waitForPageLoad();
-                StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = poundsOrMorePageOLS
+        		DoYouExperienceDPN_OLS doYouExperienceDPN_OLS = poundsOrMorePageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new StatinMedicationsOnPageOLS());
+                .clickNextButton(new DoYouExperienceDPN_OLS());
+                
+        //---------------------------------------doYouExperienceDPN_OLS----------------------------------------------------- 
+        doYouExperienceDPN_OLS
+                .waitForPageLoad();
+        		 WhereDoYouExperienceDiabeticNervePain_OLS whereDoYouExperienceDiabeticNervePain_OLS = doYouExperienceDPN_OLS
+                 //StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = doYouExperienceDPN_OLS
+                 .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+                 .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
 
+        		 
+        //---------------------------------------WhereDoYouExperienceDiabeticNervePain_OLS----------------------------------------------------- 
+        whereDoYouExperienceDiabeticNervePain_OLS
+				.waitForPageLoad();
+				 StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = whereDoYouExperienceDiabeticNervePain_OLS
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new StatinMedicationsOnPageOLS());
 
-        //---------------------------------------statinMedicationsOnPageOLS-----------$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------------------------------------------- 
+        //---------------------------------------statinMedicationsOnPageOLS------------------------------------------------------- 
         statinMedicationsOnPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(statinMedicationsOnPageOLS.getTitleText(),statinMedicationsOnPageOLS.titleExpected, "Title is diff");

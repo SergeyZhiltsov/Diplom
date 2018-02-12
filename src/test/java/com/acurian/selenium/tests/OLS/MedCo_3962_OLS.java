@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSCrohnsPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseDYSPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
@@ -68,19 +69,19 @@ public class MedCo_3962_OLS extends BaseTest {
 	
 	@Test
 	public void tc01() {
-		String phoneNumberDY = "AUTAMS1MED";		
+		String phoneNumber = "AUTAMS1MED";		
 		String protocol1 = "MDCO_PCS_17_04";
 	//	String env = "STG";
 		List<String> protocols = Arrays.asList(protocol1);
 		String studyName = "a high cholesterol and heart disease";
 	    String siteName = "AUT_MEDCO_3962_site";
 	    String zipCode = "19044";
-	    
+	    String site_Indication = "Hypercholesterolemia, Cardiovascular Disease";
 	    String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-		dateOfBirthPageOLS.openPage(env, phoneNumberDY)		           
+		dateOfBirthPageOLS.openPage(env, phoneNumber)		           
 		           .waitForPageGHLoad()
 		           .maximizePage();
 		Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(),dateOfBirthPageOLS.titleMEDExpected, "Title is diff");
@@ -250,14 +251,19 @@ public class MedCo_3962_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new GladLocationIsConvenient())
-                //----------GladLocationIsConvenient Page--------------------
+                //Medical release Hello Sign CLose
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoad(site_Indication)
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-        		//----------ThankYouCloseSimplePageOLS Page--------------------
+                .clickNextButton(new  HS1PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .clickOkInPopUp()
+                .setSignature()
+                .getPage(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
+        		.clickNextButton(new AboutHealthPageOLS())
+        		.waitForPageLoad()
                 .pidFromDbToLog(env);
 	}
 }

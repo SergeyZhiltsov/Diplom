@@ -13,7 +13,7 @@ public class ThankYouCloseSimplePageCC extends MainPageCC{
 
     public final String titleExpected = "Thank you again for contacting Acurian's Research Information Center. Goodbye.";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
     public ThankYouCloseSimplePageCC() {
