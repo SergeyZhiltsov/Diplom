@@ -20,9 +20,7 @@ public class DriverFactory {
         DesiredCapabilities capabilities;
         switch (browser) {
             case "firefox":
-                System.setProperty(
-                        "webdriver.gecko.driver",
-                        new File(DriverFactory.class.getResource("/geckodriver" + getExecutableExtension()).getFile()).getPath());
+                System.setProperty("webdriver.gecko.driver", getResourceByName("/geckodriver"));
                 return new FirefoxDriver();
             case "ie":
             case "internet explorer":
@@ -40,21 +38,26 @@ public class DriverFactory {
                         new File(DriverFactory.class.getResource("/MicrosoftWebDriver.exe").getFile()).getPath());
                 return new EdgeDriver();
             case "phantomjs":
-                System.setProperty(
-                        "phantomjs.binary.path",
-                        new File(DriverFactory.class.getResource("/phantomjs" + getExecutableExtension()).getFile()).getPath());
+                System.setProperty("phantomjs.binary.path", getResourceByName("/phantomjs"));
                 return new PhantomJSDriver();
             case "chrome":
             default:
-            	try {
-                System.setProperty(
-                        "webdriver.chrome.driver",
-                        new File(DriverFactory.class.getResource("/chromedriver" + getExecutableExtension()).toURI()).getPath());
-            	} catch (URISyntaxException e) {
-            		e.printStackTrace();
-            	}
+                System.setProperty("webdriver.chrome.driver", getResourceByName("/chromedriver"));
                 return new ChromeDriver();
         }
+    }
+
+    /**
+     * @param resourceName The name of the resource ex /chromedriver
+     * @return Path to resource
+     */
+    private static String getResourceByName(String resourceName){
+        try {
+            return new File(DriverFactory.class.getResource(resourceName + getExecutableExtension()).toURI()).getPath();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static WebDriver initDriver(String browser, String gridUrl) {
