@@ -25,7 +25,7 @@ public class HTN_4356D_OLS extends BaseTest{
     @Test
     @TestCaseId("00031")
     @Description("HTN_4356D_Synexus test OLS")
-    public void htn4356DolsTest() {
+    public void htn_4356D_Synexus_OLS() {
         String phoneNumberLBP = "AUTAMS1HTN";
         String protocol1 = "THR_1442_C_603";
         String protocol2 = "";

@@ -68,16 +68,18 @@ public class DPN_3769_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00015")
     @Description("Diabetic Peripheral Neuropathy(DPN) - 3769 CC")
-    public void tc001Test(final String username, final String password) {
+    public void dPN_3769_CC(final String username, final String password) {
         String phoneNumberDPN = "AUTAMS1DPN";
         String protocol1 = "VMDN_003";
         String protocol2 = "NYX_2925_2001";
         String studyName = "a diabetic nerve pain";
         String studyName1 = "a Diabetes study,a diabetic nerve pain study";
-        String env = "STG";  //Enter which OLS environment to use for testing
+        //String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_DPN_3769_Site";
         String zip_Code = "19044";
         
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
         
         //------------LOGIN Page for CC---------------   
         LoginPageCC loginPageCC = new LoginPageCC();

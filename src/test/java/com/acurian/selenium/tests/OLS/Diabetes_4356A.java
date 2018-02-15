@@ -28,9 +28,9 @@ public class Diabetes_4356A extends BaseTest{
 	@Test
     @TestCaseId("00003")
     @Description("Diabetes_4356A_Synexus")
-    public void tc003Test() {
+    public void diabetes_4356A() {
         String phoneNumberLBP = "AUTAMS1DIA";
-        List<String> protocols = Arrays.asList("EFC14835", "ITCA 650_CLP_203","K_877_302","17530","EFC13794","NN2211_4315","NN9535_4269");
+        List<String> protocols = Arrays.asList("EFC14835", "ITCA 650_CLP_203","K_877_302","17530","EFC13794","NN2211_4315","NN9535_4269");       
         String protocol1 = "17530";
         String protocol2 = "NN9535_4269";
         String protocol3 = "NN2211_4315";
@@ -43,6 +43,7 @@ public class Diabetes_4356A extends BaseTest{
         String protocol10 = "EFC15166";
         String protocol11 = "EFC14868";
         String protocol12 = "EFC14837";
+        String protocol13 = "EFC14838";
         String DIA_4241 = "EFC14822";
         String studyName = "a Diabetes"; //Diabetes study
         String siteName = "AUT_DIA_4356A";
@@ -555,7 +556,8 @@ public class Diabetes_4356A extends BaseTest{
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("null",protocol6,protocol7,protocol1,protocol4,protocol3,protocol2,protocol8,protocol12,protocol11,protocol10)
+                //6,7,1,4,3,2,8,12,11,10,13
+                .checkProtocolsEqualsForQNumber("QS4218",protocol6, protocol7, protocol1, protocol4, protocol3, protocol2, protocol8, protocol12, protocol11, protocol10, protocol13)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -587,7 +589,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(congestiveHeartFailurePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)// there checkProtocolsEqualsForQNumber is used because to same questions in debug window
-                .checkProtocolsEqualsForQNumber("QS4220", protocol6,protocol7,protocol1,protocol4,protocol3,protocol2,protocol8,protocol12,protocol11,protocol10)
+                .checkProtocolsEqualsForQNumber("QS4220", protocol6, protocol7, protocol1, protocol4, protocol3, protocol2, protocol8, protocol12, protocol11, protocol10, protocol13)
                 .back();
         heartProceduresFromLastPageOLS
                 .waitForPageLoad()
@@ -741,7 +743,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(new SynexusQualifiedClose4356PageOLS())
 
              //----------GladLocationIsConvenient Page--------------------
-                .waitForPageLoad("625263")
+                .waitForPageLoad("625640")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
 
 	          //----------ThankYouCloseSimplePageOLS Page--------------------

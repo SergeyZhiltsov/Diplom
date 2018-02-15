@@ -26,7 +26,7 @@ public class HTN_4356D_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00045")
     @Description("HTN_4356D_Synexus test CC")
-    public void htn4356DccTest(final String username, final String password) {
+    public void htn_4356D_Synexus_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1HTN";
         String protocol1 = "THR_1442_C_603";
         String protocol2 = "";

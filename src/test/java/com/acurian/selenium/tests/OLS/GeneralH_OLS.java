@@ -82,7 +82,7 @@ public class GeneralH_OLS extends BaseTest{
                 .checkProtocolsEqualsForQNumber("QS29","R475_PN_1523","I6T_MC_AMAG","RF_I6T_MC_AMAG","M15_925","ITCA 650_CLP_203","K_877_302","BHV3000_302","UBR_MD_01","17530",
                 		"EFC13794","NN2211_4315","NN9535_4269","BHV3000_301","CGP_MD_01","UBR_MD_02","VK2809_201","G201002","R475_OA_1611",
                 		"R475_OA_1688","EFC14822","M16_098","205715","AXS_05_301","M16_006","MDCO_PCS_17_04","EFC14833","EFC14837","EFC14868",
-                		"EFC15166","BHV3000_201","R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023")
+                		"EFC15166","BHV3000_201","R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023","VMDN_003","NYX_2925_2001")
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -95,7 +95,7 @@ public class GeneralH_OLS extends BaseTest{
                 		"RF_I6T_MC_AMAG","M15_925","ITCA 650_CLP_203","BHV3000_302","UBR_MD_01",
                 		"EFC13794","NN2211_4315","NN9535_4269","BHV3000_301","CGP_MD_01","UBR_MD_02",
                 		"VK2809_201","G201002","R475_OA_1611","R475_OA_1688","M16_098","205715",
-                		"M16_006","BHV3000_201","THR_1442_C_603","M15_991","M14_702","CL04041023")
+                		"M16_006","BHV3000_201","THR_1442_C_603","M15_991","M14_702","CL04041023","VMDN_003","NYX_2925_2001")
                 .back();
         AffectingYourMetabolismPageOLS affectingYourMetabolismPageOLS = subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -169,7 +169,7 @@ public class GeneralH_OLS extends BaseTest{
                 .checkProtocolsEqualsForQNumber("QS7","R475_PN_1523","I6T_MC_AMAG","RF_I6T_MC_AMAG","M15_925","ITCA 650_CLP_203",
                 		"K_877_302","BHV3000_302","UBR_MD_01","17530","EFC13794","NN2211_4315","NN9535_4269","BHV3000_301","CGP_MD_01","UBR_MD_02",
                 		"20150230","G201002","R475_OA_1611","R475_OA_1688","EFC14822","M16_098","205715","AXS_05_301","M16_006","MDCO_PCS_17_04",
-                		"EFC14833","EFC14837","EFC14868","EFC15166","R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023")
+                		"EFC14833","EFC14837","EFC14868","EFC15166","R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023","VMDN_003","NYX_2925_2001")
                 .back();
         //-----------------------------------Select "YES" and "Kidney transplant"----------------------
         subquestionMetabolismPageOLS
@@ -243,7 +243,7 @@ public class GeneralH_OLS extends BaseTest{
                         "M15_925","ITCA 650_CLP_203","K_877_302","BHV3000_302",
                         "UBR_MD_01","EFC13794","BHV3000_301","CGP_MD_01","UBR_MD_02","20150230","VK2809_201","G201002",
                         "R475_OA_1611","R475_OA_1688","M16_098","AXS_05_301","M16_006","MDCO_PCS_17_04","EFC14833","EFC14837",
-                        "EFC14868","EFC15166","BHV3000_201","R727_CL_1532","THR_1442_C_603","M15_991","CL04041023")
+                        "EFC14868","EFC15166","BHV3000_201","R727_CL_1532","THR_1442_C_603","M15_991","CL04041023","VMDN_003","NYX_2925_2001")
                 .back();
         MentalHealthPageOLS mentalHealthPageOLS = viralConditionsPageOLS
                 .waitForPageLoad()
@@ -257,7 +257,7 @@ public class GeneralH_OLS extends BaseTest{
                         "BHV3000_302","UBR_MD_01","EFC13794","BHV3000_301","CGP_MD_01","UBR_MD_02","20150230","VK2809_201",
                         "G201002","R475_OA_1611","R475_OA_1688","EFC14822","M16_098","205715","AXS_05_301","M16_006",
                         "MDCO_PCS_17_04","EFC14833","EFC14837","EFC14868","EFC15166","BHV3000_201","R727_CL_1532",
-                        "THR_1442_C_603","M15_991","CL04041023")
+                        "THR_1442_C_603","M15_991","CL04041023","VMDN_003","NYX_2925_2001")
                               
                 .back();
         viralConditionsPageOLS
@@ -306,7 +306,7 @@ public class GeneralH_OLS extends BaseTest{
                 		"ITCA 650_CLP_203","K_877_302","BHV3000_302","UBR_MD_01","EFC13794","NN2211_4315","NN9535_4269",
                 		"BHV3000_301","CGP_MD_01","UBR_MD_02","20150230","VK2809_201","G201002","R475_OA_1611","R475_OA_1688","EFC14822",
                 		"M16_098","205715","AXS_05_301","M16_006","MDCO_PCS_17_04","EFC14833","EFC14837","EFC14868","EFC15166",
-                		"R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023")
+                		"R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023","VMDN_003","NYX_2925_2001")
                 .back();
 
         HistoryOfDrugPageOLS historyOfDrugPageOLS = otherThanSkinCancerPageOLS
@@ -328,7 +328,7 @@ public class GeneralH_OLS extends BaseTest{
                 		"ITCA 650_CLP_203","K_877_302","BHV3000_302","UBR_MD_01","EFC13794","NN2211_4315","20150133",
                 		"BHV3000_301","CGP_MD_01","UBR_MD_02","20150230","VK2809_201","R475_OA_1611","R475_OA_1688","EFC14822",
                 		"M16_098","205715","AXS_05_301","M16_006","MDCO_PCS_17_04","EFC14833","EFC14837","EFC14868","EFC15166",
-                		"BHV3000_201","R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023")
+                		"BHV3000_201","R727_CL_1532","THR_1442_C_603","M15_991","M14_702","CL04041023","VMDN_003","NYX_2925_2001")
                 .back();
         historyOfDrugPageOLS
                 .waitForPageLoad()

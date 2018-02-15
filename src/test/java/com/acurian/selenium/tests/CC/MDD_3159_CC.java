@@ -32,7 +32,7 @@ public class MDD_3159_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
     @Description("MDD_3159_CC")
-    public void tc004Test(final String username, final String password) {
+    public void mDD_3159_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1MDD";
         List<String> protocols = Arrays.asList("AXS_05_301");
         String protocol1 = "AXS_05_301";

@@ -22,7 +22,7 @@ public class AST_4337_OLS extends BaseTest{
     @Test
     @TestCaseId("00008")
     @Description("Asthma_4337_OLS")
-    public void ast4337olsTest() {
+    public void Asthma_4337_OLS() {
         String phoneNumberLBP = "AUTAMS1AST";
         List<String> protocols = Arrays.asList("205715");
         String protocol1 = "205715";

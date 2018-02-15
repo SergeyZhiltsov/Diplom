@@ -39,7 +39,7 @@ public class SUI_3923_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00015")
     @Description("Stress Urinary Incontinence (SUI) - 3923 CC")
-    public void tc001Test(final String username, final String password) {
+    public void SUI_3923_CC(final String username, final String password) {
         String phoneNumberSUI = "AUTAMS1SUI";
         //List<String> protocol = Arrays.asList("BHV3000_302\n"+"UBR_MD_01");
         String protocol1 = "G201002";

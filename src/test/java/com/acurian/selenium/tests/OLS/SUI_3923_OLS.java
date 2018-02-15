@@ -26,7 +26,7 @@ public class SUI_3923_OLS extends BaseTest{
     @Test
     @TestCaseId("00016")
     @Description("Stress Urinary Incontinence (SUI) - 3923 OLS")
-    public void tc002Test() {
+    public void sUI_3923_OLS() {
         String phoneNumberLBP = "AUTAMS1SUI";
         String protocol1 = "G201002";
         String studyName = "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";

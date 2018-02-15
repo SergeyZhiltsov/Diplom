@@ -57,7 +57,7 @@ public class DYS_4356_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
-	public void tc001Test(final String username, final String password) {
+	public void dYSLI_4356_CC(final String username, final String password) {
         String phoneNumberDYS = "AUTAMS1DYS";
         List<String> protocols = Arrays.asList("20150230","VK2809-201");
         String protocol1 = "VK2809-201";

@@ -58,7 +58,7 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 public class END_4385_OLS extends BaseTest {
 	
 	@Test
-	public void tc01() {
+	public void eND_4385_OLS() {
 		String phoneNumberRA = "AUTAMS1END";
 	//	String env = "STG";
 		String protocol1 = "MVT_601_3101";

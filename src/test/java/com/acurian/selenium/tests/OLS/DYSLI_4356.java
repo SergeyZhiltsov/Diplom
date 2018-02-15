@@ -42,7 +42,7 @@ import com.acurian.selenium.pages.OLS.shared.WhenLastTimeYouHadHeartProceduresOL
 public class DYSLI_4356 extends BaseTest {
 	
 	@Test
-	public void tc01() {
+	public void dYSLI_4356_OLS() {
 		String phoneNumberDY = "AUTAMS1DYS";
 	//	String env = "STG";
 		String studyName = "cholesterol or heart health";

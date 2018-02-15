@@ -56,7 +56,7 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 public class AS_4319_OLS extends BaseTest {
 	
 	@Test
-	public void tc01() {
+	public void as_4319_OLS() {
 		String phoneNumberRA = "AUTAMS1AS1";		
 		String protocol1 = "M16_098";               
         List<String> protocols = Arrays.asList(protocol1);
