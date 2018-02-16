@@ -46,6 +46,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         String protocol11 = "EFC14868";
         String protocol12 = "EFC14837";
         String DIA_4241 = "EFC14822";
+        String protocol13 = "EFC14838";
         String studyName = "a Diabetes"; //Diabetes study
         String studyName1 = "Diabetes";
         String siteName = "AUT_DIA_4356A";

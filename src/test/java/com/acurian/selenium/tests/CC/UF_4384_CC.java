@@ -32,7 +32,7 @@ public class UF_4384_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
     @Description("UF_4384_CC")
-    public void tc004Test(final String username, final String password) {
+    public void uf_4384_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1UF1";
         List<String> protocols = Arrays.asList("MVT_601_3001","MVT_601_3002");
         String protocol1 = "MVT_601_3001";

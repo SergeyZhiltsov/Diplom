@@ -25,7 +25,7 @@ public class UF_4384_OLS extends BaseTest{
 	@Test
     @TestCaseId("00022")
     @Description("UF_4384_OLS")
-    public void uf4384olsTest() {
+    public void uf_4384_OLS() {
         String phoneNumber = "AUTAMS1UF1";
         String protocol1 = "MVT_601_3001";
 		String protocol2 = "MVT_601_3002";

@@ -45,15 +45,19 @@ public class DPN_3769_OLS extends BaseTest{
     @Test
     @TestCaseId("00016")
     @Description("Diabetic Peripheral Neuropath (DPN)- 3769 OLS")
-    public void tc002Test() {
+    public void dPN_3769_OLS() {
         String phoneNumberDPN = "AUTAMS1DPN";
         String protocol1 = "VMDN_003";
         String protocol2 = "NYX_2925_2001";
         String studyName = "a diabetic nerve pain";
         String studyName1 = "a Diabetes study,a diabetic nerve pain";
-        String env = "STG";  //Enter which OLS environment to use for testing
+        //String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_DPN_3769_Site";
         String zip_Code = "19044";
+        
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
+        
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumberDPN)

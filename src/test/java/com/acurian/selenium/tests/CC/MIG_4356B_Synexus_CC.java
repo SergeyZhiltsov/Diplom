@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.shared.HasDoctorDiagnosedYouWithClusterHeadache_OLS;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
@@ -31,6 +32,7 @@ import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -44,7 +46,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
     @Description(" 1. Open the page, URL: " +
             " 2. Type login and correct password of registered user" +
             " 3. Click the Sign In button")
-    public void tc001Test(final String username, final String password) {
+    public void mIG_4356B_Synexus_CC(final String username, final String password) {
         String phoneNumberMIG = "AUTAMS1MIG";
         //List<String> protocol = Arrays.asList("BHV3000_302\n"+"UBR_MD_01");
         String protocol1 = "20150133";
@@ -123,12 +125,12 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         
         
         //------------Q2 DoYouSufferFromMigPageCC---------------   
-        NonQRtransitionPageCC nonQRtransitionPageCC = doYouSufferFromMigPageCC  //[create NEXT PAGE Object = THIS page object] 
+        HasDoctorDiagnosedYouWithClusterHeadache_CC hasDoctorDiagnosedYouWithClusterHeadache_CC = doYouSufferFromMigPageCC //[create NEXT PAGE Object = THIS page object]
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new NonQRtransitionPageCC()); 
-        //------------NonQRtransitionPageCC --------------- 
-        nonQRtransitionPageCC.
+                .clickNextButton(new HasDoctorDiagnosedYouWithClusterHeadache_CC()); 
+        //------------go to Cluster Headache Matrix --------------- 
+        hasDoctorDiagnosedYouWithClusterHeadache_CC.
                 waitForPageLoad();
         //********Check Question History for DQ and then click BACK button
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -436,7 +438,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a migraine study")
+                .waitForPageLoad("a Migraine study")
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new RadiantWarmTransfer1())

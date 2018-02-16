@@ -21,7 +21,7 @@ public class MDD_3159_OLS extends BaseTest{
     @Test
     @TestCaseId("00009")
     @Description("MDD_3159_OLS")
-    public void tc008Test() {
+    public void mDD_3159_OLS() {
         String phoneNumberLBP = "AUTAMS1MDD";
         List<String> protocols = Arrays.asList("AXS_05_301");
         String protocol1 = "AXS_05_301";

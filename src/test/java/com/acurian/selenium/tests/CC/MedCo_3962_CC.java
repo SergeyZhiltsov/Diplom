@@ -57,7 +57,7 @@ public class MedCo_3962_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
-	public void tc001Test(final String username, final String password) {
+	public void medCo_3962_OLS(final String username, final String password) {
         String phoneNumber = "AUTAMS1MED";
         List<String> protocols = Arrays.asList("MDCO_PCS_17_04");
         String protocol1 = "MDCO_PCS_17_04";        

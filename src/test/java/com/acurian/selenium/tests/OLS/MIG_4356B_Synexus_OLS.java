@@ -44,7 +44,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
     @Test
     @TestCaseId("00002")
     @Description("MIG_4356B_Synexus_OLS module")
-    public void tc002Test() {
+    public void mIG_4356B_Synexus_OLS() {
         String phoneNumberMIG = "AUTAMS1MIG";
         String protocol1 = "20150133";
         String protocol2 = "BHV3000_301";
@@ -92,11 +92,11 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         doYouSufferFromMigHeadachesOLS
         .waitForPageLoad();
         Assert.assertEquals(doYouSufferFromMigHeadachesOLS.getTitleText(),doYouSufferFromMigHeadachesOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = doYouSufferFromMigHeadachesOLS   //[create NEXT PAGE Object = THIS page object] 
+        HasDoctorDiagnosedYouWithClusterHeadache_OLS hasDoctorDiagnosedYouWithClusterHeadache_OLS = doYouSufferFromMigHeadachesOLS //[create NEXT PAGE Object = THIS page object]
         .clickOnAnswer("No")
-        .clickNextButton(new HasHealthcareProfessionalPageOLS()); 
+        .clickNextButton(new HasDoctorDiagnosedYouWithClusterHeadache_OLS()); 
         //------Validate protocol DQs in debug window----------
-        hasHealthcareProfessionalPageOLS
+        hasDoctorDiagnosedYouWithClusterHeadache_OLS
         .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(doYouSufferFromMigHeadachesOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol5, protocol6,protocol7);
@@ -284,7 +284,8 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in page 'areYouCurrentlyPregnantCC'---------------  
         areYouCurrentlyPregnantOLS.waitForPageLoad();
-        areYouCurrentlyPregnantOLS.clickOnAnswer("No")
+        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = areYouCurrentlyPregnantOLS
+        .clickOnAnswer("No")
         .clickNextButton(new HasHealthcareProfessionalPageOLS());
        
 

@@ -68,7 +68,7 @@ public class DPN_4557_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00015")
     @Description("Diabetic Peripheral Neuropathy(DPN) - 4557 CC")
-    public void tc001Test(final String username, final String password) {
+    public void dPN_4557_CC(final String username, final String password) {
         String phoneNumberDPN = "AUTAMS1DPN";
         String protocol1 = "VMDN_003";
         String protocol2 = "NYX_2925_2001";

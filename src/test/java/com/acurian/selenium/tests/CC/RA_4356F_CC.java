@@ -63,7 +63,7 @@ public class RA_4356F_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
-	public void tc001Test(final String username, final String password) {
+	public void RA_4356F_CC(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("M15_925");//,"M13_545");
         String protocol1 = "M15_925";
