@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -146,6 +147,20 @@ public class DebugPageOLS extends MainPageOLS{
     public DebugPageOLS checkIsNoProtocolsForQuestion(String previousPageTitle){
         String actualText = getTextFromProtocolColumn(previousPageTitle);
         Assert.assertTrue("".equals(actualText), "Actual text is "+actualText);
+        return this;
+    }
+
+    @Step
+    public DebugPageOLS clickOnQNumber(String questionNumber){
+        openDebugWindow();
+        waitForAnimation();
+        questionNumberList.stream()
+                .filter(el -> questionNumber.equals(el.getText()))
+                .findFirst()
+                .get()
+                .findElement(By.xpath(".//a"))
+                .click();
+        closeDebugWindow();
         return this;
     }
 

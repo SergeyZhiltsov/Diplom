@@ -44,7 +44,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     
     public final String titleCrohns_3485_Expected = "Let's get started to see if you qualify for a Crohn's study!\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $650\n" +
+            "Payment which varies by study up to $700\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
@@ -107,10 +107,22 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     		"Payment which varies by study up to $300\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
+
+    public final String titleGmegaExpected =  "Let's get started to see if you qualify for a study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $1,000\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
     
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement questionText1;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement questionText2;
+
     WebElement questionText;
+
     
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
@@ -133,6 +145,12 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 
     public DateOfBirthPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        if (true) {
+            questionText = questionText1;
+        }
+        else {
+            questionText = questionText2;
+        }
     }
 
     @Step

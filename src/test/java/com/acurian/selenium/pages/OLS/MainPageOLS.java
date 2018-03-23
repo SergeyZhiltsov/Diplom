@@ -4,10 +4,12 @@ import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
@@ -30,7 +32,13 @@ public class MainPageOLS extends BasePage{
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        try {
+            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        }
+        catch (TimeoutException ex){
+            Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
+            throw ex;
+        }
 //        try {
 //            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
 //        }
