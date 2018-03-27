@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.shared;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.URLs;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.Properties;
@@ -125,6 +126,11 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 
     
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleText1;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText2;
+
     WebElement titleText;
 
     @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
@@ -141,15 +147,24 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     WebElement questionTextGH;
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGH1;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGH2;
+
     WebElement titleTextGH;
 
     public DateOfBirthPageOLS() {
         PageFactory.initElements(getDriver(), this);
-        if (true) {
+        if (Locators.isEnvWeb) {
             questionText = questionText1;
+            titleText = titleText1;
+            titleTextGH = titleTextGH1;
         }
         else {
+            titleText = titleText2;
             questionText = questionText2;
+            titleTextGH = titleTextGH2;
         }
     }
 

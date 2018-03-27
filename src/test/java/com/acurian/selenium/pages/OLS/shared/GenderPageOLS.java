@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.shared;
 
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,11 @@ public class GenderPageOLS extends MainPageOLS{
     public final String titleExpected = "Please select your gender:";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleText1;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText2;
+
     WebElement titleText;
 
     //span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']
@@ -24,6 +30,12 @@ public class GenderPageOLS extends MainPageOLS{
 
     public GenderPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            titleText = titleText1;
+        }
+        else {
+            titleText = titleText2;
+        }
     }
 
     @Step

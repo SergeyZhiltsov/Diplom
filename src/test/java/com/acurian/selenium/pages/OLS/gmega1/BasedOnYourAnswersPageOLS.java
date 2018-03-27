@@ -17,6 +17,11 @@ public class BasedOnYourAnswersPageOLS extends MainPageOLS{
             "We will forward your contact information to the doctor's office that you selected so they may contact you for further evaluation using the phone number you provided. Or you can schedule your appointment now by calling 855-382-9810.";
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
+    WebElement titleText1;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]")
+    WebElement titleText2;
+
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
@@ -24,11 +29,18 @@ public class BasedOnYourAnswersPageOLS extends MainPageOLS{
 
     public BasedOnYourAnswersPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            titleText = titleText1;
+        }
+        else {
+            titleText = titleText2;
+        }
     }
 
     @Step
     public BasedOnYourAnswersPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+
         return this;
     }
 

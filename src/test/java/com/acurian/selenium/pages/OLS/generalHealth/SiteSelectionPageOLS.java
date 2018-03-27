@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
@@ -21,6 +22,11 @@ public class SiteSelectionPageOLS extends MainPageOLS{
             "Please select a doctor and click the \"Next\" button.";
 
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleText1;
+
+    @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText2;
+
     WebElement titleText;
 
     @FindBy(xpath = "//div[contains(@class,'address2')]")
@@ -37,6 +43,12 @@ public class SiteSelectionPageOLS extends MainPageOLS{
 
     public SiteSelectionPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            titleText = titleText1;
+        }
+        else {
+            titleText = titleText2;
+        }
     }
 
     @Step

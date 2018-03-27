@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,11 @@ public class IdentificationPageOLS extends MainPageOLS{
             "Enrollment is limited. Please complete the following information so that we may match you with a study doctor.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleText1;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText2;
+
     WebElement titleText;
 
     @FindBy(xpath = "//input[@id='QI3']")
@@ -33,6 +39,12 @@ public class IdentificationPageOLS extends MainPageOLS{
 
     public IdentificationPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            titleText = titleText1;
+        }
+        else {
+            titleText = titleText2;
+        }
     }
 
     @Step

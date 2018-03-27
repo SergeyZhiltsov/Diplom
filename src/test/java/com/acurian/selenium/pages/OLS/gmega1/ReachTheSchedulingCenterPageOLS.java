@@ -15,6 +15,11 @@ public class ReachTheSchedulingCenterPageOLS extends MainPageOLS{
             "Please hold for just a minute while I try to reach the scheduling center.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    WebElement titleText1;
+
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_MOBILE)
+    WebElement titleText2;
+
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
@@ -22,6 +27,12 @@ public class ReachTheSchedulingCenterPageOLS extends MainPageOLS{
 
     public ReachTheSchedulingCenterPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            titleText = titleText1;
+        }
+        else {
+            titleText = titleText2;
+        }
     }
 
     @Step

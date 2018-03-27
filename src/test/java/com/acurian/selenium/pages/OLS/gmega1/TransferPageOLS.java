@@ -14,6 +14,11 @@ public class TransferPageOLS extends MainPageOLS{
     public final String titleExpected = "Transfer not attempted - patient not interested in being transferred";
 
     @FindBy(xpath = "//question/descendant::span[contains(@class,'visible-md-inline')][1]")
+    WebElement titleText1;
+
+    @FindBy(xpath = "//question/descendant::span[contains(@class,'visible-xs-inline')][1]")
+    WebElement titleText2;
+
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
@@ -21,6 +26,12 @@ public class TransferPageOLS extends MainPageOLS{
 
     public TransferPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            titleText = titleText1;
+        }
+        else {
+            titleText = titleText2;
+        }
     }
 
     @Step

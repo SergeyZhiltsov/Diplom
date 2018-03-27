@@ -15,13 +15,32 @@ public class WhereDoYouHaveArthritisPageOLS extends MainPageOLS {
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
+    WebElement titleText1;
+
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_MOBILE)
+    WebElement titleText2;
+
     WebElement titleText;
+
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
+    List<WebElement> checkBoxList1;
+
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_MOBILE)
+    List<WebElement> checkBoxList2;
 
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
     public WhereDoYouHaveArthritisPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            titleText = titleText1;
+            checkBoxList = checkBoxList1;
+        }
+        else {
+            titleText = titleText2;
+            checkBoxList = checkBoxList2;
+        }
     }
 
     @Step

@@ -14,6 +14,11 @@ public class TakingAcetaminophenTylenolPageOLS extends MainPageOLS{
     public final String titleExpected = "Are you currently taking Acetaminophen (Tylenol)?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    WebElement titleText1;
+
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_MOBILE)
+    WebElement titleText2;
+
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
@@ -21,6 +26,12 @@ public class TakingAcetaminophenTylenolPageOLS extends MainPageOLS{
 
     public TakingAcetaminophenTylenolPageOLS() {
             PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            titleText = titleText1;
+        }
+        else {
+            titleText = titleText2;
+        }
     }
 
     @Step
