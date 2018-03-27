@@ -3,34 +3,21 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ClusterHeadache_3237.AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS;
 import com.acurian.selenium.pages.OLS.ClusterHeadache_3237.WhenYouAreExperiencingCHattackIsTheLocationPain_OLS;
-import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.ApproxHowlongYouBeenExpSymptomsOLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouHaveAnyOfTheFollowingConditions_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HaveYouNoticedAnyOfTheFollowing_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouDescribeTheSymptoms_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouRateYourPain_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhichOfTheFollowingHadAmputatedSurgically_OLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.CombinationWithEachOtherPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.LastTimeYouTookPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.ToLoseWeightPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.TreatingYourDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
+import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DiagnosedAnyTypeOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -96,11 +83,11 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
                 debugPageOLS.back();
                 //------------ Change your answer to next DQ option---------------          
                 hasDoctorDiagnosedYouWithClusterHeadache_OLS.waitForPageLoad();
-                HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = hasDoctorDiagnosedYouWithClusterHeadache_OLS
+                HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = hasDoctorDiagnosedYouWithClusterHeadache_OLS
                 .clickOnAnswer("No, I get headaches regularly but I am unsure which type")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());    
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());    
             //------Validate protocol DQs in debug window----------
-                hasHealthcareProfessionalPageOLS.waitForPageLoad();
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
                 debugPageOLS.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", protocol1,protocol2);
                 //------Go BACK and change your answer to QR answer - to qualify----------
                 debugPageOLS.back();
@@ -109,7 +96,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
                 .clickOnAnswer("No, I do not get headaches regularly")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());    
              //------Validate protocol DQs in debug window----------
-                hasHealthcareProfessionalPageOLS.waitForPageLoad();
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
                 debugPageOLS.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", protocol1,protocol2);
                 //------Go BACK and change your answer to QR answer - to qualify----------
                 debugPageOLS.back();
@@ -128,7 +115,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
                 		whatTypeOfDoctorDiagnosedCH_OLS.clickOnAnswers("Family doctor or general practitioner")
                         .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
                 //********Validate Question History for DQ and then click BACK button
-                hasHealthcareProfessionalPageOLS.waitForPageLoad()
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals("What type of doctor diagnosed you with cluster headache?Agent Note: If multiple doctors confirmed th...",protocol1,protocol2);
                 debugPageOLS.back();
@@ -163,7 +150,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
                 whenYouAreHavingClusterHeadacheAttackDoYouExp_OLS.clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());    
              //------Validate protocol DQs in debug window----------
-                hasHealthcareProfessionalPageOLS.waitForPageLoad();
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
                 debugPageOLS.checkProtocolsEquals("When you are having a cluster headache attack, do you experience any of the following symptoms in yo...", protocol1,protocol2);
                 //------Go BACK and change your answer to QR answer - to qualify----------
                 debugPageOLS.back();
@@ -203,15 +190,64 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
                 //----------Q9 - "Are you currently experiencing cluster headache attacks daily or frequently?" - page
                 areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS.waitForPageLoad();
                 Assert.assertEquals(areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS.getTitleText(), areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS.titleExpected, "Title is diff");  
-                //HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS
+                //HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS
                 areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS.clickOnAnswer("Yes")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
                 
                 
+             //----------*******NEW GENERAL HEALTH Questions********----------     
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageOLS())
+        	 //----------ProvideHeight-Weight Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new ChildrenUnderPageOLS())
+        	 //----------ChildrenUnderTheAge Page--------------------
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new HouseholdHavePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new TheStudySitePageOLS())
+                .waitForPageLoad()
+        	 //-------------------PEDIATRIC QUESTIONS-----------------------------   
+                .clickOnAnswer("Public transportation")
+                .clickNextButton(new WhatMedicalCoveragePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("No, I have no coverage")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS())
+             //----------PII (IdentificationPageOLS) Page--------------------
+        		.waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
+                .clickNextButton(new SiteSelectionPageOLS())                
+             //----------SiteSelection Page--------------------
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new GladLocationIsConvenient())                
+             //----------GladLocationIsConvenient Page--------------------
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())                
+             //----------ThankYouCloseSimplePageOLS Page--------------------
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env);         
+                
+/*                
               //----------GENERAL HEALTH Questions----------     
         		//----------HasHealthcareProfessionalPageOLS Page--------------------
-                hasHealthcareProfessionalPageOLS.waitForPageLoad();
-                HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = hasHealthcareProfessionalPageOLS
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
+                HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
         				.clickOnAnswers("None of the above")
         				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
 
@@ -250,12 +286,6 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
         				.waitForPageLoad()
         				.clickOnAnswers("None of the above")
         				.clickNextButton(new BoneOrJointConditionsPageOLS());
-        		
-//        		//----------BoneOrJointConditions Page--------------------		
-//        		BoneOrJointConditions boneOrJointConditions = affectYourLungs
-//        				.waitForPageLoad()
-//        				.clickOnAnswers("None of the above")
-//        				.clickNextButton(new BoneOrJointConditions());
         			
         		//----------BoneOrJointConditions Page--------------------
         		SleepRelatedConditionsPageOLS sleepRelatedConditionsPageOLS = boneOrJointConditionsPageOLS
@@ -361,6 +391,6 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);  */
             }
 }

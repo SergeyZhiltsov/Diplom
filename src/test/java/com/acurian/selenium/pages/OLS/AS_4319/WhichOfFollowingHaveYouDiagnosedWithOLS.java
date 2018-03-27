@@ -6,14 +6,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-
+import com.acurian.selenium.tests.OLS.*;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhichOfFollowingHaveYouDiagnosedWithOLS extends MainPageOLS{
 
     public final String titleExpected = "Which of the following have you been diagnosed with?\n" +
-            "Please select all that apply.";
+    		"Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;

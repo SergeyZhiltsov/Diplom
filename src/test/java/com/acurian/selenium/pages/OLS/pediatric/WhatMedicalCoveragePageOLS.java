@@ -12,8 +12,8 @@ import java.util.List;
 public class WhatMedicalCoveragePageOLS extends MainPageOLS{
 
     public final String titleExpected = "What medical coverage do you have for your doctor visits, medication, surgery, and/or testing?\n" +
-            "Please note that this is for informational purposes only.\n" +
-            "Please select all that apply.";
+    		"Please note that this is for informational purposes only.\n" +
+    		"Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;

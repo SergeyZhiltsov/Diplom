@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.CC.END_4385.MostRecentSurgeryCC;
 import com.acurian.selenium.pages.CC.END_4385.NonMenstrualPelvicPainCC;
 import com.acurian.selenium.pages.CC.END_4385.PelvicPainDuringMenstrualCC;
 import com.acurian.selenium.pages.CC.END_4385.PelvicPainOtherTimesCC;
+import com.acurian.selenium.pages.CC.END_4385.PlzDescribeYourMenstrualCyclesCC;
 import com.acurian.selenium.pages.CC.END_4385.SurgicalProceduresCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
@@ -24,13 +25,14 @@ import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -146,19 +148,15 @@ public class End_4385_CC extends BaseTest{
        
        HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = diagnoseYourEndometriosisCC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Unsure")
+    		   .clickOnAnswer("11 or more years ago")
     		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
-       
-       
-       debugPageCC.checkProtocolsEquals("Did your doctor perform any of the following procedures to help diagnose your endometriosis? Please ...", protocol1, protocol2);
+       debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2);
        debugPageCC.back();
-       
-       
-       LaparoscopyAndLaparotomyCC laparoscopyAndLaparotomyCC = diagnoseYourEndometriosisCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Laparotomy, a surgical procedure in which a large cut is made into the abdomen")
-    		   .clickNextButton(new LaparoscopyAndLaparotomyCC());     
-           
+       //LaparoscopyAndLaparotomyCC laparoscopyAndLaparotomyCC = diagnoseYourEndometriosisCC
+       diagnoseYourEndometriosisCC.waitForPageLoad()
+    		   .clickOnAnswer("2 - 3 months ago")
+    		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());     
+/*           
        laparoscopyAndLaparotomyCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("4 - 6 years ago")
@@ -171,10 +169,11 @@ public class End_4385_CC extends BaseTest{
        
        
        debugPageCC.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2);
-       debugPageCC.back();
+       debugPageCC.back();*/
               
        haveYouGoneThroughMenopauseUF_CC
-    		   .waitForPageLoad()
+    		   .waitForPageLoad();
+    		   HaveYouHadHysterectomyUF_CC haveYouHadHysterectomyUF_CC = haveYouGoneThroughMenopauseUF_CC
     		   .clickOnAnswer("No")
     		   .clickNextButton(new HaveYouHadHysterectomyUF_CC());
        
@@ -188,25 +187,34 @@ public class End_4385_CC extends BaseTest{
        debugPageCC.back();
        
        
-       DoYouHaveRegularMenstrualCyclesUF_CC doYouHaveRegularMenstrualCyclesUF_CC = haveYouHadHysterectomyUF_CC
+       PlzDescribeYourMenstrualCyclesCC plzDescribeYourMenstrualCyclesCC = haveYouHadHysterectomyUF_CC
     		   .waitForPageLoad()
     		   .clickOnAnswer("No")
-    		   .clickNextButton(new DoYouHaveRegularMenstrualCyclesUF_CC());
+    		   .clickNextButton(new PlzDescribeYourMenstrualCyclesCC());
        
-       PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = doYouHaveRegularMenstrualCyclesUF_CC
+       PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = plzDescribeYourMenstrualCyclesCC
     		   .waitForPageLoad()
-    		   .clickOnAnswer("Yes")
+    		   .clickOnAnswer("Never regular")
     		   .clickNextButton(new PelvicPainDuringMenstrualCC());
+       debugPageCC.checkProtocolsEquals("Please describe your menstrual cycles:", protocol1, protocol2);
+       debugPageCC.back();
+       //LaparoscopyAndLaparotomyCC laparoscopyAndLaparotomyCC = diagnoseYourEndometriosisCC
+       plzDescribeYourMenstrualCyclesCC.waitForPageLoad()
+    		   .clickOnAnswer("Always regular")
+    		   .clickNextButton(new PelvicPainDuringMenstrualCC());  
+       
        
        DescribesThePelvicPainCC describesThePelvicPainCC = pelvicPainDuringMenstrualCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
     		   .clickNextButton(new DescribesThePelvicPainCC());
        
+       
        PelvicPainOtherTimesCC pelvicPainOtherTimesCC = describesThePelvicPainCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Severe - the pain is so intense that I have great difficulty completing my daily activities")
     		   .clickNextButton(new PelvicPainOtherTimesCC());
+       
        
        NonMenstrualPelvicPainCC nonMenstrualPelvicPainCC = pelvicPainOtherTimesCC
     		   .waitForPageLoad()
@@ -218,16 +226,18 @@ public class End_4385_CC extends BaseTest{
     		   .clickOnAnswer("Moderate - the pain is strong enough that I have some difficulty completing my daily activities")
     		   .clickNextButton(new HormonalBirthControlCC());
        
-       SurgicalProceduresCC surgicalProceduresCC = hormonalBirthControlCC
-    		   .waitForPageLoad()
+       //SurgicalProceduresCC surgicalProceduresCC = hormonalBirthControlCC
+       hormonalBirthControlCC.waitForPageLoad();
+    		   HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = hormonalBirthControlCC
     		   .clickOnAnswer("No")
-    		   .clickNextButton(new SurgicalProceduresCC());
-       
+    		   .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());    		   
+    		   
+/*    		   .clickNextButton(new SurgicalProceduresCC());
        surgicalProceduresCC
     		   .waitForPageLoad();
                HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = surgicalProceduresCC
                 .clickOnAnswer("1")
-    		   .clickNextButton(new  HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());      
+    		   .clickNextButton(new  HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());  */    
        
        AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
     		   .waitForPageLoad()
@@ -239,12 +249,64 @@ public class End_4385_CC extends BaseTest{
     		   .clickOnAnswer("No")
     		   .clickNextButton(new TransitionStatementCC());
        
-       HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
+       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
     		    //.waitForPageLoad(studyName1)
-    	        .clickNextButton(new HasHealthcareProfessionalPageCC());
-    	            
+    	        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+    	     
        
-    	        hasHealthcareProfessionalPageCC
+       //-------------------New GENERAL HEALTH---------------------------
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")                	
+       		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+       		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")
+               .clickNextButton(new ApproximateHeightPageCC())
+       		//----------Height and Weight Question Page--------------------
+               .waitForPageLoad()
+               .setAll("5", "5", "160")
+               .clickNextButton(new LetMeSeePageCC())
+               .waitForPageLoad()
+               .clickNextButton(new ChildrenUnderPageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("No")
+               .clickNextButton(new TheStudySitePageCC())
+               //----------PEDIATRIC HEALTH Questions----------
+               //.clickNextButton(new HouseholdHavePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("None of the above")
+               //.clickNextButton(new TheStudySitePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("Public transportation")
+               //.clickNextButton(new WhatMedicalCoveragePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("No, I have no coverage")
+               //.clickNextButton(new EthnicBackgroundPageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("Prefer not to answer")
+        //----------Resume GENERAL HEALTH Questions----------
+               .clickNextButton(new IdentificationPageCC())
+               .waitForPageLoad()
+               .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
+               .clickNextButton(new SiteSelectionPageCC())
+               .waitForPageLoad("an endometriosis study")
+               .getPID()
+               .clickOnAnswer(siteName)
+               .clickNextButton(new HSGeneralCC())
+               .waitForPageLoad(site_Indication)
+               .clickNextButton(new DoctorInformationCollectionPageCC())
+               .waitForPageLoad()
+               .clickNextButton(new HSMedicalRecordsPageCC())
+               .waitForPageLoad()
+               .clickNextButton(new ThankYouCloseSimplePageCC())
+               .waitForPageLoad()
+               .clickNextButton(selectActionPageCC)
+               .waitForPageLoad()
+               .pidFromDbToLog(env);
+       
+      /* //-------------------OLD GENERAL HEALTH---------------------------
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
     	                .waitForPageLoad()
     	                .clickOnAnswers("None of the above")
     	                .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -331,8 +393,7 @@ public class End_4385_CC extends BaseTest{
     	                .waitForPageLoad()
     	                .clickNextButton(selectActionPageCC)
     	                .waitForPageLoad()
-    	                .pidFromDbToLog(env);
-       
+    	                .pidFromDbToLog(env); */       
 	}
 
 }

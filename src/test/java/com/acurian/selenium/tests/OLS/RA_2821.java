@@ -38,9 +38,10 @@ import com.acurian.selenium.pages.OLS.generalHealth.CancerPage;
 import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditions;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DrugOrAlcoholAbuse;
 import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouSmokedCigarettes;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartRelatedMedicalProc;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
@@ -81,8 +82,7 @@ public class RA_2821 extends BaseTest {
 		String phoneNumberRA = "AUTAMS1RA1";
 //		String env = "STG";
 //		String protocol2 = "M13_545";  Protocol Disabled
-        String protocol1 = "M15_925";        
-        List<String> protocols = Arrays.asList(protocol1);
+        String protocol1 = "M15_925";
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_RA2821_HS_Site";
         String zipCode = "19044";
@@ -110,10 +110,10 @@ public class RA_2821 extends BaseTest {
 		         .clickOnAnswer("Female")
 		         .clickNextButton(new DoYouSufferFromArthritis());
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = doYouSufferFromArthritis
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouSufferFromArthritis
 				 .waitForPageLoad()
 				 .clickOnAnswer("No")
-				 .clickNextButton(new HasHealthcareProfessionalPageOLS());
+				 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, protocol1);
@@ -132,7 +132,7 @@ public class RA_2821 extends BaseTest {
 		
 		AgeWhenDiagnosedWithRA ageWhenDiagnosedWithRA = whenYouDiagnosedWithRA
 				.waitForPageLoad()
-				.clickOnAnswer("Within the past 2 months")
+				.clickOnAnswer("3 - 6 months ago")
 				.clickNextButton(new AgeWhenDiagnosedWithRA());
 		
 		HowYourRASymptomsStartedFirstTime howYourRASymptomsStartedFirstTime = ageWhenDiagnosedWithRA
@@ -250,10 +250,10 @@ public class RA_2821 extends BaseTest {
 				.clickOnAnswer("Last received 7 to 11 months ago")
 				.clickNextButton(new TakenXeljanz());
         
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = takenXeljanz
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = takenXeljanz
 				.waitForPageLoad()
 				.clickOnAnswer("Yes, I am currently taking it")
-				.clickNextButton(new HasHealthcareProfessionalPageOLS());
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
 		debugPageOLS.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", protocol1); //protocol2
         debugPageOLS.back();
@@ -261,9 +261,60 @@ public class RA_2821 extends BaseTest {
         takenXeljanz
 				.waitForPageLoad()
 				.clickOnAnswer("No, I have never taken it")
-				.clickNextButton(new HasHealthcareProfessionalPageOLS());	
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());	
 		
-		hasHealthcareProfessionalPageOLS
+        
+		//----------*******NEW GENERAL HEALTH Questions********----------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new ChildrenUnderPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new HouseholdHavePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new TheStudySitePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("Public transportation")        
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new IdentificationPageOLS())
+        .waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new SiteSelectionPageOLS())
+        .waitForPageLoad(studyName)
+        .getPID()
+        .clickOnFacilityName(siteName)
+        .clickNextButton(new HSGeneralPageOLS())
+        .waitForPageLoad(Siteindicator)
+        .clickNextButton(new DoctorInformationCollectionPageOLS())        
+        .waitForPageLoad()
+        .clickNextButton(new HS1PageOLS())
+        .waitForPageLoad()        
+        .clickOkInPopUp()
+        .setSignature()
+        .getPage(new ThankYouCloseSimplePageOLS())
+        .waitForPageLoad()
+        .clickNextButton(new AboutHealthPageOLS())
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
+        
+        
+        /*---------------OLD General Health-----------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
         .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
@@ -348,9 +399,7 @@ public class RA_2821 extends BaseTest {
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
-				
-			
+        .pidFromDbToLog(env);		*/
 	}
 
 }

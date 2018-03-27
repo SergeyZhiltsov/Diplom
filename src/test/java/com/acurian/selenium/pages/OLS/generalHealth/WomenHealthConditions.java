@@ -4,18 +4,20 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class WomenHealthConditions extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever been diagnosed with any of the following women's health conditions?\n" +
-            "Please select all that apply.";
+    public final String titleExpected = "Which of the following women's health conditions have you been diagnosed with?\n" +
+    		"Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS18_')]//span[contains(@class,'visible-md-inline')]")
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
     public WomenHealthConditions() {
@@ -29,12 +31,8 @@ public class WomenHealthConditions extends MainPageOLS{
     }
 
     @Step
-    public WomenHealthConditions clickOnAnswers(String answerText) {
+    public WomenHealthConditions clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
-//        List<String> answerTextList = Arrays.asList(answerText);
-//        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-//                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label")),5,5).click().build().perform());
-//        waitForAnimation();
         return this;
     }
 

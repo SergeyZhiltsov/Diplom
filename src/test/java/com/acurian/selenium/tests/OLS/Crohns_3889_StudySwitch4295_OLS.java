@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00005")
     @Description("Crohn's_3889 OLS with HS")
     public void Crohns3889StudySwitch4295OLS() {
@@ -237,12 +237,12 @@ public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
         
         haveAnyOfTheFollowingPageOLS
         		.waitForPageLoad();
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = haveAnyOfTheFollowingPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveAnyOfTheFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        hasHealthcareProfessionalPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())

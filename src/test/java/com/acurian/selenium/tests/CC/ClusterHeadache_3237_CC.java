@@ -20,7 +20,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
@@ -35,12 +35,23 @@ import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.pages.CC.ClusterHeadache_3237.AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC;
 import com.acurian.selenium.pages.CC.ClusterHeadache_3237.WhenYouAreExperiencingCHattackIsTheLocationPain_CC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartrelatedMedicalProceduresPageCC;
 import com.acurian.selenium.pages.CC.shared.DoYouExperienceAnyOfTheFollowingFeelings_CC;
 import com.acurian.selenium.pages.CC.shared.HowLongDoYourClusterPeriodsTypicallyLast_CC;
 import com.acurian.selenium.pages.CC.shared.WhatTypeOfDoctorDiagnosedCH_CC;
 import com.acurian.selenium.pages.CC.shared.WhenYouAreHavingClusterHeadacheAttackDoYouExp_CC;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.selenium.pages.CC.SUI_3923.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
@@ -56,7 +67,7 @@ import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditio
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -244,7 +255,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 WhenYouAreExperiencingCHattackIsTheLocationPain_CC whenYouAreExperiencingCHattackIsTheLocationPain_CC = doYouExperienceAnyOfTheFollowingFeelings_CC   //[create NEXT PAGE Object = THIS page object]
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhenYouAreExperiencingCHattackIsTheLocationPain_CC());    
-             //------Validate protocol DQs in debug window----------
+                //------Validate protocol DQs in debug window----------
                 whenYouAreExperiencingCHattackIsTheLocationPain_CC.waitForPageLoad();
                 debugPageCC.checkProtocolsEquals("Do you experience any of the following feelings or behaviors when you are having a cluster headache ...", protocol1,protocol2);
                 //------Go BACK and change your answer to QR answer - to qualify----------
@@ -268,16 +279,51 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC.waitForPageLoad();
                 Assert.assertEquals(areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC.getTitleText(), areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC.titleExpected, "Title is diff");
                 areYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC.clickOnAnswer("Yes")
-                .clickNextButton(new TransitionStatementCC());
-                
+                .clickNextButton(new TransitionStatementCC());                
                 
                 transitionStatementCC.waitForPageLoad("cluster headache");
-                HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
+                HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
                 
                 
-                //----------GENERAL HEALTH Questions----------
-                hasHealthcareProfessionalPageCC
+      //----------*******NEW GENERAL HEALTH Questions********----------     
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+        	 //----------Q23 - Do any of the following additional diagnoses apply to you?--------
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+        	 //----------ProvideHeight-Weight Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+           	 //----------LetMeSeePageCC Page--------------------
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+        	 //----------ChildrenUnderTheAge Page--------------------
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC())
+           	 //----------PII Page--------------------
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad("a cluster headache study")
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);        
+                
+                
+   /*//--------------------OLD GENERAL HEALTH Questions----------
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -333,20 +379,6 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                         .clickNextButton(new ChildrenUnderPageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("No")
-                        //----------PEDIATRIC HEALTH Questions----------
-                        //.clickNextButton(new HouseholdHavePageCC())
-                        //.waitForPageLoad()
-                        //.clickOnAnswers("None of the above")
-                        //.clickNextButton(new TheStudySitePageCC())
-                        //.waitForPageLoad()
-                        //.clickOnAnswers("Public transportation")
-                        //.clickNextButton(new WhatMedicalCoveragePageCC())
-                        //.waitForPageLoad()
-                        //.clickOnAnswers("No, I have no coverage")
-                        //.clickNextButton(new EthnicBackgroundPageCC())
-                        //.waitForPageLoad()
-                        //.clickOnAnswers("Prefer not to answer")
-                 //----------Resume GENERAL HEALTH Questions----------
                         .clickNextButton(new IdentificationPageCC())
                         .waitForPageLoad()
                         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
@@ -361,6 +393,6 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
-                        .pidFromDbToLog(env);
+                        .pidFromDbToLog(env); */
             }
 }

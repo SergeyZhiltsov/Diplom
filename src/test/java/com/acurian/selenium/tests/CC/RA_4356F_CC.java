@@ -19,19 +19,25 @@ import com.acurian.selenium.pages.CC.RA_2821.HowOldWereUWhenDiagnosedWithRACC;
 import com.acurian.selenium.pages.CC.RA_2821.TenderPainfulOrSwollenJointsCC;
 import com.acurian.selenium.pages.CC.RA_2821.WhatTestsDoctorLedToDiagnosingRACC;
 import com.acurian.selenium.pages.CC.RA_2821.WhenWereYouDiagnosedWithRACC;
+import com.acurian.selenium.pages.CC.closes.IncongruentSiteSelectionCloseCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC2PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -55,6 +61,7 @@ import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
+import com.acurian.selenium.pages.CC.shared.WhenLastReceivedOrenciaCC;
 import com.acurian.selenium.pages.CC.shared.WhenLastReceivedTysabriCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.utils.DataProviderPool;
@@ -69,7 +76,8 @@ public class RA_4356F_CC extends BaseTest{
         String protocol1 = "M15_925";
         //String protocol2 = "M13_545";
         String protocol3 = "CL04041023";
-        String studyName = "arthritis";        
+        String studyName = "a rheumatoid arthritis (RA)";
+        String indication = "an arthritis";
    //     String env = "PRD";
         String siteName = "AUT_RA_4356F_Site";
         String zipCode  = "19044";
@@ -134,7 +142,7 @@ public class RA_4356F_CC extends BaseTest{
        
        WhenWereYouDiagnosedWithRACC whenWereYouDiagnosedWithRACC = whatKindOfArthritisCC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Rheumatoid arthritis")
+    		   .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
     		   .clickNextButton(new WhenWereYouDiagnosedWithRACC());
        
        HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenWereYouDiagnosedWithRACC
@@ -164,7 +172,7 @@ public class RA_4356F_CC extends BaseTest{
        
        DoYouUseAnyOralSteroidCC doYouUseAnyOralSteroidCC = currentlyExperiencingJointSymptomsYourRACC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Pain or swelling in at least 3 separate joints ")
+    		   .clickOnAnswers("Pain or swelling in at least 3 separate joints")
     		   .clickNextButton(new DoYouUseAnyOralSteroidCC());
        
        AnySteroidsForYourRACC anySteroidsForYourRACC = doYouUseAnyOralSteroidCC
@@ -197,12 +205,12 @@ public class RA_4356F_CC extends BaseTest{
     		   .clickOnAnswer("4 - 6 months")
     		   .clickNextButton(new BiologicMedicationsCC());
        
-       WhenLastReceivedTysabriCC whenLastReceivedTysabriCC = biologicMedicationsCC
+       WhenLastReceivedOrenciaCC whenLastReceivedOrenciaCC = biologicMedicationsCC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Tysabri")
-    		   .clickNextButton(new WhenLastReceivedTysabriCC());
+    		   .clickOnAnswers("Orencia")
+    		   .clickNextButton(new WhenLastReceivedOrenciaCC());
        
-       EverTakenXeljanzCC EverTakenXeljanzCC = whenLastReceivedTysabriCC
+       EverTakenXeljanzCC EverTakenXeljanzCC = whenLastReceivedOrenciaCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Last received 7 to 11 months ago")
     		   .clickNextButton(new EverTakenXeljanzCC());
@@ -212,12 +220,59 @@ public class RA_4356F_CC extends BaseTest{
     		   .clickOnAnswer("No, I have never taken it")
     		   .clickNextButton(new TransitionStatementCC());
        
-       HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
+       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                .waitForPageLoad("RA")
-               .clickNextButton(new HasHealthcareProfessionalPageCC());
+               .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+       
+       
+       //-------------------New GENERAL HEALTH---------------------------
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")                	
+       		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+       		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")
+               .clickNextButton(new ApproximateHeightPageCC())
+       		//----------Height and Weight Question Page--------------------
+               .waitForPageLoad()
+               .setAll("5", "5", "160")
+               .clickNextButton(new LetMeSeePageCC())
+       		//----------ChildrenUnderTheAge Page--------------------
+               .waitForPageLoad()
+               .clickNextButton(new ChildrenUnderPageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("Yes")
+               //----------PEDIATRIC HEALTH Questions----------
+               .clickNextButton(new HouseholdHavePageCC())
+               .waitForPageLoad()
+               .clickOnAnswers("None of the above")
+       		//----------PII (IdentificationPageOLS) Page--------------------
+               .clickNextButton(new IdentificationPageCC())
+               .waitForPageLoad()
+               .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+               .clickNextButton(new IncongruentSiteSelectionCloseCC())
+               .waitForPageLoad(studyName)
+               .getPID()
+       		//----------SITE Selection Page--------------------
+               .clickOnAnswer(siteName)
+               .clickNextButton(new RadiantWarmTransferClose1PageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("[patient agrees to be transferred]")
+               .clickNextButton(new SynexusDirectScheduleWTC2PageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("Yes")
+               .clickNextButton(new SynexusDirectScheduleWTC3PageCC())
+               .waitForPageLoad()
+               .clickNextButton(new SRDirectScheduleWTTCPageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("Transferred for Scheduling")
+               .clickNextButton(selectActionPageCC)
+               .waitForPageLoad()
+               .pidFromDbToLog(env);
 
-
-       hasHealthcareProfessionalPageCC
+       //------------------OLD General Health--------------------
+      /* haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                .waitForPageLoad()
                .clickOnAnswers("None of the above")
                .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -297,6 +352,6 @@ public class RA_4356F_CC extends BaseTest{
                .waitForPageLoad()
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
-               .pidFromDbToLog(env);
+               .pidFromDbToLog(env);  */
 	}
 }

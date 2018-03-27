@@ -1,6 +1,15 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
+import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
+import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
+import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_OLS;
@@ -12,6 +21,7 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -50,6 +60,8 @@ public class Diabetes_4356A extends BaseTest{
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
     //    String env = "STG";
         String zipCode = "19044";
+        String facility_Code_STG = "625268";
+        String facility_Code_PRD = "625640";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -85,10 +97,10 @@ public class Diabetes_4356A extends BaseTest{
         diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
-        hasHealthcareProfessionalPageOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();//deleted protocol5 spec 43
         //debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7,protocol8,protocol9,protocol10,protocol11);
@@ -106,7 +118,7 @@ public class Diabetes_4356A extends BaseTest{
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //.checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7,protocol8,protocol9,protocol10,protocol11)
@@ -115,7 +127,7 @@ public class Diabetes_4356A extends BaseTest{
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //.checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7,protocol8,protocol9,protocol10,protocol11)
@@ -124,7 +136,7 @@ public class Diabetes_4356A extends BaseTest{
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //.checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7,protocol8,protocol9,protocol10,protocol11)
@@ -511,80 +523,134 @@ public class Diabetes_4356A extends BaseTest{
         diabeticNephropathyPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(forYourKidneysPageOLS);
+                .clickNextButton(new ForYourKidneysPageOLS());
 
         //---------------------------------------forYourKidneysPageOLS------------------------------------------------------ 
         forYourKidneysPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(forYourKidneysPageOLS.getTitleText(),forYourKidneysPageOLS.titleExpected, "Title is diff");
-        forYourKidneysPageOLS
-                .clickOnAnswer("No")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+        
+        forYourKidneysPageOLS.clickOnAnswer("No")
+        		.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals("Do you take medication for high blood pressure or for your kidneys? Some of these medications are ca...", protocol1)
                 .back();
         forYourKidneysPageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(hasHealthcareProfessionalPageOLS);
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
 
 
 
         //---------------------------------------GENERAL HEALTH------------------------------------------------------ 
-        hasHealthcareProfessionalPageOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = new HaveYouEverExperiencedHeartRelatedMedicalCondOLS();
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad();
-        Assert.assertEquals(hasHealthcareProfessionalPageOLS.getTitleText(),hasHealthcareProfessionalPageOLS.titleExpected, "Title is diff");
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = hasHealthcareProfessionalPageOLS
-                .clickOnAnswers("Heart Attack",
-                        "Stroke",
-                        "TIA or \"Mini-Stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight stay in a hospital")
+        Assert.assertEquals(haveYouEverExperiencedHeartRelatedMedicalCondOLS.getTitleText(),haveYouEverExperiencedHeartRelatedMedicalCondOLS.titleExpected, "Title is diff");
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickOnAnswers("Heart attack","Stroke","TIA or \"mini-stroke\"","Angina (heart-related chest pain) that required an overnight hospital stay")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(1),subquestionExperiencedHeartPageOLS.titleExpected1, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(2),subquestionExperiencedHeartPageOLS.titleExpected2, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(3),subquestionExperiencedHeartPageOLS.titleExpected3, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(4),subquestionExperiencedHeartPageOLS.titleExpected4, "Title is diff");
-        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
+        HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS = subquestionExperiencedHeartPageOLS
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"Less than 30 days ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-        heartrelatedMedicalProceduresPageOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS());
+        haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //6,7,1,4,3,2,8,12,11,10,13
-                .checkProtocolsEqualsForQNumber("QS4218",protocol6, protocol7, protocol1, protocol4, protocol3, protocol2, protocol8, protocol12, protocol11, protocol10, protocol13)
+                .checkProtocolsEqualsForQNumber("QS4232",protocol6, protocol7, protocol1, protocol4, protocol3, protocol2, protocol8, protocol12, protocol11, protocol10, protocol13)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"5 years ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"5 years ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"5 years ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"5 years ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
+                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS);
 
+        haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+                .waitForPageLoad();
+        Assert.assertEquals(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS.getTitleText(),haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS.titleExpected, "Title is diff");
+        //CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+
+        //**************************************************************************
+        heartrelatedMedicalProceduresPageOLS
+        .waitForPageLoad();
+        Assert.assertEquals(heartrelatedMedicalProceduresPageOLS.getTitleText(),heartrelatedMedicalProceduresPageOLS.titleExpected, "Title is diff");
+        heartrelatedMedicalProceduresPageOLS.clickOnAnswers("None of the above")
+        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        
+        
+        
+    //----------*******NEW GENERAL HEALTH Questions********----------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new HouseholdHavePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new TheStudySitePageOLS())
+        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+        .clickOnAnswer("Public transportation")
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+		.waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new SiteSelectionPageOLS())    
+		//----------SiteSelection Page--------------------
+        .waitForPageLoad(studyName)
+        .getPID()
+        .clickOnFacilityName(siteName)
+        .clickNextButton(new SynexusQualifiedClose4356PageOLS())
+
+     //----------GladLocationIsConvenient Page--------------------
+        .waitForPageLoad(env.equals("STG")? facility_Code_STG : facility_Code_PRD)
+        .clickNextButton(new ThankYouCloseSimplePageOLS())
+
+      //----------ThankYouCloseSimplePageOLS Page--------------------
+        .waitForPageLoad()
+        .clickNextButton(new AboutHealthPageOLS())
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
+        
+        
+        
+ 
+  /* -----------------OLD General Health----------------------
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(heartrelatedMedicalProceduresPageOLS.getTitleText(),heartrelatedMedicalProceduresPageOLS.titleExpected, "Title is diff");
-        CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = heartrelatedMedicalProceduresPageOLS
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new CongestiveHeartFailurePageOLS());
-        congestiveHeartFailurePageOLS
-                .waitForPageLoad()
-                .back();
-        HeartProceduresFromLastPageOLS heartProceduresFromLastPageOLS = heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Stent placement")
-                .clickNextButton(new HeartProceduresFromLastPageOLS());
-
-        heartProceduresFromLastPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(heartProceduresFromLastPageOLS.getTitleText(),heartProceduresFromLastPageOLS.titleExpected, "Title is diff");
-        heartProceduresFromLastPageOLS
+        heartrelatedMedicalProceduresPageOLS
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(congestiveHeartFailurePageOLS)
                 .waitForPageLoad()
@@ -639,12 +705,6 @@ public class Diabetes_4356A extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new BoneOrJointConditionsPageOLS());
-
-/*		//----------BoneOrJointConditions Page--------------------
-		BoneOrJointConditions boneOrJointConditions = boneOrJointConditionsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new BoneOrJointConditions());*/
 
 		//----------BoneOrJointConditions Page--------------------
 		SleepRelatedConditionsPageOLS sleepRelatedConditionsPageOLS = boneOrJointConditionsPageOLS
@@ -743,13 +803,13 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(new SynexusQualifiedClose4356PageOLS())
 
              //----------GladLocationIsConvenient Page--------------------
-                .waitForPageLoad("625640")
+		        .waitForPageLoad(env.equals("STG")? facility_Code_STG : facility_Code_PRD)
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
 
 	          //----------ThankYouCloseSimplePageOLS Page--------------------
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env); */
     }
 }

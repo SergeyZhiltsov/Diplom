@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.END_4385.PlzDescribeYourMenstrualCyclesCC;
 import com.acurian.selenium.pages.CC.UF_4384.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSCrohnsPageCC;
@@ -37,7 +38,7 @@ public class UF_4384_CC extends BaseTest{
         List<String> protocols = Arrays.asList("MVT_601_3001","MVT_601_3002");
         String protocol1 = "MVT_601_3001";
 		String protocol2 = "MVT_601_3002";
-        String studyName = "a uterine fibroids";
+        String studyName = "a uterine fibroids study";
         String studyName1 = "uterine fibroids"; 
         String studyIndication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
@@ -163,26 +164,26 @@ public class UF_4384_CC extends BaseTest{
                 .checkProtocolsEquals(haveYouHadHysterectomyUF_CC.titleExpected, protocol1, protocol2)
                 .back();
         haveYouHadHysterectomyUF_CC.waitForPageLoad();
-        DoYouHaveRegularMenstrualCyclesUF_CC doYouHaveRegularMenstrualCyclesUF_CC = haveYouHadHysterectomyUF_CC
+        PlzDescribeYourMenstrualCyclesCC plzDescribeYourMenstrualCyclesCC = haveYouHadHysterectomyUF_CC
                 .clickOnAnswer("No")
-                .clickNextButton(new DoYouHaveRegularMenstrualCyclesUF_CC());
+                .clickNextButton(new PlzDescribeYourMenstrualCyclesCC());
         
 
-		//---------------Q5 Do you have regular menstrual cycles, meaning that you get your period each month on a predictable schedule?-------------------		
-        doYouHaveRegularMenstrualCyclesUF_CC
+		//---------------Q5 - Please describe your menstrual cycles: -------------------		
+        plzDescribeYourMenstrualCyclesCC
                 .waitForPageLoad();
-        Assert.assertEquals(doYouHaveRegularMenstrualCyclesUF_CC.getTitleText(),doYouHaveRegularMenstrualCyclesUF_CC.titleExpected, "Title is diff");
-        		HowWouldYouDescribeAvgPeriodUF_CC howWouldYouDescribeAvgPeriodUF_CC = doYouHaveRegularMenstrualCyclesUF_CC
-        		.clickOnAnswer("No")
+        Assert.assertEquals(plzDescribeYourMenstrualCyclesCC.getTitleText(),plzDescribeYourMenstrualCyclesCC.titleExpected, "Title is diff");
+        		HowWouldYouDescribeAvgPeriodUF_CC howWouldYouDescribeAvgPeriodUF_CC = plzDescribeYourMenstrualCyclesCC
+        		.clickOnAnswer("Never regular")
                 .clickNextButton(new HowWouldYouDescribeAvgPeriodUF_CC());
         		howWouldYouDescribeAvgPeriodUF_CC
                 .waitForPageLoad()
-                //.getPage(debugPageCC)
-                //.checkProtocolsEquals("Do you have regular menstrual cycles, meaning that you get your period each month on a predictable s...", protocol1, protocol2)
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Please describe your menstrual cycles:", protocol1, protocol2)
                 .back();
-        doYouHaveRegularMenstrualCyclesUF_CC
+        		plzDescribeYourMenstrualCyclesCC
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("Always regular")
                 .clickNextButton(new HowWouldYouDescribeAvgPeriodUF_CC());
 
         
@@ -272,12 +273,64 @@ public class UF_4384_CC extends BaseTest{
         transitionStatementCC
         .getTitleExpected(studyName1);
         //Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName1), "Title is difff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-        .clickNextButton(new HasHealthcareProfessionalPageCC());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
        
+        
+        //-------------------New GENERAL HEALTH---------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")                	
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+        		//----------Height and Weight Question Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+                //----------PEDIATRIC HEALTH Questions----------
+                //.clickNextButton(new HouseholdHavePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("None of the above")
+                //.clickNextButton(new TheStudySitePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Public transportation")
+                //.clickNextButton(new WhatMedicalCoveragePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("No, I have no coverage")
+                //.clickNextButton(new EthnicBackgroundPageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Prefer not to answer")
+         //----------Resume GENERAL HEALTH Questions----------
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoad(studyIndication)
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
+        
 
-        //----------GENERAL HEALTH Questions----------
-        hasHealthcareProfessionalPageCC
+        /*//----------OLD GENERAL HEALTH Questions----------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -365,6 +418,6 @@ public class UF_4384_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                 .pidFromDbToLog(env);
+                .pidFromDbToLog(env); */
     }
 }

@@ -1,7 +1,7 @@
-package com.acurian.selenium.pages.OLS.generalHealth;
+package com.acurian.selenium.pages.OLS.shared;
 
 import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DoYouSufferFromLbpPageOLS;
 import org.openqa.selenium.By;
@@ -14,9 +14,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Arrays;
 import java.util.List;
 
-public class HasHealthcareProfessionalPageOLS extends MainPageOLS{
+public class HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS extends MainPageOLS{
 
-    public final String titleExpected = "Has a healthcare professional told you that you have any of the following heart-related medical conditions?\n" +
+    public final String titleExpected = "Have you ever been diagnosed with any of the following additional heart-related medical conditions?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
@@ -25,18 +25,18 @@ public class HasHealthcareProfessionalPageOLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public HasHealthcareProfessionalPageOLS() {
+    public HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HasHealthcareProfessionalPageOLS waitForPageLoad() {
+    public HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HasHealthcareProfessionalPageOLS clickOnAnswers(String ...answerText) {
+    public HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))

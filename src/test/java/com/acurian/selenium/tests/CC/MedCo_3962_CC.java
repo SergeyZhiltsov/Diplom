@@ -9,6 +9,7 @@ import com.acurian.selenium.pages.CC.DYS_4356C.AreYouTakingAnyOfMedicationsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.NonPrescriptionSupplementsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.PregnancyAndFertilityCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.ThankYouForAnsweringCC;
+import com.acurian.selenium.pages.CC.MDD_3159.WhenWasYourMostRecentHeartProcedureCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
@@ -25,7 +26,8 @@ import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditio
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -37,6 +39,7 @@ import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
@@ -44,6 +47,8 @@ import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.HasAHealthcareProfessionalDYS4356;
+import com.acurian.selenium.pages.CC.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC;
+import com.acurian.selenium.pages.CC.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC;
 import com.acurian.selenium.pages.CC.shared.LastTimeYouHadHeartProceduresCC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
@@ -51,6 +56,21 @@ import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.StatinMedicationPreviousQuestionPageCC;
 import com.acurian.selenium.pages.CC.shared.StatinMedicationsCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.OLS.MDD_3159.WhenWasYourMostRecentHeartProcedureOLS;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
+import com.acurian.selenium.pages.OLS.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS;
+import com.acurian.selenium.pages.OLS.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 
 public class MedCo_3962_CC extends BaseTest{
@@ -120,38 +140,93 @@ public class MedCo_3962_CC extends BaseTest{
     		   .clickOnAnswers("Unsure")
     		   .clickNextButton(new NonQRtransitionPageCC());
        
-       nonQRtransitionPageCC.waitForPageLoad();
-       
-       DebugPageCC debugPageCC = new DebugPageCC();       
-       debugPageCC.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);
-       debugPageCC.back();
-       
-       NonQRtransitionPageCC nonQRtransitionPageCC1 =  hasAHealthcareProfessionalDYS4356
-    		   .waitForPageLoad()
+       nonQRtransitionPageCC
+       		.waitForPageLoad();
+       		DebugPageCC debugPageCC = new DebugPageCC();       
+       		debugPageCC.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);
+       		debugPageCC.back();
+       		hasAHealthcareProfessionalDYS4356
+       		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
-    		   .clickNextButton(new NonQRtransitionPageCC());       
-       
-       debugPageCC.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);
-       debugPageCC.back();
-       
-       StatinMedicationsCC statinMedicationsCC = hasAHealthcareProfessionalDYS4356
+    		   .clickNextButton(new NonQRtransitionPageCC());
+       		debugPageCC.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);
+       		debugPageCC.back();
+       		StatinMedicationsCC statinMedicationsCC = hasAHealthcareProfessionalDYS4356
     		   .waitForPageLoad()
     		   .clickOnAnswers("High cholesterol, or hypercholesterolemia")
     		   .clickNextButton(new StatinMedicationsCC());
-       
+       //---------------statinMedicationsCC--------------- 
        AreYouTakingAnyOfMedicationsCC areYouTakingAnyOfMedicationsCC = statinMedicationsCC       
                .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new AreYouTakingAnyOfMedicationsCC());       
-       
        debugPageCC.checkProtocolsEquals("One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a ...", protocol1);
        debugPageCC.back();
-       
-       StatinMedicationPreviousQuestionPageCC statinMedicationPreviousQuestionPageCC = statinMedicationsCC       
-               .waitForPageLoad()
+       StatinMedicationPreviousQuestionPageCC statinMedicationPreviousQuestionPageCC = statinMedicationsCC
+    		   .waitForPageLoad()
     		   .clickOnAnswers("Rosuvastatin")
     		   .clickNextButton(new StatinMedicationPreviousQuestionPageCC());
+       //---------------statinMedicationPreviousQuestionPageCC--------------- 
+       statinMedicationPreviousQuestionPageCC
+       			.waitForPageLoad()
+       			.clickOnAnswer("4 months")
+       			.clickNextButton(new AreYouTakingAnyOfMedicationsCC());
+       //--------------areYouTakingAnyOfMedicationsCC---------------       
+       areYouTakingAnyOfMedicationsCC
+       			.waitForPageLoad()
+       			.clickOnAnswers("None of the above")
+       			.clickNextButton(new NonPrescriptionSupplementsCC())
+       //--------------NonPrescriptionSupplementsCC---------------
+			.waitForPageLoad()
+			.clickOnAnswers("None of the above");
+			HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = areYouTakingAnyOfMedicationsCC  
+    		.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+			
        
+     //----------*******NEW GENERAL HEALTH Questions********----------     
+     		haveYouEverExperiencedHeartRelatedMedicalCondCC
+             	.waitForPageLoad()
+             	.clickOnAnswers("None of the above")
+             	.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC())
+            	//-----------HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS-----------        	
+             .waitForPageLoad()
+             .clickOnAnswers("None of the above")
+             .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC())
+             //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------	
+             .waitForPageLoad()
+             .clickOnAnswers("Angioplasty")
+             .clickNextButton(new WhenWasYourMostRecentHeartProcedureCC())
+             //-----------WhenWasYourMostRecentHeartProcedureOLS page-----------	
+             .waitForPageLoad()
+             .clickOnAnswer("7 - 12 months ago")
+             .clickNextButton(new ChildrenUnderPageCC())
+     		//----------ChildrenUnderTheAge Page--------------------
+     	        .waitForPageLoad()
+     	        .clickOnAnswer("Yes")
+     	        .clickNextButton(new HouseholdHavePageCC())
+     	        .waitForPageLoad()
+     	        .clickOnAnswers("None of the above")
+     	        .clickNextButton(new IdentificationPageCC())
+     		//----------PII (IdentificationPageOLS) Page--------------------
+     		   .waitForPageLoad()
+     	       .clickNextButton(new SiteSelectionPageCC())
+     	       .waitForPageLoad("a high cholesterol and heart disease study")
+     	       .clickOnAnswer(siteName)
+     	       .getPID()
+     	       .clickNextButton(new HSGeneralCC())
+     	       .waitForPageLoad(site_Indication)
+     	       .clickNextButton(new DoctorInformationCollectionPageCC())
+     	       .waitForPageLoad()
+     	       .clickNextButton(new HSMedicalRecordsPageCC())
+     	       .waitForPageLoad()
+     	       .clickNextButton(new ThankYouCloseSimplePageCC())
+     	       .waitForPageLoad()
+     	       .clickNextButton(selectActionPageCC)
+     	       .waitForPageLoad()
+     	       .pidFromDbToLog(env);       
+       
+       
+       /*-------------------OLD Gen Health-----------------------------------
        AreYouTakingAnyOfMedicationsCC areYouTakingAnyOfMedicationsCC1 = statinMedicationPreviousQuestionPageCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("5 months")
@@ -162,13 +237,12 @@ public class MedCo_3962_CC extends BaseTest{
     		   .clickOnAnswers("Repatha (evolocumab)")
     		   .clickNextButton(new NonPrescriptionSupplementsCC());
        
-       HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = nonPrescriptionSupplementsCC
+       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = nonPrescriptionSupplementsCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
-    		   .clickNextButton(new HasHealthcareProfessionalPageCC()); 
-      
+    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC()); 
        
-       HaveYouUndergoneAnyPageCC haveYouUndergoneAnyPageCC = hasHealthcareProfessionalPageCC
+       HaveYouUndergoneAnyPageCC haveYouUndergoneAnyPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                .waitForPageLoad()
                .clickOnAnswers("None of the above")
                .clickNextButton(new HaveYouUndergoneAnyPageCC());
@@ -182,65 +256,11 @@ public class MedCo_3962_CC extends BaseTest{
     		    .waitForPageLoad()
     		    .clickOnAnswer("Less than 30 days ago")
     		    .clickNextButton(new ThankYouForAnsweringCC());       
-       
        debugPageCC.checkProtocolsEquals("When was the last time that you had one of the heart procedures from the last question?", protocol1);
        debugPageCC.back();
-       
        lastTimeYouHadHeartProceduresCC
    	   .waitForPageLoad()
    	   .clickOnAnswer("7 - 12 months ago")
-/*     .clickNextButton(new ThankYouForAnsweringCC())
-       .waitForPageLoad()
-       .clickNextButton(new HeartFailureIsAlsoPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new AffectingYourMetabolismPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingNeurologicalConditions())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new AffectYourLungsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingDigestiveConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new BoneOrJointConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new SleepRelatedConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingSkinConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingViralConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingMentalHealthPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingWomensHealthPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new OtherThanSkinCancerPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new SmokedCigarettesPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No, I never smoked")
-       .clickNextButton(new HistoryOfDrugPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new ApproximateHeightPageCC())
-       .waitForPageLoad()
-       .setAll("5", "5", "160")
-       .clickNextButton(new LetMeSeePageCC())
-       .waitForPageLoad()
-       .clickNextButton(new PregnancyAndFertilityCC())
-       .waitForPageLoad()
-       .clickOnAnswer("None of the above")*/
    	   .clickNextButton(new ChildrenUnderPageCC())
    	   .waitForPageLoad()
        .clickOnAnswer("No")
@@ -250,7 +270,6 @@ public class MedCo_3962_CC extends BaseTest{
        .waitForPageLoad("a high cholesterol and heart disease study")
        .clickOnAnswer(siteName)
        .getPID()
-       //Medical release Hello Sign CLose
        .clickNextButton(new HSGeneralCC())
        .waitForPageLoad(site_Indication)
        .clickNextButton(new DoctorInformationCollectionPageCC())
@@ -261,6 +280,6 @@ public class MedCo_3962_CC extends BaseTest{
        .waitForPageLoad()
        .clickNextButton(selectActionPageCC)
        .waitForPageLoad()
-       .pidFromDbToLog(env);
+       .pidFromDbToLog(env);  */
 	}
 }

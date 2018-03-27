@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class CancerPage extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever been diagnosed with cancer, other than skin cancer?";
+    public final String titleExpected = "When were you diagnosed with cancer (other than skin cancer)?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
