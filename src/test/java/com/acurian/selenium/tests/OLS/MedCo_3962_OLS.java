@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.AreYouTakingMedications;
 import com.acurian.selenium.pages.OLS.DY_4356.NonPrescriptionSupplements;
 import com.acurian.selenium.pages.OLS.DY_4356.PregnancyAndFertilityPage;
+import com.acurian.selenium.pages.OLS.MDD_3159.WhenWasYourMostRecentHeartProcedureOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
@@ -28,9 +29,11 @@ import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS
 import com.acurian.selenium.pages.OLS.generalHealth.CancerPage;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditions;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DrugOrAlcoholAbuse;
 import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouSmokedCigarettes;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartRelatedMedicalProc;
 import com.acurian.selenium.pages.OLS.generalHealth.HistoryOfDrugPageOLS;
@@ -54,11 +57,14 @@ import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ChildrenUnderTheAge;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DyslipidemiaHealthcarePage;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS;
+import com.acurian.selenium.pages.OLS.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS;
 import com.acurian.selenium.pages.OLS.shared.HowLongTakingStatin;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
@@ -100,23 +106,23 @@ public class MedCo_3962_OLS extends BaseTest {
 				.clickOnAnswer("Female")
 				.clickNextButton(new DyslipidemiaHealthcarePage());
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS =  dyslipidemiaHealthcarePage
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =  dyslipidemiaHealthcarePage
 				.waitForPageLoad()
 				.clickOnAnswers("Unsure")
-				.clickNextButton(new HasHealthcareProfessionalPageOLS());
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
-		hasHealthcareProfessionalPageOLS
+		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 		        .waitForPageLoad();
 		
 		DebugPageOLS debugPageOLS = new DebugPageOLS();		
 		debugPageOLS.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);		
 		debugPageOLS.back();		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 =  dyslipidemiaHealthcarePage
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 =  dyslipidemiaHealthcarePage
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
-				.clickNextButton(new HasHealthcareProfessionalPageOLS());
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
-		hasHealthcareProfessionalPageOLS1
+		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 		        .waitForPageLoad();		
 		debugPageOLS.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);		
 		debugPageOLS.back();			
@@ -142,18 +148,74 @@ public class MedCo_3962_OLS extends BaseTest {
 				.clickOnAnswers("6 months - 11 months")				
 				.clickNextButton(new AreYouTakingMedications());		
 		
-		
 		NonPrescriptionSupplements nonPrescriptionSupplements1 = areYouTakingMedications1
 				.waitForPageLoad()
 				.clickOnAnswers("Repatha (evolocumab)")
 				.clickNextButton(new NonPrescriptionSupplements());
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS2 = nonPrescriptionSupplements1
+		HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = nonPrescriptionSupplements1
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
-				.clickNextButton(new HasHealthcareProfessionalPageOLS());
+				.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
 		
-		HeartRelatedMedicalProc heartRelatedMedicalProc = hasHealthcareProfessionalPageOLS2
+		
+//----------*******NEW GENERAL HEALTH Questions********----------     
+		haveYouEverExperiencedHeartRelatedMedicalCondOLS
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS())
+       	//-----------HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS-----------        	
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS())
+        //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------	
+        .waitForPageLoad()
+        .clickOnAnswers("Angioplasty")
+        .clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS())
+        //-----------WhenWasYourMostRecentHeartProcedureOLS page-----------	
+        .waitForPageLoad()
+        .clickOnAnswer("7 - 12 months ago")
+        .clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+	        .waitForPageLoad()
+	        .clickOnAnswer("Yes")
+	        .clickNextButton(new HouseholdHavePageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("None of the above")
+	        .clickNextButton(new TheStudySitePageOLS())
+	        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+	        .clickOnAnswer("Public transportation")
+	        .clickNextButton(new WhatMedicalCoveragePageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("No, I have no coverage")
+	        .clickNextButton(new EthnicBackgroundPageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("Prefer not to answer")
+	        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+			.waitForPageLoad()
+	        .clickNextButton(new SiteSelectionPageOLS())
+	        .waitForPageLoad(studyName)
+	        .getPID()
+	        .clickOnFacilityName(siteName)
+            .clickNextButton(new HSGeneralPageOLS())
+            .waitForPageLoad(site_Indication)
+            .clickNextButton(new DoctorInformationCollectionPageOLS())
+            .waitForPageLoad()
+            .clickNextButton(new  HS1PageOLS())
+            .waitForPageLoad()
+            .clickOkInPopUp()
+            .setSignature()
+            .getPage(new ThankYouCloseSimplePageOLS())
+            .waitForPageLoad()
+    		.clickNextButton(new AboutHealthPageOLS())
+    		.waitForPageLoad()
+            .pidFromDbToLog(env);		
+		
+		
+/*//-------------------OLD General Health-------------------
+ HeartRelatedMedicalProc heartRelatedMedicalProc = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS2
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new HeartRelatedMedicalProc());
@@ -181,55 +243,6 @@ public class MedCo_3962_OLS extends BaseTest {
 		//YouHaveCHF youHaveCHF2 = whenLastTimeYouHadHeartProceduresOLS
 				whenLastTimeYouHadHeartProceduresOLS.waitForPageLoad()
 				.clickOnAnswer("7 - 12 months ago")
-				/*.clickNextButton(new YouHaveCHF());
-		
-		AffectingYourMetabolismPageOLS affectingYourMetabolismPageOLS = youHaveCHF2
-				.waitForPageLoad()
-				.clickOnAnswers("No")
-				.clickNextButton(new AffectingYourMetabolismPageOLS());
-				
-		affectingYourMetabolismPageOLS
-		        .waitForPageLoad()
-		        .clickOnAnswers("None of the above")
-		        .clickNextButton(new FollowingNeurologicalConditionsPageOLS())
-		        .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new AffectYourLungsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DigestiveConditionsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new BoneOrJointConditionsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new SleepRelatedConditionsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new SkinConditionsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ViralConditionsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new MentalHealthPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WomensHealthPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new OtherThanSkinCancerPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new SmokedCigarettesPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I never smoked")
-                .clickNextButton(new HistoryOfDrugPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ApproximateHeightPageOLS())
-                .waitForPageLoad()
-                .setAll("5", "5", "160")*/
                 .clickNextButton(new ChildrenUnderPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -264,6 +277,6 @@ public class MedCo_3962_OLS extends BaseTest {
                 .waitForPageLoad()
         		.clickNextButton(new AboutHealthPageOLS())
         		.waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);  */
 	}
 }

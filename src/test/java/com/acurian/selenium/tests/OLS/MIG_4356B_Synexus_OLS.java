@@ -2,7 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import org.testng.Assert;
@@ -11,9 +11,11 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 import com.acurian.selenium.pages.OLS.generalHealth.AffectYourLungsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.AffectingYourMetabolismPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HistoryOfDrugPageOLS;
@@ -28,6 +30,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.ViralConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
@@ -57,9 +60,10 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
  //       String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
-        
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String facility_Code_STG = "625252";
+        String facility_Code_PRD = "625641";
+       
+        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -278,20 +282,80 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         Assert.assertEquals(areYouCurrentlyPregnantOLS.getTitleText(), areYouCurrentlyPregnantOLS.titleExpected, "Title is diff");    
         areYouCurrentlyPregnantOLS.clickOnAnswer("Yes")
         //TransitionStatementCC transitionStatementCC = areYouCurrentlyPregnantCC //[create NEXT PAGE Object = THIS page object]    
-        .clickNextButton(new HasHealthcareProfessionalPageOLS()); // Click NEXT button and wait for the NEXT page
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button     
         debugPageOLS.checkProtocolsEquals(areYouCurrentlyPregnantOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6,protocol7);
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in page 'areYouCurrentlyPregnantCC'---------------  
         areYouCurrentlyPregnantOLS.waitForPageLoad();
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = areYouCurrentlyPregnantOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = areYouCurrentlyPregnantOLS
         .clickOnAnswer("No")
-        .clickNextButton(new HasHealthcareProfessionalPageOLS());
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
        
 
-      //----------GENERAL HEALTH Questions----------     
+        //----------*******NEW GENERAL HEALTH Questions********----------     
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+				.waitForPageLoad()
+				.setFeat("5")
+				.setInches("5")
+				.setLbs("155")
+				.clickNextButton(new ChildrenUnderPageOLS())
+		
+		//----------ChildrenUnderTheAge Page--------------------
+				.waitForPageLoad()
+				.clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageOLS())
+                
+			
+		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
+		//----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site?
+				.waitForPageLoad()
+		        .clickOnAnswer("Public transportation")
+		        .clickNextButton(new WhatMedicalCoveragePageOLS())
+		                
+		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
+		         .waitForPageLoad()
+		         .clickOnAnswers("No, I have no coverage")
+		         .clickNextButton(new EthnicBackgroundPageOLS())
+		                
+		//----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
+		         .waitForPageLoad()
+		         .clickOnAnswers("Prefer not to answer")
+		         .clickNextButton(new IdentificationPageOLS())	
+						
+		//----------PII (IdentificationPageOLS) Page--------------------
+				.waitForPageLoad()
+		        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
+		        .clickNextButton(new SiteSelectionPageOLS())
+		        
+		//----------SiteSelection Page--------------------
+		        .waitForPageLoad(studyName)
+		        .getPID()
+		        .clickOnFacilityName(siteName)
+		        .clickNextButton(new SynexusQualifiedCloseMIG4356Page())
+		        
+		//----------GladLocationIsConvenient Page--------------------
+		        .waitForPageLoad(env.equals("STG")? facility_Code_STG : facility_Code_PRD)
+		        .clickNextButton(new ThankYouCloseSimplePageOLS())
+		        
+		//----------ThankYouCloseSimplePageOLS Page--------------------
+		        .waitForPageLoad()
+		        .clickNextButton(new AboutHealthPageOLS())
+		        .waitForPageLoad()
+                .pidFromDbToLog(env);
+        
+        
+   /*   //----------OLD   GENERAL HEALTH Questions----------     
 		//----------HasHealthcareProfessionalPageOLS Page--------------------
-        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = hasHealthcareProfessionalPageOLS    //[create NEXT PAGE Object = THIS page object] 
+        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS    //[create NEXT PAGE Object = THIS page object] 
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
@@ -331,13 +395,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new BoneOrJointConditionsPageOLS());
-		
-		/*//----------BoneOrJointConditions Page--------------------		
-		BoneOrJointConditions boneOrJointConditions = affectYourLungs
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new BoneOrJointConditions());*/
-			
+				
 		//----------BoneOrJointConditions Page--------------------
 		SleepRelatedConditionsPageOLS sleepRelatedConditionsPageOLS = boneOrJointConditionsPageOLS
 				.waitForPageLoad()
@@ -443,6 +501,6 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
 		        .waitForPageLoad()
 		        .clickNextButton(new AboutHealthPageOLS())
 		        .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env); */
     }
 }

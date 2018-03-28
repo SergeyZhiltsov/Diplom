@@ -25,16 +25,17 @@ public class DateOfBirthPageCC extends MainPageCC{
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
     public final String titleExpectedDYS = "If you qualify and participate in a cholesterol or heart health study, you may receive:\n" +
-            "Study medication or placebo, at no-cost to you\n" +
-            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $500 for time and travel, for qualified participants who complete study-related visits\n" +
-            "\n" +
-            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    		"Study medication or placebo, at no-cost to you\n" +
+    		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+    		"And depending on the study, compensation of up to $500 for time and travel, for qualified participants who complete study related visits\n" +
+    		"\n" +
+    		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
+    
     public final String titleExpectedDiabetes_4356 = "If you qualify and participate in a Diabetes study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $600 for time and travel, for qualified participants who complete study-related visits\n" +
+            "And depending on the study, compensation of up to $600 for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
@@ -63,16 +64,16 @@ public class DateOfBirthPageCC extends MainPageCC{
     public final String titleExpectedCrohns_3485 = "If you qualify and participate in a Crohn's study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $650 for time and travel, for qualified participants who complete study-related visits\n" +
+            "And depending on the study, compensation of up to $700 for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
     public final String titleExpectedAST_4337 = "If you qualify and participate in an asthma study, you may receive:\n" +
-            "Study medication or placebo, at no-cost to you\n" +
-            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $900 for time and travel, for qualified participants who complete study-related visits\n" +
-            "\n" +
-            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    		"Study medication or placebo, at no-cost to you\n" +
+    		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+    		"And depending on the study, compensation of up to $900 for time and travel, for qualified participants who complete study related visits\n" +
+    		"\n" +
+    		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
     public final String titleExpectedMDD_3159 = "If you qualify and participate in a depression study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
@@ -84,7 +85,7 @@ public class DateOfBirthPageCC extends MainPageCC{
     public final String titleExpectedUF_4384 = "If you qualify and participate in a uterine fibroids study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $500 for time and travel, for qualified participants who complete study-related visits\n" +
+            "And depending on the study, compensation of up to $500 for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
@@ -110,18 +111,25 @@ public class DateOfBirthPageCC extends MainPageCC{
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
     public final String titleDPNExpected = "If you qualify and participate in a diabetic nerve pain study, you may receive:\n" +
-            "Study medication or placebo, at no-cost to you\n" +
-            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $300 for time and travel, for qualified participants who complete study-related visits\n" +
-            "\n" +
-            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    		"Study medication or placebo, at no-cost to you\n" +
+    		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+    		"And depending on the study, compensation of up to $300 for time and travel, for qualified participants who complete study related visits\n" +
+    		"\n" +
+    		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
     public final String titleCLHExpected = "If you qualify and participate in a cluster headache study, you may receive:\n" +
-            "Study medication or placebo, at no-cost to you\n" +
-            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $300 for time and travel, for qualified participants who complete study-related visits\n" +
-            "\n" +
-            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    		"Study medication or placebo, at no-cost to you\n" +
+    		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+    		"And depending on the study, compensation of up to $300 for time and travel, for qualified participants who complete study related visits\n" +
+    		"\n" +
+    		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    
+    public final String titleDIA4241Expected = "If you qualify and participate in a Diabetes study, you may receive:\n" +
+    		"Study medication or placebo, at no-cost to you\n" +
+    		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+    		"And depending on the study, compensation of up to $600 for time and travel, for qualified participants who complete study related visits\n" +
+    		"\n" +
+    		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
     @FindBy(xpath = "//div[@class='subquestion']//div[@class='show-in-cc']")
     WebElement questionText;

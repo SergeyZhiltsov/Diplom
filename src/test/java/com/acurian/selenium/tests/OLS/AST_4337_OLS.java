@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.InThePastYearHowManyTimesDidYouSeekMedicalOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -62,10 +63,10 @@ public class AST_4337_OLS extends BaseTest{
         everDiagnosedAsthmaPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(everDiagnosedAsthmaPageOLS.getTitleText(),everDiagnosedAsthmaPageOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = everDiagnosedAsthmaPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = everDiagnosedAsthmaPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
-        hasHealthcareProfessionalPageOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(everDiagnosedAsthmaPageOLS.titleExpected, protocol1);
@@ -189,50 +190,27 @@ public class AST_4337_OLS extends BaseTest{
                 .clickOnAnswer("Less than 1 month")
                 .clickNextButton(respiratorySymptomsPageOLS);
 
-        SubquestionHospitalizedOvernightPageOLS subquestionHospitalizedOvernightPageOLS = respiratorySymptomsPageOLS
-                .waitForPageLoad()
+        //SubquestionHospitalizedOvernightPageOLS subquestionHospitalizedOvernightPageOLS = respiratorySymptomsPageOLS
+        InThePastYearHowManyTimesDidYouSeekMedicalOLS inThePastYearHowManyTimesDidYouSeekMedicalOLS = respiratorySymptomsPageOLS
+        		.waitForPageLoad()
                 .clickOnAnswers("Xolair (omalizumab)")
-                .clickNextButton(new SubquestionHospitalizedOvernightPageOLS());
+                .clickNextButton(new InThePastYearHowManyTimesDidYouSeekMedicalOLS());
 
-        subquestionHospitalizedOvernightPageOLS
-                .waitForPageLoad(1,subquestionHospitalizedOvernightPageOLS.titleExpected1);
-        Assert.assertEquals(subquestionHospitalizedOvernightPageOLS.getTitleText(1),subquestionHospitalizedOvernightPageOLS.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionHospitalizedOvernightPageOLS.getTitleText(2),subquestionHospitalizedOvernightPageOLS.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionHospitalizedOvernightPageOLS.getTitleText(3),subquestionHospitalizedOvernightPageOLS.titleExpected3, "Title is diff");
-        TheseSymptomsPageOLS theseSymptomsPageOLS = subquestionHospitalizedOvernightPageOLS
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageOLS.titleExpected1,"No")
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageOLS.titleExpected2,"No")
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageOLS.titleExpected3,"No")
+        inThePastYearHowManyTimesDidYouSeekMedicalOLS
+                .waitForPageLoad();
+        Assert.assertEquals(inThePastYearHowManyTimesDidYouSeekMedicalOLS.getTitleText(),inThePastYearHowManyTimesDidYouSeekMedicalOLS.titleExpected, "Title is diff");
+        TheseSymptomsPageOLS theseSymptomsPageOLS = inThePastYearHowManyTimesDidYouSeekMedicalOLS
+                .clickOnAnswer("None")
                 .clickNextButton(new TheseSymptomsPageOLS());
         theseSymptomsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Asthma Exacerbation Logic", protocol1)
+                .checkProtocolsEquals("In the past year, how many times did you have to seek any medical attention (at a hospital, ER, urge...", protocol1)
                 .back();
-        SubquestionTheHospitalPageOLS subquestionTheHospitalPageOLS = subquestionHospitalizedOvernightPageOLS
-                .waitForPageLoad(1,subquestionHospitalizedOvernightPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageOLS.titleExpected1,"Yes")
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageOLS.titleExpected2,"Yes")
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageOLS.titleExpected3,"Yes")
-                .clickNextButton(new SubquestionTheHospitalPageOLS());
-
-        subquestionTheHospitalPageOLS
-                .waitForPageLoad(1,subquestionTheHospitalPageOLS.titleExpected1);
-        Assert.assertEquals(subquestionTheHospitalPageOLS.getTitleText(1),subquestionTheHospitalPageOLS.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionTheHospitalPageOLS.getTitleText(2),subquestionTheHospitalPageOLS.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionTheHospitalPageOLS.getTitleText(3),subquestionTheHospitalPageOLS.titleExpected3, "Title is diff");
-        SeekMedicalPageOLS seekMedicalPageOLS = subquestionTheHospitalPageOLS
-                .clickOnAnswersForSubQuestion(subquestionTheHospitalPageOLS.titleExpected1,"Inhaled nebulizer treatment")
-                .clickOnAnswersForSubQuestion(subquestionTheHospitalPageOLS.titleExpected2,"Injection or shot")
-                .clickOnAnswersForSubQuestion(subquestionTheHospitalPageOLS.titleExpected3,"Unsure")
-                .clickNextButton(new SeekMedicalPageOLS());
-
-        seekMedicalPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(seekMedicalPageOLS.getTitleText(),seekMedicalPageOLS.titleExpected, "Title is diff");
-        seekMedicalPageOLS
-                .clickOnAnswer("Once")
-                .clickNextButton(theseSymptomsPageOLS);
+        inThePastYearHowManyTimesDidYouSeekMedicalOLS
+        .waitForPageLoad()
+        .clickOnAnswer("Once")
+        .clickNextButton(new TheseSymptomsPageOLS());
 
         theseSymptomsPageOLS
                 .waitForPageLoad();
@@ -255,7 +233,7 @@ public class AST_4337_OLS extends BaseTest{
         Assert.assertEquals(smokedCigarettesPageOLS.getTitleText(),smokedCigarettesPageOLS.titleExpected, "Title is diff");
         smokedCigarettesPageOLS
                 .clickOnAnswer("No, I never smoked")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .back();
         SubquestionSmokedCigarettePageOLS subquestionSmokedCigarettePageOLS = smokedCigarettesPageOLS
@@ -279,7 +257,7 @@ public class AST_4337_OLS extends BaseTest{
         subquestionSmokedCigarettePageOLS
                 .setFirst("10")
                 .setSecond("20")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals("Ghost Question - Asthma Smoking History Logic", protocol1)
@@ -287,10 +265,63 @@ public class AST_4337_OLS extends BaseTest{
         subquestionSmokedCigarettePageOLS
                 .waitForPageLoad(1,subquestionSmokedCigarettePageOLS.titleExpected2)
                 .setFirst("9")
-                .clickNextButton(hasHealthcareProfessionalPageOLS);
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-
-        hasHealthcareProfessionalPageOLS
+        
+        
+        //----------*******NEW GENERAL HEALTH Questions********----------     
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        	.waitForPageLoad()
+        	.setAll("5", "5", "160")
+        	.clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+	        .waitForPageLoad()
+	        .clickOnAnswer("Yes")
+	        .clickNextButton(new HouseholdHavePageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("None of the above")
+	        .clickNextButton(new TheStudySitePageOLS())
+	        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+	        .clickOnAnswer("Public transportation")
+	        .clickNextButton(new WhatMedicalCoveragePageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("No, I have no coverage")
+	        .clickNextButton(new EthnicBackgroundPageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("Prefer not to answer")
+	        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+			.waitForPageLoad()
+	        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+	        .clickNextButton(new SiteSelectionPageOLS())
+	        .waitForPageLoad(studyName)
+	        .getPID()
+	        .clickOnFacilityName(siteName)
+	        .clickNextButton(new HSGeneralPageOLS())
+	        .waitForPageLoad(Siteindicator)
+	        .clickNextButton(new DoctorInformationCollectionPageOLS())        
+	        .waitForPageLoad()
+	        .clickNextButton(new HS1PageOLS())
+	        .waitForPageLoad()        
+	        .clickOkInPopUp()
+	        .setSignature()
+	        .getPage(new ThankYouCloseSimplePageOLS())
+	        .waitForPageLoad()
+	        .clickNextButton(new AboutHealthPageOLS())
+	        .waitForPageLoad()
+	        .pidFromDbToLog(env);        
+        
+/*//------------------------OLD General Health---------------------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
@@ -344,9 +375,6 @@ public class AST_4337_OLS extends BaseTest{
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Public transportation")
-//                .clickNextButton(new WouldYouUsePageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -372,6 +400,6 @@ public class AST_4337_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);  */
     }
 }

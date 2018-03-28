@@ -1,15 +1,12 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.LBP_2108.OfMedicationsYou;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.OLS.LBP_2108.InPastYearPageOLS;
 import com.acurian.selenium.pages.OLS.LBP_2108.InTotalHowManyPageOLS;
 import com.acurian.selenium.pages.OLS.LBP_2108.OfMedicationsYouPageOLS;
 import com.acurian.selenium.pages.OLS.LBP_2108.WhatTypeOfHealthcarePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -63,11 +60,11 @@ public class LBP_2108_OLS extends BaseTest{
         doYouSufferFromLbpPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(doYouSufferFromLbpPageOLS.getTitleText(),doYouSufferFromLbpPageOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = doYouSufferFromLbpPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouSufferFromLbpPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        hasHealthcareProfessionalPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageCC = new DebugPageOLS();
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(doYouSufferFromLbpPageOLS.titleExpected), protocol, "Protocol is diff");
@@ -83,11 +80,11 @@ public class LBP_2108_OLS extends BaseTest{
         Assert.assertEquals(howLongHaveLbpPageOLS.getTitleText(), howLongHaveLbpPageOLS.titleExpected, "Title is diff");
         howLongHaveLbpPageOLS
                 .clickOnAnswer("Less than 3 months")
-                .clickNextButton(hasHealthcareProfessionalPageOLS);
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        hasHealthcareProfessionalPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
-        Assert.assertEquals(debugPageCC.getProtocolForQuestion(hasHealthcareProfessionalPageOLS.titleExpected), protocol, "Protocol is diff");
+        Assert.assertEquals(debugPageCC.getProtocolForQuestion(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.titleExpected), protocol, "Protocol is diff");
         debugPageCC.back();
 
         WhatTypeOfHealthcarePageOLS whatTypeOfHealthcarePageOLS =howLongHaveLbpPageOLS
@@ -104,32 +101,32 @@ public class LBP_2108_OLS extends BaseTest{
         inTotalHowManyPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("0")
-                .clickNextButton(hasHealthcareProfessionalPageOLS);
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        hasHealthcareProfessionalPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowManyPageOLS.titleExpected), protocol, "Protocol is diff");
-        hasHealthcareProfessionalPageOLS.back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.back();
 
         inTotalHowManyPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1")
-                .clickNextButton(hasHealthcareProfessionalPageOLS);
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        hasHealthcareProfessionalPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowManyPageOLS.titleExpected), protocol, "Protocol is diff");
-        hasHealthcareProfessionalPageOLS.back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.back();
 
         inTotalHowManyPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2")
-                .clickNextButton(hasHealthcareProfessionalPageOLS);
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        hasHealthcareProfessionalPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(inTotalHowManyPageOLS.titleExpected), protocol, "Protocol is diff");
-        hasHealthcareProfessionalPageOLS.back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.back();
 
         OfMedicationsYouPageOLS ofMedicationsYouPageOLS = inTotalHowManyPageOLS
                 .waitForPageLoad()
@@ -148,12 +145,12 @@ public class LBP_2108_OLS extends BaseTest{
         Assert.assertEquals(areYouCurrentlyOnPageOLS.getTitleText(), areYouCurrentlyOnPageOLS.titleExpected, "Title is diff");
         areYouCurrentlyOnPageOLS
                 .clickOnAnswer("Yes, for another chronic condition")
-                .clickNextButton(hasHealthcareProfessionalPageOLS);
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        hasHealthcareProfessionalPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         Assert.assertEquals(debugPageCC.getProtocolForQuestion(areYouCurrentlyOnPageOLS.titleExpected), protocol, "Protocol is diff");
-        hasHealthcareProfessionalPageOLS.back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.back();
 
         InPastYearPageOLS inPastYearPageOLS = areYouCurrentlyOnPageOLS
                 .waitForPageLoad()

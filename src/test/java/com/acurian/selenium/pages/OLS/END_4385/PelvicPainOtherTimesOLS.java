@@ -8,7 +8,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class PelvicPainOtherTimesOLS extends MainPageOLS {
-	public final String titleExpected = "Do you experience pelvic pain at other times, when you do not have your period?\n" +
+	public final String titleExpected = "Do you experience pelvic pain at other times, when you do NOT have your period?\n" +
             "This is sometimes called non-menstrual pelvic pain.";
 			
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")

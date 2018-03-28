@@ -14,7 +14,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class PregnancyAndFertilityCC extends MainPageCC {
 
     public final String titleExpected = "Clinical trials often have requirements related to pregnancy and fertility.\n" +
-            "Please select the option which most closely applies to you:";
+    		"Please select the option which most closely applies to you:";
 
     @FindBy(xpath = "//div[@class='question_container']//div[@class='question_text']")
     WebElement titleText;

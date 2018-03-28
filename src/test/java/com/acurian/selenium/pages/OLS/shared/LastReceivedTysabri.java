@@ -8,7 +8,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class LastReceivedTysabri extends MainPageOLS {
-	public final String titleExpected = "Which of the following best describes when you last received Tysabri (natalizumab)? You….";
+	public final String titleExpected = "Which of the following best describes when you last received Tysabri? You….";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

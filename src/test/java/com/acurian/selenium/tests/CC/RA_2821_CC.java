@@ -22,20 +22,26 @@ import com.acurian.selenium.pages.CC.RA_2821.WhenWereYouDiagnosedWithRACC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
+import com.acurian.selenium.pages.CC.closes.IncongruentSiteSelectionCloseCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC2PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -47,6 +53,7 @@ import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
+import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.BiologicMedicationsCC;
@@ -76,7 +83,7 @@ public class RA_2821_CC extends BaseTest{
         String studyName = "Rheumatoid Arthritis";
         String studyName1 = "a rheumatoid arthritis (RA) study";
    //     String env = "PRD";
-        String siteName = "AUT_RA2821_Site";
+        String siteName = "AUT_RA2821_HS_Site";
         String zipCode  = "19044";
         
         String env = System.getProperty("acurian.env");
@@ -294,12 +301,55 @@ TransitionStatementCC transitionStatementCC = EverTakenXeljanzCC
 	   .clickOnAnswer("No, I have never taken it")	   
 	   .clickNextButton(new TransitionStatementCC()); 
        
-       HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
+HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                .waitForPageLoad("RA")
-               .clickNextButton(new HasHealthcareProfessionalPageCC());
+               .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+//-------------------New GENERAL HEALTH---------------------------
+haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+		.waitForPageLoad()
+		.clickOnAnswers("None of the above")                	
+		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+		.waitForPageLoad()
+		.clickOnAnswers("None of the above")
+        .clickNextButton(new ApproximateHeightPageCC())
+		//----------Height and Weight Question Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new LetMeSeePageCC())
+		//----------ChildrenUnderTheAge Page--------------------
+        .waitForPageLoad()
+        .clickNextButton(new ChildrenUnderPageCC())
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        //----------PEDIATRIC HEALTH Questions----------
+        .clickNextButton(new HouseholdHavePageCC())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+		//----------PII (IdentificationPageOLS) Page--------------------
+        .clickNextButton(new IdentificationPageCC())
+        .waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new SiteSelectionPageCC())
+        .waitForPageLoad(studyName1)
+        .getPID()
+        .clickOnAnswer(siteName)
+        .clickNextButton(new HSGeneralCC())
+        .waitForPageLoad(studyName)
+        .clickNextButton(new DoctorInformationCollectionPageCC())
+        .waitForPageLoad()
+        .clickNextButton(new HSMedicalRecordsPageCC())
+        .waitForPageLoad()
+        .clickNextButton(new ThankYouCloseSimplePageCC())
+        .waitForPageLoad()
+        .clickNextButton(selectActionPageCC)
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
 
 
-       hasHealthcareProfessionalPageCC
+/*-------------------OLD General Health------------------
+haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                .waitForPageLoad()
                .clickOnAnswers("None of the above")
                .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -355,15 +405,6 @@ TransitionStatementCC transitionStatementCC = EverTakenXeljanzCC
                .clickNextButton(new ChildrenUnderPageCC())
                .waitForPageLoad()
                .clickOnAnswer("No")
-               .clickNextButton(new TheStudySitePageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("Public transportation")
-               .clickNextButton(new WhatSortPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("No, I have no coverage")
-               .clickNextButton(new EthnicBackgroundPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("Other")
                .clickNextButton(new IdentificationPageCC())
                .waitForPageLoad()
                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
@@ -372,8 +413,7 @@ TransitionStatementCC transitionStatementCC = EverTakenXeljanzCC
                .getPID()
                .clickOnAnswer(siteName)
                .clickNextButton(new HSGeneralCC())
-               .waitForPageLoadRA()
-               .typeEmail("qa.acurian@gmail.com")
+               .waitForPageLoad(studyName)
                .clickNextButton(new DoctorInformationCollectionPageCC())
                .waitForPageLoad()
                .clickNextButton(new HSMedicalRecordsPageCC())
@@ -382,9 +422,7 @@ TransitionStatementCC transitionStatementCC = EverTakenXeljanzCC
                .waitForPageLoad()
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
-               .pidFromDbToLog(env);
-       
-       
+               .pidFromDbToLog(env);       */
 	}
 
 }

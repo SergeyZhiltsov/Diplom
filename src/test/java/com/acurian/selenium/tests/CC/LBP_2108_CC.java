@@ -229,11 +229,11 @@ public class LBP_2108_CC extends BaseTest{
         transitionStatementCC
                 .waitForPageLoad(studyName);
         Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName), "Title is difff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 
-        hasHealthcareProfessionalPageCC
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())

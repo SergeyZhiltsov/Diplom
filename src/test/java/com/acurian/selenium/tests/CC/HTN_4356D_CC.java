@@ -7,19 +7,19 @@ import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC2PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.generalHealth.SubquestionMetabolismPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-
 import java.util.Arrays;
 import java.util.List;
+
 
 public class HTN_4356D_CC extends BaseTest{
 
@@ -31,11 +31,12 @@ public class HTN_4356D_CC extends BaseTest{
         String protocol1 = "THR_1442_C_603";
         String protocol2 = "";
         List<String> protocols = Arrays.asList(protocol1,protocol2);
-        String studyName = "a high blood pressure";
+        String studyName = "a high blood pressure study";
         String siteName = "AUT_HTN_4356D_Site";
         String debugSiteName = "";
-     //   String env = "STG";
         String zipCode = "19044";
+        String facility_Code_STG = "625301";
+        String facility_Code_PRD = "625869";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -86,15 +87,122 @@ public class HTN_4356D_CC extends BaseTest{
         genderPageCC
                 .waitForPageLoad();
         Assert.assertEquals(genderPageCC.getTitleText(), genderPageCC.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = genderPageCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = genderPageCC
                 .clickOnAnswer("Female")
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = hasHealthcareProfessionalPageCC
+        
+        
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(new DebugPageCC())
                 .checkIsNoProtocolsForQuestion("Ghost Question - HTN_4356D_Synexus End of Module Logic")
-                .getPage(hasHealthcareProfessionalPageCC)
+                .getPage(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickOnAnswers("Alzheimer's disease")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad();
+        Assert.assertEquals(doAnyOftheFollowingAdditionalDiagnosesCC.getTitleText(),doAnyOftheFollowingAdditionalDiagnosesCC.titleExpected, "Title is diff");
+        DebugPageCC debugPageCC = new DebugPageCC();
+        		doAnyOftheFollowingAdditionalDiagnosesCC.getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", protocol1)
+                .back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad();
+        		DoYouTakeAnyMedicationsToControlHighBloodPressureCC doYouTakeAnyMedicationsToControlHighBloodPressureCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        		.clickOnAnswers("Alzheimer's disease","High blood pressure or hypertension")
+        		.clickNextButton(new DoYouTakeAnyMedicationsToControlHighBloodPressureCC());
+
+        
+        doYouTakeAnyMedicationsToControlHighBloodPressureCC
+        		.waitForPageLoad();
+        		doYouTakeAnyMedicationsToControlHighBloodPressureCC.clickOnAnswer("No")
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        		doAnyOftheFollowingAdditionalDiagnosesCC
+        			.waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015141-QS50-STUDYQUES",protocol1)
+                .back();
+        		doYouTakeAnyMedicationsToControlHighBloodPressureCC.waitForPageLoad()
+                .clickOnAnswer("Yes")
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+
+                
+        doAnyOftheFollowingAdditionalDiagnosesCC
+        		.waitForPageLoad()
+                .clickOnAnswers("Bipolar disorder","Cancer in the past 5 years, except skin cancer","Cirrhosis","Drug or alcohol abuse within the past year", 
+                		"Hepatitis B","Hepatitis C","HIV or AIDS")
+                .clickNextButton(new ApproximateHeightPageCC())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES",protocol1)
+                .back();
+        		doAnyOftheFollowingAdditionalDiagnosesCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above","Alzheimer's disease")
+        		.clickNextButton(new ApproximateHeightPageCC())
+    
+		//----------ProvideHeight-Weight Page--------------------
+				.waitForPageLoad()
+				.setFeat("5")
+				.setInches("5")
+				.setLbs("155")
+				.clickNextButton(new LetMeSeePageCC())
+		
+		//----------ChildrenUnderTheAge Page--------------------
+				.clickNextButton(new ChildrenUnderPageCC())	
+				.waitForPageLoad()
+				.clickOnAnswer("No")
+                .clickNextButton(new IdentificationPageCC())
+			
+		/*//-------------------PEDIATRIC QUESTIONS-----------------------------                            
+		//----"theStudySitePageCC" page --  If you qualify for a study, how would you plan to travel to and from the study site?
+                .clickNextButton(new TheStudySitePageCC())
+                .waitForPageLoad()
+		        .clickOnAnswers("Public transportation")
+		        .clickNextButton(new WhatMedicalCoveragePageCC())
+		                
+		//-----"WhatMedicalCoveragePageCC" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
+		         .waitForPageLoad()
+		         .clickOnAnswers("No, I have no coverage")
+		         .clickNextButton(new EthnicBackgroundPageCC())
+		                
+		//----"EthnicBackgroundPageCC" page --  Which of the following describes your ethnic background?
+		         .waitForPageLoad()
+		         .clickOnAnswers("Prefer not to answer")
+		         .clickNextButton(new IdentificationPageCC())	*/
+						
+		//----------PII (IdentificationPageCC) Page--------------------
+				.waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad(studyName)
+                .getPID()
+        		//----------SITE Selection Page--------------------
+                .clickOnAnswer(siteName)
+                .clickNextButton(new RadiantWarmTransferClose1PageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("[patient agrees to be transferred]")
+                .clickNextButton(new SynexusDirectScheduleWTC2PageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new SynexusDirectScheduleWTC3PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new SRDirectScheduleWTTCPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Transferred for Scheduling")
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
+        
+        
+        
+        
+       /* SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .getPage(new DebugPageCC())
+                .checkIsNoProtocolsForQuestion("Ghost Question - HTN_4356D_Synexus End of Module Logic")
+                .getPage(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .clickOnAnswers("Heart Attack","Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
@@ -343,6 +451,6 @@ public class HTN_4356D_CC extends BaseTest{
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env); */
     }
 }

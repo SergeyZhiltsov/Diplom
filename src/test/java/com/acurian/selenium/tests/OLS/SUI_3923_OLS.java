@@ -3,12 +3,16 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.SUI_3923.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
+import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSCrohns2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
@@ -16,10 +20,13 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.FUL_Letters.*;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
+import ru.yandex.qatools.ashot.Screenshot;
 
 public class SUI_3923_OLS extends BaseTest{
 
@@ -27,7 +34,7 @@ public class SUI_3923_OLS extends BaseTest{
     @TestCaseId("00016")
     @Description("Stress Urinary Incontinence (SUI) - 3923 OLS")
     public void sUI_3923_OLS() {
-        String phoneNumberLBP = "AUTAMS1SUI";
+        String phoneNumber = "AUTAMS1SUI";
         String protocol1 = "G201002";
         String studyName = "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
   //      String env = "STG";  //Enter which OLS environment to use for testing
@@ -39,8 +46,9 @@ public class SUI_3923_OLS extends BaseTest{
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberLBP)
+                .openPage(env, phoneNumber)
                 .waitForPageLoad();
+
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleSUI_Expected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
@@ -59,9 +67,9 @@ public class SUI_3923_OLS extends BaseTest{
         genderPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = genderPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = genderPageOLS
                 .clickOnAnswer("Male")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         //********Check Question History for DQ and then click BACK button
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         Assert.assertTrue(debugPageOLS.getProtocolForQuestion("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me,...").contains(protocol1));
@@ -79,9 +87,9 @@ public class SUI_3923_OLS extends BaseTest{
         .waitForPageLoad();
         Assert.assertEquals(doYouExperienceUrinaryIncontinenceOLS.getTitleText(),doYouExperienceUrinaryIncontinenceOLS.titleExpected, "Title is diff");
         doYouExperienceUrinaryIncontinenceOLS.clickOnAnswers("None of the above")
-        .clickNextButton(new HasHealthcareProfessionalPageOLS()); 
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); 
         //------Validate protocol DQs in debug window----------
-        hasHealthcareProfessionalPageOLS.waitForPageLoad();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
         debugPageOLS.checkProtocolsEquals(doYouExperienceUrinaryIncontinenceOLS.titleExpected, protocol1);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
@@ -202,23 +210,70 @@ public class SUI_3923_OLS extends BaseTest{
         haveYouGoneThroughMenopauseOLS
         		.waitForPageLoad();  
         Assert.assertEquals(haveYouGoneThroughMenopauseOLS.getTitleText(), haveYouGoneThroughMenopauseOLS.titleExpected, "Title is diff");    
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = haveYouGoneThroughMenopauseOLS //[create NEXT PAGE Object = THIS page object]    
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = haveYouGoneThroughMenopauseOLS //[create NEXT PAGE Object = THIS page object]    
         .clickOnAnswer("No")
-        .clickNextButton(new HasHealthcareProfessionalPageOLS()); // Click NEXT button and wait for the NEXT page
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button     
         Assert.assertTrue(debugPageOLS.getProtocolForQuestion(haveYouGoneThroughMenopauseOLS.titleExpected).contains(protocol1));
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
         haveYouGoneThroughMenopauseOLS.waitForPageLoad()
         .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
-        .clickNextButton(new HasHealthcareProfessionalPageOLS());     
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());     
         
-       
-                
+        
+      //----------*******NEW GENERAL HEALTH Questions********----------     
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new HouseholdHavePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new TheStudySitePageOLS())
+        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+        .clickOnAnswer("Public transportation")
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+		.waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
+        .clickNextButton(new SiteSelectionPageOLS())    
+		//----------SiteSelection Page--------------------
+        .waitForPageLoad(studyName)
+        .getPID()
+        .clickOnFacilityName(siteName)
+        .clickNextButton(new GladLocationIsConvenient())        
+        //----------GladLocationIsConvenient Page--------------------
+        .waitForPageLoad()
+        .clickNextButton(new ThankYouCloseSimplePageOLS())
+		//----------ThankYouCloseSimplePageOLS Page--------------------
+        .waitForPageLoad()
+        .clickNextButton(new AboutHealthPageOLS())
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
 
-      //----------GENERAL HEALTH Questions----------     
+
+      /*//----------OLD GENERAL HEALTH Questions----------     
 		//----------HasHealthcareProfessionalPageOLS Page--------------------
-        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = hasHealthcareProfessionalPageOLS1
+        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
         		.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
@@ -258,12 +313,6 @@ public class SUI_3923_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new BoneOrJointConditionsPageOLS());
-		
-		/*//----------BoneOrJointConditions Page--------------------		
-		BoneOrJointConditions boneOrJointConditions = affectYourLungs
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new BoneOrJointConditions());*/
 			
 		//----------BoneOrJointConditions Page--------------------
 		SleepRelatedConditionsPageOLS sleepRelatedConditionsPageOLS = boneOrJointConditionsPageOLS
@@ -364,11 +413,11 @@ public class SUI_3923_OLS extends BaseTest{
         //----------GladLocationIsConvenient Page--------------------
         .waitForPageLoad()
         .clickNextButton(new ThankYouCloseSimplePageOLS())
-        
+
 		//----------ThankYouCloseSimplePageOLS Page--------------------
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
+        .pidFromDbToLog(env); */
     }
 }

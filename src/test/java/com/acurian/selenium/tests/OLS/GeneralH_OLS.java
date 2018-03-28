@@ -20,7 +20,7 @@ import java.util.List;
 
 public class GeneralH_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00030")
     @Description("General Health test OLS")
     public void generalHealthTest() {
@@ -58,11 +58,11 @@ public class GeneralH_OLS extends BaseTest{
         genderPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = genderPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = genderPageOLS
                 .clickOnAnswer("Female")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = hasHealthcareProfessionalPageOLS
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart Attack","Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());

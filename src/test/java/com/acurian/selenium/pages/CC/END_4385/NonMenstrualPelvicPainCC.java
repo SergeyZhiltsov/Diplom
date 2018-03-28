@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class NonMenstrualPelvicPainCC extends MainPageCC{
 
-    public final String titleExpected = "Which of the following best describes your non-menstrual pelvic pain, and how it affects your life?";
+    public final String titleExpected = "Which of the following best describes your pelvic pain at times when you do NOT have your period, and how it affects your life?";
             
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

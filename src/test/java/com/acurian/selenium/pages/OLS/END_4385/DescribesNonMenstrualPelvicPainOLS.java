@@ -8,7 +8,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class DescribesNonMenstrualPelvicPainOLS extends MainPageOLS {
-	public final String titleExpected = "Which of the following best describes your non-menstrual pelvic pain, and how it affects your life?";
+	public final String titleExpected = "Which of the following best describes your pelvic pain at times when you do NOT have your period, and how it affects your life?";
 			
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

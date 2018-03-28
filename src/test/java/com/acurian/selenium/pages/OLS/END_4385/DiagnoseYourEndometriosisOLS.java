@@ -5,41 +5,43 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class DiagnoseYourEndometriosisOLS extends MainPageOLS{
+    
+    public final String titleExpected = "When was your most recent surgery to treat or diagnose your endometriosis performed?";
 
-    
-    public final String titleExpected = "Did your doctor perform any of the following procedures to help diagnose your endometriosis?\n" +
-            "Please do not report any procedures you may have had to treat your endometriosis.\n" +
-            "Please select all that apply.";
-    
-    		
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
-    List<WebElement> checkBoxList;
+    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
+    List<WebElement> radioButtonsList;
 
-   
     public DiagnoseYourEndometriosisOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
-    @Step    
+    @Step
     public DiagnoseYourEndometriosisOLS waitForPageLoad() {
-        waitForPageLoadMain(titleText, titleExpected);
+        waitForAnimation();
+        driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-        public DiagnoseYourEndometriosisOLS clickOnAnswers(String answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+    public DiagnoseYourEndometriosisOLS clickOnAnswer(String answerText) {
+        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+                .findFirst()
+                .get()
+                .click();
+        waitForAnimation();
         return this;
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText(){
         return getText(titleText);
     }
 

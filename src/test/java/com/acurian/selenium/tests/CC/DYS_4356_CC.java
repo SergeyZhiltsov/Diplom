@@ -15,6 +15,9 @@ import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer1;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer2;
+import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer3;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
@@ -24,6 +27,7 @@ import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
@@ -34,7 +38,8 @@ import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditio
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -48,6 +53,7 @@ import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.HasAHealthcareProfessionalDYS4356;
+import com.acurian.selenium.pages.CC.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.StatinMedicationsCC;
@@ -92,7 +98,8 @@ public class DYS_4356_CC extends BaseTest{
                 .clickBeginButton();
         
         callCenterIntroductionPageCC
-                .waitForPageLoad();
+        .waitForPageLoad()
+        .activateDebugOnProd(env);
        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS, "Title is diff");
        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
         .clickOnAnswer("Learn more about matching to clinical trials")
@@ -135,17 +142,15 @@ public class DYS_4356_CC extends BaseTest{
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new NonPrescriptionSupplementsCC());
        
-       HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = nonPrescriptionSupplementsCC
+       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = nonPrescriptionSupplementsCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
-    		   .clickNextButton(new HasHealthcareProfessionalPageCC());
-        
+    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
        DebugPageCC debugPageCC = new DebugPageCC();
        debugPageCC.openDebugWindow();
        Assert.assertEquals(debugPageCC.getProtocol(), "20150230\n" + "VK2809_201", "Protocol not displayed");
        debugPageCC.closeDebugWindow();
-       
-       hasHealthcareProfessionalPageCC.back();
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC.back();
        nonPrescriptionSupplementsCC.back();
        
        areYouTakingAnyOfMedicationsCC
@@ -154,16 +159,84 @@ public class DYS_4356_CC extends BaseTest{
     		   .clickNextButton(nonPrescriptionSupplementsCC);
        
        nonPrescriptionSupplementsCC
-    		   .waitForPageLoad()
+    		   .waitForPageLoad();
+    		   HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = nonPrescriptionSupplementsCC
     		   .clickOnAnswers("Psyllium")
-    		   .clickNextButton(hasHealthcareProfessionalPageCC);    
+    		   .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());    
       
-       hasHealthcareProfessionalPageCC.waitForPageLoad();
-       debugPageCC.openDebugWindow();
-       Assert.assertNotEquals(debugPageCC.getProtocol(), "20150230\n" + "VK2809_201", "Protocol displayed");
-       debugPageCC.closeDebugWindow();
+       haveYouEverExperiencedHeartRelatedMedicalCondCC
+       		.waitForPageLoad();
+       		HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+	   		.clickOnAnswers("None of the above")
+	   		.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+       		
+       haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
+       		.waitForPageLoad();
+       		HaveYouUndergoneAnyPageCC haveYouUndergoneAnyPageCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
+	   		.clickOnAnswers("None of the above")
+	   		.clickNextButton(new HaveYouUndergoneAnyPageCC());
+       		
+       haveYouUndergoneAnyPageCC
+  			.waitForPageLoad();
+       		PregnancyAndFertilityCC pregnancyAndFertilityCC = haveYouUndergoneAnyPageCC
+	   		.clickOnAnswers("None of the above")
+	   		.clickNextButton(new PregnancyAndFertilityCC());
+       		
+       pregnancyAndFertilityCC
+       		.waitForPageLoad()
+	   		.clickOnAnswer("None of the above")
+	   		.clickNextButton(new ThankYouForAnsweringCC());
+       		debugPageCC.openDebugWindow();
+       		Assert.assertEquals(debugPageCC.getProtocol(), "VK2809_201", "Clinical trials often have requirements related to pregnancy and fertility. Please select the option...");
+       		debugPageCC.closeDebugWindow()
+       		.back();
+            pregnancyAndFertilityCC
+       		.waitForPageLoad()
+	   		.clickOnAnswer("I currently have my \"tubes tied\" (also called bilateral tubal ligation, a sterilization procedure)")
+	   		.clickNextButton(new ThankYouForAnsweringCC())
+            
+       .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());  		      		
+       		
+
+   
+    //-------------------New GENERAL HEALTH---------------------------
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")                	
+       		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+       		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")
+               .clickNextButton(new ApproximateHeightPageCC())
+       		//----------Height and Weight Question Page--------------------
+               .waitForPageLoad()
+               .setAll("5", "5", "160")
+               .clickNextButton(new LetMeSeePageCC())
+               .waitForPageLoad()
+               .clickNextButton(new ChildrenUnderPageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("No")
+               .clickNextButton(new IdentificationPageCC())
+               .waitForPageLoad()       
+               .clickNextButton(new SiteSelectionPageCC())
+               .waitForPageLoad(studyName1)
+               .getPID()
+               .selectAnswer(siteName)
+               .clickNextButton(new RadiantWarmTransferClose1PageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("[direct schedule in clinical conductor]")
+               .clickNextButton(new SynexusRadiantDirectScheduleCC())
+               .waitForPageLoad()
+               .clickNextButton(new RadiantWarmTransfer4())
+               .waitForPageLoad()
+               .clickOnAnswer("Transferred for Scheduling")
+               .clickNextButton(selectActionPageCC)
+               .waitForPageLoad()
+               .pidFromDbToLog(env); 
        
-       hasHealthcareProfessionalPageCC
+       
+    /*//----------------------OLD General Health--------------------
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
        .waitForPageLoad()
        .clickOnAnswers("None of the above")
        .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -240,6 +313,6 @@ public class DYS_4356_CC extends BaseTest{
        .clickOnAnswer("Transferred for Scheduling")
        .clickNextButton(selectActionPageCC)
        .waitForPageLoad()
-       .pidFromDbToLog(env);
+       .pidFromDbToLog(env); */
 	}
 }

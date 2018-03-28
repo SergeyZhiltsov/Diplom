@@ -27,6 +27,9 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='20150230']")
     WebElement protocol201;   
     
+    @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='R727_CL_1532']")
+    WebElement protocolR727;
+    
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[1]")
     List<WebElement> questionNumberList;
 
@@ -110,7 +113,12 @@ public class DebugPageOLS extends MainPageOLS{
 
     }   
  
-
+    @Step
+    public String getProtocolR727() {
+        return getText(protocolR727);
+    }
+    
+    
     private List<String> getProtocolsForQuestionNumber(String questionNumber){
         openDebugWindow();
         waitForAnimation();

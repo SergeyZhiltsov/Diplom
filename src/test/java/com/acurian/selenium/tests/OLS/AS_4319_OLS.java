@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.OLS.AS_4319.FollowingSymptomsMoreThanOnceWeekO
 import com.acurian.selenium.pages.OLS.AS_4319.HaveYouEverHadXrayOrMRIOLS;
 import com.acurian.selenium.pages.OLS.AS_4319.ResultsOfYourMostRecentXRayOrMRIOLS;
 import com.acurian.selenium.pages.OLS.AS_4319.WhichOfFollowingHaveYouDiagnosedWithOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
@@ -18,25 +19,6 @@ import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.AffectYourLungsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.AffectingYourMetabolismPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HistoryOfDrugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.MentalHealthPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.OtherThanSkinCancerPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SkinConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SleepRelatedConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SmokedCigarettesPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ViralConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
@@ -87,10 +69,10 @@ public class AS_4319_OLS extends BaseTest {
 		         .clickOnAnswer("Female")
 		         .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWithOLS());
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = whichOfFollowingHaveYouDiagnosedWithOLS
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = whichOfFollowingHaveYouDiagnosedWithOLS
 				 .waitForPageLoad()
 				 .clickOnAnswers("None of the above")
-				 .clickNextButton(new HasHealthcareProfessionalPageOLS());
+				 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());		
 		
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals("Which of the following have you been diagnosed with?Agent Note: Select all that applyWhich of the fo", protocol1);
@@ -159,12 +141,65 @@ public class AS_4319_OLS extends BaseTest {
                 .clickOnAnswer("No")                
                 .clickNextButton(new FollowingDevicesInYourBody());
         
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = followingDevicesInYourBody
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = followingDevicesInYourBody
         		.waitForPageLoad()
         		.clickOnAnswer("None of the above")
-        		.clickNextButton(new HasHealthcareProfessionalPageOLS());
+        		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         
-        hasHealthcareProfessionalPageOLS1
+        
+        //----------*******NEW GENERAL HEALTH Questions********----------     
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        	.waitForPageLoad()
+        	.setAll("5", "5", "160")
+        	.clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+	        .waitForPageLoad()
+	        .clickOnAnswer("Yes")
+	        .clickNextButton(new HouseholdHavePageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("None of the above")
+	        .clickNextButton(new TheStudySitePageOLS())
+	        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+	        .clickOnAnswer("Public transportation")
+	        .clickNextButton(new WhatMedicalCoveragePageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("No, I have no coverage")
+	        .clickNextButton(new EthnicBackgroundPageOLS())
+	        .waitForPageLoad()
+	        .clickOnAnswers("Prefer not to answer")
+	        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+			.waitForPageLoad()
+	        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+	        .clickNextButton(new SiteSelectionPageOLS())
+	        .waitForPageLoad(studyName)
+	        .getPID()
+	        .clickOnFacilityName(siteName)
+	        .clickNextButton(new HSGeneralPageOLS())
+	        .waitForPageLoad(Siteindicator)
+	        .clickNextButton(new DoctorInformationCollectionPageOLS())        
+	        .waitForPageLoad()
+	        .clickNextButton(new HS1PageOLS())
+	        .waitForPageLoad()        
+	        .clickOkInPopUp()
+	        .setSignature()
+	        .getPage(new ThankYouCloseSimplePageOLS())
+	        .waitForPageLoad()
+	        .clickNextButton(new AboutHealthPageOLS())
+	        .waitForPageLoad()
+	        .pidFromDbToLog(env);
+        
+     /*//----------------------OLD General-Health---------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
         .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
@@ -249,9 +284,6 @@ public class AS_4319_OLS extends BaseTest {
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
-        
-      
+        .pidFromDbToLog(env);*/      
 	}
-
 }

@@ -74,11 +74,12 @@ public class MainPageOLS extends BasePage{
         return (T)page;
     }
 
-    public void pidFromDbToLog(String env){
+    public String pidFromDbToLog(String env){
         DBConnection dbCon = new DBConnection();
         String pid = PassPID.getInstance().getPidNumber();
         dbCon.dbRead(env, pid);
         logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
+        return pid;
     }
 
 

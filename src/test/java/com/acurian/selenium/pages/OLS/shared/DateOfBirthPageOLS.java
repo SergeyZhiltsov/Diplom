@@ -44,7 +44,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     
     public final String titleCrohns_3485_Expected = "Let's get started to see if you qualify for a Crohn's study!\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $650\n" +
+            "Payment which varies by study up to $700\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
@@ -186,7 +186,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     public String getQuestionTextGH() {
         return getText(questionTextGH);
     }
-
+    
     @Step
     public String getTitleTextGH() {
         return getText(titleTextGH);

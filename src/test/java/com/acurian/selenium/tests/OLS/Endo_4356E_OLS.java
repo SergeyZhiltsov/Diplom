@@ -17,6 +17,9 @@ import com.acurian.selenium.pages.OLS.END_4385.PelvicPainOLS;
 import com.acurian.selenium.pages.OLS.END_4385.PelvicPainOtherTimesOLS;
 import com.acurian.selenium.pages.OLS.END_4385.SurgicalProceduresOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
@@ -28,8 +31,9 @@ import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HistoryOfDrugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
@@ -43,6 +47,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.ViralConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WouldYouUsePageOLS;
@@ -54,6 +59,7 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveRegularMenstrualCyclesOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouHadHysterectomyOLS;
+import com.acurian.selenium.pages.OLS.shared.PlzDescribeYourMenstrualCyclesOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 
 public class Endo_4356E_OLS extends BaseTest {
@@ -69,7 +75,8 @@ public class Endo_4356E_OLS extends BaseTest {
         String studyName = "an endometriosis";
         String siteName = "AUT_END_4356E_Site";
         String zipCode = "19044";
-        String idNumber = "625316"; 
+        String facility_Code_STG = "625316";
+        String facility_Code_PRD = "625907";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -93,11 +100,11 @@ public class Endo_4356E_OLS extends BaseTest {
 				.clickOnAnswer("Female")
 				.clickNextButton(new FollowingGynecologicalConditionOLS());
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = followingGynecologicalConditionOLS
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = followingGynecologicalConditionOLS
 				    .waitForPageLoad()
 	                .clickOnAnswers("None of the above")
-	                .clickNextButton(new HasHealthcareProfessionalPageOLS());
-	        hasHealthcareProfessionalPageOLS
+	                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+			haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 	                .waitForPageLoad();
 	        DebugPageOLS debugPageCC = new DebugPageOLS();
 	        debugPageCC.back();
@@ -111,7 +118,7 @@ public class Endo_4356E_OLS extends BaseTest {
 		
 		HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = diagnoseYourEndometriosisOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswer("2 - 3 months ago")
                 .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
 		
 /*		debugPageCC.checkProtocolsEquals("Did your doctor perform any of the following procedures to help diagnose your endometriosis? Please ...", protocol1,protocol2);
@@ -132,27 +139,33 @@ public class Endo_4356E_OLS extends BaseTest {
         		.clickOnAnswer("No")
         		.clickNextButton(new HaveYouHadHysterectomyOLS());
         		
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = haveYouHadHysterectomyOLS
+        //-------------------------Q5- Have you had a hysterectomy (surgical removal of the uterus)?----------------------------------------------
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = haveYouHadHysterectomyOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
-        		.clickNextButton(new HasHealthcareProfessionalPageOLS())
-        .waitForPageLoad();
+        		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        debugPageCC.checkProtocolsEquals("Have you had a hysterectomy (surgical removal of the uterus)?", protocol1,protocol2);
         debugPageCC.back();
-        HaveRegularMenstrualCyclesOLS haveRegularMenstrualCyclesOLS = haveYouHadHysterectomyOLS
+        PlzDescribeYourMenstrualCyclesOLS plzDescribeYourMenstrualCyclesOLS = haveYouHadHysterectomyOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveRegularMenstrualCyclesOLS());
-        
-        PelvicPainOLS pelvicPainOLS = haveRegularMenstrualCyclesOLS
+                .clickNextButton(new PlzDescribeYourMenstrualCyclesOLS());
+       
+      //-------------------------Q6- Please describe your menstrual cycles:-----------------------------
+        PelvicPainOLS pelvicPainOLS = plzDescribeYourMenstrualCyclesOLS
         		.waitForPageLoad()
-        		.clickOnAnswer("No")
+                //PelvicPainOLS pelvicPainOLS1 = plzDescribeYourMenstrualCyclesOLS
+        		.clickOnAnswer("Never regular")
         		.clickNextButton(new PelvicPainOLS());
+
+
         
-        
+        //-------------Q7 - Do you experience pelvic pain during your menstrual period?-----------------
         PelvicPainOtherTimesOLS pelvicPainOtherTimesOLS = pelvicPainOLS
         		.waitForPageLoad()
         		.clickOnAnswer("No")
         		.clickNextButton(new  PelvicPainOtherTimesOLS());
-                debugPageCC.back();
+        debugPageCC.checkProtocolsEquals("Do you experience pelvic pain during your menstrual period?", protocol1,protocol2);
+        debugPageCC.back();
         DescribesPelvicPainOLS describesPelvicPainOLS = pelvicPainOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
@@ -163,37 +176,115 @@ public class Endo_4356E_OLS extends BaseTest {
         		HormonalBirthControlOLS hormonalBirthControlOLS = describesPelvicPainOLS
         		.clickOnAnswer("Severe - the pain is so intense that I have great difficulty completing my daily activities")
         		.clickNextButton(new HormonalBirthControlOLS());
-        
-        
-        hormonalBirthControlOLS
-        		.waitForPageLoad();
-        		SurgicalProceduresOLS surgicalProceduresOLS = hormonalBirthControlOLS
-        		.clickOnAnswer("Yes")
-        		.clickNextButton(new SurgicalProceduresOLS());
-              
-        MostRecentSurgeryOLS mostRecentSurgeryOLS = surgicalProceduresOLS
-        		.waitForPageLoad()
-        		.clickOnAnswer("4 or more")
-        		.clickNextButton(new MostRecentSurgeryOLS());
-        
-       mostRecentSurgeryOLS
-        		.waitForPageLoad();
-       			DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = mostRecentSurgeryOLS
-        		.clickOnAnswer("7 - 11 months ago")
-        		.clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
-
-       AreYouCurrentlyPregnantOLS areYouCurrentlyPregnantOLS = diagnosedWithGynecologicalConditionOLS
-        		.waitForPageLoad()
-        		.clickOnAnswers("Vaginismus")        		
-        		.clickNextButton(new AreYouCurrentlyPregnantOLS());
-        
-        
-        areYouCurrentlyPregnantOLS
+        		
+        pelvicPainOtherTimesOLS
         		.waitForPageLoad()
         		.clickOnAnswer("No")
-        		.clickNextButton(new HasHealthcareProfessionalPageOLS());
+        		.clickNextButton(new HormonalBirthControlOLS());
+        		
         
-        hasHealthcareProfessionalPageOLS
+                //-------------------------Q11 - Are you currently taking a hormonal form of birth control?----------
+                //SurgicalProceduresOLS surgicalProceduresOLS = hormonalBirthControlOLS
+                DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = hormonalBirthControlOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("No")
+                		.clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
+                
+                
+        /*        MostRecentSurgeryOLS mostRecentSurgeryOLS = surgicalProceduresOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("4 or more")
+                		.clickNextButton(new MostRecentSurgeryOLS());
+                
+                debugPageCC.checkProtocolsEquals("There are times when surgery is required to remove endometriosis tissue found outside of the uterus ...", protocol1,protocol2);
+                debugPageCC.back();
+                surgicalProceduresOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("1")
+                		.clickNextButton(new MostRecentSurgeryOLS());
+                
+               mostRecentSurgeryOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("3 months ago or less")
+                		.clickNextButton(new FollowingGynecologicalConditionOLS());        
+                
+                debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat your endometriosis?", protocol1,protocol2);
+                debugPageCC.back();
+                mostRecentSurgeryOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("7 - 11 months ago")
+                		.clickNextButton(new FollowingGynecologicalConditionOLS());
+                
+                DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = new DiagnosedWithGynecologicalConditionOLS();*/
+                
+                //---------Q12 - Has a healthcare professional ever diagnosed you with any of these other gynecological or women's health conditions? ---
+                AreYouCurrentlyPregnantOLS areYouCurrentlyPregnantOLS = diagnosedWithGynecologicalConditionOLS
+                		.waitForPageLoad()
+                		.clickOnAnswers("Vaginismus")        		
+                		.clickNextButton(new AreYouCurrentlyPregnantOLS());
+                
+                //-------------Q13 - Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?-------
+                areYouCurrentlyPregnantOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("Yes")
+                		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                debugPageCC.checkProtocolsEquals("Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?", protocol1,protocol2);
+                debugPageCC.back();
+                areYouCurrentlyPregnantOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("No")
+                		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        
+                
+                
+        //----------*******NEW GENERAL HEALTH Questions********----------     
+          haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageOLS())
+        		//----------ProvideHeight-Weight Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new ChildrenUnderPageOLS())
+        		//----------ChildrenUnderTheAge Page--------------------
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new HouseholdHavePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new TheStudySitePageOLS())
+                .waitForPageLoad()
+        		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+                .clickOnAnswer("Public transportation")
+                .clickNextButton(new WhatMedicalCoveragePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("No, I have no coverage")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS())
+        		//----------PII (IdentificationPageOLS) Page--------------------
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new SynexusQualifiedClose4356PageOLS())
+		        .waitForPageLoad(env.equals("STG")? facility_Code_STG : facility_Code_PRD)
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()       
+                .pidFromDbToLog(env);     
+                
+                
+        /*//-------------GENERAL HEALTH----------------------------------        
+         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
         .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
@@ -272,6 +363,6 @@ public class Endo_4356E_OLS extends BaseTest {
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()       
-        .pidFromDbToLog(env);
+        .pidFromDbToLog(env); */
 	}
 }

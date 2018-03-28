@@ -27,6 +27,8 @@ public class Crohns_3485_CC extends BaseTest{
         String protocol2 = "RF_I6T_MC_AMAG";
         String protocol3 = "M16_006";
         String protocol4 = "M15_991";
+        String protocol5 = "M14_431";
+        String protocol6 = "M14_433";
         List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3,protocol4);
         String studyName = "Crohn's disease";
         String siteName = "AUT_CRN_3485_HS_Site";
@@ -96,7 +98,7 @@ public class Crohns_3485_CC extends BaseTest{
         followingMedicalConditionsPageCC
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsEquals(diagnosedWithCrohnsPageCC.titleExpected, protocol1,protocol4,protocol3,protocol2);
+        debugPageCC.checkProtocolsEquals(diagnosedWithCrohnsPageCC.titleExpected, protocol1,protocol5,protocol6,protocol4,protocol3,protocol2);
         debugPageCC.back();
         diagnosedWithCrohnsPageCC
                 .waitForPageLoad()
@@ -119,7 +121,7 @@ public class Crohns_3485_CC extends BaseTest{
         typeOfDoctorPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Next, please tell me, when were you diagnosed with Crohn’s disease by a doctor at a hospital or doct", protocol1, protocol2, protocol3,protocol4)
+                .checkProtocolsEquals("Next, please tell me, when were you diagnosed with Crohn’s disease by a doctor at a hospital or doct", protocol1, protocol5,protocol6,protocol4,protocol3,protocol2)
                 .back();
         whenDiagnosedCrohnsPageCC
                 .waitForPageLoad()
@@ -151,7 +153,7 @@ public class Crohns_3485_CC extends BaseTest{
         manageYourCrohnsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Next, please tell me which of the following types of tests/procedures have you ever had to diagnose ", protocol3, protocol4)
+                .checkProtocolsEquals("Next, please tell me which of the following types of tests/procedures have you ever had to diagnose ", protocol5,protocol6,protocol4, protocol3)
                 .back();
         typeOfTestsPageCC
                 .waitForPageLoad()
@@ -167,7 +169,7 @@ public class Crohns_3485_CC extends BaseTest{
         onA0To10ScalePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(manageYourCrohnsPageCC.titleExpected, protocol1,protocol4,protocol3,protocol2)
+                .checkProtocolsEquals(manageYourCrohnsPageCC.titleExpected, protocol1,protocol5,protocol6,protocol4,protocol3,protocol2)
                 .back();
         SteroidMedicationsPageCC steroidMedicationsPageCC = manageYourCrohnsPageCC
                 .waitForPageLoad()
@@ -196,7 +198,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickNextButton(onA0To10ScalePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol1,protocol4,protocol3,protocol2)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol1,protocol5,protocol6,protocol4,protocol3,protocol2)
                 .back();
         biologicMedicationsPageCC
                 .waitForPageLoad()
@@ -204,7 +206,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickNextButton(onA0To10ScalePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol1,protocol4,protocol3,protocol2)
+                .checkProtocolsEquals("Ghost Question - Crohn's_3485 Treatment History Requirements Logic", protocol1,protocol5,protocol6,protocol4,protocol3,protocol2)
                 .back();
         SubquestionLastReceivedPageCC subquestionLastReceivedPageCC = biologicMedicationsPageCC
                 .waitForPageLoad()
@@ -512,9 +514,9 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickOnAnswers("Colostomy and/or Colectomy","Ileostomy","Another type of stomach or colon surgery")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoadWithCurves(studyName)
+        		.waitForPageLoadWithCurves(studyName)
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES",protocol1,protocol4,protocol3,protocol2)
+                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES",protocol1,protocol5,protocol6,protocol4,protocol3,protocol2)
                 .back();
         haveAnyOfTheFollowingPageCC
                 .waitForPageLoad()
@@ -522,7 +524,7 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithCurves(studyName)
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol1,protocol4,protocol3,protocol2)
+                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol1,protocol5,protocol6,protocol4,protocol3,protocol2)
                 .back();
         haveAnyOfTheFollowingPageCC// rel 48
                 .waitForPageLoad()
@@ -530,16 +532,56 @@ public class Crohns_3485_CC extends BaseTest{
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithCurves(studyName)
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol3, protocol4);
+                .checkProtocolsEqualsForQNumber("Q0012938-QS3759-STUDYQUES", protocol3, protocol5,protocol6,protocol4);
         //DQ for M16_006 and I6T_MC_AMAG
 
         transitionStatementCC
                 .waitForPageLoadWithCurves(studyName);
         Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpectedWithCurves(studyName), "Title is diff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        hasHealthcareProfessionalPageCC
+        //-------------------New GENERAL HEALTH---------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                //----------PEDIATRIC HEALTH Questions----------
+                .clickNextButton(new HouseholdHavePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                //----------Resume GENERAL HEALTH Questions----------
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad("a Crohn's study")
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new HSCrohns2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
+        
+      /*//--------------OLD GENERAL HEALTH---------------  
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -626,6 +668,6 @@ public class Crohns_3485_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env); */
     }
 }
