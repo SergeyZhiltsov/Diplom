@@ -8,7 +8,7 @@ public @interface Locators {
 
     //Login Page
     String LOGIN_INPUT = "input[ng-model='user.Username']";
-    boolean isEnvWeb = !System.getProperty("os.env", "web").equals("web");
+    boolean isEnvWeb = System.getProperty("acurian.platform", "web").equals("web");
 
     //Base CC
     String BASIC_TITLE_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']";

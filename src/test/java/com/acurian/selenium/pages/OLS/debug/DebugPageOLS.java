@@ -1,9 +1,11 @@
 package com.acurian.selenium.pages.OLS.debug;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -20,6 +22,11 @@ public class DebugPageOLS extends MainPageOLS{
     WebElement closeButton;
 
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[3]")
+    List<WebElement> questionList1;
+
+    @FindBy(xpath = "//debug-popup//tbody//tr/td[3]")
+    List<WebElement> questionList2;
+
     List<WebElement> questionList;
 
     @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='VK2809_201']")
@@ -29,9 +36,23 @@ public class DebugPageOLS extends MainPageOLS{
     WebElement protocol201;   
     
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[1]")
+    List<WebElement> questionNumberList1;
+
+    @FindBy(xpath = "//debug-popup//tbody//tr/td[1]")
+    List<WebElement> questionNumberList2;
+
     List<WebElement> questionNumberList;
 
     public DebugPageOLS() {
+        PageFactory.initElements(getDriver(), this);
+        if (Locators.isEnvWeb) {
+            questionNumberList = questionNumberList1;
+            questionList = questionList1;
+        }
+        else {
+            questionNumberList = questionNumberList2;
+            questionList = questionList2;
+        }
     }
 
     public DebugPageOLS openDebugWindow(){
@@ -40,7 +61,12 @@ public class DebugPageOLS extends MainPageOLS{
     }
 
     public DebugPageOLS closeDebugWindow(){
-        closeButton.click();
+        if (Locators.isEnvWeb){
+            closeButton.click();
+        }
+        else {
+            openDebugWindow();
+        }
         return this;
     }
 
