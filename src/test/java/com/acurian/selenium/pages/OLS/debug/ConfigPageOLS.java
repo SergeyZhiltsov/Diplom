@@ -36,8 +36,8 @@ public class ConfigPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[3]")
     List<WebElement> questionList;
 
-    @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='VK2809_201']")
-    WebElement protocolVK;
+    @FindBy(xpath = "//div[@ng-show='!debug.is_mobile']//div[@id='info-debug-window']/div[15]/strong")
+    WebElement verityScore;
 
     @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='20150230']")
     WebElement protocol201;   
