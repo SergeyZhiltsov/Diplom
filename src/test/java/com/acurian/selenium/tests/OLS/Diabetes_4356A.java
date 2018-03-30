@@ -60,7 +60,7 @@ public class Diabetes_4356A extends BaseTest{
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
     //    String env = "STG";
         String zipCode = "19044";
-        String facility_Code_STG = "625268";
+        String facility_Code_STG = "625263";
         String facility_Code_PRD = "625640";
         
         String env = System.getProperty("acurian.env");

@@ -152,7 +152,6 @@ public class End_4385_CC extends BaseTest{
     		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
        debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2);
        debugPageCC.back();
-       //LaparoscopyAndLaparotomyCC laparoscopyAndLaparotomyCC = diagnoseYourEndometriosisCC
        diagnoseYourEndometriosisCC.waitForPageLoad()
     		   .clickOnAnswer("2 - 3 months ago")
     		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());     
@@ -165,11 +164,9 @@ public class End_4385_CC extends BaseTest{
        HaveYouHadHysterectomyUF_CC haveYouHadHysterectomyUF_CC = haveYouGoneThroughMenopauseUF_CC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
-    		   .clickNextButton(new HaveYouHadHysterectomyUF_CC());
-       
-       
-       debugPageCC.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2);
-       debugPageCC.back();*/
+    		   .clickNextButton(new HaveYouHadHysterectomyUF_CC());       
+       			debugPageCC.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2);
+       			debugPageCC.back();*/
               
        haveYouGoneThroughMenopauseUF_CC
     		   .waitForPageLoad();
@@ -195,14 +192,7 @@ public class End_4385_CC extends BaseTest{
        PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = plzDescribeYourMenstrualCyclesCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Never regular")
-    		   .clickNextButton(new PelvicPainDuringMenstrualCC());
-       debugPageCC.checkProtocolsEquals("Please describe your menstrual cycles:", protocol1, protocol2);
-       debugPageCC.back();
-       //LaparoscopyAndLaparotomyCC laparoscopyAndLaparotomyCC = diagnoseYourEndometriosisCC
-       plzDescribeYourMenstrualCyclesCC.waitForPageLoad()
-    		   .clickOnAnswer("Always regular")
-    		   .clickNextButton(new PelvicPainDuringMenstrualCC());  
-       
+    		   .clickNextButton(new PelvicPainDuringMenstrualCC());       
        
        DescribesThePelvicPainCC describesThePelvicPainCC = pelvicPainDuringMenstrualCC
     		   .waitForPageLoad()
@@ -226,18 +216,18 @@ public class End_4385_CC extends BaseTest{
     		   .clickOnAnswer("Moderate - the pain is strong enough that I have some difficulty completing my daily activities")
     		   .clickNextButton(new HormonalBirthControlCC());
        
-       //SurgicalProceduresCC surgicalProceduresCC = hormonalBirthControlCC
        hormonalBirthControlCC.waitForPageLoad();
     		   HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = hormonalBirthControlCC
     		   .clickOnAnswer("No")
-    		   .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());    		   
-    		   
-/*    		   .clickNextButton(new SurgicalProceduresCC());
-       surgicalProceduresCC
-    		   .waitForPageLoad();
-               HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = surgicalProceduresCC
-                .clickOnAnswer("1")
-    		   .clickNextButton(new  HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());  */    
+    		   .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());
+    		   hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
+    		   	.waitForPageLoad();
+    	       debugPageCC.checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", protocol1, protocol2);
+    	       debugPageCC.back();
+    	       hormonalBirthControlCC.waitForPageLoad()
+    	    	 .clickOnAnswer("Yes")
+    	    	 .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());    	       
+    	     
        
        AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
     		   .waitForPageLoad()
@@ -250,7 +240,6 @@ public class End_4385_CC extends BaseTest{
     		   .clickNextButton(new TransitionStatementCC());
        
        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-    		    //.waitForPageLoad(studyName1)
     	        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
     	     
        
