@@ -19,7 +19,7 @@
     <browser>chrome</browser>
     <base.url>https://stg-cc.acuriancalls.com</base.url>
     <base.env>STG</base.env>
-    <platform>mobile</platform>
+    <platform>web</platform>
     <login>LOGIN</login>
     <password>PASSWORD</password>
     <!--<selenium.grid>http://127.0.0.1:4444/wd/hub</selenium.grid>-->

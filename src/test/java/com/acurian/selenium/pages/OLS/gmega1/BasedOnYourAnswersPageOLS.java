@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.gmega1;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,8 +20,11 @@ public class BasedOnYourAnswersPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
     WebElement titleText1;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]")
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-sm-block')]")
     WebElement titleText2;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]")
+    WebElement titleText3;
 
     WebElement titleText;
 
@@ -29,11 +33,16 @@ public class BasedOnYourAnswersPageOLS extends MainPageOLS{
 
     public BasedOnYourAnswersPageOLS() {
         PageFactory.initElements(getDriver(), this);
-        if (Locators.isEnvWeb) {
-            titleText = titleText1;
-        }
-        else {
-            titleText = titleText2;
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                titleText = titleText1;
+                break;
+            case Platforms.TABLET:
+                titleText = titleText2;
+                break;
+            case Platforms.MOBILE:
+                titleText = titleText3;
+                break;
         }
     }
 

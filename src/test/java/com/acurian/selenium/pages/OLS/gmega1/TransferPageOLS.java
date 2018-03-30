@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.gmega1;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,8 +17,11 @@ public class TransferPageOLS extends MainPageOLS{
     @FindBy(xpath = "//question/descendant::span[contains(@class,'visible-md-inline')][1]")
     WebElement titleText1;
 
-    @FindBy(xpath = "//question/descendant::span[contains(@class,'visible-xs-inline')][1]")
+    @FindBy(xpath = "//question/descendant::span[contains(@class,'visible-sm-inline')][1]")
     WebElement titleText2;
+
+    @FindBy(xpath = "//question/descendant::span[contains(@class,'visible-xs-inline')][1]")
+    WebElement titleText3;
 
     WebElement titleText;
 
@@ -26,11 +30,16 @@ public class TransferPageOLS extends MainPageOLS{
 
     public TransferPageOLS() {
         PageFactory.initElements(getDriver(), this);
-        if (Locators.isEnvWeb) {
-            titleText = titleText1;
-        }
-        else {
-            titleText = titleText2;
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                titleText = titleText1;
+                break;
+            case Platforms.TABLET:
+                titleText = titleText2;
+                break;
+            case Platforms.MOBILE:
+                titleText = titleText3;
+                break;
         }
     }
 

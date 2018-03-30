@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.OLS.shared;
 
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
@@ -19,8 +20,11 @@ public class GenderPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
     WebElement titleText2;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText3;
 
     WebElement titleText;
 
@@ -30,11 +34,16 @@ public class GenderPageOLS extends MainPageOLS{
 
     public GenderPageOLS() {
         PageFactory.initElements(getDriver(), this);
-        if (Locators.isEnvWeb) {
-            titleText = titleText1;
-        }
-        else {
-            titleText = titleText2;
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                titleText = titleText1;
+                break;
+            case Platforms.TABLET:
+                titleText = titleText2;
+                break;
+            case Platforms.MOBILE:
+                titleText = titleText3;
+                break;
         }
     }
 

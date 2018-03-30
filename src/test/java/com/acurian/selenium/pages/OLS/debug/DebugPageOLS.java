@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.debug;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -45,13 +46,19 @@ public class DebugPageOLS extends MainPageOLS{
 
     public DebugPageOLS() {
         PageFactory.initElements(getDriver(), this);
-        if (Locators.isEnvWeb) {
-            questionNumberList = questionNumberList1;
-            questionList = questionList1;
-        }
-        else {
-            questionNumberList = questionNumberList2;
-            questionList = questionList2;
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                questionNumberList = questionNumberList1;
+                questionList = questionList1;
+                break;
+            case Platforms.TABLET:
+                questionNumberList = questionNumberList1;
+                questionList = questionList1;
+                break;
+            case Platforms.MOBILE:
+                questionNumberList = questionNumberList2;
+                questionList = questionList2;
+                break;
         }
     }
 
@@ -61,11 +68,16 @@ public class DebugPageOLS extends MainPageOLS{
     }
 
     public DebugPageOLS closeDebugWindow(){
-        if (Locators.isEnvWeb){
-            closeButton.click();
-        }
-        else {
-            openDebugWindow();
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                closeButton.click();
+                break;
+            case Platforms.TABLET:
+                closeButton.click();
+                break;
+            case Platforms.MOBILE:
+                openDebugWindow();
+                break;
         }
         return this;
     }

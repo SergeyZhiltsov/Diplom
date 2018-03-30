@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
@@ -24,8 +25,11 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
-    @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
     WebElement titleText2;
+
+    @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText3;
 
     WebElement titleText;
 
@@ -43,11 +47,16 @@ public class SiteSelectionPageOLS extends MainPageOLS{
 
     public SiteSelectionPageOLS() {
         PageFactory.initElements(getDriver(), this);
-        if (Locators.isEnvWeb) {
-            titleText = titleText1;
-        }
-        else {
-            titleText = titleText2;
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                titleText = titleText1;
+                break;
+            case Platforms.TABLET:
+                titleText = titleText2;
+                break;
+            case Platforms.MOBILE:
+                titleText = titleText3;
+                break;
         }
     }
 

@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,11 +25,16 @@ public class AboutHealthPageOLS extends MainPageOLS{
 
     @Step
     public AboutHealthPageOLS waitForPageLoad() {
-        if (Locators.isEnvWeb){
-            waitForPageLoadMain(titleText, titleExpected);
-        }
-        else {
-            driverWait.waitforVisibility(titleText2);
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                waitForPageLoadMain(titleText, titleExpected);
+                break;
+            case Platforms.TABLET:
+                driverWait.waitforVisibility(titleText2);
+                break;
+            case Platforms.MOBILE:
+                driverWait.waitforVisibility(titleText2);
+                break;
         }
         return this;
     }

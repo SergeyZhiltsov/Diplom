@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.RA_2821;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,28 +17,40 @@ public class WhatKindOfArthritisPageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText1;
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_MOBILE)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_TABLET)
     WebElement titleText2;
+
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_MOBILE)
+    WebElement titleText3;
 
     WebElement titleText;
 
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList1;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_MOBILE)
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_TABLET)
     List<WebElement> checkBoxList2;
+
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_MOBILE)
+    List<WebElement> checkBoxList3;
 
     List<WebElement> checkBoxList;
 
     public WhatKindOfArthritisPageOLS() {
         PageFactory.initElements(getDriver(), this);
-        if (Locators.isEnvWeb) {
-            titleText = titleText1;
-            checkBoxList = checkBoxList1;
-        }
-        else {
-            titleText = titleText2;
-            checkBoxList = checkBoxList2;
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                titleText = titleText1;
+                checkBoxList = checkBoxList1;
+                break;
+            case Platforms.TABLET:
+                titleText = titleText2;
+                checkBoxList = checkBoxList2;
+                break;
+            case Platforms.MOBILE:
+                titleText = titleText3;
+                checkBoxList = checkBoxList3;
+                break;
         }
     }
 

@@ -8,7 +8,7 @@ public @interface Locators {
 
     //Login Page
     String LOGIN_INPUT = "input[ng-model='user.Username']";
-    boolean isEnvWeb = System.getProperty("acurian.platform", "web").equals("web");
+    String isEnvWeb = System.getProperty("acurian.platform", "web");// web, mobile, tablet
 
     //Base CC
     String BASIC_TITLE_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']";
@@ -25,12 +25,15 @@ public @interface Locators {
 
     //basic OLS
     String BASIC_TITLE_WITH_RADIO_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]";
+    String BASIC_TITLE_WITH_RADIO_BUTTON_OLS_TABLET = "//div[@class='question']//div[contains(@class,'visible-sm-block')]";
     String BASIC_TITLE_WITH_RADIO_BUTTON_OLS_MOBILE = "//div[@class='question']//div[contains(@class,'visible-xs-block')]";
     String RADIO_BUTTON_LIST_OLS = "//span[contains(@class,'visible-md-inline')]/ancestor::label";
 
     String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']";
+    String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_TABLET = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']";
     String BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_MOBILE = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']";
     String CHEKBOX_LIST_OLS = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']";
+    String CHEKBOX_LIST_OLS_TABLET = "//span[contains(@class,'visible-sm-inline')]/span[@class='show-in-ols']";
     String CHEKBOX_LIST_OLS_MOBILE = "//span[contains(@class,'visible-xs-inline')]/span[@class='show-in-ols']";
 
     String BASIC_TITLE2_WITH_RADIO_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']";

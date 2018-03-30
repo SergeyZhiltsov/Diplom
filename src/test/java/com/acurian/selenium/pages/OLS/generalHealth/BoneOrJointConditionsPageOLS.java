@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,28 +18,40 @@ public class BoneOrJointConditionsPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
     WebElement titleText2;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText3;
 
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList1;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-xs-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = "//span[contains(@class,'visible-sm-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList2;
+
+    @FindBy(xpath = "//span[contains(@class,'visible-xs-inline')]/span[@class='show-in-ols']")
+    List<WebElement> checkBoxList3;
 
     List<WebElement> checkBoxList;
 
     public BoneOrJointConditionsPageOLS() {
         PageFactory.initElements(getDriver(), this);
-        if (Locators.isEnvWeb) {
-            titleText = titleText1;
-            checkBoxList = checkBoxList1;
-        }
-        else {
-            titleText = titleText2;
-            checkBoxList = checkBoxList2;
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                titleText = titleText1;
+                checkBoxList = checkBoxList1;
+                break;
+            case Platforms.TABLET:
+                titleText = titleText2;
+                checkBoxList = checkBoxList2;
+                break;
+            case Platforms.MOBILE:
+                titleText = titleText3;
+                checkBoxList = checkBoxList3;
+                break;
         }
     }
 
