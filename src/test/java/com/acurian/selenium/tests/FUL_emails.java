@@ -291,7 +291,8 @@ public class FUL_emails extends BaseTest{
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
+        .pidFromDbToLog(env)
+		.getPid();
 				
 		    	
 //=====================================================================================
