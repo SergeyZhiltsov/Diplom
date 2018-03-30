@@ -43,12 +43,6 @@ public abstract class BaseTest {
                 driver.manage().window().setSize(new Dimension(700, 1000));
                 break;
         }
-
-//        if (Locators.isEnvWeb) {
-//            driver.manage().window().setSize(new Dimension(1400, 1050));
-//        } else {
-//            driver.manage().window().setSize(new Dimension(700, 1000));
-//        }
 //        System.setProperty(ESCAPE_PROPERTY, "false");
         DRIVER.set(driver);
     }

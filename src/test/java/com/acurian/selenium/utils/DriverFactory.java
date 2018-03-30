@@ -36,9 +36,6 @@ public class DriverFactory {
                         "webdriver.edge.driver",
                         new File(DriverFactory.class.getResource("/MicrosoftWebDriver.exe").getFile()).getPath());
                 return new EdgeDriver();
-//            case "phantomjs":
-//                System.setProperty("phantomjs.binary.path", getResourceByName("/phantomjs"));
-//                return new PhantomJSDriver();
             case "chrome":
             default:
                 System.setProperty("webdriver.chrome.driver", getResourceByName("/chromedriver"));
@@ -79,9 +76,6 @@ public class DriverFactory {
             case "MicrosoftEdge":
                 capabilities = DesiredCapabilities.edge();
                 break;
-//            case "phantomjs":
-//                capabilities = DesiredCapabilities.phantomjs();
-//                break;
             case "chrome":
             default:
                 capabilities = DesiredCapabilities.chrome();
