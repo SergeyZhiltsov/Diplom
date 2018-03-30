@@ -151,21 +151,15 @@ public class END_4385_OLS extends BaseTest {
         		.waitForPageLoad()
         		.clickOnAnswer("Never regular")
         		.clickNextButton(new PelvicPainOLS());
-        debugPageCC.checkProtocolsEquals(plzDescribeYourMenstrualCyclesOLS.titleExpected, protocol1,protocol2);
-        debugPageCC.back();
-        PelvicPainOLS pelvicPainOLS1 = plzDescribeYourMenstrualCyclesOLS
-        		.waitForPageLoad()
-        		.clickOnAnswer("Always regular")
-        		.clickNextButton(new PelvicPainOLS());
         
         //-------------Q7 - Do you experience pelvic pain during your menstrual period?-----------------
-        PelvicPainOtherTimesOLS pelvicPainOtherTimesOLS = pelvicPainOLS1
+        PelvicPainOtherTimesOLS pelvicPainOtherTimesOLS = pelvicPainOLS
         		.waitForPageLoad()
         		.clickOnAnswer("No")
         		.clickNextButton(new  PelvicPainOtherTimesOLS());
         debugPageCC.checkProtocolsEquals("Do you experience pelvic pain during your menstrual period?", protocol1,protocol2);
         debugPageCC.back();
-        DescribesPelvicPainOLS describesPelvicPainOLS = pelvicPainOLS1
+        DescribesPelvicPainOLS describesPelvicPainOLS = pelvicPainOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
         		.clickNextButton(new  DescribesPelvicPainOLS());
@@ -194,6 +188,13 @@ public class END_4385_OLS extends BaseTest {
         		.waitForPageLoad()
         		.clickOnAnswer("No")
         		.clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
+        //------------------R 50.1-----
+        diagnosedWithGynecologicalConditionOLS.waitForPageLoad();
+        debugPageCC.checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", protocol1,protocol2);
+        debugPageCC.back();
+        hormonalBirthControlOLS.waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
         
         
 /*        MostRecentSurgeryOLS mostRecentSurgeryOLS = surgicalProceduresOLS
@@ -219,9 +220,7 @@ public class END_4385_OLS extends BaseTest {
         		.waitForPageLoad()
         		.clickOnAnswer("7 - 11 months ago")
         		.clickNextButton(new FollowingGynecologicalConditionOLS());
-        
-        DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = new DiagnosedWithGynecologicalConditionOLS();*/
-        
+        DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = new DiagnosedWithGynecologicalConditionOLS(); */
         
         
         //---------Q12 - Has a healthcare professional ever diagnosed you with any of these other gynecological or women's health conditions? ---
