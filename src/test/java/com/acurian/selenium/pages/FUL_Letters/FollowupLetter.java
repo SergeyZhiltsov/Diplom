@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.utils.Properties;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -79,6 +80,7 @@ public class FollowupLetter extends MainPageOLS{
 	//========================1R FL validation =============================================================
     @Step
     public FollowupLetter Gmail_FUL_Validate(String pidAfterScreening) {
+        WebDriver driver = getDriver();
 		driver.get("https://mail.google.com/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
 		SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
@@ -110,6 +112,7 @@ public class FollowupLetter extends MainPageOLS{
 	//========================1R_MED FL validation =============================================================
     @Step
     public FollowupLetter Gmail_MedFUL_Validate(String pidAfterScreening) {
+        WebDriver driver = getDriver();
 		driver.get("https://mail.google.com/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
 		SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();

@@ -16,7 +16,7 @@ public abstract class BaseTest {
 
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
-    protected static  EventFiringWebDriver driver;
+    private EventFiringWebDriver driver;
 
     public static WebDriver getDriver() {
 //        return driver;
