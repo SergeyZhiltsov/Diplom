@@ -16,7 +16,7 @@ import com.acurian.selenium.pages.OLS.pediatric.*;
 
 public class Insomnia_3792_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00003")
     @Description("Insomnia - 3792 OLS")
     public void insomnia3792olsTest() {
@@ -59,11 +59,11 @@ public class Insomnia_3792_OLS extends BaseTest{
         doYouSufferFromInsomnia_OLS
         .waitForPageLoad();
         Assert.assertEquals(doYouSufferFromInsomnia_OLS.getTitleText(),doYouSufferFromInsomnia_OLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = doYouSufferFromInsomnia_OLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouSufferFromInsomnia_OLS
         .clickOnAnswer("No")
-        .clickNextButton(new HasHealthcareProfessionalPageOLS()); 
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); 
         //------Validate protocol DQs in debug window----------
-        hasHealthcareProfessionalPageOLS.waitForPageLoad();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(doYouSufferFromInsomnia_OLS.titleExpected, protocol2, protocol1);
         //------Go BACK and change your answer to QR answer - to qualify----------
@@ -209,9 +209,9 @@ public class Insomnia_3792_OLS extends BaseTest{
         //----------Q11 -"If you are currently working, does your schedule involve a night shift, either permanent or rotating?" -  Page ---------------   
         ifYouAreCurrentlyWorkingInvolveNightShift_OLS.waitForPageLoad();
         Assert.assertEquals(ifYouAreCurrentlyWorkingInvolveNightShift_OLS.getTitleText(),ifYouAreCurrentlyWorkingInvolveNightShift_OLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = ifYouAreCurrentlyWorkingInvolveNightShift_OLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = ifYouAreCurrentlyWorkingInvolveNightShift_OLS
         .clickOnAnswer("Yes")
-        .clickNextButton(new HasHealthcareProfessionalPageOLS()); // Click NEXT button and wait for the NEXT page
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button     
         debugPageOLS.checkProtocolsEquals(ifYouAreCurrentlyWorkingInvolveNightShift_OLS.titleExpected, protocol2, protocol1);
         debugPageOLS.back();
@@ -219,13 +219,13 @@ public class Insomnia_3792_OLS extends BaseTest{
         ifYouAreCurrentlyWorkingInvolveNightShift_OLS
         .waitForPageLoad()
         .clickOnAnswer("This does not apply to me")
-        .clickNextButton(new HasHealthcareProfessionalPageOLS());
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         
      
         
       //----------GENERAL HEALTH Questions----------     
 		//----------HasHealthcareProfessionalPageOLS Page--------------------
-        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = hasHealthcareProfessionalPageOLS1
+        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
         		.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());

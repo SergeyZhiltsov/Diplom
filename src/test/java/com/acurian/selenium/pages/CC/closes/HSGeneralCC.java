@@ -9,20 +9,12 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HSGeneralCC extends MainPageCC{
 
-    //MDD
+    //MDD, RA
 	public final String titleExpected = "We're glad the location is convenient for you.\n" +
     		"\n" +
     		"The last step is to provide information about the doctors who are currently treating, or have previously treated, your %s so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
     		"\n" +
     		"Please be assured that your records will be kept confidential and only shared with the research facility.";
-    
-  //RA
-	public final String titleExpectedRA = "We're glad the location is convenient for you.\n" +
-    		"\n" +
-    		"The last step is to provide information about the doctors who are currently treating, or have previously treated, your %s so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
-    		"\n" +
-    		"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
-            "You will need to provide us with an email address to start this process. What email address should we use:";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
@@ -34,12 +26,6 @@ public class HSGeneralCC extends MainPageCC{
 
     public HSGeneralCC() {
         PageFactory.initElements(getDriver(), this);
-    }
-
-    @Step
-    public HSGeneralCC waitForPageLoadRA() {
-        waitForPageLoadMain(titleText, titleExpectedRA);
-        return this;
     }
 
     @Step

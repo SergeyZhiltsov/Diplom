@@ -15,7 +15,7 @@ import com.acurian.selenium.pages.CC.Insomnia_3792.HowManyNightsPerWeekAreYouBot
 import com.acurian.selenium.pages.CC.Insomnia_3792.IfYouAreCurrentlyWorkingInvolveNightShift_CC;
 import com.acurian.selenium.pages.CC.Insomnia_3792.InTotalHowLongAreYouUsuallyAwakeDuringNight_CC;
 import com.acurian.selenium.pages.CC.Insomnia_3792.WhatTmeYouUsuallyGoToBed_CC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.LBP_2108.HasYourLbpPainCausedPageCC;
 import com.acurian.selenium.pages.CC.LBP_2108.InPastYear;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
@@ -57,7 +57,7 @@ import java.util.List;
 
 public class Insomnia_3792_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00001")
     @Description(" 1. Open the page, URL: " +
             	 " 2. Type login and correct password of registered user" +
@@ -297,7 +297,7 @@ public class Insomnia_3792_CC extends BaseTest{
         ifYouAreCurrentlyWorkingInvolveNightShift_CC
         .waitForPageLoad()
         .clickOnAnswer("This does not apply to me")
-        .clickNextButton(new HasHealthcareProfessionalPageCC());
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         
         
      		
@@ -305,15 +305,15 @@ public class Insomnia_3792_CC extends BaseTest{
         transitionStatementCC
         .getTitleExpectedWithCurves(studyName1);
         Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpectedWithCurves(studyName1), "Title is difff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-        .clickNextButton(new HasHealthcareProfessionalPageCC());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
        
       //----------Q12 -Non-QR Transition Statement - Display for Call Center only-------------
 
         
       //----------GENERAL HEALTH Questions----------
-        hasHealthcareProfessionalPageCC
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())

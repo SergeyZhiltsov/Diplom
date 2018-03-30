@@ -84,11 +84,11 @@ public class DPN_4557_OLS extends BaseTest{
                 diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad();
                 Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
-                HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
+                HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS()); 
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); 
                 //------Validate protocol DQs in debug window----------
-                hasHealthcareProfessionalPageOLS.waitForPageLoad();
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
                 DebugPageOLS debugPageOLS = new DebugPageOLS();
                 debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1,protocol2);
                 //------Go BACK and change your answer to QR answer - to qualify----------

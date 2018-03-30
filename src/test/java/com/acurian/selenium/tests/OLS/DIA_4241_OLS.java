@@ -2,8 +2,12 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
+import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -28,8 +32,7 @@ public class DIA_4241_OLS extends BaseTest{
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
         String studyName = "a Diabetes";
-        String siteName = "AUT_DIA_4241";
-        String debugSiteName = "";        
+        String siteName = "AUT_DIA_4241";   
         String zipCode = "19044";
         
         String env = System.getProperty("acurian.env");
@@ -62,10 +65,10 @@ public class DIA_4241_OLS extends BaseTest{
         diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
-        hasHealthcareProfessionalPageOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1);
@@ -81,7 +84,7 @@ public class DIA_4241_OLS extends BaseTest{
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
@@ -89,7 +92,7 @@ public class DIA_4241_OLS extends BaseTest{
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
@@ -97,7 +100,7 @@ public class DIA_4241_OLS extends BaseTest{
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(hasHealthcareProfessionalPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
@@ -295,7 +298,8 @@ public class DIA_4241_OLS extends BaseTest{
         Assert.assertEquals(poundsOrMorePageOLS.getTitleText(),poundsOrMorePageOLS.titleExpected, "Title is diff");
         poundsOrMorePageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new StatinMedicationsOnPageOLS())
+                //.clickNextButton(new StatinMedicationsOnPageOLS())
+                .clickNextButton(new DoYouExperienceDPN_OLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(poundsOrMorePageOLS.titleExpected, protocol1)
@@ -304,7 +308,39 @@ public class DIA_4241_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ChildrenUnderPageOLS());
+        childrenUnderPageOLS
+        		.waitForPageLoad()
+        		.clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageOLS());
+                TheStudySitePageOLS theStudySitePageOLS = new TheStudySitePageOLS();
+  //----------*******NEW GENERAL HEALTH Questions********---------------------------     
+		//-------------------PEDIATRIC QUESTIONS-----------------------------
+         theStudySitePageOLS.waitForPageLoad()
+         .clickOnAnswer("Public transportation")
+         .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+		.waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new SiteSelectionPageOLS())
+        .waitForPageLoad(studyName)
+        .getPID()
+        .clickOnFacilityName(siteName)
+        .clickNextButton(new QualifiedClose2PageOLS())
+        .waitForPageLoad()
+        .clickNextButton(new ThankYouCloseSimplePageOLS())
+        .waitForPageLoad()
+        .clickNextButton(new AboutHealthPageOLS())
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
 
+        
+   /*//-------------------OLD GENERAL Health-------------
         childrenUnderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -333,6 +369,6 @@ public class DIA_4241_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env); */
     }
 }

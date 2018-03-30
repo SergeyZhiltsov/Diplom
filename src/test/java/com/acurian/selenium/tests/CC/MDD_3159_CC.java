@@ -251,13 +251,64 @@ public class MDD_3159_CC extends BaseTest{
         transitionStatementCC
         .getTitleExpected(studyName1);
         //Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName1), "Title is difff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-        .clickNextButton(new HasHealthcareProfessionalPageCC());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
        
+        //-------------------New GENERAL HEALTH---------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")                	
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+        		//----------Height and Weight Question Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+                //----------PEDIATRIC HEALTH Questions----------
+                //.clickNextButton(new HouseholdHavePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("None of the above")
+                //.clickNextButton(new TheStudySitePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Public transportation")
+                //.clickNextButton(new WhatMedicalCoveragePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("No, I have no coverage")
+                //.clickNextButton(new EthnicBackgroundPageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Prefer not to answer")
+         //----------Resume GENERAL HEALTH Questions----------
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad("a depression study")
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoad(site_Indication)
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
+        
 
-        //----------GENERAL HEALTH Questions----------
-        hasHealthcareProfessionalPageCC
+        /*//----------OLD  GENERAL HEALTH Questions----------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -344,6 +395,6 @@ public class MDD_3159_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);*/
     }
 }

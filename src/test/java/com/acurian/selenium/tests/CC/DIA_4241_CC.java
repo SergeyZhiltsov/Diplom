@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
+import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer1;
@@ -16,8 +17,11 @@ import com.acurian.selenium.pages.CC.closes.Synexus4241DSWTC2PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -77,7 +81,7 @@ public class DIA_4241_CC extends BaseTest{
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedDiabetes_4356, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleDIA4241Expected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -118,11 +122,11 @@ public class DIA_4241_CC extends BaseTest{
         whatKindOfDiabetesPageCC
                 .waitForPageLoad();
         Assert.assertEquals(whatKindOfDiabetesPageCC.getTitleText(), whatKindOfDiabetesPageCC.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = whatKindOfDiabetesPageCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
-        hasHealthcareProfessionalPageCC
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
@@ -130,7 +134,7 @@ public class DIA_4241_CC extends BaseTest{
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(hasHealthcareProfessionalPageCC)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
@@ -138,7 +142,7 @@ public class DIA_4241_CC extends BaseTest{
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(hasHealthcareProfessionalPageCC)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
@@ -336,7 +340,7 @@ public class DIA_4241_CC extends BaseTest{
         Assert.assertEquals(poundsOrMorePageCC.getTitleText(),poundsOrMorePageCC.titleExpected, "Title is diff");
         poundsOrMorePageCC
                 .clickOnAnswer("Yes")
-                .clickNextButton(new StatinMedicationsOnPageCC())
+                .clickNextButton(new DoYouExperienceDPN_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(poundsOrMorePageCC.titleExpected, protocol1)
@@ -345,8 +349,75 @@ public class DIA_4241_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ChildrenUnderPageCC());
-
         childrenUnderPageCC
+        .waitForPageLoad()
+        .clickOnAnswer("No")
+      /*.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        
+        //-------------------New GENERAL HEALTH---------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")                	
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+        		//----------Height and Weight Question Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+                //----------PEDIATRIC HEALTH Questions----------
+                //.clickNextButton(new HouseholdHavePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("None of the above")
+                //.clickNextButton(new TheStudySitePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Public transportation")
+                //.clickNextButton(new WhatMedicalCoveragePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("No, I have no coverage")
+                //.clickNextButton(new EthnicBackgroundPageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Prefer not to answer")  */
+         //----------Resume GENERAL HEALTH Questions----------
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad(studyName)
+        		.getPID()
+        		.clickOnAnswer(siteName)
+        		.clickNextButton(new QualifiedClose2PageCC())
+        		//Regular Warm Transfer Questions ----- //Regular Warm Transfer Page#1
+        		.waitForPageLoad()
+        		.clickNextButton(new Regular_WarmTransfer1())
+        		.waitForPageLoad()
+        		.clickOnAnswer("Yes")
+        		//Regualr Warm Transfer Page#2
+        		.clickNextButton(new Regular_WarmTransfer2())
+        		.waitForPageLoad()
+        		.clickOnAnswer("Yes: Great, I'll connect them now.")
+        		.clickOnAnswer("[site did not answer]")
+        		//Regualr Warm Transfer Page#3
+        		.clickNextButton(new Regular_WarmTransfer3())
+        		.waitForPageLoad()
+        		//Regualr Warm Transfer Page#4
+        		.clickNextButton(new Regular_WarmTransfer4())
+        		.waitForPageLoad()                
+        		.clickOnAnswer("Successful transfer made to site")
+        		.clickNextButton(selectActionPageCC)
+        		.waitForPageLoad()
+        		.pidFromDbToLog(env);
+        
+        
+        //----------------------OLD G Health--------------
+       /* childrenUnderPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 //----------PEDIATRIC HEALTH Questions----------
@@ -390,6 +461,6 @@ public class DIA_4241_CC extends BaseTest{
         		.clickOnAnswer("Successful transfer made to site")
         		.clickNextButton(selectActionPageCC)
         		.waitForPageLoad()
-        		.pidFromDbToLog(env);
+        		.pidFromDbToLog(env); */
     }
 }

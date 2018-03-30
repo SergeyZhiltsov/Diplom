@@ -35,7 +35,7 @@ public class TheStudySitePageCC extends MainPageCC{
     }
 
     @Step
-    public TheStudySitePageCC clickOnAnswers(String ...answerText) {
+    public TheStudySitePageCC clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

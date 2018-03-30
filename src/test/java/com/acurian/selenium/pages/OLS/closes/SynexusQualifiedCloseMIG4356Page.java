@@ -9,8 +9,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class SynexusQualifiedCloseMIG4356Page extends MainPageOLS{
 
     //%s = ID variable
-    public final String titleExpected = "We're glad the location is convenient for you. The next step is to schedule an appointment with the study doctor. You can schedule your appointment directly by calling 1-844-438-6150. Please provide the study doctor ID %s when you call. If we don’t hear from you, we will call you at the number provided to schedule your appointment.";
-
+    public final String titleExpected = "We're glad the location is convenient for you.\n" +
+    		"\n" +
+    		"The next step is to schedule an appointment with the study doctor. You can schedule your appointment directly by calling 1-844-438-6150. Please provide the study doctor ID %s when you call. If we don’t hear from you, we will call you at the number provided to schedule your appointment.";
+    
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
@@ -19,9 +21,12 @@ public class SynexusQualifiedCloseMIG4356Page extends MainPageOLS{
     }
 
     @Step
-    public SynexusQualifiedCloseMIG4356Page waitForPageLoad() {
-        //String titleExpectedMig4356 = String.format(titleExpected, "625252");
-        String titleExpectedMig4356 = String.format(titleExpected, "625641");
+    public SynexusQualifiedCloseMIG4356Page waitForPageLoad(String facilityCode) {
+        String titleExpectedMig4356 = String.format(titleExpected, facilityCode);
+        //threadSleep(2000);
+        //System.out.println(titleText.getText());
+        //System.out.println("=");
+        //System.out.println(titleExpectedMig4356);
         waitForPageLoadMain(titleText, titleExpectedMig4356);
         return this;
     }

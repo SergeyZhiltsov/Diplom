@@ -12,21 +12,20 @@ import com.acurian.selenium.pages.CC.AS_4319.PermanentlyWheelchairBoundCC;
 import com.acurian.selenium.pages.CC.AS_4319.ResultsOfYouXrayOrMRICC;
 import com.acurian.selenium.pages.CC.AS_4319.SignsOfAnkylosingSpondylitisCC;
 import com.acurian.selenium.pages.CC.AS_4319.YouBeenDiagnosedWithCC;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -55,14 +54,15 @@ public class AS_4319_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
-	public void tc001Test(final String username, final String password) {
+	public void AS_4319_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1AS1";
         List<String> protocols = Arrays.asList("M16_098");
         String protocol1 = "M16_098";        
         String studyName = "ankylosing spondylitis or AS";
-        String studyName1 = "arthritis";
+        String studyName1 = "an ankylosing spondylitis (AS) study";
     //    String env = "STG";
-        String siteName = "AUT_As_4319";
+        String siteName = "AUT_AS_4319";
+        String site_indication = "Ankylosing Spondylitis";
         String zipCode  = "19044";
         
         String env = System.getProperty("acurian.env");
@@ -248,11 +248,66 @@ public class AS_4319_CC extends BaseTest{
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new TransitionStatementCC());
        
-       HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC =  transitionStatementCC1
-    		   .waitForPageLoad(studyName)
-    		   .clickNextButton(new HasHealthcareProfessionalPageCC()); 
+       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =  transitionStatementCC1
+    		   .waitForPageLoadWithCurves(studyName)
+    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC()); 
        
-       hasHealthcareProfessionalPageCC
+       
+       
+       //-------------------New GENERAL HEALTH---------------------------
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")                	
+       		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+       		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")
+               .clickNextButton(new ApproximateHeightPageCC())
+       		//----------Height and Weight Question Page--------------------
+               .waitForPageLoad()
+               .setAll("5", "5", "160")
+               .clickNextButton(new LetMeSeePageCC())
+               .waitForPageLoad()
+               .clickNextButton(new ChildrenUnderPageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("No")
+               .clickNextButton(new TheStudySitePageCC())
+               //----------PEDIATRIC HEALTH Questions----------
+               //.clickNextButton(new HouseholdHavePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("None of the above")
+               //.clickNextButton(new TheStudySitePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("Public transportation")
+               //.clickNextButton(new WhatMedicalCoveragePageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("No, I have no coverage")
+               //.clickNextButton(new EthnicBackgroundPageCC())
+               //.waitForPageLoad()
+               //.clickOnAnswers("Prefer not to answer")
+        //----------Resume GENERAL HEALTH Questions----------
+               .clickNextButton(new IdentificationPageCC())
+               .waitForPageLoad()
+               .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+               .clickNextButton(new SiteSelectionPageCC())
+               .waitForPageLoad(studyName1)
+               .getPID()
+               .clickOnAnswer(siteName)
+               .clickNextButton(new HSGeneralCC())
+               .waitForPageLoad(site_indication)
+               .clickNextButton(new DoctorInformationCollectionPageCC())
+               .waitForPageLoad()
+               .clickNextButton(new HSMedicalRecordsPageCC())
+               .waitForPageLoad()
+               .clickNextButton(new ThankYouCloseSimplePageCC())
+               .waitForPageLoad()
+               .clickNextButton(selectActionPageCC)
+               .waitForPageLoad()
+               .pidFromDbToLog(env);
+       
+       
+   /*//----------------------OLD General health ------------------
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
        .waitForPageLoad()
        .clickOnAnswers("None of the above")
        .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -337,9 +392,6 @@ public class AS_4319_CC extends BaseTest{
        .clickOnAnswer("Transferred for Scheduling")
        .clickNextButton(selectActionPageCC)
        .waitForPageLoad()
-       .pidFromDbToLog(env);
-       
-       
+       .pidFromDbToLog(env);*/      
 	}
-
 }

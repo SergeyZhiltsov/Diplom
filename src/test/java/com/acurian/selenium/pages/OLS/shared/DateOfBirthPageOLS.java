@@ -236,7 +236,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     public String getQuestionTextGH() {
         return getText(questionTextGH);
     }
-
+    
     @Step
     public String getTitleTextGH() {
         return getText(titleTextGH);

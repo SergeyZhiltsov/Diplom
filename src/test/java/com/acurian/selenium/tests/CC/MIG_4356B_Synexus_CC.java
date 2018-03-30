@@ -5,10 +5,6 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.shared.HasDoctorDiagnosedYouWithClusterHeadache_OLS;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
@@ -16,22 +12,6 @@ import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -360,11 +340,68 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         transitionStatementCC
         .waitForPageLoad(studyName1);
         Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName1), "Title is difff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
-        .clickNextButton(new HasHealthcareProfessionalPageCC());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        //----------GENERAL HEALTH Questions----------
-        hasHealthcareProfessionalPageCC
+        
+        //-------------------New GENERAL HEALTH---------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")                	
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+        		//----------Height and Weight Question Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+                //----------PEDIATRIC HEALTH Questions----------
+                //.clickNextButton(new HouseholdHavePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("None of the above")
+                //.clickNextButton(new TheStudySitePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Public transportation")
+                //.clickNextButton(new WhatMedicalCoveragePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("No, I have no coverage")
+                //.clickNextButton(new EthnicBackgroundPageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Prefer not to answer")
+         //----------Resume GENERAL HEALTH Questions----------
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad("a Migraine study")
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new RadiantWarmTransfer1())
+                //Warm Transfer Questions ----- 
+                .waitForPageLoad()
+                .clickOnAnswer("[patient agrees to be transferred]")
+                .clickNextButton(new RadiantWarmTransfer2())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new RadiantWarmTransfer3())
+                .waitForPageLoad()
+                .clickNextButton(new RadiantWarmTransfer4())
+                .waitForPageLoad()
+                .clickOnAnswer("Transferred for Scheduling")
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);        
+        
+
+   /*     //----------OLD GENERAL HEALTH Questions----------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -455,6 +492,6 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);  */
     }
 }

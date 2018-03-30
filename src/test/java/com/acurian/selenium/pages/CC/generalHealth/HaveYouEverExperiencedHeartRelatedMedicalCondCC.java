@@ -10,10 +10,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HasHealthcareProfessionalPageCC extends MainPageCC {
+public class HaveYouEverExperiencedHeartRelatedMedicalCondCC extends MainPageCC {
 
-    public final String titleExpected = "Has a healthcare professional told you that you have any of the following heart-related medical conditions?\n" +
-            "Agent Note: Select all that apply";
+    public final String titleExpected = "Have you ever experienced or been diagnosed with any of the following specific heart-related medical conditions?\n" +
+    		"Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
@@ -21,18 +21,18 @@ public class HasHealthcareProfessionalPageCC extends MainPageCC {
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public HasHealthcareProfessionalPageCC() {
+    public HaveYouEverExperiencedHeartRelatedMedicalCondCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HasHealthcareProfessionalPageCC waitForPageLoad() {
+    public HaveYouEverExperiencedHeartRelatedMedicalCondCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HasHealthcareProfessionalPageCC clickOnAnswers(String ...answerText) {
+    public HaveYouEverExperiencedHeartRelatedMedicalCondCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

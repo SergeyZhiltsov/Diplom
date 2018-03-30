@@ -4,6 +4,8 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.SUI_3923.*;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -11,13 +13,14 @@ import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -263,15 +266,15 @@ public class SUI_3923_CC extends BaseTest{
         transitionStatementSUI_CC 
         .waitForPageLoad("urinary health");
         Assert.assertEquals(transitionStatementSUI_CC.getTitleText(), transitionStatementSUI_CC.getTitleExpected(studyName), "Title is difff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementSUI_CC
-        .clickNextButton(new HasHealthcareProfessionalPageCC());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementSUI_CC
+        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
        
       //----------Q12 -Non-QR Transition Statement - Display for Call Center only-------------
 
         
-      //----------GENERAL HEALTH Questions----------
-        hasHealthcareProfessionalPageCC
+      /*//----------OLD GENERAL HEALTH Questions----------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -330,17 +333,7 @@ public class SUI_3923_CC extends BaseTest{
          //----------PEDIATRIC HEALTH Questions----------
                 .clickNextButton(new HouseholdHavePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                //.clickNextButton(new TheStudySitePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Public transportation")
-                //.clickNextButton(new WhatMedicalCoveragePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("No, I have no coverage")
-                //.clickNextButton(new EthnicBackgroundPageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Prefer not to answer")
-         //----------Resume GENERAL HEALTH Questions----------
+                .clickOnAnswers("None of the above")         
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
@@ -355,6 +348,45 @@ public class SUI_3923_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env); */
+                
+        //-------------------New GENERAL HEALTH---------------------------
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")                	
+                		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+                		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")
+                        .clickNextButton(new ApproximateHeightPageCC())
+                		//----------Height and Weight Question Page--------------------
+                        .waitForPageLoad()
+                        .setAll("5", "5", "160")
+                        .clickNextButton(new LetMeSeePageCC())
+                		//----------ChildrenUnderTheAge Page--------------------
+                        .waitForPageLoad()
+                        .clickNextButton(new ChildrenUnderPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        //----------PEDIATRIC HEALTH Questions----------
+                        .clickNextButton(new HouseholdHavePageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                		//----------PII (IdentificationPageOLS) Page--------------------
+                        .clickNextButton(new IdentificationPageCC())
+                        .waitForPageLoad()
+                        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
+                        .clickNextButton(new SiteSelectionPageCC())
+                        .waitForPageLoad("a women's bladder control study")
+                        .getPID()
+                		//----------SITE Selection Page--------------------
+                        .clickOnAnswer(siteName)
+                        .clickNextButton(new QualifiedClose2PageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env);
     }
 }

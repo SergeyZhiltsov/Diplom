@@ -66,10 +66,10 @@ public class MDD_3159_OLS extends BaseTest{
         hasHealthcareProfDiagnosedMDDOLS
                 .waitForPageLoad();
         Assert.assertEquals(hasHealthcareProfDiagnosedMDDOLS.getTitleText(),hasHealthcareProfDiagnosedMDDOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = hasHealthcareProfDiagnosedMDDOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = hasHealthcareProfDiagnosedMDDOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
-        hasHealthcareProfessionalPageOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(hasHealthcareProfDiagnosedMDDOLS.titleExpected, protocol1);
@@ -205,19 +205,70 @@ public class MDD_3159_OLS extends BaseTest{
         Assert.assertEquals(haveYouBeenHospitalizedForDepressionOLS.getTitleText(),haveYouBeenHospitalizedForDepressionOLS.titleExpected, "Title is diff");
         haveYouBeenHospitalizedForDepressionOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
-        hasHealthcareProfessionalPageOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals("Have you been hospitalized for depression or any other mental health condition in the past year? By...", protocol1)
                 .back();
         haveYouBeenHospitalizedForDepressionOLS.waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
        
-
-        //GENERAL HEALTH Questions----------------------
-        hasHealthcareProfessionalPageOLS
+        //----------*******NEW GENERAL HEALTH Questions********----------     
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new HouseholdHavePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new TheStudySitePageOLS())
+        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+        .clickOnAnswer("Public transportation")
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+		.waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new SiteSelectionPageOLS())    
+		//----------SiteSelection Page--------------------
+        .waitForPageLoad(studyName)
+        .getPID()
+        .clickOnFacilityName(siteName)
+        .clickNextButton(new HSGeneralPageOLS())
+        .waitForPageLoad(site_Indication)
+        .clickNextButton(new DoctorInformationCollectionPageOLS())
+        .waitForPageLoad()
+        .clickNextButton(new HS1PageOLS())
+        .waitForPageLoad()
+        .clickOkInPopUp()
+        .setSignature()
+        .getPage(new ThankYouCloseSimplePageOLS())
+        .waitForPageLoad()
+        .clickNextButton(new AboutHealthPageOLS())
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
+        
+        /*----//OLD  GENERAL HEALTH Questions----------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
@@ -299,6 +350,6 @@ public class MDD_3159_OLS extends BaseTest{
                 .waitForPageLoad()
         		.clickNextButton(new AboutHealthPageOLS())
         		.waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);  */
     }
 }

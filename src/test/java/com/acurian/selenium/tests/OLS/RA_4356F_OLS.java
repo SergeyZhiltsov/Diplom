@@ -21,6 +21,7 @@ import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSCrohns2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SiteSelection;
+import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouPage;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -37,9 +38,10 @@ import com.acurian.selenium.pages.OLS.generalHealth.CancerPage;
 import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditions;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DrugOrAlcoholAbuse;
 import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouSmokedCigarettes;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartRelatedMedicalProc;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
@@ -83,15 +85,18 @@ public class RA_4356F_OLS extends BaseTest {
         String protocol2 = "M15_925";        
         String protocol3 = "CL04041023";
         //List<String> protocols = Arrays.asList(protocol2,protocol3);
-        String studyName = "rheumatoid";
+        String studyName = "a rheumatoid arthritis (RA)";
+        String indication = "an arthritis";
         String siteName = "AUT_RA_4356F_Site";
         String zipCode = "19044";
+        String facility_Code_STG = "625317";
+        String facility_Code_PRD = "625908";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           
+		dateOfBirthPageOLS.openPage(env, phoneNumberRA)
 		           .waitForPageLoad()
 		           .maximizePage();
 		Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a rheumatoid arthritis (RA) study!"), true);
@@ -109,10 +114,10 @@ public class RA_4356F_OLS extends BaseTest {
 		         .clickOnAnswer("Female")
 		         .clickNextButton(new DoYouSufferFromArthritis());
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = doYouSufferFromArthritis
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouSufferFromArthritis
 				 .waitForPageLoad()
 				 .clickOnAnswer("No")
-				 .clickNextButton(new HasHealthcareProfessionalPageOLS());
+				 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, protocol2);
@@ -190,22 +195,87 @@ public class RA_4356F_OLS extends BaseTest {
 				.clickOnAnswer("4 - 6 months")
 				.clickNextButton(new BiologicMedications());
 		
-		LastReceivedTysabri lastReceivedTysabri = biologicMedications
+		LastReceivedOrenciaOLS lastReceivedOrenciaOLS = biologicMedications
 				.waitForPageLoad()
-				.clickOnAnswers("Tysabri")
-				.clickNextButton(new LastReceivedTysabri());
+				.clickOnAnswers("Orencia")
+				.clickNextButton(new LastReceivedOrenciaOLS());
 		
-		TakenXeljanz TakenXeljanz = lastReceivedTysabri
+		TakenXeljanz TakenXeljanz = lastReceivedOrenciaOLS
 				.waitForPageLoad()
 				.clickOnAnswer("Last received 7 to 11 months ago")
 				.clickNextButton(new TakenXeljanz());
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = TakenXeljanz
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = TakenXeljanz
 				.waitForPageLoad()
 				.clickOnAnswer("No, I have never taken it")
-				.clickNextButton(new HasHealthcareProfessionalPageOLS());
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
-		hasHealthcareProfessionalPageOLS
+	 
+		//----------*******NEW GENERAL HEALTH Questions********----------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new HouseholdHavePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new TheStudySitePageOLS())
+        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+        .clickOnAnswer("Public transportation")
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+		.waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new SiteSelectionPageOLS())    
+		//----------SiteSelection Page--------------------
+        //----------SiteSelection Page--------------------
+        .waitForPageLoad(studyName)
+        .getPID()
+        .clickOnFacilityName(siteName)
+        .clickNextButton(new SynexusQualifiedClose4356PageOLS())
+
+     //----------GladLocationIsConvenient Page--------------------
+        .waitForPageLoad(env.equals("STG")? facility_Code_STG : facility_Code_PRD)
+        .clickNextButton(new ThankYouCloseSimplePageOLS())
+
+      //----------ThankYouCloseSimplePageOLS Page--------------------
+        .waitForPageLoad()
+        .clickNextButton(new AboutHealthPageOLS())
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
+        
+      //  .waitForPageLoad(studyName)
+     //   .getPID()
+      //  .clickOnFacilityName(siteName)
+       // .clickNextButton(new QualifiedClose2PageOLS())
+      //  .waitForPageLoad()
+      //  .clickNextButton(new ThankYouCloseSimplePageOLS())        
+       // .waitForPageLoad()
+       // .clickNextButton(new AboutHealthPageOLS())
+        //.waitForPageLoad()
+       // .pidFromDbToLog(env); 
+        
+        
+        //----------------OLD General Health---------------------		
+	/*	haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
         .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
@@ -284,6 +354,6 @@ public class RA_4356F_OLS extends BaseTest {
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
+        .pidFromDbToLog(env);*/
 	}
 }

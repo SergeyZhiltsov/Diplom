@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.OLS.UF_4384.HowWouldYouDescribeAvgPeriodUF_OLS
 import com.acurian.selenium.pages.OLS.UF_4384.WhichOfFollowingDoYouTypicallyExperienceUF_OLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
+import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
@@ -72,10 +73,10 @@ public class UF_4384_OLS extends BaseTest{
         followingGynecologicalConditionOLS
                 .waitForPageLoad();
         Assert.assertEquals(followingGynecologicalConditionOLS.getTitleText(),followingGynecologicalConditionOLS.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = followingGynecologicalConditionOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = followingGynecologicalConditionOLS
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
-        hasHealthcareProfessionalPageOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageCC = new DebugPageOLS();
         debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following gynecological or women's ...", protocol1,protocol2);
@@ -127,34 +128,34 @@ public class UF_4384_OLS extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(haveYouHadHysterectomyOLS.getTitleText(),haveYouHadHysterectomyOLS.titleExpected, "Title is diff");
         		haveYouHadHysterectomyOLS.clickOnAnswer("Yes")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
-                hasHealthcareProfessionalPageOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(haveYouHadHysterectomyOLS.titleExpected, protocol1, protocol2)
                 .back();
         haveYouHadHysterectomyOLS.waitForPageLoad();
-        HaveRegularMenstrualCyclesOLS haveRegularMenstrualCyclesOLS = haveYouHadHysterectomyOLS
+        PlzDescribeYourMenstrualCyclesOLS plzDescribeYourMenstrualCyclesOLS = haveYouHadHysterectomyOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveRegularMenstrualCyclesOLS());
+                .clickNextButton(new PlzDescribeYourMenstrualCyclesOLS());
         
         
 
-		//---------------Q5 Do you have regular menstrual cycles, meaning that you get your period each month on a predictable schedule?-------------------		
-        haveRegularMenstrualCyclesOLS
+		//---------------Q5 - Please describe your menstrual cycles:-------------------		
+        plzDescribeYourMenstrualCyclesOLS
                 .waitForPageLoad();
-        Assert.assertEquals(haveRegularMenstrualCyclesOLS.getTitleText(),haveRegularMenstrualCyclesOLS.titleExpected, "Title is diff");
-        		HowWouldYouDescribeAvgPeriodUF_OLS howWouldYouDescribeAvgPeriodUF_OLS = haveRegularMenstrualCyclesOLS
-        		.clickOnAnswer("No")
+        Assert.assertEquals(plzDescribeYourMenstrualCyclesOLS.getTitleText(),plzDescribeYourMenstrualCyclesOLS.titleExpected, "Title is diff");
+        		HowWouldYouDescribeAvgPeriodUF_OLS howWouldYouDescribeAvgPeriodUF_OLS = plzDescribeYourMenstrualCyclesOLS
+        		.clickOnAnswer("Never regular")
                 .clickNextButton(new HowWouldYouDescribeAvgPeriodUF_OLS());
         		howWouldYouDescribeAvgPeriodUF_OLS
                 .waitForPageLoad()
-                //.getPage(debugPageCC)
-                //.checkProtocolsEquals("Do you have regular menstrual cycles, meaning that you get your period each month on a predictable s...", protocol1, protocol2)
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Please describe your menstrual cycles:", protocol1, protocol2)
                 .back();
-        haveRegularMenstrualCyclesOLS
+        plzDescribeYourMenstrualCyclesOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("Always regular")
                 .clickNextButton(new HowWouldYouDescribeAvgPeriodUF_OLS());
 
         
@@ -237,17 +238,69 @@ public class UF_4384_OLS extends BaseTest{
         		Assert.assertEquals(areYouCurrentlyPregnantOLS.getTitleText(),areYouCurrentlyPregnantOLS.titleExpected, "Title is diff");
         		//HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = areYouCurrentlyPregnantUF_CC
         		areYouCurrentlyPregnantOLS.clickOnAnswer("Yes")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         		debugPageCC.checkProtocolsEquals(areYouCurrentlyPregnantOLS.titleExpected, protocol1, protocol2);
         		debugPageCC.back();
         areYouCurrentlyPregnantOLS.waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalPageOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
       
-
-        //GENERAL HEALTH Questions----------------------
-        hasHealthcareProfessionalPageOLS
+        //----------*******NEW GENERAL HEALTH Questions********----------     
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new HouseholdHavePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new TheStudySitePageOLS())
+        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+        .clickOnAnswer("Public transportation")
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+		.waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new SiteSelectionPageOLS())    
+		//----------SiteSelection Page--------------------
+        .waitForPageLoad(studyName)
+        .getPID()
+        .clickOnFacilityName(siteName)
+        .clickNextButton(new HSGeneralPageOLS())
+        .waitForPageLoad(site_Indication)
+        .clickNextButton(new DoctorInformationCollectionPageOLS())
+        .waitForPageLoad()
+        .clickNextButton(new HS1PageOLS())
+        .waitForPageLoad()
+        .clickOkInPopUp()
+        .setSignature()
+        .getPage(new ThankYouCloseSimplePageOLS())
+        .waitForPageLoad()
+        .clickNextButton(new AboutHealthPageOLS())
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
+        
+        
+        /*//---OLD GENERAL HEALTH Questions----------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
@@ -304,9 +357,6 @@ public class UF_4384_OLS extends BaseTest{
                 .clickNextButton(new TheStudySitePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Public transportation")
-//                .clickNextButton(new WouldYouUsePageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("Neither")
                 .clickNextButton(new WhatMedicalCoveragePageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("No, I have no coverage")
@@ -332,6 +382,6 @@ public class UF_4384_OLS extends BaseTest{
                 .waitForPageLoad()
 		        .clickNextButton(new AboutHealthPageOLS())
 		        .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);*/
     }
 }

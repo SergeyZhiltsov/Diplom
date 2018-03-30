@@ -16,11 +16,11 @@ import java.util.List;
 public class SiteSelectionPageOLS extends MainPageOLS{
 
     @Parameter("My PID OLS")
-    private String pidNumber;
+	public String pidNumber;
 
     //%s = studyName variable
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s study!\n" +
-            "Please select a doctor and click the \"Next\" button.";
+            "Please select a doctor and click the \"Next\" button.";  
 
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
@@ -67,7 +67,7 @@ public class SiteSelectionPageOLS extends MainPageOLS{
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
-
+    
     private void clickOnAddLocLinkIfExist(){
         if(isElementPresent(7, By.xpath("//b[@id='additional-sites-toggle']"))){
             additionalLocationLink.click();

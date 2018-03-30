@@ -6,19 +6,19 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.END_4385.DiagnoseYourEndometriosisOLS;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class DiagnoseYourEndometriosisCC extends MainPageCC{
 
-    public final String titleExpected = "Did your doctor perform any of the following procedures to help diagnose your endometriosis?\n" + 
-    		"Please do not report any procedures you may have had to treat your endometriosis.\n" +
-            "Agent Note: Select all that apply";
+    public final String titleExpected = "When was your most recent surgery to treat or diagnose your endometriosis performed?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
-    List<WebElement> checkBoxList;
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    List<WebElement> radioButtonsList;
 
     public DiagnoseYourEndometriosisCC() {
         PageFactory.initElements(getDriver(), this);
@@ -31,8 +31,8 @@ public class DiagnoseYourEndometriosisCC extends MainPageCC{
     }
 
     @Step
-    public DiagnoseYourEndometriosisCC clickOnAnswers(String ...answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+    public DiagnoseYourEndometriosisCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

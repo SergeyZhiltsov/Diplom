@@ -14,6 +14,8 @@ import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.AST_4337.TheseSymptomsPageOLS;
+import com.acurian.selenium.pages.OLS.shared.InThePastYearHowManyTimesDidYouSeekMedicalOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -222,50 +224,26 @@ public class AST_4337_CC extends BaseTest{
                 .clickOnAnswer("Less than 1 month")
                 .clickNextButton(respiratorySymptomsPageCC);
 
-        SubquestionHospitalizedOvernightPageCC subquestionHospitalizedOvernightPageCC = respiratorySymptomsPageCC
+        InThePastYearHowManyTimesDidYouSeekMedicalCC inThePastYearHowManyTimesDidYouSeekMedicalCC = respiratorySymptomsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Xolair (omalizumab)")
-                .clickNextButton(new SubquestionHospitalizedOvernightPageCC());
+                .clickNextButton(new InThePastYearHowManyTimesDidYouSeekMedicalCC());
 
-        subquestionHospitalizedOvernightPageCC
-                .waitForPageLoad(1,subquestionHospitalizedOvernightPageCC.titleExpected1);
-        Assert.assertEquals(subquestionHospitalizedOvernightPageCC.getTitleText(1),subquestionHospitalizedOvernightPageCC.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionHospitalizedOvernightPageCC.getTitleText(2),subquestionHospitalizedOvernightPageCC.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionHospitalizedOvernightPageCC.getTitleText(3),subquestionHospitalizedOvernightPageCC.titleExpected3, "Title is diff");
-        TheseSymptomsPageCC theseSymptomsPageCC = subquestionHospitalizedOvernightPageCC
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageCC.titleExpected1,"No")
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageCC.titleExpected2,"No")
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageCC.titleExpected3,"No")
+        inThePastYearHowManyTimesDidYouSeekMedicalCC
+                .waitForPageLoad();
+        Assert.assertEquals(inThePastYearHowManyTimesDidYouSeekMedicalCC.getTitleText(),inThePastYearHowManyTimesDidYouSeekMedicalCC.titleExpected, "Title is diff");
+        TheseSymptomsPageCC theseSymptomsPageCC = inThePastYearHowManyTimesDidYouSeekMedicalCC
+                .clickOnAnswer("None")
                 .clickNextButton(new TheseSymptomsPageCC());
         theseSymptomsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Ghost Question - Asthma Exacerbation Logic", protocol1)
+                .checkProtocolsEquals("In the past year, how many times did you have to seek any medical attention (at a hospital, ER, urge...", protocol1)
                 .back();
-        SubquestionTheHospitalPageCC subquestionTheHospitalPageCC = subquestionHospitalizedOvernightPageCC
-                .waitForPageLoad(1,subquestionHospitalizedOvernightPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageCC.titleExpected1,"Yes")
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageCC.titleExpected2,"Yes")
-                .clickOnAnswerForSubQuestion(subquestionHospitalizedOvernightPageCC.titleExpected3,"Yes")
-                .clickNextButton(new SubquestionTheHospitalPageCC());
-
-        subquestionTheHospitalPageCC
-                .waitForPageLoad(1,subquestionTheHospitalPageCC.titleExpected1);
-        Assert.assertEquals(subquestionTheHospitalPageCC.getTitleText(1),subquestionTheHospitalPageCC.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionTheHospitalPageCC.getTitleText(2),subquestionTheHospitalPageCC.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionTheHospitalPageCC.getTitleText(3),subquestionTheHospitalPageCC.titleExpected3, "Title is diff");
-        SeekMedicalPageCC seekMedicalPageCC = subquestionTheHospitalPageCC
-                .clickOnAnswersForSubQuestion(subquestionTheHospitalPageCC.titleExpected1,"Inhaled nebulizer treatment")
-                .clickOnAnswersForSubQuestion(subquestionTheHospitalPageCC.titleExpected2,"Injection or shot")
-                .clickOnAnswersForSubQuestion(subquestionTheHospitalPageCC.titleExpected3,"Unsure")
-                .clickNextButton(new SeekMedicalPageCC());
-
-        seekMedicalPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(seekMedicalPageCC.getTitleText(),seekMedicalPageCC.titleExpected, "Title is diff");
-        seekMedicalPageCC
-                .clickOnAnswer("Once")
-                .clickNextButton(theseSymptomsPageCC);
+        inThePastYearHowManyTimesDidYouSeekMedicalCC
+        .waitForPageLoad()
+        .clickOnAnswer("Once")
+        .clickNextButton(new TheseSymptomsPageCC());
 
         theseSymptomsPageCC
                 .waitForPageLoad();
@@ -323,12 +301,63 @@ public class AST_4337_CC extends BaseTest{
                 .setFirst("9")
                 .clickNextButton(transitionStatementCC);
 
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = transitionStatementCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoad("asthma")
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
+        //-------------------New GENERAL HEALTH---------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")                	
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+        		//----------Height and Weight Question Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageCC())
+                //----------PEDIATRIC HEALTH Questions----------
+                //.clickNextButton(new HouseholdHavePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("None of the above")
+                //.clickNextButton(new TheStudySitePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Public transportation")
+                //.clickNextButton(new WhatMedicalCoveragePageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("No, I have no coverage")
+                //.clickNextButton(new EthnicBackgroundPageCC())
+                //.waitForPageLoad()
+                //.clickOnAnswers("Prefer not to answer")
+         //----------Resume GENERAL HEALTH Questions----------
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoad(studyIndication)
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
 
-        hasHealthcareProfessionalPageCC
+       /*//---------OLD general Health ----------------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -412,6 +441,6 @@ public class AST_4337_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);  */
     }
 }

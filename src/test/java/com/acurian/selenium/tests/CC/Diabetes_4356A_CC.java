@@ -127,11 +127,11 @@ public class Diabetes_4356A_CC extends BaseTest{
         whatKindOfDiabetesPageCC
                 .waitForPageLoad();
         Assert.assertEquals(whatKindOfDiabetesPageCC.getTitleText(), whatKindOfDiabetesPageCC.titleExpected, "Title is diff");
-        HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC = whatKindOfDiabetesPageCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
-        hasHealthcareProfessionalPageCC
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
@@ -139,7 +139,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(hasHealthcareProfessionalPageCC)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
@@ -147,7 +147,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(hasHealthcareProfessionalPageCC)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
@@ -522,18 +522,97 @@ public class Diabetes_4356A_CC extends BaseTest{
         Assert.assertEquals(forYourKidneysPageCC.getTitleText(),forYourKidneysPageCC.titleExpected, "Title is diff");
         forYourKidneysPageCC
                 .clickOnAnswer("No")
-                .clickNextButton(hasHealthcareProfessionalPageCC)
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals("Do you take medication for high blood pressure or for your kidneys? Some of these medications are ca", protocol1)
                 .back();
-        forYourKidneysPageCC
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = forYourKidneysPageCC
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HasHealthcareProfessionalPageCC());
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+
+        
+        //--------------------------------------Have you ever experienced or been diagnosed with any of the following specific heart-related medical conditions?------------------------------------------------------ 
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad();
+        Assert.assertEquals(haveYouEverExperiencedHeartRelatedMedicalCondCC.getTitleText(),haveYouEverExperiencedHeartRelatedMedicalCondCC.titleExpected, "Title is diff");
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionExperiencedHeartPageCC())
+                .waitForPageLoad()
+                .back();
+        HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+        
+        
+        //-------------------------HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC----------------------------------------------------- 
+        haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
+                .waitForPageLoad();
+        Assert.assertEquals(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC.getTitleText(),haveYouEverBeenDiagnosedAdditionalHeartRelatedCC.titleExpected, "Title is diff");
+        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
+                .clickOnAnswers("None of the above")       
+                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+
+        //-------------------------HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC----------------------------------------------------- 
+        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                .waitForPageLoad();
+        Assert.assertEquals(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC.getTitleText(),haveYouUndergoneAnyOfFollowingHeartRelatedProcCC.titleExpected, "Title is diff");
+        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new TransitionStatementCC())
+                
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        
+        //-----------------------NEW GENERAL HEALTH------------------------------------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")                	
+        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+        		//----------Height and Weight Question Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+        		//----------ChildrenUnderTheAge Page--------------------
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                //----------PEDIATRIC HEALTH Questions----------
+                .clickNextButton(new HouseholdHavePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+        		//----------PII (IdentificationPageOLS) Page--------------------
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad("a Diabetes study")
+                .getPID()
+        		//----------SITE Selection Page--------------------
+                .clickOnAnswer(siteName)
+                .clickNextButton(new RadiantWarmTransferClose1PageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("[patient agrees to be transferred]")
+                .clickNextButton(new SynexusDirectScheduleWTC2PageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new SynexusDirectScheduleWTC3PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new SRDirectScheduleWTTCPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Transferred for Scheduling")
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
 
 
-      //---------------------------------------GENERAL HEALTH------------------------------------------------------ 
-        hasHealthcareProfessionalPageCC
+      /*//---------------------------------------OLD GENERAL HEALTH------------------------------------------------------ 
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
@@ -628,6 +707,6 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);*/
     }
 }
