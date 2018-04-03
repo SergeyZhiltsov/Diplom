@@ -65,8 +65,8 @@ public class MDD_3159_CC extends BaseTest{
                 .clickBeginButton();
 
         callCenterIntroductionPageCC
-                .waitForPageLoad()
-                .activateDebugOnProd(env);
+                .waitForPageLoad();
+               
         Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .activateDebugOnProd(env)
