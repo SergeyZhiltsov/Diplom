@@ -54,7 +54,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class OA_4109CC extends BaseTest{
 	
-	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void tc001Test(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";

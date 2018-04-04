@@ -52,11 +52,11 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 
 public class OA_3138 extends BaseTest {
 	
-	@Test
+	@Test(enabled = false)
 	public void tc01() {
 		String phoneNumberDY = "AUTAMS1OA1";		
 //		String env = "PRD";		
-		String zipCode = "99546";
+		String zipCode = "85283";
 		String studyName = "arthritis";
 	    String siteName = "AUT_OA_3138_Site";
 	    String protocol1 = "R475_PN_1523";
