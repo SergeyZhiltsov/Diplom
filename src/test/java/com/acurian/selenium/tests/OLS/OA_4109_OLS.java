@@ -53,7 +53,7 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 
 public class OA_4109_OLS extends BaseTest {
 	
-	@Test
+	@Test(enabled = false)
 	public void tc01() {
 		String phoneNumberDY = "AUTAMS1OA1";		
 	//	String env = "PRD";		
