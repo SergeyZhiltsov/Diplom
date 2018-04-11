@@ -17,6 +17,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.LastTimeYouTookPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.TreatingYourDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -294,6 +295,9 @@ public class ClusterHeadache_3237_CC extends BaseTest{
         	 //----------Q23 - Do any of the following additional diagnoses apply to you?--------
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(new HormonalBirthControlCC())
+        		.waitForPageLoad()
+        		.clickOnAnswer("No")
                 .clickNextButton(new ApproximateHeightPageCC())
         	 //----------ProvideHeight-Weight Page--------------------
                 .waitForPageLoad()

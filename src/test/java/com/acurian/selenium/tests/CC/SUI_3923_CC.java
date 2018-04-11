@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.SUI_3923.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
@@ -39,7 +40,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class SUI_3923_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00015")
     @Description("Stress Urinary Incontinence (SUI) - 3923 CC")
     public void SUI_3923_CC(final String username, final String password) {
@@ -358,6 +359,9 @@ public class SUI_3923_CC extends BaseTest{
                 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
                 		.waitForPageLoad()
                 		.clickOnAnswers("None of the above")
+                		.clickNextButton(new HormonalBirthControlCC())
+                		.waitForPageLoad()
+                		.clickOnAnswer("No")
                         .clickNextButton(new ApproximateHeightPageCC())
                 		//----------Height and Weight Question Page--------------------
                         .waitForPageLoad()
