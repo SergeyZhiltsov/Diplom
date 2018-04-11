@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.AreYouTakingMedications;
 import com.acurian.selenium.pages.OLS.DY_4356.NonPrescriptionSupplements;
 import com.acurian.selenium.pages.OLS.DY_4356.PregnancyAndFertilityPage;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseDYSPageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseMIG4356Page;
@@ -190,6 +191,11 @@ public class DYSLI_4356 extends BaseTest {
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
+   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new HormonalBirthControlOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("No")
+   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         .clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
 				.waitForPageLoad()

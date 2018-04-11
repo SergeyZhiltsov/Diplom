@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.AgeWhenDiagnosedWithRA;
 import com.acurian.selenium.pages.OLS.RA_2821.AreYouCurrentlyExperiencing;
 import com.acurian.selenium.pages.OLS.RA_2821.CurrentlyTakingMethotrexate;
@@ -76,15 +77,15 @@ import org.testng.annotations.Test;
 
 
 public class RA_2821 extends BaseTest {
-	
-	@Test
+
+    @Test(enabled = true)
 	public void rA_2821_OLS() {
 		String phoneNumberRA = "AUTAMS1RA1";
 //		String env = "STG";
 //		String protocol2 = "M13_545";  Protocol Disabled
         String protocol1 = "M15_925";
         String studyName = "a rheumatoid arthritis (RA)";
-        String siteName = "AUT_RA2821_HS_Site";
+        String siteName = "AUT_RA2821_Site";
         String zipCode = "19044";
         String Siteindicator = "Rheumatoid Arthritis";
         
@@ -272,6 +273,11 @@ public class RA_2821 extends BaseTest {
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
+   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new HormonalBirthControlOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("No")
+   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         .clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
         .waitForPageLoad()

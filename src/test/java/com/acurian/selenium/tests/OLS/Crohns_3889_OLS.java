@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.*;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -538,6 +539,11 @@ public class Crohns_3889_OLS extends BaseTest{
         .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
+   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new HormonalBirthControlOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("No")
+   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         .clickNextButton(new ApproximateHeightPageOLS())
         .waitForPageLoad()
         .setAll("5", "5", "160")

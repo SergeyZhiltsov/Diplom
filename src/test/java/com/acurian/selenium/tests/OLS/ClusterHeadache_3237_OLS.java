@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ClusterHeadache_3237.AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS;
 import com.acurian.selenium.pages.OLS.ClusterHeadache_3237.WhenYouAreExperiencingCHattackIsTheLocationPain_OLS;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
@@ -203,6 +204,11 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
         		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+      //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+                .clickNextButton(new HormonalBirthControlOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+      //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
                 .clickNextButton(new ApproximateHeightPageOLS())
         	 //----------ProvideHeight-Weight Page--------------------
                 .waitForPageLoad()

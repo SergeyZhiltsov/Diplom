@@ -3,12 +3,14 @@ package com.acurian.selenium.tests.OLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAID;
 import com.acurian.selenium.pages.OLS.OA_3138.ParticipatedInAnotherClinicalResearch;
 import com.acurian.selenium.pages.OLS.OA_3138.TreatedPainWithMarijuanaOrCannabis;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
+import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.AffectYourLungsPageOLS;
@@ -16,8 +18,9 @@ import com.acurian.selenium.pages.OLS.generalHealth.AffectingYourMetabolismPageO
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HasHealthcareProfessionalPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HistoryOfDrugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
@@ -32,6 +35,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.YouHaveCHF;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WouldYouUsePageOLS;
@@ -152,12 +156,65 @@ public class OA_4109_OLS extends BaseTest {
 				.clickNextButton(new DiagnosedwithCarpalTunnelSyndrome());		
 		
 		
-		HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS1 = diagnosedwithCarpalTunnelSyndrome
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedwithCarpalTunnelSyndrome
 				.waitForPageLoad()
 				.clickOnAnswer("No")
-				.clickNextButton(new HasHealthcareProfessionalPageOLS());
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
-		hasHealthcareProfessionalPageOLS1
+		
+		//----------*******NEW GENERAL HEALTH Questions********----------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new HormonalBirthControlOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("No")
+   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new ApproximateHeightPageOLS())
+		//----------ProvideHeight-Weight Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new ChildrenUnderPageOLS())
+		//----------ChildrenUnderTheAge Page--------------------
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new HouseholdHavePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new TheStudySitePageOLS())
+        .waitForPageLoad()
+		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+        .clickOnAnswer("Public transportation")
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new IdentificationPageOLS())
+		//----------PII (IdentificationPageOLS) Page--------------------
+		.waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new SiteSelectionPageOLS())
+        .waitForPageLoad(studyName)
+        .getPID()
+        .clickOnFacilityName(siteName)
+        .clickNextButton(new QualifiedClose2PageOLS())
+        .waitForPageLoad()
+        .clickNextButton(new ThankYouCloseSimplePageOLS())
+        .waitForSENRPageLoad()
+        .clickNextButton(new AboutHealthPageOLS())
+        .waitForPageLoad()
+        .pidFromDbToLog(env);
+		
+	/*  -------------OLD General health--------------------------
+	  	hasHealthcareProfessionalPageOLS1
+	 
 		        .waitForPageLoad()
 		        .clickOnAnswers("None of the above")
 		        .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
@@ -233,7 +290,7 @@ public class OA_4109_OLS extends BaseTest {
                 .waitForSENRPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .threadSleep(5000);
+                .threadSleep(5000);  */
 	}
 
 }

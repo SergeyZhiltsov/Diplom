@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.AreYouTakingMedications;
 import com.acurian.selenium.pages.OLS.DY_4356.NonPrescriptionSupplements;
 import com.acurian.selenium.pages.OLS.DY_4356.PregnancyAndFertilityPage;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.WhenWasYourMostRecentHeartProcedureOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
@@ -167,6 +168,7 @@ public class MedCo_3962_OLS extends BaseTest {
        	//-----------HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS-----------        	
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
+
         .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS())
         //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------	
         .waitForPageLoad()

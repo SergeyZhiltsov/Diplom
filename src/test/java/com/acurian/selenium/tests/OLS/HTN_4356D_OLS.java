@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseMIG4356Page;
@@ -90,7 +91,8 @@ public class HTN_4356D_OLS extends BaseTest{
 				"High cholesterol, triglycerides, or lipids","Kidney disease","Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
 				"Lung problems","Lupus","Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
 				"Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-				"Skin problems (eczema or atopic dermatitis, psoriasis, acne)","Sleep problems (insomnia, sleep apnea, narcolepsy)",
+				"Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)",
+				"Sleep problems (insomnia, sleep apnea, narcolepsy)",
 				"Urinary leakage or incontinence","Women's health issues (endometriosis, uterine fibroids, PCOS)")
 				//.clickNextButton(new OtherThanSkinCancerPageOLS());
 				.clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_BreathingOLS());
@@ -248,6 +250,11 @@ public class HTN_4356D_OLS extends BaseTest{
 		.back();
 		doAnyOftheFollowingAdditionalDiagnosesOLS.waitForPageLoad()
 		.clickOnAnswers("None of the above")
+   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new HormonalBirthControlOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("No")
+   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 		.clickNextButton(new ApproximateHeightPageOLS())
 		
 	//----------ProvideHeight-Weight Page--------------------
