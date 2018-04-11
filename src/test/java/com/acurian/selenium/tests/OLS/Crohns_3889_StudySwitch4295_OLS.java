@@ -4,6 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.OLS.Crohns_3485.*;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -119,7 +120,7 @@ public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(followingMedicationsCrohnsPageOLS.getTitleText(), followingMedicationsCrohnsPageOLS.titleExpected, "Title is diff");
         BiologicMedicationsPageOLS biologicMedicationsPageOLS = followingMedicationsCrohnsPageOLS
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Xeljanz (tofacitinib)")
                 .clickNextButton(new BiologicMedicationsPageOLS());
 
         biologicMedicationsPageOLS
@@ -194,44 +195,6 @@ public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
         weightLossSurgeryPageOLS
         		.waitForPageLoad();
         HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = weightLossSurgeryPageOLS
-        //ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
-/*                .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new ProcedureForWeightLossPageOLS());
-        
-        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
-                .waitForPageLoad()
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(haveAnyOfTheFollowingPageOLS)
-                .waitForPageLoad()
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(haveAnyOfTheFollowingPageOLS)
-                .waitForPageLoad()
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 2 years ago")
-                .clickNextButton(haveAnyOfTheFollowingPageOLS)
-                .waitForPageLoad()
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("More than 2 years ago")
-                .clickNextButton(haveAnyOfTheFollowingPageOLS)
-                .waitForPageLoad()
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .back();*/
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
         
@@ -242,6 +205,58 @@ public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
+       
+        //----------*******NEW GENERAL HEALTH Questions********----------     
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+//&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new HormonalBirthControlOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("No")
+//&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new ApproximateHeightPageOLS())
+	 //----------ProvideHeight-Weight Page--------------------
+        .waitForPageLoad()
+        .setAll("5", "5", "160")
+        .clickNextButton(new ChildrenUnderPageOLS())
+	 //----------ChildrenUnderTheAge Page--------------------
+        .waitForPageLoad()
+        .clickOnAnswer("Yes")
+        .clickNextButton(new HouseholdHavePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("None of the above")
+        .clickNextButton(new TheStudySitePageOLS())
+        .waitForPageLoad()
+	 //-------------------PEDIATRIC QUESTIONS-----------------------------   
+        .clickOnAnswer("Public transportation")
+        .clickNextButton(new WhatMedicalCoveragePageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("No, I have no coverage")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new PersonalDetails())
+     //----------PII (IdentificationPageOLS) Page--------------------
+		.waitForPageLoad()
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        .clickNextButton(new UnqualifiedCloseOLS())
+        .waitForPageLoad()
+		//.clickOnAnswer("Yes")-----------?
+		.clickNextButton(new StandAlone4295SwitchOLS())
+		
+		//--------------------Standalone study Switch- 4295-----------
+		.waitForPageLoad();
+		ConfigPageOLS configPageOLS = new ConfigPageOLS();
+		configPageOLS.getPID();
+		configPageOLS.openDebugWindow();
+		Assert.assertEquals(configPageOLS.getTextfromStudySwitch(), ExpStudySwich,"studySwitch from AMS1 to Standalone 4295 failed");     
+        
+     /*---------------OLD General Health----------------------------------------   
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -326,6 +341,6 @@ public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
         		ConfigPageOLS configPageOLS = new ConfigPageOLS();
         		configPageOLS.getPID();
         		configPageOLS.openDebugWindow();
-        		Assert.assertEquals(configPageOLS.getTextfromStudySwitch(), ExpStudySwich,"studySwitch from AMS1 to Standalone 4295 failed");
+        		Assert.assertEquals(configPageOLS.getTextfromStudySwitch(), ExpStudySwich,"studySwitch from AMS1 to Standalone 4295 failed");  */
    }
 }

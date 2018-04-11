@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.AgeWhenDiagnosedWithRA;
 import com.acurian.selenium.pages.OLS.RA_2821.AreYouCurrentlyExperiencing;
 import com.acurian.selenium.pages.OLS.RA_2821.CurrentlyTakingMethotrexate;
@@ -219,6 +220,11 @@ public class RA_4356F_OLS extends BaseTest {
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
+ //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+        .clickNextButton(new HormonalBirthControlOLS())
+        .waitForPageLoad()
+        .clickOnAnswer("No")
+ //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         .clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
         .waitForPageLoad()
@@ -246,7 +252,6 @@ public class RA_4356F_OLS extends BaseTest {
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
         .clickNextButton(new SiteSelectionPageOLS())    
 		//----------SiteSelection Page--------------------
-        //----------SiteSelection Page--------------------
         .waitForPageLoad(studyName)
         .getPID()
         .clickOnFacilityName(siteName)
@@ -261,17 +266,6 @@ public class RA_4356F_OLS extends BaseTest {
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
         .pidFromDbToLog(env);
-        
-      //  .waitForPageLoad(studyName)
-     //   .getPID()
-      //  .clickOnFacilityName(siteName)
-       // .clickNextButton(new QualifiedClose2PageOLS())
-      //  .waitForPageLoad()
-      //  .clickNextButton(new ThankYouCloseSimplePageOLS())        
-       // .waitForPageLoad()
-       // .clickNextButton(new AboutHealthPageOLS())
-        //.waitForPageLoad()
-       // .pidFromDbToLog(env); 
         
         
         //----------------OLD General Health---------------------		

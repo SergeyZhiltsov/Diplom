@@ -10,11 +10,16 @@ import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
 import com.acurian.selenium.pages.CC.OA_3138.MarijuanaOrCannabisCC;
 import com.acurian.selenium.pages.CC.OA_3138.ParticipatedInAnotherClinicalStudyCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC2PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
+import com.acurian.selenium.pages.CC.closes.IncongruentSiteSelectionCloseCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
@@ -22,7 +27,7 @@ import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditio
 import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HasHealthcareProfessionalPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
@@ -196,93 +201,49 @@ public class OA_4109CC extends BaseTest{
     		   .clickOnAnswer("No")
     		   .clickNextButton(new TransitionStatementCC());       
        
-       HasHealthcareProfessionalPageCC hasHealthcareProfessionalPageCC =  transitionStatementCC
+       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =  transitionStatementCC
     		   .waitForPageLoad(studyName)
-    		   .clickNextButton(new HasHealthcareProfessionalPageCC());       
+    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());       
        
-       
-       hasHealthcareProfessionalPageCC
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new HaveYouUndergoneAnyPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")        
-       .clickNextButton(new HeartFailureIsAlsoPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new AffectingYourMetabolismPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingNeurologicalConditions())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new AffectYourLungsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingDigestiveConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new BoneOrJointConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new SleepRelatedConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingSkinConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingViralConditionsPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingMentalHealthPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new FollowingWomensHealthPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above")
-       .clickNextButton(new OtherThanSkinCancerPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new SmokedCigarettesPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No, I never smoked")
-       .clickNextButton(new HistoryOfDrugPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new ApproximateHeightPageCC())
-       .waitForPageLoad()
-       .setAll("5", "5", "160")
-       .clickNextButton(new LetMeSeePageCC())
-       .waitForPageLoad()
-       .clickNextButton(new ChildrenUnderPageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new TheStudySitePageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("Other")
-       .clickNextButton(new WhatSortPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("None of the above (no coverage at all)")
-       .clickNextButton(new EthnicBackgroundPageCC())
-       .waitForPageLoad()
-       .clickOnAnswers("Other")
-       .clickNextButton(new IdentificationPageCC())
-       .waitForPageLoad()
-       .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-       .clickNextButton(new SiteSelectionPageCC())
-       .waitForPageLoad(studyName1)
-       .getPID()
-       .clickOnAnswer(siteName)
-       .clickNextButton(new RadiantWarmTransferClose1PageCC())
-       .waitForPageLoad()
-       .clickOnAnswer("[direct schedule in clinical conductor]")
-       .clickNextButton(new RadiantWarmTransfer4())
-       .waitForPageLoad()
-       .clickOnAnswer("Transferred for Scheduling")
-       .clickNextButton(selectActionPageCC)
-       .waitForPageLoad();       
-       
-       
+       //-------------------New GENERAL HEALTH---------------------------
+       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")                	
+       		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+       		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+       		.waitForPageLoad()
+       		.clickOnAnswers("None of the above")
+               .clickNextButton(new ApproximateHeightPageCC())
+       		//----------Height and Weight Question Page--------------------
+               .waitForPageLoad()
+               .setAll("5", "5", "160")
+               .clickNextButton(new LetMeSeePageCC())
+       		//----------ChildrenUnderTheAge Page--------------------
+               .waitForPageLoad()
+               .clickNextButton(new ChildrenUnderPageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("Yes")
+               //----------PEDIATRIC HEALTH Questions----------
+               .clickNextButton(new HouseholdHavePageCC())
+               .waitForPageLoad()
+               .clickOnAnswers("None of the above")
+       		//----------PII (IdentificationPageOLS) Page--------------------
+               .clickNextButton(new IdentificationPageCC())
+               .waitForPageLoad()
+               .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+               .clickNextButton(new SiteSelectionPageCC())
+       		//----------SITE Selection Page--------------------
+               .waitForPageLoad(studyName1)
+               .getPID()
+               .clickOnAnswer(siteName)
+               .clickNextButton(new RadiantWarmTransferClose1PageCC())
+               .waitForPageLoad()
+               .clickOnAnswer("[direct schedule in clinical conductor]")
+               .clickNextButton(new RadiantWarmTransfer4())
+               .waitForPageLoad()
+               .clickOnAnswer("Transferred for Scheduling")
+               .clickNextButton(selectActionPageCC)
+               .waitForPageLoad()
+       		   .pidFromDbToLog(env);
 	}
-
 }

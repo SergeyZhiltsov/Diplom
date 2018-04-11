@@ -51,10 +51,25 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
         waitForAnimation();
         return this;
     }
+    
+    @Step
+    public ApproximateHeightPageOLS setFeatwithClear(String number) {
+        typeText(featField, number);
+        waitForAnimation();
+        return this;
+    }
+
 
     @Step
     public ApproximateHeightPageOLS setInches(String number) {
         typeTextWithoutClear(inchesField, number);
+        waitForAnimation();
+        return this;
+    }
+    
+    @Step
+    public ApproximateHeightPageOLS setIncheswithClear(String number) {
+        typeText(inchesField, number);
         waitForAnimation();
         return this;
     }

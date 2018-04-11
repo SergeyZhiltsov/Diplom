@@ -18,7 +18,7 @@ import java.util.List;
 
 public class LBP_2108_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00002")
     @Description("LBP 2108 OLS module")
     public void tc002Test() {
