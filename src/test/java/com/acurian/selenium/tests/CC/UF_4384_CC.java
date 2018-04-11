@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.END_4385.PlzDescribeYourMenstrualCyclesCC;
 import com.acurian.selenium.pages.CC.UF_4384.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
@@ -285,6 +286,9 @@ public class UF_4384_CC extends BaseTest{
         		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
+        		.clickNextButton(new HormonalBirthControlCC())
+        		.waitForPageLoad()
+        		.clickOnAnswer("No")
                 .clickNextButton(new ApproximateHeightPageCC())
         		//----------Height and Weight Question Page--------------------
                 .waitForPageLoad()

@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.CC.AS_4319.PermanentlyWheelchairBoundCC;
 import com.acurian.selenium.pages.CC.AS_4319.ResultsOfYouXrayOrMRICC;
 import com.acurian.selenium.pages.CC.AS_4319.SignsOfAnkylosingSpondylitisCC;
 import com.acurian.selenium.pages.CC.AS_4319.YouBeenDiagnosedWithCC;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
@@ -52,7 +53,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class AS_4319_CC extends BaseTest{
 	
-	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void AS_4319_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1AS1";
@@ -249,10 +250,8 @@ public class AS_4319_CC extends BaseTest{
     		   .clickNextButton(new TransitionStatementCC());
        
        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =  transitionStatementCC1
-    		   .waitForPageLoadWithCurves(studyName)
-    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC()); 
-       
-       
+    		   .waitForPageLoadWithCurves1(studyName)    		   
+    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());     
        
        //-------------------New GENERAL HEALTH---------------------------
        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -262,7 +261,10 @@ public class AS_4319_CC extends BaseTest{
        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
        		.waitForPageLoad()
        		.clickOnAnswers("None of the above")
-               .clickNextButton(new ApproximateHeightPageCC())
+    		.clickNextButton(new HormonalBirthControlCC())
+    		.waitForPageLoad()
+       		.clickOnAnswer("No")
+            .clickNextButton(new ApproximateHeightPageCC())
        		//----------Height and Weight Question Page--------------------
                .waitForPageLoad()
                .setAll("5", "5", "160")

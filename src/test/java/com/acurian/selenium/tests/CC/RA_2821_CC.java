@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.RA_2821.AnySteroidsForYourRACC;
 import com.acurian.selenium.pages.CC.RA_2821.AreYouCurrentlyTakingMethotrexateCC;
 import com.acurian.selenium.pages.CC.RA_2821.CurrentlyExperiencingJointSymptomsYourRACC;
@@ -73,7 +74,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class RA_2821_CC extends BaseTest{
 	
-	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void rA_2821_CC(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1RA1";
@@ -313,6 +314,9 @@ haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
 		.waitForPageLoad()
 		.clickOnAnswers("None of the above")
+		.clickNextButton(new HormonalBirthControlCC())
+		.waitForPageLoad()
+		.clickOnAnswer("No")
         .clickNextButton(new ApproximateHeightPageCC())
 		//----------Height and Weight Question Page--------------------
         .waitForPageLoad()

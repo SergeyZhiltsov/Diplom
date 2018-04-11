@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC2PageCC;
@@ -132,7 +133,7 @@ public class HTN_4356D_CC extends BaseTest{
         		.waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder","Cancer in the past 5 years, except skin cancer","Cirrhosis","Drug or alcohol abuse within the past year", 
                 		"Hepatitis B","Hepatitis C","HIV or AIDS")
-                .clickNextButton(new ApproximateHeightPageCC())
+                .clickNextButton(new HormonalBirthControlCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES",protocol1)
@@ -140,6 +141,9 @@ public class HTN_4356D_CC extends BaseTest{
         		doAnyOftheFollowingAdditionalDiagnosesCC
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above","Alzheimer's disease")
+        		.clickNextButton(new HormonalBirthControlCC())
+        		.waitForPageLoad()
+        		.clickOnAnswer("No")
         		.clickNextButton(new ApproximateHeightPageCC())
     
 		//----------ProvideHeight-Weight Page--------------------

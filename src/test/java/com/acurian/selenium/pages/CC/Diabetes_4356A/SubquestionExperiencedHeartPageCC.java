@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
-
 import java.util.List;
 
 public class SubquestionExperiencedHeartPageCC extends MainPageCC{
@@ -25,6 +24,9 @@ public class SubquestionExperiencedHeartPageCC extends MainPageCC{
 
     @FindBy(xpath = "")
     List<WebElement> checkBoxList;
+    
+    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
+    List<WebElement> radioButtonsList;
 
     public SubquestionExperiencedHeartPageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -35,12 +37,36 @@ public class SubquestionExperiencedHeartPageCC extends MainPageCC{
         waitForPageLoadMain(titleText, titleExpected1);
         return this;
     }
+    
+    @Step
+    public SubquestionExperiencedHeartPageCC waitForPageLoadStroke() {
+        waitForPageLoadMain(titleText, titleExpected2);
+        return this;
+    }
+    
+    @Step
+    public SubquestionExperiencedHeartPageCC waitForPageLoadTIA() {
+        waitForPageLoadMain(titleText, titleExpected4);
+        return this;
+    }
+    
+    @Step
+    public SubquestionExperiencedHeartPageCC waitForPageLoadAngina() {
+        waitForPageLoadMain(titleText, titleExpected5);
+        return this;
+    }
 
     @Step
     public SubquestionExperiencedHeartPageCC clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
         List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber-1)
                 .findElements(By.xpath("ancestor::div[@class='subquestion']/div[@class='radio_btns_container']//label"));
         clickOnRadioButton(checkBoxListFromTitle, answerText);
+        return this;
+    }
+    
+    @Step
+    public SubquestionExperiencedHeartPageCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

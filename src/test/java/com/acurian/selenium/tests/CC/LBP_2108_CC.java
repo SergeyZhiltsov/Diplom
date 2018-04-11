@@ -20,7 +20,7 @@ import java.util.List;
 
 public class LBP_2108_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00001")
     @Description(" 1. Open the page, URL: " +
             " 2. Type login and correct password of registered user" +
@@ -62,7 +62,7 @@ public class LBP_2108_CC extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-                .clickOnAnswer("Call Back")
+                .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC

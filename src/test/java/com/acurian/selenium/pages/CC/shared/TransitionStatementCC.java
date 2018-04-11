@@ -18,6 +18,12 @@ public class TransitionStatementCC extends MainPageCC {
     		"I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me “yes” or “no,” and I will check off each condition that you do have.\n" +
     		"Agent note: If “no” to all items in a question, select “None of the above”";
     
+    private final String titleExpectedCurves1 = "Thank you for answering the questions about your %s history.\n" +
+            "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
+            "Agent note: If “no” to all items in a question, select “None of the above”";
+    
+    
+    
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
@@ -37,6 +43,14 @@ public class TransitionStatementCC extends MainPageCC {
     public TransitionStatementCC waitForPageLoadWithCurves(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpectedWithCurves, studyName);
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        return this;
+    }
+    
+    @Step
+    public TransitionStatementCC waitForPageLoadWithCurves1(String studyName) {
+        waitForAnimation();
+        String titleExpectedMod = String.format(titleExpectedCurves1, studyName);
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
         return this;
     }
