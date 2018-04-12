@@ -5,15 +5,19 @@ import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
 import com.acurian.selenium.pages.CC.OA_3138.MarijuanaOrCannabisCC;
 import com.acurian.selenium.pages.CC.OA_3138.ParticipatedInAnotherClinicalStudyCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC2PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
 import com.acurian.selenium.pages.CC.closes.IncongruentSiteSelectionCloseCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
@@ -59,7 +63,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class OA_4109CC extends BaseTest{
 	
-	@Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void tc001Test(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
@@ -67,9 +71,8 @@ public class OA_4109CC extends BaseTest{
         String protocol1 = "R475_OA_1611";
         String protocol2 = "R475_OA_1688";
         String studyName = "osteoarthritis";
-        String studyName1 = "arthritis";
-    //    String env = "STG";
-        String siteName = "AUT_OA_3138_Site";
+        String studyName1 = "an arthritis study";
+        String siteName = "AUT_OA_4109_Site";
         String zipCode  = "99546";
         
         String env = System.getProperty("acurian.env");
@@ -96,7 +99,8 @@ public class OA_4109CC extends BaseTest{
                 .clickBeginButton();
         
         callCenterIntroductionPageCC
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .activateDebugOnProd(env);
        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
         .clickOnAnswer("Call Back")
@@ -213,6 +217,10 @@ public class OA_4109CC extends BaseTest{
        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
        		.waitForPageLoad()
        		.clickOnAnswers("None of the above")
+    		.clickNextButton(new HormonalBirthControlCC())
+    		//----------------HormonalBirthControlCC----------------------
+    		.waitForPageLoad()
+       		.clickOnAnswer("No")
                .clickNextButton(new ApproximateHeightPageCC())
        		//----------Height and Weight Question Page--------------------
                .waitForPageLoad()
@@ -236,12 +244,14 @@ public class OA_4109CC extends BaseTest{
                .waitForPageLoad(studyName1)
                .getPID()
                .clickOnAnswer(siteName)
-               .clickNextButton(new RadiantWarmTransferClose1PageCC())
+               .clickNextButton(new QualifiedClose2PageCC())
                .waitForPageLoad()
-               .clickOnAnswer("[direct schedule in clinical conductor]")
-               .clickNextButton(new RadiantWarmTransfer4())
+               .clickNextButton(new Regular_WarmTransfer1())
                .waitForPageLoad()
-               .clickOnAnswer("Transferred for Scheduling")
+               .clickOnAnswer("No")
+               .clickNextButton(new Regular_WarmTransfer4())
+               .waitForPageLoad()
+               .clickOnAnswer("Successful transfer made to site")
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
        		   .pidFromDbToLog(env);

@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DYS_4356C.PregnancyAndFertilityCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.ThankYouForAnsweringCC;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
 import com.acurian.selenium.pages.CC.OA_3138.MarijuanaOrCannabisCC;
@@ -14,6 +15,7 @@ import com.acurian.selenium.pages.CC.OA_3138.ParticipatedInAnotherClinicalStudyC
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
@@ -61,7 +63,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class OA_3138_CC extends BaseTest{
 	
-	@Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void tc001Test(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
@@ -262,6 +264,10 @@ public class OA_3138_CC extends BaseTest{
        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
        		.waitForPageLoad()
        		.clickOnAnswers("None of the above")
+    		.clickNextButton(new HormonalBirthControlCC())
+    		//----------------HormonalBirthControlCC----------------------
+    		.waitForPageLoad()
+       		.clickOnAnswer("No")
                .clickNextButton(new ApproximateHeightPageCC())
        		//----------Height and Weight Question Page--------------------
                .waitForPageLoad()
@@ -283,12 +289,13 @@ public class OA_3138_CC extends BaseTest{
                .clickNextButton(new SiteSelectionPageCC())
                .waitForPageLoad(studyName1)
                .getPID()
-               .selectAnswer(siteName)
+               .clickOnAnswer(siteName)
                .clickNextButton(new RadiantWarmTransferClose1PageCC())
                .waitForPageLoad()
                .clickOnAnswer("[direct schedule in clinical conductor]")
-               .clickNextButton(new RadiantWarmTransfer4())
+               .clickNextButton(new SynexusRadiantDirectScheduleCC())
                .waitForPageLoad()
+               .clickNextButton(new RadiantWarmTransfer4())
                .clickOnAnswer("Transferred for Scheduling")
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
