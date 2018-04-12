@@ -206,10 +206,10 @@ public class LowT_CC extends BaseTest{
        haveYouEverExperiencedHeartRelatedMedicalCondCC
 	  	 	.waitForPageLoad()	 
 	  	 	.clickOnAnswers("None of the above")
-	  	 	.clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
+	  	 	.clickOnAnswers("Stroke")
 	  	 	.clickNextButton(new SubquestionExperiencedHeartPageCC());
        subquestionExperiencedHeartPageCC
-    		.waitForPageLoadAngina()
+    		.waitForPageLoadStroke()
     		.clickOnAnswer("7 - 12 months ago")
     		.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
        
