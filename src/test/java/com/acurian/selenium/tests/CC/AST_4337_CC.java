@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.AST_4337.*;
+import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
@@ -313,6 +314,10 @@ public class AST_4337_CC extends BaseTest{
         		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
+        		.clickNextButton(new HormonalBirthControlCC())
+        		//----------------HormonalBirthControlCC----------------------
+        		.waitForPageLoad()
+           		.clickOnAnswer("No")
                 .clickNextButton(new ApproximateHeightPageCC())
         		//----------Height and Weight Question Page--------------------
                 .waitForPageLoad()
