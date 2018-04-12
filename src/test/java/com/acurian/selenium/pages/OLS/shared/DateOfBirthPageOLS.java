@@ -110,7 +110,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     
     public final String titleLOWT_3017_Expected ="Let's get started to see if you qualify for a men's low testosterone study!\n" +
     		"Those who qualify may receive*:\n" +
-    		"Payment which varies by study up to $others\n" +
+    		"Payment which varies by study up to $600\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
     
