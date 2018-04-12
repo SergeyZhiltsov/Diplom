@@ -206,10 +206,10 @@ public class LowT_CC extends BaseTest{
        haveYouEverExperiencedHeartRelatedMedicalCondCC
 	  	 	.waitForPageLoad()	 
 	  	 	.clickOnAnswers("None of the above")
-	  	 	.clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
+	  	 	.clickOnAnswers("Stroke")
 	  	 	.clickNextButton(new SubquestionExperiencedHeartPageCC());
        subquestionExperiencedHeartPageCC
-    		.waitForPageLoadAngina()
+    		.waitForPageLoadStroke()
     		.clickOnAnswer("7 - 12 months ago")
     		.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
        
@@ -301,6 +301,13 @@ public class LowT_CC extends BaseTest{
     		   .clickOnAnswers("None of the above")
     		   .clickOnAnswers("Schizophrenia", "Shingles or herpes zoster infection")
     		   .clickNextButton(new ApproximateHeightPageCC());
+       
+       approximateHeightPageCC
+    		   .waitForPageLoad()
+               .setAll("3", "5", "170")
+               .clickNextButton(new ChildrenUnderPageCC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", protocol1);
+       debugPageCC.back();
        
        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
     		   .waitForPageLoad()
