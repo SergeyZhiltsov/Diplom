@@ -57,13 +57,13 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 
 public class OA_4109_OLS extends BaseTest {
 	
-	@Test(enabled = false)
-	public void tc01() {
+	@Test(enabled = true)
+	public void oA_4109_OLS() {
 		String phoneNumberDY = "AUTAMS1OA1";		
 	//	String env = "PRD";		
-		String zipCode = "19044";
+		String zipCode = "99546";
 		String studyName = "an arthritis";
-	    String siteName = "AUT_OA_Site";
+	    String siteName = "AUT_OA_4109_Site";
 	    String protocol1 = "R475_OA_1611";
 	    String protocol2 = "R475_OA_1688";
 	    
@@ -209,7 +209,7 @@ public class OA_4109_OLS extends BaseTest {
         .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForSENRPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad()
+        //.waitForPageLoad()
         .pidFromDbToLog(env);
 		
 	/*  -------------OLD General health--------------------------

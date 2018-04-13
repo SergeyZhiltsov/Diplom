@@ -229,32 +229,19 @@ public class HTN_4356D_OLS extends BaseTest{
 		.clickOnAnswers("None of the above")
 		.clickNextButton(new WhichOfTheFollowingSleepRelatedConditionsDiagnosedOLS())
 		
-	//----------------------------------------------------
-		.waitForPageLoad()
-		.clickOnAnswers("None of the above")
-		.clickNextButton(new WomenHealthConditions())
-		
-	//----------------------------------------------------
+	//------------------WhichOfTheFollowingSleepRelatedConditionsDiagnosedOLS----------------------------------
 		.waitForPageLoad()
 		.clickOnAnswers("None of the above")
 		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
 		
-	//----------------------------------------------------
+	//----------------------DoAnyOftheFollowingAdditionalDiagnosesOLS---------------------
 		.waitForPageLoad()
-		.clickOnAnswers("Drug or alcohol abuse within the past year","Hepatitis B",
-				"Hepatitis C","HIV or AIDS")
-		.clickNextButton(new ApproximateHeightPageOLS())
-		.waitForPageLoad()
-		.getPage(debugPageOLS)
-		.checkProtocolsContainsForQNumber("QS59",protocol1)
-		.back();
-		doAnyOftheFollowingAdditionalDiagnosesOLS.waitForPageLoad()
 		.clickOnAnswers("None of the above")
-   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
         .clickNextButton(new HormonalBirthControlOLS())
+        
+   //&&&&&&&&&&&&&&&& HormonalBirthControlOLS &&&&&&&&&&&&&&&&&&&&
         .waitForPageLoad()
         .clickOnAnswer("No")
-   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 		.clickNextButton(new ApproximateHeightPageOLS())
 		
 	//----------ProvideHeight-Weight Page--------------------
