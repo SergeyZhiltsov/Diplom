@@ -292,9 +292,10 @@ public class HTN_4356D_OLS extends BaseTest{
 		.waitForSENRPageLoad()
 		.clickNextButton(new AboutHealthPageOLS())
 		.waitForPageLoad()
-		.pidFromDbToLog(env);
+		.pidFromDbToLog(env)
+		.getRadiantDbToLog(env)
+		.getAnomalyDbToLog(env);
 
-	
 	/*  //---------OLD General health-------------------
         historyOfDrugPageOLS
                 .waitForPageLoad()

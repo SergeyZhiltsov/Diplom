@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.SkipException;
@@ -37,9 +36,6 @@ public class DriverFactory {
                         "webdriver.edge.driver",
                         new File(DriverFactory.class.getResource("/MicrosoftWebDriver.exe").getFile()).getPath());
                 return new EdgeDriver();
-            case "phantomjs":
-                System.setProperty("phantomjs.binary.path", getResourceByName("/phantomjs"));
-                return new PhantomJSDriver();
             case "chrome":
             default:
                 System.setProperty("webdriver.chrome.driver", getResourceByName("/chromedriver"));
@@ -79,9 +75,6 @@ public class DriverFactory {
             case "edge":
             case "MicrosoftEdge":
                 capabilities = DesiredCapabilities.edge();
-                break;
-            case "phantomjs":
-                capabilities = DesiredCapabilities.phantomjs();
                 break;
             case "chrome":
             default:

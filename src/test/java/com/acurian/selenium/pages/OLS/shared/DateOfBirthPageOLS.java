@@ -1,5 +1,7 @@
 package com.acurian.selenium.pages.OLS.shared;
 
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.constants.URLs;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.Properties;
@@ -107,6 +109,12 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     		"Payment which varies by study up to $300\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
+
+    public final String titleGmegaExpected =  "Let's get started to see if you qualify for a study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $1,000\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
     
     public final String titleLOWT_3017_Expected ="Let's get started to see if you qualify for a men's low testosterone study!\n" +
     		"Those who qualify may receive*:\n" +
@@ -116,9 +124,26 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement questionText1;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
+    WebElement questionText2;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement questionText3;
+
     WebElement questionText;
+
     
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleText1;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
+    WebElement titleText2;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText3;
+
     WebElement titleText;
 
     @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
@@ -135,10 +160,35 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     WebElement questionTextGH;
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGH1;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGH2;
+
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleTextGH3;
+
     WebElement titleTextGH;
 
     public DateOfBirthPageOLS() {
         PageFactory.initElements(getDriver(), this);
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                questionText = questionText1;
+                titleText = titleText1;
+                titleTextGH = titleTextGH1;
+                break;
+            case Platforms.TABLET:
+                titleText = titleText2;
+                questionText = questionText2;
+                titleTextGH = titleTextGH2;
+                break;
+            case Platforms.MOBILE:
+                titleText = titleText3;
+                questionText = questionText3;
+                titleTextGH = titleTextGH3;
+                break;
+        }
     }
 
     @Step

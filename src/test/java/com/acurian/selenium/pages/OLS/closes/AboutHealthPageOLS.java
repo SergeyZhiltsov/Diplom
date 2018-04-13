@@ -1,5 +1,7 @@
 package com.acurian.selenium.pages.OLS.closes;
 
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,13 +15,27 @@ public class AboutHealthPageOLS extends MainPageOLS{
     @FindBy(xpath = "//*[@id='menu-primary_menu']//span[contains(.,'Join Our Community')]")    //"//img[contains(@src,'//alotabouthealth.com')]")
     WebElement titleText;
 
+    @FindBy(xpath = "//div[@id='top']")
+    WebElement titleText2;
+
+
     public AboutHealthPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
     public AboutHealthPageOLS waitForPageLoad() {
-        waitForPageLoadMain(titleText, titleExpected);
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                waitForPageLoadMain(titleText, titleExpected);
+                break;
+            case Platforms.TABLET:
+                driverWait.waitforVisibility(titleText2);
+                break;
+            case Platforms.MOBILE:
+                driverWait.waitforVisibility(titleText2);
+                break;
+        }
         return this;
     }
 

@@ -15,22 +15,16 @@ import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import javax.imageio.ImageIO;
 
 
 public abstract class BasePage {
-    protected WebDriver driver;
+    private WebDriver driver;
     protected WebDriverWaitLogged driverWait;
     private Actions actions;
     protected NgWebDriver ngDriver;
-
-//    @FindBy(xpath = "//input[@class='next_btn']")
-//    WebElement nextButton;
 
 
     public BasePage() {
