@@ -67,7 +67,7 @@ public class END_4385_OLS extends BaseTest {
         String protocol2 = "MVT_601_3102";
         String studyName = "an endometriosis";
         String siteName = "AUT_END_4385";
-        String zipCode = "33324";
+        String zipCode = "19044";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
