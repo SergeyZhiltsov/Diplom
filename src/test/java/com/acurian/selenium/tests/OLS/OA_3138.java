@@ -37,6 +37,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.ViralConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.YouHaveCHF;
 import com.acurian.selenium.pages.OLS.shared.AnyMedicationForYourArthritis;
+import com.acurian.selenium.pages.OLS.shared.AreYouCurrentlyOnPageOLS;
 import com.acurian.selenium.pages.OLS.shared.CurrentlyTakinnFollowingNSAIDMedication;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DiagnosedwithCarpalTunnelSyndrome;
@@ -55,10 +56,9 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 
 public class OA_3138 extends BaseTest {
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void OA_3138_OLS() {
-		String phoneNumberDY = "AUTAMS1OA1";		
-//		String env = "PRD";		
+		String phoneNumberDY = "AUTAMS1OA1";	
 		String zipCode = "99546";
 		String studyName = "an arthritis";
 	    String siteName = "AUT_OA_3138_Site";
@@ -72,7 +72,6 @@ public class OA_3138 extends BaseTest {
 		dateOfBirthPageOLS.openPage(env, phoneNumberDY)		           
 		           .waitForPageLoad()
 		           .maximizePage();
-	//	Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleOA_Expected, "Title is diff");
 		
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
 		           .setDate("10/10/1975")
@@ -101,22 +100,13 @@ public class OA_3138 extends BaseTest {
 		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS hasHealthcareProfessionalPageOLS = whereYouHaveArthritis
 				.waitForPageLoad()
 				.clickOnAnswer("Spine or shoulders")
-				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-		
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());		
 		hasHealthcareProfessionalPageOLS
                 .waitForPageLoad();
-		DebugPageOLS debugPageOLS = new DebugPageOLS();
-		
-		
-		
+		DebugPageOLS debugPageOLS = new DebugPageOLS();		
 		debugPageOLS.checkProtocolsEqualsForQNumber("QS1304", protocol1);
 		debugPageOLS.back();
-		
-		/*debugPageOLS.openDebugWindow()
-		            .threadSleep(2000);
-		Assert.assertEquals(debugPageOLS.getProtocolOA(), "R475_PN_1523", "Protocol not displayed");		
-		debugPageOLS.closeDebugWindow();		
-		hasHealthcareProfessionalPageOLS.back();*/
+
 		
 		AnyMedicationForYourArthritis anyMedicationForYourArthritis = whereYouHaveArthritis
 		         .waitForPageLoad()
@@ -149,76 +139,85 @@ public class OA_3138 extends BaseTest {
 				.clickOnAnswer("I am unsure")
 				.clickNextButton(new PrescriptionPainMedicationsForArthritis());
 		
-		LongTermSteroidPrescription longTermSteroidPrescription = prescriptionPainMedicationsForArthritis
+		TreatedPainWithMarijuanaOrCannabis treatedPainWithMarijuanaOrCannabis = prescriptionPainMedicationsForArthritis
 				.waitForPageLoad()
-				.clickOnAnswer("Tylenol #3 or Tylenol #4 (acetaminophen with codeine)")
-				.clickNextButton(new LongTermSteroidPrescription());
-		
-		FollowingDevicesInYourBody followingDevicesInYourBody = longTermSteroidPrescription
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new FollowingDevicesInYourBody());
-		
-		DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome = followingDevicesInYourBody
-				.waitForPageLoad()
-				.clickOnAnswer("None of the above")
-				.clickNextButton(new DiagnosedwithCarpalTunnelSyndrome());
-		
-		TreatedPainWithMarijuanaOrCannabis treatedPainWithMarijuanaOrCannabis = diagnosedwithCarpalTunnelSyndrome
-				.waitForPageLoad()
-				.clickOnAnswer("No")
+				.clickOnAnswers("Tylenol #3 or Tylenol #4 (acetaminophen with codeine)")
 				.clickNextButton(new TreatedPainWithMarijuanaOrCannabis());
 		
-		FutureJointReplacementSurgery futureJointReplacementSurgery = treatedPainWithMarijuanaOrCannabis
-				.waitForPageLoad()
+		treatedPainWithMarijuanaOrCannabis
+				.waitForPageLoad();
+				AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = treatedPainWithMarijuanaOrCannabis
 				.clickOnAnswer("No")
+				.clickNextButton(new AreYouCurrentlyOnPageOLS());
+		
+
+		areYouCurrentlyOnPageOLS
+				.waitForPageLoad();
+				FutureJointReplacementSurgery futureJointReplacementSurgery = areYouCurrentlyOnPageOLS
+				.clickOnAnswer("Unsure")
 				.clickNextButton(new FutureJointReplacementSurgery());
 		
-		ParticipatedInAnotherClinicalResearch participatedInAnotherClinicalResearch = futureJointReplacementSurgery
-				.waitForPageLoad()
+
+		futureJointReplacementSurgery
+				.waitForPageLoad();
+				FollowingDevicesInYourBody followingDevicesInYourBody = futureJointReplacementSurgery
+				//ParticipatedInAnotherClinicalResearch participatedInAnotherClinicalResearch = futureJointReplacementSurgery
 				.clickOnAnswer("Yes, my doctor and I have discussed it, but my doctor said I don't need joint replacement at this time")
-				.clickNextButton(new ParticipatedInAnotherClinicalResearch());
+				.clickNextButton(new FollowingDevicesInYourBody());
 		
-		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = participatedInAnotherClinicalResearch
-				.waitForPageLoad()
+		followingDevicesInYourBody		
+				.waitForPageLoad();
+				 ParticipatedInAnotherClinicalResearch participatedInAnotherClinicalResearch = followingDevicesInYourBody		
+				.clickOnAnswer("None of the above")
+				.clickNextButton(new ParticipatedInAnotherClinicalResearch());
+				
+		participatedInAnotherClinicalResearch		
+				.waitForPageLoad();
+				DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome = participatedInAnotherClinicalResearch
+				.clickOnAnswer("No")
+				.clickNextButton(new DiagnosedwithCarpalTunnelSyndrome());
+				
+		diagnosedwithCarpalTunnelSyndrome
+				.waitForPageLoad();
+				HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedwithCarpalTunnelSyndrome
 				.clickOnAnswer("No")
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+		
 
 		//----------*******NEW GENERAL HEALTH Questions********----------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
-        .clickNextButton(new HormonalBirthControlOLS())
-        .waitForPageLoad()
-        .clickOnAnswer("No")
-   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-        .clickNextButton(new ApproximateHeightPageOLS())
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new HormonalBirthControlOLS())
+        //-------------- New for AMS1 Rel.51, when Gender = Female ------------------
+        	.waitForPageLoad()
+        	.clickOnAnswer("No")
+        	.clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
-        .waitForPageLoad()
-        .setAll("5", "5", "160")
-        .clickNextButton(new ChildrenUnderPageOLS())
+        	.waitForPageLoad()
+        	.setAll("5", "5", "160")
+        	.clickNextButton(new ChildrenUnderPageOLS())
 		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
+        	.waitForPageLoad()
+        	.clickOnAnswer("Yes")
+        	.clickNextButton(new HouseholdHavePageOLS())
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new TheStudySitePageOLS())
+        	.waitForPageLoad()
 		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
-        .clickNextButton(new EthnicBackgroundPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Prefer not to answer")
-        .clickNextButton(new IdentificationPageOLS())
+        	.clickOnAnswer("Public transportation")
+        	.clickNextButton(new WhatMedicalCoveragePageOLS())
+        	.waitForPageLoad()
+        	.clickOnAnswers("No, I have no coverage")
+        	.clickNextButton(new EthnicBackgroundPageOLS())
+        	.waitForPageLoad()
+        	.clickOnAnswers("Prefer not to answer")
+        	.clickNextButton(new IdentificationPageOLS())
 		//----------PII (IdentificationPageOLS) Page--------------------
 		.waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

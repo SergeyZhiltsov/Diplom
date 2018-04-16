@@ -83,7 +83,7 @@ public class OA_4109_OLS extends BaseTest {
 		
 		GenderPageOLS genderPageOLS = zipCodePageOLS
 				.waitForPageLoad()
-				.typeZipCode("19044")
+				.typeZipCode(zipCode)
 				.clickNextButton(new GenderPageOLS());
 		
 		DoYouSufferFromArthritis doYouSufferFromArthritis = genderPageOLS
@@ -142,7 +142,7 @@ public class OA_4109_OLS extends BaseTest {
 		
 		LongTermSteroidPrescription longTermSteroidPrescription = prescriptionPainMedicationsForArthritis
 				.waitForPageLoad()
-				.clickOnAnswer("Tylenol #3 or Tylenol #4 (acetaminophen with codeine)")
+				.clickOnAnswers("Tylenol #3 or Tylenol #4 (acetaminophen with codeine)")
 				.clickNextButton(new LongTermSteroidPrescription());
 		
 		FollowingDevicesInYourBody followingDevicesInYourBody = longTermSteroidPrescription
