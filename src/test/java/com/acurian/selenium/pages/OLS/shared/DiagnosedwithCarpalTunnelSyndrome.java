@@ -5,17 +5,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.OLS.END_4385.DescribesNonMenstrualPelvicPainOLS;
+import com.acurian.selenium.pages.OLS.OA_3138.ParticipatedInAnotherClinicalResearch;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class DiagnosedwithCarpalTunnelSyndrome extends MainPageOLS {
 	
 	public final String titleExpected = "Has a doctor ever diagnosed you with carpal tunnel syndrome?";
       
-
-    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS4515_')]/span[@class='copy']")
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]")
     List<WebElement> radioButtonsList;
 
     public DiagnosedwithCarpalTunnelSyndrome() {
@@ -24,18 +26,13 @@ public class DiagnosedwithCarpalTunnelSyndrome extends MainPageOLS {
 
     @Step
     public DiagnosedwithCarpalTunnelSyndrome waitForPageLoad() {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public DiagnosedwithCarpalTunnelSyndrome clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

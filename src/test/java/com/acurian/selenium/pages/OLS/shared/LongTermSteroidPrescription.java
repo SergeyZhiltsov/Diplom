@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class LongTermSteroidPrescription extends MainPageOLS {
 	
 	public final String titleExpected = "Are you currently on a long term steroid prescription medication for more than 10 days?\n" +
-            "Commonly used types of steroids include prednisone, prednisolone, dexamethasone, methylprednisolone, and Medrol.";         
+	     "Commonly used types of steroids include prednisone, prednisolone, dexamethasone, methylprednisolone, and Medrol.";
       
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
