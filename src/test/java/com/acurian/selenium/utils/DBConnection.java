@@ -55,7 +55,7 @@ public class DBConnection {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-
+            System.out.println("--::DispoRead from DB::--");
             System.out.println("Dispo ="+dispoCode+applicantStatus);
             System.out.println("DB read completed");
 
@@ -70,7 +70,7 @@ public class DBConnection {
     public RadiantResults dbReadRadiant(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "select * from S_EXT_CONTACT.CNL_OUTBOUND_LOG where Patient_ID IN(select patient_id from call where old_patient_id ='" + pidNumber + "')";
+            String sql = "select * from S_EXT_CONTACT.CNL_OUTBOUND_LOG where Patient_ID IN(select patient_id from call where old_patient_id ='" +pidNumber+ "')";
             rset = stmt.executeQuery(sql);
 
             RadiantResults radiantResults = null;
@@ -78,8 +78,7 @@ public class DBConnection {
                 radiantResults = new RadiantResults();
                 radiantResults.setCurrentStatus(rset.getString("current_status"));
             }
-
-            System.out.println("Radiant read:");
+            System.out.println("--::Radiant read::--");
             System.out.println("Current Status =" + radiantResults.getCurrentStatus());
             System.out.println("DB read completed");
             return radiantResults;
@@ -95,7 +94,7 @@ public class DBConnection {
     public AnomalyResults dbReadAnomaly(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "select * from SECOND_SCREEN_PROCESSING where Patient_ID ='" + pidNumber + "')";
+            String sql = "select * from SECOND_SCREEN_PROCESSING where Patient_ID =" + pidNumber;
             rset = stmt.executeQuery(sql);
 
             AnomalyResults anomalyResults = null;
@@ -104,8 +103,7 @@ public class DBConnection {
                 anomalyResults.setCurrentStatus(rset.getString("current_status"));
                 anomalyResults.setRequestStatus(rset.getString("request_status_id"));
             }
-
-            System.out.println("Anomaly read:");
+            System.out.println("--::Anomaly read::--");
             System.out.println("Current Status =" + anomalyResults.getCurrentStatus());
             System.out.println("Request Status id=" + anomalyResults.getRequestStatus());
             System.out.println("DB read completed");

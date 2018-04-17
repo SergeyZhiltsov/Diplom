@@ -241,8 +241,9 @@ public class DYSLI_4356 extends BaseTest {
 				.clickNextButton(new AboutHealthPageOLS());				
 		//---------------ALL about Health page -----------
 		aboutHealthPageOLS.waitForPageLoad()
-		.pidFromDbToLog(env);
-        
+		.pidFromDbToLog(env)
+		.getRadiantDbToLog(env)
+		.getAnomalyDbToLog(env);
 		
 		
 	/*	//---------OLD General Health-------------------

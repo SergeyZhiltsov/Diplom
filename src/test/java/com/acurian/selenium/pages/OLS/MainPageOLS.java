@@ -98,7 +98,7 @@ public class MainPageOLS extends BasePage{
         DBConnection dbCon = new DBConnection();
 //        pid = PassPID.getInstance().getPidNumber();
         RadiantResults radiantResults = dbCon.dbReadRadiant(env, pid);
-        logTextToAllure("Radiant : Current Status="+radiantResults.getCurrentStatus()+" for pid "+pid);
+        logTextToAllure("Radiant::: Current Status="+radiantResults.getCurrentStatus()+" for pid "+pid);
         return this;
     }
 

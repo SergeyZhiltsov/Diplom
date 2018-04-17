@@ -231,7 +231,9 @@ public class OA_3138 extends BaseTest {
         .waitForSENRPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
+        .pidFromDbToLog(env)
+		.getRadiantDbToLog(env)
+		.getAnomalyDbToLog(env);
 		
 		/*-----------------OLD general health--------------------
 		hasHealthcareProfessionalPageOLS1
