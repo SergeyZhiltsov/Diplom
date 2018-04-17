@@ -647,8 +647,9 @@ public class Diabetes_4356A extends BaseTest{
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
-        
+        .pidFromDbToLog(env)
+		.getRadiantDbToLog(env)
+		.getAnomalyDbToLog(env);
         
         
  

@@ -285,7 +285,9 @@ public class Endo_4356E_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+        		.getRadiantDbToLog(env)
+        		.getAnomalyDbToLog(env);
                 
                 
         /*//-------------GENERAL HEALTH----------------------------------        

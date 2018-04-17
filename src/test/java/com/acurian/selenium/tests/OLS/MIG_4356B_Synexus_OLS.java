@@ -356,8 +356,9 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
 		        .waitForPageLoad()
 		        .clickNextButton(new AboutHealthPageOLS())
 		        .waitForPageLoad()
-                .pidFromDbToLog(env);
-        
+                .pidFromDbToLog(env)
+				.getRadiantDbToLog(env)
+				.getAnomalyDbToLog(env);
         
    /*   //----------OLD   GENERAL HEALTH Questions----------     
 		//----------HasHealthcareProfessionalPageOLS Page--------------------

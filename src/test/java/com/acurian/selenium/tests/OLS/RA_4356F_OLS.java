@@ -265,7 +265,9 @@ public class RA_4356F_OLS extends BaseTest {
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
+        .pidFromDbToLog(env)
+		.getRadiantDbToLog(env)
+		.getAnomalyDbToLog(env);
         
         
         //----------------OLD General Health---------------------		
