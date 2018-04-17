@@ -285,7 +285,9 @@ public class Endo_4356E_CC extends BaseTest{
                .clickOnAnswer("Transferred for Scheduling")
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
-               .pidFromDbToLog(env);
+               .pidFromDbToLog(env)
+               .getRadiantDbToLog(env);
+               //.getAnomalyDbToLog(env);
        
        //--------------OLD General Health------------------------
        /*haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC

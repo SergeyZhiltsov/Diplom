@@ -1,8 +1,11 @@
 package com.acurian.selenium.pages.CC;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
+import com.acurian.selenium.utils.db.AnomalyResults;
+import com.acurian.selenium.utils.db.RadiantResults;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -19,6 +22,7 @@ public class MainPageCC extends BasePage{
     @FindBy(xpath = "//button[text()='Next']")
     WebElement nextButton;
 
+    String pid;
 
     public MainPageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -45,13 +49,29 @@ public class MainPageCC extends BasePage{
                 .click();
         waitForAnimation();
     }
-    public void pidFromDbToLog(String env){
+    public MainPageCC pidFromDbToLog(String env){
         DBConnection dbCon = new DBConnection();
-        String pid = PassPID.getInstance().getPidNumber();
+        pid = PassPID.getInstance().getPidNumber();
         dbCon.dbRead(env, pid);
         logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
+        return this;
     }
 
+    public MainPageCC getRadiantDbToLog(String env){
+        DBConnection dbCon = new DBConnection();
+//        pid = PassPID.getInstance().getPidNumber();
+        RadiantResults radiantResults = dbCon.dbReadRadiant(env, pid);
+        logTextToAllure("Radiant::: Current Status="+radiantResults.getCurrentStatus()+" for pid "+pid);
+        return this;
+    }
+
+    public MainPageCC getAnomalyDbToLog(String env){
+        DBConnection dbCon = new DBConnection();
+//        pid = PassPID.getInstance().getPidNumber();
+        AnomalyResults anomalyResults = dbCon.dbReadAnomaly(env, pid);
+        logTextToAllure("Anomaly : Current Status="+anomalyResults.getCurrentStatus()+" Request Status id="+anomalyResults.getRequestStatus()+" for pid "+pid);
+        return this;
+    }
 
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String ...answerText){
         List<String> answerTextList = Arrays.asList(answerText);

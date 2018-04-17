@@ -197,7 +197,9 @@ public class HTN_4356D_CC extends BaseTest{
                 .clickOnAnswer("Transferred for Scheduling")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .getRadiantDbToLog(env);
+                //.getAnomalyDbToLog(env);
         
         
         
