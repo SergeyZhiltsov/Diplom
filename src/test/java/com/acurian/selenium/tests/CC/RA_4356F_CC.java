@@ -273,7 +273,9 @@ public class RA_4356F_CC extends BaseTest{
                .clickOnAnswer("Transferred for Scheduling")
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
-               .pidFromDbToLog(env);
+               .pidFromDbToLog(env)
+               .getRadiantDbToLog(env);
+               //.getAnomalyDbToLog(env);
 
        //------------------OLD General Health--------------------
       /* haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
