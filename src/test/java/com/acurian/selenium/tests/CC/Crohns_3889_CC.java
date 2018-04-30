@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Crohns_3889_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00012")
     @Description("Crohn's 3889 for CC with HS")
     public void crohns3889ccTest(final String username, final String password) {

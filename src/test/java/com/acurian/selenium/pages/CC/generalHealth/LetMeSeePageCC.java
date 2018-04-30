@@ -11,6 +11,8 @@ public class LetMeSeePageCC extends MainPageCC {
 
     public final String titleExpected = "Thank you, let me see if there are any follow-up questions that we need to ask based on the conditions that you experience.\n" +
             "Agent Note: Click \"Next\" to continue";
+    
+    public final String titleExpectedIBD = "We may have other studies going on in your area. Let's see if there's something else that would be a better fit.";            
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

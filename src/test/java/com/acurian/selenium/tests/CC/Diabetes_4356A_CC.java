@@ -219,7 +219,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .back();
         LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Medication")
+                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageCC());
 
         //---------------------------------------lastTimeYouTookPageOLS------------------------------------------------------ 
@@ -232,29 +232,27 @@ public class Diabetes_4356A_CC extends BaseTest{
                  metforminMedicationsPageCC.waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(lastTimeYouTookPageCC.titleExpected, DIA_4241)
-                .back();
+                .clickNextButton(new MetforminMedicationsPageCC());
+            /*    .back();
                 lastTimeYouTookPageCC.waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new MetforminMedicationsPageCC());
+                .clickNextButton(new MetforminMedicationsPageCC()); */
 
 
         metforminMedicationsPageCC
                 .waitForPageLoad();
         Assert.assertEquals(metforminMedicationsPageCC.getTitleText(),metforminMedicationsPageCC.titleExpected, "Title is diff");
         ApartFromMetforminPageCC apartFromMetforminPageCC = metforminMedicationsPageCC
-                .clickOnAnswers("Janumet (metformin and sitagliptin)",
-                        "Jentadueto (metformin and linagliptin)",
-                        "Kazano (metformin and alogliptin)",
-                        "Kombiglyze (metformin and saxagliptin)",
-                        "PrandiMet (metformin and repaglinide)",
-                        "Avandamet (metformin and rosiglitazone)")
-//                .clickOnAnswers("None of the above")
+        		.waitForPageLoad()
+                .clickOnAnswers("Avandamet (metformin and rosiglitazone)")
                 .clickNextButton(new ApartFromMetforminPageCC());
-        apartFromMetforminPageCC
-                .waitForPageLoad()
+        apartFromMetforminPageCC.threadSleep(2000);
+        apartFromMetforminPageCC.back();
+        apartFromMetforminPageCC.back();
+               /* .waitForPageLoad()
                 .getPage(debugPageCC)
                 //.checkProtocolsEquals(metforminMedicationsPageCC.titleExpected, protocol2,protocol3,protocol4,protocol6)
-                .back();
+                .back();*/
         metforminMedicationsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -265,7 +263,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .back();
         metforminMedicationsPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Metformin")
+                .clickOnAnswers("Metformin and glipizide")
                 .clickNextButton(apartFromMetforminPageCC);
 
         apartFromMetforminPageCC
@@ -595,7 +593,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a Diabetes study")
+                .waitForPageLoad("a diabetes study")
                 .getPID()
         		//----------SITE Selection Page--------------------
                 .clickOnAnswer(siteName)

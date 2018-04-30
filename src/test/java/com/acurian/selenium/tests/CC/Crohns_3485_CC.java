@@ -19,7 +19,7 @@ import java.util.List;
 
 public class Crohns_3485_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
     @Description("Crohn's_3485 for CC with HS")
     public void crohns3485ccTest(final String username, final String password) {
