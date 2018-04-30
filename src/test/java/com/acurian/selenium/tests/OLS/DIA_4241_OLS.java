@@ -31,7 +31,7 @@ public class DIA_4241_OLS extends BaseTest{
         String phoneNumberLBP = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
-        String studyName = "a Diabetes";
+        String studyName = "a diabetes";
         String siteName = "AUT_DIA_4241";   
         String zipCode = "19044";
         
@@ -143,7 +143,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .back();
         LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Medication")
+                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageOLS());
 
         lastTimeYouTookPageOLS
@@ -167,10 +167,10 @@ public class DIA_4241_OLS extends BaseTest{
                 .back();
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(metforminMedicationsPageOLS);
+                .clickOnAnswer("6 months ago or longer")
+                .clickNextButton(followingToLoseWeightPageOLS);
 
-        metforminMedicationsPageOLS
+/*        metforminMedicationsPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(metforminMedicationsPageOLS.getTitleText(),metforminMedicationsPageOLS.titleExpected, "Title is diff");
         ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
@@ -233,7 +233,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(combinationWithEachOtherPageOLS.getTitleText(),combinationWithEachOtherPageOLS.titleExpected, "Title is diff");
         combinationWithEachOtherPageOLS
-                .clickNextButton(followingToLoseWeightPageOLS);
+                .clickNextButton(followingToLoseWeightPageOLS);*/
 
         followingToLoseWeightPageOLS
                 .waitForPageLoad();
@@ -337,38 +337,8 @@ public class DIA_4241_OLS extends BaseTest{
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
-
-        
-   /*//-------------------OLD GENERAL Health-------------
-        childrenUnderPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new TheStudySitePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Public transportation")
-//                .clickNextButton(new WouldYouUsePageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("Neither")
-                .clickNextButton(new WhatMedicalCoveragePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("No, I have no coverage")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env); */
+        .pidFromDbToLog(env)
+		.getRadiantDbToLog(env)
+		.getAnomalyDbToLog(env);
     }
 }

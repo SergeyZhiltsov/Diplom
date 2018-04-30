@@ -45,7 +45,7 @@ public class DPN_4557_OLS extends BaseTest{
         String protocol1 = "VMDN_003";
         String protocol2 = "NYX_2925_2001";
         String studyName = "a diabetic nerve pain";
-        String studyName1 = "a Diabetes study,a diabetic nerve pain";
+        String studyName1 = "a diabetes study, a diabetic nerve pain";
         //String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_DPN_4557_Site";
         String zip_Code = "19044";
@@ -262,7 +262,7 @@ public class DPN_4557_OLS extends BaseTest{
                 //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
                 treatingYourDiabetesPageOLS.waitForPageLoad();
                 CombinationWithEachOtherPageOLS combinationWithEachOtherPageOLS = treatingYourDiabetesPageOLS
-                .clickOnAnswers("Medication")
+                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new CombinationWithEachOtherPageOLS());  
                 
                 

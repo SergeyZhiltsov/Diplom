@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Crohns_3485_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00005")
     @Description("Crohn's_3485 OLS with HS")
     public void Crohns_3485_OLS_HS() {
@@ -31,7 +31,7 @@ public class Crohns_3485_OLS extends BaseTest{
         String protocol6 = "M15_991";
         List<String> protocols = Arrays.asList(protocol1,protocol2,protocol3,protocol4);
         String studyName = "a Crohn's";
-        String siteName = "AUT_CRN_3485_HS";
+        String siteName = "AUT_CRN_3485_Site";
         String debugSiteName = "";        
         String zipCode = "19044";
         

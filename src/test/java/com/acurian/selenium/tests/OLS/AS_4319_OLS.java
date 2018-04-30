@@ -40,8 +40,8 @@ public class AS_4319_OLS extends BaseTest {
 	
 	@Test
 	public void as_4319_OLS() {
-		String phoneNumberRA = "AUTAMS1AS1";		
-		String protocol1 = "M16_098";               
+		String phoneNumberRA = "AUTAMS1AS1";	
+		String protocol1 = "M16_098";          
         List<String> protocols = Arrays.asList(protocol1);
         String studyName = "an ankylosing spondylitis (AS)";
         String siteName = "AUT_AS_4319";
@@ -52,7 +52,7 @@ public class AS_4319_OLS extends BaseTest {
         if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           
+		dateOfBirthPageOLS.openPage(env, phoneNumberRA)           
 		           .waitForPageLoad()
 		           .maximizePage();
 		Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for an ankylosing spondylitis (AS) study!"), true);
@@ -63,9 +63,9 @@ public class AS_4319_OLS extends BaseTest {
 		GenderPageOLS genderPageOLS = zipCodePageOLS
 		          .waitForPageLoad()
 		          .typeZipCode("19044")
-		          .clickNextButton(new GenderPageOLS());		
+		          .clickNextButton(new GenderPageOLS());
 		
-		WhichOfFollowingHaveYouDiagnosedWithOLS whichOfFollowingHaveYouDiagnosedWithOLS = genderPageOLS	
+		WhichOfFollowingHaveYouDiagnosedWithOLS whichOfFollowingHaveYouDiagnosedWithOLS = genderPageOLS
 		         .waitForPageLoad()
 		         .clickOnAnswer("Female")
 		         .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWithOLS());
@@ -73,7 +73,7 @@ public class AS_4319_OLS extends BaseTest {
 		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = whichOfFollowingHaveYouDiagnosedWithOLS
 				 .waitForPageLoad()
 				 .clickOnAnswers("None of the above")
-				 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());		
+				 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals("Which of the following have you been diagnosed with?Agent Note: Select all that applyWhich of the fo", protocol1);
@@ -148,6 +148,7 @@ public class AS_4319_OLS extends BaseTest {
         		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         
         
+        
         //----------*******NEW GENERAL HEALTH Questions********----------     
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
         	.waitForPageLoad()
@@ -156,11 +157,10 @@ public class AS_4319_OLS extends BaseTest {
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         	.waitForPageLoad()
         	.clickOnAnswers("None of the above")
-   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
+        //------------ New for AMS1 Rel.51, when Gender = Female --------
             .clickNextButton(new HormonalBirthControlOLS())
             .waitForPageLoad()
             .clickOnAnswer("No")
-   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         	.clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
         	.waitForPageLoad()
@@ -174,7 +174,7 @@ public class AS_4319_OLS extends BaseTest {
 	        .clickOnAnswers("None of the above")
 	        .clickNextButton(new TheStudySitePageOLS())
 	        .waitForPageLoad()
-		//-------------------PEDIATRIC QUESTIONS-----------------------------   
+		//-------------------PEDIATRIC QUESTIONS----------------------
 	        .clickOnAnswer("Public transportation")
 	        .clickNextButton(new WhatMedicalCoveragePageOLS())
 	        .waitForPageLoad()
@@ -203,7 +203,8 @@ public class AS_4319_OLS extends BaseTest {
 	        .clickNextButton(new AboutHealthPageOLS())
 	        .waitForPageLoad()
 	        .pidFromDbToLog(env);
-        
+
+
      /*//----------------------OLD General-Health---------------------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
         .waitForPageLoad()

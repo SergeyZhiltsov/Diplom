@@ -32,7 +32,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
-    public final String titleDiabetes_4356A_Expected = "Let's get started to see if you qualify for a Diabetes study!\n" +
+    public final String titleDiabetes_4356A_Expected = "Let's get started to see if you qualify for a diabetes study!\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $600\n" +
             "No-cost study-related care from doctors\n" +
@@ -122,6 +122,12 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
     
+    public final String titleIBD_Expected ="Let's get started to see if you qualify for a Crohn's or colitis study!\n" +
+    		"Those who qualify may receive*:\n" +
+    		"Payment which varies by study up to $700\n" +
+    		"No-cost study-related care from doctors\n" +
+    		"No-cost study medication";
+    
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText1;
@@ -131,9 +137,15 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement questionText3;
+    
+    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[2]")
+    WebElement questionTextGROUP;
 
     WebElement questionText;
 
+    
+    
     
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
@@ -143,9 +155,14 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement titleText3;
+    
+    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
+    WebElement titleTextGROUP;
 
     WebElement titleText;
 
+    
     @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
     WebElement dateField;
 
@@ -169,6 +186,8 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     WebElement titleTextGH3;
 
     WebElement titleTextGH;
+    
+    
 
     public DateOfBirthPageOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -177,7 +196,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
                 questionText = questionText1;
                 titleText = titleText1;
                 titleTextGH = titleTextGH1;
-                break;
+                break;              
             case Platforms.TABLET:
                 titleText = titleText2;
                 questionText = questionText2;
@@ -213,6 +232,14 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 //        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> questionText.getText().contains(titleExpected));
         return this;
     }
+    
+    
+    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadGROUP() {
+        waitForPageLoadMain(questionTextGROUP,titleExpected);
+        return this;
+    }
 
     @Step
     public DateOfBirthPageOLS waitForPageGHLoad() {
@@ -246,6 +273,17 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     @Step
     public String getTitleTextGH() {
         return getText(titleTextGH);
+    }
+    
+    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
+    @Step
+    public String getQuestionTextGROUP() {
+        return getText(questionTextGROUP);
+    }
+
+    @Step
+    public String getTitleTextGROUP() {
+        return getText(titleTextGROUP);
     }
 
 }

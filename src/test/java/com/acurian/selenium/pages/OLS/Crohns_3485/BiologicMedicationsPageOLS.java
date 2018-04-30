@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BiologicMedicationsPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "\"Biologics\" are medications that affect the body's immune system. They are usually given as an infusion (into a vein) or a shot (injection).\n" +
+    public final String titleExpected = "\"Biologics\" are medications that affect the body's immune system. They are given as an infusion (into a vein) or a shot (injection).\n" +
             "Have you ever received any of the following \"biologic\" medications?\n" +
             "Please select all that apply.";
 

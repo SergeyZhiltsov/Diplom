@@ -402,8 +402,8 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .getAnomalyDbToLog(env);
+                .getRadiantDbToLog(env);
+                //.getAnomalyDbToLog(env);
         
 
    /*     //----------OLD GENERAL HEALTH Questions----------
