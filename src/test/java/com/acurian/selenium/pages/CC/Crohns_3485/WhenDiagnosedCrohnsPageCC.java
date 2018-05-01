@@ -11,7 +11,9 @@ import java.util.List;
 
 public class WhenDiagnosedCrohnsPageCC extends MainPageCC{
 
-    public final String titleExpected = "Next, please tell me, when were you diagnosed with Crohn’s disease by a doctor at a hospital or doctor’s office?";
+    public final String titleExpected = "When were you diagnosed with Crohn's disease?";
+    
+    public final String titleExpectedUlcerative = "When were you diagnosed with ulcerative colitis?";
 
     @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -26,6 +28,12 @@ public class WhenDiagnosedCrohnsPageCC extends MainPageCC{
     @Step
     public WhenDiagnosedCrohnsPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+    
+    @Step
+    public WhenDiagnosedCrohnsPageCC waitForPageLoadULC() {
+        waitForPageLoadMain(titleText, titleExpectedUlcerative);
         return this;
     }
 

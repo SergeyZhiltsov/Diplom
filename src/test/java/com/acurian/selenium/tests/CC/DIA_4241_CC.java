@@ -43,7 +43,7 @@ public class DIA_4241_CC extends BaseTest{
         String phoneNumber = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
-        String studyName = "a Diabetes study";
+        String studyName = "a diabetes study";
         String siteName = "AUT_DIA_4241";
         String debugSiteName = "";
     //    String env = "STG";
@@ -185,7 +185,7 @@ public class DIA_4241_CC extends BaseTest{
                 .back();
         LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Medication")
+                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageCC());
 
         lastTimeYouTookPageCC
@@ -209,10 +209,10 @@ public class DIA_4241_CC extends BaseTest{
                 .back();
         lastTimeYouTookPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(metforminMedicationsPageCC);
+                .clickOnAnswer("6 months ago or longer")
+                .clickNextButton(followingToLoseWeightPageCC);
 
-        metforminMedicationsPageCC
+      /*  metforminMedicationsPageCC
                 .waitForPageLoad();
         Assert.assertEquals(metforminMedicationsPageCC.getTitleText(),metforminMedicationsPageCC.titleExpected, "Title is diff");
         ApartFromMetforminPageCC apartFromMetforminPageCC = metforminMedicationsPageCC
@@ -279,7 +279,9 @@ public class DIA_4241_CC extends BaseTest{
 
         followingToLoseWeightPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(followingToLoseWeightPageCC.getTitleText(),followingToLoseWeightPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(followingToLoseWeightPageCC.getTitleText(),followingToLoseWeightPageCC.titleExpected, "Title is diff"); */
+        
+        
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
                 .clickOnAnswers("Prescription weight loss medication")
                 .clickNextButton(new WeightLossSurgeryPageCC());

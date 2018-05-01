@@ -11,11 +11,8 @@ import java.util.List;
 
 public class FollowingMedicationsCrohnsPageCC extends MainPageCC{
 
-    public final String titleExpected = "Have you ever taken any of the following medications for your Crohn's?\n" +
-            "Agent Notes:\n" +
-            "Read medications in the following way: \"Colazal or Giazo, also known as balsalazide\" etc.\n" +
-            "Please read the full list of medications to the respondent\n" +
-            "Select all that apply";
+    public final String titleExpected = "Have you ever taken any of the following medications for your Crohn's or colitis?\n" +
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;

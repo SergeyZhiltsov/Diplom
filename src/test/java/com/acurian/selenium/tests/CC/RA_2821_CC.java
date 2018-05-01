@@ -270,26 +270,27 @@ BiologicMedicationsCC biologicMedicationsCC = howLongTakingPlaquenilCC
 	   .clickNextButton(new BiologicMedicationsCC());
 
 
-biologicMedicationsCC
+EverTakenXeljanzCC everTakenXeljanzCC = biologicMedicationsCC
 	   .waitForPageLoad()
 	   .clickOnAnswers("None of the above")
 	   .clickNextButton(new EverTakenXeljanzCC());
 
+everTakenXeljanzCC.waitForPageLoad();
 debugPageCC.checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-5...", protocol1);
 debugPageCC.back();
 
 WhenLastReceivedTysabriCC whenLastReceivedTysabriCC = biologicMedicationsCC
 	   .waitForPageLoad()
-	   .clickOnAnswers("Tysabri")	          
+	   .clickOnAnswers("Tysabri (Agent Note: tie-SAB-ree)")	          
 	   .clickNextButton(new WhenLastReceivedTysabriCC());
 
 
-EverTakenXeljanzCC EverTakenXeljanzCC = whenLastReceivedTysabriCC
+whenLastReceivedTysabriCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Last received 7 to 11 months ago")
 	   .clickNextButton(new EverTakenXeljanzCC());
 
-EverTakenXeljanzCC
+everTakenXeljanzCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Yes, I am currently taking it")
 	   .clickNextButton(new TransitionStatementCC());
@@ -297,7 +298,7 @@ EverTakenXeljanzCC
 debugPageCC.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", protocol1);
 debugPageCC.back();
 
-TransitionStatementCC transitionStatementCC = EverTakenXeljanzCC
+TransitionStatementCC transitionStatementCC = everTakenXeljanzCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("No, I have never taken it")	   
 	   .clickNextButton(new TransitionStatementCC()); 
