@@ -97,7 +97,7 @@ public class Crohns_3889_CC extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(diagnosedWithCrohnsPageCC.getTitleText(),diagnosedWithCrohnsPageCC.titleExpected, "Title is diff");
         FollowingMedicalConditionsPageCC followingMedicalConditionsPageCC = diagnosedWithCrohnsPageCC
-                .clickOnAnswer("No")
+                .clickOnAnswers("No")
                 .clickNextButton(new FollowingMedicalConditionsPageCC());
         followingMedicalConditionsPageCC
                 .waitForPageLoad();
@@ -106,7 +106,7 @@ public class Crohns_3889_CC extends BaseTest{
         debugPageCC.back();
         diagnosedWithCrohnsPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswers("Yes")
                 .clickNextButton(followingMedicalConditionsPageCC);
 
         followingMedicalConditionsPageCC
@@ -630,7 +630,7 @@ public class Crohns_3889_CC extends BaseTest{
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSCrohns2PageCC())
-                .waitForPageLoad()
+                .waitForPageLoad(studyName)
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())
