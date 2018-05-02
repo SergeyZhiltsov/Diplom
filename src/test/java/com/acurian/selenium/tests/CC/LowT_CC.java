@@ -51,7 +51,7 @@ public class LowT_CC extends BaseTest{
      //   String env = "STG";
         String siteName = "AUT_LOWT_3017_Site";
         String site_Indication = "Hypogonadism";
-        String zipCode  = "19044";  //"45203" cincinnati, OH
+        String zipCode  = "19901";  //"45203" cincinnati, OH
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";

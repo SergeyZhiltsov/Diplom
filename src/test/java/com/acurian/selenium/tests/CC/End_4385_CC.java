@@ -76,7 +76,7 @@ public class End_4385_CC extends BaseTest{
         String studyName1 = "endometriosis";
    //     String env = "STG";
         String siteName = "AUT_END_4385";
-        String zipCode  = "19044";
+        String zipCode  = "19901";
         String site_Indication = "Endometriosis";
         
         String env = System.getProperty("acurian.env");
