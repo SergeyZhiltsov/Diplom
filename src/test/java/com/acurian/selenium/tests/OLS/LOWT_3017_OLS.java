@@ -37,7 +37,7 @@ public class LOWT_3017_OLS extends BaseTest{
         String studyName = "a men's low testosterone";
         String site_Indication = "Hypogonadism";
         String siteName = "AUT_LOWT_3017";
-        String zipCode = "19044";
+        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -418,6 +418,8 @@ public class LOWT_3017_OLS extends BaseTest{
         .getPage(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
+        .threadSleep(10000);
+        new AboutHealthPageOLS()
         .waitForPageLoad()
         .pidFromDbToLog(env);
     }
