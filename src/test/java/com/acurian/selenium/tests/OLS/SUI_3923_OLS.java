@@ -273,6 +273,8 @@ public class SUI_3923_OLS extends BaseTest{
 		//----------ThankYouCloseSimplePageOLS Page--------------------
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
+        .threadSleep(10000);
+        new AboutHealthPageOLS()
         .waitForPageLoad()
         .pidFromDbToLog(env);
 
