@@ -52,7 +52,7 @@ public class IBD_3839_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("IBD1")
     @Description("IBD 3839 for CC")
-    public void crohns3889ccTest(final String username, final String password) {
+    public void ibd3839ccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1IBD";
         String protocol1 = "SHP647_301";
         String protocol2 = "SHP647_302";        
@@ -300,8 +300,8 @@ public class IBD_3839_CC extends BaseTest{
         		.waitForPageLoad("a Colitis study")
         		.getPID()
         		.clickOnAnswer(siteName)
-        		.clickNextButton(new QualifiedClose2PageCC())
-        		.waitForPageLoadIBD(studyIndication)        		
+        		.clickNextButton(new QualifiedClose2PageCC())        		
+        //		.waitForPageLoadIBD(studyIndication)        		
         		.clickNextButton(new ThankYouCloseSimplePageCC())
         		.waitForPageLoad()
         		.clickNextButton(selectActionPageCC)

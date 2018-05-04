@@ -60,10 +60,10 @@ public class IBD_3485_CC extends BaseTest{
         String siteName = "AUT_CRN_3485_HS_Site";
         String debugSiteName = "";
   //      String env = "STG";
-        String zipCode = "19901";
+        String zipCode = "19044";
         
         String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        if (env == null) env = "PRD";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -144,14 +144,14 @@ public class IBD_3485_CC extends BaseTest{
 				.clickNextButton(new WhenDiagnosedCrohnsPageCC());
         
         whenDiagnosedCrohnsPageCC
-				.waitForPageLoadULC()
-				.clickOnAnswer("Not officially diagnosed with ulcerative colitis by a doctor")				
+				.waitForPageLoad()
+				.clickOnAnswer("Not officially diagnosed with Crohn's by a doctor")				
 				.clickNextButton(new LetMeSeePageCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015880-QS5703-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         
         MostRecentColonoscopyCC mostRecentColonoscopyCC = whenDiagnosedCrohnsPageCC
-				.waitForPageLoadULC()
+				.waitForPageLoad()
 				.clickOnAnswer("Less than 3 months ago")
 				.clickNextButton(new MostRecentColonoscopyCC());
         
@@ -308,6 +308,7 @@ public class IBD_3485_CC extends BaseTest{
         
         haveAnyOfTheFollowingPageCC
 				.waitForPageLoad()
+				.clickOnAnswers("Another type of stomach or colon surgery")
 				.clickOnAnswers("Feeding tube", "IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)")						
 				.clickNextButton(new TransitionStatementCC());
         
@@ -392,7 +393,7 @@ public class IBD_3485_CC extends BaseTest{
   				.clickOnAnswers("None of the above")
   				.clickOnAnswers("Schizophrenia")
   				.clickNextButton(new HormonalBirthControlCC());
-          debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
+          debugPageCC.checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
           doAnyOftheFollowingAdditionalDiagnosesCC
   		    	.waitForPageLoad()
@@ -404,14 +405,12 @@ public class IBD_3485_CC extends BaseTest{
           		.clickOnAnswer("No")
           		.clickNextButton(new ApproximateHeightPageCC());
           
-          LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+          ChildrenUnderPageCC childrenUnderPageCC = approximateHeightPageCC
           		.waitForPageLoad()
           		.setAll("5", "7", "170")
-          		.clickNextButton(new LetMeSeePageCC());
+          		.clickNextButton(new ChildrenUnderPageCC());
           
-          letMeSeePageCC
-          		.waitForPageLoad()
-          		.clickNextButton(new ChildrenUnderPageCC())
+          childrenUnderPageCC
           		.waitForPageLoad()
           		.clickOnAnswer("No")
           		.clickNextButton(new IdentificationPageCC())

@@ -191,7 +191,7 @@ public class AS_4319_CC extends BaseTest{
        
        EverTakenXeljanzCC everTakenXeljanzCC = biologicMedicationsCC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Tysabri")
+    		   .clickOnAnswers("Tysabri (Agent Note: tie-SAB-ree)")
     		   .clickNextButton(new EverTakenXeljanzCC());
        
        debugPageCC.openDebugWindow();
