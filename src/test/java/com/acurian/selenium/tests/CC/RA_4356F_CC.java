@@ -208,7 +208,7 @@ public class RA_4356F_CC extends BaseTest{
        
        WhenLastReceivedOrenciaCC whenLastReceivedOrenciaCC = biologicMedicationsCC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Orencia")
+    		   .clickOnAnswers("Orencia (Agent Note: oh-REN-see-uh)")
     		   .clickNextButton(new WhenLastReceivedOrenciaCC());
        
        EverTakenXeljanzCC EverTakenXeljanzCC = whenLastReceivedOrenciaCC

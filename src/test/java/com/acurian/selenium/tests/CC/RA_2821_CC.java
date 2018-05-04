@@ -164,7 +164,7 @@ whenWereYouDiagnosedWithRACC
 	   .clickOnAnswer("Within the past 2 months")
 	   .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC());
 
-debugPageCC.checkProtocolsEquals(whenWereYouDiagnosedWithRACC.titleExpected, protocol1);
+debugPageCC.checkProtocolsContainsForQNumber("Q0005177-QS503-STUDYQUES", protocol1);
 debugPageCC.back();
 
 HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenWereYouDiagnosedWithRACC

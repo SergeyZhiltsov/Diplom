@@ -57,11 +57,11 @@ public class IBD_Short extends BaseTest{
     public void ibd3264ccTest(final String username, final String password) {
         String phoneNumber = "AUTAMSCRSH";
         String protocol1 = "M14_234";
-        String protocol3 = "M16_067";
+        String protocol3 = "M16_006";
         String protocol2 = "SHP647_301";        
         List<String> protocols = Arrays.asList(protocol1,protocol2);
         String ibdStudy = "Ulcerative Colitis";
-        String siteName = "AUT_IBD_3264_Site";
+        String siteName = "AUT_IBD_3889_Site";
         String studyIndication = "Ulcerative Colitis";
   //      String env = "STG";
         String zipCode = "19901";
@@ -107,18 +107,18 @@ public class IBD_Short extends BaseTest{
                 .setYear("2003")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         DebugPageCC debugPageCC = new DebugPageCC();       
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol2);
         debugPageCC.back();
         
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC                
-                .setYear("1942")
+             /*   .setYear("1942")
                 .clickNextButton(new IdentificationPageCC());              
         debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
         debugPageCC.back();
-        dateOfBirthPageCC        		
+        dateOfBirthPageCC      */  		
         		.setYear("1937")
         		.clickNextButton(new IdentificationPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol2);
         debugPageCC.back();        
         dateOfBirthPageCC		   		
 		   		.setYear("1980")
@@ -139,13 +139,13 @@ public class IBD_Short extends BaseTest{
         		.waitForPageLoad()
         		.clickOnAnswers("Crohn's disease")
         		.clickNextButton(new WhenDiagnosedCrohnsPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", protocol2);
         debugPageCC.back();
         diagnosedWithCrohnsPageCC
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new LetMeSeePageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", protocol2);
         debugPageCC.back();
         diagnosedWithCrohnsPageCC
 				.waitForPageLoad()
@@ -156,13 +156,13 @@ public class IBD_Short extends BaseTest{
         		.waitForPageLoadULC()
         		.clickOnAnswer("Less than 3 months ago")
         		.clickNextButton(new LetMeSeePageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", protocol2);
         debugPageCC.back();
         whenDiagnosedCrohnsPageCC
 				.waitForPageLoadULC()
 				.clickOnAnswer("Not officially diagnosed with ulcerative colitis by a doctor")
 				.clickNextButton(new LetMeSeePageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", protocol2);
         debugPageCC.back();
         ManageYourCrohnsPageCC manageYourCrohnsPageCC = whenDiagnosedCrohnsPageCC
 				.waitForPageLoadULC()
@@ -173,7 +173,7 @@ public class IBD_Short extends BaseTest{
         		.waitForPageLoad()
         		.clickOnAnswer("No")
         		.clickNextButton(new CurrentlyExperiencingFlareUpCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015883-QS5706-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015883-QS5706-STUDYQUES", protocol2);
         debugPageCC.back();
         SteroidMedicationsForCrohnsCC steroidMedicationsForCrohnsCC = manageYourCrohnsPageCC
         		.waitForPageLoad()
@@ -207,7 +207,7 @@ public class IBD_Short extends BaseTest{
         		.waitForPageLoad()
         		.clickOnAnswer("No")
         		.clickNextButton(new CurrentlyExperiencingFlareUpCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015901-QS5713-STUDYQUES", protocol1, protocol3);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015901-QS5713-STUDYQUES", protocol3);
         debugPageCC.back();
         otherPrescriptionMedicinesIBDShort.back();
         

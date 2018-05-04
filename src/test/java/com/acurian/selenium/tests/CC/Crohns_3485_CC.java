@@ -9,6 +9,8 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+
+import org.junit.Ignore;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -18,8 +20,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Crohns_3485_CC extends BaseTest{
-
-    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	
+    @Ignore("Deactivated") 
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
     @Description("Crohn's_3485 for CC with HS")
     public void crohns3485ccTest(final String username, final String password) {
