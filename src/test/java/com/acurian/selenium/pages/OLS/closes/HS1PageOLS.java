@@ -30,8 +30,8 @@ public class HS1PageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='22']")
     WebElement nameField;
-
-    @FindBy(xpath = "//div[@id='signer-mobile-application']//span[text()='Click to sign']")
+    
+    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-document-signature-field input']/span[text()='Click to sign']")
     WebElement clickToSignButton;
 
     @FindBy(xpath = "//div[@class='m-sign-modal-popup']//div[@class='m-sign-modal--menu']//span[text()='Type it in']")
@@ -90,15 +90,17 @@ public class HS1PageOLS extends MainPageOLS{
     public HS1PageOLS setSignature() {
         waitForAnimation();
         firstNameField.click();
-        for (int i = 0; i < 21; i++) {
-            threadSleep(300);
+        for (int i = 0; i < 17; i++) {
+            threadSleep(500);
             getActions().sendKeys(Keys.TAB).build().perform();
         }
         waitForAnimation();
+        threadSleep(1000);
         nameField.click();
         typeTextWithoutClear(nameField,"Acurian trial");
         waitForAnimation();
         waitJQuery();
+        threadSleep(1000);
         driverWait.waitforVisibility(clickToSignButton);
         clickToSignButton.click();
         waitJQuery();

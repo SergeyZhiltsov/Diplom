@@ -85,7 +85,7 @@ public class DPN_4557_OLS extends BaseTest{
                 Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
                 HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); 
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
                 //------Validate protocol DQs in debug window----------
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
                 DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -96,7 +96,7 @@ public class DPN_4557_OLS extends BaseTest{
                 diagnosedAnyTypeOfDiabetesPageOLS.waitForPageLoad();
                 WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS  //[create NEXT PAGE Object = THIS page object] 
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfDiabetesPageOLS());    
+                .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
                 
                 //-----------Q3 -What kind of diabetes do you have?? ---------------   
@@ -243,7 +243,7 @@ public class DPN_4557_OLS extends BaseTest{
                 //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
                 whichOfTheFollowingHadAmputatedSurgically_OLS.waitForPageLoad()
                 .clickOnAnswers("Leg","Foot") //un-select Leg and Foot and keep only TOE selected to qualify for 4557 DPN
-                .clickNextButton(new TreatingYourDiabetesPageOLS());     
+                .clickNextButton(new TreatingYourDiabetesPageOLS());
                 
                 
                 //----------Q13 -"How are you currently treating your diabetes?"-  Page ---------------   
