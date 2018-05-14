@@ -50,7 +50,7 @@ public class IBD_3485_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("IBD_Crohn's")
     @Description("IBD 3485 for CC")
-    public void crohns3889ccTest(final String username, final String password) {
+    public void crohns3485_CCTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1IBD";
         String protocol1 = "I6T_MC_AMAG";
         String protocol2 = "RF_I6T_MC_AMAG";        
@@ -405,9 +405,13 @@ public class IBD_3485_CC extends BaseTest{
           		.clickOnAnswer("No")
           		.clickNextButton(new ApproximateHeightPageCC());
           
-          ChildrenUnderPageCC childrenUnderPageCC = approximateHeightPageCC
-          		.waitForPageLoad()
-          		.setAll("5", "7", "170")
+          LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+        		  	.waitForPageLoad()
+            		.setAll("5", "7", "170")
+            		.clickNextButton(new LetMeSeePageCC());
+          
+          ChildrenUnderPageCC childrenUnderPageCC = letMeSeePageCC
+        		.waitForPageLoad()
           		.clickNextButton(new ChildrenUnderPageCC());
           
           childrenUnderPageCC
@@ -420,7 +424,7 @@ public class IBD_3485_CC extends BaseTest{
           		.getPID()
           		.clickOnAnswer(siteName)
           		.clickNextButton(new HSCrohns2PageCC())
-                .waitForPageLoad("Crohn's Disease")
+                //.waitForPageLoad("Crohn's Disease")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())
@@ -429,8 +433,7 @@ public class IBD_3485_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
-     
+                .pidFromDbToLog(env);     
     }
 
 }

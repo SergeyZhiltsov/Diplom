@@ -251,7 +251,7 @@ public class IBD_3889_OLS extends BaseTest{
         .back();
 		biologicMedicationsPageOLS
         .waitForPageLoad()
-        .clickOnAnswers("Stelara")  //Uncheck "Stelara (Agent Note: ste-LAHR-uh)" option to qualify
+        .clickOnAnswers("Tysabri")  //DOn't Uncheck "Stelara (Agent Note: ste-LAHR-uh)" option to qualify
         .clickNextButton(new AreYouCurrentlyExperiencingFlareUp_OLS());
 		
 		

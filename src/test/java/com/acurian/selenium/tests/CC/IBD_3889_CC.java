@@ -233,7 +233,7 @@ public class IBD_3889_CC extends BaseTest{
         debugPageCC.back();
         biologicMedicationsPageCC
                 .clickOnAnswers("None of the above")
-				.clickOnAnswers("Entyvio (Agent Note: en-TIV-ee-oh)")
+				.clickOnAnswers("Entyvio (Agent Note: en-TIV-ee-oh)","Stelara (Agent Note: ste-LAHR-uh)")
 				.clickNextButton(new CurrentlyExperiencingFlareUpCC());
         
         HowWouldYouRateCC howWouldYouRateCC = currentlyExperiencingFlareUpCC
