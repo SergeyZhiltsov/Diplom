@@ -200,7 +200,7 @@ public class IBD_3485_SHORT_OLS extends BaseTest{
 		biologicMedicationsPageOLS
         .waitForPageLoad();
 		HaveYouEverTakenAnyOtherPrescriptionMedicinesToTreatYourCrohns_OLS haveYouEverTakenAnyOtherPrescriptionMedicinesToTreatYourCrohns_OLS = biologicMedicationsPageOLS
-        .clickOnAnswers("Stelara")  //Uncheck "Stelara (Agent Note: ste-LAHR-uh)" option to qualify
+        .clickOnAnswers("Tysabri")  //Dont Uncheck "Stelara (Agent Note: ste-LAHR-uh)" option to qualify
         .clickNextButton(new HaveYouEverTakenAnyOtherPrescriptionMedicinesToTreatYourCrohns_OLS());
 		
 		
