@@ -20,7 +20,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
-    public final String titleMIGExpected = "Let's get started to see if you qualify for a Migraine study!\n" +
+    public final String titleMIGExpected = "Let's get started to see if you qualify for a migraine study!\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $1,150\n" +
             "No-cost study-related care from doctors\n" +
