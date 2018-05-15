@@ -346,7 +346,7 @@ public class IBD_3485_CC extends BaseTest{
           		.clickOnAnswers("Kidney transplant")
           		.clickOnAnswers("Dialysis")
           		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-          debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2);
+          //debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
           kidneyProblemsPage
   				.waitForPageLoad()

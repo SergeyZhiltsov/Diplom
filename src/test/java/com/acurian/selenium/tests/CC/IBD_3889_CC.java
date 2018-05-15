@@ -53,7 +53,7 @@ public class IBD_3889_CC extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("IBD_Crohn's")
     @Description("IBD 3485 for CC")
-    public void crohns3889ccTest(final String username, final String password) {
+    public void IBD_3889_CCTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1IBD";
         String protocol1 = "M14_431";
         String protocol2 = "M14_433";
@@ -311,7 +311,7 @@ public class IBD_3889_CC extends BaseTest{
           		.waitForPageLoad()
           		.clickOnAnswer("6 - 10 years ago")
           		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-          debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
+          //debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
           debugPageCC.back();
           whenDiagnosedWithCancer
           		.waitForPageLoad()
