@@ -20,7 +20,10 @@ public class SiteSelectionPageOLS extends MainPageOLS{
 
     //%s = studyName variable
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s study!\n" +
-            "Please select a doctor and click the \"Next\" button.";  
+            "Please select a doctor and click the \"Next\" button.";
+    
+    public final String titleAKC = "Good news! You have been matched with the doctor(s) below for a study for diabetics!\n" +
+            "Please select a doctor and click the \"Next\" button.";
 
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
@@ -64,6 +67,14 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+    
+    @Step
+    public SiteSelectionPageOLS waitForPageLoadAKC() {
+        waitForAnimation();
+        String titleExpectedMod = String.format(titleAKC);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
