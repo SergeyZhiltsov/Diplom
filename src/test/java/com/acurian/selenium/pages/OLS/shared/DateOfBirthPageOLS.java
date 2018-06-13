@@ -38,6 +38,12 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
+    public final String titleAKC_4691_Expected = "Let's get started to see if you qualify for a study for people with diabetes and related health conditions!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $xxx\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+    
     public final String titleOA_Expected = "Let's get started to see if you qualify for an arthritis study!\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $1,000\n" +
@@ -148,7 +154,8 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
     @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[2]")
     WebElement questionTextGROUP;
-
+    
+    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]//div[contains(text(),'What is your date of birth?')]")
     WebElement questionText;
 
     
@@ -166,7 +173,8 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
     @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
     WebElement titleTextGROUP;
-
+    
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
     WebElement titleText;
 
     

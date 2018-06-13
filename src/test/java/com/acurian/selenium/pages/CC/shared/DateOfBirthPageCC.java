@@ -39,6 +39,13 @@ public class DateOfBirthPageCC extends MainPageCC{
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
+    public final String titleExpectedAkc_4691 = "If you qualify and participate in a study for people with diabetes and related health conditions, you may receive:\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $xxx for time and travel, for qualified participants who complete study related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    
     public final String titleExpectedOA = "If you qualify and participate in an arthritis study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
@@ -146,13 +153,13 @@ public class DateOfBirthPageCC extends MainPageCC{
     		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
     
-    @FindBy(xpath = "//div[@class='subquestion']//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
     WebElement questionText;
     
     @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='sub_question_text']/div[@class='show-in-cc']")
     WebElement questionTextIBD;
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
     WebElement titleText;
     
     @FindBy(xpath = "//div[@class='subquestion'][2]//span[@class='sub_question_text']/div[@class='show-in-cc']")

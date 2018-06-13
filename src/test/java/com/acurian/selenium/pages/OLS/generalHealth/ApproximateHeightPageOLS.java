@@ -76,7 +76,7 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
 
     @Step
     public ApproximateHeightPageOLS setLbs(String number) {
-        typeTextWithoutClear(lbsField, number);
+        typeText(lbsField, number);
         waitForAnimation();
         return this;
     }
