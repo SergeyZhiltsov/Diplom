@@ -8,7 +8,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class DescribesPelvicPainOLS extends MainPageOLS {
-	public final String titleExpected = "Which of the following best describes the pelvic pain that you experience during your period, and how it affects your life?";
+	public final String titleExpected = "Which of the following most accurately describes your worst pelvic pain during your period, and how it affects your life?";
 			
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

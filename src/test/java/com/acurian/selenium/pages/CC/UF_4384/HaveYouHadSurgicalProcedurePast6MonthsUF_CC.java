@@ -12,7 +12,7 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 public class HaveYouHadSurgicalProcedurePast6MonthsUF_CC extends MainPageCC{
 
     public final String titleExpected = "Have you had a surgical procedure to treat your uterine fibroids in the past 6 months?\n" +
-"This surgery may have included removing fibroids (myomectomy), destroying the uterine lining to reduce menstrual flow (endometrial ablation), cutting off blood supply to fibroids (uterine artery embolization), etc.";
+    		"This surgery may have included removing fibroids (myomectomy Agent Note: my-oh-MECK-toe-me), destroying the uterine lining to reduce menstrual flow (endometrial ablation Agent Note: end-oh-ME-tree-ul uh-BLAE-shun), cutting off blood supply to fibroids (uterine artery embolization Agent Note: em-boh-li-ZAE-shun), etc.";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

@@ -45,7 +45,7 @@ import com.acurian.selenium.pages.OLS.shared.MIGAttackFrequencyOLS;
 
 public class MIG_4356B_Synexus_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00002")
     @Description("MIG_4356B_Synexus_OLS module")
     public void mIG_4356B_Synexus_OLS() {

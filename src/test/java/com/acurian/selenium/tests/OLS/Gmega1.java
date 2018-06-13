@@ -4,6 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.UnqualifiedCloseOLS;
+import com.acurian.selenium.pages.OLS.closes.UnqualifiedCloseOLS_GMEGA;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
@@ -37,10 +38,11 @@ public class Gmega1 extends BaseTest{
         String protocol4 = "RF_I6T_MC_AMAG";
         List<String> protocols = Arrays.asList(protocol1, protocol2, protocol3, protocol4);
         String studyName = "an arthritis";
-        String siteName = "AUT_GMEGA_Site";
+        String siteName = "AUT_GMEGA";
         String debugSiteName = "";
         String zipCode = "19044";
-        String env = System.getProperty("acurian.env", "STG");
+        String env = System.getProperty("acurian.env");
+        if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -67,10 +69,10 @@ public class Gmega1 extends BaseTest{
         boneOrJointConditionsPageOLS
                 .waitForPageLoad();
 //        Assert.assertEquals(boneOrJointConditionsPageOLS.getTitleText(), boneOrJointConditionsPageOLS.titleExpected, "Title is diff");
-        UnqualifiedCloseOLS unqualifiedCloseOLS = boneOrJointConditionsPageOLS
+        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS = boneOrJointConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new UnqualifiedCloseOLS());
+                .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
         unqualifiedCloseOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();

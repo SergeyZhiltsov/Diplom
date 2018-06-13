@@ -109,11 +109,12 @@ public class UF_4384_CC extends BaseTest{
         nonQRtransitionPageCC
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following gynecological or women's ...", protocol1,protocol2);
+        debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1,protocol2);
         debugPageCC.back();
         HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
                 .waitForPageLoad()
-                .clickOnAnswers("Uterine fibroids, also known as leiomyomas or myomas")
+                .clickOnAnswers("Endometriosis (Agent Note: end-oh-me-tree-OH-sis)","None of the above") //Check this on screener
+                .clickOnAnswers("Uterine fibroids, also known as leiomyomas or myomas (Agent Note: lie-oh-my-OH-muhs, my-OH-muhs)")
                 .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
 
         //---------------Q3 Have you gone through menopause?-------------------
@@ -238,15 +239,16 @@ public class UF_4384_CC extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());
 
-		//---------------Q9 Has a healthcare professional ever diagnosed you with any of these other gynecological or women's health conditions? -------------------	         
+		//---------------Q9 Has a healthcare professional ever diagnosed you with any of these other women's health conditions? -------------------	         
         hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
                 .waitForPageLoad();
         Assert.assertEquals(hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC.getTitleText(),hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC.titleExpected, "Title is diff");
         		AreYouCurrentlyPregnantUF_CC areYouCurrentlyPregnantUF_CC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
-                .clickOnAnswers("Uterine polyps, also known as endometrial polyps",
-                		        "Cervical polyps",
+                .clickOnAnswers("Uterine polyps, also known as endometrial polyps (Agent Note: end-oh-ME-tree-ul PAHL-ips)",
+                		        "Cervical polyps (Agent Note: PAHL-ips)",
                 		        "Ovarian cyst that is currently causing symptoms",
-                		        "Endometrioma, also known as endometrial or endometrioid cyst or \"chocolate cyst\"")
+                		        "Endometrioma,(Agent Note: end-oh-me-tree-OH-ma) also known as endometrial(Agent Note: end-oh-ME-tree-ul) or endometrioid(Agent Note: endo-oh-ME-tree-oid) cyst or \"chocolate cyst\"",
+                		        "Vaginismus  (Agent Note: vaj-ih-NISS-miss)")
                 .clickNextButton(new AreYouCurrentlyPregnantUF_CC());
         		areYouCurrentlyPregnantUF_CC
                 .waitForPageLoad()

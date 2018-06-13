@@ -25,7 +25,7 @@ import java.util.List;
 
 public class HTN_4356D_OLS extends BaseTest{
 
-	@Test
+    @Test(enabled = false)
 	@TestCaseId("00031")
 	@Description("HTN_4356D_Synexus test OLS")
 	public void htn_4356D_Synexus_OLS() {

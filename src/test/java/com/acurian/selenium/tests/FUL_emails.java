@@ -3,22 +3,33 @@ package com.acurian.selenium.tests;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.SUI_3923.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
 import com.acurian.selenium.pages.OLS.closes.SiteSelection;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.UnqualifiedCloseOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.gmega1.BasedOnYourAnswersPageOLS;
+import com.acurian.selenium.pages.OLS.gmega1.ReachTheSchedulingCenterPageOLS;
+import com.acurian.selenium.pages.OLS.gmega1.TakingAcetaminophenTylenolPageOLS;
+import com.acurian.selenium.pages.OLS.gmega1.TransferPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
+import com.acurian.selenium.pages.OLS.shared.WhereDoYouHaveArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.utils.DBConnection;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,267 +51,116 @@ public class FUL_emails extends BaseTest{
     @TestCaseId("00026")
     @Description("Stress Urinary Incontinence (SUI) - 3923 OLS")
     public void fUL_emails() {
-        String phoneNumber = "AUTAMS1SUI";
-        String studyName = "a women's bladder control";  //"Stress Urinary Incontinence (SUI) - 3923";
-        String siteName = "AUT_SUI_3923";
-        String zip_Code = "19044";
-        
+        String phoneNumber = "AUTGMEGA01";
+        String protocol1 = "RA01_Generic";
+        String protocol2 = "Radiant_Generic";
+        String protocol3 = "GOA_3";
+        String studyName = "an arthritis";
+        String siteName = "AUT_GMEGA_01";
+        String zipCode = "19044";
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
 
-      DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleSUI_Expected, "Title is diff");
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091982")
-                .clickNextButton(new ZipCodePageOLS());
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(), dateOfBirthPageOLS.titleExpected, "Question is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGmegaExpected, "Title is diff");
+        PersonalDetails personalDetails = dateOfBirthPageOLS
+                .setDate("09091980")
+                .clickNextButton(new PersonalDetails());
 
-        //------------ZIP_CODE question---------------      
-        zipCodePageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(zipCodePageOLS.getTitleText(),zipCodePageOLS.titleExpected, "Title is diff");
-        GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zip_Code)
+        GenderPageOLS genderPageOLS = personalDetails
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        //------------GENDER question---------------      
         genderPageOLS
                 .waitForPageLoad();
-                DoYouExperienceUrinaryIncontinenceOLS doYouExperienceUrinaryIncontinenceOLS = genderPageOLS
-        		.clickOnAnswer("Female")
-                .clickNextButton(new DoYouExperienceUrinaryIncontinenceOLS());
-        
-        
-       //------------Q2 Do you experience either of the following types of urinary leakage, sometimes called urinary incontinence?---------------      
-        doYouExperienceUrinaryIncontinenceOLS
-        .waitForPageLoad();
-        //------------ Change your answer to correct option in DoYouSufferFromMigPageOLS---------------          
-        WhichTypeOfUrinaryLeakageYouExperienceOLS whichTypeOfUrinaryLeakageYouExperienceOLS = doYouExperienceUrinaryIncontinenceOLS  //[create NEXT PAGE Object = THIS page object] 
-        .clickOnAnswers("Stress urinary leakage - leaking of urine while coughing, sneezing, laughing, jumping, or performing other activities that put pressure on the bladder","Urge urinary leakage - strong, urgent need to urinate, accidents in which you are unable to reach a bathroom in time, and occasional bed-wetting")
-        .clickNextButton(new WhichTypeOfUrinaryLeakageYouExperienceOLS());    
+        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
+        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
+                .clickOnAnswer("Female")
+                .clickNextButton(new BoneOrJointConditionsPageOLS());
 
-       
-        
-        //-----------Q3 -Which type of urinary leakage do you experience most often? ---------------   
-        whichTypeOfUrinaryLeakageYouExperienceOLS.waitForPageLoad();
-        HowLongYouBeenExperiencingUrinaryLeakageOLS howLongYouBeenExperiencingUrinaryLeakageOLS = whichTypeOfUrinaryLeakageYouExperienceOLS  //[create NEXT PAGE Object = THIS page object] 
-        .clickOnAnswer("I experience stress leakage most often")
-        .clickNextButton(new HowLongYouBeenExperiencingUrinaryLeakageOLS())
-        .waitForPageLoad();
-        
-        
-        //----------Q4 How long have you been experiencing urinary leakage? -  Page ---------------   
-        howLongYouBeenExperiencingUrinaryLeakageOLS
-        		.waitForPageLoad();
-        HowFrequentlyYouExperienceUrinaryLeakageOLS howFrequentlyYouExperienceUrinaryLeakageOLS = howLongYouBeenExperiencingUrinaryLeakageOLS //[create NEXT PAGE Object = THIS page object]      
-        .clickOnAnswer("6 months or more")
-        .clickNextButton(new HowFrequentlyYouExperienceUrinaryLeakageOLS());
-        
-        //----------Q5 During a typical day, how frequently do you experience urinary leakage?" Page ---------------   
-        howFrequentlyYouExperienceUrinaryLeakageOLS.waitForPageLoad();
-        HaveYouEverUsedTherapiesTreatOLS haveYouEverUsedTherapiesTreatOLS = howFrequentlyYouExperienceUrinaryLeakageOLS //[create NEXT PAGE Object = THIS page object]
-        .clickOnAnswer("More than once per day")
-        .clickNextButton(new HaveYouEverUsedTherapiesTreatOLS());
-        
-         //----------Q6 Have you ever used any of the following therapies to treat urinary leakage? Page ---------------   
-        haveYouEverUsedTherapiesTreatOLS.waitForPageLoad();     
-        Assert.assertEquals(haveYouEverUsedTherapiesTreatOLS.getTitleText(),haveYouEverUsedTherapiesTreatOLS.titleExpected, "Title is diff");  
-        haveYouEverUsedTherapiesTreatOLS
-        .clickOnAnswers("Pelvic floor exercises - Kegel or other pelvic muscle exercises designed to improve bladder control and reduce or stop leakage of urine","Urethral bulking - material such as collagen or a water-based gel is injected around the urethra; this narrows the urethra so leakage is less likely to occur");
-        HaveYouEverHadAnyPelvicSurgeriesOLS haveYouEverHadAnyPelvicSurgeriesOLS = haveYouEverUsedTherapiesTreatOLS   //[create NEXT PAGE Object = THIS page object]    
-        .clickNextButton(new HaveYouEverHadAnyPelvicSurgeriesOLS()); // Click NEXT button and wait for the NEXT page
-        
-        //----------Q7 "SUI_SubQuestions" page -   Have you ever had any of the following pelvic surgeries or procedures? ---------------   
-        haveYouEverHadAnyPelvicSurgeriesOLS.waitForPageLoad();     
-        SUI_SubQuestionsOLS sUI_SubQuestions = haveYouEverHadAnyPelvicSurgeriesOLS   //[create NEXT PAGE Object = THIS page object]    
-        .clickOnAnswers("Vaginal rejuvenation or MonaLisa Touch - laser treatment for vaginal atrophy")
-        .clickNextButton(new SUI_SubQuestionsOLS());        
-        
-                
-        //----------Q8.1 Have you had pelvic floor physical therapy (meaning that you worked with a physical therapist to improve functioning of the pelvic floor muscles) within the past 30 days? -  Page ---------------   
-        //----------Q8.2 Have you had a urethral bulking injection within the past 6 months? -  Page ---------------   
-        //----------Q8.3 Have you had a vaginal rejuvenation or MonaLisa Touch procedure within the past 6 months? page---------------   
-        sUI_SubQuestions.waitForPageLoad();
-        HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS  = sUI_SubQuestions
-        				.waitForPageLoad()
-                        .clickOnAnswerForSubQuestion(sUI_SubQuestions.titleExpected1,"No")
-                        .clickOnAnswerForSubQuestion(sUI_SubQuestions.titleExpected2,"No")
-                        .clickOnAnswerForSubQuestion(sUI_SubQuestions.titleExpected3,"No")
-                        .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
-        
-        
-        //----------Q9 -Have you gone through menopause?  -  Page ---------------   
-        haveYouGoneThroughMenopauseOLS
-        		.waitForPageLoad();  
-        Assert.assertEquals(haveYouGoneThroughMenopauseOLS.getTitleText(), haveYouGoneThroughMenopauseOLS.titleExpected, "Title is diff");    
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = haveYouGoneThroughMenopauseOLS //[create NEXT PAGE Object = THIS page object]    
-        .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
-        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());     
-        
-       
-                
-
-      //----------GENERAL HEALTH Questions----------     
-		//----------HasHealthcareProfessionalPageOLS Page--------------------
-        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
-        		.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-
-		//----------HeartRelatedMedicalProc Page--------------------			
-		CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = heartrelatedMedicalProceduresPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new CongestiveHeartFailurePageOLS());
-		
-		//----------CongestiveHeartFailurePageOLS (CHF) Page--------------------		
-		AffectingYourMetabolismPageOLS affectingYourMetabolismPageOLS = congestiveHeartFailurePageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new AffectingYourMetabolismPageOLS());
-		
-		//----------AffectingYourMetabolism Page--------------------
-		FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = affectingYourMetabolismPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new FollowingNeurologicalConditionsPageOLS());		
-		
-		//----------NeurologicalConditions Page--------------------
-		AffectYourLungsPageOLS affectYourLungsPageOLS = followingNeurologicalConditionsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new AffectYourLungsPageOLS());
-
-		//----------AffectYourL-ungs Page--------------------
-		DigestiveConditionsPageOLS digestiveConditionsPageOLS = affectYourLungsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new DigestiveConditionsPageOLS());
-
-		//----------DigestiveConditions Page--------------------
-		BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = digestiveConditionsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new BoneOrJointConditionsPageOLS());
-		
-		
-		//----------BoneOrJointConditions Page--------------------
-		SleepRelatedConditionsPageOLS sleepRelatedConditionsPageOLS = boneOrJointConditionsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new SleepRelatedConditionsPageOLS());
-
-		//----------SleepRelatedConditions Page--------------------
-		SkinConditionsPageOLS skinConditionsPageOLS = sleepRelatedConditionsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new SkinConditionsPageOLS());
-		
-		//----------SkinConditions Page--------------------
-		ViralConditionsPageOLS viralConditionsPageOLS = skinConditionsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new ViralConditionsPageOLS());
-		
-		//----------ViralConditions Page--------------------
-		MentalHealthPageOLS mentalHealthPageOLS = viralConditionsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new MentalHealthPageOLS());
-		
-		//----------MentalHealthConditions Page--------------------
-		WomensHealthPageOLS womensHealthPageOLS = mentalHealthPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new WomensHealthPageOLS());
-		
-		//----------WomenHealthConditions Page--------------------
-		OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = womensHealthPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new OtherThanSkinCancerPageOLS());
-		
-		//----------Cancer Page--------------------
-		SmokedCigarettesPageOLS smokedCigarettesPageOLS = otherThanSkinCancerPageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new SmokedCigarettesPageOLS());
-		
-		//----------HaveYouSmokedCigarettes Page--------------------
-		HistoryOfDrugPageOLS historyOfDrugPageOLS = smokedCigarettesPageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No, I never smoked")
-				.clickNextButton(new HistoryOfDrugPageOLS());
-
-
-		//----------HistoryOfDrugPageOLS Page--------------------
-		ProvideHeightWeight provideHeightWeight = historyOfDrugPageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new ProvideHeightWeight());
-
-		//----------ProvideHeight-Weight Page--------------------
-		ChildrenUnderPageOLS childrenUnderPageOLS = provideHeightWeight
-				.waitForPageLoad()
-				.setFT("5")
-				.setIN("5")
-				.setWeight("155")
-				.clickNextButton(new ChildrenUnderPageOLS());
-		
-		//----------ChildrenUnderTheAge Page--------------------
-		TheStudySitePageOLS theStudySitePageOLS = childrenUnderPageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-                .clickNextButton(new TheStudySitePageOLS());
-                
-		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
-        //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site??
-				String pidAfterScreening = theStudySitePageOLS.waitForPageLoad()
-                .clickOnAnswer("Public transportation")
-                .clickNextButton(new WhatMedicalCoveragePageOLS())
-                
-		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
+        boneOrJointConditionsPageOLS
+                .waitForPageLoad();
+//        Assert.assertEquals(boneOrJointConditionsPageOLS.getTitleText(), boneOrJointConditionsPageOLS.titleExpected, "Title is diff");
+        UnqualifiedCloseOLS unqualifiedCloseOLS = boneOrJointConditionsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("No, I have no coverage")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                
-       //----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new UnqualifiedCloseOLS());
+        unqualifiedCloseOLS
+                .waitForPageLoad();
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
+        debugPageOLS.checkProtocolsEqualsForQNumber("QS3", protocol1, protocol2, protocol3);
+        debugPageOLS.clickOnQNumber("QS3");//because after clicking back is same page loading
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())	
-				
-		//----------PII (IdentificationPageOLS) Page--------------------
-		.waitForPageLoad()
-        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
-        .clickNextButton(new SiteSelectionPageOLS())
+                .clickOnAnswers("Any type of arthritis")
+                .clickNextButton(new WhatKindOfArthritisPageOLS());
+
+        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whatKindOfArthritisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
+                .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
+
+        TakingAcetaminophenTylenolPageOLS takingAcetaminophenTylenolPageOLS = whereDoYouHaveArthritisPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("What kind of arthritis do you have?Agent Note: Select all that applyWhat kind of arthritis do you ha", protocol1)
+                .getPage(whereDoYouHaveArthritisPageOLS)
+                .clickOnAnswers("Left Knee", "Right Knee")
+                .clickNextButton(new TakingAcetaminophenTylenolPageOLS());
+
+        IdentificationPageOLS identificationPageOLS = takingAcetaminophenTylenolPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Where do you have arthritis?Agent Note: Select all that applyWhere do you have arthritis?Please sele", protocol2)
+                .getPage(takingAcetaminophenTylenolPageOLS)
+                .clickOnAnswer("Yes")
+                .clickNextButton(new IdentificationPageOLS());
+
+        identificationPageOLS
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName);
+        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+        		siteSelectionPageOLS.getPID();
+        		siteSelectionPageOLS.clickOnFacilityName(siteName)
+                .clickNextButton(new BasedOnYourAnswersPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ReachTheSchedulingCenterPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Ok, I will pass your information on to the scheduling center and they will call you back. Thank you again for contacting Acurian's Research Information Center. Goodbye.")
+                .clickNextButton(new TransferPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Successful transfer made to site")
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad();
         
-		//----------SiteSelection Page--------------------
-        .waitForPageLoad(studyName)
-        .getPID()
-        .clickOnFacilityName(siteName)
-        .clickNextButton(new GladLocationIsConvenient())
         
-        //----------GladLocationIsConvenient Page--------------------
-        .waitForPageLoad()
-        .clickNextButton(new ThankYouCloseSimplePageOLS())
-        
-		//----------ThankYouCloseSimplePageOLS Page--------------------
-        .waitForPageLoad()
-        .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad()
-        .pidFromDbToLog(env)
-		.getPid();
+        //TheStudySitePageOLS theStudySitePageOLS = new TheStudySitePageOLS();
+				//String pidAfterScreening = theStudySitePageOLS.waitForPageLoad()
+        				
 				
 		    	
 //=====================================================================================
-		//------Validate FUL emails in Gmail -----
-		FollowupLetter followupLetter = new FollowupLetter();
-		followupLetter.Gmail_FUL_Validate(pidAfterScreening);
-//=====================================================================================
+		//--------------Validate FL letter for PARENT_PID (AMS1)------------- -----
+		//FollowupLetter followupLetter = new FollowupLetter();
+		//followupLetter.Gmail_FUL_Validate(pidAfterScreening);
 		
+        		//--------------Validate FL letter for CHILD_PID-(GMEGA)------------
+        		String pidAfterScreening = siteSelectionPageOLS.getPidNumber();
+        		FollowupLetter followupLetter = new FollowupLetter();
+        		String childPID = new DBConnection().dbReadChilPID(env, pidAfterScreening);
+                
+        		followupLetter.Gmail_FUL_Validate(childPID);
+//=====================================================================================
+        		
+        		
+        		
 		
 		//------Validate FUL emails in Gmail -----
 		/*SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();

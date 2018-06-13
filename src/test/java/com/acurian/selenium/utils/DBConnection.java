@@ -90,6 +90,31 @@ public class DBConnection {
         }
         return null;
     }
+    
+    
+    public String dbReadChilPID(String environment, String pidNumber) {
+        try {
+            stmt = getDbCon(environment).createStatement();
+            String sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'";
+            rset = stmt.executeQuery(sql);
+
+            String childPID = null;
+            while (rset.next()) {
+                childPID = rset.getString("patient_id");
+            }
+            System.out.println("--::Child PID read::--");
+            System.out.println("Child PID =" + childPID);
+            System.out.println("DB read completed");
+            return childPID;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResources();
+        }
+        return null;
+    }
+    
 
     public AnomalyResults dbReadAnomaly(String environment, String pidNumber) {
         try {

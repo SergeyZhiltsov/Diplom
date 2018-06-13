@@ -14,7 +14,7 @@ import java.util.List;
 
 public class HasHealthcareProfEverDiagnosedFollowingGynoUF_CC extends MainPageCC{
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following gynecological or women's health conditions?\n"+
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following women's health conditions?\n"+
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")

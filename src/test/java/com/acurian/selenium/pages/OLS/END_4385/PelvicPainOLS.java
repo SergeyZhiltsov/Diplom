@@ -8,7 +8,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class PelvicPainOLS extends MainPageOLS {
-	public final String titleExpected = "Do you experience pelvic pain during your menstrual period?";
+	public final String titleExpected = "Do you ever experience pelvic pain during your menstrual period?";
 			
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

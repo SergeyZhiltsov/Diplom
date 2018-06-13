@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class DescribesThePelvicPainCC extends MainPageCC{
 
-    public final String titleExpected = "Which of the following best describes the pelvic pain that you experience during your period, and how it affects your life?";
+    public final String titleExpected = "Which of the following most accurately describes your worst pelvic pain during your period, and how it affects your life?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
