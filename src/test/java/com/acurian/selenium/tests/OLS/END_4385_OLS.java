@@ -3,10 +3,12 @@ package com.acurian.selenium.tests.OLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.END_4385.ApproxHowManyDaysInYourMenstrualCycle_OLS;
 import com.acurian.selenium.pages.OLS.END_4385.DescribesNonMenstrualPelvicPainOLS;
 import com.acurian.selenium.pages.OLS.END_4385.DescribesPelvicPainOLS;
 import com.acurian.selenium.pages.OLS.END_4385.DiagnoseYourEndometriosisOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
+import com.acurian.selenium.pages.OLS.END_4385.HowManyTimesDidYouGetYourPeriodInThreeMons_OLS;
 import com.acurian.selenium.pages.OLS.END_4385.LaparoscopyAndLaparotomyOLS;
 import com.acurian.selenium.pages.OLS.END_4385.MostRecentSurgeryOLS;
 import com.acurian.selenium.pages.OLS.END_4385.PelvicPainOLS;
@@ -62,7 +64,6 @@ public class END_4385_OLS extends BaseTest {
 	@Test
 	public void eND_4385_OLS() {
 		String phoneNumberRA = "AUTAMS1END";
-	//	String env = "STG";
 		String protocol1 = "MVT_601_3101";
         String protocol2 = "MVT_601_3102";
         String studyName = "an endometriosis";
@@ -98,7 +99,7 @@ public class END_4385_OLS extends BaseTest {
 			haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 	                .waitForPageLoad();
 	        DebugPageOLS debugPageCC = new DebugPageOLS();
-	        debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following gynecological or women's ...", protocol1,protocol2);
+	        debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1,protocol2);
 	        debugPageCC.back();
 		
 		DiagnoseYourEndometriosisOLS diagnoseYourEndometriosisOLS = followingGynecologicalConditionOLS
@@ -147,42 +148,56 @@ public class END_4385_OLS extends BaseTest {
                 .clickNextButton(new PlzDescribeYourMenstrualCyclesOLS());
        
       //-------------------------Q6- Please describe your menstrual cycles:-----------------------------
-        PelvicPainOLS pelvicPainOLS = plzDescribeYourMenstrualCyclesOLS
+        ApproxHowManyDaysInYourMenstrualCycle_OLS approxHowManyDaysInYourMenstrualCycle_OLS = plzDescribeYourMenstrualCyclesOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Never regular")
+        		.clickNextButton(new ApproxHowManyDaysInYourMenstrualCycle_OLS());
+        
+        
+        //-------------------------new  Q7- Approximately how many days are in your menstrual cycle?-----------------------------
+        HowManyTimesDidYouGetYourPeriodInThreeMons_OLS howManyTimesDidYouGetYourPeriodInThreeMons_OLS = approxHowManyDaysInYourMenstrualCycle_OLS
+        		.waitForPageLoad()
+        		.setDays("15")
+        		.clickNextButton(new HowManyTimesDidYouGetYourPeriodInThreeMons_OLS());
+        
+        //-------------------------new Q8- How many times did you get your period in the past three months?-----------------------------
+        PelvicPainOLS pelvicPainOLS = howManyTimesDidYouGetYourPeriodInThreeMons_OLS
+        		.waitForPageLoad()
+        		.clickOnAnswer("Did not get period at all in the past 3 months")
         		.clickNextButton(new PelvicPainOLS());
         
-        //-------------Q7 - Do you experience pelvic pain during your menstrual period?-----------------
+        
+        //-------------Q9 - Do you experience pelvic pain during your menstrual period?-----------------
         PelvicPainOtherTimesOLS pelvicPainOtherTimesOLS = pelvicPainOLS
         		.waitForPageLoad()
         		.clickOnAnswer("No")
         		.clickNextButton(new  PelvicPainOtherTimesOLS());
-        debugPageCC.checkProtocolsEquals("Do you experience pelvic pain during your menstrual period?", protocol1,protocol2);
+        debugPageCC.checkProtocolsEquals("Do you ever experience pelvic pain during your menstrual period?", protocol1,protocol2);
         debugPageCC.back();
         DescribesPelvicPainOLS describesPelvicPainOLS = pelvicPainOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
         		.clickNextButton(new  DescribesPelvicPainOLS());
         
-        //---------------------"Q8 - Which of the following best describes the pelvic pain that you experience during your period, and how it affects your life?"---------
+        //---------------------"Q10 - Which of the following best describes the pelvic pain that you experience during your period, and how it affects your life?"---------
         describesPelvicPainOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Mild - I have some pain, but I am still able to complete my daily activities")
         		.clickNextButton(new PelvicPainOtherTimesOLS());
 
-        //-----------------------Q9 - Do you experience pelvic pain at other times, when you do NOT have your period?------------
+        //-----------------------Q11 - Do you experience pelvic pain at other times, when you do NOT have your period?------------
         DescribesNonMenstrualPelvicPainOLS describesNonMenstrualPelvicPainOLS = pelvicPainOtherTimesOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
         		.clickNextButton(new DescribesNonMenstrualPelvicPainOLS());
         
-        //---------------------------Q10 - Which of the following best describes your pelvic pain at times when you do NOT have your period, and how it affects your life?--------
+        //---------------------------Q12 - Which of the following best describes your pelvic pain at times when you do NOT have your period, and how it affects your life?--------
         HormonalBirthControlOLS hormonalBirthControlOLS = describesNonMenstrualPelvicPainOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Mild - I have some pain, but I am still able to complete my daily activities")
         		.clickNextButton(new HormonalBirthControlOLS());
 
-        //-------------------------Q11 - Are you currently taking a hormonal form of birth control?----------
+        //-------------------------Q13 - Are you currently taking a hormonal form of birth control?----------
         //SurgicalProceduresOLS surgicalProceduresOLS = hormonalBirthControlOLS
         DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = hormonalBirthControlOLS
         		.waitForPageLoad()

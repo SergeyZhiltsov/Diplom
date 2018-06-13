@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class PelvicPainOtherTimesCC extends MainPageCC{
 
-    public final String titleExpected = "Do you experience pelvic pain at other times, when you do NOT have your period?";
+    public final String titleExpected = "Do you ever experience pelvic pain at other times, when you do NOT have your period?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

@@ -64,7 +64,7 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 
 public class Endo_4356E_OLS extends BaseTest {
 	
-	@Test
+    @Test(enabled = false)
 	public void endo_4356E_OLS() {
 		String phoneNumberRA = "AUTAMS1END";
 //		String env = "STG";

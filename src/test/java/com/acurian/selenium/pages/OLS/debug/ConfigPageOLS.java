@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 
 public class ConfigPageOLS extends MainPageOLS{
 	
-    @Parameter("StandAlone screeener 4295 PID OLS")
-    private String pidNumber;
+    @Parameter("StandAlone screeener 4733 PID OLS")
+    private String pid;
     
     @FindBy(xpath = "//debug-popup//span[@id='debug_pid']")
     WebElement pidNumberPath;
@@ -68,10 +68,10 @@ public class ConfigPageOLS extends MainPageOLS{
     
 
     public ConfigPageOLS getPID(){
-        pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID of studySwitch standalone ="+pidNumber);
-        PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("Standalone Switch 4295 PID ="+pidNumber);
+    	pid = getText(pidNumberPath);
+        logTextToAllure("PID of studySwitch standalone ="+pid);
+        PassPID.getInstance().setPidNumber(pid);
+        System.out.println("Standalone Switch 4733 PID = "+pid);
         return this;
     }
 }

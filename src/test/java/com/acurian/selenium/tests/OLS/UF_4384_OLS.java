@@ -80,7 +80,7 @@ public class UF_4384_OLS extends BaseTest{
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageCC = new DebugPageOLS();
-        debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following gynecological or women's ...", protocol1,protocol2);
+        debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1,protocol2);
         debugPageCC.back();
         HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = followingGynecologicalConditionOLS
                 .waitForPageLoad()
@@ -213,7 +213,7 @@ public class UF_4384_OLS extends BaseTest{
                 .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
 
         
-		//---------------Q9 Has a healthcare professional ever diagnosed you with any of these other gynecological or women's health conditions? -------------------	         
+		//---------------Q9 Has a healthcare professional ever diagnosed you with any of these other women's health conditions? -------------------	         
         diagnosedWithGynecologicalConditionOLS
                 .waitForPageLoad();
         Assert.assertEquals(diagnosedWithGynecologicalConditionOLS.getTitleText(),diagnosedWithGynecologicalConditionOLS.titleExpected, "Title is diff");

@@ -11,7 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class FollowingGynecologicalConditionOLS extends MainPageOLS{
 
     
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following gynecological or women's health conditions?\n" +
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following women's health conditions?\n" +
             "Please select all that apply.";
     
     		

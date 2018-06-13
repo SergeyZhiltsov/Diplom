@@ -78,7 +78,7 @@ import org.testng.annotations.Test;
 
 public class RA_4356F_OLS extends BaseTest {
 	
-	@Test
+    @Test(enabled = false)
 	public void rA_4356F_OLS() {
 		String phoneNumberRA = "AUTAMS1RA1";
 	//	String env = "STG";

@@ -5,9 +5,11 @@ import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.END_4385.ApproxHowManyDaysInYourMenstrualCycle_CC;
 import com.acurian.selenium.pages.CC.END_4385.DescribesThePelvicPainCC;
 import com.acurian.selenium.pages.CC.END_4385.DiagnoseYourEndometriosisCC;
 import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
+import com.acurian.selenium.pages.CC.END_4385.HowManyTimesDidYouGetYourPeriodInThreeMons_CC;
 import com.acurian.selenium.pages.CC.END_4385.LaparoscopyAndLaparotomyCC;
 import com.acurian.selenium.pages.CC.END_4385.MostRecentSurgeryCC;
 import com.acurian.selenium.pages.CC.END_4385.NonMenstrualPelvicPainCC;
@@ -61,6 +63,9 @@ import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.OLS.END_4385.ApproxHowManyDaysInYourMenstrualCycle_OLS;
+import com.acurian.selenium.pages.OLS.END_4385.HowManyTimesDidYouGetYourPeriodInThreeMons_OLS;
+import com.acurian.selenium.pages.OLS.END_4385.PelvicPainOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 
 public class End_4385_CC extends BaseTest{
@@ -74,7 +79,6 @@ public class End_4385_CC extends BaseTest{
         String protocol2 = "MVT_601_3102";
         String studyName = "an endometriosis";
         String studyName1 = "endometriosis";
-   //     String env = "STG";
         String siteName = "AUT_END_4385";
         String zipCode  = "19901";
         String site_Indication = "Endometriosis";
@@ -136,14 +140,12 @@ public class End_4385_CC extends BaseTest{
     		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new NonQRtransitionPageCC());
-       
        DebugPageCC debugPageCC = new DebugPageCC();       
        debugPageCC.checkProtocolsEquals(hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.titleExpected, protocol1, protocol2);
-       debugPageCC.back();       
-       
+       nonQRtransitionPageCC.back();
        DiagnoseYourEndometriosisCC diagnoseYourEndometriosisCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Endometriosis")    		   
+    		   .clickOnAnswers("Endometriosis (Agent Note: end-oh-me-tree-OH-sis)")    		   
     		   .clickNextButton(new DiagnoseYourEndometriosisCC());
        
        HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = diagnoseYourEndometriosisCC
@@ -154,20 +156,8 @@ public class End_4385_CC extends BaseTest{
        debugPageCC.back();
        diagnoseYourEndometriosisCC.waitForPageLoad()
     		   .clickOnAnswer("2 - 3 months ago")
-    		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());     
-/*           
-       laparoscopyAndLaparotomyCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("4 - 6 years ago")
     		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
-       
-       HaveYouHadHysterectomyUF_CC haveYouHadHysterectomyUF_CC = haveYouGoneThroughMenopauseUF_CC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
-    		   .clickNextButton(new HaveYouHadHysterectomyUF_CC());       
-       			debugPageCC.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2);
-       			debugPageCC.back();*/
-              
+
        haveYouGoneThroughMenopauseUF_CC
     		   .waitForPageLoad();
     		   HaveYouHadHysterectomyUF_CC haveYouHadHysterectomyUF_CC = haveYouGoneThroughMenopauseUF_CC
@@ -189,11 +179,29 @@ public class End_4385_CC extends BaseTest{
     		   .clickOnAnswer("No")
     		   .clickNextButton(new PlzDescribeYourMenstrualCyclesCC());
        
-       PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = plzDescribeYourMenstrualCyclesCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Never regular")
-    		   .clickNextButton(new PelvicPainDuringMenstrualCC());       
        
+       //-------------------------Q6- Please describe your menstrual cycles:-----------------------------
+       ApproxHowManyDaysInYourMenstrualCycle_CC approxHowManyDaysInYourMenstrualCycle_CC = plzDescribeYourMenstrualCyclesCC
+       		.waitForPageLoad()
+       		.clickOnAnswer("Never regular")
+       		.clickNextButton(new ApproxHowManyDaysInYourMenstrualCycle_CC());
+       
+       //*******************************
+       //-------------------------new  Q7- Approximately how many days are in your menstrual cycle?-----------------------------
+       HowManyTimesDidYouGetYourPeriodInThreeMons_CC howManyTimesDidYouGetYourPeriodInThreeMons_CC = approxHowManyDaysInYourMenstrualCycle_CC
+       		.waitForPageLoad()
+       		.setDays("15")
+       		.clickNextButton(new HowManyTimesDidYouGetYourPeriodInThreeMons_CC());
+       
+       //-------------------------new Q8- How many times did you get your period in the past three months?-----------------------------
+       PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = howManyTimesDidYouGetYourPeriodInThreeMons_CC
+       		.waitForPageLoad()
+       		.clickOnAnswer("Did not get period at all in the past 3 months")
+       		.clickNextButton(new PelvicPainDuringMenstrualCC());
+       //*******************************
+       
+       
+       //-------------Q9 - Do you experience pelvic pain during your menstrual period?-----------------
        DescribesThePelvicPainCC describesThePelvicPainCC = pelvicPainDuringMenstrualCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
@@ -231,17 +239,18 @@ public class End_4385_CC extends BaseTest{
        
        AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Endometrioma, also known as endometrial or endometrioid cyst or \"chocolate cyst\"")
-    		   .clickNextButton(new AreYouCurrentlyPregnantCC());
+    		   .clickOnAnswers("Endometrioma, (Agent Note: end-oh-me-tree-OH-ma) also known as endometrial (Agent Note: end-oh-ME-tree-ul) or endometrioid (Agent Note: endo-oh-ME-tree-oid) cyst or \"chocolate cyst\"")
+    		   .clickNextButton(new AreYouCurrentlyPregnantCC());       
        
        TransitionStatementCC transitionStatementCC = areYouCurrentlyPregnantCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("No")
     		   .clickNextButton(new TransitionStatementCC());
-       
+    		           
        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-    	        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-    	     
+    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+       
+
        
        //-------------------New GENERAL HEALTH---------------------------
        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
