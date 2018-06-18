@@ -32,7 +32,7 @@ public class DateOfBirthPageCC extends MainPageCC{
     		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
     
-    public final String titleExpectedDiabetes_4356 = "If you qualify and participate in a diabetes study, you may receive:\n" +
+    public final String titleExpectedDiabetes_4356 = "If you qualify and participate in a study for diabetics, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
             "And depending on the study, compensation of up to $600 for time and travel, for qualified participants who complete study related visits\n" +
@@ -117,7 +117,7 @@ public class DateOfBirthPageCC extends MainPageCC{
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
-    public final String titleDPNExpected = "If you qualify and participate in a diabetic nerve pain study, you may receive:\n" +
+    public final String titleDPNExpected = "If you qualify and participate in a study for diabetics, you may receive:\n" +
     		"Study medication or placebo, at no-cost to you\n" +
     		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
     		"And depending on the study, compensation of up to $300 for time and travel, for qualified participants who complete study related visits\n" +
@@ -131,7 +131,7 @@ public class DateOfBirthPageCC extends MainPageCC{
     		"\n" +
     		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
-    public final String titleDIA4241Expected = "If you qualify and participate in a diabetes study, you may receive:\n" +
+    public final String titleDIA4241Expected = "If you qualify and participate in a study for diabetics, you may receive:\n" +
     		"Study medication or placebo, at no-cost to you\n" +
     		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
     		"And depending on the study, compensation of up to $600 for time and travel, for qualified participants who complete study related visits\n" +
@@ -153,14 +153,20 @@ public class DateOfBirthPageCC extends MainPageCC{
     		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
     
-    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion']//div[@class='show-in-cc']")
     WebElement questionText;
+    
+    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
+    WebElement questionTextAKC;
     
     @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='sub_question_text']/div[@class='show-in-cc']")
     WebElement questionTextIBD;
 
     @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
     WebElement titleText;
+    
+    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    WebElement titleText1;
     
     @FindBy(xpath = "//div[@class='subquestion'][2]//span[@class='sub_question_text']/div[@class='show-in-cc']")
     WebElement titleTextIBD;
@@ -184,15 +190,31 @@ public class DateOfBirthPageCC extends MainPageCC{
         waitForPageLoadMain(questionText, titleExpected);
         return this;
     }
+    
+    @Step
+    public DateOfBirthPageCC waitForPageLoadAKC() {
+        waitForPageLoadMain(questionTextAKC, titleExpected);
+        return this;
+    }
 
     @Step
     public String getQuestionText() {
         return getText(questionText);
     }
+    
+    @Step
+    public String getQuestionTextAKC() {
+        return getText(questionTextAKC);
+    }
 
     @Step
     public String getTitleText() {
         return getText(titleText);
+    }
+    
+    @Step
+    public String getTitleText1() {
+        return getText(titleText1);
     }
     
     @Step

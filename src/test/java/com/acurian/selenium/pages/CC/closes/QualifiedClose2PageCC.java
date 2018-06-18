@@ -13,9 +13,10 @@ public class QualifiedClose2PageCC extends MainPageCC{
     public final String titleExpected = "We're glad the location is convenient for you.\n" +
             "We will forward your contact information to the doctor's office that you selected so they may contact you.";
     
-    public final String titleExpectedIBD = "We’re glad the location is convenient for you.\n" +
-    		"\n" +
-            "We will forward your contact information to the doctor’s office that you selected so they may contact you about %s study.";
+    public final String titleExpectedIBD ="We’re glad the location is convenient for you.\n" +
+    	    "\n" +
+    	    "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Ulcerative Colitis study.";
+    
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -31,7 +32,7 @@ public class QualifiedClose2PageCC extends MainPageCC{
     }
     
     @Step
-    public QualifiedClose2PageCC waitForPageLoadIBD(String StudyIndication) {
+    public QualifiedClose2PageCC waitForPageLoadIBD() {
     	System.out.println(getTitleText());
         waitForPageLoadMain(titleText, titleExpectedIBD);
         return this;

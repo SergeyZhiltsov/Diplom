@@ -57,7 +57,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AKC_4691_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
     public void akc4691Test(final String username, final String password) {
@@ -99,8 +99,8 @@ public class AKC_4691_CC extends BaseTest{
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
+                .waitForPageLoadAKC();
+        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextAKC(),"May I have your date of birth?","Question text is diff");
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedAkc_4691, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
@@ -706,7 +706,7 @@ public class AKC_4691_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a diabetes study")
+                .waitForPageLoad("a study for diabetics")
                 .getPID()
         		//----------SITE Selection Page--------------------
                 .clickOnAnswer(siteName)

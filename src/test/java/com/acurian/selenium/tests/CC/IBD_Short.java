@@ -61,7 +61,7 @@ public class IBD_Short extends BaseTest{
         String protocol2 = "SHP647_301";        
         List<String> protocols = Arrays.asList(protocol1,protocol2);
         String ibdStudy = "Ulcerative Colitis";
-        String siteName = "AUT_IBD_3889_Site";
+        String siteName = "AUT_IBD_3839_Site";
         String studyIndication = "Ulcerative Colitis";
   //      String env = "STG";
         String zipCode = "19901";
@@ -235,13 +235,9 @@ public class IBD_Short extends BaseTest{
         		.waitForPageLoadIBD("a Colitis")
         		.getPID()
         		.clickOnAnswer(siteName)
-        		.clickNextButton(new HSCrohns2PageCC())
-              //  .waitForPageLoadIBD("Ulcerative Colitis")
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()      		
-        		.clickNextButton(new ThankYouCloseSimplePageCC())
+        		.clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoadIBD()
+                .clickNextButton(new ThankYouCloseSimplePageCC())  
         		.waitForPageLoad()
         		.clickNextButton(selectActionPageCC)
         		.waitForPageLoad()
