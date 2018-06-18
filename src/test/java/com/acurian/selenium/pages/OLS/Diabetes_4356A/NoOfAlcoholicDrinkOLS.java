@@ -8,9 +8,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class NoOfAlcoholicDrinkOLS extends MainPageOLS {
 	
-	public final String titleExpected = "Alcohol consumption can affect your liver health over time.";
+	public final String titleExpected = "Alcohol consumption can affect your liver health over time.\n" +
+			"About how many alcoholic drinks do you have in a typical week?\n" +
+			"One standard drink is equivalent to a can of beer, a glass of wine, or a shot of hard liquor.\n" +
+			"\n" +
+			"Number of alcoholic drinks in a week:";
 
-    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]/div[1]")
+    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
     
     @FindBy(xpath = "//input[@type='tel']")

@@ -1,15 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_OLS;
@@ -37,7 +28,7 @@ import java.util.List;
 public class Diabetes_4356A extends BaseTest{
 
 	@Test
-    @TestCaseId("00003")
+    @TestCaseId("00053")
     @Description("Diabetes_4356A_Synexus")
     public void diabetes_4356A() {
         String phoneNumberLBP = "AUTAMS1DIA";
@@ -48,7 +39,7 @@ public class Diabetes_4356A extends BaseTest{
         String protocol4 = "EFC13794";
         String protocol5 = "EFC14835";
         String protocol6 = "ITCA 650_CLP_203";
-        String protocol7 = "K_877_302";
+        //String protocol7 = "K_877_302";
         String protocol8 = "EFC14833";
         String protocol9 = "EFC14835";
         String protocol10 = "EFC15166";
@@ -56,7 +47,7 @@ public class Diabetes_4356A extends BaseTest{
         String protocol12 = "EFC14837";
         String protocol13 = "EFC14838";
         String DIA_4241 = "EFC14822";
-        String studyName = "a diabetes";
+        String studyName = "a study for diabetics";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
     //    String env = "STG";
@@ -105,7 +96,7 @@ public class Diabetes_4356A extends BaseTest{
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();//deleted protocol5 spec 43
         //debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7,protocol8,protocol9,protocol10,protocol11);
-        debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, DIA_4241);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4602", DIA_4241);
         debugPageOLS.back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -182,16 +173,17 @@ public class Diabetes_4356A extends BaseTest{
         treatingYourDiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(treatingYourDiabetesPageOLS.getTitleText(),treatingYourDiabetesPageOLS.titleExpected, "Title is diff");
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
+        //FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = treatingYourDiabetesPageOLS
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
-        followingToLoseWeightPageOLS
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .back();
         treatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(new NoOfAlcoholicDrinkOLS())
                 .waitForPageLoad()
                 .back();
         LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
@@ -205,8 +197,8 @@ public class Diabetes_4356A extends BaseTest{
         Assert.assertEquals(lastTimeYouTookPageOLS.getTitleText(),lastTimeYouTookPageOLS.titleExpected, "Title is diff");
                 //MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
         	lastTimeYouTookPageOLS.clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
-                followingToLoseWeightPageOLS.waitForPageLoad()
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        		noOfAlcoholicDrinkOLS.waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4606",DIA_4241)
                 .back();
@@ -292,7 +284,7 @@ public class Diabetes_4356A extends BaseTest{
         Assert.assertEquals(combinationWithEachOtherPageOLS.getTitleText(),combinationWithEachOtherPageOLS.titleExpected, "Title is diff");
         combinationWithEachOtherPageOLS
                 .clickOnAnswer("1 month or less")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic",DIA_4241)
@@ -300,7 +292,7 @@ public class Diabetes_4356A extends BaseTest{
         combinationWithEachOtherPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic",DIA_4241)
@@ -308,7 +300,24 @@ public class Diabetes_4356A extends BaseTest{
         combinationWithEachOtherPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 months")
-                .clickNextButton(followingToLoseWeightPageOLS);
+                .clickNextButton(noOfAlcoholicDrinkOLS);
+        
+       //---------------------------------------noOfAlcoholicDrinkOLS---------------
+        noOfAlcoholicDrinkOLS
+        		.waitForPageLoad();
+        Assert.assertEquals(noOfAlcoholicDrinkOLS.getTitleText(),noOfAlcoholicDrinkOLS.titleExpected, "Title is diff");
+        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+        		.setDrinks("4")
+        		.clickNextButton(new LiverRelatedConditionOLS());
+        		
+        //---------------------------------------liverRelatedConditionOLS---------------
+        liverRelatedConditionOLS
+			.waitForPageLoad();
+        Assert.assertEquals(liverRelatedConditionOLS.getTitleText(),liverRelatedConditionOLS.titleExpected, "Title is diff");
+        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+        		.clickOnAnswers("None of the above")
+        		.clickNextButton(new FollowingToLoseWeightPageOLS());        		
+        		
 
         //---------------------------------------followingToLoseWeightPageOLS------------------------------------------------------ 
         followingToLoseWeightPageOLS
@@ -407,7 +416,7 @@ public class Diabetes_4356A extends BaseTest{
         diabeticNephropathyPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a ...", protocol7)
+                //.checkProtocolsEquals("One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a ...", protocol7)
                 .back();
         StatinMedicationPreviousQuestionPageOLS statinMedicationPreviousQuestionPageOLS = statinMedicationsOnPageOLS
                 .waitForPageLoad()
@@ -423,7 +432,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(diabeticNephropathyPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
+                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
                 .back();
         statinMedicationPreviousQuestionPageOLS
                 .waitForPageLoad()
@@ -431,7 +440,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(diabeticNephropathyPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
+                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
                 .back();
         statinMedicationPreviousQuestionPageOLS
                 .waitForPageLoad()
@@ -439,7 +448,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(diabeticNephropathyPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
+                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
                 .back();
         statinMedicationPreviousQuestionPageOLS
                 .waitForPageLoad()
@@ -447,7 +456,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(diabeticNephropathyPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
+                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
                 .back();
         statinMedicationPreviousQuestionPageOLS
                 .waitForPageLoad()
@@ -464,7 +473,7 @@ public class Diabetes_4356A extends BaseTest{
         forYourKidneysPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(diabeticNephropathyPageOLS.titleExpected, protocol1, protocol12, protocol10)
+                .checkProtocolsEquals(diabeticNephropathyPageOLS.titleExpected, protocol12, protocol10)
                 .back();
         diabeticNephropathyPageOLS
                 .waitForPageLoad()
@@ -480,7 +489,7 @@ public class Diabetes_4356A extends BaseTest{
         		.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Do you take medication for high blood pressure or for your kidneys? Some of these medications are ca...", protocol1)
+                //.checkProtocolsEquals("Do you take medication for high blood pressure or for your kidneys? Some of these medications are ca...", protocol1)
                 .back();
         forYourKidneysPageOLS
                 .clickOnAnswer("Yes")
@@ -511,7 +520,7 @@ public class Diabetes_4356A extends BaseTest{
         haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4232",protocol6, protocol7, protocol1, protocol4, protocol3, protocol2, protocol8, protocol12, protocol11, protocol10, protocol13)
+                .checkProtocolsEqualsForQNumber("QS4232",protocol12, protocol10)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -577,7 +586,7 @@ public class Diabetes_4356A extends BaseTest{
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
         .clickNextButton(new SiteSelectionPageOLS())    
 		//----------SiteSelection Page--------------------
-        .waitForPageLoad(studyName)
+        .waitForPageLoadAKC()
         .getPID()
         .clickOnFacilityName(siteName)
         .clickNextButton(new SynexusQualifiedClose4356PageOLS())
