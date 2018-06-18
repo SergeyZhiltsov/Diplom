@@ -88,7 +88,7 @@ public class SUI_3923_CC extends BaseTest{
         dateOfBirthPageCC   	
         		.waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedSUI_3923, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleExpectedSUI_3923, "Title is diff");
        
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Aug")

@@ -43,11 +43,11 @@ public class DIA_4241_CC extends BaseTest{
         String phoneNumber = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
-        String studyName = "a diabetes study";
+        String studyName = "a study for diabetics";
         String siteName = "AUT_DIA_4241";
         String debugSiteName = "";
     //    String env = "STG";
-        String zipCode = "19044";
+        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -81,7 +81,7 @@ public class DIA_4241_CC extends BaseTest{
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleDIA4241Expected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleDIA4241Expected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -112,7 +112,7 @@ public class DIA_4241_CC extends BaseTest{
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC
-                .checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageCC.titleExpected, protocol1)
+        		.checkProtocolsContainsForQNumber("Q0005996-QS4602-STUDYQUES", protocol1)
                 .back();
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
@@ -129,7 +129,7 @@ public class DIA_4241_CC extends BaseTest{
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -137,7 +137,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -145,7 +145,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1)
                 .back();
         TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC //rel 47
                 .waitForPageLoad()
@@ -169,16 +169,16 @@ public class DIA_4241_CC extends BaseTest{
         treatingYourDiabetesPageCC
                 .waitForPageLoad();
         Assert.assertEquals(treatingYourDiabetesPageCC.getTitleText(),treatingYourDiabetesPageCC.titleExpected, "Title is diff");
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = treatingYourDiabetesPageCC
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = treatingYourDiabetesPageCC
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new FollowingToLoseWeightPageCC());
-        followingToLoseWeightPageCC
+                .clickNextButton(new NoOfAlcoholicDrinksCC());
+        noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .back();
         treatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(followingToLoseWeightPageCC)
+                .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad() //rel 46.2
 //                .getPage(debugPageCC)// copy text from previous question until "..."(white space should be include)
 //                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol1)
@@ -193,10 +193,10 @@ public class DIA_4241_CC extends BaseTest{
         Assert.assertEquals(lastTimeYouTookPageCC.getTitleText(),lastTimeYouTookPageCC.titleExpected, "Title is diff");
         lastTimeYouTookPageCC
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(followingToLoseWeightPageCC)
+                .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(lastTimeYouTookPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0013988-QS4606-STUDYQUES", protocol1)
                 .back();
         MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
                 .waitForPageLoad()
@@ -205,12 +205,18 @@ public class DIA_4241_CC extends BaseTest{
         metforminMedicationsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(lastTimeYouTookPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0013988-QS4606-STUDYQUES", protocol1)
                 .back();
         lastTimeYouTookPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(followingToLoseWeightPageCC);
+                .clickNextButton(noOfAlcoholicDrinksCC)
+                .waitForPageLoad()
+                .enterNoOfDrinks("4")
+                .clickNextButton(new FollowingLiverRelatedConditionCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingToLoseWeightPageCC());
 
       /*  metforminMedicationsPageCC
                 .waitForPageLoad();
@@ -281,7 +287,7 @@ public class DIA_4241_CC extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(followingToLoseWeightPageCC.getTitleText(),followingToLoseWeightPageCC.titleExpected, "Title is diff"); */
         
-        
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = new FollowingToLoseWeightPageCC();
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
                 .clickOnAnswers("Prescription weight loss medication")
                 .clickNextButton(new WeightLossSurgeryPageCC());
@@ -302,7 +308,7 @@ public class DIA_4241_CC extends BaseTest{
         poundsOrMorePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -310,7 +316,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -318,7 +324,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -326,7 +332,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(procedureForWeightLossPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -345,7 +351,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(new DoYouExperienceDPN_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(poundsOrMorePageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0013992-QS4617-STUDYQUES", protocol1)
                 .back();
         ChildrenUnderPageCC childrenUnderPageCC = poundsOrMorePageCC
                 .waitForPageLoad()

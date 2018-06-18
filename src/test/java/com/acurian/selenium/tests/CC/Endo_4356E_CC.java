@@ -5,9 +5,11 @@ import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.END_4385.ApproxHowManyDaysInYourMenstrualCycle_CC;
 import com.acurian.selenium.pages.CC.END_4385.DescribesThePelvicPainCC;
 import com.acurian.selenium.pages.CC.END_4385.DiagnoseYourEndometriosisCC;
 import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
+import com.acurian.selenium.pages.CC.END_4385.HowManyTimesDidYouGetYourPeriodInThreeMons_CC;
 import com.acurian.selenium.pages.CC.END_4385.LaparoscopyAndLaparotomyCC;
 import com.acurian.selenium.pages.CC.END_4385.MostRecentSurgeryCC;
 import com.acurian.selenium.pages.CC.END_4385.NonMenstrualPelvicPainCC;
@@ -81,7 +83,7 @@ public class Endo_4356E_CC extends BaseTest{
         String studyName1 = "arthritis";
     //    String env = "STG";
         String siteName = "AUT_END_4356E_Site";
-        String zipCode  = "19044";
+        String zipCode  = "19901";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -147,7 +149,7 @@ public class Endo_4356E_CC extends BaseTest{
        
        DiagnoseYourEndometriosisCC diagnoseYourEndometriosisCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Endometriosis")    		   
+    		   .clickOnAnswers("Endometriosis (Agent Note: end-oh-me-tree-OH-sis)")    		   
     		   .clickNextButton(new DiagnoseYourEndometriosisCC());
        
        HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = diagnoseYourEndometriosisCC
@@ -179,11 +181,20 @@ public class Endo_4356E_CC extends BaseTest{
     		   .clickOnAnswer("No")
     		   .clickNextButton(new PlzDescribeYourMenstrualCyclesCC());
        
-       PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = plzDescribeYourMenstrualCyclesCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Never regular")
-    		   .clickNextButton(new PelvicPainDuringMenstrualCC());
+       ApproxHowManyDaysInYourMenstrualCycle_CC approxHowManyDaysInYourMenstrualCycle_CC = plzDescribeYourMenstrualCyclesCC
+          		.waitForPageLoad()
+          		.clickOnAnswer("Never regular")
+          		.clickNextButton(new ApproxHowManyDaysInYourMenstrualCycle_CC());
        
+       HowManyTimesDidYouGetYourPeriodInThreeMons_CC howManyTimesDidYouGetYourPeriodInThreeMons_CC = approxHowManyDaysInYourMenstrualCycle_CC
+          		.waitForPageLoad()
+          		.setDays("15")
+          		.clickNextButton(new HowManyTimesDidYouGetYourPeriodInThreeMons_CC());
+       
+       PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = howManyTimesDidYouGetYourPeriodInThreeMons_CC
+          		.waitForPageLoad()
+          		.clickOnAnswer("Did not get period at all in the past 3 months")
+          		.clickNextButton(new PelvicPainDuringMenstrualCC());
        
        DescribesThePelvicPainCC describesThePelvicPainCC = pelvicPainDuringMenstrualCC
     		   .waitForPageLoad()
@@ -208,7 +219,7 @@ public class Endo_4356E_CC extends BaseTest{
        //SurgicalProceduresCC surgicalProceduresCC = hormonalBirthControlCC
        hormonalBirthControlCC.waitForPageLoad();
     		   HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = hormonalBirthControlCC
-    		   .clickOnAnswer("No")
+    		   .clickOnAnswer("Yes")
     		   .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());    		   
     		   
 /*    		   .clickNextButton(new SurgicalProceduresCC());
@@ -220,7 +231,7 @@ public class Endo_4356E_CC extends BaseTest{
        
        AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("Endometrioma, also known as endometrial or endometrioid cyst or \"chocolate cyst\"")
+    		   .clickOnAnswers("Endometrioma, (Agent Note: end-oh-me-tree-OH-ma) also known as endometrial (Agent Note: end-oh-ME-tree-ul) or endometrioid (Agent Note: endo-oh-ME-tree-oid) cyst or \"chocolate cyst\"")
     		   .clickNextButton(new AreYouCurrentlyPregnantCC());
        
        

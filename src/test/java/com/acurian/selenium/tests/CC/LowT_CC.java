@@ -91,7 +91,7 @@ public class LowT_CC extends BaseTest{
                .setYear("1990")
                .clickNextButton(new ZipCodePageCC());
        DebugPageCC debugPageCC = new DebugPageCC();       
-       debugPageCC.checkProtocolsEquals("If you qualify and participate in a men's low testosterone study, you may receive: Study medication...", protocol1, protocol2);
+       debugPageCC.checkProtocolsEquals("If you qualify and participate in a men's low testosterone study, you may receive: Study medication...", protocol1);
        debugPageCC.back();
        dateOfBirthPageCC
        		   .waitForPageLoad()

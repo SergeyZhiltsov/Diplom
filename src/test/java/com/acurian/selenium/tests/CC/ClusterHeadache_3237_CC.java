@@ -133,7 +133,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
         
         dateOfBirthPageCC.waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleCLHExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleCLHExpected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
         		.setMonth("Aug")
         		.setDay("1")
@@ -158,21 +158,24 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 
                 
                 //------------Q2 Has a doctor diagnosed you with cluster headache??---------------      
-                hasDoctorDiagnosedYouWithClusterHeadache_CC
+       hasDoctorDiagnosedYouWithClusterHeadache_CC
                 .waitForPageLoad();
                 Assert.assertEquals(hasDoctorDiagnosedYouWithClusterHeadache_CC.getTitleText(),hasDoctorDiagnosedYouWithClusterHeadache_CC.titleExpected, "Title is diff");
-                DoYouSufferFromMigPageCC doYouSufferFromMigPageCC = hasDoctorDiagnosedYouWithClusterHeadache_CC
+       hasDoctorDiagnosedYouWithClusterHeadache_CC
                 .clickOnAnswer("No, I have been diagnosed with another type of headache")
-                .clickNextButton(new DoYouSufferFromMigPageCC()); 
+                .clickNextButton(new NonQRtransitionPageCC())
+                .waitForPageLoad();
+                
+       
              //------Validate protocol DQs in debug window----------
-                doYouSufferFromMigPageCC.waitForPageLoad();
-                DebugPageCC debugPageCC = new DebugPageCC();
-                debugPageCC.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", protocol1,protocol2);
+       
+       DebugPageCC debugPageCC = new DebugPageCC();
+       debugPageCC.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", protocol1,protocol2);
                 //------Go BACK and change your answer to QR answer - to qualify----------
-                debugPageCC.back();
+       debugPageCC.back();
                 //------------ Change your answer to next DQ option---------------          
-                hasDoctorDiagnosedYouWithClusterHeadache_CC.waitForPageLoad();
-                NonQRtransitionPageCC nonQRtransitionPageCC = hasDoctorDiagnosedYouWithClusterHeadache_CC
+       hasDoctorDiagnosedYouWithClusterHeadache_CC.waitForPageLoad();
+       NonQRtransitionPageCC nonQRtransitionPageCC = hasDoctorDiagnosedYouWithClusterHeadache_CC
                 .clickOnAnswer("No, I get headaches regularly but I am unsure which type")
                 .clickNextButton(new NonQRtransitionPageCC());    
             //------Validate protocol DQs in debug window----------

@@ -110,7 +110,7 @@ public class DYS_4356_CC extends BaseTest{
        .waitForPageLoad();
 
        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-       Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedDYS, "Title is diff");
+       Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleExpectedDYS, "Title is diff");
 
        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                .setMonth("Sep")

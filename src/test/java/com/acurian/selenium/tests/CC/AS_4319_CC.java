@@ -94,7 +94,7 @@ public class AS_4319_CC extends BaseTest{
                 .activateDebugOnProd(env);
        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-        .clickOnAnswer("Call Back")
+        .clickOnAnswer("Learn more about matching to clinical trials")
         .clickNextButton(new DateOfBirthPageCC());
        
        dateOfBirthPageCC

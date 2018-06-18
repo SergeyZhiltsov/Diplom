@@ -12,11 +12,7 @@ import com.acurian.selenium.pages.CC.DPN_3769_4557.HowWouldYouDescribeTheSymptom
 import com.acurian.selenium.pages.CC.DPN_3769_4557.HowWouldYouRateYourPain_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhichOfTheFollowingHadAmputatedSurgically_CC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.CombinationWithEachOtherPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.LastTimeYouTookPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.TreatingYourDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -73,7 +69,7 @@ public class DPN_3769_CC extends BaseTest{
         String protocol1 = "VMDN_003";
         String protocol2 = "NYX_2925_2001";
         String studyName = "a diabetic nerve pain";
-        String studyName1 = "a diabetes study, a diabetic nerve pain study";
+        String studyName1 = "a study for diabetics";
         //String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_DPN_3769_Site";
         String zip_Code = "19044";
@@ -111,7 +107,7 @@ public class DPN_3769_CC extends BaseTest{
         
         dateOfBirthPageCC.waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleDPNExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleDPNExpected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
         		.setMonth("Aug")
         		.setDay("1")
@@ -345,9 +341,19 @@ public class DPN_3769_CC extends BaseTest{
         				.clickOnAnswer("More than 1 year ago")
         				.clickNextButton(new LastTimeYouTookPageCC());
                 
-                FollowingToLoseWeightPageCC followingToLoseWeightPageCC = lastTimeYouTookPageCC
+                NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = lastTimeYouTookPageCC
                 		.waitForPageLoad()
         				.clickOnAnswer("6 months ago or longer")
+        				.clickNextButton(new NoOfAlcoholicDrinksCC());
+                
+                FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
+                		.waitForPageLoad()
+                		.enterNoOfDrinks("4")
+                		.clickNextButton(new FollowingLiverRelatedConditionCC());
+                
+                FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
+                		.waitForPageLoad()
+        				.clickOnAnswers("None of the above")
         				.clickNextButton(new FollowingToLoseWeightPageCC());
                 
                 WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
