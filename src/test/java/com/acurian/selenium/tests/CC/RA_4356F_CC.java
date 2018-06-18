@@ -69,7 +69,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class RA_4356F_CC extends BaseTest{
 	
-	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
 	
 	public void RA_4356F_CC(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";

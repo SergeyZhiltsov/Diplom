@@ -69,7 +69,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class Endo_4356E_CC extends BaseTest{
 	
-	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
 	
 	public void endo_4356E_CC(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1END";

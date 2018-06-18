@@ -22,7 +22,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class MIG_4356B_Synexus_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00001")
     @Description(" 1. Open the page, URL: " +
             " 2. Type login and correct password of registered user" +

@@ -85,10 +85,10 @@ public class SUI_3923_OLS extends BaseTest{
         
        //------------Q2 Do you experience either of the following types of urinary leakage, sometimes called urinary incontinence?---------------      
         doYouExperienceUrinaryIncontinenceOLS
-        .waitForPageLoad();
+        	.waitForPageLoad();
         Assert.assertEquals(doYouExperienceUrinaryIncontinenceOLS.getTitleText(),doYouExperienceUrinaryIncontinenceOLS.titleExpected, "Title is diff");
         doYouExperienceUrinaryIncontinenceOLS.clickOnAnswers("None of the above")
-        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); 
+        	.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); 
         //------Validate protocol DQs in debug window----------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
         debugPageOLS.checkProtocolsEquals(doYouExperienceUrinaryIncontinenceOLS.titleExpected, protocol1);
@@ -96,11 +96,10 @@ public class SUI_3923_OLS extends BaseTest{
         debugPageOLS.back();
         //------------ Change your answer to correct option in DoYouSufferFromMigPageOLS---------------          
         WhichTypeOfUrinaryLeakageYouExperienceOLS whichTypeOfUrinaryLeakageYouExperienceOLS = doYouExperienceUrinaryIncontinenceOLS  //[create NEXT PAGE Object = THIS page object] 
-        .waitForPageLoad()
-        .clickOnAnswers("Stress urinary leakage - leaking of urine while coughing, sneezing, laughing, jumping, or performing other activities that put pressure on the bladder","Urge urinary leakage - strong, urgent need to urinate, accidents in which you are unable to reach a bathroom in time, and occasional bed-wetting")
-        .clickNextButton(new WhichTypeOfUrinaryLeakageYouExperienceOLS());    
-
-       
+        		.waitForPageLoad()
+        		.clickOnAnswers("Stress urinary leakage - leaking of urine while coughing, sneezing, laughing, jumping, or performing other activities that put pressure on the bladder","Urge urinary leakage - strong, urgent need to urinate, accidents in which you are unable to reach a bathroom in time, and occasional bed-wetting")
+        		.clickNextButton(new WhichTypeOfUrinaryLeakageYouExperienceOLS());
+ 
         
         //-----------Q3 -Which type of urinary leakage do you experience most often? ---------------   
         whichTypeOfUrinaryLeakageYouExperienceOLS.waitForPageLoad();
@@ -115,9 +114,9 @@ public class SUI_3923_OLS extends BaseTest{
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in howOldWereYouMigHeadachePageOLS---------------   
         whichTypeOfUrinaryLeakageYouExperienceOLS        
-        .clickOnAnswer("I experience stress leakage most often")
-        .clickNextButton(new HowLongYouBeenExperiencingUrinaryLeakageOLS())
-        .waitForPageLoad();
+        	.clickOnAnswer("I experience stress leakage most often")
+        	.clickNextButton(new HowLongYouBeenExperiencingUrinaryLeakageOLS())
+        	.waitForPageLoad();
         
         
         //----------Q4 How long have you been experiencing urinary leakage? -  Page ---------------   

@@ -24,7 +24,7 @@ import java.util.List;
 
 public class HTN_4356D_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00045")
     @Description("HTN_4356D_Synexus test CC")
     public void htn_4356D_Synexus_CC(final String username, final String password) {

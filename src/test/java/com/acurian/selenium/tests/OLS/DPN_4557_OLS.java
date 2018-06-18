@@ -11,7 +11,10 @@ import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouRateYourPain_OLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_OLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhichOfTheFollowingHadAmputatedSurgically_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CombinationWithEachOtherPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.FollowingToLoseWeightPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.LastTimeYouTookPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.LiverRelatedConditionOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.NoOfAlcoholicDrinkOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.ToLoseWeightPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.TreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
@@ -84,8 +87,8 @@ public class DPN_4557_OLS extends BaseTest{
                 .waitForPageLoad();
                 Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
                 HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                      .clickOnAnswer("No")
+                      .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
                 //------Validate protocol DQs in debug window----------
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
                 DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -289,12 +292,29 @@ public class DPN_4557_OLS extends BaseTest{
         				.clickOnAnswer("More than 1 year ago")
         				.clickNextButton(new LastTimeYouTookPageOLS());
                 
-                ToLoseWeightPageOLS toLoseWeightPageOLS = lastTimeYouTookPageOLS
+               //****************
+                NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = lastTimeYouTookPageOLS
                 		.waitForPageLoad()
         				.clickOnAnswer("6 months ago or longer")
-        				.clickNextButton(new ToLoseWeightPageOLS());
+                        .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        		        
+        		//---------------------------------------noOfAlcoholicDrinkOLS---------------
+        		noOfAlcoholicDrinkOLS
+        			  	.waitForPageLoad();
+        			     Assert.assertEquals(noOfAlcoholicDrinkOLS.getTitleText(),noOfAlcoholicDrinkOLS.titleExpected, "Title is diff");
+        			     LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+        			     .setDrinks("4")
+        			     .clickNextButton(new LiverRelatedConditionOLS());
+        			        		
+        		//---------------------------------------liverRelatedConditionOLS---------------
+        		liverRelatedConditionOLS
+        				.waitForPageLoad();
+        			     Assert.assertEquals(liverRelatedConditionOLS.getTitleText(),liverRelatedConditionOLS.titleExpected, "Title is diff");
+        			     FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+        			     .clickOnAnswers("None of the above")
+        			     .clickNextButton(new FollowingToLoseWeightPageOLS());        				
                 
-                WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = toLoseWeightPageOLS
+                WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS //****************
                 		.waitForPageLoad()
         				.clickOnAnswers("No")
         				.clickNextButton(new WeightLossSurgeryPageOLS());
@@ -449,7 +469,8 @@ public class DPN_4557_OLS extends BaseTest{
                 .clickNextButton(new SiteSelectionPageOLS())
                 
         		//----------SiteSelection Page--------------------
-                .waitForPageLoad(studyName1)
+                //.waitForPageLoad(studyName1)
+                .waitForPageLoadAKC()
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new GladLocationIsConvenient())

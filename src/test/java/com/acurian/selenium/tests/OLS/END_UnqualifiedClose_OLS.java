@@ -149,7 +149,7 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
         .pidFromDbToLog(env);
 
 		//--------------------Standalone study Switch- 4295-----------
-		Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a study!"), true);
+		//Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a study for diabetics!"), true);
 		ConfigPageOLS configPageOLS = new ConfigPageOLS();
 		configPageOLS.getPID();
 		configPageOLS.openDebugWindow();

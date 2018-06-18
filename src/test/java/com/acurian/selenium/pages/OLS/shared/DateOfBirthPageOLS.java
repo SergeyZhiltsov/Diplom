@@ -32,7 +32,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
-    public final String titleDiabetes_4356A_Expected = "Let's get started to see if you qualify for a diabetes study!\n" +
+    public final String titleDiabetes_4356A_Expected = "Let's get started to see if you qualify for a study for diabetics!\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $600\n" +
             "No-cost study-related care from doctors\n" +
@@ -104,7 +104,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
-    public final String titleDPNExpected = "Let's get started to see if you qualify for a diabetic nerve pain study!\n" +
+    public final String titleDPNExpected = "Let's get started to see if you qualify for a study for diabetics!\n" +
     		"Those who qualify may receive*:\n" +
     		"Payment which varies by study up to $300\n" +
     		"No-cost study-related care from doctors\n" +

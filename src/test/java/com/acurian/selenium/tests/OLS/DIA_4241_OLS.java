@@ -25,7 +25,7 @@ import java.util.List;
 public class DIA_4241_OLS extends BaseTest{
 
     @Test
-    @TestCaseId("00007")
+    @TestCaseId("00017")
     @Description("Diabetes_4241 OLS")
     public void dia4241olsTest() {
         String phoneNumberLBP = "AUTAMS1DIA";
@@ -33,7 +33,7 @@ public class DIA_4241_OLS extends BaseTest{
         String protocol1 = "EFC14822";
         String studyName = "a diabetes";
         String siteName = "AUT_DIA_4241";   
-        String zipCode = "19044";
+        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -127,31 +127,31 @@ public class DIA_4241_OLS extends BaseTest{
         treatingYourDiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(treatingYourDiabetesPageOLS.getTitleText(),treatingYourDiabetesPageOLS.titleExpected, "Title is diff");
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
+        //FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = treatingYourDiabetesPageOLS
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
-        followingToLoseWeightPageOLS
-                .waitForPageLoad()
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        noOfAlcoholicDrinkOLS
+                .waitForPageLoad()//***************
                 .back();
         treatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(followingToLoseWeightPageOLS)
-                .waitForPageLoad()//rel 46.2
-//                .getPage(debugPageOLS)// copy text from previous question until "..."(white space should be include)
-//                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol1)
+                .clickNextButton(new NoOfAlcoholicDrinkOLS())
+                .waitForPageLoad()
                 .back();
         LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageOLS());
+        
 
         lastTimeYouTookPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(lastTimeYouTookPageOLS.getTitleText(),lastTimeYouTookPageOLS.titleExpected, "Title is diff");
         lastTimeYouTookPageOLS
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(new NoOfAlcoholicDrinkOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocol1)
@@ -168,73 +168,24 @@ public class DIA_4241_OLS extends BaseTest{
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(followingToLoseWeightPageOLS);
-
-/*        metforminMedicationsPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(metforminMedicationsPageOLS.getTitleText(),metforminMedicationsPageOLS.titleExpected, "Title is diff");
-        ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApartFromMetforminPageOLS());
-
-        InsulinForYourDiabetesPageOLS insulinForYourDiabetesPageOLS = apartFromMetforminPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new InsulinForYourDiabetesPageOLS());
-
-        insulinForYourDiabetesPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(insulinForYourDiabetesPageOLS.getTitleText(),insulinForYourDiabetesPageOLS.titleExpected, "Title is diff");
-        SubquestionsHumalogPageOLS subquestionsHumalogPageOLS = insulinForYourDiabetesPageOLS
-                .clickOnAnswers("Humalog","Humulin","Novolin","Novolog")
-                .clickNextButton(new SubquestionsHumalogPageOLS());
-
-        subquestionsHumalogPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(1),subquestionsHumalogPageOLS.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(2),subquestionsHumalogPageOLS.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(3),subquestionsHumalogPageOLS.titleExpected3, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(4),subquestionsHumalogPageOLS.titleExpected4, "Title is diff");
-        subquestionsHumalogPageOLS
-                .clickOnAnswersForSubQuestion(1,"Humalog Mix 50/50","Humalog Mix 75/25")
-                .clickOnAnswersForSubQuestion(2,"Humulin N or NPH")
-                .clickOnAnswersForSubQuestion("What type of Novolin do you currently use?","Novolin N or NPH")
-                .clickOnAnswersForSubQuestion("What type of Novolog do you currently use?","Novolog Mix 70/30")
-                .back();
-
-        InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = insulinForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
-
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(injectableMedicationsForYourDiabetesPageOLS.getTitleText(),injectableMedicationsForYourDiabetesPageOLS.titleExpected, "Title is diff");
-        CombinationWithEachOtherPageOLS combinationWithEachOtherPageOLS = injectableMedicationsForYourDiabetesPageOLS
-                .clickOnAnswers("Adlyxin (lixisenatide)", "Another injectable medication not listed above")
-                .clickNextButton(new CombinationWithEachOtherPageOLS());
-        combinationWithEachOtherPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 months")
-                .clickNextButton(followingToLoseWeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic", protocol1)
-                .back();
-        combinationWithEachOtherPageOLS
-                .waitForPageLoad()
-                .back();
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(combinationWithEachOtherPageOLS);
-
-        combinationWithEachOtherPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(combinationWithEachOtherPageOLS.getTitleText(),combinationWithEachOtherPageOLS.titleExpected, "Title is diff");
-        combinationWithEachOtherPageOLS
-                .clickNextButton(followingToLoseWeightPageOLS);*/
-
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        
+        //---------------------------------------noOfAlcoholicDrinkOLS---------------
+      	noOfAlcoholicDrinkOLS
+      			  	.waitForPageLoad();
+      			     Assert.assertEquals(noOfAlcoholicDrinkOLS.getTitleText(),noOfAlcoholicDrinkOLS.titleExpected, "Title is diff");
+      			     LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+      			     .setDrinks("4")
+      			     .clickNextButton(new LiverRelatedConditionOLS());
+      			        		
+      	//---------------------------------------liverRelatedConditionOLS---------------
+      	liverRelatedConditionOLS
+      				.waitForPageLoad();
+      			     Assert.assertEquals(liverRelatedConditionOLS.getTitleText(),liverRelatedConditionOLS.titleExpected, "Title is diff");
+      			     FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+      			     .clickOnAnswers("None of the above")
+      			     .clickNextButton(new FollowingToLoseWeightPageOLS());				
+             
         followingToLoseWeightPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(followingToLoseWeightPageOLS.getTitleText(),followingToLoseWeightPageOLS.titleExpected, "Title is diff");
@@ -328,7 +279,8 @@ public class DIA_4241_OLS extends BaseTest{
 		.waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
         .clickNextButton(new SiteSelectionPageOLS())
-        .waitForPageLoad(studyName)
+        //.waitForPageLoad(studyName)
+        .waitForPageLoadAKC()
         .getPID()
         .clickOnFacilityName(siteName)
         .clickNextButton(new QualifiedClose2PageOLS())

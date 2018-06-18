@@ -43,7 +43,7 @@ import java.util.List;
 
 public class DERM_4631_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00026")
     @Description("DERM_4631_OLS")
     public void Atopic_Derm_4631_OLS() {

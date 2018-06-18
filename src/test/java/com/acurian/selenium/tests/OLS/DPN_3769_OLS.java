@@ -14,6 +14,8 @@ import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhichOfTheFollowingHadAmputa
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CombinationWithEachOtherPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.FollowingToLoseWeightPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.LastTimeYouTookPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.LiverRelatedConditionOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.NoOfAlcoholicDrinkOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.ToLoseWeightPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.TreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
@@ -114,15 +116,15 @@ public class DPN_3769_OLS extends BaseTest{
                 .clickNextButton(new DoYouExperienceDPN_OLS());
         //********Validate Question History for DQ and then click BACK button
         doYouExperienceDPN_OLS.waitForPageLoad()
-        .getPage(debugPageOLS)
-        .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected,protocol2);
+        	.getPage(debugPageOLS)
+        	.checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected,protocol2);
         //Assert.assertTrue(debugPageOLS.getProtocolForQuestion(whatKindOfDiabetesPageOLS.titleExpected).contains(protocol2));
         debugPageOLS.back();
         //------------ Change your answer to correct QR age in howOldWereYouMigHeadachePageOLS---------------   
         whatKindOfDiabetesPageOLS.waitForPageLoad()        
-        .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-        .clickNextButton(new DoYouExperienceDPN_OLS())
-        .waitForPageLoad();
+        	.clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+        	.clickNextButton(new DoYouExperienceDPN_OLS())
+        	.waitForPageLoad();
         
         
         //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------   
@@ -130,18 +132,18 @@ public class DPN_3769_OLS extends BaseTest{
         		.waitForPageLoad();
         Assert.assertEquals(doYouExperienceDPN_OLS.getTitleText(), doYouExperienceDPN_OLS.titleExpected, "Title is diff");
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = doYouExperienceDPN_OLS
-        .clickOnAnswer("No, none of the above")
-        .clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
+        		.clickOnAnswer("No, none of the above")
+        		.clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button
         withType2DiabetesPageOLS.waitForPageLoad()
-        .getPage(debugPageOLS)
-        .checkProtocolsEquals("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...",protocol1,protocol2);
+        	.getPage(debugPageOLS)
+        	.checkProtocolsEquals("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...",protocol1,protocol2);
         //Assert.assertTrue(debugPageOLS.getProtocolForQuestion("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...").contains(protocol1));
         debugPageOLS.back();
         doYouExperienceDPN_OLS.waitForPageLoad();
         WhereDoYouExperienceDiabeticNervePain_OLS whereDoYouExperienceDiabeticNervePain_OLS = doYouExperienceDPN_OLS
-        .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
-        .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
+        		.clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+        		.clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
 
         
         //----------Q5 - "Where do you experience diabetic nerve pain symptoms or sensations?" Page ---------------   
@@ -180,7 +182,7 @@ public class DPN_3769_OLS extends BaseTest{
         .checkProtocolsEquals("Ghost Question - DPN Symptoms Logic",protocol1,protocol2);
         //Assert.assertTrue(debugPageOLS.getProtocolForQuestion("Ghost Question - DPN Symptoms Logic").contains(protocol1));
         //Assert.assertTrue(debugPageOLS.getProtocolForQuestion("Ghost Question - DPN Symptoms Logic").contains(protocol2));
-      //------------ Change your answer in page 'howWouldYouDescribeTheSymptoms_OLS'-----
+       //------------ Change your answer in page 'howWouldYouDescribeTheSymptoms_OLS'-----
         debugPageOLS.back();
         haveYouNoticedAnyOfTheFollowing_OLS.waitForPageLoad();
         debugPageOLS.back();
@@ -296,13 +298,29 @@ public class DPN_3769_OLS extends BaseTest{
 				.clickOnAnswer("More than 1 year ago")
 				.clickNextButton(new LastTimeYouTookPageOLS());
         
-        ToLoseWeightPageOLS toLoseWeightPageOLS = lastTimeYouTookPageOLS
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = lastTimeYouTookPageOLS
         		.waitForPageLoad()
 				.clickOnAnswer("6 months ago or longer")
-				.clickNextButton(new ToLoseWeightPageOLS());
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+		        
+		//---------------------------------------noOfAlcoholicDrinkOLS---------------
+		noOfAlcoholicDrinkOLS
+			  	.waitForPageLoad();
+			     Assert.assertEquals(noOfAlcoholicDrinkOLS.getTitleText(),noOfAlcoholicDrinkOLS.titleExpected, "Title is diff");
+			     LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+			     .setDrinks("4")
+			     .clickNextButton(new LiverRelatedConditionOLS());
+			        		
+		//---------------------------------------liverRelatedConditionOLS---------------
+		liverRelatedConditionOLS
+				.waitForPageLoad();
+			     Assert.assertEquals(liverRelatedConditionOLS.getTitleText(),liverRelatedConditionOLS.titleExpected, "Title is diff");
+			     FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+			     .clickOnAnswers("None of the above")
+			     .clickNextButton(new FollowingToLoseWeightPageOLS());        				
         
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = toLoseWeightPageOLS
-        		.waitForPageLoad()
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS //****************
+        		.waitForPageLoad()//************************
 				.clickOnAnswers("No")
 				.clickNextButton(new WeightLossSurgeryPageOLS());
         
@@ -458,7 +476,8 @@ public class DPN_3769_OLS extends BaseTest{
         .clickNextButton(new SiteSelectionPageOLS())
         
 		//----------SiteSelection Page--------------------
-        .waitForPageLoad(studyName1)
+        //.waitForPageLoad(studyName1)
+        .waitForPageLoadAKC()
         .getPID()
         .clickOnFacilityName(siteName)
         .clickNextButton(new GladLocationIsConvenient())

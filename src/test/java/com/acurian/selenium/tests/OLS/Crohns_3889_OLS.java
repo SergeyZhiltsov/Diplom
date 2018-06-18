@@ -19,7 +19,7 @@ import java.util.List;
 public class Crohns_3889_OLS extends BaseTest{
 
     @Test(enabled = false)
-    @TestCaseId("00005")
+    @TestCaseId("00032")
     @Description("Crohn's_3889 OLS with HS")
     public void crohns3889olsTest() {
         String phoneNumber = "AUTAMS1CRN";
