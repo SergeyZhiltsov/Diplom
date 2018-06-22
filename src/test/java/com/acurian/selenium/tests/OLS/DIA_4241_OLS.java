@@ -5,20 +5,19 @@ import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DIA.AnyPrescribedMedicationPage;
+import com.acurian.selenium.pages.OLS.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
+import com.acurian.selenium.pages.OLS.shared.DIA.UseDietAndExercisePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -105,13 +104,14 @@ public class DIA_4241_OLS extends BaseTest{
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
                 .back();
-        TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS //rel 47
+        UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageOLS //rel 47
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageOLS())
-                .waitForPageLoad();
-        treatingYourDiabetesPageOLS
+                .clickNextButton(new UseDietAndExercisePage());
+        useDietAndExercisePage
+                .waitForPageLoad()
                 .back();
+        
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -122,61 +122,81 @@ public class DIA_4241_OLS extends BaseTest{
         Assert.assertEquals(withType2DiabetesPageOLS.getTitleText(),withType2DiabetesPageOLS.titleExpected, "Title is diff");
         withType2DiabetesPageOLS
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(treatingYourDiabetesPageOLS);
-
-        treatingYourDiabetesPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(treatingYourDiabetesPageOLS.getTitleText(),treatingYourDiabetesPageOLS.titleExpected, "Title is diff");
+                .clickNextButton(new UseDietAndExercisePage());
+        
+        CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+        
+        currentlyUseMetforminOrInsulinPage
+        		.waitForPageLoad()
+        		.getPage(debugPageOLS)
+        		.checkProtocolsContainsForQNumber("QS4625", protocol1)
+        		.back();
+        useDietAndExercisePage
+        		.waitForPageLoad()
+        		.clickOnAnswer("Yes")
+        		.clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+        
+        MetforminMedicationsPageOLS metforminMedicationsPageOLS = currentlyUseMetforminOrInsulinPage
+        		.waitForPageLoad()
+        		.clickOnAnswers("Metformin")
+        		.clickNextButton(new MetforminMedicationsPageOLS());
+        metforminMedicationsPageOLS
+        		.waitForPageLoad()
+        		.getPage(debugPageOLS)
+        		.checkProtocolsContainsForQNumber("QS4626", protocol1)
+        		.back();
+        
+        InsulinForYourDiabetesPageOLS insulinForYourDiabetesPageOLS = currentlyUseMetforminOrInsulinPage
+        		.waitForPageLoad()
+        		.clickOnAnswers("Metformin")
+        		.clickOnAnswers("Insulin")
+        		.clickNextButton(new InsulinForYourDiabetesPageOLS());
+        insulinForYourDiabetesPageOLS
+        		.waitForPageLoad()
+        		.getPage(debugPageOLS)
+        		.checkProtocolsContainsForQNumber("QS4626", protocol1)
+        		.back();
+        
+        ApartFromMetforminPageOLS apartFromMetforminPageOLS = currentlyUseMetforminOrInsulinPage
+        		.waitForPageLoad()
+        		.clickOnAnswers("Insulin")
+        		.clickOnAnswers("Medication other than Metformin or Insulin")
+        		.clickNextButton(new ApartFromMetforminPageOLS());
+        apartFromMetforminPageOLS
+        		.waitForPageLoad()
+        		.getPage(debugPageOLS)
+        		.checkProtocolsContainsForQNumber("QS4626", protocol1)
+        		.back();
+        
+        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
+        		.waitForPageLoad()
+        		.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+        		.clickNextButton(new AnyPrescribedMedicationPage());
+        
+        
         //FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = treatingYourDiabetesPageOLS
-                .clickOnAnswers("Diet and exercise")
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = anyPrescribedMedicationPage
+        		.waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
         noOfAlcoholicDrinkOLS
-                .waitForPageLoad()//***************
-                .back();
-        treatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS())
-                .waitForPageLoad()
-                .back();
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageOLS());
-        
-
-        lastTimeYouTookPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(lastTimeYouTookPageOLS.getTitleText(),lastTimeYouTookPageOLS.titleExpected, "Title is diff");
-        lastTimeYouTookPageOLS
-                .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocol1)
+        		.checkProtocolsContainsForQNumber("QS4627", protocol1)        		
                 .back();
-        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Currently taking / have taken within the past month")
-                .clickNextButton(new MetforminMedicationsPageOLS());
-        metforminMedicationsPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocol1)
-                .back();
-        lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        anyPrescribedMedicationPage
+        		.waitForPageLoad()
+        		.clickOnAnswer("No")
+        		.clickNextButton(new NoOfAlcoholicDrinkOLS());
         
-        //---------------------------------------noOfAlcoholicDrinkOLS---------------
-      	noOfAlcoholicDrinkOLS
-      			  	.waitForPageLoad();
-      			     Assert.assertEquals(noOfAlcoholicDrinkOLS.getTitleText(),noOfAlcoholicDrinkOLS.titleExpected, "Title is diff");
-      			     LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
-      			     .setDrinks("4")
-      			     .clickNextButton(new LiverRelatedConditionOLS());
+     
+      LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+    		    .waitForPageLoad()
+      			.setDrinks("4")
+      			.clickNextButton(new LiverRelatedConditionOLS());
       			        		
       	//---------------------------------------liverRelatedConditionOLS---------------
       	liverRelatedConditionOLS
@@ -190,7 +210,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(followingToLoseWeightPageOLS.getTitleText(),followingToLoseWeightPageOLS.titleExpected, "Title is diff");
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
-                .clickOnAnswers("Prescription weight loss medication")
+                .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageOLS());
 
         weightLossSurgeryPageOLS
@@ -209,7 +229,7 @@ public class DIA_4241_OLS extends BaseTest{
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1)
+        		.checkProtocolsContainsForQNumber("QS4616", protocol1)        		
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -217,7 +237,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4616", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -225,7 +245,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4616", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -233,7 +253,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4616", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -253,7 +273,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(new DoYouExperienceDPN_OLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(poundsOrMorePageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4617", protocol1)
                 .back();
         ChildrenUnderPageOLS childrenUnderPageOLS = poundsOrMorePageOLS
                 .waitForPageLoad()
@@ -289,8 +309,7 @@ public class DIA_4241_OLS extends BaseTest{
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env)
-		.getRadiantDbToLog(env)
-		.getAnomalyDbToLog(env);
+        .pidFromDbToLog(env);
+		
     }
 }

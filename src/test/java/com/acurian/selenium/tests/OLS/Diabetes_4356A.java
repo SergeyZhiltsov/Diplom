@@ -17,6 +17,9 @@ import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DIA.AnyPrescribedMedicationPage;
+import com.acurian.selenium.pages.OLS.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
+import com.acurian.selenium.pages.OLS.shared.DIA.UseDietAndExercisePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -133,10 +136,11 @@ public class Diabetes_4356A extends BaseTest{
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
-                TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+        UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageOLS
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
-                treatingYourDiabetesPageOLS.waitForPageLoad()
+                .clickNextButton(new UseDietAndExercisePage());
+        
+        useDietAndExercisePage.waitForPageLoad()
                 .back();
                 WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -148,165 +152,28 @@ public class Diabetes_4356A extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(withType2DiabetesPageOLS.getTitleText(),withType2DiabetesPageOLS.titleExpected, "Title is diff");
 		withType2DiabetesPageOLS.clickOnAnswer("Within the past 2 months")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
-        treatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .back();
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(treatingYourDiabetesPageOLS)
-                .waitForPageLoad()
-                .back();
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
-                .clickNextButton(treatingYourDiabetesPageOLS)
-                .waitForPageLoad()
-                .back();
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(treatingYourDiabetesPageOLS);
+                .clickNextButton(new UseDietAndExercisePage());
+        
 
        //---------------------------------------treatingYourDiabetesPageOLS------------------------------------------------------ 
-        treatingYourDiabetesPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(treatingYourDiabetesPageOLS.getTitleText(),treatingYourDiabetesPageOLS.titleExpected, "Title is diff");
-        //FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = treatingYourDiabetesPageOLS
-                .clickOnAnswers("Diet and exercise")
+		CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+		
+		AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
+				.waitForPageLoad()
+				.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+				.clickNextButton(new AnyPrescribedMedicationPage());
+		
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = anyPrescribedMedicationPage
+        		.waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        noOfAlcoholicDrinkOLS
-                .waitForPageLoad()
-                .back();
-        treatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS())
-                .waitForPageLoad()
-                .back();
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageOLS());
-
-        //---------------------------------------lastTimeYouTookPageOLS------------------------------------------------------ 
-        lastTimeYouTookPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(lastTimeYouTookPageOLS.getTitleText(),lastTimeYouTookPageOLS.titleExpected, "Title is diff");
-                //MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
-        	lastTimeYouTookPageOLS.clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        		noOfAlcoholicDrinkOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4606",DIA_4241)
-                .back();
-                lastTimeYouTookPageOLS.waitForPageLoad();
-                MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
-                .clickOnAnswer("Currently taking / have taken within the past month")
-                .clickNextButton(new MetforminMedicationsPageOLS());
-
-        //---------------------------------------metforminMedicationsPageOLS------------------------------------------------------ 
-        metforminMedicationsPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(metforminMedicationsPageOLS.getTitleText(),metforminMedicationsPageOLS.titleExpected, "Title is diff");
-        ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
-                .clickOnAnswers("Janumet (metformin and sitagliptin)",
-                        "Jentadueto (metformin and linagliptin)",
-                        "Kazano (metformin and alogliptin)",
-                        "Kombiglyze (metformin and saxagliptin)",
-                        "PrandiMet (metformin and repaglinide)",
-                        "Avandamet (metformin and rosiglitazone)")
-                .clickNextButton(new ApartFromMetforminPageOLS());
-
-        //---------------------------------------apartFromMetforminPageOLS------------------------------------------------------         
-        apartFromMetforminPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(apartFromMetforminPageOLS.getTitleText(),apartFromMetforminPageOLS.titleExpected, "Title is diff");
-        InsulinForYourDiabetesPageOLS insulinForYourDiabetesPageOLS = apartFromMetforminPageOLS
-                .clickOnAnswers("Amaryl (glimepiride)",
-                        "Avandia (rosiglitazone)",
-                        "Chlorpropamide",
-                        "Cycloset (bromocriptine)",
-                        "Duetact (pioglitazone and glimepiride)")
-                .clickNextButton(new InsulinForYourDiabetesPageOLS());
-
-
-        //---------------------------------------insulinForYourDiabetesPageOLS------------------------------------------------------  
-        insulinForYourDiabetesPageOLS
-                .waitForPageLoad();
-                //.getPage(debugPageOLS)
-                //.checkProtocolsEquals(apartFromMetforminPageOLS.titleExpected, protocol6);
-        Assert.assertEquals(insulinForYourDiabetesPageOLS.getTitleText(),insulinForYourDiabetesPageOLS.titleExpected, "Title is diff");
-        SubquestionsHumalogPageOLS subquestionsHumalogPageOLS = insulinForYourDiabetesPageOLS
-                .clickOnAnswers("Humalog","Humulin","Novolin","Novolog")
-                .clickNextButton(new SubquestionsHumalogPageOLS());
-
-        //---------------------------------------subquestionsHumalogPageOLS------------------------------------------------------  
-        subquestionsHumalogPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(1),subquestionsHumalogPageOLS.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(2),subquestionsHumalogPageOLS.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(3),subquestionsHumalogPageOLS.titleExpected3, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(4),subquestionsHumalogPageOLS.titleExpected4, "Title is diff");
-        //testing new SubQuestion answer feature
-        subquestionsHumalogPageOLS
-                .clickOnAnswersForSubQuestion(1,"Humalog Mix 50/50","Humalog Mix 75/25")
-                .clickOnAnswersForSubQuestion(2,"Humulin N or NPH")
-                .clickOnAnswersForSubQuestion("What type of Novolin do you currently use?","Novolin N or NPH")
-                .clickOnAnswersForSubQuestion("What type of Novolog do you currently use?","Novolog Mix 70/30")
-                .back();
-        InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = insulinForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
-
-
-        //---------------------------------------injectableMedicationsForYourDiabetesPageOLS------------------------------------------------------          
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(injectableMedicationsForYourDiabetesPageOLS.getTitleText(),injectableMedicationsForYourDiabetesPageOLS.titleExpected, "Title is diff");
-        CombinationWithEachOtherPageOLS combinationWithEachOtherPageOLS = injectableMedicationsForYourDiabetesPageOLS
-                .clickOnAnswers("Adlyxin (lixisenatide)", "Another injectable medication not listed above")
-                .clickNextButton(new CombinationWithEachOtherPageOLS());
-        combinationWithEachOtherPageOLS
-                .waitForPageLoad()
-                .back();
-        injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(combinationWithEachOtherPageOLS);
-
-        //---------------------------------------combinationWithEachOtherPageOLS------------------------------------------------------ 
-        combinationWithEachOtherPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(combinationWithEachOtherPageOLS.getTitleText(),combinationWithEachOtherPageOLS.titleExpected, "Title is diff");
-        combinationWithEachOtherPageOLS
-                .clickOnAnswer("1 month or less")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic",DIA_4241)
-                .back();
-        combinationWithEachOtherPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("2 months")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic",DIA_4241)
-                .back();
-        combinationWithEachOtherPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 months")
-                .clickNextButton(noOfAlcoholicDrinkOLS);
         
-       //---------------------------------------noOfAlcoholicDrinkOLS---------------
-        noOfAlcoholicDrinkOLS
-        		.waitForPageLoad();
-        Assert.assertEquals(noOfAlcoholicDrinkOLS.getTitleText(),noOfAlcoholicDrinkOLS.titleExpected, "Title is diff");
+
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+        		.waitForPageLoad()
         		.setDrinks("4")
         		.clickNextButton(new LiverRelatedConditionOLS());
         		
@@ -317,72 +184,19 @@ public class Diabetes_4356A extends BaseTest{
         FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
         		.clickOnAnswers("None of the above")
         		.clickNextButton(new FollowingToLoseWeightPageOLS());        		
-        		
-
-        //---------------------------------------followingToLoseWeightPageOLS------------------------------------------------------ 
-        followingToLoseWeightPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(followingToLoseWeightPageOLS.getTitleText(),followingToLoseWeightPageOLS.titleExpected, "Title is diff");
+       
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
-                .clickOnAnswers("Prescription weight loss medication")
-                .clickNextButton(new WeightLossSurgeryPageOLS());
-        weightLossSurgeryPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic",DIA_4241)
-                .back();
-        followingToLoseWeightPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("No")
-                .clickNextButton(weightLossSurgeryPageOLS);
+                .clickNextButton(new WeightLossSurgeryPageOLS());
 
         //---------------------------------------weightLossSurgeryPageOLS------------------------------------------------------ 
         weightLossSurgeryPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(weightLossSurgeryPageOLS.getTitleText(),weightLossSurgeryPageOLS.titleExpected, "Title is diff");
-        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
-                .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new ProcedureForWeightLossPageOLS());
-
-        //---------------------------------------procedureForWeightLossPageOLS------------------------------------------------------ 
-        procedureForWeightLossPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(),procedureForWeightLossPageOLS.titleExpected, "Title is diff");
-		PoundsOrMorePageOLS poundsOrMorePageOLS = procedureForWeightLossPageOLS
-                .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(new PoundsOrMorePageOLS());
-		        poundsOrMorePageOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected,DIA_4241)
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(new PoundsOrMorePageOLS());
-		        poundsOrMorePageOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected,DIA_4241)
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(new PoundsOrMorePageOLS());
-                 poundsOrMorePageOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected,DIA_4241)
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 2 years ago")
-                .clickNextButton(new PoundsOrMorePageOLS());
-                poundsOrMorePageOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(procedureForWeightLossPageOLS.titleExpected,DIA_4241)
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("More than 2 years ago")
-                .clickNextButton(new PoundsOrMorePageOLS());
+        PoundsOrMorePageOLS poundsOrMorePageOLS = weightLossSurgeryPageOLS
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new PoundsOrMorePageOLS());    
 
         //---------------------------------------PoundsOrMorePageOLS----------------------------------------------------- 
         poundsOrMorePageOLS
@@ -412,57 +226,8 @@ public class Diabetes_4356A extends BaseTest{
         Assert.assertEquals(statinMedicationsOnPageOLS.getTitleText(),statinMedicationsOnPageOLS.titleExpected, "Title is diff");
         DiabeticNephropathyPageOLS diabeticNephropathyPageOLS = statinMedicationsOnPageOLS
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DiabeticNephropathyPageOLS());
-        diabeticNephropathyPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsEquals("One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a ...", protocol7)
-                .back();
-        StatinMedicationPreviousQuestionPageOLS statinMedicationPreviousQuestionPageOLS = statinMedicationsOnPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Atorvastatin","Simcor (simvastatin and niacin)")
-                .clickNextButton(new StatinMedicationPreviousQuestionPageOLS());
-
-        //---------------------------------------statinMedicationPreviousQuestionPageOLS------------------------------------------------------ 
-        statinMedicationPreviousQuestionPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(statinMedicationPreviousQuestionPageOLS.getTitleText(),statinMedicationPreviousQuestionPageOLS.titleExpected, "Title is diff");
-        statinMedicationPreviousQuestionPageOLS
-                .clickOnAnswer("1 month or less")
-                .clickNextButton(diabeticNephropathyPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
-                .back();
-        statinMedicationPreviousQuestionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("2 months")
-                .clickNextButton(diabeticNephropathyPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
-                .back();
-        statinMedicationPreviousQuestionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("4 months")
-                .clickNextButton(diabeticNephropathyPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
-                .back();
-        statinMedicationPreviousQuestionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("6 months - 11 months")
-                .clickNextButton(diabeticNephropathyPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsEquals("Ghost Question - Diabetes_4356A_Synexus Statin Medication Logic", protocol7)
-                .back();
-        statinMedicationPreviousQuestionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 year or more")
-                .clickNextButton(diabeticNephropathyPageOLS);
-
+                .clickNextButton(new DiabeticNephropathyPageOLS());        
+        
         //---------------------------------------diabeticNephropathyPageOLS------------------------------------------------------ 
         diabeticNephropathyPageOLS
                 .waitForPageLoad();
@@ -473,7 +238,7 @@ public class Diabetes_4356A extends BaseTest{
         forYourKidneysPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(diabeticNephropathyPageOLS.titleExpected, protocol12, protocol10)
+                .checkProtocolsContainsForQNumber("QS4228", protocol10, protocol12)
                 .back();
         diabeticNephropathyPageOLS
                 .waitForPageLoad()
@@ -502,33 +267,18 @@ public class Diabetes_4356A extends BaseTest{
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad();
         Assert.assertEquals(haveYouEverExperiencedHeartRelatedMedicalCondOLS.getTitleText(),haveYouEverExperiencedHeartRelatedMedicalCondOLS.titleExpected, "Title is diff");
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .clickOnAnswers("Heart attack","Stroke","TIA or \"mini-stroke\"","Angina (heart-related chest pain) that required an overnight hospital stay")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(1),subquestionExperiencedHeartPageOLS.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(2),subquestionExperiencedHeartPageOLS.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(3),subquestionExperiencedHeartPageOLS.titleExpected3, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(4),subquestionExperiencedHeartPageOLS.titleExpected4, "Title is diff");
-        HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS = subquestionExperiencedHeartPageOLS
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"Less than 30 days ago")
-                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS());
-        haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS())
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4232",protocol12, protocol10)
                 .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
-                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS);
+        
+        HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+        		.waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS());
+                
+      
 
         haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
                 .waitForPageLoad();
@@ -599,8 +349,7 @@ public class Diabetes_4356A extends BaseTest{
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env)
-		.getRadiantDbToLog(env)
-		.getAnomalyDbToLog(env);
+        .pidFromDbToLog(env);
+		
     }
 }

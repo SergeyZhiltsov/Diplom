@@ -1,6 +1,5 @@
 package com.acurian.selenium.tests.CC;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -56,8 +55,9 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AKC_4691_CC extends BaseTest{
-
-    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	
+	
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)  
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
     public void akc4691Test(final String username, final String password) {
