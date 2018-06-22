@@ -4,17 +4,6 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer1;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer2;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer3;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
-import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
-import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
-import com.acurian.selenium.pages.CC.closes.Synexus4241DSWTC2PageCC;
-import com.acurian.selenium.pages.CC.closes.SynexusDirectScheduleWTC3PageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
@@ -25,6 +14,9 @@ import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
+import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
+import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -147,12 +139,13 @@ public class DIA_4241_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1)
                 .back();
-        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC //rel 47
+        UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageCC //rel 47
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageCC())
+                .clickNextButton(new UseDietAndExercisePage())
                 .waitForPageLoad();
-        treatingYourDiabetesPageCC
+        
+        useDietAndExercisePage
                 .back();
         WithType2DiabetesPageCC withType2DiabetesPageCC =  whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -164,235 +157,139 @@ public class DIA_4241_CC extends BaseTest{
         Assert.assertEquals(withType2DiabetesPageCC.getTitleText(),withType2DiabetesPageCC.titleExpected, "Title is diff");
         withType2DiabetesPageCC
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(treatingYourDiabetesPageCC);
+                .clickNextButton(useDietAndExercisePage);
 
-        treatingYourDiabetesPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(treatingYourDiabetesPageCC.getTitleText(),treatingYourDiabetesPageCC.titleExpected, "Title is diff");
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = treatingYourDiabetesPageCC
-                .clickOnAnswers("Diet and exercise")
+        CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+        currentlyUseMetforminOrInsulinPage
+        		.waitForPageLoad()
+        		.getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0016800-QS4625-STUDYQUES", protocol1)
+                .back();
+        
+        useDietAndExercisePage
+        		.waitForPageLoad()
+        		.clickOnAnswer("Yes")
+        		.clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+        
+        MetforminMedicationsPageCC metforminMedicationsPageCC = currentlyUseMetforminOrInsulinPage
+				.waitForPageLoad()
+				.clickOnAnswers("Metformin")
+				.clickNextButton(new MetforminMedicationsPageCC());
+        
+        metforminMedicationsPageCC
+        		.waitForPageLoad()
+        		.getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0016801-QS4626-STUDYQUES", protocol1)
+                .back();
+        InsulinForYourDiabetesPageCC insulinForYourDiabetesPageCC = currentlyUseMetforminOrInsulinPage
+				.waitForPageLoad()
+				.clickOnAnswers("Metformin")
+				.clickOnAnswers("Insulin")
+				.clickNextButton(new InsulinForYourDiabetesPageCC());
+
+        insulinForYourDiabetesPageCC
+				.waitForPageLoad()
+				.getPage(debugPageCC)
+				.checkProtocolsContainsForQNumber("Q0016801-QS4626-STUDYQUES", protocol1)
+				.back();
+        ApartFromMetforminPageCC apartFromMetforminPageCC = currentlyUseMetforminOrInsulinPage
+        		.waitForPageLoad()
+        		.clickOnAnswers("Insulin")
+        		.clickOnAnswers("Medication other than Metformin or Insulin")
+        		.clickNextButton(new ApartFromMetforminPageCC());
+
+        apartFromMetforminPageCC
+        		.waitForPageLoad()
+        		.getPage(debugPageCC)
+        		.checkProtocolsContainsForQNumber("Q0016801-QS4626-STUDYQUES", protocol1)
+        		.back();
+        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
+				.waitForPageLoad()
+				.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+				.clickNextButton(new AnyPrescribedMedicationPage());
+        
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = anyPrescribedMedicationPage
+                .clickOnAnswer("Yes")
                 .clickNextButton(new NoOfAlcoholicDrinksCC());
         noOfAlcoholicDrinksCC
                 .waitForPageLoad()
-                .back();
-        treatingYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinksCC)
-                .waitForPageLoad() //rel 46.2
-//                .getPage(debugPageCC)// copy text from previous question until "..."(white space should be include)
-//                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ", protocol1)
-                .back();
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageCC());
-
-        lastTimeYouTookPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(lastTimeYouTookPageCC.getTitleText(),lastTimeYouTookPageCC.titleExpected, "Title is diff");
-        lastTimeYouTookPageCC
-                .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(noOfAlcoholicDrinksCC)
-                .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0013988-QS4606-STUDYQUES", protocol1)
-                .back();
-        MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Currently taking / have taken within the past month")
-                .clickNextButton(new MetforminMedicationsPageCC());
-        metforminMedicationsPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0013988-QS4606-STUDYQUES", protocol1)
-                .back();
-        lastTimeYouTookPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(noOfAlcoholicDrinksCC)
-                .waitForPageLoad()
-                .enterNoOfDrinks("4")
-                .clickNextButton(new FollowingLiverRelatedConditionCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingToLoseWeightPageCC());
-
-      /*  metforminMedicationsPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(metforminMedicationsPageCC.getTitleText(),metforminMedicationsPageCC.titleExpected, "Title is diff");
-        ApartFromMetforminPageCC apartFromMetforminPageCC = metforminMedicationsPageCC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApartFromMetforminPageCC());
-
-        InsulinForYourDiabetesPageCC insulinForYourDiabetesPageCC = apartFromMetforminPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new InsulinForYourDiabetesPageCC());
-
-        insulinForYourDiabetesPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(insulinForYourDiabetesPageCC.getTitleText(),insulinForYourDiabetesPageCC.titleExpected, "Title is diff");
-        SubquestionsHumalogPageCC subquestionsHumalogPageCC = insulinForYourDiabetesPageCC
-                .clickOnAnswers("Humalog","Humulin","Novolin","Novolog")
-                .clickNextButton(new SubquestionsHumalogPageCC());
-
-        subquestionsHumalogPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionsHumalogPageCC.getTitleText(1),subquestionsHumalogPageCC.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageCC.getTitleText(2),subquestionsHumalogPageCC.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageCC.getTitleText(3),subquestionsHumalogPageCC.titleExpected3, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageCC.getTitleText(4),subquestionsHumalogPageCC.titleExpected4, "Title is diff");
-        subquestionsHumalogPageCC
-                .clickOnAnswersForSubQuestion(1,"Humalog Mix 50/50","Humalog Mix 75/25")
-                .clickOnAnswersForSubQuestion(2,"Humulin N or NPH")
-                .clickOnAnswersForSubQuestion("What type of Novolin do you currently use?","Novolin N or NPH")
-                .clickOnAnswersForSubQuestion("What type of Novolog do you currently use?","Novolog Mix 70/30")
-                .back();
-
-        InjectableMedicationsForYourDiabetesPageCC injectableMedicationsForYourDiabetesPageCC = insulinForYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
-
-        injectableMedicationsForYourDiabetesPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(injectableMedicationsForYourDiabetesPageCC.getTitleText(),injectableMedicationsForYourDiabetesPageCC.titleExpected, "Title is diff");
-        CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = injectableMedicationsForYourDiabetesPageCC
-                .clickOnAnswers("Adlyxin (lixisenatide)", "Another injectable medication not listed above")
-                .clickNextButton(new CombinationWithEachOtherPageCC());
-        combinationWithEachOtherPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("3 months")
-                .clickNextButton(followingToLoseWeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Ghost Question - Diabetes_Type_2 Antidiabetic Medication Logic", protocol1)
-                .back();
-        combinationWithEachOtherPageCC
-                .waitForPageLoad()
-                .back();
-        injectableMedicationsForYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(combinationWithEachOtherPageCC);
-
-        combinationWithEachOtherPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(combinationWithEachOtherPageCC.getTitleText(),combinationWithEachOtherPageCC.titleExpected, "Title is diff");
-        combinationWithEachOtherPageCC
-                .clickNextButton(followingToLoseWeightPageCC);
-
-        followingToLoseWeightPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(followingToLoseWeightPageCC.getTitleText(),followingToLoseWeightPageCC.titleExpected, "Title is diff"); */
+        		.checkProtocolsContainsForQNumber("Q0016802-QS4627-STUDYQUES", protocol1)
+        		.back();
         
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = new FollowingToLoseWeightPageCC();
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
-                .clickOnAnswers("Prescription weight loss medication")
+        anyPrescribedMedicationPage
+        		.clickOnAnswer("No")
+        		.clickNextButton(new NoOfAlcoholicDrinksCC());
+        
+        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
+                .waitForPageLoad()
+                .enterNoOfDrinks("8")
+                .clickNextButton(new FollowingLiverRelatedConditionCC());
+        
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
+        		.waitForPageLoad()
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new FollowingToLoseWeightPageCC());
+        
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC  = followingToLoseWeightPageCC
+                .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageCC());
-
-        weightLossSurgeryPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(weightLossSurgeryPageCC.getTitleText(),weightLossSurgeryPageCC.titleExpected, "Title is diff");
+        
         ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
                 .clickOnAnswers("Gastric bypass")
                 .clickNextButton(new ProcedureForWeightLossPageCC());
-
-        procedureForWeightLossPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(procedureForWeightLossPageCC.getTitleText(),procedureForWeightLossPageCC.titleExpected, "Title is diff");
-        PoundsOrMorePageCC poundsOrMorePageCC = procedureForWeightLossPageCC
+        
+        PoundsOrMorePageCC poundsOrMorePageCC  = procedureForWeightLossPageCC
                 .clickOnAnswer("Less than 3 months ago")
                 .clickNextButton(new PoundsOrMorePageCC());
-        poundsOrMorePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(poundsOrMorePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(poundsOrMorePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 2 years ago")
-                .clickNextButton(poundsOrMorePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .back();
-
-        weightLossSurgeryPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(poundsOrMorePageCC);
-
-        poundsOrMorePageCC
-                .waitForPageLoad();
-        Assert.assertEquals(poundsOrMorePageCC.getTitleText(),poundsOrMorePageCC.titleExpected, "Title is diff");
-        poundsOrMorePageCC
-                .clickOnAnswer("Yes")
-                .clickNextButton(new DoYouExperienceDPN_CC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0013992-QS4617-STUDYQUES", protocol1)
-                .back();
-        ChildrenUnderPageCC childrenUnderPageCC = poundsOrMorePageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ChildrenUnderPageCC());
-        childrenUnderPageCC
-        .waitForPageLoad()
-        .clickOnAnswer("No")
-      /*.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         
-        //-------------------New GENERAL HEALTH---------------------------
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        poundsOrMorePageCC
         		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")                	
-        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
-        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        		.getPage(debugPageCC)
+        		.checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
+        		.back();
+        procedureForWeightLossPageCC
         		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageCC())
-        		//----------Height and Weight Question Page--------------------
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new LetMeSeePageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
+        		.clickOnAnswer("3 - 6 months ago")
+        		.clickNextButton(poundsOrMorePageCC)
+        		.waitForPageLoad() 
+        		.getPage(debugPageCC)
+        		.checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
+        		.back();
+        		
+        procedureForWeightLossPageCC
+        		.waitForPageLoad()
+        		.clickOnAnswer("7 - 11 months ago")
+        		.clickNextButton(poundsOrMorePageCC)
+        		.waitForPageLoad()               
+        		.getPage(debugPageCC)
+        		.checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
+        		.back();
+        procedureForWeightLossPageCC
+        		.waitForPageLoad()
+        		.clickOnAnswer("More than 2 years ago")
+        		.clickNextButton(poundsOrMorePageCC);
+        
+        poundsOrMorePageCC
+        		.waitForPageLoad();
+		DoYouExperienceDPN_CC doYouExperienceDPN_CC = poundsOrMorePageCC
+				.clickOnAnswer("Yes")
+				.clickNextButton(new DoYouExperienceDPN_CC());
+		doYouExperienceDPN_CC		
+        		.waitForPageLoad()
+        		.getPage(debugPageCC)
+        		.checkProtocolsContainsForQNumber("Q0013992-QS4617-STUDYQUES", protocol1)
+        		.back();
+		poundsOrMorePageCC
+		        .waitForPageLoad()
+		        .clickOnAnswer("No")
+		        .clickNextButton(new ChildrenUnderPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new TheStudySitePageCC())
-                //----------PEDIATRIC HEALTH Questions----------
-                //.clickNextButton(new HouseholdHavePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("None of the above")
-                //.clickNextButton(new TheStudySitePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Public transportation")
-                //.clickNextButton(new WhatMedicalCoveragePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("No, I have no coverage")
-                //.clickNextButton(new EthnicBackgroundPageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Prefer not to answer")  */
+    
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
@@ -401,27 +298,12 @@ public class DIA_4241_CC extends BaseTest{
                 .waitForPageLoad(studyName)
         		.getPID()
         		.clickOnAnswer(siteName)
-        		.clickNextButton(new QualifiedClose2PageCC())
-        		//Regular Warm Transfer Questions ----- //Regular Warm Transfer Page#1
-        		.waitForPageLoad()
-        		.clickNextButton(new Regular_WarmTransfer1())
-        		.waitForPageLoad()
-        		.clickOnAnswer("Yes")
-        		//Regualr Warm Transfer Page#2
-        		.clickNextButton(new Regular_WarmTransfer2())
-        		.waitForPageLoad()
-        		.clickOnAnswer("Yes: Great, I'll connect them now.")
-        		.clickOnAnswer("[site did not answer]")
-        		//Regualr Warm Transfer Page#3
-        		.clickNextButton(new Regular_WarmTransfer3())
-        		.waitForPageLoad()
-        		//Regualr Warm Transfer Page#4
-        		.clickNextButton(new Regular_WarmTransfer4())
-        		.waitForPageLoad()                
-        		.clickOnAnswer("Successful transfer made to site")
-        		.clickNextButton(selectActionPageCC)
-        		.waitForPageLoad()
-        		.pidFromDbToLog(env);
+        		.clickNextButton(new SynexusRadiantDirectScheduleCC())
+                .waitForPageLoadSyn()
+                .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
         
         
         //----------------------OLD G Health--------------

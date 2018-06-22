@@ -12,26 +12,20 @@ import com.acurian.selenium.pages.CC.DPN_3769_4557.HowWouldYouDescribeTheSymptom
 import com.acurian.selenium.pages.CC.DPN_3769_4557.HowWouldYouRateYourPain_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhichOfTheFollowingHadAmputatedSurgically_CC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.CombinationWithEachOtherPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.LastTimeYouTookPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.TreatingYourDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
+import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
+import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.MetforminMedicationsPageOLS;
+import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.CC.SUI_3923.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -40,6 +34,7 @@ import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
@@ -271,86 +266,66 @@ public class DPN_4557_CC extends BaseTest{
                 //----------Q11 -Do you have any of the following conditions related to your diabetes?-  Page ---------------   
                 doYouHaveAnyOfTheFollowingConditions_CC
                 		.waitForPageLoad();  
-                Assert.assertEquals(doYouHaveAnyOfTheFollowingConditions_CC.getTitleText(), doYouHaveAnyOfTheFollowingConditions_CC.titleExpected, "Title is diff");    
-                TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = doYouHaveAnyOfTheFollowingConditions_CC
-                .clickOnAnswers("Retinopathy or diabetic eye disease","Diabetic nephropathy or kidney damage caused by diabetes")
-                .clickNextButton(new TreatingYourDiabetesPageCC()); // Click NEXT button and wait for the NEXT page
-                //********Test the SKIP logic to page 13 and then click BACK button     
-                treatingYourDiabetesPageCC.waitForPageLoad();
+                Assert.assertEquals(doYouHaveAnyOfTheFollowingConditions_CC.getTitleText(), doYouHaveAnyOfTheFollowingConditions_CC.titleExpected, "Title is diff");
+                
+                UseDietAndExercisePage useDietAndExercisePage = doYouHaveAnyOfTheFollowingConditions_CC
+                        .clickOnAnswers("Retinopathy or diabetic eye disease","Diabetic nephropathy or kidney damage caused by diabetes")
+                        .clickNextButton(new UseDietAndExercisePage());
+                
+                CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+                		.waitForPageLoad()
+                		.clickOnAnswer("No")
+                		.clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+                
+                AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
+                		.waitForPageLoad()
+                		.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+                		.clickNextButton(new AnyPrescribedMedicationPage());
+                anyPrescribedMedicationPage.waitForPageLoad();                
+                debugPageCC.checkProtocolsContainsForQNumber("Q0016801-QS5520-STUDYQUES", protocol1, protocol2);
                 debugPageCC.back();
-                doYouHaveAnyOfTheFollowingConditions_CC.waitForPageLoad();
-                WhichOfTheFollowingHadAmputatedSurgically_CC whichOfTheFollowingHadAmputatedSurgically_CC = doYouHaveAnyOfTheFollowingConditions_CC
-                .clickOnAnswers("Amputation or surgical removal of a leg, a foot, or toes")
-                .clickNextButton(new WhichOfTheFollowingHadAmputatedSurgically_CC()); 
                 
-                
-                //----------Q12 -Which of the following have you had amputated or surgically removed because of your diabetes?-  Page ---------------   
-                whichOfTheFollowingHadAmputatedSurgically_CC
-                		.waitForPageLoad();  
-                Assert.assertEquals(whichOfTheFollowingHadAmputatedSurgically_CC.getTitleText(), whichOfTheFollowingHadAmputatedSurgically_CC.titleExpected, "Title is diff");    
-                //TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whichOfTheFollowingHadAmputatedSurgically_CC //[create NEXT PAGE Object = THIS page object]    
-                whichOfTheFollowingHadAmputatedSurgically_CC.clickOnAnswers("Leg","Foot","Toe")
-                .clickNextButton(new TreatingYourDiabetesPageCC()); // Click NEXT button and wait for the NEXT page
-                //********Validate Question History for DQ and then click BACK button     
-                treatingYourDiabetesPageCC.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Which of the following have you had amputated or surgically removed because of your diabetes?Agent N...", protocol1, protocol2);
-                debugPageCC.back();
-                //------------ Change your answer to correct QR age in page 'studyQuestionMigPageCC'---------------   
-                whichOfTheFollowingHadAmputatedSurgically_CC.waitForPageLoad()
-                .clickOnAnswers("Leg","Foot") //un-select Leg and Foot and keep only TOE selected to qualify for 4557 DPN
-                .clickNextButton(new TreatingYourDiabetesPageCC());     
-                
-                
-                //----------Q13 -"How are you currently treating your diabetes?"-  Page ---------------   
-                treatingYourDiabetesPageCC
-                		.waitForPageLoad();  
-                Assert.assertEquals(treatingYourDiabetesPageCC.getTitleText(), treatingYourDiabetesPageCC.titleExpected, "Title is diff");    
-                //WithType2DiabetesPageCC withType2DiabetesPageCC = treatingYourDiabetesPageCC //[create NEXT PAGE Object = THIS page object]    
-                whichOfTheFollowingHadAmputatedSurgically_CC.clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(new WithType2DiabetesPageCC()); // Click NEXT button and wait for the NEXT page
-                //********Validate Question History for DQ and then click BACK button     
-                withType2DiabetesPageCC.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ...", protocol1, protocol2);
-                debugPageCC.back();
-                //------------ Change your answer to correct QR age in page 'studyQuestionMigPageCC'---------------   
-                treatingYourDiabetesPageCC.waitForPageLoad();
-                CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = treatingYourDiabetesPageCC
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new CombinationWithEachOtherPageCC());  
-                
-                
-                //----------Q14 -Which of the following have you had amputated or surgically removed because of your diabetes?-  Page ---------------   
-                combinationWithEachOtherPageCC
-                		.waitForPageLoad();  
-                Assert.assertEquals(combinationWithEachOtherPageCC.getTitleText(), combinationWithEachOtherPageCC.titleExpected, "Title is diff");
-                combinationWithEachOtherPageCC.clickOnAnswer("1 month or less")
-                .clickNextButton(new WithType2DiabetesPageCC()); // Click NEXT button and wait for the NEXT page
-                //********Validate Question History for DQ and then click BACK button     
-                withType2DiabetesPageCC.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Overall, how long have you been taking your current diabetes medication(s), either by themselves, or...",protocol1);
-                debugPageCC.back();
-                //------------ Change your answer to correct QR age in page 'studyQuestionMigPageCC'---------------   
+                CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = currentlyUseMetforminOrInsulinPage
+        				.waitForPageLoad()
+        				.clickOnAnswers("Metformin")
+        				.clickNextButton(new CombinationWithEachOtherPageCC());
+         
                 combinationWithEachOtherPageCC.waitForPageLoad()
-                .clickOnAnswer("1 year or more")
-                .clickNextButton(new WithType2DiabetesPageCC());
+                		.clickOnAnswer("1 month or less")
+                		.clickNextButton(new WithType2DiabetesPageCC());
+                withType2DiabetesPageCC
+                		.waitForPageLoad()
+                		.getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0013518-QS5514-STUDYQUES", protocol1)
+                        .back();
+                combinationWithEachOtherPageCC.waitForPageLoad()
+        				.clickOnAnswer("2 months")
+        				.clickNextButton(new WithType2DiabetesPageCC());
+                withType2DiabetesPageCC
+        				.waitForPageLoad()
+        				.getPage(debugPageCC)
+        				.checkProtocolsContainsForQNumber("Q0013518-QS5514-STUDYQUES", protocol1)
+        				.back();
+                combinationWithEachOtherPageCC.waitForPageLoad()
+						.clickOnAnswer("5 months")
+						.clickNextButton(new WithType2DiabetesPageCC());
                 
-                
-                //-----------------Diabetes 4356A Questions---------------------------
-                //--------------------------------------------------------------------
-                LastTimeYouTookPageCC lastTimeYouTookPageCC = withType2DiabetesPageCC
+                MetforminMedicationsPageCC metforminMedicationsPageCC = withType2DiabetesPageCC
                 		.waitForPageLoad()
         				.clickOnAnswer("More than 1 year ago")
-        				.clickNextButton(new LastTimeYouTookPageCC());
+        				.clickNextButton(new MetforminMedicationsPageCC());
                 
-                NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = lastTimeYouTookPageCC
+                InjectableMedicationsForYourDiabetesPageCC injectableMedicationsForYourDiabetesPageCC = metforminMedicationsPageCC
                 		.waitForPageLoad()
-        				.clickOnAnswer("6 months ago or longer")
-        				.clickNextButton(new NoOfAlcoholicDrinksCC());
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
                 
-                FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
+                NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = injectableMedicationsForYourDiabetesPageCC
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new NoOfAlcoholicDrinksCC());               
+             
+               FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
                 		.waitForPageLoad()
                 		.enterNoOfDrinks("4")
                 		.clickNextButton(new FollowingLiverRelatedConditionCC());
@@ -370,164 +345,75 @@ public class DPN_4557_CC extends BaseTest{
         				.clickOnAnswers("None of the above")
         				.clickNextButton(new PoundsOrMorePageCC());
                 
-                ChildrenUnderPageCC childrenUnderPageCC = poundsOrMorePageCC
+                StatinMedicationsOnPageCC statinMedicationsOnPageCC = poundsOrMorePageCC
                 		.waitForPageLoad()
-        				.clickOnAnswer("Unsure")
-        				.clickNextButton(new ChildrenUnderPageCC());
+        				.clickOnAnswer("No")
+        				.clickNextButton(new StatinMedicationsOnPageCC());
                 
-        /*      //----------GENERAL HEALTH Questions----------     
-        		//----------HasHealthcareProfessionalPageCC Page--------------------
-                HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = hasHealthcareProfessionalPageCC
+                DiabeticNephropathyPageCC diabeticNephropathyPageCC = statinMedicationsOnPageCC
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new DiabeticNephropathyPageCC());
+                
+                ForYourKidneysPageCC forYourKidneysPageCC = diabeticNephropathyPageCC
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ForYourKidneysPageCC());
+                
+                HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = forYourKidneysPageCC
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+                
+                HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+                
+                HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
+                        .clickOnAnswers("None of the above")       
+                        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+                
+                HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new TransitionStatementCC())                
+                		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                
+                DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 		.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-
-        		//----------HeartRelatedMedicalProc Page--------------------			
-        		CongestiveHeartFailurePageCC congestiveHeartFailurePageCC = heartrelatedMedicalProceduresPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new CongestiveHeartFailurePageCC());
-        		
-        		//----------CongestiveHeartFailurePageCC (CHF) Page--------------------		
-        		AffectingYourMetabolismPageCC affectingYourMetabolismPageCC = congestiveHeartFailurePageCC
-        				.waitForPageLoad()
-        				.clickOnAnswer("No")
-        				.clickNextButton(new AffectingYourMetabolismPageCC());
-        		
-        		//----------AffectingYourMetabolism Page--------------------
-        		FollowingNeurologicalConditionsPageCC followingNeurologicalConditionsPageCC = affectingYourMetabolismPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new FollowingNeurologicalConditionsPageCC());		
-        		
-        		//----------NeurologicalConditions Page--------------------
-        		AffectYourLungsPageCC affectYourLungsPageCC = followingNeurologicalConditionsPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new AffectYourLungsPageCC());
-
-        		//----------AffectYourL-ungs Page--------------------
-        		DigestiveConditionsPageCC digestiveConditionsPageCC = affectYourLungsPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new DigestiveConditionsPageCC());
-
-        		//----------DigestiveConditions Page--------------------
-        		BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = digestiveConditionsPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new BoneOrJointConditionsPageCC());
-        		
-        		//----------BoneOrJointConditions Page--------------------		
-        		BoneOrJointConditions boneOrJointConditions = affectYourLungs
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new BoneOrJointConditions());
-        			
-        		//----------BoneOrJointConditions Page--------------------
-        		SleepRelatedConditionsPageCC sleepRelatedConditionsPageCC = boneOrJointConditionsPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new SleepRelatedConditionsPageCC());
-
-        		//----------SleepRelatedConditions Page--------------------
-        		SkinConditionsPageCC skinConditionsPageCC = sleepRelatedConditionsPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new SkinConditionsPageCC());
-        		
-        		//----------SkinConditions Page--------------------
-        		ViralConditionsPageCC viralConditionsPageCC = skinConditionsPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new ViralConditionsPageCC());
-        		
-        		//----------ViralConditions Page--------------------
-        		MentalHealthPageCC mentalHealthPageCC = viralConditionsPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new MentalHealthPageCC());
-        		
-        		//----------MentalHealthConditions Page--------------------
-        		WomensHealthPageCC womensHealthPageCC = mentalHealthPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new WomensHealthPageCC());
-        		
-        		//----------WomenHealthConditions Page--------------------
-        		OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = womensHealthPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new OtherThanSkinCancerPageCC());
-        		
-        		//----------Cancer Page--------------------
-        		SmokedCigarettesPageCC smokedCigarettesPageCC = otherThanSkinCancerPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswer("No")
-        				.clickNextButton(new SmokedCigarettesPageCC());
-        		
-        		//----------HaveYouSmokedCigarettes Page--------------------
-        		HistoryOfDrugPageCC historyOfDrugPageCC = smokedCigarettesPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswer("No, I never smoked")
-        				.clickNextButton(new HistoryOfDrugPageCC());
-
-
-        		//----------HistoryOfDrugPageCC Page--------------------
-        		ProvideHeightWeight provideHeightWeight = historyOfDrugPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswer("No")
-        				.clickNextButton(new ProvideHeightWeight());
-
-        		//----------ProvideHeight-Weight Page--------------------
-        		ChildrenUnderPageCC childrenUnderPageCC = provideHeightWeight
-        				.waitForPageLoad()
-        				.setFT("5")
-        				.setIN("5")
-        				.setWeight("155")
-        				.clickNextButton(new ChildrenUnderPageCC());*/
-        		
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+                
+                ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new ApproximateHeightPageCC());
+                
+                approximateHeightPageCC
+                		.waitForPageLoad()
+                		.setAll("5", "6", "170")
+                		.clickNextButton(new LetMeSeePageCC())
         		//----------ChildrenUnderTheAge Page--------------------
-                IdentificationPageCC identificationPageCC = childrenUnderPageCC
-        				.waitForPageLoad()
-        				.clickOnAnswer("No")
-                        .clickNextButton(new IdentificationPageCC());
-                        
-        		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
-/*                //----"theStudySitePageCC" page --  If you qualify for a study, how would you plan to travel to and from the study site??
-        				theStudySitePageCC.waitForPageLoad()
-                        .clickOnAnswers("Public transportation")
-                        .clickNextButton(new WhatMedicalCoveragePageCC())
-                        
-        		//-----"WhatMedicalCoveragePageCC" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
-                        .waitForPageLoad()
-                        .clickOnAnswers("No, I have no coverage")
-                        .clickNextButton(new EthnicBackgroundPageCC())
-                        
-               //----"EthnicBackgroundPageCC" page --  Which of the following describes your ethnic background?
-                        .waitForPageLoad()
-                        .clickOnAnswers("Prefer not to answer")
-                        .clickNextButton(new IdentificationPageCC())*/	
-        				
-        		//----------PII (IdentificationPageCC) Page--------------------
-                identificationPageCC.waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
-                .clickNextButton(new SiteSelectionPageCC())
+                		.waitForPageLoad()
+                		.clickNextButton(new ChildrenUnderPageCC())
+                		.waitForPageLoad()
+                		.clickOnAnswer("Yes")
+                //----------PEDIATRIC HEALTH Questions----------
+                		.clickNextButton(new HouseholdHavePageCC())
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")
+        		//----------PII (IdentificationPageOLS) Page--------------------
+                		.clickNextButton(new IdentificationPageCC())
+                		.waitForPageLoad()
+                		.setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", "19044")
+                		.clickNextButton(new SiteSelectionPageCC())
+                		.waitForPageLoad("a study for diabetics")
+                		.getPID()
+        		//----------SITE Selection Page--------------------
+                		.clickOnAnswer(siteName)
+                		.clickNextButton(new QualifiedClose2PageCC())
+                		.waitForPageLoad()                
+                		.clickNextButton(new ThankYouCloseSimplePageCC())                
+                		.clickNextButton(selectActionPageCC)
+                		.waitForPageLoad()
+                		.pidFromDbToLog(env);        
                 
-        		//----------SiteSelection Page--------------------
-                .waitForPageLoad(studyName1)
-                .getPID()
-                .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
-                
-                //----------GladLocationIsConvenient Page--------------------
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                
-        		//----------ThankYouCloseSimplePageCC Page--------------------
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
-            }
+            
+       }
 }

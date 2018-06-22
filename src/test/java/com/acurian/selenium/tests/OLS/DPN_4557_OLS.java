@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
+
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.ApproxHowlongYouBeenExpSymptomsOLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
@@ -9,14 +10,14 @@ import com.acurian.selenium.pages.OLS.DPN_3769_4557.HaveYouNoticedAnyOfTheFollow
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouDescribeTheSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouRateYourPain_OLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhichOfTheFollowingHadAmputatedSurgically_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CombinationWithEachOtherPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.DiabeticNephropathyPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.FollowingToLoseWeightPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.LastTimeYouTookPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.ForYourKidneysPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.InjectableMedicationsForYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.LiverRelatedConditionOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.MetforminMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.NoOfAlcoholicDrinkOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.ToLoseWeightPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.TreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
@@ -30,9 +31,15 @@ import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DiagnosedAnyTypeOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS;
+import com.acurian.selenium.pages.OLS.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS;
+import com.acurian.selenium.pages.OLS.shared.StatinMedicationsOnPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.OLS.shared.DIA.AnyPrescribedMedicationPage;
+import com.acurian.selenium.pages.OLS.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
+import com.acurian.selenium.pages.OLS.shared.DIA.UseDietAndExercisePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -219,55 +226,30 @@ public class DPN_4557_OLS extends BaseTest{
                 doYouHaveAnyOfTheFollowingConditions_OLS
                 		.waitForPageLoad();  
                 Assert.assertEquals(doYouHaveAnyOfTheFollowingConditions_OLS.getTitleText(), doYouHaveAnyOfTheFollowingConditions_OLS.titleExpected, "Title is diff");    
-                TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = doYouHaveAnyOfTheFollowingConditions_OLS
+                UseDietAndExercisePage useDietAndExercisePage = doYouHaveAnyOfTheFollowingConditions_OLS
                 .clickOnAnswers("Retinopathy or diabetic eye disease","Diabetic nephropathy or kidney damage caused by diabetes")
-                .clickNextButton(new TreatingYourDiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
-                //********Test the SKIP logic to page 13 and then click BACK button     
-                treatingYourDiabetesPageOLS.waitForPageLoad();
-                debugPageOLS.back();
-                doYouHaveAnyOfTheFollowingConditions_OLS.waitForPageLoad();
-                WhichOfTheFollowingHadAmputatedSurgically_OLS whichOfTheFollowingHadAmputatedSurgically_OLS = doYouHaveAnyOfTheFollowingConditions_OLS
-                .clickOnAnswers("Amputation or surgical removal of a leg, a foot, or toes")
-                .clickNextButton(new WhichOfTheFollowingHadAmputatedSurgically_OLS()); 
+                .clickNextButton(new UseDietAndExercisePage()); // Click NEXT button and wait for the NEXT page
                 
+                CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+                		.waitForPageLoad()
+                		.clickOnAnswer("No")
+                		.clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
                 
-                //----------Q12 -Which of the following have you had amputated or surgically removed because of your diabetes?-  Page ---------------   
-                whichOfTheFollowingHadAmputatedSurgically_OLS
-                		.waitForPageLoad();  
-                Assert.assertEquals(whichOfTheFollowingHadAmputatedSurgically_OLS.getTitleText(), whichOfTheFollowingHadAmputatedSurgically_OLS.titleExpected, "Title is diff");    
-                //TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whichOfTheFollowingHadAmputatedSurgically_OLS //[create NEXT PAGE Object = THIS page object]    
-                whichOfTheFollowingHadAmputatedSurgically_OLS.clickOnAnswers("Leg","Foot","Toe")
-                .clickNextButton(new TreatingYourDiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
-                //********Validate Question History for DQ and then click BACK button     
-                treatingYourDiabetesPageOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("Which of the following have you had amputated or surgically removed because of your diabetes?Agent N...", protocol1, protocol2);
-                debugPageOLS.back();
-                //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
-                whichOfTheFollowingHadAmputatedSurgically_OLS.waitForPageLoad()
-                .clickOnAnswers("Leg","Foot") //un-select Leg and Foot and keep only TOE selected to qualify for 4557 DPN
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
+                AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
+                		.waitForPageLoad()
+                		.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+                		.clickNextButton(new AnyPrescribedMedicationPage());
+                anyPrescribedMedicationPage
+                		.waitForPageLoad()
+                		.getPage(debugPageOLS)
+                		.checkProtocolsContainsForQNumber("QS5520", protocol1, protocol2)
+                		.back();
                 
-                
-                //----------Q13 -"How are you currently treating your diabetes?"-  Page ---------------   
-                treatingYourDiabetesPageOLS
-                		.waitForPageLoad();  
-                Assert.assertEquals(treatingYourDiabetesPageOLS.getTitleText(), treatingYourDiabetesPageOLS.titleExpected, "Title is diff");    
-                //WithType2DiabetesPageOLS withType2DiabetesPageOLS = treatingYourDiabetesPageOLS //[create NEXT PAGE Object = THIS page object]    
-                whichOfTheFollowingHadAmputatedSurgically_OLS.clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
-                //********Validate Question History for DQ and then click BACK button     
-                withType2DiabetesPageOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ...", protocol1, protocol2);
-                debugPageOLS.back();
-                //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
-                treatingYourDiabetesPageOLS.waitForPageLoad();
-                CombinationWithEachOtherPageOLS combinationWithEachOtherPageOLS = treatingYourDiabetesPageOLS
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new CombinationWithEachOtherPageOLS());  
-                
-                
+                CombinationWithEachOtherPageOLS combinationWithEachOtherPageOLS = currentlyUseMetforminOrInsulinPage
+        				.waitForPageLoad()
+        				.clickOnAnswers("Metformin")
+        				.clickNextButton(new CombinationWithEachOtherPageOLS());
+                                
                 //----------Q14 -Which of the following have you had amputated or surgically removed because of your diabetes?-  Page ---------------   
                 combinationWithEachOtherPageOLS
                 		.waitForPageLoad();  
@@ -277,25 +259,40 @@ public class DPN_4557_OLS extends BaseTest{
                 //********Validate Question History for DQ and then click BACK button     
                 withType2DiabetesPageOLS.waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Overall, how long have you been taking your current diabetes medication(s), either by themselves, or...",protocol1);
-                debugPageOLS.back();
-                //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
-                combinationWithEachOtherPageOLS.waitForPageLoad()
-                .clickOnAnswer("1 year or more")
-                .clickNextButton(new WithType2DiabetesPageOLS());
+                .checkProtocolsContainsForQNumber("QS5514", protocol1)
+                .back();
                 
-                
-                //-----------------Diabetes 4356A Questions---------------------------
-                //--------------------------------------------------------------------
-                LastTimeYouTookPageOLS lastTimeYouTookPageOLS = withType2DiabetesPageOLS
+                combinationWithEachOtherPageOLS
                 		.waitForPageLoad()
-        				.clickOnAnswer("More than 1 year ago")
-        				.clickNextButton(new LastTimeYouTookPageOLS());
+                		.clickOnAnswer("2 months")
+                		.clickNextButton(new WithType2DiabetesPageOLS());
+                withType2DiabetesPageOLS
+                		.waitForPageLoad()
+                		.getPage(debugPageOLS)
+                		.checkProtocolsContainsForQNumber("QS5514", protocol1)
+                		.back();
+                
+                //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
+                combinationWithEachOtherPageOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("1 year or more")
+                		.clickNextButton(new WithType2DiabetesPageOLS());
+                
+                MetforminMedicationsPageOLS metforminMedicationsPageOLS = withType2DiabetesPageOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("More than 1 year ago")
+                		.clickNextButton(new MetforminMedicationsPageOLS());
+                
+                InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = metforminMedicationsPageOLS
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
+                
                 
                //****************
-                NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = lastTimeYouTookPageOLS
+                NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = injectableMedicationsForYourDiabetesPageOLS
                 		.waitForPageLoad()
-        				.clickOnAnswer("6 months ago or longer")
+        				.clickOnAnswers("None of the above")
                         .clickNextButton(new NoOfAlcoholicDrinkOLS());
         		        
         		//---------------------------------------noOfAlcoholicDrinkOLS---------------
@@ -324,122 +321,57 @@ public class DPN_4557_OLS extends BaseTest{
         				.clickOnAnswers("None of the above")
         				.clickNextButton(new PoundsOrMorePageOLS());
                 
-                ChildrenUnderPageOLS childrenUnderPageOLS = poundsOrMorePageOLS
+                StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = poundsOrMorePageOLS
                 		.waitForPageLoad()
-        				.clickOnAnswer("Unsure")
-        				.clickNextButton(new ChildrenUnderPageOLS());
+        				.clickOnAnswer("No")
+        				.clickNextButton(new StatinMedicationsOnPageOLS());
                 
-        /*      //----------GENERAL HEALTH Questions----------     
-        		//----------HasHealthcareProfessionalPageOLS Page--------------------
-                HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = hasHealthcareProfessionalPageOLS
+                DiabeticNephropathyPageOLS diabeticNephropathyPageOLS = statinMedicationsOnPageOLS
                 		.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-
-        		//----------HeartRelatedMedicalProc Page--------------------			
-        		CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = heartrelatedMedicalProceduresPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new CongestiveHeartFailurePageOLS());
-        		
-        		//----------CongestiveHeartFailurePageOLS (CHF) Page--------------------		
-        		AffectingYourMetabolismPageOLS affectingYourMetabolismPageOLS = congestiveHeartFailurePageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswer("No")
-        				.clickNextButton(new AffectingYourMetabolismPageOLS());
-        		
-        		//----------AffectingYourMetabolism Page--------------------
-        		FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = affectingYourMetabolismPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new FollowingNeurologicalConditionsPageOLS());		
-        		
-        		//----------NeurologicalConditions Page--------------------
-        		AffectYourLungsPageOLS affectYourLungsPageOLS = followingNeurologicalConditionsPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new AffectYourLungsPageOLS());
-
-        		//----------AffectYourL-ungs Page--------------------
-        		DigestiveConditionsPageOLS digestiveConditionsPageOLS = affectYourLungsPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new DigestiveConditionsPageOLS());
-
-        		//----------DigestiveConditions Page--------------------
-        		BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = digestiveConditionsPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new BoneOrJointConditionsPageOLS());
-        		
-        		//----------BoneOrJointConditions Page--------------------		
-        		BoneOrJointConditions boneOrJointConditions = affectYourLungs
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new BoneOrJointConditions());
-        			
-        		//----------BoneOrJointConditions Page--------------------
-        		SleepRelatedConditionsPageOLS sleepRelatedConditionsPageOLS = boneOrJointConditionsPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new SleepRelatedConditionsPageOLS());
-
-        		//----------SleepRelatedConditions Page--------------------
-        		SkinConditionsPageOLS skinConditionsPageOLS = sleepRelatedConditionsPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new SkinConditionsPageOLS());
-        		
-        		//----------SkinConditions Page--------------------
-        		ViralConditionsPageOLS viralConditionsPageOLS = skinConditionsPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new ViralConditionsPageOLS());
-        		
-        		//----------ViralConditions Page--------------------
-        		MentalHealthPageOLS mentalHealthPageOLS = viralConditionsPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new MentalHealthPageOLS());
-        		
-        		//----------MentalHealthConditions Page--------------------
-        		WomensHealthPageOLS womensHealthPageOLS = mentalHealthPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new WomensHealthPageOLS());
-        		
-        		//----------WomenHealthConditions Page--------------------
-        		OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = womensHealthPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswers("None of the above")
-        				.clickNextButton(new OtherThanSkinCancerPageOLS());
-        		
-        		//----------Cancer Page--------------------
-        		SmokedCigarettesPageOLS smokedCigarettesPageOLS = otherThanSkinCancerPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswer("No")
-        				.clickNextButton(new SmokedCigarettesPageOLS());
-        		
-        		//----------HaveYouSmokedCigarettes Page--------------------
-        		HistoryOfDrugPageOLS historyOfDrugPageOLS = smokedCigarettesPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswer("No, I never smoked")
-        				.clickNextButton(new HistoryOfDrugPageOLS());
-
-
-        		//----------HistoryOfDrugPageOLS Page--------------------
-        		ProvideHeightWeight provideHeightWeight = historyOfDrugPageOLS
-        				.waitForPageLoad()
-        				.clickOnAnswer("No")
-        				.clickNextButton(new ProvideHeightWeight());
-
-        		//----------ProvideHeight-Weight Page--------------------
-        		ChildrenUnderPageOLS childrenUnderPageOLS = provideHeightWeight
-        				.waitForPageLoad()
-        				.setFT("5")
-        				.setIN("5")
-        				.setWeight("155")
-        				.clickNextButton(new ChildrenUnderPageOLS());*/
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new DiabeticNephropathyPageOLS());
+                
+                ForYourKidneysPageOLS forYourKidneysPageOLS = diabeticNephropathyPageOLS
+                		.waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ForYourKidneysPageOLS());
+                
+                HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = forYourKidneysPageOLS
+                		.waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+                
+                HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                		.waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS());
+                
+                HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+                		.waitForPageLoad()
+                        .clickOnAnswers("None of the above")       
+                        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS());
+                
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")                		                
+                		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                
+                DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+                
+                ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+                		.waitForPageLoad()
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new ApproximateHeightPageOLS());
+                
+                
+                ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
+                		.waitForPageLoad()
+        				.setAll("5", "6", "166")
+        				.clickNextButton(new ChildrenUnderPageOLS());              
+        
         		
         		//----------ChildrenUnderTheAge Page--------------------
         		TheStudySitePageOLS theStudySitePageOLS = childrenUnderPageOLS

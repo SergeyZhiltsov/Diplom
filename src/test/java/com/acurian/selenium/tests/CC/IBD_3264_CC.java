@@ -50,7 +50,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3264_CC extends BaseTest{
 
-    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("IBD")
     @Description("IBD 3264 for CC")
     public void ibd3264ccTest(final String username, final String password) {
