@@ -72,7 +72,7 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
         String studyName = "an endometriosis";
         String siteName = "AUT_END_4385";
         String zipCode = "19901";
-        String ExpStudySwich = "4733000001";
+        String ExpStudySwich = "4733";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";

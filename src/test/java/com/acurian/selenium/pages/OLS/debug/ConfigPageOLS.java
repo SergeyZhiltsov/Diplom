@@ -29,7 +29,7 @@ public class ConfigPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//span[text()='Close']")
     WebElement closeButton;
     
-    @FindBy(xpath = "//div[contains(@class,'k-widget')]//h3[text()='Phone:']/following-sibling::div[1]/strong")
+    @FindBy(xpath = "(//strong[contains(.,'4733')])[3]")
     public WebElement studySwitch;
   
 
