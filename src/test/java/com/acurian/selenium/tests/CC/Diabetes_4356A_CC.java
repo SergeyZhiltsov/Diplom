@@ -347,6 +347,8 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
+		   		//.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
+        		//.getAnomalyDbToLog(env); //Not applicable for Call center
                 
 
 

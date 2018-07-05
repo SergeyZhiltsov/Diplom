@@ -272,8 +272,8 @@ public class DPN_3769_CC extends BaseTest{
                 .clickOnAnswers("Retinopathy or diabetic eye disease","Diabetic nephropathy or kidney damage caused by diabetes")
                 .clickNextButton(new TreatingYourDiabetesPageCC()); // Click NEXT button and wait for the NEXT page
                 //********Test the SKIP logic to page 13 and then click BACK button     
-                treatingYourDiabetesPageCC.waitForPageLoad();
-                debugPageCC.back();
+                treatingYourDiabetesPageCC.waitForPageLoad()
+                .back();
                 doYouHaveAnyOfTheFollowingConditions_CC.waitForPageLoad();
                 WhichOfTheFollowingHadAmputatedSurgically_CC whichOfTheFollowingHadAmputatedSurgically_CC = doYouHaveAnyOfTheFollowingConditions_CC
                 .clickOnAnswers("Amputation or surgical removal of a leg, a foot, or toes")

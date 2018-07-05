@@ -309,7 +309,6 @@ public class DIA_4241_OLS extends BaseTest{
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
-		
+        .pidFromDbToLog(env);		
     }
 }

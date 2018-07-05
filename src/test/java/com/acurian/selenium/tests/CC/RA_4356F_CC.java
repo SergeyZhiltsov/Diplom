@@ -273,9 +273,9 @@ public class RA_4356F_CC extends BaseTest{
                .clickOnAnswer("Transferred for Scheduling")
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
-               .pidFromDbToLog(env)
-               .getRadiantDbToLog(env);
-               //.getAnomalyDbToLog(env);
+               .pidFromDbToLog(env);
+       		   //.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
+               //.getAnomalyDbToLog(env); //Not applicable for Call center
 
        //------------------OLD General Health--------------------
       /* haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC

@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyOfFollowi
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.SubquestionsIBD_OLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.SubquestionsIBD_ShireCrohns_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWasYourMostRecentColonoscopy_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsDisease_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitis_OLS;
@@ -260,23 +261,53 @@ public class IBD_3889_OLS extends BaseTest{
 		areYouCurrentlyExperiencingFlareUp_OLS
 				.waitForPageLoad();
 		Assert.assertEquals(areYouCurrentlyExperiencingFlareUp_OLS.getTitleText(),areYouCurrentlyExperiencingFlareUp_OLS.titleExpected, "Title is diff");
-		SubquestionsIBD_OLS subquestionsIBD_OLS = areYouCurrentlyExperiencingFlareUp_OLS
+		SubquestionsIBD_ShireCrohns_OLS subquestionsIBD_ShireCrohns_OLS = areYouCurrentlyExperiencingFlareUp_OLS
 		.clickOnAnswer("No, I am not currently in a flare with my Crohn's or colitis")
-        .clickNextButton(new SubquestionsIBD_OLS());
-		
-		
-		
-		//-----------------------Q15 In general, how would you rate your health, living with Crohn's or colitis?----------------------		
-		subquestionsIBD_OLS
-			.waitForPageLoad(1,subquestionsIBD_OLS.titleExpected1)
-			.waitForPageLoad(2,subquestionsIBD_OLS.titleExpected2)
-			.waitForPageLoad(3,subquestionsIBD_OLS.titleExpected3);
-        //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
-			WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_OLS
-				.clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected1,"Good")
-				.clickOnAnswersForSubQuestion(subquestionsIBD_OLS.titleExpected2,"Somewhat better now")
-				.clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected3,"Loss of bowel control")
-				.clickNextButton(new WeightLossSurgeryPageOLS());
+		.clickNextButton(new SubquestionsIBD_ShireCrohns_OLS());
+
+
+		//-----------------------Q15 Please think about your Crohn's disease symptoms when answering the questions below.----------------------		
+		subquestionsIBD_ShireCrohns_OLS
+			.waitForPageLoad(1,subquestionsIBD_ShireCrohns_OLS.titleExpected1)
+			.waitForPageLoad(2,subquestionsIBD_ShireCrohns_OLS.titleExpected2)
+			.waitForPageLoad(3,subquestionsIBD_ShireCrohns_OLS.titleExpected3);
+	   //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
+	   //WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_OLS
+		SubquestionsIBD_OLS subquestionsIBD_OLS = subquestionsIBD_ShireCrohns_OLS
+			.avgDayBowelMovements("2")
+			.past24hrBowelMovements("2")
+			.abdominalpainOnaScale("2")
+			.clickNextButton(new SubquestionsIBD_OLS());
+	
+	
+	//-----------------------Q17 In general, how would you rate your health, living with Crohn's or colitis?----------------------		
+	subquestionsIBD_OLS
+		.waitForPageLoad(1,subquestionsIBD_OLS.titleExpected1)
+		.waitForPageLoad(2,subquestionsIBD_OLS.titleExpected2)
+		.waitForPageLoad(3,subquestionsIBD_OLS.titleExpected3)
+		.getPage(debugPageOLS)
+		//.checkProtocolsContainsForQNumber("QS5714", protocol2)
+		.back();
+		subquestionsIBD_ShireCrohns_OLS.back();
+	areYouCurrentlyExperiencingFlareUp_OLS
+		.waitForPageLoad()
+		.clickOnAnswer("I am unsure as to whether I am in a flare with my Crohn's or colitis")
+		.clickNextButton(new SubquestionsIBD_OLS());
+	subquestionsIBD_ShireCrohns_OLS
+		.waitForPageLoad(1,subquestionsIBD_ShireCrohns_OLS.titleExpected1)
+		.waitForPageLoad(2,subquestionsIBD_ShireCrohns_OLS.titleExpected2)
+		.waitForPageLoad(3,subquestionsIBD_ShireCrohns_OLS.titleExpected3)        
+		.getPage(debugPageOLS)
+		//.checkProtocolsContainsForQNumber("QS5714", protocol1)
+		.clickNextButton(new SubquestionsIBD_OLS());
+		subquestionsIBD_OLS.waitForPageLoad(1,subquestionsIBD_OLS.titleExpected1);
+    //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
+	subquestionsIBD_OLS.waitForPageLoad(1,subquestionsIBD_OLS.titleExpected1);
+	WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_OLS
+		.clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected1,"Good")
+		.clickOnAnswersForSubQuestion(subquestionsIBD_OLS.titleExpected2,"Somewhat better now")
+		.clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected3,"Loss of bowel control")
+		.clickNextButton(new WeightLossSurgeryPageOLS());
 			
 
 			
@@ -684,6 +715,7 @@ public class IBD_3889_OLS extends BaseTest{
 		.clickNextButton(new SiteSelectionPageOLS());
         
 		//----------SiteSelection Page--------------------
+        siteSelectionPageOLS.threadSleep(5000);
         siteSelectionPageOLS.waitForPageLoad(studyName)
         .getPID()
         .clickOnFacilityName(siteName)

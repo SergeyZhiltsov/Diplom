@@ -54,7 +54,7 @@ public class IBD_Short extends BaseTest{
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("IBD_short")
     @Description("IBD Short for CC")
-    public void ibd3264ccTest(final String username, final String password) {
+    public void IBD3264ccTest_SHORT(final String username, final String password) {
         String phoneNumber = "AUTAMSCRSH";
         String protocol1 = "M14_234";
         String protocol3 = "M16_006";
@@ -63,7 +63,6 @@ public class IBD_Short extends BaseTest{
         String ibdStudy = "Ulcerative Colitis";
         String siteName = "AUT_IBD_3839_Site";
         String studyIndication = "Ulcerative Colitis";
-  //      String env = "STG";
         String zipCode = "19901";
         
         String env = System.getProperty("acurian.env");

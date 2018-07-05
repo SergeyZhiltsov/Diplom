@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import org.testng.Assert;
@@ -18,11 +19,15 @@ import com.acurian.selenium.pages.CC.IBD.EverTreatedCrohnOrColitisCC;
 import com.acurian.selenium.pages.CC.IBD.HowWouldYouRateCC;
 import com.acurian.selenium.pages.CC.IBD.MostRecentColonoscopyCC;
 import com.acurian.selenium.pages.CC.IBD.SteroidMedicationsForCrohnsCC;
-import com.acurian.selenium.pages.CC.IBD.SubquestionsIBD_ShireCrohns_CC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedFlareMonitoringAppClose_CC;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer2;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer3;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
@@ -45,31 +50,40 @@ import com.acurian.selenium.pages.CC.shared.ProcedureForWeightLossPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
+import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.CC.IBD.SubquestionsIBD_ShireCrohns_CC;
+import com.acurian.selenium.pages.CC.IBD.HowWouldYouRateCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class IBD_3889_CC extends BaseTest{
+public class IBD_4533_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("IBD_Crohn's")
-    @Description("IBD 3485 for CC")
-    public void IBD_3889_CCTest(final String username, final String password) {
-        String phoneNumber = "AUTAMS1IBD";
+    @Description("IBD 45335 for CC")
+    public void IBD_4533_CCTest(final String username, final String password) {
+        String phoneNumber = "AUTAMS1CRN";
         String protocol1 = "M14_431";
         String protocol2 = "M14_433";
         String protocol3 = "M15_991";
         String protocol4 = "M16_006";
+        String protocol5 = "SHP647_305";
+        String protocol6 = "SHP647_306";
         List<String> protocols = Arrays.asList(protocol1,protocol2, protocol3, protocol4);
-        String studyName = "Crohn's or colitis";
-        String studyIndication = "a Ulcerative Colitis";
-        String siteName = "AUT_CRN_3889_HS";
+        String studyName = "Crohn's";
+        String studyIndication = "Crohn's or colitis";
+        String siteName = "AUT_SHIRE_4533_site";
         String debugSiteName = "";
-  //      String env = "STG";
-        String zipCode = "19044";
+        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
+        
+        String time = String.valueOf(Instant.now().getEpochSecond());
+        time = time.substring(time.length()-4);
+        String eMailId = "qa.acurian+"+time+"3@gmail.com";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -100,8 +114,8 @@ public class IBD_3889_CC extends BaseTest{
      /*   dateOfBirthPageCC
                 .waitForPageLoadIBD();*/
         dateOfBirthPageCC.threadSleep(2000);
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextIBD(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextIBD(), dateOfBirthPageCC.titleIBD3264, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),"May I have your date of birth?","Question text is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), dateOfBirthPageCC.titleExpected, "Title is diff");//titleExpectedCrohns_3485, "Title is diff");
         
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")
@@ -109,27 +123,16 @@ public class IBD_3889_CC extends BaseTest{
                 .setYear("2003")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         DebugPageCC debugPageCC = new DebugPageCC();       
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol5, protocol6);
         debugPageCC.back();
         
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC                
-                .setYear("1942")
-                .clickNextButton(new IdentificationPageCC());        
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        dateOfBirthPageCC        		
-				.setYear("1937")
-				.clickNextButton(new IdentificationPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
-        debugPageCC.back();
-        dateOfBirthPageCC		   		
+        IdentificationPageCC identificationPageCC = dateOfBirthPageCC	   		
 		   		.setYear("1980")
 		   		.clickNextButton(new IdentificationPageCC()); 
         
-       
         GenderPageCC genderPageCC = identificationPageCC
      		   .waitForPageLoad1()
-     		   .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+     		   .setAllFields("Auto", "Test", eMailId, "9999999999", zipCode)
      		   .clickNextButton(new GenderPageCC());
         
         DiagnosedWithCrohnsPageCC  diagnosedWithCrohnsPageCC = genderPageCC
@@ -158,12 +161,16 @@ public class IBD_3889_CC extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswer("Not officially diagnosed with Crohn's by a doctor")				
 				.clickNextButton(new LetMeSeePageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015880-QS5703-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015880-QS5703-STUDYQUES", protocol5, protocol6);
         debugPageCC.back();
-        
         MostRecentColonoscopyCC mostRecentColonoscopyCC = whenDiagnosedCrohnsPageCC
 				.waitForPageLoad()
 				.clickOnAnswer("Less than 3 months ago")
+				.clickNextButton(new MostRecentColonoscopyCC());
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015880-QS5703-STUDYQUES", protocol5, protocol6);
+        debugPageCC.back();
+        whenDiagnosedCrohnsPageCC.waitForPageLoad()
+				.clickOnAnswer("3 - 6 months ago")
 				.clickNextButton(new MostRecentColonoscopyCC());
         
         ManageYourCrohnsPageCC manageYourCrohnsPageCC = mostRecentColonoscopyCC
@@ -236,37 +243,48 @@ public class IBD_3889_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
 				.clickOnAnswers("Entyvio (Agent Note: en-TIV-ee-oh)","Stelara (Agent Note: ste-LAHR-uh)")
 				.clickNextButton(new CurrentlyExperiencingFlareUpCC());
+        debugPageCC.checkProtocolsContainsForQNumber("Q0005225-QS5710-STUDYQUES", protocol5, protocol6);
+        debugPageCC.back();
+        biologicMedicationsPageCC.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+        		.clickNextButton(new CurrentlyExperiencingFlareUpCC());
         
+        
+        //HowWouldYouRateCC howWouldYouRateCC = currentlyExperiencingFlareUpCC
         SubquestionsIBD_ShireCrohns_CC subquestionsIBD_ShireCrohns_CC = currentlyExperiencingFlareUpCC
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not currently in a flare with my Crohn's or colitis")
                 .clickNextButton(new SubquestionsIBD_ShireCrohns_CC());
-                
+        
 
       //-----------------------Q15 Please think about your Crohn's disease symptoms when answering the questions below.----------------------		
       subquestionsIBD_ShireCrohns_CC
-      			.waitForPageLoad(1,subquestionsIBD_ShireCrohns_CC.titleExpected1)
-      			.waitForPageLoad(2,subquestionsIBD_ShireCrohns_CC.titleExpected2)
-      			.waitForPageLoad(3,subquestionsIBD_ShireCrohns_CC.titleExpected3);
+      	.waitForPageLoad(1,subquestionsIBD_ShireCrohns_CC.titleExpected1)
+      	.waitForPageLoad(2,subquestionsIBD_ShireCrohns_CC.titleExpected2)
+      	.waitForPageLoad(3,subquestionsIBD_ShireCrohns_CC.titleExpected3);
       //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
+      	//WeightLossSurgeryPageCC weightLossSurgeryPageOLS = subquestionsIBD_CC
       HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_ShireCrohns_CC
-    		  	.avgDayBowelMovements("2")
-    		  	.past24hrBowelMovements("2")
-    		  	.abdominalpainOnaScale("2")
-    		  	.clickNextButton(new HowWouldYouRateCC());
+      	.avgDayBowelMovements("2")
+      	.past24hrBowelMovements("2")
+      	.abdominalpainOnaScale("2")
+          .clickNextButton(new HowWouldYouRateCC());
       		
       		
           //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
       	WeightLossSurgeryPageCC weightLossSurgeryPageCC = howWouldYouRateCC
+        		.waitForPageLoadIBD()
         		.clickOnAnswer("Fair")
         		.clickOnAnswer("About the same")
         		.clickOnAnswers("None of the above")
         		.clickNextButton(new WeightLossSurgeryPageCC());
         
+      	
         HaveAnyOfTheFollowingPageCC haveAnyOfTheFollowingPageCC = weightLossSurgeryPageCC
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
         		.clickNextButton(new HaveAnyOfTheFollowingPageCC());        
+        
         
         TransitionStatementCC transitionStatementCC = haveAnyOfTheFollowingPageCC
         		.waitForPageLoad()
@@ -289,6 +307,7 @@ public class IBD_3889_CC extends BaseTest{
         debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
         debugPageCC.back();  
         
+        
         haveAnyOfTheFollowingPageCC
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
@@ -301,14 +320,17 @@ public class IBD_3889_CC extends BaseTest{
 				.clickOnAnswers("None of the above")										
 				.clickNextButton(new TransitionStatementCC());
         
+        
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-        		.waitForPageLoadWithCurves(studyName)
+        		//.waitForPageLoadWithCurves(studyName)
+        		.waitForPageLoadWithCurves(studyIndication)
         		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         
         WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
   		      	.waitForPageLoad()
   		      	.clickOnAnswers("Cancer")
   		      	.clickNextButton(new WhenDiagnosedWithCancer());
+        
           
           DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
           		.waitForPageLoad()
@@ -336,6 +358,7 @@ public class IBD_3889_CC extends BaseTest{
           debugPageCC.back();
           whenDiagnosedWithCancer.back();
           
+          
           HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
             		.waitForPageLoad()
             		.clickOnAnswers("None of the above")
@@ -346,6 +369,7 @@ public class IBD_3889_CC extends BaseTest{
         		  .waitForPageLoad()
         		  .clickOnAnswers("Heart attack")
         		  .clickNextButton(new SubquestionExperiencedHeartPageCC());
+          
           
           HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = subquestionExperiencedHeartPageCC
         		  .waitForPageLoad()
@@ -366,6 +390,7 @@ public class IBD_3889_CC extends BaseTest{
           debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
           debugPageCC.back();
           subquestionExperiencedHeartPageCC.back();
+          
           
           haveYouEverExperiencedHeartRelatedMedicalCondCC
 		  			.waitForPageLoad()
@@ -392,6 +417,7 @@ public class IBD_3889_CC extends BaseTest{
           debugPageCC.back();
           subquestionExperiencedHeartPageCC.back();
           
+          
           haveYouEverExperiencedHeartRelatedMedicalCondCC
 					.waitForPageLoad()
 					.clickOnAnswers("TIA or \"mini-stroke\"")
@@ -416,6 +442,7 @@ public class IBD_3889_CC extends BaseTest{
           debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
           debugPageCC.back();
           subquestionExperiencedHeartPageCC.back();
+          
           
           haveYouEverExperiencedHeartRelatedMedicalCondCC
 					.waitForPageLoad()
@@ -448,6 +475,7 @@ public class IBD_3889_CC extends BaseTest{
           			.clickOnAnswers("None of the above")
           			.clickOnAnswers("Kidney disease")
           			.clickNextButton(new KidneyProblemsPage());
+          
           
           kidneyProblemsPage
                   .waitForPageLoad()
@@ -519,6 +547,7 @@ public class IBD_3889_CC extends BaseTest{
           		.clickOnAnswer("No")
           		.clickNextButton(new ApproximateHeightPageCC());
           
+          
          approximateHeightPageCC
           		.waitForPageLoad()
           		.setAll("5", "7", "170")
@@ -528,19 +557,36 @@ public class IBD_3889_CC extends BaseTest{
           		.waitForPageLoad()
           		.clickOnAnswer("No")
           		.clickNextButton(new IdentificationPageCC())
-          		.waitForPageLoad()        		              
+          		.waitForPageLoad()
           		.clickNextButton(new SiteSelectionPageCC())
           		.waitForPageLoad("a Crohn's study")
           		.getPID()
-          		.clickOnAnswer(siteName)
-          		.clickNextButton(new QualifiedClose2PageCC())
-               // .waitForPageLoadIBD("a Crohn's Disease")                
-                .clickNextButton(new ThankYouCloseSimplePageCC())
+          		.clickOnAnswer(siteName)          		
+                .clickNextButton(new QualifiedFlareMonitoringAppClose_CC())
                 .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
+                .getActivationCode()
+                .enterEmail(eMailId)
+                //------------Warm Transfer----------
+                .clickNextButton(new Regular_WarmTransfer1())
+        		.waitForPageLoad()
+        		.clickOnAnswer("Yes")
+        		//Regualr Warm Transfer Page#2
+        		.clickNextButton(new Regular_WarmTransfer2())
+        		.waitForPageLoad()
+        		.clickOnAnswer("Yes: Great, I'll connect them now.")
+        		.clickOnAnswer("[site did not answer]")
+        		//Regualr Warm Transfer Page#3
+        		.clickNextButton(new Regular_WarmTransfer3())
+        		.waitForPageLoad()
+        		//Regualr Warm Transfer Page#4
+        		.clickNextButton(new Regular_WarmTransfer4())
+        		.waitForPageLoad()                
+        		.clickOnAnswer("Successful transfer made to site")
+        		.clickNextButton(selectActionPageCC)
+                //.clickNextButton(new ThankYouCloseSimplePageCC())
+                //.waitForPageLoad()
+                //.clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-     
     }
-
 }
