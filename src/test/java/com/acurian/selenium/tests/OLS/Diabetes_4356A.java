@@ -350,6 +350,6 @@ public class Diabetes_4356A extends BaseTest{
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
         .pidFromDbToLog(env);
-		
+		//.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
     }
 }

@@ -293,47 +293,7 @@ public class HTN_4356D_OLS extends BaseTest{
 		.clickNextButton(new AboutHealthPageOLS())
 		.waitForPageLoad()
 		.pidFromDbToLog(env)
-		.getRadiantDbToLog(env)
+		 //.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
 		.getAnomalyDbToLog(env);
-
-	/*  //---------OLD General health-------------------
-        historyOfDrugPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new ChildrenUnderPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HouseholdHavePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TheStudySitePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Public transportation")
-//                .clickNextButton(new WouldYouUsePageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("Neither")
-                .clickNextButton(new WhatMedicalCoveragePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("No, I have no coverage")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnFacilityName(siteName)
-                .clickNextButton(new SynexusQualifiedClose4356PageOLS())
-		        .waitForPageLoad(env.equals("STG")? facility_Code_STG : facility_Code_PRD)
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env);  */
 	}
 }

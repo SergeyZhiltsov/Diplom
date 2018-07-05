@@ -286,7 +286,7 @@ public class Endo_4356E_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-        		.getRadiantDbToLog(env)
+       		 	//.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
         		.getAnomalyDbToLog(env);
                 
                 

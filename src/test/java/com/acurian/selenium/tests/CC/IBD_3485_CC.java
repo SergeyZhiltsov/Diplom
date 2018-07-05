@@ -17,6 +17,7 @@ import com.acurian.selenium.pages.CC.IBD.EverTreatedCrohnOrColitisCC;
 import com.acurian.selenium.pages.CC.IBD.HowWouldYouRateCC;
 import com.acurian.selenium.pages.CC.IBD.MostRecentColonoscopyCC;
 import com.acurian.selenium.pages.CC.IBD.SteroidMedicationsForCrohnsCC;
+import com.acurian.selenium.pages.CC.IBD.SubquestionsIBD_ShireCrohns_CC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
@@ -217,6 +218,7 @@ public class IBD_3485_CC extends BaseTest{
 				.clickOnAnswers("Raptiva (Agent Note: rap-TEE-vuh)", "Remicade (Agent Note: REM-ih-cade)", "Rituxan (Agent Note: rih-TUX-an)", "Simponi (Agent Note: SIM-po-nee)", "Tysabri (Agent Note: tie-SAB-ree)")
 				.clickNextButton(new CurrentlyExperiencingFlareUpCC());
         
+        
         HowWouldYouRateCC howWouldYouRateCC = currentlyExperiencingFlareUpCC
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not currently in a flare with my Crohn's or colitis")
@@ -227,17 +229,33 @@ public class IBD_3485_CC extends BaseTest{
         		.waitForPageLoad()
         		.clickOnAnswer("Yes, I am currently in a flare with my Crohn's or colitis")
         		.clickNextButton(new HowWouldYouRateCC());
-        
         debugPageCC.checkProtocolsContainsForQNumber("Q0015902-QS5714-STUDYQUES", protocol1);
         debugPageCC.back();
         currentlyExperiencingFlareUpCC
-        		.waitForPageLoad()
+        		.waitForPageLoad();
+        		SubquestionsIBD_ShireCrohns_CC subquestionsIBD_ShireCrohns_CC = currentlyExperiencingFlareUpCC
         		.clickOnAnswer("I am unsure as to whether I am in a flare with my Crohn's or colitis")
-        		.clickNextButton(new HowWouldYouRateCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015902-QS5714-STUDYQUES", protocol1);
-        
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = howWouldYouRateCC
-        		.waitForPageLoadIBD()
+                .clickNextButton(new SubquestionsIBD_ShireCrohns_CC());
+                
+
+      //-----------------------Q15 Please think about your Crohn's disease symptoms when answering the questions below.----------------------		
+      subquestionsIBD_ShireCrohns_CC
+      			.waitForPageLoad(1,subquestionsIBD_ShireCrohns_CC.titleExpected1)
+      			.waitForPageLoad(2,subquestionsIBD_ShireCrohns_CC.titleExpected2)
+      			.waitForPageLoad(3,subquestionsIBD_ShireCrohns_CC.titleExpected3);
+      //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
+      	//WeightLossSurgeryPageCC weightLossSurgeryPageOLS = subquestionsIBD_CC
+      //HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_ShireCrohns_CC
+      subquestionsIBD_ShireCrohns_CC
+    		  	.avgDayBowelMovements("2")
+    		  	.past24hrBowelMovements("2")
+    		  	.abdominalpainOnaScale("2")
+    		  	.clickNextButton(new HowWouldYouRateCC());
+      		
+      		
+          //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
+      	WeightLossSurgeryPageCC weightLossSurgeryPageCC = howWouldYouRateCC
+        		.waitForPageLoadIBD() //*******
         		.clickOnAnswer("Fair")
         		.clickOnAnswer("About the same")
         		.clickOnAnswers("None of the above")

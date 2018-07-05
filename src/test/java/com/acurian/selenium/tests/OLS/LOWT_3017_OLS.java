@@ -316,15 +316,15 @@ public class LOWT_3017_OLS extends BaseTest{
         .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosed_OLS())
         
         
-		//----------Q9 - Which of the following have you been diagnosed with?--------   
+		//----------Q9 - Which of the following have you been diagnosed with?--------
     	.waitForPageLoad();
         Assert.assertEquals(whichOfTheFollowingHaveYouBeenDiagnosed_OLS.getTitleText(),whichOfTheFollowingHaveYouBeenDiagnosed_OLS.titleExpected, "Title is diff");
         WhichOfTheFollowingMensHealthConditions_OLS whichOfTheFollowingMensHealthConditions_OLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
         		.clickOnAnswers("Anorexia","Bulimia","Binge eating disorder")
-        .clickNextButton(new WhichOfTheFollowingMensHealthConditions_OLS());           
+        .clickNextButton(new WhichOfTheFollowingMensHealthConditions_OLS());
 
 
-		//----------Q23 - Which of the following men's health conditions have you been diagnosed with?--------      
+		//----------Q23 - Which of the following men's health conditions have you been diagnosed with?--------
         whichOfTheFollowingMensHealthConditions_OLS
         	.waitForPageLoad();
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whichOfTheFollowingMensHealthConditions_OLS
@@ -401,7 +401,7 @@ public class LOWT_3017_OLS extends BaseTest{
 		//----------PII (IdentificationPageOLS) Page--------------------
 		.waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-        .clickNextButton(new SiteSelectionPageOLS()) 
+        .clickNextButton(new SiteSelectionPageOLS())
         
 		//----------SiteSelection Page--------------------
         .waitForPageLoad(studyName)

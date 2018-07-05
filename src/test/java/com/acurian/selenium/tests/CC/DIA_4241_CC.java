@@ -303,54 +303,6 @@ public class DIA_4241_CC extends BaseTest{
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
-        
-        
-        //----------------------OLD G Health--------------
-       /* childrenUnderPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                //----------PEDIATRIC HEALTH Questions----------
-                //.clickNextButton(new HouseholdHavePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("None of the above")
-                //.clickNextButton(new TheStudySitePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Public transportation")
-                //.clickNextButton(new WhatMedicalCoveragePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("No, I have no coverage")
-                //.clickNextButton(new EthnicBackgroundPageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Prefer not to answer")
-         //----------Resume GENERAL HEALTH Questions----------
-                .clickNextButton(new IdentificationPageCC())
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad(studyName)
-        		.getPID()
-        		.clickOnAnswer(siteName)
-        		.clickNextButton(new QualifiedClose2PageCC())
-        		//Regular Warm Transfer Questions ----- //Regular Warm Transfer Page#1
-        		.waitForPageLoad()
-        		.clickNextButton(new Regular_WarmTransfer1())
-        		.waitForPageLoad()
-        		.clickOnAnswer("Yes")
-        		//Regualr Warm Transfer Page#2
-        		.clickNextButton(new Regular_WarmTransfer2())
-        		.waitForPageLoad()
-        		.clickOnAnswer("Yes: Great, I'll connect them now.")
-        		.clickOnAnswer("[site did not answer]")
-        		//Regualr Warm Transfer Page#3
-        		.clickNextButton(new Regular_WarmTransfer3())
-        		.waitForPageLoad()
-        		//Regualr Warm Transfer Page#4
-        		.clickNextButton(new Regular_WarmTransfer4())
-        		.waitForPageLoad()                
-        		.clickOnAnswer("Successful transfer made to site")
-        		.clickNextButton(selectActionPageCC)
-        		.waitForPageLoad()
-        		.pidFromDbToLog(env); */
+                .pidFromDbToLog(env);    
     }
 }

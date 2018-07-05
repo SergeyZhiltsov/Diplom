@@ -290,17 +290,13 @@ public class OA_3138_CC extends BaseTest{
                .waitForPageLoad(studyName1)
                .getPID()
                .clickOnAnswer(siteName)
-               .clickNextButton(new RadiantWarmTransferClose1PageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("[direct schedule in clinical conductor]")
                .clickNextButton(new SynexusRadiantDirectScheduleCC())
-               .waitForPageLoad()
-               .clickNextButton(new RadiantWarmTransfer4())
-               .clickOnAnswer("Transferred for Scheduling")
+               .waitForPageLoadSyn()
+               .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
-               .pidFromDbToLog(env)
-               .getRadiantDbToLog(env);
-               //.getAnomalyDbToLog(env);
+               .pidFromDbToLog(env);
+       		   //.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
+               //.getAnomalyDbToLog(env); //Not applicable for Call center
 	}
 }
