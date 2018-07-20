@@ -110,7 +110,8 @@ public class SUI_3923_CC extends BaseTest{
         Assert.assertEquals(genderPageCC.getTitleText(), genderPageCC.titleExpected, "Title is diff");
         DoYouExperienceUrinaryIncontinenceCC doYouExperienceUrinaryIncontinenceCC = genderPageCC
                 .clickOnAnswer("Male")
-                .clickNextButton(new DoYouExperienceUrinaryIncontinenceCC());
+                .clickNextButton(new DoYouExperienceUrinaryIncontinenceCC())
+                .waitForPageLoad();
         //********Check Question History for DQ and then click BACK button
         DebugPageCC debugPageCC = new DebugPageCC();
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(genderPageCC.titleExpected).contains(protocol1));
@@ -253,8 +254,9 @@ public class SUI_3923_CC extends BaseTest{
         Assert.assertEquals(haveYouGoneThroughMenopauseCC.getTitleText(), haveYouGoneThroughMenopauseCC.titleExpected, "Title is diff");    
         TransitionStatementSUI_CC transitionStatementSUI_CC = haveYouGoneThroughMenopauseCC //[create NEXT PAGE Object = THIS page object]    
         .clickOnAnswer("No")
-        .clickNextButton(new TransitionStatementSUI_CC()); // Click NEXT button and wait for the NEXT page
-        //********Validate Question History for DQ and then click BACK button     
+        .clickNextButton(new TransitionStatementSUI_CC()) // Click NEXT button and wait for the NEXT page
+        //********Validate Question History for DQ and then click BACK button
+        .waitForPageLoad(studyName);
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(haveYouGoneThroughMenopauseCC.titleExpected).contains(protocol1));
         debugPageCC.back();
         haveYouGoneThroughMenopauseCC.waitForPageLoad();
@@ -272,84 +274,6 @@ public class SUI_3923_CC extends BaseTest{
 
        
       //----------Q12 -Non-QR Transition Statement - Display for Call Center only-------------
-
-        
-      /*//----------OLD GENERAL HEALTH Questions----------
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouUndergoneAnyPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartFailureIsAlsoPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new AffectingYourMetabolismPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingNeurologicalConditions())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new AffectYourLungsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingDigestiveConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new BoneOrJointConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new SleepRelatedConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingSkinConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingViralConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingMentalHealthPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingWomensHealthPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new OtherThanSkinCancerPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new SmokedCigarettesPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I never smoked")
-                .clickNextButton(new HistoryOfDrugPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ApproximateHeightPageCC())
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new LetMeSeePageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-         //----------PEDIATRIC HEALTH Questions----------
-                .clickNextButton(new HouseholdHavePageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")         
-                .clickNextButton(new IdentificationPageCC())
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a women's bladder control study")
-                .getPID()
-                .clickOnAnswer(siteName)
-                 //QualifiedClose2PageCC
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env); */
                 
         //-------------------New GENERAL HEALTH---------------------------
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC

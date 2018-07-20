@@ -83,7 +83,6 @@ public class RA_2821_CC extends BaseTest{
    //     String protocol2 = "M13_545"; This protocol is disabled
         String studyName = "Rheumatoid Arthritis";
         String studyName1 = "a rheumatoid arthritis (RA) study";
-   //     String env = "PRD";
         String siteName = "AUT_RA2821_HS_Site";
         String zipCode  = "19044";
         
@@ -144,6 +143,7 @@ public class RA_2821_CC extends BaseTest{
 	   .waitForPageLoad()	   
 	   .clickOnAnswer("No")
 	   .clickNextButton(new NonQRtransitionPageCC());
+       
 
 DebugPageCC debugPageCC = new DebugPageCC();
 debugPageCC.checkProtocolsEquals(doYouSufferFromArthritisCC.titleExpected, protocol1);
@@ -159,50 +159,52 @@ WhenWereYouDiagnosedWithRACC whenWereYouDiagnosedWithRACC = whatKindOfArthritisC
 	   .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
 	   .clickNextButton(new WhenWereYouDiagnosedWithRACC());
 
+
 whenWereYouDiagnosedWithRACC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Within the past 2 months")
-	   .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC());
-
+	   .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC())
+		.waitForPageLoad();
 debugPageCC.checkProtocolsContainsForQNumber("Q0005177-QS503-STUDYQUES", protocol1);
 debugPageCC.back();
-
 HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenWereYouDiagnosedWithRACC
 	   .waitForPageLoad()
 	   .clickOnAnswer("7 - 11 months ago")	   
 	   .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC());       
 
+
 howOldWereUWhenDiagnosedWithRACC
 	   .waitForPageLoad()
 	   .typeAge("16")
-	   .clickNextButton(new FollowingDescribesYourRASymptomsStartedCC());
-
+	   .clickNextButton(new FollowingDescribesYourRASymptomsStartedCC())
+		.waitForPageLoad();
 debugPageCC.checkProtocolsEquals("Approximately how old were you when you were diagnosed with RA?Agent Note: If patient is unsure, say...", protocol1);
 debugPageCC.back();
-
 FollowingDescribesYourRASymptomsStartedCC followingDescribesYourRASymptomsStartedCC = howOldWereUWhenDiagnosedWithRACC
 	   .waitForPageLoad()
 	   .typeAge("28")
 	   .clickNextButton(new FollowingDescribesYourRASymptomsStartedCC());
+
 
 WhatTestsDoctorLedToDiagnosingRACC whatTestsDoctorLedToDiagnosingRACC = followingDescribesYourRASymptomsStartedCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Symptoms took several months to develop; the pain built gradually over a period of time")
 	   .clickNextButton(new WhatTestsDoctorLedToDiagnosingRACC());
 
+
 TenderPainfulOrSwollenJointsCC tenderPainfulOrSwollenJointsCC = whatTestsDoctorLedToDiagnosingRACC
 	   .waitForPageLoad()
 	   .clickOnAnswers("An x-ray of your affected joints, which included multiple joints such as your hands and feet")
 	   .clickNextButton(new TenderPainfulOrSwollenJointsCC());
 
+
 tenderPainfulOrSwollenJointsCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("No")
-	   .clickNextButton(new CurrentlyExperiencingJointSymptomsYourRACC());
-
+	   .clickNextButton(new CurrentlyExperiencingJointSymptomsYourRACC())
+	   .waitForPageLoad();
 debugPageCC.checkProtocolsEquals(tenderPainfulOrSwollenJointsCC.titleExpected, protocol1);
 debugPageCC.back();
-
 CurrentlyExperiencingJointSymptomsYourRACC currentlyExperiencingJointSymptomsYourRACC = tenderPainfulOrSwollenJointsCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Yes")
@@ -214,56 +216,59 @@ DoYouUseAnyOralSteroidCC doYouUseAnyOralSteroidCC = currentlyExperiencingJointSy
 	   .clickOnAnswers("Pain or swelling in at least 3 separate joints")
 	   .clickNextButton(new DoYouUseAnyOralSteroidCC());
 
+
 AnySteroidsForYourRACC anySteroidsForYourRACC = doYouUseAnyOralSteroidCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("No")
 	   .clickNextButton(new AnySteroidsForYourRACC());
+
 
 AreYouCurrentlyTakingMethotrexateCC areYouCurrentlyTakingMethotrexateCC = anySteroidsForYourRACC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Yes")
 	   .clickNextButton(new AreYouCurrentlyTakingMethotrexateCC());
 
+
 HowLongTakingMethotrexateCC howLongTakingMethotrexateCC = areYouCurrentlyTakingMethotrexateCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Yes, I am taking methotrexate tablets or pills")
 	   .clickNextButton(new HowLongTakingMethotrexateCC());
 
+
 howLongTakingMethotrexateCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Less than 1 month")
-	   .clickNextButton(new FollowingMedicationsToTreatYourRACC());
-
+	   .clickNextButton(new FollowingMedicationsToTreatYourRACC())
+       .waitForPageLoad();
 debugPageCC.checkProtocolsEquals(howLongTakingMethotrexateCC.titleExpected, protocol1);
 debugPageCC.back();
-
 FollowingMedicationsToTreatYourRACC followingMedicationsToTreatYourRACC = howLongTakingMethotrexateCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("4 - 6 months")	   
-	   .clickNextButton(new FollowingMedicationsToTreatYourRACC());     
+	   .clickNextButton(new FollowingMedicationsToTreatYourRACC());
+
       
 followingMedicationsToTreatYourRACC
 	   .waitForPageLoad()
 	   .clickOnAnswers("Leukeran (chlorambucil)")
-	   .clickNextButton(new BiologicMedicationsCC());
-
+	   .clickNextButton(new BiologicMedicationsCC())
+       .waitForPageLoad();
 debugPageCC.checkProtocolsEquals("Are you currently taking any of the following medications to treat your RA?Agent Note: Read medicati...", protocol1);
 debugPageCC.back();
-
 HowLongTakingPlaquenilCC howLongTakingPlaquenilCC = followingMedicationsToTreatYourRACC
 	   .waitForPageLoad()
 	   .clickOnAnswers("Leukeran (chlorambucil)")
 	   .clickOnAnswers("Plaquenil (hydroxychloroquine)")	         
 	   .clickNextButton(new HowLongTakingPlaquenilCC());       
 
+
 howLongTakingPlaquenilCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Less than 1 month")
-	   .clickNextButton(new BiologicMedicationsCC());
-
+	   .clickNextButton(new BiologicMedicationsCC())
+       .waitForPageLoad();
 debugPageCC.checkProtocolsEqualsForQNumber("Q0005220-QS521-STUDYQUES", protocol1);
 debugPageCC.back();
-
 BiologicMedicationsCC biologicMedicationsCC = howLongTakingPlaquenilCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("4 - 6 months")      
@@ -273,12 +278,10 @@ BiologicMedicationsCC biologicMedicationsCC = howLongTakingPlaquenilCC
 EverTakenXeljanzCC everTakenXeljanzCC = biologicMedicationsCC
 	   .waitForPageLoad()
 	   .clickOnAnswers("None of the above")
-	   .clickNextButton(new EverTakenXeljanzCC());
-
-everTakenXeljanzCC.waitForPageLoad();
+	   .clickNextButton(new EverTakenXeljanzCC())
+	   .waitForPageLoad();
 debugPageCC.checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-5...", protocol1);
 debugPageCC.back();
-
 WhenLastReceivedTysabriCC whenLastReceivedTysabriCC = biologicMedicationsCC
 	   .waitForPageLoad()
 	   .clickOnAnswers("Tysabri (Agent Note: tie-SAB-ree)")	          
@@ -290,22 +293,24 @@ whenLastReceivedTysabriCC
 	   .clickOnAnswer("Last received 7 to 11 months ago")
 	   .clickNextButton(new EverTakenXeljanzCC());
 
+
 everTakenXeljanzCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("Yes, I am currently taking it")
 	   .clickNextButton(new TransitionStatementCC());
-
 debugPageCC.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", protocol1);
 debugPageCC.back();
-
 TransitionStatementCC transitionStatementCC = everTakenXeljanzCC
 	   .waitForPageLoad()
 	   .clickOnAnswer("No, I have never taken it")	   
 	   .clickNextButton(new TransitionStatementCC()); 
        
+
 HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                .waitForPageLoad("RA")
                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+
 
 //-------------------New GENERAL HEALTH---------------------------
 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -351,83 +356,5 @@ haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
         .clickNextButton(selectActionPageCC)
         .waitForPageLoad()
         .pidFromDbToLog(env);
-
-
-/*-------------------OLD General Health------------------
-haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new HaveYouUndergoneAnyPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new HeartFailureIsAlsoPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("No")
-               .clickNextButton(new AffectingYourMetabolismPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new FollowingNeurologicalConditions())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new AffectYourLungsPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new FollowingDigestiveConditionsPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new BoneOrJointConditionsPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new SleepRelatedConditionsPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new FollowingSkinConditionsPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new FollowingViralConditionsPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new FollowingMentalHealthPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new FollowingWomensHealthPageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new OtherThanSkinCancerPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("No")
-               .clickNextButton(new SmokedCigarettesPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("No, I never smoked")
-               .clickNextButton(new HistoryOfDrugPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("No")
-               .clickNextButton(new ApproximateHeightPageCC())
-               .waitForPageLoad()
-               .setAll("5", "5", "160")
-               .clickNextButton(new LetMeSeePageCC())
-               .waitForPageLoad()
-               .clickNextButton(new ChildrenUnderPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("No")
-               .clickNextButton(new IdentificationPageCC())
-               .waitForPageLoad()
-               .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-               .clickNextButton(new SiteSelectionPageCC())
-               .waitForPageLoad(studyName1)
-               .getPID()
-               .clickOnAnswer(siteName)
-               .clickNextButton(new HSGeneralCC())
-               .waitForPageLoad(studyName)
-               .clickNextButton(new DoctorInformationCollectionPageCC())
-               .waitForPageLoad()
-               .clickNextButton(new HSMedicalRecordsPageCC())
-               .waitForPageLoad()
-               .clickNextButton(new ThankYouCloseSimplePageCC())
-               .waitForPageLoad()
-               .clickNextButton(selectActionPageCC)
-               .waitForPageLoad()
-               .pidFromDbToLog(env);       */
 	}
-
 }

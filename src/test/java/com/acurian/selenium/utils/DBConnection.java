@@ -17,7 +17,7 @@ public class DBConnection {
 
     private String stageURL = "jdbc:oracle:thin:@dev-db-scan.acurian.com:1521/acustg_users.acurian.com";
     private String prodURL = "jdbc:oracle:thin:@prd-db-scan.acurian.com:1521/ACUPRD_users.acurian.com";
-    private String qaURL = "";
+    private String qaURL = "jdbc:oracle:thin:@dev-db-scan.acurian.com:1521/acuqa_users.acurian.com";
     private String userName = "autotest";
     private String password = "autotest";
 

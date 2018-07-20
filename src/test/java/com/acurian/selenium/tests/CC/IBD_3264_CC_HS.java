@@ -48,12 +48,12 @@ import com.acurian.selenium.utils.DataProviderPool;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class IBD_3264_CC extends BaseTest{
+public class IBD_3264_CC_HS extends BaseTest{
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("IBD")
     @Description("IBD 3264 for CC")
-    public void ibd3264ccTest(final String username, final String password) {
+    public void IBD3264cc_HS(final String username, final String password) {
         String phoneNumber = "AUTAMS1IBD";
         //String protocol1 = "M14_234";
         String protocol2 = "M16_067";        

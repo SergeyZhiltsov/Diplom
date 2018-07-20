@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class UseDietAndExercisePage extends MainPageCC{
@@ -27,7 +29,7 @@ public class UseDietAndExercisePage extends MainPageCC{
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
-
+    
     @Step
     public UseDietAndExercisePage clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);

@@ -19,7 +19,6 @@ import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWasYourMostRecentColonos
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsDisease_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitis_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.DoYouExperienceAnyOftheFollowing_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.WhichOfTheFollowingMensHealthConditions_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.*;
@@ -69,7 +68,7 @@ public class IBD_4533_OLS extends BaseTest{
         
         String time = String.valueOf(Instant.now().getEpochSecond());
         time = time.substring(time.length()-4);
-        String eMailId = "qa.acurian+"+time+"3@gmail.com";
+        String eMailId = "qa.acurian_"+time+"3@gmail.com";
         
         
         //---------------Date of Birth Question-------------------
@@ -698,49 +697,55 @@ public class IBD_4533_OLS extends BaseTest{
         	.waitForPageLoad();
         Assert.assertEquals(hormonalBirthControlOLS.getTitleText(),hormonalBirthControlOLS.titleExpected, "Title is diff");
         ApproximateHeightPageOLS approximateHeightPageOLS = hormonalBirthControlOLS
-        .clickOnAnswer("No")        
-        .clickNextButton(new ApproximateHeightPageOLS());
+        	.clickOnAnswer("No")        
+        	.clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
         	.waitForPageLoad()
-        .setAll("5", "5", "160")
-        .clickNextButton(new ChildrenUnderPageOLS())
+        	.setAll("5", "5", "160")
+        	.clickNextButton(new ChildrenUnderPageOLS())
         
         
 		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
+        	.waitForPageLoad()
+        	.clickOnAnswer("Yes")
+        	.clickNextButton(new HouseholdHavePageOLS())
+        	.waitForPageLoad()
+        	.clickOnAnswers("None of the above")
+        	.clickNextButton(new TheStudySitePageOLS())
+        	.waitForPageLoad()
+        	
         
 		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
-        .clickNextButton(new EthnicBackgroundPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Prefer not to answer")
-        .clickNextButton(new IdentificationPageOLS())
+        	.clickOnAnswer("Public transportation")
+        	.clickNextButton(new WhatMedicalCoveragePageOLS())
+        	.waitForPageLoad()
+        	.clickOnAnswers("No, I have no coverage")
+        	.clickNextButton(new EthnicBackgroundPageOLS())
+        	.waitForPageLoad()
+        	.clickOnAnswers("Prefer not to answer")
+        	.clickNextButton(new IdentificationPageOLS())
+        	
 		//----------PII (IdentificationPageOLS) Page--------------------
-		.waitForPageLoad();
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
-		.clickNextButton(new SiteSelectionPageOLS());
+        	.waitForPageLoad();
+        	SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
+        	.clickNextButton(new SiteSelectionPageOLS());
         
 		//----------SiteSelection Page--------------------
+        siteSelectionPageOLS.threadSleep(5000);
         siteSelectionPageOLS.waitForPageLoad(studyName)
-        .getPID()
-  		.clickOnFacilityName(siteName)          		
-        .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
-        .waitForPageLoad()
-        .getActivationCode()
-        .enterEmail(eMailId)
-        .clickNextButton(new ThankYouCloseSimplePageOLS())
-        .waitForPageLoad()
-        .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad()
-        .pidFromDbToLog(env);
+        	.getPID()
+        	.clickOnFacilityName(siteName)          		
+        	.clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
+        	.threadSleep(8000);
+        	//.waitForPageLoad()
+        QualifiedFlareMonitoringAppCLose_OLS qualifiedFlareMonitoringAppCLose_OLS = new QualifiedFlareMonitoringAppCLose_OLS();
+        qualifiedFlareMonitoringAppCLose_OLS
+        	.getActivationCode()        	
+        	//.enterEmail(eMailId)
+        	.clickNextButton(new ThankYouCloseSimplePageOLS())
+        	.waitForPageLoad()
+        	.clickNextButton(new AboutHealthPageOLS())
+        	.waitForPageLoad()
+        	.pidFromDbToLog(env);
     }
 }

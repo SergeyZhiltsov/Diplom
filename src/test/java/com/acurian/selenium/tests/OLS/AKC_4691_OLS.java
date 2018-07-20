@@ -5,6 +5,13 @@ import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.OLS.shared.DIA.AnyPrescribedMedicationPage;
+import com.acurian.selenium.pages.OLS.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
+import com.acurian.selenium.pages.OLS.shared.DIA.UseDietAndExercisePage;
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.ApartFromMetforminPageOLS;
@@ -23,6 +30,9 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.TreatingYourDiabetesPageOLS
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -42,6 +52,7 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DiagnosedAnyTypeOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS;
+import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.shared.ProcedureForWeightLossPageOLS;
 import com.acurian.selenium.pages.OLS.shared.StatinMedicationsOnPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
@@ -54,10 +65,10 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AKC_4691_OLS extends BaseTest{
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     @TestCaseId("0001")
     @Description("Akcea_4691 OLS")
-    public void akc4691olsTest() {
+    public void AKC_4691_OLS_EmailAtPII() {
     	
         String phoneNumber = "AUTAMS1AKC";
         List<String> protocols = Arrays.asList("ISIS 703802_CS2");
@@ -75,10 +86,12 @@ public class AKC_4691_OLS extends BaseTest{
 		           .maximizePage();
 		Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(),dateOfBirthPageOLS.titleAKC_4691_Expected, "Title is diff");
       
+        //--------------DOB Question------------
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());
         
+        //--------------ZIP_CODE Question------------
         zipCodePageOLS
                 .waitForPageLoad();
         Assert.assertEquals(zipCodePageOLS.getTitleText(),zipCodePageOLS.titleExpected, "Title is diff");
@@ -87,13 +100,17 @@ public class AKC_4691_OLS extends BaseTest{
                 .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageOLS());
 
+        //--------------GENDER Question------------
         genderPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
-
+        
+        
+        
+        //--------------Q2: Have you been diagnosed with any type of diabetes?------------
         diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
@@ -110,13 +127,15 @@ public class AKC_4691_OLS extends BaseTest{
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
+
+        //--------------Q3: What kind of diabetes do you have?------------
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(whatKindOfDiabetesPageOLS.getTitleText(),whatKindOfDiabetesPageOLS.titleExpected, "Title is diff");
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", protocol1)
@@ -124,7 +143,7 @@ public class AKC_4691_OLS extends BaseTest{
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", protocol1)
@@ -132,17 +151,17 @@ public class AKC_4691_OLS extends BaseTest{
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", protocol1)
                 .back();
-        TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
-        treatingYourDiabetesPageOLS
-                .waitForPageLoad()
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad();
+        		UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageOLS
+        		.clickOnAnswer("Unsure")
+        		.clickNextButton(new UseDietAndExercisePage());
+        		useDietAndExercisePage.waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", protocol1)
                 .back();
@@ -150,266 +169,317 @@ public class AKC_4691_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageOLS());
-
+        
+        
+        //--------------Q4: How long ago were you diagnosed with type 2 diabetes?------------
         withType2DiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(withType2DiabetesPageOLS.getTitleText(),withType2DiabetesPageOLS.titleExpected, "Title is diff");
         withType2DiabetesPageOLS
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
-
-        treatingYourDiabetesPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(treatingYourDiabetesPageOLS.getTitleText(),treatingYourDiabetesPageOLS.titleExpected, "Title is diff");
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
-                .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
-        followingToLoseWeightPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4605", protocol1)
-                .back();
-        treatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(followingToLoseWeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4605", protocol1)
-                .back();
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageOLS());
-
-        lastTimeYouTookPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(lastTimeYouTookPageOLS.getTitleText(),lastTimeYouTookPageOLS.titleExpected, "Title is diff");
-        lastTimeYouTookPageOLS
-                .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(followingToLoseWeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4606", protocol1)
-                .back();
-        lastTimeYouTookPageOLS
-        		.clickOnAnswer("4 - 5 months ago")
-        		.clickNextButton(followingToLoseWeightPageOLS)
-        		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4606", protocol1)
-        		.back();
-        lastTimeYouTookPageOLS
-				.clickOnAnswer("6 months ago or longer")
-				.clickNextButton(followingToLoseWeightPageOLS)
-				.waitForPageLoad()
-				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4606", protocol1)
-				.back();
+                .clickNextButton(new UseDietAndExercisePage());
         
-        MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Currently taking / have taken within the past month")
+
+        //--------------Q5: Do you currently use diet and exercise as a way to help treat your diabetes? -----------
+        useDietAndExercisePage
+                .waitForPageLoad();
+        Assert.assertEquals(useDietAndExercisePage.getTitleText(),useDietAndExercisePage.titleExpected, "Title is diff");
+        CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+        
+        
+        
+        //--------------Q6: Do you currently use metformin or insulin or any other medication prescribed by your doctor to treat your diabetes? -----------        
+        //---------If selected "Metformin" skip to Q8,  If selected "Medication other than Metformin or Insulin" skip to Q9, 
+        //---------If selected "Insulin" skip to Q10, 
+        //---------If selected ""Do not use any prescribed medication to treat diabetes"" goto Q7 and DQ 4691---------
+        currentlyUseMetforminOrInsulinPage
+                .waitForPageLoad();
+        Assert.assertEquals(currentlyUseMetforminOrInsulinPage.getTitleText(),currentlyUseMetforminOrInsulinPage.titleExpected, "Title is diff");
+        ApartFromMetforminPageOLS apartFromMetforminPageOLS = currentlyUseMetforminOrInsulinPage
+                .clickOnAnswers("Medication other than Metformin or Insulin")
+                .clickNextButton(new ApartFromMetforminPageOLS());
+                apartFromMetforminPageOLS.waitForPageLoad()
+                .back();
+        currentlyUseMetforminOrInsulinPage
+                .waitForPageLoad();  
+        InsulinForYourDiabetesPageOLS insulinForYourDiabetesPageOLS = currentlyUseMetforminOrInsulinPage
+        		.clickOnAnswers("Medication other than Metformin or Insulin") //Click to Uncheck this option
+        		.clickOnAnswers("Insulin")
+                .clickNextButton(new InsulinForYourDiabetesPageOLS());
+        		insulinForYourDiabetesPageOLS.waitForPageLoad()
+                .back();                
+        currentlyUseMetforminOrInsulinPage
+                .waitForPageLoad();  
+        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
+                .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+                .clickNextButton(new AnyPrescribedMedicationPage());
+        		anyPrescribedMedicationPage.waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4626", protocol1)
+                .back();
+        currentlyUseMetforminOrInsulinPage
+                .waitForPageLoad();	
+                MetforminMedicationsPageOLS metforminMedicationsPageOLS = currentlyUseMetforminOrInsulinPage
+                .clickOnAnswers("Metformin")
                 .clickNextButton(new MetforminMedicationsPageOLS());
         
-
+        
+/*        //----------Q7: Have you taken any prescribed medication for your diabetes within the past 3 months? -----------    
+        anyPrescribedMedicationPage
+        		.waitForPageLoad();
+        Assert.assertEquals(anyPrescribedMedicationPage.getTitleText(),anyPrescribedMedicationPage.titleExpected, "Title is diff");
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = anyPrescribedMedicationPage
+        //---------if selected "NO" Skip to Q15---
+        		.clickOnAnswer("No")
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        noOfAlcoholicDrinkOLS.waitForPageLoad()
+        		.back();
+        anyPrescribedMedicationPage
+				.waitForPageLoad()
+				.clickOnAnswer("Yes")
+				.clickNextButton(new MetforminMedicationsPageOLS());*/
+        
+        
+        
+        //----------Q8: Do you currently take any of the following oral (taken by mouth) metformin medications?
         metforminMedicationsPageOLS
-                .waitForPageLoad();
+        		.waitForPageLoad();
         Assert.assertEquals(metforminMedicationsPageOLS.getTitleText(),metforminMedicationsPageOLS.titleExpected, "Title is diff");
-        ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
-                .clickOnAnswers("Actoplus Met (metformin and pioglitazone)")
-                .clickNextButton(new ApartFromMetforminPageOLS());
-        apartFromMetforminPageOLS
-                .waitForPageLoad()
-				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4607", protocol1)
-				.back();
-        
-        metforminMedicationsPageOLS
-        		.waitForPageLoad()
+        InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS	= metforminMedicationsPageOLS
         		.clickOnAnswers("Actoplus Met (metformin and pioglitazone)")
-        		.clickOnAnswers("Avandamet (metformin and rosiglitazone)")
-        		.clickNextButton(new ApartFromMetforminPageOLS())
+				.clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
+        injectableMedicationsForYourDiabetesPageOLS
         		.waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4607", protocol1)
+                .back();
+        metforminMedicationsPageOLS
+				.waitForPageLoad()
+				.clickOnAnswers("Avandamet (metformin and rosiglitazone)")
+				.clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
+        injectableMedicationsForYourDiabetesPageOLS
+				.waitForPageLoad()
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS4607", protocol1)
 				.back();
-        
         metforminMedicationsPageOLS
+				.waitForPageLoad()
+				.clickOnAnswers("Fortamet (metformin)",
+								"Glucophage (metformin)",
+								"Glucovance (metformin and glyburide)",
+								"Glumetza (metformin)",
+								"Invokamet (metformin and canagliflozin)",
+								"Janumet (metformin and sitagliptin)" ,
+								"Jentadueto (metformin and linagliptin)",
+								"Kazano (metformin and alogliptin)",
+								"Kombiglyze (metformin and saxagliptin)",
+								"Metformin and glipizide",
+								"PrandiMet (metformin and repaglinide)",
+								"Synjardy (metformin and empagliflozin)",
+								"Xigduo (metformin and dapagliflozin)",
+								"None of the above")
+				.clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS())
         		.waitForPageLoad()
-        		.clickOnAnswers("Avandamet (metformin and rosiglitazone)")
-				.clickOnAnswers("Metformin", "Fortamet (metformin)", "Glucophage (metformin)", "Glucovance (metformin and glyburide)", "Glumetza (metformin)", "Invokamet (metformin and canagliflozin)")
-				.clickOnAnswers("Janumet (metformin and sitagliptin)", "Jentadueto (metformin and linagliptin)", "Kazano (metformin and alogliptin)", "Kombiglyze (metformin and saxagliptin)")
-				.clickNextButton(new ApartFromMetforminPageOLS())
+        		.back();
+        metforminMedicationsPageOLS
 				.waitForPageLoad()
 				.back();
-				
-        
+        currentlyUseMetforminOrInsulinPage
+        		.waitForPageLoad()
+        		.clickOnAnswers("Insulin","Medication other than Metformin or Insulin")
+        		.clickNextButton(new MetforminMedicationsPageOLS());
         metforminMedicationsPageOLS
+        		.waitForPageLoad()
+				.clickNextButton(new ApartFromMetforminPageOLS());
+        		
+        
+        
+        //----------Q9: Apart from metformin, what other oral (taken by mouth) medications do you currently take for your diabetes?  ----------
+        apartFromMetforminPageOLS
+        		.waitForPageLoad();
+        Assert.assertEquals(apartFromMetforminPageOLS.getTitleText(),apartFromMetforminPageOLS.titleExpected, "Title is diff");       
+        apartFromMetforminPageOLS
+        		.clickOnAnswers("Actos (pioglitazone)",
+        				"Avandia (rosiglitazone)",
+        				"Duetact (pioglitazone and glimepiride)",
+        				"Oseni (alogliptin and pioglitazone)")
+        		.clickNextButton(new InsulinForYourDiabetesPageOLS());
+        insulinForYourDiabetesPageOLS
+        		.waitForPageLoad()
+        		.getPage(debugPageOLS)
+        		.checkProtocolsContainsForQNumber("QS4608", protocol1)
+        		.back();
+        apartFromMetforminPageOLS
+        		.waitForPageLoad()
+				.clickOnAnswers("None of the above")
+				.threadSleep(2000);
+        apartFromMetforminPageOLS
+        		.clickOnAnswers("Tradjenta (linagliptin)")
+				.clickNextButton(new InsulinForYourDiabetesPageOLS());
+        
+        
+        //--------Q10:  Do you currently take any of the following types of insulin for your diabetes?--
+        insulinForYourDiabetesPageOLS
+        		.waitForPageLoad();
+                Assert.assertEquals(insulinForYourDiabetesPageOLS.getTitleText(),insulinForYourDiabetesPageOLS.titleExpected, "Title is diff");
+        insulinForYourDiabetesPageOLS
+        		.waitForPageLoad()
+                .clickOnAnswers("Afrezza, which is inhaled insulin",
+                				"Apidra (insulin glulisine)",
+                				"Humalog",
+                				"Humulin",
+                				"Lantus or Toujeo (insulin glargine)", 
+                				"Levemir (insulin detemir)", 
+                				"Novolin", 
+                				"Novolog")
+                .clickNextButton(new SubquestionsHumalogPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4609", protocol1)
+                .back();
+        insulinForYourDiabetesPageOLS
+        		.waitForPageLoad()
+				.clickOnAnswers("I use insulin, but I am not sure what kind")
+				.clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4609", protocol1)
+                .back();
+        insulinForYourDiabetesPageOLS
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
-        		.clickNextButton(new ApartFromMetforminPageOLS());
-
-        InsulinForYourDiabetesPageOLS insulinForYourDiabetesPageOLS = apartFromMetforminPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Actos (pioglitazone)")
-                .clickNextButton(new InsulinForYourDiabetesPageOLS());
-        insulinForYourDiabetesPageOLS
-                .waitForPageLoad()
-				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4608", protocol1)
-				.back();
+        		.clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
         
-        apartFromMetforminPageOLS
-        		.waitForPageLoad()
-        		.clickOnAnswers("Actos (pioglitazone)")
-        		.clickOnAnswers("Avandia (rosiglitazone)")
-        		.clickNextButton(new InsulinForYourDiabetesPageOLS())
-        		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4608", protocol1)
-				.back();
-        
-        apartFromMetforminPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("Avandia (rosiglitazone)")
-				.clickOnAnswers("Duetact (pioglitazone and glimepiride)")
-				.clickNextButton(new InsulinForYourDiabetesPageOLS())
-				.waitForPageLoad()
-				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4608", protocol1)
-				.back();
-        
-        apartFromMetforminPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("Duetact (pioglitazone and glimepiride)")
-				.clickOnAnswers("Oseni (alogliptin and pioglitazone)")
-				.clickNextButton(new InsulinForYourDiabetesPageOLS())
-				.waitForPageLoad()
-				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4608", protocol1)
-				.back();
-        
-        apartFromMetforminPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("Oseni (alogliptin and pioglitazone)")
-				.clickOnAnswers("Amaryl (glimepiride)", "Chlorpropamide", "Cycloset (bromocriptine)", "Farxiga (dapagliflozin)", "Glipizide XL, Glucotrol, or Glucotrol XL (glipizide)")
-				.clickOnAnswers("Glynase (glyburide)", "Glyset (miglitol)", "Glyxambi (empagliflozin and linagliptin)", "Invokana (canagliflozin)", "Januvia (sitagliptin)", "Jardiance (empagliflozin)")
-				.clickOnAnswers("Nesina (alogliptin)", "Onglyza (saxagliptin)", "Prandin (repaglinide)", "Precose (acarbose)", "Starlix (nateglinide)", "Tradjenta (linagliptin)", "Unsure")
-				.clickNextButton(new InsulinForYourDiabetesPageOLS())
-				.waitForPageLoad();							
-
-
-        insulinForYourDiabetesPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(insulinForYourDiabetesPageOLS.getTitleText(),insulinForYourDiabetesPageOLS.titleExpected, "Title is diff");
-        SubquestionsHumalogPageOLS subquestionsHumalogPageOLS = insulinForYourDiabetesPageOLS
-                .clickOnAnswers("Humalog","Humulin","Novolin","Novolog")
-                .clickNextButton(new SubquestionsHumalogPageOLS());
-        subquestionsHumalogPageOLS
-        		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4609", protocol1);
-
-        subquestionsHumalogPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(1),subquestionsHumalogPageOLS.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(2),subquestionsHumalogPageOLS.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(3),subquestionsHumalogPageOLS.titleExpected3, "Title is diff");
-        Assert.assertEquals(subquestionsHumalogPageOLS.getTitleText(4),subquestionsHumalogPageOLS.titleExpected4, "Title is diff");
-        subquestionsHumalogPageOLS
-                .clickOnAnswersForSubQuestion(1,"Humalog Mix 50/50","Humalog Mix 75/25")
-                .clickOnAnswersForSubQuestion(2,"Humulin N or NPH")
-                .clickOnAnswersForSubQuestion("What type of Novolin do you currently use?","Novolin N or NPH")
-                .clickOnAnswersForSubQuestion("What type of Novolog do you currently use?","Novolog Mix 70/30")
-                .back();
-
-        InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = insulinForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
-
+        		
+        		
+        //-------Q12:  Do you currently take any of the following injectable medications for your diabetes?  --------
         injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad();
+        		.waitForPageLoad();
         Assert.assertEquals(injectableMedicationsForYourDiabetesPageOLS.getTitleText(),injectableMedicationsForYourDiabetesPageOLS.titleExpected, "Title is diff");
         CombinationWithEachOtherPageOLS combinationWithEachOtherPageOLS = injectableMedicationsForYourDiabetesPageOLS
-                .clickOnAnswers("Adlyxin (lixisenatide)", "Another injectable medication not listed above", "Bydureon or Byetta (exenatide)", "Tanzeum (albiglutide)", "Trulicity (dulaglutide)")
-                .clickOnAnswers("Saxenda or Victoza (liraglutide)", "SymlinPen (pramlintide)")
-                .clickNextButton(new CombinationWithEachOtherPageOLS());
+        		.clickOnAnswers("Adlyxin (lixisenatide)",
+        				"Bydureon or Byetta (exenatide)",
+        				"Tanzeum (albiglutide)",
+        				"Trulicity (dulaglutide)",
+        				"Saxenda or Victoza (liraglutide)",
+        				"SymlinPen (pramlintide)",
+        				"Another injectable medication not listed above")
+        		.clickNextButton(new CombinationWithEachOtherPageOLS());
         combinationWithEachOtherPageOLS
         		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4611", protocol1);
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = combinationWithEachOtherPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 months")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        noOfAlcoholicDrinkOLS
-        		.waitForPageLoad()
-                .back();
-        combinationWithEachOtherPageOLS
-                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4611", protocol1)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(combinationWithEachOtherPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("3 months")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+        		.clickNextButton(new CombinationWithEachOtherPageOLS());
         
+        
+        		
+        //-------Q13:  Overall, how long have you been taking your current diabetes medication(s), either by themselves, or in combination with each other?  --------
+        combinationWithEachOtherPageOLS
+        		.waitForPageLoad();
+        Assert.assertEquals(combinationWithEachOtherPageOLS.getTitleText(),combinationWithEachOtherPageOLS.titleExpected, "Title is diff");
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = combinationWithEachOtherPageOLS
+        		.clickOnAnswer("1 month or less")
+        		.clickNextButton(new NoOfAlcoholicDrinkOLS());
+        
+        
+        //-------Q15:  About how many alcoholic drinks do you have in a typical week? --------
+        noOfAlcoholicDrinkOLS
+        		.waitForPageLoad();
+        Assert.assertEquals(noOfAlcoholicDrinkOLS.getTitleText(),noOfAlcoholicDrinkOLS.titleExpected, "Title is diff");
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
-        		.waitForPageLoad()
-        		.setDrinks("2")
+        		.setDrinks("6")
         		.clickNextButton(new LiverRelatedConditionOLS());
+        
+        
+        
+        //-------Q16:  Has a healthcare professional ever diagnosed you with any of the following liver-related conditions?--------
         liverRelatedConditionOLS
-        		.waitForPageLoad()
-        		.clickOnAnswers("Alcoholic liver disease", "Hemochromatosis or iron overload", "Liver cancer or hepatocellular carcinoma", "Wilson's disease", "Primary sclerosing cholangitis or primary biliary cirrhosis")
-        		.clickNextButton(followingToLoseWeightPageOLS)
-        		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4624", protocol1)
-        		.back();
+				.waitForPageLoad();
+        Assert.assertEquals(liverRelatedConditionOLS.getTitleText(),liverRelatedConditionOLS.titleExpected, "Title is diff");
+        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+        		.clickOnAnswers("Alcoholic liver disease",
+        						"Autoimmune hepatitis, which is not the same as hepatitis caused by a virus",
+        						"Hemochromatosis or iron overload",
+        						"Liver cancer or hepatocellular carcinoma",
+        						"Primary sclerosing cholangitis or primary biliary cirrhosis",
+        						"Wilson's disease")
+        		.clickNextButton(new FollowingToLoseWeightPageOLS());
+        followingToLoseWeightPageOLS
+				.waitForPageLoad()
+				.getPage(debugPageOLS)
+		        .checkProtocolsContainsForQNumber("QS4624", protocol1)
+		        .back();
         liverRelatedConditionOLS
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
-				.clickNextButton(followingToLoseWeightPageOLS)
-                .waitForPageLoad();
+				.clickNextButton(new FollowingToLoseWeightPageOLS());
+
         
+        
+        //-------Q17:  Are you currently using any of the following to lose weight?--------
+        followingToLoseWeightPageOLS
+				.waitForPageLoad();
         Assert.assertEquals(followingToLoseWeightPageOLS.getTitleText(),followingToLoseWeightPageOLS.titleExpected, "Title is diff");
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
-                .clickOnAnswers("Prescription weight loss medication")
-                .clickNextButton(new WeightLossSurgeryPageOLS());
-
-        weightLossSurgeryPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(weightLossSurgeryPageOLS.getTitleText(),weightLossSurgeryPageOLS.titleExpected, "Title is diff");
-        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
-                .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new ProcedureForWeightLossPageOLS());
-
-        procedureForWeightLossPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(),procedureForWeightLossPageOLS.titleExpected, "Title is diff");
-        PoundsOrMorePageOLS poundsOrMorePageOLS = procedureForWeightLossPageOLS
-                .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(new PoundsOrMorePageOLS());
-        poundsOrMorePageOLS
-                .waitForPageLoad()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4616", protocol1)
-        		.back();
-       
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(poundsOrMorePageOLS)               
-                .waitForPageLoad();
+        		.clickOnAnswers("Prescription weight loss medication", 
+        						"Over-the-counter weight loss medication or supplements",
+        						"Weight loss program such as Weight Watchers or Jenny Craig",
+        						"No")
+        		.clickNextButton(new WeightLossSurgeryPageOLS());
         
+
+        
+        //-------Q18:  Have you ever had any of the following types of bariatric or weight loss surgery?--------
+        weightLossSurgeryPageOLS
+				.waitForPageLoad();
+        Assert.assertEquals(weightLossSurgeryPageOLS.getTitleText(),weightLossSurgeryPageOLS.titleExpected, "Title is diff");
+        PoundsOrMorePageOLS poundsOrMorePageOLS = weightLossSurgeryPageOLS
+        		.clickOnAnswers("None of the above")
+        		.clickNextButton(new PoundsOrMorePageOLS())
+        		.waitForPageLoad();
+        		poundsOrMorePageOLS.back();
+        weightLossSurgeryPageOLS
+				.waitForPageLoad();
+        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
+				.clickOnAnswers("Gastric bypass",
+								"Gastric sleeve or sleeve gastrectomy",
+								"Duodenal switch",
+								"Lap band or gastric banding",
+								"Gastric balloon")
+				.clickNextButton(new ProcedureForWeightLossPageOLS());
+				
+		
+		
+        //-------Q19:  When was the last time that you had a surgery or medical procedure for weight loss?--------
+        procedureForWeightLossPageOLS
+				.waitForPageLoad();
+        Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(),procedureForWeightLossPageOLS.titleExpected, "Title is diff");
+        PoundsOrMorePageOLS PoundsOrMorePageOLS = procedureForWeightLossPageOLS
+        		.clickOnAnswer("Less than 3 months ago")
+        		.clickNextButton(new PoundsOrMorePageOLS());
+        PoundsOrMorePageOLS
+				.waitForPageLoad()
+				.getPage(debugPageOLS)
+		        .checkProtocolsContainsForQNumber("QS4616", protocol1)
+		        .back();
+        procedureForWeightLossPageOLS
+				.waitForPageLoad()
+				.clickOnAnswer("3 - 6 months ago")
+				.clickNextButton(new PoundsOrMorePageOLS());
+        
+        
+      //-------Q20:  Have you lost or gained 15 pounds or more in the past 3 months?--------
+        poundsOrMorePageOLS
+                .waitForPageLoad();
         Assert.assertEquals(poundsOrMorePageOLS.getTitleText(),poundsOrMorePageOLS.titleExpected, "Title is diff");
         poundsOrMorePageOLS
                 .clickOnAnswer("Yes")
-                //.clickNextButton(new StatinMedicationsOnPageOLS())
                 .clickNextButton(new DoYouExperienceDPN_OLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -488,10 +558,12 @@ public class AKC_4691_OLS extends BaseTest{
  				.clickOnAnswer("Diagnosed with skin cancer only")
  				.clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
         
+        
         HormonalBirthControlOLS hormonalBirthControlOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
         		.waitForPageLoad()
         		.clickOnAnswers("Cirrhosis")
-        		.clickNextButton(new HormonalBirthControlOLS());        		
+        		.clickNextButton(new HormonalBirthControlOLS()); 
+        
         
         hormonalBirthControlOLS
         		.waitForPageLoad()
@@ -507,8 +579,6 @@ public class AKC_4691_OLS extends BaseTest{
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS59", protocol1)
 				.back();
-        
-        
         doAnyOftheFollowingAdditionalDiagnosesOLS
 				.waitForPageLoad()
 				.clickOnAnswers("Hepatitis B")
@@ -526,8 +596,7 @@ public class AKC_4691_OLS extends BaseTest{
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS59", protocol1)
-				.back();
-        
+				.back();        
         doAnyOftheFollowingAdditionalDiagnosesOLS
 				.waitForPageLoad()
 				.clickOnAnswers("HIV or AIDS")
@@ -545,6 +614,8 @@ public class AKC_4691_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswer("No")
 				.clickNextButton(new ApproximateHeightPageOLS());
+        
+        
         ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
 				.waitForPageLoad()
 		        .setAll("5", "5", "160")
@@ -554,18 +625,20 @@ public class AKC_4691_OLS extends BaseTest{
         		.getPage(debugPageOLS)
         		.checkProtocolsContainsForQNumber("QS60", protocol1)
         		.back();
-        
         approximateHeightPageOLS
 				.waitForPageLoad()
 				.setIncheswithClear("6")
 				.setLbs("170")				
 				.clickNextButton(new ChildrenUnderPageOLS());
+        
         childrenUnderPageOLS
 				.waitForPageLoad()
 				.clickOnAnswer("No")		
                 .clickNextButton(new TheStudySitePageOLS());
-        
                 TheStudySitePageOLS theStudySitePageOLS = new TheStudySitePageOLS();
+                
+                
+                
   //----------*******NEW GENERAL HEALTH Questions********---------------------------     
 		//-------------------PEDIATRIC QUESTIONS-----------------------------
          theStudySitePageOLS.waitForPageLoad()
@@ -583,15 +656,21 @@ public class AKC_4691_OLS extends BaseTest{
         .clickNextButton(new SiteSelectionPageOLS())
         .waitForPageLoadAKC()
         .getPID()
+ 		//----------SITE Selection Page--------------------
         .clickOnFacilityName(siteName)
-        .clickNextButton(new QualifiedClose2PageOLS())
+        .clickNextButton(new HSGeneralPageOLS())
+ 		//----------Special Type 2 Diabetes HELLO SIGN Page (Email entered at PII)--------------------
+        .waitForPageLoadT2DM()
+        .clickNextButton(new DoctorInformationCollectionPageOLS())
         .waitForPageLoad()
-        .clickNextButton(new ThankYouCloseSimplePageOLS())
+        .clickNextButton(new HS1PageOLS())
+        .waitForPageLoad()
+        .clickOkInPopUp()
+        .setSignature()
+        .getPage(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);
-		
+        .pidFromDbToLog(env);   
     }
-
 }

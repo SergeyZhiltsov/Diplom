@@ -19,7 +19,7 @@ public class QualifiedFlareMonitoringAppClose_CC extends MainPageCC{
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
     
-    @FindBy(xpath = "//span[contains(@class,'sub_question_text')]/u")
+    @FindBy(xpath = "//div[contains(@class,'question_text')]//u")
     WebElement activationCodePath;
     
     @FindBy(xpath = "//input[@id='answersQSC9114A.rawAnswer']")

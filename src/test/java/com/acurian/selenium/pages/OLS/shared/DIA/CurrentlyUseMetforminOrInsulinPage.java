@@ -12,7 +12,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class CurrentlyUseMetforminOrInsulinPage extends MainPageOLS{
 
-    public final String titleExpected = "Do you currently use metformin or insulin or any other medication prescribed by your doctor to treat your diabetes?";
+    public final String titleExpected = "Do you currently use metformin or insulin or any other medication prescribed by your doctor to treat your diabetes? \n" +
+    		"Please select all that apply.";
             
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)

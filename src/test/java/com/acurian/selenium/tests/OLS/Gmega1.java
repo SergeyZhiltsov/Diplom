@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Gmega1 extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("001124")
     @Description("Gmega")
     public void gmega1Test() {

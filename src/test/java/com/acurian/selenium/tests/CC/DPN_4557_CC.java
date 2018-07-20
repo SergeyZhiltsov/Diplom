@@ -408,12 +408,10 @@ public class DPN_4557_CC extends BaseTest{
         		//----------SITE Selection Page--------------------
                 		.clickOnAnswer(siteName)
                 		.clickNextButton(new QualifiedClose2PageCC())
-                		.waitForPageLoad()                
-                		.clickNextButton(new ThankYouCloseSimplePageCC())                
+                		.waitForPageLoad()
+                		.clickNextButton(new ThankYouCloseSimplePageCC())            
                 		.clickNextButton(selectActionPageCC)
                 		.waitForPageLoad()
-                		.pidFromDbToLog(env);        
-                
-            
+                		.pidFromDbToLog(env);
        }
 }

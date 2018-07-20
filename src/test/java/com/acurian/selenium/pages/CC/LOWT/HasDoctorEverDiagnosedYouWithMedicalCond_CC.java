@@ -9,9 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ExperiencedAnyOfFollowingCC extends MainPageCC{
+public class HasDoctorEverDiagnosedYouWithMedicalCond_CC extends MainPageCC{
 
-    public final String titleExpected = "Have you experienced any of the following?\n" +
+    public final String titleExpected = "Certain conditions are more closely linked to cardiovascular disease than others.\n" +
+    		"Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
     		"Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
@@ -20,19 +21,19 @@ public class ExperiencedAnyOfFollowingCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
 
-    public ExperiencedAnyOfFollowingCC() {
+    public HasDoctorEverDiagnosedYouWithMedicalCond_CC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ExperiencedAnyOfFollowingCC waitForPageLoad() {
+    public HasDoctorEverDiagnosedYouWithMedicalCond_CC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public ExperiencedAnyOfFollowingCC clickOnAnswers(String ...answerText) {
+    public HasDoctorEverDiagnosedYouWithMedicalCond_CC clickOnAnswers(String ...answerText) {
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
                 .forEach(el -> el.click());

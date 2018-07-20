@@ -11,7 +11,7 @@ import java.util.List;
 public class ApartFromMetforminPageOLS extends MainPageOLS{
 
     public final String titleExpected = "Apart from metformin, what other oral (taken by mouth) medications do you currently take for your diabetes?\n" +
-            "Please select all that apply.";
+    		"Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;

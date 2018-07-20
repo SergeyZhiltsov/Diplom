@@ -74,8 +74,8 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     @Step
     public SiteSelectionPageOLS waitForPageLoadAKC() {
         waitForAnimation();
-        String titleExpectedMod = String.format(titleAKC);
-        waitForPageLoadMain(titleText, titleExpectedMod);
+        String titleExpectedMod1 = String.format(titleAKC);
+        waitForPageLoadMain(titleText, titleExpectedMod1);
         return this;
     }
     
