@@ -7,11 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS extends MainPageOLS{
+public class LowT_TransitionalStatement_OLS extends MainPageOLS{
 
-    public final String titleExpected = "The following medications are prescribed for men who have been diagnosed with a low testosterone (male hormone) level or hypogonadism.\n" +
-    		"Are you currently taking any of the following medications?\n" +
-    		"Please select all that apply.";
+    public final String titleExpected = "Thank you for answering these initial questions.\n" +
+    		"We would like to ask you a few more questions about your health to better match you with a research study in your area.\n" +
+    		"You may be asked similar information in this next set of questions. We appreciate your patience.";
     		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -19,18 +19,18 @@ public class AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS extends MainP
     @FindBy(xpath ="//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS() {
+    public LowT_TransitionalStatement_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS waitForPageLoad() {
+    public LowT_TransitionalStatement_OLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS clickOnAnswers(String ...answerText) {
+    public LowT_TransitionalStatement_OLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

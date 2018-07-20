@@ -83,7 +83,7 @@ public class IBD_4533_CC extends BaseTest{
         
         String time = String.valueOf(Instant.now().getEpochSecond());
         time = time.substring(time.length()-4);
-        String eMailId = "qa.acurian+"+time+"3@gmail.com";
+        String eMailId = "qa.acurian_"+time+"3@gmail.com";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -132,7 +132,8 @@ public class IBD_4533_CC extends BaseTest{
         
         GenderPageCC genderPageCC = identificationPageCC
      		   .waitForPageLoad1()
-     		   .setAllFields("Auto", "Test", eMailId, "9999999999", zipCode)
+     		   //.setAllFields("Auto", "Test", eMailId, "9999999999", zipCode)
+     		   .setAllFields("Auto", "Test", "", "9999999999", zipCode)
      		   .clickNextButton(new GenderPageCC());
         
         DiagnosedWithCrohnsPageCC  diagnosedWithCrohnsPageCC = genderPageCC
@@ -563,29 +564,28 @@ public class IBD_4533_CC extends BaseTest{
           		.getPID()
           		.clickOnAnswer(siteName)          		
                 .clickNextButton(new QualifiedFlareMonitoringAppClose_CC())
-                .waitForPageLoad()
-                .getActivationCode()
+                .threadSleep(5000);
+                //.waitForPageLoad()
+         		QualifiedFlareMonitoringAppClose_CC qualified = new QualifiedFlareMonitoringAppClose_CC();
+         		qualified.getActivationCode()
                 .enterEmail(eMailId)
                 //------------Warm Transfer----------
                 .clickNextButton(new Regular_WarmTransfer1())
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
-        		//Regualr Warm Transfer Page#2
+        		//--------Regualr Warm Transfer Page#2
         		.clickNextButton(new Regular_WarmTransfer2())
         		.waitForPageLoad()
         		.clickOnAnswer("Yes: Great, I'll connect them now.")
         		.clickOnAnswer("[site did not answer]")
-        		//Regualr Warm Transfer Page#3
+        		//--------Regualr Warm Transfer Page#3
         		.clickNextButton(new Regular_WarmTransfer3())
         		.waitForPageLoad()
-        		//Regualr Warm Transfer Page#4
+        		//--------Regualr Warm Transfer Page#4
         		.clickNextButton(new Regular_WarmTransfer4())
         		.waitForPageLoad()                
         		.clickOnAnswer("Successful transfer made to site")
         		.clickNextButton(selectActionPageCC)
-                //.clickNextButton(new ThankYouCloseSimplePageCC())
-                //.waitForPageLoad()
-                //.clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
     }

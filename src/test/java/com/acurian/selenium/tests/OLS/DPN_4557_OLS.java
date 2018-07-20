@@ -393,7 +393,7 @@ public class DPN_4557_OLS extends BaseTest{
                //----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
                         .waitForPageLoad()
                         .clickOnAnswers("Prefer not to answer")
-                        .clickNextButton(new IdentificationPageOLS())	
+                        .clickNextButton(new IdentificationPageOLS())
         				
         		//----------PII (IdentificationPageOLS) Page--------------------
         		.waitForPageLoad()

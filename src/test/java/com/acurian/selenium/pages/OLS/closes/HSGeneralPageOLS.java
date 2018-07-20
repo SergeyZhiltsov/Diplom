@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,14 @@ public class HSGeneralPageOLS extends MainPageOLS{
     		"\n" +
     		"Please be assured that your records will be kept confidential and only shared with the research facility.";
     
+    
+    public final String titleExpected1 = "We're glad the location is convenient for you.\n" +
+			"\n" +
+			"The last step is to provide information about the doctors who are currently treating, or have previously treated, your Type 2 Diabetes and related health conditions so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
+			"\n" +
+			"Please be assured that your records will be kept confidential and only shared with the research facility.";
+    
+    
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
@@ -26,6 +35,14 @@ public class HSGeneralPageOLS extends MainPageOLS{
     @Step
     public HSGeneralPageOLS waitForPageLoad(String Siteindicator) {
         String titleExpectedMod = String.format(titleExpected, Siteindicator);
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+    
+    
+    @Step
+    public HSGeneralPageOLS waitForPageLoadT2DM() {
+        String titleExpectedMod = String.format(titleExpected1);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }

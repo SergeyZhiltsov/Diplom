@@ -246,7 +246,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest{
              //----------ThankYouCloseSimplePageOLS Page--------------------
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .threadSleep(6000);
+                .threadSleep(9000);
                 AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
                 aboutHealthPageOLS.waitForPageLoad()
                 .pidFromDbToLog(env);         

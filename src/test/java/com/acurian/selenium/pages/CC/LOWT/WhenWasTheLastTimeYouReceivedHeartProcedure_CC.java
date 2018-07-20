@@ -9,10 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DiagnosedYouWithLowTestosteroneCC extends MainPageCC{
+public class WhenWasTheLastTimeYouReceivedHeartProcedure_CC extends MainPageCC{
 
-    public final String titleExpected = "Testosterone (Agent note: tes-TOS-ter-one) is the male sex hormone, which regulates body functions such as sex drive, bone mass, fat distribution, and muscle size and strength. Levels may drop as men age.\n" +
-    		"Has a doctor ever diagnosed you with low testosterone or hypogonadism?";
+    public final String titleExpected = "When was the last time that you received a heart procedure?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -20,19 +19,19 @@ public class DiagnosedYouWithLowTestosteroneCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public DiagnosedYouWithLowTestosteroneCC() {
+    public WhenWasTheLastTimeYouReceivedHeartProcedure_CC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnosedYouWithLowTestosteroneCC waitForPageLoad() {
+    public WhenWasTheLastTimeYouReceivedHeartProcedure_CC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public DiagnosedYouWithLowTestosteroneCC clickOnAnswer(String answerText) {
+    public WhenWasTheLastTimeYouReceivedHeartProcedure_CC clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

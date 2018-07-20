@@ -40,7 +40,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     
     public final String titleAKC_4691_Expected = "Let's get started to see if you qualify for a study for people with diabetes and related health conditions!\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $xxx\n" +
+            "Payment which varies by study up to $1,500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
@@ -122,7 +122,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
-    public final String titleLOWT_3017_Expected ="Let's get started to see if you qualify for a men's low testosterone study!\n" +
+    public final String titleLOWT_3017_Expected ="Let's get started to see if you qualify for a study!\n" +
     		"Those who qualify may receive*:\n" +
     		"Payment which varies by study up to $600\n" +
     		"No-cost study-related care from doctors\n" +

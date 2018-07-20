@@ -2,10 +2,17 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.DoYouExperienceAnyOftheFollowing_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HaveDoctorEverDiagnosedYou_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouEverSmokedCigarettes_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperienceAnyOftheFollowing_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.LowT_TransitionalStatement_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.WhenWasTheLastTimeThatYouReceivedHeartProc_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.WhichOfTheFollowingMensHealthConditions_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.*;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -46,9 +53,10 @@ public class LOWT_3017_OLS extends BaseTest{
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleLOWT_3017_Expected, "Title is diff");
+                .waitForPageLoadGROUP();
+        Assert.assertEquals(dateOfBirthPageOLS.getQuestionTextGROUP(),dateOfBirthPageOLS.titleExpected, "Question is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleLOWT_3017_Expected, "Title is diff");
+        
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091990")
                 .clickNextButton(new ZipCodePageOLS());
@@ -56,17 +64,17 @@ public class LOWT_3017_OLS extends BaseTest{
         	.waitForPageLoad();
 			DebugPageOLS debugPageOLS = new DebugPageOLS();
 			zipCodePageOLS.getPage(debugPageOLS)
-			.checkProtocolsContainsForQNumber("QSI8004", protocol1)
+			.checkProtocolsContainsForQNumber("QSI8005", protocol1)
 			.back();
-			dateOfBirthPageOLS.waitForPageLoad()
+			dateOfBirthPageOLS.waitForPageLoadGROUP()
             .setDate("09091936")
             .clickNextButton(new ZipCodePageOLS());
 	    zipCodePageOLS
         	.waitForPageLoad();
 			zipCodePageOLS.getPage(debugPageOLS)
-			.checkProtocolsContainsForQNumber("QSI8004", protocol1)
+			.checkProtocolsContainsForQNumber("QSI8005", protocol1)
 			.back();
-			dateOfBirthPageOLS.waitForPageLoad()
+			dateOfBirthPageOLS.waitForPageLoadGROUP()
             .setDate("09091940")
             .clickNextButton(new ZipCodePageOLS());
 			
@@ -92,23 +100,24 @@ public class LOWT_3017_OLS extends BaseTest{
 			.checkProtocolsContainsForQNumber("QSI8009", protocol1)
 			.back();
 			genderPageOLS.waitForPageLoad();
-	        DoYouExperienceAnyOftheFollowing_OLS doYouExperienceAnyOftheFollowing_OLS = genderPageOLS
+			HaveYouExperienceAnyOftheFollowing_OLS haveYouExperienceAnyOftheFollowing_OLS = genderPageOLS
             .clickOnAnswer("Male")
-            .clickNextButton(new DoYouExperienceAnyOftheFollowing_OLS());
+            .clickNextButton(new HaveYouExperienceAnyOftheFollowing_OLS());
 	        
 	        
-        //---------------Q2 DoYouExperienceAnyOftheFollowing_OLS page-------------------
-	    doYouExperienceAnyOftheFollowing_OLS
+        //---------------Q3 HaveYouExperienceAnyOftheFollowing_OLS page-------------------
+		haveYouExperienceAnyOftheFollowing_OLS
                 .waitForPageLoad();
-        Assert.assertEquals(doYouExperienceAnyOftheFollowing_OLS.getTitleText(),doYouExperienceAnyOftheFollowing_OLS.titleExpected, "Title is diff");
-        		doYouExperienceAnyOftheFollowing_OLS.clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        Assert.assertEquals(haveYouExperienceAnyOftheFollowing_OLS.getTitleText(),haveYouExperienceAnyOftheFollowing_OLS.titleExpected, "Title is diff");
+        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = haveYouExperienceAnyOftheFollowing_OLS
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
+        hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS5602", protocol1);
+        		debugPageOLS.checkProtocolsContainsForQNumber("QS5616", protocol1);
         		debugPageOLS.back();
-        		doYouExperienceAnyOftheFollowing_OLS.waitForPageLoad();
-        		HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = doYouExperienceAnyOftheFollowing_OLS
+        		haveYouExperienceAnyOftheFollowing_OLS.waitForPageLoad()
+        		//HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = haveYouExperienceAnyOftheFollowing_OLS
                 .clickOnAnswers("Decreased sexual desire or libido",
                 		"Decreased spontaneous erections (e.g., morning erections)",
                 		"Decreased energy or fatigue/feeling tired",
@@ -117,266 +126,184 @@ public class LOWT_3017_OLS extends BaseTest{
                 		"Hot flashes")
                 .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
 
-        //---------------Q3 hasDoctorEverDiagnosedYouWithLowTestosterone_OLS-------------------
+        //---------------Q4 hasDoctorEverDiagnosedYouWithLowTestosterone_OLS-------------------
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad();
         Assert.assertEquals(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.getTitleText(),hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.titleExpected, "Title is diff");
-        AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        HasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS());
+                .clickNextButton(new HasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS());
+        
+        
+        //****************Q5 Has a doctor ever diagnosed you with any of the following medical conditions or diseases?------
+        hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
+        	.waitForPageLoad();
+		Assert.assertEquals(hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS.getTitleText(),hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS.titleExpected, "Title is diff");
+		//LowT_TransitionalStatement_OLS lowT_TransitionalStatement_OLS = hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
+		AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS = hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
+		        .clickOnAnswers("Diabetes or High Blood Sugar",
+		        		"High cholesterol or high triglycerides",
+		        		"High blood pressure or hypertension", 
+		        		"Chronic Kidney Disease")
+		        .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS());
+		areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
+        		.waitForPageLoad();
+				debugPageOLS.back();
+		hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS.waitForPageLoad()
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS());
+        
 
-        //---------------Q4 AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS-------------------
+        //---------------Q6 AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS-------------------
         areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
         	.waitForPageLoad();
         Assert.assertEquals(areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS.getTitleText(),areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS.titleExpected, "Title is diff");
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
-                .clickOnAnswers("Unsure")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .back();
-        		areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS.waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .back();
-        		areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS.waitForPageLoad()
-				.clickOnAnswers("AndroGel","Endoderm patch","Axiron gel","Fortesta gel",
-						"Striant (testosterone buccal system)","Testim gel",
-						"Testosterone injection (Depo-Testosterone, Testosterone enanthate, Testosterone Cypionate, Delatestryl)",
-						"Clomiphene (brand name Serophene) or another anti-estrogen therapy",
-						"Other testosterone medication not on this list")
-				.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());        
-
-		//---------------Q5 HaveYouEverExperiencedHeartRelatedMedicalCondOLS page-------------------		
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouEverExperiencedHeartRelatedMedicalCondOLS.getTitleText(),haveYouEverExperiencedHeartRelatedMedicalCondOLS.titleExpected, "Title is diff");		
-        //-------------If selected exclusively "Heart failure" or "None of the above", Skip to Q7	
-        HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-        		.clickOnAnswers("Heart failure or congestive heart failure (CHF)")
-                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS());
-        		haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-                .waitForPageLoad()
-                .back();
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
+        //HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
+        HaveYouEverSmokedCigarettes_OLS haveYouEverSmokedCigarettes_OLS = areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
+                .clickOnAnswers("AndroGel",
+                		"Endoderm patch",
+                		"Axiron gel",
+                		"Fortesta gel",
+                		"Striant (testosterone buccal system)",
+                		"Testim gel",
+                		"Testosterone injection (Depo-Testosterone, Testosterone enanthate, Testosterone Cypionate, Delatestryl)",
+                		"Clomiphene (brand name Serophene) or another anti-estrogen therapy",
+                		"Other testosterone medication not on this list",
+                		"Unsure")  
+                .clickNextButton(new HaveYouEverSmokedCigarettes_OLS());
+        
+        
+        //---------------Q7 HaveYouEverSmokedCigarettes_OLS-------------------
+        haveYouEverSmokedCigarettes_OLS
+        	.waitForPageLoad();
+        Assert.assertEquals(haveYouEverSmokedCigarettes_OLS.getTitleText(),haveYouEverSmokedCigarettes_OLS.titleExpected, "Title is diff");
+        HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS = haveYouEverSmokedCigarettes_OLS
+               .clickOnAnswer("Yes, I currently smoke")
+               .clickOnAnswer("I used to smoke, but have since quit")
+               .clickOnAnswer("No, I never smoked")
+        .clickNextButton(new HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS());
+        
+        
+        
+        //---------------Q8 HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS-------------------
+        haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        	.waitForPageLoad();
+        Assert.assertEquals(haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS.getTitleText(),haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS.titleExpected, "Title is diff");
+        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS = haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        //---------SKIP to Q10 if selected "None of the above"  or go to Q9--------
+        	   .clickOnAnswers("None of the above")
+        	   .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS())
+               .waitForPageLoad();
+        		HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS.back();
+        haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+            	.waitForPageLoad();
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        		.clickOnAnswers("Heart attack",
+        						"Stroke",
+        						"TIA or \"Mini-Stroke\"")
+        		.clickNextButton(new SubquestionExperiencedHeartPageOLS());
+        
+        
+        //---------------Q9 SubquestionExperiencedHeartPageOLS-------------------
+        subquestionExperiencedHeartPageOLS
+        		.waitForPageLoadHeartAttack();
+        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS = subquestionExperiencedHeartPageOLS
+        		.clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+        		.clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+        		.clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+        	   .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS());
+        haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+        		.waitForPageLoad();
+		debugPageOLS.checkProtocolsContainsForQNumber("QS5622", protocol1);
+		debugPageOLS.back();
+		subquestionExperiencedHeartPageOLS.waitForPageLoad()
+				.clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
+				.clickOnAnswerForSubQuestion(2, "More than 6 months ago")
+				.clickOnAnswerForSubQuestion(3, "More than 6 months ago")
+				.clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS());
+        	   
+        	   
+		
+        //---------------Q10 HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS-------------------
+		haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+        		.waitForPageLoad();
+        Assert.assertEquals(haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS.getTitleText(),haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS.titleExpected, "Title is diff");
+        HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_OLS = haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+        //---------SKIP to Q12 if selected "None of the above"  or go to Q11--------
+        		.clickOnAnswers("None of the above")
+        		.clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS())
+        		.waitForPageLoad();
+        hasDoctorEverDiagnosedYouMedicalCond_OLS.back();
+        haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+            	.waitForPageLoad();
+        WhenWasTheLastTimeThatYouReceivedHeartProc_OLS whenWasTheLastTimeThatYouReceivedHeartProc_OLS = haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+        		.clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)", 
+        						"Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
+        						"Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain", 
+        						"Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
+        		.clickNextButton(new WhenWasTheLastTimeThatYouReceivedHeartProc_OLS());
+        
+        
+        
+        //---------------Q11 WhenWasTheLastTimeThatYouReceivedHeartProc_OLS-------------------
+        whenWasTheLastTimeThatYouReceivedHeartProc_OLS
+        		.waitForPageLoad();
+        Assert.assertEquals(whenWasTheLastTimeThatYouReceivedHeartProc_OLS.getTitleText(),whenWasTheLastTimeThatYouReceivedHeartProc_OLS.titleExpected, "Title is diff");
+        whenWasTheLastTimeThatYouReceivedHeartProc_OLS
+        		.clickOnAnswer("Less than 30 days ago")
+        		.clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+        hasDoctorEverDiagnosedYouMedicalCond_OLS
+        		.waitForPageLoad();
+		debugPageOLS.checkProtocolsContainsForQNumber("QS5624", protocol1);
+		debugPageOLS.back();
+		whenWasTheLastTimeThatYouReceivedHeartProc_OLS.waitForPageLoad()
+				.clickOnAnswer("1 - 3 months ago")
+        		.clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+		hasDoctorEverDiagnosedYouMedicalCond_OLS
+        		.waitForPageLoad();
+		debugPageOLS.checkProtocolsContainsForQNumber("QS5624", protocol1);
+		debugPageOLS.back();
+		whenWasTheLastTimeThatYouReceivedHeartProc_OLS.waitForPageLoad()
+				.clickOnAnswer("4 - 6 months ago")
+				.clickOnAnswer("More than 6 months ago")
+				.clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+		
+		
+        //---------------Q13 HasDoctorEverDiagnosedYouMedicalCond_OLS-------------------
+		hasDoctorEverDiagnosedYouMedicalCond_OLS
+        		.waitForPageLoad();
+        Assert.assertEquals(hasDoctorEverDiagnosedYouMedicalCond_OLS.getTitleText(),hasDoctorEverDiagnosedYouMedicalCond_OLS.titleExpected, "Title is diff");
+        ApproximateHeightPageOLS approximateHeightPageOLS = hasDoctorEverDiagnosedYouMedicalCond_OLS
+        				.clickOnAnswers("History of Prostate or Breast Cancer",
+        				"Other cancer within the past 2 years (except skin cancer)",
+        				"Sleep apnea that is not currently being treated", 
+        				"Drug, alcohol or steroid abuse in the past 12 months")
+        		.clickNextButton(new ApproximateHeightPageOLS());
+        approximateHeightPageOLS
+        		.waitForPageLoad();
+		debugPageOLS.checkProtocolsContainsForQNumber("QS5626", protocol1);
+		debugPageOLS.back();
+		hasDoctorEverDiagnosedYouMedicalCond_OLS.waitForPageLoad()
 				.clickOnAnswers("None of the above")
-				.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS());
-				haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-				.waitForPageLoad()
-				.back();
-		haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad();
-				SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-				.clickOnAnswers("Heart attack","Stroke",
-						"TIA or \"mini-stroke\"",
-						"Angina (heart-related chest pain) that required an overnight hospital stay")
-				.clickNextButton(new SubquestionExperiencedHeartPageOLS());
-
-        
-		//---------------Q6 SubquestionExperiencedHeartPageOLS page------------------
-		 subquestionExperiencedHeartPageOLS
-		                .waitForPageLoad();
-		        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(1),subquestionExperiencedHeartPageOLS.titleExpected1, "Title is diff");
-		        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(2),subquestionExperiencedHeartPageOLS.titleExpected2, "Title is diff");
-		        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(3),subquestionExperiencedHeartPageOLS.titleExpected3, "Title is diff");
-		        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(4),subquestionExperiencedHeartPageOLS.titleExpected4, "Title is diff");
-		        //HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS = subquestionExperiencedHeartPageOLS
-		        subquestionExperiencedHeartPageOLS
-		        		.clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"Less than 30 days ago")
-		                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"Less than 30 days ago")
-		                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Less than 30 days ago")
-		                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"Less than 30 days ago")
-		                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS());
-		        haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-		                .waitForPageLoad()
-		                .getPage(debugPageOLS)
-		                .checkProtocolsContainsForQNumber("QS5606", protocol1)
-		                .back();
-		        subquestionExperiencedHeartPageOLS
-		                .waitForPageLoad()
-		                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-		                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-		                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-		                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
-		                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS);
-		        
-		//---------------Q7 haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS page------------------
-		        haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-		                .waitForPageLoad();
-		        Assert.assertEquals(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS.getTitleText(),haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS.titleExpected, "Title is diff");
-		        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-		        		.clickOnAnswers("Peripheral Artery Disease or PAD (narrowed or hardened blood vessels in your arms or legs)",
-		        				"Coronary heart disease or blocked arteries",
-		        				"Hardening of the arteries",
-		        				"Heart disease found by catheterization or stress test on a treadmill",
-		        				"Intermittent claudication (pain in legs while walking, caused by blockage of blood vessels)",
-		        				"Abdominal aortic aneurysm (an enlarged area in the lower part of the aorta, the major blood vessel in the stomach that supplies blood to the body)",
-		        				"Carotid artery disease (narrowing or blockage of the major arteries in your neck)",
-		        				"Stenosis (narrowing of the blood vessels or arteries)",
-		        				"Atrial Fibrillation or Afib")
-		                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-		        heartrelatedMedicalProceduresPageOLS
-		        .waitForPageLoad();
-		        heartrelatedMedicalProceduresPageOLS.back();
-		        haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-		        
-
-		//---------------Q8 heartrelatedMedicalProceduresPageOLS page------------------
-		   heartrelatedMedicalProceduresPageOLS
-		        .waitForPageLoad();
-		        Assert.assertEquals(heartrelatedMedicalProceduresPageOLS.getTitleText(),heartrelatedMedicalProceduresPageOLS.titleExpected, "Title is diff");
-		        //-----SKIP to Q10 if selected "None of the above" in Q8
-		        SmokedCigarettesPageOLS smokedCigarettesPageOLS = heartrelatedMedicalProceduresPageOLS
-		        .clickOnAnswers("None of the above")
-		        .clickNextButton(new SmokedCigarettesPageOLS());
-		        smokedCigarettesPageOLS.waitForPageLoad();
-		        smokedCigarettesPageOLS.back();
-		    heartrelatedMedicalProceduresPageOLS
-		        .waitForPageLoad();
-		        WhenWasYourMostRecentHeartProcedureOLS whenWasYourMostRecentHeartProcedureOLS = heartrelatedMedicalProceduresPageOLS
-	        	.clickOnAnswers("Angioplasty")
-	        	.clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS());
-		
-		//---------------Q9 whenWasYourMostRecentHeartProcedureOLS page------------------
-		whenWasYourMostRecentHeartProcedureOLS
-				.waitForPageLoad();
-		Assert.assertEquals(whenWasYourMostRecentHeartProcedureOLS.getTitleText(),whenWasYourMostRecentHeartProcedureOLS.titleExpected, "Title is diff");
-		whenWasYourMostRecentHeartProcedureOLS.clickOnAnswer("Less than 30 days ago")
-        .clickNextButton(new SmokedCigarettesPageOLS());
-		smokedCigarettesPageOLS.waitForPageLoad()
-        .getPage(debugPageOLS)
-        .checkProtocolsContainsForQNumber("QS5609", protocol1)
-        .back();
-		whenWasYourMostRecentHeartProcedureOLS
-        .waitForPageLoad()
-        .clickOnAnswer("More than 1 year ago")
-        .clickNextButton(new SmokedCigarettesPageOLS());
+        		.clickNextButton(new ApproximateHeightPageOLS());
 		
 		
-		//---------------Q10 SmokedCigarettesPageOLS page------------------
-		smokedCigarettesPageOLS
-				.waitForPageLoad();
-		Assert.assertEquals(smokedCigarettesPageOLS.getTitleText(),smokedCigarettesPageOLS.titleExpected, "Title is diff");
-		smokedCigarettesPageOLS.clickOnAnswer("No, I never smoked")
-        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-        .waitForPageLoad();
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.back();
-		smokedCigarettesPageOLS
-		.waitForPageLoad();
-		smokedCigarettesPageOLS.clickOnAnswer("Yes, I currently smoke")
-        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-
-		
-		
-        //----------****************NEW GENERAL HEALTH Questions************************----------     
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-        .waitForPageLoad();
-        Assert.assertEquals(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.getTitleText(),haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.titleExpected, "Title is diff");
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-        	.clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-        		"Alzheimer's disease",
-        		"Anemia (low red blood cell count)",
-        		"Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-        		"Autism spectrum",
-        		"Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-        		"Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)",
-        		"Cancer",
-        		"Diabetes (type 1 or type 2)",
-        		"Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
-        		"Eating disorders (anorexia, bulimia, binge eating disorder)",
-        		"Headaches (migraine, cluster, tension)",
-        		"Heart or circulation problems (heart attack, heart failure, stroke)",
-        		"High blood pressure or hypertension",
-        		"High cholesterol, triglycerides, or lipids",
-        		"Kidney disease",
-        		"Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-        		"Lung problems",
-        		"Lupus",
-        		"Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
-        		"Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-        		"Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)",
-        		"Sleep problems (insomnia, sleep apnea, narcolepsy)",
-        		"Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-        		"Men's health issues (prostate enlargement or BPH, low testosterone, erectile dysfunction or ED, male pattern balding)") 
-        .clickNextButton(new WhatKindOfArthritisPage())
-        .waitForPageLoad()
-        .back();
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-        .waitForPageLoad();
-        WhichOfTheFollowingHaveYouBeenDiagnosed_OLS whichOfTheFollowingHaveYouBeenDiagnosed_OLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-        .clickOnAnswers("None of the above")
-        .clickOnAnswers("Men's health issues (prostate enlargement or BPH, low testosterone, erectile dysfunction or ED, male pattern balding)","Eating disorders (anorexia, bulimia, binge eating disorder)")
-        .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosed_OLS())
-        
-        
-		//----------Q9 - Which of the following have you been diagnosed with?--------
-    	.waitForPageLoad();
-        Assert.assertEquals(whichOfTheFollowingHaveYouBeenDiagnosed_OLS.getTitleText(),whichOfTheFollowingHaveYouBeenDiagnosed_OLS.titleExpected, "Title is diff");
-        WhichOfTheFollowingMensHealthConditions_OLS whichOfTheFollowingMensHealthConditions_OLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-        		.clickOnAnswers("Anorexia","Bulimia","Binge eating disorder")
-        .clickNextButton(new WhichOfTheFollowingMensHealthConditions_OLS());
-
-
-		//----------Q23 - Which of the following men's health conditions have you been diagnosed with?--------
-        whichOfTheFollowingMensHealthConditions_OLS
-        	.waitForPageLoad();
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whichOfTheFollowingMensHealthConditions_OLS
-        .clickOnAnswers("Enlarged prostate or BPH","Erectile dysfunction (ED)","Male pattern balding","Overactive bladder (OAB)")
-        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        
-        
-		//----------Q23 - Do any of the following additional diagnoses apply to you?--------      
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-        	.waitForPageLoad();
-        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-        .clickOnAnswers("Alzheimer's disease",
-        		"Bipolar disorder",
-        		"Cancer in the past 5 years, except skin cancer",
-        		"Cirrhosis",
-        		"Drug or alcohol abuse within the past year",
-        		"Hepatitis B",
-        		"Hepatitis C",
-        		"HIV or AIDS",
-        		"Kidney disease requiring dialysis",
-        		"Multiple sclerosis (MS)",
-        		"Neuropathy (nerve damage due to diabetes or another condition)",
-        		"Seizure disorder such as epilepsy",
-        		"Schizophrenia",
-        		"Shingles or herpes zoster infection")
-        .clickNextButton(new ApproximateHeightPageOLS());
+        //----------****************NEW GENERAL HEALTH Questions************************----------  
+		//------------Q14 What is your approximate height?  What is your approximate weight?------
         approximateHeightPageOLS
-        	.waitForPageLoad()
-        .setAll("5", "5", "160")
-        .clickNextButton(new ChildrenUnderPageOLS())
-        .waitForPageLoad()
-        .getPage(debugPageOLS)
-        .checkProtocolsContainsForQNumber("QS59", protocol1)
-        .back();
+        		.waitForPageLoad();
+        //------Disqualify ("High BMI") if > 50  ---  Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]----
+        LowT_TransitionalStatement_OLS lowT_TransitionalStatement_OLS = approximateHeightPageOLS
+        		.setAll("5", "0", "256")
+        //.clickNextButton(new ChildrenUnderPageOLS())
+        		.clickNextButton(new LowT_TransitionalStatement_OLS())
+        		.waitForPageLoad();
+         debugPageOLS.checkProtocolsContainsForQNumber("QS5627", protocol1);
+        lowT_TransitionalStatement_OLS.back();
         approximateHeightPageOLS.waitForPageLoad()
-        .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+        //----------Change inches to maje BMI to <50--------------------
         .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new ApproximateHeightPageOLS())
-        
-		//----------ProvideHeight-Weight Page--------------------
-        .waitForPageLoad()
-        .setFeatwithClear("3")
-        .clickNextButton(new ChildrenUnderPageOLS())
-        .waitForPageLoad()
-        .getPage(debugPageOLS)
-        .checkProtocolsContainsForQNumber("QS60", protocol1)
-        .back();
-        approximateHeightPageOLS
-        	.waitForPageLoad()
-            .setFeatwithClear("5")
+        .setIncheswithClear("5")
         .clickNextButton(new ChildrenUnderPageOLS())
         
         

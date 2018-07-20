@@ -7,9 +7,16 @@ import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DYS_4356C.ThankYouForAnsweringCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.LOWT.AreYouCurrentlyTakingAnyOfTheFollowingMedications_CC;
 import com.acurian.selenium.pages.CC.LOWT.CurrentlyTakingFollowingMedicationsCC;
 import com.acurian.selenium.pages.CC.LOWT.DiagnosedYouWithLowTestosteroneCC;
 import com.acurian.selenium.pages.CC.LOWT.ExperiencedAnyOfFollowingCC;
+import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedMedicalCondDiseases_CC;
+import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedYouWithMedicalCond_CC;
+import com.acurian.selenium.pages.CC.LOWT.HaveDoctorEverDiagnosedYou_CC;
+import com.acurian.selenium.pages.CC.LOWT.HaveYouEverSmokedCigarettes_CC;
+import com.acurian.selenium.pages.CC.LOWT.HaveYouExpAnyOfFollowingHeartBlood_CC;
+import com.acurian.selenium.pages.CC.LOWT.WhenWasTheLastTimeYouReceivedHeartProcedure_CC;
 import com.acurian.selenium.pages.CC.MDD_3159.WhenWasYourMostRecentHeartProcedureCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
@@ -36,6 +43,7 @@ import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS;
 import com.acurian.selenium.utils.DataProviderPool;
 
 public class LowT_CC extends BaseTest{
@@ -48,10 +56,9 @@ public class LowT_CC extends BaseTest{
         String protocol1 = "M16_100";
         String protocol2 = "R727_CL_1532";
         String studyName = "a high cholesterol and heart disease";
-     //   String env = "STG";
         String siteName = "AUT_LOWT_3017_Site";
         String site_Indication = "Hypogonadism";
-        String zipCode  = "19901";  //"45203" cincinnati, OH
+        String zipCode  = "19901";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -91,10 +98,10 @@ public class LowT_CC extends BaseTest{
                .setYear("1990")
                .clickNextButton(new ZipCodePageCC());
        DebugPageCC debugPageCC = new DebugPageCC();       
-       debugPageCC.checkProtocolsEquals("If you qualify and participate in a men's low testosterone study, you may receive: Study medication...", protocol1);
+       debugPageCC.checkProtocolsEquals("If you qualify and participate in a study, you may receive: Study medication...", protocol1);
        debugPageCC.back();
        dateOfBirthPageCC
-       		   .waitForPageLoad()
+       		   .waitForPageLoadAKC()
        		   .setYear("1960")
        		   .clickNextButton(new ZipCodePageCC());
        
@@ -118,7 +125,7 @@ public class LowT_CC extends BaseTest{
     		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new NonQRtransitionPageCC());
-       debugPageCC.checkProtocolsEquals("The following are symptoms that men with low testosterone sometimes experience.Do you experience any...", protocol1);
+       debugPageCC.checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1);
        debugPageCC.back();
        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC = experiencedAnyOfFollowingCC
     		   .waitForPageLoad()
@@ -126,47 +133,72 @@ public class LowT_CC extends BaseTest{
     		   .clickOnAnswers("Loss of body (axillary and pubic) hair or reduced shaving", "Hot flashes", "Low mood or depressed mood")    		   
     		   .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
        
-       debugPageCC.checkProtocolsContainsForQNumber("Q0015802-QS5602-STUDYQUES", "false");
-       debugPageCC.back();
-       experiencedAnyOfFollowingCC
-	           .waitForPageLoad()
-	           .clickOnAnswers("None of the above")
-	           .clickOnAnswers("Decreased sexual desire or libido")
-	           .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
-       
-       CurrentlyTakingFollowingMedicationsCC currentlyTakingFollowingMedicationsCC = diagnosedYouWithLowTestosteroneCC
+       HasDoctorEverDiagnosedYouWithMedicalCond_CC hasDoctorEverDiagnosedYouWithMedicalCond_CC = diagnosedYouWithLowTestosteroneCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
-    		   .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
+    		   .clickNextButton(new HasDoctorEverDiagnosedYouWithMedicalCond_CC());
        
-       HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = currentlyTakingFollowingMedicationsCC
+       
+       AreYouCurrentlyTakingAnyOfTheFollowingMedications_CC areYouCurrentlyTakingAnyOfTheFollowingMedications_CC = hasDoctorEverDiagnosedYouWithMedicalCond_CC
+    		   .waitForPageLoad()
+    		   .clickOnAnswers("Diabetes or High Blood Sugar",
+    		   		"High cholesterol or high triglycerides",
+    		   		"High blood pressure or hypertension",
+    		   		"Chronic Kidney Disease")
+    		   .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_CC());
+       
+       
+       //HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = areYouCurrentlyTakingAnyOfTheFollowingMedications_CC
+       HaveYouEverSmokedCigarettes_CC haveYouEverSmokedCigarettes_CC = areYouCurrentlyTakingAnyOfTheFollowingMedications_CC
     		   .waitForPageLoad()
     		   .clickOnAnswers("AndroGel", "Endoderm patch", "Fortesta gel", "Striant (testosterone buccal system)", "Testim gel", "Other testosterone medication not on this list", "Unsure")
-    		   .clickOnAnswers("Testosterone injection (Depo-Testosterone, Testosterone enanthate, Testosterone Cypionate, Delatestryl)", "Clomiphene (brand name Serophene) or another anti-estrogen therapy", "None of the above")
+    		   .clickOnAnswers("Testosterone injection (Depo-Testosterone, Testosterone enanthate, Testosterone Cypionate, Delatestryl)", "Clomiphene (brand name Serophene) or another anti-estrogen therapy")
     		   .clickOnAnswers("Axiron gel")
-    		   .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+    		   .clickNextButton(new HaveYouEverSmokedCigarettes_CC());
        
-       SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Stroke", "TIA or \"mini-stroke\"", "Angina (heart-related chest pain) that required an overnight hospital stay", "Heart failure or congestive heart failure (CHF)", "None of the above")
-    		   .clickOnAnswers("Heart attack")
-    		   .clickNextButton(new SubquestionExperiencedHeartPageCC());
        
-       HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = subquestionExperiencedHeartPageCC
+       HaveYouExpAnyOfFollowingHeartBlood_CC haveYouExpAnyOfFollowingHeartBlood_CC = haveYouEverSmokedCigarettes_CC
     		   .waitForPageLoad()
+    		   .clickOnAnswer("Yes, I currently smoke")
+    		   .clickOnAnswer("I used to smoke, but have since quit")
+    		   .clickOnAnswer("No, I never smoked")
+    		   .clickNextButton(new HaveYouExpAnyOfFollowingHeartBlood_CC());
+       
+       
+       
+       HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = haveYouExpAnyOfFollowingHeartBlood_CC
+    		   .waitForPageLoad()
+    		   .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital",
+    		   		"Coronary Artery Disease (blockage in a heart vessel)",
+    		   		"Peripheral Vascular Disease (for example a blockage in your leg vessel)",
+    		   		"Amputation of a digit or limb due to Peripheral Vascular Disease")
+    		   .clickOnAnswers("None of the Above")
+    		   .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
+    		   .waitForPageLoad();
+       haveDoctorEverDiagnosedYou_CC.back();
+       haveYouExpAnyOfFollowingHeartBlood_CC
+       			.waitForPageLoad();
+       SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouExpAnyOfFollowingHeartBlood_CC
+     		    .clickOnAnswers("Heart attack")
+     		    .clickNextButton(new SubquestionExperiencedHeartPageCC());       
+            
+       
+       //HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = subquestionExperiencedHeartPageCC
+       subquestionExperiencedHeartPageCC
+       		   .waitForPageLoad()
     		   .clickOnAnswer("1 - 3 months ago")
-    		   .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+    		   .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
        debugPageCC.checkProtocolsEquals(" ", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
 	   		  .waitForPageLoad()
 	   		  .clickOnAnswer("Less than 30 days ago")
-	   		  .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+	   		  .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
        debugPageCC.checkProtocolsEquals(" ", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
        
-       haveYouEverExperiencedHeartRelatedMedicalCondCC
+       haveYouExpAnyOfFollowingHeartBlood_CC
 	   		  .waitForPageLoad()
 	   		  .clickOnAnswers("None of the above")
 	   		  .clickOnAnswers("Stroke")
@@ -174,150 +206,99 @@ public class LowT_CC extends BaseTest{
        subquestionExperiencedHeartPageCC
 		      .waitForPageLoadStroke()
 		      .clickOnAnswer("Less than 30 days ago")
-		      .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+		      .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
        debugPageCC.checkProtocolsEquals(" ", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
 	   		  .waitForPageLoadStroke()
 	   		  .clickOnAnswer("1 - 3 months ago")
-	   		  .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+	   		  .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
        debugPageCC.checkProtocolsEquals(" ", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
        
-       haveYouEverExperiencedHeartRelatedMedicalCondCC
+       haveYouExpAnyOfFollowingHeartBlood_CC
 		  	 .waitForPageLoad()
 		  	 .clickOnAnswers("None of the above")
-		  	 .clickOnAnswers("TIA or \"mini-stroke\"")
+		  	 .clickOnAnswers("TIA or \"Mini-Stroke\"")
 		  	 .clickNextButton(new SubquestionExperiencedHeartPageCC());
        subquestionExperiencedHeartPageCC
 	      	.waitForPageLoadTIA()
 	      	.clickOnAnswer("Less than 30 days ago")
-	      	.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+	      	.clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
        debugPageCC.checkProtocolsEquals(" ", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
 		  	.waitForPageLoadTIA()
 		  	.clickOnAnswer("1 - 3 months ago")
-		  	.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+		  	.clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
        debugPageCC.checkProtocolsEquals(" ", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
-       haveYouEverExperiencedHeartRelatedMedicalCondCC
+       haveYouExpAnyOfFollowingHeartBlood_CC
 	  	 	.waitForPageLoad()	 
 	  	 	.clickOnAnswers("None of the above")
 	  	 	.clickOnAnswers("Stroke")
 	  	 	.clickNextButton(new SubquestionExperiencedHeartPageCC());
        subquestionExperiencedHeartPageCC
     		.waitForPageLoadStroke()
-    		.clickOnAnswer("7 - 12 months ago")
-    		.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
+    		.clickOnAnswer("4 - 6 months ago")
+    		.clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
+      
        
        
-       HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
+       HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_CC
     		   .waitForPageLoad()
-               .clickOnAnswers("Peripheral Artery Disease or PAD (narrowed or hardened blood vessels in your arms or legs)", "Coronary heart disease or blocked arteries", "Hardening of the arteries")
-               .clickOnAnswers("Heart disease found by catheterization or stress test on a treadmill", "Intermittent claudication (pain in legs while walking, caused by blockage of blood vessels)")
-               .clickOnAnswers("Abdominal aortic aneurysm (an enlarged area in the lower part of the aorta, the major blood vessel in the stomach that supplies blood to the body)", "Carotid artery disease (narrowing or blockage of the major arteries in your neck)")
-               .clickOnAnswers("Stenosis (narrowing of the blood vessels or arteries)", "Atrial Fibrillation or Afib", "None of the above")
-               .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
-       
-       WhenWasYourMostRecentHeartProcedureCC whenWasYourMostRecentHeartProcedureCC = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Angioplasty", "Stent placement", "Atherectomy", "Revascularization")
-    		   .clickOnAnswers("Coronary artery bypass graft, also known as CABG, \"cabbage,\" or heart bypass surgery")
-    		   .clickOnAnswers("None of the above")
-    		   .clickOnAnswers("Procedure to clear plaque from blood vessels in the neck such as carotid endarterectomy")
-    		   .clickNextButton(new WhenWasYourMostRecentHeartProcedureCC());
-       
-       SmokedCigarettesPageCC smokedCigarettesPageCC = whenWasYourMostRecentHeartProcedureCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Less than 30 days ago")
-    		   .clickNextButton(new SmokedCigarettesPageCC());
-       debugPageCC.checkProtocolsContainsForQNumber("Q0015137-QS5609-STUDYQUES", protocol1);
+               .clickOnAnswers("None of the above")
+               .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC())
+               .waitForPageLoad();
+       hasDoctorEverDiagnosedMedicalCondDiseases_CC.back();
+       haveDoctorEverDiagnosedYou_CC
+       		   .waitForPageLoad();
+       WhenWasTheLastTimeYouReceivedHeartProcedure_CC whenWasTheLastTimeYouReceivedHeartProcedure_CC = haveDoctorEverDiagnosedYou_CC
+       		   .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
+       		   		"Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
+       		   		"Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
+       		   		"Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
+       		   .clickNextButton(new WhenWasTheLastTimeYouReceivedHeartProcedure_CC());       		   
+       		   
+       		   
+       //HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = whenWasTheLastTimeYouReceivedHeartProcedure_CC
+       whenWasTheLastTimeYouReceivedHeartProcedure_CC
+       		   .waitForPageLoad()
+    		   .clickOnAnswer("1 - 3 months ago")
+    		   .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
+       debugPageCC.checkProtocolsEquals("When was the last time that you received a heart procedure?When was the last time that you received ...", protocol1);
        debugPageCC.back();
-       whenWasYourMostRecentHeartProcedureCC
-	   		   .waitForPageLoad()
-	   		   .clickOnAnswer("1 - 3 months ago")
-	   		   .clickNextButton(new SmokedCigarettesPageCC());
-       debugPageCC.checkProtocolsContainsForQNumber("Q0015137-QS5609-STUDYQUES", protocol1);
+       whenWasTheLastTimeYouReceivedHeartProcedure_CC
+       		   .waitForPageLoad()
+     		   .clickOnAnswer("More than 6 months ago")
+     		   .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
+       
+       
+       hasDoctorEverDiagnosedMedicalCondDiseases_CC
+	   		  .waitForPageLoad();
+	   ApproximateHeightPageCC approximateHeightPageCC = hasDoctorEverDiagnosedMedicalCondDiseases_CC
+	   		  .clickOnAnswers("History of Prostate or Breast Cancer",
+	   		  		"Other cancer within the past 2 years (except skin cancer)",
+	   		  		"Sleep apnea that is not currently being treatedn", 
+	   		  		"Drug, alcohol or steroid abuse in the past 12 months")
+	   		  .clickNextButton(new ApproximateHeightPageCC());
+       debugPageCC.checkProtocolsEquals("Has a doctor ever diagnosed you with any of the following medical conditions or diseases? Agent...", protocol1);
        debugPageCC.back();
-       whenWasYourMostRecentHeartProcedureCC.back();
+       hasDoctorEverDiagnosedMedicalCondDiseases_CC
+       		  .waitForPageLoad()
+	   		  .clickOnAnswers("None of the above")
+		   	  .clickNextButton(new ApproximateHeightPageCC());       		
        
-       haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
-    		   .waitForPageLoad()    		  
-    		   .clickOnAnswers("None of the above")
-    		   .clickNextButton(new SmokedCigarettesPageCC());
-       
-       
-       ThankYouForAnsweringCC thankYouForAnsweringCC = smokedCigarettesPageCC
-    		   .waitForPageLoad()    		   
-    		   .clickOnAnswer("No, I never smoked")
-    		   .clickNextButton(new ThankYouForAnsweringCC());
-    		   
-       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC1 = thankYouForAnsweringCC
-    		   .waitForPageLoad()
-    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-       
-       WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC1
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Alzheimer's disease", "Anemia (low red blood cell count)", "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-    		   .clickOnAnswers("Autism spectrum", "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)", "Cancer", "Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)")
-    		   .clickOnAnswers("Diabetes (type 1 or type 2)", "Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)", "Eating disorders (anorexia, bulimia, binge eating disorder)", "Headaches (migraine, cluster, tension)")
-    		   .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)", "High blood pressure or hypertension", "High cholesterol, triglycerides, or lipids", "Kidney disease")
-    		   .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)", "Lupus", "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)")
-    		   .clickOnAnswers("Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)", "Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)")
-    		   .clickOnAnswers("Sleep problems (insomnia, sleep apnea, narcolepsy)", "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-    		   .clickNextButton(new WhatKindOfArthritisCC());
-       
-       whatKindOfArthritisCC.back();
-       FollowingMensHealthConditionsCC followingMensHealthConditionsCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC1
-	   .waitForPageLoad()
-	   .clickOnAnswers("None of the above")
-	   .clickOnAnswers("Men's health issues (prostate enlargement or BPH, low testosterone, erectile dysfunction or ED, male pattern balding)")
-	   .clickNextButton(new FollowingMensHealthConditionsCC());
-       
-       DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = followingMensHealthConditionsCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Enlarged prostate or BPH")
-    		   .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-       
-       ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Alzheimer's disease", "Bipolar disorder", "Cancer in the past 5 years, except skin cancer", "Cirrhosis", "Hepatitis B", "Hepatitis C", "HIV or AIDS", "Kidney disease requiring dialysis", "Multiple sclerosis (MS)")
-    		   .clickOnAnswers("Drug or alcohol abuse within the past year", "Neuropathy (nerve damage due to diabetes or another condition)", "Seizure disorder such as epilepsy", "Schizophrenia", "Shingles or herpes zoster infection")
-    		   .clickNextButton(new ApproximateHeightPageCC());
-       
+      
        ChildrenUnderPageCC childrenUnderPageCC = approximateHeightPageCC
     		   .waitForPageLoad()
                .setAll("5", "5", "160")
                .clickNextButton(new ChildrenUnderPageCC());
-       debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
-       debugPageCC.back();
-       approximateHeightPageCC.back();
        
-       doAnyOftheFollowingAdditionalDiagnosesCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("None of the above")
-    		   .clickOnAnswers("Schizophrenia", "Shingles or herpes zoster infection")
-    		   .clickNextButton(new ApproximateHeightPageCC());
-       
-       approximateHeightPageCC
-    		   .waitForPageLoad()
-               .setAll("3", "5", "170")
-               .clickNextButton(new ChildrenUnderPageCC());
-       debugPageCC.checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", protocol1);
-       debugPageCC.back();
-       
-       LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
-    		   .waitForPageLoad()
-               .setAll("5", "5", "160")
-               .clickNextButton(new LetMeSeePageCC());
-       
-       letMeSeePageCC
-              .waitForPageLoad()
-              .clickNextButton(new ChildrenUnderPageCC())
-              .waitForPageLoad()
+
+       childrenUnderPageCC.waitForPageLoad()
               .clickOnAnswer("No")
               .clickNextButton(new IdentificationPageCC())
               .waitForPageLoad()
@@ -336,16 +317,6 @@ public class LowT_CC extends BaseTest{
               .waitForPageLoad()
               .clickNextButton(selectActionPageCC)
               .waitForPageLoad()
-              .pidFromDbToLog(env);
-       
-       
-       
-       
-       
-       
-       
-       
-       
+              .pidFromDbToLog(env);       
 	}
-
 }

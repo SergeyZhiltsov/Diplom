@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.LastTimeYouTookPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.By;
@@ -48,6 +49,7 @@ public class HS1PageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[@id='signer-mobile-application']//button[//text()='I agree']")
     WebElement agreeButton;
+    
 
 
     public HS1PageOLS() {
@@ -125,4 +127,5 @@ public class HS1PageOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
+    
 }

@@ -28,6 +28,7 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
 import com.acurian.selenium.pages.CC.SUI_3923.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -61,7 +62,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class DPN_3769_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00015")
     @Description("Diabetic Peripheral Neuropathy(DPN) - 3769 CC")
     public void dPN_3769_CC(final String username, final String password) {
@@ -268,11 +269,11 @@ public class DPN_3769_CC extends BaseTest{
                 doYouHaveAnyOfTheFollowingConditions_CC
                 		.waitForPageLoad();  
                 Assert.assertEquals(doYouHaveAnyOfTheFollowingConditions_CC.getTitleText(), doYouHaveAnyOfTheFollowingConditions_CC.titleExpected, "Title is diff");    
-                TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = doYouHaveAnyOfTheFollowingConditions_CC
+                UseDietAndExercisePage useDietAndExercisePage = doYouHaveAnyOfTheFollowingConditions_CC
                 .clickOnAnswers("Retinopathy or diabetic eye disease","Diabetic nephropathy or kidney damage caused by diabetes")
-                .clickNextButton(new TreatingYourDiabetesPageCC()); // Click NEXT button and wait for the NEXT page
+                .clickNextButton(new UseDietAndExercisePage()); // Click NEXT button and wait for the NEXT page
                 //********Test the SKIP logic to page 13 and then click BACK button     
-                treatingYourDiabetesPageCC.waitForPageLoad()
+                useDietAndExercisePage.waitForPageLoad()
                 .back();
                 doYouHaveAnyOfTheFollowingConditions_CC.waitForPageLoad();
                 WhichOfTheFollowingHadAmputatedSurgically_CC whichOfTheFollowingHadAmputatedSurgically_CC = doYouHaveAnyOfTheFollowingConditions_CC
@@ -286,34 +287,24 @@ public class DPN_3769_CC extends BaseTest{
                 Assert.assertEquals(whichOfTheFollowingHadAmputatedSurgically_CC.getTitleText(), whichOfTheFollowingHadAmputatedSurgically_CC.titleExpected, "Title is diff");    
                 //TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whichOfTheFollowingHadAmputatedSurgically_CC //[create NEXT PAGE Object = THIS page object]    
                 whichOfTheFollowingHadAmputatedSurgically_CC.clickOnAnswers("Leg","Foot","Toe")
-                .clickNextButton(new TreatingYourDiabetesPageCC()); // Click NEXT button and wait for the NEXT page
+                .clickNextButton(new UseDietAndExercisePage()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button     
-                treatingYourDiabetesPageCC.waitForPageLoad()
+                useDietAndExercisePage.waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals("Which of the following have you had amputated or surgically removed because of your diabetes?Agent N...", protocol1, protocol2);
                 debugPageCC.back();
                 //------------ Change your answer to correct QR age in page 'studyQuestionMigPageCC'---------------   
                 whichOfTheFollowingHadAmputatedSurgically_CC.waitForPageLoad()
                 .clickOnAnswers("None of the above") //un-select Leg and Foot and keep only None-of-the-above selected to qualify for 3769 DPN
-                .clickNextButton(new TreatingYourDiabetesPageCC());     
+                .clickNextButton(new UseDietAndExercisePage());     
                 
                 
-                //----------Q13 -"How are you currently treating your diabetes?"-  Page ---------------   
-                treatingYourDiabetesPageCC
+                //----------Q13 -UseDietAndExercisePage-  Page ---------------   
+                useDietAndExercisePage
                 		.waitForPageLoad();  
-                Assert.assertEquals(treatingYourDiabetesPageCC.getTitleText(), treatingYourDiabetesPageCC.titleExpected, "Title is diff");    
-                //WithType2DiabetesPageCC withType2DiabetesPageCC = treatingYourDiabetesPageCC //[create NEXT PAGE Object = THIS page object]    
-                whichOfTheFollowingHadAmputatedSurgically_CC.clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(new WithType2DiabetesPageCC()); // Click NEXT button and wait for the NEXT page
-                //********Validate Question History for DQ and then click BACK button     
-                withType2DiabetesPageCC.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("How are you currently treating your diabetes?Agent Note: Select all that applyHow are you currently ...", protocol1, protocol2);
-                debugPageCC.back();
-                //------------ Change your answer to correct QR age in page 'studyQuestionMigPageCC'---------------   
-                treatingYourDiabetesPageCC.waitForPageLoad();
-                CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = treatingYourDiabetesPageCC
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
+                Assert.assertEquals(useDietAndExercisePage.getTitleText(), useDietAndExercisePage.titleExpected, "Title is diff");    
+                CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = useDietAndExercisePage
+                .clickOnAnswer("Yes")
                 .clickNextButton(new CombinationWithEachOtherPageCC());  
                 
                 

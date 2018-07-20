@@ -17,7 +17,6 @@ import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWasYourMostRecentColonos
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsDisease_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitis_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.DoYouExperienceAnyOftheFollowing_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.WhichOfTheFollowingMensHealthConditions_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.*;
@@ -50,7 +49,7 @@ public class IBD_3264_OLS extends BaseTest{
         String phoneNumber = "AUTAMS1IBD";
         //String protocol1 = "M14_234";
         String protocol2 = "M16_067";
-        String studyName = "a Colitis";
+        String studyName = "a colitis";
         String siteName = "AUT_IBD_3264_Site";
         String zipCode = "19901";
         

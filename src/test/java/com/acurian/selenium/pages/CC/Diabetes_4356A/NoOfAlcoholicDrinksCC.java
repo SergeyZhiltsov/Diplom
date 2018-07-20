@@ -10,7 +10,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class NoOfAlcoholicDrinksCC extends MainPageCC{
 
     public final String titleExpected = "Alcohol consumption can affect your liver health over time.\n" +
-    		"About how many alcoholic drinks do you have in a typical week?";
+    		"About how many alcoholic drinks do you have in a typical week?\n" +
+    		"One standard drink is equivalent to a can of beer, a glass of wine, or a shot of hard liquor.\n" +
+    		"\n" +
+    		"Number of alcoholic drinks in a week:";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
