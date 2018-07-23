@@ -30,6 +30,7 @@ public class DIA_4241_OLS extends BaseTest{
         String phoneNumberLBP = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
+        String AKC = "ISIS 703802_CS2";
         String studyName = "a diabetes";
         String siteName = "AUT_DIA_4241";   
         String zipCode = "19901";
@@ -70,7 +71,7 @@ public class DIA_4241_OLS extends BaseTest{
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1);
+        debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1,AKC);
         debugPageOLS.back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -86,7 +87,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1,AKC)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -94,7 +95,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1,AKC)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -102,7 +103,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1,AKC)
                 .back();
         UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageOLS //rel 47
                 .waitForPageLoad()

@@ -35,8 +35,10 @@ public class DIA_4241_CC extends BaseTest{
         String phoneNumber = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "EFC14822";
+        String AKC = "ISIS 703802_CS2";
         String studyName = "a study for diabetics";
         String siteName = "AUT_DIA_4241";
+        
         String debugSiteName = "";
     //    String env = "STG";
         String zipCode = "19901";
@@ -104,7 +106,7 @@ public class DIA_4241_CC extends BaseTest{
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC
-        		.checkProtocolsContainsForQNumber("Q0005996-QS4602-STUDYQUES", protocol1)
+        		.checkProtocolsContainsForQNumber("Q0005996-QS4602-STUDYQUES", protocol1,AKC)
                 .back();
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
@@ -121,7 +123,7 @@ public class DIA_4241_CC extends BaseTest{
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1,AKC)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -129,7 +131,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1,AKC)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -137,7 +139,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1,AKC)
                 .back();
         UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageCC //rel 47
                 .waitForPageLoad()
