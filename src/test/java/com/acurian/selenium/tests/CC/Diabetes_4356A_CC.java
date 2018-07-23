@@ -31,7 +31,7 @@ import java.util.List;
 
 public class Diabetes_4356A_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
     public void dia4356AccTest(final String username, final String password) {
@@ -50,6 +50,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         String protocol11 = "EFC14868";
         String protocol12 = "EFC14837";
         String DIA_4241 = "EFC14822";
+        String AKC = "ISIS 703802_CS2";
         String protocol13 = "EFC14838";
         String studyName = "a Diabetes"; //Diabetes study
         String studyName1 = "Diabetes";
@@ -121,7 +122,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC
-                .checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageCC.titleExpected, DIA_4241)
+                .checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageCC.titleExpected, DIA_4241,AKC)
                 .back();
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
@@ -138,7 +139,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
+                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241,AKC)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -146,7 +147,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
+                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241,AKC)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -154,7 +155,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241)
+                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected, DIA_4241,AKC)
                 .back();
         UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageCC
                 .waitForPageLoad()

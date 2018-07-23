@@ -30,7 +30,7 @@ import java.util.List;
 
 public class Diabetes_4356A extends BaseTest{
 
-	@Test
+	@Test(enabled = false)
     @TestCaseId("00053")
     @Description("Diabetes_4356A_Synexus")
     public void diabetes_4356A() {
@@ -50,6 +50,7 @@ public class Diabetes_4356A extends BaseTest{
         String protocol12 = "EFC14837";
         String protocol13 = "EFC14838";
         String DIA_4241 = "EFC14822";
+        String AKC = "ISIS 703802_CS2";
         String studyName = "a study for diabetics";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
@@ -116,7 +117,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, DIA_4241)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, DIA_4241, AKC)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -124,7 +125,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, DIA_4241)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, DIA_4241, AKC)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -132,7 +133,7 @@ public class Diabetes_4356A extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, DIA_4241)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, DIA_4241, AKC)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
