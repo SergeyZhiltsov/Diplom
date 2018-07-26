@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.shared.HasDoctorDiagnosedYouWithClusterHeadache_OLS;
 import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
