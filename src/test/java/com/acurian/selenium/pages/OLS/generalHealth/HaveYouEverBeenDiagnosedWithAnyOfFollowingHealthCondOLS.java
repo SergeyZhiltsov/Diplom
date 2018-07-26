@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartR
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DoYouSufferFromLbpPageOLS;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
