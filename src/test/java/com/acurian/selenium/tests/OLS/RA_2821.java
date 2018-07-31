@@ -14,7 +14,6 @@ import com.acurian.selenium.pages.OLS.RA_2821.InPastDidYouTakeSteroids;
 import com.acurian.selenium.pages.OLS.RA_2821.MedicationsToTreatYourRA;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatTestsDidYouHave;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRA;
-import com.acurian.selenium.pages.OLS.closes.ALotAbouthealth;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;

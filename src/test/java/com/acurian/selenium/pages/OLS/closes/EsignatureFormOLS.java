@@ -6,20 +6,22 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ALotAbouthealth extends MainPageOLS{
-	public final String titleExpected = "Health Topics";
-            
+public class EsignatureFormOLS extends MainPageOLS{
 
-    @FindBy(xpath = "//h3[contains(.,'Health Topics')")
+    public final String titleExpected = "If the e-signature form did not appear or if you were unable to complete the Medical Record Release process please do not worry.\n" +
+            "\n" +
+    		"We will contact you if additional information is needed.";
+
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
     
 
-    public ALotAbouthealth() {
+    public EsignatureFormOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ALotAbouthealth waitForPageLoad() {
+    public EsignatureFormOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

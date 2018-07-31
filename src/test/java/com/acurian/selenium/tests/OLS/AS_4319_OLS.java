@@ -6,9 +6,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.AS_4319.AreYouWheelchairBoundOLS;
+import com.acurian.selenium.pages.OLS.AS_4319.DiagnosedWithAnkylosingSpondylitisOLS;
 import com.acurian.selenium.pages.OLS.AS_4319.FollowingSymptomsMoreThanOnceWeekOLS;
 import com.acurian.selenium.pages.OLS.AS_4319.HaveYouEverHadXrayOrMRIOLS;
 import com.acurian.selenium.pages.OLS.AS_4319.ResultsOfYourMostRecentXRayOrMRIOLS;
+import com.acurian.selenium.pages.OLS.AS_4319.SacroiliitisPageOLS;
 import com.acurian.selenium.pages.OLS.AS_4319.WhichOfFollowingHaveYouDiagnosedWithOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -65,24 +67,23 @@ public class AS_4319_OLS extends BaseTest {
 		          .typeZipCode("19044")
 		          .clickNextButton(new GenderPageOLS());
 		
-		WhichOfFollowingHaveYouDiagnosedWithOLS whichOfFollowingHaveYouDiagnosedWithOLS = genderPageOLS
+		DiagnosedWithAnkylosingSpondylitisOLS diagnosedWithAnkylosingSpondylitisOLS = genderPageOLS
 		         .waitForPageLoad()
 		         .clickOnAnswer("Female")
-		         .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWithOLS());
+		         .clickNextButton(new DiagnosedWithAnkylosingSpondylitisOLS());
 		
-		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = whichOfFollowingHaveYouDiagnosedWithOLS
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedWithAnkylosingSpondylitisOLS
 				 .waitForPageLoad()
-				 .clickOnAnswers("None of the above")
+				 .clickOnAnswer("No")
 				 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals("Which of the following have you been diagnosed with?Agent Note: Select all that applyWhich of the fo", protocol1);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS4715", protocol1);
         debugPageOLS.back();
         
-        DoYouSufferFromLbpPageOLS doYouSufferFromLbpPageOLS = whichOfFollowingHaveYouDiagnosedWithOLS
+        DoYouSufferFromLbpPageOLS doYouSufferFromLbpPageOLS = diagnosedWithAnkylosingSpondylitisOLS
                .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickOnAnswers("Ankylosing spondylitis (AS)")
+               .clickOnAnswer("Yes")               
                .clickNextButton(new DoYouSufferFromLbpPageOLS());
         
         HowLongHaveLbpPageOLS howLongHaveLbpPageOLS = doYouSufferFromLbpPageOLS
@@ -103,15 +104,14 @@ public class AS_4319_OLS extends BaseTest {
         debugPageOLS.checkProtocolsEquals("Have you ever had an x-ray or MRI of your back or pelvis, to look for signs of ankylosing spondyliti", protocol1);
         debugPageOLS.back();
         
-        ResultsOfYourMostRecentXRayOrMRIOLS resultsOfYourMostRecentXRayOrMRIOLS = haveYouEverHadXrayOrMRIOLS
-               .waitForPageLoad()
-               .clickOnAnswer("No")
+        SacroiliitisPageOLS sacroiliitisPageOLS = haveYouEverHadXrayOrMRIOLS
+               .waitForPageLoad()               
                .clickOnAnswer("Yes")
-               .clickNextButton(new ResultsOfYourMostRecentXRayOrMRIOLS());
+               .clickNextButton(new SacroiliitisPageOLS());
         
-        FollowingSymptomsMoreThanOnceWeekOLS followingSymptomsMoreThanOnceWeekOLS1 = resultsOfYourMostRecentXRayOrMRIOLS
+        FollowingSymptomsMoreThanOnceWeekOLS followingSymptomsMoreThanOnceWeekOLS1 = sacroiliitisPageOLS
         		.waitForPageLoad()
-        		.clickOnAnswer("Unsure")
+        		.clickOnAnswer("Doctor did not explain the x-ray or MRI at all")
         		.clickNextButton(new FollowingSymptomsMoreThanOnceWeekOLS());
         
         BiologicMedications biologicMedications = followingSymptomsMoreThanOnceWeekOLS1
@@ -121,20 +121,40 @@ public class AS_4319_OLS extends BaseTest {
         
         TakenXeljanz takenXeljanz = biologicMedications
         		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
+        		.clickOnAnswers("Actemra", "Benlysta", "Cimzia", "Cosentyx")
         		.clickNextButton(new TakenXeljanz());
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4708", protocol1);
+        debugPageOLS.back();
+        
+        biologicMedications
+				.waitForPageLoad()
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new TakenXeljanz());
         
         AreYouWheelchairBoundOLS areYouWheelchairBoundOLS = takenXeljanz
         		.waitForPageLoad()
-        		.clickOnAnswer("No, I have never taken it")
+        		.clickOnAnswer("Yes, I am currently taking it")
         		.clickNextButton(new AreYouWheelchairBoundOLS());
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4709", protocol1);
+        debugPageOLS.back();
+        
+        takenXeljanz
+				.waitForPageLoad()
+				.clickOnAnswer("I took it in the past, but not now")
+				.clickNextButton(new AreYouWheelchairBoundOLS());
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4709", protocol1);
+        debugPageOLS.back();
+        
+        takenXeljanz
+				.waitForPageLoad()
+				.clickOnAnswer("No, I have never taken it")
+				.clickNextButton(new AreYouWheelchairBoundOLS());
         
         FollowingDevicesInYourBody followingDevicesInYourBody = areYouWheelchairBoundOLS
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
-        		.clickNextButton(new FollowingDevicesInYourBody());
-        
-        debugPageOLS.checkProtocolsEquals("Are you permanently wheelchair-bound, bedridden, or otherwise completely unable to walk due to your ...", protocol1);
+        		.clickNextButton(new FollowingDevicesInYourBody());        
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4710", protocol1);
         debugPageOLS.back();
         
         areYouWheelchairBoundOLS
@@ -158,10 +178,7 @@ public class AS_4319_OLS extends BaseTest {
         	.waitForPageLoad()
         	.clickOnAnswers("None of the above")
         //------------ New for AMS1 Rel.51, when Gender = Female --------
-            .clickNextButton(new HormonalBirthControlOLS())
-            .waitForPageLoad()
-            .clickOnAnswer("No")
-        	.clickNextButton(new ApproximateHeightPageOLS())
+            .clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
         	.waitForPageLoad()
         	.setAll("5", "5", "160")

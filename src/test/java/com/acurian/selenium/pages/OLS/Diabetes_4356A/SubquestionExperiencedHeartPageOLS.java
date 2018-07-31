@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.OLS.Diabetes_4356A;
 
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.OLS.LMG_4686.TreatYourMigraineHeadachesOLS;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -71,6 +73,12 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageOLS{
                 .get()
                 .findElements(By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
         clickOnRadioButton(checkBoxListFromTitle, answerText);
+        return this;
+    }
+    
+    @Step
+    public SubquestionExperiencedHeartPageOLS clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 

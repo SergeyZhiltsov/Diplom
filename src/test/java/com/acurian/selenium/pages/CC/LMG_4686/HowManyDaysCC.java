@@ -14,7 +14,7 @@ public class HowManyDaysCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='question_text']/div[@class='show-in-cc']")
     WebElement titleText;    
 
-    @FindBy(xpath = "//select[@id='QS6010']")
+    @FindBy(xpath = "//div[@class='ddlist_container']//select")
     WebElement chooseDays;
     
     public HowManyDaysCC() {
