@@ -9,7 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowManyDifferentMedicationsCC extends MainPageCC{
 
-    public final String titleExpected = "Approximately how old were you when you were diagnosed with migraine headaches?";
+    public final String titleExpected = "Medications to prevent migraine headaches are taken daily or regularly, not just when a migraine headache is occurring.\n" + 
+    		"Over the past 10 years, how many different medications to prevent migraines have you tried?\n" +
+    		"Please include any medications you are currently taking to prevent migraines.";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

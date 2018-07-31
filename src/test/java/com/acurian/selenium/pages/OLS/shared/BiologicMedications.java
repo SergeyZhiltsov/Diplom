@@ -30,12 +30,8 @@ public class BiologicMedications extends MainPageOLS {
     }
 
     @Step
-    public BiologicMedications clickOnAnswers(String answerText) {
-    	checkBoxList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+    public BiologicMedications clickOnAnswers(String ...answerText) {
+    	clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 

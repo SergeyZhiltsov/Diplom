@@ -7,9 +7,11 @@ import com.acurian.selenium.pages.CC.pediatric.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.AS_4319.DiagnosedWithAnkylosingSpondylitisCC;
 import com.acurian.selenium.pages.CC.AS_4319.FollowingSymptomsMoreThanOnceAWeekCC;
 import com.acurian.selenium.pages.CC.AS_4319.PermanentlyWheelchairBoundCC;
 import com.acurian.selenium.pages.CC.AS_4319.ResultsOfYouXrayOrMRICC;
+import com.acurian.selenium.pages.CC.AS_4319.SacroiliitisPageCC;
 import com.acurian.selenium.pages.CC.AS_4319.SignsOfAnkylosingSpondylitisCC;
 import com.acurian.selenium.pages.CC.AS_4319.YouBeenDiagnosedWithCC;
 import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
@@ -114,36 +116,31 @@ public class AS_4319_CC extends BaseTest{
     		   .typeZipCode("19044")
     		   .clickNextButton(new GenderPageCC());
        
-       YouBeenDiagnosedWithCC youBeenDiagnosedWithCC = genderPageCC
+       DiagnosedWithAnkylosingSpondylitisCC diagnosedWithAnkylosingSpondylitisCC = genderPageCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Female")
-    		   .clickNextButton(new YouBeenDiagnosedWithCC());
+    		   .clickNextButton(new DiagnosedWithAnkylosingSpondylitisCC());
        
-       NonQRtransitionPageCC nonQRtransitionPageCC = youBeenDiagnosedWithCC
+       NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedWithAnkylosingSpondylitisCC
     		   .waitForPageLoad()
-    		   .clickOnAnswers("None of the above")
+    		   .clickOnAnswer("No")
     		   .clickNextButton(new NonQRtransitionPageCC());
        
        DebugPageCC debugPageCC = new DebugPageCC();
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), protocol1, "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017176-QS4715-STUDYQUES", protocol1);
+       debugPageCC.back();
        
-       nonQRtransitionPageCC.back();
-       DoYouSufferFromLbpPageCC doYouSufferFromLbpPageCC = youBeenDiagnosedWithCC
+       DoYouSufferFromLbpPageCC doYouSufferFromLbpPageCC = diagnosedWithAnkylosingSpondylitisCC
     		   .waitForPageLoad()
-               .clickOnAnswers("Ankylosing spondylitis (AS)")
+               .clickOnAnswer("Yes")
                .clickNextButton(new DoYouSufferFromLbpPageCC());
        
        NonQRtransitionPageCC nonQRtransitionPageCC1 = doYouSufferFromLbpPageCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("No")
-    		   .clickNextButton(new NonQRtransitionPageCC());       
-      
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "M16_098", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
-       nonQRtransitionPageCC1.back();
+    		   .clickNextButton(new NonQRtransitionPageCC());      
+       debugPageCC.checkProtocolsContainsForQNumber("Q0005287-QS4703-STUDYQUES", protocol1);
+       debugPageCC.back();
        
        HowLongHaveLbpPageCC howLongHaveLbpPageCC = doYouSufferFromLbpPageCC
     		   .waitForPageLoad()
@@ -154,12 +151,9 @@ public class AS_4319_CC extends BaseTest{
     		   .waitForPageLoad()
     		   .clickOnAnswer("Less than 3 months")
     		   .clickNextButton(new SignsOfAnkylosingSpondylitisCC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0005288-QS4704-STUDYQUES", protocol1);
+       debugPageCC.back();
        
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "M16_098", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
-       
-       signsOfAnkylosingSpondylitisCC.back();
        howLongHaveLbpPageCC
 	           .waitForPageLoad()
 	           .clickOnAnswer("More than 1 year")
@@ -169,19 +163,18 @@ public class AS_4319_CC extends BaseTest{
                .waitForPageLoad()
                .clickOnAnswer("No")
                .clickNextButton(new FollowingSymptomsMoreThanOnceAWeekCC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0014040-QS4705-STUDYQUES", protocol1);
+       debugPageCC.back();
        
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "M16_098", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
-       followingSymptomsMoreThanOnceAWeekCC.back();
-       ResultsOfYouXrayOrMRICC resultsOfYouXrayOrMRICC = signsOfAnkylosingSpondylitisCC
+       
+       SacroiliitisPageCC sacroiliitisPageCC = signsOfAnkylosingSpondylitisCC
                .waitForPageLoad()
                .clickOnAnswer("Yes")
-               .clickNextButton(new ResultsOfYouXrayOrMRICC());
+               .clickNextButton(new SacroiliitisPageCC());
        
-       FollowingSymptomsMoreThanOnceAWeekCC followingSymptomsMoreThanOnceAWeekCC1 = resultsOfYouXrayOrMRICC
+       FollowingSymptomsMoreThanOnceAWeekCC followingSymptomsMoreThanOnceAWeekCC1 = sacroiliitisPageCC
     		   .waitForPageLoad()
-    		   .clickOnAnswer("Unsure")
+    		   .clickOnAnswer("Doctor did not explain the x-ray or MRI at all")
     		   .clickNextButton(new FollowingSymptomsMoreThanOnceAWeekCC());
        
        BiologicMedicationsCC biologicMedicationsCC = followingSymptomsMoreThanOnceAWeekCC1
@@ -192,12 +185,9 @@ public class AS_4319_CC extends BaseTest{
        EverTakenXeljanzCC everTakenXeljanzCC = biologicMedicationsCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Tysabri (Agent Note: tie-SAB-ree)")
-    		   .clickNextButton(new EverTakenXeljanzCC());
-       
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "M16_098", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
-       everTakenXeljanzCC.back();
+    		   .clickNextButton(new EverTakenXeljanzCC());       
+       debugPageCC.checkProtocolsContainsForQNumber("Q0005225-QS4708-STUDYQUES", protocol1);
+       debugPageCC.back();
        
        EverTakenXeljanzCC everTakenXeljanzCC1 = biologicMedicationsCC
     		   .waitForPageLoad()
@@ -207,12 +197,9 @@ public class AS_4319_CC extends BaseTest{
        PermanentlyWheelchairBoundCC permanentlyWheelchairBoundCC = everTakenXeljanzCC1
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes, I am currently taking it")
-    		   .clickNextButton(new PermanentlyWheelchairBoundCC());
-       
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "M16_098", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
-       permanentlyWheelchairBoundCC.back();
+    		   .clickNextButton(new PermanentlyWheelchairBoundCC());       
+       debugPageCC.checkProtocolsContainsForQNumber("Q0005244-QS4709-STUDYQUES", protocol1);
+       debugPageCC.back();
        
        PermanentlyWheelchairBoundCC permanentlyWheelchairBoundCC1 = everTakenXeljanzCC1
     		   .waitForPageLoad()
@@ -223,11 +210,8 @@ public class AS_4319_CC extends BaseTest{
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
     		   .clickNextButton(new DevicesInYourBodyCC());
-       
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "M16_098", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
-       devicesInYourBodyCC.back();
+       debugPageCC.checkProtocolsContainsForQNumber("Q0014045-QS4710-STUDYQUES", protocol1);
+       debugPageCC.back();
        
        DevicesInYourBodyCC devicesInYourBodyCC1 = permanentlyWheelchairBoundCC1
     		   .waitForPageLoad()
@@ -238,18 +222,15 @@ public class AS_4319_CC extends BaseTest{
     		   .waitForPageLoad()
     		   .clickOnAnswers("A pacemaker")
     		   .clickNextButton(new TransitionStatementCC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0005282-QS4711-STUDYQUES", protocol1);
+       debugPageCC.back();
        
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "M16_098", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();
-       transitionStatementCC.back();
-       
-       TransitionStatementCC transitionStatementCC1 = devicesInYourBodyCC1
+       devicesInYourBodyCC1
     		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new TransitionStatementCC());
        
-       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =  transitionStatementCC1
+       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =  transitionStatementCC
     		   .waitForPageLoadWithCurves1(studyName)    		   
     		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());     
        
@@ -260,10 +241,7 @@ public class AS_4319_CC extends BaseTest{
        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
        		.waitForPageLoad()
-       		.clickOnAnswers("None of the above")
-    		.clickNextButton(new HormonalBirthControlCC())
-    		.waitForPageLoad()
-       		.clickOnAnswer("No")
+       		.clickOnAnswers("None of the above")    		
             .clickNextButton(new ApproximateHeightPageCC())
        		//----------Height and Weight Question Page--------------------
                .waitForPageLoad()
