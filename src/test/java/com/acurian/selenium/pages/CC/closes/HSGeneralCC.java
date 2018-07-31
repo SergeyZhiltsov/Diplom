@@ -33,12 +33,26 @@ public class HSGeneralCC extends MainPageCC{
 			"You will need to provide us with an email address to start this process. What email address should we use:";
 	
 	
+	public final String titleExpected_IND = "We're glad the location is convenient for you.\n" +
+			"\n" +
+			"The last step is to provide information about the doctors who are currently treating, or have previously treated, your %s so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
+			"\n" +
+			"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
+			"\n" +
+			"You will need to provide us with an email address to start this process. What email address should we use:";
+	
+	
 	
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
     
-    @FindBy(xpath = "//div[@class='text_email_container']/input[@class='input-text']")
+   // @FindBy(xpath = "//div[@class='text_email_container']/input[@class='input-text']")
+   // WebElement emailBox;
+    
+    @FindBy(xpath = "//div[@class='text_email_container']/input[@type='text']")
     WebElement emailBox;
+    
+  
     
     @FindBy(xpath = "//input[@id='answersQSC9111.rawAnswer']")
     WebElement emailBoxT2Dia;
@@ -56,6 +70,13 @@ public class HSGeneralCC extends MainPageCC{
     }
     
     @Step
+    public HSGeneralCC waitForPageLoadInd(String StudyIndication) {
+        String titleExpectedMod = String.format(titleExpected_IND, StudyIndication);
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+    
+    @Step
     public HSGeneralCC waitForPageLoadT2DM() {
         String titleExpectedMod = String.format(titelExpected_NoPIIemail);
         waitForPageLoadMain(titleText, titleExpectedMod);
@@ -64,7 +85,12 @@ public class HSGeneralCC extends MainPageCC{
     
     @Step
     public HSGeneralCC typeEmail(String text) {
-        //typeTextWithoutClear(ageMig, text);
+        typeText(emailBox, text);
+        return this;
+    }
+    
+    @Step
+    public HSGeneralCC typeEmailAut(String text) {
         typeText(emailBox, text);
         return this;
     }

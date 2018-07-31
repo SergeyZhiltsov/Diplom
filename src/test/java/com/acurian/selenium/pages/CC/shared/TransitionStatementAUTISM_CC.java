@@ -11,8 +11,8 @@ public class TransitionStatementAUTISM_CC extends MainPageCC {
 
     //%s = studyName variable
     private final String titleExpected = "Thank you for answering the questions about your Autism.\n" +
-    		"I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me “yes” or “no,” and I will check off each condition that you do have.\n" +
-    		"Agent note: If “no” to all items in a question, select “None of the above”";
+    		"I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
+    		"Agent note: If \"no\" to all items in a question, select \"None of the above\"";
     
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -22,9 +22,9 @@ public class TransitionStatementAUTISM_CC extends MainPageCC {
     }
 
     @Step
-    public TransitionStatementAUTISM_CC waitForPageLoad(String studyName) {
+    public TransitionStatementAUTISM_CC waitForPageLoad() {
         waitForAnimation();
-        String titleExpectedMod = String.format(titleExpected, studyName);
+        String titleExpectedMod = String.format(titleExpected);
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
         return this;
     }
