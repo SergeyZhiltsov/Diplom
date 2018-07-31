@@ -3,6 +3,12 @@ package com.acurian.selenium.tests.CC;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.AUTI_3973.DoYouKnowSomeoneStudyPartner_CC;
+import com.acurian.selenium.pages.CC.AUTI_3973.HaveYouEverBeenToldByDoctorAutism_CC;
+import com.acurian.selenium.pages.CC.AUTI_3973.HaveYouEverHadAnIQtest_CC;
+import com.acurian.selenium.pages.CC.AUTI_3973.HaveYouHadSeizureInLast6Mon_CC;
+import com.acurian.selenium.pages.CC.AUTI_3973.HowDidYouScoreOnTheTest_CC;
+import com.acurian.selenium.pages.CC.AUTI_3973.InThePast3MonthsHaveYouExperienced_CC;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
@@ -30,12 +36,16 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
+import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
+import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
+import com.acurian.selenium.pages.CC.generalHealth.WhichFollowingMentalEmotionalHealth_CC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
@@ -48,13 +58,25 @@ import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
 import com.acurian.selenium.pages.CC.shared.ProcedureForWeightLossPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.StatinMedicationsOnPageCC;
+import com.acurian.selenium.pages.CC.shared.TransitionStatementAUTISM_CC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
 import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
 import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
+import com.acurian.selenium.pages.OLS.AUTI_3973.DoYouKnowSomeoneStudyPartner_OLS;
+import com.acurian.selenium.pages.OLS.AUTI_3973.HaveYouEverHadAnIQtest_OLS;
+import com.acurian.selenium.pages.OLS.AUTI_3973.HaveYouHadSeizureInLast6Mon_OLS;
+import com.acurian.selenium.pages.OLS.AUTI_3973.HowDidYouScoreOnTheTest_OLS;
+import com.acurian.selenium.pages.OLS.AUTI_3973.InThePast3MonthsHaveYouExperienced_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.LiverRelatedConditionOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.OtherThanSkinCancerPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingDiagnosedWithByDoctor_MentalOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
@@ -65,10 +87,11 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)  
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
-    public void Akc_4691_CC_NoPIIemail(final String username, final String password) {
+    public void AUTO_3973_CC_NoPIIemail(final String username, final String password) {
         String phoneNumber = "AUTAMS1ROC";
         String AUTISM = "WN39434";        
-        String studyName = "Autism";
+		String studyName = "an autism spectrum disorder study";
+		String siteIndication = "Autism";
         String siteName = "AUT_3973";             
         String zipCode = "08204";
         
@@ -106,9 +129,9 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
         
         //--------------DOB Question------------
         dateOfBirthPageCC
-                .waitForPageLoadAKC();
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextAKC(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedAkc_4691, "Title is diff");
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleAUT3973, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -129,543 +152,233 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
         genderPageCC
                 .waitForPageLoad();
         Assert.assertEquals(genderPageCC.getTitleText(), genderPageCC.titleExpected, "Title is diff");
-        DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
+        HaveYouEverBeenToldByDoctorAutism_CC haveYouEverBeenToldByDoctorAutism_CC = genderPageCC
                 .clickOnAnswer("Female")
-                .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
+                .clickNextButton(new HaveYouEverBeenToldByDoctorAutism_CC());
         
 
-        //--------------Q2: Have you been diagnosed with any type of diabetes?------------
-        diagnosedAnyTypeOfDiabetesPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageCC.getTitleText(), diagnosedAnyTypeOfDiabetesPageCC.titleExpected, "Title is diff");
-        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedAnyTypeOfDiabetesPageCC
-                .clickOnAnswer("No")
-                .clickNextButton(new NonQRtransitionPageCC());
-        nonQRtransitionPageCC
-                .waitForPageLoad();
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC
-                .checkProtocolsContainsForQNumber("Q0005996-QS4602-STUDYQUES", AUTISM)
-                .back();
-        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfDiabetesPageCC());
         
         
-        //--------------Q3: What kind of diabetes do you have?------------
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(whatKindOfDiabetesPageCC.getTitleText(), whatKindOfDiabetesPageCC.titleExpected, "Title is diff");
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", AUTISM)
-                .back();
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", AUTISM)
-                .back();
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", AUTISM)
-                .back();
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad();
-        		UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageCC
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new UseDietAndExercisePage());
-        useDietAndExercisePage
-        		.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", AUTISM)
-                .back();
-        WithType2DiabetesPageCC withType2DiabetesPageCC =  whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new WithType2DiabetesPageCC());
         
-
-        //--------------Q4: How long ago were you diagnosed with type 2 diabetes?------------
-        withType2DiabetesPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(withType2DiabetesPageCC.getTitleText(),withType2DiabetesPageCC.titleExpected, "Title is diff");
-        withType2DiabetesPageCC
-        		.clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(useDietAndExercisePage);
-        
-        
-      //--------------Q5: Do you currently use diet and exercise as a way to help treat your diabetes? -----------
-        useDietAndExercisePage
-                .waitForPageLoad();
-        Assert.assertEquals(useDietAndExercisePage.getTitleText(),useDietAndExercisePage.titleExpected, "Title is diff");
-        CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage  = useDietAndExercisePage
-                .clickOnAnswer("Yes")
-                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
-       
-        
-        
-        //--------------Q6: Do you currently use metformin or insulin or any other medication prescribed by your doctor to treat your diabetes? -----------        
-        //---------If selected "Metformin" skip to Q8,  If selected "Medication other than Metformin or Insulin" skip to Q9, 
-        //---------If selected "Insulin" skip to Q10, 
-        //---------If selected ""Do not use any prescribed medication to treat diabetes"" goto Q7 and DQ 4691---------
-        currentlyUseMetforminOrInsulinPage
-                .waitForPageLoad();
-        Assert.assertEquals(currentlyUseMetforminOrInsulinPage.getTitleText(),currentlyUseMetforminOrInsulinPage.titleExpected, "Title is diff");
-        ApartFromMetforminPageCC apartFromMetforminPageCC = currentlyUseMetforminOrInsulinPage
-                .clickOnAnswers("Medication other than Metformin or Insulin")
-                .clickNextButton(new ApartFromMetforminPageCC());
-        apartFromMetforminPageCC
-        		.waitForPageLoad()
-                .back();
-        currentlyUseMetforminOrInsulinPage
-                .waitForPageLoad();  
-        InsulinForYourDiabetesPageCC insulinForYourDiabetesPageCC = currentlyUseMetforminOrInsulinPage
-        		.clickOnAnswers("Medication other than Metformin or Insulin") //Click to Uncheck this option
-        		.clickOnAnswers("Insulin")
-                .clickNextButton(new InsulinForYourDiabetesPageCC());
-        		insulinForYourDiabetesPageCC.waitForPageLoad()
-                .back();                
-        currentlyUseMetforminOrInsulinPage
-                .waitForPageLoad();  
-        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
-                .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
-                .clickNextButton(new AnyPrescribedMedicationPage());
-        		anyPrescribedMedicationPage.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0016801-QS4626-STUDYQUES", AUTISM)//***************
-                .back();
-        currentlyUseMetforminOrInsulinPage
-                .waitForPageLoad();	
-                MetforminMedicationsPageCC metforminMedicationsPageCC = currentlyUseMetforminOrInsulinPage
-                .clickOnAnswers("Metformin")
-                .clickNextButton(new MetforminMedicationsPageCC());
-        
-        
-/*        //----------Q7: Have you taken any prescribed medication for your diabetes within the past 3 months? -----------    
-        anyPrescribedMedicationPage
-        		.waitForPageLoad();
-        Assert.assertEquals(anyPrescribedMedicationPage.getTitleText(),anyPrescribedMedicationPage.titleExpected, "Title is diff");
-        NoOfAlcoholicDrinkCC noOfAlcoholicDrinkCC = anyPrescribedMedicationPage
-        //---------if selected "NO" Skip to Q15---
-        		.clickOnAnswer("No")
-                .clickNextButton(new NoOfAlcoholicDrinkCC());
-        noOfAlcoholicDrinkCC.waitForPageLoad()
-        		.back();
-        anyPrescribedMedicationPage
+		// --------------Q2: Have you ever been told by a doctor that you have
+		// autism or an autism spectrum disorder?------------
+		haveYouEverBeenToldByDoctorAutism_CC
+				.waitForPageLoad();
+		Assert.assertEquals(haveYouEverBeenToldByDoctorAutism_CC.getTitleText(),haveYouEverBeenToldByDoctorAutism_CC.titleExpected, "Title is diff");		
+		NonQRtransitionPageCC nonQRtransitionPageCC = haveYouEverBeenToldByDoctorAutism_CC
+				.clickOnAnswer("No, my doctor has not told me that I have autism or an autism spectrum disorder")
+				.clickNextButton(new NonQRtransitionPageCC());
+		nonQRtransitionPageCC
+				.waitForPageLoad();
+		DebugPageCC debugPageCC = new DebugPageCC();
+		debugPageCC
+				.checkProtocolsContainsForQNumber("Q0017138-QS5902-STUDYQUES", AUTISM)
+				.back();
+		InThePast3MonthsHaveYouExperienced_CC inThePast3MonthsHaveYouExperienced_CC = haveYouEverBeenToldByDoctorAutism_CC
 				.waitForPageLoad()
+				.clickOnAnswer("Yes, my doctor has told me that I have autism or an autism spectrum disorder")
+				.clickNextButton(new InThePast3MonthsHaveYouExperienced_CC());
+
+		
+		
+		// --------------Q3: In the past three months, have you experienced any
+		// of the following?------------
+		inThePast3MonthsHaveYouExperienced_CC
+				.waitForPageLoad();
+		Assert.assertEquals(inThePast3MonthsHaveYouExperienced_CC.getTitleText(),inThePast3MonthsHaveYouExperienced_CC.titleExpected, "Title is diff");
+		inThePast3MonthsHaveYouExperienced_CC
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new HaveYouHadSeizureInLast6Mon_CC())
+				.waitForPageLoad()
+				.getPage(debugPageCC)
+				.checkProtocolsContainsForQNumber("Q0017141-QS5903-STUDYQUES", AUTISM).back();
+		inThePast3MonthsHaveYouExperienced_CC
+				.waitForPageLoad();
+		HaveYouHadSeizureInLast6Mon_CC haveYouHadSeizureInLast6Mon_CC = inThePast3MonthsHaveYouExperienced_CC
+				.clickOnAnswers("Trouble understanding what other people are feeling",
+						"Trouble understanding facial expressions or what other preople want",
+						"Trouble communicating feelings to others, or being able to keep up with conversations",
+						"Trouble starting conversations with other people, or wanting to be alone instead of being with other people",
+						"Trouble with changes in routine, or preoccupation with certain topics or items")
+				.clickNextButton(new HaveYouHadSeizureInLast6Mon_CC());
+
+		
+		
+		// --------------Q4: Have you had a seizure in the last 6
+		// months?------------
+		haveYouHadSeizureInLast6Mon_CC
+				.waitForPageLoad();
+		Assert.assertEquals(haveYouHadSeizureInLast6Mon_CC.getTitleText(),haveYouHadSeizureInLast6Mon_CC.titleExpected, "Title is diff");
+		haveYouHadSeizureInLast6Mon_CC
 				.clickOnAnswer("Yes")
-				.clickNextButton(new MetforminMedicationsPageCC());*/
-        
-        
-        
-        //----------Q8: Do you currently take any of the following oral (taken by mouth) metformin medications?
-        metforminMedicationsPageCC
-        		.waitForPageLoad();
-        Assert.assertEquals(metforminMedicationsPageCC.getTitleText(),metforminMedicationsPageCC.titleExpected, "Title is diff");
-        InjectableMedicationsForYourDiabetesPageCC injectableMedicationsForYourDiabetesPageCC	= metforminMedicationsPageCC
-        		.clickOnAnswers("Actoplus Met (metformin and pioglitazone)")
-				.clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
-        injectableMedicationsForYourDiabetesPageCC
-        		.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0006223-QS4607-STUDYQUES", AUTISM)
-                .back();
-        metforminMedicationsPageCC
-				.waitForPageLoad()
-				.clickOnAnswers("Avandamet (metformin and rosiglitazone)")
-				.clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
-        injectableMedicationsForYourDiabetesPageCC
+				.clickNextButton(new HaveYouEverHadAnIQtest_CC())
 				.waitForPageLoad()
 				.getPage(debugPageCC)
-				.checkProtocolsContainsForQNumber("Q0006223-QS4607-STUDYQUES", AUTISM)
+				.checkProtocolsContainsForQNumber("Q0017142-QS5904-STUDYQUES", AUTISM)
 				.back();
-        metforminMedicationsPageCC
-				.waitForPageLoad()
-				.clickOnAnswers("Fortamet (metformin)",
-								"Glucophage (metformin)",
-								"Glucovance (metformin and glyburide)",
-								"Glumetza (metformin)",
-								"Invokamet (metformin and canagliflozin)",
-								"Janumet (metformin and sitagliptin)" ,
-								"Jentadueto (metformin and linagliptin)",
-								"Kazano (metformin and alogliptin)",
-								"Kombiglyze (metformin and saxagliptin)",
-								"Metformin and glipizide",
-								"PrandiMet (metformin and repaglinide)",
-								"Synjardy (metformin and empagliflozin)",
-								"Xigduo (metformin and dapagliflozin)",
-								"None of the above")
-				.clickNextButton(new InjectableMedicationsForYourDiabetesPageCC())
-        		.waitForPageLoad()
-        		.back();
-        metforminMedicationsPageCC
-				.waitForPageLoad()
-				.back();
-        currentlyUseMetforminOrInsulinPage
-        		.waitForPageLoad()
-        		.clickOnAnswers("Insulin","Medication other than Metformin or Insulin")
-        		.clickNextButton(new MetforminMedicationsPageCC());
-        metforminMedicationsPageCC
-        		.waitForPageLoad()
-				.clickNextButton(new ApartFromMetforminPageCC());
-        		
-        
-        
-        //----------Q9: Apart from metformin, what other oral (taken by mouth) medications do you currently take for your diabetes?  ----------
-        apartFromMetforminPageCC
-        		.waitForPageLoad();
-        Assert.assertEquals(apartFromMetforminPageCC.getTitleText(),apartFromMetforminPageCC.titleExpected, "Title is diff");       
-        apartFromMetforminPageCC
-        		.clickOnAnswers("Actos (pioglitazone)",
-        				"Avandia (rosiglitazone)",
-        				"Duetact (pioglitazone and glimepiride)",
-        				"Oseni (alogliptin and pioglitazone)")
-        		.clickNextButton(new InsulinForYourDiabetesPageCC());
-        insulinForYourDiabetesPageCC
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0007024-QS4608-STUDYQUES", AUTISM)
-        		.back();
-        apartFromMetforminPageCC
-        		.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-        		.clickOnAnswers("Tradjenta (linagliptin)")
-				.threadSleep(3000);
-        apartFromMetforminPageCC
-				.clickNextButton(new InsulinForYourDiabetesPageCC());
-        
-        
-        //--------Q10:  Do you currently take any of the following types of insulin for your diabetes?--
-        insulinForYourDiabetesPageCC
-        		.waitForPageLoad();
-                Assert.assertEquals(insulinForYourDiabetesPageCC.getTitleText(),insulinForYourDiabetesPageCC.titleExpected, "Title is diff");
-        insulinForYourDiabetesPageCC
-        		.waitForPageLoad()
-                .clickOnAnswers("Afrezza, which is inhaled insulin",
-                				"Apidra (insulin glulisine)",
-                				"Humalog",
-                				"Humulin",
-                				"Lantus or Toujeo (insulin glargine)", 
-                				"Levemir (insulin detemir)", 
-                				"Novolin", 
-                				"Novolog")
-                .clickNextButton(new SubquestionsHumalogPageCC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0007026-QS4609-STUDYQUES", AUTISM)
-                .back();
-        insulinForYourDiabetesPageCC
-        		.waitForPageLoad()
-				.clickOnAnswers("I use insulin, but I am not sure what kind")
-				.clickNextButton(new InjectableMedicationsForYourDiabetesPageCC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0007026-QS4609-STUDYQUES", AUTISM)
-                .back();
-        insulinForYourDiabetesPageCC
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-        		.clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
-        
-        		
-        		
-        //-------Q12:  Do you currently take any of the following injectable medications for your diabetes?  --------
-        injectableMedicationsForYourDiabetesPageCC
-        		.waitForPageLoad();
-        Assert.assertEquals(injectableMedicationsForYourDiabetesPageCC.getTitleText(),injectableMedicationsForYourDiabetesPageCC.titleExpected, "Title is diff");
-        CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = injectableMedicationsForYourDiabetesPageCC
-        		.clickOnAnswers("Adlyxin (lixisenatide)",
-        				"Bydureon or Byetta (exenatide)",
-        				"Tanzeum (albiglutide)",
-        				"Trulicity (dulaglutide)",
-        				"Saxenda or Victoza (liraglutide)",
-        				"SymlinPen (pramlintide)",
-        				"Another injectable medication not listed above")
-        		.clickNextButton(new CombinationWithEachOtherPageCC());
-        combinationWithEachOtherPageCC
-        		.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0006227-QS4611-STUDYQUES", AUTISM)
-                .back();
-        injectableMedicationsForYourDiabetesPageCC
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-        		.clickNextButton(new CombinationWithEachOtherPageCC());
-        
-        
-        		
-        //-------Q13:  Overall, how long have you been taking your current diabetes medication(s), either by themselves, or in combination with each other?  --------
-        combinationWithEachOtherPageCC
-        		.waitForPageLoad();
-        Assert.assertEquals(combinationWithEachOtherPageCC.getTitleText(),combinationWithEachOtherPageCC.titleExpected, "Title is diff");
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinkCC = combinationWithEachOtherPageCC
-        		.clickOnAnswer("1 month or less")
-        		.clickNextButton(new NoOfAlcoholicDrinksCC());
-        
-        
-        //-------Q15:  About how many alcoholic drinks do you have in a typical week? --------
-        noOfAlcoholicDrinkCC
-        		.waitForPageLoad();
-        Assert.assertEquals(noOfAlcoholicDrinkCC.getTitleText(),noOfAlcoholicDrinkCC.titleExpected, "Title is diff");
-        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinkCC
-        		.enterNoOfDrinks("6")
-        		.clickNextButton(new FollowingLiverRelatedConditionCC());
-        
-        
-        
-        //-------Q16:  Has a healthcare professional ever diagnosed you with any of the following liver-related conditions?--------
-        followingLiverRelatedConditionCC
+		haveYouHadSeizureInLast6Mon_CC
 				.waitForPageLoad();
-        Assert.assertEquals(followingLiverRelatedConditionCC.getTitleText(),followingLiverRelatedConditionCC.titleExpected, "Title is diff");
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
-        		.clickOnAnswers("Alcoholic liver disease",
-        						"Autoimmune hepatitis, which is not the same as hepatitis caused by a virus",
-        						"Hemochromatosis or iron overload (Agent Note: he-mo-chrome-uh-TOE-sus)",
-        						"Liver cancer or hepatocellular carcinoma (Agent Note: hih-pat-oh-CELL-u-lar car-sih-NO-ma)",
-        						"Primary sclerosing cholangitis or primary biliary cirrhosis (Agent Note: scler-OH-sing, ko-lanj-EYE-tis, BILL-ee-air-ee)",
-        						"Wilson's disease")
-        		.clickNextButton(new FollowingToLoseWeightPageCC());
-        followingToLoseWeightPageCC
-				.waitForPageLoad()
-				.getPage(debugPageCC)
-		        .checkProtocolsContainsForQNumber("Q0016651-QS4624-STUDYQUES", AUTISM)
-		        .back();
-        followingLiverRelatedConditionCC
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new FollowingToLoseWeightPageCC());
-
-        
-        
-        //-------Q17:  Are you currently using any of the following to lose weight?--------
-        followingToLoseWeightPageCC
-				.waitForPageLoad();
-        Assert.assertEquals(followingToLoseWeightPageCC.getTitleText(),followingToLoseWeightPageCC.titleExpected, "Title is diff");
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
-        		.clickOnAnswers("Prescription weight loss medication", 
-        						"Over-the-counter weight loss medication or supplements",
-        						"Weight loss program such as Weight Watchers or Jenny Craig",
-        						"No")
-        		.clickNextButton(new WeightLossSurgeryPageCC());
-        
-
-        
-        //-------Q18:  Have you ever had any of the following types of bariatric or weight loss surgery?--------
-        weightLossSurgeryPageCC
-				.waitForPageLoad();
-        Assert.assertEquals(weightLossSurgeryPageCC.getTitleText(),weightLossSurgeryPageCC.titleExpected, "Title is diff");
-        PoundsOrMorePageCC poundsOrMorePageCC = weightLossSurgeryPageCC
-        		.clickOnAnswers("None of the above")
-        		.clickNextButton(new PoundsOrMorePageCC())
-        		.waitForPageLoad();
-        		poundsOrMorePageCC.back();
-        weightLossSurgeryPageCC
-				.waitForPageLoad();
-        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
-				.clickOnAnswers("Gastric bypass",
-								"Gastric sleeve or sleeve gastrectomy",
-								"Duodenal switch",
-								"Lap band or gastric banding",
-								"Gastric balloon")
-				.clickNextButton(new ProcedureForWeightLossPageCC());
-				
+		HaveYouEverHadAnIQtest_CC haveYouEverHadAnIQtest_CC = haveYouHadSeizureInLast6Mon_CC.clickOnAnswer("No")
+				.clickNextButton(new HaveYouEverHadAnIQtest_CC());
 		
 		
-        //-------Q19:  When was the last time that you had a surgery or medical procedure for weight loss?--------
-        procedureForWeightLossPageCC
+
+		// --------------Q5: Have you ever had an IQ test? It is also called an
+		// intelligence test.-----------
+		haveYouEverHadAnIQtest_CC
 				.waitForPageLoad();
-        Assert.assertEquals(procedureForWeightLossPageCC.getTitleText(),procedureForWeightLossPageCC.titleExpected, "Title is diff");
-        PoundsOrMorePageCC PoundsOrMorePageCC = procedureForWeightLossPageCC
-        		.clickOnAnswer("Less than 3 months ago")
-        		.clickNextButton(new PoundsOrMorePageCC());
-        PoundsOrMorePageCC
+		Assert.assertEquals(haveYouEverHadAnIQtest_CC.getTitleText(),haveYouEverHadAnIQtest_CC.titleExpected, "Title is diff");
+		// Skip to Q7 if selected other than "Yes", otherwise continue to Q6
+		haveYouEverHadAnIQtest_CC
+				.clickOnAnswer("Unsure")
+				.clickOnAnswer("No")
+				.clickNextButton(new DoYouKnowSomeoneStudyPartner_CC())
+				.waitForPageLoad()
+				.back();
+		haveYouEverHadAnIQtest_CC
+				.waitForPageLoad();
+		HowDidYouScoreOnTheTest_CC howDidYouScoreOnTheTest_CC = haveYouEverHadAnIQtest_CC
+				.clickOnAnswer("Yes")
+				.clickNextButton(new HowDidYouScoreOnTheTest_CC());
+
+		
+		
+		// --------------Q6: How did you score on the test?---------
+		howDidYouScoreOnTheTest_CC
+				.waitForPageLoad();
+		Assert.assertEquals(howDidYouScoreOnTheTest_CC.getTitleText(),howDidYouScoreOnTheTest_CC.titleExpected,	"Title is diff");
+		howDidYouScoreOnTheTest_CC
+				.clickOnAnswer("Below 70")
+				.clickNextButton(new DoYouKnowSomeoneStudyPartner_CC())
 				.waitForPageLoad()
 				.getPage(debugPageCC)
-		        .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", AUTISM)
-		        .back();
-        procedureForWeightLossPageCC
-				.waitForPageLoad()
-				.clickOnAnswer("3 - 6 months ago")
-				.clickNextButton(new PoundsOrMorePageCC());
-        
-        
-      //-------Q20:  Have you lost or gained 15 pounds or more in the past 3 months?--------
-        poundsOrMorePageCC
-                .waitForPageLoad();
-        Assert.assertEquals(poundsOrMorePageCC.getTitleText(),poundsOrMorePageCC.titleExpected, "Title is diff");
-        poundsOrMorePageCC
-                .clickOnAnswer("Yes")
-                .clickNextButton(new DoYouExperienceDPN_CC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0013992-QS4617-STUDYQUES", AUTISM)
-                .back();
-        poundsOrMorePageCC
-        		.waitForPageLoad();
-        		DoYouExperienceDPN_CC doYouExperienceDPN_CC = poundsOrMorePageCC
-        		.clickOnAnswer("No")
-        		.clickNextButton(new DoYouExperienceDPN_CC());        
-                
-                         
-		// ---------------------------------------doYouExperienceDPN_CC-----------------------------------------------------
-		doYouExperienceDPN_CC
+				.checkProtocolsContainsForQNumber("Q0017143-QS5906-STUDYQUES", AUTISM)
+				.back();
+		howDidYouScoreOnTheTest_CC
 				.waitForPageLoad();
-				WhereDoYouExperienceDiabeticNervePain_CC whereDoYouExperienceDiabeticNervePain_CC = doYouExperienceDPN_CC
-				.clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
-				.clickNextButton(new WhereDoYouExperienceDiabeticNervePain_CC());
+		DoYouKnowSomeoneStudyPartner_CC doYouKnowSomeoneStudyPartner1_CC = haveYouEverHadAnIQtest_CC
+				.clickOnAnswer("I am not sure")
+				.clickOnAnswer("90 to 109")
+				.clickOnAnswer("70 to 89")
+				.clickOnAnswer("110 or more")
+				.clickNextButton(new DoYouKnowSomeoneStudyPartner_CC());
+		
+		
 
-		// ---------------------------------------WhereDoYouExperienceDiabeticNervePain_OLS-----------------------------------------------------
-		whereDoYouExperienceDiabeticNervePain_CC
+		// ----------Q7: Do you know someone a person that you usually regularly
+		// spend time with (for example, a parent or spouse) who can would be
+		// able to attend visits with you as a study partner?
+		doYouKnowSomeoneStudyPartner1_CC
 				.waitForPageLoad();
-				StatinMedicationsOnPageCC statinMedicationsOnPageCC = whereDoYouExperienceDiabeticNervePain_CC
-				.clickOnAnswers("None of the above").clickNextButton(new StatinMedicationsOnPageCC());
+		Assert.assertEquals(doYouKnowSomeoneStudyPartner1_CC.getTitleText(),doYouKnowSomeoneStudyPartner1_CC.titleExpected, "Title is diff");
+		TransitionStatementAUTISM_CC transitionStatementAUTISM_CC = doYouKnowSomeoneStudyPartner1_CC
+				.clickOnAnswer("No")
+				.clickOnAnswer("Unsure")
+				.clickOnAnswer("Yes")
+				.clickNextButton(new TransitionStatementAUTISM_CC());
 
-
-        //---------------------------------------statinMedicationsOnPageCC-----------
-        statinMedicationsOnPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(statinMedicationsOnPageCC.getTitleText(),statinMedicationsOnPageCC.titleExpected, "Title is diff");
-        DiabeticNephropathyPageCC diabeticNephropathyPageCC = statinMedicationsOnPageCC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DiabeticNephropathyPageCC());
-
-
-      //---------------------------------------diabeticNephropathyPageOLS------------------------------------------------------ 
-        diabeticNephropathyPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(diabeticNephropathyPageCC.getTitleText(),diabeticNephropathyPageCC.titleExpected, "Title is diff");
-        ForYourKidneysPageCC forYourKidneysPageCC = diabeticNephropathyPageCC
-                .clickOnAnswer("No")
-                .clickNextButton(new ForYourKidneysPageCC());
-        
-        //---------------------------------------forYourKidneysPageOLS------------------------------------------------------ 
-        forYourKidneysPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(forYourKidneysPageCC.getTitleText(),forYourKidneysPageCC.titleExpected, "Title is diff");
-                        
-        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = forYourKidneysPageCC
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
-
-        
-        //--------------------------------------Have you ever experienced or been diagnosed with any of the following specific heart-related medical conditions?------------------------------------------------------ 
-        haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouEverExperiencedHeartRelatedMedicalCondCC.getTitleText(),haveYouEverExperiencedHeartRelatedMedicalCondCC.titleExpected, "Title is diff");        
-        HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
-        
-        
-        //-------------------------HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC----------------------------------------------------- 
-        haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC.getTitleText(),haveYouEverBeenDiagnosedAdditionalHeartRelatedCC.titleExpected, "Title is diff");
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
-                .clickOnAnswers("None of the above")       
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
-
-        //-------------------------HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC----------------------------------------------------- 
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC.getTitleText(),haveYouUndergoneAnyOfFollowingHeartRelatedProcCC.titleExpected, "Title is diff");
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC())
-                
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        
-        
-        
-        //-----------------------NEW GENERAL HEALTH------------------------------------------------------
-        WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-        		.waitForPageLoad()
-        		.clickOnAnswers("Cancer")                	
-        		.clickNextButton(new WhenDiagnosedWithCancer());
-        
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
-        		.waitForPageLoad()
-        		.clickOnAnswer("Within the past 5 years")
-        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-        
-        doAnyOftheFollowingAdditionalDiagnosesCC
-        		.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", AUTISM)
-                .back();
-        whenDiagnosedWithCancer
+		
+		//------transitionStatementAUTISM_CC---------
+		transitionStatementAUTISM_CC
+				.waitForPageLoad();
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementAUTISM_CC
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+		
+		// ----------Q8: Ghost Question - Autism End of module logic----------
+		// If in Call Center AND if General Health Module not answered ==> Go to
+		// Transition Statement
+		// If in OLS, Go to Decision Module Q1
+		
+		
+		
+		//----------------------GENERAL HEALTH Questions -----------------------------
+		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+				.waitForPageLoad();				
+		OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
 				.waitForPageLoad()
-				.clickOnAnswer("Diagnosed with skin cancer only")
+				.clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
+								"Kidney disease",
+								"Cancer")
+				.clickNextButton(new OtherThanSkinCancerPageCC());
+		//HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = haveYouEverBeenToldByDoctorAutism_CC
+
+		//----CANCER DQ Check----------
+		otherThanSkinCancerPageCC
+				.waitForPageLoad()
+				.getPage(debugPageCC)
+				.checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", AUTISM)
+				.back();		
+		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+				.waitForPageLoad();
+		KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+				.clickOnAnswers("Cancer") // Un-Check 'Cancer'
+				.clickNextButton(new KidneyProblemsPage());
+		
+
+		//----KIDNEY DQ Check----------
+		kidneyProblemsPage
+				.waitForPageLoad();
+		WhichFollowingMentalEmotionalHealth_CC whichFollowingMentalEmotionalHealth_CC = kidneyProblemsPage
+				// ---DQ if selected "Dialysis"-----
+				.clickOnAnswers("Dialysis", "Kidney transplant")
+				.clickNextButton(new WhichFollowingMentalEmotionalHealth_CC());
+		whichFollowingMentalEmotionalHealth_CC
+				.waitForPageLoad()
+				.getPage(debugPageCC)
+				.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", AUTISM)
+				.back();
+		kidneyProblemsPage
+				.waitForPageLoad()		
+				.clickOnAnswers("Neither")
+				.clickNextButton(new FollowingMentalHealthPageCC());
+		
+		
+		
+		//----Check mental or emotional health condition DQ check----
+		whichFollowingMentalEmotionalHealth_CC
+				.waitForPageLoad();
+		DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whichFollowingMentalEmotionalHealth_CC
+		// ---DQ if selected "Dialysis"-----		
+				.clickOnAnswers("Bipolar disorder", "Schizophrenia")
 				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-        
-        HormonalBirthControlCC hormonalBirthControlCC = doAnyOftheFollowingAdditionalDiagnosesCC
+		doAnyOftheFollowingAdditionalDiagnosesCC
 				.waitForPageLoad()
-				.clickOnAnswers("Cirrhosis")
-				.clickNextButton(new HormonalBirthControlCC());
-        hormonalBirthControlCC
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", AUTISM)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
+				.getPage(debugPageCC)
+				.checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", AUTISM)
+				.back();
+		whichFollowingMentalEmotionalHealth_CC
 				.waitForPageLoad()
-				.clickOnAnswers("Drug or alcohol abuse within the past year")
-				.clickOnAnswers("Cirrhosis")
-				.clickNextButton(hormonalBirthControlCC)
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());		
+		
+				
+				
+		//----Do any of the following additional diagnoses apply to you? ------------
+		doAnyOftheFollowingAdditionalDiagnosesCC
+				.waitForPageLoad();
+		//HormonalBirthControlCC hormonalBirthControlCC = doAnyOftheFollowingAdditionalDiagnosesCC
+		ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
+		.waitForPageLoad()
+				.clickOnAnswers("Drug or alcohol abuse within the past year", 
+								"Hepatitis B",
+								"Hepatitis C", 
+								"HIV or AIDS")
+				.clickNextButton(new ApproximateHeightPageCC());
+		approximateHeightPageCC
 				.waitForPageLoad()
 				.getPage(debugPageCC)
 				.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", AUTISM)
 				.back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-        		.clickOnAnswers("Hepatitis B")
-				.clickNextButton(hormonalBirthControlCC)        
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", AUTISM)
-        		.back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-        		.clickOnAnswers("Hepatitis C")
-        		.clickNextButton( hormonalBirthControlCC)       
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", AUTISM)
-        		.back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
+		doAnyOftheFollowingAdditionalDiagnosesCC
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
-				.clickOnAnswers("HIV or AIDS")
-				.clickNextButton( hormonalBirthControlCC)       
-				.waitForPageLoad()
-				.getPage(debugPageCC)
-				.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", AUTISM)
-				.back();     
-        doAnyOftheFollowingAdditionalDiagnosesCC
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-        		.clickNextButton(new HormonalBirthControlCC())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
-                .clickNextButton(new ApproximateHeightPageCC())                
+				.clickNextButton(new ApproximateHeightPageCC());
+
+	        
                 
         		//----------Height and Weight Question Page--------------------
-                .waitForPageLoad()
+        new ApproximateHeightPageCC()
+        		.waitForPageLoad()
                 .setAll("5", "6", "170")
                 .clickNextButton(new LetMeSeePageCC())                
                 
@@ -693,8 +406,8 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
                 .clickNextButton(new HSGeneralCC())
                 
         		//----------Special Type 2 Diabetes HELLO SIGN Page (email at PII)--------------------
-                .waitForPageLoadT2DM()
-                .typeEmail_T2Dia("qa.acurian@gmail.com")
+                .waitForPageLoadInd(siteIndication)
+                .typeEmailAut("qa.acurian@gmail.com")
         		.clickNextButton(new DoctorInformationCollectionPageCC())
         		.waitForPageLoad()
         		.clickNextButton(new HSMedicalRecordsPageCC())

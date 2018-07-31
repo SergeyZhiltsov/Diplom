@@ -3,13 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.ApproxHowlongYouBeenExpSymptomsOLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouHaveAnyOfTheFollowingConditions_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HaveYouNoticedAnyOfTheFollowing_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouDescribeTheSymptoms_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouRateYourPain_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_OLS;
+import com.acurian.selenium.pages.OLS.DPN_3769_4557.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CombinationWithEachOtherPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.DiabeticNephropathyPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.FollowingToLoseWeightPageOLS;
@@ -52,20 +46,20 @@ public class DPN_4557_OLS extends BaseTest{
     public void dPN_4557_OLS() {
         String phoneNumberDPN = "AUTAMS1DPN";
         String protocol1 = "VMDN_003";
-        String protocol2 = "NYX_2925_2001";
+        String DPN_4557 = "NYX_2925_2001";
         String studyName = "a diabetic nerve pain";
         String studyName1 = "a diabetes study, a diabetic nerve pain";
         //String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_DPN_4557_Site";
-        String zip_Code = "19044";
+        String zip_Code = "19422";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
         
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-           .openPage(env, phoneNumberDPN)
-           .waitForPageLoad();
+           				.openPage(env, phoneNumberDPN)
+           				.waitForPageLoad();
                 //Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
                 Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleDPNExpected, "Title is diff");
                 ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
@@ -86,27 +80,28 @@ public class DPN_4557_OLS extends BaseTest{
                 Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
                 DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                          .clickOnAnswer("Male")
-                        .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
+                         .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
                 
                 
                //------------Q2 Have you been diagnosed with any type of diabetes?---------------      
                 diagnosedAnyTypeOfDiabetesPageOLS
-                .waitForPageLoad();
+                		.waitForPageLoad();
                 Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
                 HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
-                      .clickOnAnswer("No")
-                      .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                		.clickOnAnswer("No")
+                		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
                 //------Validate protocol DQs in debug window----------
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                		.waitForPageLoad();
                 DebugPageOLS debugPageOLS = new DebugPageOLS();
-                debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1,protocol2);
+                debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1,DPN_4557);
                 //------Go BACK and change your answer to QR answer - to qualify----------
                 debugPageOLS.back();
                 //------------ Change your answer to correct option in diagnosedAnyTypeOfDiabetesPageOLS---------------          
                 diagnosedAnyTypeOfDiabetesPageOLS.waitForPageLoad();
                 WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS  //[create NEXT PAGE Object = THIS page object] 
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfDiabetesPageOLS());
+                		.clickOnAnswer("Yes")
+                		.clickNextButton(new WhatKindOfDiabetesPageOLS());
 
                 
                 //-----------Q3 -What kind of diabetes do you have?? ---------------   
@@ -115,17 +110,17 @@ public class DPN_4557_OLS extends BaseTest{
               
                 DoYouExperienceDPN_OLS doYouExperienceDPN_OLS = whatKindOfDiabetesPageOLS  //[create NEXT PAGE Object = THIS page object] 
                 		.clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                        .clickNextButton(new DoYouExperienceDPN_OLS());
+                		.clickNextButton(new DoYouExperienceDPN_OLS());
                 //********Validate Question History for DQ and then click BACK button
                 doYouExperienceDPN_OLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected,protocol2);
+                		.getPage(debugPageOLS)
+                		.checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected,DPN_4557);
                 debugPageOLS.back();
                 //------------ Change your answer to correct QR age in howOldWereYouMigHeadachePageOLS---------------   
                 whatKindOfDiabetesPageOLS.waitForPageLoad()        
-                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new DoYouExperienceDPN_OLS())
-                .waitForPageLoad();
+                		.clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                		.clickNextButton(new DoYouExperienceDPN_OLS())
+                		.waitForPageLoad();
                 
                 
                 //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------   
@@ -133,65 +128,71 @@ public class DPN_4557_OLS extends BaseTest{
                 		.waitForPageLoad();
                 Assert.assertEquals(doYouExperienceDPN_OLS.getTitleText(), doYouExperienceDPN_OLS.titleExpected, "Title is diff");
                 WithType2DiabetesPageOLS withType2DiabetesPageOLS = doYouExperienceDPN_OLS
-                .clickOnAnswer("No, none of the above")
-                .clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswer("No, none of the above")
+                		.clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button
                 withType2DiabetesPageOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...",protocol1,protocol2);
+                		.getPage(debugPageOLS)
+                		.checkProtocolsEquals("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...",protocol1,DPN_4557);
                 //Assert.assertTrue(debugPageOLS.getProtocolForQuestion("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...").contains(protocol1));
                 debugPageOLS.back();
                 doYouExperienceDPN_OLS.waitForPageLoad();
                 WhereDoYouExperienceDiabeticNervePain_OLS whereDoYouExperienceDiabeticNervePain_OLS = doYouExperienceDPN_OLS
-                .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
-                .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
+                		.clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+                		.clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
 
                 
                 //----------Q5 - "Where do you experience diabetic nerve pain symptoms or sensations?" Page ---------------   
                 whereDoYouExperienceDiabeticNervePain_OLS.waitForPageLoad();
                 Assert.assertEquals(whereDoYouExperienceDiabeticNervePain_OLS.getTitleText(),whereDoYouExperienceDiabeticNervePain_OLS.titleExpected, "Title is diff");    
                 whereDoYouExperienceDiabeticNervePain_OLS
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button     
-                withType2DiabetesPageOLS.waitForPageLoad();
+                withType2DiabetesPageOLS
+                		.waitForPageLoad();
                 Assert.assertTrue(debugPageOLS.getProtocolForQuestion("Where do you experience diabetic nerve pain symptoms or sensations?Agent Note: Select all that apply...").contains(protocol1));
-                debugPageOLS.back();
+                debugPageOLS
+                		.back();
                 //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
                 HowWouldYouDescribeTheSymptoms_OLS howWouldYouDescribeTheSymptoms_OLS = whereDoYouExperienceDiabeticNervePain_OLS //[create NEXT PAGE Object = THIS page object]
-                .waitForPageLoad()
-                .clickOnAnswers("Right foot or leg","Left foot or leg")
-                .clickNextButton(new HowWouldYouDescribeTheSymptoms_OLS());
+                		.clickOnAnswers("None of the above")
+                		.clickOnAnswers("Right foot","Right leg","Left foot","Left leg")
+                		.clickNextButton(new HowWouldYouDescribeTheSymptoms_OLS());
                 
                  //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------   
-                howWouldYouDescribeTheSymptoms_OLS.waitForPageLoad();     
+                howWouldYouDescribeTheSymptoms_OLS
+                		.waitForPageLoad();     
                 Assert.assertEquals(howWouldYouDescribeTheSymptoms_OLS.getTitleText(),howWouldYouDescribeTheSymptoms_OLS.titleExpected, "Title is diff");  
                 howWouldYouDescribeTheSymptoms_OLS
-                .clickOnAnswers("None of the above");
+                		.clickOnAnswers("None of the above");
                 HaveYouNoticedAnyOfTheFollowing_OLS haveYouNoticedAnyOfTheFollowing_OLS = howWouldYouDescribeTheSymptoms_OLS   //[create NEXT PAGE Object = THIS page object]    
-                .clickNextButton(new HaveYouNoticedAnyOfTheFollowing_OLS()); // Click NEXT button and wait for the NEXT page
+                		.clickNextButton(new HaveYouNoticedAnyOfTheFollowing_OLS()); // Click NEXT button and wait for the NEXT page
                 
                 //----------Q7 "Have you noticed any of the following in your feet, legs, hands, or arms?" ---------------   
-                haveYouNoticedAnyOfTheFollowing_OLS.waitForPageLoad();     
+                haveYouNoticedAnyOfTheFollowing_OLS
+                		.waitForPageLoad();     
                 Assert.assertEquals(haveYouNoticedAnyOfTheFollowing_OLS.getTitleText(),haveYouNoticedAnyOfTheFollowing_OLS.titleExpected, "Title is diff");  
                 ApproxHowlongYouBeenExpSymptomsOLS approxHowlongYouBeenExpSymptomsOLS = haveYouNoticedAnyOfTheFollowing_OLS   //[create NEXT PAGE Object = THIS page object]    
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproxHowlongYouBeenExpSymptomsOLS()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new ApproxHowlongYouBeenExpSymptomsOLS()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button     
                 approxHowlongYouBeenExpSymptomsOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - DPN Symptoms Logic",protocol1,protocol2);
+                		.getPage(debugPageOLS)
+                		.checkProtocolsEquals("Ghost Question - DPN Symptoms Logic",protocol1,DPN_4557);
                 //Assert.assertTrue(debugPageOLS.getProtocolForQuestion("Ghost Question - DPN Symptoms Logic").contains(protocol1));
-                //Assert.assertTrue(debugPageOLS.getProtocolForQuestion("Ghost Question - DPN Symptoms Logic").contains(protocol2));
+                //Assert.assertTrue(debugPageOLS.getProtocolForQuestion("Ghost Question - DPN Symptoms Logic").contains(DPN_4557));
               //------------ Change your answer in page 'howWouldYouDescribeTheSymptoms_OLS'-----
-                debugPageOLS.back();
-                haveYouNoticedAnyOfTheFollowing_OLS.waitForPageLoad();
+                debugPageOLS
+                		.back();
+                haveYouNoticedAnyOfTheFollowing_OLS
+                		.waitForPageLoad();
                 debugPageOLS.back();
                 howWouldYouDescribeTheSymptoms_OLS.waitForPageLoad()
-                .clickOnAnswers("Burning","Painful cold")
-                .clickNextButton(new HaveYouNoticedAnyOfTheFollowing_OLS())       
-                .waitForPageLoad()
-                .clickNextButton(new ApproxHowlongYouBeenExpSymptomsOLS());   
+                		.clickOnAnswers("Burning","Painful cold")
+                		.clickNextButton(new HaveYouNoticedAnyOfTheFollowing_OLS())       
+                		.waitForPageLoad()
+                		.clickNextButton(new ApproxHowlongYouBeenExpSymptomsOLS());   
                         
                 //----------Q8 "Ghost Question - DPN Symptoms Logic" ---------------   
 
@@ -201,25 +202,28 @@ public class DPN_4557_OLS extends BaseTest{
                 		.waitForPageLoad();  
                 Assert.assertEquals(approxHowlongYouBeenExpSymptomsOLS.getTitleText(), approxHowlongYouBeenExpSymptomsOLS.titleExpected, "Title is diff");    
                 HowWouldYouRateYourPain_OLS howWouldYouRateYourPain_OLS = approxHowlongYouBeenExpSymptomsOLS //[create NEXT PAGE Object = THIS page object]    
-                .clickOnAnswer("5 months or less")
-                .clickNextButton(new HowWouldYouRateYourPain_OLS()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswer("5 months or less")
+                		.clickNextButton(new HowWouldYouRateYourPain_OLS()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button     
                 howWouldYouRateYourPain_OLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(approxHowlongYouBeenExpSymptomsOLS.titleExpected, protocol1, protocol2);
-                debugPageOLS.back();
+                		.getPage(debugPageOLS)
+                		.checkProtocolsEquals(approxHowlongYouBeenExpSymptomsOLS.titleExpected, protocol1, DPN_4557);
+                debugPageOLS
+                		.back();
                 //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
-                approxHowlongYouBeenExpSymptomsOLS.waitForPageLoad()
-                .clickOnAnswer("7 - 10 years")
-                .clickNextButton(new HowWouldYouRateYourPain_OLS());     
+                approxHowlongYouBeenExpSymptomsOLS
+                		.waitForPageLoad()
+                		.clickOnAnswer("7 - 10 years")
+                		.clickNextButton(new HowWouldYouRateYourPain_OLS());     
                 
                         
                 //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
-                howWouldYouRateYourPain_OLS.waitForPageLoad();
+                howWouldYouRateYourPain_OLS
+                		.waitForPageLoad();
                 Assert.assertEquals(howWouldYouRateYourPain_OLS.getTitleText(), howWouldYouRateYourPain_OLS.titleExpected, "Title is diff");  
                 DoYouHaveAnyOfTheFollowingConditions_OLS doYouHaveAnyOfTheFollowingConditions_OLS = howWouldYouRateYourPain_OLS
-                .selectPainRating("5")
-                .clickNextButton(new DoYouHaveAnyOfTheFollowingConditions_OLS());
+                		.selectPainRating("5")
+                		.clickNextButton(new DoYouHaveAnyOfTheFollowingConditions_OLS());
                 
                 
                 //----------Q11 -Do you have any of the following conditions related to your diabetes?-  Page ---------------   
@@ -227,8 +231,8 @@ public class DPN_4557_OLS extends BaseTest{
                 		.waitForPageLoad();  
                 Assert.assertEquals(doYouHaveAnyOfTheFollowingConditions_OLS.getTitleText(), doYouHaveAnyOfTheFollowingConditions_OLS.titleExpected, "Title is diff");    
                 UseDietAndExercisePage useDietAndExercisePage = doYouHaveAnyOfTheFollowingConditions_OLS
-                .clickOnAnswers("Retinopathy or diabetic eye disease","Diabetic nephropathy or kidney damage caused by diabetes")
-                .clickNextButton(new UseDietAndExercisePage()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswers("Retinopathy or diabetic eye disease","Diabetic nephropathy or kidney damage caused by diabetes")
+                		.clickNextButton(new UseDietAndExercisePage()); // Click NEXT button and wait for the NEXT page
                 
                 CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
                 		.waitForPageLoad()
@@ -242,7 +246,7 @@ public class DPN_4557_OLS extends BaseTest{
                 anyPrescribedMedicationPage
                 		.waitForPageLoad()
                 		.getPage(debugPageOLS)
-                		.checkProtocolsContainsForQNumber("QS5520", protocol1, protocol2)
+                		.checkProtocolsContainsForQNumber("QS5520", protocol1, DPN_4557)
                 		.back();
                 
                 CombinationWithEachOtherPageOLS combinationWithEachOtherPageOLS = currentlyUseMetforminOrInsulinPage
@@ -255,12 +259,12 @@ public class DPN_4557_OLS extends BaseTest{
                 		.waitForPageLoad();  
                 Assert.assertEquals(combinationWithEachOtherPageOLS.getTitleText(), combinationWithEachOtherPageOLS.titleExpected, "Title is diff");
                 combinationWithEachOtherPageOLS.clickOnAnswer("1 month or less")
-                .clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
+                		.clickNextButton(new WithType2DiabetesPageOLS()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button     
                 withType2DiabetesPageOLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5514", protocol1)
-                .back();
+                		.getPage(debugPageOLS)
+                		.checkProtocolsContainsForQNumber("QS5514", protocol1)
+                		.back();
                 
                 combinationWithEachOtherPageOLS
                 		.waitForPageLoad()
@@ -289,11 +293,11 @@ public class DPN_4557_OLS extends BaseTest{
                 		.clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
                 
                 
-               //****************
                 NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = injectableMedicationsForYourDiabetesPageOLS
                 		.waitForPageLoad()
         				.clickOnAnswers("None of the above")
                         .clickNextButton(new NoOfAlcoholicDrinkOLS());
+                
         		        
         		//---------------------------------------noOfAlcoholicDrinkOLS---------------
         		noOfAlcoholicDrinkOLS
@@ -321,100 +325,112 @@ public class DPN_4557_OLS extends BaseTest{
         				.clickOnAnswers("None of the above")
         				.clickNextButton(new PoundsOrMorePageOLS());
                 
-                StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = poundsOrMorePageOLS
-                		.waitForPageLoad()
-        				.clickOnAnswer("No")
-        				.clickNextButton(new StatinMedicationsOnPageOLS());
                 
-                DiabeticNephropathyPageOLS diabeticNephropathyPageOLS = statinMedicationsOnPageOLS
+                poundsOrMorePageOLS
                 		.waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickNextButton(new DiabeticNephropathyPageOLS());
-                
-                ForYourKidneysPageOLS forYourKidneysPageOLS = diabeticNephropathyPageOLS
-                		.waitForPageLoad()
-                        .clickOnAnswer("No")
-                        .clickNextButton(new ForYourKidneysPageOLS());
-                
-                HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = forYourKidneysPageOLS
-                		.waitForPageLoad()
-                        .clickOnAnswer("No")
-                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-                
-                HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                		.waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS());
-                
-                HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-                		.waitForPageLoad()
-                        .clickOnAnswers("None of the above")       
-                        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS());
-                
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
-                		.waitForPageLoad()
-                		.clickOnAnswers("None of the above")                		                
+                		.clickOnAnswer("Unsure")
                 		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
                 
-                DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                		.waitForPageLoad()
-                		.clickOnAnswers("None of the above")
-                		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-                
-                ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-                		.waitForPageLoad()
-                		.clickOnAnswers("None of the above")
-                		.clickNextButton(new ApproximateHeightPageOLS());
                 
                 
-                ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
-                		.waitForPageLoad()
-        				.setAll("5", "6", "166")
-        				.clickNextButton(new ChildrenUnderPageOLS());              
-        
-        		
-        		//----------ChildrenUnderTheAge Page--------------------
-        		TheStudySitePageOLS theStudySitePageOLS = childrenUnderPageOLS
+        		//----------------------GENERAL HEALTH Questions -----------------------------
+        		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        				.waitForPageLoad();				
+        		DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        				.waitForPageLoad()
+        				.clickOnAnswers("Alzheimer's disease","Lupus")
+        				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());		
+        		//----DoAnyOftheFollowingAdditionalDiagnosesOLS----------
+        		doAnyOftheFollowingAdditionalDiagnosesOLS
+        				.waitForPageLoad()
+        				.getPage(debugPageOLS)
+        				.checkProtocolsContainsForQNumber("QS38", DPN_4557)
+        				.back();
+        		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        				.waitForPageLoad()
+        				.clickOnAnswers("None of the above")
+        				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());		
+        				
+        				
+        		//----Do any of the following additional diagnoses apply to you? ------------
+        		doAnyOftheFollowingAdditionalDiagnosesOLS
+        				.waitForPageLoad();
+        		ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        		.waitForPageLoad()
+        				.clickOnAnswers("Alzheimer's disease",
+        								"Bipolar disorder",
+        								"Cancer in the past 5 years, except skin cancer",
+        								"Cirrhosis",
+        								"Drug or alcohol abuse within the past year",
+        								"Hepatitis B",
+        								"Hepatitis",
+        								"HIV or AIDS",
+        								"Kidney disease requiring dialysis",
+        								"Multiple sclerosis (MS", 
+        								"Neuropathy (nerve damage due to diabetes or another condition)", 
+        								"Seizure disorder such as epilepsy",
+        								"Schizophrenia")
+        				.clickNextButton(new ApproximateHeightPageOLS());
+        		approximateHeightPageOLS
+        				.waitForPageLoad()
+        				.getPage(debugPageOLS)
+        				.checkProtocolsContainsForQNumber("QS59", DPN_4557)
+        				.back();
+        		doAnyOftheFollowingAdditionalDiagnosesOLS
+        				.waitForPageLoad()
+        				.clickOnAnswers("None of the above")
+        				.clickNextButton(new ApproximateHeightPageOLS());
+
+        	
+        		//----HEIGHT and WEIGHT Question ------------
+        		approximateHeightPageOLS
+        				.waitForPageLoad();
+        		ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
+        				.waitForPageLoad()
+        				.setAll("5", "5", "160")
+        				.clickNextButton(new ChildrenUnderPageOLS());
+
+
+        		//----Do you have any children under the age of 18 in your household? ------------		
+        		childrenUnderPageOLS
         				.waitForPageLoad()
         				.clickOnAnswer("No")
-                        .clickNextButton(new TheStudySitePageOLS());
-                        
-        		//-------------------PEDIATRIC QUESTIONS-----------------------------                            
-                //----"theStudySitePageOLS" page --  If you qualify for a study, how would you plan to travel to and from the study site??
-        				theStudySitePageOLS.waitForPageLoad()
-                        .clickOnAnswer("Public transportation")
-                        .clickNextButton(new WhatMedicalCoveragePageOLS())
-                        
-        		//-----"WhatMedicalCoveragePageOLS" -  What sort of medical coverage do you have for your doctor visits, medication, surgery, and/or testing?-
-                        .waitForPageLoad()
-                        .clickOnAnswers("No, I have no coverage")
-                        .clickNextButton(new EthnicBackgroundPageOLS())
-                        
-               //----"EthnicBackgroundPageOLS" page --  Which of the following describes your ethnic background?
-                        .waitForPageLoad()
-                        .clickOnAnswers("Prefer not to answer")
-                        .clickNextButton(new IdentificationPageOLS())
-        				
-        		//----------PII (IdentificationPageOLS) Page--------------------
-        		.waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
-                .clickNextButton(new SiteSelectionPageOLS())
-                
-        		//----------SiteSelection Page--------------------
-                //.waitForPageLoad(studyName1)
-                .waitForPageLoadAKC()
-                .getPID()
-                .clickOnFacilityName(siteName)
-                .clickNextButton(new GladLocationIsConvenient())
-                
-                //----------GladLocationIsConvenient Page--------------------
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                
-        		//----------ThankYouCloseSimplePageOLS Page--------------------
-                .waitForSENRPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+        				.clickNextButton(new TheStudySitePageOLS());
+        		TheStudySitePageOLS theStudySitePageOLS = new TheStudySitePageOLS();
+        		
+        		
+
+        		// -------------------PEDIATRIC QUESTIONS-----------------------------
+        		theStudySitePageOLS
+        				.waitForPageLoad()
+        				.clickOnAnswer("Public transportation")
+        				.clickNextButton(new WhatMedicalCoveragePageOLS())
+        				.waitForPageLoad()
+        				.clickOnAnswers("No, I have no coverage")
+        				.clickNextButton(new EthnicBackgroundPageOLS())
+        				.waitForPageLoad()
+        				.clickOnAnswers("Prefer not to answer")
+        				.clickNextButton(new IdentificationPageOLS())
+        				// ----------PII (IdentificationPageOLS)
+        				// Page--------------------
+        				.waitForPageLoad()
+        				.setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zip_Code)
+        		        .clickNextButton(new SiteSelectionPageOLS())
+        		        
+        				//----------SiteSelection Page--------------------
+        		        .waitForPageLoadAKC()
+        		        .getPID()
+		                .clickOnFacilityName(siteName)
+		                .clickNextButton(new GladLocationIsConvenient())
+		                
+		        //----------GladLocationIsConvenient Page--------------------
+		                .waitForPageLoad()
+		                .clickNextButton(new ThankYouCloseSimplePageOLS())
+		                
+		        //----------ThankYouCloseSimplePageOLS Page--------------------
+		                .waitForSENRPageLoad()
+		                .clickNextButton(new AboutHealthPageOLS())
+		                .waitForPageLoad()
+		                .pidFromDbToLog(env);
             }
 }

@@ -64,11 +64,10 @@ public class DPN_4557_CC extends BaseTest{
     @Description("Diabetic Peripheral Neuropathy(DPN) - 4557 CC")
     public void dPN_4557_CC(final String username, final String password) {
         String phoneNumberDPN = "AUTAMS1DPN";
-        String protocol1 = "VMDN_003";
+        String DPN_4557 = "VMDN_003";
         String protocol2 = "NYX_2925_2001";
         String studyName = "a diabetic nerve pain";
         String studyName1 = "a study for diabetics";
-       // String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_DPN_4557_Site";
         String zip_Code = "19044";
         
@@ -132,26 +131,28 @@ public class DPN_4557_CC extends BaseTest{
                 
           //------------Q2 Have you been diagnosed with any type of diabetes?---------------      
         diagnosedAnyTypeOfDiabetesPageCC
-                .waitForPageLoad();
-                Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageCC.getTitleText(),diagnosedAnyTypeOfDiabetesPageCC.titleExpected, "Title is diff");
-                NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedAnyTypeOfDiabetesPageCC
-                .clickOnAnswer("No")
-                .clickNextButton(new NonQRtransitionPageCC()); 
-                //------Validate protocol DQs in debug window----------
-                nonQRtransitionPageCC.waitForPageLoad();
-                DebugPageCC debugPageCC = new DebugPageCC();
-                debugPageCC.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageCC.titleExpected, protocol1,protocol2);
-                //------Go BACK and change your answer to QR answer - to qualify----------
-                debugPageCC.back();
-                //------------ Change your answer to correct option in diagnosedAnyTypeOfDiabetesPageCC---------------          
-                diagnosedAnyTypeOfDiabetesPageCC.waitForPageLoad();
-                WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC  //[create NEXT PAGE Object = THIS page object] 
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfDiabetesPageCC());    
+        		.waitForPageLoad();
+        Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageCC.getTitleText(),diagnosedAnyTypeOfDiabetesPageCC.titleExpected, "Title is diff");
+        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedAnyTypeOfDiabetesPageCC
+        		.clickOnAnswer("No")
+        		.clickNextButton(new NonQRtransitionPageCC()); 
+        //------Validate protocol DQs in debug window----------
+        nonQRtransitionPageCC.waitForPageLoad();
+        DebugPageCC debugPageCC = new DebugPageCC();
+        debugPageCC.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageCC.titleExpected, DPN_4557,protocol2);
+        //------Go BACK and change your answer to QR answer - to qualify----------
+        debugPageCC
+        		.back();
+        //------------ Change your answer to correct option in diagnosedAnyTypeOfDiabetesPageCC---------------          
+        diagnosedAnyTypeOfDiabetesPageCC.waitForPageLoad();
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC  //[create NEXT PAGE Object = THIS page object] 
+        		.clickOnAnswer("Yes")
+        		.clickNextButton(new WhatKindOfDiabetesPageCC());    
 
                 
        //-----------Q3 -What kind of diabetes do you have?? ---------------   
-                whatKindOfDiabetesPageCC.waitForPageLoad();
+        whatKindOfDiabetesPageCC
+        		.waitForPageLoad();
                 Assert.assertEquals(whatKindOfDiabetesPageCC.getTitleText(), whatKindOfDiabetesPageCC.titleExpected, "Title is diff");
               
                 DoYouExperienceDPN_CC doYouExperienceDPN_CC = whatKindOfDiabetesPageCC  //[create NEXT PAGE Object = THIS page object] 
@@ -159,14 +160,15 @@ public class DPN_4557_CC extends BaseTest{
                         .clickNextButton(new DoYouExperienceDPN_CC());
                 //********Validate Question History for DQ and then click BACK button
                 doYouExperienceDPN_CC.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected,protocol2);
-                debugPageCC.back();
+                		.getPage(debugPageCC)
+                		.checkProtocolsEquals(whatKindOfDiabetesPageCC.titleExpected,protocol2)
+                		.back();
                 //------------ Change your answer to correct QR age in howOldWereYouMigHeadachePageCC---------------   
-                whatKindOfDiabetesPageCC.waitForPageLoad()        
-                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new DoYouExperienceDPN_CC())
-                .waitForPageLoad();
+                whatKindOfDiabetesPageCC
+                		.waitForPageLoad()        
+                		.clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                		.clickNextButton(new DoYouExperienceDPN_CC())
+                		.waitForPageLoad();
                 
                 
                 //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------   
@@ -174,65 +176,77 @@ public class DPN_4557_CC extends BaseTest{
                 		.waitForPageLoad();
                 Assert.assertEquals(doYouExperienceDPN_CC.getTitleText(), doYouExperienceDPN_CC.titleExpected, "Title is diff");
                 WithType2DiabetesPageCC withType2DiabetesPageCC = doYouExperienceDPN_CC
-                .clickOnAnswer("No, none of the above")
-                .clickNextButton(new WithType2DiabetesPageCC()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswer("No, none of the above")
+                		.clickNextButton(new WithType2DiabetesPageCC()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button
                 withType2DiabetesPageCC.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...",protocol1,protocol2);
-                //Assert.assertTrue(debugPageCC.getProtocolForQuestion("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...").contains(protocol1));
-                debugPageCC.back();
-                doYouExperienceDPN_CC.waitForPageLoad();
+                		.getPage(debugPageCC)
+                		.checkProtocolsEquals("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...",DPN_4557,protocol2);
+                //Assert.assertTrue(debugPageCC.getProtocolForQuestion("Do you experience diabetic peripheral neuropathy or diabetic nerve pain? This condition can cause pa...").contains(DPN_4557));
+                debugPageCC
+                		.back();
+                doYouExperienceDPN_CC
+                		.waitForPageLoad();
                 WhereDoYouExperienceDiabeticNervePain_CC whereDoYouExperienceDiabeticNervePain_CC = doYouExperienceDPN_CC
-                .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
-                .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_CC());
+                		.clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+                		.clickNextButton(new WhereDoYouExperienceDiabeticNervePain_CC());
 
                 
                 //----------Q5 - "Where do you experience diabetic nerve pain symptoms or sensations?" Page ---------------   
-                whereDoYouExperienceDiabeticNervePain_CC.waitForPageLoad();
+                whereDoYouExperienceDiabeticNervePain_CC
+                		.waitForPageLoad();
                 Assert.assertEquals(whereDoYouExperienceDiabeticNervePain_CC.getTitleText(),whereDoYouExperienceDiabeticNervePain_CC.titleExpected, "Title is diff");    
                 whereDoYouExperienceDiabeticNervePain_CC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WithType2DiabetesPageCC()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new WithType2DiabetesPageCC()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button     
-                withType2DiabetesPageCC.waitForPageLoad();
-                Assert.assertTrue(debugPageCC.getProtocolForQuestion("Where do you experience diabetic nerve pain symptoms or sensations?Agent Note: Select all that apply...").contains(protocol1));
-                debugPageCC.back();
+                withType2DiabetesPageCC
+                		.waitForPageLoad();
+                Assert.assertTrue(debugPageCC.getProtocolForQuestion("Where do you experience diabetic nerve pain symptoms or sensations?Agent Note: Select all that apply...").contains(DPN_4557));
+                debugPageCC
+                		.back();
                 //------------ Change your answer to correct QR age in page 'studyQuestionMigPageCC'---------------   
                 HowWouldYouDescribeTheSymptoms_CC howWouldYouDescribeTheSymptoms_CC = whereDoYouExperienceDiabeticNervePain_CC //[create NEXT PAGE Object = THIS page object]
-                .waitForPageLoad()
-                .clickOnAnswers("Right foot or leg","Left foot or leg")
-                .clickNextButton(new HowWouldYouDescribeTheSymptoms_CC());
+		                .waitForPageLoad()
+		        		.clickOnAnswers("None of the above")
+		        		.clickOnAnswers("Right foot","Right leg","Left foot","Left leg")
+		                .clickNextButton(new HowWouldYouDescribeTheSymptoms_CC());
+                
                 
                  //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------   
-                howWouldYouDescribeTheSymptoms_CC.waitForPageLoad();     
+                howWouldYouDescribeTheSymptoms_CC
+                		.waitForPageLoad();     
                 Assert.assertEquals(howWouldYouDescribeTheSymptoms_CC.getTitleText(),howWouldYouDescribeTheSymptoms_CC.titleExpected, "Title is diff");  
                 howWouldYouDescribeTheSymptoms_CC
-                .clickOnAnswers("None of the above");
+                		.clickOnAnswers("None of the above");
                 HaveYouNoticedAnyOfTheFollowing_CC haveYouNoticedAnyOfTheFollowing_CC = howWouldYouDescribeTheSymptoms_CC   //[create NEXT PAGE Object = THIS page object]    
-                .clickNextButton(new HaveYouNoticedAnyOfTheFollowing_CC()); // Click NEXT button and wait for the NEXT page
+                		.clickNextButton(new HaveYouNoticedAnyOfTheFollowing_CC()); // Click NEXT button and wait for the NEXT page
+                
                 
                 //----------Q7 "Have you noticed any of the following in your feet, legs, hands, or arms?" ---------------   
-                haveYouNoticedAnyOfTheFollowing_CC.waitForPageLoad();     
+                haveYouNoticedAnyOfTheFollowing_CC
+                		.waitForPageLoad();     
                 Assert.assertEquals(haveYouNoticedAnyOfTheFollowing_CC.getTitleText(),haveYouNoticedAnyOfTheFollowing_CC.titleExpected, "Title is diff");  
                 ApproxHowlongYouBeenExpSymptomsCC approxHowlongYouBeenExpSymptomsCC = haveYouNoticedAnyOfTheFollowing_CC   //[create NEXT PAGE Object = THIS page object]    
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproxHowlongYouBeenExpSymptomsCC()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswers("None of the above")
+                		.clickNextButton(new ApproxHowlongYouBeenExpSymptomsCC()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button     
-                approxHowlongYouBeenExpSymptomsCC.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals("Ghost Question - DPN Symptoms Logic",protocol1,protocol2);
-                //Assert.assertTrue(debugPageCC.getProtocolForQuestion("Ghost Question - DPN Symptoms Logic").contains(protocol1));
-                //Assert.assertTrue(debugPageCC.getProtocolForQuestion("Ghost Question - DPN Symptoms Logic").contains(protocol2));
+                approxHowlongYouBeenExpSymptomsCC
+                		.waitForPageLoad()
+                		.getPage(debugPageCC)
+                		.checkProtocolsEquals("Ghost Question - DPN Symptoms Logic",DPN_4557,protocol2);               
               //------------ Change your answer in page 'howWouldYouDescribeTheSymptoms_CC'-----
-                debugPageCC.back();
-                haveYouNoticedAnyOfTheFollowing_CC.waitForPageLoad();
-                debugPageCC.back();
-                howWouldYouDescribeTheSymptoms_CC.waitForPageLoad()
-                .clickOnAnswers("Burning","Painful cold")
-                .clickNextButton(new HaveYouNoticedAnyOfTheFollowing_CC())       
-                .waitForPageLoad()
-                .clickNextButton(new ApproxHowlongYouBeenExpSymptomsCC());   
+                debugPageCC
+                		.back();
+                haveYouNoticedAnyOfTheFollowing_CC
+                		.waitForPageLoad()
+                		.back();
+                howWouldYouDescribeTheSymptoms_CC
+                		.waitForPageLoad()
+                		.clickOnAnswers("Burning","Painful cold")
+		                .clickNextButton(new HaveYouNoticedAnyOfTheFollowing_CC())       
+		                .waitForPageLoad()
+		                .clickNextButton(new ApproxHowlongYouBeenExpSymptomsCC());   
                         
                 //----------Q8 "Ghost Question - DPN Symptoms Logic" ---------------   
 
@@ -242,25 +256,29 @@ public class DPN_4557_CC extends BaseTest{
                 		.waitForPageLoad();  
                 Assert.assertEquals(approxHowlongYouBeenExpSymptomsCC.getTitleText(), approxHowlongYouBeenExpSymptomsCC.titleExpected, "Title is diff");    
                 HowWouldYouRateYourPain_CC howWouldYouRateYourPain_CC = approxHowlongYouBeenExpSymptomsCC //[create NEXT PAGE Object = THIS page object]    
-                .clickOnAnswer("5 months or less")
-                .clickNextButton(new HowWouldYouRateYourPain_CC()); // Click NEXT button and wait for the NEXT page
+                		.clickOnAnswer("5 months or less")
+                		.clickNextButton(new HowWouldYouRateYourPain_CC()); // Click NEXT button and wait for the NEXT page
                 //********Validate Question History for DQ and then click BACK button     
-                howWouldYouRateYourPain_CC.waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEquals(approxHowlongYouBeenExpSymptomsCC.titleExpected, protocol1, protocol2);
-                debugPageCC.back();
+                howWouldYouRateYourPain_CC
+                		.waitForPageLoad()
+		                .getPage(debugPageCC)
+		                .checkProtocolsEquals(approxHowlongYouBeenExpSymptomsCC.titleExpected, DPN_4557, protocol2);
+                debugPageCC
+                		.back();
                 //------------ Change your answer to correct QR age in page 'studyQuestionMigPageCC'---------------   
-                approxHowlongYouBeenExpSymptomsCC.waitForPageLoad()
+                approxHowlongYouBeenExpSymptomsCC
+                		.waitForPageLoad()
                 .clickOnAnswer("7 - 10 years")
                 .clickNextButton(new HowWouldYouRateYourPain_CC());     
                 
                         
                 //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
-                howWouldYouRateYourPain_CC.waitForPageLoad();
+                howWouldYouRateYourPain_CC
+                		.waitForPageLoad();
                 Assert.assertEquals(howWouldYouRateYourPain_CC.getTitleText(), howWouldYouRateYourPain_CC.titleExpected, "Title is diff");  
                 DoYouHaveAnyOfTheFollowingConditions_CC doYouHaveAnyOfTheFollowingConditions_CC = howWouldYouRateYourPain_CC
-                .selectPainRating("5")
-                .clickNextButton(new DoYouHaveAnyOfTheFollowingConditions_CC());
+		                .selectPainRating("5")
+		                .clickNextButton(new DoYouHaveAnyOfTheFollowingConditions_CC());
                 
                 
                 //----------Q11 -Do you have any of the following conditions related to your diabetes?-  Page ---------------   
@@ -281,14 +299,15 @@ public class DPN_4557_CC extends BaseTest{
                 		.waitForPageLoad()
                 		.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
                 		.clickNextButton(new AnyPrescribedMedicationPage());
-                anyPrescribedMedicationPage.waitForPageLoad();                
-                debugPageCC.checkProtocolsContainsForQNumber("Q0016801-QS5520-STUDYQUES", protocol1, protocol2);
-                debugPageCC.back();
-                
+                anyPrescribedMedicationPage
+                		.waitForPageLoad();                
+                debugPageCC.checkProtocolsContainsForQNumber("Q0016801-QS5520-STUDYQUES", DPN_4557, protocol2)
+                		.back();                
                 CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = currentlyUseMetforminOrInsulinPage
         				.waitForPageLoad()
         				.clickOnAnswers("Metformin")
         				.clickNextButton(new CombinationWithEachOtherPageCC());
+                
          
                 combinationWithEachOtherPageCC.waitForPageLoad()
                 		.clickOnAnswer("1 month or less")
@@ -296,7 +315,7 @@ public class DPN_4557_CC extends BaseTest{
                 withType2DiabetesPageCC
                 		.waitForPageLoad()
                 		.getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0013518-QS5514-STUDYQUES", protocol1)
+                        .checkProtocolsContainsForQNumber("Q0013518-QS5514-STUDYQUES", DPN_4557)
                         .back();
                 combinationWithEachOtherPageCC.waitForPageLoad()
         				.clickOnAnswer("2 months")
@@ -304,114 +323,149 @@ public class DPN_4557_CC extends BaseTest{
                 withType2DiabetesPageCC
         				.waitForPageLoad()
         				.getPage(debugPageCC)
-        				.checkProtocolsContainsForQNumber("Q0013518-QS5514-STUDYQUES", protocol1)
+        				.checkProtocolsContainsForQNumber("Q0013518-QS5514-STUDYQUES", DPN_4557)
         				.back();
                 combinationWithEachOtherPageCC.waitForPageLoad()
 						.clickOnAnswer("5 months")
 						.clickNextButton(new WithType2DiabetesPageCC());
+                
                 
                 MetforminMedicationsPageCC metforminMedicationsPageCC = withType2DiabetesPageCC
                 		.waitForPageLoad()
         				.clickOnAnswer("More than 1 year ago")
         				.clickNextButton(new MetforminMedicationsPageCC());
                 
+                
                 InjectableMedicationsForYourDiabetesPageCC injectableMedicationsForYourDiabetesPageCC = metforminMedicationsPageCC
                 		.waitForPageLoad()
                 		.clickOnAnswers("None of the above")
                 		.clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
                 
+                
                 NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = injectableMedicationsForYourDiabetesPageCC
                 		.waitForPageLoad()
                 		.clickOnAnswers("None of the above")
-                		.clickNextButton(new NoOfAlcoholicDrinksCC());               
+                		.clickNextButton(new NoOfAlcoholicDrinksCC());
+                
              
                FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
                 		.waitForPageLoad()
                 		.enterNoOfDrinks("4")
                 		.clickNextButton(new FollowingLiverRelatedConditionCC());
+               
                 
                 FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
                 		.waitForPageLoad()
         				.clickOnAnswers("None of the above")
         				.clickNextButton(new FollowingToLoseWeightPageCC());
                 
+                
                 WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
                 		.waitForPageLoad()
         				.clickOnAnswers("No")
         				.clickNextButton(new WeightLossSurgeryPageCC());
+                
                 
                 PoundsOrMorePageCC poundsOrMorePageCC = weightLossSurgeryPageCC
                 		.waitForPageLoad()
         				.clickOnAnswers("None of the above")
         				.clickNextButton(new PoundsOrMorePageCC());
                 
-                StatinMedicationsOnPageCC statinMedicationsOnPageCC = poundsOrMorePageCC
+                
+                TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
                 		.waitForPageLoad()
         				.clickOnAnswer("No")
-        				.clickNextButton(new StatinMedicationsOnPageCC());
+        				.clickNextButton(new TransitionStatementCC());
                 
-                DiabeticNephropathyPageCC diabeticNephropathyPageCC = statinMedicationsOnPageCC
-                        .clickOnAnswers("None of the above")
-                        .clickNextButton(new DiabeticNephropathyPageCC());
                 
-                ForYourKidneysPageCC forYourKidneysPageCC = diabeticNephropathyPageCC
-                        .clickOnAnswer("No")
-                        .clickNextButton(new ForYourKidneysPageCC());
-                
-                HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = forYourKidneysPageCC
-                        .clickOnAnswer("No")
-                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
-                
-                HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
-                        .clickOnAnswers("None of the above")
-                        .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
-                
-                HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
-                        .clickOnAnswers("None of the above")       
-                        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
-                
-                HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
-                		.clickOnAnswers("None of the above")
-                		.clickNextButton(new TransitionStatementCC())                
-                		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-                
+                transitionStatementCC
+        				.waitForPageLoad("diabetes");
+                HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+
+
+                //----------------------GENERAL HEALTH Questions -----------------------------
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                		.waitForPageLoad();				
                 DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                		.waitForPageLoad()
-                		.clickOnAnswers("None of the above")
-                		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-                
-                ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                		.waitForPageLoad()
-                		.clickOnAnswers("None of the above")
-                		.clickNextButton(new ApproximateHeightPageCC());
-                
-                approximateHeightPageCC
-                		.waitForPageLoad()
-                		.setAll("5", "6", "170")
-                		.clickNextButton(new LetMeSeePageCC())
-        		//----------ChildrenUnderTheAge Page--------------------
-                		.waitForPageLoad()
-                		.clickNextButton(new ChildrenUnderPageCC())
-                		.waitForPageLoad()
-                		.clickOnAnswer("Yes")
-                //----------PEDIATRIC HEALTH Questions----------
-                		.clickNextButton(new HouseholdHavePageCC())
-                		.waitForPageLoad()
-                		.clickOnAnswers("None of the above")
-        		//----------PII (IdentificationPageOLS) Page--------------------
-                		.clickNextButton(new IdentificationPageCC())
-                		.waitForPageLoad()
-                		.setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", "19044")
-                		.clickNextButton(new SiteSelectionPageCC())
-                		.waitForPageLoad("a study for diabetics")
-                		.getPID()
-        		//----------SITE Selection Page--------------------
-                		.clickOnAnswer(siteName)
-                		.clickNextButton(new QualifiedClose2PageCC())
-                		.waitForPageLoad()
-                		.clickNextButton(new ThankYouCloseSimplePageCC())            
-                		.clickNextButton(selectActionPageCC)
-                		.waitForPageLoad()
-                		.pidFromDbToLog(env);
+	                	.waitForPageLoad()
+						.clickOnAnswers("Alzheimer's disease","Lupus")
+						.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());		
+                //----DoAnyOftheFollowingAdditionalDiagnosesOLS----------
+				doAnyOftheFollowingAdditionalDiagnosesCC
+						.waitForPageLoad()
+						.getPage(debugPageCC)
+						.checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", DPN_4557)
+						.back();
+				haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+						.waitForPageLoad()
+						.clickOnAnswers("None of the above")
+						.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());		
+		
+		
+				//----Do any of the following additional diagnoses apply to you? ------------
+				doAnyOftheFollowingAdditionalDiagnosesCC
+						.waitForPageLoad();
+				ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
+						.clickOnAnswers("Alzheimer's disease",
+										"Bipolar disorder",
+										"Cancer in the past 5 years, except skin cancer",
+										"Cirrhosis",
+										"Drug or alcohol abuse within the past year",
+										"Hepatitis B",
+										"Hepatitis",
+										"HIV or AIDS",
+										"Kidney disease requiring dialysis",
+										"Multiple sclerosis (MS", 
+										"Neuropathy (nerve damage due to diabetes or another condition)", 
+										"Seizure disorder such as epilepsy",
+										"Schizophrenia")
+						.clickNextButton(new ApproximateHeightPageCC());
+				approximateHeightPageCC
+						.waitForPageLoad()
+						.getPage(debugPageCC)
+						.checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", DPN_4557)
+						.back();
+				doAnyOftheFollowingAdditionalDiagnosesCC
+						.waitForPageLoad()
+						.clickOnAnswers("None of the above")
+						.clickNextButton(new ApproximateHeightPageCC());
+
+
+				//----HEIGHT and WEIGHT Question ------------
+				approximateHeightPageCC
+						.waitForPageLoad();
+				ChildrenUnderPageCC childrenUnderPageCC = approximateHeightPageCC
+						.waitForPageLoad()
+						.setAll("5", "5", "160")
+						.clickNextButton(new LetMeSeePageCC())
+				//----------ChildrenUnderTheAge Page--------------------
+						.waitForPageLoad()
+						.clickNextButton(new ChildrenUnderPageCC());
+
+
+				//----Do you have any children under the age of 18 in your household? ------------		
+				childrenUnderPageCC
+						.waitForPageLoad()
+						.clickOnAnswer("No")
+						.clickNextButton(new IdentificationPageCC())
+						
+				
+				//----------PII (IdentificationPageCC) Page--------------------
+						.waitForPageLoad()
+				        .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", "19044")
+				        .clickNextButton(new SiteSelectionPageCC())
+				        .waitForPageLoad("a study for diabetics")
+				        .getPID()				        
+				        
+				//----------SITE Selection Page--------------------
+				        .clickOnAnswer(siteName)
+				        .clickNextButton(new QualifiedClose2PageCC())
+				        .waitForPageLoad()
+				        .clickNextButton(new ThankYouCloseSimplePageCC())    
+				        .clickNextButton(selectActionPageCC)
+				        .waitForPageLoad()
+				        .pidFromDbToLog(env);
        }
 }

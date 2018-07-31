@@ -11,7 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HaveYouEverHadAnIQtest_CC extends MainPageCC{
 
-    public final String titleExpected = "Have you ever had an IQ test?  It is also called an intelligence test.";
+    public final String titleExpected = "Have you ever had an IQ test? It is also called an intelligence test.";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

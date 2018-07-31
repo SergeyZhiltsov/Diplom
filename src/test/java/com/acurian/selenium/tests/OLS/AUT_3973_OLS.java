@@ -79,7 +79,7 @@ public class AUT_3973_OLS extends BaseTest {
 	@TestCaseId("0001")
 	@Description("Akcea_4691 OLS")
 
-	public void AKC_4691_OLS_EmailAtPII() {
+	public void AUT_3973_OLS_EmailAtPII() {
 
 		String phoneNumber = "AUTAMS1ROC";
 		String AUTISM = "WN39434";
