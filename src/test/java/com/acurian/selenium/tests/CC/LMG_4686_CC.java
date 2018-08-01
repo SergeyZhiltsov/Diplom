@@ -58,7 +58,7 @@ public class LMG_4686_CC extends BaseTest{
         String studyName = "migraine";
         String studyName1 = "migraine";
     //    String env = "STG";
-        String siteName = "AUT_4686";
+        String siteName = "AUT_LMG";
         String site_indication = "Ankylosing Spondylitis";
         String zipCode  = "08204";
         
@@ -242,7 +242,7 @@ public class LMG_4686_CC extends BaseTest{
 	   			.waitForPageLoad()
 	   			.selectDay("3")
 	   			.clickNextButton(new Past3MonthsCC());
-       debugPageCC.checkProtocolsContainsForQNumber("Q0017162-QS6012-STUDYQUES", protocol1);
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017405-QS6022-STUDYQUES", protocol1);
        debugPageCC.back();
        howManyDaysCC
 				.waitForPageLoad()

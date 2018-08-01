@@ -56,7 +56,7 @@ public class LMG_4686_OLS extends BaseTest{
         String phoneNumberMIG = "AUTAMS1MIG";
         String protocol1 = "I5Q_MC_CGAW";       
         String studyName =  "a migraine"; 
-        String siteName = "AUT_4686";
+        String siteName = "AUT_LMG";
         String zip_Code = "08204";
         String site_Indication = "Migraines";
         
@@ -69,7 +69,7 @@ public class LMG_4686_OLS extends BaseTest{
                 .openPage(env, phoneNumberMIG)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleMIGExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleLMGExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091982")
                 .clickNextButton(new ZipCodePageOLS());
@@ -194,7 +194,7 @@ public class LMG_4686_OLS extends BaseTest{
 				.waitForPageLoad()
 				.selectDays("1")
 				.clickNextButton(new MigraineAffectedYourAbilityOLS());
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6012", protocol1);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6022", protocol1);
 		debugPageOLS.back();
 		
 		howManyDaysYouTakeMedicationsOLS
