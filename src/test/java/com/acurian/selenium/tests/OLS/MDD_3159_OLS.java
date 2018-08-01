@@ -225,9 +225,6 @@ public class MDD_3159_OLS extends BaseTest{
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
         //------------- New for AMS1 Rel.51, when Gender = Female-------------------------
-        .clickNextButton(new HormonalBirthControlOLS())
-        .waitForPageLoad()
-        .clickOnAnswer("No")
         .clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
         .waitForPageLoad()

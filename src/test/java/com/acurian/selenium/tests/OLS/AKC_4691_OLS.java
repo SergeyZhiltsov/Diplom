@@ -74,7 +74,7 @@ public class AKC_4691_OLS extends BaseTest{
         List<String> protocols = Arrays.asList("ISIS 703802_CS2");
         String protocol1 = "ISIS 703802_CS2";
         String studyName = "diabetics";
-        String siteName = "AUT_4691";   
+        String siteName = "AUT_AKC";   
         String zipCode = "08204";
         
         String env = System.getProperty("acurian.env");
@@ -490,25 +490,7 @@ public class AKC_4691_OLS extends BaseTest{
         		.clickOnAnswer("No")
         		.clickNextButton(new DoYouExperienceDPN_OLS())
         		.waitForPageLoad()
-        		.clickOnAnswer("No, none of the above")
-        		.clickNextButton(new StatinMedicationsOnPageOLS())
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-        		.clickNextButton(new DiabeticNephropathyPageOLS())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
-        		.clickNextButton(new ForYourKidneysPageOLS())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
-        		.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS())
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-        		.clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS())
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-        		.clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
+        		.clickOnAnswer("No, none of the above")        		
         		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
         		.waitForPageLoad()
         	    .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
@@ -559,13 +541,13 @@ public class AKC_4691_OLS extends BaseTest{
  				.clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
         
         
-        HormonalBirthControlOLS hormonalBirthControlOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
         		.waitForPageLoad()
         		.clickOnAnswers("Cirrhosis")
-        		.clickNextButton(new HormonalBirthControlOLS()); 
+        		.clickNextButton(new ApproximateHeightPageOLS()); 
         
         
-        hormonalBirthControlOLS
+        approximateHeightPageOLS
         		.waitForPageLoad()
         		.getPage(debugPageOLS)
         		.checkProtocolsContainsForQNumber("QS59", protocol1)
@@ -574,7 +556,7 @@ public class AKC_4691_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("Drug or alcohol abuse within the past year")
 				.clickNextButton(new HormonalBirthControlOLS());
-        hormonalBirthControlOLS
+        approximateHeightPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS59", protocol1)
@@ -583,7 +565,7 @@ public class AKC_4691_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("Hepatitis B")
 				.clickNextButton(new HormonalBirthControlOLS());
-        hormonalBirthControlOLS
+        approximateHeightPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS59", protocol1)
@@ -592,7 +574,7 @@ public class AKC_4691_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("Hepatitis C")
 				.clickNextButton(new HormonalBirthControlOLS());
-        hormonalBirthControlOLS
+        approximateHeightPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS59", protocol1)
@@ -601,7 +583,7 @@ public class AKC_4691_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("HIV or AIDS")
 				.clickNextButton(new HormonalBirthControlOLS());
-        hormonalBirthControlOLS
+        approximateHeightPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS59", protocol1)
@@ -609,12 +591,7 @@ public class AKC_4691_OLS extends BaseTest{
         doAnyOftheFollowingAdditionalDiagnosesOLS
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
-				.clickNextButton(new HormonalBirthControlOLS());
-        ApproximateHeightPageOLS approximateHeightPageOLS = hormonalBirthControlOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new ApproximateHeightPageOLS());
-        
+				.clickNextButton(new ApproximateHeightPageOLS());        
         
         ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
 				.waitForPageLoad()

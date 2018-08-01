@@ -614,34 +614,24 @@ public class IBD_3264_OLS extends BaseTest{
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------      
         doAnyOftheFollowingAdditionalDiagnosesOLS
         	.waitForPageLoad();
-        HormonalBirthControlOLS hormonalBirthControlOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
         .clickOnAnswers("Drug or alcohol abuse within the past year",
         		"Hepatitis B",
         		"Hepatitis C",
         		"HIV or AIDS",
         		"Neuropathy (nerve damage due to diabetes or another condition)",
         		"Shingles or herpes zoster infection")
-        .clickNextButton(new HormonalBirthControlOLS());
-        hormonalBirthControlOLS
+        .clickNextButton(new ApproximateHeightPageOLS());
+        approximateHeightPageOLS
         	.waitForPageLoad()
         .getPage(debugPageOLS)
         .checkProtocolsContainsForQNumber("QS59",  protocol2)
         .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
         .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new HormonalBirthControlOLS());
-        
-        
-        //--------------Q26:  Are you currently taking a hormonal form of birth control?-----------------------
-        hormonalBirthControlOLS
-        	.waitForPageLoad();
-        Assert.assertEquals(hormonalBirthControlOLS.getTitleText(),hormonalBirthControlOLS.titleExpected, "Title is diff");
-        ApproximateHeightPageOLS approximateHeightPageOLS = hormonalBirthControlOLS
-        .clickOnAnswer("No")        
-        .clickNextButton(new ApproximateHeightPageOLS());
-        approximateHeightPageOLS
-        	.waitForPageLoad()
+        .clickOnAnswers("None of the above")        
+        .clickNextButton(new ApproximateHeightPageOLS())
+        .waitForPageLoad()
         .setAll("5", "5", "160")
         .clickNextButton(new ChildrenUnderPageOLS())
         
