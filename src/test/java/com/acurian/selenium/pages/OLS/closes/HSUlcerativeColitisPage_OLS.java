@@ -14,10 +14,8 @@ public class HSUlcerativeColitisPage_OLS extends MainPageOLS{
     		"\n" +
     		"On the next page, please provide the contact information of both the specialist who treats you for your Ulcerative Colitis, your gastroenterologist (GI), as well as your primary care physician or general practitioner (GP). Your medical records from both doctors are critical since they are more detailed and provide information on your diagnosis, all of your medications, and the imaging/ scoping that may have been done for your digestive condition.\n" +
     		"\n" +
-    		"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
-    		"\n" +
-    		"You will need to provide us with an email address to start this process. Please enter your email address below:";
-
+    		"Please be assured that your records will be kept confidential and only shared with the research facility.";
+    		
     
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
