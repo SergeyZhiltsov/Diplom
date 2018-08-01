@@ -109,11 +109,7 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
         .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new HormonalBirthControlOLS())
-        //--------------Are you currently taking a hormonal form of birth control?-------------
-        .waitForPageLoad()
-        .clickOnAnswer("No")
+        .clickOnAnswers("None of the above")        
         .clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
         .waitForPageLoad()

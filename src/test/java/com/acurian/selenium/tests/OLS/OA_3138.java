@@ -60,7 +60,7 @@ public class OA_3138 extends BaseTest {
 	public void OA_3138_OLS() {
 		String phoneNumberDY = "AUTAMS1OA1";	
 		String zipCode = "99546";
-		String studyName = "an arthritis";
+		String studyName = "an osteoarthritis";
 	    String siteName = "AUT_OA_3138_Site";
 	    String protocol1 = "R475_PN_1523";
 	    
@@ -191,11 +191,7 @@ public class OA_3138 extends BaseTest {
         	.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         	.waitForPageLoad()
-        	.clickOnAnswers("None of the above")
-        	.clickNextButton(new HormonalBirthControlOLS())
-        //-------------- New for AMS1 Rel.51, when Gender = Female ------------------
-        	.waitForPageLoad()
-        	.clickOnAnswer("No")
+        	.clickOnAnswers("None of the above")        	
         	.clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
         	.waitForPageLoad()

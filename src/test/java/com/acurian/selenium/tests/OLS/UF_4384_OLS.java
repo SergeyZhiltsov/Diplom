@@ -254,12 +254,7 @@ public class UF_4384_OLS extends BaseTest{
         .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
-        .clickNextButton(new HormonalBirthControlOLS())
-        .waitForPageLoad()
-        .clickOnAnswer("No")
-   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        .clickOnAnswers("None of the above")   
         .clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
         .waitForPageLoad()
