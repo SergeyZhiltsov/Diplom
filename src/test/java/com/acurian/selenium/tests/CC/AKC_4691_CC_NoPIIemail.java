@@ -62,14 +62,14 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class AKC_4691_CC_NoPIIemail extends BaseTest{
 	
 	
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)  
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)  
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
     public void Akc_4691_CC_NoPIIemail(final String username, final String password) {
         String phoneNumber = "AUTAMS1AKC";
         String protocol1 = "ISIS 703802_CS2";        
         String studyName = "a study for diabetics";
-        String siteName = "AUT_4691";             
+        String siteName = "AUT_AKC";             
         String zipCode = "08204";
         
         String env = System.getProperty("acurian.env");
@@ -530,62 +530,12 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
 		// ---------------------------------------WhereDoYouExperienceDiabeticNervePain_OLS-----------------------------------------------------
 		whereDoYouExperienceDiabeticNervePain_CC
 				.waitForPageLoad();
-				StatinMedicationsOnPageCC statinMedicationsOnPageCC = whereDoYouExperienceDiabeticNervePain_CC
-				.clickOnAnswers("None of the above").clickNextButton(new StatinMedicationsOnPageCC());
-
-
-        //---------------------------------------statinMedicationsOnPageCC-----------
-        statinMedicationsOnPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(statinMedicationsOnPageCC.getTitleText(),statinMedicationsOnPageCC.titleExpected, "Title is diff");
-        DiabeticNephropathyPageCC diabeticNephropathyPageCC = statinMedicationsOnPageCC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DiabeticNephropathyPageCC());
-
-
-      //---------------------------------------diabeticNephropathyPageOLS------------------------------------------------------ 
-        diabeticNephropathyPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(diabeticNephropathyPageCC.getTitleText(),diabeticNephropathyPageCC.titleExpected, "Title is diff");
-        ForYourKidneysPageCC forYourKidneysPageCC = diabeticNephropathyPageCC
-                .clickOnAnswer("No")
-                .clickNextButton(new ForYourKidneysPageCC());
-        
-        //---------------------------------------forYourKidneysPageOLS------------------------------------------------------ 
-        forYourKidneysPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(forYourKidneysPageCC.getTitleText(),forYourKidneysPageCC.titleExpected, "Title is diff");
-                        
-        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = forYourKidneysPageCC
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
-
-        
-        //--------------------------------------Have you ever experienced or been diagnosed with any of the following specific heart-related medical conditions?------------------------------------------------------ 
-        haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouEverExperiencedHeartRelatedMedicalCondCC.getTitleText(),haveYouEverExperiencedHeartRelatedMedicalCondCC.titleExpected, "Title is diff");        
-        HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
-        
-        
-        //-------------------------HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC----------------------------------------------------- 
-        haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC.getTitleText(),haveYouEverBeenDiagnosedAdditionalHeartRelatedCC.titleExpected, "Title is diff");
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
-                .clickOnAnswers("None of the above")       
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
-
-        //-------------------------HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC----------------------------------------------------- 
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC.getTitleText(),haveYouUndergoneAnyOfFollowingHeartRelatedProcCC.titleExpected, "Title is diff");
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC())
+				//StatinMedicationsOnPageCC statinMedicationsOnPageCC = whereDoYouExperienceDiabeticNervePain_CC
+				 TransitionStatementCC transitionStatementCC = whereDoYouExperienceDiabeticNervePain_CC
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new TransitionStatementCC());
                 
+       transitionStatementCC
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         
         
@@ -611,11 +561,11 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
 				.clickOnAnswer("Diagnosed with skin cancer only")
 				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         
-        HormonalBirthControlCC hormonalBirthControlCC = doAnyOftheFollowingAdditionalDiagnosesCC
+        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
 				.waitForPageLoad()
 				.clickOnAnswers("Cirrhosis")
-				.clickNextButton(new HormonalBirthControlCC());
-        hormonalBirthControlCC
+				.clickNextButton(new ApproximateHeightPageCC());
+        approximateHeightPageCC
         		.waitForPageLoad()
         		.getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
@@ -624,7 +574,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("Drug or alcohol abuse within the past year")
 				.clickOnAnswers("Cirrhosis")
-				.clickNextButton(hormonalBirthControlCC)
+				.clickNextButton(new ApproximateHeightPageCC())
 				.waitForPageLoad()
 				.getPage(debugPageCC)
 				.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
@@ -633,7 +583,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
         		.clickOnAnswers("Hepatitis B")
-				.clickNextButton(hormonalBirthControlCC)        
+				.clickNextButton(new ApproximateHeightPageCC())        
         		.waitForPageLoad()
         		.getPage(debugPageCC)
         		.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
@@ -642,7 +592,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
         		.clickOnAnswers("Hepatitis C")
-        		.clickNextButton( hormonalBirthControlCC)       
+        		.clickNextButton(new ApproximateHeightPageCC())       
         		.waitForPageLoad()
         		.getPage(debugPageCC)
         		.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
@@ -651,7 +601,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickOnAnswers("HIV or AIDS")
-				.clickNextButton( hormonalBirthControlCC)       
+				.clickNextButton(new ApproximateHeightPageCC())       
 				.waitForPageLoad()
 				.getPage(debugPageCC)
 				.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
@@ -659,10 +609,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
         doAnyOftheFollowingAdditionalDiagnosesCC
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
-        		.clickNextButton(new HormonalBirthControlCC())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
-                .clickNextButton(new ApproximateHeightPageCC())                
+        		.clickNextButton(new ApproximateHeightPageCC())             
                 
         		//----------Height and Weight Question Page--------------------
                 .waitForPageLoad()

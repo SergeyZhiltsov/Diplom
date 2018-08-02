@@ -71,7 +71,7 @@ public class OA_4109CC extends BaseTest{
         String protocol1 = "R475_OA_1611";
         String protocol2 = "R475_OA_1688";
         String studyName = "osteoarthritis";
-        String studyName1 = "an arthritis study";
+        String studyName1 = "an osteoarthritis study";
         String siteName = "AUT_OA_4109_Site";
         String zipCode  = "99546";
         
@@ -211,16 +211,12 @@ public class OA_4109CC extends BaseTest{
        
        //-------------------New GENERAL HEALTH---------------------------
        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-       		.waitForPageLoad()
-       		.clickOnAnswers("None of the above")                	
-       		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+       			.waitForPageLoad()
+       			.clickOnAnswers("None of the above")                	
+       			.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
-       		.waitForPageLoad()
-       		.clickOnAnswers("None of the above")
-    		.clickNextButton(new HormonalBirthControlCC())
-    		//----------------HormonalBirthControlCC----------------------
-    		.waitForPageLoad()
-       		.clickOnAnswer("No")
+       			.waitForPageLoad()
+       			.clickOnAnswers("None of the above")
                .clickNextButton(new ApproximateHeightPageCC())
        		//----------Height and Weight Question Page--------------------
                .waitForPageLoad()

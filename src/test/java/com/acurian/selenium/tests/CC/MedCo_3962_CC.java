@@ -85,7 +85,7 @@ public class MedCo_3962_CC extends BaseTest{
      //   String env = "STG";
         String siteName = "AUT_MEDCO_3962_site";
         String site_Indication = "Hypercholesterolemia, Cardiovascular Disease";
-        String zipCode  = "19044";  //"45203" cincinnati, OH
+        String zipCode  = "19901";  //"45203" cincinnati, OH
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -223,63 +223,6 @@ public class MedCo_3962_CC extends BaseTest{
      	       .waitForPageLoad()
      	       .clickNextButton(selectActionPageCC)
      	       .waitForPageLoad()
-     	       .pidFromDbToLog(env);       
-       
-       
-       /*-------------------OLD Gen Health-----------------------------------
-       AreYouTakingAnyOfMedicationsCC areYouTakingAnyOfMedicationsCC1 = statinMedicationPreviousQuestionPageCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("5 months")
-    		   .clickNextButton(new AreYouTakingAnyOfMedicationsCC());
-       
-       NonPrescriptionSupplementsCC nonPrescriptionSupplementsCC = areYouTakingAnyOfMedicationsCC1
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Repatha (evolocumab)")
-    		   .clickNextButton(new NonPrescriptionSupplementsCC());
-       
-       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = nonPrescriptionSupplementsCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("None of the above")
-    		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC()); 
-       
-       HaveYouUndergoneAnyPageCC haveYouUndergoneAnyPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-               .clickNextButton(new HaveYouUndergoneAnyPageCC());
-       
-       LastTimeYouHadHeartProceduresCC lastTimeYouHadHeartProceduresCC = haveYouUndergoneAnyPageCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Stent placement")
-    		   .clickNextButton(new LastTimeYouHadHeartProceduresCC());
-       
-       ThankYouForAnsweringCC thankYouForAnsweringCC = lastTimeYouHadHeartProceduresCC
-    		    .waitForPageLoad()
-    		    .clickOnAnswer("Less than 30 days ago")
-    		    .clickNextButton(new ThankYouForAnsweringCC());       
-       debugPageCC.checkProtocolsEquals("When was the last time that you had one of the heart procedures from the last question?", protocol1);
-       debugPageCC.back();
-       lastTimeYouHadHeartProceduresCC
-   	   .waitForPageLoad()
-   	   .clickOnAnswer("7 - 12 months ago")
-   	   .clickNextButton(new ChildrenUnderPageCC())
-   	   .waitForPageLoad()
-       .clickOnAnswer("No")
-       .clickNextButton(new IdentificationPageCC())
-       .waitForPageLoad()       
-       .clickNextButton(new SiteSelectionPageCC())
-       .waitForPageLoad("a high cholesterol and heart disease study")
-       .clickOnAnswer(siteName)
-       .getPID()
-       .clickNextButton(new HSGeneralCC())
-       .waitForPageLoad(site_Indication)
-       .clickNextButton(new DoctorInformationCollectionPageCC())
-       .waitForPageLoad()
-       .clickNextButton(new HSMedicalRecordsPageCC())
-       .waitForPageLoad()
-       .clickNextButton(new ThankYouCloseSimplePageCC())
-       .waitForPageLoad()
-       .clickNextButton(selectActionPageCC)
-       .waitForPageLoad()
-       .pidFromDbToLog(env);  */
+     	       .pidFromDbToLog(env);
 	}
 }

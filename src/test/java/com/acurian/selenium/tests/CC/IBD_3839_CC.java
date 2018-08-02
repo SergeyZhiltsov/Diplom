@@ -271,18 +271,14 @@ public class IBD_3839_CC extends BaseTest{
 		      .clickOnAnswers("None of the above")		      
 		      .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         
-        HormonalBirthControlCC hormonalBirthControlCC = doAnyOftheFollowingAdditionalDiagnosesCC
+        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
         		.waitForPageLoad()
         		.clickOnAnswers("Alzheimer's disease", "Cirrhosis", "Bipolar disorder", "Cancer in the past 5 years, except skin cancer", "Drug or alcohol abuse within the past year")
         		.clickOnAnswers("Hepatitis B", "Hepatitis C", "HIV or AIDS", "Kidney disease requiring dialysis", "Multiple sclerosis (MS)", "Neuropathy (nerve damage due to diabetes or another condition)")
         		.clickOnAnswers("Seizure disorder such as epilepsy", "Schizophrenia", "Shingles or herpes zoster infection")
         		.clickOnAnswers("None of the above")
-        		.clickNextButton(new HormonalBirthControlCC());       
-        
-        ApproximateHeightPageCC approximateHeightPageCC = hormonalBirthControlCC
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
         		.clickNextButton(new ApproximateHeightPageCC());
+        
         
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
         		.waitForPageLoad()
