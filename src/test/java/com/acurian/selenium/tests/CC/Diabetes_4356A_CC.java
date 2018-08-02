@@ -316,9 +316,6 @@ public class Diabetes_4356A_CC extends BaseTest{
         		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
-        		.clickNextButton(new HormonalBirthControlCC())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
                 .clickNextButton(new ApproximateHeightPageCC())
         		//----------Height and Weight Question Page--------------------
                 .waitForPageLoad()

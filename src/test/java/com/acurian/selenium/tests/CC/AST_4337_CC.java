@@ -314,11 +314,7 @@ public class AST_4337_CC extends BaseTest{
         		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
-        		.clickNextButton(new HormonalBirthControlCC())
-        		//----------------HormonalBirthControlCC----------------------
-        		.waitForPageLoad()
-           		.clickOnAnswer("No")
-                .clickNextButton(new ApproximateHeightPageCC())
+        		.clickNextButton(new ApproximateHeightPageCC())
         		//----------Height and Weight Question Page--------------------
                 .waitForPageLoad()
                 .setAll("5", "5", "160")

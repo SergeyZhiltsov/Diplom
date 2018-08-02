@@ -83,7 +83,7 @@ public class RA_2821_CC extends BaseTest{
    //     String protocol2 = "M13_545"; This protocol is disabled
         String studyName = "Rheumatoid Arthritis";
         String studyName1 = "a rheumatoid arthritis (RA) study";
-        String siteName = "AUT_RA2821_HS_Site";
+        String siteName = "AUT_RA2821_Site";
         String zipCode  = "19044";
         
         String env = System.getProperty("acurian.env");
@@ -320,9 +320,6 @@ haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
 		.waitForPageLoad()
 		.clickOnAnswers("None of the above")
-		.clickNextButton(new HormonalBirthControlCC())
-		.waitForPageLoad()
-		.clickOnAnswer("No")
         .clickNextButton(new ApproximateHeightPageCC())
 		//----------Height and Weight Question Page--------------------
         .waitForPageLoad()

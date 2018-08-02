@@ -75,7 +75,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AUT_3973_OLS extends BaseTest {
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	@TestCaseId("0001")
 	@Description("Akcea_4691 OLS")
 

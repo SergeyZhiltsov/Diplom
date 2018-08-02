@@ -371,57 +371,51 @@ public class IBD_3485_CC extends BaseTest{
   				.clickOnAnswers("Neither")
   				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
           
-          HormonalBirthControlCC hormonalBirthControlCC = doAnyOftheFollowingAdditionalDiagnosesCC
+          ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
           		.waitForPageLoad()
           		.clickOnAnswers("Cirrhosis")
-          		.clickNextButton(new HormonalBirthControlCC());
+          		.clickNextButton(new ApproximateHeightPageCC());
           debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
           doAnyOftheFollowingAdditionalDiagnosesCC
   				.waitForPageLoad()
   				.clickOnAnswers("None of the above")
   				.clickOnAnswers("Hepatitis B")
-  				.clickNextButton(new HormonalBirthControlCC());
+  				.clickNextButton(new ApproximateHeightPageCC());
           debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
           doAnyOftheFollowingAdditionalDiagnosesCC
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickOnAnswers("Bipolar disorder")
-				.clickNextButton(new HormonalBirthControlCC());
+				.clickNextButton(new ApproximateHeightPageCC());
           debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
           doAnyOftheFollowingAdditionalDiagnosesCC
   				.waitForPageLoad()
   				.clickOnAnswers("None of the above")
   				.clickOnAnswers("Hepatitis C")
-  				.clickNextButton(new HormonalBirthControlCC());
+  				.clickNextButton(new ApproximateHeightPageCC());
           debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
-
           doAnyOftheFollowingAdditionalDiagnosesCC
           		.waitForPageLoad()
           		.clickOnAnswers("None of the above")
           		.clickOnAnswers("HIV or AIDS")
-          		.clickNextButton(new HormonalBirthControlCC());
+          		.clickNextButton(new ApproximateHeightPageCC());
           debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
           doAnyOftheFollowingAdditionalDiagnosesCC
   				.waitForPageLoad()
   				.clickOnAnswers("None of the above")
   				.clickOnAnswers("Schizophrenia")
-  				.clickNextButton(new HormonalBirthControlCC());
+  				.clickNextButton(new ApproximateHeightPageCC());
           debugPageCC.checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
           doAnyOftheFollowingAdditionalDiagnosesCC
   		    	.waitForPageLoad()
   		    	.clickOnAnswers("None of the above")
-  		    	.clickNextButton(new HormonalBirthControlCC());
-        
-          ApproximateHeightPageCC approximateHeightPageCC = hormonalBirthControlCC
-          		.waitForPageLoad()
-          		.clickOnAnswer("No")
-          		.clickNextButton(new ApproximateHeightPageCC());
+  		    	.clickNextButton(new ApproximateHeightPageCC());
           
           LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
         		  	.waitForPageLoad()

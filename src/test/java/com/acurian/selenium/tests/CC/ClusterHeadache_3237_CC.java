@@ -163,7 +163,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 Assert.assertEquals(hasDoctorDiagnosedYouWithClusterHeadache_CC.getTitleText(),hasDoctorDiagnosedYouWithClusterHeadache_CC.titleExpected, "Title is diff");
        hasDoctorDiagnosedYouWithClusterHeadache_CC
                 .clickOnAnswer("No, I have been diagnosed with another type of headache")
-                .clickNextButton(new NonQRtransitionPageCC())
+                .clickNextButton(new DoYouSufferFromMigPageCC())
                 .waitForPageLoad();
                 
        
@@ -297,10 +297,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
         	 //----------Q23 - Do any of the following additional diagnoses apply to you?--------
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HormonalBirthControlCC())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
+                .clickOnAnswers("None of the above")                
                 .clickNextButton(new ApproximateHeightPageCC())
         	 //----------ProvideHeight-Weight Page--------------------
                 .waitForPageLoad()

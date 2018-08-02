@@ -264,9 +264,6 @@ public class MDD_3159_CC extends BaseTest{
         		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
         		.waitForPageLoad()
         		.clickOnAnswers("None of the above")
-        		.clickNextButton(new HormonalBirthControlCC())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
                 .clickNextButton(new ApproximateHeightPageCC())
         		//----------Height and Weight Question Page--------------------
                 .waitForPageLoad()
@@ -277,19 +274,7 @@ public class MDD_3159_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
-                //----------PEDIATRIC HEALTH Questions----------
-                //.clickNextButton(new HouseholdHavePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("None of the above")
-                //.clickNextButton(new TheStudySitePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Public transportation")
-                //.clickNextButton(new WhatMedicalCoveragePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("No, I have no coverage")
-                //.clickNextButton(new EthnicBackgroundPageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Prefer not to answer")
+         //----------PEDIATRIC HEALTH Questions----------
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
