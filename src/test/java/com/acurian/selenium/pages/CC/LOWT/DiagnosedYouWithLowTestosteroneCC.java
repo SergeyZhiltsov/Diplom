@@ -11,7 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class DiagnosedYouWithLowTestosteroneCC extends MainPageCC{
 
-    public final String titleExpected = "Testosterone (Agent note: tes-TOS-ter-one) is the male sex hormone, which regulates body functions such as sex drive, bone mass, fat distribution, and muscle size and strength. Levels may drop as men age.\n" +
+    public final String titleExpected = "Testosterone (Agent note: tes-TOS-ter-one) is the male sex hormone. Levels may drop as men age.\n" +
     		"Has a doctor ever diagnosed you with low testosterone or hypogonadism?";
 
     @FindBy(xpath = "//div[@class='question_text']")

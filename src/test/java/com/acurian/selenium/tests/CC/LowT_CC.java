@@ -16,6 +16,7 @@ import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedYouWithMedicalCo
 import com.acurian.selenium.pages.CC.LOWT.HaveDoctorEverDiagnosedYou_CC;
 import com.acurian.selenium.pages.CC.LOWT.HaveYouEverSmokedCigarettes_CC;
 import com.acurian.selenium.pages.CC.LOWT.HaveYouExpAnyOfFollowingHeartBlood_CC;
+import com.acurian.selenium.pages.CC.LOWT.PersonaQuestionsCC;
 import com.acurian.selenium.pages.CC.LOWT.WhenWasTheLastTimeYouReceivedHeartProcedure_CC;
 import com.acurian.selenium.pages.CC.MDD_3159.WhenWasYourMostRecentHeartProcedureCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
@@ -41,6 +42,7 @@ import com.acurian.selenium.pages.CC.shared.HaveYouUndergoneAnyOfFollowingHeartR
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
+import com.acurian.selenium.pages.CC.shared.TransitionStatementLowT_CC;
 import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS;
@@ -116,9 +118,14 @@ public class LowT_CC extends BaseTest{
     		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());       
        debugPageCC.checkProtocolsEquals("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, i...", protocol1);
        debugPageCC.back();
-       ExperiencedAnyOfFollowingCC experiencedAnyOfFollowingCC = genderPageCC
+       
+       PersonaQuestionsCC personaQuestionsCC = genderPageCC
 	   		   .waitForPageLoad()
 	   		   .clickOnAnswer("Male")
+	   		   .clickNextButton(new PersonaQuestionsCC());
+	   				   
+       ExperiencedAnyOfFollowingCC experiencedAnyOfFollowingCC = personaQuestionsCC
+	   		   .waitForPageLoad()	   		   
 	   		   .clickNextButton(new ExperiencedAnyOfFollowingCC());
        
        NonQRtransitionPageCC nonQRtransitionPageCC = experiencedAnyOfFollowingCC
@@ -158,12 +165,9 @@ public class LowT_CC extends BaseTest{
        
        
        HaveYouExpAnyOfFollowingHeartBlood_CC haveYouExpAnyOfFollowingHeartBlood_CC = haveYouEverSmokedCigarettes_CC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Yes, I currently smoke")
-    		   .clickOnAnswer("I used to smoke, but have since quit")
-    		   .clickOnAnswer("No, I never smoked")
-    		   .clickNextButton(new HaveYouExpAnyOfFollowingHeartBlood_CC());
-       
+    		   .waitForPageLoad()    		   
+    		   .clickOnAnswer("I used to smoke, but have since quit")    		   
+    		   .clickNextButton(new HaveYouExpAnyOfFollowingHeartBlood_CC());       
        
        
        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = haveYouExpAnyOfFollowingHeartBlood_CC
@@ -188,13 +192,13 @@ public class LowT_CC extends BaseTest{
        		   .waitForPageLoad()
     		   .clickOnAnswer("1 - 3 months ago")
     		   .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-       debugPageCC.checkProtocolsEquals(" ", protocol1);
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
 	   		  .waitForPageLoad()
 	   		  .clickOnAnswer("Less than 30 days ago")
 	   		  .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-       debugPageCC.checkProtocolsEquals(" ", protocol1);
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
        
@@ -207,13 +211,13 @@ public class LowT_CC extends BaseTest{
 		      .waitForPageLoadStroke()
 		      .clickOnAnswer("Less than 30 days ago")
 		      .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-       debugPageCC.checkProtocolsEquals(" ", protocol1);
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
 	   		  .waitForPageLoadStroke()
 	   		  .clickOnAnswer("1 - 3 months ago")
 	   		  .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-       debugPageCC.checkProtocolsEquals(" ", protocol1);
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
        
@@ -226,13 +230,13 @@ public class LowT_CC extends BaseTest{
 	      	.waitForPageLoadTIA()
 	      	.clickOnAnswer("Less than 30 days ago")
 	      	.clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-       debugPageCC.checkProtocolsEquals(" ", protocol1);
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
 		  	.waitForPageLoadTIA()
 		  	.clickOnAnswer("1 - 3 months ago")
 		  	.clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-       debugPageCC.checkProtocolsEquals(" ", protocol1);
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
        haveYouExpAnyOfFollowingHeartBlood_CC
@@ -268,7 +272,7 @@ public class LowT_CC extends BaseTest{
        		   .waitForPageLoad()
     		   .clickOnAnswer("1 - 3 months ago")
     		   .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
-       debugPageCC.checkProtocolsEquals("When was the last time that you received a heart procedure?When was the last time that you received ...", protocol1);
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017037-QS5624-STUDYQUES", protocol1);
        debugPageCC.back();
        whenWasTheLastTimeYouReceivedHeartProcedure_CC
        		   .waitForPageLoad()
@@ -279,23 +283,42 @@ public class LowT_CC extends BaseTest{
        hasDoctorEverDiagnosedMedicalCondDiseases_CC
 	   		  .waitForPageLoad();
 	   ApproximateHeightPageCC approximateHeightPageCC = hasDoctorEverDiagnosedMedicalCondDiseases_CC
-	   		  .clickOnAnswers("History of Prostate or Breast Cancer",
-	   		  		"Other cancer within the past 2 years (except skin cancer)",
-	   		  		"Sleep apnea that is not currently being treatedn", 
-	   		  		"Drug, alcohol or steroid abuse in the past 12 months")
+	   		  .clickOnAnswers("History of Prostate or Breast Cancer")	   		  		
 	   		  .clickNextButton(new ApproximateHeightPageCC());
-       debugPageCC.checkProtocolsEquals("Has a doctor ever diagnosed you with any of the following medical conditions or diseases? Agent...", protocol1);
+	   debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1);
+       debugPageCC.back();
+       
+       hasDoctorEverDiagnosedMedicalCondDiseases_CC
+		  		.clickOnAnswers("Other cancer within the past 2 years (except skin cancer)")	   		  		
+		  		.clickNextButton(new ApproximateHeightPageCC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1);
+       debugPageCC.back();
+       hasDoctorEverDiagnosedMedicalCondDiseases_CC
+       		.clickOnAnswers("Sleep apnea that is not currently being treated")	   		  		
+       		.clickNextButton(new ApproximateHeightPageCC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1);
+       debugPageCC.back();
+       hasDoctorEverDiagnosedMedicalCondDiseases_CC
+       		.clickOnAnswers("Drug, alcohol or steroid abuse in the past 12 months")	   		  		
+       		.clickNextButton(new ApproximateHeightPageCC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1);
        debugPageCC.back();
        hasDoctorEverDiagnosedMedicalCondDiseases_CC
        		  .waitForPageLoad()
 	   		  .clickOnAnswers("None of the above")
-		   	  .clickNextButton(new ApproximateHeightPageCC());       		
+		   	  .clickNextButton(new ApproximateHeightPageCC());
        
+       TransitionStatementLowT_CC transitionStatementLowT_CC = approximateHeightPageCC
+    		   .waitForPageLoad()
+               .setAll("4", "0", "166")
+               .clickNextButton(new TransitionStatementLowT_CC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0004980-QS5627-STUDYQUES", protocol1);
+       debugPageCC.back();       
       
        ChildrenUnderPageCC childrenUnderPageCC = approximateHeightPageCC
     		   .waitForPageLoad()
-               .setAll("5", "5", "160")
-               .clickNextButton(new ChildrenUnderPageCC());
+               .setAll("5", "6", "166")
+               .clickNextButton(new ChildrenUnderPageCC());      
        
 
        childrenUnderPageCC.waitForPageLoad()
