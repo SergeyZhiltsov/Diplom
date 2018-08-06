@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperienceAnyOftheFollowi
 import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.LowT_TransitionalStatement_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.PersonalQuestionsOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.WhenWasTheLastTimeThatYouReceivedHeartProc_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.WhichOfTheFollowingMensHealthConditions_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.*;
@@ -75,7 +76,7 @@ public class LOWT_3017_OLS extends BaseTest{
 			.checkProtocolsContainsForQNumber("QSI8005", protocol1)
 			.back();
 			dateOfBirthPageOLS.waitForPageLoadGROUP()
-            .setDate("09091940")
+            .setDate("09091960")
             .clickNextButton(new ZipCodePageOLS());
 			
 			
@@ -100,10 +101,14 @@ public class LOWT_3017_OLS extends BaseTest{
 			.checkProtocolsContainsForQNumber("QSI8009", protocol1)
 			.back();
 			genderPageOLS.waitForPageLoad();
-			HaveYouExperienceAnyOftheFollowing_OLS haveYouExperienceAnyOftheFollowing_OLS = genderPageOLS
-            .clickOnAnswer("Male")
-            .clickNextButton(new HaveYouExperienceAnyOftheFollowing_OLS());
-	        
+			
+			PersonalQuestionsOLS personalQuestionsOLS = genderPageOLS
+		            .clickOnAnswer("Male")
+		            .clickNextButton(new PersonalQuestionsOLS());
+			
+			HaveYouExperienceAnyOftheFollowing_OLS haveYouExperienceAnyOftheFollowing_OLS = personalQuestionsOLS
+            .waitForPageLoad()
+            .clickNextButton(new HaveYouExperienceAnyOftheFollowing_OLS());	        
 	        
         //---------------Q3 HaveYouExperienceAnyOftheFollowing_OLS page-------------------
 		haveYouExperienceAnyOftheFollowing_OLS

@@ -9,7 +9,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class HasDoctorEverDiagnosedYouWithLowTestosterone_OLS extends MainPageOLS {
-	public final String titleExpected = "Testosterone is the male sex hormone, which regulates body functions such as sex drive, bone mass, fat distribution, and muscle size and strength. Levels may drop as men age.\n" +
+	public final String titleExpected = "Testosterone is the male sex hormone. Levels may drop as men age.\n" +
 			"Has a doctor ever diagnosed you with low testosterone or hypogonadism?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
