@@ -8,8 +8,13 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class BiologicMedications extends MainPageOLS {
+	
 	public final String titleExpected = "\"Biologics\" are medications that affect the body's immune system. They are usually given as an infusion (into a vein) or a shot (injection).\n" +
 			"Have you ever received any of the following \"biologic\" medications?\n"  +
+			"Please select all that apply";
+	
+	public final String titleExpectedKAD = "Are you currently receiving regular doses of any of the following \"biologic\" medications?\n" +
+			"\"Biologics\" are medications that affect the body's immune system. They are given as an infusion (into a vein) or an injection (a shot under the skin).\n" +			
 			"Please select all that apply";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
@@ -26,6 +31,12 @@ public class BiologicMedications extends MainPageOLS {
     public BiologicMedications waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
+        return this;
+    }
+    
+    @Step
+    public BiologicMedications waitForPageLoadKAD() {
+        waitForPageLoadMain(titleText, titleExpectedKAD);
         return this;
     }
 

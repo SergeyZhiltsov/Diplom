@@ -5,37 +5,35 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhenDidYourCurrentEpisodeDepressionStartOLS extends MainPageOLS {
-	public final String titleExpected = "When did your current episode of depression start?\n" +
-			"If you are unsure, please take your best guess.";
-
+public class CurrentEpisodeOfDepressionOLS extends MainPageOLS {
+	public final String titleExpected = "We'd like to make a distinction between the beginning of your depression overall versus the beginning of your current episode of depression.\n" +
+			"\n" +
+			"Have you taken ANY medication for your depression over the course of your current episode?\n" +
+			"Please include those medications you are taking NOW as well as those medications you have taken before for your current episode of depression, but no longer use.";			
+    
+    
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
     @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
 
-    public WhenDidYourCurrentEpisodeDepressionStartOLS() {
+    public CurrentEpisodeOfDepressionOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhenDidYourCurrentEpisodeDepressionStartOLS waitForPageLoad() {
+    public CurrentEpisodeOfDepressionOLS waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public WhenDidYourCurrentEpisodeDepressionStartOLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+    public CurrentEpisodeOfDepressionOLS clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

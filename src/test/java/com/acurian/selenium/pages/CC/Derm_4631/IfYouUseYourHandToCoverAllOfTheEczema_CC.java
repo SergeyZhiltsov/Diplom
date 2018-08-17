@@ -16,8 +16,8 @@ public class IfYouUseYourHandToCoverAllOfTheEczema_CC extends MainPageCC{
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
-    List<WebElement> radioButtonsList;
+    @FindBy(xpath = "//div[@class='ddlist_container']//select")
+    WebElement dropDownList;
 
     public IfYouUseYourHandToCoverAllOfTheEczema_CC() {
         PageFactory.initElements(getDriver(), this);
@@ -31,12 +31,8 @@ public class IfYouUseYourHandToCoverAllOfTheEczema_CC extends MainPageCC{
     }
 
     @Step
-    public IfYouUseYourHandToCoverAllOfTheEczema_CC clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+    public IfYouUseYourHandToCoverAllOfTheEczema_CC selectFromDropDown(String answerText) {
+    	selectDropDownListOptionByText(dropDownList, answerText);
         return this;
     }
 

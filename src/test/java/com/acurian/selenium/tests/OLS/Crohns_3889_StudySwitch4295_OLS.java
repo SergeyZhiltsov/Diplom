@@ -23,7 +23,7 @@ import java.util.List;
 
 public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     @TestCaseId("00033")
     @Description("Crohn's_3889 OLS with HS")
     public void Crohns3889StudySwitch4295OLS() {

@@ -9,8 +9,11 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowManyDifferentPrescriptionAntidepresMedsOLS extends MainPageOLS {
-	public final String titleExpected = "How many different prescription antidepressant medications have you taken during your current episode of depression?\n" +
-			"Please include all antidepressant medications. Include those which you are currently taking and those you previously took for this current episode but are no longer taking.";
+	
+	public final String titleExpected = "For the next few questions, please continue to think ONLY about your CURRENT episode of depression.\n" +
+			"\n" +
+			"How many different prescription antidepressant medications have you taken during your current episode of depression?\n" +
+			"Please include all antidepressant medications. Include those you are taking NOW as well as those you have taken before for this current episode but no longer use.";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

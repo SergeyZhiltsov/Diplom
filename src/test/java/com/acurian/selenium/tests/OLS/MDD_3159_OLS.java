@@ -75,6 +75,7 @@ public class MDD_3159_OLS extends BaseTest{
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(hasHealthcareProfDiagnosedMDDOLS.titleExpected, protocol1);
         debugPageOLS.back();
+        
         AreYouCurrentlyFeelingSadDepressedOLS areYouCurrentlyFeelingSadDepressedOLS = hasHealthcareProfDiagnosedMDDOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -89,37 +90,51 @@ public class MDD_3159_OLS extends BaseTest{
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyOLS());
         haveYouEverHadElectroconvulsiveTherapyOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals("Are you currently feeling sad or depressed, or do you currently need treatment for depression?Are yo...", protocol1)
-                .back();
+                .waitForPageLoad();                
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4815", protocol1);
+        debugPageOLS.back();
         areYouCurrentlyFeelingSadDepressedOLS
                 .waitForPageLoad();
-        WhenDidYourCurrentEpisodeDepressionStartOLS whenDidYourCurrentEpisodeDepressionStartOLS = areYouCurrentlyFeelingSadDepressedOLS
+        
+        CurrentEpisodeOfDepressionOLS currentEpisodeOfDepressionOLS = areYouCurrentlyFeelingSadDepressedOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartOLS());
-
-        //---------------Q4 WhenDidYourCurrentEpisodeDepressionStartOLS-------------------
-        whenDidYourCurrentEpisodeDepressionStartOLS
+                .clickNextButton(new  CurrentEpisodeOfDepressionOLS());
+        
+        AnyPrescriptionMedicationOLS anyPrescriptionMedicationOLS = currentEpisodeOfDepressionOLS
+        		.waitForPageLoad()
+        		.clickOnAnswer("No")
+        		.clickNextButton(new AnyPrescriptionMedicationOLS());
+        
+        WhenDidYourCurrentEpisodeDepressionStartOLS whenDidYourCurrentEpisodeDepressionStartOLS = anyPrescriptionMedicationOLS
+        		.waitForPageLoad()
+                .clickOnAnswer("Correct - Have not taken any prescription medication for current episode")
+                .clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartOLS())
                 .waitForPageLoad();
-        Assert.assertEquals(whenDidYourCurrentEpisodeDepressionStartOLS.getTitleText(),whenDidYourCurrentEpisodeDepressionStartOLS.titleExpected, "Title is diff");
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4817", protocol1);
+        debugPageOLS.back();
+        anyPrescriptionMedicationOLS
+        		.waitForPageLoad()
+        		.clickOnAnswer("Not correct - Have taken prescription medication for current episode")
+        		.clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartOLS())
+        		.waitForPageLoad();        
+       
         HowManyDifferentPrescriptionAntidepresMedsOLS howManyDifferentPrescriptionAntidepresMedsOLS = whenDidYourCurrentEpisodeDepressionStartOLS
+        		.waitForPageLoad()
                 .clickOnAnswer("1 month ago or less")
                 .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsOLS());
         howManyDifferentPrescriptionAntidepresMedsOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(whenDidYourCurrentEpisodeDepressionStartOLS.titleExpected, protocol1)
-                .back();
-        		whenDidYourCurrentEpisodeDepressionStartOLS.waitForPageLoad()
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4804", protocol1);
+        debugPageOLS.back();
+        whenDidYourCurrentEpisodeDepressionStartOLS.waitForPageLoad()
                 .clickOnAnswer("More than 2 years ago")
                 .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsOLS());
         howManyDifferentPrescriptionAntidepresMedsOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(whenDidYourCurrentEpisodeDepressionStartOLS.titleExpected, protocol1)
-                .back();
-				whenDidYourCurrentEpisodeDepressionStartOLS.waitForPageLoad()
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4804", protocol1);
+        debugPageOLS.back();
+		whenDidYourCurrentEpisodeDepressionStartOLS
+				.waitForPageLoad()
 				.clickOnAnswer("2 - 3 months ago")
 				.clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsOLS());        
 
@@ -132,15 +147,28 @@ public class MDD_3159_OLS extends BaseTest{
         		.clickOnAnswer("I have not taken any prescription medications for my current episode of depression")
                 .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyOLS());
         haveYouEverHadElectroconvulsiveTherapyOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEquals(howManyDifferentPrescriptionAntidepresMedsOLS.titleExpected, protocol1)
-                .back();
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4805", protocol1);
+        debugPageOLS.back();
         howManyDifferentPrescriptionAntidepresMedsOLS
                 .waitForPageLoad();
         WhichFollowingAntidepressantMedsTakingOLS whichFollowingAntidepressantMedsTakingOLS = howManyDifferentPrescriptionAntidepresMedsOLS
-                .clickOnAnswer("1")
-                .clickNextButton(new WhichFollowingAntidepressantMedsTakingOLS());
+                .clickOnAnswer("3")
+                .clickNextButton(new WhichFollowingAntidepressantMedsTakingOLS())
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4805", protocol1);
+        debugPageOLS.back();
+        howManyDifferentPrescriptionAntidepresMedsOLS
+        		.waitForPageLoad()
+        		.clickOnAnswer("4 or more")
+        		.clickNextButton(new WhichFollowingAntidepressantMedsTakingOLS())
+        		.waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4805", protocol1);
+        debugPageOLS.back();
+        howManyDifferentPrescriptionAntidepresMedsOLS
+        		.waitForPageLoad()
+				.clickOnAnswer("1")
+				.clickNextButton(new WhichFollowingAntidepressantMedsTakingOLS());
 
         
 		//---------------Q6 WhichFollowingAntidepressantMedsTakingOLS-------------------		        
@@ -159,14 +187,35 @@ public class MDD_3159_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyOLS());
         haveYouEverHadElectroconvulsiveTherapyOLS
-        .waitForPageLoad()
-        .getPage(debugPageOLS)
-        .checkProtocolsEquals("Ghost Question - Buproprion Monotherapy for Current Episode", protocol1)
-        .back();
+        		.waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4808", protocol1);
+        debugPageOLS.back();
         whichFollowingAntidepressantMedicationsYouTriedOLS
-        .waitForPageLoad()
-        .clickOnAnswers("Another antidepressant not listed here")
-        .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyOLS());        
+				.waitForPageLoad()
+				.back();
+        whichFollowingAntidepressantMedsTakingOLS
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+        		.clickNextButton(new WhichFollowingAntidepressantMedicationsYouTriedOLS());
+        whichFollowingAntidepressantMedicationsYouTriedOLS
+        		.waitForPageLoad()
+        		.clickOnAnswers("Wellbutrin (buproprion)")
+        		.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyOLS())
+        		.waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4808", protocol1);
+        debugPageOLS.back();
+        whichFollowingAntidepressantMedicationsYouTriedOLS
+				.waitForPageLoad()
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyOLS())
+				.waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4808", protocol1);
+        debugPageOLS.back();        
+        
+        whichFollowingAntidepressantMedicationsYouTriedOLS
+        		.waitForPageLoad()
+        		.clickOnAnswers("Another antidepressant not listed here (such as Remeron, Trintellix, Elavil)")
+        		.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyOLS());        
         
 		//---------------Q9 Have you ever had electroconvulsive therapy or ECT? "haveYouEverHadElectroconvulsiveTherapyOLS"-------------------	              
         haveYouEverHadElectroconvulsiveTherapyOLS1

@@ -231,7 +231,7 @@ public class IBD_Short extends BaseTest{
         		.clickNextButton(new IdentificationPageCC())
         		.waitForPageLoad()        		              
         		.clickNextButton(new IncongruentSiteSelectionCloseCC())
-        		.waitForPageLoadIBD("a Colitis")
+        		.waitForPageLoadIBD("a colitis")
         		.getPID()
         		.clickOnAnswer(siteName)
         		.clickNextButton(new QualifiedClose2PageCC())

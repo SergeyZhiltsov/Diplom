@@ -27,6 +27,13 @@ public class LetMeSeePageCC extends MainPageCC {
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
+    
+    @Step
+    public LetMeSeePageCC waitForPageLoadNew() {
+        waitForAnimation();
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedIBD));
+        return this;
+    }
 
     @Step
     public String getTitleText(){

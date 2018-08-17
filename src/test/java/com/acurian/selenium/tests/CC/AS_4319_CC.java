@@ -201,19 +201,19 @@ public class AS_4319_CC extends BaseTest{
        debugPageCC.checkProtocolsContainsForQNumber("Q0005244-QS4709-STUDYQUES", protocol1);
        debugPageCC.back();
        
-       PermanentlyWheelchairBoundCC permanentlyWheelchairBoundCC1 = everTakenXeljanzCC1
+       everTakenXeljanzCC1
     		   .waitForPageLoad()
     		   .clickOnAnswer("No, I have never taken it")
     		   .clickNextButton(new PermanentlyWheelchairBoundCC());
        
-       DevicesInYourBodyCC devicesInYourBodyCC = permanentlyWheelchairBoundCC1
+       DevicesInYourBodyCC devicesInYourBodyCC = permanentlyWheelchairBoundCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
     		   .clickNextButton(new DevicesInYourBodyCC());
        debugPageCC.checkProtocolsContainsForQNumber("Q0014045-QS4710-STUDYQUES", protocol1);
        debugPageCC.back();
        
-       DevicesInYourBodyCC devicesInYourBodyCC1 = permanentlyWheelchairBoundCC1
+       DevicesInYourBodyCC devicesInYourBodyCC1 = permanentlyWheelchairBoundCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("No")
     		   .clickNextButton(new DevicesInYourBodyCC());

@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhichFollowingAntidepressantMedsTakingOLS extends MainPageOLS{
 
-    public final String titleExpected = "Which of the following antidepressant medications are you currently taking?\n" +
+    public final String titleExpected = "Which of these medications are you taking right now to help your depression?\n" +
     		"Please select all that apply.";
 
     		

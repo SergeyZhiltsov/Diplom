@@ -22,6 +22,9 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s study!\n" +
             "Please select a doctor and click the \"Next\" button.";
     
+    public final String titleExpected1 = "Good news! You have been matched with the doctor(s) below for %s\n" +
+            "Please select a doctor and click the \"Next\" button.";
+    
     public final String titleAKC = "Good news! You have been matched with the doctor(s) below for a study for diabetics!\n" +
             "Please select a doctor and click the \"Next\" button.";
 
@@ -67,6 +70,14 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+    
+    @Step
+    public SiteSelectionPageOLS waitForPageLoad1(String studyName) {
+        waitForAnimation();
+        String titleExpectedMod = String.format(titleExpected1, studyName);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }

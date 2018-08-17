@@ -32,7 +32,7 @@ public class WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS extends MainPa
     
 
     @Step
-    public WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS clickOnAnswers(String answerText) {
+    public WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

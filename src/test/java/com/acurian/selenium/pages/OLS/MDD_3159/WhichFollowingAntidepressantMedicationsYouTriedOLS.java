@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhichFollowingAntidepressantMedicationsYouTriedOLS extends MainPageOLS{
 
-    public final String titleExpected = "Which of the following antidepressant medications have you tried for your current episode of depression, but are NOT currently taking?\n" +
+    public final String titleExpected = "Which of these medications you have taken before for your current episode of depression, but no longer use?\n" +
     		"Please select all that apply.";
     		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")

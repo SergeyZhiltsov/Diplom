@@ -11,8 +11,10 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 
 public class HowManyDifferentPrescriptionAntidepresMedsCC extends MainPageCC{
 
-    public final String titleExpected = "How many different prescription antidepressant medications have you taken during your current episode of depression?\n" +
-"Please include all antidepressant medications. Include those which you are currently taking and those you previously took for this current episode but are no longer taking.";
+    public final String titleExpected = "For the next few questions, please continue to think ONLY about your CURRENT episode of depression.\n" +
+    		"\n" +
+    		"How many different prescription antidepressant medications have you taken during your current episode of depression?\n" +
+    		"Please include all antidepressant medications. Include those you are taking NOW as well as those you have taken before for this current episode but no longer use.";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

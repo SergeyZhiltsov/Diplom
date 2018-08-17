@@ -526,7 +526,7 @@ public class IBD_3889_CC extends BaseTest{
           		.clickNextButton(new IdentificationPageCC())
           		.waitForPageLoad()        		              
           		.clickNextButton(new SiteSelectionPageCC())
-          		.waitForPageLoad("a Crohn's study")
+          		.waitForPageLoad("a colitis study")
           		.getPID()
           		.clickOnAnswer(siteName)
           		.clickNextButton(new QualifiedClose2PageCC())
