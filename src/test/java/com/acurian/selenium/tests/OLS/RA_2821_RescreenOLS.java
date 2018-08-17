@@ -83,7 +83,7 @@ public class RA_2821_RescreenOLS extends BaseTest {
         String protocol1 = "M15_925";
         String studyName = "a rheumatoid arthritis (RA)";
         //String siteName = "AUT_RA2821_Site";
-        String siteName = "AUT_RA2821_HS";
+        String siteName = "AUT_RA2821_HS_Site";
         String zipCode = "19044";
         String Siteindicator = "Rheumatoid Arthritis";
         

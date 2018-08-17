@@ -126,19 +126,33 @@ public class MDD_3159_CC extends BaseTest{
         haveYouEverHadElectroconvulsiveTherapyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Are you currently feeling sad or depressed, or do you currently need treatment for depression?Are yo...", protocol1)
+                .checkProtocolsEquals("Are you currently feeling depressed, or do you have a lack of interest in activities where you may a...", protocol1)
                 .back();
-        areYouCurrentlyFeelingSadDepressedCC
-                .waitForPageLoad();
-        WhenDidYourCurrentEpisodeDepressionStartCC whenDidYourCurrentEpisodeDepressionStartCC = areYouCurrentlyFeelingSadDepressedCC
+        
+        CurrentEpisodeOfDepressionCC currentEpisodeOfDepressionCC = areYouCurrentlyFeelingSadDepressedCC
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartCC());
-
-        //---------------Q4 WhenDidYourCurrentEpisodeDepressionStartOLS-------------------
-        whenDidYourCurrentEpisodeDepressionStartCC
-                .waitForPageLoad();
-        Assert.assertEquals(whenDidYourCurrentEpisodeDepressionStartCC.getTitleText(),whenDidYourCurrentEpisodeDepressionStartCC.titleExpected, "Title is diff");
+                .clickNextButton(new CurrentEpisodeOfDepressionCC());        
+        
+        YouHaveNotTakenANYPrescriptionCC youHaveNotTakenANYPrescriptionCC = currentEpisodeOfDepressionCC
+        		.waitForPageLoad()
+        		.clickOnAnswer("No")
+        		.clickNextButton(new YouHaveNotTakenANYPrescriptionCC());
+        
+        WhenDidYourCurrentEpisodeDepressionStartCC whenDidYourCurrentEpisodeDepressionStartCC = youHaveNotTakenANYPrescriptionCC
+        		.waitForPageLoad()
+        		.clickOnAnswer("Correct - Have not taken any prescription medication for current episode")
+        		.clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartCC())
+        		.waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017464-QS4817-STUDYQUES",  protocol1);
+        debugPageCC.back();
+        youHaveNotTakenANYPrescriptionCC
+				.waitForPageLoad()
+				.clickOnAnswer("Not correct - Have taken prescription medication for current episode")
+				.clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartCC());
+        
         HowManyDifferentPrescriptionAntidepresMedsCC howManyDifferentPrescriptionAntidepresMedsCC = whenDidYourCurrentEpisodeDepressionStartCC
+        		.waitForPageLoad()
                 .clickOnAnswer("1 month ago or less")
                 .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
         howManyDifferentPrescriptionAntidepresMedsCC
@@ -163,17 +177,32 @@ public class MDD_3159_CC extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(howManyDifferentPrescriptionAntidepresMedsCC.getTitleText(),howManyDifferentPrescriptionAntidepresMedsCC.titleExpected, "Title is diff");
         //----Skip to Q9 page:HaveYouEverHadElectroconvulsiveTherapyCC, if selected "I have not taken any prescription medications for my current episode of depression" in this page 
-        		howManyDifferentPrescriptionAntidepresMedsCC
+        howManyDifferentPrescriptionAntidepresMedsCC
         		.clickOnAnswer("I have not taken any prescription medications for my current episode of depression")
-                .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
+                .clickNextButton(new WhichFollowingAntidepressantMedsTakingCC());
         haveYouEverHadElectroconvulsiveTherapyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(howManyDifferentPrescriptionAntidepresMedsCC.titleExpected, protocol1)
                 .back();
-        howManyDifferentPrescriptionAntidepresMedsCC
-                .waitForPageLoad();
         WhichFollowingAntidepressantMedsTakingCC whichFollowingAntidepressantMedsTakingCC = howManyDifferentPrescriptionAntidepresMedsCC
+                .waitForPageLoad()        
+                .clickOnAnswer("3")
+                .clickNextButton(new WhichFollowingAntidepressantMedsTakingCC());        
+        
+        whichFollowingAntidepressantMedsTakingCC.waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES",  protocol1);
+        debugPageCC.back();
+        howManyDifferentPrescriptionAntidepresMedsCC
+        		.waitForPageLoad()        
+        		.clickOnAnswer("4 or more")
+        		.clickNextButton(new WhichFollowingAntidepressantMedsTakingCC())
+        		.waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES",  protocol1);
+        debugPageCC.back();        
+        
+        howManyDifferentPrescriptionAntidepresMedsCC
+        		.waitForPageLoad()
                 .clickOnAnswer("1")
                 .clickNextButton(new WhichFollowingAntidepressantMedsTakingCC());
 
@@ -185,23 +214,42 @@ public class MDD_3159_CC extends BaseTest{
         WhichFollowingAntidepressantMedicationsYouTriedCC whichFollowingAntidepressantMedicationsYouTriedCC = whichFollowingAntidepressantMedsTakingCC
                 .clickOnAnswers("Wellbutrin (buproprion)")
                 .clickNextButton(new WhichFollowingAntidepressantMedicationsYouTriedCC());
-
+        
 		//---------------Q7 whichFollowingAntidepressantMedicationsYouTriedCC-------------------		        
         whichFollowingAntidepressantMedicationsYouTriedCC
-                .waitForPageLoad();
+                .waitForPageLoad();        
         Assert.assertEquals(whichFollowingAntidepressantMedicationsYouTriedCC.getTitleText(),whichFollowingAntidepressantMedicationsYouTriedCC.titleExpected, "Title is diff");
         HaveYouEverHadElectroconvulsiveTherapyCC haveYouEverHadElectroconvulsiveTherapyCC1 = whichFollowingAntidepressantMedicationsYouTriedCC
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
         haveYouEverHadElectroconvulsiveTherapyCC
-        .waitForPageLoad()
-        .getPage(debugPageCC)
-        .checkProtocolsEquals("Ghost Question - Buproprion Monotherapy for Current Episode", protocol1)
-        .back();
+        		.waitForPageLoad()
+        		.getPage(debugPageCC)
+        		.checkProtocolsEquals("Ghost Question - Buproprion Monotherapy for Current Episode", protocol1)
+        		.back();
+        whichFollowingAntidepressantMedicationsYouTriedCC.back();
+        whichFollowingAntidepressantMedsTakingCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+        		.clickNextButton(new WhichFollowingAntidepressantMedicationsYouTriedCC());
         whichFollowingAntidepressantMedicationsYouTriedCC
-        .waitForPageLoad()
-        .clickOnAnswers("Another antidepressant not listed here")
-        .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());        
+        		.waitForPageLoad()
+        		.clickOnAnswers("Wellbutrin (buproprion)")
+        		.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC())
+        		.waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES",  protocol1);
+        debugPageCC.back();
+        whichFollowingAntidepressantMedicationsYouTriedCC
+				.waitForPageLoad()
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC())
+				.waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES",  protocol1);
+        debugPageCC.back();
+        whichFollowingAntidepressantMedicationsYouTriedCC
+				.waitForPageLoad()
+				.clickOnAnswers("Zoloft (sertraline)")
+				.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
         
 		//---------------Q9 Have you ever had electroconvulsive therapy or ECT? "haveYouEverHadElectroconvulsiveTherapyCC"-------------------	              
         haveYouEverHadElectroconvulsiveTherapyCC1

@@ -1,9 +1,7 @@
 package com.acurian.selenium.pages.CC.pediatric;
 
-import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;

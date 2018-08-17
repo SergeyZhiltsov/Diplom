@@ -14,8 +14,13 @@ import java.util.List;
 
 public class WhichFollowingAntidepressantMedicationsYouTriedCC extends MainPageCC{
 
-    public final String titleExpected = "Which of the following antidepressant medications have you tried for your current episode of depression, but are NOT currently taking?\n" +
-    		"Agent Note: Select all that apply";
+    public final String titleExpected = "Next, please tell me which of these medications you have taken before for your current episode of depression, but no longer use.\n" +
+    		"If you have taken a medication that we have not listed, please let us know.\n" +
+    		"\n" +
+    		"Agent Notes:\n" +
+    		"Please read the full list of medications again to the respondent\n" +
+    		"Select all that apply\n" +
+    		"If respondent has not tried any before for current episode, select \"None of the above\"";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;

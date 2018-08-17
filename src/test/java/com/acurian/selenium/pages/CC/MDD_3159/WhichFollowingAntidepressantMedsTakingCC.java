@@ -1,21 +1,23 @@
 package com.acurian.selenium.pages.CC.MDD_3159;
 
-import com.acurian.selenium.constants.Locators;
-
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
-
 import java.util.Arrays;
 import java.util.List;
 
 public class WhichFollowingAntidepressantMedsTakingCC extends MainPageCC{
 
-    public final String titleExpected = "Which of the following antidepressant medications are you currently taking?\n" +
-    		"Agent Note: Select all that apply";
+    public final String titleExpected = "I am going to read to you a list of medications used to treat depression. Please tell me which of these medications you are taking right now to help your depression.\n" +
+    		"If you are taking a medication that we have not listed, please let us know.\n" +
+    		"\n" +
+    		"Agent Notes:\n" +    		
+    		"Please read the full list of medications to the respondent\n" +
+    		"Select all that apply\n" +
+    		"If respondent is not taking any right now, select \"None of the above\"";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;

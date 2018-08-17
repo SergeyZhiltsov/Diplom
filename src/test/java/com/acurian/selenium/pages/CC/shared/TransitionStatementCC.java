@@ -20,7 +20,15 @@ public class TransitionStatementCC extends MainPageCC {
     
     private final String titleExpectedCurves1 = "Thank you for answering the questions about your %s history.\n" +
             "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
-            "Agent note: If “no” to all items in a question, select “None of the above”";    
+            "Agent note: If “no” to all items in a question, select “None of the above”";
+    
+    private final String titleExpectedKAD = "Thank you for answering the questions about your %s history.\n" +
+    		"I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me “yes” or “no,” and I will check off each condition that you do have.\n" +
+    		"Agent note: If \"no\" to all items in a question, select \"None of the above\"";
+    
+    private final String titleExpectedNew = "Thank you for answering the questions about your %s.\n" +
+            "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me “yes” or “no,” and I will check off each condition that you do have.\n" +
+            "Agent Note: If \"no\" to all items in a question, select \"None of the above\"";
     
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -34,6 +42,14 @@ public class TransitionStatementCC extends MainPageCC {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        return this;
+    }
+    
+    @Step
+    public TransitionStatementCC waitForPageLoadNew(String studyName) {
+        waitForAnimation();
+        String titleExpected = String.format(titleExpectedNew, studyName);
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
@@ -50,6 +66,14 @@ public class TransitionStatementCC extends MainPageCC {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpectedCurves1, studyName);
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        return this;
+    }
+    
+    @Step
+    public TransitionStatementCC waitForPageLoadWithCurvesKAD(String studyName) {
+        waitForAnimation();
+        String titleExpectedkad = String.format(titleExpectedKAD, studyName);
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedkad));
         return this;
     }
 

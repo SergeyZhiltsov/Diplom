@@ -9,8 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class AreYouWheelchairBoundOLS extends MainPageOLS{
 
-    public final String titleExpected = "Are you permanently wheelchair-bound, bedridden, or otherwise completely unable to walk due to your back pain or another medical condition?";
+    public final String titleExpectedOLD = "Are you permanently wheelchair-bound, bedridden, or otherwise completely unable to walk due to your back pain or another medical condition?";
     
+    public final String titleExpected = "Are you permanently unable to walk due to your medical condition?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -26,7 +27,8 @@ public class AreYouWheelchairBoundOLS extends MainPageOLS{
     public AreYouWheelchairBoundOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
-    }
+    }   
+    
 
     @Step
     public AreYouWheelchairBoundOLS clickOnAnswer(String answerText) {

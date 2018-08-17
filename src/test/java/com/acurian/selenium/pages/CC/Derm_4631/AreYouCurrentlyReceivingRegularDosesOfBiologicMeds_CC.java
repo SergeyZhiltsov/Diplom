@@ -14,9 +14,15 @@ import java.util.List;
 
 public class AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC extends MainPageCC{
 
+    public final String titleExpectedKAD = "Are you currently receiving regular doses of any of the following \"biologic\" medications?\n" +
+    		"\"Biologics\" are medications that affect the body's immune system. They are given as an infusion (into a vein) or an injection (a shot under the skin).\n" +
+    		"Agent Notes:\n" +
+    		"Please read the full list of medications to the respondent\n" +
+    		"Select all that apply";
+    
     public final String titleExpected = "Are you currently receiving regular doses of any of the following \"biologic\" medications?\n" +
     		"\"Biologics\" are medications that affect the body’s immune system.  They are given as an infusion (into a vein) or injection (a shot under the skin).\n" +
-    		"Please select all that apply.\n" +
+    		"Please select all that apply.\n" +    		
     		"·  Please read the full list of medications to the respondent\n" +
     		"·  Select all that apply";
     		
@@ -34,6 +40,12 @@ public class AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC extends MainP
     public AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        return this;
+    }
+    
+    @Step
+    public AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC waitForPageLoadKAD() {
+    	waitForPageLoadMain(titleText, titleExpectedKAD);
         return this;
     }
 

@@ -404,7 +404,7 @@ public class IBD_3264_CC_HS extends BaseTest{
         		.clickNextButton(new IdentificationPageCC())
         		.waitForPageLoad()        		              
         		.clickNextButton(new SiteSelectionPageCC())
-        		.waitForPageLoad("a Colitis study")
+        		.waitForPageLoad("a colitis study")
         		.getPID()
         		.clickOnAnswer(siteName)
         		.clickNextButton(new HSCrohns2PageCC())

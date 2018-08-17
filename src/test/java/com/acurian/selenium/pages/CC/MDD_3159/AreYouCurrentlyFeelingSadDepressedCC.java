@@ -11,7 +11,7 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 
 public class AreYouCurrentlyFeelingSadDepressedCC extends MainPageCC{
 
-    public final String titleExpected = "Are you currently feeling sad or depressed, or do you currently need treatment for depression?";
+    public final String titleExpected = "Are you currently feeling depressed, or do you have a lack of interest in activities where you may also experience feelings of guilt or worthlessness, difficulty concentrating or making decisions, a significant gain or loss of appetite, trouble sleeping and / or fatigue or loss of energy?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

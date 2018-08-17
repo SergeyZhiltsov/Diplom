@@ -1,19 +1,19 @@
 package com.acurian.selenium.pages.CC.MDD_3159;
 
-import org.openqa.selenium.WebElement;
+import java.util.List;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import ru.yandex.qatools.allure.annotations.Step;
-import java.util.List;
 import com.acurian.selenium.pages.CC.MainPageCC;
+import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhenDidYourCurrentEpisodeDepressionStartCC extends MainPageCC{
+public class YouHaveNotTakenANYPrescriptionCC extends MainPageCC{
 
-    public final String titleExpected = "When did your current episode of depression start?\n" +
-    		"If you are unsure, please take your best guess.\n" +
-    		"Agent Note: please read all options";
+    public final String titleExpected = "To confirm, you have indicated that you have not taken ANY prescription medication for your current episode of depression.\n" +
+    		"\n" +
+    		"Is this correct?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -21,24 +21,20 @@ public class WhenDidYourCurrentEpisodeDepressionStartCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public WhenDidYourCurrentEpisodeDepressionStartCC() {
+    public YouHaveNotTakenANYPrescriptionCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhenDidYourCurrentEpisodeDepressionStartCC waitForPageLoad() {
+    public YouHaveNotTakenANYPrescriptionCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public WhenDidYourCurrentEpisodeDepressionStartCC clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+    public YouHaveNotTakenANYPrescriptionCC clickOnAnswer(String answerText) {
+    	clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

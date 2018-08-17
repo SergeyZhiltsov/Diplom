@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.OLS.shared.DoYouSufferFromArthritis;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class CancerPage extends MainPageOLS{
@@ -14,8 +16,8 @@ public class CancerPage extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS20_')]//span[contains(@class,'visible-md-inline')]")
-    List<WebElement> checkBoxList;
+    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
+    List<WebElement> radioButtonsList;
 
     public CancerPage() {
         PageFactory.initElements(getDriver(), this);
@@ -28,12 +30,12 @@ public class CancerPage extends MainPageOLS{
     }
 
     @Step
-    public CancerPage clickOnAnswers(String ...answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
-//        List<String> answerTextList = Arrays.asList(answerText);
-//        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-//                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label")),5,5).click().build().perform());
-//        waitForAnimation();
+    public CancerPage clickOnAnswer(String answerText) {
+        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+                .findFirst()
+                .get()
+                .click();
+        waitForAnimation();
         return this;
     }
 
