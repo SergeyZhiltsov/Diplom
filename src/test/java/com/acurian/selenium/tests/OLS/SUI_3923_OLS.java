@@ -31,7 +31,7 @@ import ru.yandex.qatools.ashot.Screenshot;
 
 public class SUI_3923_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00016")
     @Description("Stress Urinary Incontinence (SUI) - 3923 OLS")
     public void sUI_3923_OLS() {

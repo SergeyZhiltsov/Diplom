@@ -60,7 +60,7 @@ public class LMG_4686_CC extends BaseTest{
     //    String env = "STG";
         String siteName = "AUT_LMG";
         String site_indication = "Ankylosing Spondylitis";
-        String zipCode  = "08204";
+        String zipCode  = "19341";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";

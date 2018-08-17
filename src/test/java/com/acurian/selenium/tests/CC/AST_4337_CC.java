@@ -28,7 +28,7 @@ import java.util.List;
 
 public class AST_4337_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
     @Description("Asthma_4337 for CC")
     public void ast4337ccTest(final String username, final String password) {

@@ -34,11 +34,11 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     
     public final String titleKADExpected = "Let's get started to see if you qualify for an eczema (atopic dermatitis) study!\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $800\n" +
+            "Payment which varies by study up to $1750\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
-    public final String titleLPSExpected = "Let's get started to see if you qualify for Lupus (SLE)!\n" +
+    public final String titleLPSExpected = "Let's get started to see if you qualify for a lupus study!\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
@@ -52,7 +52,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 
     public final String titleDiabetes_4356A_Expected = "Let's get started to see if you qualify for a study for diabetics!\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $600\n" +
+            "Payment which varies by study up to $850\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     

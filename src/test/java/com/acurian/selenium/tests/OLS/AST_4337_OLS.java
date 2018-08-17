@@ -21,7 +21,7 @@ import java.util.List;
 
 public class AST_4337_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00008")
     @Description("Asthma_4337_OLS")
     public void Asthma_4337_OLS() {
