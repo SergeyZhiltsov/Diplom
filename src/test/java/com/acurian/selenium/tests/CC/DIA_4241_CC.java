@@ -28,7 +28,7 @@ import java.util.List;
 
 public class DIA_4241_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00012")
     @Description("Diabetes_4241 CC")
     public void dia4241ccTest(final String username, final String password) {

@@ -57,7 +57,7 @@ public class LMG_4686_OLS extends BaseTest{
         String protocol1 = "I5Q_MC_CGAW";       
         String studyName =  "a migraine"; 
         String siteName = "AUT_LMG";
-        String zip_Code = "08204";
+        String zip_Code = "19341";
         String site_Indication = "Migraines";
         
        
@@ -230,7 +230,7 @@ public class LMG_4686_OLS extends BaseTest{
 		
 		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = mostRecentMigraineEndOLS
 				.waitForPageLoad()
-				.clickOnAnswer("1 to 2 week ago")
+				.clickOnAnswer("1 to 2 weeks ago")
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
 		WhatKindOfArthritisPage whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
