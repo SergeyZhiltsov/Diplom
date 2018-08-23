@@ -2,19 +2,19 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All" verbose="4" parallel="classes" thread-count="2">
 
-    <test name="Regression1">
-        <packages>
-            <package name="com.acurian.selenium.tests.CC" />
-            <package name="com.acurian.selenium.tests.OLS" />
-        </packages>
-    </test>
-
-    <!--<test name="TC inner test">-->
-        <!--<classes>-->
-            <!--<class name="com.acurian.selenium.tests.OLS.Test1"/>-->
-            <!--<class name="com.acurian.selenium.tests.OLS.Test2"/>-->
-        <!--</classes>-->
+    <!--<test name="Regression1">-->
+        <!--<packages>-->
+            <!--<package name="com.acurian.selenium.tests.CC" />-->
+            <!--<package name="com.acurian.selenium.tests.OLS" />-->
+        <!--</packages>-->
     <!--</test>-->
+
+    <test name="TC inner test">
+        <classes>
+            <class name="com.acurian.selenium.tests.CC.KAD_4631_CC"/>
+            <!--<class name="com.acurian.selenium.tests.OLS.Test2"/>-->
+        </classes>
+    </test>
 
     <!--<test name="TC C 020">-->
         <!--<classes>-->
