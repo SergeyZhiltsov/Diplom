@@ -95,8 +95,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
         String siteName = "AUT_3973";             
         String zipCode = "08204";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

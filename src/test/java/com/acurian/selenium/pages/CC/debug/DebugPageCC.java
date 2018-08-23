@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC.debug;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +10,6 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DebugPageCC extends MainPageCC{
 
@@ -100,7 +98,7 @@ public class DebugPageCC extends MainPageCC{
                 .getText();
         String[] tempArr = temp.split("\n");
         closeDebugWindow();
-        logTextToAllure("Protocol(s)="+tempArr);
+        logTextToAllure("Protocol(s) got ="+ Arrays.toString(tempArr));
         return tempArr;
     }
 

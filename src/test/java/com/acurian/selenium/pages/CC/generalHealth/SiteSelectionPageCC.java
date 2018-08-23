@@ -48,7 +48,7 @@ public class SiteSelectionPageCC extends MainPageCC {
     public SiteSelectionPageCC waitForPageLoad(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
 

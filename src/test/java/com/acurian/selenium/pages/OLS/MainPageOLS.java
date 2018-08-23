@@ -33,7 +33,10 @@ public class MainPageOLS extends BasePage{
         ngDriver.waitForAngularRequestsToFinish();
     }
 
+    @Step
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
+        logTextToAllure(this.getClass().getSimpleName() + " class with:");
+        textToAttachment(titleExpected,"Title text");
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         try {
@@ -86,6 +89,7 @@ public class MainPageOLS extends BasePage{
         return (T)page;
     }
 
+    @Step
     public MainPageOLS pidFromDbToLog(String env){
         DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
@@ -94,6 +98,7 @@ public class MainPageOLS extends BasePage{
         return this;
     }
 
+    @Step
     public MainPageOLS getRadiantDbToLog(String env){
         DBConnection dbCon = new DBConnection();
 //        pid = PassPID.getInstance().getPidNumber();
@@ -102,6 +107,7 @@ public class MainPageOLS extends BasePage{
         return this;
     }
 
+    @Step
     public MainPageOLS getAnomalyDbToLog(String env){
         DBConnection dbCon = new DBConnection();
 //        pid = PassPID.getInstance().getPidNumber();
@@ -112,6 +118,12 @@ public class MainPageOLS extends BasePage{
 
     public String getPid() {
         return pid;
+    }
+
+    @Override
+    public String toString() {
+        Class aClass = this.getClass();
+        return aClass.getSimpleName() + " - " + aClass.getPackage().toString();
     }
 
 

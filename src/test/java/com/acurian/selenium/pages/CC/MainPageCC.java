@@ -1,17 +1,17 @@
 package com.acurian.selenium.pages.CC;
 
 import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.RadiantResults;
-
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
@@ -38,8 +38,18 @@ public class MainPageCC extends BasePage{
     }
 
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected){
+        logTextToAllure(this.getClass().getSimpleName() + " class with:");
+        textToAttachment(titleExpected,"Title text");
         waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        driverWait.waitforVisibility(titleText);
+        try {
+            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        }
+        catch (TimeoutException ex){
+            Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
+            throw ex;
+        }
+//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
     }
 
     protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText){
@@ -84,6 +94,12 @@ public class MainPageCC extends BasePage{
     public <T extends MainPageCC> T clickNextButton(T page) {
         nextButton.click();
         return (T)page;
+    }
+
+    @Override
+    public String toString() {
+        Class aClass = this.getClass();
+        return aClass.getSimpleName() + " - " + aClass.getPackage().toString();
     }
 
     @Step
