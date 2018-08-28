@@ -10,11 +10,15 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class HaveYouSmokedCigarettes extends MainPageOLS{
 
     public final String titleExpected = "Have you ever smoked cigarettes, cigars, or e-cigarettes?";
+    
+    public final String titleExpectedNew = "Have you ever smoked cigarettes?";
+    
+    
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS37_')]//span[contains(@class,'visible-md-inline')]")
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]")
     List<WebElement> checkBoxList;
 
     public HaveYouSmokedCigarettes() {
@@ -24,6 +28,12 @@ public class HaveYouSmokedCigarettes extends MainPageOLS{
     @Step
     public HaveYouSmokedCigarettes waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+    
+    @Step
+    public HaveYouSmokedCigarettes waitForPageLoadNew() {
+        waitForPageLoadMain(titleText, titleExpectedNew);
         return this;
     }
 
