@@ -93,6 +93,14 @@ public class MainPageOLS extends BasePage{
         logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
         return this;
     }
+    
+    public MainPageOLS childPidFromDbToLog(String env){
+        DBConnection dbCon = new DBConnection();
+        pid = PassPID.getInstance().getPidNumber();
+        dbCon.dbReadChilPID(env, pid);
+        logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
+        return this;
+    }
 
     public MainPageOLS getRadiantDbToLog(String env){
         DBConnection dbCon = new DBConnection();

@@ -308,13 +308,6 @@ public class KAD_4631_CC extends BaseTest{
  		        .waitForPageLoad()
  		        .pidFromDbToLog(env);
         
-        
-        
-        
-        
-        
-        
-        
     }
 
 }

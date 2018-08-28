@@ -12,6 +12,8 @@ import java.util.List;
 public class SmokedCigarettesPageCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever smoked cigarettes, cigars, or e-cigarettes?";
+    
+    public final String titleExpected1 = "Have you ever smoked cigarettes?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -27,6 +29,13 @@ public class SmokedCigarettesPageCC extends MainPageCC {
     public SmokedCigarettesPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        return this;
+    }
+    
+    @Step
+    public SmokedCigarettesPageCC waitForPageLoadNew() {
+        waitForAnimation();
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected1));
         return this;
     }
 
