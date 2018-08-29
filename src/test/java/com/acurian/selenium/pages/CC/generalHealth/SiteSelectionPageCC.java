@@ -24,6 +24,15 @@ public class SiteSelectionPageCC extends MainPageCC {
             "\n" +
             "[Offer second closest site if necessary and if reasonable]\n" +
             "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that site isn't very convenient. We have a couple of options: we can make a note to contact you if a more convenient site becomes available. Or, I can send your information over to the site in (town), and you can talk to them about the study and see if they might be able to help arrange transportation for you. Which would you prefer?\"";
+    
+    public final String titleExpectedMCC = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
+            "\n" +
+            "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetic nerve pain\" or \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered:\n" + 
+            "“Based on your answers, you are not an exact match for the study referenced in the letter or ad about specific diabetes complications to which you originally responded. However, you have prequalified for another study for people with diabetes.”]\n" +
+            "\n" +
+            "[Offer second closest site if necessary and if reasonable]\n" +
+            "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and you can talk to them about the study. Which would you prefer?\"";
+
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
@@ -49,6 +58,14 @@ public class SiteSelectionPageCC extends MainPageCC {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
         waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+    
+    @Step
+    public SiteSelectionPageCC waitForPageLoadMCC(String studyName) {
+        waitForAnimation();
+        String titleExpected = String.format(titleExpectedMCC, studyName);
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

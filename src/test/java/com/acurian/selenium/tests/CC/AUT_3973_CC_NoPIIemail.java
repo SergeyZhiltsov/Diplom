@@ -84,7 +84,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class AUT_3973_CC_NoPIIemail extends BaseTest{
 	
 	
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)  
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)  
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
     public void AUTO_3973_CC_NoPIIemail(final String username, final String password) {
