@@ -9,34 +9,31 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DoAnyOftheFollowingAdditionalDiagnosesOLS extends MainPageOLS{
+public class WhichOfTheFollowingBreathingLungPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Do any of the following additional diagnoses apply to you?\n" +
+    public final String titleExpected = "You reported that you have breathing, lung, or respiratory issues.\n" +
+            "Which of the following have you been diagnosed with?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath =  Locators.CHEKBOX_LIST_OLS)
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public DoAnyOftheFollowingAdditionalDiagnosesOLS() {
+    public WhichOfTheFollowingBreathingLungPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DoAnyOftheFollowingAdditionalDiagnosesOLS waitForPageLoad() {
+    public WhichOfTheFollowingBreathingLungPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DoAnyOftheFollowingAdditionalDiagnosesOLS clickOnAnswers(String ...answerText) {
+    public WhichOfTheFollowingBreathingLungPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
-//        List<String> answerTextList = Arrays.asList(answerText);
-//        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-//                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label")),5,5).click().build().perform());
-//        waitForAnimation();
         return this;
     }
 
@@ -44,6 +41,4 @@ public class DoAnyOftheFollowingAdditionalDiagnosesOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
-
-
 }
