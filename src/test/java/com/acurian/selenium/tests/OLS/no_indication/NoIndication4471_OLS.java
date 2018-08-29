@@ -311,7 +311,7 @@ public class NoIndication4471_OLS extends BaseTest {
 
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "160")
+                .setAll("5", "5", "160");
 
 
 
