@@ -13,7 +13,7 @@ import java.util.List;
 public class UnqualifiedCloseOLS extends MainPageOLS{
 
     //Pediatric module
-    public final String titleExpected = "We certainly appreciate your interest in participating. Unfortunately, from the information you have provided, you would not be a candidate for this study.";
+    public final String titleExpected = "Unfortunately, from the information you have provided, you would not be a candidate at this time. We appreciate your interest in participating.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText1;
@@ -23,7 +23,8 @@ public class UnqualifiedCloseOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]")
     WebElement titleText3;
-
+    
+    @FindBy(xpath = "//div[@class='question']")
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")

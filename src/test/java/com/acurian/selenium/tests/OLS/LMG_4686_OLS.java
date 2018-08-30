@@ -56,7 +56,7 @@ public class LMG_4686_OLS extends BaseTest{
         String phoneNumberMIG = "AUTAMS1MIG";
         String protocol1 = "I5Q_MC_CGAW";       
         String studyName =  "a migraine"; 
-        String siteName = "AUT_LMG";
+        String siteName = "LMG_4686";
         String zip_Code = "19341";
         String site_Indication = "Migraines";
         
@@ -160,7 +160,7 @@ public class LMG_4686_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("Topamax, Qudexy, Trokendi, or topiramate")
 				.clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6008", protocol1);
+		//debugPageOLS.checkProtocolsContainsForQNumber("QS6008", protocol1);
 		debugPageOLS.back();
 		followingMedicationsToPreventOLS
 				.waitForPageLoad()

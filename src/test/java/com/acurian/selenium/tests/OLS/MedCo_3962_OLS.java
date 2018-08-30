@@ -74,7 +74,7 @@ import com.acurian.selenium.pages.OLS.shared.WhenLastTimeYouHadHeartProceduresOL
 
 public class MedCo_3962_OLS extends BaseTest {
 	
-	@Test
+	@Test(enabled = false)
 	public void medCo_3962_OLS() {
 		String phoneNumber = "AUTAMS1MED";		
 		String protocol1 = "MDCO_PCS_17_04";
