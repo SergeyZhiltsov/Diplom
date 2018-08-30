@@ -19,7 +19,7 @@ import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
@@ -50,13 +50,12 @@ public class Chronic_4471_OLS extends BaseTest{
         String protocol2 = "MK_7264_030";
         String studyName =  "a chronic cough"; 
         String siteName = "AUT_MCC";
-        String zipCode = "19341";
-        String site_Indication = "Lupus (SLE)";
+        String zipCode = "19341";        
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
         String time = String.valueOf(Instant.now().getEpochSecond());
         time = time.substring(time.length()-4);
-        String eMailId = "qa.acurian_"+time+"3@gmail.com";
+        String eMailId = "qa.acurian@gmail.com";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -330,6 +329,20 @@ public class Chronic_4471_OLS extends BaseTest{
 		        .waitForPageLoad()
 		        .clickOkInPopUp()
 		        .setSignature()
+		        .getPage(new HumanAPIOLS())
+		        .waitForPageLoad()		        
+		        .connectBTN()
+		        .switchToAPI()
+		        .waitForProvider()
+		        .clickANY()
+		        .waitSearchAll()
+		        .search("cleveland clinic")
+		        .waitProvider()
+		        .clickProvider()
+		        .typeUserName("democlinical@gmail.com")
+		        .typePWD("password")
+		        .clickConnect()
+		        .waitToClickNext()
 		        .clickNextButton(new ThankYouCloseSimplePageOLS())
 		        .waitForPageLoad()
 		        .clickNextButton(new AboutHealthPageOLS())
