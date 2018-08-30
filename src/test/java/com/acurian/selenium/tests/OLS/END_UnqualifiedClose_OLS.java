@@ -79,17 +79,17 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           
-		           .waitForPageLoad()
-		           .maximizePage();
+		         .waitForPageLoad()
+		         .maximizePage();
 		Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for an endometriosis study!"), true);
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-		           .setDate("10/10/1980")
-		           .clickNextButton(new ZipCodePageOLS());
+		         .setDate("10/10/1980")
+		         .clickNextButton(new ZipCodePageOLS());
 				
 		GenderPageOLS genderPageOLS = zipCodePageOLS
-		          .waitForPageLoad()
-		          .typeZipCode("19044")
-		          .clickNextButton(new GenderPageOLS());
+		         .waitForPageLoad()
+		         .typeZipCode("19044")
+		         .clickNextButton(new GenderPageOLS());
 		
 		FollowingGynecologicalConditionOLS followingGynecologicalConditionOLS = genderPageOLS
 				.waitForPageLoad()
@@ -97,58 +97,60 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
 				.clickNextButton(new FollowingGynecologicalConditionOLS());
 		
 		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = followingGynecologicalConditionOLS
-				    .waitForPageLoad()
-	                .clickOnAnswers("None of the above")
-	                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        
+				.waitForPageLoad()
+	            .clickOnAnswers("None of the above")
+	            .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+		
         
         //----------*******NEW GENERAL HEALTH Questions********----------     
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswers("None of the above")
+		        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")        
-        .clickNextButton(new ApproximateHeightPageOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswers("None of the above")        
+		        .clickNextButton(new ApproximateHeightPageOLS())
 		//----------ProvideHeight-Weight Page--------------------
-        .waitForPageLoad()
-        .setAll("5", "5", "160")
-        .clickNextButton(new ChildrenUnderPageOLS())
+		        .waitForPageLoad()
+		        .setAll("5", "5", "160")
+		        .clickNextButton(new ChildrenUnderPageOLS())
 		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
+		        .waitForPageLoad()
+		        .clickOnAnswer("Yes")
+		        .clickNextButton(new HouseholdHavePageOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswers("None of the above")
+		        .clickNextButton(new TheStudySitePageOLS())
+		        .waitForPageLoad()
 		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
-        .clickNextButton(new EthnicBackgroundPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Prefer not to answer")
-        .clickNextButton(new PersonalDetails())
+		        .clickOnAnswer("Public transportation")
+		        .clickNextButton(new WhatMedicalCoveragePageOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswers("No, I have no coverage")
+		        .clickNextButton(new EthnicBackgroundPageOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswers("Prefer not to answer")
+		        .clickNextButton(new PersonalDetails())
 		//----------PII (IdentificationPageOLS) Page--------------------
-		.waitForPageLoad()
-        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-        .clickNextButton(new UnqualifiedCloseOLS())
-        .waitForPageLoad()
-        .clickOnAnswer("Yes - I will continue with the next few questions");
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-        siteSelectionPageOLS.getPID()
-        .clickNextButton(new DateOfBirthPageOLS())
-		.waitForPageLoad()
-        .pidFromDbToLog(env);
+				.waitForPageLoad()
+		        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+		        .clickNextButton(new UnqualifiedCloseOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswer("Yes - I will continue with the next few questions");
+		        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+		        siteSelectionPageOLS.getPID()
+		        .clickNextButton(new DateOfBirthPageOLS())
+				.waitForPageLoad()
+		        .pidFromDbToLog(env);
+		        
 
 		//--------------------Standalone study Switch- 4295-----------
 		//Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a study for diabetics!"), true);
 		ConfigPageOLS configPageOLS = new ConfigPageOLS();
-		configPageOLS.getPID();
-		configPageOLS.openDebugWindow();
+		configPageOLS
+				.getPID()
+				.openDebugWindow();
 		Assert.assertEquals(configPageOLS.getTextfromStudySwitch(), ExpStudySwich,"studySwitch from AMS1 to Standalone 4733 failed");  
 	}
 }
