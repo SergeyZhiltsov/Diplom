@@ -23,7 +23,7 @@ import java.util.List;
 
 public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @TestCaseId("00033")
     @Description("Crohn's_3889 OLS with HS")
     public void Crohns3889StudySwitch4295OLS() {
@@ -42,6 +42,7 @@ public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
 
+        
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
