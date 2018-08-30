@@ -1,8 +1,14 @@
 package com.acurian.selenium.tests.OLS.no_indication;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.ChronicCough.*;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
@@ -16,18 +22,18 @@ import java.util.List;
 
 public class NoIndication4471_OLS extends BaseTest {
 
-    @Test(enabled = false)
+    @Test
     @TestCaseId("00034")
     @Description("No Indication 4471")
-    public void Crohns_3485_OLS_HS() {
+    public void chronicCough_4471_OLS_NI() {
         String phoneNumber = "AUTAMS1GEN";
         String protocol1 = "MK_7264_027";
         String protocol2 = "MK_7264_030";
         List<String> protocols = Arrays.asList(protocol1, protocol2);
-        String studyName = "a Crohn's";
-        String siteName = "AUT_CRN_3485_Site";
+        String studyName = "a chronic cough study";
+        String siteName = "AUT_MCC";
         String debugSiteName = "";
-        String zipCode = "19044";
+        String zipCode = "19341";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -123,6 +129,7 @@ public class NoIndication4471_OLS extends BaseTest {
                 .back();
         whichOfTheFollowingBreathingLungPageOLS
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Chronic cough")
                 .clickNextButton(otherThanSkinCancerPageOLS);
 
@@ -293,7 +300,7 @@ public class NoIndication4471_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS61", protocol1, protocol2)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -302,25 +309,174 @@ public class NoIndication4471_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS61", protocol1, protocol2)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        approximateHeightPageOLS
+        HowLongYouHadChronicCoughOLS howLongYouHadChronicCoughOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "160");
+                .setAll("5", "5", "160")
+                .clickNextButton(new HowLongYouHadChronicCoughOLS());
 
+        TreatingYourChronicCoughOLS treatingYourChronicCoughOLS = howLongYouHadChronicCoughOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 6 months")
+                .clickNextButton(new TreatingYourChronicCoughOLS());
+        treatingYourChronicCoughOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6203", protocol1, protocol2)
+                .back();
+        howLongYouHadChronicCoughOLS
+                .waitForPageLoad()
+                .clickOnAnswer("6 to 11 months")
+                .clickNextButton(treatingYourChronicCoughOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6203", protocol1, protocol2)
+                .back();
+        howLongYouHadChronicCoughOLS
+                .waitForPageLoad()
+                .clickOnAnswer("1 year or longer")
+                .clickNextButton(treatingYourChronicCoughOLS);
 
+        HaveYouSmokedCigarettes haveYouSmokedCigarettes = treatingYourChronicCoughOLS
+                .waitForPageLoad()
+                .clickOnAnswers("No, have not treated")
+                .clickNextButton(new HaveYouSmokedCigarettes());
+        haveYouSmokedCigarettes
+                .waitForPageLoadNew()
+                .back();
+        DoYouStillHaveCoughOLS doYouStillHaveCoughOLS = treatingYourChronicCoughOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Yes, with prescription", "Yes, with over the counter")
+                .clickNextButton(new DoYouStillHaveCoughOLS());
 
+        doYouStillHaveCoughOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(haveYouSmokedCigarettes);
 
+        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettes
+                .waitForPageLoadNew()
+                .clickOnAnswers("No, I never smoked")
+                .clickNextButton(new DiagnosedWithFollowingConditionsOLS())
+                .waitForPageLoad();
+        diagnosedWithFollowingConditionsOLS.back();
 
+        HowManyCigarettesOLS howManyCigarettesOLS = haveYouSmokedCigarettes
+                .waitForPageLoadNew()
+                .clickOnAnswers("Yes, I currently smoke")
+                .clickNextButton(new HowManyCigarettesOLS())
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6206", protocol1, protocol2);
+        debugPageOLS.back();
 
+        QuitSmokingOLS quitSmokingOLS = haveYouSmokedCigarettes
+                .waitForPageLoadNew()
+                .clickOnAnswers("I used to smoke, but have since quit")
+                .clickNextButton(new QuitSmokingOLS());
 
+        quitSmokingOLS
+                .waitForPageLoad()
+                .clickOnAnswer("I quit smoking within the past year")
+                .clickNextButton(new HowManyCigarettesOLS())
+                .waitForPageLoad1();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6207", protocol1, protocol2);
+        debugPageOLS.back();
+        quitSmokingOLS
+                .waitForPageLoad()
+                .clickOnAnswer("I quit smoking more than a year ago")
+                .clickNextButton(new HowManyCigarettesOLS());
 
+        howManyCigarettesOLS
+                .waitForPageLoad1()
+                .enterYears("20")
+                .howManyCigarettes("21")
+                .clickNextButton(new DiagnosedWithFollowingConditionsOLS())
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6209", protocol1, protocol2);
+        debugPageOLS.back();
+        howManyCigarettesOLS
+                .waitForPageLoad1()
+                .enterYears("15")
+                .clickNextButton(new DiagnosedWithFollowingConditionsOLS());
 
+        ACEInhibitorsLS aCEInhibitorsLS = diagnosedWithFollowingConditionsOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Post-Nasal Drip (Upper Airway Cough Syndrome)", "Lung Cancer", "Tuberculosis (TB)")
+                .clickNextButton(new ACEInhibitorsLS())
+                .waitForPageLoad();
+        aCEInhibitorsLS.back();
+        diagnosedWithFollowingConditionsOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ACEInhibitorsLS());
+
+        ExperienceWithYourChronicCoughOLS experienceWithYourChronicCoughOLS = aCEInhibitorsLS
+                .waitForPageLoad()
+                .clickOnAnswers("Benazepril (Brand name: Lotensin)", "Captopril (Brand name: Capoten)", "Cilazapril (Brand name: Inhibace)", "Enalapril (Brand names: Vasotec, Renitec, Berlipril, Enap, Enapren)")
+                .clickOnAnswers("Fosinopril (Brand names: Fositen, Monopril)", "Imidapril (Brand name: Tanatril)", "Lisinopril (Brand names: Listril, Lopril, Novatec, Prinivil, Zestril, Lisidigal)")
+                .clickOnAnswers("Perindopril (Brand names: Coversyl, Coversum, Aceon)", "Quinapril (Brand name: Accupril)", "Ramipril (Brand names: Altace, Prilace, Ramace, Ramiwin, Triatec, Tritace)")
+                .clickOnAnswers("Trandolapril ( Brand names: Mavik, Odrik, Gopten)", "Zofenopril (Brand names: Zofenil, Bifril, Zopranol)")
+                .clickNextButton(new ExperienceWithYourChronicCoughOLS())
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6211", protocol1, protocol2);
+        debugPageOLS.back();
+        aCEInhibitorsLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ExperienceWithYourChronicCoughOLS());
+
+        SymptomsGetBetterOLS symptomsGetBetterOLS = experienceWithYourChronicCoughOLS
+                .waitForPageLoad()
+                .clickOnAnswers("A runny or stuffy nose", "Frequent throat clearing and sore throat", "Hoarseness", "Coughing up blood", "Heartburn or a sour taste in your mouth")
+                .clickNextButton(new SymptomsGetBetterOLS());
+
+        ChildrenUnderPageOLS childrenUnderPageOLS = symptomsGetBetterOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ChildrenUnderPageOLS());
+
+        childrenUnderPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new TheStudySitePageOLS())
+                .waitForPageLoad()
+                //-------------------PEDIATRIC QUESTIONS-----------------------------
+                .clickOnAnswer("Public transportation")
+                .clickNextButton(new WhatMedicalCoveragePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("No, I have no coverage")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS())
+                //----------PII (IdentificationPageOLS) Page--------------------
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+
+                //----------SiteSelection Page--------------------
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoad("Chronic Cough")
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
 
 
 

@@ -72,7 +72,7 @@ public class MainPageOLS extends BasePage{
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String ...answerText){
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label")),5,5).click().build().perform());
+                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label/span[contains(@class,'debug-question-helper')]")),5,5).click().build().perform());
 //            for (WebElement el : checkBoxList) {
 //                if (answerTextList.contains(el.getText())) {
 ////                scrollToElement(el, true);
