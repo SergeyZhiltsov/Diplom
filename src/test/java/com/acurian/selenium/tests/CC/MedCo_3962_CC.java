@@ -75,7 +75,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class MedCo_3962_CC extends BaseTest{
 	
-	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
 	
 	public void medCo_3962_OLS(final String username, final String password) {
         String phoneNumber = "AUTAMS1MED";

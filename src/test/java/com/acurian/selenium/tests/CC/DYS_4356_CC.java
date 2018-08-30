@@ -62,7 +62,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class DYS_4356_CC extends BaseTest{
 	
-	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
+	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class,enabled = false)
 	
 	public void dYSLI_4356_CC(final String username, final String password) {
         String phoneNumberDYS = "AUTAMS1DYS";
