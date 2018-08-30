@@ -58,7 +58,7 @@ public class LMG_4686_CC extends BaseTest{
         String studyName = "migraine";
         String studyName1 = "migraine";
     //    String env = "STG";
-        String siteName = "AUT_LMG";
+        String siteName = "LMG_4686";
         String site_indication = "Ankylosing Spondylitis";
         String zipCode  = "19341";
         
@@ -214,7 +214,7 @@ public class LMG_4686_CC extends BaseTest{
 	   			.clickOnAnswers("Topamax, Qudexy, Trokendi, or topiramate", "Depacon or valproate, Depakote or divalproex", "Elavil or amitriptyline", "Sibelium or Flunarizine")
 	   			.clickOnAnswers("Atacand or candesartan", "Timolol", "Botox injections (botulinum toxin) – specifically for chronic migraines")
 	   			.clickNextButton(new MedicationsToTreatYourMigraineCC());
-       debugPageCC.checkProtocolsContainsForQNumber("Q0017154-QS6008-STUDYQUES", protocol1);
+       //debugPageCC.checkProtocolsContainsForQNumber("Q0017154-QS6008-STUDYQUES", protocol1);
        debugPageCC.back();
        medicationsToPreventMigrainesCC
 				.waitForPageLoad()
@@ -405,12 +405,6 @@ public class LMG_4686_CC extends BaseTest{
 		.waitForPageLoad()
 		.clickNextButton(selectActionPageCC)
 		.waitForPageLoad()
-		.pidFromDbToLog(env);
-		   
-       
-       
-       
-       
+		.pidFromDbToLog(env);       
 	}
-
 }

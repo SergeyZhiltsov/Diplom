@@ -13,8 +13,10 @@ import com.acurian.selenium.pages.CC.ChronicCough.QuitSmokingCC;
 import com.acurian.selenium.pages.CC.ChronicCough.StillHaveYourCoughCC;
 import com.acurian.selenium.pages.CC.ChronicCough.SymptomsGetBetterCC;
 import com.acurian.selenium.pages.CC.ChronicCough.TreatingYourChronicCoughCC;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
@@ -358,11 +360,15 @@ public class Chronic_4471_CC extends BaseTest{
 				.waitForPageLoad()
 				.setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
 				.clickNextButton(new SiteSelectionPageCC())
-				.waitForPageLoadMCC("a chronic cough study")
+				.waitForPageLoadMCC(studyName)
 				.getPID()
 				.clickOnAnswer(siteName)
-				.clickNextButton(new QualifiedClose2PageCC())        		
-				.waitForPageLoad()        		
+				.clickNextButton(new HSGeneralCC())        		
+				.waitForPageLoad("Chronic Cough")
+				.clickNextButton(new DoctorInformationCollectionPageCC())
+				.waitForPageLoad()
+				.clickNextButton(new HSMedicalRecordsPageCC())
+				.waitForPageLoad()
 				.clickNextButton(new ThankYouCloseSimplePageCC())
 				.waitForPageLoad()
 				.clickNextButton(selectActionPageCC)

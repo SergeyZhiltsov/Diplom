@@ -74,7 +74,7 @@ public class AKC_4691_OLS extends BaseTest{
         List<String> protocols = Arrays.asList("ISIS 703802_CS2");
         String protocol1 = "ISIS 703802_CS2";
         String studyName = "diabetics";
-        String siteName = "AUT_AKC";   
+        String siteName = "AKC_4691";
         String zipCode = "19355";
         
         String env = System.getProperty("acurian.env");

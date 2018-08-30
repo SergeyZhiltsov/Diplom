@@ -11,7 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class AreYouCurrentlyTakingAnyOfTheFollowingMedications_CC extends MainPageCC{
 
-    public final String titleExpected = "The following medications are prescribed for men who have been diagnosed with a low testosterone (male hormone) level or hypogonadism.\n" +
+    public final String titleExpected = "The following medications are prescribed for men who have been diagnosed with a low testosterone (male hormone) level or hypogonadism. (Agent note: tes-TOS-ter-one, hi-pō-gō-nad-izm)\n" +
     		"Are you currently taking any of the following medications?\n" +
     		"Agent Note: Select all that apply";
 

@@ -15,31 +15,36 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     public final String titleExpected = "What is your date of birth?";
 
     public final String titleLBPExpected = "Let's get started to see if you qualify for a low back pain study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $900\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleMIGExpected = "Let's get started to see if you qualify for a migraine study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $1,150\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleLMGExpected = "Let's get started to see if you qualify for a migraine study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $450\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleKADExpected = "Let's get started to see if you qualify for an eczema (atopic dermatitis) study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $1750\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleLPSExpected = "Let's get started to see if you qualify for a lupus study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
@@ -52,120 +57,140 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study medication";
     
     public final String titleDYExpected = "Let's get started to see if you qualify for a cholesterol or heart health study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
     public final String titleDiabetes_4356A_Expected = "Let's get started to see if you qualify for a study for diabetics!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $850\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleAKC_4691_Expected = "Let's get started to see if you qualify for a study for people with diabetes and related health conditions!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $850\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleOA_Expected = "Let's get started to see if you qualify for an arthritis study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $1,000\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleCrohns_3485_Expected = "Let's get started to see if you qualify for a Crohn's study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $700\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
     public final String titleSUI_Expected = "Let's get started to see if you qualify for a women's bladder control study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleInsomnia_Expected = "Let's get started to see if you qualify for an insomnia study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $1,250\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
     public final String titleAsthma_4337_Expected = "Let's get started to see if you qualify for an asthma study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $900\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
     public final String titleMDD_3159_Expected = "Let's get started to see if you qualify for a depression study!\n" +
+    		"\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleENDExpected = "Let's get started to see if you qualify for an endometriosis study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
     public final String titleHTNExpected = "Let's get started to see if you qualify for a high blood pressure study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $550\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
     public final String titleUF_4384_Expected = "Let's get started to see if you qualify for a uterine fibroids study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleMEDExpected = "Let's get started to see if you qualify for a high cholesterol and heart disease study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleDPNExpected = "Let's get started to see if you qualify for a study for diabetics!\n" +
+    		"\n" +
     		"Those who qualify may receive*:\n" +
     		"Payment which varies by study up to $300\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
     
     public final String titleCLHExpected = "Let's get started to see if you qualify for a cluster headache study!\n" +
+    		"\n" +
     		"Those who qualify may receive*:\n" +
     		"Payment which varies by study up to $300\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
 
     public final String titleGmegaExpected =  "Let's get started to see if you qualify for a study!\n" +
-            "Those who qualify may receive*:\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
             "Payment which varies by study up to $1,000\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
     public final String titleLOWT_3017_Expected ="Let's get started to see if you qualify for a study!\n" +
+    		"\n" +
     		"Those who qualify may receive*:\n" +
     		"Payment which varies by study up to $600\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
     
     public final String titleIBD_Expected ="Let's get started to see if you qualify for a Crohn's or colitis study!\n" +
+    		"\n" +
     		"Those who qualify may receive*:\n" +
     		"Payment which varies by study up to $700\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
     
     public final String titleDerm_Expected ="Let's get started to see if you qualify for an eczema (atopic dermatitis) study!\n" +
+    		"\n" +
     		"Those who qualify may receive*:\n" +
     		"Payment which varies by study up to $800\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
     
     public final String titelAutism_Expected = "Let's get started to see if you qualify for an autism spectrum disorder study!\n" +
+    		"\n" +
     		"Those who qualify may receive*:\n" +
     		"Payment which varies by study up to $750\n" +
     		"No-cost study-related care from doctors\n" +
