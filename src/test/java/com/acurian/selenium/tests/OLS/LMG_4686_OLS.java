@@ -23,6 +23,7 @@ import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.EsignatureFormOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
@@ -56,7 +57,7 @@ public class LMG_4686_OLS extends BaseTest{
         String phoneNumberMIG = "AUTAMS1MIG";
         String protocol1 = "I5Q_MC_CGAW";       
         String studyName =  "a migraine"; 
-        String siteName = "LMG_4686";
+        String siteName = "AUT_LMG";
         String zip_Code = "19341";
         String site_Indication = "Migraines";
         
@@ -531,13 +532,24 @@ public class LMG_4686_OLS extends BaseTest{
 		        .waitForPageLoad()        
 		        .clickOkInPopUp()
 		        .setSignature()
-		        .getPage(new ThankYouCloseSimplePageOLS())
+		        .getPage(new HumanAPIOLS())
+		        .waitForPageLoad()		        
+		        .connectBTN()
+		        .switchToAPI()
+		        .waitForProvider()
+		        .clickANY()
+		        .waitSearchAll()
+		        .search("cleveland clinic")
+		        .waitProvider()
+		        .clickProvider()
+		        .typeUserName("democlinical@gmail.com")
+		        .typePWD("password")
+		        .clickConnect()
+		        .waitToClickNext()
+		        .clickNextButton(new ThankYouCloseSimplePageOLS())
 		        .waitForPageLoad()
 		        .clickNextButton(new AboutHealthPageOLS())
 		        .waitForPageLoad()
 		        .pidFromDbToLog(env);
-		
-		
     }
-
 }

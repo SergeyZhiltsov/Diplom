@@ -41,7 +41,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class Chronic_4471_OLS extends BaseTest{
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @TestCaseId("0019")
     @Description("4471 Chronic Cough")
     public void chronicCough_4471() {

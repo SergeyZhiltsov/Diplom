@@ -17,6 +17,7 @@ import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
@@ -347,14 +348,24 @@ public class Lupus_4442_OLS extends BaseTest{
         .waitForPageLoad()
         .clickOkInPopUp()
         .setSignature()
-        .getPage(new ThankYouCloseSimplePageOLS())
+        .getPage(new HumanAPIOLS())
+        .waitForPageLoad()		        
+        .connectBTN()
+        .switchToAPI()
+        .waitForProvider()
+        .clickANY()
+        .waitSearchAll()
+        .search("cleveland clinic")
+        .waitProvider()
+        .clickProvider()
+        .typeUserName("democlinical@gmail.com")
+        .typePWD("password")
+        .clickConnect()
+        .waitToClickNext()
+        .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .threadSleep(10000);
-        new AboutHealthPageOLS()
         .waitForPageLoad()
         .pidFromDbToLog(env);
-		
     }
-
 }
