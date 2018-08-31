@@ -20,6 +20,7 @@ import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSCrohns2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SiteSelection;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
@@ -318,11 +319,23 @@ public class RA_2821 extends BaseTest {
         .waitForPageLoad()        
         .clickOkInPopUp()
         .setSignature()
-        .getPage(new ThankYouCloseSimplePageOLS())
+        .getPage(new HumanAPIOLS())
+        .waitForPageLoad()		        
+        .connectBTN()
+        .switchToAPI()
+        .waitForProvider()
+        .clickANY()
+        .waitSearchAll()
+        .search("cleveland clinic")
+        .waitProvider()
+        .clickProvider()
+        .typeUserName("democlinical@gmail.com")
+        .typePWD("password")
+        .clickConnect()
+        .waitToClickNext()
+        .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
-        .threadSleep(10000);
-        new AboutHealthPageOLS()
         .waitForPageLoad()
         .pidFromDbToLog(env);
 	}

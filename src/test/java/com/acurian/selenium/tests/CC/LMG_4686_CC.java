@@ -58,7 +58,7 @@ public class LMG_4686_CC extends BaseTest{
         String studyName = "migraine";
         String studyName1 = "migraine";
     //    String env = "STG";
-        String siteName = "LMG_4686";
+        String siteName = "AUT_LMG";
         String site_indication = "Ankylosing Spondylitis";
         String zipCode  = "19341";
         
