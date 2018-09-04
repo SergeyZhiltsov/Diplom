@@ -159,18 +159,18 @@ public class LMG_4686_OLS extends BaseTest{
 		
 		followingMedicationsToPreventOLS
 				.waitForPageLoad()
-				.clickOnAnswers("Topamax, Qudexy, Trokendi, or topiramate")
-				.clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
+				//.clickOnAnswers("Topamax, Qudexy, Trokendi, or topiramate")
+				//.clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
 		//debugPageOLS.checkProtocolsContainsForQNumber("QS6008", protocol1);
-		debugPageOLS.back();
-		followingMedicationsToPreventOLS
-				.waitForPageLoad()
-				.clickOnAnswers("Depacon or valproate, Depakote or divalproex", "Elavil or amitriptyline", "Sibelium or Flunarizine", "Timolol")
-				.clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6008", protocol1);
-		debugPageOLS.back();
-		followingMedicationsToPreventOLS
-				.waitForPageLoad()
+		//debugPageOLS.back();
+		//followingMedicationsToPreventOLS
+				//.waitForPageLoad()
+				//.clickOnAnswers("Depacon or valproate, Depakote or divalproex", "Elavil or amitriptyline", "Sibelium or Flunarizine", "Timolol")
+				//.clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
+		//debugPageOLS.checkProtocolsContainsForQNumber("QS6008", protocol1);
+		//debugPageOLS.back();
+		//followingMedicationsToPreventOLS
+				//.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickOnAnswers("Sibelium or Flunarizine", "Timolol")
 				.clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
