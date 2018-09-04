@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -261,19 +262,17 @@ public abstract class BasePage {
         //empty method
     }
 
-    // navigation
-//    @Step
-//    public <T extends BasePage> T clickNextButton(T page) {
-//        nextButton.click();
-//        return (T)page;
-//    }
+    @Attachment
+    public String textToAttachment(String textToAttachment) {
+        return textToAttachment;
+    }
 
-//    @Step
-//    public <T extends BasePage> T clickNextButtonOLS(T page) {
-//        nextButtonOLS.click();
-//        return (T)page;
-//    }
+    @Attachment("{1}")
+    public String textToAttachment(String textToAttachment, String header) {
+        return textToAttachment;
+    }
 
+    @Step
     public void back(){
         driver.navigate().back();
     }

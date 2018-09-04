@@ -15,7 +15,7 @@ import java.util.List;
 public class SiteSelectionPageCC extends MainPageCC {
 
     @Parameter("My PID")
-    private String pidNumber;
+    public String pidNumber;
 
     //%s = studyName variable
     public final String titleExpected = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
@@ -59,7 +59,7 @@ public class SiteSelectionPageCC extends MainPageCC {
     public SiteSelectionPageCC waitForPageLoad(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
     

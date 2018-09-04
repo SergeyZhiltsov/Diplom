@@ -33,7 +33,10 @@ public class MainPageOLS extends BasePage{
         ngDriver.waitForAngularRequestsToFinish();
     }
 
+    @Step
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
+        logTextToAllure(this.getClass().getSimpleName() + " class with:");
+        textToAttachment(titleExpected,"Title text");
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         try {
@@ -69,7 +72,7 @@ public class MainPageOLS extends BasePage{
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String ...answerText){
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label")),5,5).click().build().perform());
+                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label/span[contains(@class,'debug-question-helper')]")),5,5).click().build().perform());
 //            for (WebElement el : checkBoxList) {
 //                if (answerTextList.contains(el.getText())) {
 ////                scrollToElement(el, true);
@@ -86,6 +89,7 @@ public class MainPageOLS extends BasePage{
         return (T)page;
     }
 
+    @Step
     public MainPageOLS pidFromDbToLog(String env){
         DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
@@ -102,6 +106,7 @@ public class MainPageOLS extends BasePage{
         return this;
     }
 
+    @Step
     public MainPageOLS getRadiantDbToLog(String env){
         DBConnection dbCon = new DBConnection();
 //        pid = PassPID.getInstance().getPidNumber();
@@ -110,6 +115,7 @@ public class MainPageOLS extends BasePage{
         return this;
     }
 
+    @Step
     public MainPageOLS getAnomalyDbToLog(String env){
         DBConnection dbCon = new DBConnection();
 //        pid = PassPID.getInstance().getPidNumber();
@@ -120,6 +126,12 @@ public class MainPageOLS extends BasePage{
 
     public String getPid() {
         return pid;
+    }
+
+    @Override
+    public String toString() {
+        Class aClass = this.getClass();
+        return aClass.getSimpleName() + " - " + aClass.getPackage().toString();
     }
 
 

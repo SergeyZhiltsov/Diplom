@@ -40,7 +40,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class SUI_3923_CC extends BaseTest{
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00015")
     @Description("Stress Urinary Incontinence (SUI) - 3923 CC")
     public void SUI_3923_CC(final String username, final String password) {

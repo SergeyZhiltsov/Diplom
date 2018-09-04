@@ -140,23 +140,6 @@ public class DebugPageOLS extends MainPageOLS{
                 + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
         return this;
     }
-
-    @Step
-    public String getProtocolVK() {
-        return getText(protocolVK);
-    }
-
-    @Step
-    public String getProtocol201() {
-        return getText(protocol201);
-
-    }   
- 
-    @Step
-    public String getProtocolR727() {
-        return getText(protocolR727);
-    }
-    
     
     private List<String> getProtocolsForQuestionNumber(String questionNumber){
         openDebugWindow();

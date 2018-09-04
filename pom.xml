@@ -66,10 +66,20 @@
       <version>${testng.version}</version>
       <scope>test</scope>
     </dependency>
+    <!--<dependency>-->
+      <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+      <!--<artifactId>allure-testng-adaptor</artifactId>-->
+      <!--<version>${allure.version}</version>-->
+    <!--</dependency>-->
     <dependency>
-      <groupId>ru.yandex.qatools.allure</groupId>
-      <artifactId>allure-testng-adaptor</artifactId>
-      <version>${allure.version}</version>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-java-migration</artifactId>
+      <version>2.7.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>2.7.0</version>
     </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
@@ -127,7 +137,7 @@
             </property>
             <property>
               <name>listener</name>
-              <value>com.acurian.selenium.listeners.TestListener, ru.yandex.qatools.allure.testng.AllureTestListener</value>
+              <!--<value>com.acurian.selenium.listeners.TestListener</value>-->
             </property>
           </properties>
 
@@ -152,9 +162,9 @@
     <excludeDefaults>true</excludeDefaults>
     <plugins>
       <plugin>
-        <groupId>ru.yandex.qatools.allure</groupId>
-        <artifactId>allure-maven-plugin</artifactId>
-        <version>2.5</version>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.9</version>
         <configuration>
           <reportDirectory>${report.dir}</reportDirectory>
         </configuration>

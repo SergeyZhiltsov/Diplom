@@ -113,7 +113,6 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study medication";
 
     public final String titleMDD_3159_Expected = "Let's get started to see if you qualify for a depression study!\n" +
-    		"\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
@@ -239,6 +238,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 
     //GH pathes
     public final String titleGHExpected = "Let's get started to see if you qualify for a study!\n" +
+            "\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $1,000\n" +
             "No-cost study-related care from doctors\n" +

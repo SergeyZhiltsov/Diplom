@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.generalHealth;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,10 +14,10 @@ public class OtherThanSkinCancerPageCC extends MainPageCC {
 
     public final String titleExpected = "When were you diagnosed with cancer (other than skin cancer)?";
 
-    @FindBy(xpath = "//div[@class='question_text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
     public OtherThanSkinCancerPageCC() {
@@ -25,18 +26,13 @@ public class OtherThanSkinCancerPageCC extends MainPageCC {
 
     @Step
     public OtherThanSkinCancerPageCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText,titleExpected);
         return this;
     }
 
     @Step
     public OtherThanSkinCancerPageCC clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

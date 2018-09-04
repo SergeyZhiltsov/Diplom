@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.CC.shared;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -176,7 +177,7 @@ public class DateOfBirthPageCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='sub_question_text']/div[@class='show-in-cc']")
     WebElement questionTextIBD;
 
-    @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
     
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
@@ -194,6 +195,20 @@ public class DateOfBirthPageCC extends MainPageCC{
     @FindBy(xpath = "//input[@name='year']")
     WebElement yearField;
 
+    //GH pathes
+    public final String titleGHExpected = "If you qualify and participate in a study, you may receive:\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $1,000 for time and travel, for qualified participants who complete study related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+
+    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
+    WebElement questionTextGH;
+
+    @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
+    WebElement titleTextGH;
+
 
     public DateOfBirthPageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -204,28 +219,45 @@ public class DateOfBirthPageCC extends MainPageCC{
         waitForPageLoadMain(questionText, titleExpected);
         return this;
     }
+
+    @Step
+    public DateOfBirthPageCC waitForPageGHLoad() {
+        waitForPageLoadMain(questionTextGH,titleExpected);
+        return this;
+    }
     
     @Step
     public DateOfBirthPageCC waitForPageLoadAKC() {
         waitForPageLoadMain(questionTextAKC, titleExpected);
         return this;
     }
-    
-    
 
     @Step
     public String getQuestionText() {
         return getText(questionText);
     }
-    
-    @Step
-    public String getQuestionTextAKC() {
-        return getText(questionTextAKC);
-    }
 
     @Step
     public String getTitleText() {
         return getText(titleText);
+    }
+
+    //GH methods
+
+    @Step
+    public String getQuestionTextGH() {
+        return getText(questionTextGH);
+    }
+
+    @Step
+    public String getTitleTextGH() {
+        return getText(titleTextGH);
+    }
+
+
+    @Step
+    public String getQuestionTextAKC() {
+        return getText(questionTextAKC);
     }
     
     @Step

@@ -3,6 +3,7 @@ package com.acurian.selenium.pages;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.listeners.EventHandler;
+import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.utils.DriverFactory;
 import com.acurian.selenium.utils.Properties;
 import org.openqa.selenium.Dimension;
@@ -10,8 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
-
+@Listeners(TestListener.class)
 public abstract class BaseTest {
 
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();

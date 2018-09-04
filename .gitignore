@@ -49,6 +49,7 @@ fabric.properties
 # Allure report #
 #################
 report
+.allure
 
 # include lib folder
 !/lib/*
