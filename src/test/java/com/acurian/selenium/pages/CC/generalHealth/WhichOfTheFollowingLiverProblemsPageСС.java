@@ -9,11 +9,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichFollowingMentalEmotionalHealth_CC extends MainPageCC{
+public class WhichOfTheFollowingLiverProblemsPageСС extends MainPageCC {
 
-    public final String titleExpected = "You indicated that you have a mental or emotional health condition.\n" +
-    		"Which of the following have you been diagnosed with by a doctor?\n" +
-    		"Agent Note: Select all that apply";
+    public final String titleExpected = "You reported that you have liver problems.\n" +
+            "Which of the following have you been diagnosed with?\n" +
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
@@ -21,18 +21,18 @@ public class WhichFollowingMentalEmotionalHealth_CC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public WhichFollowingMentalEmotionalHealth_CC() {
+    public WhichOfTheFollowingLiverProblemsPageСС() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichFollowingMentalEmotionalHealth_CC waitForPageLoad() {
+    public WhichOfTheFollowingLiverProblemsPageСС waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichFollowingMentalEmotionalHealth_CC clickOnAnswers(String ...answerText) {
+    public WhichOfTheFollowingLiverProblemsPageСС clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

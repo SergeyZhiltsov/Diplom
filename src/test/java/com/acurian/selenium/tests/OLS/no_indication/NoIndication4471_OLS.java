@@ -24,7 +24,7 @@ public class NoIndication4471_OLS extends BaseTest {
 
     @Test
     @TestCaseId("00034")
-    @Description("No Indication 4471")
+    @Description("No Indication 4471 OLS")
     public void chronicCough_4471_OLS_NI() {
         String phoneNumber = "AUTAMS1GEN";
         String protocol1 = "MK_7264_027";
@@ -98,8 +98,7 @@ public class NoIndication4471_OLS extends BaseTest {
                         "Cancer",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
-                        "")
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)")
                 .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
 
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfTheFollowingBreathingLungPageOLS
@@ -321,6 +320,8 @@ public class NoIndication4471_OLS extends BaseTest {
                 .setAll("5", "5", "160")
                 .clickNextButton(new HowLongYouHadChronicCoughOLS());
 
+
+
         TreatingYourChronicCoughOLS treatingYourChronicCoughOLS = howLongYouHadChronicCoughOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 6 months")
@@ -472,6 +473,20 @@ public class NoIndication4471_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
+                .getPage(new HumanAPIOLS())
+                .waitForPageLoad()
+                .connectBTN()
+                .switchToAPI()
+                .waitForProvider()
+                .clickANY()
+                .waitSearchAll()
+                .search("cleveland clinic")
+                .waitProvider()
+                .clickProvider()
+                .typeUserName("democlinical@gmail.com")
+                .typePWD("password")
+                .clickConnect()
+                .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
