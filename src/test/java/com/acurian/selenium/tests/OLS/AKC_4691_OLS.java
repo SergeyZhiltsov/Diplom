@@ -33,6 +33,7 @@ import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -262,7 +263,7 @@ public class AKC_4691_OLS extends BaseTest{
         injectableMedicationsForYourDiabetesPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4607", protocol1)
+			//	.checkProtocolsContainsForQNumber("QS4607", protocol1)
 				.back();
         metforminMedicationsPageOLS
 				.waitForPageLoad()
@@ -644,10 +645,24 @@ public class AKC_4691_OLS extends BaseTest{
         .waitForPageLoad()
         .clickOkInPopUp()
         .setSignature()
-        .getPage(new ThankYouCloseSimplePageOLS())
+        .getPage(new HumanAPIOLS())
+        .waitForPageLoad()		        
+        .connectBTN()
+        .switchToAPI()
+        .waitForProvider()
+        .clickANY()
+        .waitSearchAll()
+        .search("cleveland clinic")
+        .waitProvider()
+        .clickProvider()
+        .typeUserName("democlinical@gmail.com")
+        .typePWD("password")
+        .clickConnect()
+        .waitToClickNext()
+        .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()
-        .pidFromDbToLog(env);   
+        .pidFromDbToLog(env);
     }
 }

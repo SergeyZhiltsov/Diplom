@@ -16,6 +16,7 @@ import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseDYSPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
@@ -209,76 +210,24 @@ public class MedCo_3962_OLS extends BaseTest {
             .waitForPageLoad()
             .clickOkInPopUp()
             .setSignature()
-            .getPage(new ThankYouCloseSimplePageOLS())
-            .waitForPageLoad()
-    		.clickNextButton(new AboutHealthPageOLS())
-    		.waitForPageLoad()
-            .pidFromDbToLog(env);		
-		
-		
-/*//-------------------OLD General Health-------------------
- HeartRelatedMedicalProc heartRelatedMedicalProc = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS2
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new HeartRelatedMedicalProc());
-		
-		YouHaveCHF youHaveCHF = heartRelatedMedicalProc
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new YouHaveCHF());
-		
-		youHaveCHF.waitForPageLoad();
-		debugPageOLS.checkProtocolsEquals("Ghost Question - Atherosclerotic Cardiovascular Disease Qualifying Logic", protocol1);		
-		debugPageOLS.back();
-		WhenLastTimeYouHadHeartProceduresOLS whenLastTimeYouHadHeartProceduresOLS = heartRelatedMedicalProc
-				.waitForPageLoad()
-				.clickOnAnswers("Stent placement")
-				.clickNextButton(new WhenLastTimeYouHadHeartProceduresOLS());
-		
-		YouHaveCHF youHaveCHF1 = whenLastTimeYouHadHeartProceduresOLS
-				.waitForPageLoad()
-				.clickOnAnswer("1 - 3 months ago")
-				.clickNextButton(new YouHaveCHF());
-		youHaveCHF1.waitForPageLoad();
-		debugPageOLS.checkProtocolsEqualsForQNumber("QS5210", protocol1);		
-		debugPageOLS.back();
-		//YouHaveCHF youHaveCHF2 = whenLastTimeYouHadHeartProceduresOLS
-				whenLastTimeYouHadHeartProceduresOLS.waitForPageLoad()
-				.clickOnAnswer("7 - 12 months ago")
-                .clickNextButton(new ChildrenUnderPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HouseholdHavePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TheStudySitePageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickNextButton(new WhatSortPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("No, I have no coverage")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(new IdentificationPageOLS())
-                .waitForPageLoad()                
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnFacilityName(siteName)
-                //Medical release Hello Sign CLose
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(site_Indication)
-                .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new  HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature()
-                .getPage(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
-        		.clickNextButton(new AboutHealthPageOLS())
-        		.waitForPageLoad()
-                .pidFromDbToLog(env);  */
+	        .getPage(new HumanAPIOLS())
+	        .waitForPageLoad()		        
+	        .connectBTN()
+	        .switchToAPI()
+	        .waitForProvider()
+	        .clickANY()
+	        .waitSearchAll()
+	        .search("cleveland clinic")
+	        .waitProvider()
+	        .clickProvider()
+	        .typeUserName("democlinical@gmail.com")
+	        .typePWD("password")
+	        .clickConnect()
+	        .waitToClickNext()
+	        .clickNextButton(new ThankYouCloseSimplePageOLS())
+	        .waitForPageLoad()
+	        .clickNextButton(new AboutHealthPageOLS())
+	        .waitForPageLoad()
+	        .pidFromDbToLog(env);
 	}
 }
