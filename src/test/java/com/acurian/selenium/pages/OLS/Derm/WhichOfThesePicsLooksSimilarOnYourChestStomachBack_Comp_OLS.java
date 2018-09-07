@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.Derm_4631;
+package com.acurian.selenium.pages.OLS.Derm;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
@@ -8,9 +8,9 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WeWantToMakeSureTheImagesDisplayProperly_OLS extends MainPageOLS {
-	public final String titleExpected = "Next, we are going to show you images to help us understand the area(s) of your body currently affected by eczema (atopic dermatitis).\n" +
-			"We want to make sure the images display properly on your screen.  What device are you using to answer this screener?";
+public class WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS extends MainPageOLS {
+	public final String titleExpected = "Which of these pictures looks most similar to the amount of eczema (atopic dermatitis) currently on your chest, stomach, and back?\n" +
+			"Please focus on the amount of skin covered by eczema (atopic dermatitis), rather than the pattern in the pictures. Answer choices appear below the pictures.";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -18,19 +18,19 @@ public class WeWantToMakeSureTheImagesDisplayProperly_OLS extends MainPageOLS {
     @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
 
-    public WeWantToMakeSureTheImagesDisplayProperly_OLS() {
+    public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WeWantToMakeSureTheImagesDisplayProperly_OLS waitForPageLoad() {
+    public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public WeWantToMakeSureTheImagesDisplayProperly_OLS clickOnAnswer(String answerText) {
+    public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

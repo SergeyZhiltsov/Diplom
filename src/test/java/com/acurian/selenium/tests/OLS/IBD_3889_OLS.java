@@ -20,6 +20,7 @@ import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlce
 import com.acurian.selenium.pages.OLS.LOWT_3017.AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.WhichOfTheFollowingMensHealthConditions_OLS;
+import com.acurian.selenium.pages.OLS.LPS_4442.WhatTypeOfLupusOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -71,7 +72,7 @@ public class IBD_3889_OLS extends BaseTest{
         
         AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
-        		.setDate("09092000")
+        		.setDate("09092001")
                 .clickNextButton(new AgeUnqualifiedClose_OLS());
         ageUnqualifiedClose_OLS
         	.waitForPageLoad();
@@ -651,71 +652,93 @@ public class IBD_3889_OLS extends BaseTest{
         	.waitForPageLoad();
         Assert.assertEquals(womenHealthConditions.getTitleText(),womenHealthConditions.titleExpected, "Title is diff");
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
-        .clickOnAnswers("Urinary leakage or urinary incontinence")
-        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+	        .clickOnAnswers("Urinary leakage or urinary incontinence")
+	        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
         
         
 		//----------Q23 - Do any of the following additional diagnoses apply to you?--------      
         doAnyOftheFollowingAdditionalDiagnosesOLS
         	.waitForPageLoad();
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-        .clickOnAnswers("Drug or alcohol abuse within the past year",
+        		.clickOnAnswers("Drug or alcohol abuse within the past year",
         		"Hepatitis B",
         		"Hepatitis C",
         		"HIV or AIDS",
         		"Neuropathy (nerve damage due to diabetes or another condition)",
         		"Shingles or herpes zoster infection")
-        .clickNextButton(new ApproximateHeightPageOLS());
+        		.clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
-        	.waitForPageLoad()
-        .getPage(debugPageOLS)
-        .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2,protocol3,protocol4)
-        .back();
+	        	.waitForPageLoad()
+		        .getPage(debugPageOLS)
+		        .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2,protocol3,protocol4)
+		        .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new HormonalBirthControlOLS());
+		        .waitForPageLoad()
+		        .clickOnAnswers("None of the above")
+		        .clickNextButton(new HormonalBirthControlOLS());
         
         
         //--------------Q26:  Are you currently taking a hormonal form of birth control?-----------------------
         approximateHeightPageOLS
-        	.waitForPageLoad()        
-        .setAll("5", "5", "160")
-        .clickNextButton(new ChildrenUnderPageOLS())
+        		.waitForPageLoad()
+        //WhatTypeOfLupusOLS whatTypeOfLupusOLS = approximateHeightPageOLS
+        		.setAll("5", "5", "160")
+        		.clickNextButton(new ChildrenUnderPageOLS())   		
 		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
-        
+		        .waitForPageLoad()
+		        .clickOnAnswer("Yes")
+		        .clickNextButton(new HouseholdHavePageOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswers("None of the above")
+		        .clickNextButton(new TheStudySitePageOLS())
+		        .waitForPageLoad()
+		        
 		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
-        .clickNextButton(new EthnicBackgroundPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Prefer not to answer")
-        .clickNextButton(new IdentificationPageOLS())
+		        .clickOnAnswer("Public transportation")
+		        .clickNextButton(new WhatMedicalCoveragePageOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswers("No, I have no coverage")
+		        .clickNextButton(new EthnicBackgroundPageOLS())
+		        .waitForPageLoad()
+		        .clickOnAnswers("Prefer not to answer")
+		        .clickNextButton(new IdentificationPageOLS())
 		//----------PII (IdentificationPageOLS) Page--------------------
-		.waitForPageLoad();
+		        .waitForPageLoad();
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
-		.clickNextButton(new SiteSelectionPageOLS());
+				.clickNextButton(new SiteSelectionPageOLS());
         
 		//----------SiteSelection Page--------------------
         siteSelectionPageOLS.threadSleep(5000);
-        siteSelectionPageOLS.waitForPageLoad(studyName)
-        .getPID()
-        .clickOnFacilityName(siteName)
-        .clickNextButton(new QualifiedClose_OLS())
-        .waitForPageLoad(indication)
-        .clickNextButton(new ThankYouCloseSimplePageOLS())
-        .waitForPageLoad()
-        .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad()
-        .pidFromDbToLog(env);
+        siteSelectionPageOLS
+        		.waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new HSCrohns2PageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature()
+                .getPage(new HumanAPIOLS())
+                .waitForPageLoad()		        
+                .connectBTN()
+                .switchToAPI()
+                .waitForProvider()
+                .clickANY()
+                .waitSearchAll()
+                .search("cleveland clinic")
+                .waitProvider()
+                .clickProvider()
+                .typeUserName("democlinical@gmail.com")
+                .typePWD("password")
+                .clickConnect()
+                .waitToClickNext()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

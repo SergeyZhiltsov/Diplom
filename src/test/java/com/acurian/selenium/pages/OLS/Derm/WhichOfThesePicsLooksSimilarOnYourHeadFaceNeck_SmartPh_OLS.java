@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.Derm_4631;
+package com.acurian.selenium.pages.OLS.Derm;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;

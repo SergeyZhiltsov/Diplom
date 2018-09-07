@@ -57,7 +57,7 @@ public class Lupus_4442_OLS extends BaseTest{
         if (env == null) env = "STG";
         String time = String.valueOf(Instant.now().getEpochSecond());
         time = time.substring(time.length()-4);
-        String eMailId = "qa.acurian_"+time+"3@gmail.com";
+        String eMailId = "qa.acurian@gmail.com";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

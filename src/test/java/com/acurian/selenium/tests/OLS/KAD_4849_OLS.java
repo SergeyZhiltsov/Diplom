@@ -5,7 +5,13 @@ import java.time.Instant;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.Derm.*;
+import com.acurian.selenium.pages.OLS.Derm.HowLongHaveYouBeenSufferingFromEczema_OLS;
+import com.acurian.selenium.pages.OLS.Derm.WeWantToMakeSureTheImagesDisplayProperly_OLS;
+import com.acurian.selenium.pages.OLS.Derm.WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS;
+import com.acurian.selenium.pages.OLS.Derm.WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS;
+import com.acurian.selenium.pages.OLS.Derm.WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS;
+import com.acurian.selenium.pages.OLS.Derm.WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS;
+import com.acurian.selenium.pages.OLS.Derm.WhichofthefollowingMedicationsTherapies_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
@@ -28,24 +34,27 @@ import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.BiologicMedications;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.DidYouReceiveAnyTherapiesPastYear_OLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
+import com.acurian.selenium.pages.OLS.shared.HaveYouEverTreatedYourEczema_OLS;
+import com.acurian.selenium.pages.OLS.shared.OverallHowWellDidTopicalMedicationYouTried_OLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.shared.WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class KAD_4631_OLS extends BaseTest{
+public class KAD_4849_OLS extends BaseTest{
 
     @Test(enabled = true)
     @TestCaseId("00002")
-    @Description("MIG_4356B_Synexus_OLS module")
-    public void kad_4631() {
+    @Description("kad4849_OLS_Test")
+    public void kad4849_OLS_Test() {
         String phoneNumberMIG = "AUTAMS1KAD";
-        String protocol1 = "KPL_716_C001";       
+        String protocol1 = "ANB020_005";       
         String studyName =  "an eczema (atopic dermatitis)";
-        String siteName = "AUT_DERM_4631_Site";
+        String siteName = "AUT_DERM_4849_Site";
         String zipCode = "19901";
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -66,7 +75,7 @@ public class KAD_4631_OLS extends BaseTest{
 		debugPageOLS.back();
 		PersonalDetails personalDetails = dateOfBirthPageOLS
 					.waitForPageLoad()
-					.setDate("09091951")
+					.setDate("09091942")
 					.clickNextButton(new PersonalDetails());
 		personalDetails.waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", protocol1);
@@ -115,13 +124,6 @@ public class KAD_4631_OLS extends BaseTest{
 		debugPageOLS.back();
 		howLongHaveYouBeenSufferingFromEczema_OLS
 					.waitForPageLoad()
-					.clickOnAnswer("6 to less than 12 months")
-					.clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
-		whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS5803", protocol1);
-		debugPageOLS.back();
-		howLongHaveYouBeenSufferingFromEczema_OLS
-					.waitForPageLoad()
 					.clickOnAnswer("1 year or more")
 					.clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
 		
@@ -138,11 +140,13 @@ public class KAD_4631_OLS extends BaseTest{
 					.clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
 					.clickNextButton(new WeWantToMakeSureTheImagesDisplayProperly_OLS());
 		
+		
 		WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS = weWantToMakeSureTheImagesDisplayProperly_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("Computer or tablet")
 					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());		
 		whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS.threadSleep(2000);
+		
 		
 		WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS = whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
 			 		.waitForPageLoad()
@@ -150,37 +154,39 @@ public class KAD_4631_OLS extends BaseTest{
 			 		.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS());
 		whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS.threadSleep(2000);
 		
+		
 		WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS = whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("A")
 					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS());
 		whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS.threadSleep(2000);
 		
+		
 		WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS = whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("A")
 					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 		whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS.threadSleep(2000);
-		BiologicMedications biologicMedications = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+		//BiologicMedications biologicMedications = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+		HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("A")
-					.clickNextButton(new BiologicMedications());
-		biologicMedications.waitForPageLoadKAD();
+					.clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+		haveYouEverTreatedYourEczema_OLS.waitForPageLoad();
 		debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
 		debugPageOLS.back();
 		whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("B")
-					.clickNextButton(new BiologicMedications());
-		biologicMedications.waitForPageLoadKAD();
+					.clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+		haveYouEverTreatedYourEczema_OLS.waitForPageLoad();
 		debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
-		debugPageOLS.back();
-		
+		debugPageOLS.back();		
 		whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("C")
-					.clickNextButton(new BiologicMedications());
-		biologicMedications.waitForPageLoadKAD();
+					.clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+		haveYouEverTreatedYourEczema_OLS.waitForPageLoad();
 		debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
 		debugPageOLS.back();
 		whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
@@ -200,7 +206,7 @@ public class KAD_4631_OLS extends BaseTest{
 					.back();
 		whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
 					.waitForPageLoad()
-					.clickOnAnswers("Chest, stomach, and back", "Arms and hands", "Legs and feet")
+					.clickOnAnswers("Arms and hands", "Legs and feet")
 					.clickNextButton(new WeWantToMakeSureTheImagesDisplayProperly_OLS());
 		
 		weWantToMakeSureTheImagesDisplayProperly_OLS
@@ -208,39 +214,105 @@ public class KAD_4631_OLS extends BaseTest{
 					.clickOnAnswer("Computer or tablet")
 					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
 		
-		whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-				 	.waitForPageLoad()
-				 	.clickOnAnswer("A")
-				 	.clickNextButton(new BiologicMedications());
-		biologicMedications.waitForPageLoadKAD();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
-		debugPageOLS.back();
-		whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-	 				.waitForPageLoad()
-	 				.clickOnAnswer("B")
-	 				.clickNextButton(new BiologicMedications());
-		debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
-		debugPageOLS.back();
 		
-		whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-					.waitForPageLoad()
-					.clickOnAnswer("C")
-					.clickNextButton(new BiologicMedications());
-		biologicMedications.waitForPageLoadKAD();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
-		debugPageOLS.back();
-		whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-					.waitForPageLoad()
-					.clickOnAnswer("D")
-					.clickNextButton(new BiologicMedications());
-		biologicMedications.waitForPageLoadKAD();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
-		debugPageOLS.back();
+		//---------------Q7: whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS -------
 		whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("G")
+					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS());
+		
+		
+		//---------------Q8: WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS -------
+		whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
+				 	.waitForPageLoad()
+				 	.clickOnAnswer("A")
+				 	.clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+		haveYouEverTreatedYourEczema_OLS
+					.waitForPageLoad();
+		debugPageOLS
+					.checkProtocolsContainsForQNumber("QS5815", protocol1)
+					.back();
+		whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
+					.waitForPageLoad()
+					.clickOnAnswer("B")
+					.clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+		
+		
+		//--------------Q17- HaveYouEverTreatedYourEczema_OLS ----------
+		haveYouEverTreatedYourEczema_OLS
+				.waitForPageLoad();
+				//-----------select NO to skip to Q19, otherwise goto Q18
+		WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = haveYouEverTreatedYourEczema_OLS
+				.clickOnAnswer("No")
+				.clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS())
+				.waitForPageLoad();			
+				whichofthefollowingMedicationsTherapies_OLS.back();
+		haveYouEverTreatedYourEczema_OLS
+				.waitForPageLoad();
+				OverallHowWellDidTopicalMedicationYouTried_OLS overallHowWellDidTopicalMedicationYouTried_OLS = haveYouEverTreatedYourEczema_OLS
+				.clickOnAnswer("Yes, but more than 1 year ago")
+				.clickOnAnswer("Yes, within the past year")    //final selection
+				.clickNextButton(new OverallHowWellDidTopicalMedicationYouTried_OLS());
+		
+		
+		//--------------Q18- OverallHowWellDidTopicalMedicationYouTried_OLS ----------
+		overallHowWellDidTopicalMedicationYouTried_OLS
+				.waitForPageLoad()
+		//WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = overallHowWellDidTopicalMedicationYouTried_OLS
+				.clickOnAnswer("My symptoms did not change")
+				.clickOnAnswer("My symptoms got a little bit better")
+				.clickOnAnswer("My symptoms got a lot better")
+				.clickOnAnswer("My symptoms went away completely")  //final selection
+				.clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
+		/*whichofthefollowingMedicationsTherapies_OLS
+				.waitForPageLoad();
+				debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
+				debugPageOLS.back();
+		overallHowWellDidTopicalMedicationYouTried_OLS
+					.waitForPageLoad()				
+					.clickOnAnswer("My symptoms got a lot better")
+					.clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());*/
+		
+		
+		//--------------Q19- whichofthefollowingMedicationsTherapies_OLS ----------
+		whichofthefollowingMedicationsTherapies_OLS
+					.waitForPageLoad()
+					.clickOnAnswers("None of the above")
+					.clickNextButton(new BiologicMedications())
+					.waitForPageLoad();
+					debugPageOLS.checkProtocolsContainsForQNumber("QS5829", protocol1);
+					debugPageOLS.back();
+		whichofthefollowingMedicationsTherapies_OLS
+					.waitForPageLoad();
+		DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_OLS = whichofthefollowingMedicationsTherapies_OLS
+					.clickOnAnswers("Azasan or Imuran (azathioprine)")
+					.clickOnAnswers("CellCept or Myfortic (mycophenolate)")
+					.clickOnAnswers("Dupixent (dupilumab)")
+					.clickOnAnswers("Neoral, Sandimmune, or Gengraf (cyclosporine)")
+					.clickOnAnswers("Methotrexate (Brand names: Otrexup, Rasuvo, or Trexall)")
+					.clickOnAnswers("Prednisone (Brand names: Deltasone, Prednisone Intensol, or Rayos)")
+					.clickOnAnswers("Phototherapy (Ultraviolet or UV light)")
+					.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
+
+		
+		
+		//--------------Q20- DidYouReceiveAnyTherapiesPastYear_OLS ----------
+		didYouReceiveAnyTherapiesPastYear_OLS
+					.waitForPageLoad();
+		BiologicMedications biologicMedications = didYouReceiveAnyTherapiesPastYear_OLS
+					.clickOnAnswer("No")
+					.clickNextButton(new BiologicMedications());
+		biologicMedications
+					.waitForPageLoad();
+					debugPageOLS.checkProtocolsContainsForQNumber("QS5829", protocol1);
+					debugPageOLS.back();
+		didYouReceiveAnyTherapiesPastYear_OLS
+					.waitForPageLoad()				
+					.clickOnAnswer("Yes")
 					.clickNextButton(new BiologicMedications());
 		
+		
+		//------------Q22- BiologicMedications ----------------
 		biologicMedications
 					.waitForPageLoadKAD()
 					.clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)", "Benlysta", "Cimzia", "Cosentyx", "Enbrel", "Entyvio", "Humira",
@@ -257,8 +329,7 @@ public class KAD_4631_OLS extends BaseTest{
 					.waitForPageLoad()
 					.clickOnAnswers("Cancer")
 					.clickNextButton(new CancerPage());
-		cancerPage.threadSleep(1000);
-		
+		cancerPage.threadSleep(1000);		
 		DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = cancerPage
 					.waitForPageLoad()
 					.clickOnAnswer("Within the past 5 years")
@@ -268,13 +339,14 @@ public class KAD_4631_OLS extends BaseTest{
 		debugPageOLS.back();
 		cancerPage
 					.waitForPageLoad()
-					.back();
-		
+					.back();		
 		HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 					.waitForPageLoad()
 					.clickOnAnswers("Cancer")
 					.clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
 					.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+		
+		
 		
 		SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
 					.waitForPageLoad()
@@ -292,32 +364,13 @@ public class KAD_4631_OLS extends BaseTest{
 					.clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Less than 30 days ago")
 					.clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"Less than 30 days ago")
 					.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-		debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
-		debugPageOLS.back();
 		
-		subquestionExperiencedHeartPageOLS
-					.waitForPageLoad()
-					.clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"1 - 3 months ago")
-					.clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"1 - 3 months ago")
-					.clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"1 - 3 months ago")
-					.clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"1 - 3 months ago")
-					.clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
-					.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
-		debugPageOLS.back();
-		subquestionExperiencedHeartPageOLS.threadSleep(1000);
-		subquestionExperiencedHeartPageOLS
-					.waitForPageLoad()
-					.back();
-		haveYouEverExperiencedHeartRelatedMedicalCondOLS
-					.waitForPageLoad()
-					.clickOnAnswers("None of the above")
-					.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
 		
 		heartrelatedMedicalProceduresPageOLS
 					.waitForPageLoad()
 					.clickOnAnswers("None of the above")
 					.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+		
 		
 		ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
 					.waitForPageLoad()
@@ -326,6 +379,7 @@ public class KAD_4631_OLS extends BaseTest{
 		approximateHeightPageOLS.waitForPageLoad();
 		debugPageOLS.checkProtocolsContainsForQNumber("QS61", protocol1);
 		debugPageOLS.back();
+		
 		
 		doAnyOftheFollowingAdditionalDiagnosesOLS
 					.waitForPageLoad()
