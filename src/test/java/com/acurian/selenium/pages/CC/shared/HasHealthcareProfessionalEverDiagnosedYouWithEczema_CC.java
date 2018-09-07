@@ -12,7 +12,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC extends MainPageCC {
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with eczema, also called atopic dermatitis?";
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with eczema, (Agent Note: EGG-zih-muh) also called atopic dermatitis? (Agent Note: ay-TOP-ick der-muh-TIE-tis)";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

@@ -526,17 +526,18 @@ public class IBD_3889_CC extends BaseTest{
           		.clickNextButton(new IdentificationPageCC())
           		.waitForPageLoad()        		              
           		.clickNextButton(new SiteSelectionPageCC())
-          		.waitForPageLoad("a colitis study")
+          		.waitForPageLoad("a Crohn's study")
           		.getPID()
           		.clickOnAnswer(siteName)
-          		.clickNextButton(new QualifiedClose2PageCC())
-               // .waitForPageLoadIBD("a Crohn's Disease")                
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
-     
+        		.clickNextButton(new HSCrohns2PageCC())
+        		.clickNextButton(new DoctorInformationCollectionPageCC())
+        		.waitForPageLoad()
+        		.clickNextButton(new HSMedicalRecordsPageCC())
+        		.waitForPageLoad()
+        		.clickNextButton(new ThankYouCloseSimplePageCC())
+        		.waitForPageLoad()
+        		.clickNextButton(selectActionPageCC)
+        		.waitForPageLoad()
+        		.pidFromDbToLog(env);     
     }
-
 }
