@@ -64,8 +64,6 @@ public class KAD_4849_OLS extends BaseTest{
         dateOfBirthPageOLS
                 	.openPage(env, phoneNumberMIG)
                 	.waitForPageLoad();
-    //    Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-   //     Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleKADExpected, "Title is diff");
         AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
                 	.setDate("09092003")
                 	.clickNextButton(new AgeUnqualifiedClose_OLS());
@@ -134,7 +132,6 @@ public class KAD_4849_OLS extends BaseTest{
 		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
 		debugPageOLS.checkProtocolsContainsForQNumber("QS5805", protocol1);
 		debugPageOLS.back();		
-		
 		WeWantToMakeSureTheImagesDisplayProperly_OLS weWantToMakeSureTheImagesDisplayProperly_OLS = whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
 					.waitForPageLoad()
 					.clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
@@ -264,14 +261,6 @@ public class KAD_4849_OLS extends BaseTest{
 				.clickOnAnswer("My symptoms got a lot better")
 				.clickOnAnswer("My symptoms went away completely")  //final selection
 				.clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
-		/*whichofthefollowingMedicationsTherapies_OLS
-				.waitForPageLoad();
-				debugPageOLS.checkProtocolsContainsForQNumber("QS5815", protocol1);
-				debugPageOLS.back();
-		overallHowWellDidTopicalMedicationYouTried_OLS
-					.waitForPageLoad()				
-					.clickOnAnswer("My symptoms got a lot better")
-					.clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());*/
 		
 		
 		//--------------Q19- whichofthefollowingMedicationsTherapies_OLS ----------

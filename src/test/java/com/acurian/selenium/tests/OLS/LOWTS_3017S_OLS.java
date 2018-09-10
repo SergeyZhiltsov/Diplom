@@ -32,7 +32,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
-public class LOWT_3017_OLS extends BaseTest{
+public class LOWTS_3017S_OLS extends BaseTest{
 
     @Test
     @TestCaseId("00015")
@@ -42,10 +42,9 @@ public class LOWT_3017_OLS extends BaseTest{
         List<String> protocols = Arrays.asList("M16_100");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
-        String protocol3 = "R727_CL_1532";
         String studyName = "a men's low testosterone";
         String site_Indication = "Hypogonadism";
-        String siteName = "AUT_LOWT_3017";
+        String siteName = "AUT_LOWT_3017S";
         String zipCode = "19901";
         
         String env = System.getProperty("acurian.env");
@@ -149,7 +148,7 @@ public class LOWT_3017_OLS extends BaseTest{
 		AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS = hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
 		        .clickOnAnswers("Diabetes or High Blood Sugar",
 		        		"High cholesterol or high triglycerides",
-		        		"High blood pressure or hypertension", 
+		        		"High blood pressure or hypertension",
 		        		"Chronic Kidney Disease")
 		        .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS());
 		areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
