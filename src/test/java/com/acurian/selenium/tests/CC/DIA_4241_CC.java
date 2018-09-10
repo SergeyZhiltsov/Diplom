@@ -167,10 +167,9 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
         currentlyUseMetforminOrInsulinPage
         		.waitForPageLoad()
-        		.getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0016800-QS4625-STUDYQUES", protocol1)
-                .back();
-        
+        		//.getPage(debugPageCC)
+                //.checkProtocolsContainsForQNumber("Q0016800-QS4625-STUDYQUES", protocol1)
+                .back();        
         useDietAndExercisePage
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
