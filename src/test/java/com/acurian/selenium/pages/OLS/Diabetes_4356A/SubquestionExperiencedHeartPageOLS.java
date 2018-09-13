@@ -1,8 +1,6 @@
 package com.acurian.selenium.pages.OLS.Diabetes_4356A;
 
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-import com.acurian.selenium.pages.OLS.LMG_4686.TreatYourMigraineHeadachesOLS;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,6 +51,14 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageOLS{
     @Step
     public SubquestionExperiencedHeartPageOLS waitForPageLoadTIA() {
         waitForPageLoadMain(titleText, titleExpected3);
+        return this;
+    }
+
+    @Step
+    public SubquestionExperiencedHeartPageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
+        waitForAnimation();
+        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
         return this;
     }
 

@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.Diabetes_4356A;
 
+import com.acurian.selenium.pages.CC.Crohns_3485.SubquestionLastReceivedPageCC;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -35,6 +36,14 @@ public class SubquestionExperiencedHeartPageCC extends MainPageCC{
     @Step
     public SubquestionExperiencedHeartPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected1);
+        return this;
+    }
+
+    @Step
+    public SubquestionExperiencedHeartPageCC waitForPageLoad(int actualTitleIndex, String expectedTitle) {
+        waitForAnimation();
+        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
         return this;
     }
     
