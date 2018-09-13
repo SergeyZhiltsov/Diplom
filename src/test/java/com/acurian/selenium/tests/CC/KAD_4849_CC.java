@@ -2,11 +2,11 @@ package com.acurian.selenium.tests.CC;
 
 import java.util.Arrays;
 import java.util.List;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC;
+import com.acurian.selenium.pages.CC.shared.HaveYouEverTreatedYourEczema_CC;
 import com.acurian.selenium.pages.CC.Derm_4631.HowLongHaveYouBeenSufferingFromEczema_CC;
 import com.acurian.selenium.pages.CC.Derm_4631.IfYouUseYourHandToCoverAllOfTheEczema_CC;
 import com.acurian.selenium.pages.CC.Derm_4631.OverallHowWellDidTopicalMedicationYouTried_CC;
@@ -25,31 +25,29 @@ import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.DidYouReceiveAnyTherapiesPastYear_CC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverTreatedYourEczema_CC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
 import com.acurian.selenium.pages.CC.shared.WhichofthefollowingMedicationsTherapies_CC;
+import com.acurian.selenium.pages.CC.shared.DidYouReceiveAnyTherapiesPastYear_CC;
+import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class KAD_4631_CC extends BaseTest {
+public class KAD_4849_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("Kiniksa Atopic Dermatitis")
-    @Description("KAD 4631 for CC")
-    public void kad4631_CCTest(final String username, final String password) {
+    @Description("KAD 4849 for CC")
+    public void kad4849_CC_Test(final String username, final String password) {
         String phoneNumber = "AUTAMS1KAD";
-        String protocol1 = "KPL_716_C001";
-        List<String> protocols = Arrays.asList(protocol1);
+        String protocol1 = "ANB020_005";
         String studyName = "eczema, or atopic dermatitis";
-        String studyIndication = "a Ulcerative Colitis";
-        String siteName = "AUT_DERM_4631_Site";
+        String siteName = "AUT_DERM_4849_Site";
         String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");//was in prod
@@ -63,6 +61,7 @@ public class KAD_4631_CC extends BaseTest {
                 .typeUsername(username)
                 .typePassword(password)
                 .clickLoginButton();
+        
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
                 .waitForPageLoad()
@@ -71,6 +70,7 @@ public class KAD_4631_CC extends BaseTest {
                 .typePhoneNumber(phoneNumber)
                 .clickPopupPhoneNumber(phoneNumber)
                 .clickBeginButton();
+        
 
         callCenterIntroductionPageCC
                 .waitForPageLoad()
@@ -79,12 +79,12 @@ public class KAD_4631_CC extends BaseTest {
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
+        
 
-     /*   dateOfBirthPageCC
-                .waitForPageLoadIBD();*/
+     //------------dateOfBirthPageCC----------------
         dateOfBirthPageCC.threadSleep(2000);
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleKAD4631, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleKAD4631, "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")
@@ -94,9 +94,8 @@ public class KAD_4631_CC extends BaseTest {
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
         debugPageCC.back();
-
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .setYear("1952")
+                .setYear("1942")
                 .clickNextButton(new IdentificationPageCC());
         identificationPageCC.waitForPageLoad1();
         debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
@@ -104,17 +103,23 @@ public class KAD_4631_CC extends BaseTest {
         dateOfBirthPageCC
                 .setYear("1980")
                 .clickNextButton(new IdentificationPageCC());
-
+        
+        
+      //------------PII Question------------
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoad1()
                 .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageCC());
-
+        
+        
+      //-----------GenderPageCC-------------
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC = genderPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
+        
+     //------------Q2:  hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC----
         LetMeSeePageCC letMeSeePageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -122,12 +127,13 @@ public class KAD_4631_CC extends BaseTest {
         letMeSeePageCC.waitForPageLoadNew();
         debugPageCC.checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", protocol1);
         debugPageCC.back();
-
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_CC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
 
+        
+      //----------Q3:  HowLongHaveYouBeenSufferingFromEczema_CC---------------
         IfYouUseYourHandToCoverAllOfTheEczema_CC ifYouUseYourHandToCoverAllOfTheEczema_CC = howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 3 months")
@@ -144,41 +150,11 @@ public class KAD_4631_CC extends BaseTest {
         debugPageCC.back();
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("6 to less than 12 months")
-                .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_CC());
-        ifYouUseYourHandToCoverAllOfTheEczema_CC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1);
-        debugPageCC.back();
-        howLongHaveYouBeenSufferingFromEczema_CC
-                .waitForPageLoad()
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_CC());
-
         
         
-        
-        /*
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC = ifYouUseYourHandToCoverAllOfTheEczema_CC
-                .waitForPageLoad()
-                .selectFromDropDown("1")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC.waitForPageLoadKAD();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1);
-        debugPageCC.back();
-        ifYouUseYourHandToCoverAllOfTheEczema_CC
-                .waitForPageLoad()
-                .selectFromDropDown("7")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC.waitForPageLoadKAD();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1);
-        debugPageCC.back();
-        ifYouUseYourHandToCoverAllOfTheEczema_CC
-                .waitForPageLoad()
-                .selectFromDropDown("10")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());  */
-        
-        
-        //------------Q4:  IfYouUseYourHandToCoverAllOfTheEczema_CC -------------------  
+      //------------Q4:  IfYouUseYourHandToCoverAllOfTheEczema_CC -------------------  
         HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_CC = ifYouUseYourHandToCoverAllOfTheEczema_CC
         		.waitForPageLoad()
                 .selectFromDropDown("1")
@@ -213,55 +189,57 @@ public class KAD_4631_CC extends BaseTest {
 				.waitForPageLoad();
 		OverallHowWellDidTopicalMedicationYouTried_CC overallHowWellDidTopicalMedicationYouTried_CC = haveYouEverTreatedYourEczema_CC
 				.clickOnAnswer("Yes, but more than 1 year ago")
-				.clickOnAnswer("Yes, within the past year")    //final selection
-				.clickNextButton(new OverallHowWellDidTopicalMedicationYouTried_CC());
+		.clickOnAnswer("Yes, within the past year")    //final selection
+		.clickNextButton(new OverallHowWellDidTopicalMedicationYouTried_CC());
 
 
-		//--------------Q18- OverallHowWellDidTopicalMedicationYouTried_CC ----------
-		overallHowWellDidTopicalMedicationYouTried_CC
-				.waitForPageLoad()
-		//WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = overallHowWellDidTopicalMedicationYouTried_CC
-				.clickOnAnswer("My symptoms did not change")
-				.clickOnAnswer("My symptoms got a little bit better")
-				.clickOnAnswer("My symptoms got a lot better")
-				.clickOnAnswer("My symptoms went away completely")  //final selection
-				.clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
+//--------------Q18- OverallHowWellDidTopicalMedicationYouTried_CC ----------
+overallHowWellDidTopicalMedicationYouTried_CC
+		.waitForPageLoad()
+//WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = overallHowWellDidTopicalMedicationYouTried_CC
+		.clickOnAnswer("My symptoms did not change")
+		.clickOnAnswer("My symptoms got a little bit better")
+		.clickOnAnswer("My symptoms got a lot better")
+		.clickOnAnswer("My symptoms went away completely")  //final selection
+		.clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
 
 
-	//--------------Q19- whichofthefollowingMedicationsTherapies_CC ----------
-		whichofthefollowingMedicationsTherapies_CC
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC())
-				.waitForPageLoadKAD()
-		        .back();
-		whichofthefollowingMedicationsTherapies_CC
-				.waitForPageLoad();
-		DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
-				.clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
-				.clickOnAnswers("CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)")
-				.clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)")
-				.clickOnAnswers("Neoral, Sandimmune, or Gengraf, also known as cyclosporine (Agent Note: NEE-oh-ral, GEN-graf, cy-clo-SPOR-in)")
-				.clickOnAnswers("Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)")
-				.clickOnAnswers("Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)")
-				.clickOnAnswers("Phototherapy, Ultraviolet, or UV light")
-				.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
+//--------------Q19- whichofthefollowingMedicationsTherapies_CC ----------
+whichofthefollowingMedicationsTherapies_CC
+			.waitForPageLoad()
+			.clickOnAnswers("None of the above")
+			.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC())
+			.waitForPageLoadKAD();
+			debugPageCC.checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1);
+			debugPageCC.back();
+whichofthefollowingMedicationsTherapies_CC
+			.waitForPageLoad();
+DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
+			.clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
+			.clickOnAnswers("CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)")
+			.clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)")
+			.clickOnAnswers("Neoral, Sandimmune, or Gengraf, also known as cyclosporine (Agent Note: NEE-oh-ral, GEN-graf, cy-clo-SPOR-in)")
+			.clickOnAnswers("Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)")
+			.clickOnAnswers("Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)")
+			.clickOnAnswers("Phototherapy, Ultraviolet, or UV light")
+			.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
 
 
 
-	//--------------Q20- DidYouReceiveAnyTherapiesPastYear_CC ----------
-			didYouReceiveAnyTherapiesPastYear_CC
-				.waitForPageLoad();
-			AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC = didYouReceiveAnyTherapiesPastYear_CC
-				.clickOnAnswer("No")
-				.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-			areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
-				.waitForPageLoadKAD()
-				.back();
-			didYouReceiveAnyTherapiesPastYear_CC
-				.waitForPageLoad()				
-				.clickOnAnswer("Yes")
-				.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());      
+//--------------Q20- DidYouReceiveAnyTherapiesPastYear_CC ----------
+didYouReceiveAnyTherapiesPastYear_CC
+			.waitForPageLoad();
+AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC = didYouReceiveAnyTherapiesPastYear_CC
+			.clickOnAnswer("No")
+			.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
+areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+			.waitForPageLoadKAD();
+			debugPageCC.checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1);
+			debugPageCC.back();
+didYouReceiveAnyTherapiesPastYear_CC
+			.waitForPageLoad()				
+			.clickOnAnswer("Yes")
+			.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());      
         
         
         
@@ -296,13 +274,13 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswers("Sleep problems (insomnia, sleep apnea, narcolepsy)", "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhatKindOfArthritisCC());
-
         whatKindOfArthritisCC.back();
         WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer")
                 .clickNextButton(new WhenDiagnosedWithCancer());
 
+        
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
@@ -311,12 +289,12 @@ public class KAD_4631_CC extends BaseTest {
         debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1);
         debugPageCC.back();
         whenDiagnosedWithCancer.back();
-
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease")
                 .clickOnAnswers("Cancer")
                 .clickNextButton(new KidneyProblemsPage());
+        
 
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -336,6 +314,7 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        
 
         ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -404,8 +383,5 @@ public class KAD_4631_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-
     }
-
 }

@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.Derm_4631;
+package com.acurian.selenium.pages.OLS.Derm;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
@@ -8,8 +8,9 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HowWouldYouDescribeAvgPeriodUF_OLS extends MainPageOLS {
-	public final String titleExpected = "How would you describe the average flow of your period?";
+public class WhichOfThesePicsLooksSimilarOnYourChestStomachBack_SmartPh_OLS extends MainPageOLS {
+	public final String titleExpected = "Which of these pictures looks most similar to the amount of eczema (atopic dermatitis) currently on your chest, stomach, and back?\n" +
+			"Please focus on the amount of skin covered by eczema (atopic dermatitis), rather than the pattern in the pictures. Answer choices appear below the pictures.";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -17,19 +18,19 @@ public class HowWouldYouDescribeAvgPeriodUF_OLS extends MainPageOLS {
     @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
 
-    public HowWouldYouDescribeAvgPeriodUF_OLS() {
+    public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_SmartPh_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HowWouldYouDescribeAvgPeriodUF_OLS waitForPageLoad() {
+    public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_SmartPh_OLS waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public HowWouldYouDescribeAvgPeriodUF_OLS clickOnAnswer(String answerText) {
+    public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_SmartPh_OLS clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

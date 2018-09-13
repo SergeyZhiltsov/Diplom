@@ -17,6 +17,7 @@ import com.acurian.selenium.pages.CC.IBD.EverTreatedCrohnOrColitisCC;
 import com.acurian.selenium.pages.CC.IBD.HowWouldYouRateCC;
 import com.acurian.selenium.pages.CC.IBD.MostRecentColonoscopyCC;
 import com.acurian.selenium.pages.CC.IBD.SteroidMedicationsForCrohnsCC;
+import com.acurian.selenium.pages.CC.IBD.SubquestionsIBD_UlcerativeColitis_CC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
@@ -247,17 +248,40 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest{
 				.clickOnAnswers("Humira (Agent Note: hue-MAIR-uh)")
 				.clickNextButton(new CurrentlyExperiencingFlareUpCC());
         
-        HowWouldYouRateCC howWouldYouRateCC = currentlyExperiencingFlareUpCC
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not currently in a flare with my Crohn's or colitis")
-                .clickNextButton(new HowWouldYouRateCC());
         
+        SubquestionsIBD_UlcerativeColitis_CC subquestionsIBD_UlcerativeColitis_CC = currentlyExperiencingFlareUpCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, I am currently in a flare with my Crohn's or colitis")
+                .clickNextButton(new SubquestionsIBD_UlcerativeColitis_CC());
+		
+		
+		//-------------changes as per R59-------
+		//-----------Q16 Please think about your Ulcerative Colitis symptoms when answering the questions below.----------------------		
+		//------------------------On an average day, how many total bowel movements do you have?------
+        subquestionsIBD_UlcerativeColitis_CC
+			.waitForPageLoad(1,subquestionsIBD_UlcerativeColitis_CC.titleExpected1)
+			.waitForPageLoad(2,subquestionsIBD_UlcerativeColitis_CC.titleExpected2)
+			.waitForPageLoad(3,subquestionsIBD_UlcerativeColitis_CC.titleExpected3);
+        //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
+			//WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_UlcerativeColitis_OLS
+        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_UlcerativeColitis_CC
+        		.totalBowelMovements("4")
+				.totalpast24hrBowelMovements("4")
+				.clickOnAnswer("Yes")
+				.clickNextButton(new HowWouldYouRateCC());
+			
+						
+		//-----------Q17 Please think about your Ulcerative Colitis symptoms when answering the questions below.----------------------		
+			//------------------------On an average day, how many total bowel movements do you have?------
+        howWouldYouRateCC
+        		.waitForPageLoadIBD();
+	    //----------Select options for 17.1, 17.2 and 17.3 sub-questions---------
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = howWouldYouRateCC
-        		.waitForPageLoadIBD()
-        		.clickOnAnswer("Fair")
-        		.clickOnAnswer("About the same")
-        		.clickOnAnswers("None of the above")
-        		.clickNextButton(new WeightLossSurgeryPageCC());
+        		.clickOnAnswer("Good")
+				.clickOnAnswer("Somewhat better now")
+				.clickOnAnswers("Loss of bowel control")
+				.clickNextButton(new WeightLossSurgeryPageCC());
+        
         
         HaveAnyOfTheFollowingPageCC haveAnyOfTheFollowingPageCC = weightLossSurgeryPageCC
         		.waitForPageLoad()

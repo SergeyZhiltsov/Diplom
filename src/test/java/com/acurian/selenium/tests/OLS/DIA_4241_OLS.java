@@ -128,12 +128,11 @@ public class DIA_4241_OLS extends BaseTest{
         CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
-        
+                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());        
         currentlyUseMetforminOrInsulinPage
         		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4625", protocol1)
+        		//.getPage(debugPageOLS)
+        		//.checkProtocolsContainsForQNumber("QS4625", protocol1)
         		.back();
         useDietAndExercisePage
         		.waitForPageLoad()

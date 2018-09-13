@@ -48,7 +48,7 @@ import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS;
 import com.acurian.selenium.utils.DataProviderPool;
 
-public class LowT_CC extends BaseTest{
+public class LowTS_3017S_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
@@ -57,9 +57,8 @@ public class LowT_CC extends BaseTest{
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
-        String protocol3 = "R727_CL_1532";
         String studyName = "a high cholesterol and heart disease";
-        String siteName = "AUT_LOWT_3017_Site";
+        String siteName = "AUT_LOWT_3017S_Site";
         String site_Indication = "Hypogonadism";
         String zipCode  = "19901";
         
@@ -110,7 +109,7 @@ public class LowT_CC extends BaseTest{
        
        GenderPageCC genderPageCC = zipCodePageCC
     		   .waitForPageLoad()
-               .typeZipCode("19044")
+               .typeZipCode(zipCode)
                .clickNextButton(new GenderPageCC());
        
        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = genderPageCC
@@ -118,12 +117,12 @@ public class LowT_CC extends BaseTest{
     		   .clickOnAnswer("Female")
     		   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());       
        debugPageCC.checkProtocolsEquals("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, i...", protocol1, protocol2);
-       debugPageCC.back();
-       
+       debugPageCC.back();       
        PersonaQuestionsCC personaQuestionsCC = genderPageCC
 	   		   .waitForPageLoad()
 	   		   .clickOnAnswer("Male")
 	   		   .clickNextButton(new PersonaQuestionsCC());
+       
 	   				   
        ExperiencedAnyOfFollowingCC experiencedAnyOfFollowingCC = personaQuestionsCC
 	   		   .waitForPageLoad()	   		   
@@ -156,7 +155,6 @@ public class LowT_CC extends BaseTest{
     		   .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_CC());
        
        
-       //HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = areYouCurrentlyTakingAnyOfTheFollowingMedications_CC
        HaveYouEverSmokedCigarettes_CC haveYouEverSmokedCigarettes_CC = areYouCurrentlyTakingAnyOfTheFollowingMedications_CC
     		   .waitForPageLoad()
     		   .clickOnAnswers("AndroGel", "Endoderm patch", "Fortesta gel", "Striant (testosterone buccal system)", "Testim gel", "Other testosterone medication not on this list", "Unsure")
@@ -188,7 +186,6 @@ public class LowT_CC extends BaseTest{
      		    .clickNextButton(new SubquestionExperiencedHeartPageCC());       
             
        
-       //HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = subquestionExperiencedHeartPageCC
        subquestionExperiencedHeartPageCC
        		   .waitForPageLoad()
     		   .clickOnAnswer("1 - 3 months ago")
@@ -267,8 +264,7 @@ public class LowT_CC extends BaseTest{
        		   		"Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
        		   .clickNextButton(new WhenWasTheLastTimeYouReceivedHeartProcedure_CC());       		   
        		   
-       		   
-       //HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = whenWasTheLastTimeYouReceivedHeartProcedure_CC
+       
        whenWasTheLastTimeYouReceivedHeartProcedure_CC
        		   .waitForPageLoad()
     		   .clickOnAnswer("1 - 3 months ago")

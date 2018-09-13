@@ -11,6 +11,7 @@ import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyOfFollowi
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.SubquestionsIBD_OLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.SubquestionsIBD_UlcerativeColitis_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWasYourMostRecentColonoscopy_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitis_OLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -54,7 +55,7 @@ public class IBD_3264_OLS extends BaseTest{
         
         AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
-        		.setDate("09092000")
+        		.setDate("09092001")
                 .clickNextButton(new AgeUnqualifiedClose_OLS());
         ageUnqualifiedClose_OLS
         	.waitForPageLoad();
@@ -249,27 +250,44 @@ public class IBD_3264_OLS extends BaseTest{
 		areYouCurrentlyExperiencingFlareUp_OLS
 				.waitForPageLoad();
 		Assert.assertEquals(areYouCurrentlyExperiencingFlareUp_OLS.getTitleText(),areYouCurrentlyExperiencingFlareUp_OLS.titleExpected, "Title is diff");
-		SubquestionsIBD_OLS subquestionsIBD_OLS = areYouCurrentlyExperiencingFlareUp_OLS
+		SubquestionsIBD_UlcerativeColitis_OLS subquestionsIBD_UlcerativeColitis_OLS = areYouCurrentlyExperiencingFlareUp_OLS
 		.clickOnAnswer("Yes, I am currently in a flare with my Crohn's or colitis")
-        .clickNextButton(new SubquestionsIBD_OLS());
+        .clickNextButton(new SubquestionsIBD_UlcerativeColitis_OLS());
 		
+
 		
-		
-		//-----------------------Q15 In general, how would you rate your health, living with Crohn's or colitis?----------------------		
-		subquestionsIBD_OLS
-			.waitForPageLoad(1,subquestionsIBD_OLS.titleExpected1)
-			.waitForPageLoad(2,subquestionsIBD_OLS.titleExpected2)
-			.waitForPageLoad(3,subquestionsIBD_OLS.titleExpected3);
+		//-------------changes as per R59-------
+		//-----------Q16 Please think about your Ulcerative Colitis symptoms when answering the questions below.----------------------		
+		//------------------------On an average day, how many total bowel movements do you have?------
+		subquestionsIBD_UlcerativeColitis_OLS
+			.waitForPageLoad(1,subquestionsIBD_UlcerativeColitis_OLS.titleExpected1)
+			.waitForPageLoad(2,subquestionsIBD_UlcerativeColitis_OLS.titleExpected2)
+			.waitForPageLoad(3,subquestionsIBD_UlcerativeColitis_OLS.titleExpected3);
         //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
-			WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_OLS
-				.clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected1,"Good")
-				.clickOnAnswersForSubQuestion(subquestionsIBD_OLS.titleExpected2,"Somewhat better now")
-				.clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected3,"Loss of bowel control")
-				.clickNextButton(new WeightLossSurgeryPageOLS());
+			//WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_UlcerativeColitis_OLS
+			SubquestionsIBD_OLS subquestionsIBD_OLS = subquestionsIBD_UlcerativeColitis_OLS
+				.totalBowelMovements("4")
+				.totalpast24hrBowelMovements("4")
+				.clickOnAnswer("Yes")
+				.clickNextButton(new SubquestionsIBD_OLS());
+			
+						
+		//-----------Q17 Please think about your Ulcerative Colitis symptoms when answering the questions below.----------------------		
+			//------------------------On an average day, how many total bowel movements do you have?------
+			subquestionsIBD_OLS
+				.waitForPageLoad(1,subquestionsIBD_OLS.titleExpected1)
+				.waitForPageLoad(2,subquestionsIBD_OLS.titleExpected2)
+				.waitForPageLoad(3,subquestionsIBD_OLS.titleExpected3);
+	    //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
+				WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_OLS
+					.clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected1,"Good")
+					.clickOnAnswersForSubQuestion(subquestionsIBD_OLS.titleExpected2,"Somewhat better now")
+					.clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected3,"Loss of bowel control")
+					.clickNextButton(new WeightLossSurgeryPageOLS());
 			
 
 			
-		//-----------------------Q16 - Have you ever had any of the following types of bariatric or weight loss surgery?  page----------------------
+		//-----------------------Q18 - Have you ever had any of the following types of bariatric or weight loss surgery?  page----------------------
 		weightLossSurgeryPageOLS
 			.waitForPageLoad();
 			Assert.assertEquals(weightLossSurgeryPageOLS.getTitleText(),weightLossSurgeryPageOLS.titleExpected, "Title is diff");
@@ -293,7 +311,7 @@ public class IBD_3264_OLS extends BaseTest{
 			
 			
 
-		 //----------------Q17 - When was the last time that you had a surgery or medical procedure for weight loss?  page----------------------
+		 //----------------Q19 - When was the last time that you had a surgery or medical procedure for weight loss?  page----------------------
 			procedureForWeightLossPageOLS
 				.waitForPageLoad();
 				Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(),procedureForWeightLossPageOLS.titleExpected, "Title is diff");
@@ -301,7 +319,7 @@ public class IBD_3264_OLS extends BaseTest{
 			    .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
 					
 
-				//----------------Q18 - Do you currently have any of the following? page----------------------
+				//----------------Q20 - Do you currently have any of the following? page----------------------
 				haveAnyOfTheFollowingPageOLS
 						.waitForPageLoad();
 						Assert.assertEquals(haveAnyOfTheFollowingPageOLS.getTitleText(),haveAnyOfTheFollowingPageOLS.titleExpected, "Title is diff");
