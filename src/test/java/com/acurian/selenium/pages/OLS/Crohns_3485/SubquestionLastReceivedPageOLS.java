@@ -34,8 +34,8 @@ public class SubquestionLastReceivedPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
     List<WebElement> titlesText;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//span[contains(@class,'visible-md-inline')]")
-    List<WebElement> checkBoxList;
+//    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//span[contains(@class,'visible-md-inline')]")
+//    List<WebElement> checkBoxList;
 
     public SubquestionLastReceivedPageOLS() {
         PageFactory.initElements(getDriver(), this);

@@ -1,14 +1,10 @@
 package com.acurian.selenium.tests.CC.no_indication;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.ChronicCough.*;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.ChronicCough.HowLongYouHadChronicCoughCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -16,18 +12,20 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class NoIndication4471_CC extends BaseTest {
+public class NoIndication3889_CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("00034")
-    @Description("No Indication 4471 CC")
-    public void chronicCough_4471_CC_NI(final String username, final String password) {
+    @TestCaseId("00035")
+    @Description("No Indication 3889 CC")
+    public void crohns_3889_CC_NI(final String username, final String password) {
         String phoneNumber = "AUTAMS1GEN";
-        String protocol1 = "MK_7264_027";
-        String protocol2 = "MK_7264_030";
+        String protocol1 = "M14_431";
+        String protocol2 = "M14_433";
+        String protocol3 = "M15_991";
+        String protocol4 = "M16_006";
         String studyName = "a chronic cough study";
         String siteName = "AUT_MCC";
-        String zipCode  = "19341";
+        String zipCode = "19341";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -94,7 +92,7 @@ public class NoIndication4471_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES",protocol1,protocol2)
+                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES",protocol1,protocol2,protocol3,protocol4)
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -102,70 +100,141 @@ public class NoIndication4471_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES",protocol1,protocol2)
+                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES",protocol1,protocol2,protocol3,protocol4)
                 .back();
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
-        kidneyProblemsPage
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", protocol1, protocol2)
-                .back();
-        WhichOfTheFollowingBreathingLungPageСС whichOfTheFollowingBreathingLungPageСС = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)",
+                .clickOnAnswers("Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
                         "Cancer",
                         "Kidney disease",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)")
-                .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
-
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = whichOfTheFollowingBreathingLungPageСС
-                .waitForPageLoad()
-                .clickOnAnswers("Asthma")
                 .clickNextButton(new OtherThanSkinCancerPageCC());
-        otherThanSkinCancerPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES", protocol1, protocol2)
-                .back();
-        whichOfTheFollowingBreathingLungPageСС
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(otherThanSkinCancerPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES", protocol1, protocol2)
-                .back();
-        whichOfTheFollowingBreathingLungPageСС
-                .waitForPageLoad()
-                .clickOnAnswers("Chronic bronchitis")
-                .clickNextButton(otherThanSkinCancerPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES", protocol1, protocol2)
-                .back();
-        whichOfTheFollowingBreathingLungPageСС
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Chronic cough")
-                .clickNextButton(otherThanSkinCancerPageCC);
 
-        otherThanSkinCancerPageCC
+        WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC = otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(kidneyProblemsPage)
+                .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
+        whichOfFollowingDigestiveConditionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
         otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
-                .clickNextButton(kidneyProblemsPage);
+                .clickNextButton(whichOfFollowingDigestiveConditionPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
+                .back();
+        otherThanSkinCancerPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("11 or more years ago")
+                .clickNextButton(whichOfFollowingDigestiveConditionPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
+                .back();
+        otherThanSkinCancerPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Diagnosed with skin cancer only")
+                .clickNextButton(whichOfFollowingDigestiveConditionPageCC);
+
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = whichOfFollowingDigestiveConditionPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015126-QS44-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
+                .back();
+        whichOfFollowingDigestiveConditionPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Crohn's disease")
+                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
+
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above ")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+        heartrelatedMedicalProceduresPageCC
+                .waitForPageLoad()
+                .back();
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack",
+                        "Stroke",
+                        "TIA or \"mini-stroke\"",
+                        "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?","Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?","Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?","Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "Less than 30 days ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?","More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+
+        KidneyProblemsPage kidneyProblemsPage = heartrelatedMedicalProceduresPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new KidneyProblemsPage());
 
         WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
                 .waitForPageLoad()
@@ -174,7 +243,7 @@ public class NoIndication4471_CC extends BaseTest {
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -183,7 +252,7 @@ public class NoIndication4471_CC extends BaseTest {
                 .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -197,7 +266,7 @@ public class NoIndication4471_CC extends BaseTest {
         whichFollowingMentalEmotionalHealth_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
@@ -210,15 +279,16 @@ public class NoIndication4471_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
         whichFollowingMentalEmotionalHealth_cc
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
         whichFollowingMentalEmotionalHealth_cc
                 .waitForPageLoad()
@@ -237,17 +307,26 @@ public class NoIndication4471_CC extends BaseTest {
         kidneyProblemsPage
                 .waitForPageLoad()
                 .back();
-        otherThanSkinCancerPageCC
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back();
-        whichOfTheFollowingBreathingLungPageСС
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .back();
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .back();
+        whichOfFollowingDigestiveConditionPageCC
+                .waitForPageLoad()
+                .back();
+        otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)")
-                .clickNextButton(whichOfTheFollowingBreathingLungPageСС)
+                .clickOnAnswers("Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)")
+                .clickNextButton(whichOfFollowingDigestiveConditionPageCC)
                 .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
@@ -341,160 +420,6 @@ public class NoIndication4471_CC extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new HowLongYouHadChronicCoughCC());
-
-
-
-        TreatingYourChronicCoughCC treatingYourChronicCoughCC = howLongYouHadChronicCoughCC
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 6 months")
-                .clickNextButton(new TreatingYourChronicCoughCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017639-QS6203-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        howLongYouHadChronicCoughCC
-                .waitForPageLoad()
-                .clickOnAnswer("6 to 11 months")
-                .clickNextButton(new TreatingYourChronicCoughCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017639-QS6203-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        howLongYouHadChronicCoughCC
-                .waitForPageLoad()
-                .clickOnAnswer("1 year or longer")
-                .clickNextButton(new TreatingYourChronicCoughCC());
-
-        SmokedCigarettesPageCC smokedCigarettesPageCC = treatingYourChronicCoughCC
-                .waitForPageLoad()
-                .clickOnAnswers("(QS6217_C)") //No, have not treated
-                .clickNextButton(new SmokedCigarettesPageCC())
-                .waitForPageLoadNew();
-        smokedCigarettesPageCC.back();
-
-        StillHaveYourCoughCC stillHaveYourCoughCC = treatingYourChronicCoughCC
-                .waitForPageLoad()
-                .clickOnAnswers("(QS6217_B)", "(QS6217_A)")    //A. Yes, with prescription and B. Yes, with over the counter
-                .clickNextButton(new StillHaveYourCoughCC());
-
-        stillHaveYourCoughCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new SmokedCigarettesPageCC());
-
-        HowManyYearsYouSmokeCC howManyYearsYouSmokeCC = smokedCigarettesPageCC
-                .waitForPageLoadNew()
-                .clickOnAnswer("Yes, I currently smoke")
-                .clickNextButton(new HowManyYearsYouSmokeCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017025-QS6206-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-
-        QuitSmokingCC quitSmokingCC = smokedCigarettesPageCC
-                .waitForPageLoadNew()
-                .clickOnAnswer("I used to smoke, but have since quit")
-                .clickNextButton(new QuitSmokingCC());
-
-        quitSmokingCC
-                .waitForPageLoad()
-                .clickOnAnswer("I quit smoking within the past year")
-                .clickNextButton(new HowManyYearsYouSmokeCC())
-                .waitForPageLoad1();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017651-QS6207-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        quitSmokingCC
-                .waitForPageLoad()
-                .clickOnAnswer("I quit smoking more than a year ago")
-                .clickNextButton(new HowManyYearsYouSmokeCC());
-
-        FollowingConditionsCC followingConditionsCC = howManyYearsYouSmokeCC
-                .waitForPageLoad1()
-                .enterYears("20")
-                .enterCigrettes("21")
-                .clickNextButton(new FollowingConditionsCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017642-QS6209-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        howManyYearsYouSmokeCC
-                .waitForPageLoad1()
-                .enterCigrettes("10")
-                .clickNextButton(new FollowingConditionsCC());
-
-        ACEInhibitorsCC aCEInhibitorsCC = followingConditionsCC
-                .waitForPageLoad()
-                .clickOnAnswers("Post-Nasal Drip (Upper Airway Cough Syndrome)", "Lung Cancer", "Tuberculosis (TB) (Agent Note: too-ber-cue-LOW-sis)")
-                .clickNextButton(new ACEInhibitorsCC())
-                .waitForPageLoad();
-        aCEInhibitorsCC.back();
-        followingConditionsCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ACEInhibitorsCC());
-
-        ExperienceWithYourChronicCoughCC experienceWithYourChronicCoughCC = aCEInhibitorsCC
-                .waitForPageLoad()
-                .clickOnAnswers("Benazepril (Ben-az-uh-pril) - Brand name Lotensin (Low-ten-sin)", "Captopril (Cap-toe-pril) - Brand name Capoten (Cap-oh-ten)", "Cilazapril (Sil-az-uh-pril) - Brand name Inhibace (In-hib-ace)")
-                .clickOnAnswers("Enalapril (Ee-nal-uh-pril) - Brand names Vasotec, Renitec, Berlipril, Enap, Enapren (Vay-zo-tech / Ren-eh-tech / Bur-lip-rell / Ee-Nap / Ee-nap-ren)", "Quinapril (Kwin-uh-pril) - Brand name Accupril (Ack-you-pril)")
-                .clickOnAnswers("Fosinopril (Foe-sin-uh-pril) - Brand names Fositen, Monopril (Foe-sit-en / Mono-pril)", "Imidapril (Im-eh-di-prell) - Brand name Tanatril (Tan-eh-tril)")
-                .clickNextButton(new ExperienceWithYourChronicCoughCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017644-QS6211-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        aCEInhibitorsCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ExperienceWithYourChronicCoughCC());
-
-        SymptomsGetBetterCC symptomsGetBetterCC = experienceWithYourChronicCoughCC
-                .waitForPageLoad()
-                .clickOnAnswers("A runny or stuffy nose", "A feeling of liquid running down the back of your throat (postnasal drip)", "Frequent throat clearing and sore throat", "Hoarseness")
-                .clickOnAnswers("Wheezing and shortness of breath", "Heartburn or a sour taste in your mouth", "Coughing up blood")
-                .clickNextButton(new SymptomsGetBetterCC())
-                .waitForPageLoad();
-        symptomsGetBetterCC.back();
-        TransitionStatementCC transitionStatementCC = experienceWithYourChronicCoughCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoadMCC("chronic cough");
-        transitionStatementCC.back();
-
-        experienceWithYourChronicCoughCC
-                .waitForPageLoad()
-                .clickOnAnswers("A runny or stuffy nose")
-                .clickNextButton(new SymptomsGetBetterCC());
-
-        symptomsGetBetterCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC());
-
-        LetMeSeePageCC letMeSeePageCC = transitionStatementCC
-                .waitForPageLoadMCC("chronic cough")
-                .clickNextButton(new LetMeSeePageCC());
-
-        letMeSeePageCC
-                .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new IdentificationPageCC())
-                .waitForPageLoad()
-                .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoadMCC(studyName)
-                .getPID()
-                .clickOnAnswer(siteName)
-                .clickNextButton(new HSGeneralCC())
-                .waitForPageLoad("Chronic Cough")
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
-
 
     }
 }

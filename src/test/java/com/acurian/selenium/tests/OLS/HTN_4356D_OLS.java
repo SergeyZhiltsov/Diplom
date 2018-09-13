@@ -1,11 +1,9 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
-import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseMIG4356Page;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -121,22 +119,22 @@ public class HTN_4356D_OLS extends BaseTest{
 	//--------------whatKindOfDiabetesPageOLS----------------
 		whatKindOfDiabetesPageOLS
 		.waitForPageLoad();
-		WhichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS whichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS = whatKindOfDiabetesPageOLS
+		WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = whatKindOfDiabetesPageOLS
 		.clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-		.clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS());
-		whichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS
+		.clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
+		whichOfFollowingDigestiveConditionPageOLS
 			.waitForPageLoad()
 			.getPage(debugPageOLS)
 			.checkProtocolsContainsForQNumber("QS43", protocol1)
 			.back();
 			whatKindOfDiabetesPageOLS.waitForPageLoad()
 			.clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-			.clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS());
+			.clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
 	//----------------------------------------------------
-			whichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS
+			whichOfFollowingDigestiveConditionPageOLS
 			.waitForPageLoad();
 			//DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-			WhichTypeOfHeadacheDoYouGetOLS whichTypeOfHeadacheDoYouGetOLS = whichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS
+			WhichTypeOfHeadacheDoYouGetOLS whichTypeOfHeadacheDoYouGetOLS = whichOfFollowingDigestiveConditionPageOLS
 					.clickOnAnswers("None of the above")
 					.clickNextButton(new WhichTypeOfHeadacheDoYouGetOLS());
 	//----------------------------------------------------

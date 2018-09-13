@@ -1,7 +1,5 @@
 package com.acurian.selenium.tests.OLS;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.AreYouTakingMedications;
 import com.acurian.selenium.pages.OLS.DY_4356.NonPrescriptionSupplements;
@@ -9,45 +7,16 @@ import com.acurian.selenium.pages.OLS.DY_4356.PregnancyAndFertilityPage;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseDYSPageOLS;
-import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedCloseMIG4356Page;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.AffectYourLungs;
-import com.acurian.selenium.pages.OLS.generalHealth.AffectingYourMetabolism;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditions;
-import com.acurian.selenium.pages.OLS.generalHealth.CancerPage;
-import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditions;
-import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.DrugOrAlcoholAbuse;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouSmokedCigarettes;
-import com.acurian.selenium.pages.OLS.generalHealth.HeartRelatedMedicalProc;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.MentalHealthConditions;
-import com.acurian.selenium.pages.OLS.generalHealth.NeurologicalConditions;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SkinConditions;
-import com.acurian.selenium.pages.OLS.generalHealth.SleepRelatedConditions;
-import com.acurian.selenium.pages.OLS.generalHealth.ViralConditions;
-import com.acurian.selenium.pages.OLS.generalHealth.WomenHealthConditions;
-import com.acurian.selenium.pages.OLS.generalHealth.YouHaveCHF;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.shared.ChildrenUnderTheAge;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DyslipidemiaHealthcarePage;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS;
-import com.acurian.selenium.pages.OLS.shared.HowLongTakingStatin;
-import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
-import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
-import com.acurian.selenium.pages.OLS.shared.StatinMedicationsPage;
-import com.acurian.selenium.pages.OLS.shared.WhenLastTimeYouHadHeartProceduresOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
 public class DYSLI_4356 extends BaseTest {

@@ -10,7 +10,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 
-public class WhichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS extends MainPageOLS{
+public class WhichOfFollowingDigestiveConditionPageOLS extends MainPageOLS{
 
     public final String titleExpected = "You indicated that you have a digestive condition.\n" +
     		"Which of the following have you been diagnosed with by a doctor?\n" +
@@ -22,18 +22,18 @@ public class WhichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS extends
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public WhichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS() {
+    public WhichOfFollowingDigestiveConditionPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS waitForPageLoad() {
+    public WhichOfFollowingDigestiveConditionPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichOfFollowingDiagnosedWithByDoctor_DigestivedisordersOLS clickOnAnswers(String ...answerText) {
+    public WhichOfFollowingDigestiveConditionPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

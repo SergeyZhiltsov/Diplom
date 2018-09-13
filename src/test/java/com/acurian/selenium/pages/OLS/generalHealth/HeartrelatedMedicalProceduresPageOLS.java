@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.InsulinForYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
@@ -14,10 +15,10 @@ public class HeartrelatedMedicalProceduresPageOLS extends MainPageOLS{
     public final String titleExpected = "Have you undergone any of the following heart-related medical procedures?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
     public HeartrelatedMedicalProceduresPageOLS() {
