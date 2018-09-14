@@ -299,7 +299,6 @@ public class DIA_4241_OLS extends BaseTest{
 		.waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
         .clickNextButton(new SiteSelectionPageOLS())
-        //.waitForPageLoad(studyName)
         .waitForPageLoadAKC()
         .getPID()
         .clickOnFacilityName(siteName)

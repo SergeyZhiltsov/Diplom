@@ -39,7 +39,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class Chronic_4471_CC extends BaseTest{
 	
-	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void chronic_4471_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1MCC";

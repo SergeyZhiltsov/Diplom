@@ -47,7 +47,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class KAD_4849_OLS extends BaseTest{
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @TestCaseId("00002")
     @Description("kad4849_OLS_Test")
     public void kad4849_OLS_Test() {

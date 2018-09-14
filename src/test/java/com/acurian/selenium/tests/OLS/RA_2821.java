@@ -254,6 +254,8 @@ public class RA_2821 extends BaseTest {
         .waitForPageLoad()        
         .clickOkInPopUp()
         .setSignature()
+        
+        //------------HUMAN API Interface in HelloSign----------------
         .getPage(new HumanAPIOLS())
         .waitForPageLoad()		        
         .connectBTN()
@@ -267,6 +269,7 @@ public class RA_2821 extends BaseTest {
         .typeUserName("democlinical@gmail.com")
         .typePWD("password")
         .clickConnect()
+        
         .waitToClickNext()
         .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()

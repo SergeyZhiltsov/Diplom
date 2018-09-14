@@ -224,24 +224,7 @@ public class AKC_4691_OLS extends BaseTest{
                 .waitForPageLoad();	
                 MetforminMedicationsPageOLS metforminMedicationsPageOLS = currentlyUseMetforminOrInsulinPage
                 .clickOnAnswers("Metformin")
-                .clickNextButton(new MetforminMedicationsPageOLS());
-        
-        
-/*        //----------Q7: Have you taken any prescribed medication for your diabetes within the past 3 months? -----------    
-        anyPrescribedMedicationPage
-        		.waitForPageLoad();
-        Assert.assertEquals(anyPrescribedMedicationPage.getTitleText(),anyPrescribedMedicationPage.titleExpected, "Title is diff");
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = anyPrescribedMedicationPage
-        //---------if selected "NO" Skip to Q15---
-        		.clickOnAnswer("No")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        noOfAlcoholicDrinkOLS.waitForPageLoad()
-        		.back();
-        anyPrescribedMedicationPage
-				.waitForPageLoad()
-				.clickOnAnswer("Yes")
-				.clickNextButton(new MetforminMedicationsPageOLS());*/
-        
+                .clickNextButton(new MetforminMedicationsPageOLS());       
         
         
         //----------Q8: Do you currently take any of the following oral (taken by mouth) metformin medications?
@@ -645,6 +628,8 @@ public class AKC_4691_OLS extends BaseTest{
         .waitForPageLoad()
         .clickOkInPopUp()
         .setSignature()
+        
+        //------------HUMAN API Interface in HelloSign----------------
         .getPage(new HumanAPIOLS())
         .waitForPageLoad()		        
         .connectBTN()
@@ -658,6 +643,7 @@ public class AKC_4691_OLS extends BaseTest{
         .typeUserName("democlinical@gmail.com")
         .typePWD("password")
         .clickConnect()
+        
         .waitToClickNext()
         .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()

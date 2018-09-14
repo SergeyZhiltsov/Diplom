@@ -36,8 +36,8 @@ public class LOWTS_3017S_OLS extends BaseTest{
 
     @Test
     @TestCaseId("00015")
-    @Description("LOWT_3017_OLS")
-    public void lOWT_3017_OLS() {
+    @Description("LOWT_3017S_OLS")
+    public void lOWT_3017S_OLS() {
         String phoneNumber = "AUTAMSLOWT";
         List<String> protocols = Arrays.asList("M16_100");
         String protocol1 = "M16_100";
@@ -347,7 +347,9 @@ public class LOWTS_3017S_OLS extends BaseTest{
         .waitForPageLoad()
         .clickOkInPopUp()
         .setSignature()
-        .getPage(new HumanAPIOLS())
+        
+        //------------HUMAN API Interface in HelloSign----------------
+        /*.getPage(new HumanAPIOLS())
         .waitForPageLoad()		        
         .connectBTN()
         .switchToAPI()
@@ -359,7 +361,8 @@ public class LOWTS_3017S_OLS extends BaseTest{
         .clickProvider()
         .typeUserName("democlinical@gmail.com")
         .typePWD("password")
-        .clickConnect()
+        .clickConnect()*/
+        
         .waitToClickNext()
         .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()

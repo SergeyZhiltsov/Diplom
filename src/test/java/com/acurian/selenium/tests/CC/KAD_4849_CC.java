@@ -40,7 +40,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class KAD_4849_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class,enabled = false)
     @TestCaseId("Kiniksa Atopic Dermatitis")
     @Description("KAD 4849 for CC")
     public void kad4849_CC_Test(final String username, final String password) {
