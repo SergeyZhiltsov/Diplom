@@ -329,6 +329,8 @@ public class Chronic_4471_OLS extends BaseTest{
 		        .waitForPageLoad()
 		        .clickOkInPopUp()
 		        .setSignature()
+		        
+		        //------------HUMAN API Interface in HelloSign----------------
 		        .getPage(new HumanAPIOLS())
 		        .waitForPageLoad()		        
 		        .connectBTN()
@@ -342,6 +344,7 @@ public class Chronic_4471_OLS extends BaseTest{
 		        .typeUserName("democlinical@gmail.com")
 		        .typePWD("password")
 		        .clickConnect()
+		        
 		        .waitToClickNext()
 		        .clickNextButton(new ThankYouCloseSimplePageOLS())
 		        .waitForPageLoad()

@@ -239,7 +239,6 @@ public class IBD_3485_SHORT_OLS extends BaseTest{
 		//----------PII (IdentificationPageOLS) Page--------------------
 		.waitForPageLoad();
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
-        //.setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
 		.clickNextButton(new SiteSelectionPageOLS());
         
 		//----------SiteSelection Page--------------------

@@ -12,6 +12,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
@@ -123,6 +126,14 @@ public class HS1PageOLS extends MainPageOLS{
         return this;
     }
 
+    @Step
+    public HS1PageOLS waitToClickNext() {
+    	WebDriverWait wait = new WebDriverWait(getDriver(), 4000);
+    	wait.until(ExpectedConditions.visibilityOf(titleText));
+        return this;
+    }
+    
+    
     @Step
     public String getTitleText(){
         return getText(titleText);

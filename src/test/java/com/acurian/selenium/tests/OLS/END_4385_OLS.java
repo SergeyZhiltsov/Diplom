@@ -210,34 +210,8 @@ public class END_4385_OLS extends BaseTest {
         debugPageCC.back();
         hormonalBirthControlOLS.waitForPageLoad()
         .clickOnAnswer("Yes")
-        .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
-        
-        
-/*        MostRecentSurgeryOLS mostRecentSurgeryOLS = surgicalProceduresOLS
-        		.waitForPageLoad()
-        		.clickOnAnswer("4 or more")
-        		.clickNextButton(new MostRecentSurgeryOLS());
-        
-        debugPageCC.checkProtocolsEquals("There are times when surgery is required to remove endometriosis tissue found outside of the uterus ...", protocol1,protocol2);
-        debugPageCC.back();
-        surgicalProceduresOLS
-        		.waitForPageLoad()
-        		.clickOnAnswer("1")
-        		.clickNextButton(new MostRecentSurgeryOLS());
-        
-       mostRecentSurgeryOLS
-        		.waitForPageLoad()
-        		.clickOnAnswer("3 months ago or less")
-        		.clickNextButton(new FollowingGynecologicalConditionOLS());        
-        
-        debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat your endometriosis?", protocol1,protocol2);
-        debugPageCC.back();
-        mostRecentSurgeryOLS
-        		.waitForPageLoad()
-        		.clickOnAnswer("7 - 11 months ago")
-        		.clickNextButton(new FollowingGynecologicalConditionOLS());
-        DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = new DiagnosedWithGynecologicalConditionOLS(); */
-        
+        .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());        
+       
         
         //---------Q12 - Has a healthcare professional ever diagnosed you with any of these other gynecological or women's health conditions? ---
         AreYouCurrentlyPregnantOLS areYouCurrentlyPregnantOLS = diagnosedWithGynecologicalConditionOLS
@@ -303,6 +277,8 @@ public class END_4385_OLS extends BaseTest {
         .waitForPageLoad()
         .clickOkInPopUp()
         .setSignature()
+        
+        //------------HUMAN API Interface in HelloSign----------------
         .getPage(new HumanAPIOLS())
         .waitForPageLoad()		        
         .connectBTN()
@@ -316,6 +292,7 @@ public class END_4385_OLS extends BaseTest {
         .typeUserName("democlinical@gmail.com")
         .typePWD("password")
         .clickConnect()
+        
         .waitToClickNext()
         .clickNextButton(new ThankYouCloseSimplePageOLS())
         .waitForPageLoad()

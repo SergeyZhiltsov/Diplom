@@ -162,10 +162,5 @@ public class LBP_2108_OLS extends BaseTest{
         Assert.assertEquals(areYouCurrentlyOnPageOLS.getTitleText(), areYouCurrentlyOnPageOLS.titleExpected, "Title is diff");
         inPastYearPageOLS
                 .clickOnAnswers("");
-
-
-
-
     }
-
 }

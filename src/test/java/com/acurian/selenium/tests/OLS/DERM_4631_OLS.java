@@ -737,7 +737,6 @@ public class DERM_4631_OLS extends BaseTest{
 		//----------PII (IdentificationPageOLS) Page--------------------
 		.waitForPageLoad();
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
-        //.setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
 		.clickNextButton(new SiteSelectionPageOLS());
         
 		//----------SiteSelection Page--------------------

@@ -272,11 +272,6 @@ public class Insomnia_3792_OLS extends BaseTest{
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new BoneOrJointConditionsPageOLS());
 		
-/*		//----------BoneOrJointConditions Page--------------------		
-		BoneOrJointConditions boneOrJointConditions = boneOrJointConditionsPageOLS
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new BoneOrJointConditions());*/
 			
 		//----------BoneOrJointConditions Page--------------------
 		SleepRelatedConditionsPageOLS sleepRelatedConditionsPageOLS = boneOrJointConditionsPageOLS
