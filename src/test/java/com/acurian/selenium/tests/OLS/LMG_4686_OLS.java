@@ -496,24 +496,24 @@ public class LMG_4686_OLS extends BaseTest{
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new ApproximateHeightPageOLS());
 		
-		ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
+		approximateHeightPageOLS
 				.waitForPageLoad()
 				.setAll("5", "7", "166")
-				.clickNextButton(new ChildrenUnderPageOLS());		
+//				.clickNextButton(new ChildrenUnderPageOLS());
 		 
-		childrenUnderPageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new TheStudySitePageOLS())
-				.waitForPageLoad()	        
-			//-------------------PEDIATRIC QUESTIONS-----------------------------   
-				.clickOnAnswer("Public transportation")
-				.clickNextButton(new WhatMedicalCoveragePageOLS())
-				.waitForPageLoad()
-				.clickOnAnswers("No, I have no coverage")
-				.clickNextButton(new EthnicBackgroundPageOLS())
-				.waitForPageLoad()
-				.clickOnAnswers("Prefer not to answer")
+//		childrenUnderPageOLS
+//				.waitForPageLoad()
+//				.clickOnAnswer("No")
+//				.clickNextButton(new TheStudySitePageOLS())
+//				.waitForPageLoad()
+//			//-------------------PEDIATRIC QUESTIONS-----------------------------
+//				.clickOnAnswer("Public transportation")
+//				.clickNextButton(new WhatMedicalCoveragePageOLS())
+//				.waitForPageLoad()
+//				.clickOnAnswers("No, I have no coverage")
+//				.clickNextButton(new EthnicBackgroundPageOLS())
+//				.waitForPageLoad()
+//				.clickOnAnswers("Prefer not to answer")
 				.clickNextButton(new IdentificationPageOLS())
 			//----------PII (IdentificationPageOLS) Page--------------------
 				.waitForPageLoad()

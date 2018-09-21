@@ -55,8 +55,7 @@ public class IBD_3485_SHORT_OLS extends BaseTest{
         String siteName = "AUT_CRN_3889_HS";
         String zipCode = "19044";   //19901 for IBD-UC modules
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         //---------------Date of Birth Question-------------------
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -215,23 +214,23 @@ public class IBD_3485_SHORT_OLS extends BaseTest{
 				.waitForPageLoad();
 		Assert.assertEquals(areYouCurrentlyExperiencingFlareUp_OLS.getTitleText(),areYouCurrentlyExperiencingFlareUp_OLS.titleExpected, "Title is diff");
 		areYouCurrentlyExperiencingFlareUp_OLS.clickOnAnswer("Yes, I am currently in a flare with my Crohn's or colitis")
-        .clickNextButton(new ChildrenUnderPageOLS())
-        
-        
-		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
-        
-		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
+//        .clickNextButton(new ChildrenUnderPageOLS())
+//
+//
+//		//----------ChildrenUnderTheAge Page--------------------
+//        .waitForPageLoad()
+//        .clickOnAnswer("Yes")
+//        .clickNextButton(new HouseholdHavePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("None of the above")
+//        .clickNextButton(new TheStudySitePageOLS())
+//        .waitForPageLoad()
+//
+//		//-------------------PEDIATRIC QUESTIONS-----------------------------
+//        .clickOnAnswer("Public transportation")
+//        .clickNextButton(new WhatMedicalCoveragePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("No, I have no coverage")
         .clickNextButton(new EthnicBackgroundPageOLS())
         .waitForPageLoad()
         .clickOnAnswers("Prefer not to answer")

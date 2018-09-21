@@ -50,8 +50,8 @@ public class KAD_4631_OLS extends BaseTest{
         String studyName =  "an eczema (atopic dermatitis)";
         String siteName = "AUT_DERM_4631_Site";
         String zipCode = "19901";
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
+
         String eMailId = "qa.acurian@gmail.com";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -487,18 +487,18 @@ public class KAD_4631_OLS extends BaseTest{
 				.waitForPageLoad()
 				.setFeatwithClear("5")				
 				.setLbs("160")				
-				.clickNextButton(new ChildrenUnderPageOLS())
-				.waitForPageLoad()
-		        .clickOnAnswer("Yes")
-		        .clickNextButton(new HouseholdHavePageOLS())
-		        .waitForPageLoad()
-		        .clickOnAnswers("None of the above")
-		        .clickNextButton(new TheStudySitePageOLS())
-		        .waitForPageLoad()
-		        .clickOnAnswer("Public transportation")
-		        .clickNextButton(new WhatMedicalCoveragePageOLS())
-		        .waitForPageLoad()
-		        .clickOnAnswers("No, I have no coverage")
+//				.clickNextButton(new ChildrenUnderPageOLS())
+//				.waitForPageLoad()
+//		        .clickOnAnswer("Yes")
+//		        .clickNextButton(new HouseholdHavePageOLS())
+//		        .waitForPageLoad()
+//		        .clickOnAnswers("None of the above")
+//		        .clickNextButton(new TheStudySitePageOLS())
+//		        .waitForPageLoad()
+//		        .clickOnAnswer("Public transportation")
+//		        .clickNextButton(new WhatMedicalCoveragePageOLS())
+//		        .waitForPageLoad()
+//		        .clickOnAnswers("No, I have no coverage")
 		        .clickNextButton(new EthnicBackgroundPageOLS())
 		        .waitForPageLoad()
 		        .clickOnAnswers("Prefer not to answer")
