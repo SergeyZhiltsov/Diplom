@@ -13,6 +13,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
+import java.util.concurrent.TimeUnit;
+
 @Listeners(TestListener.class)
 public abstract class BaseTest {
 
@@ -32,6 +34,7 @@ public abstract class BaseTest {
                 : new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
+//        driver.manage().timeouts().setScriptTimeout(100,TimeUnit.SECONDS);
 //        driverch.register(new EventHandler());
 //        driver =  new StaleTolerantWebDriver(driverch);
         switch (Locators.isEnvWeb) {

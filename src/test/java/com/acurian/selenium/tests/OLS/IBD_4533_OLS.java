@@ -52,12 +52,11 @@ public class IBD_4533_OLS extends BaseTest{
         String zipCode = "19901";   //19901 for IBD-UC modules
         String indication = "a Crohn's Disease";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         String time = String.valueOf(Instant.now().getEpochSecond());
         time = time.substring(time.length()-4);
-        String eMailId = "qa.acurian_"+time+"3@gmail.com";
+        String eMailId = "qa.acurian@gmail.com";
         
         
         //---------------Date of Birth Question-------------------
