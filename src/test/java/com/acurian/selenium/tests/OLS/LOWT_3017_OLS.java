@@ -37,7 +37,7 @@ public class LOWT_3017_OLS extends BaseTest{
     @Test
     @TestCaseId("00015")
     @Description("LOWT_3017_OLS")
-    public void lOWT_3017_OLS() {
+    public void lowt_3017_OLS() {
         String phoneNumber = "AUTAMSLOWT";
         List<String> protocols = Arrays.asList("M16_100");
         String protocol1 = "M16_100";
@@ -45,7 +45,7 @@ public class LOWT_3017_OLS extends BaseTest{
         String protocol3 = "R727_CL_1532";
         String studyName = "a men's low testosterone";
         String site_Indication = "Hypogonadism";
-        String siteName = "AUT_LOWT_3017";
+        String siteName = "AUT_LOWT_3017_Site";
         String zipCode = "19901";
         
         String env = System.getProperty("acurian.env");
@@ -310,26 +310,26 @@ public class LOWT_3017_OLS extends BaseTest{
         //----------Change inches to maje BMI to <50--------------------
         .waitForPageLoad()
         .setIncheswithClear("5")
-        .clickNextButton(new ChildrenUnderPageOLS())
-        
-        
-		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
-        
-		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
-        .clickNextButton(new EthnicBackgroundPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Prefer not to answer")
+//        .clickNextButton(new ChildrenUnderPageOLS())
+//
+//
+//		//----------ChildrenUnderTheAge Page--------------------
+//        .waitForPageLoad()
+//        .clickOnAnswer("Yes")
+//        .clickNextButton(new HouseholdHavePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("None of the above")
+//        .clickNextButton(new TheStudySitePageOLS())
+//        .waitForPageLoad()
+//
+//		//-------------------PEDIATRIC QUESTIONS-----------------------------
+//        .clickOnAnswer("Public transportation")
+//        .clickNextButton(new WhatMedicalCoveragePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("No, I have no coverage")
+//        .clickNextButton(new EthnicBackgroundPageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("Prefer not to answer")
         .clickNextButton(new IdentificationPageOLS())
 		//----------PII (IdentificationPageOLS) Page--------------------
 		.waitForPageLoad()

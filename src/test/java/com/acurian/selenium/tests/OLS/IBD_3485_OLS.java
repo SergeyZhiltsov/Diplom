@@ -47,8 +47,7 @@ public class IBD_3485_OLS extends BaseTest{
         String zipCode = "19044";   //19901 for IBD-UC modules
         String indication = "a Crohn's Disease";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         //---------------Date of Birth Question-------------------
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -720,23 +719,23 @@ public class IBD_3485_OLS extends BaseTest{
         approximateHeightPageOLS
         	.waitForPageLoad()
         .setAll("5", "5", "160")
-        .clickNextButton(new ChildrenUnderPageOLS())
-        
-        
-		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
-        
-		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
+//        .clickNextButton(new ChildrenUnderPageOLS())
+//
+//
+//		//----------ChildrenUnderTheAge Page--------------------
+//        .waitForPageLoad()
+//        .clickOnAnswer("Yes")
+//        .clickNextButton(new HouseholdHavePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("None of the above")
+//        .clickNextButton(new TheStudySitePageOLS())
+//        .waitForPageLoad()
+//
+//		//-------------------PEDIATRIC QUESTIONS-----------------------------
+//        .clickOnAnswer("Public transportation")
+//        .clickNextButton(new WhatMedicalCoveragePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("No, I have no coverage")
         .clickNextButton(new EthnicBackgroundPageOLS())
         .waitForPageLoad()
         .clickOnAnswers("Prefer not to answer")

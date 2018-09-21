@@ -18,10 +18,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
+
 import java.util.Arrays;
 import java.util.List;
 
-public class DIA_4241_OLS extends BaseTest{
+public class DIA_4241_OLS extends BaseTest {
 
     @Test
     @TestCaseId("00017")
@@ -32,25 +33,24 @@ public class DIA_4241_OLS extends BaseTest{
         String protocol1 = "EFC14822";
         String AKC = "ISIS 703802_CS2";
         String studyName = "a diabetes";
-        String siteName = "AUT_DIA_4241";   
+        String siteName = "AUT_DIA_4241";
         String zipCode = "19901";
-        
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+
+        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumberLBP)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleDiabetes_4356A_Expected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(), dateOfBirthPageOLS.titleExpected, "Question is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDiabetes_4356A_Expected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(zipCodePageOLS.getTitleText(),zipCodePageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(zipCodePageOLS.getTitleText(), zipCodePageOLS.titleExpected, "Title is diff");
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageOLS());
@@ -64,14 +64,14 @@ public class DIA_4241_OLS extends BaseTest{
 
         diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(), diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1,AKC);
+        debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1, AKC);
         debugPageOLS.back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -80,14 +80,14 @@ public class DIA_4241_OLS extends BaseTest{
 
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(whatKindOfDiabetesPageOLS.getTitleText(),whatKindOfDiabetesPageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(whatKindOfDiabetesPageOLS.getTitleText(), whatKindOfDiabetesPageOLS.titleExpected, "Title is diff");
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1,AKC)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1, AKC)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -95,7 +95,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1,AKC)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1, AKC)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -103,7 +103,7 @@ public class DIA_4241_OLS extends BaseTest{
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1,AKC)
+                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1, AKC)
                 .back();
         UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageOLS //rel 47
                 .waitForPageLoad()
@@ -112,7 +112,7 @@ public class DIA_4241_OLS extends BaseTest{
         useDietAndExercisePage
                 .waitForPageLoad()
                 .back();
-        
+
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -120,116 +120,116 @@ public class DIA_4241_OLS extends BaseTest{
 
         withType2DiabetesPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(withType2DiabetesPageOLS.getTitleText(),withType2DiabetesPageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(withType2DiabetesPageOLS.getTitleText(), withType2DiabetesPageOLS.titleExpected, "Title is diff");
         withType2DiabetesPageOLS
                 .clickOnAnswer("Within the past 2 months")
                 .clickNextButton(new UseDietAndExercisePage());
-        
+
         CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());        
+                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
         currentlyUseMetforminOrInsulinPage
-        		.waitForPageLoad()
-        		//.getPage(debugPageOLS)
-        		//.checkProtocolsContainsForQNumber("QS4625", protocol1)
-        		.back();
+                .waitForPageLoad()
+                //.getPage(debugPageOLS)
+                //.checkProtocolsContainsForQNumber("QS4625", protocol1)
+                .back();
         useDietAndExercisePage
-        		.waitForPageLoad()
-        		.clickOnAnswer("Yes")
-        		.clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
-        
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+
         MetforminMedicationsPageOLS metforminMedicationsPageOLS = currentlyUseMetforminOrInsulinPage
-        		.waitForPageLoad()
-        		.clickOnAnswers("Metformin")
-        		.clickNextButton(new MetforminMedicationsPageOLS());
+                .waitForPageLoad()
+                .clickOnAnswers("Metformin")
+                .clickNextButton(new MetforminMedicationsPageOLS());
         metforminMedicationsPageOLS
-        		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4626", protocol1)
-        		.back();
-        
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4626", protocol1)
+                .back();
+
         InsulinForYourDiabetesPageOLS insulinForYourDiabetesPageOLS = currentlyUseMetforminOrInsulinPage
-        		.waitForPageLoad()
-        		.clickOnAnswers("Metformin")
-        		.clickOnAnswers("Insulin")
-        		.clickNextButton(new InsulinForYourDiabetesPageOLS());
+                .waitForPageLoad()
+                .clickOnAnswers("Metformin")
+                .clickOnAnswers("Insulin")
+                .clickNextButton(new InsulinForYourDiabetesPageOLS());
         insulinForYourDiabetesPageOLS
-        		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4626", protocol1)
-        		.back();
-        
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4626", protocol1)
+                .back();
+
         ApartFromMetforminPageOLS apartFromMetforminPageOLS = currentlyUseMetforminOrInsulinPage
-        		.waitForPageLoad()
-        		.clickOnAnswers("Insulin")
-        		.clickOnAnswers("Medication other than Metformin or Insulin")
-        		.clickNextButton(new ApartFromMetforminPageOLS());
+                .waitForPageLoad()
+                .clickOnAnswers("Insulin")
+                .clickOnAnswers("Medication other than Metformin or Insulin")
+                .clickNextButton(new ApartFromMetforminPageOLS());
         apartFromMetforminPageOLS
-        		.waitForPageLoad()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4626", protocol1)
-        		.back();
-        
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4626", protocol1)
+                .back();
+
         AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
-        		.waitForPageLoad()
-        		.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
-        		.clickNextButton(new AnyPrescribedMedicationPage());
-        
-        
+                .waitForPageLoad()
+                .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+                .clickNextButton(new AnyPrescribedMedicationPage());
+
+
         //FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = treatingYourDiabetesPageOLS
         NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = anyPrescribedMedicationPage
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4627", protocol1)        		
+                .checkProtocolsContainsForQNumber("QS4627", protocol1)
                 .back();
         anyPrescribedMedicationPage
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
-        		.clickNextButton(new NoOfAlcoholicDrinkOLS());
-        
-     
-      LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
-    		    .waitForPageLoad()
-      			.setDrinks("4")
-      			.clickNextButton(new LiverRelatedConditionOLS());
-      			        		
-      	//---------------------------------------liverRelatedConditionOLS---------------
-      	liverRelatedConditionOLS
-      				.waitForPageLoad();
-      			     Assert.assertEquals(liverRelatedConditionOLS.getTitleText(),liverRelatedConditionOLS.titleExpected, "Title is diff");
-      			     FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
-      			     .clickOnAnswers("None of the above")
-      			     .clickNextButton(new FollowingToLoseWeightPageOLS());				
-             
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+
+
+        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+                .waitForPageLoad()
+                .setDrinks("4")
+                .clickNextButton(new LiverRelatedConditionOLS());
+
+        //---------------------------------------liverRelatedConditionOLS---------------
+        liverRelatedConditionOLS
+                .waitForPageLoad();
+        Assert.assertEquals(liverRelatedConditionOLS.getTitleText(), liverRelatedConditionOLS.titleExpected, "Title is diff");
+        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingToLoseWeightPageOLS());
+
         followingToLoseWeightPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(followingToLoseWeightPageOLS.getTitleText(),followingToLoseWeightPageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(followingToLoseWeightPageOLS.getTitleText(), followingToLoseWeightPageOLS.titleExpected, "Title is diff");
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
                 .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageOLS());
 
         weightLossSurgeryPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(weightLossSurgeryPageOLS.getTitleText(),weightLossSurgeryPageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(weightLossSurgeryPageOLS.getTitleText(), weightLossSurgeryPageOLS.titleExpected, "Title is diff");
         ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
                 .clickOnAnswers("Gastric bypass")
                 .clickNextButton(new ProcedureForWeightLossPageOLS());
 
         procedureForWeightLossPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(),procedureForWeightLossPageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(), procedureForWeightLossPageOLS.titleExpected, "Title is diff");
         PoundsOrMorePageOLS poundsOrMorePageOLS = procedureForWeightLossPageOLS
                 .clickOnAnswer("Less than 3 months ago")
                 .clickNextButton(new PoundsOrMorePageOLS());
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4616", protocol1)        		
+                .checkProtocolsContainsForQNumber("QS4616", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -266,7 +266,7 @@ public class DIA_4241_OLS extends BaseTest{
 
         poundsOrMorePageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(poundsOrMorePageOLS.getTitleText(),poundsOrMorePageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(poundsOrMorePageOLS.getTitleText(), poundsOrMorePageOLS.titleExpected, "Title is diff");
         poundsOrMorePageOLS
                 .clickOnAnswer("Yes")
                 //.clickNextButton(new StatinMedicationsOnPageOLS())
@@ -275,39 +275,39 @@ public class DIA_4241_OLS extends BaseTest{
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4617", protocol1)
                 .back();
-        ChildrenUnderPageOLS childrenUnderPageOLS = poundsOrMorePageOLS
+        poundsOrMorePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new ChildrenUnderPageOLS());
-        childrenUnderPageOLS
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
-                .clickNextButton(new TheStudySitePageOLS());
-                TheStudySitePageOLS theStudySitePageOLS = new TheStudySitePageOLS();
-  //----------*******NEW GENERAL HEALTH Questions********---------------------------     
-		//-------------------PEDIATRIC QUESTIONS-----------------------------
-         theStudySitePageOLS.waitForPageLoad()
-         .clickOnAnswer("Public transportation")
-         .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
-        .clickNextButton(new EthnicBackgroundPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Prefer not to answer")
-        .clickNextButton(new IdentificationPageOLS())
-		//----------PII (IdentificationPageOLS) Page--------------------
-		.waitForPageLoad()
-        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-        .clickNextButton(new SiteSelectionPageOLS())
-        .waitForPageLoadAKC()
-        .getPID()
-        .clickOnFacilityName(siteName)
-        .clickNextButton(new QualifiedClose2PageOLS())
-        .waitForPageLoad()
-        .clickNextButton(new ThankYouCloseSimplePageOLS())
-        .waitForPageLoad()
-        .clickNextButton(new AboutHealthPageOLS())
-        .waitForPageLoad()
-        .pidFromDbToLog(env);		
+//                .clickNextButton(new ChildrenUnderPageOLS());
+//        childrenUnderPageOLS
+//        		.waitForPageLoad()
+//        		.clickOnAnswer("No")
+//                .clickNextButton(new TheStudySitePageOLS());
+//                TheStudySitePageOLS theStudySitePageOLS = new TheStudySitePageOLS();
+//  //----------*******NEW GENERAL HEALTH Questions********---------------------------
+//		//-------------------PEDIATRIC QUESTIONS-----------------------------
+//         theStudySitePageOLS.waitForPageLoad()
+//         .clickOnAnswer("Public transportation")
+//         .clickNextButton(new WhatMedicalCoveragePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("No, I have no coverage")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS())
+                //----------PII (IdentificationPageOLS) Page--------------------
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoadAKC()
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

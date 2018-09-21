@@ -52,7 +52,7 @@ public class LowTS_3017S_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
-	public void lowT(final String username, final String password) {
+	public void lowts_3017_CC(final String username, final String password) {
         String phoneNumber = "AUTAMSLOWT";
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");
         String protocol1 = "M16_100";

@@ -640,23 +640,23 @@ public class IBD_3264_OLS extends BaseTest{
         .clickNextButton(new ApproximateHeightPageOLS())
         .waitForPageLoad()
         .setAll("5", "5", "160")
-        .clickNextButton(new ChildrenUnderPageOLS())
-        
-        
-		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
-        
-		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
+//        .clickNextButton(new ChildrenUnderPageOLS())
+//
+//
+//		//----------ChildrenUnderTheAge Page--------------------
+//        .waitForPageLoad()
+//        .clickOnAnswer("Yes")
+//        .clickNextButton(new HouseholdHavePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("None of the above")
+//        .clickNextButton(new TheStudySitePageOLS())
+//        .waitForPageLoad()
+//
+//		//-------------------PEDIATRIC QUESTIONS-----------------------------
+//        .clickOnAnswer("Public transportation")
+//        .clickNextButton(new WhatMedicalCoveragePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("No, I have no coverage")
         .clickNextButton(new EthnicBackgroundPageOLS())
         .waitForPageLoad()
         .clickOnAnswers("Prefer not to answer")

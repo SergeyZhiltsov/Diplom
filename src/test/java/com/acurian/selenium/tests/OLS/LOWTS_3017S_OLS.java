@@ -47,8 +47,7 @@ public class LOWTS_3017S_OLS extends BaseTest{
         String siteName = "AUT_LOWT_3017S";
         String zipCode = "19901";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -309,26 +308,26 @@ public class LOWTS_3017S_OLS extends BaseTest{
         //----------Change inches to maje BMI to <50--------------------
         .waitForPageLoad()
         .setIncheswithClear("5")
-        .clickNextButton(new ChildrenUnderPageOLS())
-        
-        
-		//----------ChildrenUnderTheAge Page--------------------
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
-        
-		//-------------------PEDIATRIC QUESTIONS-----------------------------   
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
-        .clickNextButton(new EthnicBackgroundPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Prefer not to answer")
+//        .clickNextButton(new ChildrenUnderPageOLS())
+//
+//
+//		//----------ChildrenUnderTheAge Page--------------------
+//        .waitForPageLoad()
+//        .clickOnAnswer("Yes")
+//        .clickNextButton(new HouseholdHavePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("None of the above")
+//        .clickNextButton(new TheStudySitePageOLS())
+//        .waitForPageLoad()
+//
+//		//-------------------PEDIATRIC QUESTIONS-----------------------------
+//        .clickOnAnswer("Public transportation")
+//        .clickNextButton(new WhatMedicalCoveragePageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("No, I have no coverage")
+//        .clickNextButton(new EthnicBackgroundPageOLS())
+//        .waitForPageLoad()
+//        .clickOnAnswers("Prefer not to answer")
         .clickNextButton(new IdentificationPageOLS())
 		//----------PII (IdentificationPageOLS) Page--------------------
 		.waitForPageLoad()
