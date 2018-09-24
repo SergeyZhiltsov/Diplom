@@ -134,6 +134,12 @@ public class MainPageOLS extends BasePage{
         return aClass.getSimpleName() + " - " + aClass.getPackage().toString();
     }
 
+    @Step
+    public <T extends MainPageOLS> T back(T page){
+        back();
+        return (T)page;
+    }
+
 
 //MainPageOLS<Z> and DateOfBirthPageOLS extends MainPageOLS<DateOfBirthPageOLS>
 //    public Z assertSome(){

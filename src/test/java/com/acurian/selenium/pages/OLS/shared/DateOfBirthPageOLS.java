@@ -194,6 +194,13 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     		"Payment which varies by study up to $750\n" +
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
+
+    public final String titleHeartFailure4722_Expected = "Let's get started to see if you qualify for an autism spectrum disorder study!\n" +
+            "\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $425\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
     
     
     //visible-xs-block xs - Extra small devices Phones (<768px)
@@ -298,7 +305,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
 
     @Step
     public DateOfBirthPageOLS waitForPageLoad() {
-        waitForPageLoadMain(questionText,titleExpected);
+        waitForPageLoadMain(questionText, titleExpected);
 //        waitForAnimation();
 //        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> questionText.getText().contains(titleExpected));
         return this;

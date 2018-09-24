@@ -4,12 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ClusterHeadache_3237.AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS;
 import com.acurian.selenium.pages.OLS.ClusterHeadache_3237.WhenYouAreExperiencingCHattackIsTheLocationPain_OLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
-import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
-import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
@@ -232,7 +227,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new GladLocationIsConvenient())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 //----------GladLocationIsConvenient Page--------------------
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
