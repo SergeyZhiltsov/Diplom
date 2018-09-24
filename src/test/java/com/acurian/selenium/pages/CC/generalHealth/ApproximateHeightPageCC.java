@@ -61,7 +61,7 @@ public class ApproximateHeightPageCC extends MainPageCC{
 
     @Step
     public ApproximateHeightPageCC setLbs(String number) {
-        typeTextWithoutClear(lbsField, number);
+        typeText(lbsField, number);
         return this;
     }
 }

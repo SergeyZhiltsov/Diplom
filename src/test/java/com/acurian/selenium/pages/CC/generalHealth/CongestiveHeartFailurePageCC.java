@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HeartFailureIsAlsoPageCC extends MainPageCC {
+public class CongestiveHeartFailurePageCC extends MainPageCC {
 
     public final String titleExpected = "Heart failure is also called congestive heart failure or CHF. It is an ongoing health problem. It happens when your heart cannot pump as well as it should. Common symptoms of CHF include: fluid retention, swelling of the feet and ankles, bloating, and difficulty breathing.\n" +
             "\n" +
@@ -22,19 +22,19 @@ public class HeartFailureIsAlsoPageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public HeartFailureIsAlsoPageCC() {
+    public CongestiveHeartFailurePageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HeartFailureIsAlsoPageCC waitForPageLoad() {
+    public CongestiveHeartFailurePageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public HeartFailureIsAlsoPageCC clickOnAnswer(String answerText) {
+    public CongestiveHeartFailurePageCC clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

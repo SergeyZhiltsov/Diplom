@@ -11,45 +11,19 @@ import com.acurian.selenium.pages.CC.DPN_3769_4557.HaveYouNoticedAnyOfTheFollowi
 import com.acurian.selenium.pages.CC.DPN_3769_4557.HowWouldYouDescribeTheSymptoms_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.HowWouldYouRateYourPain_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.WhichOfTheFollowingHadAmputatedSurgically_CC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
 import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
 import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.MetforminMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.CC.SUI_3923.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
-import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -71,8 +45,7 @@ public class DPN_4557_CC extends BaseTest{
         String siteName = "AUT_DPN_4557_Site";
         String zip_Code = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         
         //------------LOGIN Page for CC---------------   

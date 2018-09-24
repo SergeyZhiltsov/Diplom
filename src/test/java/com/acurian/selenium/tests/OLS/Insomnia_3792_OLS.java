@@ -242,7 +242,7 @@ public class Insomnia_3792_OLS extends BaseTest{
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new CongestiveHeartFailurePageOLS());
 		
-		//----------CongestiveHeartFailurePageOLS (CHF) Page--------------------		
+		//----------CongestiveHeartFailurePageCC (CHF) Page--------------------
 		AffectingYourMetabolismPageOLS affectingYourMetabolismPageOLS = congestiveHeartFailurePageOLS
 				.waitForPageLoad()
 				.clickOnAnswer("No")

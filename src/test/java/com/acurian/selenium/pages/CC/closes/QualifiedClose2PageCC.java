@@ -43,5 +43,4 @@ public class QualifiedClose2PageCC extends MainPageCC{
         return getText(titleText);
     }
 
-
 }

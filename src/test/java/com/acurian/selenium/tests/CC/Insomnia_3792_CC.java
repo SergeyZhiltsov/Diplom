@@ -2,11 +2,6 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
 import com.acurian.selenium.pages.CC.Insomnia_3792.AreYouCurrentlyTakingAnyOverTheCounterMedications_CC;
 import com.acurian.selenium.pages.CC.Insomnia_3792.AreYouCurrentlyTakingAnyPrescriptionNedications_CC;
 import com.acurian.selenium.pages.CC.Insomnia_3792.HasAHealthcareProfessionalEverDiagnosedYou_CC;
@@ -16,13 +11,9 @@ import com.acurian.selenium.pages.CC.Insomnia_3792.IfYouAreCurrentlyWorkingInvol
 import com.acurian.selenium.pages.CC.Insomnia_3792.InTotalHowLongAreYouUsuallyAwakeDuringNight_CC;
 import com.acurian.selenium.pages.CC.Insomnia_3792.WhatTmeYouUsuallyGoToBed_CC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.LBP_2108.HasYourLbpPainCausedPageCC;
-import com.acurian.selenium.pages.CC.LBP_2108.InPastYear;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Insomnia_3792.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
-import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
@@ -36,8 +27,7 @@ import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC
 import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartrelatedMedicalProceduresPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.CongestiveHeartFailurePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
@@ -46,13 +36,10 @@ import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
-import com.acurian.selenium.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class Insomnia_3792_CC extends BaseTest{
@@ -319,7 +306,7 @@ public class Insomnia_3792_CC extends BaseTest{
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartFailureIsAlsoPageCC())
+                .clickNextButton(new CongestiveHeartFailurePageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new AffectingYourMetabolismPageCC())

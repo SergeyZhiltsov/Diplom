@@ -10,49 +10,26 @@ import com.acurian.selenium.pages.CC.END_4385.DescribesThePelvicPainCC;
 import com.acurian.selenium.pages.CC.END_4385.DiagnoseYourEndometriosisCC;
 import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.END_4385.HowManyTimesDidYouGetYourPeriodInThreeMons_CC;
-import com.acurian.selenium.pages.CC.END_4385.LaparoscopyAndLaparotomyCC;
-import com.acurian.selenium.pages.CC.END_4385.MostRecentSurgeryCC;
 import com.acurian.selenium.pages.CC.END_4385.NonMenstrualPelvicPainCC;
 import com.acurian.selenium.pages.CC.END_4385.PelvicPainDuringMenstrualCC;
 import com.acurian.selenium.pages.CC.END_4385.PelvicPainOtherTimesCC;
 import com.acurian.selenium.pages.CC.END_4385.PlzDescribeYourMenstrualCyclesCC;
-import com.acurian.selenium.pages.CC.END_4385.SurgicalProceduresCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
 import com.acurian.selenium.pages.CC.shared.AreYouCurrentlyPregnantCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.DoYouHaveRegularMenstrualCyclesUF_CC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.HasHealthcareProfEverDiagnosedFollowingGynoUF_CC;
 import com.acurian.selenium.pages.CC.shared.HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC;
@@ -63,9 +40,6 @@ import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
-import com.acurian.selenium.pages.OLS.END_4385.ApproxHowManyDaysInYourMenstrualCycle_OLS;
-import com.acurian.selenium.pages.OLS.END_4385.HowManyTimesDidYouGetYourPeriodInThreeMons_OLS;
-import com.acurian.selenium.pages.OLS.END_4385.PelvicPainOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 
 public class End_4385_CC extends BaseTest{
@@ -310,7 +284,7 @@ public class End_4385_CC extends BaseTest{
     	                .clickNextButton(new HaveYouUndergoneAnyPageCC())
     	                .waitForPageLoad()
     	                .clickOnAnswers("None of the above")
-    	                .clickNextButton(new HeartFailureIsAlsoPageCC())
+    	                .clickNextButton(new CongestiveHeartFailurePageCC())
     	                .waitForPageLoad()
     	                .clickOnAnswer("No")
     	                .clickNextButton(new AffectingYourMetabolismPageCC())

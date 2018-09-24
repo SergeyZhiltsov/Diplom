@@ -23,7 +23,7 @@ public class HFL_4722_OLS extends BaseTest {
     @TestCaseId("00017")
     @Description("Heart_Failure 4722 OLS")
     public void hfl4722olsTest() {
-        String phoneNumber = "AUTAMS1DIA";
+        String phoneNumber = "AUTAMS1HFL";
         List<String> protocols = Arrays.asList("EFC14822");
         String protocol1 = "C1973_204";
         String studyName = "a heart failure";
