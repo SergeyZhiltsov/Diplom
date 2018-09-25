@@ -427,20 +427,20 @@ public class DPN_3769_CC extends BaseTest {
         //----HEIGHT and WEIGHT Question ------------
         approximateHeightPageCC
                 .waitForPageLoad();
-        ChildrenUnderPageCC childrenUnderPageCC = approximateHeightPageCC
+        approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
                 //----------ChildrenUnderTheAge Page--------------------
                 .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC());
-
-
-        //----Do you have any children under the age of 18 in your household? ------------
-        childrenUnderPageCC
-                .waitForPageLoad()
-                //TheStudySitePageCC theStudySitePageCC = childrenUnderPageCC()
-                .clickOnAnswer("No")
+//                .clickNextButton(new ChildrenUnderPageCC());
+//
+//
+//        //----Do you have any children under the age of 18 in your household? ------------
+//        childrenUnderPageCC
+//                .waitForPageLoad()
+//                //TheStudySitePageCC theStudySitePageCC = childrenUnderPageCC()
+//                .clickOnAnswer("No")
                 /*		.clickNextButton(new TheStudySitePageCC());
                 TheStudySitePageCC theStudySitePageCC = new TheStudySitePageCC();
 

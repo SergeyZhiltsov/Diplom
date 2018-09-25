@@ -1,34 +1,26 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.MDD_3159.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSCrohnsPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
-import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
+
 import java.util.Arrays;
 import java.util.List;
 
 
-public class MDD_3159_CC extends BaseTest{
+public class MDD_3159_CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
@@ -41,11 +33,10 @@ public class MDD_3159_CC extends BaseTest{
         String studyName1 = "depression";
         String site_Indication = "Major Depressive Disorder (MDD)";
         String siteName = "AUT_MDD_3159";
-     //   String env = "STG";
+        //   String env = "STG";
         String zipCode = "19044";
-        
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -67,7 +58,7 @@ public class MDD_3159_CC extends BaseTest{
 
         callCenterIntroductionPageCC
                 .waitForPageLoad();
-               
+
         Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .activateDebugOnProd(env)
@@ -101,7 +92,7 @@ public class MDD_3159_CC extends BaseTest{
         //---------------Q2 hasHealthcareProfDiagnosedMDDCC-------------------
         hasHealthcareProfDiagnosedMDDCC
                 .waitForPageLoad();
-        Assert.assertEquals(hasHealthcareProfDiagnosedMDDCC.getTitleText(),hasHealthcareProfDiagnosedMDDCC.titleExpected, "Title is diff");
+        Assert.assertEquals(hasHealthcareProfDiagnosedMDDCC.getTitleText(), hasHealthcareProfDiagnosedMDDCC.titleExpected, "Title is diff");
         NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfDiagnosedMDDCC
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
@@ -118,7 +109,7 @@ public class MDD_3159_CC extends BaseTest{
         //---------------Q3 AreYouCurrentlyFeelingSadDepressedOLS-------------------
         areYouCurrentlyFeelingSadDepressedCC
                 .waitForPageLoad();
-        Assert.assertEquals(areYouCurrentlyFeelingSadDepressedCC.getTitleText(),areYouCurrentlyFeelingSadDepressedCC.titleExpected, "Title is diff");
+        Assert.assertEquals(areYouCurrentlyFeelingSadDepressedCC.getTitleText(), areYouCurrentlyFeelingSadDepressedCC.titleExpected, "Title is diff");
         //----Skip to Q9 page:HaveYouEverHadElectroconOLSvulsiveTherapyOLS, if selected "NO" in this page 
         HaveYouEverHadElectroconvulsiveTherapyCC haveYouEverHadElectroconvulsiveTherapyCC = areYouCurrentlyFeelingSadDepressedCC
                 .clickOnAnswer("No")
@@ -128,31 +119,31 @@ public class MDD_3159_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEquals("Are you currently feeling depressed, or do you have a lack of interest in activities where you may a...", protocol1)
                 .back();
-        
+
         CurrentEpisodeOfDepressionCC currentEpisodeOfDepressionCC = areYouCurrentlyFeelingSadDepressedCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new CurrentEpisodeOfDepressionCC());        
-        
+                .clickNextButton(new CurrentEpisodeOfDepressionCC());
+
         YouHaveNotTakenANYPrescriptionCC youHaveNotTakenANYPrescriptionCC = currentEpisodeOfDepressionCC
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
-        		.clickNextButton(new YouHaveNotTakenANYPrescriptionCC());
-        
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new YouHaveNotTakenANYPrescriptionCC());
+
         WhenDidYourCurrentEpisodeDepressionStartCC whenDidYourCurrentEpisodeDepressionStartCC = youHaveNotTakenANYPrescriptionCC
-        		.waitForPageLoad()
-        		.clickOnAnswer("Correct - Have not taken any prescription medication for current episode")
-        		.clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartCC())
-        		.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017464-QS4817-STUDYQUES",  protocol1);
+                .waitForPageLoad()
+                .clickOnAnswer("Correct - Have not taken any prescription medication for current episode")
+                .clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartCC())
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017464-QS4817-STUDYQUES", protocol1);
         debugPageCC.back();
         youHaveNotTakenANYPrescriptionCC
-				.waitForPageLoad()
-				.clickOnAnswer("Not correct - Have taken prescription medication for current episode")
-				.clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartCC());
-        
+                .waitForPageLoad()
+                .clickOnAnswer("Not correct - Have taken prescription medication for current episode")
+                .clickNextButton(new WhenDidYourCurrentEpisodeDepressionStartCC());
+
         HowManyDifferentPrescriptionAntidepresMedsCC howManyDifferentPrescriptionAntidepresMedsCC = whenDidYourCurrentEpisodeDepressionStartCC
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("1 month ago or less")
                 .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
         howManyDifferentPrescriptionAntidepresMedsCC
@@ -160,7 +151,7 @@ public class MDD_3159_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whenDidYourCurrentEpisodeDepressionStartCC.titleExpected, protocol1)
                 .back();
-        		whenDidYourCurrentEpisodeDepressionStartCC.waitForPageLoad()
+        whenDidYourCurrentEpisodeDepressionStartCC.waitForPageLoad()
                 .clickOnAnswer("More than 2 years ago")
                 .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
         howManyDifferentPrescriptionAntidepresMedsCC
@@ -168,17 +159,17 @@ public class MDD_3159_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(whenDidYourCurrentEpisodeDepressionStartCC.titleExpected, protocol1)
                 .back();
-				whenDidYourCurrentEpisodeDepressionStartCC.waitForPageLoad()
-				.clickOnAnswer("2 - 3 months ago")
-				.clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());        
+        whenDidYourCurrentEpisodeDepressionStartCC.waitForPageLoad()
+                .clickOnAnswer("2 - 3 months ago")
+                .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
 
-		//---------------Q5 HowManyDifferentPrescriptionAntidepresMedsOLS-------------------		
-		howManyDifferentPrescriptionAntidepresMedsCC
+        //---------------Q5 HowManyDifferentPrescriptionAntidepresMedsOLS-------------------
+        howManyDifferentPrescriptionAntidepresMedsCC
                 .waitForPageLoad();
-        Assert.assertEquals(howManyDifferentPrescriptionAntidepresMedsCC.getTitleText(),howManyDifferentPrescriptionAntidepresMedsCC.titleExpected, "Title is diff");
+        Assert.assertEquals(howManyDifferentPrescriptionAntidepresMedsCC.getTitleText(), howManyDifferentPrescriptionAntidepresMedsCC.titleExpected, "Title is diff");
         //----Skip to Q9 page:HaveYouEverHadElectroconvulsiveTherapyCC, if selected "I have not taken any prescription medications for my current episode of depression" in this page 
         howManyDifferentPrescriptionAntidepresMedsCC
-        		.clickOnAnswer("I have not taken any prescription medications for my current episode of depression")
+                .clickOnAnswer("I have not taken any prescription medications for my current episode of depression")
                 .clickNextButton(new WhichFollowingAntidepressantMedsTakingCC());
         haveYouEverHadElectroconvulsiveTherapyCC
                 .waitForPageLoad()
@@ -186,72 +177,72 @@ public class MDD_3159_CC extends BaseTest{
                 .checkProtocolsEquals(howManyDifferentPrescriptionAntidepresMedsCC.titleExpected, protocol1)
                 .back();
         WhichFollowingAntidepressantMedsTakingCC whichFollowingAntidepressantMedsTakingCC = howManyDifferentPrescriptionAntidepresMedsCC
-                .waitForPageLoad()        
+                .waitForPageLoad()
                 .clickOnAnswer("3")
-                .clickNextButton(new WhichFollowingAntidepressantMedsTakingCC());        
-        
+                .clickNextButton(new WhichFollowingAntidepressantMedsTakingCC());
+
         whichFollowingAntidepressantMedsTakingCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES",  protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1);
         debugPageCC.back();
         howManyDifferentPrescriptionAntidepresMedsCC
-        		.waitForPageLoad()        
-        		.clickOnAnswer("4 or more")
-        		.clickNextButton(new WhichFollowingAntidepressantMedsTakingCC())
-        		.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES",  protocol1);
-        debugPageCC.back();        
-        
+                .waitForPageLoad()
+                .clickOnAnswer("4 or more")
+                .clickNextButton(new WhichFollowingAntidepressantMedsTakingCC())
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1);
+        debugPageCC.back();
+
         howManyDifferentPrescriptionAntidepresMedsCC
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("1")
                 .clickNextButton(new WhichFollowingAntidepressantMedsTakingCC());
 
-        
-		//---------------Q6 WhichFollowingAntidepressantMedsTakingCC-------------------		        
+
+        //---------------Q6 WhichFollowingAntidepressantMedsTakingCC-------------------
         whichFollowingAntidepressantMedsTakingCC
                 .waitForPageLoad();
-        Assert.assertEquals(whichFollowingAntidepressantMedsTakingCC.getTitleText(),whichFollowingAntidepressantMedsTakingCC.titleExpected, "Title is diff");
+        Assert.assertEquals(whichFollowingAntidepressantMedsTakingCC.getTitleText(), whichFollowingAntidepressantMedsTakingCC.titleExpected, "Title is diff");
         WhichFollowingAntidepressantMedicationsYouTriedCC whichFollowingAntidepressantMedicationsYouTriedCC = whichFollowingAntidepressantMedsTakingCC
                 .clickOnAnswers("Wellbutrin (buproprion)")
                 .clickNextButton(new WhichFollowingAntidepressantMedicationsYouTriedCC());
-        
-		//---------------Q7 whichFollowingAntidepressantMedicationsYouTriedCC-------------------		        
+
+        //---------------Q7 whichFollowingAntidepressantMedicationsYouTriedCC-------------------
         whichFollowingAntidepressantMedicationsYouTriedCC
-                .waitForPageLoad();        
-        Assert.assertEquals(whichFollowingAntidepressantMedicationsYouTriedCC.getTitleText(),whichFollowingAntidepressantMedicationsYouTriedCC.titleExpected, "Title is diff");
+                .waitForPageLoad();
+        Assert.assertEquals(whichFollowingAntidepressantMedicationsYouTriedCC.getTitleText(), whichFollowingAntidepressantMedicationsYouTriedCC.titleExpected, "Title is diff");
         HaveYouEverHadElectroconvulsiveTherapyCC haveYouEverHadElectroconvulsiveTherapyCC1 = whichFollowingAntidepressantMedicationsYouTriedCC
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
         haveYouEverHadElectroconvulsiveTherapyCC
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-        		.checkProtocolsEquals("Ghost Question - Buproprion Monotherapy for Current Episode", protocol1)
-        		.back();
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Ghost Question - Buproprion Monotherapy for Current Episode", protocol1)
+                .back();
         whichFollowingAntidepressantMedicationsYouTriedCC.back();
         whichFollowingAntidepressantMedsTakingCC
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-        		.clickNextButton(new WhichFollowingAntidepressantMedicationsYouTriedCC());
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WhichFollowingAntidepressantMedicationsYouTriedCC());
         whichFollowingAntidepressantMedicationsYouTriedCC
-        		.waitForPageLoad()
-        		.clickOnAnswers("Wellbutrin (buproprion)")
-        		.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC())
-        		.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES",  protocol1);
+                .waitForPageLoad()
+                .clickOnAnswers("Wellbutrin (buproprion)")
+                .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC())
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1);
         debugPageCC.back();
         whichFollowingAntidepressantMedicationsYouTriedCC
-				.waitForPageLoad()
-				.clickOnAnswers("None of the above")
-				.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC())
-				.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES",  protocol1);
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC())
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1);
         debugPageCC.back();
         whichFollowingAntidepressantMedicationsYouTriedCC
-				.waitForPageLoad()
-				.clickOnAnswers("Zoloft (sertraline)")
-				.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
-        
-		//---------------Q9 Have you ever had electroconvulsive therapy or ECT? "haveYouEverHadElectroconvulsiveTherapyCC"-------------------	              
+                .waitForPageLoad()
+                .clickOnAnswers("Zoloft (sertraline)")
+                .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
+
+        //---------------Q9 Have you ever had electroconvulsive therapy or ECT? "haveYouEverHadElectroconvulsiveTherapyCC"-------------------
         haveYouEverHadElectroconvulsiveTherapyCC1
                 .waitForPageLoad();
         Assert.assertEquals(haveYouEverHadElectroconvulsiveTherapyCC1.getTitleText(), haveYouEverHadElectroconvulsiveTherapyCC1.titleExpected, "Title is diff");
@@ -267,10 +258,10 @@ public class MDD_3159_CC extends BaseTest{
                 .clickOnAnswer("Yes, more than 6 months ago")
                 .clickNextButton(new HasHealthcareProfEverDiagnosedMntalHealthCC());
 
-		//---------------Q10 Has a healthcare professional ever diagnosed you with any of the following mental health conditions? "HasHealthcareProfEverDiagnosedMntalHealthCC"-------------------	         
+        //---------------Q10 Has a healthcare professional ever diagnosed you with any of the following mental health conditions? "HasHealthcareProfEverDiagnosedMntalHealthCC"-------------------
         hasHealthcareProfEverDiagnosedMntalHealthCC
                 .waitForPageLoad();
-        Assert.assertEquals(hasHealthcareProfEverDiagnosedMntalHealthCC.getTitleText(),hasHealthcareProfEverDiagnosedMntalHealthCC.titleExpected, "Title is diff");
+        Assert.assertEquals(hasHealthcareProfEverDiagnosedMntalHealthCC.getTitleText(), hasHealthcareProfEverDiagnosedMntalHealthCC.titleExpected, "Title is diff");
         HaveYouBeenHospitalizedForDepressionCC haveYouBeenHospitalizedForDepressionCC = hasHealthcareProfEverDiagnosedMntalHealthCC
                 .clickOnAnswers("Borderline personality disorder")
                 .clickNextButton(new HaveYouBeenHospitalizedForDepressionCC());
@@ -283,50 +274,50 @@ public class MDD_3159_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouBeenHospitalizedForDepressionCC());
 
-		//---------------Q11 Have you been hospitalized for depression or any other mental health condition in the past year?-------------------	         
+        //---------------Q11 Have you been hospitalized for depression or any other mental health condition in the past year?-------------------
         haveYouBeenHospitalizedForDepressionCC
                 .waitForPageLoad();
-        Assert.assertEquals(haveYouBeenHospitalizedForDepressionCC.getTitleText(),haveYouBeenHospitalizedForDepressionCC.titleExpected, "Title is diff");
+        Assert.assertEquals(haveYouBeenHospitalizedForDepressionCC.getTitleText(), haveYouBeenHospitalizedForDepressionCC.titleExpected, "Title is diff");
         TransitionStatementCC transitionStatementCC = haveYouBeenHospitalizedForDepressionCC
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
-        		debugPageCC.checkProtocolsEquals("Have you been hospitalized for depression or any other mental health condition in the past year? By ...", protocol1);
-        		debugPageCC.back();
+        debugPageCC.checkProtocolsEquals("Have you been hospitalized for depression or any other mental health condition in the past year? By ...", protocol1);
+        debugPageCC.back();
         haveYouBeenHospitalizedForDepressionCC.waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
 
         //----------Q13 -Transition Statement - Display for Call Center only-------------
         transitionStatementCC
-        .getTitleExpected(studyName1);
+                .getTitleExpected(studyName1);
         //Assert.assertEquals(transitionStatementCC.getTitleText(), transitionStatementCC.getTitleExpected(studyName1), "Title is difff");
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-       
+
         //-------------------New GENERAL HEALTH---------------------------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")                	
-        		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
-        		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+                //----------Q23 - Do any of the following additional diagnoses apply to you?--------
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC())
-        		//----------Height and Weight Question Page--------------------
+                //----------Height and Weight Question Page--------------------
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+//                .clickNextButton(new ChildrenUnderPageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
-         //----------PEDIATRIC HEALTH Questions----------
-         //----------Resume GENERAL HEALTH Questions----------
+                //----------PEDIATRIC HEALTH Questions----------
+                //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a depression study")
                 .getPID()
@@ -342,5 +333,5 @@ public class MDD_3159_CC extends BaseTest{
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-            }
+    }
 }

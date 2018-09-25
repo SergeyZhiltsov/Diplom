@@ -45,7 +45,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class Endo_4356E_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
-	
 	public void endo_4356E_CC(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1END";
         List<String> protocols = Arrays.asList("MVT_601_3101", "MVT_601_3102","M14_702");

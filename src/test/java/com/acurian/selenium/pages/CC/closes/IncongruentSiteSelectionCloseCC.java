@@ -26,11 +26,11 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
     		"If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that site isn't very convenient. We have a couple of options: we can make a note to contact you if a more convenient site becomes available. Or, I can send your information over to the site in (town), and you can talk to them about the study and see if they might be able to help arrange transportation for you. Which would you prefer?\"";
     
     public final String titleIBDShort = "Based on your answers, it looks like you are not an exact match for a Crohn's study at this moment. The good news is, you have prequalified for %s study.\n" +
-    		"\n" +
-    		"The closest research site available to you is located at [name of street and city]. Is that convenient for you?\n" +
-    		"\n" +
-    		"[Offer second closest site if necessary and if reasonable]\n" +
-    		"If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that site isn't very convenient. We have a couple of options: we can make a note to contact you if a more convenient site becomes available. Or, I can send your information over to the site in (town), and you can talk to them about the study and see if they might be able to help arrange transportation for you. Which would you prefer?\"";
+            "\n" +
+            "The closest research site available to you is located at [name of street and city]. Is that convenient for you?\n" +
+            "\n" +
+            "[Offer second closest site if necessary and if reasonable]\n" +
+            "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and you can talk to them about the study. Which would you prefer?\"";
 
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
@@ -64,7 +64,8 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
     public IncongruentSiteSelectionCloseCC waitForPageLoadIBD(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleIBDShort, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        waitForPageLoadMain(titleText,titleExpectedMod);
+//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
         return this;
     }
 

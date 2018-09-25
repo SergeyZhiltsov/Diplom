@@ -68,8 +68,7 @@ public class IBD_3264_CC_HS extends BaseTest{
         String studyIndication = "Ulcerative Colitis";
         String zipCode = "19901";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -426,9 +425,9 @@ public class IBD_3264_CC_HS extends BaseTest{
         		.clickNextButton(new LetMeSeePageCC());
         letMeSeePageCC
         		.waitForPageLoad()
-        		.clickNextButton(new ChildrenUnderPageCC())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
+//        		.clickNextButton(new ChildrenUnderPageCC())
+//        		.waitForPageLoad()
+//        		.clickOnAnswer("No")
         		.clickNextButton(new IdentificationPageCC())
         		.waitForPageLoad()        		              
         		.clickNextButton(new SiteSelectionPageCC())

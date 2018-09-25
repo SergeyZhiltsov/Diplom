@@ -34,9 +34,7 @@ public class SUI_3923_CC extends BaseTest{
         String siteName = "AUT_SUI_3923";
         String zip_Code = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
-        
+        String env = System.getProperty("acurian.env", "STG");
         
         //------------LOGIN Page for CC---------------   
         LoginPageCC loginPageCC = new LoginPageCC();

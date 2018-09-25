@@ -1,53 +1,25 @@
 package com.acurian.selenium.tests.CC;
 
-import java.util.Arrays;
-import java.util.List;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.Crohns_3485.BiologicMedicationsPageCC;
-import com.acurian.selenium.pages.CC.Crohns_3485.DiagnosedWithCrohnsPageCC;
-import com.acurian.selenium.pages.CC.Crohns_3485.FollowingMedicationsCrohnsPageCC;
-import com.acurian.selenium.pages.CC.Crohns_3485.HaveAnyOfTheFollowingPageCC;
-import com.acurian.selenium.pages.CC.Crohns_3485.ManageYourCrohnsPageCC;
-import com.acurian.selenium.pages.CC.Crohns_3485.WhenDiagnosedCrohnsPageCC;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
-import com.acurian.selenium.pages.CC.IBD.CurrentlyExperiencingFlareUpCC;
-import com.acurian.selenium.pages.CC.IBD.EverTreatedCrohnOrColitisCC;
-import com.acurian.selenium.pages.CC.IBD.HowWouldYouRateCC;
-import com.acurian.selenium.pages.CC.IBD.MostRecentColonoscopyCC;
-import com.acurian.selenium.pages.CC.IBD.SteroidMedicationsForCrohnsCC;
-import com.acurian.selenium.pages.CC.IBD.SubquestionsIBD_UlcerativeColitis_CC;
+import com.acurian.selenium.pages.CC.Crohns_3485.*;
+import com.acurian.selenium.pages.CC.IBD.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HasAHealthcareProfessionalDYS4356;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
-import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class IBD_3264_CC_NoPIIemail extends BaseTest{
 
@@ -64,8 +36,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest{
         String studyIndication = "Ulcerative Colitis";
         String zipCode = "19901";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -421,9 +392,9 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest{
         		.clickNextButton(new LetMeSeePageCC());
         letMeSeePageCC
         		.waitForPageLoad()
-        		.clickNextButton(new ChildrenUnderPageCC())
-        		.waitForPageLoad()
-        		.clickOnAnswer("No")
+//        		.clickNextButton(new ChildrenUnderPageCC())
+//        		.waitForPageLoad()
+//        		.clickOnAnswer("No")
         		.clickNextButton(new IdentificationPageCC())
         		.waitForPageLoad()        		              
         		.clickNextButton(new SiteSelectionPageCC())

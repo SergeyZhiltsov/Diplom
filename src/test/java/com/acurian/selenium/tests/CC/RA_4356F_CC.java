@@ -48,7 +48,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class RA_4356F_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
-	
 	public void RA_4356F_CC(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("M15_925");//,"M13_545");
@@ -61,8 +60,7 @@ public class RA_4356F_CC extends BaseTest{
         String siteName = "AUT_RA_4356F_Site";
         String zipCode  = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         LoginPageCC loginPageCC = new LoginPageCC();
 

@@ -37,14 +37,13 @@ public class IBD_3264_OLS extends BaseTest{
     @Description("IBD_3264_OLS")
     public void IBD_3264_UC_OLS_Screener() {
         String phoneNumber = "AUTAMS1IBD";
-        //String protocol1 = "M14_234";
+        String protocol1 = "M14_234"; //deactivated
         String protocol2 = "M16_067";
         String studyName = "a colitis";
         String siteName = "AUT_IBD_3264_Site";
         String zipCode = "19901";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         //---------------Date of Birth Question-------------------
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
