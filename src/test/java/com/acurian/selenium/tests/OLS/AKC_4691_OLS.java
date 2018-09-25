@@ -606,7 +606,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoadAKC()
                 .getPID()

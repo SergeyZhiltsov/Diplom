@@ -16,8 +16,13 @@ public class IdentificationPageCC extends MainPageCC {
     
     public final String titleExpected1 = "After saying the language above, please abort screening.";
 
+    public final String titleExpectedNotQ = "Personal details (*required fields)";
+
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
+
+    @FindBy(xpath = "//div[@class='patient_block']/div[@class='question_text']")
+    WebElement titleText2;
     
     @FindBy(xpath = "//div[@class='question_container']//div[@class='show-in-cc']/span[@class='agent-note']")
     WebElement titleTextt;
@@ -43,8 +48,9 @@ public class IdentificationPageCC extends MainPageCC {
 
     @Step
     public IdentificationPageCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
+//        waitForAnimation();
+//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
     
@@ -52,6 +58,14 @@ public class IdentificationPageCC extends MainPageCC {
     public IdentificationPageCC waitForPageLoad1() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleTextt.getText().contains(titleExpected1));
+        return this;
+    }
+
+    @Step
+    public IdentificationPageCC waitForPageLoadNotQ() {
+        waitForPageLoadMain(titleText2, titleExpectedNotQ);
+//        waitForAnimation();
+//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

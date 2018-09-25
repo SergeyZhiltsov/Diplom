@@ -1,33 +1,20 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.SUI_3923.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
-import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
-import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.HSCrohns2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-import com.acurian.selenium.pages.FUL_Letters.*;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-import ru.yandex.qatools.ashot.Screenshot;
 
 public class SUI_3923_OLS extends BaseTest{
 
@@ -260,7 +247,7 @@ public class SUI_3923_OLS extends BaseTest{
         .waitForPageLoad(studyName)
         .getPID()
         .clickOnFacilityName(siteName)
-        .clickNextButton(new GladLocationIsConvenient())        
+        .clickNextButton(new QualifiedClose2PageOLS())
         //----------GladLocationIsConvenient Page--------------------
         .waitForPageLoad()
         .clickNextButton(new ThankYouCloseSimplePageOLS())

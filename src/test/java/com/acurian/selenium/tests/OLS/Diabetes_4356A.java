@@ -284,7 +284,7 @@ public class Diabetes_4356A extends BaseTest{
         haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
                 .waitForPageLoad();
         Assert.assertEquals(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS.getTitleText(),haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS.titleExpected, "Title is diff");
-        //CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+        //CongestiveHeartFailurePageCC congestiveHeartFailurePageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());

@@ -39,8 +39,7 @@ public class HTN_4356D_CC extends BaseTest{
         String facility_Code_STG = "625301";
         String facility_Code_PRD = "625869";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

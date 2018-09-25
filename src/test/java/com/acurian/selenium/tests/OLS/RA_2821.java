@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 public class RA_2821 extends BaseTest {
 
     @Test(enabled = true)
-	public void rA_2821_OLS() {
+	public void ra_2821_OLS() {
 		String phoneNumberRA = "AUTAMS1RA1";
 //		String env = "STG";
 //		String protocol2 = "M13_545";  Protocol Disabled

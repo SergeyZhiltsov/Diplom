@@ -20,7 +20,7 @@ public class ApproximateHeightPageCC extends MainPageCC{
     @FindBy(xpath = "//select[@class='select-height-inches']")
     WebElement inchesSelect;
 
-    @FindBy(xpath = "//input[@class='input-text']")
+    @FindBy(xpath = "//input[contains(@class,'input-text')]")
     WebElement lbsField;
 
     public ApproximateHeightPageCC() {
@@ -61,7 +61,7 @@ public class ApproximateHeightPageCC extends MainPageCC{
 
     @Step
     public ApproximateHeightPageCC setLbs(String number) {
-        typeTextWithoutClear(lbsField, number);
+        typeText(lbsField, number);
         return this;
     }
 }

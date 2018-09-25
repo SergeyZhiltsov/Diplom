@@ -409,7 +409,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .clickNextButton(new HaveYouUndergoneAnyPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartFailureIsAlsoPageCC())
+                .clickNextButton(new CongestiveHeartFailurePageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new AffectingYourMetabolismPageCC())

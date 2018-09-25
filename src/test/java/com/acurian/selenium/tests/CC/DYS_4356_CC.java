@@ -11,45 +11,19 @@ import com.acurian.selenium.pages.CC.DYS_4356C.AreYouTakingAnyOfMedicationsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.NonPrescriptionSupplementsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.PregnancyAndFertilityCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.ThankYouForAnsweringCC;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer1;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer2;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer3;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
@@ -250,7 +224,7 @@ public class DYS_4356_CC extends BaseTest{
        .clickOnAnswer("I currently have my \"tubes tied\" (also called bilateral tubal ligation, a sterilization procedure)")
        .clickNextButton(new ThankYouForAnsweringCC())
        .waitForPageLoad()
-       .clickNextButton(new HeartFailureIsAlsoPageCC())
+       .clickNextButton(new CongestiveHeartFailurePageCC())
        .waitForPageLoad()
        .clickOnAnswer("No")
        .clickNextButton(new AffectingYourMetabolismPageCC())

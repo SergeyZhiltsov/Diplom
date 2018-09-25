@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Insomnia_3792.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -242,7 +242,7 @@ public class Insomnia_3792_OLS extends BaseTest{
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new CongestiveHeartFailurePageOLS());
 		
-		//----------CongestiveHeartFailurePageOLS (CHF) Page--------------------		
+		//----------CongestiveHeartFailurePageCC (CHF) Page--------------------
 		AffectingYourMetabolismPageOLS affectingYourMetabolismPageOLS = congestiveHeartFailurePageOLS
 				.waitForPageLoad()
 				.clickOnAnswer("No")
@@ -368,7 +368,7 @@ public class Insomnia_3792_OLS extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName) //First checks if 'Additional Locations' link is displayed, if YES, click and then select the SITE 
-                .clickNextButton(new GladLocationIsConvenient())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 
                 //----------GladLocationIsConvenient Page--------------------
                 .waitForPageLoad()

@@ -358,7 +358,7 @@ public class Diabetes_4356A_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TransitionStatementCC())
-                .clickNextButton(new HeartFailureIsAlsoPageCC())
+                .clickNextButton(new CongestiveHeartFailurePageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new AffectingYourMetabolismPageCC())

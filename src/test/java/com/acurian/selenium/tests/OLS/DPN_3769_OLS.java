@@ -1,49 +1,19 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.ApproxHowlongYouBeenExpSymptomsOLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouHaveAnyOfTheFollowingConditions_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HaveYouNoticedAnyOfTheFollowing_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouDescribeTheSymptoms_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.HowWouldYouRateYourPain_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_OLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.WhichOfTheFollowingHadAmputatedSurgically_OLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.CombinationWithEachOtherPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.FollowingToLoseWeightPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.InjectableMedicationsForYourDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.InsulinForYourDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.LastTimeYouTookPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.LiverRelatedConditionOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.MetforminMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.NoOfAlcoholicDrinkOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.ToLoseWeightPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.TreatingYourDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.SUI_3923.*;
+import com.acurian.selenium.pages.OLS.DPN_3769_4557.*;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DiagnosedAnyTypeOfDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
-import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DIA.AnyPrescribedMedicationPage;
 import com.acurian.selenium.pages.OLS.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
 import com.acurian.selenium.pages.OLS.shared.DIA.UseDietAndExercisePage;
-
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -464,7 +434,7 @@ public class DPN_3769_OLS extends BaseTest {
                 .waitForPageLoadAKC()
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new GladLocationIsConvenient())
+                .clickNextButton(new QualifiedClose2PageOLS())
 
                 //----------GladLocationIsConvenient Page--------------------
                 .waitForPageLoad()

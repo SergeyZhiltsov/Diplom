@@ -1,83 +1,14 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.pediatric.*;
-import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.ApproxHowlongYouBeenExpSymptomsCC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouHaveAnyOfTheFollowingConditions_CC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.HaveYouNoticedAnyOfTheFollowing_CC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.HowWouldYouDescribeTheSymptoms_CC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.HowWouldYouRateYourPain_CC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.WhichOfTheFollowingHadAmputatedSurgically_CC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.CombinationWithEachOtherPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.LastTimeYouTookPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.TreatingYourDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
-import com.acurian.selenium.pages.CC.closes.*;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
-import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.pages.CC.ClusterHeadache_3237.AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC;
 import com.acurian.selenium.pages.CC.ClusterHeadache_3237.WhenYouAreExperiencingCHattackIsTheLocationPain_CC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartrelatedMedicalProceduresPageCC;
-import com.acurian.selenium.pages.CC.shared.DoYouExperienceAnyOfTheFollowingFeelings_CC;
-import com.acurian.selenium.pages.CC.shared.HowLongDoYourClusterPeriodsTypicallyLast_CC;
-import com.acurian.selenium.pages.CC.shared.WhatTypeOfDoctorDiagnosedCH_CC;
-import com.acurian.selenium.pages.CC.shared.WhenYouAreHavingClusterHeadacheAttackDoYouExp_CC;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.GladLocationIsConvenient;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.shared.*;
-import com.acurian.selenium.pages.CC.SUI_3923.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectYourLungsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.AffectingYourMetabolismPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingDigestiveConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingNeurologicalConditions;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingSkinConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingViralConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingWomensHealthPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartFailureIsAlsoPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HistoryOfDrugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SleepRelatedConditionsPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
+import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -333,7 +264,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                         .clickNextButton(new HaveYouUndergoneAnyPageCC())
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
-                        .clickNextButton(new HeartFailureIsAlsoPageCC())
+                        .clickNextButton(new CongestiveHeartFailurePageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("No")
                         .clickNextButton(new AffectingYourMetabolismPageCC())

@@ -106,4 +106,10 @@ public class MainPageCC extends BasePage{
     public <T extends MainPageCC> T getPage(T page) {
         return (T)page;
     }
+
+    @Step
+    public <T extends MainPageCC> T back(T page){
+        back();
+        return (T)page;
+    }
 }
