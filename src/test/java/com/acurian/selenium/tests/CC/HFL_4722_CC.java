@@ -25,7 +25,7 @@ public class HFL_4722_CC extends BaseTest {
     @TestCaseId("00045")
     @Description("HFL_4722 test CC")
     public void hfl_4722_CC(final String username, final String password) {
-        String phoneNumber = "AUTAMS1HTN";
+        String phoneNumber = "AUTAMS1HFL";
         String protocol1 = "C1973_204";
         List<String> protocols = Arrays.asList(protocol1);
         String studyName = "a heart failure study";

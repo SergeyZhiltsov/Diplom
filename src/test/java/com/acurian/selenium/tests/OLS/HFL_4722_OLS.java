@@ -130,7 +130,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS6405", protocol1)
+                .checkProtocolsEqualsForQNumber("QS66", protocol1)
                 .back(new ApproximateHeightPageOLS())
                 .setLbs("250")
                 .clickNextButton(new EthnicBackgroundPageOLS())

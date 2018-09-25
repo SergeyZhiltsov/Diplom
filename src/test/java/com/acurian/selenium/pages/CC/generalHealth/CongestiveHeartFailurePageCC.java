@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CongestiveHeartFailurePageCC extends MainPageCC {
 
-    public final String titleExpected = "Heart failure is also called congestive heart failure or CHF. It is an ongoing health problem. It happens when your heart cannot pump as well as it should. Common symptoms of CHF include: fluid retention, swelling of the feet and ankles, bloating, and difficulty breathing.\n" +
+    public final String titleExpected = "Heart failure is also called congestive heart failure or CHF. It is an ongoing health problem. It happens when your heart cannot pump as well as it should.\n" +
             "\n" +
             "Many people with heart failure have a history of other heart problems, like a heart attack or blocked arteries. However, heart failure is a different, specific medical condition. Not everyone who has had a heart attack will develop heart failure.\n" +
             "Has a healthcare professional told you that you have heart failure, congestive heart failure, or CHF?";
@@ -28,8 +28,9 @@ public class CongestiveHeartFailurePageCC extends MainPageCC {
 
     @Step
     public CongestiveHeartFailurePageCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
+//        waitForAnimation();
+//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
