@@ -4,15 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.AreYouCurrentlyExperiencingFlareUp_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.SubquestionsIBD_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWasYourMostRecentColonoscopy_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitis_OLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -224,9 +216,23 @@ public class IBD_3839_OLS extends BaseTest {
         //---------------Q14 Are you currently experiencing a flare-up? page------------------
         areYouCurrentlyExperiencingFlareUp_OLS
                 .waitForPageLoad();
-        Assert.assertEquals(areYouCurrentlyExperiencingFlareUp_OLS.getTitleText(), areYouCurrentlyExperiencingFlareUp_OLS.titleExpected, "Title is diff");
-        SubquestionsIBD_OLS subquestionsIBD_OLS = areYouCurrentlyExperiencingFlareUp_OLS
+        SubquestionsIBD_UlcerativeColitis_OLS subquestionsIBD_ulcerativeColitis_ols = areYouCurrentlyExperiencingFlareUp_OLS
                 .clickOnAnswer("Yes, I am currently in a flare with my Crohn's or colitis")
+                .clickNextButton(new SubquestionsIBD_UlcerativeColitis_OLS());
+
+
+        //added after failed scripts
+
+        subquestionsIBD_ulcerativeColitis_ols
+                .waitForPageLoad(1,subquestionsIBD_ulcerativeColitis_ols.titleExpected1)
+                .waitForPageLoad(2,subquestionsIBD_ulcerativeColitis_ols.titleExpected2)
+                .waitForPageLoad(3,subquestionsIBD_ulcerativeColitis_ols.titleExpected3);
+        //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
+        //WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_UlcerativeColitis_OLS
+        SubquestionsIBD_OLS subquestionsIBD_OLS = subquestionsIBD_ulcerativeColitis_ols
+                .totalBowelMovements("4")
+                .totalpast24hrBowelMovements("4")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new SubquestionsIBD_OLS());
 
 

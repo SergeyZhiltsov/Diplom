@@ -44,8 +44,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest{
         String siteName = "AUT_IBD_3264_Site";
         String zipCode = "19901";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         //---------------Date of Birth Question-------------------
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();

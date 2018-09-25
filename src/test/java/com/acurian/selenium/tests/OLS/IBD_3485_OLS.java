@@ -33,7 +33,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3485_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)//rel 60 disable
     @TestCaseId("00016")
     @Description("IBD_3485_OLS")
     public void IBD_3485_Crohns_OLS() {

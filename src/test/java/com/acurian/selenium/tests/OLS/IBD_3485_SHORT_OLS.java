@@ -43,7 +43,7 @@ import java.util.List;
 
 public class IBD_3485_SHORT_OLS extends BaseTest{
 
-    @Test
+    @Test(enabled = false)//rel 60 disable
     @TestCaseId("00016")
     @Description("IBD_3485_SHORT_OLS")
     public void IBD_3485_SHORT_OLS_Screener() {

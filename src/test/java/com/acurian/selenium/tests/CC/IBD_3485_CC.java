@@ -48,7 +48,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3485_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("IBD_Crohn's")
     @Description("IBD 3485 for CC")
     public void crohns3485_CCTest(final String username, final String password) {
@@ -63,8 +63,7 @@ public class IBD_3485_CC extends BaseTest{
   //      String env = "STG";
         String zipCode = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "PRD";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
