@@ -1,30 +1,25 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.END_4385.PlzDescribeYourMenstrualCyclesCC;
-import com.acurian.selenium.pages.CC.UF_4384.*;
+import com.acurian.selenium.pages.CC.UF_4384.HaveYouHadSurgicalProcedurePast6MonthsUF_CC;
+import com.acurian.selenium.pages.CC.UF_4384.HowWouldYouDescribeAvgPeriodUF_CC;
+import com.acurian.selenium.pages.CC.UF_4384.WhichOfFollowingDoYouTypicallyExperienceUF_CC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSCrohnsPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
-import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,11 +38,9 @@ public class UF_4384_CC extends BaseTest{
         String studyName1 = "uterine fibroids"; 
         String studyIndication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
-   //     String env = "STG";
         String zipCode = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -294,9 +287,9 @@ public class UF_4384_CC extends BaseTest{
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+//                .clickNextButton(new ChildrenUnderPageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new TheStudySitePageCC())
                 //----------PEDIATRIC HEALTH Questions----------
                 //.clickNextButton(new HouseholdHavePageCC())

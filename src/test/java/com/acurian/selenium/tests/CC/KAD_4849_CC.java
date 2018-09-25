@@ -1,12 +1,7 @@
 package com.acurian.selenium.tests.CC;
 
-import java.util.Arrays;
-import java.util.List;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverTreatedYourEczema_CC;
 import com.acurian.selenium.pages.CC.Derm_4631.HowLongHaveYouBeenSufferingFromEczema_CC;
 import com.acurian.selenium.pages.CC.Derm_4631.IfYouUseYourHandToCoverAllOfTheEczema_CC;
 import com.acurian.selenium.pages.CC.Derm_4631.OverallHowWellDidTopicalMedicationYouTried_CC;
@@ -14,27 +9,11 @@ import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
-import com.acurian.selenium.pages.CC.shared.WhichofthefollowingMedicationsTherapies_CC;
-import com.acurian.selenium.pages.CC.shared.DidYouReceiveAnyTherapiesPastYear_CC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
@@ -367,9 +346,9 @@ didYouReceiveAnyTherapiesPastYear_CC
 
         letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+//                .clickNextButton(new ChildrenUnderPageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())

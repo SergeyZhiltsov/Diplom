@@ -287,9 +287,9 @@ public class DIA_4241_CC extends BaseTest{
 		poundsOrMorePageCC
 		        .waitForPageLoad()
 		        .clickOnAnswer("No")
-		        .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+//		        .clickNextButton(new ChildrenUnderPageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
     
          //----------Resume GENERAL HEALTH Questions----------
                 .clickNextButton(new IdentificationPageCC())

@@ -34,7 +34,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class MedCo_3962_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
-	
 	public void medCo_3962_OLS(final String username, final String password) {
         String phoneNumber = "AUTAMS1MED";
         List<String> protocols = Arrays.asList("MDCO_PCS_17_04");
@@ -45,8 +44,7 @@ public class MedCo_3962_CC extends BaseTest{
         String site_Indication = "Hypercholesterolemia, Cardiovascular Disease";
         String zipCode  = "19901";  //"45203" cincinnati, OH
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         LoginPageCC loginPageCC = new LoginPageCC();
 

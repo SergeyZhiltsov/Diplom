@@ -23,8 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Crohns_3889_CC extends BaseTest{
-	
-	@Ignore("Deactivated")
+
     @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00012")
     @Description("Crohn's 3889 for CC with HS")

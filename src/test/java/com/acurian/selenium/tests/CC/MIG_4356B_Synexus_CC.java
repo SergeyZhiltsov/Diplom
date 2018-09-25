@@ -23,9 +23,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00001")
-    @Description(" 1. Open the page, URL: " +
-            " 2. Type login and correct password of registered user" +
-            " 3. Click the Sign In button")
+    @Description("MIG_4356B_Synexus")
     public void mIG_4356B_Synexus_CC(final String username, final String password) {
         String phoneNumberMIG = "AUTAMS1MIG";
         //List<String> protocol = Arrays.asList("BHV3000_302\n"+"UBR_MD_01");
@@ -42,9 +40,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         String siteName = "AUT_MIG_4356B_Site";
         String zip_Code = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
-        
+        String env = System.getProperty("acurian.env", "STG");
         
         //------------LOGIN Page for CC---------------   
         LoginPageCC loginPageCC = new LoginPageCC();

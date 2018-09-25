@@ -42,7 +42,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class OA_4109CC extends BaseTest{
 	
 	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-	
 	public void tc001Test(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("R475_OA_1611","R475_OA_1688");
@@ -53,8 +52,7 @@ public class OA_4109CC extends BaseTest{
         String siteName = "AUT_OA_4109_Site";
         String zipCode  = "99546";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -87,7 +85,6 @@ public class OA_4109CC extends BaseTest{
        dateOfBirthPageCC
        .waitForPageLoad();
 
-       Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
       // Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedOA, "Title is diff");
 
        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
@@ -202,14 +199,14 @@ public class OA_4109CC extends BaseTest{
                .clickNextButton(new LetMeSeePageCC())
        		//----------ChildrenUnderTheAge Page--------------------
                .waitForPageLoad()
-               .clickNextButton(new ChildrenUnderPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("Yes")
-               //----------PEDIATRIC HEALTH Questions----------
-               .clickNextButton(new HouseholdHavePageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-       		//----------PII (IdentificationPageOLS) Page--------------------
+//               .clickNextButton(new ChildrenUnderPageCC())
+//               .waitForPageLoad()
+//               .clickOnAnswer("Yes")
+//               //----------PEDIATRIC HEALTH Questions----------
+//               .clickNextButton(new HouseholdHavePageCC())
+//               .waitForPageLoad()
+//               .clickOnAnswers("None of the above")
+//       		//----------PII (IdentificationPageOLS) Page--------------------
                .clickNextButton(new IdentificationPageCC())
                .waitForPageLoad()
                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

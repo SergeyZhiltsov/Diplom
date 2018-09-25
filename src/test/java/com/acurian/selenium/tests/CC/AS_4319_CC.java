@@ -38,7 +38,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class AS_4319_CC extends BaseTest{
 	
 	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-	
 	public void AS_4319_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1AS1";
         List<String> protocols = Arrays.asList("M16_098");
@@ -50,8 +49,7 @@ public class AS_4319_CC extends BaseTest{
         String site_indication = "Ankylosing Spondylitis";
         String zipCode  = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -230,9 +228,9 @@ public class AS_4319_CC extends BaseTest{
                .setAll("5", "5", "160")
                .clickNextButton(new LetMeSeePageCC())
                .waitForPageLoad()
-               .clickNextButton(new ChildrenUnderPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("No")
+//               .clickNextButton(new ChildrenUnderPageCC())
+//               .waitForPageLoad()
+//               .clickOnAnswer("No")
                .clickNextButton(new TheStudySitePageCC())
                //----------PEDIATRIC HEALTH Questions----------
                //.clickNextButton(new HouseholdHavePageCC())

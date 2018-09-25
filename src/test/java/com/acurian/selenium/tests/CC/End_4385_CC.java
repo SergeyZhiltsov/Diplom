@@ -45,7 +45,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class End_4385_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-	
 	public void end_4385_CC(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1END";
         List<String> protocols = Arrays.asList("MVT_601_3101", "MVT_601_3102");
@@ -57,9 +56,8 @@ public class End_4385_CC extends BaseTest{
         String zipCode  = "19901";
         String site_Indication = "Endometriosis";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
-        
+        String env = System.getProperty("acurian.env", "STG");
+
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
@@ -240,9 +238,9 @@ public class End_4385_CC extends BaseTest{
                .setAll("5", "5", "160")
                .clickNextButton(new LetMeSeePageCC())
                .waitForPageLoad()
-               .clickNextButton(new ChildrenUnderPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("No")
+//               .clickNextButton(new ChildrenUnderPageCC())
+//               .waitForPageLoad()
+//               .clickOnAnswer("No")
                .clickNextButton(new TheStudySitePageCC())
                //----------PEDIATRIC HEALTH Questions----------
                //.clickNextButton(new HouseholdHavePageCC())

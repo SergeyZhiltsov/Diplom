@@ -50,7 +50,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class LMG_4686_CC extends BaseTest{
 	
 	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-	
 	public void LMG_4686_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1LMG";
         List<String> protocols = Arrays.asList("I5Q_MC_CGAW");
@@ -62,8 +61,7 @@ public class LMG_4686_CC extends BaseTest{
         String site_indication = "Ankylosing Spondylitis";
         String zipCode  = "19341";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -381,9 +379,9 @@ public class LMG_4686_CC extends BaseTest{
        
        letMeSeePageCC
 		.waitForPageLoad()
-		.clickNextButton(new ChildrenUnderPageCC())
-		.waitForPageLoad()
-		.clickOnAnswer("No")
+//		.clickNextButton(new ChildrenUnderPageCC())
+//		.waitForPageLoad()
+//		.clickOnAnswer("No")
 		.clickNextButton(new IdentificationPageCC())
 		.waitForPageLoad()
 		.setFirstName("Acurian")

@@ -20,8 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Crohns_3485_CC extends BaseTest{
-	
-    @Ignore("Deactivated") 
+
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00011")
     @Description("Crohn's_3485 for CC with HS")
@@ -560,9 +559,9 @@ public class Crohns_3485_CC extends BaseTest{
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
+//                .clickNextButton(new ChildrenUnderPageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
                 //----------PEDIATRIC HEALTH Questions----------
                 .clickNextButton(new HouseholdHavePageCC())
                 .waitForPageLoad()

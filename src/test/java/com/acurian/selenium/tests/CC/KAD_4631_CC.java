@@ -388,9 +388,9 @@ public class KAD_4631_CC extends BaseTest {
 
         letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+//                .clickNextButton(new ChildrenUnderPageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())

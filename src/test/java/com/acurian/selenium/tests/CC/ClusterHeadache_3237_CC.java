@@ -236,10 +236,10 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 .clickNextButton(new LetMeSeePageCC())
            	 //----------LetMeSeePageCC Page--------------------
                 .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-        	 //----------ChildrenUnderTheAge Page--------------------
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+//                .clickNextButton(new ChildrenUnderPageCC())
+//        	 //----------ChildrenUnderTheAge Page--------------------
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
            	 //----------PII Page--------------------
                 .waitForPageLoad()

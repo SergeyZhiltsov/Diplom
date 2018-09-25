@@ -41,7 +41,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class OA_3138_CC extends BaseTest{
 	
 	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-	
 	public void tc001Test(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("R475_PN_1523");
@@ -51,8 +50,9 @@ public class OA_3138_CC extends BaseTest{
     //    String env = "PRD";
         String siteName = "AUT_OA_3138_Site";
         String zipCode  = "99546";
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+
+        String env = System.getProperty("acurian.env", "STG");
+
         
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -248,13 +248,13 @@ public class OA_3138_CC extends BaseTest{
                .clickNextButton(new LetMeSeePageCC())
        		//----------ChildrenUnderTheAge Page--------------------
                .waitForPageLoad()
-               .clickNextButton(new ChildrenUnderPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("Yes")
-               //----------PEDIATRIC HEALTH Questions----------
-               .clickNextButton(new HouseholdHavePageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
+//               .clickNextButton(new ChildrenUnderPageCC())
+//               .waitForPageLoad()
+//               .clickOnAnswer("Yes")
+//               //----------PEDIATRIC HEALTH Questions----------
+//               .clickNextButton(new HouseholdHavePageCC())
+//               .waitForPageLoad()
+//               .clickOnAnswers("None of the above")
        		//----------PII (IdentificationPageOLS) Page--------------------
                .clickNextButton(new IdentificationPageCC())
                .waitForPageLoad()

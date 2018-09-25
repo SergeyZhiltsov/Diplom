@@ -46,9 +46,7 @@ public class Insomnia_3792_CC extends BaseTest{
 
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00001")
-    @Description(" 1. Open the page, URL: " +
-            	 " 2. Type login and correct password of registered user" +
-    			 " 3. Click the Sign In button")
+    @Description("Insomnia_3792")
     public void tc001Test(final String username, final String password) {
         String phoneNumberINS = "AUTAMS1INS";
         String protocol1 = "E2006_G000_303";
@@ -59,8 +57,7 @@ public class Insomnia_3792_CC extends BaseTest{
         String siteName = "AUT_INSO_3792_Site";
         String zip_Code = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
      
         
         //------------LOGIN Page for CC---------------   
