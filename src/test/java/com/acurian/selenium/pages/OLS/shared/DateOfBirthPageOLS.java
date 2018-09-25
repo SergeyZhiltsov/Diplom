@@ -174,6 +174,14 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     		"No-cost study-related care from doctors\n" +
     		"No-cost study medication";
     
+    public final String titleGERD_4301_Expected ="Let's get started to see if you qualify for a heartburn or reflux study!\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
+    		"Payment which varies by study up to $850\n" +
+    		"No-cost study-related care from doctors\n" +
+    		"No-cost study medication";    
+    
+    
     public final String titleIBD_Expected ="Let's get started to see if you qualify for a Crohn's or colitis study!\n" +
     		"\n" +
     		"Those who qualify may receive*:\n" +
