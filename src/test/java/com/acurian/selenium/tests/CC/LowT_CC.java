@@ -37,11 +37,9 @@ public class LowT_CC extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
-
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(username)

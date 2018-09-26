@@ -5,18 +5,17 @@ import com.acurian.selenium.pages.OLS.RA_2821.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.*;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class RA_2821 extends BaseTest {
+public class RA_2821_OLS extends BaseTest {
 
     @Test(enabled = true)
 	public void ra_2821_OLS() {
 		String phoneNumberRA = "AUTAMS1RA1";
-//		String env = "STG";
 //		String protocol2 = "M13_545";  Protocol Disabled
         String protocol1 = "M15_925";
         String studyName = "a rheumatoid arthritis (RA)";
@@ -236,9 +235,9 @@ public class RA_2821 extends BaseTest {
 //        .clickNextButton(new WhatMedicalCoveragePageOLS())
 //        .waitForPageLoad()
 //        .clickOnAnswers("No, I have no coverage")
-//        .clickNextButton(new EthnicBackgroundPageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
         .clickNextButton(new IdentificationPageOLS())
         .waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

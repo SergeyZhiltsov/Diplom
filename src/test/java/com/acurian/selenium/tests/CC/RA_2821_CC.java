@@ -1,51 +1,20 @@
 package com.acurian.selenium.tests.CC;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.RA_2821.AnySteroidsForYourRACC;
-import com.acurian.selenium.pages.CC.RA_2821.AreYouCurrentlyTakingMethotrexateCC;
-import com.acurian.selenium.pages.CC.RA_2821.CurrentlyExperiencingJointSymptomsYourRACC;
-import com.acurian.selenium.pages.CC.RA_2821.DoYouUseAnyOralSteroidCC;
-import com.acurian.selenium.pages.CC.RA_2821.FollowingDescribesYourRASymptomsStartedCC;
-import com.acurian.selenium.pages.CC.RA_2821.FollowingMedicationsToTreatYourRACC;
-import com.acurian.selenium.pages.CC.RA_2821.HowLongTakingMethotrexateCC;
-import com.acurian.selenium.pages.CC.RA_2821.HowLongTakingPlaquenilCC;
-import com.acurian.selenium.pages.CC.RA_2821.HowOldWereUWhenDiagnosedWithRACC;
-import com.acurian.selenium.pages.CC.RA_2821.TenderPainfulOrSwollenJointsCC;
-import com.acurian.selenium.pages.CC.RA_2821.WhatTestsDoctorLedToDiagnosingRACC;
-import com.acurian.selenium.pages.CC.RA_2821.WhenWereYouDiagnosedWithRACC;
+import com.acurian.selenium.pages.CC.RA_2821.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
-import com.acurian.selenium.pages.CC.shared.BiologicMedicationsCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.DoYouSufferFromArthritisCC;
-import com.acurian.selenium.pages.CC.shared.EverTakenXeljanzCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
-import com.acurian.selenium.pages.CC.shared.WhenLastReceivedTysabriCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class RA_2821_CC extends BaseTest {
 
@@ -54,7 +23,7 @@ public class RA_2821_CC extends BaseTest {
         String phoneNumberOA = "AUTAMS1RA1";
         List<String> protocols = Arrays.asList("M15_925", "M13_545");
         String protocol1 = "M15_925";
-        //     String protocol2 = "M13_545"; This protocol is disabled
+//        String protocol2 = "M13_545"; //This protocol is disabled
         String studyName = "Rheumatoid Arthritis";
         String studyName1 = "a rheumatoid arthritis (RA) study";
         String siteName = "AUT_RA2821_Site";
