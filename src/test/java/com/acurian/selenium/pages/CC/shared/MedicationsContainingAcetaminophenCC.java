@@ -27,19 +27,14 @@ public class MedicationsContainingAcetaminophenCC extends MainPageCC {
 
     @Step
     public MedicationsContainingAcetaminophenCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public MedicationsContainingAcetaminophenCC clickOnAnswer(String answerText) {
-        radioButtonList.stream().filter(el -> el.getText().contains(answerText))
-        .findFirst()
-        .get()
-        .click();
-         waitForAnimation();
-         return this;
+        clickOnRadioButton(radioButtonList, answerText);
+        return this;
     }
 
     @Step

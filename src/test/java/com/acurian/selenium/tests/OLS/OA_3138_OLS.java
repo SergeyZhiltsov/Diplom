@@ -13,7 +13,7 @@ import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.annotations.Test;
 
-public class OA_3138 extends BaseTest {
+public class OA_3138_OLS extends BaseTest {
 
     @Test(enabled = true)
     public void OA_3138_OLS() {
