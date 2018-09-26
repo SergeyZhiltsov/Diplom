@@ -13,7 +13,7 @@ public class OA_4109_OLS extends BaseTest {
 
     @Test(enabled = true)
     public void oa_4109_OLS() {
-        String phoneNumberDY = "AUTAMS1OA1";
+        String phoneNumber = "AUTAMS1OA1";
         //	String env = "PRD";
         String zipCode = "99546";
         String studyName = "an osteoarthritis";
@@ -25,10 +25,9 @@ public class OA_4109_OLS extends BaseTest {
 
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, phoneNumberDY)
+        dateOfBirthPageOLS.openPage(env, phoneNumber)
                 .waitForPageLoad()
                 .maximizePage();
-        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleOA4109_Expected, "Title is diff");
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("10/10/1980")
