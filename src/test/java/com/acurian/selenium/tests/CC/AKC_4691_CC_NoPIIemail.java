@@ -1,61 +1,25 @@
 package com.acurian.selenium.tests.CC;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.ApartFromMetforminPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.CombinationWithEachOtherPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.DiabeticNephropathyPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.DiagnosedAnyTypeOfDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.FollowingLiverRelatedConditionCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.FollowingToLoseWeightPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.ForYourKidneysPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.InjectableMedicationsForYourDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.InsulinForYourDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.LastTimeYouTookPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.MetforminMedicationsPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.NoOfAlcoholicDrinksCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionsHumalogPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC;
-import com.acurian.selenium.pages.CC.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
-import com.acurian.selenium.pages.CC.shared.ProcedureForWeightLossPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.StatinMedicationsOnPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
 import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
 import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.LiverRelatedConditionOLS;
 import com.acurian.selenium.utils.DataProviderPool;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
@@ -64,16 +28,15 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
 	
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)  
     @TestCaseId("00004")
-    @Description("Diabetes_4356A_Synexus for CC")
-    public void Akc_4691_CC_NoPIIemail(final String username, final String password) {
+    @Description("Akcea_4691 for CC")
+    public void akc_4691_CC_NoPIIemail(final String username, final String password) {
         String phoneNumber = "AUTAMS1AKC";
         String protocol1 = "ISIS 703802_CS2";        
         String studyName = "a study for diabetics";
         String siteName = "AUT_AKC";             
         String zipCode = "19355";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
