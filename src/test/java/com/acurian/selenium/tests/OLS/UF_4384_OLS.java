@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.UF_4384.WhichOfFollowingDoYouTypicallyExpe
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -25,7 +26,7 @@ public class UF_4384_OLS extends BaseTest {
         String protocol2 = "MVT_601_3002";
         String studyName = "a uterine fibroids";
         String studyName1 = "uterine fibroids";
-        String site_Indication = "Uterine Fibroids";
+        String siteIndication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
         //    String env = "STG";
         String zipCode = "19044";
@@ -263,9 +264,9 @@ public class UF_4384_OLS extends BaseTest {
 //        .clickNextButton(new WhatMedicalCoveragePageOLS())
 //        .waitForPageLoad()
 //        .clickOnAnswers("No, I have no coverage")
-//        .clickNextButton(new EthnicBackgroundPageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("Prefer not to answer")
+        .clickNextButton(new EthnicBackgroundPageOLS())
+        .waitForPageLoad()
+        .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
@@ -276,7 +277,7 @@ public class UF_4384_OLS extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(site_Indication)
+                .waitForPageLoad(siteIndication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

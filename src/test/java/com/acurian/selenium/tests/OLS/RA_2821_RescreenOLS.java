@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 public class RA_2821_RescreenOLS extends BaseTest {
 
     @Test(enabled = true)
-    public void ra_2821_OLS() {
+    public void ra_2821_RescreenOLS() {
         String phoneNumberRA = "AUTAMS1RA2";  //Referral Service Code = "Rescreen 2821" in GEMBA
         String protocol1 = "M15_925";
         String studyName = "a rheumatoid arthritis (RA)";
@@ -187,8 +187,8 @@ public class RA_2821_RescreenOLS extends BaseTest {
                 .clickOkInPopUp()
                 .setSignature()
 
-                //------------HUMAN API Interface in HelloSign----------------
-                /*.getPage(new HumanAPIOLS())
+
+                .getPage(new HumanAPIOLS())
                 .waitForPageLoad()
                 .connectBTN()
                 .switchToAPI()
@@ -200,9 +200,9 @@ public class RA_2821_RescreenOLS extends BaseTest {
                 .clickProvider()
                 .typeUserName("democlinical@gmail.com")
                 .typePWD("password")
-                .clickConnect()*/
-
+                .clickConnect()
                 .waitToClickNext()
+
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

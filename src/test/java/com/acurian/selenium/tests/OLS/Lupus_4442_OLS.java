@@ -1,45 +1,23 @@
 package com.acurian.selenium.tests.OLS;
 
-import java.time.Instant;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.AS_4319.AreYouWheelchairBoundOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.LPS_4442.DiagnosedYouWithLupusOLS;
-import com.acurian.selenium.pages.OLS.LPS_4442.EitherOfFollowingMedicationsOLS;
-import com.acurian.selenium.pages.OLS.LPS_4442.ExperienceWithYourLupusOLS;
-import com.acurian.selenium.pages.OLS.LPS_4442.MedicationsCurrentlyTakingToTreatLupusOLS;
-import com.acurian.selenium.pages.OLS.LPS_4442.WhatTypeOfLupusOLS;
-import com.acurian.selenium.pages.OLS.LPS_4442.WhenWereYouDiagnosedOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
-import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.LPS_4442.*;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.CancerPage;
-import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.BiologicMedications;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
+
+import java.time.Instant;
 
 public class Lupus_4442_OLS extends BaseTest {
 
@@ -50,7 +28,7 @@ public class Lupus_4442_OLS extends BaseTest {
         String phoneNumberMIG = "AUTAMS1LPS";
         String protocol1 = "I4V_MC_JAHZ";
         String protocol2 = "I4V_MC_JAIA";
-        String studyName = "Lupus (SLE)!";
+        String studyName = "a lupus";
         String siteName = "LPS_4442";
         String zipCode = "08204";
         String site_Indication = "Lupus (SLE)";
@@ -110,7 +88,7 @@ public class Lupus_4442_OLS extends BaseTest {
         debugPageOLS.back();
         whatTypeOfLupusOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Drug-incuded lupus - a form of lupus caused by certain prescription medications")
+                .clickOnAnswer("Drug-induced lupus - a form of lupus caused by certain prescription medications")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6103", protocol1, protocol2);
@@ -331,14 +309,14 @@ public class Lupus_4442_OLS extends BaseTest {
 //        .clickNextButton(new WhatMedicalCoveragePageOLS())
 //        .waitForPageLoad()
 //        .clickOnAnswers("No, I have no coverage")
-//        .clickNextButton(new EthnicBackgroundPageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", eMailId, "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad1(studyName)
+                .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
