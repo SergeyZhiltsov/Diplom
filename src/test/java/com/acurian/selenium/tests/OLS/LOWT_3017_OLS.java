@@ -350,7 +350,7 @@ public class LOWT_3017_OLS extends BaseTest{
         .setSignature()
         
         //------------HUMAN API Interface in HelloSign----------------
-        /*.getPage(new HumanAPIOLS())
+        .getPage(new HumanAPIOLS())
         .waitForPageLoad()		        
         .connectBTN()
         .switchToAPI()
@@ -362,7 +362,7 @@ public class LOWT_3017_OLS extends BaseTest{
         .clickProvider()
         .typeUserName("democlinical@gmail.com")
         .typePWD("password")
-        .clickConnect()*/
+        .clickConnect()
         
         .waitToClickNext()
         .clickNextButton(new ThankYouCloseSimplePageOLS())

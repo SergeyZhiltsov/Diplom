@@ -57,8 +57,8 @@ public class GERD_4301_CC extends BaseTest{
         String protocol1 = "C3718_301";
         String protocol2 = "C3718_302";
         String studyName = "heartburn, reflux, or GERD history";
-        String site_Indication = "Hypogonadism";
-        String siteName = "AUT_LOWT_3017_Site";
+        String site_Indication = "Gastroesophageal Reflux Disease (GERD)";
+        String siteName = "AUT_GER_4301_Site";
         String zipCode = "19901";
         
         String env = System.getProperty("acurian.env");
@@ -101,10 +101,10 @@ public class GERD_4301_CC extends BaseTest{
        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                .setMonth("Sep")
                .setDay("9")
-               .setYear("1990")
+               .setYear("2010")
                .clickNextButton(new ZipCodePageCC());
-       DebugPageCC debugPageCC = new DebugPageCC();       
-       debugPageCC.checkProtocolsEquals("If you qualify and participate in a study, you may receive: Study medication...", protocol1, protocol2);
+       DebugPageCC debugPageCC = new DebugPageCC();
+       debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol2);
        debugPageCC.back();
        dateOfBirthPageCC
        		   .waitForPageLoadAKC()

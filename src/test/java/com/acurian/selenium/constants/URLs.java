@@ -11,10 +11,12 @@ public interface URLs {
     // %1$s - phone number,   %2$s - debug code
     /*String OLS_STG = "http://acurianhealth-com.ahbrands.staging.wpengine.com/questionnaire_test_staging/welcome?pn=%1$s";
     String OLS_QA = "http://acurianhealth-com.ahbrands.staging.wpengine.com/questionnaire_test_qa/welcome?pn=%1$s"; */
+    
+    
+    //INTERNATIONAL URL: 
+    //String OLS_STG = "http://test-screener.acurian.com/questionnaire_test_staging_international/welcome?pn=%1$s";
+    
     String OLS_STG = "https://test-screener.acurian.com/questionnaire_test_staging/welcome?pn=%1$s";
     String OLS_QA = "https://test-screener.acurian.com/questionnaire_test_qa/welcome?pn=%1$s";
     String OLS_PROD = "http://acurianhealth.com/questionnaire/welcome?pn=%1$s&show_debug=1&testing_key=%2$s";
-
-
-
 }
