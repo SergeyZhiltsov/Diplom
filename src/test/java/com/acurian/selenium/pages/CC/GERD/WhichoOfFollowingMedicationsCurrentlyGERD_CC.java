@@ -11,9 +11,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhichoOfFollowingMedicationsCurrentlyGERD_CC extends MainPageCC{
 
-    public final String titleExpected = "What type of surgery did you have? \n" +
-			"Please select all that apply.\n" +
-			"Agent Note: Select all that apply";
+    public final String titleExpected = "Which of the following medications do you currently take, every day, to treat your heartburn, reflux, or GERD?\n" +
+    		"These medications may be prescribed by your doctor and filled at a pharmacy counter, or you may purchase them yourself as \"over-the-counter\" or non-prescription medications.\n" +
+    		"Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;

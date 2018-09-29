@@ -12,8 +12,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class WhatTypeOfSurgeryDidYouHave_CC extends MainPageCC{
 
     public final String titleExpected = "What type of surgery did you have?\n" +
-		"Please select all that apply.\n" +
-		"Agent Note: Select all that apply";
+    		"Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
