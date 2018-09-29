@@ -126,7 +126,7 @@ public class GERD_4301_OLS extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(whichoOfFollowingMedicationsCurrentlyGERD_OLS.getTitleText(),whichoOfFollowingMedicationsCurrentlyGERD_OLS.titleExpected, "Title is diff");
         HaveYouEverHadSurgeryOnStomach_OLS haveYouEverHadSurgeryOnStomach_OLS = whichoOfFollowingMedicationsCurrentlyGERD_OLS
-        //----SKIP to Q9 if selected any of these options in Q3:  None of the above
+        //----DQ if selected any of these options in Q3:  None of the above
         		.clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS());
         haveYouEverHadSurgeryOnStomach_OLS
@@ -163,7 +163,6 @@ public class GERD_4301_OLS extends BaseTest{
 			.waitForPageLoad(3,howDoYouBuyFollowingMedications_OLS.titleExpected3)
 			.waitForPageLoad(4,howDoYouBuyFollowingMedications_OLS.titleExpected4);
 	    Assert.assertEquals(howDoYouBuyFollowingMedications_OLS.getTitleText(1),howDoYouBuyFollowingMedications_OLS.titleExpected1, "Title is diff");
-		//HowLongHaveYouBeenTaking_OLS howLongHaveYouBeenTaking_OLS = howDoYouBuyFollowingMedications_OLS
 	    howDoYouBuyFollowingMedications_OLS
 	    		.clickOnAnswerForSubQuestion(1, "With a prescription from my doctor that I get filled at the pharmacy counter")
 		        .clickOnAnswerForSubQuestion(2,"I get this medication off the shelf, or \"over-the-counter\"")
@@ -319,15 +318,6 @@ public class GERD_4301_OLS extends BaseTest{
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Alzheimer's disease", "Lupus")
-/*                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        //----DoAnyOftheFollowingAdditionalDiagnosesOLS----------
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS38", protocol1, protocol2)
-                .back();
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()*/
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 

@@ -12,8 +12,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class DoYouExperienceAnyOfFollowingSymptoms_CC extends MainPageCC{
 
     public final String titleExpected = "Do you experience any of the following conditions or symptoms?\n" +
-			"Please select all that apply.\n" +
-			"Agent Note: Select all that apply";
+    		"Agent Note: Select all that appy";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
