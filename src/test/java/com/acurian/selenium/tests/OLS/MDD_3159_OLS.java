@@ -34,8 +34,7 @@ public class MDD_3159_OLS extends BaseTest {
         //     String env = "STG";
         String zipCode = "19044";
 
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();

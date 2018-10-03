@@ -572,17 +572,17 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new EthnicBackgroundPageOLS())
+        		.waitForPageLoad()
+        		.getPage(debugPageOLS)
+        		.checkProtocolsContainsForQNumber("QS60", protocol1)
+        		.back();
+        approximateHeightPageOLS
+				.waitForPageLoad()
+				.setIncheswithClear("6")
+				.setLbs("170")
+                .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")    //rel 60
-//        childrenUnderPageOLS
-//        		.waitForPageLoad()
-//        		.getPage(debugPageOLS)
-//        		.checkProtocolsContainsForQNumber("QS60", protocol1)
-//        		.back();
-//        approximateHeightPageOLS
-//				.waitForPageLoad()
-//				.setIncheswithClear("6")
-//				.setLbs("170")
+                .clickOnAnswers("Prefer not to answer")
 //				.clickNextButton(new ChildrenUnderPageOLS());
 //
 //        childrenUnderPageOLS
