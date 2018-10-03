@@ -703,10 +703,7 @@ public class IBD_4533_OLS extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
-                .threadSleep(8000);
-        //.waitForPageLoad()
-        QualifiedFlareMonitoringAppCLose_OLS qualifiedFlareMonitoringAppCLose_OLS = new QualifiedFlareMonitoringAppCLose_OLS();
-        qualifiedFlareMonitoringAppCLose_OLS
+                .waitForPageLoad()
                 .getActivationCode()
                 //.enterEmail(eMailId)
                 .clickNextButton(new ThankYouCloseSimplePageOLS())

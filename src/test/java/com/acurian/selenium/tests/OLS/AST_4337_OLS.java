@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.AST_4337.*;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -34,8 +33,7 @@ public class AST_4337_OLS extends BaseTest{
         String zipCode = "19044";
         String Siteindicator = "Asthma";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

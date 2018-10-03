@@ -1,68 +1,20 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.END_4385.*;
+import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.END_4385.ApproxHowManyDaysInYourMenstrualCycle_OLS;
-import com.acurian.selenium.pages.OLS.END_4385.DescribesNonMenstrualPelvicPainOLS;
-import com.acurian.selenium.pages.OLS.END_4385.DescribesPelvicPainOLS;
-import com.acurian.selenium.pages.OLS.END_4385.DiagnoseYourEndometriosisOLS;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
-import com.acurian.selenium.pages.OLS.END_4385.HowManyTimesDidYouGetYourPeriodInThreeMons_OLS;
-import com.acurian.selenium.pages.OLS.END_4385.LaparoscopyAndLaparotomyOLS;
-import com.acurian.selenium.pages.OLS.END_4385.MostRecentSurgeryOLS;
-import com.acurian.selenium.pages.OLS.END_4385.PelvicPainOLS;
-import com.acurian.selenium.pages.OLS.END_4385.PelvicPainOtherTimesOLS;
-import com.acurian.selenium.pages.OLS.END_4385.SurgicalProceduresOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
-import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.AffectYourLungsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.AffectingYourMetabolismPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HistoryOfDrugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.MentalHealthPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.OtherThanSkinCancerPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SkinConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SleepRelatedConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SmokedCigarettesPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ViralConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WouldYouUsePageOLS;
-import com.acurian.selenium.pages.OLS.shared.AreYouCurrentlyPregnantOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DiagnosedWithGynecologicalConditionOLS;
-import com.acurian.selenium.pages.OLS.shared.FollowingGynecologicalConditionOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveRegularMenstrualCyclesOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouHadHysterectomyOLS;
-import com.acurian.selenium.pages.OLS.shared.PlzDescribeYourMenstrualCyclesOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import ru.yandex.qatools.allure.annotations.Description;
 
 public class END_4385_OLS extends BaseTest {
 
     @Test
+    @Description("a cluster headache study 3237 - OLS")
     public void end_4385_OLS() {
 
         String phoneNumberRA = "AUTAMS1END";
@@ -76,9 +28,8 @@ public class END_4385_OLS extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumberRA)
-                .waitForPageLoad()
-                .maximizePage();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for an endometriosis study!"), true);
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleEND_Expected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("10/10/1980")
                 .clickNextButton(new ZipCodePageOLS());
@@ -93,16 +44,17 @@ public class END_4385_OLS extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new FollowingGynecologicalConditionOLS());
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
+
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = followingGynecologicalConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad();
-        DebugPageOLS debugPageCC = new DebugPageOLS();
-        debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1, protocol2);
-        debugPageCC.back();
-
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1, protocol2)
+                .back();
         DiagnoseYourEndometriosisOLS diagnoseYourEndometriosisOLS = followingGynecologicalConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Endometriosis")
@@ -113,14 +65,21 @@ public class END_4385_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("11 or more years ago")
                 .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
-        debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2);
-        debugPageCC.back();
-        diagnoseYourEndometriosisOLS.waitForPageLoad()
+        haveYouGoneThroughMenopauseOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2)
+                .back();
+        diagnoseYourEndometriosisOLS
+                .waitForPageLoad()
                 .clickOnAnswer("1 month ago or less")
-                .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
-        debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2);
-        debugPageCC.back();
-        diagnoseYourEndometriosisOLS.waitForPageLoad()
+                .clickNextButton(haveYouGoneThroughMenopauseOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2)
+                .back();
+        diagnoseYourEndometriosisOLS
+                .waitForPageLoad()
                 .clickOnAnswer("2 - 3 months ago")
                 .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
 
@@ -129,9 +88,11 @@ public class END_4385_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
                 .clickNextButton(new HaveYouHadHysterectomyOLS());
-        haveYouHadHysterectomyOLS.waitForPageLoad();
-        debugPageCC.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2);
-        debugPageCC.back();
+        haveYouHadHysterectomyOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2)
+                .back();
         haveYouGoneThroughMenopauseOLS.waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouHadHysterectomyOLS());
@@ -142,8 +103,11 @@ public class END_4385_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        debugPageCC.checkProtocolsEquals("Have you had a hysterectomy (surgical removal of the uterus)?", protocol1, protocol2);
-        debugPageCC.back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Have you had a hysterectomy (surgical removal of the uterus)?", protocol1, protocol2)
+                .back();
         PlzDescribeYourMenstrualCyclesOLS plzDescribeYourMenstrualCyclesOLS = haveYouHadHysterectomyOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new PlzDescribeYourMenstrualCyclesOLS());
@@ -173,8 +137,11 @@ public class END_4385_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new PelvicPainOtherTimesOLS());
-        debugPageCC.checkProtocolsEquals("Do you ever experience pelvic pain during your menstrual period?", protocol1, protocol2);
-        debugPageCC.back();
+        pelvicPainOtherTimesOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Do you ever experience pelvic pain during your menstrual period?", protocol1, protocol2)
+                .back();
         DescribesPelvicPainOLS describesPelvicPainOLS = pelvicPainOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -205,9 +172,11 @@ public class END_4385_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
         //------------------R 50.1-----
-        diagnosedWithGynecologicalConditionOLS.waitForPageLoad();
-        debugPageCC.checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", protocol1, protocol2);
-        debugPageCC.back();
+        diagnosedWithGynecologicalConditionOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", protocol1, protocol2)
+                .back();
         hormonalBirthControlOLS.waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
@@ -223,9 +192,11 @@ public class END_4385_OLS extends BaseTest {
         areYouCurrentlyPregnantOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        debugPageCC.checkProtocolsEquals("Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?", protocol1, protocol2);
-        debugPageCC.back();
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?", protocol1, protocol2)
+                .back();
         areYouCurrentlyPregnantOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")

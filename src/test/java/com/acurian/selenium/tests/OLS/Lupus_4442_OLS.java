@@ -70,7 +70,8 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6102", protocol1, protocol2);
         debugPageOLS.back();
 
@@ -201,13 +202,13 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer")
                 .clickNextButton(new CancerPage());
-        cancerPage.threadSleep(1000);
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = cancerPage
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        doAnyOftheFollowingAdditionalDiagnosesOLS.waitForPageLoad();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS42", protocol1);
         debugPageOLS.back();
         cancerPage
@@ -236,6 +237,8 @@ public class Lupus_4442_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "Less than 30 days ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+        heartrelatedMedicalProceduresPageOLS
+                .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
         debugPageOLS.back();
 
@@ -245,18 +248,17 @@ public class Lupus_4442_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "1 - 3 months ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
         debugPageOLS.back();
-        subquestionExperiencedHeartPageOLS.threadSleep(1000);
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .back();
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
@@ -267,7 +269,8 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(new ApproximateHeightPageOLS());
-        approximateHeightPageOLS.waitForPageLoad();
+        approximateHeightPageOLS
+                .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS61", protocol1);
         debugPageOLS.back();
 
@@ -276,7 +279,8 @@ public class Lupus_4442_OLS extends BaseTest {
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickOnAnswers("Drug or alcohol abuse within the past year")
                 .clickNextButton(new ApproximateHeightPageOLS());
-        approximateHeightPageOLS.waitForPageLoad();
+        approximateHeightPageOLS
+                .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageOLS.back();
 
@@ -284,7 +288,7 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Drug or alcohol abuse within the past year")
                 .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(new ApproximateHeightPageOLS())
+                .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageOLS.back();
@@ -292,7 +296,7 @@ public class Lupus_4442_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageOLS());
+                .clickNextButton(approximateHeightPageOLS);
 
         approximateHeightPageOLS
                 .waitForPageLoad()

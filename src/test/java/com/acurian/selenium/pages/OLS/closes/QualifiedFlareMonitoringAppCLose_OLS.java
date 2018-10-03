@@ -1,10 +1,6 @@
 package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.utils.PassPID;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
