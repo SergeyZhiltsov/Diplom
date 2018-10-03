@@ -3,17 +3,12 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ClusterHeadache_3237.AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_OLS;
 import com.acurian.selenium.pages.OLS.ClusterHeadache_3237.WhenYouAreExperiencingCHattackIsTheLocationPain_OLS;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -32,7 +27,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest {
         String studyName = "a cluster headache";
         //String env = "STG";  //Enter which OLS environment to use for testing
         String siteName = "AUT_CLH_3237_Site";
-        String zip_Code = "19044";
+        String zipCode = "19044";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -40,7 +35,6 @@ public class ClusterHeadache_3237_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        //Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleCLHExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091982")
@@ -51,7 +45,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(zipCodePageOLS.getTitleText(), zipCodePageOLS.titleExpected, "Title is diff");
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zip_Code)
+                .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         //------------GENDER question---------------
@@ -221,7 +215,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
