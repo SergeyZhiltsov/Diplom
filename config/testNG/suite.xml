@@ -4,8 +4,8 @@
 
     <test name="Regression1">
         <packages>
-            <package name="com.acurian.selenium.tests.CC" />
-            <package name="com.acurian.selenium.tests.OLS" />
+            <package name="com.acurian.selenium.tests.CC.*" />
+            <package name="com.acurian.selenium.tests.OLS.*" />
         </packages>
     </test>
 
