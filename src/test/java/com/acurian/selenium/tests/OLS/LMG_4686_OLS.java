@@ -327,21 +327,28 @@ public class LMG_4686_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS49", protocol1);
-        debugPageOLS.back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .back();
         whenWasYourMostRecentHeartProcedureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS49", protocol1);
-        debugPageOLS.back();
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .back();
         whenWasYourMostRecentHeartProcedureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS49", protocol1);
-        debugPageOLS.back();
-        whenWasYourMostRecentHeartProcedureOLS.back();
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .back();
+        whenWasYourMostRecentHeartProcedureOLS
+                .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
@@ -350,10 +357,13 @@ public class LMG_4686_OLS extends BaseTest {
         whenWasYourMostRecentHeartProcedureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS49", protocol1);
-        debugPageOLS.back();
-        whenWasYourMostRecentHeartProcedureOLS.back();
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .back();
+        whenWasYourMostRecentHeartProcedureOLS
+                .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
@@ -362,10 +372,13 @@ public class LMG_4686_OLS extends BaseTest {
         whenWasYourMostRecentHeartProcedureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS49", protocol1);
-        debugPageOLS.back();
-        whenWasYourMostRecentHeartProcedureOLS.back();
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .back();
+        whenWasYourMostRecentHeartProcedureOLS
+                .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
@@ -374,10 +387,13 @@ public class LMG_4686_OLS extends BaseTest {
         whenWasYourMostRecentHeartProcedureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS49", protocol1);
-        debugPageOLS.back();
-        whenWasYourMostRecentHeartProcedureOLS.back();
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .back();
+        whenWasYourMostRecentHeartProcedureOLS
+                .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
@@ -386,10 +402,13 @@ public class LMG_4686_OLS extends BaseTest {
         whenWasYourMostRecentHeartProcedureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS49", protocol1);
-        debugPageOLS.back();
-        whenWasYourMostRecentHeartProcedureOLS.back();
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .back();
+        whenWasYourMostRecentHeartProcedureOLS
+                .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
@@ -398,67 +417,79 @@ public class LMG_4686_OLS extends BaseTest {
         whenWasYourMostRecentHeartProcedureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS49", protocol1);
-        debugPageOLS.back();
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .back();
         whenWasYourMostRecentHeartProcedureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageOLS.back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageOLS.back();
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Hepatitis B")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageOLS.back();
-
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Hepatitis C")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageOLS.back();
-
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageOLS.back();
-
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease requiring dialysis")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageOLS.back();
-
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Schizophrenia")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageOLS.back();
-
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageOLS());
+                .clickNextButton(approximateHeightPageOLS);
 
         approximateHeightPageOLS
                 .waitForPageLoad()
