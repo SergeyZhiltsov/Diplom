@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LMG_4686.*;
-import com.acurian.selenium.pages.OLS.MDD_3159.WhenWasYourMostRecentHeartProcedureOLS;
+import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -318,12 +318,12 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswers("More than 1 year ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS());
 
-        WhenWasYourMostRecentHeartProcedureOLS whenWasYourMostRecentHeartProcedureOLS = haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
+        MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Angioplasty")
-                .clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS());
+                .clickNextButton(new MostRecentHeartProcedurePageOLS());
 
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whenWasYourMostRecentHeartProcedureOLS
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
@@ -332,14 +332,14 @@ public class LMG_4686_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", protocol1)
                 .back();
-        whenWasYourMostRecentHeartProcedureOLS
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", protocol1)
                 .back();
-        whenWasYourMostRecentHeartProcedureOLS
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -347,14 +347,14 @@ public class LMG_4686_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", protocol1)
                 .back();
-        whenWasYourMostRecentHeartProcedureOLS
+        mostRecentHeartProcedurePageOLS
                 .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement")
-                .clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS());
-        whenWasYourMostRecentHeartProcedureOLS
+                .clickNextButton(new MostRecentHeartProcedurePageOLS());
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -362,14 +362,14 @@ public class LMG_4686_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", protocol1)
                 .back();
-        whenWasYourMostRecentHeartProcedureOLS
+        mostRecentHeartProcedurePageOLS
                 .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Atherectomy")
-                .clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS());
-        whenWasYourMostRecentHeartProcedureOLS
+                .clickNextButton(new MostRecentHeartProcedurePageOLS());
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -377,14 +377,14 @@ public class LMG_4686_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", protocol1)
                 .back();
-        whenWasYourMostRecentHeartProcedureOLS
+        mostRecentHeartProcedurePageOLS
                 .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Procedure to clear plaque from blood vessels in the neck such as carotid endarterectomy")
-                .clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS());
-        whenWasYourMostRecentHeartProcedureOLS
+                .clickNextButton(new MostRecentHeartProcedurePageOLS());
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -392,14 +392,14 @@ public class LMG_4686_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", protocol1)
                 .back();
-        whenWasYourMostRecentHeartProcedureOLS
+        mostRecentHeartProcedurePageOLS
                 .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Coronary artery bypass graft, also known as CABG, \"cabbage,\" or heart bypass surgery")
-                .clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS());
-        whenWasYourMostRecentHeartProcedureOLS
+                .clickNextButton(new MostRecentHeartProcedurePageOLS());
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -407,14 +407,14 @@ public class LMG_4686_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", protocol1)
                 .back();
-        whenWasYourMostRecentHeartProcedureOLS
+        mostRecentHeartProcedurePageOLS
                 .back();
 
         haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Revascularization")
-                .clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS());
-        whenWasYourMostRecentHeartProcedureOLS
+                .clickNextButton(new MostRecentHeartProcedurePageOLS());
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -422,7 +422,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", protocol1)
                 .back();
-        whenWasYourMostRecentHeartProcedureOLS
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);

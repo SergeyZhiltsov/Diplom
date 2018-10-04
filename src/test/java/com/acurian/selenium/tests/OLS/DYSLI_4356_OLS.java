@@ -48,12 +48,12 @@ public class DYSLI_4356_OLS extends BaseTest {
 				.setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
 				.clickNextButton(new GenderPageOLS());
 		
-		DyslipidemiaHealthcarePage dyslipidemiaHealthcarePage = genderPageOLS
+		DyslipidemiaHealthcarePageOLS dyslipidemiaHealthcarePageOLS = genderPageOLS
 				.waitForPageLoad()
 				.clickOnAnswer("Female")
-				.clickNextButton(new DyslipidemiaHealthcarePage());
+				.clickNextButton(new DyslipidemiaHealthcarePageOLS());
 		
-		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =  dyslipidemiaHealthcarePage
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =  dyslipidemiaHealthcarePageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("Unsure")
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -71,7 +71,7 @@ public class DYSLI_4356_OLS extends BaseTest {
 		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.back();
 		//haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.threadSleep(2000);		
 		
-		StatinMedicationsPage statinMedicationsPage = dyslipidemiaHealthcarePage
+		StatinMedicationsPage statinMedicationsPage = dyslipidemiaHealthcarePageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("Unsure")
 				.clickOnAnswers("High fats or lipids, or hyperlipidemia")				

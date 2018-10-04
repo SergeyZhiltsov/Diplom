@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.AreYouTakingMedications;
 import com.acurian.selenium.pages.OLS.DY_4356.NonPrescriptionSupplements;
-import com.acurian.selenium.pages.OLS.MDD_3159.WhenWasYourMostRecentHeartProcedureOLS;
+import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
@@ -48,12 +48,12 @@ public class MedCo_3962_OLS extends BaseTest {
 				   .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
 				   .clickNextButton(new GenderPageOLS());
 		
-		DyslipidemiaHealthcarePage dyslipidemiaHealthcarePage = genderPageOLS
+		DyslipidemiaHealthcarePageOLS dyslipidemiaHealthcarePageOLS = genderPageOLS
 				.waitForPageLoad()
 				.clickOnAnswer("Female")
-				.clickNextButton(new DyslipidemiaHealthcarePage());
+				.clickNextButton(new DyslipidemiaHealthcarePageOLS());
 		
-		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =  dyslipidemiaHealthcarePage
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =  dyslipidemiaHealthcarePageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("Unsure")
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -64,7 +64,7 @@ public class MedCo_3962_OLS extends BaseTest {
 		DebugPageOLS debugPageOLS = new DebugPageOLS();		
 		debugPageOLS.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);		
 		debugPageOLS.back();		
-		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 =  dyslipidemiaHealthcarePage
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 =  dyslipidemiaHealthcarePageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -73,7 +73,7 @@ public class MedCo_3962_OLS extends BaseTest {
 		        .waitForPageLoad();		
 		debugPageOLS.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);		
 		debugPageOLS.back();			
-		StatinMedicationsPage statinMedicationsPage = dyslipidemiaHealthcarePage
+		StatinMedicationsPage statinMedicationsPage = dyslipidemiaHealthcarePageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("High fats or lipids, or hyperlipidemia")				
 				.clickNextButton(new StatinMedicationsPage());
@@ -119,8 +119,8 @@ public class MedCo_3962_OLS extends BaseTest {
         //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------	
         .waitForPageLoad()
         .clickOnAnswers("Angioplasty")
-        .clickNextButton(new WhenWasYourMostRecentHeartProcedureOLS())
-        //-----------WhenWasYourMostRecentHeartProcedureOLS page-----------	
+        .clickNextButton(new MostRecentHeartProcedurePageOLS())
+        //-----------MostRecentHeartProcedurePageOLS page-----------
         .waitForPageLoad()
         .clickOnAnswer("7 - 12 months ago")
         .clickNextButton(new ChildrenUnderPageOLS())
