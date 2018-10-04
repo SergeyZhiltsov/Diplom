@@ -28,9 +28,9 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Diabetes_4356A extends BaseTest{
+public class DIA_4356A_OLS extends BaseTest{
 
-	@Test(enabled = false)
+	@Test
     @TestCaseId("00053")
     @Description("Diabetes_4356A_Synexus")
     public void diabetes_4356A() {
@@ -59,8 +59,7 @@ public class Diabetes_4356A extends BaseTest{
         String facility_Code_STG = "625263";
         String facility_Code_PRD = "625640";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

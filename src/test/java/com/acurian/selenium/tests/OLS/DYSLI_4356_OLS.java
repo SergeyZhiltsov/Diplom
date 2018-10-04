@@ -19,7 +19,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class DYSLI_4356 extends BaseTest {
+public class DYSLI_4356_OLS extends BaseTest {
 	
     @Test(enabled = false)
 	public void dYSLI_4356_OLS() {
@@ -43,8 +43,7 @@ public class DYSLI_4356 extends BaseTest {
 		           .setDate("10/10/1975")
 		           .clickNextButton(new IdentificationPageOLS());
 		
-		identificationPageOLS.threadSleep(3000);
-		
+
 		GenderPageOLS genderPageOLS = identificationPageOLS				
 				.setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
 				.clickNextButton(new GenderPageOLS());
