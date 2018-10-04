@@ -33,22 +33,22 @@ public class DIA_4356A_OLS extends BaseTest{
 	@Test
     @TestCaseId("00053")
     @Description("Diabetes_4356A_Synexus")
-    public void diabetes_4356A() {
-        String phoneNumberLBP = "AUTAMS1DIA";
+    public void diabetes_4356A_ols() {
+        String phoneNumber = "AUTAMS1DIA";
         List<String> protocols = Arrays.asList("EFC14835", "ITCA 650_CLP_203","K_877_302","17530","EFC13794","NN2211_4315","NN9535_4269");       
-        String protocol1 = "17530";
-        String protocol2 = "NN9535_4269";
-        String protocol3 = "NN2211_4315";
-        String protocol4 = "EFC13794";
-        String protocol5 = "EFC14835";
-        String protocol6 = "ITCA 650_CLP_203";
-        //String protocol7 = "K_877_302";
-        String protocol8 = "EFC14833";
-        String protocol9 = "EFC14835";
-        String protocol10 = "EFC15166";
-        String protocol11 = "EFC14868";
-        String protocol12 = "EFC14837";
-        String protocol13 = "EFC14838";
+//        String protocol1 = "17530";
+//        String protocol2 = "NN9535_4269";
+//        String protocol3 = "NN2211_4315";
+//        String protocol4 = "EFC13794";
+//        String protocol5 = "EFC14835";
+//        String protocol6 = "ITCA 650_CLP_203";
+        String protocol7 = "K_877_302";
+//        String protocol8 = "EFC14833";
+//        String protocol9 = "EFC14835";
+//        String protocol10 = "EFC15166";
+//        String protocol11 = "EFC14868";
+//        String protocol12 = "EFC14837";
+//        String protocol13 = "EFC14838";
         String DIA_4241 = "EFC14822";
         String AKC = "ISIS 703802_CS2";
         String studyName = "a study for diabetics";
@@ -63,7 +63,7 @@ public class DIA_4356A_OLS extends BaseTest{
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberLBP)
+                .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleDiabetes_4356A_Expected, "Title is diff");
@@ -71,42 +71,34 @@ public class DIA_4356A_OLS extends BaseTest{
                 .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());
 
-
-        //-----------------------------------zipCodePageOLS---------------------------------------------------------- 
         zipCodePageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(zipCodePageOLS.getTitleText(),zipCodePageOLS.titleExpected, "Title is diff");
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        //----------------------------------genderPageOLS----------------------------------------------------------- 
         genderPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
-        //----------------------------------diagnosedAnyTypeOfDiabetesPageOLS----------------------------------------------------------- 
-        diagnosedAnyTypeOfDiabetesPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(),diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
+
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad();
-        DebugPageOLS debugPageOLS = new DebugPageOLS();//deleted protocol5 spec 43
-        //debugPageOLS.checkProtocolsEquals(diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, protocol1, protocol2, protocol3, protocol4, protocol6, protocol7,protocol8,protocol9,protocol10,protocol11);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS4602", DIA_4241);
-        debugPageOLS.back();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4602", DIA_4241)
+                .back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
-        //-------------------------------------whatKindOfDiabetesPageOLS--------------------------------------------------------         
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(whatKindOfDiabetesPageOLS.getTitleText(),whatKindOfDiabetesPageOLS.titleExpected, "Title is diff");
@@ -238,7 +230,7 @@ public class DIA_4356A_OLS extends BaseTest{
         forYourKidneysPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4228", protocol10, protocol12)
+                .checkProtocolsContainsForQNumber("QS4228", protocol7)
                 .back();
         diabeticNephropathyPageOLS
                 .waitForPageLoad()

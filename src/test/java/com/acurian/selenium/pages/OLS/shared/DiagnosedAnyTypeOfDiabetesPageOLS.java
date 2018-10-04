@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.shared;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,10 +13,10 @@ public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
 
     public final String titleExpected = "Have you been diagnosed with any type of diabetes?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
     public DiagnosedAnyTypeOfDiabetesPageOLS() {
