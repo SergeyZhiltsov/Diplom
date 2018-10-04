@@ -24,7 +24,7 @@ public class Lupus_4442_OLS extends BaseTest {
     @Test(enabled = true)
     @TestCaseId("00019")
     @Description("4442 Lilly Lupus")
-    public void lupus_4442() {
+    public void lupus_4442_OLS() {
         String phoneNumberMIG = "AUTAMS1LPS";
         String protocol1 = "I4V_MC_JAHZ";
         String protocol2 = "I4V_MC_JAIA";

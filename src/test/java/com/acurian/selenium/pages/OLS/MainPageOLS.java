@@ -36,7 +36,7 @@ public class MainPageOLS extends BasePage{
     @Step
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
         logTextToAllure(this.getClass().getSimpleName() + " class with:");
-        textToAttachment(titleExpected,"Title text");
+        textToAttachment(titleExpected,"Title text expected");
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         try {

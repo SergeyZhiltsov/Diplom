@@ -28,7 +28,6 @@ public class UF_4384_OLS extends BaseTest {
         String studyName1 = "uterine fibroids";
         String siteIndication = "Uterine Fibroids";
         String siteName = "AUT_UF_4384";
-        //    String env = "STG";
         String zipCode = "19044";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -71,9 +70,9 @@ public class UF_4384_OLS extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
-        DebugPageOLS debugPageCC = new DebugPageOLS();
-        debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1, protocol2);
-        debugPageCC.back();
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
+        debugPageOLS.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1, protocol2);
+        debugPageOLS.back();
         HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = followingGynecologicalConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Uterine fibroids, also known as leiomyomas or myomas")
@@ -89,7 +88,7 @@ public class UF_4384_OLS extends BaseTest {
                 .clickNextButton(new HaveYouHadHysterectomyOLS());
         haveYouHadHysterectomyOLS
                 .waitForPageLoad()
-                .getPage(debugPageCC)
+                .getPage(debugPageOLS)
                 .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2)
                 .back();
         haveYouGoneThroughMenopauseOLS
@@ -98,7 +97,7 @@ public class UF_4384_OLS extends BaseTest {
                 .clickNextButton(new HaveYouHadHysterectomyOLS());
         haveYouHadHysterectomyOLS
                 .waitForPageLoad()
-                .getPage(debugPageCC)
+                .getPage(debugPageOLS)
                 .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2)
                 .back();
         haveYouGoneThroughMenopauseOLS
@@ -107,7 +106,7 @@ public class UF_4384_OLS extends BaseTest {
                 .clickNextButton(new HaveYouHadHysterectomyOLS());
         haveYouGoneThroughMenopauseOLS
                 .waitForPageLoad()
-                .getPage(debugPageCC)
+                .getPage(debugPageOLS)
                 .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2)
                 .back();
         haveYouGoneThroughMenopauseOLS
@@ -118,17 +117,16 @@ public class UF_4384_OLS extends BaseTest {
 
         //---------------Q4 Have you had a hysterectomy (surgical removal of the uterus)?-------------------
         haveYouHadHysterectomyOLS
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouHadHysterectomyOLS.getTitleText(), haveYouHadHysterectomyOLS.titleExpected, "Title is diff");
-        haveYouHadHysterectomyOLS.clickOnAnswer("Yes")
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .getPage(debugPageCC)
+                .getPage(debugPageOLS)
                 .checkProtocolsEquals(haveYouHadHysterectomyOLS.titleExpected, protocol1, protocol2)
                 .back();
-        haveYouHadHysterectomyOLS.waitForPageLoad();
         PlzDescribeYourMenstrualCyclesOLS plzDescribeYourMenstrualCyclesOLS = haveYouHadHysterectomyOLS
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new PlzDescribeYourMenstrualCyclesOLS());
 
@@ -136,13 +134,12 @@ public class UF_4384_OLS extends BaseTest {
         //---------------Q5 - Please describe your menstrual cycles:-------------------
         plzDescribeYourMenstrualCyclesOLS
                 .waitForPageLoad();
-        Assert.assertEquals(plzDescribeYourMenstrualCyclesOLS.getTitleText(), plzDescribeYourMenstrualCyclesOLS.titleExpected, "Title is diff");
         HowWouldYouDescribeAvgPeriodUF_OLS howWouldYouDescribeAvgPeriodUF_OLS = plzDescribeYourMenstrualCyclesOLS
                 .clickOnAnswer("Never regular")
                 .clickNextButton(new HowWouldYouDescribeAvgPeriodUF_OLS());
         howWouldYouDescribeAvgPeriodUF_OLS
                 .waitForPageLoad()
-                .getPage(debugPageCC)
+                .getPage(debugPageOLS)
                 .checkProtocolsEquals("Please describe your menstrual cycles:", protocol1, protocol2)
                 .back();
         plzDescribeYourMenstrualCyclesOLS
@@ -160,7 +157,7 @@ public class UF_4384_OLS extends BaseTest {
                 .clickNextButton(new WhichOfFollowingDoYouTypicallyExperienceUF_OLS());
         whichOfFollowingDoYouTypicallyExperienceUF_OLS
                 .waitForPageLoad()
-                .getPage(debugPageCC)
+                .getPage(debugPageOLS)
                 .checkProtocolsEquals(howWouldYouDescribeAvgPeriodUF_OLS.titleExpected, protocol1, protocol2)
                 .back();
         howWouldYouDescribeAvgPeriodUF_OLS
@@ -178,7 +175,7 @@ public class UF_4384_OLS extends BaseTest {
                 .clickNextButton(new HaveYouHadSurgicalProcedurePast6MonthsUF_OLS());
         haveYouHadSurgicalProcedurePast6MonthsUF_OLS
                 .waitForPageLoad()
-                .getPage(debugPageCC)
+                .getPage(debugPageOLS)
                 .checkProtocolsEquals("Heavy menstrual bleeding often affects a woman's quality of life.Which of the following do you typic...", protocol1, protocol2)
                 .back();
         whichOfFollowingDoYouTypicallyExperienceUF_OLS
@@ -195,7 +192,7 @@ public class UF_4384_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
         diagnosedWithGynecologicalConditionOLS.waitForPageLoad()
-                .getPage(debugPageCC)
+                .getPage(debugPageOLS)
                 .checkProtocolsEquals("Have you had a surgical procedure to treat your uterine fibroids in the past 6 months?This surgery m...", protocol1, protocol2)
                 .back();
         haveYouHadSurgicalProcedurePast6MonthsUF_OLS
@@ -207,7 +204,6 @@ public class UF_4384_OLS extends BaseTest {
         //---------------Q9 Has a healthcare professional ever diagnosed you with any of these other women's health conditions? -------------------
         diagnosedWithGynecologicalConditionOLS
                 .waitForPageLoad();
-        Assert.assertEquals(diagnosedWithGynecologicalConditionOLS.getTitleText(), diagnosedWithGynecologicalConditionOLS.titleExpected, "Title is diff");
         AreYouCurrentlyPregnantOLS areYouCurrentlyPregnantOLS = diagnosedWithGynecologicalConditionOLS
                 .clickOnAnswers("Uterine polyps, also known as endometrial polyps",
                         "Cervical polyps",
@@ -219,7 +215,8 @@ public class UF_4384_OLS extends BaseTest {
                 //.getPage(debugPageCC)
                 //.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of these other gynecological or women's he...", protocol1, protocol2)
                 .back();
-        diagnosedWithGynecologicalConditionOLS.waitForPageLoad()
+        diagnosedWithGynecologicalConditionOLS
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new AreYouCurrentlyPregnantOLS());
 
@@ -227,13 +224,16 @@ public class UF_4384_OLS extends BaseTest {
         //---------------Q10 Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?------------------
         areYouCurrentlyPregnantOLS
                 .waitForPageLoad();
-        Assert.assertEquals(areYouCurrentlyPregnantOLS.getTitleText(), areYouCurrentlyPregnantOLS.titleExpected, "Title is diff");
         //HasHealthcareProfessionalPageOLS hasHealthcareProfessionalPageOLS = areYouCurrentlyPregnantUF_CC
-        areYouCurrentlyPregnantOLS.clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        debugPageCC.checkProtocolsEquals(areYouCurrentlyPregnantOLS.titleExpected, protocol1, protocol2);
-        debugPageCC.back();
-        areYouCurrentlyPregnantOLS.waitForPageLoad()
+        areYouCurrentlyPregnantOLS
+                .clickOnAnswer("Yes")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(areYouCurrentlyPregnantOLS.titleExpected, protocol1, protocol2)
+                .back();
+        areYouCurrentlyPregnantOLS
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
@@ -264,9 +264,9 @@ public class UF_4384_OLS extends BaseTest {
 //        .clickNextButton(new WhatMedicalCoveragePageOLS())
 //        .waitForPageLoad()
 //        .clickOnAnswers("No, I have no coverage")
-        .clickNextButton(new EthnicBackgroundPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
@@ -284,7 +284,6 @@ public class UF_4384_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
-
                 //------------HUMAN API Interface in HelloSign----------------
                 /*.getPage(new HumanAPIOLS())
                 .waitForPageLoad()
