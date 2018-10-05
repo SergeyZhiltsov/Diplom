@@ -9,7 +9,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DyslipidemiaHealthcarePage extends MainPageOLS{
+public class DyslipidemiaHealthcarePageOLS extends MainPageOLS{
 
     public final String titleExpected = "Has a healthcare professional ever told you that you have any of the following?\n" + 
     		"Please select all that apply.";
@@ -19,22 +19,19 @@ public class DyslipidemiaHealthcarePage extends MainPageOLS{
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
-    
-    @FindBy(xpath = "//button[@type='submit']")
-    WebElement nextButton;
 
-    public DyslipidemiaHealthcarePage() {
+    public DyslipidemiaHealthcarePageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DyslipidemiaHealthcarePage waitForPageLoad() {
+    public DyslipidemiaHealthcarePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DyslipidemiaHealthcarePage clickOnAnswers(String answerText) {
+    public DyslipidemiaHealthcarePageOLS clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
@@ -43,6 +40,5 @@ public class DyslipidemiaHealthcarePage extends MainPageOLS{
     public String getTitleText() {
         return getText(titleText);
     }
-        
    
 }

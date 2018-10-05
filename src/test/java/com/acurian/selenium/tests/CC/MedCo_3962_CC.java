@@ -152,7 +152,7 @@ public class MedCo_3962_CC extends BaseTest{
              .waitForPageLoad()
              .clickOnAnswers("Angioplasty")
              .clickNextButton(new WhenWasYourMostRecentHeartProcedureCC())
-             //-----------WhenWasYourMostRecentHeartProcedureOLS page-----------	
+             //-----------MostRecentHeartProcedurePageOLS page-----------
              .waitForPageLoad()
              .clickOnAnswer("7 - 12 months ago")
              .clickNextButton(new ChildrenUnderPageCC())

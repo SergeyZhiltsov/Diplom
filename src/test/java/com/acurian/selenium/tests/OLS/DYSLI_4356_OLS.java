@@ -19,7 +19,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class DYSLI_4356 extends BaseTest {
+public class DYSLI_4356_OLS extends BaseTest {
 	
     @Test(enabled = false)
 	public void dYSLI_4356_OLS() {
@@ -43,18 +43,17 @@ public class DYSLI_4356 extends BaseTest {
 		           .setDate("10/10/1975")
 		           .clickNextButton(new IdentificationPageOLS());
 		
-		identificationPageOLS.threadSleep(3000);
-		
+
 		GenderPageOLS genderPageOLS = identificationPageOLS				
 				.setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
 				.clickNextButton(new GenderPageOLS());
 		
-		DyslipidemiaHealthcarePage dyslipidemiaHealthcarePage = genderPageOLS
+		DyslipidemiaHealthcarePageOLS dyslipidemiaHealthcarePageOLS = genderPageOLS
 				.waitForPageLoad()
 				.clickOnAnswer("Female")
-				.clickNextButton(new DyslipidemiaHealthcarePage());
+				.clickNextButton(new DyslipidemiaHealthcarePageOLS());
 		
-		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =  dyslipidemiaHealthcarePage
+		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =  dyslipidemiaHealthcarePageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("Unsure")
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -72,7 +71,7 @@ public class DYSLI_4356 extends BaseTest {
 		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.back();
 		//haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.threadSleep(2000);		
 		
-		StatinMedicationsPage statinMedicationsPage = dyslipidemiaHealthcarePage
+		StatinMedicationsPage statinMedicationsPage = dyslipidemiaHealthcarePageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("Unsure")
 				.clickOnAnswers("High fats or lipids, or hyperlipidemia")				
@@ -135,13 +134,13 @@ public class DYSLI_4356 extends BaseTest {
 		haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above");
-				HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-				.clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS());
+		HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
 
-		haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
+		heartrelatedMedicalProceduresPageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above");
-				PregnancyAndFertilityPage pregnancyAndFertilityPage = haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
+				PregnancyAndFertilityPage pregnancyAndFertilityPage = heartrelatedMedicalProceduresPageOLS
 				.clickNextButton(new PregnancyAndFertilityPage());	
 				
 		pregnancyAndFertilityPage

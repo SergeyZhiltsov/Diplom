@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.MDD_3159;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
+public class MostRecentHeartProcedurePageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Have you been diagnosed with any type of diabetes?";
+    public final String titleExpected = "When was your most recent heart procedure?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,18 +19,18 @@ public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public DiagnosedAnyTypeOfDiabetesPageOLS() {
+    public MostRecentHeartProcedurePageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS waitForPageLoad() {
+    public MostRecentHeartProcedurePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedAnyTypeOfDiabetesPageOLS clickOnAnswer(String answerText) {
+    public MostRecentHeartProcedurePageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -39,4 +39,5 @@ public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
+
 }

@@ -1,11 +1,9 @@
 package com.acurian.selenium.pages.OLS.shared;
 
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class PersonalDetails extends MainPageOLS{

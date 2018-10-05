@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.InsulinForYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

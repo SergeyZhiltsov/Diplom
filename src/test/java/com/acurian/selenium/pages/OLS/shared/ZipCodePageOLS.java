@@ -23,8 +23,6 @@ public class ZipCodePageOLS extends MainPageOLS{
     @Step
     public ZipCodePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
-//        waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

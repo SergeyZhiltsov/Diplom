@@ -2,7 +2,6 @@ package com.acurian.selenium.pages.OLS.generalHealth;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.Platforms;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +13,11 @@ public class IdentificationPageOLS extends MainPageOLS{
     public final String titleExpected = "Congratulations, you have prequalified!\n" +
             "\n" +
             "Enrollment is limited. Please complete the following information so that we may match you with a study doctor.";
+
+    public final String titleExpectedNotQ = "Personal details (*required fields)";
+
+    @FindBy(xpath = "//h2[@id='patient-title']")
+    WebElement titleTextNotQ;
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
@@ -59,6 +63,12 @@ public class IdentificationPageOLS extends MainPageOLS{
     @Step
     public IdentificationPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageOLS waitForPageLoadNotQ() {
+        waitForPageLoadMain(titleTextNotQ, titleExpectedNotQ);
         return this;
     }
 
