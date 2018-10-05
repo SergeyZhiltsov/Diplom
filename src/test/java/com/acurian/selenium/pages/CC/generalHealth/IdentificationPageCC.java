@@ -64,8 +64,6 @@ public class IdentificationPageCC extends MainPageCC {
     @Step
     public IdentificationPageCC waitForPageLoadNotQ() {
         waitForPageLoadMain(titleText2, titleExpectedNotQ);
-//        waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 

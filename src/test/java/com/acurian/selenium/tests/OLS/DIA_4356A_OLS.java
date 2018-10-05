@@ -48,10 +48,10 @@ public class DIA_4356A_OLS extends BaseTest {
         String AKC = "ISIS 703802_CS2";
         String studyName = "a study for diabetics";
         String siteName = "AUT_DIA_4356A";
-        String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
+        String debugSiteName = "QSC9004_4356A_AUT_DIA_4356A";
         //    String env = "STG";
         String zipCode = "19044";
-        String facility_Code_STG = "625263";
+        String facility_Code_STG = "625268";
         String facility_Code_PRD = "625640";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -273,19 +273,19 @@ public class DIA_4356A_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"1 - 3 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS);
 
-        haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
 
-        IdentificationPageOLS identificationPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+        IdentificationPageOLS identificationPageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new IdentificationPageOLS());
         identificationPageOLS
                 .waitForPageLoad()
                 .back();
-        MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+        MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Angioplasty")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS());
@@ -294,7 +294,7 @@ public class DIA_4356A_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoadNotQ()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS4235", protocol7)
                 .back();
@@ -307,17 +307,13 @@ public class DIA_4356A_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
-                //----------SiteSelection Page--------------------
                 .waitForPageLoadAKC()
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnDebugSiteName(debugSiteName)
+//                .clickOnFacilityName(siteName)
                 .clickNextButton(new SynexusQualifiedClose4356PageOLS())
-
-                //----------GladLocationIsConvenient Page--------------------
                 .waitForPageLoad(env.equals("STG") ? facility_Code_STG : facility_Code_PRD)
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-
-                //----------ThankYouCloseSimplePageOLS Page--------------------
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()

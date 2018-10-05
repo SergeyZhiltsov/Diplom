@@ -6,10 +6,7 @@ import com.acurian.selenium.pages.OLS.DY_4356.NonPrescriptionSupplements;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
@@ -115,7 +112,7 @@ public class MedCo_3962_OLS extends BaseTest {
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
 
-        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS())
+        .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
         //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------	
         .waitForPageLoad()
         .clickOnAnswers("Angioplasty")

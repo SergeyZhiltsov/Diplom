@@ -7,10 +7,12 @@ import com.acurian.selenium.pages.OLS.closes.SynexusQualifiedClose4356PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.*;
+import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
+import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
@@ -146,9 +148,9 @@ public class HTN_4356D_OLS extends BaseTest{
 	//----------------------------------------------------
 		haveYouEverExperiencedHeartRelatedMedicalCondOLS
 				.waitForPageLoad();
-				HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+		HeartrelatedMedicalProceduresPageOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
 				.clickOnAnswers("None of the above")
-				.clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS());
+				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
 	//---------------------------------------------------
 		haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
 				.waitForPageLoad();

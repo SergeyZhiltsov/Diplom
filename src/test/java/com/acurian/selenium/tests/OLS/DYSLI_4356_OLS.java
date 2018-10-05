@@ -134,13 +134,13 @@ public class DYSLI_4356_OLS extends BaseTest {
 		haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above");
-				HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
-				.clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS());
+		HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS
+				.clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
 
-		haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
+		heartrelatedMedicalProceduresPageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above");
-				PregnancyAndFertilityPage pregnancyAndFertilityPage = haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
+				PregnancyAndFertilityPage pregnancyAndFertilityPage = heartrelatedMedicalProceduresPageOLS
 				.clickNextButton(new PregnancyAndFertilityPage());	
 				
 		pregnancyAndFertilityPage
