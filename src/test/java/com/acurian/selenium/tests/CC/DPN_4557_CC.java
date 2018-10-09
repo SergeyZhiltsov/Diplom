@@ -1,7 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.pediatric.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.ApproxHowlongYouBeenExpSymptomsCC;
@@ -18,8 +17,8 @@ import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithA
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
-import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
-import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
+import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPageCC;
+import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
@@ -259,16 +258,16 @@ public class DPN_4557_CC extends BaseTest{
                 		.waitForPageLoad();  
                 Assert.assertEquals(doYouHaveAnyOfTheFollowingConditions_CC.getTitleText(), doYouHaveAnyOfTheFollowingConditions_CC.titleExpected, "Title is diff");
                 
-                UseDietAndExercisePage useDietAndExercisePage = doYouHaveAnyOfTheFollowingConditions_CC
+                UseDietAndExercisePageCC useDietAndExercisePageCC = doYouHaveAnyOfTheFollowingConditions_CC
                         .clickOnAnswers("Retinopathy or diabetic eye disease","Diabetic nephropathy or kidney damage caused by diabetes")
-                        .clickNextButton(new UseDietAndExercisePage());
+                        .clickNextButton(new UseDietAndExercisePageCC());
                 
-                CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+                CurrentlyUseMetforminOrInsulinPageCC currentlyUseMetforminOrInsulinPageCC = useDietAndExercisePageCC
                 		.waitForPageLoad()
                 		.clickOnAnswer("No")
-                		.clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+                		.clickNextButton(new CurrentlyUseMetforminOrInsulinPageCC());
                 
-                AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
+                AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPageCC
                 		.waitForPageLoad()
                 		.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
                 		.clickNextButton(new AnyPrescribedMedicationPage());
@@ -276,7 +275,7 @@ public class DPN_4557_CC extends BaseTest{
                 		.waitForPageLoad();                
                 debugPageCC.checkProtocolsContainsForQNumber("Q0016801-QS5520-STUDYQUES", DPN_4557, protocol2)
                 		.back();                
-                CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = currentlyUseMetforminOrInsulinPage
+                CombinationWithEachOtherPageCC combinationWithEachOtherPageCC = currentlyUseMetforminOrInsulinPageCC
         				.waitForPageLoad()
         				.clickOnAnswers("Metformin")
         				.clickNextButton(new CombinationWithEachOtherPageCC());

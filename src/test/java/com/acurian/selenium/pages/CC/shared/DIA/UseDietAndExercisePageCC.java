@@ -6,11 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class UseDietAndExercisePage extends MainPageCC{
+public class UseDietAndExercisePageCC extends MainPageCC{
 
     public final String titleExpected = "Do you currently use diet and exercise as a way to help treat your diabetes?";
 
@@ -20,18 +19,18 @@ public class UseDietAndExercisePage extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public UseDietAndExercisePage() {
+    public UseDietAndExercisePageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public UseDietAndExercisePage waitForPageLoad() {
+    public UseDietAndExercisePageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
     
     @Step
-    public UseDietAndExercisePage clickOnAnswer(String answerText) {
+    public UseDietAndExercisePageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

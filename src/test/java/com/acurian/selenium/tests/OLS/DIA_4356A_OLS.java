@@ -92,7 +92,6 @@ public class DIA_4356A_OLS extends BaseTest {
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(new UseDietAndExercisePage());
 
-
         CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
                 .waitForPageLoad()
                 .clickOnAnswer("No")

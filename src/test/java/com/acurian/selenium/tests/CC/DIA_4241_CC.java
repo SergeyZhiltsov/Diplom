@@ -11,8 +11,8 @@ import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
-import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
-import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
+import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPageCC;
+import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -134,13 +134,13 @@ public class DIA_4241_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocol1,AKC)
                 .back();
-        UseDietAndExercisePage useDietAndExercisePage = whatKindOfDiabetesPageCC //rel 47
+        UseDietAndExercisePageCC useDietAndExercisePageCC = whatKindOfDiabetesPageCC //rel 47
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new UseDietAndExercisePage())
+                .clickNextButton(new UseDietAndExercisePageCC())
                 .waitForPageLoad();
         
-        useDietAndExercisePage
+        useDietAndExercisePageCC
                 .back();
         WithType2DiabetesPageCC withType2DiabetesPageCC =  whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -152,23 +152,23 @@ public class DIA_4241_CC extends BaseTest{
         Assert.assertEquals(withType2DiabetesPageCC.getTitleText(),withType2DiabetesPageCC.titleExpected, "Title is diff");
         withType2DiabetesPageCC
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(useDietAndExercisePage);
+                .clickNextButton(useDietAndExercisePageCC);
 
-        CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+        CurrentlyUseMetforminOrInsulinPageCC currentlyUseMetforminOrInsulinPageCC = useDietAndExercisePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
-        currentlyUseMetforminOrInsulinPage
+                .clickNextButton(new CurrentlyUseMetforminOrInsulinPageCC());
+        currentlyUseMetforminOrInsulinPageCC
         		.waitForPageLoad()
         		//.getPage(debugPageCC)
                 //.checkProtocolsContainsForQNumber("Q0016800-QS4625-STUDYQUES", protocol1)
                 .back();        
-        useDietAndExercisePage
+        useDietAndExercisePageCC
         		.waitForPageLoad()
         		.clickOnAnswer("Yes")
-        		.clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+        		.clickNextButton(new CurrentlyUseMetforminOrInsulinPageCC());
         
-        MetforminMedicationsPageCC metforminMedicationsPageCC = currentlyUseMetforminOrInsulinPage
+        MetforminMedicationsPageCC metforminMedicationsPageCC = currentlyUseMetforminOrInsulinPageCC
 				.waitForPageLoad()
 				.clickOnAnswers("Metformin")
 				.clickNextButton(new MetforminMedicationsPageCC());
@@ -178,7 +178,7 @@ public class DIA_4241_CC extends BaseTest{
         		.getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0016801-QS4626-STUDYQUES", protocol1)
                 .back();
-        InsulinForYourDiabetesPageCC insulinForYourDiabetesPageCC = currentlyUseMetforminOrInsulinPage
+        InsulinForYourDiabetesPageCC insulinForYourDiabetesPageCC = currentlyUseMetforminOrInsulinPageCC
 				.waitForPageLoad()
 				.clickOnAnswers("Metformin")
 				.clickOnAnswers("Insulin")
@@ -189,7 +189,7 @@ public class DIA_4241_CC extends BaseTest{
 				.getPage(debugPageCC)
 				.checkProtocolsContainsForQNumber("Q0016801-QS4626-STUDYQUES", protocol1)
 				.back();
-        ApartFromMetforminPageCC apartFromMetforminPageCC = currentlyUseMetforminOrInsulinPage
+        ApartFromMetforminPageCC apartFromMetforminPageCC = currentlyUseMetforminOrInsulinPageCC
         		.waitForPageLoad()
         		.clickOnAnswers("Insulin")
         		.clickOnAnswers("Medication other than Metformin or Insulin")
@@ -200,7 +200,7 @@ public class DIA_4241_CC extends BaseTest{
         		.getPage(debugPageCC)
         		.checkProtocolsContainsForQNumber("Q0016801-QS4626-STUDYQUES", protocol1)
         		.back();
-        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
+        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPageCC
 				.waitForPageLoad()
 				.clickOnAnswers("Do not use any prescribed medication to treat diabetes")
 				.clickNextButton(new AnyPrescribedMedicationPage());

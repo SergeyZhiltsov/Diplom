@@ -27,7 +27,7 @@ import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HasAHealthcareProfessionalDYS4356;
+import com.acurian.selenium.pages.CC.shared.DyslipidemiaHealthcarePageCC;
 import com.acurian.selenium.pages.CC.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
@@ -96,12 +96,12 @@ public class DYS_4356_CC extends BaseTest{
     		   .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
     		   .clickNextButton(new GenderPageCC());
        
-       HasAHealthcareProfessionalDYS4356  hasAHealthcareProfessionalDYS4356 = genderPageCC
+       DyslipidemiaHealthcarePageCC dyslipidemiaHealthcarePageCC = genderPageCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Female")
-    		   .clickNextButton(new HasAHealthcareProfessionalDYS4356());
+    		   .clickNextButton(new DyslipidemiaHealthcarePageCC());
        
-       StatinMedicationsCC statinMedicationsCC =  hasAHealthcareProfessionalDYS4356
+       StatinMedicationsCC statinMedicationsCC =  dyslipidemiaHealthcarePageCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("High fats or lipids, or hyperlipidemia")
     		   .clickNextButton(new StatinMedicationsCC());

@@ -34,7 +34,7 @@ public class NoOfAlcoholicDrinksCC extends MainPageCC{
     }
 
     @Step
-    public NoOfAlcoholicDrinksCC enterNoOfDrinks(String text) {
+    public NoOfAlcoholicDrinksCC setDrinks(String text) {
         //typeTextWithoutClear(ageMig, text);
         typeText(noDrinks, text);
         return this;
