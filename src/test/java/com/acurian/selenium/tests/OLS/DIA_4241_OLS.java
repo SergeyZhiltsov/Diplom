@@ -5,7 +5,6 @@ import com.acurian.selenium.pages.OLS.DIA_4241.BrandsOfInsulinPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.TakeYourInsulinInjectionsPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.TakeYourInsulinPageOLS;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
@@ -22,7 +21,10 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DIA_4241_OLS extends BaseTest {
 

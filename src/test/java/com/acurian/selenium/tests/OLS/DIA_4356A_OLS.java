@@ -19,9 +19,6 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import java.util.Arrays;
-import java.util.List;
-
 
 public class DIA_4356A_OLS extends BaseTest {
 
@@ -30,7 +27,6 @@ public class DIA_4356A_OLS extends BaseTest {
     @Description("Diabetes_4356A_Synexus")
     public void diabetes_4356A_ols() {
         String phoneNumber = "AUTAMS1DIA";
-        List<String> protocols = Arrays.asList("EFC14835", "ITCA 650_CLP_203", "K_877_302", "17530", "EFC13794", "NN2211_4315", "NN9535_4269");
 //        String protocol1 = "17530";
 //        String protocol2 = "NN9535_4269";
 //        String protocol3 = "NN2211_4315";
@@ -44,8 +40,9 @@ public class DIA_4356A_OLS extends BaseTest {
 //        String protocol11 = "EFC14868";
 //        String protocol12 = "EFC14837";
 //        String protocol13 = "EFC14838";
-        String DIA_4241 = "EFC14822";
-        String AKC = "ISIS 703802_CS2";
+//        String DIA_4241 = "EFC14822";
+//        String AKC = "ISIS 703802_CS2";
+//        String[] protocols = {protocol1,protocol2,protocol3,protocol4,AKC};
         String studyName = "a study for diabetics";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_DIA_4356A";

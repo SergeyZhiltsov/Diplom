@@ -72,14 +72,12 @@ public class HFL_4722_CC extends BaseTest {
 
         zipCodePageCC
                 .waitForPageLoad();
-        Assert.assertEquals(zipCodePageCC.getTitleText(), zipCodePageCC.titleExpected, "Title is diff");
         GenderPageCC genderPageCC = zipCodePageCC
                 .typeZipCode("19044")
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(genderPageCC.getTitleText(), genderPageCC.titleExpected, "Title is diff");
         CongestiveHeartFailurePageCC congestiveHeartFailurePageCC = genderPageCC
                 .clickOnAnswer("Female")
                 .clickNextButton(new CongestiveHeartFailurePageCC());

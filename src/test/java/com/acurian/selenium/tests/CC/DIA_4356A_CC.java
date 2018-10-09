@@ -5,62 +5,52 @@ import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
-import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
 import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
 import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
 import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
 import com.acurian.selenium.utils.DataProviderPool;
-import com.acurian.selenium.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-import java.util.Arrays;
-import java.util.List;
 
 
-public class Diabetes_4356A_CC extends BaseTest{
+public class DIA_4356A_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
     public void dia4356AccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1DIA";
-        List<String> protocols = Arrays.asList("EFC14835", "ITCA 650_CLP_203","K_877_302","17530","EFC13794","NN2211_4315","NN9535_4269");
-        String protocol1 = "17530";
-        String protocol2 = "NN9535_4269";
-        String protocol3 = "NN2211_4315";
-        String protocol4 = "EFC13794";
-        String protocol5 = "EFC14835";
-        String protocol6 = "ITCA 650_CLP_203";
+//        String protocol1 = "17530";
+//        String protocol2 = "NN9535_4269";
+//        String protocol3 = "NN2211_4315";
+//        String protocol4 = "EFC13794";
+//        String protocol5 = "EFC14835";
+//        String protocol6 = "ITCA 650_CLP_203";
         String protocol7 = "K_877_302";
-        String protocol8 = "EFC14833";
-        String protocol9 = "EFC14835";
-        String protocol10 = "EFC15166";
-        String protocol11 = "EFC14868";
-        String protocol12 = "EFC14837";
+//        String protocol8 = "EFC14833";
+//        String protocol9 = "EFC14835";
+//        String protocol10 = "EFC15166";
+//        String protocol11 = "EFC14868";
+//        String protocol12 = "EFC14837";
         String DIA_4241 = "EFC14822";
         String AKC = "ISIS 703802_CS2";
-        String protocol13 = "EFC14838";
+//        String protocol13 = "EFC14838";
+//        String[] protocols = {protocol1,protocol2,protocol3,protocol4,AKC};
         String studyName = "a Diabetes"; //Diabetes study
         String studyName1 = "Diabetes";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_MIG_4356A";
-       // String env = "QA";
         String zipCode = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -90,7 +80,6 @@ public class Diabetes_4356A_CC extends BaseTest{
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleExpectedDiabetes_4356, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
@@ -100,14 +89,12 @@ public class Diabetes_4356A_CC extends BaseTest{
 
         zipCodePageCC
                 .waitForPageLoad();
-        Assert.assertEquals(zipCodePageCC.getTitleText(), zipCodePageCC.titleExpected, "Title is diff");
         GenderPageCC genderPageCC = zipCodePageCC
                 .typeZipCode("19044")
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(genderPageCC.getTitleText(), genderPageCC.titleExpected, "Title is diff");
         DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
@@ -253,7 +240,7 @@ public class Diabetes_4356A_CC extends BaseTest{
         forYourKidneysPageCC
         		.waitForPageLoad()
         		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0013664-QS4228-STUDYQUES", protocol10, protocol12)
+        		.checkProtocolsContainsForQNumber("Q0013664-QS4228-STUDYQUES", protocol7)
                 .back();
         
         diabeticNephropathyPageCC
