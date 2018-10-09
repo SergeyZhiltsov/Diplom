@@ -9,7 +9,13 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class AreYouCurrentlyFeelingSadDepressedOLS extends MainPageOLS {
-	public final String titleExpected = "Are you currently feeling depressed, or do you have a lack of interest in activities where you may also experience feelings of guilt or worthlessness, difficulty concentrating or making decisions, a significant gain or loss of appetite, trouble sleeping and / or fatigue or loss of energy?";
+	public final String titleExpected = "Are you currently feeling depressed, or experiencing any of the following symptoms?\n" +
+    		"Lacking interest in activities you previously enjoyed\n" +
+    		"Feeling guilty or worthless\n" +
+    		"Having difficulty concentrating or making decisions\n" +
+    		"Having trouble sleeping\n" +
+    		"Significant weight gain or loss\n" +
+    		"Fatigue or loss of energy";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

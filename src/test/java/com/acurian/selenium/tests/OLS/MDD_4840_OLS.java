@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.MDD_3159.HowManyDifferentPrescriptionAntidepresMedsCC;
 import com.acurian.selenium.pages.OLS.MDD_3159.CurrentEpisodeOfDepressionOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.HasHealthcareProfEverDiagnosedMntalHealthOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.HaveYouBeenHospitalizedForDepressionOLS;
@@ -27,20 +28,19 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.util.Arrays;
 import java.util.List;
 
-public class MDD_3159_OLS extends BaseTest {
+public class MDD_4840_OLS extends BaseTest {
 
     @Test
     @TestCaseId("00009")
-    @Description("MDD_3159_OLS")
-    public void mdd_3159_OLS() {
+    @Description("MDD_4840_OLS")
+    public void Mdd_4840_OLS() {
         String phoneNumber = "AUTAMS1MDD";
-        List<String> protocols = Arrays.asList("AXS_05_301");
-        String protocol1 = "AXS_05_301";
+        String protocol1 = "42847922MDD2001";
+        String protocol2 = "42847922MDD2002";
         String studyName = "a depression";
+        String studyName1 = "depression history";
         String site_Indication = "Major Depressive Disorder (MDD)";
-        String siteName = "AUT_MDD_3159";
-        String debugSiteName = "";
-        //     String env = "STG";
+        String siteName = "AUT_MDD_4840_Site";
         String zipCode = "19044";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -83,7 +83,7 @@ public class MDD_3159_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS4802", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4802", protocol1,protocol2);
         debugPageOLS.back();
         AreYouCurrentlyFeelingSadDepressedOLS areYouCurrentlyFeelingSadDepressedOLS = hasHealthcareProfDiagnosedMDDOLS
                 .waitForPageLoad()
@@ -102,41 +102,42 @@ public class MDD_3159_OLS extends BaseTest {
         haveYouEverHadElectroconvulsiveTherapyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4820", protocol1)
+                .checkProtocolsContainsForQNumber("QS4820", protocol1,protocol2)
                 .back();
         CurrentEpisodeOfDepressionOLS currentEpisodeOfDepressionOLS = areYouCurrentlyFeelingSadDepressedOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CurrentEpisodeOfDepressionOLS());
         
-        
+
         //-------------------Q4 -When did your current episode of depression start?----------------
         HowManyDifferentPrescriptionAntidepresMedsOLS howManyDifferentPrescriptionAntidepresMedsOLS= currentEpisodeOfDepressionOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 month ago or less")
+        		.waitForPageLoad()
+                .clickOnAnswer("1 1/2 - 2 years ago")
                 .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsOLS());
         		howManyDifferentPrescriptionAntidepresMedsOLS
         		.waitForPageLoad()
         		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4804", protocol1)
+        		//.checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1,protocol2)
         		.back();
         currentEpisodeOfDepressionOLS
         		.waitForPageLoad()
-        		.clickOnAnswer("1 month ago or less")
+        		.clickOnAnswer("More than 2 years ago")
         		.clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsOLS());
         		howManyDifferentPrescriptionAntidepresMedsOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4804", protocol1)
+				.checkProtocolsContainsForQNumber("QS4804", protocol1,protocol2)
 				.back();
         currentEpisodeOfDepressionOLS
         		.waitForPageLoad()
+        		.clickOnAnswer("1 month ago or less")
         		.clickOnAnswer("2 - 3 months ago")
         		.clickOnAnswer("4 - 6 months ago")       		
         		.clickOnAnswer("7 - 11 months ago")
-        		.clickOnAnswer("1 1/2 - 2 years ago")
         		.clickOnAnswer("About 1 year ago")
         		.clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsOLS());
+        
         
         
         //-------------------Q5-HowManyDifferentPrescriptionAntidepresMedsOLS----------------     
@@ -147,7 +148,7 @@ public class MDD_3159_OLS extends BaseTest {
         		haveYouEverHadElectroconvulsiveTherapyOLS
         		.waitForPageLoad()
         		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4805", protocol1)
+        		.checkProtocolsContainsForQNumber("QS4805", protocol1,protocol2)
         		.back();
         howManyDifferentPrescriptionAntidepresMedsOLS
         		.waitForPageLoad();
@@ -159,7 +160,7 @@ public class MDD_3159_OLS extends BaseTest {
         whichOfTheFollowingPrescriptionMedications_OLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4805", protocol1)
+				.checkProtocolsContainsForQNumber("QS4805", protocol1,protocol2)
 				.back();
         howManyDifferentPrescriptionAntidepresMedsOLS
         		.waitForPageLoad()
@@ -175,7 +176,7 @@ public class MDD_3159_OLS extends BaseTest {
         		haveYouEverHadElectroconvulsiveTherapyOLS
         		.waitForPageLoad()
         		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4808", protocol1)
+        		.checkProtocolsContainsForQNumber("QS4808", protocol1,protocol2)
         		.back();
         whichOfTheFollowingPrescriptionMedications_OLS
         		.waitForPageLoad();
@@ -204,11 +205,11 @@ public class MDD_3159_OLS extends BaseTest {
         haveYouEverHadElectroconvulsiveTherapyOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS4808", protocol1)  //disqualifies both 3159, 4850 protocols
+				.checkProtocolsContainsForQNumber("QS4808", protocol1,protocol2)  //disqualifies both 3159, 4840 protocols
 				.back();
         subquestionWhenDidYouTakeFollowingMeds_OLS
         		.waitForPageLoad(1, subquestionWhenDidYouTakeFollowingMeds_OLS.titleExpected1)		
-        		.clickOnAnswerForSubQuestion(1, "Tried for current episode but stopped taking") //Select "Currently taking" to qualify for 4850
+        		.clickOnAnswerForSubQuestion(1, "Currently taking") //Select "Currently taking" to qualify for 4840
         		.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyOLS());
         
         		
@@ -217,17 +218,17 @@ public class MDD_3159_OLS extends BaseTest {
         haveYouEverHadElectroconvulsiveTherapyOLS
         		.waitForPageLoad();
         HasHealthcareProfEverDiagnosedMntalHealthOLS hasHealthcareProfEverDiagnosedMntalHealthOLS = haveYouEverHadElectroconvulsiveTherapyOLS
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes, more than 6 months ago")
         		.clickOnAnswer("Yes, in the past 6 months")
                 .clickNextButton(new HasHealthcareProfEverDiagnosedMntalHealthOLS());
         		hasHealthcareProfEverDiagnosedMntalHealthOLS
         		.waitForPageLoad()
         		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS4809", protocol1)
+        		.checkProtocolsContainsForQNumber("QS4809", protocol1,protocol2)
         		.back();
         haveYouEverHadElectroconvulsiveTherapyOLS
         		.waitForPageLoad()
-                .clickOnAnswer("Yes, more than 6 months ago")   //Select "No" to qualify for 4840
+                .clickOnAnswer("No")   //Select "No" to qualify for 4840
         		.clickNextButton(new HasHealthcareProfEverDiagnosedMntalHealthOLS());
        
         
@@ -248,7 +249,7 @@ public class MDD_3159_OLS extends BaseTest {
         haveYouBeenHospitalizedForDepressionOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4810", protocol1)
+                .checkProtocolsContainsForQNumber("QS4810", protocol1,protocol2)
                 .back();
         hasHealthcareProfEverDiagnosedMntalHealthOLS.waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -263,8 +264,10 @@ public class MDD_3159_OLS extends BaseTest {
         PregnancyAndFertilityPage pregnancyAndFertilityOLS = haveYouBeenHospitalizedForDepressionOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PregnancyAndFertilityPage());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS4811", protocol1);
-        debugPageOLS.back();
+        //debugPageOLS.checkProtocolsContainsForQNumber("QS4811", protocol1,protocol2);
+        pregnancyAndFertilityOLS
+        		.waitForPageLoad()
+                .back();
         haveYouBeenHospitalizedForDepressionOLS
         		.waitForPageLoad()
                 .clickOnAnswer("No")
@@ -279,16 +282,34 @@ public class MDD_3159_OLS extends BaseTest {
         		.clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouBeenHospitalizedForDepressionOLS());
         haveYouBeenHospitalizedForDepressionOLS
-        		.waitForPageLoad()
-        		//debugPageOLS.checkProtocolsContainsForQNumber("Q0013673-QS4823-STUDYQUES", protocol1); //DQ for 4840
-        		.back();
+        		.waitForPageLoad();
+        		debugPageOLS.checkProtocolsContainsForQNumber("QS4823", protocol1,protocol2); //DQ for 4840
+        		debugPageOLS.back();
         pregnancyAndFertilityOLS
         		.waitForPageLoad()
                 .clickOnAnswers("I have gone through menopause - my last menstrual period was 1 year ago or longer") 
                 .clickOnAnswers("I currently have my \"tubes tied\" (also called bilateral tubal ligation, a sterilization procedure)")
                 .clickOnAnswers("I have had both ovaries surgically removed (bilateral oophorectomy) and/or my uterus surgically removed (hysterectomy)")
                 .clickOnAnswers("I am unable to become pregnant due to another medical condition")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());       
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        
+
+
+    /*    //---------------Q11 Have you been hospitalized for depression or any other mental health condition in the past year?-------------------
+        haveYouBeenHospitalizedForDepressionOLS
+                .waitForPageLoad();
+        Assert.assertEquals(haveYouBeenHospitalizedForDepressionOLS.getTitleText(), haveYouBeenHospitalizedForDepressionOLS.titleExpected, "Title is diff");
+        haveYouBeenHospitalizedForDepressionOLS
+                .clickOnAnswer("Yes")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Have you been hospitalized for depression or any other mental health condition in the past year? By...", protocol1,protocol2)
+                .back();
+        haveYouBeenHospitalizedForDepressionOLS.waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());*/
         
         
 
@@ -305,20 +326,6 @@ public class MDD_3159_OLS extends BaseTest {
                 //----------ProvideHeight-Weight Page--------------------
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-//        .clickNextButton(new ChildrenUnderPageOLS())
-//		//----------ChildrenUnderTheAge Page--------------------
-//        .waitForPageLoad()
-//        .clickOnAnswer("Yes")
-//        .clickNextButton(new HouseholdHavePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("None of the above")
-//        .clickNextButton(new TheStudySitePageOLS())
-//        .waitForPageLoad()
-//		//-------------------PEDIATRIC QUESTIONS-----------------------------
-//        .clickOnAnswer("Public transportation")
-//        .clickNextButton(new WhatMedicalCoveragePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
@@ -330,7 +337,7 @@ public class MDD_3159_OLS extends BaseTest {
                 //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+		        .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
@@ -360,6 +367,6 @@ public class MDD_3159_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env);   
     }
 }

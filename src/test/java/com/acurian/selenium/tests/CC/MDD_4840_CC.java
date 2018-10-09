@@ -22,19 +22,19 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MDD_3159_CC extends BaseTest {
+public class MDD_4840_CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
-    @Description("MDD_3159_CC")
-    public void mDD_3159_CC(final String username, final String password) {
+    @Description("MDD_4840_CC")
+    public void mDD_4840_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1MDD";
-        List<String> protocols = Arrays.asList("AXS_05_301");
-        String protocol1 = "AXS_05_301";
+        String protocol1 = "42847922MDD2001";
+        String protocol2 = "42847922MDD2001";
         String studyName = "a depression";
         String studyName1 = "depression history";
         String site_Indication = "Major Depressive Disorder (MDD)";
-        String siteName = "AUT_MDD_3159";
+        String siteName = "AUT_MDD_4840_Site";
         String zipCode = "19044";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -101,7 +101,7 @@ public class MDD_3159_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0014051-QS4802-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014051-QS4802-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         AreYouCurrentlyFeelingSadDepressedCC areYouCurrentlyFeelingSadDepressedCC = hasHealthcareProfDiagnosedMDDCC
                 .waitForPageLoad()
@@ -120,7 +120,7 @@ public class MDD_3159_CC extends BaseTest {
         haveYouEverHadElectroconvulsiveTherapyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018168-QS4820-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0018168-QS4820-STUDYQUES", protocol1,protocol2)
                 .back();
         CurrentEpisodeOfDepressionCC currentEpisodeOfDepressionCC = areYouCurrentlyFeelingSadDepressedCC
                 .waitForPageLoad()
@@ -131,28 +131,28 @@ public class MDD_3159_CC extends BaseTest {
         //-------------------Q4 -When did your current episode of depression start?----------------
         HowManyDifferentPrescriptionAntidepresMedsCC howManyDifferentPrescriptionAntidepresMedsCC= currentEpisodeOfDepressionCC
                 .waitForPageLoad()
-                .clickOnAnswer("1 month ago or less")
+                .clickOnAnswer("1 1/2 - 2 years ago")
                 .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
         		howManyDifferentPrescriptionAntidepresMedsCC
         		.waitForPageLoad()
         		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1)
+        		//.checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1,protocol2)
         		.back();
         currentEpisodeOfDepressionCC
         		.waitForPageLoad()
-        		.clickOnAnswer("1 month ago or less")
+        		.clickOnAnswer("More than 2 years ago")
         		.clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
         		howManyDifferentPrescriptionAntidepresMedsCC
 				.waitForPageLoad()
 				.getPage(debugPageCC)
-				.checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1)
+				.checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1,protocol2)
 				.back();
         currentEpisodeOfDepressionCC
         		.waitForPageLoad()
+        		.clickOnAnswer("1 month ago or less")
         		.clickOnAnswer("2 - 3 months ago")
         		.clickOnAnswer("4 - 6 months ago")       		
         		.clickOnAnswer("7 - 11 months ago")
-        		.clickOnAnswer("1 1/2 - 2 years ago")
         		.clickOnAnswer("About 1 year ago")
         		.clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
         
@@ -165,7 +165,7 @@ public class MDD_3159_CC extends BaseTest {
         		haveYouEverHadElectroconvulsiveTherapyCC
         		.waitForPageLoad()
         		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1)
+        		.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1,protocol2)
         		.back();
         howManyDifferentPrescriptionAntidepresMedsCC
         		.waitForPageLoad();
@@ -177,7 +177,7 @@ public class MDD_3159_CC extends BaseTest {
         whichOfTheFollowingPrescriptionMedications_CC
 				.waitForPageLoad()
 				.getPage(debugPageCC)
-				.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1)
+				.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1,protocol2)
 				.back();
         howManyDifferentPrescriptionAntidepresMedsCC
         		.waitForPageLoad()
@@ -193,7 +193,7 @@ public class MDD_3159_CC extends BaseTest {
         		haveYouEverHadElectroconvulsiveTherapyCC
         		.waitForPageLoad()
         		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1)
+        		.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1,protocol2)
         		.back();
         whichOfTheFollowingPrescriptionMedications_CC
         		.waitForPageLoad();
@@ -222,11 +222,11 @@ public class MDD_3159_CC extends BaseTest {
         haveYouEverHadElectroconvulsiveTherapyCC
 				.waitForPageLoad()
 				.getPage(debugPageCC)
-				.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1)  //disqualifies both 3159, 4850 protocols
+				.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1,protocol2)  //disqualifies both 3159, 4850 protocols
 				.back();
         subquestionWhenDidYouTakeFollowingMeds_CC
         		.waitForPageLoad(1, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected1)		
-        		.clickOnAnswerForSubQuestion(1, "Tried for current episode but stopped taking") //Select "Currently taking" to qualify for 4850
+        		.clickOnAnswerForSubQuestion(1, "Currently taking") //Select "Currently taking" to qualify for 4850
         		.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
         
         		
@@ -235,17 +235,17 @@ public class MDD_3159_CC extends BaseTest {
         haveYouEverHadElectroconvulsiveTherapyCC
         		.waitForPageLoad();
         HasHealthcareProfEverDiagnosedMntalHealthCC hasHealthcareProfEverDiagnosedMntalHealthCC = haveYouEverHadElectroconvulsiveTherapyCC
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes, more than 6 months ago")
         		.clickOnAnswer("Yes, in the past 6 months")
                 .clickNextButton(new HasHealthcareProfEverDiagnosedMntalHealthCC());
         		hasHealthcareProfEverDiagnosedMntalHealthCC
         		.waitForPageLoad()
         		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0014064-QS4809-STUDYQUES", protocol1)
+        		.checkProtocolsContainsForQNumber("Q0014064-QS4809-STUDYQUES", protocol1,protocol2)
         		.back();
         haveYouEverHadElectroconvulsiveTherapyCC
         		.waitForPageLoad()
-                .clickOnAnswer("Yes, more than 6 months ago")   //Select "No" to qualify for 4850
+                .clickOnAnswer("No")   //Select "No" to qualify for 4850
         		.clickNextButton(new HasHealthcareProfEverDiagnosedMntalHealthCC());
        
         
@@ -266,7 +266,7 @@ public class MDD_3159_CC extends BaseTest {
         haveYouBeenHospitalizedForDepressionCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0014066-QS4810-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0014066-QS4810-STUDYQUES", protocol1,protocol2)
                 .back();
         hasHealthcareProfEverDiagnosedMntalHealthCC.waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -281,8 +281,8 @@ public class MDD_3159_CC extends BaseTest {
         PregnancyAndFertilityCC pregnancyAndFertilityCC = haveYouBeenHospitalizedForDepressionCC
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PregnancyAndFertilityCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0014068-QS4811-STUDYQUES", protocol1);
-        debugPageCC.back();
+        pregnancyAndFertilityCC
+        		.back();
         haveYouBeenHospitalizedForDepressionCC
         		.waitForPageLoad()
                 .clickOnAnswer("No")
@@ -297,9 +297,9 @@ public class MDD_3159_CC extends BaseTest {
                 .clickOnAnswer("None of the above")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-        		.waitForPageLoadMDD(studyName1)
-        		//debugPageCC.checkProtocolsContainsForQNumber("Q0013673-QS4823-STUDYQUES", protocol1); //DQ for 4850
-        		.back();
+        		.waitForPageLoadMDD(studyName1);
+        		 debugPageCC.checkProtocolsContainsForQNumber("Q0013673-QS4823-STUDYQUES", protocol1,protocol2); //DQ for 4850
+        		 debugPageCC.back();
         pregnancyAndFertilityCC
         		.waitForPageLoad()
                 .clickOnAnswer("I have gone through menopause - my last menstrual period was 1 year ago or longer") 

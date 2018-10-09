@@ -20,7 +20,6 @@ public class OA_3138_CC extends BaseTest {
     @Description("OA_3138_OLS test CC")
     public void oa_3138_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
-//        List<String> protocols = Arrays.asList("R475_PN_1523");
         String protocol1 = "R475_PN_1523";
         String studyName = "osteoarthritis";
         String studyName1 = "an osteoarthritis study";
@@ -233,8 +232,8 @@ public class OA_3138_CC extends BaseTest {
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
-        //.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
-        //.getAnomalyDbToLog(env); //Not applicable for Call center
+                .pidFromDbToLog(env)
+                .getRadiantDbToLog(env); //In CC, it generates 1R dispo. and Radiant accepts CC with 1R dispo (child_pid)
+                //.getAnomalyDbToLog(env); //Anomoly NOT applicable for Call center
     }
 }

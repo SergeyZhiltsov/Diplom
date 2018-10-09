@@ -13,7 +13,7 @@ public class TransitionStatementCC extends MainPageCC {
     private final String titleExpected = "Thank you for answering the questions about your %s history.\n" +
             "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
             "Agent Note: If \"no\" to all items in a question, select \"None of the above\"";
-
+    
     private final String titleExpectedWithCurves = "Thank you for answering the questions about your %s history.\n" +
     		"I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me “yes” or “no,” and I will check off each condition that you do have.\n" +
     		"Agent note: If “no” to all items in a question, select “None of the above”";
@@ -36,8 +36,12 @@ public class TransitionStatementCC extends MainPageCC {
     
     private final String titleExpectedGERD = "Thank you for answering the questions about your %s.\n" +
     		"I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
-    		"Agent note: if \"no\" to all items in a question, select \"None of the above\"";
+    		"Agent note: if \"no\" to all items in a question, select \"None of the above\"";  
     
+    private final String titleExpectedMDD = "Thank you for answering the questions about your %s.\n" +
+    		"I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
+    		"Agent note: If \"no\" to all items in a question, select \"None of the above\"";
+    		
     
     
     @FindBy(xpath = "//div[@class='question_text']")
@@ -67,6 +71,15 @@ public class TransitionStatementCC extends MainPageCC {
     public TransitionStatementCC waitForPageLoadGERD(String studyName) {
         waitForAnimation();
         String titleExpected = String.format(titleExpectedGERD, studyName);
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        return this;
+    }
+    
+    
+    @Step
+    public TransitionStatementCC waitForPageLoadMDD(String studyName) {
+        waitForAnimation();
+        String titleExpected = String.format(titleExpectedMDD, studyName);
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }

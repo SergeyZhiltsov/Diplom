@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.CC.OA_3138.ParticipatedInAnotherClinicalStudyC
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -23,19 +24,17 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class OA_4109CC extends BaseTest {
+public class OA_4827_CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     
     public void OA_4109_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
-        List<String> protocols = Arrays.asList("R475_OA_1611", "R475_OA_1688");
-        String protocol1 = "R475_OA_1611";
-        String protocol2 = "R475_OA_1688";
+        String zipCode = "19044";
         String studyName = "osteoarthritis";
-        String studyName1 = "an osteoarthritis study";
-        String siteName = "AUT_OA_4109_Site";
-        String zipCode = "60540";
+        String studyIndication = "an osteoarthritis study";
+        String siteName = "AUT_OA_4827_Site";
+        String protocol1 = "HP_5000_US_05";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -73,12 +72,12 @@ public class OA_4109CC extends BaseTest {
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
-                .setYear("1980")
+                .setYear("1975")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
-                .typeZipCode("99546")
+                .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DoYouSufferFromArthritisCC doYouSufferFromArthritisCC = genderPageCC
@@ -187,16 +186,7 @@ public class OA_4109CC extends BaseTest {
 
         //-------------------------FollowingDevicesInYourBody---------------
         devicesInYourBodyCC
-        		.waitForPageLoad()
-                .clickOnAnswers("Aneurysm clip")
-                .clickOnAnswers("Artificial heart valve")
-                .clickOnAnswers("Cochlear implant")
-                .clickNextButton(new MarijuanaOrCannabisCC())
-                .waitForPageLoad();
-        		debugPageCC.checkProtocolsContainsForQNumber("Q0005282-QS4514-STUDYQUES", protocol1);
-        		debugPageCC.back();
-        devicesInYourBodyCC
-                .waitForPageLoad();
+        		.waitForPageLoad();
         CarpalTunnelSyndromeCC carpalTunnelSyndromeCC = devicesInYourBodyCC
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new CarpalTunnelSyndromeCC());
@@ -229,11 +219,11 @@ public class OA_4109CC extends BaseTest {
 
         TransitionStatementCC transitionStatementCC = participatedInAnotherClinicalStudyCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-                .waitForPageLoad(studyName)
+                .waitForPageLoad("osteoarthritis")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         
@@ -259,17 +249,13 @@ public class OA_4109CC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 //----------SITE Selection Page--------------------
-                .waitForPageLoad(studyName1)
+                .waitForPageLoad(studyIndication)
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
-                .clickNextButton(new Regular_WarmTransfer1())
+                .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new Regular_WarmTransfer4())
-                .waitForPageLoad()
-                .clickOnAnswer("Successful transfer made to site")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);

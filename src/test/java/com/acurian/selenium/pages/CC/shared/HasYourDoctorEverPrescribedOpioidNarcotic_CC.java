@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.OA_3138;
+package com.acurian.selenium.pages.CC.shared;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,35 +10,36 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class MarijuanaOrCannabisCC extends MainPageCC {
+public class HasYourDoctorEverPrescribedOpioidNarcotic_CC extends MainPageCC {
 
-    public final String titleExpected = "During the past month, have you treated your pain with marijuana or cannabis";
+    public final String titleExpected = "Doctors often prescribe opioid or narcotic medications for pain.\n" +
+    		"Has your doctor ever prescribed an opioid or narcotic for your pain?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
-    List<WebElement> radioButtonsList;
+    List<WebElement> radioButtonList;
 
-    public MarijuanaOrCannabisCC() {
+    public HasYourDoctorEverPrescribedOpioidNarcotic_CC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public MarijuanaOrCannabisCC waitForPageLoad() {
+    public HasYourDoctorEverPrescribedOpioidNarcotic_CC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public MarijuanaOrCannabisCC clickOnAnswers(String answerText) {
-    	radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+    public HasYourDoctorEverPrescribedOpioidNarcotic_CC clickOnAnswer(String answerText) {
+        radioButtonList.stream().filter(el -> el.getText().contains(answerText))
         .findFirst()
         .get()
         .click();
         waitForAnimation();
-        return this;
+      return this;
     }
 
     @Step
