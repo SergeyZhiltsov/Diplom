@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class PoundsOrMorePageOLS extends MainPageOLS{
+public class TakeYourInsulinInjectionsPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you lost or gained 15 pounds or more in the past 3 months?";
+    public final String titleExpected = "When do you take your insulin injections?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,18 +19,18 @@ public class PoundsOrMorePageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public PoundsOrMorePageOLS() {
+    public TakeYourInsulinInjectionsPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public PoundsOrMorePageOLS waitForPageLoad() {
+    public TakeYourInsulinInjectionsPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public PoundsOrMorePageOLS clickOnAnswer(String answerText) {
+    public TakeYourInsulinInjectionsPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
