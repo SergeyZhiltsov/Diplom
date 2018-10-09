@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import java.util.Arrays;
 import java.util.List;
 
+import com.acurian.selenium.pages.CC.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -24,14 +25,6 @@ import com.acurian.selenium.pages.CC.generalHealth.HaveYouUndergoneAnyPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.DyslipidemiaHealthcarePageCC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.StatinMedicationsCC;
 import com.acurian.selenium.utils.DataProviderPool;
 
 public class DYS_4356_CC extends BaseTest{
@@ -159,7 +152,7 @@ public class DYS_4356_CC extends BaseTest{
        pregnancyAndFertilityCC
        		.waitForPageLoad()
 	   		.clickOnAnswer("None of the above")
-	   		.clickNextButton(new ThankYouForAnsweringCC());
+	   		.clickNextButton(new TransitionStatementCC());
        		debugPageCC.openDebugWindow();
        		Assert.assertEquals(debugPageCC.getProtocol(), "VK2809_201", "Clinical trials often have requirements related to pregnancy and fertility. Please select the option...");
        		debugPageCC.closeDebugWindow()
@@ -167,7 +160,7 @@ public class DYS_4356_CC extends BaseTest{
             pregnancyAndFertilityCC
        		.waitForPageLoad()
 	   		.clickOnAnswer("I currently have my \"tubes tied\" (also called bilateral tubal ligation, a sterilization procedure)")
-	   		.clickNextButton(new ThankYouForAnsweringCC())
+	   		.clickNextButton(new TransitionStatementCC())
             
        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());  		      		
        		
