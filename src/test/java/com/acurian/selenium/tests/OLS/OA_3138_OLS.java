@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 public class OA_3138_OLS extends BaseTest {
 
     @Test(enabled = true)
-    public void OA_3138_OLS() {
+    public void OA_3138_OLS_Script() {
         String phoneNumberDY = "AUTAMS1OA1";
         String zipCode = "99546";
         String studyName = "an osteoarthritis";
@@ -64,14 +64,13 @@ public class OA_3138_OLS extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEqualsForQNumber("QS1304", protocol1);
         debugPageOLS.back();
-
-
         AnyMedicationForYourArthritis anyMedicationForYourArthritis = whereYouHaveArthritis
                 .waitForPageLoad()
                 .clickOnAnswer("Spine or shoulders")
                 .clickOnAnswer("Left Knee")
                 .clickNextButton(new AnyMedicationForYourArthritis());
 
+        
         NSAIDMedication nSAIDMedication = anyMedicationForYourArthritis
                 .waitForPageLoad()
                 .clickOnAnswer("3 days per week")
@@ -97,52 +96,124 @@ public class OA_3138_OLS extends BaseTest {
                 .clickOnAnswer("I am unsure")
                 .clickNextButton(new PrescriptionPainMedicationsForArthritis());
 
-        TreatedPainWithMarijuanaOrCannabis treatedPainWithMarijuanaOrCannabis = prescriptionPainMedicationsForArthritis
+        HasYourDoctorEverPrescribedOpioidNarcotic_OLS hasYourDoctorEverPrescribedOpioidNarcotic_OLS = prescriptionPainMedicationsForArthritis
+        //AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS= prescriptionPainMedicationsForArthritis
                 .waitForPageLoad()
-                .clickOnAnswers("Tylenol #3 or Tylenol #4 (acetaminophen with codeine)")
-                .clickNextButton(new TreatedPainWithMarijuanaOrCannabis());
-
-        treatedPainWithMarijuanaOrCannabis
-                .waitForPageLoad();
-        AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = treatedPainWithMarijuanaOrCannabis
-                .clickOnAnswer("No")
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HasYourDoctorEverPrescribedOpioidNarcotic_OLS());
+        
+        
+        AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = hasYourDoctorEverPrescribedOpioidNarcotic_OLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, and I have taken an opioid or narcotic for pain")
                 .clickNextButton(new AreYouCurrentlyOnPageOLS());
-
 
         areYouCurrentlyOnPageOLS
                 .waitForPageLoad();
-        FutureJointReplacementSurgery futureJointReplacementSurgery = areYouCurrentlyOnPageOLS
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new FutureJointReplacementSurgery());
-
-
-        futureJointReplacementSurgery
+        //HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = areYouCurrentlyOnPageOLS
+        TreatedPainWithMarijuanaOrCannabis treatedPainWithMarijuanaOrCannabis = areYouCurrentlyOnPageOLS
+                .clickOnAnswer("Yes, for arthritis")
+                .clickOnAnswer("Yes, for another chronic condition")
+                .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
+                .clickNextButton(new TreatedPainWithMarijuanaOrCannabis());
+        treatedPainWithMarijuanaOrCannabis
                 .waitForPageLoad();
-        FollowingDevicesInYourBody followingDevicesInYourBody = futureJointReplacementSurgery
-                //ParticipatedInAnotherClinicalResearch participatedInAnotherClinicalResearch = futureJointReplacementSurgery
-                .clickOnAnswer("Yes, my doctor and I have discussed it, but my doctor said I don't need joint replacement at this time")
-                .clickNextButton(new FollowingDevicesInYourBody());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = treatedPainWithMarijuanaOrCannabis
+                .clickOnAnswer("Yes")
+        		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+        		.waitForPageLoad();
+        		debugPageOLS.checkProtocolsEqualsForQNumber("QS1308", protocol1);
+        		debugPageOLS.back();
+        treatedPainWithMarijuanaOrCannabis
+        		.waitForPageLoad();
+        		debugPageOLS.back();
+        areYouCurrentlyOnPageOLS
+                .waitForPageLoad();
+        HaveYouEverHadKneeReplacementSurgery_OLS haveYouEverHadKneeReplacementSurgery_OLS = areYouCurrentlyOnPageOLS
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new HaveYouEverHadKneeReplacementSurgery_OLS());
+        
+        
+        
+        //-----------HaveYouEverHadKneeReplacementSurgery_OLS--------------------
+        haveYouEverHadKneeReplacementSurgery_OLS
+        		.waitForPageLoad();
+        HaveYouEverReceivedInjectionIntoYourKnee_OLS haveYouEverReceivedInjectionIntoYourKnee_OLS = haveYouEverHadKneeReplacementSurgery_OLS
+        		.clickOnAnswer("Yes, both knees have been replaced")
+        		.clickOnAnswer("Yes, one knee has been replaced")
+        		.clickOnAnswer("No")
+        		.clickNextButton(new HaveYouEverReceivedInjectionIntoYourKnee_OLS());
+                
+              
+        //-----------HaveYouEverReceivedInjectionIntoYourKnee_OLS--------------------
+        haveYouEverReceivedInjectionIntoYourKnee_OLS
+        		.waitForPageLoad();
+        HaveYouReceivedKneeInjection_OLS haveYouReceivedKneeInjection_OLS = haveYouEverReceivedInjectionIntoYourKnee_OLS
+        		.clickOnAnswer("Yes, a corticosteroid or \"steroid\" injection")
+        		.clickOnAnswer("Yes, a joint fluid supplement injection such as Synvisc or Hyalgan")
+        		.clickNextButton(new HaveYouReceivedKneeInjection_OLS());        
+                
+                
+        //-------------------------HaveYouReceivedKneeInjection_OLS---------------
+        haveYouReceivedKneeInjection_OLS
+				.waitForPageLoad();
+        FollowingDevicesInYourBody followingDevicesInYourBody = haveYouReceivedKneeInjection_OLS
+        		.clickOnAnswer("No")
+        		.clickNextButton(new FollowingDevicesInYourBody());  
 
+        
+        //---------------------------FollowingDevicesInYourBody--------------------
         followingDevicesInYourBody
                 .waitForPageLoad();
-        ParticipatedInAnotherClinicalResearch participatedInAnotherClinicalResearch = followingDevicesInYourBody
+        //ParticipatedInAnotherClinicalResearch participatedInAnotherClinicalResearch = followingDevicesInYourBody
+        DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome  = followingDevicesInYourBody
                 .clickOnAnswer("None of the above")
-                .clickNextButton(new ParticipatedInAnotherClinicalResearch());
-
-        participatedInAnotherClinicalResearch
-                .waitForPageLoad();
-        DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome = participatedInAnotherClinicalResearch
-                .clickOnAnswer("No")
+                //.clickNextButton(new ParticipatedInAnotherClinicalResearch());
                 .clickNextButton(new DiagnosedwithCarpalTunnelSyndrome());
-
+        
+        
+        //---------------------DiagnosedwithCarpalTunnelSyndrome--------------
         diagnosedwithCarpalTunnelSyndrome
                 .waitForPageLoad();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedwithCarpalTunnelSyndrome
+        AreYouCurrentlyReceivingWorkersPage_OLS areYouCurrentlyReceivingWorkersPage_OLS = diagnosedwithCarpalTunnelSyndrome
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                .clickNextButton(new AreYouCurrentlyReceivingWorkersPage_OLS());
+        
+        
+        //------------------AreYouCurrentlyReceivingWorkersPage_OLS-------------
+        areYouCurrentlyReceivingWorkersPage_OLS
+                .waitForPageLoad()        
+                .clickOnAnswer("Yes")
+                .clickNextButton(new TreatedPainWithMarijuanaOrCannabis());
+        
+        
+        //------------------TreatedPainWithMarijuanaOrCannabis-------------
+        treatedPainWithMarijuanaOrCannabis
+                .waitForPageLoad();
+        FutureJointReplacementSurgery futureJointReplacementSurgery = treatedPainWithMarijuanaOrCannabis
+                .clickOnAnswer("No")
+                .clickNextButton(new FutureJointReplacementSurgery());
+        
+        
+        //------------------FutureJointReplacementSurgery-------------
+        futureJointReplacementSurgery
+                .waitForPageLoad();
+        ParticipatedInAnotherClinicalResearch participatedInAnotherClinicalResearch = futureJointReplacementSurgery
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new ParticipatedInAnotherClinicalResearch());
+        
+        
+        //------------------ParticipatedInAnotherClinicalResearch-------------
+        participatedInAnotherClinicalResearch
+                .waitForPageLoad()
+        //HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = participatedInAnotherClinicalResearch
+                .clickOnAnswer("No")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS()); 
+        
+        
 
 
-        //----------*******NEW GENERAL HEALTH Questions********----------
+        //----------*******NEW GENERAL HEALTH Questions**************************----------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -182,11 +253,15 @@ public class OA_3138_OLS extends BaseTest {
                 .clickNextButton(new QualifiedClosedPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .waitForSENRPageLoad();
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+        aboutHealthPageOLS
+        		.clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
+                .threadSleep(8000);
+        aboutHealthPageOLS
                 .pidFromDbToLog(env)
-                //.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
+                .getRadiantDbToLog(env)
                 .getAnomalyDbToLog(env);
     }
 }

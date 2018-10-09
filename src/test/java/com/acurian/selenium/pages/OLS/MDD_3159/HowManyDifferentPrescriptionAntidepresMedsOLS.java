@@ -10,10 +10,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowManyDifferentPrescriptionAntidepresMedsOLS extends MainPageOLS {
 	
-	public final String titleExpected = "For the next few questions, please continue to think ONLY about your CURRENT episode of depression.\n" +
+	public final String titleExpected = "For this question, please continue to think ONLY about your CURRENT episode of depression.\n" +
 			"\n" +
 			"How many different prescription antidepressant medications have you taken during your current episode of depression?\n" +
-			"Please include all antidepressant medications. Include those you are taking NOW as well as those you have taken before for this current episode but no longer use.";
+			"Please count antidepressant medications you are taking NOW as well as those you have taken before for this current episode but no longer use.";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

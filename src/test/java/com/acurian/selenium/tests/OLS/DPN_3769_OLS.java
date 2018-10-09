@@ -21,7 +21,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class DPN_3769_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @TestCaseId("00016")
     @Description("Diabetic Peripheral Neuropath (DPN)- 3769 OLS")
     public void dpn_3769_OLS() {

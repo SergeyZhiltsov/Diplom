@@ -10,10 +10,11 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveYouEverTakenPrescriptionPainCC extends MainPageCC {
+public class HaveYouEverReceivedInjectionIntoYourKnee_CC extends MainPageCC {
 
-    public final String titleExpected = "Have you ever taken any of the following prescription pain medications for your arthritis?\n" +
-    		"Agent Note: Read medications in the following way: \"Oxycodone, also known as Oxaydo, Oxycontin, or Roxicodone\" etc. Select all that apply.";
+    public final String titleExpected = "Have you ever received an injection into your knee to treat your arthritis pain?\n" +
+    		"Agent Note: If respondent immediately says \"Yes,\" please clarify which type of injection was received.\n" +
+    		"Select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
@@ -21,19 +22,19 @@ public class HaveYouEverTakenPrescriptionPainCC extends MainPageCC {
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public HaveYouEverTakenPrescriptionPainCC() {
+    public HaveYouEverReceivedInjectionIntoYourKnee_CC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouEverTakenPrescriptionPainCC waitForPageLoad() {
+    public HaveYouEverReceivedInjectionIntoYourKnee_CC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public HaveYouEverTakenPrescriptionPainCC clickOnAnswers(String ...answerText) {
+    public HaveYouEverReceivedInjectionIntoYourKnee_CC clickOnAnswers(String ...answerText) {
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
                 .forEach(el -> el.click());

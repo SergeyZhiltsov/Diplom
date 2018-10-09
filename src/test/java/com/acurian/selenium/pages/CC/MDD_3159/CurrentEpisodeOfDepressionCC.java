@@ -11,10 +11,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class CurrentEpisodeOfDepressionCC extends MainPageCC{
 
     public final String titleExpected = "We'd like to make a distinction between the beginning of your depression overall versus the beginning of your current episode of depression.\n" +
-    		"\n" +
-    		"Please tell me, have you taken ANY medication for your depression over the course of your current episode?\n" +
-    		"\n" +
-    		"Please include those medications you are taking NOW as well as those medications you have taken before for your current episode of depression, but no longer use.";
+    		"When did your current episode of depression start?\n" +
+    		"If you are unsure, please take your best guess.\n" +
+    		"Agent Note: please read all options";
+    
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
