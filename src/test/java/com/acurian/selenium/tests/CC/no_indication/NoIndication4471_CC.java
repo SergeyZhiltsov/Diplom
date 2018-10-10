@@ -18,7 +18,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class NoIndication4471_CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00034")
     @Description("No Indication 4471 CC")
     public void chronicCough_4471_CC_NI(final String username, final String password) {

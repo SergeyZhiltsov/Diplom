@@ -32,7 +32,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class DPN_4557_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00015")
     @Description("Diabetic Peripheral Neuropathy(DPN) - 4557 CC")
     public void dPN_4557_CC(final String username, final String password) {

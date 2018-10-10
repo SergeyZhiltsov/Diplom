@@ -51,8 +51,8 @@ public class Chronic_4471_OLS extends BaseTest{
         String studyName =  "a chronic cough"; 
         String siteName = "AUT_MCC";
         String zipCode = "19341";        
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
+
         String time = String.valueOf(Instant.now().getEpochSecond());
         time = time.substring(time.length()-4);
         String eMailId = "qa.acurian@gmail.com";

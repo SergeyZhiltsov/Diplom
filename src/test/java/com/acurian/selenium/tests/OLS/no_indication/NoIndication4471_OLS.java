@@ -22,7 +22,7 @@ import java.util.List;
 
 public class NoIndication4471_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00034")
     @Description("No Indication 4471 OLS")
     public void chronicCough_4471_OLS_NI() {
