@@ -361,7 +361,7 @@ public class DIA_4241_CC extends BaseTest{
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol4)
-                .checkProtocolsEqualsForQNumber("Q0013991-QS4613-STUDYQUES", AKC, protocol3)
+                .checkProtocolsEqualsForQNumber("Q0013991-QS4613-STUDYQUES", protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()

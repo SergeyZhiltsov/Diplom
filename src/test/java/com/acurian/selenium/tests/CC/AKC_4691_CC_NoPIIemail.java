@@ -384,7 +384,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest{
         		.waitForPageLoad();
         Assert.assertEquals(noOfAlcoholicDrinkCC.getTitleText(),noOfAlcoholicDrinkCC.titleExpected, "Title is diff");
         FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinkCC
-        		.enterNoOfDrinks("6")
+        		.setDrinks("6")
         		.clickNextButton(new FollowingLiverRelatedConditionCC());
         
         

@@ -322,7 +322,7 @@ public class DPN_4557_CC extends BaseTest{
              
                FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
                 		.waitForPageLoad()
-                		.enterNoOfDrinks("4")
+                		.setDrinks("4")
                 		.clickNextButton(new FollowingLiverRelatedConditionCC());
                
                 

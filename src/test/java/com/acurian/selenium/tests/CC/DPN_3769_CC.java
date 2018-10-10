@@ -335,7 +335,7 @@ public class DPN_3769_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(noOfAlcoholicDrinksCC.getTitleText(), noOfAlcoholicDrinksCC.titleExpected, "Title is diff");
         FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
-                .enterNoOfDrinks("4")
+                .setDrinks("4")
                 .clickNextButton(new FollowingLiverRelatedConditionCC());
                 
            /*     NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = lastTimeYouTookPageCC

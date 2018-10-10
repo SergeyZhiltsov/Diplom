@@ -336,7 +336,7 @@ public class DIA_4241_OLS extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol4)
-                .checkProtocolsEqualsForQNumber("QS4613", AKC, protocol3)
+                .checkProtocolsEqualsForQNumber("QS4613", protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
