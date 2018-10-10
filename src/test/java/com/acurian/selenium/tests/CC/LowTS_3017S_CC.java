@@ -1,50 +1,24 @@
 package com.acurian.selenium.tests.CC;
 
-import java.util.Arrays;
-import java.util.List;
-
-import com.acurian.selenium.pages.CC.closes.*;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.DYS_4356C.ThankYouForAnsweringCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.LOWT.AreYouCurrentlyTakingAnyOfTheFollowingMedications_CC;
-import com.acurian.selenium.pages.CC.LOWT.CurrentlyTakingFollowingMedicationsCC;
-import com.acurian.selenium.pages.CC.LOWT.DiagnosedYouWithLowTestosteroneCC;
-import com.acurian.selenium.pages.CC.LOWT.ExperiencedAnyOfFollowingCC;
-import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedMedicalCondDiseases_CC;
-import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedYouWithMedicalCond_CC;
-import com.acurian.selenium.pages.CC.LOWT.HaveDoctorEverDiagnosedYou_CC;
-import com.acurian.selenium.pages.CC.LOWT.HaveYouEverSmokedCigarettes_CC;
-import com.acurian.selenium.pages.CC.LOWT.HaveYouExpAnyOfFollowingHeartBlood_CC;
-import com.acurian.selenium.pages.CC.LOWT.PersonaQuestionsCC;
-import com.acurian.selenium.pages.CC.LOWT.WhenWasTheLastTimeYouReceivedHeartProcedure_CC;
-import com.acurian.selenium.pages.CC.MDD_3159.WhenWasYourMostRecentHeartProcedureCC;
+import com.acurian.selenium.pages.CC.LOWT.*;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.FollowingMensHealthConditionsCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC;
-import com.acurian.selenium.pages.CC.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementLowT_CC;
-import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS;
+import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LowTS_3017S_CC extends BaseTest {
 

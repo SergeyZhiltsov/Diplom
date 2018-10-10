@@ -21,7 +21,7 @@ import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HasAHealthcareProfessionalDYS4356;
+import com.acurian.selenium.pages.CC.shared.DyslipidemiaHealthcarePageCC;
 import com.acurian.selenium.pages.CC.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC;
 import com.acurian.selenium.pages.CC.shared.HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
@@ -86,12 +86,12 @@ public class MedCo_3962_CC extends BaseTest{
     		   .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
     		   .clickNextButton(new GenderPageCC());
        
-       HasAHealthcareProfessionalDYS4356  hasAHealthcareProfessionalDYS4356 = genderPageCC
+       DyslipidemiaHealthcarePageCC dyslipidemiaHealthcarePageCC = genderPageCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Female")
-    		   .clickNextButton(new HasAHealthcareProfessionalDYS4356());
+    		   .clickNextButton(new DyslipidemiaHealthcarePageCC());
        
-       NonQRtransitionPageCC nonQRtransitionPageCC =  hasAHealthcareProfessionalDYS4356
+       NonQRtransitionPageCC nonQRtransitionPageCC =  dyslipidemiaHealthcarePageCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Unsure")
     		   .clickNextButton(new NonQRtransitionPageCC());
@@ -101,13 +101,13 @@ public class MedCo_3962_CC extends BaseTest{
        		DebugPageCC debugPageCC = new DebugPageCC();       
        		debugPageCC.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);
        		debugPageCC.back();
-       		hasAHealthcareProfessionalDYS4356
+       		dyslipidemiaHealthcarePageCC
        		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new NonQRtransitionPageCC());
        		debugPageCC.checkProtocolsEquals("Has a healthcare professional ever told you that you have any of the following?Agent Note: Select al...", protocol1);
        		debugPageCC.back();
-       		StatinMedicationsCC statinMedicationsCC = hasAHealthcareProfessionalDYS4356
+       		StatinMedicationsCC statinMedicationsCC = dyslipidemiaHealthcarePageCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("High cholesterol, or hypercholesterolemia")
     		   .clickNextButton(new StatinMedicationsCC());

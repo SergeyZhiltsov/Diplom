@@ -1,18 +1,17 @@
-package com.acurian.selenium.pages.CC.shared.DIA;
+package com.acurian.selenium.pages.CC.DIA_4241;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class UseDietAndExercisePage extends MainPageCC{
+import java.util.List;
 
-    public final String titleExpected = "Do you currently use diet and exercise as a way to help treat your diabetes?";
+public class TakeYourInsulinInjectionsPageCC extends MainPageCC{
+
+    public final String titleExpected = "When do you take your insulin injections?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -20,18 +19,18 @@ public class UseDietAndExercisePage extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public UseDietAndExercisePage() {
+    public TakeYourInsulinInjectionsPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public UseDietAndExercisePage waitForPageLoad() {
+    public TakeYourInsulinInjectionsPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
-    
+
     @Step
-    public UseDietAndExercisePage clickOnAnswer(String answerText) {
+    public TakeYourInsulinInjectionsPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,5 +39,4 @@ public class UseDietAndExercisePage extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

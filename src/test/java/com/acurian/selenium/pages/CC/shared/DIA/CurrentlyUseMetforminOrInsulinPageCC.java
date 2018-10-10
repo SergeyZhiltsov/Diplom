@@ -8,7 +8,7 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class CurrentlyUseMetforminOrInsulinPage extends MainPageCC{
+public class CurrentlyUseMetforminOrInsulinPageCC extends MainPageCC{
 
     public final String titleExpected = "Do you currently use metformin or insulin or any other medication prescribed by your doctor to treat your diabetes?\n" +
             "Agent Note: Select all that apply";
@@ -19,18 +19,18 @@ public class CurrentlyUseMetforminOrInsulinPage extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public CurrentlyUseMetforminOrInsulinPage() {
+    public CurrentlyUseMetforminOrInsulinPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public CurrentlyUseMetforminOrInsulinPage waitForPageLoad() {
+    public CurrentlyUseMetforminOrInsulinPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public CurrentlyUseMetforminOrInsulinPage clickOnAnswers(String ...answerText) {
+    public CurrentlyUseMetforminOrInsulinPageCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.Diabetes_4356A;
 
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -14,26 +15,25 @@ public class NoOfAlcoholicDrinkOLS extends MainPageOLS {
 			"\n" +
 			"Number of alcoholic drinks in a week:";
 
-    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
-    
+
     @FindBy(xpath = "//input[@type='tel']")
-    WebElement enterDrinks;		
-    
+    WebElement enterDrinks;
+
     public NoOfAlcoholicDrinkOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
     public NoOfAlcoholicDrinkOLS waitForPageLoad() {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public NoOfAlcoholicDrinkOLS setDrinks(String drinks) {
-       typeText(enterDrinks,drinks);
+        typeText(enterDrinks, drinks);
         return this;
     }
 
@@ -41,6 +41,5 @@ public class NoOfAlcoholicDrinkOLS extends MainPageOLS {
     public String getTitleText(){
         return getText(titleText);
     }
-
 
 }

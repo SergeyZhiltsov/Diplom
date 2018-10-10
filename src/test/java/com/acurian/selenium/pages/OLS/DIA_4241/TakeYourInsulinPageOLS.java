@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.OLS.DIA_4241;
 
-import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,29 +8,29 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class PoundsOrMorePageOLS extends MainPageOLS{
+public class TakeYourInsulinPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you lost or gained 15 pounds or more in the past 3 months?";
+    public final String titleExpected = "How do you take your insulin?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
-    List<WebElement> radioButtonsList;
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]")
+    List<WebElement> checkBoxList;
 
-    public PoundsOrMorePageOLS() {
+    public TakeYourInsulinPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public PoundsOrMorePageOLS waitForPageLoad() {
+    public TakeYourInsulinPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public PoundsOrMorePageOLS clickOnAnswer(String answerText) {
-        clickOnRadioButton(radioButtonsList, answerText);
+    public TakeYourInsulinPageOLS clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 

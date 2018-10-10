@@ -2,8 +2,6 @@ package com.acurian.selenium.pages.CC.closes;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.CC.shared.ProcedureForWeightLossPageCC;
-import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePage;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
