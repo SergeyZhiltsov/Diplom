@@ -35,8 +35,7 @@ public class Crohns_3889_OLS extends BaseTest{
         String debugSiteName = "";        
         String zipCode = "19044";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -539,26 +538,12 @@ public class Crohns_3889_OLS extends BaseTest{
         .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
-   //&&&&&&&&&&&&&&&& New for AMS1 Rel.51, when Gender = Female &&&&&&&&&&&&&&&&&&&&
         .clickNextButton(new HormonalBirthControlOLS())
         .waitForPageLoad()
         .clickOnAnswer("No")
-   //&&&&&&&&&&&&&&&& END &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         .clickNextButton(new ApproximateHeightPageOLS())
         .waitForPageLoad()
         .setAll("5", "5", "160")
-        .clickNextButton(new ChildrenUnderPageOLS())
-        .waitForPageLoad()
-        .clickOnAnswer("Yes")
-        .clickNextButton(new HouseholdHavePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("None of the above")
-        .clickNextButton(new TheStudySitePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswer("Public transportation")
-        .clickNextButton(new WhatMedicalCoveragePageOLS())
-        .waitForPageLoad()
-        .clickOnAnswers("No, I have no coverage")
         .clickNextButton(new EthnicBackgroundPageOLS())
         .waitForPageLoad()
         .clickOnAnswers("Prefer not to answer")

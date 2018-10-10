@@ -34,7 +34,7 @@ public abstract class BaseTest {
                 : new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
-//        driver.manage().timeouts().setScriptTimeout(100,TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(50,TimeUnit.SECONDS);
 //        driverch.register(new EventHandler());
 //        driver =  new StaleTolerantWebDriver(driverch);
         switch (Locators.isEnvWeb) {
