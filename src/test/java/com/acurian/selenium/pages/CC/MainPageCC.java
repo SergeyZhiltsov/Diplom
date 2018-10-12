@@ -87,9 +87,12 @@ public class MainPageCC extends BasePage{
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String ...answerText){
         List<String> answerTextList = Arrays.asList(answerText);
 
-//        List<String> elementsTextActual = checkBoxList.stream().map(el -> el.getText()).collect(Collectors.toList());
-//        Assert.assertTrue(elementsTextActual.containsAll(answerTextList), "Some answers are not correct "
-//                + answerTextList+" are not included in actual "+elementsTextActual);
+        List<String> elementsTextActual = checkBoxList.stream().map(el -> el.getText()).collect(Collectors.toList());
+        List<String> answersNotIncluded = answerTextList.stream().filter(el -> !elementsTextActual.contains(el)).collect(Collectors.toList());
+        Assert.assertTrue(elementsTextActual.containsAll(answerTextList), "Some answers are not correct "+
+                answersNotIncluded +"\n" +
+                "expected to click are "+ answerTextList+"\n" +
+                "actual on page are "+elementsTextActual);
 
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
                 .forEach(el -> el.click());
