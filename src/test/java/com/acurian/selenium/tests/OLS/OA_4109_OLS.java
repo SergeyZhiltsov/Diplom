@@ -17,7 +17,6 @@ public class OA_4109_OLS extends BaseTest {
     @Test(enabled = true)
     public void OA_4109_OLS_Script() {
         String phoneNumber = "AUTAMS1OA1";
-        //	String env = "PRD";
         String zipCode = "60540";
         String studyName = "an osteoarthritis";
         String siteName = "AUT_OA_4109_Site";

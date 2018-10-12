@@ -367,6 +367,6 @@ public class MDD_4840_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);   
+                .pidFromDbToLog(env);
     }
 }
