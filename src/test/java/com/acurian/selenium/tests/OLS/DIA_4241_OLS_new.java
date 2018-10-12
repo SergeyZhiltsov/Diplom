@@ -458,6 +458,22 @@ public class DIA_4241_OLS_new extends BaseTest {
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
+
+//                .clickNextButton(new DyslipidemiaHealthcarePageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+
+
+
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

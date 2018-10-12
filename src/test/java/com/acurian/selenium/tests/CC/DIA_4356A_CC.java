@@ -2,21 +2,15 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
-import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.MDD_3159.WhenWasYourMostRecentHeartProcedureCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
 import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPageCC;
 import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePageCC;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.TriglyceridesOrLipidsPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DyslipidemiaHealthcarePageOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -26,7 +20,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class DIA_4356A_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
     public void dia4356AccTest(final String username, final String password) {
@@ -159,12 +153,12 @@ public class DIA_4356A_CC extends BaseTest{
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
 
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = transitionStatementCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoad("diabetes")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 
-        DyslipidemiaHealthcarePageCC dyslipidemiaHealthcarePageCC = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        DyslipidemiaHealthcarePageCC dyslipidemiaHealthcarePageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
@@ -223,8 +217,8 @@ public class DIA_4356A_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"1 - 3 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
