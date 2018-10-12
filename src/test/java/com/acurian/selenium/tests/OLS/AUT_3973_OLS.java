@@ -38,7 +38,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AUT_3973_OLS extends BaseTest {
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	@TestCaseId("0001")
 	@Description("Akcea_4691 OLS")
 
@@ -48,8 +48,8 @@ public class AUT_3973_OLS extends BaseTest {
 		String AUTISM = "WN39434";
 		String studyName = "an autism spectrum disorder";
 		String siteIndication = "Autism";
-		String siteName = "AUT_3973";
-		String zipCode = "08204";
+		String siteName = "AUT_ROC_3973_site";
+		String zipCode = "19901";
 
 		String env = System.getProperty("acurian.env");
 		if (env == null)
@@ -57,15 +57,14 @@ public class AUT_3973_OLS extends BaseTest {
 
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS.openPage(env, phoneNumber).waitForPageLoad().maximizePage();
-		Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titelAutism_Expected,
-				"Title is diff");
+		Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titelAutism_Expected,"Title is diff");
 
 		// --------------DOB Question------------
 		AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
-			// ------------Disqualify (“Age < 18 years old”) if <18
+		// ------------Disqualify (“Age < 18 years old”) if <18
 			// -----------------------------------------
 				.waitForPageLoad()
-				.setDate("09092000")
+				.setDate("09092002")
 				.clickNextButton(new AgeUnqualifiedClose_OLS());
 		ageUnqualifiedClose_OLS
 				.waitForPageLoad();
@@ -75,7 +74,6 @@ public class AUT_3973_OLS extends BaseTest {
 		dateOfBirthPageOLS
 				.waitForPageLoad();
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS.setDate("09091980").clickNextButton(new ZipCodePageOLS());
-
 		
 		// --------------ZIP_CODE Question------------
 		zipCodePageOLS
@@ -96,8 +94,8 @@ public class AUT_3973_OLS extends BaseTest {
 		// --------------Q2: Have you ever been told by a doctor that you have
 		// autism or an autism spectrum disorder?------------
 		haveYouEverBeenToldByDoctorAutism_OLS
-				.waitForPageLoad();
-		Assert.assertEquals(haveYouEverBeenToldByDoctorAutism_OLS.getTitleText(),haveYouEverBeenToldByDoctorAutism_OLS.titleExpected, "Title is diff");
+			.waitForPageLoad();
+		//Assert.assertEquals(haveYouEverBeenToldByDoctorAutism_OLS.getTitleText(),haveYouEverBeenToldByDoctorAutism_OLS.titleExpected, "Title is diff");
 		HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverBeenToldByDoctorAutism_OLS
 				.clickOnAnswer("No, my doctor has not told me that I have autism or an autism spectrum disorder")
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -300,72 +298,51 @@ public class AUT_3973_OLS extends BaseTest {
 	
 		//----HEIGHT and WEIGHT Question ------------
 		approximateHeightPageOLS
-				.waitForPageLoad();
-		ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
+				.waitForPageLoad()
+				//EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
 				.waitForPageLoad()
 				.setAll("5", "5", "160")
-				.clickNextButton(new ChildrenUnderPageOLS());
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS())
+                //----------PII (IdentificationPageOLS) Page--------------------
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                //----------SiteSelection Page--------------------
+                .waitForPageLoad(studyName)
+                .getPID()
+		        .clickOnFacilityName(siteName)
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoad(siteIndication)
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature()
 
+                //------------HUMAN API Interface in HelloSign----------------
+                .getPage(new HumanAPIOLS())
+                .waitForPageLoad()
+                .connectBTN()
+                .switchToAPI()
+                .waitForProvider()
+                .clickANY()
+                .waitSearchAll()
+                .search("cleveland clinic")
+                .waitProvider()
+                .clickProvider()
+                .typeUserName("democlinical@gmail.com")
+                .typePWD("password")
+                .clickConnect()
 
-		//----Do you have any children under the age of 18 in your household? ------------		
-		childrenUnderPageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new TheStudySitePageOLS());
-		TheStudySitePageOLS theStudySitePageOLS = new TheStudySitePageOLS();
-		
-		
-
-		// -------------------PEDIATRIC QUESTIONS-----------------------------
-		theStudySitePageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("Public transportation")
-				.clickNextButton(new WhatMedicalCoveragePageOLS())
-				.waitForPageLoad()
-				.clickOnAnswers("No, I have no coverage")
-				.clickNextButton(new EthnicBackgroundPageOLS())
-				.waitForPageLoad()
-				.clickOnAnswers("Prefer not to answer")
-				.clickNextButton(new IdentificationPageOLS())
-				// ----------PII (IdentificationPageOLS)
-				// Page--------------------
-				.waitForPageLoad()
-				.setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
-				.clickNextButton(new SiteSelectionPageOLS())
-				.waitForPageLoad(studyName)
-				.getPID()
-				// ----------SITE Selection Page--------------------
-				.clickOnFacilityName(siteName)
-				.clickNextButton(new HSGeneralPageOLS())
-				// ----------HELLO SIGN Page (Email entered at PII)--------------------
-				.waitForPageLoad(siteIndication)
-				.clickNextButton(new DoctorInformationCollectionPageOLS())
-				.waitForPageLoad()
-				.clickNextButton(new HS1PageOLS())
-				.waitForPageLoad()
-				.clickOkInPopUp()
-				.setSignature()
-		        
-		        //------------HUMAN API Interface in HelloSign----------------
-		        .getPage(new HumanAPIOLS())
-		        .waitForPageLoad()		        
-		        .connectBTN()
-		        .switchToAPI()
-		        .waitForProvider()
-		        .clickANY()
-		        .waitSearchAll()
-		        .search("cleveland clinic")
-		        .waitProvider()
-		        .clickProvider()
-		        .typeUserName("democlinical@gmail.com")
-		        .typePWD("password")
-		        .clickConnect()
-		        
-		        .waitToClickNext()
-		        .clickNextButton(new ThankYouCloseSimplePageOLS())
-		        .waitForPageLoad()
-		        .clickNextButton(new AboutHealthPageOLS())
-		        .waitForPageLoad()
-		        .pidFromDbToLog(env);
+                .waitToClickNext()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForSENRPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
 	}
 }

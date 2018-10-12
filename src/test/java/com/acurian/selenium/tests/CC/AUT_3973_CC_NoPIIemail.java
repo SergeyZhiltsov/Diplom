@@ -41,7 +41,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class AUT_3973_CC_NoPIIemail extends BaseTest{
 	
 	
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)  
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)  
     @TestCaseId("00004")
     @Description("Diabetes_4356A_Synexus for CC")
     public void AUTO_3973_CC_NoPIIemail(final String username, final String password) {
@@ -49,8 +49,8 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
         String AUTISM = "WN39434";        
 		String studyName = "an autism spectrum disorder study";
 		String siteIndication = "Autism";
-        String siteName = "AUT_3973";             
-        String zipCode = "08204";
+        String siteName = "AUT_ROC_3973_site";             
+        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env", "STG");
 
@@ -77,7 +77,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        //Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
@@ -88,6 +88,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleAUT3973, "Title is diff");
+
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -111,8 +112,6 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
         HaveYouEverBeenToldByDoctorAutism_CC haveYouEverBeenToldByDoctorAutism_CC = genderPageCC
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenToldByDoctorAutism_CC());
-        
-
         
         
         
@@ -336,42 +335,25 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
         new ApproximateHeightPageCC()
         		.waitForPageLoad()
                 .setAll("5", "6", "170")
-                .clickNextButton(new LetMeSeePageCC())                
-                
-        		//----------ChildrenUnderTheAge Page--------------------
+                .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                
-                //----------PEDIATRIC HEALTH Questions----------
-                .clickNextButton(new HouseholdHavePageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                
-        		//----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad("an autism spectrum disorder study")
                 .getPID()
-                
-        		//----------SITE Selection Page--------------------
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSGeneralCC())
-                
-        		//----------Special Type 2 Diabetes HELLO SIGN Page (email at PII)--------------------
-                .waitForPageLoadInd(siteIndication)
-                .typeEmailAut("qa.acurian@gmail.com")
-        		.clickNextButton(new DoctorInformationCollectionPageCC())
-        		.waitForPageLoad()
-        		.clickNextButton(new HSMedicalRecordsPageCC())
-        		.waitForPageLoad()
-        		.clickNextButton(new ThankYouCloseSimplePageCC())
-        		.waitForPageLoad()
-        		.clickNextButton(selectActionPageCC)
-        		.waitForPageLoad()
-        		.pidFromDbToLog(env);  
+                .waitForPageLoad(siteIndication)
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }
