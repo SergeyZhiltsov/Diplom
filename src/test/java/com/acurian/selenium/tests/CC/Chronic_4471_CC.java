@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.pages.CC.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -28,13 +29,6 @@ import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 
 public class Chronic_4471_CC extends BaseTest{
@@ -112,12 +106,12 @@ public class Chronic_4471_CC extends BaseTest{
     		   .waitForPageLoad()
     		   .clickOnAnswer("Female")
     		   .clickNextButton(new CurrentlySufferFromChronicCoughCC());
-       
-       LetMeSeePageCC letMeSeePageCC = currentlySufferFromChronicCoughCC
+
+		NonQRtransitionPageCC nonQRtransitionPageCC = currentlySufferFromChronicCoughCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("No")
-    		   .clickNextButton(new LetMeSeePageCC());
-    	letMeSeePageCC.waitForPageLoadNew();
+    		   .clickNextButton(new NonQRtransitionPageCC());
+		nonQRtransitionPageCC.waitForPageLoad();
        debugPageCC.checkProtocolsContainsForQNumber("Q0017638-QS6202-STUDYQUES", protocol1, protocol2);
        debugPageCC.back();
        
@@ -345,8 +339,8 @@ public class Chronic_4471_CC extends BaseTest{
          		.waitForPageLoad()
          		.clickOnAnswers("None of the above")         		
          		.clickNextButton(new ApproximateHeightPageCC());
-         
-         approximateHeightPageCC
+
+		LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
   				.waitForPageLoad()
   				.setAll("5", "5", "160")
   				.clickNextButton(new LetMeSeePageCC());

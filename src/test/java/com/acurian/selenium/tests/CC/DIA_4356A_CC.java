@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.MDD_3159.WhenWasYourMostRecentHeartProcedureCC;
+import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -87,7 +87,7 @@ public class DIA_4356A_CC extends BaseTest{
         zipCodePageCC
                 .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
-                .typeZipCode("19044")
+                .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC
@@ -250,12 +250,12 @@ public class DIA_4356A_CC extends BaseTest{
         identificationPageCC
                 .waitForPageLoad()
                 .back();
-        WhenWasYourMostRecentHeartProcedureCC whenWasYourMostRecentHeartProcedureCC = heartrelatedMedicalProceduresPageCC
+        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Angioplasty")
-                .clickNextButton(new WhenWasYourMostRecentHeartProcedureCC());
+                .clickNextButton(new MostRecentHeartProcedurePageСС());
 
-        whenWasYourMostRecentHeartProcedureCC
+        mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(identificationPageCC)
@@ -263,7 +263,7 @@ public class DIA_4356A_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("Q0015137-QS4235-STUDYQUES", protocol7)
                 .back();
-        whenWasYourMostRecentHeartProcedureCC
+        mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(identificationPageCC)

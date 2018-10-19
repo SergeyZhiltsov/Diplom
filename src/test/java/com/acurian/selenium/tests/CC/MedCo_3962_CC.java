@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DYS_4356C.AreYouTakingAnyOfMedicationsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.NonPrescriptionSupplementsCC;
-import com.acurian.selenium.pages.CC.MDD_3159.WhenWasYourMostRecentHeartProcedureCC;
+import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
@@ -151,7 +151,7 @@ public class MedCo_3962_CC extends BaseTest{
              //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------	
              .waitForPageLoad()
              .clickOnAnswers("Angioplasty")
-             .clickNextButton(new WhenWasYourMostRecentHeartProcedureCC())
+             .clickNextButton(new MostRecentHeartProcedurePageСС())
              //-----------MostRecentHeartProcedurePageOLS page-----------
              .waitForPageLoad()
              .clickOnAnswer("7 - 12 months ago")

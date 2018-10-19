@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhenWasYourMostRecentHeartProcedureCC extends MainPageCC{
+public class MostRecentHeartProcedurePageСС extends MainPageCC{
 
     public final String titleExpected = "When was your most recent heart procedure?";
 
@@ -18,26 +18,19 @@ public class WhenWasYourMostRecentHeartProcedureCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public WhenWasYourMostRecentHeartProcedureCC() {
+    public MostRecentHeartProcedurePageСС() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhenWasYourMostRecentHeartProcedureCC waitForPageLoad() {
+    public MostRecentHeartProcedurePageСС waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
-//        waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public WhenWasYourMostRecentHeartProcedureCC clickOnAnswer(String answerText) {
+    public MostRecentHeartProcedurePageСС clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
-//        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-//                .findFirst()
-//                .get()
-//                .click();
-//        waitForAnimation();
         return this;
     }
 
