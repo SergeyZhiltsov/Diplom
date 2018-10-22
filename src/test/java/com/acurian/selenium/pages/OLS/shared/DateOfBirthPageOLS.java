@@ -56,9 +56,9 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
     
-    public final String titleDYExpected = "Let's get started to see if you qualify for a cholesterol or heart health study!\n" +
-    		"\n" +
-    		"Those who qualify may receive*:\n" +
+    public final String titleDYExpected = "Let's get started to see if you qualify for a high cholesterol and heart disease study!\n" +
+            "\n" +
+            "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $500\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
@@ -243,6 +243,9 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'visible-md-block')]//div[contains(text(),'What is your date of birth?')]")
     WebElement questionText;
 
+    @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[3]")
+    WebElement questionText2Ver;
+
     
     
     
@@ -258,9 +261,13 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
     @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
     WebElement titleTextGROUP;
-    
-    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
+
     WebElement titleText;
+
+    @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[2]")
+    WebElement titleText2Ver1;
+
+    WebElement titleText2Ver;
 
     
     @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
@@ -297,6 +304,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
                 questionText = questionText1;
                 titleText = titleText1;
                 titleTextGH = titleTextGH1;
+                titleText2Ver =titleText2Ver1;
                 break;              
             case Platforms.TABLET:
                 titleText = titleText2;
@@ -329,8 +337,12 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     @Step
     public DateOfBirthPageOLS waitForPageLoad() {
         waitForPageLoadMain(questionText, titleExpected);
-//        waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> questionText.getText().contains(titleExpected));
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoad2Ver() {
+        waitForPageLoadMain(questionText2Ver, titleExpected);
         return this;
     }
     
@@ -385,6 +397,11 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     @Step
     public String getTitleTextGROUP() {
         return getText(titleTextGROUP);
+    }
+
+    @Step
+    public String getTitleText2Ver() {
+        return getText(titleText2Ver);
     }
 
 }

@@ -74,11 +74,6 @@ public class SiteSelectionPageCC extends MainPageCC {
     @Step
     public SiteSelectionPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
-//        radioButtonsList.stream().filter(el -> el.getText().equals(answerText))
-//                .findFirst()
-//                .get()
-//                .click();
-//        waitForAnimation();
         return this;
     }
     

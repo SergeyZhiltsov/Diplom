@@ -12,7 +12,7 @@ import java.util.List;
 public class WhileTakingStatinPageOLS extends MainPageOLS{
 
     public final String titleExpected = "Have you ever experienced any of the following while taking a statin medication?\n" +
-            "Agent Note: Select all that apply";
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;

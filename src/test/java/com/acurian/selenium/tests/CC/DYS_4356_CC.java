@@ -8,21 +8,13 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.TriglyceridesOrLipidsPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.HaveYouEverSmokedCigarettes_CC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransfer4;
-import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.DY_4356.StatinMedicationsHavePageOLS;
-import com.acurian.selenium.pages.OLS.shared.DyslipidemiaHealthcarePageOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class DYS_4356_CC extends BaseTest {
 
@@ -31,10 +23,10 @@ public class DYS_4356_CC extends BaseTest {
         String phoneNumber = "AUTAMS1DYS";
         String protocol1 = "1002_043";
 //        String[] protocols = {protocol1};
-        String studyName = "a high cholesterol and heart health";
-        String siteName = "AUT_DYS_3140_site ";
+        String studyName = "a high cholesterol and heart health study";
+        String siteName = "AUT_DYS_3140_site";
 //		String debugSiteName = "QSC9004_4356A_AUT_DIA_4356A";
-        String zipCode = "19044";
+        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -65,8 +57,8 @@ public class DYS_4356_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleExpectedDYS, "Title is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleExpectedDYS, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -164,7 +156,7 @@ public class DYS_4356_CC extends BaseTest {
                 .back();
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above ")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
                 .waitForPageLoad()
                 .back();
@@ -326,216 +318,193 @@ public class DYS_4356_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverSmokedCigarettes_CC());
 
-        haveYouEverSmokedCigarettes_cc
+        TransitionStatementCC transitionStatementCC = haveYouEverSmokedCigarettes_cc
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCond)
-                .waitForPageLoad()
+                .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoadDYS()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("QS5211", protocol1)
+                .checkProtocolsEqualsForQNumber("Q0014298-QS5211-STUDYQUES", protocol1)
                 .back();
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = haveYouEverSmokedCigarettes_ols
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = haveYouEverSmokedCigarettes_cc
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I currently smoke")
-                .clickNextButton(new WeightLossSurgeryPageOLS());
+                .clickNextButton(new WeightLossSurgeryPageCC());
 
-        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
+        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new ProcedureForWeightLossPageOLS());
+                .clickNextButton(new ProcedureForWeightLossPageCC());
 
-        procedureForWeightLossPageOLS
+        procedureForWeightLossPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadDYS()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0005313-QS5233-STUDYQUES", protocol1)
                 .back();
-        procedureForWeightLossPageOLS
+        procedureForWeightLossPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadDYS()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0005313-QS5233-STUDYQUES", protocol1)
                 .back();
-        procedureForWeightLossPageOLS
+        procedureForWeightLossPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadDYS()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0005313-QS5233-STUDYQUES", protocol1)
                 .back();
-        procedureForWeightLossPageOLS
+        procedureForWeightLossPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 years ago")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadDYS()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0005313-QS5233-STUDYQUES", protocol1)
                 .back();
-        procedureForWeightLossPageOLS
+        procedureForWeightLossPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("More than 2 years ago")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadDYS()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0005313-QS5233-STUDYQUES", protocol1)
                 .back();
-        procedureForWeightLossPageOLS
+        procedureForWeightLossPageCC
                 .waitForPageLoad()
                 .back();
 
-        weightLossSurgeryPageOLS
+        weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickNextButton(transitionStatementCC);
+
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+                .waitForPageLoadDYS()
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer", "Kidney disease", "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new OtherThanSkinCancerPageCC());
 
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = otherThanSkinCancerPageOLS
+        KidneyProblemsPage kidneyProblemsPage = otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+                .clickNextButton(new KidneyProblemsPage());
+        kidneyProblemsPage
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1)
                 .back();
-        otherThanSkinCancerPageOLS
+        otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
-                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
+                .clickNextButton(kidneyProblemsPage);
 
-        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+        whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1)
                 .back();
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+        kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
+                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1)
                 .back();
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+        kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
+                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
 
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", protocol1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1)
                 .back();
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
-        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        approximateHeightPageOLS
+                .clickNextButton(new ApproximateHeightPageCC());
+        approximateHeightPageCC
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
                 .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageOLS)
+                .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
                 .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageOLS)
+                .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
                 .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(approximateHeightPageOLS)
+                .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
                 .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(approximateHeightPageOLS);
+                .clickNextButton(approximateHeightPageCC);
 
-        approximateHeightPageOLS
+        approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
+                .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
+                .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .clickOnAnswer(siteName)
+                .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                .waitForPageLoadSyn()
+                .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

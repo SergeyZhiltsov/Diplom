@@ -25,12 +25,12 @@ public class DateOfBirthPageCC extends MainPageCC{
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
     
-    public final String titleExpectedDYS = "If you qualify and participate in a cholesterol or heart health study, you may receive:\n" +
-    		"Study medication or placebo, at no-cost to you\n" +
-    		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-    		"And depending on the study, compensation of up to $500 for time and travel, for qualified participants who complete study related visits\n" +
-    		"\n" +
-    		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    public final String titleExpectedDYS = "If you qualify and participate in a high cholesterol and heart health study, you may receive:\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $500 for time and travel, for qualified participants who complete study related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
     
     public final String titleExpectedDiabetes_4356 = "If you qualify and participate in a study for diabetics, you may receive:\n" +
@@ -190,6 +190,9 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     @FindBy(xpath = "//div[@class='subquestion']//div[@class='show-in-cc']")
     WebElement questionText;
+
+    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
+    WebElement questionText2Ver;
     
     @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
     WebElement questionTextAKC;
@@ -199,6 +202,9 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
+
+    @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
+    WebElement titleText2Ver;
     
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText1;
@@ -241,6 +247,12 @@ public class DateOfBirthPageCC extends MainPageCC{
     }
 
     @Step
+    public DateOfBirthPageCC waitForPageLoad2Ver() {
+        waitForPageLoadMain(questionText2Ver, titleExpected);
+        return this;
+    }
+
+    @Step
     public DateOfBirthPageCC waitForPageGHLoad() {
         waitForPageLoadMain(questionTextGH,titleExpected);
         return this;
@@ -260,6 +272,11 @@ public class DateOfBirthPageCC extends MainPageCC{
     @Step
     public String getTitleText() {
         return getText(titleText);
+    }
+
+    @Step
+    public String getTitleText2Ver() {
+        return getText(titleText2Ver);
     }
 
     //GH methods

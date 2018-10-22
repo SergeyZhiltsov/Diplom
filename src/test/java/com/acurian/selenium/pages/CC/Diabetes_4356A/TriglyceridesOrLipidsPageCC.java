@@ -12,7 +12,7 @@ import java.util.List;
 public class TriglyceridesOrLipidsPageCC extends MainPageCC{
 
     public final String titleExpected = "Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?\n" +
-            "A common example of this type of medicine is called a \"statin,\" such as atorvastatin (Lipitor) or simvastatin (Zocor). Other types of medication may be prescribed, too.";
+            "This may include statins like Lipitor or Zocor, injectable drugs like Praluent or Repatha, or other options such as niacin, fibrates, Prevalite, or Zetia.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

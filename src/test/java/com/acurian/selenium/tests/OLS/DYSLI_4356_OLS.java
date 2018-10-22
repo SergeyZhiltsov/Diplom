@@ -37,9 +37,8 @@ public class DYSLI_4356_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(), dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDYExpected, "Title is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText2Ver(), dateOfBirthPageOLS.titleDYExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091940")
                 .clickNextButton(new ZipCodePageOLS());
@@ -134,7 +133,7 @@ public class DYSLI_4356_OLS extends BaseTest {
                 .back();
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above ")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
                 .waitForPageLoad()
                 .back();
@@ -320,7 +319,7 @@ public class DYSLI_4356_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .checkProtocolsEqualsForQNumber("QS5233", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -328,7 +327,7 @@ public class DYSLI_4356_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .checkProtocolsEqualsForQNumber("QS5233", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -336,7 +335,7 @@ public class DYSLI_4356_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .checkProtocolsEqualsForQNumber("QS5233", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -344,7 +343,7 @@ public class DYSLI_4356_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .checkProtocolsEqualsForQNumber("QS5233", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -352,7 +351,7 @@ public class DYSLI_4356_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber(" QS5233", protocol1)
+                .checkProtocolsEqualsForQNumber("QS5233", protocol1)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
