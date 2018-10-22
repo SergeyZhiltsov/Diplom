@@ -74,6 +74,7 @@ public class DIA_4356A_CC extends BaseTest{
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
+        
 
         dateOfBirthPageCC
                 .waitForPageLoad();
@@ -83,18 +84,21 @@ public class DIA_4356A_CC extends BaseTest{
                 .setDay("9")
                 .setYear("1980")
                 .clickNextButton(new ZipCodePageCC());
+        
 
         zipCodePageCC
                 .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
                 .typeZipCode("19044")
                 .clickNextButton(new GenderPageCC());
+        
 
         genderPageCC
                 .waitForPageLoad();
         DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
+        
 
         DebugPageCC debugPageCC = new DebugPageCC();
 
@@ -102,62 +106,83 @@ public class DIA_4356A_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
+        
 
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
+        
 
         UseDietAndExercisePageCC useDietAndExercisePageCC = withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(new UseDietAndExercisePageCC());
+        
 
         CurrentlyUseMetforminOrInsulinPageCC currentlyUseMetforminOrInsulinPageCC = useDietAndExercisePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new CurrentlyUseMetforminOrInsulinPageCC());
-
+        
+        
+        //----Q6--Do you currently use metformin or insulin or any other medication prescribed by your doctor to treat your diabetes?
         AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
                 .clickNextButton(new AnyPrescribedMedicationPage());
-
+        
+        
+        //------Q7-Have you taken any prescribed medication for your diabetes within the past 3 months?
         NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = anyPrescribedMedicationPage
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new NoOfAlcoholicDrinksCC());
-
+        
+        
+        //------Q15: About how many alcoholic drinks do you have in a typical week?
         FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .setDrinks("4")
                 .clickNextButton(new FollowingLiverRelatedConditionCC());
+        
 
+        //--------Q16 - Has a healthcare professional ever diagnosed you with any of the following liver-related conditions?
         FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new FollowingToLoseWeightPageCC());
+        
 
+        //--------Q17:  Are you currently using any of the following to lose weight?
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageCC());
+        
 
+        //-----------Q18: Have you ever had any of the following types of bariatric or weight loss surgery?
         PoundsOrMorePageCC poundsOrMorePageCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new PoundsOrMorePageCC());
+        
 
+        //-----------Q20:  Have you lost or gained 15 pounds or more in the past 3 months?
         TransitionStatementCC transitionStatementCC  = poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
+        
 
+        //------------- Transition Statement-----------------
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoad("diabetes")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 
+        
+        //********************GENERAL HEALTH Questions -----------------
         DyslipidemiaHealthcarePageCC dyslipidemiaHealthcarePageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -170,6 +195,7 @@ public class DIA_4356A_CC extends BaseTest{
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .clickNextButton(new DyslipidemiaHealthcarePageCC());
+        
 
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = dyslipidemiaHealthcarePageCC
                 .waitForPageLoad()
@@ -184,6 +210,7 @@ public class DIA_4356A_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure")
                 .clickNextButton(new TriglyceridesOrLipidsPageCC());
+        
 
         triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
@@ -198,6 +225,7 @@ public class DIA_4356A_CC extends BaseTest{
                 .clickOnAnswer("Unsure")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
 
+        
         HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -212,6 +240,7 @@ public class DIA_4356A_CC extends BaseTest{
                         "TIA or \"mini-stroke\"",
                         "Angina (heart-related chest pain) that required an overnight hospital stay")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
+        
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
@@ -237,11 +266,13 @@ public class DIA_4356A_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"1 - 3 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC);
+        
 
         HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+        
 
         IdentificationPageCC identificationPageCC = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
@@ -254,6 +285,7 @@ public class DIA_4356A_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("Angioplasty")
                 .clickNextButton(new WhenWasYourMostRecentHeartProcedureCC());
+        
 
         whenWasYourMostRecentHeartProcedureCC
                 .waitForPageLoad()
@@ -281,104 +313,5 @@ public class DIA_4356A_CC extends BaseTest{
                 .pidFromDbToLog(env);
 		   		//.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
         		//.getAnomalyDbToLog(env); //Not applicable for Call center
-
-
-      /*//---------------------------------------OLD GENERAL HEALTH------------------------------------------------------ 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouUndergoneAnyPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC())
-                .clickNextButton(new CongestiveHeartFailurePageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new AffectingYourMetabolismPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ConditionsRelatedToYourDiabetesPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingNeurologicalConditions())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new AffectYourLungsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingDigestiveConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new BoneOrJointConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new SleepRelatedConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingSkinConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingViralConditionsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingMentalHealthPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingWomensHealthPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new OtherThanSkinCancerPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new SmokedCigarettesPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I never smoked")
-                .clickNextButton(new HistoryOfDrugPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ApproximateHeightPageCC())
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new LetMeSeePageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ChildrenUnderPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                //----------PEDIATRIC HEALTH Questions----------
-                //.clickNextButton(new HouseholdHavePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("None of the above")
-                //.clickNextButton(new TheStudySitePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Public transportation")
-                //.clickNextButton(new WhatMedicalCoveragePageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("No, I have no coverage")
-                //.clickNextButton(new EthnicBackgroundPageCC())
-                //.waitForPageLoad()
-                //.clickOnAnswers("Prefer not to answer")
-         //----------Resume GENERAL HEALTH Questions----------
-                .clickNextButton(new IdentificationPageCC())
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a Diabetes study")
-                .getPID()
-                .clickOnAnswer(siteName)
-                .clickNextButton(new RadiantWarmTransfer1())
-                //Warm Transfer Questions ----- 
-                .waitForPageLoad()
-                .clickOnAnswer("[patient agrees to be transferred]")
-                .clickNextButton(new RadiantWarmTransfer2())
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new RadiantWarmTransfer3())
-                .waitForPageLoad()
-                .clickNextButton(new RadiantWarmTransfer4())
-                .waitForPageLoad()
-                .clickOnAnswer("Transferred for Scheduling")
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env);*/
     }
 }

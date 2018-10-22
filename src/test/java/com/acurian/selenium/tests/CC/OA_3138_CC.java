@@ -16,9 +16,9 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class OA_3138_CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("OA_3138_OLS test CC")
-    public void oa_3138_cc(final String username, final String password) {
+    public void OA_3138_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
         String protocol1 = "R475_PN_1523";
         String studyName = "osteoarthritis";
@@ -99,15 +99,6 @@ public class OA_3138_CC extends BaseTest {
                 .clickOnAnswers("Left Hip")
                 .clickNextButton(new AnyTypeOfMedicationForYourArthritisCC());
        
-      /* anyTypeOfMedicationForYourArthritisCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("1 - 2 days per week or less")
-    		   .clickNextButton(new TransitionStatementCC());
-       
-       debugPageCC.openDebugWindow();
-       Assert.assertEquals(debugPageCC.getProtocol(), "R475_PN_1523", "Protocol not displayed");
-       debugPageCC.closeDebugWindow();       
-       transitionStatementCC.back();*/
 
         NSAIDMedicationsForArthritisPainCC nSAIDMedicationsForArthritisPainCC = anyTypeOfMedicationForYourArthritisCC
                 .waitForPageLoad()
@@ -118,10 +109,8 @@ public class OA_3138_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TransitionStatementCC());
-
         debugPageCC.checkProtocolsEquals("The following medications are called NSAIDs. They may be available over-the-counter or with a prescr...", protocol1);
         debugPageCC.back();
-
         AreYouCurrentlyTakingCC areYouCurrentlyTakingCC = nSAIDMedicationsForArthritisPainCC
                 .waitForPageLoad()
                 .clickOnAnswers("Aspirin (Anacin, Ascriptin, Bayer, Bufferin, Ecotrin, Excedrin)")
@@ -150,22 +139,18 @@ public class OA_3138_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0006674-QS1323-STUDYQUES", protocol1)
                 .back();
-
-//        HaveYouEverTakenPrescriptionPainCC haveYouEverTakenPrescriptionPainCC1 = medicationsContainingAcetaminophenCC
-//                .waitForPageLoad()
-//                .clickOnAnswer("Yes, I have taken a medication containing acetaminophen for my arthritis pain")
-//                .clickNextButton(new HaveYouEverTakenPrescriptionPainCC());
-
         MarijuanaOrCannabisCC marijuanaOrCannabisCC = haveYouEverTakenPrescriptionPainCC
                 .waitForPageLoad()
                 .clickOnAnswers("Codeine")
                 .clickOnAnswers("Tylenol #3 or Tylenol #4 (acetaminophen with codeine)")
                 .clickNextButton(new MarijuanaOrCannabisCC());
+        
 
         LongTermSteroidPrescriptionCC longTermSteroidPrescriptionCC = marijuanaOrCannabisCC
                 .waitForPageLoad()
                 .clickOnAnswers("No")
                 .clickNextButton(new LongTermSteroidPrescriptionCC());
+        
 
         JointReplacementCC jointReplacementCC = longTermSteroidPrescriptionCC
                 .waitForPageLoad()
@@ -212,13 +197,6 @@ public class OA_3138_CC extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC())
                 //----------ChildrenUnderTheAge Page--------------------
                 .waitForPageLoad()
-//               .clickNextButton(new ChildrenUnderPageCC())
-//               .waitForPageLoad()
-//               .clickOnAnswer("Yes")
-//               //----------PEDIATRIC HEALTH Questions----------
-//               .clickNextButton(new HouseholdHavePageCC())
-//               .waitForPageLoad()
-//               .clickOnAnswers("None of the above")
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
