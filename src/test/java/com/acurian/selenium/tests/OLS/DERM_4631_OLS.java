@@ -56,7 +56,7 @@ public class DERM_4631_OLS extends BaseTest{
         
         AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
-        		.setDate("09092000")
+        		.setDate("09092002")
                 .clickNextButton(new AgeUnqualifiedClose_OLS());
         ageUnqualifiedClose_OLS
         	.waitForPageLoad();
