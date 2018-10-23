@@ -26,7 +26,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class AKC_4691_CC_NoPIIemail extends BaseTest{
 	
 	
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)  
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)  
     @TestCaseId("00004")
     @Description("Akcea_4691 for CC")
     public void akc_4691_CC_NoPIIemail(final String username, final String password) {

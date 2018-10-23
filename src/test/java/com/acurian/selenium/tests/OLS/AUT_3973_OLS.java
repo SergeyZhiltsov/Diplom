@@ -340,7 +340,7 @@ public class AUT_3973_OLS extends BaseTest {
 
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad()
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
