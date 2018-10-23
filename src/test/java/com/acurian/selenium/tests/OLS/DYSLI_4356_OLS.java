@@ -23,7 +23,7 @@ public class DYSLI_4356_OLS extends BaseTest {
 
     @Test(enabled = true)
     @Description("Dyslipidemia 3140")
-    public void dys_4356_ols() {
+    public void DYS_4356_ols() {
         String phoneNumber = "AUTAMS1DYS";
         String protocol1 = "1002_043";
 //        String[] protocols = {protocol1};
