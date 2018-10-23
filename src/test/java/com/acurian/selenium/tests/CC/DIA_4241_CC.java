@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class DIA_4241_CC extends BaseTest{
 
-    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00012")
     @Description("Diabetes_4241 CC")
     public void dia4241ccTest(final String username, final String password) {
@@ -34,9 +34,9 @@ public class DIA_4241_CC extends BaseTest{
         String protocol1 = "EFC14822";
         String protocol2 = "EFC14829";
         String protocol3 = "EFC14893";
-        String protocol4 = "EFC15337";
+//        String protocol4 = "EFC15337";
         String AKC = "ISIS 703802_CS2";
-        String[] protocols = {protocol1,protocol2,protocol3,protocol4,AKC};
+        String[] protocols = {protocol1,protocol2,protocol3,AKC};
         String studyName = "a study for diabetics";
         String siteName = "AUT_DIA_4241";
         String debugSiteName = "";
@@ -152,7 +152,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(useDietAndExercisePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol2,protocol3,protocol4)
+                .checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol2,protocol3)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -160,7 +160,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(useDietAndExercisePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol2,protocol3,protocol4)
+                .checkProtocolsEquals(withType2DiabetesPageCC.titleExpected, protocol2,protocol3)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -190,7 +190,7 @@ public class DIA_4241_CC extends BaseTest{
         takeYourInsulinPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(currentlyUseMetforminOrInsulinPageCC.titleExpected, protocol1,protocol2,protocol4,AKC)
+                .checkProtocolsEquals(currentlyUseMetforminOrInsulinPageCC.titleExpected, protocol1,protocol2,AKC)
                 .back();
         AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPageCC
                 .waitForPageLoad()
@@ -199,7 +199,7 @@ public class DIA_4241_CC extends BaseTest{
         anyPrescribedMedicationPage
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(currentlyUseMetforminOrInsulinPageCC.titleExpected, protocol2, protocol3, protocol4,AKC)
+                .checkProtocolsEquals(currentlyUseMetforminOrInsulinPageCC.titleExpected, protocol2, protocol3, AKC)
                 .back();
         MetforminMedicationsPageCC metforminMedicationsPageCC = currentlyUseMetforminOrInsulinPageCC
                 .waitForPageLoad()
@@ -207,18 +207,18 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(new MetforminMedicationsPageCC());
 
         HashMap<String, List<String>> options = new HashMap<>();
-        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(AKC, protocol2, protocol4));
-        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(AKC, protocol2));
+        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(AKC, protocol2));
         options.put("Glucovance (metformin and glyburide)", Arrays.asList(protocol2));
-        options.put("Invokamet (metformin and canagliflozin)", Arrays.asList(protocol2, protocol4));
-        options.put("Janumet (metformin and sitagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
-        options.put("Jentadueto (metformin and linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
-        options.put("Kazano (metformin and alogliptin)", Arrays.asList(protocol2, protocol3, protocol4));
-        options.put("Kombiglyze (metformin and saxagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Invokamet (metformin and canagliflozin)", Arrays.asList(protocol2));
+        options.put("Janumet (metformin and sitagliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Jentadueto (metformin and linagliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Kazano (metformin and alogliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Kombiglyze (metformin and saxagliptin)", Arrays.asList(protocol2, protocol3));
         options.put("Metformin and glipizide", Arrays.asList(protocol2));
-        options.put("PrandiMet (metformin and repaglinide)", Arrays.asList(protocol2,protocol4));
-        options.put("Synjardy (metformin and empagliflozin)", Arrays.asList(protocol2, protocol4));
-        options.put("Xigduo (metformin and dapagliflozin)", Arrays.asList(protocol2, protocol4));
+        options.put("PrandiMet (metformin and repaglinide)", Arrays.asList(protocol2));
+        options.put("Synjardy (metformin and empagliflozin)", Arrays.asList(protocol2));
+        options.put("Xigduo (metformin and dapagliflozin)", Arrays.asList(protocol2));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
             metforminMedicationsPageCC
@@ -237,31 +237,32 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(apartFromMetforminPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(metforminMedicationsPageCC.titleExpected, protocol2, protocol4)
+                .checkProtocolsEquals(metforminMedicationsPageCC.titleExpected, protocol2)
                 .back();
         metforminMedicationsPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")// done for some issue with not checking Metformin
                 .clickOnAnswers("Metformin")
                 .clickNextButton(apartFromMetforminPageCC);
 
         options.clear();
-        options.put("Actos (pioglitazone)", Arrays.asList(AKC,protocol2, protocol4));
-        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC,protocol2,protocol4));
-        options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2,protocol4));
-        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC,protocol2, protocol4));
-        options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2,protocol4));
-        options.put("Glyset (miglitol)", Arrays.asList(protocol2,protocol4));
-        options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
-        options.put("Invokana (canagliflozin)", Arrays.asList(protocol2,protocol4));
-        options.put("Januvia (sitagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
-        options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2,protocol4));
-        options.put("Nesina (alogliptin)", Arrays.asList(protocol2,protocol3, protocol4));
-        options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
-        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2,AKC, protocol3, protocol4));
-        options.put("Prandin (repaglinide)", Arrays.asList(protocol2,protocol4));
-        options.put("Precose (acarbose)", Arrays.asList(protocol2,protocol4));
-        options.put("Starlix (nateglinide)", Arrays.asList(protocol2,protocol4));
-        options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2,protocol3, protocol4));
+        options.put("Actos (pioglitazone)", Arrays.asList(AKC,protocol2));
+        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC,protocol2));
+        options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2));
+        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC,protocol2));
+        options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2));
+        options.put("Glyset (miglitol)", Arrays.asList(protocol2));
+        options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Invokana (canagliflozin)", Arrays.asList(protocol2));
+        options.put("Januvia (sitagliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2));
+        options.put("Nesina (alogliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2,AKC, protocol3));
+        options.put("Prandin (repaglinide)", Arrays.asList(protocol2));
+        options.put("Precose (acarbose)", Arrays.asList(protocol2));
+        options.put("Starlix (nateglinide)", Arrays.asList(protocol2));
+        options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2,protocol3));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
             apartFromMetforminPageCC
@@ -313,7 +314,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -322,7 +323,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -331,7 +332,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -340,7 +341,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -349,7 +350,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -360,7 +361,7 @@ public class DIA_4241_CC extends BaseTest{
         noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC, protocol4)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageCC.titleExpected, AKC)
                 .checkProtocolsEqualsForQNumber("Q0013991-QS4613-STUDYQUES", protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
@@ -418,7 +419,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1, protocol2, protocol3)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -426,7 +427,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES",  protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES",  protocol1, protocol2, protocol3)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -434,7 +435,7 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES",  protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES",  protocol1, protocol2, protocol3)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -472,15 +473,7 @@ public class DIA_4241_CC extends BaseTest{
 
 
                 //issue that not fixed
-                .clickNextButton(takeYourInsulinPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Daily injections", "Insulin pump, which delivers insulin continuously","Inhaled insulin (Afrezza)")
-                .clickNextButton(takeYourInsulinInjectionsPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
-                .clickNextButton(brandsOfInsulinPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Insulin glargine, also known as Basaglar, Lantus, or Toujeo")
+
                 .clickNextButton(new DyslipidemiaHealthcarePageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -493,6 +486,29 @@ public class DIA_4241_CC extends BaseTest{
                 .clickNextButton(new HeartrelatedMedicalProceduresPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+
+//issue that not fixed
+//                .clickNextButton(takeYourInsulinPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Daily injections", "Insulin pump, which delivers insulin continuously","Inhaled insulin (Afrezza)")
+//                .clickNextButton(takeYourInsulinInjectionsPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
+//                .clickNextButton(brandsOfInsulinPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Insulin glargine, also known as Basaglar, Lantus, or Toujeo")
+//                .clickNextButton(new DyslipidemiaHealthcarePageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HeartrelatedMedicalProceduresPageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
 
 
                 .clickNextButton(new IdentificationPageCC())

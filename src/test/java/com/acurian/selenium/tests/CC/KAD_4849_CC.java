@@ -99,11 +99,11 @@ public class KAD_4849_CC extends BaseTest {
 
         
      //------------Q2:  hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC----
-        LetMeSeePageCC letMeSeePageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
+        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new LetMeSeePageCC());
-        letMeSeePageCC.waitForPageLoadNew();
+                .clickNextButton(new NonQRtransitionPageCC());
+        nonQRtransitionPageCC.waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", protocol1);
         debugPageCC.back();
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_CC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
@@ -339,7 +339,7 @@ didYouReceiveAnyTherapiesPastYear_CC
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        approximateHeightPageCC
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC());

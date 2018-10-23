@@ -41,6 +41,10 @@ public class TransitionStatementCC extends MainPageCC {
     private final String titleExpectedMDD = "Thank you for answering the questions about your %s.\n" +
     		"I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
     		"Agent note: If \"no\" to all items in a question, select \"None of the above\"";
+
+    private final String titleExpectedDYS = "Thank you for answering these specific health questions.\n" +
+            "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
+            "Agent Note: If \"no\" to all items in a question, select \"None of the above\"";
     		
     
     
@@ -55,7 +59,13 @@ public class TransitionStatementCC extends MainPageCC {
     public TransitionStatementCC waitForPageLoad(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+
+    @Step
+    public TransitionStatementCC waitForPageLoadDYS() {
+        waitForPageLoadMain(titleText, titleExpectedDYS);
         return this;
     }
     

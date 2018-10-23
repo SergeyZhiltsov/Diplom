@@ -46,7 +46,6 @@ public class DIA_4356A_OLS extends BaseTest {
         String studyName = "a study for diabetics";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_DIA_4356A";
-        //    String env = "STG";
         String zipCode = "19044";
         String facility_Code_STG = "625268";
         String facility_Code_PRD = "625640";

@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.DY_4356;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WeightLossSurgeryPageOLS extends MainPageOLS{
+public class WhileTakingStatinPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever had any of the following types of bariatric or weight loss surgery?\n" +
+    public final String titleExpected = "Have you ever experienced any of the following while taking a statin medication?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
@@ -20,18 +20,18 @@ public class WeightLossSurgeryPageOLS extends MainPageOLS{
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public WeightLossSurgeryPageOLS() {
+    public WhileTakingStatinPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WeightLossSurgeryPageOLS waitForPageLoad() {
+    public WhileTakingStatinPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WeightLossSurgeryPageOLS clickOnAnswers(String ...answerText) {
+    public WhileTakingStatinPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import java.util.Arrays;
 import java.util.List;
 
+import com.acurian.selenium.pages.CC.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -23,17 +24,6 @@ import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.DidYouReceiveAnyTherapiesPastYear_CC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverTreatedYourEczema_CC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
-import com.acurian.selenium.pages.CC.shared.WhichofthefollowingMedicationsTherapies_CC;
 import com.acurian.selenium.utils.DataProviderPool;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
@@ -115,11 +105,11 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
-        LetMeSeePageCC letMeSeePageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
+        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new LetMeSeePageCC());
-        letMeSeePageCC.waitForPageLoadNew();
+                .clickNextButton(new NonQRtransitionPageCC());
+        nonQRtransitionPageCC.waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", protocol1);
         debugPageCC.back();
 
@@ -381,7 +371,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        approximateHeightPageCC
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC());
@@ -404,8 +394,5 @@ public class KAD_4631_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-
     }
-
 }
