@@ -19,11 +19,11 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 
-public class DYSLI_4356_OLS extends BaseTest {
+public class DYS_3140_OLS extends BaseTest {
 
     @Test(enabled = true)
     @Description("Dyslipidemia 3140")
-    public void DYS_4356_ols() {
+    public void dys_3140_ols() {
         String phoneNumber = "AUTAMS1DYS";
         String protocol1 = "1002_043";
 //        String[] protocols = {protocol1};
