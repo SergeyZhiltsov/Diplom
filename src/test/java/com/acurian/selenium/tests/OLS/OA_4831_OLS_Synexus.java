@@ -249,7 +249,7 @@ public class OA_4831_OLS_Synexus extends BaseTest {
                 .threadSleep(2000);
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
-                //.getRadiantDbToLog(env)
+                .getRadiantDbToLog(env)
                 .getAnomalyDbToLog(env);
     }
 }

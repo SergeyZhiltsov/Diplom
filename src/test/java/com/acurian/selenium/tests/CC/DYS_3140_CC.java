@@ -15,11 +15,13 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Description;
 
-public class DYS_4356_CC extends BaseTest {
+public class DYS_3140_CC extends BaseTest {
 
+    @Description("Dyslipidemia 3140")
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
-    public void dys_4356_CC(final String username, final String password) {
+    public void dys_3140_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1DYS";
         String protocol1 = "1002_043";
 //        String[] protocols = {protocol1};
