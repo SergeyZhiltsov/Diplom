@@ -20,6 +20,11 @@ public class TestListener extends TestListenerAdapter{
         attachScreenshot();
     }
 
+    @Override
+    public void onTestStart(ITestResult result) {
+        System.out.println("Test started on - "+result.getName());
+        super.onTestStart(result);
+    }
 
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] attachScreenshot() {
