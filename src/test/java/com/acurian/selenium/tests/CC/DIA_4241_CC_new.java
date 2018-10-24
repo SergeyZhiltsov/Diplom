@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class DIA_4241_CC_new extends BaseTest{
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00012")
     @Description("Diabetes_4241 CC")
     public void dia4241ccNewTest(final String username, final String password) {
