@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 public class OA_4827_OLS extends BaseTest {
 
     @Test(enabled = true)
-    public void OA_3138_OLS_Script() {
+    public void OA_4827_OLS_Script() {
         String phoneNumberOA = "AUTAMS1OA1";
         String zipCode = "19044";
         String studyName = "an osteoarthritis";
@@ -56,7 +56,7 @@ public class OA_4827_OLS extends BaseTest {
         		.waitForPageLoad();
         		DebugPageOLS debugPageOLS = new DebugPageOLS();
         		debugPageOLS
-        		.checkProtocolsContainsForQNumber("QS4502", protocol1)
+        		//.checkProtocolsContainsForQNumber("QS4502", protocol1)
         		.back();
         doYouSufferFromArthritis
         		.waitForPageLoad();
