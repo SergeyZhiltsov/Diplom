@@ -283,41 +283,19 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0007024-QS4608-STUDYQUES", protocol1)
                 .back();
-        InsulinForYourDiabetesPageCC insulinForYourDiabetesPageCC = apartFromMetforminPageCC
+        apartFromMetforminPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tradjenta (linagliptin)")
                 .clickNextButton(new InsulinForYourDiabetesPageCC());
 
 
-        //--------Q10:  Do you currently take any of the following types of insulin for your diabetes?--
-        insulinForYourDiabetesPageCC
+
+        takeYourInsulinPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Afrezza, which is inhaled insulin",
-                        "Apidra (insulin glulisine)",
-                        "Humalog",
-                        "Humulin",
-                        "Lantus or Toujeo (insulin glargine)",
-                        "Levemir (insulin detemir)",
-                        "Novolin",
-                        "Novolog")
-                .clickNextButton(new SubquestionsHumalogPageCC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0007026-QS4609-STUDYQUES", protocol1)
-                .back();
-        insulinForYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("I use insulin, but I am not sure what kind")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageCC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0007026-QS4609-STUDYQUES", protocol1)
-                .back();
-        insulinForYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new InjectableMedicationsForYourDiabetesPageCC());
+                .clickOnAnswers("")
+                .clickNextButton(new SubquestionsHumalogPageCC());
+
 
 
         //-------Q12:  Do you currently take any of the following injectable medications for your diabetes?  --------
