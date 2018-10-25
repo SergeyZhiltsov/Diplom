@@ -8,6 +8,7 @@ import com.acurian.selenium.utils.DriverFactory;
 import com.acurian.selenium.utils.Properties;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -50,6 +51,7 @@ public abstract class BaseTest {
         }
 //        System.setProperty(ESCAPE_PROPERTY, "false");
         DRIVER.set(driver);
+        System.out.println("Browser version "+((RemoteWebDriver)(((EventFiringWebDriver)getDriver()).getWrappedDriver())).getCapabilities().getVersion());
     }
 
     @AfterClass
