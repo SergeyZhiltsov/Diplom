@@ -87,6 +87,14 @@ public class DebugPageCC extends MainPageCC{
         return this;
     }
 
+    @Step
+    public DebugPageCC checkProtocolsContains(String previousPageTitle, String...expectedProtocols){
+        List<String> actualProtocols =  Arrays.asList(getProtocolsForQuestion(previousPageTitle));
+        Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
+                + Arrays.toString(expectedProtocols)+" are not included in actual "+actualProtocols.toString());
+        return this;
+    }
+
     private String[] getProtocolsForQuestionNumber(String questionNumber){
         openDebugWindow();
         waitForAnimation();
