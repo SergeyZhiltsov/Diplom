@@ -1,11 +1,7 @@
 package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.LastTimeYouTookPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -14,14 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.List;
-
 public class HS1PageOLS extends MainPageOLS{
-
-    public final String titleExpected = "When was the last time you took medication for your diabetes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
