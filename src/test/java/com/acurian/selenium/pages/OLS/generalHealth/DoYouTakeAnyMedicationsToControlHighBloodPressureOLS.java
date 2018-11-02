@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DoYouTakeAnyMedicationsToControlHighBloodPressureOLS extends MainPageOLS{
 
-    public final String titleExpected = "Do you take any medications to control your high blood pressure or hypertension?";
+    public final String titleExpected = "Do you take any medications to control high blood pressure or hypertension?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;

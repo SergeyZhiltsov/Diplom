@@ -21,7 +21,7 @@ import java.util.List;
 public class LowT_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @Description("MDD_3159_CC")
+    @Description("LowT_CC")
     public void lowT(final String username, final String password) {
         String phoneNumber = "AUTAMSLOWT";
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");

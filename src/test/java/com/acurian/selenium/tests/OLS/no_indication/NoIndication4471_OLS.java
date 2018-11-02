@@ -62,8 +62,6 @@ public class NoIndication4471_OLS extends BaseTest {
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                        "Alzheimer's disease",
-                        "Anemia (low red blood cell count)",
                         "Autism spectrum",
                         "High cholesterol, triglycerides, or lipids",
                         "Lupus")
@@ -94,11 +92,11 @@ public class NoIndication4471_OLS extends BaseTest {
         WhichOfTheFollowingBreathingLungPageOLS whichOfTheFollowingBreathingLungPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)",
+                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)")
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
 
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfTheFollowingBreathingLungPageOLS
@@ -224,7 +222,7 @@ public class NoIndication4471_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)")
+                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
                 .clickNextButton(whichOfTheFollowingBreathingLungPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);

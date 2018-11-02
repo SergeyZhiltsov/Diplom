@@ -218,7 +218,7 @@ public class AUT_3973_OLS extends BaseTest {
 				.waitForPageLoad();				
 		OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 				.waitForPageLoad()
-				.clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
+				.clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
 								"Kidney disease",
 								"Cancer")
 				.clickNextButton(new OtherThanSkinCancerPageOLS());
