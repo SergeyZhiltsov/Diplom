@@ -469,30 +469,28 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                        "Alzheimer's disease",
-                        "Anemia (low red blood cell count)",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
                         "Autism spectrum",
                         "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                        "Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
                         "Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
-                        "Eating disorders (anorexia, bulimia, binge eating disorder)",
+
                         "Headaches (migraine, cluster, tension)",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "High blood pressure or hypertension",
                         "High cholesterol, triglycerides, or lipids",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Lung problems",
+
                         "Lupus",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
-                        "Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                        "Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)",
-                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                        "Women's health issues (endometriosis, uterine fibroids, PCOS, dense breasts)")
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisPage())
                 .waitForPageLoad()
                 .back();

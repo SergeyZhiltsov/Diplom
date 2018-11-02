@@ -89,11 +89,11 @@ public class HTN_4356D_OLS extends BaseTest{
 				.clickOnAnswers("Alzheimer's disease","Cancer","Diabetes (type 1 or type 2)","Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
 				"Headaches (migraine, cluster, tension)","Heart or circulation problems (heart attack, heart failure, stroke)",	"High blood pressure or hypertension",
 				"High cholesterol, triglycerides, or lipids","Kidney disease","Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-				"Lung problems","Lupus","Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
-				"Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-				"Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)",
-				"Sleep problems (insomnia, sleep apnea, narcolepsy)",
-				"Urinary leakage or incontinence","Women's health issues (endometriosis, uterine fibroids, PCOS)")
+				"Lupus","Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+				"Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+				"Skin problems (eczema or atopic dermatitis, psoriasis)",
+
+				"Women's health issues (endometriosis, uterine fibroids, PCOS)")
 				//.clickNextButton(new OtherThanSkinCancerPageOLS());
 				.clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_BreathingOLS());
 		whichOfFollowingHaveYouDiagnosedWith_BreathingOLS

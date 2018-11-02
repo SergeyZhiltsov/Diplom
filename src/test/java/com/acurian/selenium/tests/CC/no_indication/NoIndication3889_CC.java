@@ -82,8 +82,6 @@ public class NoIndication3889_CC extends BaseTest {
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                        "Alzheimer's disease",
-                        "Anemia (low red blood cell count)",
                         "Autism spectrum",
                         "High cholesterol, triglycerides, or lipids",
                         "Lupus")
@@ -109,7 +107,7 @@ public class NoIndication3889_CC extends BaseTest {
                         "Kidney disease",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)")
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageCC());
 
         WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC = otherThanSkinCancerPageCC

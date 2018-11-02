@@ -339,9 +339,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest{
 						haveAnyOfTheFollowingPageOLS
 							.waitForPageLoad()
 							.clickOnAnswers("None of the above")
-						.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());			
-						
-		
+						.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
 
         //----------****************NEW GENERAL HEALTH Questions************************----------     
@@ -350,30 +348,28 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest{
         Assert.assertEquals(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.getTitleText(),haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.titleExpected, "Title is diff");
         WhatKindOfArthritisPage whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
         		.clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-        		"Alzheimer's disease",
-        		"Anemia (low red blood cell count)",
         		"Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
         		"Autism spectrum",
         		"Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-        		"Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)",
+        		"Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
         		"Cancer",
         		"Diabetes (type 1 or type 2)",
         		"Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
-        		"Eating disorders (anorexia, bulimia, binge eating disorder)",
+
         		"Headaches (migraine, cluster, tension)",
         		"Heart or circulation problems (heart attack, heart failure, stroke)",
         		"High blood pressure or hypertension",
         		"High cholesterol, triglycerides, or lipids",
         		"Kidney disease",
         		"Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-        		"Lung problems",
+
         		"Lupus",
-        		"Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
-        		"Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-        		"Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)",
-        		"Sleep problems (insomnia, sleep apnea, narcolepsy)",
+        		"Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+        		"Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+        		"Skin problems (eczema or atopic dermatitis, psoriasis)",
+
         		"Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-        		"Women's health issues (endometriosis, uterine fibroids, PCOS, dense breasts)") 
+        		"Women's health issues (endometriosis, uterine fibroids)")
         		.clickNextButton(new WhatKindOfArthritisPage());
         
         
@@ -401,16 +397,14 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest{
         		.waitForPageLoad();
         Assert.assertEquals(whichOfFollowingHaveYouDiagnosedWithOLS.getTitleText(),whichOfFollowingHaveYouDiagnosedWithOLS.titleExpected, "Title is diff");
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfFollowingHaveYouDiagnosedWithOLS
-        		.clickOnAnswers("Seasonal allergy",
+        		.clickOnAnswers(
         				"Asthma",
         				"Chronic cough",
-        				"Bronchiectasis",
+
         				"Chronic bronchitis",
         				"COPD",
-        				"Cystic fibrosis",
-        				"Emphysema",
-        				"Pulmonary hypertension",
-        				"Pulmonary fibrosis")
+
+        				"Emphysema")
         		.clickNextButton(new OtherThanSkinCancerPageOLS());
         
         
@@ -445,20 +439,20 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest{
 		whichOfFollowingDigestiveConditionPageOLS
 				.waitForPageLoad();
 		Assert.assertEquals(whichOfFollowingDigestiveConditionPageOLS.getTitleText(), whichOfFollowingDigestiveConditionPageOLS.titleExpected, "Title is diff");
-		WhichOfTheFollowingHaveYouBeenDiagnosed_OLS whichOfTheFollowingHaveYouBeenDiagnosed_OLS = whichOfFollowingDigestiveConditionPageOLS
+		WhichTypeOfHeadacheDoYouGetOLS whichTypeOfHeadacheDoYouGetOLS = whichOfFollowingDigestiveConditionPageOLS
 				.clickOnAnswers("IBS, or irritable bowel syndrome")
-				.clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosed_OLS());
+				.clickNextButton(new WhichTypeOfHeadacheDoYouGetOLS());
         
         
 		//----------Q9 - Which of the following have you been diagnosed with? (eating disorder)--------------------
-        whichOfTheFollowingHaveYouBeenDiagnosed_OLS
-        		.waitForPageLoad();
-        Assert.assertEquals(whichOfTheFollowingHaveYouBeenDiagnosed_OLS.getTitleText(),whichOfTheFollowingHaveYouBeenDiagnosed_OLS.titleExpected, "Title is diff");
-        WhichTypeOfHeadacheDoYouGetOLS whichTypeOfHeadacheDoYouGetOLS = whichOfTheFollowingHaveYouBeenDiagnosed_OLS
-        		.clickOnAnswers("Anorexia",
-        				"Bulimia",
-        				"Binge eating disorder")
-        		.clickNextButton(new WhichTypeOfHeadacheDoYouGetOLS());        
+//        whichOfTheFollowingHaveYouBeenDiagnosed_OLS
+//        		.waitForPageLoad();
+//        Assert.assertEquals(whichOfTheFollowingHaveYouBeenDiagnosed_OLS.getTitleText(),whichOfTheFollowingHaveYouBeenDiagnosed_OLS.titleExpected, "Title is diff");
+//        WhichTypeOfHeadacheDoYouGetOLS whichTypeOfHeadacheDoYouGetOLS = whichOfTheFollowingHaveYouBeenDiagnosed_OLS
+//        		.clickOnAnswers("Anorexia",
+//        				"Bulimia",
+//        				"Binge eating disorder")
+//        		.clickNextButton(new WhichTypeOfHeadacheDoYouGetOLS());
         
         
 		//----------Q10 - Which type of headache do you typically get? --------------------
@@ -586,21 +580,21 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest{
         whichOfTheFollowingSkinConditionsDoYouSufferOLS
         		.waitForPageLoad();
         Assert.assertEquals(whichOfTheFollowingSkinConditionsDoYouSufferOLS.getTitleText(),whichOfTheFollowingSkinConditionsDoYouSufferOLS.titleExpected, "Title is diff");
-        WhichOfTheFollowingSleepRelatedConditionsDiagnosedOLS whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS = whichOfTheFollowingSkinConditionsDoYouSufferOLS
+		WomenHealthConditions womenHealthConditions = whichOfTheFollowingSkinConditionsDoYouSufferOLS
 		        .clickOnAnswers("None of the above")
-		        .clickNextButton(new WhichOfTheFollowingSleepRelatedConditionsDiagnosedOLS());
+		        .clickNextButton(new WomenHealthConditions());
         
         
         //--------------Q21:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
-        whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
-        		.waitForPageLoad();
-        Assert.assertEquals(whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS.getTitleText(),whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS.titleExpected, "Title is diff");
-        WomenHealthConditions womenHealthConditions = whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
-        		.clickOnAnswers("Narcolepsy", 
-        				"Sleep apnea",
-        				"Insomnia",
-        				"None of the above")
-        		.clickNextButton(new WomenHealthConditions());
+//        whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
+//        		.waitForPageLoad();
+//        Assert.assertEquals(whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS.getTitleText(),whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS.titleExpected, "Title is diff");
+//        WomenHealthConditions womenHealthConditions = whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
+//        		.clickOnAnswers("Narcolepsy",
+//        				"Sleep apnea",
+//        				"Insomnia",
+//        				"None of the above")
+//        		.clickNextButton(new WomenHealthConditions());
         
         
         //--------------Q22:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
@@ -608,7 +602,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest{
         		.waitForPageLoad();
         Assert.assertEquals(womenHealthConditions.getTitleText(),womenHealthConditions.titleExpected, "Title is diff");
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
-        		.clickOnAnswers("Urinary leakage or urinary incontinence")
+        		.clickOnAnswers("Uterine fibroids")
         		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
         
         
@@ -620,8 +614,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest{
         		"Hepatitis B",
         		"Hepatitis C",
         		"HIV or AIDS",
-        		"Neuropathy (nerve damage due to diabetes or another condition)",
-        		"Shingles or herpes zoster infection")
+        		"Neuropathy (nerve damage due to diabetes or another condition)")
         		.clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
         		.waitForPageLoad()

@@ -251,7 +251,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
 				.waitForPageLoad();				
 		OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
 				.waitForPageLoad()
-				.clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
+				.clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
 								"Kidney disease",
 								"Cancer")
 				.clickNextButton(new OtherThanSkinCancerPageCC());
