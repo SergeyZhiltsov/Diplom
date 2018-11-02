@@ -86,24 +86,20 @@ public class DIA_4356A_OLS extends BaseTest {
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageOLS());
 
-        UseDietAndExercisePage useDietAndExercisePage = withType2DiabetesPageOLS
+        TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(new UseDietAndExercisePage());
+                .clickNextButton(new TreatingYourDiabetesPageOLS());
 
-        CurrentlyUseMetforminOrInsulinPage currentlyUseMetforminOrInsulinPage = useDietAndExercisePage
+        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new CurrentlyUseMetforminOrInsulinPage());
+                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
+                .clickNextButton(new LastTimeYouTookPageOLS());
 
-        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPage
-                .waitForPageLoad()
-                .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
-                .clickNextButton(new AnyPrescribedMedicationPage());
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = anyPrescribedMedicationPage
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = lastTimeYouTookPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("2 - 3 months ago")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
@@ -130,62 +126,6 @@ public class DIA_4356A_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-
-//        //---------------------------------------doYouExperienceDPN_OLS-----------------------------------------------------
-//        doYouExperienceDPN_OLS
-//                .waitForPageLoad();
-//        		 WhereDoYouExperienceDiabeticNervePain_OLS whereDoYouExperienceDiabeticNervePain_OLS = doYouExperienceDPN_OLS
-//                 .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
-//                 .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
-//
-//
-//        //---------------------------------------WhereDoYouExperienceDiabeticNervePain_OLS-----------------------------------------------------
-//        whereDoYouExperienceDiabeticNervePain_OLS
-//				.waitForPageLoad();
-//				 StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = whereDoYouExperienceDiabeticNervePain_OLS
-//				.clickOnAnswers("None of the above")
-//				.clickNextButton(new StatinMedicationsOnPageOLS());
-//
-//        //---------------------------------------statinMedicationsOnPageOLS-------------------------------------------------------
-//        statinMedicationsOnPageOLS
-//                .waitForPageLoad();
-//        Assert.assertEquals(statinMedicationsOnPageOLS.getTitleText(),statinMedicationsOnPageOLS.titleExpected, "Title is diff");
-//        DiabeticNephropathyPageOLS diabeticNephropathyPageOLS = statinMedicationsOnPageOLS
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new DiabeticNephropathyPageOLS());
-//
-//        //---------------------------------------diabeticNephropathyPageOLS------------------------------------------------------
-//        diabeticNephropathyPageOLS
-//                .waitForPageLoad();
-//        Assert.assertEquals(diabeticNephropathyPageOLS.getTitleText(),diabeticNephropathyPageOLS.titleExpected, "Title is diff");
-//        ForYourKidneysPageOLS forYourKidneysPageOLS = diabeticNephropathyPageOLS
-//                .clickOnAnswer("No")
-//                .clickNextButton(new ForYourKidneysPageOLS());
-//        forYourKidneysPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS4228", protocol7)
-//                .back();
-//        diabeticNephropathyPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("Yes")
-//                .clickNextButton(new ForYourKidneysPageOLS());
-//
-//        //---------------------------------------forYourKidneysPageOLS------------------------------------------------------
-//        forYourKidneysPageOLS
-//                .waitForPageLoad();
-//        Assert.assertEquals(forYourKidneysPageOLS.getTitleText(),forYourKidneysPageOLS.titleExpected, "Title is diff");
-//
-//        forYourKidneysPageOLS.clickOnAnswer("No")
-//        		.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS())
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                //.checkProtocolsEquals("Do you take medication for high blood pressure or for your kidneys? Some of these medications are ca...", protocol1)
-//                .back();
-//        forYourKidneysPageOLS
-//                .clickOnAnswer("Yes")
-//                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-
 
         DyslipidemiaHealthcarePageOLS dyslipidemiaHealthcarePageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()

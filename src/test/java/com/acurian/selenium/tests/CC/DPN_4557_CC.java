@@ -362,7 +362,7 @@ public class DPN_4557_CC extends BaseTest{
                 		.waitForPageLoad();				
                 DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
 	                	.waitForPageLoad()
-						.clickOnAnswers("Alzheimer's disease","Lupus")
+						.clickOnAnswers("Lupus")
 						.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());		
                 //----DoAnyOftheFollowingAdditionalDiagnosesOLS----------
 				doAnyOftheFollowingAdditionalDiagnosesCC
@@ -380,8 +380,7 @@ public class DPN_4557_CC extends BaseTest{
 				doAnyOftheFollowingAdditionalDiagnosesCC
 						.waitForPageLoad();
 				ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-						.clickOnAnswers("Alzheimer's disease",
-										"Bipolar disorder",
+						.clickOnAnswers("Bipolar disorder",
 										"Cancer in the past 5 years, except skin cancer",
 										"Cirrhosis",
 										"Drug or alcohol abuse within the past year",

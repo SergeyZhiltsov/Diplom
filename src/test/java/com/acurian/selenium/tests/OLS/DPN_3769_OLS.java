@@ -359,7 +359,7 @@ public class DPN_3769_OLS extends BaseTest {
                 .waitForPageLoad();
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Alzheimer's disease", "Lupus")
+                .clickOnAnswers("Lupus")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
         //----DoAnyOftheFollowingAdditionalDiagnosesOLS----------
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -378,8 +378,7 @@ public class DPN_3769_OLS extends BaseTest {
                 .waitForPageLoad();
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Alzheimer's disease",
-                        "Bipolar disorder",
+                .clickOnAnswers("Bipolar disorder",
                         "Cancer in the past 5 years, except skin cancer",
                         "Cirrhosis",
                         "Drug or alcohol abuse within the past year",

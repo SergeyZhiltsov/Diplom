@@ -400,12 +400,77 @@ public class LMG_4686_CC extends BaseTest{
               .clickNextButton(heartrelatedMedicalProceduresPageCC);
        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1);
        debugPageCC.back();
+<<<<<<< HEAD
 
        subquestionExperiencedHeartPageCC
               .waitForPageLoad()
               .clickOnAnswer("4 - 6 months ago")
               .clickNextButton(heartrelatedMedicalProceduresPageCC);
        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1);
+=======
+       howManyDaysCC
+				.waitForPageLoad()
+				.selectDay("2")
+				.clickNextButton(new Past3MonthsCC());
+       
+       AbilityToAttendSchoolOrWorkCC abilityToAttendSchoolOrWorkCC = past3MonthsCC
+    		   .waitForPageLoad()
+    		   .clickOnAnswers("Attend school or work - including completing assignments", "Perform regular household chores such as cleaning, doing yardwork or running errands")
+    		   .clickNextButton(new AbilityToAttendSchoolOrWorkCC());
+       
+       PerformHouseholdChoresCC performHouseholdChoresCC = abilityToAttendSchoolOrWorkCC
+    		   .waitForPageLoad()
+    		   .clickOnAnswer("You have missed school or work due to migraines")
+    		   .clickNextButton(new PerformHouseholdChoresCC());
+       
+       HowMuchOfImpactCC howMuchOfImpactCC = performHouseholdChoresCC
+    		   .waitForPageLoad()
+    		   .clickOnAnswer("You are able to perform your household chores such as cleaning and running errands, but you are significantly less productive due to your migraines")
+    		   .clickNextButton(new HowMuchOfImpactCC());
+       
+       ExperiencingMigraineRightNowCC experiencingMigraineRightNowCC = howMuchOfImpactCC
+    		   .waitForPageLoad()
+    		   .clickOnAnswer("Moderate impact")
+    		   .clickNextButton(new ExperiencingMigraineRightNowCC());
+       
+       MostRecentMigraineEndCC mostRecentMigraineEndCC = experiencingMigraineRightNowCC
+    		   .waitForPageLoad()
+    		   .clickOnAnswer("No")
+    		   .clickNextButton(new MostRecentMigraineEndCC());
+       
+       TransitionStatementCC transitionStatementCC = mostRecentMigraineEndCC
+    		   .waitForPageLoad()
+    		   .clickOnAnswer("2 to 3 days ago")
+    		   .clickNextButton(new TransitionStatementCC());
+       
+       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+    		   .waitForPageLoad(studyName1)
+    	        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+       
+       WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+     		   .waitForPageLoad()
+     		   .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
+     		   .clickOnAnswers("Autism spectrum", "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)", "Cancer", "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
+     		   .clickOnAnswers("Diabetes (type 1 or type 2)", "Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",  "Headaches (migraine, cluster, tension)")
+     		   .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)", "High blood pressure or hypertension", "High cholesterol, triglycerides, or lipids", "Kidney disease")
+     		   .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)", "Lupus", "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+     		   .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)", "Skin problems (eczema or atopic dermatitis, psoriasis)")
+     		   .clickOnAnswers( "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
+     		   .clickOnAnswers("None of the above")     		   
+     		   .clickNextButton(new WhatKindOfArthritisCC());       
+       whatKindOfArthritisCC.back();
+       
+       WhichTypeOfHeadacheCC whichTypeOfHeadacheCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+		   		.waitForPageLoad()
+		   		.clickOnAnswers("Headaches (migraine, cluster, tension)")
+		   		.clickNextButton(new WhichTypeOfHeadacheCC());
+       
+       DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whichTypeOfHeadacheCC
+    		   .waitForPageLoad()
+    		   .clickOnAnswers("Cluster headache")
+    		   .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+       debugPageCC.checkProtocolsContainsForQNumber("Q0015124-QS45-STUDYQUES", protocol1);
+>>>>>>> ac0e2b70c3a33d61ec7ba5c2b374616b8180a254
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
 

@@ -256,16 +256,29 @@ public class LMG_4686_OLS extends BaseTest {
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
                         "Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac0e2b70c3a33d61ec7ba5c2b374616b8180a254
                         "Headaches (migraine, cluster, tension)",
                         "High blood pressure or hypertension",
                         "High cholesterol, triglycerides, or lipids",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+<<<<<<< HEAD
                         "Lupus",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
                         "Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+=======
+
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+
+>>>>>>> ac0e2b70c3a33d61ec7ba5c2b374616b8180a254
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisPage());
@@ -281,17 +294,30 @@ public class LMG_4686_OLS extends BaseTest {
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
                         "Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac0e2b70c3a33d61ec7ba5c2b374616b8180a254
                         "Headaches (migraine, cluster, tension)",
                         "High blood pressure or hypertension",
                         "High cholesterol, triglycerides, or lipids",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+<<<<<<< HEAD
                         "Lupus",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
                         "Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
+=======
+
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+
+>>>>>>> ac0e2b70c3a33d61ec7ba5c2b374616b8180a254
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                        "Women's health issues (endometriosis, uterine fibroids, PCOS, dense breasts)")
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
 

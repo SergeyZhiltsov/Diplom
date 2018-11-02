@@ -139,7 +139,7 @@ public class HTN_4356D_CC extends BaseTest{
                 .back();
         		doAnyOftheFollowingAdditionalDiagnosesCC
         		.waitForPageLoad()
-        		.clickOnAnswers("None of the above","Alzheimer's disease")
+        		.clickOnAnswers("None of the above")
         		.clickNextButton(new HormonalBirthControlCC())
         		.waitForPageLoad()
         		.clickOnAnswer("No")

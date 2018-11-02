@@ -58,8 +58,7 @@ public class GERD_4301_OLS extends BaseTest{
         String siteName = "AUT_GER_4301_Site";
         String zipCode = "19901";
         
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
         
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -317,7 +316,7 @@ public class GERD_4301_OLS extends BaseTest{
                 .waitForPageLoad();
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Alzheimer's disease", "Lupus")
+                .clickOnAnswers("Lupus")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
@@ -327,8 +326,7 @@ public class GERD_4301_OLS extends BaseTest{
                 .waitForPageLoad();
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Alzheimer's disease",
-                        "Bipolar disorder",
+                .clickOnAnswers("Bipolar disorder",
                         "Cancer in the past 5 years, except skin cancer",
                         "Cirrhosis",
                         "Drug or alcohol abuse within the past year",

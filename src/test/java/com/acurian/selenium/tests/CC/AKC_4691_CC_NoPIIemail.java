@@ -41,8 +41,8 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         String phoneNumber = "AUTAMS1AKC";
         String protocol1 = "ISIS 703802_CS2";
         String studyName = "a study for diabetics";
-        String siteName = "AUT_AKC";
-        String zipCode = "19355";
+        String siteName = "AUT_AKC4691";
+        String zipCode = "08204";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -84,7 +84,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         zipCodePageCC
                 .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
-                .typeZipCode("19044")
+                .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC

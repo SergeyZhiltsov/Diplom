@@ -1,43 +1,21 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
-import com.acurian.selenium.pages.CC.OA_3138.MarijuanaOrCannabisCC;
-import com.acurian.selenium.pages.CC.OA_3138.ParticipatedInAnotherClinicalStudyCC;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
-import com.acurian.selenium.pages.CC.generalHealth.WhichFollowingBonesJoints_CC;
-import com.acurian.selenium.pages.CC.generalHealth.WhichFollowingMentalEmotionalHealth_CC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class OA_4831_CC_NonSynexus extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-
     public void OA_4831_CC_NonSynexus_Script(final String username, final String password) {
         String phoneNumber = "AUTAMS1OA1";
         String zipCode = "19901";
@@ -267,7 +245,7 @@ public class OA_4831_CC_NonSynexus extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC       
         		.waitForPageLoad();
         WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-        		.clickOnAnswers("ADHD or attention deficit hyperactivity disorder","Alzheimer's disease","Anemia (low red blood cell count)","Autism spectrum","Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)","Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)","Cancer","Diabetes (type 1 or type 2)","Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)","Eating disorders (anorexia, bulimia, binge eating disorder)","Headaches (migraine, cluster, tension)","Heart or circulation problems (heart attack, heart failure, stroke)","High blood pressure or hypertension","High cholesterol, triglycerides, or lipids","Kidney disease","Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)","Lupus","Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)","Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)","Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)","Sleep problems (insomnia, sleep apnea, narcolepsy)","Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)","Women's health issues (endometriosis, uterine fibroids, PCOS, dense breasts)")
+        		.clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Autism spectrum","Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)","Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)","Cancer","Diabetes (type 1 or type 2)","Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)","Headaches (migraine, cluster, tension)","Heart or circulation problems (heart attack, heart failure, stroke)","High blood pressure or hypertension","High cholesterol, triglycerides, or lipids","Kidney disease","Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)","Lupus","Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)","Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)","Skin problems (eczema or atopic dermatitis, psoriasis)","Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
         .clickNextButton(new WhichFollowingBonesJoints_CC());
 whichFollowingBonesJoints_CC
         .waitForPageLoad()
