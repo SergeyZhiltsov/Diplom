@@ -11,7 +11,15 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HumanAPIOLS extends MainPageOLS{
     
-    public final String titleExpected = "The final step is to connect your health data";
+    public final String titleExpected = "Now connect your digital health data using your online patient portals\n" +
+            "Connecting your digital health data from your patient portals helps ensure the study doctor has all the necessary information for your first office appointment.\n" +
+            "To securely connect your data, you will need to:\n" +
+            "Search for and select your healthcare provider\n" +
+            "Enter your patient portal login credentials\n" +
+            "\n" +
+            "Connect Your Health Data >>\n" +
+            "Note: If you don't have credentials or don't remember them, you can register or reset them as part of the process.\n" +
+            "Please click 'Next' when you have finished connecting your digital health data";
     
     public final String titleFind = "Find your provider";
     
@@ -19,7 +27,7 @@ public class HumanAPIOLS extends MainPageOLS{
     
     
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/h3")
+    @FindBy(xpath = "//div[@class='question']//h4")//div[@class='question']//div[contains(@class,'visible-md-block')]/h3
     WebElement titleText;
     
     @FindBy(xpath = "//button[@type='button']")
