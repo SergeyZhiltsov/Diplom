@@ -8,10 +8,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DyslipidemiaHealthcarePageCC extends MainPageCC {
+public class WomenHealthConditionsCC extends MainPageCC {
 
-    public final String titleExpected = "Has a healthcare professional ever told you that you have any of the following?\n" +
-            "Agent Note: Select all that apply";
+    public final String titleExpected = "Which of the following women's health conditions have you been diagnosed with?\n" +
+"Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
@@ -19,20 +19,18 @@ public class DyslipidemiaHealthcarePageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
 
-    public DyslipidemiaHealthcarePageCC() {
+    public WomenHealthConditionsCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DyslipidemiaHealthcarePageCC waitForPageLoad() {
+    public WomenHealthConditionsCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
-//        waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public DyslipidemiaHealthcarePageCC clickOnAnswers(String ...answerText) {
+    public WomenHealthConditionsCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

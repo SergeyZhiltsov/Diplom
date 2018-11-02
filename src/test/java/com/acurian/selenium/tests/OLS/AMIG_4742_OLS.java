@@ -14,17 +14,18 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class LMG_4686_OLS extends BaseTest {
+public class AMIG_4742_OLS extends BaseTest {
 
     @Test(enabled = true)
-    @TestCaseId("00056")
-    @Description("MIG_4356B_Synexus_OLS module")
-    public void lmg_4686_ols() {
+    @TestCaseId("00059")
+    public void AMig_4742_OLS() {
         String phoneNumberMIG = "AUTAMS1MIG";
-        String protocol1 = "I5Q_MC_CGAW";
+        String protocol1 = "3101_301_002";
+        String protocol2 = "3101_302_002";
+        String protocol3 = "I5Q_MC_CGAW"; //---MIG 4686 protocol
         String studyName = "a migraine";
-        String siteName = "AUT_LMG";
-        String zip_Code = "19341";
+        String siteName = "AUT_MIG4742_site";
+        String zip_Code = "08204";
         String site_Indication = "Migraines";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -52,6 +53,7 @@ public class LMG_4686_OLS extends BaseTest {
         DoYouSufferFromMigHeadachesOLS doYouSufferFromMigHeadachesOLS = genderPageOLS
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromMigHeadachesOLS());
+        
 
         doYouSufferFromMigHeadachesOLS
                 .waitForPageLoad();
@@ -59,59 +61,63 @@ public class LMG_4686_OLS extends BaseTest {
         HasDoctorDiagnosedYouWithClusterHeadache_OLS hasDoctorDiagnosedYouWithClusterHeadache_OLS = doYouSufferFromMigHeadachesOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new HasDoctorDiagnosedYouWithClusterHeadache_OLS());
+        
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6002", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6002", protocol1, protocol2);
         debugPageOLS.back();
-
         AgeWhenDiagnosedWithMigOLS ageWhenDiagnosedWithMigOLS = doYouSufferFromMigHeadachesOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new AgeWhenDiagnosedWithMigOLS());
+        
 
+       //--------Q3:  Approximately how old were you when you were diagnosed with migraine headaches?
         ApproxHowLongSufferingFromMIG approxHowLongSufferingFromMIG = ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("51")
                 .clickNextButton(new ApproxHowLongSufferingFromMIG());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6003", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6003", protocol1, protocol2);
         debugPageOLS.back();
         ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("37")
                 .clickNextButton(new ApproxHowLongSufferingFromMIG());
 
+        
+      //---------------Q4: For approximately how long have you been suffering from migraine headaches?
         HowManyDaysYouSufferOLS howManyDaysYouSufferOLS = approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", protocol1, protocol2);
         debugPageOLS.back();
-
         approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 11 months")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", protocol1, protocol2);
         debugPageOLS.back();
         approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
-
-        //---------------Q5: In a typical month, how many days do you suffer from migraines? 
+        
+        
+       //---------------Q5: In a typical month, how many days do you suffer from migraines? 
         HowOftenDoYouTypicallyTakeMedicationOLS howOftenDoYouTypicallyTakeMedicationOLS = howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("3")
                 .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS())
         		.waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", protocol1,protocol2);
         debugPageOLS.back();
         howManyDaysYouSufferOLS
         		.waitForPageLoad()
                 .selectDays("15")
                 .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", protocol1,protocol2);
         debugPageOLS.back();
         howManyDaysYouSufferOLS
         		.waitForPageLoad()
@@ -125,7 +131,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswer("Half the days in a month or more")
                 .clickNextButton(new HowManyDifferentMedicationsOLS())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6023", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6023", protocol1,protocol2);
         debugPageOLS.back();
         howOftenDoYouTypicallyTakeMedicationOLS
         		.waitForPageLoad()
@@ -188,7 +194,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(new HaveYouEverDiagnosedByHealthcareProfOLS())
                 .waitForPageLoad();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS6026", protocol1);
+        		debugPageOLS.checkProtocolsContainsForQNumber("QS6026", protocol1,protocol2);
         		debugPageOLS.back();
         whenDidYouLastHaveBotoxInjectionOLS
                 .waitForPageLoad()       
@@ -205,7 +211,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswers("Temporomandibular Joint Disorders also known as TMD or TMJ")
                 .clickNextButton(new DoYouCurrentlyUseMarijuanaOLS())
                 .waitForPageLoad();
-                debugPageOLS.checkProtocolsContainsForQNumber("QS6027", protocol1);
+                debugPageOLS.checkProtocolsContainsForQNumber("QS6027", protocol1,protocol2);
         		debugPageOLS.back();
         haveYouEverDiagnosedByHealthcareProfOLS
                 .waitForPageLoad()
@@ -235,7 +241,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS6029", protocol1);
+        		debugPageOLS.checkProtocolsContainsForQNumber("QS6029", protocol1,protocol2);
         		debugPageOLS.back();
         ifYouQualifyForStudyWillingtoStopOLS
                 .waitForPageLoad()
@@ -304,20 +310,20 @@ public class LMG_4686_OLS extends BaseTest {
                 .waitForPageLoadHeartAttack()
                 .clickOnAnswers("Less than 30 days ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadHeartAttack()
                 .clickOnAnswers("1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
         debugPageOLS.back();
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadHeartAttack()
                 .clickOnAnswers("4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS.back();
 
@@ -330,19 +336,19 @@ public class LMG_4686_OLS extends BaseTest {
                 .waitForPageLoadStroke()
                 .clickOnAnswers("Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadStroke()
                 .clickOnAnswers("1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadStroke()
                 .clickOnAnswers("4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS.back();
 
@@ -373,7 +379,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickNextButton(new WomenHealthConditions());
         womenHealthConditions
                 .waitForPageLoad();
-                debugPageOLS.checkProtocolsContainsForQNumber("QS53", protocol1);
+                debugPageOLS.checkProtocolsContainsForQNumber("QS53", protocol1,protocol2);
                 debugPageOLS.back();
         whichOfFollowingDiagnosedWithByDoctor_MentalOLS
         		.waitForPageLoad()
@@ -395,7 +401,7 @@ public class LMG_4686_OLS extends BaseTest {
         approximateHeightPageOLS
         		.waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -403,7 +409,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -411,7 +417,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -419,7 +425,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -427,7 +433,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -435,7 +441,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -450,44 +456,25 @@ public class LMG_4686_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
-                //----------PII (IdentificationPageOLS) Page--------------------
+        //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
                 .clickNextButton(new SiteSelectionPageOLS())
 
-                //----------SiteSelection Page--------------------
+        //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(site_Indication)
-                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature()
-
-                //------------HUMAN API Interface in HelloSign----------------
-                .getPage(new HumanAPIOLS())
-                .waitForPageLoad()
-                .connectBTN()
-                .switchToAPI()
-                .waitForProvider()
-                .clickANY()
-                .waitSearchAll()
-                .search("cleveland clinic")
-                .waitProvider()
-                .clickProvider()
-                .typeUserName("democlinical@gmail.com")
-                .typePWD("password")
-                .clickConnect()
-
-                .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad();
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+        aboutHealthPageOLS
+        		.clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
+                .threadSleep(2000);
+        aboutHealthPageOLS
                 .pidFromDbToLog(env);
     }
 }

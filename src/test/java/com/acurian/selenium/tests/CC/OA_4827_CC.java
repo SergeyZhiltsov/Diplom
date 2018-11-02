@@ -26,7 +26,7 @@ import java.util.List;
 
 public class OA_4827_CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     
     public void OA_4827_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";

@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 public class OA_4827_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void OA_4827_OLS_Script() {
         String phoneNumberOA = "AUTAMS1OA1";
         String zipCode = "19044";

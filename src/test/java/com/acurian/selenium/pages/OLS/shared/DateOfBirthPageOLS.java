@@ -226,6 +226,14 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "No-cost study medication";
     
     
+    public final String titleOAB_Expected = "Let's get started to see if you qualify for an overactive bladder study!\n" +
+    		"\n" +
+    		"Those who qualify may receive*:\n" +
+    		"Payment which varies by study up to $others\n" +
+    		"No-cost study-related care from doctors\n" +
+    		"No-cost study medication";
+    
+    
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText1;
