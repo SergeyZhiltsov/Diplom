@@ -27,6 +27,7 @@ public class OA_4109CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     
+    
     public void OA_4109_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("R475_OA_1611", "R475_OA_1688");
@@ -140,13 +141,12 @@ public class OA_4109CC extends BaseTest {
 
 
         areYouCurrentlyOnPageCC
-                .waitForPageLoad();
-        MarijuanaOrCannabisCC marijuanaOrCannabisCC = areYouCurrentlyOnPageCC
+                .waitForPageLoad()
                 .clickOnAnswer("Yes, for arthritis")
                 .clickOnAnswer("Yes, for another chronic condition")
                 .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
-        		.clickNextButton(new MarijuanaOrCannabisCC())
-        		.waitForPageLoad();
+        		.clickNextButton(new TransitionStatementCC())
+        		.waitForPageLoad(studyName);
 		DebugPageCC debugPageCC = new DebugPageCC();
         		debugPageCC.checkProtocolsContainsForQNumber("Q0005281-QS4513-STUDYQUES", protocol1);
         		debugPageCC.back();
@@ -191,8 +191,8 @@ public class OA_4109CC extends BaseTest {
                 .clickOnAnswers("Aneurysm clip")
                 .clickOnAnswers("Artificial heart valve")
                 .clickOnAnswers("Cochlear implant")
-                .clickNextButton(new MarijuanaOrCannabisCC())
-                .waitForPageLoad();
+                .clickNextButton(new TransitionStatementCC())
+                .waitForPageLoad(studyName);
         		debugPageCC.checkProtocolsContainsForQNumber("Q0005282-QS4514-STUDYQUES", protocol1);
         		debugPageCC.back();
         devicesInYourBodyCC
@@ -210,27 +210,11 @@ public class OA_4109CC extends BaseTest {
         
   
         areYouCurrentlyReceivingWorkersPageCC
-        		.waitForPageLoad()
+        		.waitForPageLoad();
+        		TransitionStatementCC transitionStatementCC = areYouCurrentlyReceivingWorkersPageCC
         		.clickOnAnswer("No")
-        		.clickNextButton(new MarijuanaOrCannabisCC());
-        
-        
-        marijuanaOrCannabisCC
-				.waitForPageLoad();
-        JointReplacementCC jointReplacementCC = marijuanaOrCannabisCC
-        		.clickOnAnswers("No")
-        		.clickNextButton(new JointReplacementCC());        
+        		.clickNextButton(new TransitionStatementCC());
 
-
-        ParticipatedInAnotherClinicalStudyCC participatedInAnotherClinicalStudyCC = jointReplacementCC
-                .waitForPageLoad()
-                .clickOnAnswers("Yes, my doctor and I have discussed it, but my doctor said I don't need joint replacement at this time")
-                .clickNextButton(new ParticipatedInAnotherClinicalStudyCC());
-
-        TransitionStatementCC transitionStatementCC = participatedInAnotherClinicalStudyCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoad(studyName)

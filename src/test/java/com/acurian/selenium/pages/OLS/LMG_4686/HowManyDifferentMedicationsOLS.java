@@ -7,7 +7,9 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowManyDifferentMedicationsOLS extends MainPageOLS {
-	public final String titleExpected = "Approximately how old were you when you were diagnosed with migraine headaches?";
+	public final String titleExpected = "Medications to prevent migraine headaches are taken daily or regularly, not just when a migraine headache is occurring.\n" +
+			"Over the past 10 years, how many different medications to prevent migraines have you tried?\n" +
+			"Please include any medications you are currently taking to prevent migraines.";
 
     @FindBy(xpath = "//div[contains(@class,'visible-md-block')]") //"//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;

@@ -47,7 +47,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class KAD_4849_OLS extends BaseTest{
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     @TestCaseId("00002")
     @Description("kad4849_OLS_Test")
     public void kad4849_OLS_Test() {
@@ -438,54 +438,30 @@ public class KAD_4849_OLS extends BaseTest{
 				.clickOnAnswers("None of the above")				
 				.clickNextButton(new ApproximateHeightPageOLS());
 		
-		ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
-    			.waitForPageLoad()
-    			.setAll("5", "10", "120")
-    			.clickNextButton(new ChildrenUnderPageOLS());
-		childrenUnderPageOLS.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS60", protocol1);
-		debugPageOLS.back();
 		approximateHeightPageOLS
 				.waitForPageLoad()
-				.setFeatwithClear("4")
-				.setIncheswithClear("5")
-				.setLbs("188")				
-				.clickNextButton(new ChildrenUnderPageOLS());
-		childrenUnderPageOLS.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS60", protocol1);
-		debugPageOLS.back();
-		approximateHeightPageOLS
-				.waitForPageLoad()
-				.setFeatwithClear("5")				
-				.setLbs("160")				
-//				.clickNextButton(new ChildrenUnderPageOLS())
-//				.waitForPageLoad()
-//		        .clickOnAnswer("Yes")
-//		        .clickNextButton(new HouseholdHavePageOLS())
-//		        .waitForPageLoad()
-//		        .clickOnAnswers("None of the above")
-//		        .clickNextButton(new TheStudySitePageOLS())
-//		        .waitForPageLoad()
-//		        .clickOnAnswer("Public transportation")
-//		        .clickNextButton(new WhatMedicalCoveragePageOLS())
-//		        .waitForPageLoad()
-//		        .clickOnAnswers("No, I have no coverage")
-		        .clickNextButton(new EthnicBackgroundPageOLS())
-		        .waitForPageLoad()
-		        .clickOnAnswers("Prefer not to answer")
-		        .clickNextButton(new IdentificationPageOLS())		
-				.waitForPageLoad()
-				.clickNextButton(new SiteSelectionPageOLS())
-				.waitForPageLoad(studyName)
-		        .getPID()
-		        .clickOnFacilityName(siteName)
-		        .clickNextButton(new QualifiedClose2PageOLS())
-		        .waitForPageLoad()
-		        .clickNextButton(new ThankYouCloseSimplePageOLS())
-		        .waitForPageLoad()
-		        .clickNextButton(new AboutHealthPageOLS())
-		        .waitForPageLoad()		        
-		        .pidFromDbToLog(env)	
-		        .childPidFromDbToLog(env);        
+                .setAll("5", "5", "160")
+                .clickNextButton(new EthnicBackgroundPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS())
+                //----------PII (IdentificationPageOLS) Page--------------------
+                .waitForPageLoad()
+                //.setAllFields("Acurian", "Trial", eMailId, "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad();
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+        aboutHealthPageOLS
+        		.clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .threadSleep(2000);
+        aboutHealthPageOLS
+                .pidFromDbToLog(env);
     }
 }
