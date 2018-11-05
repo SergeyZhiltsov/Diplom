@@ -32,7 +32,7 @@ public class LOWT_3017_OLS extends BaseTest {
         String protocol2 = "M16_100_S";
         String protocol3 = "R727_CL_1532";
         String studyName = "a men's low testosterone";
-        String site_Indication = "Hypogonadism";
+        String site_Indication = "low testosterone or hypogonadism";
         String siteName = "AUT_LOWT_3017_Site";
         String zipCode = "19901";
 
