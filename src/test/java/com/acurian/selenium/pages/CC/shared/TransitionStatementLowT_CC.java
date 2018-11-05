@@ -12,7 +12,7 @@ public class TransitionStatementLowT_CC extends MainPageCC {
     //%s = studyName variable
     private final String titleExpected = "Thank you for answering these initial questions.\n" +
             "We would like to ask you a few more questions about your health to better match you with a research study in your area.\n" +
-            "You may be asked similar information in this next set of questions. We appreciate your patience.";
+            "You may be asked similar information in this next set of questions. We appreciate your participation.";
     
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
