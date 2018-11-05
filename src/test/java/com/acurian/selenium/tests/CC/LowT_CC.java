@@ -30,7 +30,7 @@ public class LowT_CC extends BaseTest {
         String protocol3 = "R727_CL_1532";
         String studyName = "a high cholesterol and heart disease";
         String siteName = "AUT_LOWT_3017_Site";
-        String site_Indication = "Hypogonadism";
+        String siteIndication = "low testosterone or hypogonadism";
         String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -296,7 +296,7 @@ public class LowT_CC extends BaseTest {
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSGeneralCC())
-                .waitForPageLoad(site_Indication)
+                .waitForPageLoad(siteIndication)
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())

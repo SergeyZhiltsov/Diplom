@@ -32,11 +32,10 @@ public class LowTS_3017S_CC extends BaseTest {
         String protocol2 = "M16_100_S";
         String studyName = "a high cholesterol and heart disease";
         String siteName = "AUT_LOWT_3017S_Site";
-        String site_Indication = "Hypogonadism";
+        String siteIndication = "low testosterone or hypogonadism";
         String zipCode = "19901";
 
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
 
@@ -287,9 +286,6 @@ public class LowTS_3017S_CC extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "6", "166")
-//                .clickNextButton(new ChildrenUnderPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
@@ -298,7 +294,7 @@ public class LowTS_3017S_CC extends BaseTest {
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSGeneralCC())
-                .waitForPageLoad(site_Indication)
+                .waitForPageLoad(siteIndication)
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())
