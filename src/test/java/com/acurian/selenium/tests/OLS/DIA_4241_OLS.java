@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class DIA_4241_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @TestCaseId("00017")
     @Description("Diabetes_4241 OLS")
     public void dia4241olsTest() {

@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,8 +36,8 @@ public class HSGeneralPageOLS extends MainPageOLS{
     }
 
     @Step
-    public HSGeneralPageOLS waitForPageLoad(String Siteindicator) {
-        String titleExpectedMod = String.format(titleExpected, Siteindicator);
+    public HSGeneralPageOLS waitForPageLoad(String siteIndication) {
+        String titleExpectedMod = String.format(titleExpected, siteIndication);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }

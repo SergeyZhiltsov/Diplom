@@ -29,7 +29,6 @@ public class Lupus_4442_CC extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
-
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad()
@@ -364,8 +363,5 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-
     }
-
 }

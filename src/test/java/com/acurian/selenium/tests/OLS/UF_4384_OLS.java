@@ -17,7 +17,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class UF_4384_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @TestCaseId("00022")
     @Description("UF_4384_OLS")
     public void uf_4384_OLS() {
@@ -61,18 +61,19 @@ public class UF_4384_OLS extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new FollowingGynecologicalConditionOLS());
 
+
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
+
         //---------------Q2 Has a healthcare professional ever diagnosed you with any of the following gynecological or women's health conditions? -------------------
-        followingGynecologicalConditionOLS
-                .waitForPageLoad();
-        Assert.assertEquals(followingGynecologicalConditionOLS.getTitleText(), followingGynecologicalConditionOLS.titleExpected, "Title is diff");
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = followingGynecologicalConditionOLS
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad();
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1, protocol2);
-        debugPageOLS.back();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1, protocol2)
+                .back();
         HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = followingGynecologicalConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Uterine fibroids, also known as leiomyomas or myomas")

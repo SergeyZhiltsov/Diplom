@@ -28,8 +28,7 @@ public class RA_2821_OLS extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumberRA)
-                .waitForPageLoad()
-                .maximizePage();
+                .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a rheumatoid arthritis (RA) study!"), true);
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("10/10/1980")
@@ -41,12 +40,10 @@ public class RA_2821_OLS extends BaseTest {
                 .typeZipCode("19044")
                 .clickNextButton(new GenderPageOLS());
 
-
         DoYouSufferFromArthritis doYouSufferFromArthritis = genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritis());
-
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouSufferFromArthritis
                 .waitForPageLoad()
