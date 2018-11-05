@@ -11,7 +11,6 @@ import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
@@ -26,7 +25,7 @@ import java.util.List;
 
 public class UF_4384_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @TestCaseId("00011")
     @Description("UF_4384_CC")
     public void uf_4384_CC(final String username, final String password) {

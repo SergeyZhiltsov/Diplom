@@ -7,7 +7,6 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -29,9 +28,9 @@ public class RA_2821_RescreenOLS extends BaseTest {
 
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, phoneNumberRA)
-                .waitForPageLoad()
-                .maximizePage();
+        dateOfBirthPageOLS
+                .openPage(env, phoneNumberRA)
+                .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a rheumatoid arthritis (RA) study!"), true);
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("10/10/1980")
@@ -47,78 +46,80 @@ public class RA_2821_RescreenOLS extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new AreYouCurrentlyExperiencing());
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
-        //-----------------------AreYouCurrentlyExperiencing Page -----------
-        FollowingJointSymptoms followingJointSymptoms = areYouCurrentlyExperiencing
+        CurrentlyTakingMethotrexate currentlyTakingMethotrexate = areYouCurrentlyExperiencing
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new FollowingJointSymptoms());
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(areYouCurrentlyExperiencing.titleExpected, protocol1); //protocol2
-        debugPageOLS.back();
-        areYouCurrentlyExperiencing
-                .waitForPageLoad();
-        CurrentlyTakingMethotrexate currentlyTakingMethotrexate = areYouCurrentlyExperiencing
-                .clickOnAnswer("Yes")
                 .clickNextButton(new CurrentlyTakingMethotrexate());
+        currentlyTakingMethotrexate
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(areYouCurrentlyExperiencing.titleExpected, protocol1)
+                .back();
+        areYouCurrentlyExperiencing
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyTakingMethotrexate);
 
-
-        //----------Are you currently taking methotrexate for your Rheumatoid Arthritis? --------------
         HowLongTakingMethotrexate howLongTakingMethotrexate = currentlyTakingMethotrexate
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I am taking methotrexate tablets or pills")
                 .clickNextButton(new HowLongTakingMethotrexate());
 
-
         MedicationsToTreatYourRA medicationsToTreatYourRA = howLongTakingMethotrexate
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 1 month")
                 .clickNextButton(new MedicationsToTreatYourRA());
-        debugPageOLS.checkProtocolsEquals(howLongTakingMethotrexate.titleExpected, protocol1); //protocol2
-        debugPageOLS.back();
+        medicationsToTreatYourRA
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals(howLongTakingMethotrexate.titleExpected, protocol1)
+                .back();
         howLongTakingMethotrexate
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months")
                 .clickNextButton(new MedicationsToTreatYourRA());
 
-
         BiologicMedications biologicMedications = medicationsToTreatYourRA
                 .waitForPageLoad()
                 .clickOnAnswers("Leukeran (chlorambucil)")
                 .clickNextButton(new BiologicMedications());
-        debugPageOLS.checkProtocolsEquals("Are you currently taking any of the following medications to treat your RA?Agent Note: Read medicat...", protocol1); //protocol2
-        debugPageOLS.back();
+        biologicMedications
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Are you currently taking any of the following medications to treat your RA?Agent Note: Read medicat...", protocol1) //protocol2
+                .back();
         medicationsToTreatYourRA
                 .waitForPageLoad()
                 .clickOnAnswers("Leukeran (chlorambucil)")
                 .clickOnAnswers("Plaquenil (hydroxychloroquine)")
                 .clickNextButton(new HowLongTakingPlaquenil());
 
-
         HowLongTakingPlaquenil howLongTakingPlaquenil = new HowLongTakingPlaquenil();
         howLongTakingPlaquenil
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 1 month")
-                .clickNextButton(new BiologicMedications());
-        debugPageOLS.checkProtocolsEqualsForQNumber("QS521", protocol1); //protocol2
-        debugPageOLS.back();
+                .clickNextButton(new BiologicMedications())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEqualsForQNumber("QS521", protocol1)
+                .back();
         howLongTakingPlaquenil
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months")
-                .clickNextButton(new BiologicMedications());
-
-
-        biologicMedications
+                .clickNextButton(biologicMedications)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TakenXeljanz());
-        debugPageOLS.checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-549, (\"Biol...", protocol1); //protocol2
-        debugPageOLS.back();
+                .clickNextButton(new TakenXeljanz())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-549, (\"Biol...", protocol1)
+                .back();
         LastReceivedTysabri lastReceivedTysabri = biologicMedications
                 .waitForPageLoad()
                 .clickOnAnswers("Tysabri")
                 .clickNextButton(new LastReceivedTysabri());
-
 
         TakenXeljanz takenXeljanz = lastReceivedTysabri
                 .waitForPageLoad()
@@ -126,51 +127,18 @@ public class RA_2821_RescreenOLS extends BaseTest {
                 .clickNextButton(new TakenXeljanz());
 
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = takenXeljanz
+        UnfortunatelyThisStudyPageOLS unfortunatelyThisStudyPageOLS = takenXeljanz
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I am currently taking it")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        debugPageOLS.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", protocol1); //protocol2
-        debugPageOLS.back();
+                .clickNextButton(new UnfortunatelyThisStudyPageOLS());
+        unfortunatelyThisStudyPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", protocol1)
+                .back();
         takenXeljanz
-                .waitForPageLoad();
-        takenXeljanz
+                .waitForPageLoad()
                 .clickOnAnswer("No, I have never taken it")
-//				.clickNextButton(new ChildrenUnderPageOLS());
-
-
-                //----------*******NEW GENERAL HEALTH Questions********----------
-                /* haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                 .waitForPageLoad()
-                 .clickOnAnswers("None of the above")
-                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
-                 //----------Q23 - Do any of the following additional diagnoses apply to you?--------
-                 .waitForPageLoad()
-                 .clickOnAnswers("None of the above")
-                 //-------------------New for AMS1 Rel.51, when Gender = Female----------------
-                 .clickNextButton(new HormonalBirthControlOLS())
-                 .waitForPageLoad()
-                 .clickOnAnswer("No")
-                 .clickNextButton(new ApproximateHeightPageOLS())
-                 //----------ProvideHeight-Weight Page--------------------
-                 .waitForPageLoad()
-                 .setAll("5", "5", "160")
-                 .clickNextButton(new ChildrenUnderPageOLS())*/
-//        childrenUnderPageOLS
-//        	.waitForPageLoad()
-//        .clickOnAnswer("Yes")
-//        .clickNextButton(new HouseholdHavePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("None of the above")
-//        .clickNextButton(new TheStudySitePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswer("Public transportation")
-//        .clickNextButton(new WhatMedicalCoveragePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("No, I have no coverage")
-//        .clickNextButton(new EthnicBackgroundPageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
@@ -186,7 +154,6 @@ public class RA_2821_RescreenOLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
-
 
                 .getPage(new HumanAPIOLS())
                 .waitForPageLoad()

@@ -15,15 +15,13 @@ import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.time.Instant;
 
 public class Lupus_4442_OLS extends BaseTest {
 
     @Test(enabled = true)
-    @TestCaseId("00019")
-    @Description("4442 Lilly Lupus")
+    @Description("4442 Lilly Lupus OLS")
     public void lupus_4442_OLS() {
         String phoneNumberMIG = "AUTAMS1LPS";
         String protocol1 = "I4V_MC_JAHZ";
@@ -42,7 +40,6 @@ public class Lupus_4442_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumberMIG)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(), dateOfBirthPageOLS.titleExpected, "Question is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleLPSExpected, "Title is diff");
         AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
                 .setDate("09092003")

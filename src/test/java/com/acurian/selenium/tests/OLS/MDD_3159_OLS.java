@@ -1,28 +1,18 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.MDD_3159.CurrentEpisodeOfDepressionOLS;
-import com.acurian.selenium.pages.OLS.MDD_3159.HasHealthcareProfEverDiagnosedMntalHealthOLS;
-import com.acurian.selenium.pages.OLS.MDD_3159.HaveYouBeenHospitalizedForDepressionOLS;
-import com.acurian.selenium.pages.OLS.MDD_3159.HaveYouEverHadElectroconvulsiveTherapyOLS;
-import com.acurian.selenium.pages.OLS.MDD_3159.HowManyDifferentPrescriptionAntidepresMedsOLS;
-import com.acurian.selenium.pages.OLS.MDD_3159.SubquestionWhenDidYouTakeFollowingMeds_OLS;
-import com.acurian.selenium.pages.OLS.MDD_3159.WhichOfTheFollowingPrescriptionMedications_OLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.DY_4356.PregnancyAndFertilityPage;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.*;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +20,6 @@ import java.util.List;
 public class MDD_3159_OLS extends BaseTest {
 
     @Test
-    @TestCaseId("00009")
     @Description("MDD_3159_OLS")
     public void mdd_3159_OLS() {
         String phoneNumber = "AUTAMS1MDD";
@@ -40,7 +29,6 @@ public class MDD_3159_OLS extends BaseTest {
         String site_Indication = "Major Depressive Disorder (MDD)";
         String siteName = "AUT_MDD_3159";
         String debugSiteName = "";
-        //     String env = "STG";
         String zipCode = "19044";
 
         String env = System.getProperty("acurian.env", "STG");

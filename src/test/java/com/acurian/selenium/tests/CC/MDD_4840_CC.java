@@ -9,25 +9,18 @@ import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.MDD_3159.WhichOfTheFollowingPrescriptionMedications_OLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 public class MDD_4840_CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("00011")
     @Description("MDD_4840_CC")
-    public void mDD_4840_CC(final String username, final String password) {
+    public void mdd_4840_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1MDD";
         String protocol1 = "42847922MDD2001";
         String protocol2 = "42847922MDD2001";
@@ -38,7 +31,6 @@ public class MDD_4840_CC extends BaseTest {
         String zipCode = "19044";
 
         String env = System.getProperty("acurian.env", "STG");
-        
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

@@ -31,7 +31,7 @@ public class LOWTS_3017S_OLS extends BaseTest {
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
         String studyName = "a men's low testosterone";
-        String site_Indication = "Hypogonadism";
+        String siteIndication = "low testosterone or hypogonadism";
         String siteName = "AUT_LOWT_3017S";
         String zipCode = "19901";
 
@@ -324,7 +324,7 @@ public class LOWTS_3017S_OLS extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(site_Indication)
+                .waitForPageLoad(siteIndication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

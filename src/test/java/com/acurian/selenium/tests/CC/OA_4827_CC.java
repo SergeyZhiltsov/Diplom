@@ -6,28 +6,17 @@ import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
 import com.acurian.selenium.pages.CC.OA_3138.MarijuanaOrCannabisCC;
 import com.acurian.selenium.pages.CC.OA_3138.ParticipatedInAnotherClinicalStudyCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
-import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.shared.AreYouCurrentlyOnPageCC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverHadKneeReplacementSurgery_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverReceivedInjectionIntoYourKnee_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouReceivedKneeInjection_CC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class OA_4827_CC extends BaseTest {
 
     @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    
     public void OA_4827_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
         String zipCode = "19044";
@@ -39,11 +28,9 @@ public class OA_4827_CC extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
-
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(username)
