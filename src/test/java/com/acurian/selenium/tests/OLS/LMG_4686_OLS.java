@@ -442,7 +442,7 @@ public class LMG_4686_OLS extends BaseTest {
                 //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+		        .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
@@ -466,6 +466,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .typeUserName("democlinical@gmail.com")
                 .typePWD("password")
                 .clickConnect()
+
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
