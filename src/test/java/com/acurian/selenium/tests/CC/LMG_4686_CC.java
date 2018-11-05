@@ -24,6 +24,7 @@ import com.acurian.selenium.pages.CC.LMG_4686.Past3MonthsCC;
 import com.acurian.selenium.pages.CC.LMG_4686.PerformHouseholdChoresCC;
 import com.acurian.selenium.pages.CC.LMG_4686.TreatYourMigraineHeadachesCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedFlareMonitoringAppClose_CC;
@@ -64,10 +65,9 @@ public class LMG_4686_CC extends BaseTest{
         List<String> protocols = Arrays.asList("I5Q_MC_CGAW");
         String protocol1 = "I5Q_MC_CGAW";        
         String studyName = "migraine";
-        String studyName1 = "migraine";
+        String site_Indication = "Migraines";
     //    String env = "STG";
         String siteName = "AUT_LMG";
-        String site_indication = "Ankylosing Spondylitis";
         String zipCode  = "19341";
         
         String env = System.getProperty("acurian.env", "STG");
@@ -517,17 +517,13 @@ public class LMG_4686_CC extends BaseTest{
 		.waitForPageLoad()
 		.clickNextButton(new IdentificationPageCC())
 		.waitForPageLoad()
-		.setFirstName("Acurian")
-		.setLastName("Trial")
-		.setPhone("9999999999")
-		.setZipCode(zipCode)		
+        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
 		.clickNextButton(new SiteSelectionPageCC())
 		.waitForPageLoad("a migraine study")
 		.getPID()
-		.clickOnAnswer(siteName)
-		.clickNextButton(new QualifiedFlareMonitoringAppClose_CC())
-		.waitForEmailPage()
-		.provideEmail("qa.acurian@gmail.com")
+        .clickOnAnswer(siteName)
+        .clickNextButton(new HSGeneralCC())
+        .waitForPageLoad(site_Indication)
 		.clickNextButton(new DoctorInformationCollectionPageCC())
 		.waitForPageLoad()
 		.clickNextButton(new HSMedicalRecordsPageCC())
