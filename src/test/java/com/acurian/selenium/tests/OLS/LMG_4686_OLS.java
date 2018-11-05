@@ -98,159 +98,182 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
 
-        WhichOfTheFollowingSymptomsOLS whichOfTheFollowingSymptomsOLS = howManyDaysYouSufferOLS
+        HowOftenDoYouTypicallyTakeMedicationOLS howOftenDoYouTypicallyTakeMedicationOLS = howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("5")
-                .clickNextButton(new WhichOfTheFollowingSymptomsOLS());
+                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS());
 
-        HowManyDifferentMedicationsOLS howManyDifferentMedicationsOLS = whichOfTheFollowingSymptomsOLS
+        //---------------Q6: How often do you typically take medication to stop an active migraine, either as it starts or while you are experiencing it?-------------
+        HowManyDifferentMedicationsOLS howManyDifferentMedicationsOLS = howOftenDoYouTypicallyTakeMedicationOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Eye pain / blurred vision", "Constipation", "Hearing problems", "Lightheadedness and/or fainting")
-                .clickOnAnswers("Nausea and/or vomiting", "Throbbing or pulsating pain on sides of head", "Problems with your speech")
+                .clickOnAnswer("Half the days in a month or more")
+                .clickNextButton(new HowManyDifferentMedicationsOLS())
+                .waitForPageLoad();
+        //debugPageOLS.checkProtocolsContainsForQNumber("QS6023", protocol1);
+        debugPageOLS.back();
+        howOftenDoYouTypicallyTakeMedicationOLS
+        		.waitForPageLoad()
+                .clickOnAnswer("Less than half the days in a month")
+                .clickOnAnswer("I do not take any medication to stop active migraines – I wait for them to go away on their own")
                 .clickNextButton(new HowManyDifferentMedicationsOLS());
-
+        
+        
+      //---------------Q7: HowManyDifferentMedicationsOLS -----------
         FollowingMedicationsToPreventOLS followingMedicationsToPreventOLS = howManyDifferentMedicationsOLS
                 .waitForPageLoad()
                 .noOfMedications("4")
                 .clickNextButton(new FollowingMedicationsToPreventOLS());
-
-        CurrentlyTakeFollowingMedicationsOLS CurrentlyTakeFollowingMedicationsOLS = followingMedicationsToPreventOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6008", protocol1);
-        debugPageOLS.back();
-
+        
+        
+      //---------------Q8: FollowingMedicationsToPreventOLS -----------
         followingMedicationsToPreventOLS
+        		.waitForPageLoad();
+        HaveYouEverHadBotoxbotulinumtoxin_OLS haveYouEverHadBotoxbotulinumtoxin_OLS = followingMedicationsToPreventOLS
+                .clickOnAnswers("Metoprolol, Lopressor, or Toprol",
+                				"Propranolol, Hemangeol, Inderal, or Innopran",
+                				"Topamax, Qudexy, Trokendi, or topiramate",
+                				"Depacon or valproate",
+                				"Depakote or divalproex",
+                				"Elavil or amitriptyline",
+                				"Sibelium or Flunarizine",
+                				"Botox injections (botulinum toxin) – specifically for chronic migraines",
+                				"Atacand or candesartan",
+                				"Timolol")
+                .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS())
+                .waitForPageLoad();
+        		debugPageOLS.back();
+        followingMedicationsToPreventOLS
+        		.waitForPageLoad()
+        		.clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS())
+        		.waitForPageLoad();
+        		//debugPageOLS.checkProtocolsContainsForQNumber("QS6024", protocol3);  //---4686 protocol
+        		debugPageOLS.back();
+        followingMedicationsToPreventOLS
+				.waitForPageLoad()
+                .clickOnAnswers("Metoprolol, Lopressor, or Toprol",
+                		"Topamax, Qudexy, Trokendi, or topiramate")
+				.clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS());        		
+        		
+        
+        
+        //---------------SKIP to Q18: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
+        WhenDidYouLastHaveBotoxInjectionOLS whenDidYouLastHaveBotoxInjectionOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
                 .waitForPageLoad()
-                //.clickOnAnswers("Topamax, Qudexy, Trokendi, or topiramate")
-                //.clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
-                //debugPageOLS.checkProtocolsContainsForQNumber("QS6008", protocol1);
-                //debugPageOLS.back();
-                //followingMedicationsToPreventOLS
-                //.waitForPageLoad()
-                //.clickOnAnswers("Depacon or valproate, Depakote or divalproex", "Elavil or amitriptyline", "Sibelium or Flunarizine", "Timolol")
-                //.clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
-                //debugPageOLS.checkProtocolsContainsForQNumber("QS6008", protocol1);
-                //debugPageOLS.back();
-                //followingMedicationsToPreventOLS
-                //.waitForPageLoad()
+                .clickOnAnswers("Yes, to treat migraines","Yes, as a cosmetic treatment for lines on the face")
+                .clickNextButton(new WhenDidYouLastHaveBotoxInjectionOLS());
+        
+        
+        //---------------Q19: When did you last have a Botox (botulinum toxin) injection?-----------
+        HaveYouEverDiagnosedByHealthcareProfOLS haveYouEverDiagnosedByHealthcareProfOLS = whenDidYouLastHaveBotoxInjectionOLS
+                .waitForPageLoad()
+                .clickOnAnswer("3 months ago or less")
+                .clickOnAnswer("More than 1 year ago")
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(new HaveYouEverDiagnosedByHealthcareProfOLS())
+                .waitForPageLoad();
+        		//debugPageOLS.checkProtocolsContainsForQNumber("QS6026", protocol1);
+        		debugPageOLS.back();
+        whenDidYouLastHaveBotoxInjectionOLS
+                .waitForPageLoad()       
+                .clickOnAnswer("7 months - 1 year ago")
+                .clickNextButton(new HaveYouEverDiagnosedByHealthcareProfOLS());
+        
+
+        
+      //---------------Q20: HaveYouEverDiagnosedByHealthcareProfOLS-----
+        haveYouEverDiagnosedByHealthcareProfOLS
+                .waitForPageLoad();
+        DoYouCurrentlyUseMarijuanaOLS doYouCurrentlyUseMarijuanaOLS = haveYouEverDiagnosedByHealthcareProfOLS
+                .clickOnAnswers("Trigeminal Neuralgia - severe pain in the nerves of the face")
+                .clickOnAnswers("Temporomandibular Joint Disorders also known as TMD or TMJ")
+                .clickNextButton(new DoYouCurrentlyUseMarijuanaOLS())
+                .waitForPageLoad();
+                //debugPageOLS.checkProtocolsContainsForQNumber("QS6027", protocol1);
+        		debugPageOLS.back();
+        haveYouEverDiagnosedByHealthcareProfOLS
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Sibelium or Flunarizine", "Timolol")
-                .clickNextButton(new CurrentlyTakeFollowingMedicationsOLS());
+                .clickNextButton(new DoYouCurrentlyUseMarijuanaOLS());
+                
+ 
+        
+        //---------------Q21: DoYouCurrentlyUseMarijuanaOLS-----
+        doYouCurrentlyUseMarijuanaOLS
+                .waitForPageLoad();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouCurrentlyUseMarijuanaOLS
+                .clickOnAnswer("No")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+                .waitForPageLoad();
+        		debugPageOLS.back();
+        doYouCurrentlyUseMarijuanaOLS
+                .waitForPageLoad();
+        IfYouQualifyForStudyWillingtoStopOLS ifYouQualifyForStudyWillingtoStopOLS = doYouCurrentlyUseMarijuanaOLS
+                .clickOnAnswer("Yes")
+                .clickNextButton(new IfYouQualifyForStudyWillingtoStopOLS());
+        
 
-        HowManyDaysYouTakeMedicationsOLS howManyDaysYouTakeMedicationsOLS = CurrentlyTakeFollowingMedicationsOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Alagesic", "Ascomp", "Bupap", "Dolgic", "Esgic", "Fioricet", "Fiorinal", "Margesic", "Orviban", "Phrenilin", "Promacet", "Repan")
-                .clickOnAnswers("Butalbital", "Zebutal")
-                .clickNextButton(new HowManyDaysYouTakeMedicationsOLS());
-
-        TreatYourMigraineHeadachesOLS treatYourMigraineHeadachesOLS = howManyDaysYouTakeMedicationsOLS
-                .waitForPageLoad()
-                .selectDays("4")
-                .clickNextButton(new TreatYourMigraineHeadachesOLS());
-
-        treatYourMigraineHeadachesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Percocet, Oxycontin, or oxycodone", "Vicodin, Lortab, or hydrocodone", "Ultram or tramadol", "Tylenol #3, Tylenol #4, or codeine")
-                .clickNextButton(new HowManyDaysYouTakeMedicationsOLS());
-
-        MigraineAffectedYourAbilityOLS migraineAffectedYourAbilityOLS = howManyDaysYouTakeMedicationsOLS
-                .waitForPageLoad()
-                .selectDays("1")
-                .clickNextButton(new MigraineAffectedYourAbilityOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6022", protocol1);
-        debugPageOLS.back();
-
-        howManyDaysYouTakeMedicationsOLS
-                .waitForPageLoad()
-                .selectDays("0")
-                .clickNextButton(new MigraineAffectedYourAbilityOLS());
-
-        AbilityToAttendSchoolOrWorkOLS abilityToAttendSchoolOrWorkOLS = migraineAffectedYourAbilityOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Attend school or work - including completing assignments", "Attend social events or activities")
-                .clickOnAnswers("Perform regular household chores such as cleaning, doing yardwork or running errands")
-                .clickNextButton(new AbilityToAttendSchoolOrWorkOLS());
-
-        PerformHouseholdChoresOLS performHouseholdChoresOLS = abilityToAttendSchoolOrWorkOLS
-                .waitForPageLoad()
-                .clickOnAnswer("You have not missed any school or work but you have been significantly less productive due to your migraines")
-                .clickNextButton(new PerformHouseholdChoresOLS());
-
-        ImpactHaveYourMigraineHeadachesOLS impactHaveYourMigraineHeadachesOLS = performHouseholdChoresOLS
-                .waitForPageLoad()
-                .clickOnAnswer("You are able to perform your household chores such as cleaning and running errands, but you are significantly less productive due to your migraines")
-                .clickNextButton(new ImpactHaveYourMigraineHeadachesOLS());
-
-        ExperiencingAMigraineOLS experiencingAMigraineOLS = impactHaveYourMigraineHeadachesOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Moderate impact")
-                .clickNextButton(new ExperiencingAMigraineOLS());
-
-        MostRecentMigraineEndOLS mostRecentMigraineEndOLS = experiencingAMigraineOLS
+        //---------------Q22: IfYouQualifyForStudyWillingtoStopOLS-----
+        ifYouQualifyForStudyWillingtoStopOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new MostRecentMigraineEndOLS());
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = mostRecentMigraineEndOLS
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+                .waitForPageLoad();
+        		//debugPageOLS.checkProtocolsContainsForQNumber("QS6029", protocol1);
+        		debugPageOLS.back();
+        ifYouQualifyForStudyWillingtoStopOLS
                 .waitForPageLoad()
-                .clickOnAnswer("1 to 2 weeks ago")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-
+                
+                
+        
+        
+        //-----------------GENERAL HEALTH questions-------------------
         WhatKindOfArthritisPage whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                        "Alzheimer's disease",
-                        "Anemia (low red blood cell count)",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
                         "Autism spectrum",
                         "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                        "Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
                         "Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
-                        "Eating disorders (anorexia, bulimia, binge eating disorder)",
                         "Headaches (migraine, cluster, tension)",
                         "High blood pressure or hypertension",
                         "High cholesterol, triglycerides, or lipids",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Lung problems",
                         "Lupus",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
                         "Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                        "Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Sleep problems (insomnia, sleep apnea, narcolepsy)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                        "Women's health issues (endometriosis, uterine fibroids, PCOS, dense breasts)")
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisPage());
         whatKindOfArthritisPage.waitForPageLoad();
         whatKindOfArthritisPage.back();
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                        "Alzheimer's disease",
-                        "Anemia (low red blood cell count)",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
                         "Autism spectrum",
                         "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                        "Breathing, respiratory, or lung problems (COPD, asthma, seasonal allergy, chronic cough)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
                         "Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
-                        "Eating disorders (anorexia, bulimia, binge eating disorder)",
                         "Headaches (migraine, cluster, tension)",
                         "High blood pressure or hypertension",
                         "High cholesterol, triglycerides, or lipids",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Lung problems",
                         "Lupus",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
                         "Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                        "Skin problems (eczema or atopic dermatitis, psoriasis, acne, cellulite, actinic or solar keratosis)",
-                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids, PCOS, dense breasts)")
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
@@ -318,134 +341,46 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswers("More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
-        MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
+        WhichOfFollowingDiagnosedWithByDoctor_MentalOLS whichOfFollowingDiagnosedWithByDoctor_MentalOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
-                .clickNextButton(new MostRecentHeartProcedurePageOLS());
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
+        
 
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = mostRecentHeartProcedurePageOLS
+        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        		.waitForPageLoad();
+        WomenHealthConditions womenHealthConditions = whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+                .clickOnAnswers("Generalized anxiety disorder (GAD)",
+                		"Major depressive disorder (MDD) or depression",
+                		"None of the above")
+                .clickOnAnswers("Bipolar disorder", "Schizophrenia")
+                .clickNextButton(new WomenHealthConditions());
+        womenHealthConditions
+                .waitForPageLoad();
+                debugPageOLS.checkProtocolsContainsForQNumber("QS53", protocol1);
+                debugPageOLS.back();
+        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        		.waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new WomenHealthConditions());
+        
+        
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
                 .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS()); 
+        
+        
         doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .back();
-
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Stent placement")
-                .clickNextButton(new MostRecentHeartProcedurePageOLS());
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .back();
-
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Atherectomy")
-                .clickNextButton(new MostRecentHeartProcedurePageOLS());
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .back();
-
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Procedure to clear plaque from blood vessels in the neck such as carotid endarterectomy")
-                .clickNextButton(new MostRecentHeartProcedurePageOLS());
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .back();
-
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Coronary artery bypass graft, also known as CABG, \"cabbage,\" or heart bypass surgery")
-                .clickNextButton(new MostRecentHeartProcedurePageOLS());
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .back();
-
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Revascularization")
-                .clickNextButton(new MostRecentHeartProcedurePageOLS());
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
-
+                .waitForPageLoad();
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
+        		.clickOnAnswers("Drug or alcohol abuse within the past year")
                 .clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
-                .waitForPageLoad()
+        		.waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", protocol1)
                 .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
-                .back();
-
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Hepatitis B")
@@ -490,22 +425,11 @@ public class LMG_4686_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
+        
 
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "7", "166")
-//				.clickNextButton(new ChildrenUnderPageOLS());
-
-//		childrenUnderPageOLS
-//				.waitForPageLoad()
-//				.clickOnAnswer("No")
-//				.clickNextButton(new TheStudySitePageOLS())
-//				.waitForPageLoad()
-//			//-------------------PEDIATRIC QUESTIONS-----------------------------
-//				.clickOnAnswer("Public transportation")
-//				.clickNextButton(new WhatMedicalCoveragePageOLS())
-//				.waitForPageLoad()
-//				.clickOnAnswers("No, I have no coverage")
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
@@ -542,7 +466,6 @@ public class LMG_4686_OLS extends BaseTest {
                 .typeUserName("democlinical@gmail.com")
                 .typePWD("password")
                 .clickConnect()
-
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()

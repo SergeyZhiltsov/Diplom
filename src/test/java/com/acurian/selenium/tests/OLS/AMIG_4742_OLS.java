@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AMIG_4742_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @TestCaseId("00059")
     public void AMig_4742_OLS() {
         String phoneNumberMIG = "AUTAMS1MIG";
