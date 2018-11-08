@@ -6,7 +6,7 @@ public interface URLs {
     String CODE_FOR_DEBUG_CC = "51fa2780f2430b542923956ac1974bb7";
 
     String CC_STG = "https://stg-cc.acuriancalls.com";
-    String CC_QA = "http://qa-cc.acurian.com:8091/login.htm";
+    String CC_QA = "https://lb-qa-cc.acuriancalls.com";
     String CC_PROD = "http://acuriancalls.com";
     // %1$s - phone number,   %2$s - debug code
     /*String OLS_STG = "http://acurianhealth-com.ahbrands.staging.wpengine.com/questionnaire_test_staging/welcome?pn=%1$s";
