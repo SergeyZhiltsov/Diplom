@@ -94,15 +94,15 @@ public class HFL_4722_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HeartTransplantPageOLS());
-        heartTransplantPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS6404", protocol1)
-                .back();
-        treatYourHeartFailurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(heartTransplantPageOLS);
+//        heartTransplantPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsEqualsForQNumber("QS6404", protocol1)
+//                .back();
+//        treatYourHeartFailurePageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(heartTransplantPageOLS);
 
         heartTransplantPageOLS
                 .waitForPageLoad()
