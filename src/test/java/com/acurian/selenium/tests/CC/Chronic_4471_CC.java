@@ -33,11 +33,10 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class Chronic_4471_CC extends BaseTest{
 	
-	@Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void chronic_4471_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1MCC";
-      //  List<String> protocols = Arrays.asList("I5Q_MC_CGAW");
         String protocol1 = "MK_7264_027";
         String protocol2 = "MK_7264_030";
         String studyName = "a chronic cough study";          
@@ -112,7 +111,7 @@ public class Chronic_4471_CC extends BaseTest{
     		   .clickOnAnswer("No")
     		   .clickNextButton(new NonQRtransitionPageCC());
 		nonQRtransitionPageCC.waitForPageLoad();
-       debugPageCC.checkProtocolsContainsForQNumber("Q0017638-QS6202-STUDYQUES", protocol1, protocol2);
+	   debugPageCC.checkProtocolsContainsForQNumber("Q0017638-QS6202-STUDYQUES", protocol1, protocol2);
        debugPageCC.back();
        
        HowLongYouHadChronicCoughCC howLongYouHadChronicCoughCC = currentlySufferFromChronicCoughCC
@@ -265,7 +264,6 @@ public class Chronic_4471_CC extends BaseTest{
         		.clickOnAnswers("Dialysis")
         		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         kidneyProblemsPage
 				.waitForPageLoad()				
@@ -309,7 +307,6 @@ public class Chronic_4471_CC extends BaseTest{
  				.clickOnAnswers("Schizophrenia")
  				.clickNextButton(new ApproximateHeightPageCC());
          approximateHeightPageCC.waitForPageLoad();
-         debugPageCC.checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES");
          debugPageCC.back();
          doAnyOftheFollowingAdditionalDiagnosesCC
   				.waitForPageLoad()
@@ -343,30 +340,26 @@ public class Chronic_4471_CC extends BaseTest{
 		LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
   				.waitForPageLoad()
   				.setAll("5", "5", "160")
-  				.clickNextButton(new LetMeSeePageCC());
-  
-         letMeSeePageCC
-				.waitForPageLoad()
-				.clickNextButton(new ChildrenUnderPageCC())
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new IdentificationPageCC())
-				.waitForPageLoad()
-				.setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
-				.clickNextButton(new SiteSelectionPageCC())
-				.waitForPageLoadMCC(studyName)
-				.getPID()
-				.clickOnAnswer(siteName)
-				.clickNextButton(new HSGeneralCC())        		
-				.waitForPageLoad("Chronic Cough")
-				.clickNextButton(new DoctorInformationCollectionPageCC())
-				.waitForPageLoad()
-				.clickNextButton(new HSMedicalRecordsPageCC())
-				.waitForPageLoad()
-				.clickNextButton(new ThankYouCloseSimplePageCC())
-				.waitForPageLoad()
-				.clickNextButton(selectActionPageCC)
-				.waitForPageLoad()
-				.pidFromDbToLog(env);         
+                .clickNextButton(new LetMeSeePageCC());
+        letMeSeePageCC
+                .waitForPageLoad()
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoad("Chronic Cough")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
 	}
 }

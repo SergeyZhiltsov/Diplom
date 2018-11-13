@@ -41,7 +41,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class Chronic_4471_OLS extends BaseTest{
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     @TestCaseId("0019")
     @Description("4471 Chronic Cough")
     public void chronicCough_4471() {
@@ -165,7 +165,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.enterYears("20")
 				.howManyCigarettes("21")
 				.clickNextButton(new DiagnosedWithFollowingConditionsOLS())
-				.waitForPageLoad();		
+				.waitForPageLoad();
 		debugPageOLS.checkProtocolsContainsForQNumber("QS6209", protocol1, protocol2);
 		debugPageOLS.back();
 		howManyCigarettesOLS
@@ -293,65 +293,49 @@ public class Chronic_4471_OLS extends BaseTest{
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new ApproximateHeightPageOLS());
 		
-		ChildrenUnderPageOLS childrenUnderPageOLS = approximateHeightPageOLS
+		EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
 				.waitForPageLoad()
 				.setAll("5", "7", "166")
-				.clickNextButton(new ChildrenUnderPageOLS());		
-		 
-		childrenUnderPageOLS
-				.waitForPageLoad()
-				.clickOnAnswer("No")
-				.clickNextButton(new TheStudySitePageOLS())
-				.waitForPageLoad()	        
-			//-------------------PEDIATRIC QUESTIONS-----------------------------   
-				.clickOnAnswer("Public transportation")
-				.clickNextButton(new WhatMedicalCoveragePageOLS())
-				.waitForPageLoad()
-				.clickOnAnswers("No, I have no coverage")
-				.clickNextButton(new EthnicBackgroundPageOLS())
-				.waitForPageLoad()
-				.clickOnAnswers("Prefer not to answer")
-				.clickNextButton(new IdentificationPageOLS())
-			//----------PII (IdentificationPageOLS) Page--------------------
-				.waitForPageLoad()
-				.setAllFields("Acurian", "Trial", eMailId, "9999999999", zipCode)
-				.clickNextButton(new SiteSelectionPageOLS())
-	        
-			//----------SiteSelection Page--------------------
-				.waitForPageLoad(studyName)
-				.getPID()
-				.clickOnFacilityName(siteName)
-				.clickNextButton(new HSGeneralPageOLS())
-				.waitForPageLoad("Chronic Cough")
-				.clickNextButton(new DoctorInformationCollectionPageOLS())
-				.waitForPageLoad()
-		        .clickNextButton(new HS1PageOLS())
-		        .waitForPageLoad()
-		        .clickOkInPopUp()
-		        .setSignature()
-		        
-		        //------------HUMAN API Interface in HelloSign----------------
-		        .getPage(new HumanAPIOLS())
-		        .waitForPageLoad()		        
-		        .connectBTN()
-		        .switchToAPI()
-		        .waitForProvider()
-		        .clickANY()
-		        .waitSearchAll()
-		        .search("cleveland clinic")
-		        .waitProvider()
-		        .clickProvider()
-		        .typeUserName("democlinical@gmail.com")
-		        .typePWD("password")
-		        .clickConnect()
-		        
-		        .waitToClickNext()
-		        .clickNextButton(new ThankYouCloseSimplePageOLS())
-		        .waitForPageLoad()
-		        .clickNextButton(new AboutHealthPageOLS())
-		        .waitForPageLoad()
-		        .pidFromDbToLog(env);
-		
-    }
+                .clickNextButton(new EthnicBackgroundPageOLS());
+        ethnicBackgroundPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", eMailId, "9999999999", zipCode)
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoad("Chronic Cough")
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature()
 
+                //------------HUMAN API Interface in HelloSign----------------
+                .getPage(new HumanAPIOLS())
+                .waitForPageLoad()
+                .connectBTN()
+                .switchToAPI()
+                .waitForProvider()
+                .clickANY()
+                .waitSearchAll()
+                .search("cleveland clinic")
+                .waitProvider()
+                .clickProvider()
+                .typeUserName("democlinical@gmail.com")
+                .typePWD("password")
+                .clickConnect()
+
+                .waitToClickNext()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
+    }
 }
