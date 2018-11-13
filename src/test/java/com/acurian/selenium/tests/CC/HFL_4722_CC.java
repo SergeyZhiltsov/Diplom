@@ -124,15 +124,15 @@ public class HFL_4722_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HeartTransplantPageCC());
-        heartTransplantPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018015-QS6404-STUDYQUES", protocol1)
-                .back();
-        treatYourHeartFailurePageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(heartTransplantPageCC);
+//        heartTransplantPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsEqualsForQNumber("Q0018015-QS6404-STUDYQUES", protocol1)
+//                .back();
+//        treatYourHeartFailurePageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(heartTransplantPageCC);
 
         TransitionStatementCC transitionStatementCC = heartTransplantPageCC
                 .waitForPageLoad()
