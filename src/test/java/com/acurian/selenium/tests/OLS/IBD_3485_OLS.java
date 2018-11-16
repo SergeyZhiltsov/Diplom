@@ -610,10 +610,10 @@ public class IBD_3485_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad();
         Assert.assertEquals(whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS.getTitleText(), whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS.titleExpected, "Title is diff");
-        WhichOfFollowingDiagnosedWithByDoctor_MentalOLS whichOfFollowingDiagnosedWithByDoctor_MentalOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
+        FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
-        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+        following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS52", protocol1, protocol2)
@@ -621,14 +621,14 @@ public class IBD_3485_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
 
 
-        //--------------Q18--WhichOfFollowingDiagnosedWithByDoctor_MentalOLS -----------
-        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        //--------------Q18--FollowingMentalEmotionalHealthPageOLS -----------
+        following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(whichOfFollowingDiagnosedWithByDoctor_MentalOLS.getTitleText(), whichOfFollowingDiagnosedWithByDoctor_MentalOLS.titleExpected, "Title is diff");
-        WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS = whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        Assert.assertEquals(following_MentalEmotionalHealthPageOLS.getTitleText(), following_MentalEmotionalHealthPageOLS.titleExpected, "Title is diff");
+        WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS = following_MentalEmotionalHealthPageOLS
                 .clickOnAnswers("Bipolar disorder", "Schizophrenia")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
         whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
@@ -636,7 +636,7 @@ public class IBD_3485_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2)
                 .back();
-        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());

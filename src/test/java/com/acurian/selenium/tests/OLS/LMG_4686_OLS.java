@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LMG_4686.*;
-import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -341,15 +340,15 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswers("More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
-        WhichOfFollowingDiagnosedWithByDoctor_MentalOLS whichOfFollowingDiagnosedWithByDoctor_MentalOLS = heartrelatedMedicalProceduresPageOLS
+        FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
         
 
-        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        following_MentalEmotionalHealthPageOLS
         		.waitForPageLoad();
-        WomenHealthConditions womenHealthConditions = whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        WomenHealthConditions womenHealthConditions = following_MentalEmotionalHealthPageOLS
                 .clickOnAnswers("Generalized anxiety disorder (GAD)",
                 		"Major depressive disorder (MDD) or depression",
                 		"None of the above")
@@ -359,7 +358,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .waitForPageLoad();
                 debugPageOLS.checkProtocolsContainsForQNumber("QS53", protocol1);
                 debugPageOLS.back();
-        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        following_MentalEmotionalHealthPageOLS
         		.waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WomenHealthConditions());

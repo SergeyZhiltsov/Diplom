@@ -537,10 +537,10 @@ public class IBD_3889_OLS extends BaseTest {
         //--------------Q17: Which of the following have you been diagnosed with? ---------
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad();
-        WhichOfFollowingDiagnosedWithByDoctor_MentalOLS whichOfFollowingDiagnosedWithByDoctor_MentalOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
+        FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
-        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+        following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS52", protocol1, protocol2, protocol3, protocol4)
@@ -548,13 +548,13 @@ public class IBD_3889_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
 
 
-        //--------------Q18--WhichOfFollowingDiagnosedWithByDoctor_MentalOLS -----------
-        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        //--------------Q18--FollowingMentalEmotionalHealthPageOLS -----------
+        following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad();
-        WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS = whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS = following_MentalEmotionalHealthPageOLS
                 .clickOnAnswers("Bipolar disorder", "Schizophrenia")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
         whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
@@ -562,7 +562,7 @@ public class IBD_3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+        following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());

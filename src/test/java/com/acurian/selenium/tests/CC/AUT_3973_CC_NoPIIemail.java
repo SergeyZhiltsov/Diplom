@@ -23,9 +23,7 @@ import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.WhichFollowingMentalEmotionalHealth_CC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
+import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalEmotionalHealthPageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
@@ -273,11 +271,11 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
 		//----KIDNEY DQ Check----------
 		kidneyProblemsPage
 				.waitForPageLoad();
-		WhichFollowingMentalEmotionalHealth_CC whichFollowingMentalEmotionalHealth_CC = kidneyProblemsPage
+		FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealth_Page_CC = kidneyProblemsPage
 				// ---DQ if selected "Dialysis"-----
 				.clickOnAnswers("Dialysis", "Kidney transplant")
-				.clickNextButton(new WhichFollowingMentalEmotionalHealth_CC());
-		whichFollowingMentalEmotionalHealth_CC
+				.clickNextButton(new FollowingMentalEmotionalHealthPageCC());
+		followingMentalEmotionalHealth_Page_CC
 				.waitForPageLoad()
 				.getPage(debugPageCC)
 				.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", AUTISM)
@@ -290,9 +288,9 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
 		
 		
 		//----Check mental or emotional health condition DQ check----
-		whichFollowingMentalEmotionalHealth_CC
+		followingMentalEmotionalHealth_Page_CC
 				.waitForPageLoad();
-		DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whichFollowingMentalEmotionalHealth_CC
+		DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = followingMentalEmotionalHealth_Page_CC
 		// ---DQ if selected "Dialysis"-----		
 				.clickOnAnswers("Bipolar disorder", "Schizophrenia")
 				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
@@ -301,7 +299,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest{
 				.getPage(debugPageCC)
 				.checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", AUTISM)
 				.back();
-		whichFollowingMentalEmotionalHealth_CC
+		followingMentalEmotionalHealth_Page_CC
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());		
