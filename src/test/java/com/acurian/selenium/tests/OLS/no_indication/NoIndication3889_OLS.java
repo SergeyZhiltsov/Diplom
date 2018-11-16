@@ -1,11 +1,9 @@
 package com.acurian.selenium.tests.OLS.no_indication;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.ChronicCough.HowLongYouHadChronicCoughOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -236,11 +234,11 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickOnAnswers("Neither")
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
 
-        WhichOfFollowingDiagnosedWithByDoctor_MentalOLS whichOfFollowingDiagnosedWithByDoctor_mentalOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS52", protocol1, protocol2, protocol3, protocol4)
@@ -248,9 +246,9 @@ public class NoIndication3889_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(whichOfFollowingDiagnosedWithByDoctor_mentalOLS);
+                .clickNextButton(following_mentalEmotionalHealthPageOLS);
 
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -258,7 +256,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
@@ -267,7 +265,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
@@ -275,7 +273,7 @@ public class NoIndication3889_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .back();
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .back();
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS

@@ -188,11 +188,11 @@ public class NoIndication4471_CC extends BaseTest {
                 .clickOnAnswers("Neither")
                 .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
 
-        WhichFollowingMentalEmotionalHealth_CC whichFollowingMentalEmotionalHealth_cc = whichOfTheFollowingLiverProblemsPageСС
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealth_Page_cc = whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new WhichFollowingMentalEmotionalHealth_CC());
-        whichFollowingMentalEmotionalHealth_cc
+                .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
+        followingMentalEmotionalHealth_Page_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1, protocol2)
@@ -200,9 +200,9 @@ public class NoIndication4471_CC extends BaseTest {
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(whichFollowingMentalEmotionalHealth_cc);
+                .clickNextButton(followingMentalEmotionalHealth_Page_cc);
 
-        whichFollowingMentalEmotionalHealth_cc
+        followingMentalEmotionalHealth_Page_cc
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
@@ -210,7 +210,7 @@ public class NoIndication4471_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1, protocol2)
                 .back();
-        whichFollowingMentalEmotionalHealth_cc
+        followingMentalEmotionalHealth_Page_cc
                 .waitForPageLoad()
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
@@ -218,7 +218,7 @@ public class NoIndication4471_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1, protocol2)
                 .back();
-        whichFollowingMentalEmotionalHealth_cc
+        followingMentalEmotionalHealth_Page_cc
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
@@ -226,7 +226,7 @@ public class NoIndication4471_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .back();
-        whichFollowingMentalEmotionalHealth_cc
+        followingMentalEmotionalHealth_Page_cc
                 .waitForPageLoad()
                 .back();
         whichOfTheFollowingLiverProblemsPageСС
