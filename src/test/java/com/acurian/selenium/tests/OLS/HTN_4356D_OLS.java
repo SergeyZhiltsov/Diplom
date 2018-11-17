@@ -190,22 +190,22 @@ public class HTN_4356D_OLS extends BaseTest{
 	//----------------------------------------------------
 		whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
 		.waitForPageLoad();
-		WhichOfFollowingDiagnosedWithByDoctor_MentalOLS whichOfFollowingDiagnosedWithByDoctor_MentalOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
+		FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
 		.clickOnAnswers("Cirrhosis")
-		.clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
-		whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+		.clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+		following_MentalEmotionalHealthPageOLS
 		.waitForPageLoad()
 		.getPage(debugPageOLS)
 		.checkProtocolsContainsForQNumber("QS52",protocol1)
 		.back();
 		whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS.waitForPageLoad()
 		.clickOnAnswers("Unsure which type of liver disease")
-		.clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
+		.clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
 		
 	//----------------------------------------------------
-		whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+		following_MentalEmotionalHealthPageOLS
 		.waitForPageLoad();
-		WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS = whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+		WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS = following_MentalEmotionalHealthPageOLS
 		.clickOnAnswers("Bipolar disorder")
 		.clickOnAnswers("Schizophrenia")
 		.clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
@@ -214,7 +214,7 @@ public class HTN_4356D_OLS extends BaseTest{
 		.getPage(debugPageOLS)
 		.checkProtocolsContainsForQNumber("QS53",protocol1)
 		.back();
-		whichOfFollowingDiagnosedWithByDoctor_MentalOLS.waitForPageLoad()
+		following_MentalEmotionalHealthPageOLS.waitForPageLoad()
 		.clickOnAnswers("None of the above")
 		.clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
 		

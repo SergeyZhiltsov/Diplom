@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.generalHealth;
+package com.acurian.selenium.pages.CC.IBS;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
@@ -9,11 +9,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichFollowingMentalEmotionalHealth_CC extends MainPageCC{
+public class AbdominalPainOverPastPageCC extends MainPageCC{
 
-    public final String titleExpected = "You indicated that you have a mental or emotional health condition.\n" +
-    		"Which of the following have you been diagnosed with by a doctor?\n" +
-    		"Agent Note: Select all that apply";
+    public final String titleExpected = "With IBS, abdominal pain is often accompanied by a change in bowel habits.\n" +
+            "Which of the following have you had with your abdominal pain over the past 3 months?\n" +
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
@@ -21,18 +21,18 @@ public class WhichFollowingMentalEmotionalHealth_CC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public WhichFollowingMentalEmotionalHealth_CC() {
+    public AbdominalPainOverPastPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichFollowingMentalEmotionalHealth_CC waitForPageLoad() {
+    public AbdominalPainOverPastPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichFollowingMentalEmotionalHealth_CC clickOnAnswers(String ...answerText) {
+    public AbdominalPainOverPastPageCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

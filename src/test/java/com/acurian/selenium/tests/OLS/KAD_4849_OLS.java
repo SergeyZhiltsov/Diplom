@@ -1,63 +1,32 @@
 package com.acurian.selenium.tests.OLS;
 
-import java.time.Instant;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.Derm.HowLongHaveYouBeenSufferingFromEczema_OLS;
-import com.acurian.selenium.pages.OLS.Derm.WeWantToMakeSureTheImagesDisplayProperly_OLS;
-import com.acurian.selenium.pages.OLS.Derm.WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS;
-import com.acurian.selenium.pages.OLS.Derm.WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS;
-import com.acurian.selenium.pages.OLS.Derm.WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS;
-import com.acurian.selenium.pages.OLS.Derm.WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS;
-import com.acurian.selenium.pages.OLS.Derm.WhichofthefollowingMedicationsTherapies_OLS;
+import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.CancerPage;
-import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.shared.BiologicMedications;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DidYouReceiveAnyTherapiesPastYear_OLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouEverTreatedYourEczema_OLS;
-import com.acurian.selenium.pages.OLS.shared.OverallHowWellDidTopicalMedicationYouTried_OLS;
-import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
-import com.acurian.selenium.pages.OLS.shared.WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class KAD_4849_OLS extends BaseTest{
 
     @Test(enabled = true)
-    @TestCaseId("00002")
-    @Description("kad4849_OLS_Test")
+    @Description("kad4849 OLS Test")
     public void kad4849_OLS_Test() {
         String phoneNumberMIG = "AUTAMS1KAD";
         String protocol1 = "ANB020_005";       
         String studyName =  "an eczema (atopic dermatitis)";
         String siteName = "AUT_DERM_4849_Site";
         String zipCode = "19901";
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
+
         String eMailId = "qa.acurian@gmail.com";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();

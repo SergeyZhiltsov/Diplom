@@ -7,14 +7,10 @@ import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
-import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPageCC;
-import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -24,7 +20,6 @@ import java.util.Map;
 public class DIA_4241_СС_ver3 extends BaseTest{
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("00012")
     @Description("Diabetes_4241 CC")
     public void dia4241ccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1DIA";

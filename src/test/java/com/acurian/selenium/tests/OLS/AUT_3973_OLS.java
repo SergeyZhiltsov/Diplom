@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -17,18 +18,8 @@ import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.OtherThanSkinCancerPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingDiagnosedWithByDoctor_MentalOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.FollowingMentalEmotionalHealthPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
@@ -239,11 +230,11 @@ public class AUT_3973_OLS extends BaseTest {
 		//----KIDNEY DQ Check----------
 		whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
 				.waitForPageLoad();
-		WhichOfFollowingDiagnosedWithByDoctor_MentalOLS whichOfFollowingDiagnosedWithByDoctor_MentalOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+		FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
 				// ---DQ if selected "Dialysis"-----
 				.clickOnAnswers("Dialysis", "Kidney transplant")
-				.clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
-		whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+				.clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+		following_MentalEmotionalHealthPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS51", AUTISM)
@@ -251,14 +242,14 @@ public class AUT_3973_OLS extends BaseTest {
 		whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
 				.waitForPageLoad()		
 				.clickOnAnswers("Neither")
-				.clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
+				.clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
 		
 		
 		
 		//----Check mental or emotional health condition DQ check----
-		whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+		following_MentalEmotionalHealthPageOLS
 				.waitForPageLoad();
-		DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+		DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = following_MentalEmotionalHealthPageOLS
 		// ---DQ if selected "Dialysis"-----		
 				.clickOnAnswers("Bipolar disorder", "Schizophrenia")
 				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
@@ -267,7 +258,7 @@ public class AUT_3973_OLS extends BaseTest {
 				.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QS53", AUTISM)
 				.back();
-		whichOfFollowingDiagnosedWithByDoctor_MentalOLS
+		following_MentalEmotionalHealthPageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());		

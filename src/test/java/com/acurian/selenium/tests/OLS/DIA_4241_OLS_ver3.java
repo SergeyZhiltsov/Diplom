@@ -23,10 +23,9 @@ import java.util.Map;
 public class DIA_4241_OLS_ver3 extends BaseTest {
 
     @Test(enabled = true)
-    @TestCaseId("00017")
     @Description("Diabetes_4241 OLS")
     public void dia4241olsVer3Test() {
-        String phoneNumberLBP = "AUTAMS1DIA";
+        String phoneNumber = "AUTAMS1DIA";
         String protocol1 = "EFC14822";
         String protocol2 = "EFC14829";
         String protocol3 = "EFC14893";
@@ -41,7 +40,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberLBP)
+                .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDiabetes_4356A_Expected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

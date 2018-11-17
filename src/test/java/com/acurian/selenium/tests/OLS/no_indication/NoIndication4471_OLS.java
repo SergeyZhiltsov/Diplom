@@ -166,11 +166,11 @@ public class NoIndication4471_OLS extends BaseTest {
                 .clickOnAnswers("Neither")
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
 
-        WhichOfFollowingDiagnosedWithByDoctor_MentalOLS whichOfFollowingDiagnosedWithByDoctor_mentalOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new WhichOfFollowingDiagnosedWithByDoctor_MentalOLS());
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS52", protocol1, protocol2)
@@ -178,9 +178,9 @@ public class NoIndication4471_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(whichOfFollowingDiagnosedWithByDoctor_mentalOLS);
+                .clickNextButton(following_mentalEmotionalHealthPageOLS);
 
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -188,7 +188,7 @@ public class NoIndication4471_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2)
                 .back();
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -196,7 +196,7 @@ public class NoIndication4471_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2)
                 .back();
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
@@ -204,7 +204,7 @@ public class NoIndication4471_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .back();
-        whichOfFollowingDiagnosedWithByDoctor_mentalOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .back();
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
