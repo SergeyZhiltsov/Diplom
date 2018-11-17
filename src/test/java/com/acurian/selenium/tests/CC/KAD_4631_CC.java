@@ -140,8 +140,15 @@ public class KAD_4631_CC extends BaseTest {
         debugPageCC.checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1);
         debugPageCC.back();
         howLongHaveYouBeenSufferingFromEczema_CC
+        .waitForPageLoad()
+        .clickOnAnswer("1 year to less than 2 years")
+        .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_CC());
+        ifYouUseYourHandToCoverAllOfTheEczema_CC.waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1);
+        debugPageCC.back();
+        howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("1 year or more")
+                .clickOnAnswer("2 years or more")
                 .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_CC());
 
         

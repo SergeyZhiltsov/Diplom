@@ -99,7 +99,7 @@ public class KAD_4631_OLS extends BaseTest {
 				.clickOnAnswer("1 year to less than 2 years")
 				.clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
 	whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS.waitForPageLoad();
-	debugPageOLS.checkProtocolsContainsForQNumber("QS5803", protocol1);
+	//debugPageOLS.checkProtocolsContainsForQNumber("QS5803", protocol1);
 	debugPageOLS.back();
 	howLongHaveYouBeenSufferingFromEczema_OLS
 				.waitForPageLoad()
@@ -297,13 +297,29 @@ public class KAD_4631_OLS extends BaseTest {
                 .waitForPageLoadKAD()
                 .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)", "Benlysta", "Cimzia", "Cosentyx", "Enbrel", "Entyvio", "Humira",
                         "Kineret", "Orencia", "Prolia or Xgeva", "Raptiva", "Remicade", "Rituxan", "Simponi", "Stelara", "Taltz", "Tysabri")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                .clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS())
+				.waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5821", protocol1);
         debugPageOLS.back();
         biologicMedications
-                .waitForPageLoadKAD()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                .waitForPageLoadKAD();
+        		HaveYouEverTakenEitherAnyOfFollowingMeds_OLS haveYouEverTakenEitherAnyOfFollowingMeds_OLS = biologicMedications
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS());
+	
+	
+	//------------Q23- HaveYouEverTakenEitherAnyOfFollowingMeds ----------------
+	haveYouEverTakenEitherAnyOfFollowingMeds_OLS
+				.waitForPageLoad()
+				.clickOnAnswers("Jakafi","Olumiant","Xeljanz")
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+				.waitForPageLoad();
+	//debugPageOLS.checkProtocolsContainsForQNumber("QS5830", protocol1);
+	debugPageOLS.back();
+	haveYouEverTakenEitherAnyOfFollowingMeds_OLS
+				.waitForPageLoad()
+				.clickOnAnswers("None of the above")
+				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
 
         CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
