@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MDD_3159_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("MDD_3159_OLS")
     public void mdd_3159_OLS() {
         String phoneNumber = "AUTAMS1MDD";

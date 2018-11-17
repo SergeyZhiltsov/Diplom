@@ -11,7 +11,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhichofthefollowingMedicationsTherapies_OLS extends MainPageOLS{
 
-    public final String titleExpected ="Which of the following medications or therapies have you ever received for your eczema (atopic dermatitis)?"; 
+    public final String titleExpected ="Which of the following medications or therapies have you ever received for your eczema (atopic dermatitis)?\n" +
+    		"Please select all that apply."; 
     
     		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')]")
