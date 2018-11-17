@@ -286,15 +286,33 @@ public class KAD_4849_OLS extends BaseTest{
 					.waitForPageLoadKAD()
 					.clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)", "Benlysta", "Cimzia", "Cosentyx", "Enbrel", "Entyvio", "Humira",
 							"Kineret", "Orencia", "Prolia or Xgeva", "Raptiva", "Remicade", "Rituxan", "Simponi", "Stelara", "Taltz", "Tysabri")
-					.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+					.clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS())
+					.waitForPageLoad();
 		debugPageOLS.checkProtocolsContainsForQNumber("QS5821", protocol1);
 		debugPageOLS.back();
 		biologicMedications
-					.waitForPageLoadKAD()
+					.waitForPageLoadKAD();
+		HaveYouEverTakenEitherAnyOfFollowingMeds_OLS haveYouEverTakenEitherAnyOfFollowingMeds_OLS = biologicMedications
+					.clickOnAnswers("None of the above")
+					.clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS());
+		
+		
+		//------------Q23- HaveYouEverTakenEitherAnyOfFollowingMeds ----------------
+		haveYouEverTakenEitherAnyOfFollowingMeds_OLS
+					.waitForPageLoad()
+					.clickOnAnswers("Jakafi","Olumiant","Xeljanz")
+					.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+					.waitForPageLoad();
+		//debugPageOLS.checkProtocolsContainsForQNumber("QS5830", protocol1);
+		debugPageOLS.back();
+		haveYouEverTakenEitherAnyOfFollowingMeds_OLS
+					.waitForPageLoad()
 					.clickOnAnswers("None of the above")
 					.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		
 		
+		//**************************************************
+		//------------GENERAL HEALTH  Questions-------------
 		CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 					.waitForPageLoad()
 					.clickOnAnswers("Cancer")
@@ -314,8 +332,7 @@ public class KAD_4849_OLS extends BaseTest{
 					.waitForPageLoad()
 					.clickOnAnswers("Cancer")
 					.clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
-					.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-		
+					.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());		
 		
 		
 		SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
