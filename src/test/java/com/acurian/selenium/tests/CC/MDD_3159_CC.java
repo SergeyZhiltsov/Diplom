@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MDD_3159_CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00011")
     @Description("MDD_3159_CC")
     public void mDD_3159_CC(final String username, final String password) {

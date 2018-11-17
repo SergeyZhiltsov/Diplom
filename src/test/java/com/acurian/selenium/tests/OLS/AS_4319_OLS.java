@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AS_4319_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     public void as_4319_OLS() {
         String phoneNumber = "AUTAMS1AS1";
         String protocol1 = "M16_098";

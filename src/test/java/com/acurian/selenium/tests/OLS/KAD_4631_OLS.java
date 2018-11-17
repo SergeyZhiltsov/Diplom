@@ -96,15 +96,15 @@ public class KAD_4631_OLS extends BaseTest {
         debugPageOLS.back();
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
-                .clickOnAnswer("6 to less than 12 months")
-                .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
-        whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS.waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5803", protocol1);
-        debugPageOLS.back();
-        howLongHaveYouBeenSufferingFromEczema_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 year or more")
-                .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
+				.clickOnAnswer("1 year to less than 2 years")
+				.clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
+	whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS.waitForPageLoad();
+	debugPageOLS.checkProtocolsContainsForQNumber("QS5803", protocol1);
+	debugPageOLS.back();
+	howLongHaveYouBeenSufferingFromEczema_OLS
+				.waitForPageLoad()
+				.clickOnAnswer("2 years or more")
+				.clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
 
 
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS

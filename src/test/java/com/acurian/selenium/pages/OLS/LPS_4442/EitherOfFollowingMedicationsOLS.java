@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class EitherOfFollowingMedicationsOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever taken either of the following medications?\n" +
+    public final String titleExpected = "Have you ever taken of the following medications?\n" +
     		"Please select all that apply.";
             
 

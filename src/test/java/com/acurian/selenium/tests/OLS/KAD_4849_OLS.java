@@ -91,8 +91,16 @@ public class KAD_4849_OLS extends BaseTest{
 		debugPageOLS.back();
 		howLongHaveYouBeenSufferingFromEczema_OLS
 					.waitForPageLoad()
-					.clickOnAnswer("1 year or more")
+					.clickOnAnswer("1 year to less than 2 years")
 					.clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
+		whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS.waitForPageLoad();
+		//debugPageOLS.checkProtocolsContainsForQNumber("QS5803", protocol1);
+		debugPageOLS.back();
+		howLongHaveYouBeenSufferingFromEczema_OLS
+					.waitForPageLoad()
+					.clickOnAnswer("2 years or more")
+					.clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
+
 		
 		whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
 					.waitForPageLoad()
@@ -246,8 +254,11 @@ public class KAD_4849_OLS extends BaseTest{
 					.clickOnAnswers("Azasan or Imuran (azathioprine)")
 					.clickOnAnswers("CellCept or Myfortic (mycophenolate)")
 					.clickOnAnswers("Dupixent (dupilumab)")
+					.clickOnAnswers("Fasenra (benralizumab)")
 					.clickOnAnswers("Neoral, Sandimmune, or Gengraf (cyclosporine)")
+					.clickOnAnswers("Nucala (mepolizumab)")
 					.clickOnAnswers("Methotrexate (Brand names: Otrexup, Rasuvo, or Trexall)")
+					.clickOnAnswers("Otezla (apremilast)")
 					.clickOnAnswers("Prednisone (Brand names: Deltasone, Prednisone Intensol, or Rayos)")
 					.clickOnAnswers("Phototherapy (Ultraviolet or UV light)")
 					.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
@@ -282,6 +293,7 @@ public class KAD_4849_OLS extends BaseTest{
 					.waitForPageLoadKAD()
 					.clickOnAnswers("None of the above")
 					.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+		
 		
 		CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 					.waitForPageLoad()
