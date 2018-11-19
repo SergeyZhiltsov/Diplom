@@ -15,7 +15,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class IBS_4819_CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("IBS 4819 CC")
     public void ibs4819ccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1IBS";

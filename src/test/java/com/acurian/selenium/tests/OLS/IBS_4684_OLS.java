@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class IBS_4684_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @Description("IBS 4684 OLS")
     public void ibs46484olsTest() {
         String phoneNumber = "AUTAMS1IBS";
