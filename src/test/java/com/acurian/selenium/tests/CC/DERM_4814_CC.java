@@ -19,17 +19,18 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-public class KAD_4849_CC extends BaseTest {
+public class DERM_4814_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class,enabled = true)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class,enabled = false)
     @TestCaseId("Kiniksa Atopic Dermatitis")
     @Description("KAD 4849 for CC")
     
     public void kad4849_CC_Test(final String username, final String password) {
         String phoneNumber = "AUTAMS1KAD";
-        String protocol1 = "ANB020_005";
-        String studyName = "eczema, or atopic dermatitis";
-        String siteName = "AUT_DERM_4849_Site";
+        String protocol1 = "INCB 18424_303"; 
+        String protocol2 = "INCB 18424_304";
+        String studyName =  "an eczema (atopic dermatitis)";
+        String siteName = "AUT_AD4814_site";
         String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");//was in prod
@@ -74,13 +75,13 @@ public class KAD_4849_CC extends BaseTest {
                 .setYear("2003")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setYear("1942")
                 .clickNextButton(new IdentificationPageCC());
         identificationPageCC.waitForPageLoad1();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         dateOfBirthPageCC
                 .setYear("1980")
@@ -107,7 +108,7 @@ public class KAD_4849_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_CC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
@@ -121,14 +122,14 @@ public class KAD_4849_CC extends BaseTest {
                 .clickOnAnswer("Less than 3 months")
                 .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_CC());
         ifYouUseYourHandToCoverAllOfTheEczema_CC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("3 to less than 6 months")
                 .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_CC());
         ifYouUseYourHandToCoverAllOfTheEczema_CC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
@@ -142,14 +143,14 @@ public class KAD_4849_CC extends BaseTest {
                 .selectFromDropDown("1")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
         haveYouEverTreatedYourEczema_CC.waitForPageLoad();
-        		debugPageCC.checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1);
+        		debugPageCC.checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1,protocol2);
         		debugPageCC.back();
         ifYouUseYourHandToCoverAllOfTheEczema_CC
                 .waitForPageLoad()
                 .selectFromDropDown("7")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
         haveYouEverTreatedYourEczema_CC.waitForPageLoad();
-        		debugPageCC.checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1);
+        		debugPageCC.checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1,protocol2);
         		debugPageCC.back();
         ifYouUseYourHandToCoverAllOfTheEczema_CC
                 .waitForPageLoad()
@@ -188,13 +189,6 @@ overallHowWellDidTopicalMedicationYouTried_CC
 
 //--------------Q19- whichofthefollowingMedicationsTherapies_CC ----------
 whichofthefollowingMedicationsTherapies_CC
-			.waitForPageLoad()
-			.clickOnAnswers("None of the above")
-			.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC())
-			.waitForPageLoadKAD();
-			debugPageCC.checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1);
-			debugPageCC.back();
-whichofthefollowingMedicationsTherapies_CC
 			.waitForPageLoad();
 DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
 			.clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
@@ -204,6 +198,13 @@ DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whic
 			.clickOnAnswers("Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)")
 			.clickOnAnswers("Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)")
 			.clickOnAnswers("Phototherapy, Ultraviolet, or UV light")
+			.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC())
+			.waitForPageLoad();
+			debugPageCC.checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1,protocol2);
+			debugPageCC.back();
+whichofthefollowingMedicationsTherapies_CC
+			.waitForPageLoad()
+			.clickOnAnswers("None of the above")
 			.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
 
 
@@ -216,7 +217,7 @@ AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRe
 			.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
 areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
 			.waitForPageLoadKAD();
-			debugPageCC.checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1);
+			debugPageCC.checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1,protocol2);
 			debugPageCC.back();
 didYouReceiveAnyTherapiesPastYear_CC
 			.waitForPageLoad()				
@@ -235,7 +236,7 @@ didYouReceiveAnyTherapiesPastYear_CC
                 .clickOnAnswers("Simponi (Agent Note: SIM-po-nee)", "Stelara (Agent Note: ste-LAHR-uh)", "Taltz (Agent Note: TALTS)", "Tysabri (Agent Note: tie-SAB-ree)")
                 .clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_CC())
         		.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
@@ -250,7 +251,7 @@ didYouReceiveAnyTherapiesPastYear_CC
 					.clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)", "Olumiant (Agent Note: oh-LOO-me-ant)","Xeljanz (Agent Note: ZEL-jans)")
 					.clickNextButton(new TransitionStatementCC())
 					.waitForPageLoadWithCurvesKAD(studyName);
-			        debugPageCC.checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", protocol1);
+			        debugPageCC.checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", protocol1,protocol2);
 			        debugPageCC.back();
 	    haveYouEverTakenEitherAnyOfFollowingMeds_CC
 					.waitForPageLoad()
@@ -285,7 +286,7 @@ didYouReceiveAnyTherapiesPastYear_CC
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         whenDiagnosedWithCancer.back();
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -300,14 +301,14 @@ didYouReceiveAnyTherapiesPastYear_CC
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -320,7 +321,7 @@ didYouReceiveAnyTherapiesPastYear_CC
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -328,7 +329,7 @@ didYouReceiveAnyTherapiesPastYear_CC
                 .clickOnAnswers("Hepatitis B")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -336,7 +337,7 @@ didYouReceiveAnyTherapiesPastYear_CC
                 .clickOnAnswers("Hepatitis C")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -344,7 +345,7 @@ didYouReceiveAnyTherapiesPastYear_CC
                 .clickOnAnswers("HIV or AIDS")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()

@@ -15,7 +15,7 @@ import java.util.List;
 public class HaveYouEverTakenEitherAnyOfFollowingMeds_CC extends MainPageCC{
 
     public final String titleExpected = "Have you ever taken any of the following medications?\n" +
-    		"Select all that apply";
+    		"Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
