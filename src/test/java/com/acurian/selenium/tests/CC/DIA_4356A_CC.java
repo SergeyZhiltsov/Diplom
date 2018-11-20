@@ -270,6 +270,8 @@ public class DIA_4356A_CC extends BaseTest{
                 .clickOnDebugSiteName(debugSiteName)
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
+                .assertVariables("Acurian", "Trial", "09/09/1980", "US", "Horsham, PA",
+                        zipCode, "qa.acurian@gmail.com", "999 -999-9999", "55555", siteName, "KOWQUICAR302")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

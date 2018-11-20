@@ -2,13 +2,10 @@ package com.acurian.selenium.pages.CC.closes;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-
-import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
@@ -19,7 +16,7 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
             "\n" +
             "Agent note: Go to Clinical Conductor and enter the required Acurian information";
     
-    public final String titleSyn = "The next step is to get you scheduled for an appointment with the study doctor's team. During this visit, the study doctor's team will further discuss the study requirements and answer any questions you may have. Let me look at the site's calendar.\n" +
+    public final String titleSynExpected = "The next step is to get you scheduled for an appointment with the study doctor's team. During this visit, the study doctor's team will further discuss the study requirements and answer any questions you may have. Let me look at the site's calendar.\n" +
             "\n" +
             "Agent note: Go to Clinical Conductor and enter the required Acurian information";
             
@@ -75,14 +72,13 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
 
     @Step
     public SynexusRadiantDirectScheduleCC waitForPageLoad() {
-    	 waitForAnimation();
-         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
     
     @Step
     public SynexusRadiantDirectScheduleCC waitForPageLoadSyn() {
-        waitForPageLoadMain(titleText, titleSyn);
+        waitForPageLoadMain(titleText, titleSynExpected);
         return this;
     }
     
@@ -96,19 +92,20 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
     public SynexusRadiantDirectScheduleCC assertVariables(String firstName, String secondName, String dateOfBirth, String country,
                                                           String cityAndState, String zipCode, String email, String phoneNumber,
                                                           String siteNumber, String siteName, String studyName) {
-        Assert.assertEquals(firstNameField.getText(), "Patient First Name:" + firstName);
-        Assert.assertEquals(secondNameField.getText(), "Patient First Name:" + secondName);
-        Assert.assertEquals(dateOfBirthField.getText(), "Patient First Name:" + firstName);
-        Assert.assertEquals(countryField.getText(), "Patient First Name:" + firstName);
-        Assert.assertEquals(cityAndStateField.getText(), "Patient First Name:" + firstName);
-        Assert.assertEquals(emailField.getText(), "Patient First Name:" + firstName);
-        Assert.assertEquals(phoneNumberField.getText(), "Patient First Name:" + firstName);
-        Assert.assertEquals(zipCodeField.getText(), "Patient First Name:" + firstName);
-        Assert.assertTrue(allText.getText().contains("Site: " + siteNumber + " - " + siteName));
-        Assert.assertTrue(allText.getText().contains("Study: " + studyName));
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(firstNameField.getText(), "Patient First Name: " + firstName);
+        softAssert.assertEquals(secondNameField.getText(), "Patient Last Name: " + secondName);
+        softAssert.assertEquals(dateOfBirthField.getText(), "Date of Birth: " + dateOfBirth);
+        softAssert.assertEquals(countryField.getText(), "Country: " + country);
+        softAssert.assertEquals(cityAndStateField.getText(), "City & State: " + cityAndState);
+        softAssert.assertEquals(emailField.getText(), "Email: " + email);
+        softAssert.assertEquals(phoneNumberField.getText(), "Phone Number: " + phoneNumber);
+        softAssert.assertEquals(zipCodeField.getText(), "Zip Code: " + zipCode);
+        softAssert.assertTrue(allText.getText().contains("Site: " + siteNumber + " - " + siteName));
+        softAssert.assertTrue(allText.getText().contains("Study: " + studyName));
+        softAssert.assertAll();
         return this;
     }
-
 
     @Step
     public String getTitleText(){
