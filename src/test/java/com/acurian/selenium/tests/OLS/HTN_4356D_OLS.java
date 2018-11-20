@@ -86,7 +86,7 @@ public class HTN_4356D_OLS extends BaseTest{
 		.waitForPageLoad();
 		//OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 		WhichOfFollowingHaveYouDiagnosedWith_BreathingOLS whichOfFollowingHaveYouDiagnosedWith_BreathingOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-				.clickOnAnswers("Alzheimer's disease","Cancer","Diabetes (type 1 or type 2)","Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
+				.clickOnAnswers("Alzheimer's disease","Cancer","Diabetes (type 1 or type 2)","Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
 				"Headaches (migraine, cluster, tension)","Heart or circulation problems (heart attack, heart failure, stroke)",	"High blood pressure or hypertension",
 				"High cholesterol, triglycerides, or lipids","Kidney disease","Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
 				"Lupus","Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",

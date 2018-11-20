@@ -314,7 +314,7 @@ public class IBD_3839_OLS extends BaseTest {
                         "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
-                        "Digestive disorders (IBS, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
+                        "Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
 
                         "Headaches (migraine, cluster, tension)",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
