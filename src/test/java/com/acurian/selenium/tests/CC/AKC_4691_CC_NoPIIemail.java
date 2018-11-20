@@ -1,10 +1,7 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.DIA_4241.BrandsOfInsulinPageCC;
-import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
-import com.acurian.selenium.pages.CC.DIA_4241.TakeYourInsulinInjectionsPageCC;
-import com.acurian.selenium.pages.CC.DIA_4241.TakeYourInsulinPageCC;
+import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.WhereDoYouExperienceDiabeticNervePain_CC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
@@ -41,7 +38,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         String phoneNumber = "AUTAMS1AKC";
         String protocol1 = "ISIS 703802_CS2";
         String studyName = "a study for diabetics";
-        String siteName = "AUT_AKC4691";
+        String siteName = "AUT_AKC4691_MR";
         String zipCode = "08204";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -50,7 +47,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(username)
                 .typePassword(password)
@@ -134,11 +131,11 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, protocol1)
                 .back();
-        UseDietAndExercisePageCC useDietAndExercisePageCC = whatKindOfDiabetesPageCC
+        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new UseDietAndExercisePageCC());
-        useDietAndExercisePageCC
+                .clickNextButton(new TreatingYourDiabetesPageCC());
+        treatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, protocol1)
@@ -151,44 +148,96 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 12 months ago")
-                .clickNextButton(useDietAndExercisePageCC);
+                .clickNextButton(treatingYourDiabetesPageCC);
 
-        CurrentlyUseMetforminOrInsulinPageCC currentlyUseMetforminOrInsulinPageCC = useDietAndExercisePageCC
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = treatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new CurrentlyUseMetforminOrInsulinPageCC());
+                .clickOnAnswers("Diet and exercise")
+                .clickNextButton(new NoOfAlcoholicDrinksCC());
 
-
-        ApartFromMetforminPageCC apartFromMetforminPageCC = currentlyUseMetforminOrInsulinPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Medication other than Metformin or Insulin")
-                .clickNextButton(new ApartFromMetforminPageCC());
-        apartFromMetforminPageCC
-                .waitForPageLoad()
-                .back();
-        TakeYourInsulinPageCC takeYourInsulinPageCC = currentlyUseMetforminOrInsulinPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
-                .clickOnAnswers("Insulin")
-                .clickNextButton(new TakeYourInsulinPageCC());
-        takeYourInsulinPageCC
+        noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(currentlyUseMetforminOrInsulinPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0018438-QS4631-STUDYQUES", protocol1)
                 .back();
-        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPageCC
+
+        treatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
-                .clickNextButton(new AnyPrescribedMedicationPage());
-        anyPrescribedMedicationPage
+                .clickOnAnswers("I am not currently treating my diabetes")
+                .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(currentlyUseMetforminOrInsulinPageCC.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("Q0018438-QS4631-STUDYQUES", protocol1)
                 .back();
-        MetforminMedicationsPageCC metforminMedicationsPageCC = currentlyUseMetforminOrInsulinPageCC
+
+        LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Metformin","Insulin","Medication other than Metformin or Insulin")
+                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
+                .clickNextButton(new LastTimeYouTookPageCC());
+
+        lastTimeYouTookPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("2 - 3 months ago")
+                .clickNextButton(noOfAlcoholicDrinksCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, protocol1)
+                .back();
+
+        lastTimeYouTookPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 5 months ago")
+                .clickNextButton(noOfAlcoholicDrinksCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, protocol1)
+                .back();
+
+        lastTimeYouTookPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("6 months ago or longer")
+                .clickNextButton(noOfAlcoholicDrinksCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, protocol1)
+                .back();
+
+        MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Currently taking / have taken within the past month")
                 .clickNextButton(new MetforminMedicationsPageCC());
+
+//        ApartFromMetforminPageCC apartFromMetforminPageCC = currentlyUseMetforminOrInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Medication other than Metformin or Insulin")
+//                .clickNextButton(new ApartFromMetforminPageCC());
+//        apartFromMetforminPageCC
+//                .waitForPageLoad()
+//                .back();
+//        TakeYourInsulinPageCC takeYourInsulinPageCC = currentlyUseMetforminOrInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+//                .clickOnAnswers("Insulin")
+//                .clickNextButton(new TakeYourInsulinPageCC());
+//        takeYourInsulinPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContains(currentlyUseMetforminOrInsulinPageCC.titleExpected, protocol1)
+//                .back();
+//        AnyPrescribedMedicationPage anyPrescribedMedicationPage = currentlyUseMetforminOrInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Do not use any prescribed medication to treat diabetes")
+//                .clickNextButton(new AnyPrescribedMedicationPage());
+//        anyPrescribedMedicationPage
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContains(currentlyUseMetforminOrInsulinPageCC.titleExpected, protocol1)
+//                .back();
+//        MetforminMedicationsPageCC metforminMedicationsPageCC = currentlyUseMetforminOrInsulinPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Metformin", "Insulin", "Medication other than Metformin or Insulin")
+//                .clickNextButton(new MetforminMedicationsPageCC());
+        ApartFromMetforminPageCC apartFromMetforminPageCC = new ApartFromMetforminPageCC();
 
         HashMap<String, List<String>> options = new HashMap<>();
         options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(protocol1));
@@ -218,9 +267,11 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswers("Metformin")
                 .clickNextButton(apartFromMetforminPageCC);
 
+        CurrentlyTakeInsulinPageCC currentlyTakeInsulinPageCC = new CurrentlyTakeInsulinPageCC();
         options.clear();
         options.put("Actos (pioglitazone)", Arrays.asList(protocol1));
         options.put("Avandia (rosiglitazone)", Arrays.asList(protocol1));
+        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(protocol1));
         options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol1));
 
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
@@ -229,7 +280,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(takeYourInsulinPageCC)
+                    .clickNextButton(currentlyTakeInsulinPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContains(apartFromMetforminPageCC.titleExpected, (String[]) entry.getValue().toArray())
@@ -239,7 +290,17 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Amaryl (glimepiride)")//changed
-                .clickNextButton(takeYourInsulinPageCC);
+                .clickNextButton(currentlyTakeInsulinPageCC);
+
+        TakeYourInsulinPageCC takeYourInsulinPageCC = currentlyTakeInsulinPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new TakeYourInsulinPageCC());
+
+        takeYourInsulinPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContains(currentlyTakeInsulinPageCC.titleExpected, protocol1);
 
         InjectableMedicationsForYourDiabetesPageCC injectableMedicationsForYourDiabetesPageCC = takeYourInsulinPageCC
                 .waitForPageLoad()
@@ -251,6 +312,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         BrandsOfInsulinPageCC brandsOfInsulinPageCC = takeYourInsulinPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Insulin pump, which delivers insulin continuously")
+                .clickOnAnswers("Inhaled insulin (Afrezza)")
                 .clickNextButton(new BrandsOfInsulinPageCC());
         brandsOfInsulinPageCC
                 .waitForPageLoad()
@@ -258,6 +320,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         TakeYourInsulinInjectionsPageCC takeYourInsulinInjectionsPageCC = takeYourInsulinPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Daily injections")
+                .clickOnAnswers("Insulin pump, which delivers insulin continuously")
                 .clickNextButton(new TakeYourInsulinInjectionsPageCC());
 
         takeYourInsulinInjectionsPageCC
@@ -276,20 +339,11 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .back(takeYourInsulinPageCC)
                 .waitForPageLoad()
-                .back(apartFromMetforminPageCC)
+                .back(currentlyTakeInsulinPageCC)
                 .waitForPageLoad()
-                .back(metforminMedicationsPageCC)
-                .waitForPageLoad()
-                .back(currentlyUseMetforminOrInsulinPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Insulin")
-                .clickNextButton(metforminMedicationsPageCC)
-                .waitForPageLoad()
-                .clickNextButton(apartFromMetforminPageCC)
-                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageCC);
 
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Adlyxin (lixisenatide)")
@@ -480,7 +534,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Auto", "Test", "", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
