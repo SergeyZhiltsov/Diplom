@@ -26,11 +26,11 @@ public class HSGeneralCC extends MainPageCC{
 	
 	public final String titelExpected_NoPIIemail = "We're glad the location is convenient for you.\n" +
 			"\n" +
-			"The last step is to provide information about the doctors who are currently treating, or have previously treated, your Type 2 Diabetes and related health conditions so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
+			"The last step is to provide information about the doctors who are currently treating, or have previously treated, your Type 2 Diabetes and related health conditions so we can request your medical records and send them to the study doctor.\n" +
 			"\n" +
 			"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
 			"\n" +
-			"You will need to provide us with an email address to start this process. What email address should we use:";
+			"To start this process, you will need to provide an email address. What email address should we use:";
 	
 	
 	public final String titleExpected_IND = "We're glad the location is convenient for you.\n" +
