@@ -94,23 +94,23 @@ public class LOWT_3017_OLS extends BaseTest {
                 .clickOnAnswer("Male")
                 .clickNextButton(new PersonalQuestionsOLS());
 
-        HaveYouExperienceAnyOftheFollowing_OLS haveYouExperienceAnyOftheFollowing_OLS = personalQuestionsOLS
+        ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowing_OLS = personalQuestionsOLS
                 .waitForPageLoad()
-                .clickNextButton(new HaveYouExperienceAnyOftheFollowing_OLS());
+                .clickNextButton(new ExperiencedAnyOfFollowingOLS());
 
-        //---------------Q3 HaveYouExperienceAnyOftheFollowing_OLS page-------------------
-        haveYouExperienceAnyOftheFollowing_OLS
+        //---------------Q3 ExperiencedAnyOfFollowingOLS page-------------------
+        experiencedAnyOfFollowing_OLS
                 .waitForPageLoad();
-        Assert.assertEquals(haveYouExperienceAnyOftheFollowing_OLS.getTitleText(), haveYouExperienceAnyOftheFollowing_OLS.titleExpected, "Title is diff");
-        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = haveYouExperienceAnyOftheFollowing_OLS
+        Assert.assertEquals(experiencedAnyOfFollowing_OLS.getTitleText(), experiencedAnyOfFollowing_OLS.titleExpected, "Title is diff");
+        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2);
         debugPageOLS.back();
-        haveYouExperienceAnyOftheFollowing_OLS.waitForPageLoad()
-                //HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = haveYouExperienceAnyOftheFollowing_OLS
+        experiencedAnyOfFollowing_OLS.waitForPageLoad()
+                //HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
                 .clickOnAnswers("Decreased sexual desire or libido",
                         "Decreased spontaneous erections (e.g., morning erections)",
                         "Decreased energy or fatigue/feeling tired",

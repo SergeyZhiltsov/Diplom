@@ -1,35 +1,37 @@
 package com.acurian.selenium.pages.OLS.LOWT_3017;
 
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveYouExperienceAnyOftheFollowing_OLS extends MainPageOLS{
+public class ExperiencedAnyOfFollowingOLS extends MainPageOLS{
 
     public final String titleExpected = "Have you experienced any of the following?\n" +
     		"Please select all that apply.";
     		
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath ="//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public HaveYouExperienceAnyOftheFollowing_OLS() {
+    public ExperiencedAnyOfFollowingOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouExperienceAnyOftheFollowing_OLS waitForPageLoad() {
+    public ExperiencedAnyOfFollowingOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouExperienceAnyOftheFollowing_OLS clickOnAnswers(String ...answerText) {
+    public ExperiencedAnyOfFollowingOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
@@ -38,5 +40,4 @@ public class HaveYouExperienceAnyOftheFollowing_OLS extends MainPageOLS{
     public String getTitleText() {
         return getText(titleText);
     }
-
 }
