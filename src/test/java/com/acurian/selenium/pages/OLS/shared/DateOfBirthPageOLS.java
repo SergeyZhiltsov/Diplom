@@ -365,7 +365,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
     @Step
     public DateOfBirthPageOLS waitForPageLoadGROUP() {
-        waitForPageLoadMain(questionTextGROUP,titleExpected);
+        waitForPageLoadMain(questionTextGROUP, titleExpected);
         return this;
     }
 

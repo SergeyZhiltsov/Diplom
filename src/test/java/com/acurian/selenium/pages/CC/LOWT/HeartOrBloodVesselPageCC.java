@@ -8,10 +8,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HasDoctorEverDiagnosedMedicalCondDiseases_CC extends MainPageCC{
+public class HeartOrBloodVesselPageCC extends MainPageCC {
 
-    public final String titleExpected = "Has a doctor ever diagnosed you with any of the following medical conditions or diseases? \n" +
-    		"Agent note: Select all that apply";
+    public final String titleExpected = "Have you experienced any of the following heart or blood vessel related events? \n" +
+            "Agent note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
@@ -19,24 +19,24 @@ public class HasDoctorEverDiagnosedMedicalCondDiseases_CC extends MainPageCC{
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
 
-    public HasDoctorEverDiagnosedMedicalCondDiseases_CC() {
+    public HeartOrBloodVesselPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HasDoctorEverDiagnosedMedicalCondDiseases_CC waitForPageLoad() {
+    public HeartOrBloodVesselPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HasDoctorEverDiagnosedMedicalCondDiseases_CC clickOnAnswers(String ...answerText) {
+    public HeartOrBloodVesselPageCC clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

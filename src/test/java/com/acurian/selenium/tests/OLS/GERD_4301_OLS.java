@@ -1,8 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.GERD.AreYouCurrentlyAbleToSwallowTablets_OLS;
 import com.acurian.selenium.pages.OLS.GERD.DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
@@ -13,36 +11,17 @@ import com.acurian.selenium.pages.OLS.GERD.ThinkingAboutThePast2Months_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhenDidYouHaveAppendixRemoved_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhichoOfFollowingMedicationsCurrentlyGERD_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveDoctorEverDiagnosedYou_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouEverSmokedCigarettes_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperienceAnyOftheFollowing_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.LowT_TransitionalStatement_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.PersonalQuestionsOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.WhenWasTheLastTimeThatYouReceivedHeartProc_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.WhichOfTheFollowingMensHealthConditions_OLS;
-import com.acurian.selenium.pages.OLS.MDD_3159.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS;
-import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfArthritisPage;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-import java.util.Arrays;
-import java.util.List;
 
 public class GERD_4301_OLS extends BaseTest{
 

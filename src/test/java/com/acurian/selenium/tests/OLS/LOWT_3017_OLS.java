@@ -94,23 +94,23 @@ public class LOWT_3017_OLS extends BaseTest {
                 .clickOnAnswer("Male")
                 .clickNextButton(new PersonalQuestionsOLS());
 
-        HaveYouExperienceAnyOftheFollowing_OLS haveYouExperienceAnyOftheFollowing_OLS = personalQuestionsOLS
+        ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowing_OLS = personalQuestionsOLS
                 .waitForPageLoad()
-                .clickNextButton(new HaveYouExperienceAnyOftheFollowing_OLS());
+                .clickNextButton(new ExperiencedAnyOfFollowingOLS());
 
-        //---------------Q3 HaveYouExperienceAnyOftheFollowing_OLS page-------------------
-        haveYouExperienceAnyOftheFollowing_OLS
+        //---------------Q3 ExperiencedAnyOfFollowingOLS page-------------------
+        experiencedAnyOfFollowing_OLS
                 .waitForPageLoad();
-        Assert.assertEquals(haveYouExperienceAnyOftheFollowing_OLS.getTitleText(), haveYouExperienceAnyOftheFollowing_OLS.titleExpected, "Title is diff");
-        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = haveYouExperienceAnyOftheFollowing_OLS
+        Assert.assertEquals(experiencedAnyOfFollowing_OLS.getTitleText(), experiencedAnyOfFollowing_OLS.titleExpected, "Title is diff");
+        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2);
         debugPageOLS.back();
-        haveYouExperienceAnyOftheFollowing_OLS.waitForPageLoad()
-                //HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = haveYouExperienceAnyOftheFollowing_OLS
+        experiencedAnyOfFollowing_OLS.waitForPageLoad()
+                //HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
                 .clickOnAnswers("Decreased sexual desire or libido",
                         "Decreased spontaneous erections (e.g., morning erections)",
                         "Decreased energy or fatigue/feeling tired",
@@ -123,36 +123,36 @@ public class LOWT_3017_OLS extends BaseTest {
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad();
         Assert.assertEquals(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.getTitleText(), hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.titleExpected, "Title is diff");
-        HasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS());
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
 
         //****************Q5 Has a doctor ever diagnosed you with any of the following medical conditions or diseases?------
-        hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS.getTitleText(), hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS.titleExpected, "Title is diff");
-        //LowT_TransitionalStatement_OLS lowT_TransitionalStatement_OLS = hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
-        AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS = hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
+        Assert.assertEquals(cardiovascularDiseaseThanOthersPageOLS.getTitleText(), cardiovascularDiseaseThanOthersPageOLS.titleExpected, "Title is diff");
+        //TransitionalStatementLowtPageOLS _TransitionalStatement_LowtPage_OLS = cardiovascularDiseaseThanOthersPageOLS
+        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
                         "High blood pressure or hypertension",
                         "Chronic Kidney Disease")
-                .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS());
-        areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
+                .clickNextButton(new LevelOrHypogonadismPageOLS());
+        levelOrHypogonadismPageOLS
                 .waitForPageLoad();
         debugPageOLS.back();
-        hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS.waitForPageLoad()
+        cardiovascularDiseaseThanOthersPageOLS.waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS());
+                .clickNextButton(new LevelOrHypogonadismPageOLS());
 
 
-        //---------------Q6 AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS-------------------
-        areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
+        //---------------Q6 LevelOrHypogonadismPageOLS-------------------
+        levelOrHypogonadismPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS.getTitleText(), areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS.titleExpected, "Title is diff");
-        //HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
-        HaveYouEverSmokedCigarettes_OLS haveYouEverSmokedCigarettes_OLS = areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
+        Assert.assertEquals(levelOrHypogonadismPageOLS.getTitleText(), levelOrHypogonadismPageOLS.titleExpected, "Title is diff");
+        //HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = levelOrHypogonadismPageOLS
+        EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = levelOrHypogonadismPageOLS
                 .clickOnAnswers("AndroGel",
                         "Endoderm patch",
                         "Axiron gel",
@@ -163,33 +163,33 @@ public class LOWT_3017_OLS extends BaseTest {
                         "Clomiphene (brand name Serophene) or another anti-estrogen therapy",
                         "Other testosterone medication not on this list",
                         "Unsure")
-                .clickNextButton(new HaveYouEverSmokedCigarettes_OLS());
+                .clickNextButton(new EverSmokedCigarettesPageOLS());
 
 
-        //---------------Q7 HaveYouEverSmokedCigarettes_OLS-------------------
-        haveYouEverSmokedCigarettes_OLS
+        //---------------Q7 EverSmokedCigarettesPageOLS-------------------
+        everSmokedCigarettesPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(haveYouEverSmokedCigarettes_OLS.getTitleText(), haveYouEverSmokedCigarettes_OLS.titleExpected, "Title is diff");
-        HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS = haveYouEverSmokedCigarettes_OLS
+        Assert.assertEquals(everSmokedCigarettesPageOLS.getTitleText(), everSmokedCigarettesPageOLS.titleExpected, "Title is diff");
+        HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = everSmokedCigarettesPageOLS
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickOnAnswer("No, I never smoked")
-                .clickNextButton(new HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS());
+                .clickNextButton(new HeartOrBloodVesselPageOLS());
 
 
-        //---------------Q8 HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS-------------------
-        haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        //---------------Q8 HeartOrBloodVesselPageOLS-------------------
+        heartOrBloodVesselPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS.getTitleText(), haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS.titleExpected, "Title is diff");
-        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS = haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        Assert.assertEquals(heartOrBloodVesselPageOLS.getTitleText(), heartOrBloodVesselPageOLS.titleExpected, "Title is diff");
+        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS = heartOrBloodVesselPageOLS
                 //---------SKIP to Q10 if selected "None of the above"  or go to Q9--------
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS())
                 .waitForPageLoad();
         HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS.back();
-        haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        heartOrBloodVesselPageOLS
                 .waitForPageLoad();
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = heartOrBloodVesselPageOLS
                 .clickOnAnswers("Heart attack",
                         "Stroke",
                         "TIA or \"Mini-Stroke\"")
@@ -227,33 +227,33 @@ public class LOWT_3017_OLS extends BaseTest {
         hasDoctorEverDiagnosedYouMedicalCond_OLS.back();
         haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
                 .waitForPageLoad();
-        WhenWasTheLastTimeThatYouReceivedHeartProc_OLS whenWasTheLastTimeThatYouReceivedHeartProc_OLS = haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+        ReceivedHeartProcedurePageOLS receivedHeartProcedurePageOLS = haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
                 .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
                         "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
                         "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
-                .clickNextButton(new WhenWasTheLastTimeThatYouReceivedHeartProc_OLS());
+                .clickNextButton(new ReceivedHeartProcedurePageOLS());
 
 
-        //---------------Q11 WhenWasTheLastTimeThatYouReceivedHeartProc_OLS-------------------
-        whenWasTheLastTimeThatYouReceivedHeartProc_OLS
+        //---------------Q11 ReceivedHeartProcedurePageOLS-------------------
+        receivedHeartProcedurePageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(whenWasTheLastTimeThatYouReceivedHeartProc_OLS.getTitleText(), whenWasTheLastTimeThatYouReceivedHeartProc_OLS.titleExpected, "Title is diff");
-        whenWasTheLastTimeThatYouReceivedHeartProc_OLS
+        Assert.assertEquals(receivedHeartProcedurePageOLS.getTitleText(), receivedHeartProcedurePageOLS.titleExpected, "Title is diff");
+        receivedHeartProcedurePageOLS
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
         hasDoctorEverDiagnosedYouMedicalCond_OLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5624", protocol1, protocol2);
         debugPageOLS.back();
-        whenWasTheLastTimeThatYouReceivedHeartProc_OLS.waitForPageLoad()
+        receivedHeartProcedurePageOLS.waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
         hasDoctorEverDiagnosedYouMedicalCond_OLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5624", protocol1, protocol2);
         debugPageOLS.back();
-        whenWasTheLastTimeThatYouReceivedHeartProc_OLS.waitForPageLoad()
+        receivedHeartProcedurePageOLS.waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
                 .clickOnAnswer("More than 6 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
@@ -283,13 +283,13 @@ public class LOWT_3017_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad();
         //------Disqualify ("High BMI") if > 50  ---  Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]----
-        LowT_TransitionalStatement_OLS lowT_TransitionalStatement_OLS = approximateHeightPageOLS
+        TransitionalStatementLowtPageOLS _TransitionalStatement_LowtPage_OLS = approximateHeightPageOLS
                 .setAll("5", "0", "256")
                 //.clickNextButton(new ChildrenUnderPageOLS())
-                .clickNextButton(new LowT_TransitionalStatement_OLS())
+                .clickNextButton(new TransitionalStatementLowtPageOLS())
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2);
-        lowT_TransitionalStatement_OLS.back();
+        _TransitionalStatement_LowtPage_OLS.back();
         approximateHeightPageOLS.waitForPageLoad()
                 //----------Change inches to maje BMI to <50--------------------
                 .waitForPageLoad()

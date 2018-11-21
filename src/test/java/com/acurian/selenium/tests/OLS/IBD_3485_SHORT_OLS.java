@@ -2,44 +2,24 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.InjectableMedicationsForYourDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.AreYouCurrentlyExperiencingFlareUp_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyOtherPrescriptionMedicinesToTreatYourCrohns_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.SubquestionsIBD_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWasYourMostRecentColonoscopy_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsDisease_OLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitis_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.WhichOfTheFollowingMensHealthConditions_OLS;
-import com.acurian.selenium.pages.OLS.MDD_3159.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
-import com.acurian.selenium.pages.OLS.shared.ProcedureForWeightLossPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfArthritisPage;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-import java.util.Arrays;
-import java.util.List;
 
 public class IBD_3485_SHORT_OLS extends BaseTest{
 

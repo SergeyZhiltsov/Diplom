@@ -7,29 +7,30 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS extends MainPageOLS{
+public class CardiovascularDiseaseThanOthersPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you experienced any of the following heart or blood vessel related events?\n" +
+    public final String titleExpected = "Certain conditions are more closely linked to cardiovascular disease than others.\n" +
+    		"Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
     		"Please select all that apply:";
     		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath ="//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS() {
+    public CardiovascularDiseaseThanOthersPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS waitForPageLoad() {
+    public CardiovascularDiseaseThanOthersPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS clickOnAnswers(String ...answerText) {
+    public CardiovascularDiseaseThanOthersPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
@@ -38,5 +39,4 @@ public class HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS extends MainPa
     public String getTitleText() {
         return getText(titleText);
     }
-
 }
