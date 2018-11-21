@@ -18,7 +18,6 @@ public class Lupus_4442_CC extends BaseTest {
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     public void lupus_4442_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1LPS";
-        //  List<String> protocols = Arrays.asList("I5Q_MC_CGAW");
         String protocol1 = "I4V_MC_JAHZ";
         String protocol2 = "I4V_MC_JAIA";
         String studyName = "migraine";
