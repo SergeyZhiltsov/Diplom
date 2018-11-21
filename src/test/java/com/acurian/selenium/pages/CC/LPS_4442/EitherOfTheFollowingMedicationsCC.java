@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class EitherOfTheFollowingMedicationsCC extends MainPageCC{
 
-    public final String titleExpected = "Have you ever taken of the following medications?\n" +            
+    public final String titleExpected = "Have you ever taken any of the following medications?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
