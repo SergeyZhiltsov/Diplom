@@ -23,8 +23,12 @@ public class HSGeneralPageOLS extends MainPageOLS{
     
     public final String titleExpected1 = "We're glad the location is convenient for you.\n" +
 			"\n" +
-			"The last step is to provide information about the doctors who are currently treating, or have previously treated, your Type 2 Diabetes and related health conditions so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
+            "Next Steps:\n" +
+			"On the next screen, please provide information about the doctors who are currently treating, or have previously treated, your Type 2 Diabetes and related health conditions.\n" +
+            "You will need to complete the medical authorization form, then you will be asked to connect your health data.\n" +
 			"\n" +
+            "This information will be sent to the study site to allow them to evaluate you for the research study.\n" +
+            "\n" +
 			"Please be assured that your records will be kept confidential and only shared with the research facility.";
     
     
