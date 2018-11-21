@@ -108,37 +108,37 @@ public class LowT_CC extends BaseTest {
                 .clickOnAnswers("Loss of body (axillary and pubic) hair or reduced shaving", "Hot flashes", "Low mood or depressed mood")
                 .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
 
-        HasDoctorEverDiagnosedYouWithMedicalCond_CC hasDoctorEverDiagnosedYouWithMedicalCond_CC = diagnosedYouWithLowTestosteroneCC
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HasDoctorEverDiagnosedYouWithMedicalCond_CC());
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
 
 
-        AreYouCurrentlyTakingAnyOfTheFollowingMedications_CC areYouCurrentlyTakingAnyOfTheFollowingMedications_CC = hasDoctorEverDiagnosedYouWithMedicalCond_CC
+        LevelOrHypogonadismPageСС levelOrHypogonadismPageСС = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
                         "High blood pressure or hypertension",
                         "Chronic Kidney Disease")
-                .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_CC());
+                .clickNextButton(new LevelOrHypogonadismPageСС());
 
 
-        //HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = areYouCurrentlyTakingAnyOfTheFollowingMedications_CC
-        HaveYouEverSmokedCigarettes_CC haveYouEverSmokedCigarettes_CC = areYouCurrentlyTakingAnyOfTheFollowingMedications_CC
+        //HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = levelOrHypogonadismPageСС
+        EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = levelOrHypogonadismPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("AndroGel", "Endoderm patch", "Fortesta gel", "Striant (testosterone buccal system)", "Testim gel", "Other testosterone medication not on this list", "Unsure")
                 .clickOnAnswers("Testosterone injection (Depo-Testosterone, Testosterone enanthate, Testosterone Cypionate, Delatestryl)", "Clomiphene (brand name Serophene) or another anti-estrogen therapy")
                 .clickOnAnswers("Axiron gel")
-                .clickNextButton(new HaveYouEverSmokedCigarettes_CC());
+                .clickNextButton(new EverSmokedCigarettesPageCC());
 
 
-        HaveYouExpAnyOfFollowingHeartBlood_CC haveYouExpAnyOfFollowingHeartBlood_CC = haveYouEverSmokedCigarettes_CC
+        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = everSmokedCigarettesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
-                .clickNextButton(new HaveYouExpAnyOfFollowingHeartBlood_CC());
+                .clickNextButton(new HeartOrBloodVesselPageCC());
 
 
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = haveYouExpAnyOfFollowingHeartBlood_CC
+        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital",
                         "Coronary Artery Disease (blockage in a heart vessel)",
@@ -148,9 +148,9 @@ public class LowT_CC extends BaseTest {
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
         haveDoctorEverDiagnosedYou_CC.back();
-        haveYouExpAnyOfFollowingHeartBlood_CC
+        heartOrBloodVesselPageCC
                 .waitForPageLoad();
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouExpAnyOfFollowingHeartBlood_CC
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartOrBloodVesselPageCC
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
@@ -170,7 +170,7 @@ public class LowT_CC extends BaseTest {
         debugPageCC.back();
         subquestionExperiencedHeartPageCC.back();
 
-        haveYouExpAnyOfFollowingHeartBlood_CC
+        heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Stroke")
@@ -189,7 +189,7 @@ public class LowT_CC extends BaseTest {
         debugPageCC.back();
         subquestionExperiencedHeartPageCC.back();
 
-        haveYouExpAnyOfFollowingHeartBlood_CC
+        heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("TIA or \"Mini-Stroke\"")
@@ -207,7 +207,7 @@ public class LowT_CC extends BaseTest {
         debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC.back();
-        haveYouExpAnyOfFollowingHeartBlood_CC
+        heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Stroke")
@@ -226,22 +226,22 @@ public class LowT_CC extends BaseTest {
         hasDoctorEverDiagnosedMedicalCondDiseases_CC.back();
         haveDoctorEverDiagnosedYou_CC
                 .waitForPageLoad();
-        WhenWasTheLastTimeYouReceivedHeartProcedure_CC whenWasTheLastTimeYouReceivedHeartProcedure_CC = haveDoctorEverDiagnosedYou_CC
+        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_CC
                 .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
                         "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
                         "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
-                .clickNextButton(new WhenWasTheLastTimeYouReceivedHeartProcedure_CC());
+                .clickNextButton(new ReceivedHeartProcedurePageCC());
 
 
-        //HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = whenWasTheLastTimeYouReceivedHeartProcedure_CC
-        whenWasTheLastTimeYouReceivedHeartProcedure_CC
+        //HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = receivedHeartProcedurePageCC
+        receivedHeartProcedurePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0017037-QS5624-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        whenWasTheLastTimeYouReceivedHeartProcedure_CC
+        receivedHeartProcedurePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("More than 6 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());

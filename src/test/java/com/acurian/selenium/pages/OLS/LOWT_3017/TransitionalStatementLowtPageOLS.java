@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class LowT_TransitionalStatement_OLS extends MainPageOLS{
+public class TransitionalStatementLowtPageOLS extends MainPageOLS{
 
     public final String titleExpected = "Thank you for answering these initial questions.\n" +
     		"We would like to ask you a few more questions about your health to better match you with a research study in your area.\n" +
@@ -19,18 +19,18 @@ public class LowT_TransitionalStatement_OLS extends MainPageOLS{
     @FindBy(xpath ="//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public LowT_TransitionalStatement_OLS() {
+    public TransitionalStatementLowtPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public LowT_TransitionalStatement_OLS waitForPageLoad() {
+    public TransitionalStatementLowtPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public LowT_TransitionalStatement_OLS clickOnAnswers(String ...answerText) {
+    public TransitionalStatementLowtPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

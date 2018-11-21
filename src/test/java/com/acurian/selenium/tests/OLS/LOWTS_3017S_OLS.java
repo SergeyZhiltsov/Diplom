@@ -47,19 +47,20 @@ public class LOWTS_3017S_OLS extends BaseTest {
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         zipCodePageOLS
-                .waitForPageLoad();
-        zipCodePageOLS.getPage(debugPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
                 .back();
         dateOfBirthPageOLS.waitForPageLoadGROUP()
                 .setDate("09091936")
                 .clickNextButton(new ZipCodePageOLS());
         zipCodePageOLS
-                .waitForPageLoad();
-        zipCodePageOLS.getPage(debugPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
                 .back();
-        dateOfBirthPageOLS.waitForPageLoadGROUP()
+        dateOfBirthPageOLS
+                .waitForPageLoadGROUP()
                 .setDate("09091960")
                 .clickNextButton(new ZipCodePageOLS());
         zipCodePageOLS
@@ -107,28 +108,28 @@ public class LOWTS_3017S_OLS extends BaseTest {
                         "Hot flashes")
                 .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
 
-        HasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS());
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
-        AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS = hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
+        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
                         "High blood pressure or hypertension",
                         "Chronic Kidney Disease")
-                .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS());
-        areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
+                .clickNextButton(new LevelOrHypogonadismPageOLS());
+        levelOrHypogonadismPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .back();
-        hasDoctorEverDiagnosedYouWithAnyOfTheFollowingMedicalCond_OLS
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new AreYouCurrentlyTakingAnyOfTheFollowingMedications_OLS());
+                .clickNextButton(new LevelOrHypogonadismPageOLS());
 
-        HaveYouEverSmokedCigarettes_OLS haveYouEverSmokedCigarettes_OLS = areYouCurrentlyTakingAnyOfTheFollowingMedications_OLS
+        EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = levelOrHypogonadismPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("AndroGel",
                         "Endoderm patch",
@@ -140,23 +141,23 @@ public class LOWTS_3017S_OLS extends BaseTest {
                         "Clomiphene (brand name Serophene) or another anti-estrogen therapy",
                         "Other testosterone medication not on this list",
                         "Unsure")
-                .clickNextButton(new HaveYouEverSmokedCigarettes_OLS());
+                .clickNextButton(new EverSmokedCigarettesPageOLS());
 
-        HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS = haveYouEverSmokedCigarettes_OLS
+        HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = everSmokedCigarettesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickOnAnswer("No, I never smoked")
-                .clickNextButton(new HaveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS());
+                .clickNextButton(new HeartOrBloodVesselPageOLS());
 
-        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS haveYouExperiencedAnyFollowingCardiovascularInterventionsOLS = haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS haveYouExperiencedAnyFollowingCardiovascularInterventionsOLS = heartOrBloodVesselPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS());
         haveYouExperiencedAnyFollowingCardiovascularInterventionsOLS
                 .waitForPageLoad()
                 .back();
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouExperiencedAnyOfFollowingHeartBloodVessel_OLS
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = heartOrBloodVesselPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack",
                         "Stroke",
@@ -191,14 +192,14 @@ public class LOWTS_3017S_OLS extends BaseTest {
                 .back();
         haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
                 .waitForPageLoad();
-        WhenWasTheLastTimeThatYouReceivedHeartProc_OLS whenWasTheLastTimeThatYouReceivedHeartProc_OLS = haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+        ReceivedHeartProcedurePageOLS receivedHeartProcedurePageOLS = haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
                 .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
                         "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
                         "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
-                .clickNextButton(new WhenWasTheLastTimeThatYouReceivedHeartProc_OLS());
+                .clickNextButton(new ReceivedHeartProcedurePageOLS());
 
-        whenWasTheLastTimeThatYouReceivedHeartProc_OLS
+        receivedHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
@@ -207,7 +208,7 @@ public class LOWTS_3017S_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5624", protocol1, protocol2)
                 .back();
-        whenWasTheLastTimeThatYouReceivedHeartProc_OLS
+        receivedHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
@@ -216,7 +217,7 @@ public class LOWTS_3017S_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5624", protocol1, protocol2)
                 .back();
-        whenWasTheLastTimeThatYouReceivedHeartProc_OLS.waitForPageLoad()
+        receivedHeartProcedurePageOLS.waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
                 .clickOnAnswer("More than 6 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
@@ -237,11 +238,11 @@ public class LOWTS_3017S_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        LowT_TransitionalStatement_OLS lowT_TransitionalStatement_OLS = approximateHeightPageOLS
+        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "0", "256")//------Disqualify ("High BMI") if > 50
-                .clickNextButton(new LowT_TransitionalStatement_OLS());
-        lowT_TransitionalStatement_OLS
+                .clickNextButton(new TransitionalStatementLowtPageOLS());
+        transitionalStatementLowtPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2)

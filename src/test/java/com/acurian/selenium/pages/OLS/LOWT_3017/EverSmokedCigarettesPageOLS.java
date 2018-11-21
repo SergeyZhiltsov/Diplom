@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HaveYouEverSmokedCigarettes_OLS extends MainPageOLS{
+public class EverSmokedCigarettesPageOLS extends MainPageOLS {
 
     public final String titleExpected = "Have you ever smoked cigarettes?";
 
@@ -18,24 +18,24 @@ public class HaveYouEverSmokedCigarettes_OLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public HaveYouEverSmokedCigarettes_OLS() {
+    public EverSmokedCigarettesPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouEverSmokedCigarettes_OLS waitForPageLoad() {
+    public EverSmokedCigarettesPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouEverSmokedCigarettes_OLS clickOnAnswer(String answerText) {
+    public EverSmokedCigarettesPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }
