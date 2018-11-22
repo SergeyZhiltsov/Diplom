@@ -15,6 +15,8 @@ public class GenderPageOLS extends MainPageOLS{
 
     public final String titleExpected = "Please select your gender:";
 
+    public final String titleExpectedGmega = "This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, is your gender male or female?";
+
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
@@ -25,6 +27,9 @@ public class GenderPageOLS extends MainPageOLS{
     WebElement titleText3;
 
     WebElement titleText;
+
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    WebElement titleTextGmega;
 
     //span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
@@ -48,6 +53,12 @@ public class GenderPageOLS extends MainPageOLS{
     @Step
     public GenderPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public GenderPageOLS waitForPageLoadGmega() {
+        waitForPageLoadMain(titleTextGmega, titleExpectedGmega);
         return this;
     }
 

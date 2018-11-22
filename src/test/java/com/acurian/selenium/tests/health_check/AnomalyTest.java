@@ -1,0 +1,113 @@
+package com.acurian.selenium.tests.health_check;
+
+import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Description;
+
+public class AnomalyTest extends BaseTest {
+
+    @Test
+    @Description("Test for 41C Anomaly")
+    public void anomalyTest() {
+        String phoneNumber = "AUTGMEG41C";
+        String siteName = "AUT_GMEGA_01"; //"AUT_GRA1_Site";
+        String zipCode = "08204";
+        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis study!";
+
+        String env = System.getProperty("acurian.env", "STG");
+
+        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+        dateOfBirthPageOLS
+                .openPage(env, phoneNumber)
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
+        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+                .setDate("09091980")
+                .clickNextButton(new IdentificationPageOLS());
+
+        GenderPageOLS genderPageOLS = identificationPageOLS
+                .waitForPageLoadNotQ()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new GenderPageOLS());
+
+        ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
+                .waitForPageLoadGmega()
+                .clickOnAnswer("Female")
+                .clickNextButton(new ApproximateHeightPageOLS());
+
+        FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = approximateHeightPageOLS
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new FollowingNeurologicalConditionsPageOLS());
+
+        DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DigestiveConditionsPageOLS());
+
+        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = digestiveConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageOLS());
+
+
+//        boneOrJointConditionsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Any type of arthritis")
+//                .clickNextButton(new WhatKindOfArthritisYouHave());
+
+//        whatKindOfArthritisYouHave
+//                .waitForPageLoad();
+//        WhenWereYouDiagnosedRA whenWereYouDiagnosedRA = whatKindOfArthritisYouHave
+//                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+//                .clickNextButton(new WhenWereYouDiagnosedRA());
+//
+//
+//        // ------------WhenWereYouDiagnosedRA Page--------------
+//        whenWereYouDiagnosedRA.waitForPageLoad();
+//        PII_Close pII_Close = whenWereYouDiagnosedRA
+//                .clickOnAnswer("7 - 11 months ago")
+//                .clickNextButton(new PII_Close());
+//
+//
+//        // ------------PII_close Page--------------
+//        pII_Close.waitForPageLoad();
+//        SiteSelectionPageOLS siteSelectionPageOLS = pII_Close
+//                .clickNextButton(new SiteSelectionPageOLS());
+//
+//        // ------------SiteSelectionPageOLS Page-------------
+//        siteSelectionPageOLS.threadSleep(2000);
+//        GladLocationIsConvenient gladLocationIsConvenient = siteSelectionPageOLS
+//                .getPID()
+//                .clickOnFacilityName(siteName)
+//                .clickNextButton(new GladLocationIsConvenient());
+//
+//        //----GladLocationIsConvenient page -----------------
+//        gladLocationIsConvenient
+//                .waitForPageLoad()
+//                .clickNextButton(new ThankYouCloseSimplePageOLS())
+//                .waitForPageLoad()
+//                .clickNextButton(new ALotAbouthealth())
+//                .waitForPageLoad()
+//                // .pidFromDbToLog(env)
+//                .getAnomalyDbToLog(env);
+//
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+}

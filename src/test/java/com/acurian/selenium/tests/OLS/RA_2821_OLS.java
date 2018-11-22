@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -53,15 +54,15 @@ public class RA_2821_OLS extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, protocol1);
         debugPageOLS.back();
-        WhatKindOfArthritisPage whatKindOfArthritisPage = doYouSufferFromArthritis
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = doYouSufferFromArthritis
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisPage());
+                .clickNextButton(new WhatKindOfArthritisPageOLS());
 
 
-        WhenYouDiagnosedWithRA whenYouDiagnosedWithRA = whatKindOfArthritisPage
+        WhenYouDiagnosedWithRA whenYouDiagnosedWithRA = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Rheumatoid arthritis")
+                .clickOnAnswers("Rheumatoid arthritis")
                 .clickNextButton(new WhenYouDiagnosedWithRA());
 
 

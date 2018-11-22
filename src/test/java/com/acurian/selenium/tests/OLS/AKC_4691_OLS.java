@@ -3,13 +3,10 @@ package com.acurian.selenium.tests.OLS;
 import java.util.Arrays;
 import java.util.List;
 
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.OLS.shared.DIA.AnyPrescribedMedicationPage;
 import com.acurian.selenium.pages.OLS.shared.DIA.CurrentlyUseMetforminOrInsulinPage;
 import com.acurian.selenium.pages.OLS.shared.DIA.UseDietAndExercisePage;
@@ -17,17 +14,13 @@ import com.acurian.selenium.pages.OLS.DIA_4241.PoundsOrMorePageOLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.ApartFromMetforminPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CombinationWithEachOtherPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.DiabeticNephropathyPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.FollowingToLoseWeightPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.ForYourKidneysPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.InjectableMedicationsForYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.InsulinForYourDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.LastTimeYouTookPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.LiverRelatedConditionOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.MetforminMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.NoOfAlcoholicDrinkOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionsHumalogPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.TreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -35,32 +28,16 @@ import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.OtherThanSkinCancerPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DiagnosedAnyTypeOfDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS;
-import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
-import com.acurian.selenium.pages.OLS.shared.ProcedureForWeightLossPageOLS;
-import com.acurian.selenium.pages.OLS.shared.StatinMedicationsOnPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfArthritisPage;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
@@ -491,7 +468,7 @@ public class AKC_4691_OLS extends BaseTest {
 
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
-                .clickNextButton(new WhatKindOfArthritisPage())
+                .clickNextButton(new WhatKindOfArthritisPageOLS())
                 .waitForPageLoad()
                 .back();
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS

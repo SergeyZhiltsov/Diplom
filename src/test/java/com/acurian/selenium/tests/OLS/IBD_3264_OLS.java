@@ -18,13 +18,8 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
-import com.acurian.selenium.pages.OLS.shared.ProcedureForWeightLossPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfArthritisPage;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -341,7 +336,7 @@ public class IBD_3264_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         Assert.assertEquals(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.getTitleText(), haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.titleExpected, "Title is diff");
-        WhatKindOfArthritisPage whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
                         "Autism spectrum",
@@ -365,7 +360,7 @@ public class IBD_3264_OLS extends BaseTest {
 
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
-                .clickNextButton(new WhatKindOfArthritisPage());
+                .clickNextButton(new WhatKindOfArthritisPageOLS());
 /*        .waitForPageLoad()
         .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -375,10 +370,10 @@ public class IBD_3264_OLS extends BaseTest {
         .clickOnAnswers("Men's health issues (prostate enlargement or BPH, low testosterone, erectile dysfunction or ED, male pattern balding)","Eating disorders (anorexia, bulimia, binge eating disorder)")
         .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosed_OLS())*/
 
-        //----------Q3 WhatKindOfArthritisPage Page--------------------
-        whatKindOfArthritisPage.waitForPageLoad();
-        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS = whatKindOfArthritisPage
-                .clickOnAnswer("Unsure")
+        //----------Q3 WhatKindOfArthritisPageOLS Page--------------------
+        whatKindOfArthritisPageOLS.waitForPageLoad();
+        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS = whatKindOfArthritisPageOLS
+                .clickOnAnswers("Unsure")
                 .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS());
 
 
