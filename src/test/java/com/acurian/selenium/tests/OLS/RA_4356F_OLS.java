@@ -69,12 +69,12 @@ public class RA_4356F_OLS extends BaseTest {
 				 .clickNextButton(new WhatKindOfArthritisPageOLS());
 		
 		
-		WhenYouDiagnosedWithRA whenYouDiagnosedWithRA = whatKindOfArthritisPageOLS
+		WhenYouDiagnosedWithRaPageOLS whenYouDiagnosedWithRaPageOLS = whatKindOfArthritisPageOLS
 				.waitForPageLoad()
 				.clickOnAnswers("Rheumatoid arthritis")
-				.clickNextButton(new WhenYouDiagnosedWithRA());
+				.clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 		
-		AgeWhenDiagnosedWithRA ageWhenDiagnosedWithRA = whenYouDiagnosedWithRA
+		AgeWhenDiagnosedWithRA ageWhenDiagnosedWithRA = whenYouDiagnosedWithRaPageOLS
 				.waitForPageLoad()
 				.clickOnAnswer("7 - 11 months ago")
 				.clickNextButton(new AgeWhenDiagnosedWithRA());

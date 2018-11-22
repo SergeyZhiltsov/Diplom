@@ -1,10 +1,14 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -17,7 +21,7 @@ public class AnomalyTest extends BaseTest {
         String phoneNumber = "AUTGMEG41C";
         String siteName = "AUT_GMEGA_01"; //"AUT_GRA1_Site";
         String zipCode = "08204";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis study!";
+        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -56,58 +60,32 @@ public class AnomalyTest extends BaseTest {
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
 
-//        boneOrJointConditionsPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("Any type of arthritis")
-//                .clickNextButton(new WhatKindOfArthritisYouHave());
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Any type of arthritis")
+                .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-//        whatKindOfArthritisYouHave
-//                .waitForPageLoad();
-//        WhenWereYouDiagnosedRA whenWereYouDiagnosedRA = whatKindOfArthritisYouHave
-//                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-//                .clickNextButton(new WhenWereYouDiagnosedRA());
-//
-//
-//        // ------------WhenWereYouDiagnosedRA Page--------------
-//        whenWereYouDiagnosedRA.waitForPageLoad();
-//        PII_Close pII_Close = whenWereYouDiagnosedRA
-//                .clickOnAnswer("7 - 11 months ago")
-//                .clickNextButton(new PII_Close());
-//
-//
-//        // ------------PII_close Page--------------
-//        pII_Close.waitForPageLoad();
-//        SiteSelectionPageOLS siteSelectionPageOLS = pII_Close
-//                .clickNextButton(new SiteSelectionPageOLS());
-//
-//        // ------------SiteSelectionPageOLS Page-------------
-//        siteSelectionPageOLS.threadSleep(2000);
-//        GladLocationIsConvenient gladLocationIsConvenient = siteSelectionPageOLS
-//                .getPID()
-//                .clickOnFacilityName(siteName)
-//                .clickNextButton(new GladLocationIsConvenient());
-//
-//        //----GladLocationIsConvenient page -----------------
-//        gladLocationIsConvenient
-//                .waitForPageLoad()
-//                .clickNextButton(new ThankYouCloseSimplePageOLS())
-//                .waitForPageLoad()
-//                .clickNextButton(new ALotAbouthealth())
-//                .waitForPageLoad()
-//                // .pidFromDbToLog(env)
-//                .getAnomalyDbToLog(env);
-//
+        WhenYouDiagnosedWithRaPageOLS whenYouDiagnosedWithRaPageOLS = whatKindOfArthritisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 
-
-
-
-
-
-
-
-
-
-
-
+        whenYouDiagnosedWithRaPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(identificationPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName)
+                .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseGmegaOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .getAnomalyDbToLog(env);
     }
 }

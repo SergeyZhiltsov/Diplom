@@ -60,13 +60,13 @@ public class RA_2821_OLS extends BaseTest {
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
 
-        WhenYouDiagnosedWithRA whenYouDiagnosedWithRA = whatKindOfArthritisPageOLS
+        WhenYouDiagnosedWithRaPageOLS whenYouDiagnosedWithRaPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Rheumatoid arthritis")
-                .clickNextButton(new WhenYouDiagnosedWithRA());
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 
 
-        AgeWhenDiagnosedWithRA ageWhenDiagnosedWithRA = whenYouDiagnosedWithRA
+        AgeWhenDiagnosedWithRA ageWhenDiagnosedWithRA = whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(new AgeWhenDiagnosedWithRA());
