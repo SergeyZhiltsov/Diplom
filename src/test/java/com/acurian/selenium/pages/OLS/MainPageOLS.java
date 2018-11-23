@@ -6,6 +6,7 @@ import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.RadiantResults;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,9 @@ public class MainPageOLS extends BasePage{
 
     @FindBy(xpath = "//button[@id='submit']")
     WebElement nextButton;
+
+    @FindBy(xpath = "//img[starts-with(@src,'http')]")
+    private List<WebElement> images;
 
     String pid;
 
@@ -53,6 +57,21 @@ public class MainPageOLS extends BasePage{
 //            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
 //        }
         waitForAnimation();
+    }
+
+    /*
+    Wait for images from third party resources to load both on mobile and desktop
+     */
+    @Step
+    protected void waitForImagesToLoad() {
+        try {
+            for (WebElement image : images) {
+                driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) webDriver -> (Boolean) ((JavascriptExecutor) webDriver).executeScript("return arguments[0].complete", image));
+            }
+        } catch (TimeoutException e) {
+            Assert.fail("Failed to load images");
+            throw e;
+        }
     }
     
     @Step

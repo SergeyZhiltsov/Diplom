@@ -25,16 +25,19 @@ public class WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS extends
     @Step
     public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS waitForPageLoad() {
         waitForAnimation();
+        waitForImagesToLoad();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
     public WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+        getActions().moveToElement(radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
-                .get()
-                .click();
+                .get())
+                .click()
+                .build()
+                .perform();
         waitForAnimation();
         return this;
     }
