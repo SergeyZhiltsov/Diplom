@@ -11,7 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhenWasTheLastTimeYouReceivedHeartProcedure_CC extends MainPageCC{
 
-    public final String titleExpected = "When was the last time that you received a heart procedure?";
+    public final String titleExpected = "When was your most recent heart procedure?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
