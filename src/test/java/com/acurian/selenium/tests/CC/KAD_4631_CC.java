@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LOWT.WhenWasTheLastTimeYouReceivedHeartProcedure_CC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -305,14 +306,24 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
 
-        LastTimeYouExperiencedHeartAttack lastTimeYouExperiencedHeartAttack = haveYouEverExperiencedHeartRelatedMedicalCondCC
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC =  haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack")
-                .clickNextButton(new LastTimeYouExperiencedHeartAttack());
+                .clickOnAnswers("Heart attack",
+                        "Stroke",
+                        "TIA or \"mini-stroke\"",
+                        "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = lastTimeYouExperiencedHeartAttack
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
+        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected5)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
@@ -320,96 +331,52 @@ public class KAD_4631_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
                 .back();
 
-        lastTimeYouExperiencedHeartAttack
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
-                .back(lastTimeYouExperiencedHeartAttack)
-                .waitForPageLoad()
-                .back();
-
-        LastTimeYouExperiencedStroke lastTimeYouExperiencedStroke = haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Stroke")
-                .clickNextButton(new LastTimeYouExperiencedStroke());
-
-        lastTimeYouExperiencedStroke
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
                 .back();
 
-        lastTimeYouExperiencedStroke
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
-                .back(lastTimeYouExperiencedStroke)
-                .waitForPageLoad()
-                .back();
-
-        LastTimeYouExperiencedTIAorMinistroke lastTimeYouExperiencedTIAorMinistroke = haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
-                .clickNextButton(new LastTimeYouExperiencedTIAorMinistroke());
-
-        lastTimeYouExperiencedTIAorMinistroke
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
                 .back();
 
-        lastTimeYouExperiencedTIAorMinistroke
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
-                .back(lastTimeYouExperiencedTIAorMinistroke)
-                .waitForPageLoad()
-                .back();
-
-        LastTimeYouExperiencedAngina lastTimeYouExperiencedAngina = haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
-                .clickNextButton(new LastTimeYouExperiencedAngina());
-
-        lastTimeYouExperiencedAngina
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
                 .back();
 
-        lastTimeYouExperiencedAngina
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
-                .back();
-
-        KidneyProblemsPage kidneyProblemsPage = lastTimeYouExperiencedAngina
-                .waitForPageLoad()
-                .clickOnAnswer("More than 1 year ago")
+        KidneyProblemsPage kidneyProblemsPage = subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Angioplasty")
@@ -417,7 +384,7 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
-                .back(lastTimeYouExperiencedAngina)
+                .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
