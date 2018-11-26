@@ -147,7 +147,7 @@ public class LowTS_3017S_CC extends BaseTest {
                         "Coronary Artery Disease (blockage in a heart vessel)",
                         "Peripheral Vascular Disease (for example a blockage in your leg vessel)",
                         "Amputation of a digit or limb due to Peripheral Vascular Disease")
-                .clickOnAnswers("None of the Above")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
         haveDoctorEverDiagnosedYou_CC.back();
