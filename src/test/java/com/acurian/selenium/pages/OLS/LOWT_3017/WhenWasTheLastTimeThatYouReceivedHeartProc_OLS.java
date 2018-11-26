@@ -10,7 +10,7 @@ import java.util.List;
 
 public class WhenWasTheLastTimeThatYouReceivedHeartProc_OLS extends MainPageOLS{
 
-    public final String titleExpected = "When was the last time that you received a heart procedure?";
+    public final String titleExpected = "When was your most recent heart procedure?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

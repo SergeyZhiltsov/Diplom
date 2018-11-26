@@ -61,6 +61,7 @@ public class MainPageOLS extends BasePage{
 
     /*
     Wait for images from third party resources to load both on mobile and desktop
+    Use it when you need to wait until all external images are loaded
      */
     @Step
     protected void waitForImagesToLoad() {
