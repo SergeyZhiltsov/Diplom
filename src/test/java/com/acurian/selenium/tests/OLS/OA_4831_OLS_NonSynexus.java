@@ -2,12 +2,10 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAID;
-import com.acurian.selenium.pages.OLS.OA_3138.ParticipatedInAnotherClinicalResearch;
-import com.acurian.selenium.pages.OLS.OA_3138.TreatedPainWithMarijuanaOrCannabis;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -62,14 +60,14 @@ public class OA_4831_OLS_NonSynexus extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritis());
 
-        WhatKindOfArthritisPage whatKindOfArthritisPage = doYouSufferFromArthritis
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = doYouSufferFromArthritis
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisPage());
+                .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        WhereYouHaveArthritis whereYouHaveArthritis = whatKindOfArthritisPage
+        WhereYouHaveArthritis whereYouHaveArthritis = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Osteoarthritis")
+                .clickOnAnswers("Osteoarthritis")
                 .clickNextButton(new WhereYouHaveArthritis());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS hasHealthcareProfessionalPageOLS = whereYouHaveArthritis

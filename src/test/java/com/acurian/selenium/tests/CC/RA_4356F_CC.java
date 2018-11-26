@@ -18,7 +18,7 @@ import com.acurian.selenium.pages.CC.RA_2821.HowLongTakingPlaquenilCC;
 import com.acurian.selenium.pages.CC.RA_2821.HowOldWereUWhenDiagnosedWithRACC;
 import com.acurian.selenium.pages.CC.RA_2821.TenderPainfulOrSwollenJointsCC;
 import com.acurian.selenium.pages.CC.RA_2821.WhatTestsDoctorLedToDiagnosingRACC;
-import com.acurian.selenium.pages.CC.RA_2821.WhenWereYouDiagnosedWithRACC;
+import com.acurian.selenium.pages.CC.RA_2821.WhenYouDiagnosedWithRaPageCC;
 import com.acurian.selenium.pages.CC.closes.IncongruentSiteSelectionCloseCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SRDirectScheduleWTTCPageCC;
@@ -117,12 +117,12 @@ public class RA_4356F_CC extends BaseTest{
     		   .clickOnAnswer("Yes")
     		   .clickNextButton(new WhatKindOfArthritisCC());
        
-       WhenWereYouDiagnosedWithRACC whenWereYouDiagnosedWithRACC = whatKindOfArthritisCC
+       WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-    		   .clickNextButton(new WhenWereYouDiagnosedWithRACC());
+    		   .clickNextButton(new WhenYouDiagnosedWithRaPageCC());
        
-       HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenWereYouDiagnosedWithRACC
+       HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenYouDiagnosedWithRaPageCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("7 - 11 months ago")
     		   .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC());
