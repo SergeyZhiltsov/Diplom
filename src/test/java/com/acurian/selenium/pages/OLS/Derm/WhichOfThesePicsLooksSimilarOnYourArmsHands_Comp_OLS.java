@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.Derm;
 
+import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,16 +26,19 @@ public class WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS extends MainPa
     @Step
     public WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS waitForPageLoad() {
         waitForAnimation();
+        waitForImagesToLoad();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
     public WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+        getActions().moveToElement(radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
-                .get()
-                .click();
+                .get())
+                .click()
+                .build()
+                .perform();
         waitForAnimation();
         return this;
     }
