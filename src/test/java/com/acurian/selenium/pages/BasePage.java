@@ -261,9 +261,10 @@ public abstract class BasePage {
     // working with tabs
 
     @Step
-    public void switchTab() {
+    public <T extends BasePage> T switchTab() {
         ArrayList<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(windowHandles.get(1));
+        return (T)this;
     }
 
     @Step

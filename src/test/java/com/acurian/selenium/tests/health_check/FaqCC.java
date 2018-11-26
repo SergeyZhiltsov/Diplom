@@ -2,8 +2,8 @@ package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.common_elements.HeaderMenuPage;
+import com.acurian.selenium.pages.CC.faq.FaqPage;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 public class FaqCC extends BaseTest {
-
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("FAQ Links checks in CC")
@@ -46,14 +45,13 @@ public class FaqCC extends BaseTest {
 
 
         HeaderMenuPage headerMenuPage = new HeaderMenuPage();
-        headerMenuPage
+        FaqPage faqPage = headerMenuPage
                 .hoverCallTab()
-                .clickFaqTab()
-                .threadSleep(5000);
+                .clickFaqTab().switchTab();
 
-
-
-
-
+        Assert.assertEquals(faqPage.getHeaderText(),"Frequently Asked Questions", "FAQ Header Text is diff");
+        Assert.assertEquals(faqPage.getProjectText(),"(ACURIAN PROJECT CODE: AMS1)", "FAQ Project Code is diff");
+        Assert.assertEquals(faqPage.getFirstNavigationText(),"General Information", "FAQ navigation content Text is diff");
+        Assert.assertEquals(faqPage.getStudyHeaderText(),"Study Questions", "FAQ Study Text is diff");
     }
 }
