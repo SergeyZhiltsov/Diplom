@@ -1,25 +1,17 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.Derm_4631.HaveYouEverTakenEitherAnyOfFollowingMeds_CC;
-import com.acurian.selenium.pages.CC.LOWT.WhenWasTheLastTimeYouReceivedHeartProcedure_CC;
-import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
-import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
-import com.acurian.selenium.pages.CC.generalHealth.WhichOfTheFollowingLiverProblemsPageСС;
-import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.WhenWasTheLastTimeThatYouReceivedHeartProc_OLS;
+import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
@@ -437,7 +429,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("Angioplasty")
-                .clickNextButton(new WhenWasTheLastTimeThatYouReceivedHeartProc_OLS())
+                .clickNextButton(new MostRecentHeartProcedurePageOLS())
                 .waitForPageLoad()
                 .back(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()

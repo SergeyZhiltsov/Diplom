@@ -4,9 +4,9 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAID;
 import com.acurian.selenium.pages.OLS.OA_3138.ParticipatedInAnotherClinicalResearch;
 import com.acurian.selenium.pages.OLS.OA_3138.TreatedPainWithMarijuanaOrCannabis;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -59,14 +59,14 @@ public class OA_4827_OLS extends BaseTest {
         		.back();
         doYouSufferFromArthritis
         		.waitForPageLoad();
-        WhatKindOfArthritisPage whatKindOfArthritisPage = doYouSufferFromArthritis
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = doYouSufferFromArthritis
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisPage());
+                .clickNextButton(new WhatKindOfArthritisPageOLS());
         
 
-        WhereYouHaveArthritis whereYouHaveArthritis = whatKindOfArthritisPage
+        WhereYouHaveArthritis whereYouHaveArthritis = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
+                .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
                 .clickNextButton(new WhereYouHaveArthritis());
 
         

@@ -96,20 +96,20 @@ public class RA_2821_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfArthritisCC());
 
-        WhenWereYouDiagnosedWithRACC whenWereYouDiagnosedWithRACC = whatKindOfArthritisCC
+        WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(new WhenWereYouDiagnosedWithRACC());
+                .clickNextButton(new WhenYouDiagnosedWithRaPageCC());
 
 
-        whenWereYouDiagnosedWithRACC
+        whenYouDiagnosedWithRaPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
                 .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0005177-QS503-STUDYQUES", protocol1);
         debugPageCC.back();
-        HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenWereYouDiagnosedWithRACC
+        HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenYouDiagnosedWithRaPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC());

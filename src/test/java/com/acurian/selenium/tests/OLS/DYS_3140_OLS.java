@@ -4,7 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.TriglyceridesOrLipidsPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouEverSmokedCigarettes_OLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.EverSmokedCigarettesPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
@@ -290,12 +290,12 @@ public class DYS_3140_OLS extends BaseTest {
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
                 .clickNextButton(pressureOrHypertensionPageOLS);
 
-        HaveYouEverSmokedCigarettes_OLS haveYouEverSmokedCigarettes_ols = pressureOrHypertensionPageOLS
+        EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = pressureOrHypertensionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverSmokedCigarettes_OLS());
+                .clickNextButton(new EverSmokedCigarettesPageOLS());
 
-        haveYouEverSmokedCigarettes_ols
+        everSmokedCigarettesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
@@ -303,7 +303,7 @@ public class DYS_3140_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS5211", protocol1)
                 .back();
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = haveYouEverSmokedCigarettes_ols
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = everSmokedCigarettesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickNextButton(new WeightLossSurgeryPageOLS());

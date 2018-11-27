@@ -6,7 +6,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.DiagnosedAnyTypeOfDiabetesPa
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.TriglyceridesOrLipidsPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
-import com.acurian.selenium.pages.CC.LOWT.HaveYouEverSmokedCigarettes_CC;
+import com.acurian.selenium.pages.CC.LOWT.EverSmokedCigarettesPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -315,12 +315,12 @@ public class DYS_3140_CC extends BaseTest {
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
                 .clickNextButton(pressureOrHypertensionPageСС);
 
-        HaveYouEverSmokedCigarettes_CC haveYouEverSmokedCigarettes_cc = pressureOrHypertensionPageСС
+        EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = pressureOrHypertensionPageСС
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverSmokedCigarettes_CC());
+                .clickNextButton(new EverSmokedCigarettesPageCC());
 
-        TransitionStatementCC transitionStatementCC = haveYouEverSmokedCigarettes_cc
+        TransitionStatementCC transitionStatementCC = everSmokedCigarettesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new TransitionStatementCC());
@@ -329,7 +329,7 @@ public class DYS_3140_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("Q0014298-QS5211-STUDYQUES", protocol1)
                 .back();
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = haveYouEverSmokedCigarettes_cc
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = everSmokedCigarettesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickNextButton(new WeightLossSurgeryPageCC());

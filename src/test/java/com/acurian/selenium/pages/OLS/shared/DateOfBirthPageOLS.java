@@ -239,6 +239,12 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "Payment which varies by study up to $others\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
+
+    public final String titleRA2821Expected = "Let's get started to see if you qualify for a rheumatoid arthritis (RA) study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $625\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
     
     
     //visible-xs-block xs - Extra small devices Phones (<768px)
@@ -365,7 +371,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
     @Step
     public DateOfBirthPageOLS waitForPageLoadGROUP() {
-        waitForPageLoadMain(questionTextGROUP,titleExpected);
+        waitForPageLoadMain(questionTextGROUP, titleExpected);
         return this;
     }
 

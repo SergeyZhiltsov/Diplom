@@ -1,6 +1,6 @@
-package com.acurian.selenium.pages.OLS.LOWT_3017;
+package com.acurian.selenium.pages.CC.LOWT;
 
-import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,34 +8,34 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HaveYouEverSmokedCigarettes_OLS extends MainPageOLS{
+public class EverSmokedCigarettesPageCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever smoked cigarettes?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public HaveYouEverSmokedCigarettes_OLS() {
+    public EverSmokedCigarettesPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouEverSmokedCigarettes_OLS waitForPageLoad() {
+    public EverSmokedCigarettesPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouEverSmokedCigarettes_OLS clickOnAnswer(String answerText) {
+    public EverSmokedCigarettesPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

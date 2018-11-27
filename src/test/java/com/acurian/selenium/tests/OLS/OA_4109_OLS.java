@@ -2,7 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAID;
-import com.acurian.selenium.pages.OLS.OA_3138.TreatedPainWithMarijuanaOrCannabis;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
@@ -45,14 +45,14 @@ public class OA_4109_OLS extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritis());
 
-        WhatKindOfArthritisPage whatKindOfArthritisPage = doYouSufferFromArthritis
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = doYouSufferFromArthritis
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisPage());
+                .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        WhereYouHaveArthritis whereYouHaveArthritis = whatKindOfArthritisPage
+        WhereYouHaveArthritis whereYouHaveArthritis = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
+                .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
                 .clickNextButton(new WhereYouHaveArthritis());
 
         AnyMedicationForYourArthritis anyMedicationForYourArthritis = whereYouHaveArthritis

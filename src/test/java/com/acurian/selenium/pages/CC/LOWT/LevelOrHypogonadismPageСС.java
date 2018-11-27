@@ -9,10 +9,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class ExperiencedAnyOfFollowingCC extends MainPageCC{
+public class LevelOrHypogonadismPageСС extends MainPageCC {
 
-    public final String titleExpected = "Have you experienced any of the following?\n" +
-    		"Agent Note: Select all that apply";
+    public final String titleExpected = "The following medications are prescribed for men who have been diagnosed with a low testosterone (male hormone) level or hypogonadism. (Agent note: tes-TOS-ter-one, hi-pō-gō-nad-izm)\n" +
+            "Are you currently taking any of the following medications?\n" +
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
@@ -20,24 +21,24 @@ public class ExperiencedAnyOfFollowingCC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public ExperiencedAnyOfFollowingCC() {
+    public LevelOrHypogonadismPageСС() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ExperiencedAnyOfFollowingCC waitForPageLoad() {
+    public LevelOrHypogonadismPageСС waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ExperiencedAnyOfFollowingCC clickOnAnswers(String ...answerText) {
+    public LevelOrHypogonadismPageСС clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

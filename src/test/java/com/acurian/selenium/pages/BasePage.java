@@ -16,7 +16,9 @@ import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -253,6 +255,50 @@ public abstract class BasePage {
             Thread.sleep(miliseconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    // working with tabs
+
+    @Step
+    public <T extends BasePage> T switchTab() {
+        ArrayList<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(windowHandles.get(1));
+        return (T)this;
+    }
+
+    @Step
+    public void switchToMainTab() {
+        ArrayList<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(windowHandles.get(0));
+    }
+
+    @Step
+    protected void switchTabsUsingPartOfUrl(String platform) {
+        String currentHandle = null;
+        try {
+            final Set<String> handles = driver.getWindowHandles();
+            if (handles.size() > 1) {
+                currentHandle = driver.getWindowHandle();
+            }
+            if (currentHandle != null) {
+                for (final String handle : handles) {
+                    driver.switchTo().window(handle);
+                    if (driver.getCurrentUrl().contains(platform) && !currentHandle.equals(handle)) {
+                        break;
+                    }
+                }
+            }
+//            else {
+//                for (final String handle : handles) {
+//                    driver.switchTo().window(handle);
+//                    if (driver.getCurrentUrl().contains(platform)) {
+//                        break;
+//                    }
+//                }
+//            }
+        } catch (Exception e) {
+            System.out.println("Switching tabs failed");
         }
     }
 
