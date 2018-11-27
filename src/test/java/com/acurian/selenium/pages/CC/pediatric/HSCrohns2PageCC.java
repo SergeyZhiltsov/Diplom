@@ -22,7 +22,7 @@ public class HSCrohns2PageCC extends MainPageCC{
     		"\n" +
     		"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
     		"\n" +
-    		"You will need to provide us with an email address to start this process. What email address should we use:";
+    		"To start this process, you will need to provide an email address. What email address should we use:";
     
     
     public final String titleExpectedIBD = "Your medical records related to your %s history are required for the study doctor to effectively evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +

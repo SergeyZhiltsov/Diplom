@@ -67,7 +67,7 @@ public class OA_4831_OLS_NonSynexus extends BaseTest {
 
         WhereYouHaveArthritis whereYouHaveArthritis = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Osteoarthritis")
+                .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
                 .clickNextButton(new WhereYouHaveArthritis());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS hasHealthcareProfessionalPageOLS = whereYouHaveArthritis

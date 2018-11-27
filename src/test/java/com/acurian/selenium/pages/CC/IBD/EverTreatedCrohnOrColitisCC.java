@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class EverTreatedCrohnOrColitisCC extends MainPageCC{
 
-    public final String titleExpected = "Have you ever treated your Crohn's or colitis with any of the following medications that suppress your immune system?\n" +
+    public final String titleExpected = "Have you ever treated your Crohn's or colitis with any of the following medications that suppress your immune system? \n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

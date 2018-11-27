@@ -73,6 +73,11 @@ public class IdentificationPageCC extends MainPageCC {
     }
 
     @Step
+    public String getEarlyCaptureTitleText() {
+        return getText(titleText2);
+    }
+
+    @Step
     public IdentificationPageCC setAllFields(String firstName, String lastName, String email, String phoneNumber, String zipCode) {
         setFirstName(firstName);
         setLastName(lastName);
