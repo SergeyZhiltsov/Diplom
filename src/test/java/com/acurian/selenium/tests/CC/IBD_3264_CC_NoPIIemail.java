@@ -280,12 +280,12 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveAnyOfTheFollowingPageCC());
 
-         LastTimeWeightLossSurgeryOrProcedureСС lastTimeWeightLossSurgeryOrProcedureСС = haveAnyOfTheFollowingPageCC
+         ProcedureForWeightLossPageCC lastTimeWeightLossSurgeryOrProcedureСС = haveAnyOfTheFollowingPageCC
                 .waitForPageLoad()
                 .back(weightLossSurgeryPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new LastTimeWeightLossSurgeryOrProcedureСС());
+                .clickNextButton(new ProcedureForWeightLossPageCC());
 
         lastTimeWeightLossSurgeryOrProcedureСС
                 .waitForPageLoad()
