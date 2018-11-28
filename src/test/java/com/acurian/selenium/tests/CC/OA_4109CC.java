@@ -185,7 +185,7 @@ public class OA_4109CC extends BaseTest {
         		.clickOnAnswer("No")        		
         		.clickNextButton(new DevicesInYourBodyCC());
 
-        //-------------------------FollowingDevicesInYourBody_OLS---------------
+        //-------------------------FollowingDevicesInYourBody---------------
         devicesInYourBodyCC
         		.waitForPageLoad()
                 .clickOnAnswers("Aneurysm clip")
