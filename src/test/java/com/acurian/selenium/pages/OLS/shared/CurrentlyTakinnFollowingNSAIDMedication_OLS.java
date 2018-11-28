@@ -10,7 +10,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class CurrentlyTakinnFollowingNSAIDMedication extends MainPageOLS {
+public class CurrentlyTakinnFollowingNSAIDMedication_OLS extends MainPageOLS {
 	
 	public final String titleExpected = "Are you currently taking the following NSAID medication(s)?";
 
@@ -20,19 +20,19 @@ public class CurrentlyTakinnFollowingNSAIDMedication extends MainPageOLS {
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> radioButtonsList;
 
-    public CurrentlyTakinnFollowingNSAIDMedication() {
+    public CurrentlyTakinnFollowingNSAIDMedication_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public CurrentlyTakinnFollowingNSAIDMedication waitForPageLoad() {
+    public CurrentlyTakinnFollowingNSAIDMedication_OLS waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public CurrentlyTakinnFollowingNSAIDMedication clickOnAnswer(String answerText) {
+    public CurrentlyTakinnFollowingNSAIDMedication_OLS clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

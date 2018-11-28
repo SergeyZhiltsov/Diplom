@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.OA_3138;
 
 import java.util.List;
 import org.openqa.selenium.WebElement;
@@ -7,28 +7,28 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveYouReceivedKneeInjection_OLS extends MainPageOLS{
+public class HowManyTotalDaysYouTakeFollowingNSAID_OLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you received a knee injection within the past 3 months?";
+    public final String titleExpected = "During a typical week, how many total days do you take the following NSAID medication(s)?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    @FindBy(xpath = "//label[contains(@for,'QS4521A_')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> radioButtonsList;
 
-    public HaveYouReceivedKneeInjection_OLS() {
+    public HowManyTotalDaysYouTakeFollowingNSAID_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouReceivedKneeInjection_OLS waitForPageLoad() {
+    public HowManyTotalDaysYouTakeFollowingNSAID_OLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouReceivedKneeInjection_OLS clickOnAnswer(String answerText) {
+    public HowManyTotalDaysYouTakeFollowingNSAID_OLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

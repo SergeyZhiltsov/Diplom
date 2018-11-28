@@ -171,7 +171,7 @@ public class OA_4827_CC extends BaseTest {
         		.clickOnAnswer("No")        		
         		.clickNextButton(new DevicesInYourBodyCC());
 
-        //-------------------------FollowingDevicesInYourBody---------------
+        //-------------------------FollowingDevicesInYourBody_OLS---------------
         devicesInYourBodyCC
         		.waitForPageLoad();
         CarpalTunnelSyndromeCC carpalTunnelSyndromeCC = devicesInYourBodyCC

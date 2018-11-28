@@ -230,7 +230,7 @@ public class OA_4831_CC_Synexus extends BaseTest {
         		.clickNextButton(new DevicesInYourBodyCC());  
 
         
-        //---------------------------FollowingDevicesInYourBody--------------------
+        //---------------------------FollowingDevicesInYourBody_OLS--------------------
         followingDevicesInYourBody
                 .waitForPageLoad();
         CarpalTunnelSyndromeCC carpalTunnelSyndromeCC  = followingDevicesInYourBody

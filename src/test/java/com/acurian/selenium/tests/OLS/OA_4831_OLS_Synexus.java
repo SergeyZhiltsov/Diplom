@@ -1,7 +1,7 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAID;
+import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAID_OLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
@@ -63,12 +63,12 @@ public class OA_4831_OLS_Synexus extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        WhereYouHaveArthritis whereYouHaveArthritis = whatKindOfArthritisPageOLS
+        WhereYouHaveArthritis_OLS whereYouHaveArthritisOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
-                .clickNextButton(new WhereYouHaveArthritis());
+                .clickNextButton(new WhereYouHaveArthritis_OLS());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS hasHealthcareProfessionalPageOLS = whereYouHaveArthritis
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS hasHealthcareProfessionalPageOLS = whereYouHaveArthritisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Spine or shoulders")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -76,48 +76,48 @@ public class OA_4831_OLS_Synexus extends BaseTest {
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS4504", protocol1);
         debugPageOLS.back();
-        AnyMedicationForYourArthritis anyMedicationForYourArthritis = whereYouHaveArthritis
+        AnyMedicationForYourArthritis_OLS anyMedicationForYourArthritisOLS = whereYouHaveArthritisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Spine or shoulders")
                 .clickOnAnswer("Left Hip")
                 .clickOnAnswer("Right Hip")
-                .clickNextButton(new AnyMedicationForYourArthritis());
+                .clickNextButton(new AnyMedicationForYourArthritis_OLS());
 
         
-        NSAIDMedication nSAIDMedication = anyMedicationForYourArthritis
+        NSAIDMedication_OLS nSAIDMedicationOLS = anyMedicationForYourArthritisOLS
         		.waitForPageLoad()
                 .clickOnAnswer("I do not take any medication for arthritis pain") 
                 .clickOnAnswer("1 - 2 days per week or less")
-                .clickNextButton(new NSAIDMedication());
-        nSAIDMedication
+                .clickNextButton(new NSAIDMedication_OLS());
+        nSAIDMedicationOLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS4520", protocol1);
         debugPageOLS.back();
-        anyMedicationForYourArthritis
+        anyMedicationForYourArthritisOLS
         		.waitForPageLoad()
                 .clickOnAnswer("3 days per week")
-                .clickNextButton(new NSAIDMedication());
+                .clickNextButton(new NSAIDMedication_OLS());
         
 
-        CurrentlyTakinnFollowingNSAIDMedication currentlyTakinnFollowingNSAIDMedication = nSAIDMedication
+        CurrentlyTakinnFollowingNSAIDMedication_OLS currentlyTakinnFollowingNSAIDMedicationOLS = nSAIDMedicationOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Aspirin (Anacin, Ascriptin, Bayer, Bufferin, Ecotrin, Excedrin)")
-                .clickNextButton(new CurrentlyTakinnFollowingNSAIDMedication());
+                .clickNextButton(new CurrentlyTakinnFollowingNSAIDMedication_OLS());
         
 
-        HowManyTotalDaysYouTakeFollowingNSAID howManyTotalDaysYouTakeFollowingNSAID = currentlyTakinnFollowingNSAIDMedication
+        HowManyTotalDaysYouTakeFollowingNSAID_OLS howManyTotalDaysYouTakeFollowingNSAIDOLS = currentlyTakinnFollowingNSAIDMedicationOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HowManyTotalDaysYouTakeFollowingNSAID());
+                .clickNextButton(new HowManyTotalDaysYouTakeFollowingNSAID_OLS());
         
 
-        TreatedYourArthritisPainAcetaminophen treatedYourArthritisPainAcetaminophen = howManyTotalDaysYouTakeFollowingNSAID
+        TreatedYourArthritisPainAcetaminophen_OLS treatedYourArthritisPainAcetaminophenOLS = howManyTotalDaysYouTakeFollowingNSAIDOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 days")
-                .clickNextButton(new TreatedYourArthritisPainAcetaminophen());
+                .clickNextButton(new TreatedYourArthritisPainAcetaminophen_OLS());
         
 
-        PrescriptionPainMedicationsForArthritis prescriptionPainMedicationsForArthritis = treatedYourArthritisPainAcetaminophen
+        PrescriptionPainMedicationsForArthritis prescriptionPainMedicationsForArthritis = treatedYourArthritisPainAcetaminophenOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
                 .clickNextButton(new PrescriptionPainMedicationsForArthritis());
@@ -138,10 +138,10 @@ public class OA_4831_OLS_Synexus extends BaseTest {
         		.waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS4511", protocol1);
         debugPageOLS.back();
-        AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = hasYourDoctorEverPrescribedOpioidNarcotic_OLS
+        AreYouCurrentlyOnPage_OLS areYouCurrentlyOnPageOLS = hasYourDoctorEverPrescribedOpioidNarcotic_OLS
         		.waitForPageLoad()
         		.clickOnAnswer("Yes, and I have taken an opioid or narcotic for pain")
-        		.clickNextButton(new AreYouCurrentlyOnPageOLS());
+        		.clickNextButton(new AreYouCurrentlyOnPage_OLS());
         
 
         areYouCurrentlyOnPageOLS
@@ -174,24 +174,24 @@ public class OA_4831_OLS_Synexus extends BaseTest {
         //-----------HaveYouEverReceivedInjectionIntoYourKnee_OLS--------------------
         haveYouEverReceivedInjectionIntoYourKnee_OLS
         		.waitForPageLoad();
-        HaveYouReceivedKneeInjection_OLS haveYouReceivedKneeInjection_OLS = haveYouEverReceivedInjectionIntoYourKnee_OLS
+        HaveYouReceivedKneeInjectionWithinPast3Months_OLS haveYouReceivedKneeInjection_WithinPast3Months_OLS = haveYouEverReceivedInjectionIntoYourKnee_OLS
         		.clickOnAnswer("Yes, a corticosteroid or \"steroid\" injection")
         		.clickOnAnswer("Yes, a joint fluid supplement injection such as Synvisc or Hyalgan")
-        		.clickNextButton(new HaveYouReceivedKneeInjection_OLS());        
+        		.clickNextButton(new HaveYouReceivedKneeInjectionWithinPast3Months_OLS());
                 
                 
-        //-------------------------HaveYouReceivedKneeInjection_OLS---------------
-        haveYouReceivedKneeInjection_OLS
+        //-------------------------HaveYouReceivedKneeInjectionWithinPast3Months_OLS---------------
+        haveYouReceivedKneeInjection_WithinPast3Months_OLS
 				.waitForPageLoad();
-        FollowingDevicesInYourBody followingDevicesInYourBody = haveYouReceivedKneeInjection_OLS
+        FollowingDevicesInYourBody_OLS followingDevicesInYourBodyOLS = haveYouReceivedKneeInjection_WithinPast3Months_OLS
         		.clickOnAnswer("No")
-        		.clickNextButton(new FollowingDevicesInYourBody());  
+        		.clickNextButton(new FollowingDevicesInYourBody_OLS());
 
         
-        //---------------------------FollowingDevicesInYourBody--------------------
-        followingDevicesInYourBody
+        //---------------------------FollowingDevicesInYourBody_OLS--------------------
+        followingDevicesInYourBodyOLS
                 .waitForPageLoad();
-        DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome  = followingDevicesInYourBody
+        DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome  = followingDevicesInYourBodyOLS
                 .clickOnAnswer("None of the above")
                 .clickNextButton(new DiagnosedwithCarpalTunnelSyndrome());
         

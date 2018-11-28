@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class AreYouCurrentlyOnPageOLS extends MainPageOLS{
+public class AreYouCurrentlyOnPage_OLS extends MainPageOLS{
 
     public final String titleExpected = "Are you currently on a long term steroid prescription medication for more than 10 days?\n" +
             "Commonly used types of steroids include prednisone, prednisolone, dexamethasone, methylprednisolone, and Medrol.";
@@ -19,18 +19,18 @@ public class AreYouCurrentlyOnPageOLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public AreYouCurrentlyOnPageOLS() {
+    public AreYouCurrentlyOnPage_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AreYouCurrentlyOnPageOLS waitForPageLoad() {
+    public AreYouCurrentlyOnPage_OLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AreYouCurrentlyOnPageOLS clickOnAnswer(String answerText) {
+    public AreYouCurrentlyOnPage_OLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

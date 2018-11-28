@@ -132,11 +132,11 @@ public class AS_4319_OLS extends BaseTest {
                 .clickOnAnswer("No, I have never taken it")
                 .clickNextButton(areYouWheelchairBoundOLS);
 
-        FollowingDevicesInYourBody followingDevicesInYourBody = areYouWheelchairBoundOLS
+        FollowingDevicesInYourBody_OLS followingDevicesInYourBodyOLS = areYouWheelchairBoundOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new FollowingDevicesInYourBody());
-        followingDevicesInYourBody
+                .clickNextButton(new FollowingDevicesInYourBody_OLS());
+        followingDevicesInYourBodyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4710", protocol1)
@@ -144,9 +144,9 @@ public class AS_4319_OLS extends BaseTest {
         areYouWheelchairBoundOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(followingDevicesInYourBody);
+                .clickNextButton(followingDevicesInYourBodyOLS);
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = followingDevicesInYourBody
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = followingDevicesInYourBodyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());

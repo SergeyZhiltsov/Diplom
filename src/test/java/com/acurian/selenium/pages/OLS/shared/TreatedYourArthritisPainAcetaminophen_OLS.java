@@ -7,10 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class AnyMedicationForYourArthritis extends MainPageOLS{
+public class TreatedYourArthritisPainAcetaminophen_OLS extends MainPageOLS{
 
-    public final String titleExpected = "About how many days per week do you take any type of medication for your arthritis pain?\n" +
-            "This can include over the counter, prescription, or a combination of both.";
+    public final String titleExpected = "Have you ever treated your arthritis pain with medications containing acetaminophen, also known as Tylenol?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -18,18 +17,18 @@ public class AnyMedicationForYourArthritis extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public AnyMedicationForYourArthritis() {
+    public TreatedYourArthritisPainAcetaminophen_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AnyMedicationForYourArthritis waitForPageLoad() {
+    public TreatedYourArthritisPainAcetaminophen_OLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AnyMedicationForYourArthritis clickOnAnswer(String answerText) {
+    public TreatedYourArthritisPainAcetaminophen_OLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
