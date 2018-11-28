@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhereYouHaveArthritis_OLS extends MainPageOLS {
+public class WhereYouHaveArthritisOLS extends MainPageOLS {
 	public final String titleExpected = "Where do you have arthritis?\n" + 
             "Please select all that apply.";
 
@@ -17,19 +17,19 @@ public class WhereYouHaveArthritis_OLS extends MainPageOLS {
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public WhereYouHaveArthritis_OLS() {
+    public WhereYouHaveArthritisOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhereYouHaveArthritis_OLS waitForPageLoad() {
+    public WhereYouHaveArthritisOLS waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public WhereYouHaveArthritis_OLS clickOnAnswer(String answerText) {
+    public WhereYouHaveArthritisOLS clickOnAnswer(String answerText) {
     	clickOnCheckBoxes(checkBoxList, answerText);
         return this;   
     }

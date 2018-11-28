@@ -7,9 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class TreatedYourArthritisPainAcetaminophen_OLS extends MainPageOLS{
+public class HasYourDoctorEverPrescribedOpioidNarcoticOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever treated your arthritis pain with medications containing acetaminophen, also known as Tylenol?";
+    public final String titleExpected = "Doctors often prescribe opioid or narcotic medications for pain.\n" +
+    		"Has your doctor ever prescribed an opioid or narcotic for your pain?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -17,18 +18,18 @@ public class TreatedYourArthritisPainAcetaminophen_OLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public TreatedYourArthritisPainAcetaminophen_OLS() {
+    public HasYourDoctorEverPrescribedOpioidNarcoticOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TreatedYourArthritisPainAcetaminophen_OLS waitForPageLoad() {
+    public HasYourDoctorEverPrescribedOpioidNarcoticOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TreatedYourArthritisPainAcetaminophen_OLS clickOnAnswer(String answerText) {
+    public HasYourDoctorEverPrescribedOpioidNarcoticOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

@@ -1,16 +1,17 @@
 package com.acurian.selenium.pages.OLS.shared;
 
-import java.util.List;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class AnyMedicationForYourArthritis_OLS extends MainPageOLS{
+import java.util.List;
 
-    public final String titleExpected = "About how many days per week do you take any type of medication for your arthritis pain?\n" +
-            "This can include over the counter, prescription, or a combination of both.";
+public class AreYouCurrentlyOnPageOLS extends MainPageOLS{
+
+    public final String titleExpected = "Are you currently on a long term steroid prescription medication for more than 10 days?\n" +
+            "Commonly used types of steroids include prednisone, prednisolone, dexamethasone, methylprednisolone, and Medrol.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -18,18 +19,18 @@ public class AnyMedicationForYourArthritis_OLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public AnyMedicationForYourArthritis_OLS() {
+    public AreYouCurrentlyOnPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AnyMedicationForYourArthritis_OLS waitForPageLoad() {
+    public AreYouCurrentlyOnPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AnyMedicationForYourArthritis_OLS clickOnAnswer(String answerText) {
+    public AreYouCurrentlyOnPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -38,5 +39,4 @@ public class AnyMedicationForYourArthritis_OLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

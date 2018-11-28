@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class NSAIDMedication_OLS extends MainPageOLS {
+public class NSAIDMedicationOLS extends MainPageOLS {
 	public final String titleExpected = "The following medications are called NSAIDs. They may be available over-the-counter or with a prescription.\n" + 
             "Have you ever taken any of the following medications for your pain?\n" +
 			"Please select all that apply.";
@@ -19,19 +19,19 @@ public class NSAIDMedication_OLS extends MainPageOLS {
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> radioButtonsList;
 
-    public NSAIDMedication_OLS() {
+    public NSAIDMedicationOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public NSAIDMedication_OLS waitForPageLoad() {
+    public NSAIDMedicationOLS waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public NSAIDMedication_OLS clickOnAnswer(String answerText) {
+    public NSAIDMedicationOLS clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

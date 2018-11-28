@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HowManyTotalDaysYouTakeFollowingNSAID_OLS extends MainPageOLS{
+public class HowManyTotalDaysYouTakeFollowingNSAIDOLS extends MainPageOLS{
 
     public final String titleExpected = "During a typical week, how many total days do you take the following NSAID medication(s)?";
 
@@ -17,18 +17,18 @@ public class HowManyTotalDaysYouTakeFollowingNSAID_OLS extends MainPageOLS{
     @FindBy(xpath = "//label[contains(@for,'QS4521A_')]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> radioButtonsList;
 
-    public HowManyTotalDaysYouTakeFollowingNSAID_OLS() {
+    public HowManyTotalDaysYouTakeFollowingNSAIDOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HowManyTotalDaysYouTakeFollowingNSAID_OLS waitForPageLoad() {
+    public HowManyTotalDaysYouTakeFollowingNSAIDOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HowManyTotalDaysYouTakeFollowingNSAID_OLS clickOnAnswer(String answerText) {
+    public HowManyTotalDaysYouTakeFollowingNSAIDOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

@@ -136,9 +136,9 @@ public class LBP_2108_OLS extends BaseTest{
         ofMedicationsYouPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(ofMedicationsYouPageOLS.getTitleText(), ofMedicationsYouPageOLS.titleExpected, "Title is diff");
-        AreYouCurrentlyOnPage_OLS areYouCurrentlyOnPageOLS = ofMedicationsYouPageOLS
+        AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = ofMedicationsYouPageOLS
                 .clickOnAnswer("0")
-                .clickNextButton(new AreYouCurrentlyOnPage_OLS());
+                .clickNextButton(new AreYouCurrentlyOnPageOLS());
 
         areYouCurrentlyOnPageOLS
                 .waitForPageLoad();

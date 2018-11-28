@@ -7,9 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WithinThePast6MonthsHaveYouHadNumbness_OLS extends MainPageOLS{
+public class HaveYouReceivedKneeInjectionWithinPast3MonthsOLS extends MainPageOLS{
 
-    public final String titleExpected = "Within the past 6 months have you had numbness, tingling, or shooting pains in your hands and/or wrists due to your carpal tunnel syndrome?";
+    public final String titleExpected = "Have you received a knee injection within the past 3 months?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -17,18 +17,18 @@ public class WithinThePast6MonthsHaveYouHadNumbness_OLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public WithinThePast6MonthsHaveYouHadNumbness_OLS() {
+    public HaveYouReceivedKneeInjectionWithinPast3MonthsOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WithinThePast6MonthsHaveYouHadNumbness_OLS waitForPageLoad() {
+    public HaveYouReceivedKneeInjectionWithinPast3MonthsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WithinThePast6MonthsHaveYouHadNumbness_OLS clickOnAnswer(String answerText) {
+    public HaveYouReceivedKneeInjectionWithinPast3MonthsOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

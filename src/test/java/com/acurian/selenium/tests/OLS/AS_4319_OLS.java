@@ -132,10 +132,10 @@ public class AS_4319_OLS extends BaseTest {
                 .clickOnAnswer("No, I have never taken it")
                 .clickNextButton(areYouWheelchairBoundOLS);
 
-        FollowingDevicesInYourBody_OLS followingDevicesInYourBodyOLS = areYouWheelchairBoundOLS
+        FollowingDevicesInYourBodyOLS followingDevicesInYourBodyOLS = areYouWheelchairBoundOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new FollowingDevicesInYourBody_OLS());
+                .clickNextButton(new FollowingDevicesInYourBodyOLS());
         followingDevicesInYourBodyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

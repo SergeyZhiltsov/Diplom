@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveYouEverHadKneeReplacementSurgery_OLS extends MainPageOLS{
+public class HaveYouEverHadKneeReplacementSurgeryOLS extends MainPageOLS{
 
     public final String titleExpected = "Have you ever had knee replacement surgery?";
 
@@ -17,18 +17,18 @@ public class HaveYouEverHadKneeReplacementSurgery_OLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public HaveYouEverHadKneeReplacementSurgery_OLS() {
+    public HaveYouEverHadKneeReplacementSurgeryOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouEverHadKneeReplacementSurgery_OLS waitForPageLoad() {
+    public HaveYouEverHadKneeReplacementSurgeryOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouEverHadKneeReplacementSurgery_OLS clickOnAnswer(String answerText) {
+    public HaveYouEverHadKneeReplacementSurgeryOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
