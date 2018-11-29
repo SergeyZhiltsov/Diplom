@@ -9,9 +9,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -30,7 +28,9 @@ public class LOWT_3017_OLS extends BaseTest {
         List<String> protocols = Arrays.asList("M16_100");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
-        String protocol3 = "R727_CL_1532";
+        String esperionProtocol = "1002_043";
+        String kowaProtocol = "K_877_302_A";
+        String sanofiT2DMCV = "EFC14828";
         String studyName = "a men's low testosterone";
         String site_Indication = "low testosterone or hypogonadism";
         String siteName = "AUT_LOWT_3017_Site";
@@ -106,9 +106,39 @@ public class LOWT_3017_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2);
-        debugPageOLS.back();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2);
+
+        //-----------New Switching to CV module logic-----------------------
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickNextButton(new WhatKindOfDiabetesPageOLS());
+
+        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, kowaProtocol)
+                .back(cardiovascularDiseaseThanOthersPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new StatinMedicationsOnPageOLS());
+
+        statinMedicationsOnPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5632", kowaProtocol, sanofiT2DMCV)
+                .back(cardiovascularDiseaseThanOthersPageOLS)
+                .waitForPageLoad()
+                .back(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS)
+                .waitForPageLoad()
+                .back();
+
         experiencedAnyOfFollowing_OLS.waitForPageLoad()
                 //HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
                 .clickOnAnswers("Decreased sexual desire or libido",
@@ -123,7 +153,7 @@ public class LOWT_3017_OLS extends BaseTest {
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad();
         Assert.assertEquals(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.getTitleText(), hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.titleExpected, "Title is diff");
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
@@ -182,7 +212,7 @@ public class LOWT_3017_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(heartOrBloodVesselPageOLS.getTitleText(), heartOrBloodVesselPageOLS.titleExpected, "Title is diff");
         HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS = heartOrBloodVesselPageOLS
-                //---------SKIP to Q10 if selected "None of the above"  or go to Q9--------
+                //---------SKIP to Q11 if selected "None of the above"  or go to Q10--------
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS())
                 .waitForPageLoad();
@@ -283,13 +313,14 @@ public class LOWT_3017_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad();
         //------Disqualify ("High BMI") if > 50  ---  Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]----
-        TransitionalStatementLowtPageOLS _TransitionalStatement_LowtPage_OLS = approximateHeightPageOLS
+        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
                 .setAll("5", "0", "256")
                 //.clickNextButton(new ChildrenUnderPageOLS())
-                .clickNextButton(new TransitionalStatementLowtPageOLS())
+                .clickNextButton(new TransitionalStatementLowtPageOLS());
+        transitionalStatementLowtPageOLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2);
-        _TransitionalStatement_LowtPage_OLS.back();
+        transitionalStatementLowtPageOLS.back();
         approximateHeightPageOLS.waitForPageLoad()
                 //----------Change inches to maje BMI to <50--------------------
                 .waitForPageLoad()
