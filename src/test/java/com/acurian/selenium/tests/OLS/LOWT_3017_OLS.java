@@ -9,9 +9,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -30,6 +28,9 @@ public class LOWT_3017_OLS extends BaseTest {
         List<String> protocols = Arrays.asList("M16_100");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
+        String esperionProtocol = "1002_043";
+        String kowaProtocol = "K_877_302_A";
+        String sanofiT2DMCV = "EFC14828";
         String studyName = "a men's low testosterone";
         String site_Indication = "low testosterone or hypogonadism";
         String siteName = "AUT_LOWT_3017_Site";
@@ -107,7 +108,35 @@ public class LOWT_3017_OLS extends BaseTest {
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2);
+
+        //-----------New Switching to CV module logic-----------------------
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickNextButton(new WhatKindOfDiabetesPageOLS());
+
+        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, kowaProtocol)
+                .back(cardiovascularDiseaseThanOthersPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new StatinMedicationsOnPageOLS());
+
+        statinMedicationsOnPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5632", kowaProtocol, sanofiT2DMCV)
+                .back(cardiovascularDiseaseThanOthersPageOLS)
+                .waitForPageLoad()
+                .back(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS)
+                .waitForPageLoad()
                 .back();
 
         experiencedAnyOfFollowing_OLS.waitForPageLoad()
@@ -124,7 +153,7 @@ public class LOWT_3017_OLS extends BaseTest {
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad();
         Assert.assertEquals(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.getTitleText(), hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.titleExpected, "Title is diff");
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS =  hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 

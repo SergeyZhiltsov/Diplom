@@ -2,11 +2,15 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.shared.StatinMedicationsOnPageOLS;
+import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -24,6 +28,9 @@ public class LowT_CC extends BaseTest {
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
+        String esperionProtocol = "1002_043";
+        String kowaProtocol = "K_877_302_A";
+        String sanofiT2DMCV = "EFC14828";
         String protocol3 = "R727_CL_1532";
         String studyName = "a high cholesterol and heart disease";
         String siteName = "AUT_LOWT_3017_Site";
@@ -93,23 +100,51 @@ public class LowT_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ExperiencedAnyOfFollowingCC());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = experiencedAnyOfFollowingCC
+        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC =  experiencedAnyOfFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new NonQRtransitionPageCC());
+                .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
         debugPageCC.checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1, protocol2);
-        debugPageCC.back();
-        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC = experiencedAnyOfFollowingCC
+
+        //-----------New Switching to CV module logic-----------------------
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickNextButton(new WhatKindOfDiabetesPageCC());
+
+        StatinMedicationsOnPageCC statinMedicationsOnPageCC = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, kowaProtocol)
+                .back(cardiovascularDiseaseThanOthersPageCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new StatinMedicationsOnPageCC());
+
+        statinMedicationsOnPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", kowaProtocol, sanofiT2DMCV)
+                .back(cardiovascularDiseaseThanOthersPageCC)
+                .waitForPageLoad()
+                .back(diagnosedYouWithLowTestosteroneCC)
+                .waitForPageLoad()
+                .back();
+
+        experiencedAnyOfFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("Decreased sexual desire or libido", "Decreased spontaneous erections (e.g., morning erections)", "Decreased energy or fatigue/feeling tired")
                 .clickOnAnswers("Loss of body (axillary and pubic) hair or reduced shaving", "Hot flashes", "Low mood or depressed mood")
                 .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
 
-        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
+        diagnosedYouWithLowTestosteroneCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
 
         LevelOrHypogonadismPageСС levelOrHypogonadismPageСС = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()

@@ -10,8 +10,10 @@ import java.util.List;
 
 public class StatinMedicationsOnPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a medicine called a statin. Most people with these conditions are prescribed this kind of medicine for their condition. Statins are prescribed in many different names.\n" +
-            "Are you currently taking any of the following statin medications on a daily basis?\n" +
+    public final String titleExpected = "One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is called a statin. Most people with these conditions are prescribed this kind of medicine. Statins are prescribed under many different names.\n" +
+            "\n" +
+            "Which of the following statin medications have you ever taken on a daily basis? \n" +
+            "Think about statin medications you may be taking now as well as those you may have taken in the past.\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
