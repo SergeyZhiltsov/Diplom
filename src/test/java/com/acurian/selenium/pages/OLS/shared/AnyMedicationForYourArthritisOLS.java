@@ -7,10 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HasYourDoctorEverPrescribedOpioidNarcotic_OLS extends MainPageOLS{
+public class AnyMedicationForYourArthritisOLS extends MainPageOLS{
 
-    public final String titleExpected = "Doctors often prescribe opioid or narcotic medications for pain.\n" +
-    		"Has your doctor ever prescribed an opioid or narcotic for your pain?";
+    public final String titleExpected = "About how many days per week do you take any type of medication for your arthritis pain?\n" +
+            "This can include over the counter, prescription, or a combination of both.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -18,18 +18,18 @@ public class HasYourDoctorEverPrescribedOpioidNarcotic_OLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public HasYourDoctorEverPrescribedOpioidNarcotic_OLS() {
+    public AnyMedicationForYourArthritisOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HasYourDoctorEverPrescribedOpioidNarcotic_OLS waitForPageLoad() {
+    public AnyMedicationForYourArthritisOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HasYourDoctorEverPrescribedOpioidNarcotic_OLS clickOnAnswer(String answerText) {
+    public AnyMedicationForYourArthritisOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

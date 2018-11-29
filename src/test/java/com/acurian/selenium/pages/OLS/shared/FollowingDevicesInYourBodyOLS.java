@@ -10,10 +10,10 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveYouEverReceivedInjectionIntoYourKnee_OLS extends MainPageOLS {
+public class FollowingDevicesInYourBodyOLS extends MainPageOLS {
 	
-	public final String titleExpected = "Have you ever received an injection into your knee to treat your arthritis pain?\n" +
-			"Please select all that apply.";         
+	public final String titleExpected = "Do you have any of the following devices in your body?\n" +
+            "Please select all that apply.";         
       
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
@@ -22,19 +22,19 @@ public class HaveYouEverReceivedInjectionIntoYourKnee_OLS extends MainPageOLS {
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public HaveYouEverReceivedInjectionIntoYourKnee_OLS() {
+    public FollowingDevicesInYourBodyOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouEverReceivedInjectionIntoYourKnee_OLS waitForPageLoad() {
+    public FollowingDevicesInYourBodyOLS waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         return this;
     }
 
     @Step
-    public HaveYouEverReceivedInjectionIntoYourKnee_OLS clickOnAnswer(String answerText) {
+    public FollowingDevicesInYourBodyOLS clickOnAnswer(String answerText) {
     	 clickOnCheckBoxes(checkBoxList, answerText);
          return this;
     }

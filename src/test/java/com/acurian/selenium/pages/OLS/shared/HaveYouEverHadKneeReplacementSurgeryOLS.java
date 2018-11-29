@@ -7,9 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class AreYouCurrentlyReceivingWorkersPage_OLS extends MainPageOLS{
+public class HaveYouEverHadKneeReplacementSurgeryOLS extends MainPageOLS{
 
-    public final String titleExpected = "Are you currently receiving worker's compensation, or involved in litigation or a lawsuit related to your pain?";
+    public final String titleExpected = "Have you ever had knee replacement surgery?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -17,18 +17,18 @@ public class AreYouCurrentlyReceivingWorkersPage_OLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
 
-    public AreYouCurrentlyReceivingWorkersPage_OLS() {
+    public HaveYouEverHadKneeReplacementSurgeryOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AreYouCurrentlyReceivingWorkersPage_OLS waitForPageLoad() {
+    public HaveYouEverHadKneeReplacementSurgeryOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AreYouCurrentlyReceivingWorkersPage_OLS clickOnAnswer(String answerText) {
+    public HaveYouEverHadKneeReplacementSurgeryOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
