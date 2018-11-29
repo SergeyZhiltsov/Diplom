@@ -100,7 +100,7 @@ public class LowT_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ExperiencedAnyOfFollowingCC());
 
-        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC =  experiencedAnyOfFollowingCC
+        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC = experiencedAnyOfFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
