@@ -22,6 +22,15 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//span[text()='Close']")
     WebElement closeButton;
 
+    @FindBy(xpath = "//div[contains(@class,'k-widget')][1]//span[text()='Close']")
+    WebElement infoCloseButton;
+
+    @FindBy(xpath = "//a[@id='info-debug-link']/span")
+    WebElement infoButton;
+
+    @FindBy(xpath = "//div[@class='k-window-content k-content']//div[15]")
+    WebElement verity4Field;
+
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[3]")
     List<WebElement> questionList1;
 
@@ -70,6 +79,11 @@ public class DebugPageOLS extends MainPageOLS{
         return this;
     }
 
+    public DebugPageOLS openInfoWindow(){
+        infoButton.click();
+        return this;
+    }
+
     public DebugPageOLS closeDebugWindow(){
         switch (Locators.isEnvWeb) {
             case Platforms.WEB:
@@ -83,6 +97,19 @@ public class DebugPageOLS extends MainPageOLS{
                 break;
         }
         return this;
+    }
+
+    public DebugPageOLS closeInfoWindow(){
+        infoCloseButton.click();
+        return this;
+    }
+
+    public String getVerityText(){
+        openInfoWindow();
+        waitForAnimation();
+        String verityText = getText(verity4Field);
+        closeInfoWindow();
+        return verityText;
     }
 
     @Step
