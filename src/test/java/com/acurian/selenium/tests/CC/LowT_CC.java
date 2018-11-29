@@ -5,10 +5,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartP
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -122,8 +119,6 @@ public class LowT_CC extends BaseTest {
                         "Chronic Kidney Disease")
                 .clickNextButton(new LevelOrHypogonadismPageСС());
 
-
-        //HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = levelOrHypogonadismPageСС
         EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = levelOrHypogonadismPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("AndroGel", "Endoderm patch", "Fortesta gel", "Striant (testosterone buccal system)", "Testim gel", "Other testosterone medication not on this list", "Unsure")
@@ -134,11 +129,11 @@ public class LowT_CC extends BaseTest {
 
         HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = everSmokedCigarettesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("I used to smoke, but have since quit")
+                .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
 
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = heartOrBloodVesselPageCC
+        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital",
                         "Coronary Artery Disease (blockage in a heart vessel)",
@@ -147,7 +142,7 @@ public class LowT_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
-        haveDoctorEverDiagnosedYou_CC.back();
+        haveDoctorEverDiagnosedYou_cc.back();
         heartOrBloodVesselPageCC
                 .waitForPageLoad();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartOrBloodVesselPageCC
@@ -218,15 +213,15 @@ public class LowT_CC extends BaseTest {
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
 
 
-        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_CC
+        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_cc
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC())
                 .waitForPageLoad();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC.back();
-        haveDoctorEverDiagnosedYou_CC
+        haveDoctorEverDiagnosedYou_cc
                 .waitForPageLoad();
-        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_CC
+        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_cc
                 .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
                         "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",

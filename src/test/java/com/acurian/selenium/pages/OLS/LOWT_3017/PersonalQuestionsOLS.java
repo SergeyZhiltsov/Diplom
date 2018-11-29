@@ -9,7 +9,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class PersonalQuestionsOLS extends MainPageOLS{
 
-    public final String titleExpected = "These next few rather personal questions will help us assess your health status. We appreciate your participation.";
+    public final String titleExpected = "These next few rather personal questions will help us assess your health status to better match you with a research study in your area. " +
+            "We appreciate your participation.";
     		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
