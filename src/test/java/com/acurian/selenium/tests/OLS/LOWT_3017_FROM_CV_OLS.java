@@ -2,22 +2,17 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.Insomnia_3792.AreYouCurrentlyTakingAnyPrescriptionNedications_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class Lowt3017FromCvOLS extends BaseTest {
+public class LOWT_3017_FROM_CV_OLS extends BaseTest {
 
     @Test
     @Description("LowT_3017_FromCv_Ols")
@@ -29,7 +24,8 @@ public class Lowt3017FromCvOLS extends BaseTest {
         String kowaProtocol = "K_877_302_A";
         String sanofiT2DMCV = "EFC14828";
         String[] cvModuleProtocols = {esperionProtocol, kowaProtocol, sanofiT2DMCV};
-        String studyName = "a heart health study";
+        String dqedStudyName = "a high cholesterol and heart health";
+        String studyName = "a men's low testosterone";
         String site_Indication = "low testosterone or hypogonadism";
         String siteName = "AUT_LOWT_3017_Site";
         String zipCode = "19901";
@@ -99,8 +95,8 @@ public class Lowt3017FromCvOLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2)
                 .back();
 
-        experiencedAnyOfFollowing_OLS.waitForPageLoad()
-                //HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
+        experiencedAnyOfFollowing_OLS
+                .waitForPageLoad()
                 .clickOnAnswers("Decreased sexual desire or libido",
                         "Decreased spontaneous erections (e.g., morning erections)",
                         "Decreased energy or fatigue/feeling tired",
@@ -113,34 +109,13 @@ public class Lowt3017FromCvOLS extends BaseTest {
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad();
         Assert.assertEquals(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.getTitleText(), hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.titleExpected, "Title is diff");
-        AreYouCurrentlyTakingAnyPrescriptionNedications_OLS areYouCurrentlyTakingAnyPrescriptionNedications_ols = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new AreYouCurrentlyTakingAnyPrescriptionNedications_OLS());
-
-
-        //****************Q5 Has a doctor ever diagnosed you with any of the following medical conditions or diseases?------
-        areYouCurrentlyTakingAnyPrescriptionNedications_ols
-                .waitForPageLoad();
-        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = areYouCurrentlyTakingAnyPrescriptionNedications_ols
-                .clickOnAnswers("Diabetes or High Blood Sugar",
-                        "High cholesterol or high triglycerides",
-                        "High blood pressure or hypertension",
-                        "Chronic Kidney Disease")
                 .clickNextButton(new LevelOrHypogonadismPageOLS());
-        levelOrHypogonadismPageOLS
-                .waitForPageLoad();
-        debugPageOLS.back();
-        areYouCurrentlyTakingAnyPrescriptionNedications_ols.waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new LevelOrHypogonadismPageOLS());
-
 
         //---------------Q6 LevelOrHypogonadismPageOLS-------------------
-        levelOrHypogonadismPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(levelOrHypogonadismPageOLS.getTitleText(), levelOrHypogonadismPageOLS.titleExpected, "Title is diff");
-        //HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = levelOrHypogonadismPageOLS
         EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = levelOrHypogonadismPageOLS
+                .waitForPageLoad()
                 .clickOnAnswers("AndroGel",
                         "Endoderm patch",
                         "Axiron gel",
@@ -153,7 +128,6 @@ public class Lowt3017FromCvOLS extends BaseTest {
                         "Unsure")
                 .clickNextButton(new EverSmokedCigarettesPageOLS());
 
-
         //---------------Q7 EverSmokedCigarettesPageOLS-------------------
         everSmokedCigarettesPageOLS
                 .waitForPageLoad();
@@ -163,7 +137,6 @@ public class Lowt3017FromCvOLS extends BaseTest {
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HeartOrBloodVesselPageOLS());
-
 
         //---------------Q8 HeartOrBloodVesselPageOLS-------------------
         heartOrBloodVesselPageOLS
@@ -183,7 +156,6 @@ public class Lowt3017FromCvOLS extends BaseTest {
                         "TIA or \"Mini-Stroke\"")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
-
         //---------------Q9 SubquestionExperiencedHeartPageOLS-------------------
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadHeartAttack();
@@ -201,7 +173,6 @@ public class Lowt3017FromCvOLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS());
-
 
         //---------------Q10 HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS-------------------
         haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
@@ -221,7 +192,6 @@ public class Lowt3017FromCvOLS extends BaseTest {
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
                         "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
                 .clickNextButton(new ReceivedHeartProcedurePageOLS());
-
 
         //---------------Q11 ReceivedHeartProcedurePageOLS-------------------
         receivedHeartProcedurePageOLS
@@ -246,7 +216,6 @@ public class Lowt3017FromCvOLS extends BaseTest {
                 .clickOnAnswer("More than 6 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
 
-
         //---------------Q13 HasDoctorEverDiagnosedYouMedicalCond_OLS-------------------
         hasDoctorEverDiagnosedYouMedicalCond_OLS
                 .waitForPageLoad();
@@ -265,7 +234,6 @@ public class Lowt3017FromCvOLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-
         //----------****************NEW GENERAL HEALTH Questions************************----------
         //------------Q14 What is your approximate height?  What is your approximate weight?------
         approximateHeightPageOLS
@@ -283,34 +251,14 @@ public class Lowt3017FromCvOLS extends BaseTest {
                 //----------Change inches to maje BMI to <50--------------------
                 .waitForPageLoad()
                 .setIncheswithClear("5")
-//        .clickNextButton(new ChildrenUnderPageOLS())
-//
-//
-//		//----------ChildrenUnderTheAge Page--------------------
-//        .waitForPageLoad()
-//        .clickOnAnswer("Yes")
-//        .clickNextButton(new HouseholdHavePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("None of the above")
-//        .clickNextButton(new TheStudySitePageOLS())
-//        .waitForPageLoad()
-//
-//		//-------------------PEDIATRIC QUESTIONS-----------------------------
-//        .clickOnAnswer("Public transportation")
-//        .clickNextButton(new WhatMedicalCoveragePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("No, I have no coverage")
-//        .clickNextButton(new EthnicBackgroundPageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
+                .clickNextButton(new IncongruentSiteSelectionClose_OLS())
 
                 //----------SiteSelection Page--------------------
-                .waitForPageLoad(studyName)
+                .waitForPageLoad(studyName, dqedStudyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
@@ -321,21 +269,6 @@ public class Lowt3017FromCvOLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
-
-                //------------HUMAN API Interface in HelloSign----------------
-                /*.getPage(new HumanAPIOLS())
-                .waitForPageLoad()
-                .connectBTN()
-                .switchToAPI()
-                .waitForProvider()
-                .clickANY()
-                .waitSearchAll()
-                .search("cleveland clinic")
-                .waitProvider()
-                .clickProvider()
-                .typeUserName("democlinical@gmail.com")
-                .typePWD("password")
-                .clickConnect()*/
 
                 .waitToClickNext()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
