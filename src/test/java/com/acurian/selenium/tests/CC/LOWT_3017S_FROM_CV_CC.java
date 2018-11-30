@@ -13,11 +13,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class LOWT_3017_FROM_CV_CC extends BaseTest {
+public class LOWT_3017S_FROM_CV_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @Description("LowT_3017_From_Cv_Cc")
-    public void lowt3017FromCvCc(final String username, final String password) {
+    @Description("LowT_3017S_From_Cv_Cc")
+    public void lowt3017sFromCvCc(final String username, final String password) {
         final String phoneNumber = "AUTAMS1CV1";
         final String protocol1 = "M16_100";
         final String protocol2 = "M16_100_S";
@@ -28,7 +28,7 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
         final String dqedStudyName = "a high cholesterol and heart health";
         final String studyName = "a men's low testosterone";
         final String site_Indication = "low testosterone or hypogonadism";
-        final String siteName = "AUT_LOWT_3017_Site";
+        final String siteName = "AUT_LOWT_3017S_Site";
         final String zipCode = "19901";
         DebugPageCC debugPageCC = new DebugPageCC();
 
@@ -123,11 +123,10 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
 
         HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = everSmokedCigarettesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No, I never smoked")
+                .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
-
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
+        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital",
                         "Coronary Artery Disease (blockage in a heart vessel)",
@@ -136,7 +135,7 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
-        haveDoctorEverDiagnosedYou_cc.back();
+        haveDoctorEverDiagnosedYou_CC.back();
         heartOrBloodVesselPageCC
                 .waitForPageLoad();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartOrBloodVesselPageCC
@@ -204,16 +203,15 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
 
-
-        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_cc
+        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC())
                 .waitForPageLoad();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC.back();
-        haveDoctorEverDiagnosedYou_cc
+        haveDoctorEverDiagnosedYou_CC
                 .waitForPageLoad();
-        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_cc
+        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_CC
                 .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
                         "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
@@ -230,7 +228,6 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("More than 6 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
-
 
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .waitForPageLoad();
@@ -283,15 +280,11 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                .waitForPageLoadSyn()
+                .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-
     }
 }
