@@ -1,7 +1,9 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -111,6 +113,7 @@ public class LOWT_3017_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2);
 
         //-----------New Switching to CV module logic-----------------------
+        //Check if possible to switch to to CV module logic
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
@@ -119,27 +122,44 @@ public class LOWT_3017_OLS extends BaseTest {
                 .clickOnAnswers("Diabetes or High Blood Sugar")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
-        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = whatKindOfDiabetesPageOLS
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, kowaProtocol)
-                .back(cardiovascularDiseaseThanOthersPageOLS)
+                .getPage(whatKindOfDiabetesPageOLS)
+                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                .clickNextButton(new WithType2DiabetesPageOLS());
+
+        withType2DiabetesPageOLS
+                .waitForPageLoad()
+                .back(whatKindOfDiabetesPageOLS)
+                .waitForPageLoad()
+                .back();
+
+        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(new StatinMedicationsOnPageOLS());
 
-        statinMedicationsOnPageOLS
+        StopTakingStatinPageOLS stopTakingStatinPageOLS = statinMedicationsOnPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5632", kowaProtocol, sanofiT2DMCV)
+                .getPage(statinMedicationsOnPageOLS)
+                .clickOnAnswers("Atorvastatin")
+                .clickNextButton(new StopTakingStatinPageOLS());
+
+        stopTakingStatinPageOLS
+                .waitForPageLoad()
+                .back(statinMedicationsOnPageOLS)
+                .waitForPageLoad()
                 .back(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS)
                 .waitForPageLoad()
-                .back();
-
-        experiencedAnyOfFollowing_OLS.waitForPageLoad()
+                .back(experiencedAnyOfFollowing_OLS)
+                .waitForPageLoad()
                 //HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
                 .clickOnAnswers("Decreased sexual desire or libido",
                         "Decreased spontaneous erections (e.g., morning erections)",
