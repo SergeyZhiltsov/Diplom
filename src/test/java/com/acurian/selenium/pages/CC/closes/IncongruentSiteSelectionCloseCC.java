@@ -32,6 +32,16 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
             "[Offer second closest site if necessary and if reasonable]\n" +
             "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and you can talk to them about the study. Which would you prefer?\"";
 
+    private final String abstractTitleExpected = "Based on your answers, it looks like you are not an exact match for %2$s study at this moment. " +
+            "The good news is, you have prequalified for %1$s study.\n" +
+            "\n" +
+            "The closest research site available to you is located at [name of street and city]. Is that convenient for you?\n" +
+            "\n" +
+            "[Offer second closest site if necessary and if reasonable]\n" +
+            "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. " +
+            "We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and " +
+            "you can talk to them about the study. Which would you prefer?\"";
+
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
@@ -52,6 +62,20 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
         PageFactory.initElements(getDriver(), this);
     }
 
+    /*
+    Use this waiter to check Incongruent CC page
+    @param matchedStudy - qualified study
+    @param dqStudy - indication study that been disqualified
+     */
+    @Step
+    public IncongruentSiteSelectionCloseCC waitForPageLoad(String matchedStudy, String dqStudy) {
+        waitForAnimation();
+        String titleExpectedMod = String.format(abstractTitleExpected, matchedStudy, dqStudy);
+        waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+
+    @Deprecated
     @Step
     public IncongruentSiteSelectionCloseCC waitForPageLoad(String studyName) {
         waitForAnimation();
@@ -59,7 +83,8 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedMod));
         return this;
     }
-    
+
+    @Deprecated
     @Step
     public IncongruentSiteSelectionCloseCC waitForPageLoadIBD(String studyName) {
         waitForAnimation();
