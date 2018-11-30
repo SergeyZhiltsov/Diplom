@@ -13,10 +13,10 @@ public class RelativesHeartAttackPageOLS extends MainPageOLS{
 
     public final String titleExpected = "Have any of your relatives ever had a heart attack?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
+    @FindBy(xpath = Locators.CHEKBOX_LIST2_OLS)
     List<WebElement> checkBoxList;
 
     public RelativesHeartAttackPageOLS() {

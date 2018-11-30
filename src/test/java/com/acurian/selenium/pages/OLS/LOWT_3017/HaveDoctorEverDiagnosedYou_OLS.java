@@ -9,8 +9,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HaveDoctorEverDiagnosedYou_OLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you experienced any of the following cardiovascular interventions or surgeries?\n" +
-    		"Please select all that apply:";
+    public final String titleExpected = "Have you experienced any of the following cardiovascular interventions or surgeries? \n" +
+            "Please select all that apply:";
     		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
