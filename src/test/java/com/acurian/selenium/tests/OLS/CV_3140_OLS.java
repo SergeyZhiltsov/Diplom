@@ -1,27 +1,16 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.cv_study.RelativesHeartAttackPageCC;
 import com.acurian.selenium.pages.OLS.DY_4356.StatinMedicationsHavePageOLS;
 import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
 import com.acurian.selenium.pages.OLS.DY_4356.WhileTakingStatinPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.TriglyceridesOrLipidsPageOLS;
-import com.acurian.selenium.pages.OLS.IBS.SufferFromIrritablePageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.EverSmokedCigarettesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveDoctorEverDiagnosedYou_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HeartOrBloodVesselPageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.AnginaOrChestPainPageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.FirstHeartAttackPageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.HeartrelatedMedicalConditionsProceduresPageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.RelativesHeartAttackPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.*;
+import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -234,11 +223,81 @@ public class CV_3140_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new ApproximateHeightPageOLS());
-
-        approximateHeightPageOLS
+        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
+                .clickNextButton(new TransitionalStatementLowtPageOLS());
+        transitionalStatementLowtPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6722", protocol1)
+                .back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .back();
+        everSmokedCigarettesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, I currently smoke")
                 .clickNextButton(approximateHeightPageOLS);
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = approximateHeightPageOLS
+                .waitForPageLoad()
+                .clickNextButton(new WeightLossSurgeryPageOLS());
+
+        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Gastric bypass")
+                .clickNextButton(new ProcedureForWeightLossPageOLS());
+
+        HealthcareDiagnosedConditionsPageOLS healthcareDiagnosedConditionsPageOLS = new HealthcareDiagnosedConditionsPageOLS();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 3 months ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("3 - 6 months ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("1 - 2 years ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("More than 2 years ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageOLS
+                .waitForPageLoad()
+                .back();
+
+        weightLossSurgeryPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(healthcareDiagnosedConditionsPageOLS);
+
 
 
 
