@@ -1,15 +1,20 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.shared.StatinMedicationsOnPageOLS;
+import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -18,15 +23,18 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class LowT_CC extends BaseTest {
+public class LOWT_3017_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @Description("LowT_CC")
+    @Description("LOWT_3017_CC")
     public void lowT(final String username, final String password) {
         String phoneNumber = "AUTAMSLOWT";
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
+        String esperionProtocol = "1002_043";
+        String kowaProtocol = "K_877_302_A";
+        String sanofiT2DMCV = "EFC14828";
         String protocol3 = "R727_CL_1532";
         String studyName = "a high cholesterol and heart disease";
         String siteName = "AUT_LOWT_3017_Site";
@@ -96,23 +104,68 @@ public class LowT_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ExperiencedAnyOfFollowingCC());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = experiencedAnyOfFollowingCC
+        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC = experiencedAnyOfFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new NonQRtransitionPageCC());
+                .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
         debugPageCC.checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1, protocol2);
-        debugPageCC.back();
-        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC = experiencedAnyOfFollowingCC
+
+        //-----------New Switching to CV module logic-----------------------
+        //Check if possible to switch to to CV module logic
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickNextButton(new WhatKindOfDiabetesPageCC());
+
+        WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, kowaProtocol)
+                .getPage(whatKindOfDiabetesPageCC)
+                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                .clickNextButton(new WithType2DiabetesPageCC());
+
+        withType2DiabetesPageCC
+                .waitForPageLoad()
+                .back(whatKindOfDiabetesPageCC)
+                .waitForPageLoad()
+                .back();
+
+        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new StatinMedicationsOnPageCC());
+
+        StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsOnPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", kowaProtocol, sanofiT2DMCV)
+                .getPage(statinMedicationsOnPageCC)
+                .clickOnAnswers("Atorvastatin")
+                .clickNextButton(new StopTakingStatinPageCC());
+
+        stopTakingStatinPageCC
+                .waitForPageLoad()
+                .back(statinMedicationsOnPageCC)
+                .waitForPageLoad()
+                .back(cardiovascularDiseaseThanOthersPageCC)
+                .waitForPageLoad()
+                .back(diagnosedYouWithLowTestosteroneCC)
+                .waitForPageLoad()
+                .back(experiencedAnyOfFollowingCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Decreased sexual desire or libido", "Decreased spontaneous erections (e.g., morning erections)", "Decreased energy or fatigue/feeling tired")
                 .clickOnAnswers("Loss of body (axillary and pubic) hair or reduced shaving", "Hot flashes", "Low mood or depressed mood")
                 .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
 
-        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
+        diagnosedYouWithLowTestosteroneCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
 
         LevelOrHypogonadismPageСС levelOrHypogonadismPageСС = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
@@ -122,8 +175,6 @@ public class LowT_CC extends BaseTest {
                         "Chronic Kidney Disease")
                 .clickNextButton(new LevelOrHypogonadismPageСС());
 
-
-        //HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = levelOrHypogonadismPageСС
         EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = levelOrHypogonadismPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("AndroGel", "Endoderm patch", "Fortesta gel", "Striant (testosterone buccal system)", "Testim gel", "Other testosterone medication not on this list", "Unsure")
@@ -134,11 +185,11 @@ public class LowT_CC extends BaseTest {
 
         HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = everSmokedCigarettesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("I used to smoke, but have since quit")
+                .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
 
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = heartOrBloodVesselPageCC
+        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital",
                         "Coronary Artery Disease (blockage in a heart vessel)",
@@ -147,7 +198,7 @@ public class LowT_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
-        haveDoctorEverDiagnosedYou_CC.back();
+        haveDoctorEverDiagnosedYou_cc.back();
         heartOrBloodVesselPageCC
                 .waitForPageLoad();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartOrBloodVesselPageCC
@@ -218,15 +269,15 @@ public class LowT_CC extends BaseTest {
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
 
 
-        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_CC
+        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_cc
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC())
                 .waitForPageLoad();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC.back();
-        haveDoctorEverDiagnosedYou_CC
+        haveDoctorEverDiagnosedYou_cc
                 .waitForPageLoad();
-        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_CC
+        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_cc
                 .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
                         "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",

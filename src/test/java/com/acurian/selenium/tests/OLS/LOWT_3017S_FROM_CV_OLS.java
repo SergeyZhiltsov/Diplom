@@ -1,14 +1,11 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -16,139 +13,86 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-
-public class LOWTS_3017S_OLS extends BaseTest {
+public class LOWT_3017S_FROM_CV_OLS extends BaseTest {
 
     @Test
-    @Description("LOWT 3017S_OLS")
-    public void lowts3017ols() {
-        String phoneNumber = "AUTAMSLOWT";
-        List<String> protocols = Arrays.asList("M16_100");
+    @Description("LOWT_3017S_FROM_CV_OLS")
+    public void lowt3017sFromCvOls() {
+        String phoneNumber = "AUTAMS1CV1";
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
         String esperionProtocol = "1002_043";
         String kowaProtocol = "K_877_302_A";
         String sanofiT2DMCV = "EFC14828";
+        String[] cvModuleProtocols = {esperionProtocol, kowaProtocol, sanofiT2DMCV};
+        String dqedStudyName = "a high cholesterol and heart health";
         String studyName = "a men's low testosterone";
-        String siteIndication = "low testosterone or hypogonadism";
-        String siteName = "AUT_LOWT_3017S";
+        String site_Indication = "low testosterone or hypogonadism";
+        String siteName = "AUT_LOWT_3017_Site";
         String zipCode = "19901";
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         String env = System.getProperty("acurian.env", "STG");
 
+        //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleLOWT_3017_Expected, "Title is diff");
+                .waitForPageLoadGROUP();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleCVExpected, "Title is diff");
 
+        AgeUnqualifiedClose_OLS ageUnqualifiedClose_ols = dateOfBirthPageOLS
+                .setDate("09092005")
+                .clickNextButton(new AgeUnqualifiedClose_OLS());
+        ageUnqualifiedClose_ols
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8005", cvModuleProtocols)
+                .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091990")
-                .clickNextButton(new ZipCodePageOLS());
-
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        zipCodePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
-                .back();
-        dateOfBirthPageOLS.waitForPageLoadGROUP()
-                .setDate("09091936")
-                .clickNextButton(new ZipCodePageOLS());
-        zipCodePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
-                .back();
-        dateOfBirthPageOLS
                 .waitForPageLoadGROUP()
                 .setDate("09091960")
                 .clickNextButton(new ZipCodePageOLS());
-        zipCodePageOLS
-                .waitForPageLoad();
+
+        //---------------ZIP-CODE Question-------------------
         GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
                 .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        genderPageOLS
-                .waitForPageLoad();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = genderPageOLS
-                .clickOnAnswer("Female")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad();
-        zipCodePageOLS.getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8009", protocol1, protocol2)
-                .back();
-
-        PersonalQuestionsOLS personalQuestionsOLS = genderPageOLS
+        //---------------GENDER Question-------------------
+        HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_ols = genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Male")
+                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+
+        //---------------Q3 Has a doctor ever diagnosed you with any of the following medical conditions or diseases? -------------------
+        // Selecting "None of the above" answer to be DQ for CV module protocols
+        PersonalQuestionsOLS personalQuestionsOLS = hasDoctorEverDiagnosedYouMedicalCond_ols
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new PersonalQuestionsOLS());
 
-        ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowingOLS = personalQuestionsOLS
+        personalQuestionsOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6703", cvModuleProtocols);
+
+        ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowing_OLS = personalQuestionsOLS
                 .waitForPageLoad()
                 .clickNextButton(new ExperiencedAnyOfFollowingOLS());
 
-        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowingOLS
+        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2);
-
-        //-----------New Switching to CV module logic-----------------------
-        //Check if possible to switch to to CV module logic
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
-                .clickOnAnswer("Yes")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Diabetes or High Blood Sugar")
-                .clickNextButton(new WhatKindOfDiabetesPageOLS());
-
-        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, kowaProtocol)
-                .getPage(whatKindOfDiabetesPageOLS)
-                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new WithType2DiabetesPageOLS());
-
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
-                .back(whatKindOfDiabetesPageOLS)
-                .waitForPageLoad()
+                .checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2)
                 .back();
 
-        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new StatinMedicationsOnPageOLS());
-
-        StopTakingStatinPageOLS stopTakingStatinPageOLS = statinMedicationsOnPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", kowaProtocol, sanofiT2DMCV)
-                .getPage(statinMedicationsOnPageOLS)
-                .clickOnAnswers("Atorvastatin")
-                .clickNextButton(new StopTakingStatinPageOLS());
-
-        stopTakingStatinPageOLS
-                .waitForPageLoad()
-                .back(statinMedicationsOnPageOLS)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .back(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS)
-                .waitForPageLoad()
-                .back(experiencedAnyOfFollowingOLS)
+        experiencedAnyOfFollowing_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Decreased sexual desire or libido",
                         "Decreased spontaneous erections (e.g., morning erections)",
@@ -158,25 +102,9 @@ public class LOWTS_3017S_OLS extends BaseTest {
                         "Hot flashes")
                 .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
 
-        hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
-
-        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Diabetes or High Blood Sugar",
-                        "High cholesterol or high triglycerides",
-                        "High blood pressure or hypertension",
-                        "Chronic Kidney Disease")
-                .clickNextButton(new LevelOrHypogonadismPageOLS());
-        levelOrHypogonadismPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .back();
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(new LevelOrHypogonadismPageOLS());
 
         EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = levelOrHypogonadismPageOLS
@@ -303,12 +231,12 @@ public class LOWTS_3017S_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .clickNextButton(new IncongruentSiteSelectionClose_OLS())
+                .waitForPageLoad(studyName, dqedStudyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(siteIndication)
+                .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

@@ -1,7 +1,10 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
@@ -21,15 +24,18 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class LowTS_3017S_CC extends BaseTest {
+public class LOWTS_3017S_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @Description("LowTS_3017S_CC")
+    @Description("LOWTS_3017S_CC")
     public void lowts_3017_CC(final String username, final String password) {
         String phoneNumber = "AUTAMSLOWT";
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
+        String esperionProtocol = "1002_043";
+        String kowaProtocol = "K_877_302_A";
+        String sanofiT2DMCV = "EFC14828";
         String studyName = "a high cholesterol and heart disease";
         String siteName = "AUT_LOWT_3017S_Site";
         String siteIndication = "low testosterone or hypogonadism";
@@ -95,28 +101,72 @@ public class LowTS_3017S_CC extends BaseTest {
                 .clickOnAnswer("Male")
                 .clickNextButton(new PersonaQuestionsCC());
 
-
         ExperiencedAnyOfFollowingCC experiencedAnyOfFollowingCC = personaQuestionsCC
                 .waitForPageLoad()
                 .clickNextButton(new ExperiencedAnyOfFollowingCC());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = experiencedAnyOfFollowingCC
+        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC = experiencedAnyOfFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new NonQRtransitionPageCC());
+                .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
         debugPageCC.checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1, protocol2);
-        debugPageCC.back();
-        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC = experiencedAnyOfFollowingCC
+
+        //-----------New Switching to CV module logic-----------------------
+        //Check if possible to switch to to CV module logic
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickNextButton(new WhatKindOfDiabetesPageCC());
+
+        WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, kowaProtocol)
+                .getPage(whatKindOfDiabetesPageCC)
+                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                .clickNextButton(new WithType2DiabetesPageCC());
+
+        withType2DiabetesPageCC
+                .waitForPageLoad()
+                .back(whatKindOfDiabetesPageCC)
+                .waitForPageLoad()
+                .back();
+
+        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new StatinMedicationsOnPageCC());
+
+        StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsOnPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", kowaProtocol, sanofiT2DMCV)
+                .getPage(statinMedicationsOnPageCC)
+                .clickOnAnswers("Atorvastatin")
+                .clickNextButton(new StopTakingStatinPageCC());
+
+        stopTakingStatinPageCC
+                .waitForPageLoad()
+                .back(statinMedicationsOnPageCC)
+                .waitForPageLoad()
+                .back(cardiovascularDiseaseThanOthersPageCC)
+                .waitForPageLoad()
+                .back(diagnosedYouWithLowTestosteroneCC)
+                .waitForPageLoad()
+                .back(experiencedAnyOfFollowingCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Decreased sexual desire or libido", "Decreased spontaneous erections (e.g., morning erections)", "Decreased energy or fatigue/feeling tired")
                 .clickOnAnswers("Loss of body (axillary and pubic) hair or reduced shaving", "Hot flashes", "Low mood or depressed mood")
-                .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
+                .clickNextButton(diagnosedYouWithLowTestosteroneCC);
 
-        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
+        diagnosedYouWithLowTestosteroneCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
 
         LevelOrHypogonadismPageСС levelOrHypogonadismPageСС = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
