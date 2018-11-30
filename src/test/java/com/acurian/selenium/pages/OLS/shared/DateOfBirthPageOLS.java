@@ -244,6 +244,12 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "Payment which varies by study up to $625\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
+
+    public final String titleCVExpected =  "Let's get started to see if you qualify for a heart health study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $750\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
     
     
     //visible-xs-block xs - Extra small devices Phones (<768px)
