@@ -251,6 +251,7 @@ public class DateOfBirthPageOLS extends MainPageOLS{
             "Payment which varies by study up to $750\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
+
     
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
