@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
+import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -18,34 +19,19 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
-public class DIA_4356A_CC extends BaseTest{
+public class CV_5034_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
-    @TestCaseId("00004")
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
+    @TestCaseId("00020")
     @Description("Diabetes_4356A_Synexus for CC")
-    public void dia4356AccTest(final String username, final String password) {
-        String phoneNumber = "AUTAMS1DIA";
-//        String protocol1 = "17530";
-//        String protocol2 = "NN9535_4269";
-//        String protocol3 = "NN2211_4315";
-//        String protocol4 = "EFC13794";
-//        String protocol5 = "EFC14835";
-//        String protocol6 = "ITCA 650_CLP_203";
-        String protocol7 = "K_877_302";
-//        String protocol8 = "EFC14833";
-//        String protocol9 = "EFC14835";
-//        String protocol10 = "EFC15166";
-//        String protocol11 = "EFC14868";
-//        String protocol12 = "EFC14837";
-//        String DIA_4241 = "EFC14822";
-//        String AKC = "ISIS 703802_CS2";
-//        String protocol13 = "EFC14838";
-//        String[] protocols = {protocol1,protocol2,protocol3,protocol4,AKC};
-        String studyName = "a Diabetes"; //Diabetes study
-        String studyName1 = "Diabetes";
+    public void CV_5034_CC_Test(final String username, final String password) {
+        String phoneNumber = "AUTAMS1CV1";
+        String protocol7 = "K_877_302_A";
+        String studyName = "a heart health study";
+        String studyName1 = "a heart health study";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_DIA_4356A";
-        String zipCode = "19044";
+        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env", "STG");
 
@@ -76,8 +62,9 @@ public class DIA_4356A_CC extends BaseTest{
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleExpectedDiabetes_4356, "Title is diff");
+        		.waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextAKC(),"May I have your date of birth?","Question text is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -98,6 +85,16 @@ public class DIA_4356A_CC extends BaseTest{
 
         DebugPageCC debugPageCC = new DebugPageCC();
 
+        
+        //-------Q1:  Has a doctor ever diagnosed you with any of the following medical conditions or diseases?----------
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedAnyTypeOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+        
+        
+        
+        
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")

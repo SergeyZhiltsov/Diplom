@@ -20,7 +20,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 public class DYS_3140_CC extends BaseTest {
 
     @Description("Dyslipidemia 3140")
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     public void dys_3140_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1DYS";
         String protocol1 = "1002_043";
