@@ -85,13 +85,13 @@ public class LOWT_3017S_FROM_CV_CC extends BaseTest {
                 .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_cc = genderPageCC
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = genderPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Male")
-                .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
 
-        PersonaQuestionsCC personaQuestionsCC = hasDoctorEverDiagnosedMedicalCondDiseases_cc
-                .waitForPageLoadСVModule()
+        PersonaQuestionsCC personaQuestionsCC = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new PersonaQuestionsCC());
 

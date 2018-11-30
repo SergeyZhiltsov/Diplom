@@ -13,10 +13,6 @@ public class HasDoctorEverDiagnosedMedicalCondDiseases_CC extends MainPageCC{
     public final String titleExpected = "Has a doctor ever diagnosed you with any of the following medical conditions or diseases? \n" +
     		"Agent note: Select all that apply";
 
-    public final String titleExpectedForCV = "Certain conditions are more closely linked to cardiovascular disease than others.\n" +
-            "Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
-            "Agent Note: Select all that apply";
-
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
 
@@ -30,12 +26,6 @@ public class HasDoctorEverDiagnosedMedicalCondDiseases_CC extends MainPageCC{
     @Step
     public HasDoctorEverDiagnosedMedicalCondDiseases_CC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
-        return this;
-    }
-
-    @Step
-    public HasDoctorEverDiagnosedMedicalCondDiseases_CC waitForPageLoadСVModule() {
-        waitForPageLoadMain(titleText, titleExpectedForCV);
         return this;
     }
 
