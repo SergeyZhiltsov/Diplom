@@ -66,7 +66,7 @@ public class IBS_4819_CC extends BaseTest {
         zipCodePageCC
                 .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
-                .typeZipCode("19044")
+                .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC

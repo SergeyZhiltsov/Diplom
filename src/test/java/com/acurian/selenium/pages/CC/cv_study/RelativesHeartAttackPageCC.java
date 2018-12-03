@@ -13,10 +13,10 @@ public class RelativesHeartAttackPageCC extends MainPageCC{
 
     public final String titleExpected = "Have any of your relatives ever had a heart attack?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
+    @FindBy(xpath = Locators.CHEKBOX_LIST2_CC)
     List<WebElement> checkBoxList;
 
     public RelativesHeartAttackPageCC() {

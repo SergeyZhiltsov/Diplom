@@ -88,13 +88,14 @@ public class MainPageCC extends BasePage{
         List<String> answerTextList = Arrays.asList(answerText);
 
         List<String> elementsTextActual = checkBoxList.stream().map(el -> el.getText()).collect(Collectors.toList());
-        List<String> answersNotIncluded = answerTextList.stream().filter(el -> !elementsTextActual.contains(el)).collect(Collectors.toList());
-        Assert.assertTrue(elementsTextActual.containsAll(answerTextList), "Some answers are not correct "+
+        List<String> answersNotIncluded = answerTextList.stream().filter(el -> elementsTextActual.parallelStream()
+                .noneMatch(el2 ->  el2.contains(el))).collect(Collectors.toList());
+        Assert.assertFalse(answersNotIncluded.size() > 0, "Some answers are not correct " +
                 answersNotIncluded +"\n" +
                 "expected to click are "+ answerTextList+"\n" +
                 "actual on page are "+elementsTextActual);
 
-        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
+        checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::contains))//answerTextList.contains(el.getText())
                 .forEach(el -> el.click());
         waitForAnimation();
     }

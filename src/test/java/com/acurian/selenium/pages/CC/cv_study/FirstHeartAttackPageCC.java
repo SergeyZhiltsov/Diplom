@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.List;
-
 public class FirstHeartAttackPageCC extends MainPageCC{
 
     public final String titleExpected = "How old were they when they had their first heart attack?";
@@ -30,7 +28,7 @@ public class FirstHeartAttackPageCC extends MainPageCC{
     }
 
     @Step
-    public FirstHeartAttackPageCC setYear(String number) {
+    public FirstHeartAttackPageCC setYears(String number) {
         typeText(yearField, number);
         return this;
     }
