@@ -20,9 +20,9 @@ public class IncongruentSiteSelectionClose_OLS extends MainPageOLS{
     @Parameter("My PID OLS")
 	public String pidNumber;
 
-    private final String titleExpected = "Good news! Based on the information you provided, you have been matched with the doctor(s) below for %1$s study!\n" +
+    private final String titleExpected = "Good news! Based on the information you provided, you have been matched with the doctor(s) below for %1$s!\n" +
             "\n" +
-            "We apologize that we were unable to find %2$s study in your area that was an exact match.\n" +
+            "We apologize that we were unable to find %2$s in your area that was an exact match.\n" +
             "Please select a doctor and click the \"Next\" button.";
 
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
