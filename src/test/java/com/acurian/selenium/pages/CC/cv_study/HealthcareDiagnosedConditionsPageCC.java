@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HealthcareDiagnosedConditionsPageCC extends MainPageCC{
 
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following medical conditions?" +
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following medical conditions?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

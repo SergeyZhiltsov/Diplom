@@ -34,7 +34,7 @@ public class CV_3140_OLS extends BaseTest {
         String phoneNumber = "AUTAMS1CV1";
         String protocol1 = "1002_043";
 //        String[] protocols = {protocol1, protocol2, AKC, protocol3};
-        String studyName = "a high cholesterol and heart health";
+        String studyName = "a heart health";
         String siteName = "AUT_CV_3140_site";
         String zipCode = "19901";
 
@@ -57,13 +57,13 @@ public class CV_3140_OLS extends BaseTest {
 
         genderPageOLS
                 .waitForPageLoad();
-        HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_ols = genderPageOLS
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
                 .clickOnAnswer("Female")
-                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = hasDoctorEverDiagnosedYouMedicalCond_ols
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
@@ -72,7 +72,7 @@ public class CV_3140_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6703", protocol1)
                 .back();
-        StatinMedicationsHavePageOLS statinMedicationsHavePageOLS = hasDoctorEverDiagnosedYouMedicalCond_ols
+        StatinMedicationsHavePageOLS statinMedicationsHavePageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High cholesterol or high triglycerides")

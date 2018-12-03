@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -14,7 +15,7 @@ public class TransitionStatementLowT_CC extends MainPageCC {
             "We would like to ask you a few more questions about your health to better match you with a research study in your area.\n" +
             "You may be asked similar information in this next set of questions. We appreciate your patience.";
     
-    @FindBy(xpath = "//div[@class='question_text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
     public TransitionStatementLowT_CC() {
@@ -29,6 +30,11 @@ public class TransitionStatementLowT_CC extends MainPageCC {
         return this;
     }
 
+    @Step
+    public TransitionStatementLowT_CC waitForPageLoad() {
+        waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
     
     @Step
     public String getTitleText(){
@@ -38,5 +44,4 @@ public class TransitionStatementLowT_CC extends MainPageCC {
     public String getTitleExpected(String studyName){
         return String.format(titleExpected, studyName);
     }
-
 }
