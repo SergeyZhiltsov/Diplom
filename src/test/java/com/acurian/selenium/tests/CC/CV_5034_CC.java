@@ -2,16 +2,30 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
+import com.acurian.selenium.pages.CC.DYS_4356C.StatinMedicationsHavePageCC;
+import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
+import com.acurian.selenium.pages.CC.DYS_4356C.WhileTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
+import com.acurian.selenium.pages.CC.LOWT.EverSmokedCigarettesPageCC;
+import com.acurian.selenium.pages.CC.LOWT.HaveDoctorEverDiagnosedYou_CC;
+import com.acurian.selenium.pages.CC.LOWT.HeartOrBloodVesselPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
+import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.cv_study.AnginaOrChestPainPageCC;
+import com.acurian.selenium.pages.CC.cv_study.FirstHeartAttackPageCC;
+import com.acurian.selenium.pages.CC.cv_study.HealthcareDiagnosedConditionsPageCC;
+import com.acurian.selenium.pages.CC.cv_study.HeartrelatedMedicalConditionsProceduresPageCC;
+import com.acurian.selenium.pages.CC.cv_study.MedicationsForYourDiabetesPageCC;
+import com.acurian.selenium.pages.CC.cv_study.RelativesHeartAttackPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
 import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPageCC;
 import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePageCC;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HaveDoctorEverDiagnosedYou_OLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -26,12 +40,13 @@ public class CV_5034_CC extends BaseTest{
     @Description("Diabetes_4356A_Synexus for CC")
     public void CV_5034_CC_Test(final String username, final String password) {
         String phoneNumber = "AUTAMS1CV1";
-        String protocol7 = "K_877_302_A";
+        String protocol1 = "K_877_302_A";
         String studyName = "a heart health study";
         String studyName1 = "a heart health study";
         String siteName = "AUT_DIA_4356A";
         String debugSiteName = "QSC9004_4356A_AUT_DIA_4356A";
         String zipCode = "19901";
+        
         
         String env = System.getProperty("acurian.env", "STG");
 
@@ -44,6 +59,7 @@ public class CV_5034_CC extends BaseTest{
                 .typeUsername(username)
                 .typePassword(password)
                 .clickLoginButton();
+        
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
                 .waitForPageLoad()
@@ -51,7 +67,7 @@ public class CV_5034_CC extends BaseTest{
                 .clickPopupStudy("AMS1")
                 .typePhoneNumber(phoneNumber)
                 .clickPopupPhoneNumber(phoneNumber)
-                .clickBeginButton();
+                .clickBeginButton();        
 
         callCenterIntroductionPageCC
                 .waitForPageLoad()
@@ -60,220 +76,410 @@ public class CV_5034_CC extends BaseTest{
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
-
+        
+        
+        //-------Date of Birth Page--------
         dateOfBirthPageCC
         		.waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageCC.getQuestionTextAKC(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
-        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1980")
-                .clickNextButton(new ZipCodePageCC());
-
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleCVExpected, "Title is diff");    		
+        		LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
+        	       .setMonth("Mar")
+        	       .setDay("2")
+        	       .setYear("2005")
+        	       .clickNextButton(new LessThan18YearsOldPageCC());
+        	lessThan18YearsOldPageCC.waitForPageLoad();
+        	DebugPageCC debugPageCC = new DebugPageCC();     
+        	debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1);
+        	debugPageCC.back();
+        	ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+        		   .waitForPageLoad2Ver()
+        	       .setYear("1980")
+        	       .clickNextButton(new ZipCodePageCC());
+        	
+        
+        //-------ZIP_CODE Page--------
         zipCodePageCC
                 .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
                 .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageCC());
-
+        
+        
+        //-------GENDER Page--------
         genderPageCC
                 .waitForPageLoad();
-        DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
+        //DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = genderPageCC
                 .clickOnAnswer("Female")
-                .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
-
-        DebugPageCC debugPageCC = new DebugPageCC();
-
-        
-        //-------Q1:  Has a doctor ever diagnosed you with any of the following medical conditions or diseases?----------
-        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedAnyTypeOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
         
         
-        
-        
-        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
+        //-------Q3:  Has a doctor ever diagnosed you with any of the following medical conditions or diseases?----------
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
+        		.waitForPageLoad()
+                .clickOnAnswers("Diabetes or High Blood Sugar")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
-
-        WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
+        whatKindOfDiabetesPageCC
                 .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocol1)
+                .back();
+        StatinMedicationsHavePageCC statinMedicationsHavePageCC = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new StatinMedicationsHavePageCC());
+        statinMedicationsHavePageCC
+		        .waitForPageLoad()
+		        .getPage(debugPageCC)
+		        .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocol1)
+		        .back();
+        cardiovascularDiseaseThanOthersPageCC
+		        .waitForPageLoad()
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+		        .clickNextButton(new WhatKindOfDiabetesPageCC());
+
+
+        //-------Q4: What kind of diabetes do you have?----------
+        MedicationsForYourDiabetesPageCC medicationsForYourDiabetesPageCC = whatKindOfDiabetesPageCC
+        		.waitForPageLoad()
+        		.clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(new MedicationsForYourDiabetesPageCC());
+        medicationsForYourDiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", protocol1)
+                .back();
+        whatKindOfDiabetesPageCC
+        		.waitForPageLoad()
+        		.clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
+        		.clickNextButton(new MedicationsForYourDiabetesPageCC());
+        medicationsForYourDiabetesPageCC
+        		.waitForPageLoad()
+        		.getPage(debugPageCC)
+        		.checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", protocol1)
+        		.back();
+        whatKindOfDiabetesPageCC
+				.waitForPageLoad()
+				.clickOnAnswer("High blood sugar only")
+				.clickNextButton(new MedicationsForYourDiabetesPageCC());
+		medicationsForYourDiabetesPageCC
+				.waitForPageLoad()
+				.getPage(debugPageCC)
+				.checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", protocol1)
+				.back();
+        whatKindOfDiabetesPageCC
+				.waitForPageLoad()
+				.clickOnAnswer("Unsure")
+				.clickNextButton(new MedicationsForYourDiabetesPageCC());
+		medicationsForYourDiabetesPageCC
+				.waitForPageLoad()
+				.getPage(debugPageCC)
+				.checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", protocol1)
+				.back();
+        whatKindOfDiabetesPageCC
+                .waitForPageLoad();
+        WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
-
-        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = withType2DiabetesPageCC
+        
+        
+        
+       //-------Q5: WithType2DiabetesPageCC------------
+        withType2DiabetesPageCC
+        		.waitForPageLoad()
+        		.clickOnAnswer("Within the past 2 months")
+				.clickNextButton(new MedicationsForYourDiabetesPageCC());
+		medicationsForYourDiabetesPageCC
+				.waitForPageLoad()
+				.getPage(debugPageCC)
+				.checkProtocolsContainsForQNumber("Q0006179-QS6705-STUDYQUES", protocol1)
+				.back();
+		withType2DiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(new TreatingYourDiabetesPageCC());
-
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
-                .clickNextButton(new LastTimeYouTookPageCC());
-
-
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = lastTimeYouTookPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(new NoOfAlcoholicDrinksCC());
-
-        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
-                .waitForPageLoad()
-                .setDrinks("4")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
-
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingToLoseWeightPageCC());
-
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("No")
-                .clickNextButton(new WeightLossSurgeryPageCC());
-
-        PoundsOrMorePageCC poundsOrMorePageCC = weightLossSurgeryPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new PoundsOrMorePageCC());
-
-        TransitionStatementCC transitionStatementCC  = poundsOrMorePageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new TransitionStatementCC());
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-                .waitForPageLoad("diabetes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-
-        DyslipidemiaHealthcarePageCC dyslipidemiaHealthcarePageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .clickOnAnswer("1 to less than 5 years ago")
+                .clickNextButton(new MedicationsForYourDiabetesPageCC());
+        		
+        
+        //-------Q6: Do you currently take any of the following specific medications for your diabetes?------------
+        medicationsForYourDiabetesPageCC
+        		.waitForPageLoad()
+        		.clickOnAnswers("Glyxambi (empagliflozin and linagliptin)", "Januvia (sitagliptin)","Nesina (alogliptin)",
+        				"Oseni (alogliptin and pioglitazone)","Onglyza (saxagliptin)","Tradjenta (linagliptin)",
+        				"Bydureon or Byetta (exenatide)","Saxenda or Victoza (liraglutide)","Adlyxin (lixisenatide)", 
+        				"Tanzeum (albiglutide)","Trulicity (dulaglutide)","Ozempic (semaglutide)")
+                .clickNextButton(new StatinMedicationsHavePageCC());
+        
+        
+        
+        //-------Q7: Which of the following statin medications have you ever taken on a daily basis?
+        TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageCC())
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new LetMeSeePageCC())
-                .waitForPageLoad()
-                .clickNextButton(new DyslipidemiaHealthcarePageCC());
-
-        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = dyslipidemiaHealthcarePageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
-        haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0010983-QS4242-STUDYQUES", protocol7)
-                .back();
-        TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = dyslipidemiaHealthcarePageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Unsure")
                 .clickNextButton(new TriglyceridesOrLipidsPageCC());
-
         triglyceridesOrLipidsPageCC
+                .waitForPageLoad()
+                .back();
+        StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsHavePageCC
+           		.waitForPageLoad()
+                .clickOnAnswers("Atorvastatin")
+                .clickNextButton(new StopTakingStatinPageCC());
+        
+        
+        //-------Q8: Has a doctor ever told you to stop taking a statin medication due to side effects or intolerance?
+        WhileTakingStatinPageCC whileTakingStatinPageCC = stopTakingStatinPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
+                .clickNextButton(new WhileTakingStatinPageCC());
+        
+
+        //-------Q9: Have you ever experienced any of the following while taking a statin medication?
+        whileTakingStatinPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Muscle weakness",
+                		"Muscle pain, aches, or soreness",
+                		"Muscle cramping",
+                		"Muscle inflammation or myositis",
+                		"Elevated levels of creatine kinase, a muscle enzyme",
+                		"Rhabdomyolysis, which is extreme muscle inflammation and damage that can lead to kidney failure",
+                		"My medication was changed or the dose was lowered because of the symptoms I experienced")
+                .clickOnAnswers("None of the above")
+                .clickNextButton(triglyceridesOrLipidsPageCC);        
+        
+        
+        //-------Q11: triglyceridesOrLipidsPageCC 
+        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = triglyceridesOrLipidsPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new HeartOrBloodVesselPageCC());
+        heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018142-QS4243-STUDYQUES", protocol7)
+                .checkProtocolsContainsForQNumber("Q0018142-QS6711-STUDYQUES", protocol1)
                 .back();
         triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
+                .clickOnAnswer("Yes")
+                .clickNextButton(heartOrBloodVesselPageCC);
+        
+        
 
-        HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC haveYouEverBeenDiagnosedAdditionalHeartRelatedCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+        //-----Q12:  Have you experienced any of the following heart or blood vessel related events?
+        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC());
-        haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
+                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
+        haveDoctorEverDiagnosedYou_cc
                 .waitForPageLoad()
                 .back();
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+        AnginaOrChestPainPageCC anginaOrChestPainPageCC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"mini-stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital")
+                .clickNextButton(new AnginaOrChestPainPageCC());
+        anginaOrChestPainPageCC
+                .waitForPageLoad()
+                .back();
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartOrBloodVesselPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart attack", "Stroke", "TIA or \"Mini-Stroke\"")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
+        
 
+        //---Q13: When was the last time that you experienced a heart attack? 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"1 - 3 months ago")
-                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4);
+        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = subquestionExperiencedHeartPageCC
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
+        haveDoctorEverDiagnosedYou_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0015129-QS4232-STUDYQUES", protocol7)
+                .checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", protocol1)
                 .back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"Less than 30 days ago")
-                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0015129-QS4232-STUDYQUES", protocol7)
+                //.checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", protocol1)
                 .back();
         subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "Less than 30 days ago")
+                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"1 - 3 months ago")
-                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC);
-
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-
-        IdentificationPageCC identificationPageCC = heartrelatedMedicalProceduresPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoad()
+                .getPage(debugPageCC)
+                //.checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", protocol1)
                 .back();
-        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
-                .clickNextButton(new MostRecentHeartProcedurePageСС());
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
+        
 
-        mostRecentHeartProcedurePageСС
+     /*   //------Q14:  When was the last time that you experienced angina or chest pain that required an overnight hospital stay?
+        anginaOrChestPainPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(identificationPageCC)
-                .waitForPageLoadNotQ()
+                .clickNextButton(haveDoctorEverDiagnosedYou_cc)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0015137-QS4235-STUDYQUES", protocol7)
+                //.checkProtocolsContainsForQNumber("QS6714", protocol1)
                 .back();
-        mostRecentHeartProcedurePageСС
+        anginaOrChestPainPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(identificationPageCC)
+                .clickNextButton(haveDoctorEverDiagnosedYou_cc)
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a study for diabetics")
-                .getPID()
-                .clickOnDebugSiteName(debugSiteName)
-                .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                .waitForPageLoadSyn()
-                .assertVariables("Acurian", "Trial", "09/09/1980", "US", "Horsham, PA",
-                        zipCode, "qa.acurian@gmail.com", "999 -999-9999", "55555", siteName, "KOWQUICAR302")
-                .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
-                .clickNextButton(selectActionPageCC)
+                .getPage(debugPageCC)
+                //.checkProtocolsContainsForQNumber("QS6714", protocol1)
+                .back();
+        anginaOrChestPainPageCC
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
-		   		//.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
-        		//.getAnomalyDbToLog(env); //Not applicable for Call center
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .back();
+        heartOrBloodVesselPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(haveDoctorEverDiagnosedYou_cc);*/
+        
+
+        //------Q15:  Have you experienced any of the following cardiovascular interventions or surgeries?
+        HeartrelatedMedicalConditionsProceduresPageCC heartrelatedMedicalConditionsProceduresPageCC = haveDoctorEverDiagnosedYou_cc
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HeartrelatedMedicalConditionsProceduresPageCC());
+        
+
+        RelativesHeartAttackPageCC relativesHeartAttackPageCC = heartrelatedMedicalConditionsProceduresPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new RelativesHeartAttackPageCC());
+        
+
+        FirstHeartAttackPageCC firstHeartAttackPageCC = relativesHeartAttackPageCC
+        		.waitForPageLoad()
+                .clickOnAnswers("Brother")
+                .clickNextButton(new FirstHeartAttackPageCC());
+        
+
+        EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = firstHeartAttackPageCC
+                .waitForPageLoad()
+                .setYear("30")
+                .clickNextButton(new EverSmokedCigarettesPageCC());
+        
+
+        ApproximateHeightPageCC approximateHeightPageCC = everSmokedCigarettesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("I used to smoke, but have since quit")
+                .clickNextButton(new ApproximateHeightPageCC());
+        TransitionStatementLowT_CC transitionStatementLowT_CC = approximateHeightPageCC
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new TransitionStatementLowT_CC());
+        transitionStatementLowT_CC
+        		.waitForPageLoad(studyName1)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6722", protocol1)
+                .back();
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .back();
+        everSmokedCigarettesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, I currently smoke")
+                .clickNextButton(approximateHeightPageCC);
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = approximateHeightPageCC
+                .waitForPageLoad()
+                .clickNextButton(new WeightLossSurgeryPageCC());
+
+        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Gastric bypass")
+                .clickNextButton(new ProcedureForWeightLossPageCC());
+        
+
+        HealthcareDiagnosedConditionsPageCC healthcareDiagnosedConditionsPageCC = new HealthcareDiagnosedConditionsPageCC();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 3 months ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("3 - 6 months ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("1 - 2 years ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("More than 2 years ago")
+                .clickNextButton(healthcareDiagnosedConditionsPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .back();
+        procedureForWeightLossPageCC
+                .waitForPageLoad()
+                .back();
+        weightLossSurgeryPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(healthcareDiagnosedConditionsPageCC);
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+
     }
 }

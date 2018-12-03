@@ -21,15 +21,15 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class DERM_4814_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class,enabled = false)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class,enabled = true)
     @TestCaseId("Kiniksa Atopic Dermatitis")
-    @Description("KAD 4849 for CC")
+    @Description("DERM_4814_CC_Test")
     
-    public void kad4849_CC_Test(final String username, final String password) {
+    public void DERM_4814_CC_Test(final String username, final String password) {
         String phoneNumber = "AUTAMS1KAD";
         String protocol1 = "INCB 18424_303"; 
         String protocol2 = "INCB 18424_304";
-        String studyName =  "an eczema (atopic dermatitis)";
+        String studyName =  "eczema, or atopic dermatitis";
         String siteName = "AUT_AD4814_site";
         String zipCode = "19901";
 
@@ -78,12 +78,6 @@ public class DERM_4814_CC extends BaseTest {
         debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .setYear("1942")
-                .clickNextButton(new IdentificationPageCC());
-        identificationPageCC.waitForPageLoad1();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1,protocol2);
-        debugPageCC.back();
-        dateOfBirthPageCC
                 .setYear("1980")
                 .clickNextButton(new IdentificationPageCC());
         
@@ -147,7 +141,7 @@ public class DERM_4814_CC extends BaseTest {
         		debugPageCC.back();
         ifYouUseYourHandToCoverAllOfTheEczema_CC
                 .waitForPageLoad()
-                .selectFromDropDown("7")
+                .selectFromDropDown("2")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
         haveYouEverTreatedYourEczema_CC.waitForPageLoad();
         		debugPageCC.checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1,protocol2);
@@ -179,7 +173,6 @@ public class DERM_4814_CC extends BaseTest {
 //--------------Q18- OverallHowWellDidTopicalMedicationYouTried_CC ----------
 overallHowWellDidTopicalMedicationYouTried_CC
 		.waitForPageLoad()
-//WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = overallHowWellDidTopicalMedicationYouTried_CC
 		.clickOnAnswer("My symptoms did not change")
 		.clickOnAnswer("My symptoms got a little bit better")
 		.clickOnAnswer("My symptoms got a lot better")
@@ -194,34 +187,21 @@ DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whic
 			.clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
 			.clickOnAnswers("CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)")
 			.clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)")
+			.clickOnAnswers("Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)")
 			.clickOnAnswers("Neoral, Sandimmune, or Gengraf, also known as cyclosporine (Agent Note: NEE-oh-ral, GEN-graf, cy-clo-SPOR-in)")
+			.clickOnAnswers("Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)")
 			.clickOnAnswers("Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)")
+			.clickOnAnswers("Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)")
 			.clickOnAnswers("Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)")
 			.clickOnAnswers("Phototherapy, Ultraviolet, or UV light")
 			.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC())
 			.waitForPageLoad();
-			debugPageCC.checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1,protocol2);
+			debugPageCC.checkProtocolsContainsForQNumber("Q0017868-QS5827-STUDYQUES", protocol1,protocol2);
 			debugPageCC.back();
 whichofthefollowingMedicationsTherapies_CC
-			.waitForPageLoad()
-			.clickOnAnswers("None of the above")
-			.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
-
-
-
-//--------------Q20- DidYouReceiveAnyTherapiesPastYear_CC ----------
-didYouReceiveAnyTherapiesPastYear_CC
 			.waitForPageLoad();
-AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC = didYouReceiveAnyTherapiesPastYear_CC
-			.clickOnAnswer("No")
-			.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
-			.waitForPageLoadKAD();
-			debugPageCC.checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1,protocol2);
-			debugPageCC.back();
-didYouReceiveAnyTherapiesPastYear_CC
-			.waitForPageLoad()				
-			.clickOnAnswer("Yes")
+             AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC = whichofthefollowingMedicationsTherapies_CC
+			.clickOnAnswers("None of the above")
 			.clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());      
         
         
@@ -251,7 +231,7 @@ didYouReceiveAnyTherapiesPastYear_CC
 					.clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)", "Olumiant (Agent Note: oh-LOO-me-ant)","Xeljanz (Agent Note: ZEL-jans)")
 					.clickNextButton(new TransitionStatementCC())
 					.waitForPageLoadWithCurvesKAD(studyName);
-			        debugPageCC.checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", protocol1,protocol2);
+			        debugPageCC.checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", protocol1,protocol2);
 			        debugPageCC.back();
 	    haveYouEverTakenEitherAnyOfFollowingMeds_CC
 					.waitForPageLoad()
