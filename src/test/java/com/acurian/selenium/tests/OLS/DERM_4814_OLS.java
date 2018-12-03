@@ -17,9 +17,9 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class DERM_4814_OLS extends BaseTest{
 
-    @Test(enabled = false)
-    @Description("kad4849 OLS Test")
-    public void kad4849_OLS_Test() {
+    @Test(enabled = true)
+    @Description("DERM_4814_OLS_test")
+    public void DERM_4814_OLS_test() {
         String phoneNumberMIG = "AUTAMS1KAD";
         String protocol1 = "INCB 18424_303"; 
         String protocol2 = "INCB 18424_304";
