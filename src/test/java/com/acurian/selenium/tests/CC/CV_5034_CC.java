@@ -380,7 +380,7 @@ public class CV_5034_CC extends BaseTest{
 
         EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = firstHeartAttackPageCC
                 .waitForPageLoad()
-                .setYear("30")
+                .setYears("30")
                 .clickNextButton(new EverSmokedCigarettesPageCC());
         
 
