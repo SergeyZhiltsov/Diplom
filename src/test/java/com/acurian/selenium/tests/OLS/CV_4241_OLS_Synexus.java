@@ -18,10 +18,10 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.ArrayList;
 
-public class CV_4241_OLS extends BaseTest {
+public class CV_4241_OLS_Synexus extends BaseTest {
 
     @Test
-    @Description("CV_4241_OLS")
+    @Description("CV_4241_OLS_Synexus")
     public void cv4241Ols() {
         final String phoneNumber = "AUTAMS1CV1";
         final String protocol1 = "EFC14828";
@@ -226,7 +226,7 @@ public class CV_4241_OLS extends BaseTest {
                 .clickNextButton(transitionalStatementLowtPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6722")
+                .checkProtocolsContainsForQNumber("QS6722", protocol1)
                 .back();
 
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = approximateHeightPageOLS
