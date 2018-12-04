@@ -32,8 +32,8 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
             "[Offer second closest site if necessary and if reasonable]\n" +
             "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and you can talk to them about the study. Which would you prefer?\"";
 
-    private final String abstractTitleExpected = "Based on your answers, it looks like you are not an exact match for %2$s study at this moment. " +
-            "The good news is, you have prequalified for %1$s study.\n" +
+    private final String abstractTitleExpected = "Based on your answers, it looks like you are not an exact match for %2$s at this moment. " +
+            "The good news is, you have prequalified for %1$s.\n" +
             "\n" +
             "The closest research site available to you is located at [name of street and city]. Is that convenient for you?\n" +
             "\n" +

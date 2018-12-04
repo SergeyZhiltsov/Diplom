@@ -219,7 +219,9 @@ public class LOWT_3017_CC extends BaseTest {
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        subquestionExperiencedHeartPageCC.back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad()
+                .back();
 
         heartOrBloodVesselPageCC
                 .waitForPageLoad()
@@ -341,7 +343,7 @@ public class LOWT_3017_CC extends BaseTest {
 //                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a men's low testosterone study")
                 .getPID()
