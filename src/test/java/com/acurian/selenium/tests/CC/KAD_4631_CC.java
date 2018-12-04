@@ -117,7 +117,6 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
 
-
         //----------Q3:  HowLongHaveYouBeenSufferingFromEczema_CC---------------
         IfYouUseYourHandToCoverAllOfTheEczema_CC ifYouUseYourHandToCoverAllOfTheEczema_CC = howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
@@ -155,7 +154,7 @@ public class KAD_4631_CC extends BaseTest {
         //------------Q4:  IfYouUseYourHandToCoverAllOfTheEczema_CC -------------------  
         HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_CC = ifYouUseYourHandToCoverAllOfTheEczema_CC
                 .waitForPageLoad()
-                .selectFromDropDown("1")
+                .selectFromDropDown("0")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
         haveYouEverTreatedYourEczema_CC
                 .waitForPageLoad()
@@ -164,7 +163,7 @@ public class KAD_4631_CC extends BaseTest {
                 .back();
         ifYouUseYourHandToCoverAllOfTheEczema_CC
                 .waitForPageLoad()
-                .selectFromDropDown("7")
+                .selectFromDropDown("9")
                 .clickNextButton(haveYouEverTreatedYourEczema_CC);
         haveYouEverTreatedYourEczema_CC
                 .waitForPageLoad()
@@ -173,7 +172,7 @@ public class KAD_4631_CC extends BaseTest {
                 .back();
         ifYouUseYourHandToCoverAllOfTheEczema_CC
                 .waitForPageLoad()
-                .selectFromDropDown("9")
+                .selectFromDropDown("10")
                 .clickNextButton(haveYouEverTreatedYourEczema_CC);
 
 

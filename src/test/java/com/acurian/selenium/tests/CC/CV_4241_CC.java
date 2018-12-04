@@ -23,10 +23,10 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.ArrayList;
 
-public class CV_4241_CC_Synexus extends BaseTest {
+public class CV_4241_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @Description("CV_4241_CC_Synexus")
+    @Description("CV_4241_CC")
     public void cv4241cc(final String username, final String password) {
         final String phoneNumber = "AUTAMS1CV1";
         final String protocol1 = "EFC14828";

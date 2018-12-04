@@ -34,12 +34,14 @@ public class WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS extends MainPag
 
     @Step
     public WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS clickOnAnswer(String answerText) {
-        getActions().moveToElement(radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get())
-                .click()
-                .build()
-                .perform();
+        for (int i = 0; i < 2; i++) {
+            getActions().moveToElement(radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
+                    .findFirst()
+                    .get())
+                    .click()
+                    .build()
+                    .perform();
+        }
         waitForAnimation();
         return this;
     }
