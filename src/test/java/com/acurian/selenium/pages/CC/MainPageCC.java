@@ -95,7 +95,7 @@ public class MainPageCC extends BasePage{
                 "expected to click are "+ answerTextList+"\n" +
                 "actual on page are "+elementsTextActual);
 
-        checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::contains))//answerTextList.contains(el.getText())
+        checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::startsWith))//answerTextList.contains(el.getText())
                 .forEach(el -> el.click());
         waitForAnimation();
     }
