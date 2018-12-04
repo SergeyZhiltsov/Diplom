@@ -198,7 +198,7 @@ public class KAD_4631_OLS extends BaseTest {
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Chest, stomach, and back", "Arms and hands", "Legs and feet")
-                .clickNextButton(new WeWantToMakeSureTheImagesDisplayProperly_OLS());
+                .clickNextButton(weWantToMakeSureTheImagesDisplayProperly_OLS);
 
 
         weWantToMakeSureTheImagesDisplayProperly_OLS
@@ -242,6 +242,30 @@ public class KAD_4631_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("G")
+                .clickNextButton(haveYouEverTreatedYourEczema_OLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .back(whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS)
+                .waitForPageLoad()
+                .back(weWantToMakeSureTheImagesDisplayProperly_OLS)
+                .waitForPageLoad()
+                .back();
+
+        whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
+                .waitForPageLoad()
+                .clickOnAnswers("Legs and feet")
+                .clickNextButton(weWantToMakeSureTheImagesDisplayProperly_OLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Computer or tablet")
+                .clickNextButton(whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS);
+
+        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
+                .waitForPageLoad()
+                .clickOnAnswer("D")
+                .clickNextButton(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
+                .waitForPageLoad()
+                .clickOnAnswer("C")
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS);
 
 
