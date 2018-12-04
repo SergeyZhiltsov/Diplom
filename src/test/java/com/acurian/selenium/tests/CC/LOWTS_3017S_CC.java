@@ -338,7 +338,7 @@ public class LOWTS_3017S_CC extends BaseTest {
                 .setAll("5", "6", "166")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a men's low testosterone study")
                 .getPID()

@@ -25,7 +25,7 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
         final String kowaProtocol = "K_877_302_A";
         final String sanofiT2DMCV = "EFC14828";
         final String[] cvModuleProtocols = {esperionProtocol, kowaProtocol, sanofiT2DMCV};
-        final String dqedStudyName = "a high cholesterol and heart health";
+        final String dqedStudyName = "a heart health study";
         final String studyName = "a men's low testosterone";
         final String site_Indication = "low testosterone or hypogonadism";
         final String siteName = "AUT_LOWT_3017_Site";
@@ -272,7 +272,7 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
                 .setAll("5", "6", "166")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new IncongruentSiteSelectionCloseCC())
                 .waitForPageLoad(studyName, dqedStudyName)
                 .getPID()
