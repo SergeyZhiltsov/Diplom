@@ -147,7 +147,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
 
         withType2DiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
+                .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(treatingYourDiabetesPageCC);
 
         NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = treatingYourDiabetesPageCC

@@ -164,7 +164,7 @@ public class DIA_4241_CC extends BaseTest{
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
+                .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(useDietAndExercisePageCC);
 
         CurrentlyUseMetforminOrInsulinPageCC currentlyUseMetforminOrInsulinPageCC = useDietAndExercisePageCC

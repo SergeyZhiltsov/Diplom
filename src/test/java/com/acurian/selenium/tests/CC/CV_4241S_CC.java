@@ -6,10 +6,7 @@ import com.acurian.selenium.pages.CC.DYS_4356C.WhileTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.TriglyceridesOrLipidsPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
-import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
-import com.acurian.selenium.pages.CC.LOWT.EverSmokedCigarettesPageCC;
-import com.acurian.selenium.pages.CC.LOWT.HaveDoctorEverDiagnosedYou_CC;
-import com.acurian.selenium.pages.CC.LOWT.HeartOrBloodVesselPageCC;
+import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.HealthcareDiagnosedConditionsPageCC;
 import com.acurian.selenium.pages.CC.cv_study.HeartrelatedMedicalConditionsProceduresPageCC;
@@ -26,7 +23,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.ArrayList;
 
-public class CV_4241_CC extends BaseTest {
+public class CV_4241S_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("CV_4241S_CC")
@@ -35,7 +32,7 @@ public class CV_4241_CC extends BaseTest {
         final String protocol1 = "EFC14828";
         final String dquedStudyName = "a heart health study";
         final String matchedStudyName = "a study for diabetics";
-        final String siteName = "AUT_CV1_4241_NonSynexus_site";
+        final String siteName = "AUT_CV1_4241_site";
         final String zipCode = "19901";
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
@@ -290,15 +287,12 @@ public class CV_4241_CC extends BaseTest {
                 .waitForPageLoad(matchedStudyName, dquedStudyName)
                 .getPID()
                 .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                .waitForPageLoadSyn()
+                .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
+
     }
 }

@@ -28,8 +28,7 @@ public class NoOfAlcoholicDrinksCC extends MainPageCC{
 
     @Step
     public NoOfAlcoholicDrinksCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
