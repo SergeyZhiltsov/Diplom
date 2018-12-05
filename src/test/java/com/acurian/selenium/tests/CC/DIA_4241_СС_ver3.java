@@ -156,7 +156,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
+                .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(treatingYourDiabetesPageCC);
 
         NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = treatingYourDiabetesPageCC

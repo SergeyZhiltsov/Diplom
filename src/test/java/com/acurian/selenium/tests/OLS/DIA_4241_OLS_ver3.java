@@ -130,7 +130,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("7 - 12 months ago")
+                .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(treatingYourDiabetesPageOLS);
 
         NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = treatingYourDiabetesPageOLS
