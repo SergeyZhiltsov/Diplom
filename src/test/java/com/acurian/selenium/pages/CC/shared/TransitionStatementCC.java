@@ -61,7 +61,6 @@ public class TransitionStatementCC extends MainPageCC {
 
     @Step
     public TransitionStatementCC waitForPageLoad(String studyName) {
-        waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;

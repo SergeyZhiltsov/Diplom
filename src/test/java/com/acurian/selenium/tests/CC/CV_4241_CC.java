@@ -67,7 +67,7 @@ public class CV_4241_CC extends BaseTest {
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
 
-         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
+        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("2005")
