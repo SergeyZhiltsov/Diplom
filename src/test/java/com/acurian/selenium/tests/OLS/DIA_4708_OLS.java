@@ -79,7 +79,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", protocol1)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -87,7 +87,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", protocol1)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -95,7 +95,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", protocol1)
                 .back();
         TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -104,7 +104,7 @@ public class DIA_4708_OLS extends BaseTest {
         treatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", protocol1)
                 .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -117,7 +117,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(withType2DiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", protocol1)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -125,7 +125,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(withType2DiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", protocol1)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -133,7 +133,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(withType2DiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", protocol1)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -141,7 +141,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(withType2DiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", protocol1)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -149,7 +149,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(withType2DiabetesPageOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", protocol1)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -261,7 +261,7 @@ public class DIA_4708_OLS extends BaseTest {
         liverRelatedConditionOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(noOfAlcoholicDrinkOLS.titleExpected, protocol1)
+                .checkProtocolsContainsForQNumber("QS4623", protocol1)
                 .back();
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
@@ -272,8 +272,8 @@ public class DIA_4708_OLS extends BaseTest {
         HashMap<String, List<String>> options = new HashMap<>();
         options.put("Alcoholic liver disease", Arrays.asList(protocol1));
         options.put("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus", Arrays.asList(protocol1));
-        options.put("Hemochromatosis or iron overload ", Arrays.asList(protocol1));
-        options.put("Liver cancer or hepatocellular carcinoma ", Arrays.asList(protocol1));
+//        options.put("Hemochromatosis or iron overload ", Arrays.asList(protocol1));
+//        options.put("Liver cancer or hepatocellular carcinoma ", Arrays.asList(protocol1));
         options.put("Primary sclerosing cholangitis or primary biliary cirrhosis", Arrays.asList(protocol1));
         options.put("Wilson's disease", Arrays.asList(protocol1));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
@@ -285,7 +285,7 @@ public class DIA_4708_OLS extends BaseTest {
                     .clickNextButton(followingToLoseWeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsEquals(metforminMedicationsPageOLS.titleExpected, (String[]) entry.getValue().toArray())
+                    .checkProtocolsContainsForQNumber("QS4624", (String[]) entry.getValue().toArray())
                     .back();
         }
         liverRelatedConditionOLS
