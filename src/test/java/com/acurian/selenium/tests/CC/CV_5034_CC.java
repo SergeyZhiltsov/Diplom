@@ -12,7 +12,10 @@ import com.acurian.selenium.pages.CC.LOWT.HaveDoctorEverDiagnosedYou_CC;
 import com.acurian.selenium.pages.CC.LOWT.HeartOrBloodVesselPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusHealthyMindsPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.cv_study.AnginaOrChestPainPageCC;
 import com.acurian.selenium.pages.CC.cv_study.FirstHeartAttackPageCC;
 import com.acurian.selenium.pages.CC.cv_study.HealthcareDiagnosedConditionsPageCC;
@@ -27,6 +30,12 @@ import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPa
 import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePageCC;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HaveDoctorEverDiagnosedYou_OLS;
 import com.acurian.selenium.utils.DataProviderPool;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -43,8 +52,7 @@ public class CV_5034_CC extends BaseTest{
         String protocol1 = "K_877_302_A";
         String studyName = "a heart health study";
         String studyName1 = "a heart health study";
-        String siteName = "AUT_DIA_4356A";
-        String debugSiteName = "QSC9004_4356A_AUT_DIA_4356A";
+        String siteName = "AUT_CV_5034_site";
         String zipCode = "19901";
         
         
@@ -310,7 +318,6 @@ public class CV_5034_CC extends BaseTest{
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                //.checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", protocol1)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
@@ -320,7 +327,6 @@ public class CV_5034_CC extends BaseTest{
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                //.checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", protocol1)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
@@ -328,35 +334,6 @@ public class CV_5034_CC extends BaseTest{
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        
-
-     /*   //------Q14:  When was the last time that you experienced angina or chest pain that required an overnight hospital stay?
-        anginaOrChestPainPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(haveDoctorEverDiagnosedYou_cc)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                //.checkProtocolsContainsForQNumber("QS6714", protocol1)
-                .back();
-        anginaOrChestPainPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveDoctorEverDiagnosedYou_cc)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                //.checkProtocolsContainsForQNumber("QS6714", protocol1)
-                .back();
-        anginaOrChestPainPageCC
-                .waitForPageLoad()
-                .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .back();
-        heartOrBloodVesselPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(haveDoctorEverDiagnosedYou_cc);*/
         
 
         //------Q15:  Have you experienced any of the following cardiovascular interventions or surgeries?
@@ -380,7 +357,7 @@ public class CV_5034_CC extends BaseTest{
 
         EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = firstHeartAttackPageCC
                 .waitForPageLoad()
-                .setYear("30")
+                .setYears("30")
                 .clickNextButton(new EverSmokedCigarettesPageCC());
         
 
@@ -388,98 +365,65 @@ public class CV_5034_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new ApproximateHeightPageCC());
-        TransitionStatementLowT_CC transitionStatementLowT_CC = approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new TransitionStatementLowT_CC());
-        transitionStatementLowT_CC
-        		.waitForPageLoad(studyName1)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6722", protocol1)
-                .back();
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .back();
-        everSmokedCigarettesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, I currently smoke")
-                .clickNextButton(approximateHeightPageCC);
+        
+        
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .clickNextButton(new WeightLossSurgeryPageCC());
+                .setAll("5", "5", "160")
+                .clickNextButton(new WeightLossSurgeryPageCC());        
+        
 
         ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new ProcedureForWeightLossPageCC());
+        		.waitForPageLoad()
+        		.clickOnAnswers("Gastric bypass")
+        		.clickNextButton(new ProcedureForWeightLossPageCC());        
         
 
         HealthcareDiagnosedConditionsPageCC healthcareDiagnosedConditionsPageCC = new HealthcareDiagnosedConditionsPageCC();
         procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(healthcareDiagnosedConditionsPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(healthcareDiagnosedConditionsPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(healthcareDiagnosedConditionsPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 2 years ago")
-                .clickNextButton(healthcareDiagnosedConditionsPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("More than 2 years ago")
-                .clickNextButton(healthcareDiagnosedConditionsPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .back();
-        weightLossSurgeryPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(healthcareDiagnosedConditionsPageCC);
+		        .waitForPageLoad()
+		        .clickOnAnswer("Less than 3 months ago")
+		        .clickNextButton(healthcareDiagnosedConditionsPageCC);
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        HashMap<String, List<String>> options = new HashMap<>();
+	        options.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(protocol1));
+	        options.put("Cirrhosis of the liver", Arrays.asList(protocol1));
+	        options.put("Drug or alcohol abuse within the past year", Arrays.asList(protocol1));
+	        options.put("Hepatitis B", Arrays.asList(protocol1));
+	        options.put("Hepatitis C", Arrays.asList(protocol1));
+	        options.put("HIV or AIDS", Arrays.asList(protocol1));
+	        options.put("Kidney disease requiring dialysis or transplant", Arrays.asList(protocol1));
+        for (Map.Entry<String, List<String>> entry : options.entrySet()) {
+        	//System.out.println(entry.getKey());
+        	healthcareDiagnosedConditionsPageCC
+	        	.waitForPageLoad();
+        	TransitionStatementLowT_CC transitionStatementLowT_cc = healthcareDiagnosedConditionsPageCC
+	        	.clickOnAnswers("None of the above")
+	        	.clickOnAnswers(entry.getKey())
+	        	.clickNextButton(new TransitionStatementLowT_CC());
+        	transitionStatementLowT_cc
+        		.waitForPageLoad()
+	        	.getPage(debugPageCC)
+	        	.checkProtocolsContainsForQNumber("Q0018797-QS6725-STUDYQUES", (String[]) entry.getValue().toArray())
+	        	.back();
+        }
 
-        
-        
-        
-        
-        
-
+        healthcareDiagnosedConditionsPageCC
+		        .waitForPageLoad()
+		        .clickOnAnswers("None of the above")
+		        .clickNextButton(new IdentificationPageCC())
+		        .waitForPageLoad()
+		        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+		        .clickNextButton(new SiteSelectionPageCC())
+		        .waitForPageLoad(studyName)
+		        .getPID()
+				//----------SITE Selection Page--------------------
+		        .clickOnAnswer(siteName)
+		        .clickNextButton(new QualifiedClose2PageCC())
+		        .waitForPageLoad()
+		        .clickNextButton(new ThankYouCloseSimplePageCC())    
+		        .clickNextButton(selectActionPageCC)
+		        .waitForPageLoad()
+		        .pidFromDbToLog(env);
     }
 }
