@@ -12,7 +12,6 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -255,20 +254,20 @@ whichofthefollowingMedicationsTherapies_CC
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhatKindOfArthritisCC());
         whatKindOfArthritisCC.back();
-        WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new WhenDiagnosedWithCancer());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
         
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1,protocol2);
         debugPageCC.back();
-        whenDiagnosedWithCancer.back();
+        whenDiagnosedWithCancerCC.back();
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease")

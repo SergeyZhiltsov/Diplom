@@ -272,12 +272,12 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoadWithCurvesKAD(studyName)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new WhenDiagnosedWithCancer());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
@@ -287,7 +287,7 @@ public class KAD_4631_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1)
                 .back();
-        whenDiagnosedWithCancer
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .back();
 

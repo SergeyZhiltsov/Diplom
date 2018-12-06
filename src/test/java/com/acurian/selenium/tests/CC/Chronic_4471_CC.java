@@ -28,7 +28,6 @@ import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SmokedCigarettesPageCC;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 
 public class Chronic_4471_CC extends BaseTest{

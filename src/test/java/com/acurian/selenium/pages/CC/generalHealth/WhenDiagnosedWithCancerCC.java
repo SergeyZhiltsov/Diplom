@@ -6,11 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.CC.IBD.MostRecentColonoscopyCC;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhenDiagnosedWithCancer extends MainPageCC{
+public class WhenDiagnosedWithCancerCC extends MainPageCC{
 
     public final String titleExpected = "When were you diagnosed with cancer (other than skin cancer)?";
     
@@ -21,18 +20,18 @@ public class WhenDiagnosedWithCancer extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public WhenDiagnosedWithCancer() {
+    public WhenDiagnosedWithCancerCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhenDiagnosedWithCancer waitForPageLoad() {
+    public WhenDiagnosedWithCancerCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhenDiagnosedWithCancer clickOnAnswer(String answerText) {
+    public WhenDiagnosedWithCancerCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

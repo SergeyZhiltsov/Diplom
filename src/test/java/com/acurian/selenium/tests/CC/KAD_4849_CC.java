@@ -12,8 +12,6 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.LPS_4442.WhenWereYouDiagnosedOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -294,14 +292,14 @@ public class KAD_4849_CC extends BaseTest {
                 .waitForPageLoadWithCurvesKAD(studyName)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .clickOnAnswers("Cancer")
                 .clickOnAnswers("Kidney disease")
                 .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
                 .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new WhenDiagnosedWithCancer());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        KidneyProblemsPage kidneyProblemsPage = whenDiagnosedWithCancer
+        KidneyProblemsPage kidneyProblemsPage = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new KidneyProblemsPage());
@@ -312,7 +310,7 @@ public class KAD_4849_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1)
                 .back();
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = whenDiagnosedWithCancer
+        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(kidneyProblemsPage)

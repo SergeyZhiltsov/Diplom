@@ -250,21 +250,21 @@ public class OA_4831_CC_NonSynexus extends BaseTest {
 whichFollowingBonesJoints_CC
         .waitForPageLoad()
         .back();
-WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
         .waitForPageLoad()
         .clickOnAnswers("None of the above")
         .clickOnAnswers("Cancer")
-        .clickNextButton(new WhenDiagnosedWithCancer());
+        .clickNextButton(new WhenDiagnosedWithCancerCC());
 
 
-DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
+DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
         .waitForPageLoad()
         .clickOnAnswer("Within the past 5 years")
         .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
 doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
 debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1);
 debugPageCC.back();
-whenDiagnosedWithCancer.back();
+whenDiagnosedWithCancerCC.back();
 KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
         .waitForPageLoad()
         .clickOnAnswers("Kidney disease")
