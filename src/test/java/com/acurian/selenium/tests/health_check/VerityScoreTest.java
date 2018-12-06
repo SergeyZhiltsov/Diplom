@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.health_check;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
@@ -22,7 +23,7 @@ public class VerityScoreTest extends BaseTest {
         String phoneNumber = "GMEGA30003";
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
-        String zipCode = "19044";
+        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -69,8 +70,8 @@ public class VerityScoreTest extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new HumanAPIOLS())
-                .waitForPageLoad();
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected);
         Assert.assertEquals(debugPageOLS.getVerityText(), "Verity Score: 0", "verity score is diff");
     }
 }
