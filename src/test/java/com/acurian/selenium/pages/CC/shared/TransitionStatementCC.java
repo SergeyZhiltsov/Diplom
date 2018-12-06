@@ -49,6 +49,10 @@ public class TransitionStatementCC extends MainPageCC {
     public final String titleIBSExpected = "Thank you for answering these questions about your IBS.\n" +
             "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
             "Agent note: If \"no\" to all items in a question, select \"None of the above\"";
+
+    public final String titleObesityExpected = "Thank you for answering these initial questions.\n" +
+            "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
+            "Agent Note: If \"no\" to all items in a question, select \"None of the above\"";
     		
     
     
@@ -132,6 +136,13 @@ public class TransitionStatementCC extends MainPageCC {
         waitForAnimation();
         String titleExpectedkad = String.format(titleExpectedKAD, studyName);
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpectedkad));
+        return this;
+    }
+
+    @Step
+    public TransitionStatementCC waitForPageLoadWithObesity() {
+        waitForAnimation();
+        waitForPageLoadMain(titleText, titleObesityExpected);
         return this;
     }
 
