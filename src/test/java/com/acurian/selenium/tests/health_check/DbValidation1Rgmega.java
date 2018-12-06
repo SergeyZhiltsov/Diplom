@@ -1,9 +1,12 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
@@ -20,7 +23,7 @@ public class DbValidation1Rgmega extends BaseTest {
     public void dBValidation1Rgmega() {
         String phoneNumber = "AUTGMEGA01";
         String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
-        String siteName = "AUT_GMEGA_01";
+        String siteName = "AUT_GRA1_Site";
         String zipCode = "08204";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -78,7 +81,8 @@ public class DbValidation1Rgmega extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
+                //.clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
