@@ -44,7 +44,5 @@ public class Regular_WarmTransfer4 extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
-
 }
 

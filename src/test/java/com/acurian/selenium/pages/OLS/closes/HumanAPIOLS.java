@@ -20,6 +20,13 @@ public class HumanAPIOLS extends MainPageOLS{
             "Connect Your Health Data >>\n" +
             "Note: If you don't have credentials or don't remember them, you can register or reset them as part of the process.\n" +
             "Please click 'Next' when you have finished connecting your digital health data";
+
+    public final String titleGmegaExpected = "The final step is to connect your health data\n" +
+            "Connecting your health data helps to ensure the study doctor has the necessary information for your first office appointment. Please provide as much information as possible.\n" +
+            "Now Connect Your Health Data\n" +
+            "Connect >>\n" +
+            "Add additional providers\n" +
+            "Please click 'Next' when you have added all your medical data providers.";
     
     public final String titleFind = "Find your provider";
     
@@ -29,6 +36,9 @@ public class HumanAPIOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[@class='question']//h4")//div[@class='question']//div[contains(@class,'visible-md-block')]/h3
     WebElement titleText;
+
+    @FindBy(xpath = "(//div[@class='question']//h4)[1]")
+    WebElement titleTextGmega;
     
     @FindBy(xpath = "//button[@type='button']")
     WebElement connectButton;
@@ -64,6 +74,12 @@ public class HumanAPIOLS extends MainPageOLS{
     @Step
     public HumanAPIOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public HumanAPIOLS waitForPageLoadGmega() {
+        waitForPageLoadMain(titleTextGmega, titleGmegaExpected);
         return this;
     }
     
