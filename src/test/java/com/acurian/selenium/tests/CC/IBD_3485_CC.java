@@ -11,7 +11,6 @@ import com.acurian.selenium.pages.CC.Crohns_3485.FollowingMedicationsCrohnsPageC
 import com.acurian.selenium.pages.CC.Crohns_3485.HaveAnyOfTheFollowingPageCC;
 import com.acurian.selenium.pages.CC.Crohns_3485.ManageYourCrohnsPageCC;
 import com.acurian.selenium.pages.CC.Crohns_3485.WhenDiagnosedCrohnsPageCC;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.IBD.CurrentlyExperiencingFlareUpCC;
 import com.acurian.selenium.pages.CC.IBD.EverTreatedCrohnOrColitisCC;
 import com.acurian.selenium.pages.CC.IBD.HowWouldYouRateCC;
@@ -19,7 +18,6 @@ import com.acurian.selenium.pages.CC.IBD.MostRecentColonoscopyCC;
 import com.acurian.selenium.pages.CC.IBD.SteroidMedicationsForCrohnsCC;
 import com.acurian.selenium.pages.CC.IBD.SubquestionsIBD_ShireCrohns_CC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -31,7 +29,7 @@ import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
+import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancerCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
@@ -333,18 +331,18 @@ public class IBD_3485_CC extends BaseTest{
         		.waitForPageLoadWithCurves(studyName)
         		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         
-        WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
   		      .waitForPageLoad()
   		      .clickOnAnswers("Cancer")
-  		      .clickNextButton(new WhenDiagnosedWithCancer());
+  		      .clickNextButton(new WhenDiagnosedWithCancerCC());
           
-          DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
+          DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
           		.waitForPageLoad()
           		.clickOnAnswer("Within the past 5 years")
           		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
           debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2);
           debugPageCC.back();
-          whenDiagnosedWithCancer.back();
+          whenDiagnosedWithCancerCC.back();
           
           KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
           		.waitForPageLoad()

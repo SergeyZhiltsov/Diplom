@@ -229,19 +229,19 @@ public class Lupus_4442_CC extends BaseTest {
                 .waitForPageLoadNew("lupus")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new WhenDiagnosedWithCancer());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol2);
         debugPageCC.back();
-        whenDiagnosedWithCancer.back();
+        whenDiagnosedWithCancerCC.back();
 
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()

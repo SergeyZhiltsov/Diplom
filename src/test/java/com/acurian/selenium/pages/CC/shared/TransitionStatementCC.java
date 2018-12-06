@@ -50,7 +50,7 @@ public class TransitionStatementCC extends MainPageCC {
             "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
             "Agent note: If \"no\" to all items in a question, select \"None of the above\"";
 
-    public final String titleObesityExpected = "Thank you for answering these initial questions.\n" +
+    public final String titleInitialQuestionsExpected = "Thank you for answering these initial questions.\n" +
             "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
             "Agent Note: If \"no\" to all items in a question, select \"None of the above\"";
     		
@@ -140,9 +140,9 @@ public class TransitionStatementCC extends MainPageCC {
     }
 
     @Step
-    public TransitionStatementCC waitForPageLoadWithObesity() {
+    public TransitionStatementCC waitForPageLoadWithInitialQuestions() {
         waitForAnimation();
-        waitForPageLoadMain(titleText, titleObesityExpected);
+        waitForPageLoadMain(titleText, titleInitialQuestionsExpected);
         return this;
     }
 
