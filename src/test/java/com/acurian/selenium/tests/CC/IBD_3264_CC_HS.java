@@ -29,7 +29,7 @@ import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancer;
+import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancerCC;
 import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
 import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
 import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
@@ -333,18 +333,18 @@ public class IBD_3264_CC_HS extends BaseTest{
      		   .clickNextButton(new WhatKindOfArthritisCC());
         
         whatKindOfArthritisCC.back();
-        WhenDiagnosedWithCancer whenDiagnosedWithCancer = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
 		      .waitForPageLoad()
 		      .clickOnAnswers("Cancer")
-		      .clickNextButton(new WhenDiagnosedWithCancer());
+		      .clickNextButton(new WhenDiagnosedWithCancerCC());
         
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancer
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
         		.waitForPageLoad()
         		.clickOnAnswer("Within the past 5 years")
         		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES",  protocol2);
         debugPageCC.back();
-        whenDiagnosedWithCancer.back();
+        whenDiagnosedWithCancerCC.back();
         
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
         		.waitForPageLoad()

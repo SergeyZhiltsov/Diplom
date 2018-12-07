@@ -33,7 +33,6 @@ import java.util.List;
 public class OA_4831_CC_Synexus extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-
     public void OA_4831_CC_Synexus_Script(final String username, final String password) {
         String phoneNumber = "AUTAMS1OA1";
         String zipCode = "19901";

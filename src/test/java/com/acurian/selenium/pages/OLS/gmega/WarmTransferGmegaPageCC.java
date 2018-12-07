@@ -1,19 +1,17 @@
-package com.acurian.selenium.pages.CC.generalHealth;
+package com.acurian.selenium.pages.OLS.gmega;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.CC.IBD.MostRecentColonoscopyCC;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhenDiagnosedWithCancer extends MainPageCC{
+import java.util.List;
 
-    public final String titleExpected = "When were you diagnosed with cancer (other than skin cancer)?";
-    
+public class WarmTransferGmegaPageCC extends MainPageCC{
+
+    public final String titleExpected = "For TMS Tracking - Please select one of the following dispositions:";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -21,18 +19,18 @@ public class WhenDiagnosedWithCancer extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public WhenDiagnosedWithCancer() {
+    public WarmTransferGmegaPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhenDiagnosedWithCancer waitForPageLoad() {
+    public WarmTransferGmegaPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhenDiagnosedWithCancer clickOnAnswer(String answerText) {
+    public WarmTransferGmegaPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -41,5 +39,4 @@ public class WhenDiagnosedWithCancer extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

@@ -28,7 +28,7 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "//a[@id='info-debug-link']/span")
     WebElement infoButton;
 
-    @FindBy(xpath = "//div[@class='k-window-content k-content']//div[15]")
+    @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Verity Score')]/..")
     WebElement verity4Field;
 
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[3]")

@@ -11,6 +11,9 @@ public class DoctorInformationCollectionPageOLS extends MainPageOLS{
 
     public final String titleExpected = "We now need some information on the doctors who are treating or who have treated your condition.";
 
+    public final String titleGmegaExpected = "We now need some information on the doctors who are treating or who have treated your condition.  \n" +
+            "We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
@@ -21,6 +24,12 @@ public class DoctorInformationCollectionPageOLS extends MainPageOLS{
     @Step
     public DoctorInformationCollectionPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DoctorInformationCollectionPageOLS waitForPageLoadGmega() {
+        waitForPageLoadMain(titleText, titleGmegaExpected);
         return this;
     }
 

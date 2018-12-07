@@ -59,7 +59,6 @@ public class AnomalyTest extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
-
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Any type of arthritis")
