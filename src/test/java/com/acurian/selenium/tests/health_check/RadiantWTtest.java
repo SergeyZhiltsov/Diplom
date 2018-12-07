@@ -1,13 +1,14 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.IBS.HowLongExperiencingIrritablePageCC;
-import com.acurian.selenium.pages.CC.IBS.SufferFromIrritablePageCC;
-import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
+import com.acurian.selenium.pages.CC.RA_2821.WhenYouDiagnosedWithRaPageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.gmega.WarmTransferGmegaPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -58,16 +59,55 @@ public class RadiantWTtest extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        ApproximateHeightPageCC approximateHeightPageCC = genderPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Female")
+        ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
+                .waitForPageLoadGmega()
+                .clickOnAnswerGmega("Female")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        approximateHeightPageCC
+        FollowingNeurologicalConditions followingNeurologicalConditions = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "260")
-                .clickNextButton(new LetMeSeePageCC());
+                .setAll("5", "5", "160")
+                .clickNextButton(new FollowingNeurologicalConditions());
 
+        FollowingDigestiveConditionsPageCC followingDigestiveConditionsPageCC = followingNeurologicalConditions
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new FollowingDigestiveConditionsPageCC());
 
+        BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = followingDigestiveConditionsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new BoneOrJointConditionsPageCC());
+
+        WhatKindOfArthritisCC whatKindOfArthritisCC = boneOrJointConditionsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Any type of arthritis")
+                .clickNextButton(new WhatKindOfArthritisCC());
+
+        WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisCC
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(new WhenYouDiagnosedWithRaPageCC());
+
+        whenYouDiagnosedWithRaPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(identificationPageCC)
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoadGmega()
+                .getPID()
+                .clickOnAnswer(siteName)
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new Regular_WarmTransfer1())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new WarmTransferGmegaPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Successful transfer made to site")
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

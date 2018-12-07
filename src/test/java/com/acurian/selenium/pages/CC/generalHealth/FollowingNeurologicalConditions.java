@@ -4,10 +4,8 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class FollowingNeurologicalConditions extends MainPageCC {
@@ -27,17 +25,13 @@ public class FollowingNeurologicalConditions extends MainPageCC {
 
     @Step
     public FollowingNeurologicalConditions waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public FollowingNeurologicalConditions clickOnAnswers(String ...answerText) {
-        List<String> answerTextList = Arrays.asList(answerText);
-        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-                .forEach(el -> el.click());
-        waitForAnimation();
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 

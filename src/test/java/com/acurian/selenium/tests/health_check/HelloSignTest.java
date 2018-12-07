@@ -63,16 +63,16 @@ public class HelloSignTest extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
-//                .waitForPageLoad(Siteindicator)
+                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
 
                 .getPage(new HumanAPIOLS())
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .connectBTN()
                 .switchToAPI()
                 .waitForProvider()
@@ -86,10 +86,10 @@ public class HelloSignTest extends BaseTest {
                 .clickConnect()
                 .waitToClickNext()
 
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
+//                .waitForPageLoad()
                 .pidFromDbToLog(env);
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All" verbose="4" parallel="classes" thread-count="2">
+
+    <test name="Sanity test">
+        <classes>
+            <class name="com.acurian.selenium.tests.OLS.HFL_4722_OLS"/>
+            <class name="com.acurian.selenium.tests.OLS.RA_2821_OLS"/>
+            <class name="com.acurian.selenium.tests.OLS.no_indication.NoIndication3889_OLS"/>
+            <class name="com.acurian.selenium.tests.CC.LMG_4686_CC"/>
+            <class name="com.acurian.selenium.tests.CC.OA_4831_CC_NonSynexus"/>
+            <class name="com.acurian.selenium.tests.CC.OA_4831_CC_Synexus"/>
+        </classes>
+    </test>
+
+</suite>
