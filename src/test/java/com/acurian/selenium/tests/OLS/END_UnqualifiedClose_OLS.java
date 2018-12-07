@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -131,6 +132,9 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new PersonalDetails())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
