@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.ashot.AShot;
@@ -181,6 +182,24 @@ public abstract class BasePage {
     protected List<String> getDropDownListValues(WebElement select) {
         Select dropDownList = new Select(select);
         return dropDownList.getOptions().stream().map(e -> e.getAttribute("value")).collect(Collectors.toList());
+    }
+
+    /**
+     *  Use it to if u need to work around dropdown navigation menu
+     * @param menuButtom to open navigation menu
+     * @param menuItems navigation menu items
+     * @param item navigation menu item
+     */
+    protected void selectFromNavigationMenu(WebElement menuButtom, List<WebElement> menuItems, String item) {
+        try {
+            actions.moveToElement(menuButtom).perform();
+            menuItems.stream().filter(webElement -> webElement.getText().equals(item))
+                    .findFirst()
+                    .get()
+                    .click();
+        } catch (WebDriverException e) {
+            Assert.fail("Navigation menu or its item wasn't found");
+        }
     }
 
     //waits

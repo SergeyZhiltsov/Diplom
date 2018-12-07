@@ -1,11 +1,16 @@
 package com.acurian.selenium.pages.CC.faq;
 
+import com.acurian.selenium.constants.FaqTitles;
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.yandex.qatools.allure.annotations.Step;
 
-public class FaqPage extends BasePage {
+public class FaqPage extends MainPageCC implements FaqTitles {
+    private final String titleExpected = "Frequently Asked Questions";
+    private final String projectTextExpected = "(ACURIAN PROJECT CODE: AMS1)";
 
     @FindBy(xpath = "//div[@class='header']/h1")
     WebElement headerText;
@@ -23,19 +28,29 @@ public class FaqPage extends BasePage {
         PageFactory.initElements(getDriver(), this);
     }
 
+    @Step
     public String getHeaderText() {
         return headerText.getText();
     }
 
+    @Step
     public String getProjectText() {
         return projectText.getText();
     }
 
+    @Step
     public String getFirstNavigationText() {
         return firstNavigationText.getText();
     }
 
+    @Step
     public String getStudyHeaderText() {
         return studyHeaderText.getText();
+    }
+
+    public FaqPage waitForPageLoad() {
+        waitForAnimation();
+        waitForPageLoadMain(headerText, titleExpected);
+        return this;
     }
 }
