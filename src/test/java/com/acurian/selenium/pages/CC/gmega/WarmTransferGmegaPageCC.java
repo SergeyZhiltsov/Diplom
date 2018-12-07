@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.gmega;
+package com.acurian.selenium.pages.CC.gmega;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;

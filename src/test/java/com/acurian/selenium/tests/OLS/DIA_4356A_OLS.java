@@ -22,7 +22,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class DIA_4356A_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false) //Deactivated module: "5034 KOWA (was previously running under project code ""4356A"" with Synexus)"
     @TestCaseId("00053")
     @Description("Diabetes_4356A_Synexus")
     public void diabetes_4356A_ols() {
