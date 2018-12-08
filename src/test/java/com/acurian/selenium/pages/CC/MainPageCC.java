@@ -18,92 +18,63 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MainPageCC extends BasePage{
+public class MainPageCC extends BasePage {
 
     @FindBy(xpath = "//button[text()='Next']")
-    WebElement nextButton;
+    private WebElement nextButton;
 
-    String pid;
+    @FindBy(xpath = "//ul/li[3]/a[@class='sf-with-ul']")
+    private WebElement callDropdownMenu;
+
+    @FindBy(xpath = "//ul/li[4]/a[@class='sf-with-ul']")
+    private WebElement abortDropdownSubMenu;
+
+    @FindBy(xpath = "//li/a[starts-with(@style,'float')]")
+    private List<WebElement> callDropdownMenuItems;
+
+    private String pid;
 
     public MainPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
-    public void waitForAnimation(){
+    public void waitForAnimation() {
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
                 "return document.readyState"
         ).equals("complete"));
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) getDriver()).executeScript(
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean) ((JavascriptExecutor) getDriver()).executeScript(
                 "return jQuery.active == 0"
         ));
     }
 
-    protected void waitForPageLoadMain(WebElement titleText, String titleExpected){
-        logTextToAllure(this.getClass().getSimpleName() + " class with:");
-        textToAttachment(titleExpected,"Title text");
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
-        try {
-            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
-        }
-        catch (TimeoutException ex){
-            Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
-            throw ex;
-        }
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
-    }
-
-    protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText){
-        radioButtonList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
-    }
-    public MainPageCC pidFromDbToLog(String env){
+    public MainPageCC pidFromDbToLog(String env) {
         DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
         dbCon.dbRead(env, pid);
-        logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
+        logTextToAllure("Dispo=" + dbCon.getDispo() + "for pid " + pid);
         return this;
     }
 
-    public MainPageCC getRadiantDbToLog(String env){
+    public MainPageCC getRadiantDbToLog(String env) {
         DBConnection dbCon = new DBConnection();
 //        pid = PassPID.getInstance().getPidNumber();
         RadiantResults radiantResults = dbCon.dbReadRadiant(env, pid);
-        logTextToAllure("Radiant::: Current Status="+radiantResults.getCurrentStatus()+" for pid "+pid);
+        logTextToAllure("Radiant::: Current Status=" + radiantResults.getCurrentStatus() + " for pid " + pid);
         return this;
     }
 
-    public MainPageCC getAnomalyDbToLog(String env){
+    public MainPageCC getAnomalyDbToLog(String env) {
         DBConnection dbCon = new DBConnection();
 //        pid = PassPID.getInstance().getPidNumber();
         AnomalyResults anomalyResults = dbCon.dbReadAnomaly(env, pid);
-        logTextToAllure("Anomaly : Current Status="+anomalyResults.getCurrentStatus()+" Request Status id="+anomalyResults.getRequestStatus()+" for pid "+pid);
+        logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
         return this;
-    }
-
-    protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String ...answerText){
-        List<String> answerTextList = Arrays.asList(answerText);
-
-        List<String> elementsTextActual = checkBoxList.stream().map(el -> el.getText()).collect(Collectors.toList());
-        List<String> answersNotIncluded = answerTextList.stream().filter(el -> elementsTextActual.parallelStream()
-                .noneMatch(el2 ->  el2.contains(el))).collect(Collectors.toList());
-        Assert.assertFalse(answersNotIncluded.size() > 0, "Some answers are not correct " +
-                answersNotIncluded +"\n" +
-                "expected to click are "+ answerTextList+"\n" +
-                "actual on page are "+elementsTextActual);
-
-        checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::startsWith))//answerTextList.contains(el.getText())
-                .forEach(el -> el.click());
-        waitForAnimation();
     }
 
     @Step
     public <T extends MainPageCC> T clickNextButton(T page) {
         nextButton.click();
-        return (T)page;
+        return (T) page;
     }
 
     @Override
@@ -114,12 +85,57 @@ public class MainPageCC extends BasePage{
 
     @Step
     public <T extends MainPageCC> T getPage(T page) {
-        return (T)page;
+        return (T) page;
     }
 
     @Step
-    public <T extends MainPageCC> T back(T page){
+    public <T extends MainPageCC> T back(T page) {
         back();
-        return (T)page;
+        return (T) page;
+    }
+
+    @Step
+    public <T extends MainPageCC> T chooseFromNavigationMenu(String item, T page) {
+        getActions().moveToElement(callDropdownMenu).perform();
+        selectFromNavigationMenu(abortDropdownSubMenu, callDropdownMenuItems, item);
+        return page;
+    }
+
+    protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
+        logTextToAllure(this.getClass().getSimpleName() + " class with:");
+        textToAttachment(titleExpected, "Title text");
+        waitForAnimation();
+        driverWait.waitforVisibility(titleText);
+        try {
+            driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        } catch (TimeoutException ex) {
+            Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
+            throw ex;
+        }
+//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+    }
+
+    protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {
+        radioButtonList.stream().filter(el -> el.getText().contains(answerText))
+                .findFirst()
+                .get()
+                .click();
+        waitForAnimation();
+    }
+
+    protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String... answerText) {
+        List<String> answerTextList = Arrays.asList(answerText);
+
+        List<String> elementsTextActual = checkBoxList.stream().map(el -> el.getText()).collect(Collectors.toList());
+        List<String> answersNotIncluded = answerTextList.stream().filter(el -> elementsTextActual.parallelStream()
+                .noneMatch(el2 -> el2.contains(el))).collect(Collectors.toList());
+        Assert.assertFalse(answersNotIncluded.size() > 0, "Some answers are not correct " +
+                answersNotIncluded + "\n" +
+                "expected to click are " + answerTextList + "\n" +
+                "actual on page are " + elementsTextActual);
+
+        checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::startsWith))//answerTextList.contains(el.getText())
+                .forEach(el -> el.click());
+        waitForAnimation();
     }
 }

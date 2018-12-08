@@ -32,15 +32,6 @@ public class CallCenterIntroductionPageCC extends MainPageCC {
     @FindBy(id = "activate_debug")
     WebElement activateDebugLink;
 
-    @FindBy(xpath = "//ul/li[3]/a[@class='sf-with-ul']")
-    WebElement callDropdownMenu;
-
-    @FindBy(xpath = "//ul/li[4]/a[@class='sf-with-ul']")
-    WebElement abortDropdownSubMenu;
-
-    @FindBy(xpath = "//li/a[starts-with(@style,'float')]")
-    List<WebElement> callDropdownMenuItems;
-
     public CallCenterIntroductionPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -72,12 +63,5 @@ public class CallCenterIntroductionPageCC extends MainPageCC {
     @Step
     public String getTitleText() {
         return getText(titleText);
-    }
-
-    @Step
-    public <T extends BasePage> T chooseFromDropdown(String item) {
-        getActions().moveToElement(callDropdownMenu).perform();
-        selectFromNavigationMenu(abortDropdownSubMenu, callDropdownMenuItems,item);
-        return (T) new MainPageCC();
     }
 }

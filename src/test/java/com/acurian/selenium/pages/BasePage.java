@@ -185,7 +185,7 @@ public abstract class BasePage {
     }
 
     /**
-     *  Use it to if u need to work around dropdown navigation menu
+     *  Select on item from navigation menu
      * @param menuButtom to open navigation menu
      * @param menuItems navigation menu items
      * @param item navigation menu item
@@ -199,6 +199,7 @@ public abstract class BasePage {
                     .click();
         } catch (WebDriverException e) {
             Assert.fail("Navigation menu or its item wasn't found");
+            throw e;
         }
     }
 

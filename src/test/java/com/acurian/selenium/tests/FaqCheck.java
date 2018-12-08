@@ -1,6 +1,5 @@
 package com.acurian.selenium.tests;
 
-import com.acurian.selenium.constants.FaqTitles;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.faq.FaqPage;
@@ -41,7 +40,7 @@ public class FaqCheck extends BaseTest {
 
         FaqPage faqPage = callCenterIntroductionPageCC
                 .waitForPageLoad()
-                .chooseFromDropdown("FAQ");
+                .chooseFromNavigationMenu("FAQ", new FaqPage());
 
 //        faqPage
 //                .waitForPageLoad()
