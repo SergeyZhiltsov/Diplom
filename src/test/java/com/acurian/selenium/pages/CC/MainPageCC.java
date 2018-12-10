@@ -23,15 +23,6 @@ public class MainPageCC extends BasePage {
     @FindBy(xpath = "//button[text()='Next']")
     private WebElement nextButton;
 
-    @FindBy(xpath = "//ul/li[3]/a[@class='sf-with-ul']")
-    private WebElement callDropdownMenu;
-
-    @FindBy(xpath = "//ul/li[4]/a[@class='sf-with-ul']")
-    private WebElement abortDropdownSubMenu;
-
-    @FindBy(xpath = "//li/a[starts-with(@style,'float')]")
-    private List<WebElement> callDropdownMenuItems;
-
     private String pid;
 
     public MainPageCC() {
@@ -92,13 +83,6 @@ public class MainPageCC extends BasePage {
     public <T extends MainPageCC> T back(T page) {
         back();
         return (T) page;
-    }
-
-    @Step
-    public <T extends MainPageCC> T chooseFromNavigationMenu(String item, T page) {
-        getActions().moveToElement(callDropdownMenu).perform();
-        selectFromNavigationMenu(abortDropdownSubMenu, callDropdownMenuItems, item);
-        return page;
     }
 
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {

@@ -185,7 +185,7 @@ public abstract class BasePage {
     }
 
     /**
-     *  Select on item from navigation menu
+     *  Select item from navigation menu
      * @param menuButtom to open navigation menu
      * @param menuItems navigation menu items
      * @param item navigation menu item

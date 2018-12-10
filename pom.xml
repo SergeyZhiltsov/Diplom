@@ -98,6 +98,11 @@
       <scope>system</scope>
       <systemPath>${project.basedir}${file.separator}lib${file.separator}ojdbc7.jar</systemPath> <!-- must match file name -->
     </dependency>
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>3.8</version>
+    </dependency>
   </dependencies>
 
   <build>
