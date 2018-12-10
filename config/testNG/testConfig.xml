@@ -3,9 +3,10 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="2">
 
     <test name="Just for checking">
-        <packages>
-            <package name="com.acurian.selenium.tests.dispo.*" />
-        </packages>
+        <classes>
+            <class name="com.acurian.selenium.tests.dispo.Dispo1RqualifiedReferral"/>
+            <class name="com.acurian.selenium.tests.dispo.Dispo2CsiteProximity"/>
+        </classes>
     </test>
 
 </suite>
