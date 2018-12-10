@@ -27,7 +27,7 @@ public class DYS_3140_OLS extends BaseTest {
         String phoneNumber = "AUTAMS1DYS";
         String protocol1 = "1002_043";
 //        String[] protocols = {protocol1};
-        String studyName = "a high cholesterol and heart health";
+        String studyName = "a heart health";
         String siteName = "AUT_DYS_3140_site ";
 //        String debugSiteName = "QSC9004_4356A_AUT_DIA_4356A";
         String zipCode = "19901";
