@@ -1,20 +1,18 @@
 package com.acurian.selenium.pages.CC.faq;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.utils.CSVParser;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.LinkedHashMap;
+import java.util.List;
 
 public class FaqPage extends MainPageCC {
     private final String titleExpected = "Frequently Asked Questions";
     private final String projectTextExpected = "(ACURIAN PROJECT CODE: AMS1)";
-    private String csvFileName = "glossary.csv";
-    private CSVParser parser = new CSVParser(csvFileName);
-    public LinkedHashMap<String, String> expecedGlossaryData;
+    private final String csvFileName = "glossary.csv";
+    public List<String[]> expecedGlossaryData;
 
     @FindBy(xpath = "//div[@class='header']/h1")
     WebElement headerText;
@@ -30,7 +28,7 @@ public class FaqPage extends MainPageCC {
 
     public FaqPage() {
         PageFactory.initElements(getDriver(), this);
-        expecedGlossaryData = parser.getDataFrom2Columns();
+        expecedGlossaryData = getCsvParser().getData(csvFileName);
     }
 
     @Step

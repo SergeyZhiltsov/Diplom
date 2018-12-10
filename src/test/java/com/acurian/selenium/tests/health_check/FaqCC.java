@@ -54,9 +54,5 @@ public class FaqCC extends BaseTest {
         Assert.assertEquals(faqPage.getProjectText(),"(ACURIAN PROJECT CODE: AMS1)", "FAQ Project Code is diff");
         Assert.assertEquals(faqPage.getFirstNavigationText(),"General Information", "FAQ navigation content Text is diff");
         Assert.assertEquals(faqPage.getStudyHeaderText(),"Study Questions", "FAQ Study Text is diff");
-        for (String key : faqPage.expecedGlossaryData.keySet()) {
-            System.out.println(key);
-            System.out.println(faqPage.expecedGlossaryData.get(key));
-        }
     }
 }
