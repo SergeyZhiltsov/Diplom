@@ -19,7 +19,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class OBS_4605_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("OBS_4605_OLS")
     public void obs4605Ols() {
         final String phoneNumber = "AUTAMS1OBS";
