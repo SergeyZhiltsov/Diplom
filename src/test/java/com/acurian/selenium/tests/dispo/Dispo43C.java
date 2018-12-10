@@ -84,6 +84,7 @@ public class Dispo43C extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch("43C");
     }
 }

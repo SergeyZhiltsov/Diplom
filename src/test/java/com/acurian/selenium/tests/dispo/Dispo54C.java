@@ -78,6 +78,7 @@ public class Dispo54C extends BaseTest {
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch("54C");
     }
 }
