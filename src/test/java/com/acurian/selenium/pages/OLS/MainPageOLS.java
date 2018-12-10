@@ -27,6 +27,7 @@ public class MainPageOLS extends BasePage{
     private List<WebElement> images;
 
     String pid;
+    String dispoParent;
 
 
     public MainPageOLS() {
@@ -114,7 +115,8 @@ public class MainPageOLS extends BasePage{
         DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
         dbCon.dbRead(env, pid);
-        logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
+        dispoParent = dbCon.getDispo();
+        logTextToAllure("Dispo="+dispoParent+" for pid "+pid);
         return this;
     }
     
@@ -122,7 +124,7 @@ public class MainPageOLS extends BasePage{
         DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
         dbCon.dbReadChilPID(env, pid);
-        logTextToAllure("Dispo="+dbCon.getDispo()+"for pid "+pid);
+        logTextToAllure("Dispo="+dbCon.getDispo()+" for pid "+pid);
         return this;
     }
 
@@ -146,6 +148,16 @@ public class MainPageOLS extends BasePage{
 
     public String getPid() {
         return pid;
+    }
+
+    public String getParentDispo() {
+        return dispoParent;
+    }
+
+    @Step
+    public MainPageOLS dispoShouldMatch(String expectedParentDispo){
+        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo id different");
+        return this;
     }
 
     @Override

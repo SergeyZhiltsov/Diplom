@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.CC;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
@@ -23,7 +24,8 @@ public class MainPageCC extends BasePage {
     @FindBy(xpath = "//button[text()='Next']")
     private WebElement nextButton;
 
-    private String pid;
+    String pid;
+    String dispoParent;
 
     public MainPageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -42,7 +44,8 @@ public class MainPageCC extends BasePage {
         DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
         dbCon.dbRead(env, pid);
-        logTextToAllure("Dispo=" + dbCon.getDispo() + "for pid " + pid);
+        dispoParent = dbCon.getDispo();
+        logTextToAllure("Dispo="+dispoParent+" for pid "+pid);
         return this;
     }
 
@@ -66,6 +69,17 @@ public class MainPageCC extends BasePage {
     public <T extends MainPageCC> T clickNextButton(T page) {
         nextButton.click();
         return (T) page;
+    }
+
+
+    public String getParentDispo() {
+        return dispoParent;
+    }
+
+    @Step
+    public MainPageCC dispoShouldMatch(String expectedParentDispo){
+        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo id different");
+        return this;
     }
 
     @Override
