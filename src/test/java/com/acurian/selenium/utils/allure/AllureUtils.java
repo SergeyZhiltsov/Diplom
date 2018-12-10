@@ -23,9 +23,9 @@ public class AllureUtils {
         File dir = new File(patchToAllureDir);
         if (!dir.exists()) {
             if (dir.mkdir()) {
-                System.out.println("Directory is created!");
+                System.out.println("Allure directory is created!");
             } else {
-                System.out.println("Failed to create directory!");
+                System.out.println("Failed to create allure directory!");
             }
         }
 
