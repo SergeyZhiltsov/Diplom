@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class VACC_4556_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("VACC_4556_OLS")
     public void vacc4556Ols() {
         final String phoneNumber = "AUTAMS1VAC";

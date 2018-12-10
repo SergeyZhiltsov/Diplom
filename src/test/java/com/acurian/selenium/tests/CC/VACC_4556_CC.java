@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class VACC_4556_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @Description("VACC_4556_CC")
     public void vacc4556cc(final String username, final String password) {
         final String phoneNumber = "AUTAMS1VAC";
