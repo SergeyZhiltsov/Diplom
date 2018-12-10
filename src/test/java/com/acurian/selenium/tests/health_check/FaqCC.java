@@ -47,10 +47,8 @@ public class FaqCC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad();
         FaqPage faqPage = headerMenuPage
-                .chooseFromNavigationMenu("FAQ", new FaqPage())
-                .switchTab();
-        faqPage
-                .waitForPageLoad();
+                .hoverCallTab()
+                .clickFaqTab().switchTab();
 
         Assert.assertEquals(faqPage.getHeaderText(),"Frequently Asked Questions", "FAQ Header Text is diff");
         Assert.assertEquals(faqPage.getProjectText(),"(ACURIAN PROJECT CODE: AMS1)", "FAQ Project Code is diff");

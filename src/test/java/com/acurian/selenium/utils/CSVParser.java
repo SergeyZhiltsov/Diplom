@@ -12,15 +12,14 @@ public class CSVParser {
     private CSVReader reader;
 
     public CSVParser(String csvFileName) {
-        File file = new File(csvFileName);
         try {
-            reader = new CSVReader(new FileReader(file.getAbsolutePath()));
+            reader = new CSVReader(new FileReader(new File(System.getProperty("resources.dir") + csvFileName)));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public LinkedHashMap<String, String> getDataFrom2Rows() {
+    public LinkedHashMap<String, String> getDataFrom2Columns() {
         LinkedHashMap<String, String> data = new LinkedHashMap<>();
         String[] line;
         try {

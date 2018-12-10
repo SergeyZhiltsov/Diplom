@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 public class FaqPage extends MainPageCC {
     private final String titleExpected = "Frequently Asked Questions";
     private final String projectTextExpected = "(ACURIAN PROJECT CODE: AMS1)";
-    String csvFileName = "D:\\Git\\ams1_selenium\\src\\test\\resources\\glossary.csv";
+    private String csvFileName = "glossary.csv";
     private CSVParser parser = new CSVParser(csvFileName);
     public LinkedHashMap<String, String> expecedGlossaryData;
 
@@ -30,7 +30,7 @@ public class FaqPage extends MainPageCC {
 
     public FaqPage() {
         PageFactory.initElements(getDriver(), this);
-        expecedGlossaryData = parser.getDataFrom2Rows();
+        expecedGlossaryData = parser.getDataFrom2Columns();
     }
 
     @Step
@@ -54,7 +54,7 @@ public class FaqPage extends MainPageCC {
     }
 
     public FaqPage waitForPageLoad() {
-        waitForAnimation();
+//        waitForAnimation();
         waitForPageLoadMain(headerText, titleExpected);
         return this;
     }
