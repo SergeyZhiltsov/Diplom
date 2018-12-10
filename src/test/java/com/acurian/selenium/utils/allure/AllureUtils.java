@@ -15,12 +15,22 @@ import java.util.Properties;
 public class AllureUtils {
 
     public static void createProperties(WebDriver driver) {
+        String patchToAllureDir = "target/allure-results";
         Properties props = new Properties();
         OutputStream output = null;
         Capabilities caps = ((RemoteWebDriver) (((EventFiringWebDriver) driver).getWrappedDriver())).getCapabilities();
 
+        File dir = new File(patchToAllureDir);
+        if (!dir.exists()) {
+            if (dir.mkdir()) {
+                System.out.println("Directory is created!");
+            } else {
+                System.out.println("Failed to create directory!");
+            }
+        }
+
         try {
-            output = new FileOutputStream(new File("target/allure-results/environment.properties"));
+            output = new FileOutputStream(new File(patchToAllureDir+"/environment.properties"));
             props.setProperty("browser", caps.getBrowserName());
             props.setProperty("browserVersion", caps.getVersion());
             props.setProperty("environment", System.getProperty("acurian.env"));
