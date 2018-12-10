@@ -21,7 +21,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class DYS_3140_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @Description("Dyslipidemia 3140")
     public void dys_3140_ols() {
         String phoneNumber = "AUTAMS1DYS";
