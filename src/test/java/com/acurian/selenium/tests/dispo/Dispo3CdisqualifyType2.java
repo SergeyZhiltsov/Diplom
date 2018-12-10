@@ -78,6 +78,7 @@ public class Dispo3CdisqualifyType2 extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch("3I");
     }
 }

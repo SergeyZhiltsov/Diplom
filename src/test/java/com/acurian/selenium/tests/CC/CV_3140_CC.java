@@ -42,6 +42,7 @@ public class CV_3140_CC extends BaseTest {
         String siteName = "AUT_CV_3140_site";
         String debugSiteName = "";
         String zipCode = "19901";
+        String expectedDispo = "41C";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -382,6 +383,7 @@ public class CV_3140_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(expectedDispo);
     }
 }
