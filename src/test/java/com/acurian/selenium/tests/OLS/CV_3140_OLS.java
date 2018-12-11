@@ -37,6 +37,7 @@ public class CV_3140_OLS extends BaseTest {
         String studyName = "a heart health";
         String siteName = "AUT_CV_3140_site";
         String zipCode = "19901";
+        String expectedDispo = "41C";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -349,6 +350,7 @@ public class CV_3140_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(expectedDispo);
     }
 }
