@@ -6,12 +6,14 @@ import com.acurian.selenium.listeners.EventHandler;
 import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.utils.DriverFactory;
 import com.acurian.selenium.utils.Properties;
+import com.acurian.selenium.utils.allure.AllureUtils;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 
 import java.util.concurrent.TimeUnit;
@@ -27,6 +29,8 @@ public abstract class BaseTest {
 //        return driver;
         return DRIVER.get();
     }
+
+    public static boolean allureCounterRun = false;
 
     @BeforeClass
     public void setUp() {
@@ -51,6 +55,10 @@ public abstract class BaseTest {
         }
 //        System.setProperty(ESCAPE_PROPERTY, "false");
         DRIVER.set(driver);
+        if (!allureCounterRun) {
+            AllureUtils.createProperties(getDriver());
+            allureCounterRun = true;
+        }
         System.out.println("Browser version "+((RemoteWebDriver)(((EventFiringWebDriver)getDriver()).getWrappedDriver())).getCapabilities().getVersion());
     }
 

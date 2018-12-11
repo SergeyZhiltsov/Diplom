@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class FirstHeartAttackPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "How old were they when they had their first heart attack?";
+    public final String titleExpected = "Out of the relatives from the last question who have had a heart attack, what is the youngest age that they had a heart attack?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;

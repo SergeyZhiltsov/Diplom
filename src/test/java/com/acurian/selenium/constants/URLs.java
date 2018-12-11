@@ -7,7 +7,7 @@ public interface URLs {
 
     String CC_STG = "https://stg-cc.acuriancalls.com";
     String CC_QA = "https://lb-qa-cc.acuriancalls.com";
-    String CC_PROD = "http://acuriancalls.com";
+    String CC_PROD = "https://acuriancalls.com";
     // %1$s - phone number,   %2$s - debug code
     /*String OLS_STG = "http://acurianhealth-com.ahbrands.staging.wpengine.com/questionnaire_test_staging/welcome?pn=%1$s";
     String OLS_QA = "http://acurianhealth-com.ahbrands.staging.wpengine.com/questionnaire_test_qa/welcome?pn=%1$s"; */
