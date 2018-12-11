@@ -80,7 +80,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocols)
+                .checkProtocolsContainsForQNumber("QS4603", protocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -88,7 +88,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocols)
+                .checkProtocolsContainsForQNumber("QS4603", protocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -96,7 +96,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, protocols)
+                .checkProtocolsContainsForQNumber("QS4603", protocols)
                 .back();
         TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -105,7 +105,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         treatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(whatKindOfDiabetesPageOLS.titleExpected, AKC)
+                .checkProtocolsContainsForQNumber("QS4603", AKC)
                 .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -118,7 +118,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(withType2DiabetesPageOLS.titleExpected, protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("QS4604", protocol2, protocol3)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -126,7 +126,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(withType2DiabetesPageOLS.titleExpected, protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("QS4604", protocol2, protocol3)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -387,7 +387,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(liverRelatedConditionOLS.titleExpected, AKC)
+                .checkProtocolsContainsForQNumber("QS4624", AKC)
                 .getPage(followingToLoseWeightPageOLS)
                 .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageOLS());
