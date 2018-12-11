@@ -26,7 +26,7 @@ public class LOWT_3017_FROM_CV_CC extends BaseTest {
         final String sanofiT2DMCV = "EFC14828";
         final String[] cvModuleProtocols = {esperionProtocol, kowaProtocol, sanofiT2DMCV};
         final String dqedStudyName = "a heart health study";
-        final String studyName = "a men's low testosterone";
+        final String studyName = "a men's low testosterone study";
         final String site_Indication = "low testosterone or hypogonadism";
         final String siteName = "AUT_LOWT_3017_Site";
         final String zipCode = "19901";
