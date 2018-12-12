@@ -199,6 +199,7 @@ public abstract class BasePage {
      */
     protected void selectFromNavigationMenu(WebElement menuButtom, List<WebElement> menuItems, String item) {
         try {
+            driverWait.waitforVisibility(menuButtom);
             actions.moveToElement(menuButtom).perform();
             menuItems.stream().filter(webElement -> webElement.getText().equals(item))
                     .findFirst()
@@ -239,6 +240,10 @@ public abstract class BasePage {
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) driver).executeScript(
                 "return jQuery.active == 0"
         ));
+    }
+
+    protected void waitForNumberOfWindowsToEqual(int numberOfWindows) {
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) webDriver -> webDriver.getWindowHandles().size() == numberOfWindows);
     }
 
     /**
