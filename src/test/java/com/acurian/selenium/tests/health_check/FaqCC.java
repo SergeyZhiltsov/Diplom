@@ -43,11 +43,9 @@ public class FaqCC extends BaseTest {
                 .activateDebugOnProd(env);
         Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
 
-
         HeaderMenuPage headerMenuPage = new HeaderMenuPage();
         FaqPage faqPage = headerMenuPage
-                .hoverCallTab()
-                .clickFaqTab()
+                .chooseFromNavigationMenu("FAQ", new FaqPage())
                 .switchTab();
 
         Assert.assertEquals(faqPage.getHeaderText(),"Frequently Asked Questions", "FAQ Header Text is diff");
