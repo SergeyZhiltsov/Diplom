@@ -6,13 +6,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FaqPage extends MainPageCC {
     private final String titleExpected = "Frequently Asked Questions";
     private final String projectTextExpected = "(ACURIAN PROJECT CODE: AMS1)";
     private final String csvFileName = "glossary.csv";
-    public List<String[]> expecedGlossaryData;
+    private List<String[]> expectedGlossaryData;
+    public ArrayList<String> expectedTermTitles;
+    public ArrayList<String> expectedDefinisionTitles;
+
 
     @FindBy(xpath = "//div[@class='header']/h1")
     WebElement headerText;
@@ -26,9 +31,17 @@ public class FaqPage extends MainPageCC {
     @FindBy(xpath = "//div[@class='container']/div[@class='content']/div[@class='section']/h3[1]")
     WebElement studyHeaderText;
 
+    @FindBy(xpath = "//a[@name='a_glossary']/following-sibling::dl/dt")
+    public List<WebElement> glossaryTerms;
+
+    @FindBy(xpath = "//a[@name='a_glossary']/following-sibling::dl/dd")
+    public List<WebElement> glossaryDefinisions;
+
     public FaqPage() {
         PageFactory.initElements(getDriver(), this);
-        expecedGlossaryData = getCsvParser().getData(csvFileName);
+        expectedGlossaryData = getCsvParser().getData(csvFileName);
+        expectedTermTitles = getExpectedTermTitles();
+        expectedDefinisionTitles = getExpectedDefinisionTitles();
     }
 
     @Step
@@ -55,5 +68,21 @@ public class FaqPage extends MainPageCC {
 //        waitForAnimation();
         waitForPageLoadMain(headerText, titleExpected);
         return this;
+    }
+
+    private ArrayList<String> getExpectedTermTitles() {
+        ArrayList<String> data = new ArrayList<>();
+        for (String[] tempArray : expectedGlossaryData) {
+            data.add(tempArray[0]);
+        }
+        return data;
+    }
+
+    private ArrayList<String> getExpectedDefinisionTitles() {
+        ArrayList<String> data = new ArrayList<>();
+        for (String[] tempArray : expectedGlossaryData) {
+            data.addAll(Arrays.asList(tempArray).subList(1, tempArray.length)); // 1 - ignore term column
+        }
+        return data;
     }
 }
