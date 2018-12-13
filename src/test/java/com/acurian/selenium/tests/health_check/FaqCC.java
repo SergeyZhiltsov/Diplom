@@ -43,16 +43,25 @@ public class FaqCC extends BaseTest {
                 .activateDebugOnProd(env);
         Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
 
-
         HeaderMenuPage headerMenuPage = new HeaderMenuPage();
         FaqPage faqPage = headerMenuPage
-                .hoverCallTab()
-                .clickFaqTab()
+                .chooseFromNavigationMenu("FAQ", new FaqPage())
                 .switchTab();
 
         Assert.assertEquals(faqPage.getHeaderText(),"Frequently Asked Questions", "FAQ Header Text is diff");
         Assert.assertEquals(faqPage.getProjectText(),"(ACURIAN PROJECT CODE: AMS1)", "FAQ Project Code is diff");
         Assert.assertEquals(faqPage.getFirstNavigationText(),"General Information", "FAQ navigation content Text is diff");
         Assert.assertEquals(faqPage.getStudyHeaderText(),"Study Questions", "FAQ Study Text is diff");
+
+        for (int i = 0; i < faqPage.expectedTermTitles.size(); i++) {
+            System.out.println("Comparing " + faqPage.expectedTermTitles.get(i) + " with " + faqPage.glossaryTerms.get(i).getText());
+            Assert.assertEquals(faqPage.glossaryTerms.get(i).getText(), faqPage.expectedTermTitles.get(i),"Glossary term is Diff");
+        }
+
+        for (int i = 0; i < faqPage.expectedDefinisionTitles.size(); i++) {
+            System.out.println("Comparing " + faqPage.glossaryDefinisions.get(i).getText() + " with " + faqPage.expectedDefinisionTitles.get(i));
+            Assert.assertEquals(faqPage.glossaryDefinisions.get(i).getText(), faqPage.expectedDefinisionTitles.get(i), " Glossary definision is Diff");
+        }
+
     }
 }

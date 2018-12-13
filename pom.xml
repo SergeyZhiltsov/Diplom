@@ -28,6 +28,7 @@
     <report.dir>${project.basedir}${file.separator}report</report.dir>
 
     <suite.dir>${config.dir}${file.separator}testNG${file.separator}</suite.dir>
+    <resources.dir>${project.basedir}${file.separator}src${file.separator}test${file.separator}resources${file.separator}</resources.dir>
 
     <!--Debug suite-->
     <debugSuite>${config.dir}debug.xml</debugSuite>
@@ -98,6 +99,11 @@
       <scope>system</scope>
       <systemPath>${project.basedir}${file.separator}lib${file.separator}ojdbc7.jar</systemPath> <!-- must match file name -->
     </dependency>
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>3.8</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -125,6 +131,7 @@
             <selenium.grid>${selenium.grid}</selenium.grid>
             <acurian.env>${base.env}</acurian.env>
             <acurian.platform>${platform}</acurian.platform>
+            <resources.dir>${resources.dir}</resources.dir>
           </systemPropertyVariables>
           <properties>
             <property>

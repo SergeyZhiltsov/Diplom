@@ -29,6 +29,9 @@
 *.csv
 *.xlsx
 
+# List included csv files
+!glossary.csv
+
 
 # IntelliJ
 /out/

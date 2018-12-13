@@ -2,6 +2,7 @@ package com.acurian.selenium.pages;
 
 
 import com.acurian.selenium.listeners.TestListener;
+import com.acurian.selenium.utils.CSVParser;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.ashot.AShot;
@@ -28,6 +30,7 @@ public abstract class BasePage {
     protected WebDriverWaitLogged driverWait;
     private Actions actions;
     protected NgWebDriver ngDriver;
+    private CSVParser csvParser;
 
 
     public BasePage() {
@@ -35,6 +38,7 @@ public abstract class BasePage {
         actions = new Actions(driver);
         driverWait = new WebDriverWaitLogged(driver);
         ngDriver = new NgWebDriver((JavascriptExecutor) driver);
+        csvParser = new CSVParser();
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -44,6 +48,10 @@ public abstract class BasePage {
 
     protected Actions getActions(){
         return actions;
+    }
+
+    protected CSVParser getCsvParser() {
+        return csvParser;
     }
 
     @Step
@@ -183,6 +191,26 @@ public abstract class BasePage {
         return dropDownList.getOptions().stream().map(e -> e.getAttribute("value")).collect(Collectors.toList());
     }
 
+    /**
+     *  Select item from navigation menu
+     * @param menuButtom to open navigation menu
+     * @param menuItems navigation menu items
+     * @param item navigation menu item
+     */
+    protected void selectFromNavigationMenu(WebElement menuButtom, List<WebElement> menuItems, String item) {
+        try {
+            driverWait.waitforVisibility(menuButtom);
+            actions.moveToElement(menuButtom).perform();
+            menuItems.stream().filter(webElement -> webElement.getText().equals(item))
+                    .findFirst()
+                    .get()
+                    .click();
+        } catch (WebDriverException e) {
+            Assert.fail("Navigation menu or its item wasn't found");
+            throw e;
+        }
+    }
+
     //waits
 
     protected void waitForNetwork(int timeoutInSeconds) {
@@ -212,6 +240,10 @@ public abstract class BasePage {
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) driver).executeScript(
                 "return jQuery.active == 0"
         ));
+    }
+
+    protected void waitForNumberOfWindowsToEqual(int numberOfWindows) {
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) webDriver -> webDriver.getWindowHandles().size() == numberOfWindows);
     }
 
     /**
