@@ -21,6 +21,7 @@ import java.util.Map;
 
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
@@ -28,8 +29,15 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class CV_5034_OLS extends BaseTest {
 
+    @DataProvider(name = "5034SitesWithDispo")
+    public static Object[][] get5034SitesAndDispoData() {
+        return new Object[][] {
+                {"AUT_CV_5034A_site", "1R"},
+                {"AUT_CV_5034S_site", "41C"}
+        };
+    }
 
-    @Test(dataProvider = "5034SitesWithDispo", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "5034SitesWithDispo")
     @TestCaseId("00053")
     @Description("CV_5034_OLS")
     public void CV_5034_OLS_Test(final String siteName, final String dispo) {
@@ -103,16 +111,6 @@ public class CV_5034_OLS extends BaseTest {
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(transitionalStatementLowtPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", protocols)
-                .back();
-
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(transitionalStatementLowtPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -168,7 +166,6 @@ public class CV_5034_OLS extends BaseTest {
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageOLS());
 
-
         //-------Q5: WithType2DiabetesPageOLS------------
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -183,7 +180,6 @@ public class CV_5034_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("1 to less than 5 years ago")
                 .clickNextButton(new MedicationsForYourDiabetesPageOLS());
-
 
         //-------Q6: Do you currently take any of the following specific medications for your diabetes?------------
         medicationsForYourDiabetesPageOLS
@@ -207,13 +203,11 @@ public class CV_5034_OLS extends BaseTest {
                 .clickOnAnswers("Atorvastatin")
                 .clickNextButton(new StopTakingStatinPageOLS());
 
-
         //-------Q8: Has a doctor ever told you to stop taking a statin medication due to side effects or intolerance?
         WhileTakingStatinPageOLS whileTakingStatinPageOLS = stopTakingStatinPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new WhileTakingStatinPageOLS());
-
 
         //-------Q9: Have you ever experienced any of the following while taking a statin medication?
         whileTakingStatinPageOLS
@@ -228,8 +222,7 @@ public class CV_5034_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(triglyceridesOrLipidsPageOLS);
 
-
-        //-------Q11: triglyceridesOrLipidsPageOLS 
+        //-------Q11: triglyceridesOrLipidsPageOLS
         HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = triglyceridesOrLipidsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -243,7 +236,6 @@ public class CV_5034_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(heartOrBloodVesselPageOLS);
-
 
         //-----Q12:  Have you experienced any of the following heart or blood vessel related events?
         HaveDoctorEverDiagnosedYou_OLS haveDoctorEverDiagnosedYou_OLS = heartOrBloodVesselPageOLS
@@ -265,7 +257,6 @@ public class CV_5034_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart attack", "Stroke", "TIA or \"Mini-Stroke\"")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-
 
         //---Q13: When was the last time that you experienced a heart attack? 
         subquestionExperiencedHeartPageOLS
@@ -299,7 +290,6 @@ public class CV_5034_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_OLS());
 
-
         //------Q15:  Have you experienced any of the following cardiovascular interventions or surgeries?
         HeartrelatedMedicalConditionsProceduresPageOLS heartrelatedMedicalConditionsProceduresPageOLS = haveDoctorEverDiagnosedYou_OLS
                 .waitForPageLoad()
@@ -313,30 +303,25 @@ public class CV_5034_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalConditionsProceduresPageOLS());
 
-
         RelativesHeartAttackPageOLS relativesHeartAttackPageOLS = heartrelatedMedicalConditionsProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new RelativesHeartAttackPageOLS());
-
 
         FirstHeartAttackPageOLS firstHeartAttackPageOLS = relativesHeartAttackPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Brother")
                 .clickNextButton(new FirstHeartAttackPageOLS());
 
-
         EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = firstHeartAttackPageOLS
                 .waitForPageLoad()
                 .setYears("30")
                 .clickNextButton(new EverSmokedCigarettesPageOLS());
 
-
         ApproximateHeightPageOLS approximateHeightPageOLS = everSmokedCigarettesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new ApproximateHeightPageOLS());
-
 
         TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS1 = approximateHeightPageOLS
                 .waitForPageLoad()
@@ -384,7 +369,6 @@ public class CV_5034_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Gastric bypass")
                 .clickNextButton(new ProcedureForWeightLossPageOLS());
-
 
         HealthcareDiagnosedConditionsPageOLS healthcareDiagnosedConditionsPageOLS = new HealthcareDiagnosedConditionsPageOLS();
         procedureForWeightLossPageOLS
