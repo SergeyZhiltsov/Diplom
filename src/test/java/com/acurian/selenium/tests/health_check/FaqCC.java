@@ -54,12 +54,12 @@ public class FaqCC extends BaseTest {
         Assert.assertEquals(faqPage.getStudyHeaderText(),"Study Questions", "FAQ Study Text is diff");
 
         for (int i = 0; i < faqPage.expectedTermTitles.size(); i++) {
-            System.out.println("Comparing " + faqPage.expectedTermTitles.get(i) + " with " + faqPage.glossaryTerms.get(i).getText());
+            System.out.println("Comparing " + "[ " + faqPage.expectedTermTitles.get(i) + " ] with [ " + faqPage.glossaryTerms.get(i).getText() + " ]");
             Assert.assertEquals(faqPage.glossaryTerms.get(i).getText(), faqPage.expectedTermTitles.get(i),"Glossary term is Diff");
         }
 
         for (int i = 0; i < faqPage.expectedDefinisionTitles.size(); i++) {
-            System.out.println("Comparing " + faqPage.glossaryDefinisions.get(i).getText() + " with " + faqPage.expectedDefinisionTitles.get(i));
+            System.out.println("Comparing " + "[ " + faqPage.glossaryDefinisions.get(i).getText() + " ] with [ " + faqPage.expectedDefinisionTitles.get(i) + " ]");
             Assert.assertEquals(faqPage.glossaryDefinisions.get(i).getText(), faqPage.expectedDefinisionTitles.get(i), " Glossary definision is Diff");
         }
 
