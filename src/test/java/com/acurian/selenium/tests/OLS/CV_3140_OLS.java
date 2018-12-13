@@ -18,6 +18,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -28,16 +29,25 @@ import java.util.Map;
 
 public class CV_3140_OLS extends BaseTest {
 
-    @Test(enabled = true)
-    @Description("IBS 4819 OLS")
-    public void cv3140olsTest() {
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][] {
+                {"AUT_CV_3140_site", "41C", "19901"},
+                {"AUT_CV_3140A_site", "1R", "45205"}
+        };
+    }
+
+    @Test(enabled = true, dataProvider = "sites")
+    @Description("CV 3140 OLS")
+    public void cv3140olsTest(String siteName, String expectedDispo, String zipCode) {
         String phoneNumber = "AUTAMS1CV1";
         String protocol1 = "1002_043";
-//        String[] protocols = {protocol1, protocol2, AKC, protocol3};
+        String protocol2 = "1002_043_A";
+        String[] protocols = {protocol1, protocol2};
         String studyName = "a heart health";
-        String siteName = "AUT_CV_3140_site";
-        String zipCode = "19901";
-        String expectedDispo = "41C";
+//        String siteName = "AUT_CV_3140_site";
+//        String zipCode = "19901";
+//        String expectedDispo = "41C";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -71,7 +81,7 @@ public class CV_3140_OLS extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", protocol1)
+                .checkProtocolsContainsForQNumber("QS6703", protocols)
                 .back();
         StatinMedicationsHavePageOLS statinMedicationsHavePageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
@@ -86,7 +96,7 @@ public class CV_3140_OLS extends BaseTest {
         triglyceridesOrLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6707", protocol1)
+                .checkProtocolsContainsForQNumber("QS6707", protocols)
                 .back();
         StopTakingStatinPageOLS stopTakingStatinPageOLS = statinMedicationsHavePageOLS
                 .waitForPageLoad()
@@ -104,7 +114,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(triglyceridesOrLipidsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6710", protocol1)
+                .checkProtocolsContainsForQNumber("QS6710", protocols)
                 .back();
         whileTakingStatinPageOLS
                 .waitForPageLoad()
@@ -118,7 +128,7 @@ public class CV_3140_OLS extends BaseTest {
         heartOrBloodVesselPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6711", protocol1)
+                .checkProtocolsContainsForQNumber("QS6711", protocols)
                 .back();
         triglyceridesOrLipidsPageOLS
                 .waitForPageLoad()
@@ -154,7 +164,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(anginaOrChestPainPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6713", protocol1)
+                .checkProtocolsContainsForQNumber("QS6713", protocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -164,7 +174,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(anginaOrChestPainPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6713", protocol1)
+                .checkProtocolsContainsForQNumber("QS6713", protocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -174,7 +184,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(anginaOrChestPainPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6713", protocol1)
+                .checkProtocolsContainsForQNumber("QS6713", protocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -189,7 +199,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(haveDoctorEverDiagnosedYou_ols)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6714", protocol1)
+                .checkProtocolsContainsForQNumber("QS6714", protocols)
                 .back();
         anginaOrChestPainPageOLS
                 .waitForPageLoad()
@@ -197,7 +207,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(haveDoctorEverDiagnosedYou_ols)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6714", protocol1)
+                .checkProtocolsContainsForQNumber("QS6714", protocols)
                 .back();
         anginaOrChestPainPageOLS
                 .waitForPageLoad()
@@ -216,10 +226,35 @@ public class CV_3140_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalConditionsProceduresPageOLS());
 
-        RelativesHeartAttackPageOLS relativesHeartAttackPageOLS = heartrelatedMedicalConditionsProceduresPageOLS
+        ReceivedHeartProcedurePageOLS receivedHeartProcedurePageOLS = heartrelatedMedicalConditionsProceduresPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Angioplasty procedure")
+                .clickNextButton(new ReceivedHeartProcedurePageOLS());
+
+        RelativesHeartAttackPageOLS relativesHeartAttackPageOLS = receivedHeartProcedurePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(new RelativesHeartAttackPageOLS());
+        relativesHeartAttackPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6717", protocols)
+                .back();
+        receivedHeartProcedurePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("1 - 3 months ago")
+                .clickNextButton(relativesHeartAttackPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6717", protocols)
+                .back();
+        receivedHeartProcedurePageOLS
+                .waitForPageLoad()
+                .back();
+        heartrelatedMedicalConditionsProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new RelativesHeartAttackPageOLS());
+                .clickNextButton(relativesHeartAttackPageOLS);
 
         FirstHeartAttackPageOLS firstHeartAttackPageOLS = relativesHeartAttackPageOLS
                 .waitForPageLoad()
@@ -242,7 +277,7 @@ public class CV_3140_OLS extends BaseTest {
         transitionalStatementLowtPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6722", protocol1)
+                .checkProtocolsContainsForQNumber("QS6722", protocols)
                 .back();
         approximateHeightPageOLS
                 .waitForPageLoad()
@@ -267,7 +302,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .checkProtocolsContainsForQNumber("QS6724", protocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -275,7 +310,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .checkProtocolsContainsForQNumber("QS6724", protocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -283,7 +318,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .checkProtocolsContainsForQNumber("QS6724", protocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -291,7 +326,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .checkProtocolsContainsForQNumber("QS6724", protocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -299,7 +334,7 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6724", protocol1)
+                .checkProtocolsContainsForQNumber("QS6724", protocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -311,13 +346,13 @@ public class CV_3140_OLS extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS);
 
         HashMap<String, List<String>> options = new HashMap<>();
-        options.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(protocol1));
-        options.put("Cirrhosis of the liver", Arrays.asList(protocol1));
-        options.put("Drug or alcohol abuse within the past year", Arrays.asList(protocol1));
-        options.put("Hepatitis B", Arrays.asList(protocol1));
-        options.put("Hepatitis C", Arrays.asList(protocol1));
-        options.put("HIV or AIDS", Arrays.asList(protocol1));
-        options.put("Kidney disease requiring dialysis or transplant", Arrays.asList(protocol1));
+        options.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(protocols));
+        options.put("Cirrhosis of the liver", Arrays.asList(protocols));
+        options.put("Drug or alcohol abuse within the past year", Arrays.asList(protocols));
+        options.put("Hepatitis B", Arrays.asList(protocols));
+        options.put("Hepatitis C", Arrays.asList(protocols));
+        options.put("HIV or AIDS", Arrays.asList(protocols));
+        options.put("Kidney disease requiring dialysis or transplant", Arrays.asList(protocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
             healthcareDiagnosedConditionsPageOLS
