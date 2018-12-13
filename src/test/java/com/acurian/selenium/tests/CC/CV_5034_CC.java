@@ -42,24 +42,36 @@ import java.util.Map;
 
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
 public class CV_5034_CC extends BaseTest {
+    int run = 0;
 
-    @Test(dataProvider = "5034SitesWithDispo", dataProviderClass = CV_5034_OLS.class, enabled = false)
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+        run = ++run;
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS.class)
     @TestCaseId("00020")
     @Description("Diabetes_4356A_Synexus for CC")
-    public void CV_5034_CC_Test(final String siteName, final String dispo) {
+    public void CV_5034_CC_Test(final String siteName, final String dispo, final String zipCode) {
         String phoneNumber = "AUTAMS1CV1";
         final String protocolA = "K_877_302_A";
         final String protocolS = "K_877_302_S";
         final String[] protocols = {protocolA, protocolS};
         String studyName = "a heart health study";
-        String studyName1 = "a heart health study";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -442,23 +454,38 @@ public class CV_5034_CC extends BaseTest {
                     .back();
         }
 
-        healthcareDiagnosedConditionsPageCC
+        IdentificationPageCC identificationPageCC = healthcareDiagnosedConditionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new IdentificationPageCC())
+                .clickNextButton(new IdentificationPageCC());
+        SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
-                .getPID()
-                //----------SITE Selection Page--------------------
-                .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .dispoShouldMatch(dispo);
+                .getPID();
+        switch (run) {
+            case 1:
+                selectionPageCC
+                        .clickOnAnswer(siteName)
+                        .clickNextButton(new QualifiedClose2PageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(dispo);
+                break;
+            case 2:
+                selectionPageCC
+                        .clickOnAnswer(siteName)
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(dispo);
+        }
     }
 }
