@@ -29,25 +29,24 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class CV_5034_OLS extends BaseTest {
 
-    @DataProvider(name = "5034SitesWithDispo")
-    public static Object[][] get5034SitesAndDispoData() {
+    @DataProvider(name = "5034Sites")
+    public static Object[][] getData() {
         return new Object[][] {
-                {"AUT_CV_5034A_site", "1R"},
-                {"AUT_CV_5034S_site", "41C"}
+                {"AUT_CV_5034A_site", "1R", "45205"},
+                {"AUT_CV_5034S_site", "41C", "19901"}
         };
     }
 
-    @Test(dataProvider = "5034SitesWithDispo", enabled = false)
+    @Test(dataProvider = "5034Sites")
     @TestCaseId("00053")
     @Description("CV_5034_OLS")
-    public void CV_5034_OLS_Test(final String siteName, final String dispo) {
+    public void CV_5034_OLS_Test(final String siteName, final String dispo, final String zipCode) {
 
         final String phoneNumber = "AUTAMS1CV1";
         final String protocolA = "K_877_302_A";
         final String protocolS = "K_877_302_S";
         final String[] protocols = {protocolA, protocolS};
         final String studyName = "a heart health";
-        final String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
