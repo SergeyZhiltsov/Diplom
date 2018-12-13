@@ -22,10 +22,9 @@ import java.util.*;
 
 public class KAD_4849_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("Kiniksa Atopic Dermatitis")
     @Description("KAD 4849 for CC")
-
     public void kad4849_CC_Test(final String username, final String password) {
         String phoneNumber = "AUTAMS1KAD";
         String protocol1 = "ANB020_005";
@@ -185,7 +184,6 @@ public class KAD_4849_CC extends BaseTest {
                 .selectFromDropDown("10")
                 .clickNextButton(haveYouEverTreatedYourEczema_CC);
 
-
         //-----------------Q17: HaveYouEverTreatedYourEczema_CC -------------
         haveYouEverTreatedYourEczema_CC
                 .waitForPageLoad();
@@ -202,13 +200,18 @@ public class KAD_4849_CC extends BaseTest {
                 .clickOnAnswer("Yes, within the past year")    //final selection
                 .clickNextButton(new OverallHowWellDidTopicalMedicationYouTried_CC());
 
-
 //--------------Q18- OverallHowWellDidTopicalMedicationYouTried_CC ----------
         overallHowWellDidTopicalMedicationYouTried_CC
                 .waitForPageLoad()
                 .clickOnAnswer("My symptoms went away completely")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_CC)
+                .waitForPageLoad()
+                .back(overallHowWellDidTopicalMedicationYouTried_CC)
+                .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_CC)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(whichofthefollowingMedicationsTherapies_CC);
-
 
 //--------------Q19- whichofthefollowingMedicationsTherapies_CC ----------
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMedsCc = whichofthefollowingMedicationsTherapies_CC
@@ -226,24 +229,11 @@ public class KAD_4849_CC extends BaseTest {
                 .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
                 .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
 
-
 //--------------Q20- DidYouReceiveAnyTherapiesPastYear_CC ----------
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC = didYouReceiveAnyTherapiesPastYear_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
-                .waitForPageLoadKAD()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1)
-                .back();
-
-        didYouReceiveAnyTherapiesPastYear_CC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);
-
 
         //-----------------Q22:  AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC--
         HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = new HaveYouEverTakenEitherAnyOfFollowingMeds_CC();

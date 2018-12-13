@@ -17,7 +17,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class KAD_4849_OLS extends BaseTest{
 
-    @Test(enabled = true)
+    @Test()
     @Description("kad4849 OLS Test")
     public void kad4849_OLS_Test() {
         String phoneNumberMIG = "AUTAMS1KAD";
@@ -101,7 +101,6 @@ public class KAD_4849_OLS extends BaseTest{
 					.clickOnAnswer("2 years or more")
 					.clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
 
-		
 		whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
 					.waitForPageLoad()
 					.clickOnAnswers("None of these")
@@ -114,33 +113,25 @@ public class KAD_4849_OLS extends BaseTest{
 					.clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
 					.clickNextButton(new WeWantToMakeSureTheImagesDisplayProperly_OLS());
 		
-		
 		WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS = weWantToMakeSureTheImagesDisplayProperly_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("Computer or tablet")
-					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());		
-		whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS.threadSleep(2000);
-		
-		
+					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
+
 		WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS = whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
 			 		.waitForPageLoad()
 			 		.clickOnAnswer("A")
 			 		.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS());
-		whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS.threadSleep(2000);
-		
 		
 		WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS = whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("A")
 					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS());
-		whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS.threadSleep(2000);
-		
-		
+
 		WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS = whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS
 					.waitForPageLoad()
 					.clickOnAnswer("A")
 					.clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
-		whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS.threadSleep(2000);
 		//BiologicMedications biologicMedications = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 		HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 					.waitForPageLoad()
@@ -225,21 +216,21 @@ public class KAD_4849_OLS extends BaseTest{
 				.waitForPageLoad();
 				OverallHowWellDidTopicalMedicationYouTried_OLS overallHowWellDidTopicalMedicationYouTried_OLS = haveYouEverTreatedYourEczema_OLS
 				.clickOnAnswer("Yes, but more than 1 year ago")
-				.clickOnAnswer("Yes, within the past year")    //final selection
+				.clickOnAnswer("Yes, within the past year")
 				.clickNextButton(new OverallHowWellDidTopicalMedicationYouTried_OLS());
-		
-		
-		//--------------Q18- OverallHowWellDidTopicalMedicationYouTried_OLS ----------
+
 		overallHowWellDidTopicalMedicationYouTried_OLS
 				.waitForPageLoad()
-		//WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = overallHowWellDidTopicalMedicationYouTried_OLS
 				.clickOnAnswer("My symptoms did not change")
-				.clickOnAnswer("My symptoms got a little bit better")
-				.clickOnAnswer("My symptoms got a lot better")
-				.clickOnAnswer("My symptoms went away completely")  //final selection
-				.clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
-		
-		
+				.clickNextButton(whichofthefollowingMedicationsTherapies_OLS)
+				.waitForPageLoad()
+				.back(overallHowWellDidTopicalMedicationYouTried_OLS)
+				.waitForPageLoad()
+				.back(haveYouEverTreatedYourEczema_OLS)
+				.waitForPageLoad()
+				.clickOnAnswer("No")
+				.clickNextButton(whichofthefollowingMedicationsTherapies_OLS);
+
 		//--------------Q19- whichofthefollowingMedicationsTherapies_OLS ----------
 		whichofthefollowingMedicationsTherapies_OLS
 					.waitForPageLoad()
@@ -262,8 +253,6 @@ public class KAD_4849_OLS extends BaseTest{
 					.clickOnAnswers("Prednisone (Brand names: Deltasone, Prednisone Intensol, or Rayos)")
 					.clickOnAnswers("Phototherapy (Ultraviolet or UV light)")
 					.clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
-
-		
 		
 		//--------------Q20- DidYouReceiveAnyTherapiesPastYear_OLS ----------
 		didYouReceiveAnyTherapiesPastYear_OLS
@@ -271,15 +260,6 @@ public class KAD_4849_OLS extends BaseTest{
 		BiologicMedications biologicMedications = didYouReceiveAnyTherapiesPastYear_OLS
 					.clickOnAnswer("No")
 					.clickNextButton(new BiologicMedications());
-		biologicMedications
-					.waitForPageLoad();
-					debugPageOLS.checkProtocolsContainsForQNumber("QS5829", protocol1);
-					debugPageOLS.back();
-		didYouReceiveAnyTherapiesPastYear_OLS
-					.waitForPageLoad()				
-					.clickOnAnswer("Yes")
-					.clickNextButton(new BiologicMedications());
-		
 		
 		//------------Q22- BiologicMedications ----------------
 		biologicMedications
