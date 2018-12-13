@@ -37,7 +37,7 @@ public class CV_5034_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "5034SitesWithDispo")
+    @Test(dataProvider = "5034SitesWithDispo", enabled = false)
     @TestCaseId("00053")
     @Description("CV_5034_OLS")
     public void CV_5034_OLS_Test(final String siteName, final String dispo) {

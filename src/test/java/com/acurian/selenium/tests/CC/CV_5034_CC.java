@@ -49,7 +49,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class CV_5034_CC extends BaseTest {
 
-    @Test(dataProvider = "5034SitesWithDispo", dataProviderClass = CV_5034_OLS.class)
+    @Test(dataProvider = "5034SitesWithDispo", dataProviderClass = CV_5034_OLS.class, enabled = false)
     @TestCaseId("00020")
     @Description("Diabetes_4356A_Synexus for CC")
     public void CV_5034_CC_Test(final String siteName, final String dispo) {
