@@ -9,15 +9,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FaqPage extends MainPageCC {
-    private final String titleExpected = "Frequently Asked Questions";
-    private final String projectTextExpected = "(ACURIAN PROJECT CODE: AMS1)";
-    private final String csvFileName = "\\glossary.csv";
-    private List<String[]> expectedGlossaryData;
-    public ArrayList<String> expectedTermTitles;
-    public ArrayList<String> expectedDefinisionTitles;
-
+    private final String csvFileName = "\\faqData.csv";
+    private List<String[]> expectedFaqData;
+    public ArrayList<String> expectedFaqTitles;
+    public ArrayList<String> expectedFaqDefinisions;
 
     @FindBy(xpath = "//div[@class='header']/h1")
     WebElement headerText;
@@ -31,17 +29,19 @@ public class FaqPage extends MainPageCC {
     @FindBy(xpath = "//div[@class='container']/div[@class='content']/div[@class='section']/h3[1]")
     WebElement studyHeaderText;
 
-    @FindBy(xpath = "//a[@name='a_glossary']/following-sibling::dl/dt")
-    public List<WebElement> glossaryTerms;
+    @FindBy(xpath = "//div[@class='section']//dt")
+    public List<WebElement> faqTitles;
 
-    @FindBy(xpath = "//a[@name='a_glossary']/following-sibling::dl/dd")
-    public List<WebElement> glossaryDefinisions;
+    @FindBy(xpath = "//div[@class='section']//dd")
+    public List<WebElement> faqDefinitions;
+
+    public List<WebElement> filteredDefinitions;
 
     public FaqPage() {
         PageFactory.initElements(getDriver(), this);
-        expectedGlossaryData = getCsvParser().getData(csvFileName);
-        expectedTermTitles = getExpectedTermTitles();
-        expectedDefinisionTitles = getExpectedDefinisionTitles();
+        expectedFaqData = getCsvParser().getData(csvFileName);
+        expectedFaqTitles = getExpectedFaqTitles();
+        expectedFaqDefinisions = getExpectedFaqDefinisions();
     }
 
     @Step
@@ -64,24 +64,25 @@ public class FaqPage extends MainPageCC {
         return studyHeaderText.getText();
     }
 
-    public FaqPage waitForPageLoad() {
-//        waitForAnimation();
-        waitForPageLoadMain(headerText, titleExpected);
-        return this;
+    public void filtereFaqDefinitions() {
+        List<WebElement> temp;
+        temp = faqDefinitions.stream().filter(el -> !(el.getText().equals(""))).collect(Collectors.toList());
+        filteredDefinitions = temp;
     }
 
-    private ArrayList<String> getExpectedTermTitles() {
+    private ArrayList<String> getExpectedFaqTitles() {
         ArrayList<String> data = new ArrayList<>();
-        for (String[] tempArray : expectedGlossaryData) {
+        for (String[] tempArray : expectedFaqData) {
             data.add(tempArray[0]);
         }
         return data;
     }
 
-    private ArrayList<String> getExpectedDefinisionTitles() {
+    private ArrayList<String> getExpectedFaqDefinisions() {
         ArrayList<String> data = new ArrayList<>();
-        for (String[] tempArray : expectedGlossaryData) {
-            data.addAll(Arrays.asList(tempArray).subList(1, tempArray.length)); // 1 - ignore term column
+        for (String[] tempArray : expectedFaqData) {
+            data.addAll((Arrays.asList(tempArray).subList(1, tempArray.length)) // 1 - ignore term column
+                    .stream().filter(cell -> !(cell.equals(""))).collect(Collectors.toList())); // ignore empty cells in case definition doesn't have subDefinition
         }
         return data;
     }

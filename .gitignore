@@ -30,7 +30,7 @@
 *.xlsx
 
 # List included csv files
-!glossary.csv
+!faqData.csv
 
 
 # IntelliJ
