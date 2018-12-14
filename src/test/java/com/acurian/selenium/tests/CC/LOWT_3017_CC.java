@@ -33,9 +33,9 @@ public class LOWT_3017_CC extends BaseTest {
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
         String esperionProtocol = "1002_043";
-        String kowaProtocol = "K_877_302_A";
-        String sanofiT2DMCV = "EFC14828";
-        String protocol3 = "R727_CL_1532";
+        String esperionProtocolA = "1002_043_A";
+        String kowaProtocolA = "K_877_302_A";
+        String kowaProtocolS = "K_877_302_S";
         String studyName = "a high cholesterol and heart disease";
         String siteName = "AUT_LOWT_3017_Site";
         String siteIndication = "low testosterone or hypogonadism";
@@ -92,6 +92,8 @@ public class LOWT_3017_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad();
         debugPageCC.checkProtocolsEquals("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, i...", protocol1, protocol2);
         debugPageCC.back();
 
@@ -115,42 +117,52 @@ public class LOWT_3017_CC extends BaseTest {
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+        TransitionStatementLowT_CC transitionStatementLowT_cc = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new TransitionStatementLowT_CC());
+
+        transitionStatementLowT_cc
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
+                .back();
+
+        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new StatinMedicationsOnPageCC());
+
+        statinMedicationsOnPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", kowaProtocolA, kowaProtocolS)
+                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", kowaProtocolA, kowaProtocolS)
+                .back();
+
+        cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickNextButton(transitionStatementLowT_cc)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
+                .back();
+
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
 
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, kowaProtocol)
-                .getPage(whatKindOfDiabetesPageCC)
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
 
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .back(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
-                .back();
-
-        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new StatinMedicationsOnPageCC());
-
-        StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsOnPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", kowaProtocol, sanofiT2DMCV)
-                .getPage(statinMedicationsOnPageCC)
-                .clickOnAnswers("Atorvastatin")
-                .clickNextButton(new StopTakingStatinPageCC());
-
-        stopTakingStatinPageCC
-                .waitForPageLoad()
-                .back(statinMedicationsOnPageCC)
                 .waitForPageLoad()
                 .back(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()

@@ -22,9 +22,10 @@ public class LOWT_3017S_FROM_CV_CC extends BaseTest {
         final String protocol1 = "M16_100";
         final String protocol2 = "M16_100_S";
         final String esperionProtocol = "1002_043";
-        final String kowaProtocol = "K_877_302_A";
-        final String sanofiT2DMCV = "EFC14828";
-        final String[] cvModuleProtocols = {esperionProtocol, kowaProtocol, sanofiT2DMCV};
+        String esperionProtocolA = "1002_043_A";
+        String kowaProtocolA = "K_877_302_A";
+        String kowaProtocolS = "K_877_302_S";
+        String[] cvModuleProtocols = {esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS};
         final String dqedStudyName = "a heart health study";
         final String studyName = "a men's low testosterone study";
         final String site_Indication = "low testosterone or hypogonadism";

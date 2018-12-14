@@ -50,12 +50,10 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
 public class CV_5034_CC extends BaseTest {
-    int run = 0;
 
     @BeforeMethod
     public void setUp() {
         super.setUp();
-        run = ++run;
     }
 
     @AfterMethod
@@ -464,8 +462,8 @@ public class CV_5034_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();
-        switch (run) {
-            case 1:
+        switch (zipCode) {
+            case "45205":
                 selectionPageCC
                         .clickOnAnswer(siteName)
                         .clickNextButton(new QualifiedClose2PageCC())
@@ -476,7 +474,7 @@ public class CV_5034_CC extends BaseTest {
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(dispo);
                 break;
-            case 2:
+            case "19901":
                 selectionPageCC
                         .clickOnAnswer(siteName)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())

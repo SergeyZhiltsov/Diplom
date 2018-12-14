@@ -27,12 +27,12 @@ public class LOWT_3017_OLS extends BaseTest {
     @Description("LOWT_3017_OLS")
     public void lowt_3017_OLS() {
         String phoneNumber = "AUTAMSLOWT";
-        List<String> protocols = Arrays.asList("M16_100");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
         String esperionProtocol = "1002_043";
-        String kowaProtocol = "K_877_302_A";
-        String sanofiT2DMCV = "EFC14828";
+        String esperionProtocolA = "1002_043_A";
+        String kowaProtocolA = "K_877_302_A";
+        String kowaProtocolS = "K_877_302_S";
         String studyName = "a men's low testosterone";
         String site_Indication = "low testosterone or hypogonadism";
         String siteName = "AUT_LOWT_3017_Site";
@@ -117,16 +117,47 @@ public class LOWT_3017_OLS extends BaseTest {
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+
+        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new TransitionalStatementLowtPageOLS());
+
+        transitionalStatementLowtPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
+                .back();
+
+        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new StatinMedicationsOnPageOLS());
+
+        statinMedicationsOnPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
+                .checkProtocolsContainsForQNumber("QS6703", kowaProtocolA, kowaProtocolS)
+                .back();
+
+        cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickNextButton(transitionalStatementLowtPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
+                .back();
+
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, kowaProtocol)
-                .getPage(whatKindOfDiabetesPageOLS)
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageOLS());
 
@@ -134,33 +165,12 @@ public class LOWT_3017_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back(whatKindOfDiabetesPageOLS)
                 .waitForPageLoad()
-                .back();
-
-        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new StatinMedicationsOnPageOLS());
-
-        StopTakingStatinPageOLS stopTakingStatinPageOLS = statinMedicationsOnPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", kowaProtocol, sanofiT2DMCV)
-                .getPage(statinMedicationsOnPageOLS)
-                .clickOnAnswers("Atorvastatin")
-                .clickNextButton(new StopTakingStatinPageOLS());
-
-        stopTakingStatinPageOLS
-                .waitForPageLoad()
-                .back(statinMedicationsOnPageOLS)
-                .waitForPageLoad()
                 .back(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS)
                 .waitForPageLoad()
                 .back(experiencedAnyOfFollowing_OLS)
                 .waitForPageLoad()
-                //HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
                 .clickOnAnswers("Decreased sexual desire or libido",
                         "Decreased spontaneous erections (e.g., morning erections)",
                         "Decreased energy or fatigue/feeling tired",
@@ -176,7 +186,6 @@ public class LOWT_3017_OLS extends BaseTest {
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-
 
         //****************Q5 Has a doctor ever diagnosed you with any of the following medical conditions or diseases?------
         cardiovascularDiseaseThanOthersPageOLS
@@ -333,10 +342,10 @@ public class LOWT_3017_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad();
         //------Disqualify ("High BMI") if > 50  ---  Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]----
-        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .setAll("5", "0", "256")
                 //.clickNextButton(new ChildrenUnderPageOLS())
-                .clickNextButton(new TransitionalStatementLowtPageOLS());
+                .clickNextButton(transitionalStatementLowtPageOLS);
         transitionalStatementLowtPageOLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2);

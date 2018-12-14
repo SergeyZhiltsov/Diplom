@@ -13,7 +13,7 @@ import java.util.List;
 public class FaqPage extends MainPageCC {
     private final String titleExpected = "Frequently Asked Questions";
     private final String projectTextExpected = "(ACURIAN PROJECT CODE: AMS1)";
-    private final String csvFileName = "glossary.csv";
+    private final String csvFileName = "\\glossary.csv";
     private List<String[]> expectedGlossaryData;
     public ArrayList<String> expectedTermTitles;
     public ArrayList<String> expectedDefinisionTitles;
