@@ -22,9 +22,10 @@ public class LOWT_3017S_FROM_CV_OLS extends BaseTest {
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
         String esperionProtocol = "1002_043";
-        String kowaProtocol = "K_877_302_A";
-        String sanofiT2DMCV = "EFC14828";
-        String[] cvModuleProtocols = {esperionProtocol, kowaProtocol, sanofiT2DMCV};
+        String esperionProtocolA = "1002_043_A";
+        String kowaProtocolA = "K_877_302_A";
+        String kowaProtocolS = "K_877_302_S";
+        String[] cvModuleProtocols = {esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS};
         String dqedStudyName = "a heart health study";
         String studyName = "a men's low testosterone study";
         String site_Indication = "low testosterone or hypogonadism";
@@ -41,14 +42,6 @@ public class LOWT_3017S_FROM_CV_OLS extends BaseTest {
                 .waitForPageLoadGROUP();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleCVExpected, "Title is diff");
 
-        AgeUnqualifiedClose_OLS ageUnqualifiedClose_ols = dateOfBirthPageOLS
-                .setDate("09092005")
-                .clickNextButton(new AgeUnqualifiedClose_OLS());
-        ageUnqualifiedClose_ols
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", cvModuleProtocols)
-                .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoadGROUP()
                 .setDate("09091960")
