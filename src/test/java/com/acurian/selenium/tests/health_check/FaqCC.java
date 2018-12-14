@@ -53,15 +53,14 @@ public class FaqCC extends BaseTest {
         Assert.assertEquals(faqPage.getFirstNavigationText(),"General Information", "FAQ navigation content Text is diff");
         Assert.assertEquals(faqPage.getStudyHeaderText(),"Study Questions", "FAQ Study Text is diff");
 
-        for (int i = 0; i < faqPage.expectedTermTitles.size(); i++) {
-            System.out.println("Comparing " + "[ " + faqPage.expectedTermTitles.get(i) + " ] with [ " + faqPage.glossaryTerms.get(i).getText() + " ]");
-            Assert.assertEquals(faqPage.glossaryTerms.get(i).getText(), faqPage.expectedTermTitles.get(i),"Glossary term is Diff");
+        for (int i = 0; i < faqPage.expectedFaqTitles.size(); i++) {
+            System.out.println("Comparing " + "[" + faqPage.expectedFaqTitles.get(i) + "] with [" + faqPage.faqTitles.get(i).getText() + "]");
+            Assert.assertEquals(faqPage.faqTitles.get(i).getText(), faqPage.expectedFaqTitles.get(i),"Glossary term is Diff");
         }
-
-        for (int i = 0; i < faqPage.expectedDefinisionTitles.size(); i++) {
-            System.out.println("Comparing " + "[ " + faqPage.glossaryDefinisions.get(i).getText() + " ] with [ " + faqPage.expectedDefinisionTitles.get(i) + " ]");
-            Assert.assertEquals(faqPage.glossaryDefinisions.get(i).getText(), faqPage.expectedDefinisionTitles.get(i), " Glossary definision is Diff");
+        faqPage.filtereFaqDefinitions();
+        for (int i = 0; i < faqPage.expectedFaqDefinisions.size(); i++) {
+            System.out.println("Comparing " + "[" + faqPage.filteredDefinitions.get(i).getText() + "] with [" + faqPage.expectedFaqDefinisions.get(i) + "]");
+            Assert.assertEquals(faqPage.filteredDefinitions.get(i).getText(), faqPage.expectedFaqDefinisions.get(i), " Glossary definision is Diff");
         }
-
     }
 }
