@@ -18,7 +18,7 @@ public class FaqCC extends BaseTest {
     public void faqTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1AST";
 
-        String env = System.getProperty("acurian.env", "STG");
+        String env = System.getProperty("acurian.env", "PRD");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

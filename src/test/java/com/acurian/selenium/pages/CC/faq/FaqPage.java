@@ -81,7 +81,8 @@ public class FaqPage extends MainPageCC {
     private ArrayList<String> getExpectedFaqDefinisions() {
         ArrayList<String> data = new ArrayList<>();
         for (String[] tempArray : expectedFaqData) {
-            data.addAll(Arrays.asList(tempArray).subList(1, tempArray.length)); // 1 - ignore term column
+            data.addAll((Arrays.asList(tempArray).subList(1, tempArray.length)) // 1 - ignore term column
+                    .stream().filter(cell -> !(cell.equals(""))).collect(Collectors.toList())); // ignore empty cells in case definition doesn't have subDefinition
         }
         return data;
     }
