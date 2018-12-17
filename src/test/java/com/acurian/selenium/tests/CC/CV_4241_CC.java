@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class CV_4241_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
     @Description("CV_4241S_CC")
     public void cv4241cc(final String username, final String password) {
         final String phoneNumber = "AUTAMS1CV1";
@@ -36,7 +36,7 @@ public class CV_4241_CC extends BaseTest {
         final String dquedStudyName = "a heart health study";
         final String matchedStudyName = "a study for diabetics";
         final String siteName = "AUT_CV1_4241_NonSynexus_site";
-        final String zipCode = "19901";
+        final String zipCode = "45205";
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
 

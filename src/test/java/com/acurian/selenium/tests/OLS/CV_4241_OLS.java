@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class CV_4241_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("CV_4241_OLS")
     public void cv4241Ols() {
         final String phoneNumber = "AUTAMS1CV1";
