@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusHealthyMindsPageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -406,26 +407,52 @@ public class CV_3140_CC extends BaseTest {
                     .back();
         }
 
-        healthcareDiagnosedConditionsPageCC
+        IdentificationPageCC identificationPageCC = healthcareDiagnosedConditionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new IdentificationPageCC())
+                .clickNextButton(new IdentificationPageCC());
+        SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .dispoShouldMatch(expectedDispo);
+                .getPID();
+        switch (zipCode) {
+            case "45205":
+                selectionPageCC
+                        .clickOnAnswer(siteName)
+                        .clickNextButton(new QualifiedClose2PageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new SynexusHealthyMindsPageCC())
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(expectedDispo);
+                break;
+            case "19901":
+                selectionPageCC
+                        .clickOnAnswer(siteName)
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(expectedDispo);
+        }
+//                .clickOnAnswer(siteName)
+//                .clickNextButton(new QualifiedClose2PageCC())
+//                .waitForPageLoad()
+//                .clickNextButton(new SynexusHealthyMindsPageCC())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new ThankYouCloseSimplePageCC())
+//                .waitForPageLoad()
+//                .clickNextButton(selectActionPageCC)
+//                .waitForPageLoad()
+//                .pidFromDbToLog(env)
+//                .dispoShouldMatch(expectedDispo);
     }
 }
