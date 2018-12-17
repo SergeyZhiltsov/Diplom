@@ -614,11 +614,12 @@ public class DIA_4708_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAll("4", "8", "125")//bmi 29
                 .clickNextButton(new EthnicBackgroundPageOLS());
-        ethnicBackgroundPageOLS
+        IdentificationPageOLS identificationPageOLS = ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new TransitionStatementCVbeginPageOLS())
-                .waitForPageLoad()
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
+                .waitForPageLoadNotQ()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS67", protocol1)
                 .back();
@@ -626,7 +627,7 @@ public class DIA_4708_OLS extends BaseTest {
         ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Asian (Asian Indian, Chinese, Korean, Filipino, Japanese, Vietnamese)")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
