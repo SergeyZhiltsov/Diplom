@@ -27,7 +27,7 @@ public class DIA_4708_OLS extends BaseTest {
     @Test(enabled = true)
     @Description("NASH study 4708 OLS")
     public void dia4708olsTest() {
-        String phoneNumber = "AUTAMS1CPA";
+        String phoneNumber = "AUTAMSNASH";
         String protocol1 = "EDP 305_101";
 //        String[] protocols = {protocol1,protocol2,AKC,protocol3};
         String studyName = "a NASH";
