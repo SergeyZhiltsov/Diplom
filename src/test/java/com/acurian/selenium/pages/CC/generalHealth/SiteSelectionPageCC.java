@@ -3,6 +3,8 @@ package com.acurian.selenium.pages.CC.generalHealth;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.utils.PassPID;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -16,6 +18,8 @@ public class SiteSelectionPageCC extends MainPageCC {
 
     @Parameter("My PID")
     public String pidNumber;
+
+    private final String unstableTitleText = "//div[@class='question_text']//div[@class='show-in-cc']";
 
     //%s = studyName variable
     public final String titleExpected = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
@@ -43,7 +47,7 @@ public class SiteSelectionPageCC extends MainPageCC {
             "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that site isn't very convenient. We have a couple of options: we can make a note to contact you if a more convenient site becomes available. Or, I can send your information over to the site in (town), and you can talk to them about the study and see if they might be able to help arrange transportation for you. Which would you prefer?\"";
 
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = unstableTitleText)
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='site_selection_container']//span[@class='site_sel_radio_facilityName']")
@@ -66,8 +70,13 @@ public class SiteSelectionPageCC extends MainPageCC {
     public SiteSelectionPageCC waitForPageLoad(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
-        waitForPageLoadMain(titleText, titleExpectedMod);
-        return this;
+        try {
+            waitForPageLoadMain(titleText, titleExpectedMod);
+            return this;
+        } catch (StaleElementReferenceException e) {
+            waitForPageLoadMain(getDriver().findElement(By.xpath(unstableTitleText)), titleExpectedMod);
+            return this;
+        }
     }
     
     @Step
