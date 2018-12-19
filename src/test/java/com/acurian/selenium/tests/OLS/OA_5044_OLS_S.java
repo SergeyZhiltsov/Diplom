@@ -1,9 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
-import com.acurian.selenium.App;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.cv_study.HeartrelatedMedicalConditionsProceduresPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
@@ -20,15 +17,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class OA_5055_OLS_S extends BaseTest {
+public class OA_5044_OLS_S extends BaseTest {
 
     @Test
-    @Description("OA_5055_OLS_S")
-    public void oA_5055_OLS_S() {
+    @Description("OA_5044_OLS_S")
+    public void oA_5044_OLS_S() {
         final String phoneNumber = "AUTAMS1OA1";
-        final String protocol1 = "R475_PN_1602";
+        final String protocol1 = "R475_OA_1758";
         final String studyName = "an osteoarthritis";
-        final String siteName = "AUT_OA_5055_S";
+        final String siteName = "AUT_OA_5044_S";
         final String expectedDispo = "41C";
         final String zipCode = "19901";
 
