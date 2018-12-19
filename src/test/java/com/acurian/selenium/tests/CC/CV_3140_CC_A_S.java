@@ -18,11 +18,11 @@ import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.tests.OLS.CV_3140_OLS_A_S;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CV_3140_CC extends BaseTest {
+public class CV_3140_CC_A_S extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -43,15 +43,7 @@ public class CV_3140_CC extends BaseTest {
         super.tearDown();
     }
 
-    @DataProvider
-    public Object[][] sites() {
-        return new Object[][] {
-                {"AUT_CV_3140_site", "41C", "19901"},
-                {"AUT_CV_3140A_site", "1R", "45205"}
-        };
-    }
-
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = true, dataProvider = "sites", dataProviderClass = CV_3140_OLS_A_S.class)
     @Description("CV 3140 CC")
     public void cv3140ccTest(String siteName, String expectedDispo, String zipCode) {
         String phoneNumber = "AUTAMS1CV1";
@@ -59,10 +51,6 @@ public class CV_3140_CC extends BaseTest {
         String protocol2 = "1002_043_A";
         String[] protocols = {protocol1, protocol2};
         String studyName = "a heart health study";
-//        String siteName = "AUT_CV_3140_site";
-        String debugSiteName = "";
-//        String zipCode = "19901";
-//        String expectedDispo = "41C";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -442,17 +430,5 @@ public class CV_3140_CC extends BaseTest {
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(expectedDispo);
         }
-//                .clickOnAnswer(siteName)
-//                .clickNextButton(new QualifiedClose2PageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(new SynexusHealthyMindsPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new ThankYouCloseSimplePageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(selectActionPageCC)
-//                .waitForPageLoad()
-//                .pidFromDbToLog(env)
-//                .dispoShouldMatch(expectedDispo);
     }
 }
