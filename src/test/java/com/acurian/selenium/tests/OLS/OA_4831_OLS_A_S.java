@@ -12,16 +12,23 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class OA_4831_OLS_NonSynexus extends BaseTest {
+public class OA_4831_OLS_A_S extends BaseTest {
 
-    @Test()
-    public void OA_4831_OLS_NonSynexus_Script() {
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][] {
+                {"AUT_OA_4831_Syn", "41C", "19901"},
+                {"AUT_OA_4831_site", "1R", "19901"}
+        };
+    }
+
+    @Test(dataProvider = "sites")
+    public void OA_4831_OLS_NonSynexus_Script(final String siteName,final String expectedDispo, final String zipCode) {
         String phoneNumberDY = "AUTAMS1OA1";
-        String zipCode = "19901";
         String studyName = "an osteoarthritis";
-        String siteName = "AUT_OA_4831_site"; //Synexus Site - AUT_OA_4831_Syn
         String protocol1 = "R475_PN_1523_B";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -394,6 +401,7 @@ public class OA_4831_OLS_NonSynexus extends BaseTest {
                 .waitForPageLoad()
                 .threadSleep(2000);
         aboutHealthPageOLS
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(expectedDispo);
     }
 }
