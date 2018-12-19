@@ -19,7 +19,7 @@ public class DIA_4708_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     public void dia4708cc(final String username, final String password) {
-        final String phoneNumber = "AUTAMS1CPA";
+        final String phoneNumber = "AUTAMSNASH";
         final String protocol1 = "EDP 305_101";
         final String studyName = "a NASH study";
         final String indicationHistroyName = "diabetes";

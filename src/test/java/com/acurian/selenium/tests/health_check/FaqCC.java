@@ -57,7 +57,7 @@ public class FaqCC extends BaseTest {
             System.out.println("Comparing " + "[" + faqPage.expectedFaqTitles.get(i) + "] with [" + faqPage.faqTitles.get(i).getText() + "]");
             Assert.assertEquals(faqPage.faqTitles.get(i).getText(), faqPage.expectedFaqTitles.get(i),"Glossary term is Diff");
         }
-        faqPage.filtereFaqDefinitions();
+        faqPage.filterFaqDefinitions();
         for (int i = 0; i < faqPage.expectedFaqDefinisions.size(); i++) {
             System.out.println("Comparing " + "[" + faqPage.filteredDefinitions.get(i).getText() + "] with [" + faqPage.expectedFaqDefinisions.get(i) + "]");
             Assert.assertEquals(faqPage.filteredDefinitions.get(i).getText(), faqPage.expectedFaqDefinisions.get(i), " Glossary definision is Diff");
