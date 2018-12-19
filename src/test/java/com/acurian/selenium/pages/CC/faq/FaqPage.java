@@ -64,7 +64,7 @@ public class FaqPage extends MainPageCC {
         return studyHeaderText.getText();
     }
 
-    public void filtereFaqDefinitions() {
+    public void filterFaqDefinitions() {
         List<WebElement> temp;
         temp = faqDefinitions.stream().filter(el -> !(el.getText().equals(""))).collect(Collectors.toList());
         filteredDefinitions = temp;
