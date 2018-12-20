@@ -30,7 +30,7 @@
 *.xlsx
 
 # List included csv files
-!faqData.csv
+!faqDataNew.csv
 
 
 # IntelliJ
