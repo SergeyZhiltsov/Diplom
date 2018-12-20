@@ -8,8 +8,7 @@
             <class name="com.acurian.selenium.tests.OLS.RA_2821_OLS"/>
             <class name="com.acurian.selenium.tests.OLS.no_indication.NoIndication3889_OLS"/>
             <class name="com.acurian.selenium.tests.CC.LMG_4686_CC"/>
-            <class name="com.acurian.selenium.tests.CC.OA_4831_CC_NonSynexus"/>
-            <class name="com.acurian.selenium.tests.CC.OA_4831_CC_Synexus"/>
+            <class name="com.acurian.selenium.tests.CC.OA_4831_CC_A_S"/>
         </classes>
     </test>
 

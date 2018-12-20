@@ -1,18 +1,13 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.DIA_4241.PoundsOrMorePageCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.StatinMedicationsHavePageCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.WhileTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.END_4385.MostRecentSurgeryCC;
-import com.acurian.selenium.pages.CC.Insomnia_3792.HasAHealthcareProfessionalEverDiagnosedYou_CC;
 import com.acurian.selenium.pages.CC.LOWT.*;
-import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.SynexusHealthyMindsPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.cv_study.AnginaOrChestPainPageCC;
@@ -24,16 +19,7 @@ import com.acurian.selenium.pages.CC.cv_study.RelativesHeartAttackPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
-import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPageCC;
-import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePageCC;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveDoctorEverDiagnosedYou_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.ReceivedHeartProcedurePageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.TransitionalStatementLowtPageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.HeartrelatedMedicalConditionsProceduresPageOLS;
-import com.acurian.selenium.tests.OLS.CV_5034_OLS;
-import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.tests.OLS.CV_5034_OLS_A_S;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -49,7 +35,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
-public class CV_5034_CC extends BaseTest {
+public class CV_5034_CC_A_S extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -61,7 +47,7 @@ public class CV_5034_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS.class)
+    @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS_A_S.class)
     @TestCaseId("00020")
     @Description("Diabetes_4356A_Synexus for CC")
     public void CV_5034_CC_Test(final String siteName, final String dispo, final String zipCode) {
