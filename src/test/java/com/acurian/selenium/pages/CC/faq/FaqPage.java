@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FaqPage extends MainPageCC {
-    private final String csvFileName = "\\faqData.csv";
+    private final String csvFileName = "\\faqDataNew.csv";
     private List<String[]> expectedFaqData;
     public ArrayList<String> expectedFaqTitles;
     public ArrayList<String> expectedFaqDefinisions;
