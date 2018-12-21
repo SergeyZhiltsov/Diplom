@@ -4,6 +4,7 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ import java.util.stream.Collectors;
 public class FaqPage extends MainPageCC {
     private final String csvFileName = "\\faqDataNew.csv";
     private List<String[]> expectedFaqData;
-    public ArrayList<String> expectedFaqTitles;
-    public ArrayList<String> expectedFaqDefinisions;
+    private ArrayList<String> expectedFaqTitles;
+    private ArrayList<String> expectedFaqDefinisions;
 
     @FindBy(xpath = "//div[@class='header']/h1")
     WebElement headerText;
@@ -30,12 +31,12 @@ public class FaqPage extends MainPageCC {
     WebElement studyHeaderText;
 
     @FindBy(xpath = "//div[@class='section']//dt")
-    public List<WebElement> faqTitles;
+    List<WebElement> faqTitles;
 
     @FindBy(xpath = "//div[@class='section']//dd")
-    public List<WebElement> faqDefinitions;
+    List<WebElement> faqDefinitions;
 
-    public List<WebElement> filteredDefinitions;
+    List<WebElement> filteredDefinitions;
 
     public FaqPage() {
         PageFactory.initElements(getDriver(), this);
@@ -64,10 +65,23 @@ public class FaqPage extends MainPageCC {
         return studyHeaderText.getText();
     }
 
-    public void filterFaqDefinitions() {
-        List<WebElement> temp;
-        temp = faqDefinitions.stream().filter(el -> !(el.getText().equals(""))).collect(Collectors.toList());
-        filteredDefinitions = temp;
+    @Step
+    public void assertTerms() {
+        for (int i = 0; i < expectedFaqTitles.size(); i++) {
+            System.out.println("Comparing " + "[" + expectedFaqTitles.get(i) + "] with [" + faqTitles.get(i).getText() + "]");
+            logTextToAllure("Comparing " + "[" + expectedFaqTitles.get(i) + "] with [" + faqTitles.get(i).getText() + "]");
+            Assert.assertEquals(faqTitles.get(i).getText(), expectedFaqTitles.get(i),"Glossary term is Diff");
+        }
+    }
+
+    @Step
+    public void assertDefinitions() {
+        filterFaqDefinitions();
+        for (int i = 0; i < expectedFaqDefinisions.size(); i++) {
+            System.out.println("Comparing " + "[" + filteredDefinitions.get(i).getText() + "] with [" + expectedFaqDefinisions.get(i) + "]");
+            logTextToAllure("Comparing " + "[" + filteredDefinitions.get(i).getText() + "] with [" + expectedFaqDefinisions.get(i) + "]");
+            Assert.assertEquals(filteredDefinitions.get(i).getText(), expectedFaqDefinisions.get(i), " Glossary definision is Diff");
+        }
     }
 
     private ArrayList<String> getExpectedFaqTitles() {
@@ -85,5 +99,11 @@ public class FaqPage extends MainPageCC {
                     .stream().filter(cell -> !(cell.equals(""))).collect(Collectors.toList())); // ignore empty cells in case definition doesn't have subDefinition
         }
         return data;
+    }
+
+    private void filterFaqDefinitions() {
+        List<WebElement> temp;
+        temp = faqDefinitions.stream().filter(el -> !(el.getText().equals(""))).collect(Collectors.toList());
+        filteredDefinitions = temp;
     }
 }
