@@ -15,7 +15,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class OBS_4605_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
     @Description("OBS_4605_CC")
     public void obs4606cc(final String username, final String password) {
         final String phoneNumber = "AUTAMS1OBS";

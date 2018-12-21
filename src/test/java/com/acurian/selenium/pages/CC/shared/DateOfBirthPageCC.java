@@ -191,7 +191,7 @@ public class DateOfBirthPageCC extends MainPageCC{
     public final String titleGERD_4301_Expected ="If you qualify and participate in a heartburn or reflux study, you may receive:\n" +
     		"Study medication or placebo, at no-cost to you\n" +
     		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-    		"And depending on the study, compensation of up to $850 for time and travel, for qualified participants who complete study related visits\n" +
+    		"And depending on the study, compensation of up to $500 for time and travel, for qualified participants who complete study related visits\n" +
     		"\n" +
     		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
