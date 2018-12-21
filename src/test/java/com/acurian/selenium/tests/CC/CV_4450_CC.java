@@ -416,17 +416,5 @@ public class CV_4450_CC extends BaseTest {
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(expectedDispo);
         }
-//                .clickOnAnswer(siteName)
-//                .clickNextButton(new QualifiedClose2PageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(new SynexusHealthyMindsPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new ThankYouCloseSimplePageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(selectActionPageCC)
-//                .waitForPageLoad()
-//                .pidFromDbToLog(env)
-//                .dispoShouldMatch(expectedDispo);
     }
 }

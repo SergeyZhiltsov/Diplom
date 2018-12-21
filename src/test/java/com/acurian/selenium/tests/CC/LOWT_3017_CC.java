@@ -16,7 +16,11 @@ import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersP
 import com.acurian.selenium.pages.OLS.shared.StatinMedicationsOnPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -25,9 +29,27 @@ import java.util.List;
 
 public class LOWT_3017_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][] {
+                {"AUT_LOWT_3017S", "41C", "19901"},
+                {"AUT_LOWT_3017_Site", "1R", "19901"}
+        };
+    }
+
+    @Test(enabled = true, dataProvider = "sites")
     @Description("LOWT_3017_CC")
-    public void lowT(final String username, final String password) {
+    public void lowTcc(String siteName, String expectedDispo, String zipCode) {
         String phoneNumber = "AUTAMSLOWT";
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");
         String protocol1 = "M16_100";
@@ -37,9 +59,9 @@ public class LOWT_3017_CC extends BaseTest {
         String kowaProtocolA = "K_877_302_A";
         String kowaProtocolS = "K_877_302_S";
         String studyName = "a high cholesterol and heart disease";
-        String siteName = "AUT_LOWT_3017_Site";
+//        String siteName = "AUT_LOWT_3017_Site";
         String siteIndication = "low testosterone or hypogonadism";
-        String zipCode = "19901";
+//        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -49,8 +71,8 @@ public class LOWT_3017_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -76,8 +98,9 @@ public class LOWT_3017_CC extends BaseTest {
                 .setYear("1990")
                 .clickNextButton(new ZipCodePageCC());
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
+        debugPageCC
+                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2)
+                .back();
         dateOfBirthPageCC
                 .waitForPageLoadAKC()
                 .setYear("1960")
@@ -92,10 +115,12 @@ public class LOWT_3017_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsEquals("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, i...", protocol1, protocol2);
-        debugPageCC.back();
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, i...", protocol1, protocol2)
+                .back();
 
         PersonaQuestionsCC personaQuestionsCC = genderPageCC
                 .waitForPageLoad()
@@ -117,18 +142,18 @@ public class LOWT_3017_CC extends BaseTest {
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-        TransitionStatementLowT_CC transitionStatementLowT_cc = cardiovascularDiseaseThanOthersPageCC
+        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementLowT_CC());
+                .clickNextButton(new StatinMedicationsOnPageCC());
 
-        transitionStatementLowT_cc
+        statinMedicationsOnPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
                 .back();
 
-        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
+        cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(new StatinMedicationsOnPageCC());
@@ -140,20 +165,21 @@ public class LOWT_3017_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", kowaProtocolA, kowaProtocolS)
                 .back();
 
-        cardiovascularDiseaseThanOthersPageCC
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Diabetes or High Blood Sugar")
-                .clickNextButton(transitionStatementLowT_cc)
+                .clickNextButton(new WhatKindOfDiabetesPageCC());
+        whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
                 .back();
 
-        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
+        cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new WhatKindOfDiabetesPageCC());
+                .clickNextButton(whatKindOfDiabetesPageCC);
 
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -340,39 +366,61 @@ public class LOWT_3017_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        TransitionStatementLowT_CC transitionStatementLowT_CC = approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("4", "0", "166")
-                .clickNextButton(new TransitionStatementLowT_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004980-QS5627-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-
         approximateHeightPageCC
                 .waitForPageLoad()
+                .setAll("4", "0", "166")
+                .clickNextButton(statinMedicationsOnPageCC);
+        statinMedicationsOnPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0004980-QS5627-STUDYQUES", protocol1, protocol2)
+                .back();
+
+        SiteSelectionPageCC selectionPageCC = approximateHeightPageCC
+                .waitForPageLoad()
                 .setAll("5", "6", "166")
-//                .clickNextButton(new ChildrenUnderPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a men's low testosterone study")
-                .getPID()
-                .clickOnAnswer(siteName)
-                .clickNextButton(new HSGeneralCC())
-                .waitForPageLoad(siteIndication)
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .getPID();
+        switch (siteName) {
+            case "AUT_LOWT_3017S":
+                selectionPageCC
+                        .clickOnAnswer(siteName)
+                        .clickNextButton(new HSGeneralCC())
+                        .waitForPageLoad(siteIndication)
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(expectedDispo);
+                break;
+            case "AUT_LOWT_3017_Site":
+                selectionPageCC
+                        .clickOnAnswer(siteName)
+                        .clickNextButton(new HSGeneralCC())
+                        .waitForPageLoad(siteIndication)
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new SynexusHealthyMindsPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(expectedDispo);
+        }
     }
 }

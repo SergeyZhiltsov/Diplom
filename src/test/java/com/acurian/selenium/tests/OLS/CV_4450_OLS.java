@@ -282,15 +282,15 @@ public class CV_4450_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageOLS);
 
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new TransitionalStatementLowtPageOLS());
-        transitionalStatementLowtPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6722", protocols)
-                .back();
+//        approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .setAll("5", "5", "160")
+//                .clickNextButton(new TransitionalStatementLowtPageOLS());
+//        transitionalStatementLowtPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6722", protocols)
+//                .back();
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
