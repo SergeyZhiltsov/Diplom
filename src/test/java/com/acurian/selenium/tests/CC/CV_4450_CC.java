@@ -329,15 +329,15 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageCC);
 
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(transitionStatementLowT_cc);
-        transitionStatementLowT_cc
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", protocols)
-                .back();
+//        approximateHeightPageCC
+//                .waitForPageLoad()
+//                .setAll("5", "5", "160")
+//                .clickNextButton(transitionStatementLowT_cc);
+//        transitionStatementLowT_cc
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", protocols)
+//                .back();
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
@@ -408,23 +408,13 @@ public class CV_4450_CC extends BaseTest {
                         .clickOnAnswer(siteName)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "09/09/1952", "US", "Dover, DE",
+                                zipCode, "qa.acurian@gmail.com", "999 -999-9999", "12345D", siteName, "KOWQUICAR302")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(expectedDispo);
         }
-//                .clickOnAnswer(siteName)
-//                .clickNextButton(new QualifiedClose2PageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(new SynexusHealthyMindsPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new ThankYouCloseSimplePageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(selectActionPageCC)
-//                .waitForPageLoad()
-//                .pidFromDbToLog(env)
-//                .dispoShouldMatch(expectedDispo);
     }
 }
