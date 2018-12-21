@@ -5,6 +5,7 @@ import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -70,8 +71,13 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
         waitForAnimation();
         String titleExpectedMod = String.format(titleExpected, studyName);
-        waitForPageLoadMain(titleText, titleExpectedMod);
-        return this;
+        try {
+            waitForPageLoadMain(titleText, titleExpectedMod);
+            return this;
+        } catch (StaleElementReferenceException e) {
+            waitForPageLoadMain(titleText, titleExpectedMod);
+            return this;
+        }
     }
     
     @Step
