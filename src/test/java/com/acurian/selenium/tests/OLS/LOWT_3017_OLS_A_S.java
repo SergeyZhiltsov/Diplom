@@ -16,7 +16,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class LOWT_3017_OLS extends BaseTest {
+public class LOWT_3017_OLS_A_S extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
@@ -27,7 +27,7 @@ public class LOWT_3017_OLS extends BaseTest {
     }
 
     @Test(enabled = true, dataProvider = "sites")
-    @Description("LOWT_3017_OLS")
+    @Description("LOWT_3017_OLS_A_S")
     public void lowt_3017_OLS(String siteName, String expectedDispo, String zipCode) {
         String phoneNumber = "AUTAMSLOWT";
         String protocol1 = "M16_100";
