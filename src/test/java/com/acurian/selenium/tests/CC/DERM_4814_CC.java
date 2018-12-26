@@ -220,6 +220,7 @@ whichofthefollowingMedicationsTherapies_CC
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)")
                 .clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_CC());
         
         

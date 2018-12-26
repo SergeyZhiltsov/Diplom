@@ -304,6 +304,7 @@ public class DERM_4814_OLS extends BaseTest{
 					.waitForPageLoadKAD();
 		HaveYouEverTakenEitherAnyOfFollowingMeds_OLS haveYouEverTakenEitherAnyOfFollowingMeds_OLS = biologicMedications
 					.clickOnAnswers("None of the above")
+					.clickOnAnswers("Actemra")
 					.clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS());
 		
 		
