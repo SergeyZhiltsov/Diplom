@@ -33,7 +33,7 @@ public class CV_4450_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {"AUT_CV1_4450S", "41C", "19901"},
+                {"AUT_CV1_4450S_Syn", "41C", "19901"},
 //                {"AUT_CV_3140A_site", "1R", "45205"}
         };
     }
@@ -282,19 +282,19 @@ public class CV_4450_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageOLS);
 
-//        approximateHeightPageOLS
-//                .waitForPageLoad()
-//                .setAll("5", "5", "160")
-//                .clickNextButton(new TransitionalStatementLowtPageOLS());
-//        transitionalStatementLowtPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS6722", protocols)
-//                .back();
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "170")
+                .setAllWithClear("5", "5", "160")
                 .clickNextButton(new WeightLossSurgeryPageOLS());
+        weightLossSurgeryPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6721", protocols)
+                .back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .setAllWithClear("5", "5", "170")
+                .clickNextButton(weightLossSurgeryPageOLS);
 
         ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
                 .waitForPageLoad()
