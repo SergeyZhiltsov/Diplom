@@ -93,16 +93,16 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
                                                           String cityAndState, String zipCode, String email, String phoneNumber,
                                                           String siteNumber, String siteName, String studyName) {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(firstNameField.getText(), "Patient First Name: " + firstName);
-        softAssert.assertEquals(secondNameField.getText(), "Patient Last Name: " + secondName);
-        softAssert.assertEquals(dateOfBirthField.getText(), "Date of Birth: " + dateOfBirth);
-        softAssert.assertEquals(countryField.getText(), "Country: " + country);
-        softAssert.assertEquals(cityAndStateField.getText(), "City & State: " + cityAndState);
-        softAssert.assertEquals(emailField.getText(), "Email: " + email);
-        softAssert.assertEquals(phoneNumberField.getText(), "Phone Number: " + phoneNumber);
-        softAssert.assertEquals(zipCodeField.getText(), "Zip Code: " + zipCode);
-        softAssert.assertTrue(allText.getText().contains("Site: " + siteNumber + " - " + siteName));
-        softAssert.assertTrue(allText.getText().contains("Study: " + studyName));
+        softAssert.assertEquals(firstNameField.getText(), "Patient First Name: " + firstName, "Patient First Name is diff");
+        softAssert.assertEquals(secondNameField.getText(), "Patient Last Name: " + secondName, "Patient Last Name is diff");
+        softAssert.assertEquals(dateOfBirthField.getText(), "Date of Birth: " + dateOfBirth, "Date of Birth is diff");
+        softAssert.assertEquals(countryField.getText(), "Country: " + country, "Country is diff");
+        softAssert.assertEquals(cityAndStateField.getText(), "City & State: " + cityAndState, "City & State is diff");
+        softAssert.assertEquals(emailField.getText(), "Email: " + email, "Email is diff");
+        softAssert.assertEquals(phoneNumberField.getText(), "Phone Number: " + phoneNumber, "Phone number is diff");
+        softAssert.assertEquals(zipCodeField.getText(), "Zip Code: " + zipCode, "Zip code is diff");
+        softAssert.assertTrue(allText.getText().contains("Site: " + siteNumber + " - " + siteName), "Site not contains" + siteNumber +" - "+siteName);
+        softAssert.assertTrue(allText.getText().contains("Study: " + studyName), "Study not contains " +studyName);
         softAssert.assertAll();
         return this;
     }

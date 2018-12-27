@@ -47,7 +47,7 @@ public class CV_4450_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {"AUT_CV1_4450S", "41C", "19901"},
+                {"AUT_CV1_4450S_Syn", "41C", "19901"},
 //                {"AUT_CV_3140A_site", "1R", "45205"}
         };
     }
@@ -329,19 +329,19 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageCC);
 
-//        approximateHeightPageCC
-//                .waitForPageLoad()
-//                .setAll("5", "5", "160")
-//                .clickNextButton(transitionStatementLowT_cc);
-//        transitionStatementLowT_cc
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", protocols)
-//                .back();
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("5", "5", "170")
+                .setAll("5", "5", "160")
                 .clickNextButton(new WeightLossSurgeryPageCC());
+        weightLossSurgeryPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0004980-QS6721-STUDYQUES", protocols)
+                .back();
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .setAll("5", "5", "170")
+                .clickNextButton(weightLossSurgeryPageCC);
 
         ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
@@ -409,7 +409,7 @@ public class CV_4450_CC extends BaseTest {
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "09/09/1952", "US", "Dover, DE",
-                                zipCode, "qa.acurian@gmail.com", "999 -999-9999", "12345D", siteName, "KOWQUICAR302")
+                                zipCode, "qa.acurian@gmail.com", "999 -999-9999", "12345D", siteName, "NNDXXXCAR388")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
