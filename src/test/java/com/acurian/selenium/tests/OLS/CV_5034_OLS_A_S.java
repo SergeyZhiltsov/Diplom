@@ -96,12 +96,12 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6703", protocols)
                 .back();
 
-        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = cardiovascularDiseaseThanOthersPageOLS
+        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(new TransitionalStatementLowtPageOLS());
-        transitionalStatementLowtPageOLS
+                .clickNextButton(new StatinMedicationsOnPageOLS());
+        statinMedicationsOnPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6703", protocols)
@@ -110,7 +110,27 @@ public class CV_5034_OLS_A_S extends BaseTest {
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(transitionalStatementLowtPageOLS)
+                .clickOnAnswers("High blood pressure or hypertension")
+                .clickNextButton(statinMedicationsOnPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6703", protocols)
+                .back();
+
+        cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Chronic Kidney Disease")
+                .clickNextButton(statinMedicationsOnPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6703", protocols)
+                .back();
+
+        cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(statinMedicationsOnPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6703", protocols)
@@ -322,7 +342,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS1 = approximateHeightPageOLS
+        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new TransitionalStatementLowtPageOLS());

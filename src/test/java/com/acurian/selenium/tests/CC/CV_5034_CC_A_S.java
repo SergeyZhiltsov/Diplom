@@ -6,10 +6,7 @@ import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.WhileTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.*;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.AnginaOrChestPainPageCC;
 import com.acurian.selenium.pages.CC.cv_study.FirstHeartAttackPageCC;
 import com.acurian.selenium.pages.CC.cv_study.HealthcareDiagnosedConditionsPageCC;
@@ -101,7 +98,7 @@ public class CV_5034_CC_A_S extends BaseTest {
         debugPageCC.back();
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad2Ver()
-                .setYear("1980")
+                .setYear("1952")
                 .clickNextButton(new ZipCodePageCC());
 
         //-------ZIP_CODE Page--------
@@ -143,7 +140,27 @@ public class CV_5034_CC_A_S extends BaseTest {
         cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementLowT_CC())
+                .clickOnAnswers("High blood pressure or hypertension")
+                .clickNextButton(statinMedicationsHavePageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocols)
+                .back();
+
+        cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Chronic Kidney Disease")
+                .clickNextButton(statinMedicationsHavePageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocols)
+                .back();
+
+        cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(statinMedicationsHavePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocols)
@@ -454,6 +471,8 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .clickOnAnswer(siteName)
                         .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
+                        .clickNextButton(new SynexusHealthyMindsPageCC())
+                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

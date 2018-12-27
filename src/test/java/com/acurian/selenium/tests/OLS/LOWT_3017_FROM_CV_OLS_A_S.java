@@ -9,14 +9,23 @@ import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class LOWT_3017_FROM_CV_OLS extends BaseTest {
+public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
 
-    @Test
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {"AUT_LOWT_3017S_Site", "41C", "19901"},
+                {"AUT_LOWT_3017_Site", "1R", "19901"}
+        };
+    }
+
+    @Test(dataProvider = "sites")
     @Description("LowT_3017_FromCv_Ols")
-    public void lowt3017FromCvOls() {
+    public void lowt3017FromCvOls(final String siteName, final String expectedDispo, final String zipCode) {
         String phoneNumber = "AUTAMS1CV1";
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
@@ -24,12 +33,13 @@ public class LOWT_3017_FROM_CV_OLS extends BaseTest {
         String esperionProtocolA = "1002_043_A";
         String kowaProtocolA = "K_877_302_A";
         String kowaProtocolS = "K_877_302_S";
+        final String novoProtocol = "EX9536_4388";
         String[] cvModuleProtocols = {esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS};
         String dqedStudyName = "a heart health study";
         String studyName = "a men's low testosterone study";
         String site_Indication = "low testosterone or hypogonadism";
-        String siteName = "AUT_LOWT_3017_Site";
-        String zipCode = "19901";
+//        String siteName = "AUT_LOWT_3017_Site";
+//        String zipCode = "19901";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         String env = System.getProperty("acurian.env", "STG");
@@ -60,15 +70,23 @@ public class LOWT_3017_FROM_CV_OLS extends BaseTest {
 
         //---------------Q3 Has a doctor ever diagnosed you with any of the following medical conditions or diseases? -------------------
         // Selecting "None of the above" answer to be DQ for CV module protocols
-        PersonalQuestionsOLS personalQuestionsOLS = hasDoctorEverDiagnosedYouMedicalCond_ols
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = hasDoctorEverDiagnosedYouMedicalCond_ols
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Diabetes or High Blood Sugar")
+                .clickNextButton(new WhatKindOfDiabetesPageOLS());
+
+        PersonalQuestionsOLS personalQuestionsOLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6703", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
+                .getPage(whatKindOfDiabetesPageOLS)
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new PersonalQuestionsOLS());
 
         personalQuestionsOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", cvModuleProtocols);
+                .checkProtocolsContainsForQNumber("QS6704", kowaProtocolA, kowaProtocolS, novoProtocol);
 
         ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowing_OLS = personalQuestionsOLS
                 .waitForPageLoad()
@@ -239,17 +257,19 @@ public class LOWT_3017_FROM_CV_OLS extends BaseTest {
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2);
         transitionalStatementLowtPageOLS.back();
-        approximateHeightPageOLS.waitForPageLoad()
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS.waitForPageLoad()
                 //----------Change inches to maje BMI to <50--------------------
                 .waitForPageLoad()
                 .setIncheswithClear("5")
-                .clickNextButton(new IdentificationPageOLS())
-                //----------PII (IdentificationPageOLS) Page--------------------
+                .clickNextButton(new IdentificationPageOLS());
+        //----------PII (IdentificationPageOLS) Page--------------------
+        IncongruentSiteSelectionClose_OLS incongruentSiteSelectionClose_ols = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-                .clickNextButton(new IncongruentSiteSelectionClose_OLS())
+                .clickNextButton(new IncongruentSiteSelectionClose_OLS());
 
-                //----------SiteSelection Page--------------------
+        //----------SiteSelection Page--------------------
+        incongruentSiteSelectionClose_ols
                 .waitForPageLoad(studyName, dqedStudyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
@@ -261,7 +281,6 @@ public class LOWT_3017_FROM_CV_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
-
                 .waitToClickNext()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()
@@ -271,6 +290,5 @@ public class LOWT_3017_FROM_CV_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
     }
 }
