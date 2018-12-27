@@ -12,24 +12,41 @@ import java.util.List;
 
 public class CSVParser {
     private CSVReader reader;
+    private List<String[]> data;
 
-    public List<String[]> getData(String csvFileName) {
-        setupParser(csvFileName);
-        List<String[]> data = new ArrayList<>();
+    public List<String[]> getData(String csvFileName, boolean withHeader) {
+        setupParser(csvFileName, withHeader);
+        data = new ArrayList<>();
+        String[] line;
         try {
-            data = reader.readAll();
+            while ((line = reader.readNext()) != null) {
+                data.add(line);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return data;
     }
 
-    private void setupParser(String csvFileName) {
+    public int getColumns() {
+        return data.get(0).length;
+    }
+
+    public int getRows() {
+        return data.size();
+    }
+
+    private void setupParser(String csvFileName, boolean withHeader) {
         try {
-            reader = new CSVReaderBuilder(new FileReader(new File(System.getProperty("resources.dir") + csvFileName)))
-                    .withSkipLines(1)
-                    .build();
-        } catch (FileNotFoundException e) {
+            if (withHeader) {
+                reader = new CSVReaderBuilder(new FileReader(new File(System.getProperty("resources.dir") + csvFileName)))
+                        .withSkipLines(1)
+                        .build();
+            } else {
+                reader = new CSVReaderBuilder(new FileReader(new File(System.getProperty("resources.dir") + csvFileName)))
+                        .build();
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
