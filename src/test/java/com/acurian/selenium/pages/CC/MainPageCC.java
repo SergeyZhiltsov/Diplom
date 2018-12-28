@@ -41,7 +41,6 @@ public class MainPageCC extends BasePage {
 
     public MainPageCC assertChildDOBIsNull(String env) {
         DBConnection dbCon = new DBConnection();
-        pid = PassPID.getInstance().getPidNumber();
         String childDOBCell = dbCon.dbReadChildDOB(env, pid);
         Assert.assertNull(childDOBCell,"Child DOB is not NULL");
         logTextToAllure("Child DOB cell: " + childDOBCell);

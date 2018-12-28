@@ -478,6 +478,7 @@ public class DERM_4814_OLS extends BaseTest{
                 .waitForPageLoad()
                 .threadSleep(2000);
         aboutHealthPageOLS
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+				.assertChildDOBIsNull(env);
     }
 }
