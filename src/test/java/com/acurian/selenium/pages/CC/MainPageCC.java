@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC;
 
 import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.RadiantResults;
@@ -40,34 +39,28 @@ public class MainPageCC extends BasePage {
     }
 
     public MainPageCC assertChildDOBIsNull(String env) {
-        DBConnection dbCon = new DBConnection();
-        String childDOBCell = dbCon.dbReadChildDOB(env, pid);
+        String childDOBCell = getDbConnection().dbReadChildDOB(env, pid);
         Assert.assertNull(childDOBCell,"Child DOB is not NULL");
         logTextToAllure("Child DOB cell: " + childDOBCell);
         return this;
     }
 
     public MainPageCC pidFromDbToLog(String env) {
-        DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
-        dbCon.dbRead(env, pid);
-        dispoParent = dbCon.getDispo();
+        getDbConnection().dbReadPID(env, pid);
+        dispoParent = getDbConnection().getDispo();
         logTextToAllure("Dispo="+dispoParent+" for pid "+pid);
         return this;
     }
 
     public MainPageCC getRadiantDbToLog(String env) {
-        DBConnection dbCon = new DBConnection();
-//        pid = PassPID.getInstance().getPidNumber();
-        RadiantResults radiantResults = dbCon.dbReadRadiant(env, pid);
+        RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
         logTextToAllure("Radiant::: Current Status=" + radiantResults.getCurrentStatus() + " for pid " + pid);
         return this;
     }
 
     public MainPageCC getAnomalyDbToLog(String env) {
-        DBConnection dbCon = new DBConnection();
-//        pid = PassPID.getInstance().getPidNumber();
-        AnomalyResults anomalyResults = dbCon.dbReadAnomaly(env, pid);
+        AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
         logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
         return this;
     }

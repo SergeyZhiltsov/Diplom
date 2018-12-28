@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.OLS;
 
 import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.RadiantResults;
@@ -111,8 +110,7 @@ public class MainPageOLS extends BasePage{
     }
 
     public MainPageOLS assertChildDOBIsNull(String env) {
-        DBConnection dbCon = new DBConnection();
-        String childDOBCell = dbCon.dbReadChildDOB(env, pid);
+        String childDOBCell = getDbConnection().dbReadChildDOB(env, pid);
         Assert.assertNull(childDOBCell,"Child DOB is not NULL");
         logTextToAllure("Child DOB cell: " + childDOBCell);
         return this;
@@ -120,36 +118,30 @@ public class MainPageOLS extends BasePage{
 
     @Step
     public MainPageOLS pidFromDbToLog(String env){
-        DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
-        dbCon.dbRead(env, pid);
-        dispoParent = dbCon.getDispo();
+        getDbConnection().dbReadPID(env, pid);
+        dispoParent = getDbConnection().getDispo();
         logTextToAllure("Dispo="+dispoParent+" for pid "+pid);
         return this;
     }
     
     public MainPageOLS childPidFromDbToLog(String env){
-        DBConnection dbCon = new DBConnection();
         pid = PassPID.getInstance().getPidNumber();
-        dbCon.dbReadChilPID(env, pid);
-        logTextToAllure("Dispo="+dbCon.getDispo()+" for pid "+pid);
+        getDbConnection().dbReadChilPID(env, pid);
+        logTextToAllure("Dispo="+getDbConnection().getDispo()+" for pid "+pid);
         return this;
     }
 
     @Step
     public MainPageOLS getRadiantDbToLog(String env){
-        DBConnection dbCon = new DBConnection();
-//        pid = PassPID.getInstance().getPidNumber();
-        RadiantResults radiantResults = dbCon.dbReadRadiant(env, pid);
+        RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
         logTextToAllure("Radiant::: Current Status="+radiantResults.getCurrentStatus()+" for pid "+pid);
         return this;
     }
 
     @Step
     public MainPageOLS getAnomalyDbToLog(String env){
-        DBConnection dbCon = new DBConnection();
-//        pid = PassPID.getInstance().getPidNumber();
-        AnomalyResults anomalyResults = dbCon.dbReadAnomaly(env, pid);
+        AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
         logTextToAllure("Anomaly : Current Status="+anomalyResults.getCurrentStatus()+" Request Status id="+anomalyResults.getRequestStatus()+" for pid "+pid);
         return this;
     }
@@ -180,10 +172,8 @@ public class MainPageOLS extends BasePage{
         return (T)page;
     }
 
-
 //MainPageOLS<Z> and DateOfBirthPageOLS extends MainPageOLS<DateOfBirthPageOLS>
 //    public Z assertSome(){
 //        return (Z)this;
 //    }
-
 }

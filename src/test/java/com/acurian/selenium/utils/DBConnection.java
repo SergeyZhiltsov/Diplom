@@ -15,11 +15,11 @@ public class DBConnection {
 //                        "(ADDRESS=(PROTOCOL=TCP)(HOST=dev-db-scan.acurian.com)(PORT=1521))" +
 //                        "(CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=acustg_users.acurian.com)))";
 
-    private String stageURL = "jdbc:oracle:thin:@dev-db-scan.acurian.com:1521/acustg_users.acurian.com";
-    private String prodURL = "jdbc:oracle:thin:@prd-db-scan.acurian.com:1521/ACUPRD_users.acurian.com";
-    private String qaURL = "jdbc:oracle:thin:@dev-db-scan.acurian.com:1521/acuqa_users.acurian.com";
-    private String userName = "autotest";
-    private String password = "autotest";
+    private final String stageURL = "jdbc:oracle:thin:@dev-db-scan.acurian.com:1521/acustg_users.acurian.com";
+    private final String prodURL = "jdbc:oracle:thin:@prd-db-scan.acurian.com:1521/ACUPRD_users.acurian.com";
+    private final String qaURL = "jdbc:oracle:thin:@dev-db-scan.acurian.com:1521/acuqa_users.acurian.com";
+    private final String userName = "autotest";
+    private final String password = "autotest";
 
 //    String environment = "PRD";
 //    String pidNumber = "64293501";//prod- 64293501, stg- 63071241,
@@ -32,7 +32,7 @@ public class DBConnection {
     private String applicantStatus = null;
 
     private Connection getDbCon(String environment) {
-        OracleDataSource ods = null;
+        OracleDataSource ods;
         try {
             ods = new OracleDataSource();
             ods.setURL(getUrlByEnv(environment));
@@ -45,12 +45,11 @@ public class DBConnection {
         return conn;
     }
 
-    public void dbRead(String environment, String pidNumber){
+    public void dbReadPID(String environment, String pidNumber){
         try {
             stmt = getDbCon(environment).createStatement();
             String sql = "select * from call where patient_id in ('"+pidNumber+"')";
             rset = stmt.executeQuery(sql);
-
             while (rset.next()) {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
@@ -58,7 +57,6 @@ public class DBConnection {
             System.out.println("--::DispoRead from DB::--");
             System.out.println("Dispo ="+dispoCode+applicantStatus);
             System.out.println("DB read completed");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -77,7 +75,9 @@ public class DBConnection {
             while (rset.next()) {
                 dobCell = rset.getString("ANSWER_DATE");
             }
+            System.out.println("--::ChildDOBRead from DB::--");
             System.out.println("Fetched child DOB cell: " + dobCell);
+            System.out.println("DB read completed");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,7 +110,6 @@ public class DBConnection {
         }
         return null;
     }
-    
     
     public String dbReadChilPID(String environment, String pidNumber) {
         try {
