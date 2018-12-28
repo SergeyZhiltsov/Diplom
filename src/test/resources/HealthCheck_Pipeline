@@ -1,0 +1,18 @@
+def var = env.getProperty("Environment")
+
+pipeline {
+    agent any
+    stages {
+        stage('Screeners_HealthCheck') {
+            steps{
+                build job: 'Screeners_HealthCheck', parameters: [[$class: 'StringParameterValue', name: 'Environment', value: var]]
+            }
+        }
+
+        stage('RMP_HealthCheck') {
+            steps{
+                build job: 'RMP_HealthCheck', parameters: [[$class: 'StringParameterValue', name: 'Environment', value: var]]
+            }
+        }
+    }
+}
