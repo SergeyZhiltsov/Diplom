@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC;
 
 import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
@@ -38,6 +37,15 @@ public class MainPageCC extends BasePage {
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean) ((JavascriptExecutor) getDriver()).executeScript(
                 "return jQuery.active == 0"
         ));
+    }
+
+    public MainPageCC assertChildDOBIsNull(String env) {
+        DBConnection dbCon = new DBConnection();
+        pid = PassPID.getInstance().getPidNumber();
+        String childDOBCell = dbCon.dbReadChildDOB(env, pid);
+        Assert.assertNull(childDOBCell,"Child DOB is not NULL");
+        logTextToAllure("Child DOB cell: " + childDOBCell);
+        return this;
     }
 
     public MainPageCC pidFromDbToLog(String env) {
