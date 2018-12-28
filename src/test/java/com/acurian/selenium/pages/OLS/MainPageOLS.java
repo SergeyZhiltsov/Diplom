@@ -110,6 +110,14 @@ public class MainPageOLS extends BasePage{
         return (T)page;
     }
 
+    public MainPageOLS assertChildDOBIsNull(String env) {
+        DBConnection dbCon = new DBConnection();
+        String childDOBCell = dbCon.dbReadChildDOB(env, pid);
+        Assert.assertNull(childDOBCell,"Child DOB is not NULL");
+        logTextToAllure("Child DOB cell: " + childDOBCell);
+        return this;
+    }
+
     @Step
     public MainPageOLS pidFromDbToLog(String env){
         DBConnection dbCon = new DBConnection();

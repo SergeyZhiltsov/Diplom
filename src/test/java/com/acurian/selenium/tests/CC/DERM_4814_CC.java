@@ -359,6 +359,7 @@ whichofthefollowingMedicationsTherapies_CC
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .assertChildDOBIsNull(env);
     }
 }
