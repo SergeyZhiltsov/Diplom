@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
 import com.acurian.selenium.pages.OLS.shared.StatinMedicationsOnPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.utils.DataProviderPool;
@@ -135,34 +136,50 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
-        debugPageCC.checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1, protocol2);
+        diagnosedYouWithLowTestosteroneCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1, protocol2);
 
         //-----------New Switching to CV module logic-----------------------
         //Check if possible to switch to to CV module logic
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
+
+        ApproximateHeightPageCC approximateHeightPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new StatinMedicationsOnPageCC());
+                .clickNextButton(new ApproximateHeightPageCC());
 
+        StatinMedicationsOnPageCC statinMedicationsOnPageCC = approximateHeightPageCC
+                .waitForPageLoad()
+                .setAll("5", "5", "170")
+                .clickNextButton(new StatinMedicationsOnPageCC());
         statinMedicationsOnPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
                 .back();
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .back();
+
 
         cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new StatinMedicationsOnPageCC());
-
-        statinMedicationsOnPageCC
+                .clickNextButton(approximateHeightPageCC);
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .clickNextButton(statinMedicationsOnPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", kowaProtocolA, kowaProtocolS)
                 .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", kowaProtocolA, kowaProtocolS)
+                .back();
+        approximateHeightPageCC
+                .waitForPageLoad()
                 .back();
 
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
@@ -170,18 +187,23 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Diabetes or High Blood Sugar")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
-        whatKindOfDiabetesPageCC
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .clickNextButton(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
                 .back();
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .back();
 
-        cardiovascularDiseaseThanOthersPageCC
+        WithType2DiabetesPageCC withType2DiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(whatKindOfDiabetesPageCC);
-
-        WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .clickNextButton(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
@@ -190,15 +212,24 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .back(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
+                .back(approximateHeightPageCC)
+                .waitForPageLoad()
                 .back(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .back(diagnosedYouWithLowTestosteroneCC)
                 .waitForPageLoad()
-                .back(experiencedAnyOfFollowingCC)
+                .back(experiencedAnyOfFollowingCC);
+
+        //module started
+        experiencedAnyOfFollowingCC
                 .waitForPageLoad()
-                .clickOnAnswers("Decreased sexual desire or libido", "Decreased spontaneous erections (e.g., morning erections)", "Decreased energy or fatigue/feeling tired")
-                .clickOnAnswers("Loss of body (axillary and pubic) hair or reduced shaving", "Hot flashes", "Low mood or depressed mood")
-                .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
+                .clickOnAnswers("Decreased sexual desire or libido",
+                        "Decreased spontaneous erections (e.g., morning erections)",
+                        "Decreased energy or fatigue/feeling tired",
+                        "Low mood or depressed mood",
+                        "Loss of body (axillary and pubic) hair or reduced shaving",
+                        "Hot flashes")
+                .clickNextButton(diagnosedYouWithLowTestosteroneCC);
 
         diagnosedYouWithLowTestosteroneCC
                 .waitForPageLoad()
@@ -220,12 +251,10 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswers("Axiron gel")
                 .clickNextButton(new EverSmokedCigarettesPageCC());
 
-
         HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = everSmokedCigarettesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
-
 
         HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
                 .waitForPageLoad()
@@ -243,8 +272,6 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-
-        //HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = subquestionExperiencedHeartPageCC
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
@@ -308,7 +335,6 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
 
-
         HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_cc
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -324,8 +350,6 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
                 .clickNextButton(new ReceivedHeartProcedurePageCC());
 
-
-        //HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = receivedHeartProcedurePageCC
         receivedHeartProcedurePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
@@ -337,10 +361,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswer("More than 6 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
 
-
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
-                .waitForPageLoad();
-        ApproximateHeightPageCC approximateHeightPageCC = hasDoctorEverDiagnosedMedicalCondDiseases_CC
+                .waitForPageLoad()
                 .clickOnAnswers("History of Prostate or Breast Cancer")
                 .clickNextButton(new ApproximateHeightPageCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1, protocol2);

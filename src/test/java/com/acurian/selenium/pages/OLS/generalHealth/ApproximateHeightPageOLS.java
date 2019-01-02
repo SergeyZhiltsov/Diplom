@@ -39,8 +39,11 @@ public class ApproximateHeightPageOLS extends MainPageOLS{
 
     @Step
     public ApproximateHeightPageOLS setAll(String feat, String inches, String lbs) {
-        setFeat(feat);
-        setInches(inches);
+//        setFeat(feat);
+//        setInches(inches);
+//        setLbs(lbs);
+        setFeatwithClear(feat);
+        setIncheswithClear(inches);
         setLbs(lbs);
         return this;
     }

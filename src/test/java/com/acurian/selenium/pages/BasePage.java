@@ -3,6 +3,7 @@ package com.acurian.selenium.pages;
 
 import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.utils.CSVParser;
+import com.acurian.selenium.utils.DBConnection;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -31,6 +32,7 @@ public abstract class BasePage {
     private Actions actions;
     protected NgWebDriver ngDriver;
     private CSVParser csvParser;
+    private DBConnection dbConnection;
 
 
     public BasePage() {
@@ -39,6 +41,7 @@ public abstract class BasePage {
         driverWait = new WebDriverWaitLogged(driver);
         ngDriver = new NgWebDriver((JavascriptExecutor) driver);
         csvParser = new CSVParser();
+        dbConnection = new DBConnection();
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -52,6 +55,10 @@ public abstract class BasePage {
 
     protected CSVParser getCsvParser() {
         return csvParser;
+    }
+
+    protected DBConnection getDbConnection() {
+        return dbConnection;
     }
 
     @Step
