@@ -46,6 +46,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
 
+        System.out.println("Clicking Call Back");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
@@ -54,6 +55,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
+        System.out.println("Clicking General Information");
         ThankYouCloseGeneralInformationPageCC thankYouCloseGeneralInformationPageCC = callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("General Information")
@@ -63,6 +65,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
+        System.out.println("Clicking Media");
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Media")
@@ -70,6 +73,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
+        System.out.println("Clicking Physician");
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Physician")
@@ -77,6 +81,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
+        System.out.println("Clicking Site Has Not Contacted Patient");
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Site Has Not Contacted Patient")
@@ -84,6 +89,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
+        System.out.println("Clicking Opt-Out of Database");
         OptOutOfDatabaseClosePageCC optOutOfDatabaseClosePageCC = callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Opt-Out of Database")
@@ -110,6 +116,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
+        System.out.println("Clicking Auto-Call Opt out");
         AutoCallOptOutIdentificationClosePageCC autoCallOptOutIdentificationClosePageCC = callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Auto-Call Opt out")
@@ -123,6 +130,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
+        System.out.println("Clicking Person with Condition is Deceased");
         DeceasedIdentificationClosePageCC deceasedIdentificationClosePageCC = callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Person with Condition is Deceased")
@@ -137,6 +145,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
+        System.out.println("Clicking Other - Write reason in Notes Section");
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Other - Write reason in Notes Section")
