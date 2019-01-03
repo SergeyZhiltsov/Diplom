@@ -65,6 +65,27 @@ public class DBConnection {
         }
     }
 
+    public void convert54Cto1R(String environment, String pidNumber) {
+        try {
+            Connection connTemp = getDbCon(environment);
+            stmt = connTemp.createStatement();
+            connTemp.setAutoCommit(false);
+            stmt = connTemp.createStatement();
+            String sql = "DECLARE " +
+                    "BEGIN " +
+                    "cc_dev.patient_admin_pkg.fix_54C_patient('" + pidNumber + "', 1, 'R'); " +
+                    "END;";
+            stmt.execute(sql);
+            connTemp.commit();
+            connTemp.setAutoCommit(true);
+            System.out.println("--::DispoConvert 54C to 1R::--");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources();
+        }
+    }
+
     public String dbReadChildDOB(String env, String pidNumber) {
         String dobCell = null;
         try {
