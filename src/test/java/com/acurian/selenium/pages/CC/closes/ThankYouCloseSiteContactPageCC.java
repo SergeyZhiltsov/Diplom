@@ -7,30 +7,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ThankYouCloseSimplePageCC extends MainPageCC{
+public class ThankYouCloseSiteContactPageCC extends MainPageCC {
 
-    //Thank You Close - AWR/SEN - 65_number
-
-    public final String titleExpected = "Thank you again for contacting Acurian's Research Information Center. Goodbye.";
-
-    public final String titleExpectedV2 = "Thank you again for contacting Acurian's Research Information Center.  Goodbye.";
+    public final String titleExpected = "Thank you again for contacting Acurian's Research Information Center. " +
+            "We will remind the study physician's office of your continued interest in study participation. Goodbye.";
 
     @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
-    public ThankYouCloseSimplePageCC() {
+    public ThankYouCloseSiteContactPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ThankYouCloseSimplePageCC waitForPageLoad() {
+    public ThankYouCloseSiteContactPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
-        return this;
-    }
-
-    @Step
-    public ThankYouCloseSimplePageCC waitForPageLoadV2() {
-        waitForPageLoadMain(titleText, titleExpectedV2);
         return this;
     }
 
