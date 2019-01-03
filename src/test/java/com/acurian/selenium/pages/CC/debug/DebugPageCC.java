@@ -28,6 +28,15 @@ public class DebugPageCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='debug_toolbar_content']//tbody//tr/td[@class='question_code']")
     List<WebElement> questionNumberList;
 
+    @FindBy(id = "debug_toolbar_props_lnk")
+    private WebElement propertiesLink;
+
+    @FindBy(xpath = "//div[contains(@class,'ui-dialog-titlebar')]//span[contains(text(), 'Properties')]/following-sibling::*[5]")
+    private WebElement propertiesCloseButton;
+
+    @FindBy(xpath = "//a[@id='study_props']//following-sibling::div/div[2]")
+    private WebElement propertiesProjectCode;
+
     public DebugPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -39,6 +48,16 @@ public class DebugPageCC extends MainPageCC{
 
     public DebugPageCC closeDebugWindow(){
         closeButton.click();
+        return this;
+    }
+
+    public DebugPageCC openPropertiesWindow() {
+        propertiesLink.click();
+        return this;
+    }
+
+    public DebugPageCC closePropertiesWindow() {
+        propertiesCloseButton.click();
         return this;
     }
 
@@ -132,6 +151,15 @@ public class DebugPageCC extends MainPageCC{
         Object[] actualProtocols = getProtocolsForQuestion(previousPageTitle);
         Object[] expected = {"false"};
         Assert.assertEqualsNoOrder(actualProtocols, expected, "Protocols are present ");
+        return this;
+    }
+
+    @Step
+    public DebugPageCC projectCodeShouldMatch(String projectCode) {
+        openPropertiesWindow();
+        waitForAnimation();
+        Assert.assertEquals(propertiesProjectCode.getText().replace("Project Code:", ""), projectCode, "Project code is diff");
+        closePropertiesWindow();
         return this;
     }
 
