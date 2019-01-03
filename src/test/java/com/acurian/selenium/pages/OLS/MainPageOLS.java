@@ -133,6 +133,14 @@ public class MainPageOLS extends BasePage{
     }
 
     @Step
+    public MainPageOLS convert54Cto1R(String env){
+        getDbConnection().convert54Cto1R(env, pid);
+        logTextToAllure("54 to 1R conversion completed");
+        threadSleep(2000);
+        return this;
+    }
+
+    @Step
     public MainPageOLS getRadiantDbToLog(String env){
         RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
         logTextToAllure("Radiant::: Current Status="+radiantResults.getCurrentStatus()+" for pid "+pid);
