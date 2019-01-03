@@ -68,38 +68,5 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)
                 .pidFromDbToLog(env)
                 .convert54Cto1R(env);
-//                .pidFromDbToLog(env);
-
-
-
-
-
-//                .clickNextButton(new DoctorInformationCollectionPageOLS())
-//                .waitForPageLoadGmega()
-//                .clickNextButton(new HS1PageOLS())
-//                .waitForPageLoad()
-//                .clickOkInPopUp()
-//                .setSignature()
-//
-//                .getPage(new HumanAPIOLS())
-//                .waitForPageLoadGmega()
-//                .connectBTN()
-//                .switchToAPI()
-//                .waitForProvider()
-//                .clickANY()
-//                .waitSearchAll()
-//                .search("cleveland clinic")
-//                .waitProvider()
-//                .clickProvider()
-//                .typeUserName("democlinical@gmail.com")
-//                .typePWD("password")
-//                .clickConnect()
-//                .waitToClickNext()
-//
-//                .clickNextButton(new ThankYouCloseGmegaOLS())
-//                .waitForPageLoad()
-//                .clickNextButton(new AboutHealthPageOLS())
-////                .waitForPageLoad()
-//                .pidFromDbToLog(env);
     }
 }
