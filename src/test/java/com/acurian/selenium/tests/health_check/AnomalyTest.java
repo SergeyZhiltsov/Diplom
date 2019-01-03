@@ -4,6 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
@@ -78,7 +79,7 @@ public class AnomalyTest extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()

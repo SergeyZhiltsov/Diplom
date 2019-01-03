@@ -10,12 +10,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class BasedOnYourAnswersPageOLS extends MainPageOLS{
+public class BasedOnYourAnswersPageOLS extends MainPageOLS {
 
     public final String titleExpected = "Based on your answers, your child may be a candidate for a study in your area. Would you like to see if they qualify?";
-    public final String titleExpected1 = "We're glad the location is convenient for you.\n" +
-            "\n" +
-            "We will forward your contact information to the doctor's office that you selected so they may contact you for further evaluation using the phone number you provided. Or you can schedule your appointment now by calling 855-382-9810.";
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
     WebElement titleText1;
@@ -49,7 +46,6 @@ public class BasedOnYourAnswersPageOLS extends MainPageOLS{
     @Step
     public BasedOnYourAnswersPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
-
         return this;
     }
 
@@ -60,7 +56,7 @@ public class BasedOnYourAnswersPageOLS extends MainPageOLS{
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }
