@@ -18,7 +18,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
 
     @Test(enabled = true)
     @Description("Test for Hello Sign")
-    public void helloSign() {
+    public void conversion54Cto1R() {
         String phoneNumber = "GMEGA30003";
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
@@ -67,8 +67,8 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)
                 .pidFromDbToLog(env)
-                .convert54Cto1R(env)
-                .pidFromDbToLog(env);
+                .convert54Cto1R(env);
+//                .pidFromDbToLog(env);
 
 
 
