@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -98,13 +99,14 @@ public class SiteSelectionPageCC extends MainPageCC {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
-    
-    @Step
-    public SiteSelectionPageCC selectAnswer(String answerText) {
-        radioButtonsList1.stream().filter(el -> el.getText().equals(answerText))
+
+    public SiteSelectionPageCC assertTestSiteIndicator(String answerText) {
+        String bacgroundColorActual = radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()
-                .click();
+                .findElement(By.xpath("ancestor::span[@class='site_info_wrapper']//strong[@class='site_sel_radio_location']"))
+                .getCssValue("background-color");
+        Assert.assertEquals(bacgroundColorActual, "rgba(255, 255, 0, 1)", "background color is diff");
         waitForAnimation();
         return this;
     }
