@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FaqPage extends MainPageCC {
-    private final String csvFileName = "\\faqDataNew.csv";
+    private final String csvFileName = "faqDataNew.csv";
     private List<String[]> expectedFaqData;
     private ArrayList<String> expectedFaqTitles;
     private ArrayList<String> expectedFaqDefinisions;
@@ -40,7 +40,7 @@ public class FaqPage extends MainPageCC {
 
     public FaqPage() {
         PageFactory.initElements(getDriver(), this);
-        expectedFaqData = getCsvParser().getData(csvFileName);
+        expectedFaqData = getCsvParser().getData(csvFileName, true);
         expectedFaqTitles = getExpectedFaqTitles();
         expectedFaqDefinisions = getExpectedFaqDefinisions();
     }
