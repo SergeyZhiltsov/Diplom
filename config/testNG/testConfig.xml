@@ -4,8 +4,7 @@
 
     <test name="Just for checking">
         <classes>
-            <class name="com.acurian.selenium.tests.CC.DERM_4814_CC"/>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4814_OLS"/>
+            <class name="com.acurian.selenium.tests.health_check.InstantFUL"/>
         </classes>
     </test>
 
