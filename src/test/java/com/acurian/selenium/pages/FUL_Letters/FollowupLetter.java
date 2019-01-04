@@ -33,7 +33,7 @@ public class FollowupLetter extends MainPageOLS{
     @FindBy(xpath = "//input[@name='password']")
     WebElement password;
     
-    @FindBy(xpath = "//input[@id='gbqfq']")
+    @FindBy(xpath = "//input[@class='gb_xf']")
     WebElement searchBox;
     
     @FindBy(xpath = "//table[@class='F cf zt']/tbody/tr[1]/td[@class='xY a4W']")
@@ -82,9 +82,8 @@ public class FollowupLetter extends MainPageOLS{
     public FollowupLetter Gmail_FUL_Validate(String pidAfterScreening) {
         WebDriver driver = getDriver();
 		driver.get("https://mail.google.com/");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
-		SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-		siteSelectionPageOLS.threadSleep(35000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 		//String PID = "63276144";
     	//-----------Enter EmailID and Password---------------        
         email_id.sendKeys("qa.acurian@gmail.com");
