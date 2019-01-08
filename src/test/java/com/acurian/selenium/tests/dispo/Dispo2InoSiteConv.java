@@ -21,7 +21,7 @@ public class Dispo2InoSiteConv extends BaseTest {
     @Description("Dispo 2I No Site Convenient")
     public void dispo2I() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String siteName = "QSC9005_None";
         String zipCode = "08204";
 
@@ -42,7 +42,7 @@ public class Dispo2InoSiteConv extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

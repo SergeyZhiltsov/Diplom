@@ -19,7 +19,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
     @Description("Dispo 1R QualifiedReferral")
     public void dispo1R() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String siteName = "AUT_GMEGA_01";
         String zipCode = "08204";
 
@@ -40,7 +40,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

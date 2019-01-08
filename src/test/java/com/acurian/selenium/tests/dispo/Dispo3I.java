@@ -7,8 +7,10 @@ import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.UnqualifiedCloseOLS_GMEGA;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
+import com.acurian.selenium.pages.OLS.gmega1.TakingAcetaminophenTylenolPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.WhereDoYouHaveArthritisPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -19,7 +21,7 @@ public class Dispo3I extends BaseTest {
     @Description("Dispo_3I_NonQRDisq")
     public void dispo3I() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
 //        String siteName = "QSC9005_None";
         String zipCode = "08204";
 
@@ -40,7 +42,7 @@ public class Dispo3I extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -69,9 +71,19 @@ public class Dispo3I extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 
-        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = whenYouDiagnosedWithRaPageOLS
+        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
+                .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
+
+        TakingAcetaminophenTylenolPageOLS takingAcetaminophenTylenolPageOLS = whereDoYouHaveArthritisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Left Knee")
+                .clickNextButton(new TakingAcetaminophenTylenolPageOLS());
+
+        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = takingAcetaminophenTylenolPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
 
         unqualifiedCloseOLS_gmega
