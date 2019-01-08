@@ -21,7 +21,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {"AUT_LOWT_3017S", "41C", "19901"},
+//                {"AUT_LOWT_3017S", "41C", "19901"},
                 {"AUT_LOWT_3017_Site", "1R", "19901"}
         };
     }
@@ -117,27 +117,38 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
-        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = cardiovascularDiseaseThanOthersPageOLS
+        ApproximateHeightPageOLS approximateHeightPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new StatinMedicationsOnPageOLS());
+                .clickNextButton(new ApproximateHeightPageOLS());
 
+        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = approximateHeightPageOLS
+                .waitForPageLoad()
+                .setAll("5", "5", "170")
+                .clickNextButton(new StatinMedicationsOnPageOLS());
         statinMedicationsOnPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
                 .back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .back();
 
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(statinMedicationsOnPageOLS);
-
-        statinMedicationsOnPageOLS
+                .clickNextButton(approximateHeightPageOLS);
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .clickNextButton(statinMedicationsOnPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
                 .checkProtocolsContainsForQNumber("QS6703", kowaProtocolA, kowaProtocolS)
+                .back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
                 .back();
 
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
@@ -145,18 +156,23 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Diabetes or High Blood Sugar")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
-        whatKindOfDiabetesPageOLS
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .clickNextButton(whatKindOfDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
                 .back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .back();
 
-        cardiovascularDiseaseThanOthersPageOLS
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(whatKindOfDiabetesPageOLS);
-
-        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(whatKindOfDiabetesPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageOLS());
@@ -165,11 +181,16 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .back(whatKindOfDiabetesPageOLS)
                 .waitForPageLoad()
+                .back(approximateHeightPageOLS)
+                .waitForPageLoad()
                 .back(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS)
                 .waitForPageLoad()
-                .back(experiencedAnyOfFollowing_OLS)
+                .back(experiencedAnyOfFollowing_OLS);
+
+        //module started
+        experiencedAnyOfFollowing_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Decreased sexual desire or libido",
                         "Decreased spontaneous erections (e.g., morning erections)",
@@ -177,21 +198,15 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         "Low mood or depressed mood",
                         "Loss of body (axillary and pubic) hair or reduced shaving",
                         "Hot flashes")
-                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
+                .clickNextButton(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS);
 
-        //---------------Q4 hasDoctorEverDiagnosedYouWithLowTestosterone_OLS-------------------
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
-                .waitForPageLoad();
-        Assert.assertEquals(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.getTitleText(), hasDoctorEverDiagnosedYouWithLowTestosterone_OLS.titleExpected, "Title is diff");
-        hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
-        //****************Q5 Has a doctor ever diagnosed you with any of the following medical conditions or diseases?------
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(cardiovascularDiseaseThanOthersPageOLS.getTitleText(), cardiovascularDiseaseThanOthersPageOLS.titleExpected, "Title is diff");
-        //TransitionalStatementLowtPageOLS _TransitionalStatement_LowtPage_OLS = cardiovascularDiseaseThanOthersPageOLS
         LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
@@ -205,12 +220,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new LevelOrHypogonadismPageOLS());
 
-
-        //---------------Q6 LevelOrHypogonadismPageOLS-------------------
         levelOrHypogonadismPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(levelOrHypogonadismPageOLS.getTitleText(), levelOrHypogonadismPageOLS.titleExpected, "Title is diff");
-        //HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = levelOrHypogonadismPageOLS
         EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = levelOrHypogonadismPageOLS
                 .clickOnAnswers("AndroGel",
                         "Endoderm patch",
@@ -224,11 +235,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         "Unsure")
                 .clickNextButton(new EverSmokedCigarettesPageOLS());
 
-
-        //---------------Q7 EverSmokedCigarettesPageOLS-------------------
         everSmokedCigarettesPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(everSmokedCigarettesPageOLS.getTitleText(), everSmokedCigarettesPageOLS.titleExpected, "Title is diff");
         HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = everSmokedCigarettesPageOLS
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickOnAnswer("I used to smoke, but have since quit")
@@ -320,9 +328,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
         //---------------Q13 HasDoctorEverDiagnosedYouMedicalCond_OLS-------------------
         hasDoctorEverDiagnosedYouMedicalCond_OLS
-                .waitForPageLoad();
-        Assert.assertEquals(hasDoctorEverDiagnosedYouMedicalCond_OLS.getTitleText(), hasDoctorEverDiagnosedYouMedicalCond_OLS.titleExpected, "Title is diff");
-        ApproximateHeightPageOLS approximateHeightPageOLS = hasDoctorEverDiagnosedYouMedicalCond_OLS
+                .waitForPageLoad()
                 .clickOnAnswers("History of Prostate or Breast Cancer",
                         "Other cancer within the past 2 years (except skin cancer)",
                         "Sleep apnea that is not currently being treated",
@@ -334,7 +340,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         debugPageOLS.back();
         hasDoctorEverDiagnosedYouMedicalCond_OLS.waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageOLS());
+                .clickNextButton(approximateHeightPageOLS);
 
         approximateHeightPageOLS
                 .waitForPageLoad()//---Disqualify ("High BMI") if > 50 - Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]

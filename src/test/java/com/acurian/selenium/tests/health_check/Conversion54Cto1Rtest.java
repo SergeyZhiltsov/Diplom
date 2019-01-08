@@ -3,10 +3,10 @@ package com.acurian.selenium.tests.health_check;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
-import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
@@ -14,15 +14,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class AnomalyTest extends BaseTest {
+public class Conversion54Cto1Rtest extends BaseTest {
 
-    @Test
-    @Description("Test for 41C Anomaly")
-    public void anomalyTest() {
-        String phoneNumber = "AUTGMEG41C";
-        String siteName = "AUT_GMEGA_01"; //"AUT_GRA1_Site";
-        String zipCode = "08204";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+    @Test(enabled = true)
+    @Description("Test for Hello Sign")
+    public void conversion54Cto1R() {
+        String phoneNumber = "GMEGA30003";
+        String studyName = "a rheumatoid arthritis (RA)";
+        String siteName = "AUT_GRA1_Site";
+        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -30,7 +30,7 @@ public class AnomalyTest extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGmegaExpected, "Title is diff");
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new IdentificationPageOLS());
@@ -40,24 +40,9 @@ public class AnomalyTest extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
-                .clickNextButton(new ApproximateHeightPageOLS());
-
-        FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new FollowingNeurologicalConditionsPageOLS());
-
-        DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DigestiveConditionsPageOLS());
-
-        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = digestiveConditionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
@@ -79,13 +64,9 @@ public class AnomalyTest extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseGmegaOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
+                .clickNextButton(new HSGeneralPageOLS())
+                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)
                 .pidFromDbToLog(env)
-                .getAnomalyDbToLog(env);
+                .convert54Cto1R(env);
     }
 }

@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -10,6 +11,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -87,11 +89,8 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .waitForPageLoad();
         FollowupLetter followupLetter = new FollowupLetter();
-//        String childPID = new DBConnection().dbReadChilPID(env, pidAfterScreening);
-
         followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber());
 
     }

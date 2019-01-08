@@ -17,7 +17,7 @@ public class OBS_4605_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
     @Description("OBS_4605_CC")
-    public void obs4606cc(final String username, final String password) {
+    public void obs4605cc(final String username, final String password) {
         final String phoneNumber = "AUTAMS1OBS";
         final String protocol = "RM_493_013";
         final String studyName = "a genetic obesity study";
