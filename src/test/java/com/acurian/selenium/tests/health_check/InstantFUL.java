@@ -11,7 +11,6 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.utils.DBConnection;
 import com.acurian.selenium.utils.PassPID;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -27,6 +26,12 @@ public class InstantFUL extends BaseTest {
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
+
+        if (env.equals("PRD")) {
+            System.out.println("Skip FUL check for PRD");
+            System.out.println("Setting default env - STG");
+            env = "STG";
+        }
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
@@ -58,7 +63,7 @@ public class InstantFUL extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DigestiveConditionsPageOLS());
 
-        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS =  digestiveConditionsPageOLS
+        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = digestiveConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
@@ -92,6 +97,5 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad();
         FollowupLetter followupLetter = new FollowupLetter();
         followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber());
-
     }
 }
