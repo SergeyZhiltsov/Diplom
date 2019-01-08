@@ -19,7 +19,7 @@ public class Dispo41C extends BaseTest {
     @Description("Dispo 41C RefVerificationFlag")
     public void dispo41C() {
         String phoneNumber = "AUTGMEG41C";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String siteName = "AUT_GMEGA_01";
         String zipCode = "08204";
 
@@ -40,7 +40,7 @@ public class Dispo41C extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

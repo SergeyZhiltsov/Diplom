@@ -17,7 +17,7 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
     @Description("Dispo_3C_DisQualify_Type1")
     public void dispo3Ctype1() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
 //        String siteName = "QSC9005_None";
         String zipCode = "08204";
 
@@ -38,7 +38,7 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
