@@ -1,18 +1,16 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.utils.DBConnection;
+import com.acurian.selenium.utils.PassPID;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -22,10 +20,10 @@ public class InstantFUL extends BaseTest {
     @Test
     @Description("Test for Instant FOllow-Up Letter (FUL) Validation")
     public void instantFUL() {
-        String phoneNumber = "AUTGMEGA01";
+        String phoneNumber = "GMEGA00001";
         String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
-        String siteName = "GRAD2_GRAD10";
-        String zipCode = "10004";
+        String siteName = "AUT_GRA1_Site";
+        String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -91,12 +89,10 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-        String pidAfterScreening = siteSelectionPageOLS.getPidNumber();
         FollowupLetter followupLetter = new FollowupLetter();
-        String childPID = new DBConnection().dbReadChilPID(env, pidAfterScreening);
+//        String childPID = new DBConnection().dbReadChilPID(env, pidAfterScreening);
 
-        followupLetter.Gmail_FUL_Validate(childPID);
+        followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber());
 
     }
 }
