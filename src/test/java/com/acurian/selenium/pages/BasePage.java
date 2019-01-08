@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -33,7 +34,6 @@ public abstract class BasePage {
     protected NgWebDriver ngDriver;
     private CSVParser csvParser;
     private DBConnection dbConnection;
-
 
     public BasePage() {
         driver = BaseTest.getDriver();
