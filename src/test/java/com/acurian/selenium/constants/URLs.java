@@ -19,4 +19,10 @@ public interface URLs {
     String OLS_STG = "https://test-screener.acurian.com/questionnaire_test_staging/welcome?pn=%1$s";
     String OLS_QA = "https://test-screener.acurian.com/questionnaire_test_qa/welcome?pn=%1$s";
     String OLS_PROD = "http://acurianhealth.com/questionnaire/welcome?pn=%1$s&show_debug=1&testing_key=%2$s";
+
+
+    //RPA
+    String RPA_STG = "https://stg-appservice.acurian.com/rpa/login.htm";
+    String RPA_QA = "https://qa-appservice.acurian.com/rpa/login.htm";
+    String RPA_PROD = "http://prod-appservice.acurian.com/rpa/login.htm";
 }

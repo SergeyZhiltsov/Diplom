@@ -11,7 +11,6 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class LoginPageCC extends MainPageCC {
 
-
     @FindBy(id = "username")
     WebElement userNameInput;
 
@@ -90,6 +89,4 @@ public class LoginPageCC extends MainPageCC {
     public String getTitleText(){
         return getText(titleText);
     }
-
-
 }

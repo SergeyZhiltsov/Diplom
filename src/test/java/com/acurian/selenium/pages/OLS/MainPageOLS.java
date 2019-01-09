@@ -139,7 +139,7 @@ public class MainPageOLS extends BasePage{
         threadSleep(2000);
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo="+dispoParent+" for pid "+pid+"after conversion");
+        logTextToAllure("Dispo="+dispoParent+" for pid "+pid+"  after conversion");
         return this;
     }
 
