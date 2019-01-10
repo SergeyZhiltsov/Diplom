@@ -23,7 +23,7 @@ public class InstantFUL extends BaseTest {
     public static Object[][] getData() {
         return new Object[][]{
                 {"AUT_GRA_FUL_Site", "60061"},
-                {"AUT_GRA_FULm _Site", "60061"}
+                {"AUT_GRA_FULm_Site", "60061"}
         };
     }
 
