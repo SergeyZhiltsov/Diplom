@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -12,20 +11,38 @@ import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.utils.PassPID;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 public class InstantFUL extends BaseTest {
 
+    @DataProvider(name = "sites")
+    public static Object[][] getData() {
+        return new Object[][]{
+                {"AUT_RA1_2821_Site", "08009"},
+                {"AUT_GEMPERM1", "57007"}
+        };
+    }
 
-    @Test
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @Test(dataProvider = "sites")
     @Description("Test for Instant FOllow-Up Letter (FUL) Validation")
-    public void instantFUL() {
+    public void instantFUL(final String siteName, final String zipCode) {
         final String phoneNumber = "GMEGA00001";
         final String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
-        final String siteName = "AUT_GRA1_Site";
-        final String zipCode = "19901";
-        String env = System.getProperty("acurian.env", "STG");
+        String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
@@ -90,6 +107,12 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
         FollowupLetter followupLetter = new FollowupLetter();
-        followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber());
+        switch (zipCode) {
+            case "19901":
+                followupLetter.assertgmailFUL("63149356", true);
+                break;
+            case "57007":
+                followupLetter.assertgmailFUL("63149358", false);
+        }
     }
 }

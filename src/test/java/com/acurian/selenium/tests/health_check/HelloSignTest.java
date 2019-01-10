@@ -22,7 +22,7 @@ public class HelloSignTest extends BaseTest {
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
 
-        String env = System.getProperty("acurian.env", "STG");
+        String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
