@@ -19,9 +19,9 @@ public class DbValidation1Rgmega extends BaseTest {
     @Description("Test for 1R DB Validation")
     public void dBValidation1Rgmega() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
-        String zipCode = "08204";
+        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -40,7 +40,7 @@ public class DbValidation1Rgmega extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

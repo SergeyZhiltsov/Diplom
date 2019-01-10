@@ -22,7 +22,7 @@ public class AnomalyTest extends BaseTest {
         String phoneNumber = "AUTGMEG41C";
         String siteName = "AUT_GMEGA_01"; //"AUT_GRA1_Site";
         String zipCode = "08204";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -41,7 +41,7 @@ public class AnomalyTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
