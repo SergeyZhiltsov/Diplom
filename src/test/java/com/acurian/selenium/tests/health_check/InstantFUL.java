@@ -22,8 +22,8 @@ public class InstantFUL extends BaseTest {
     @DataProvider(name = "sites")
     public static Object[][] getData() {
         return new Object[][]{
-                {"AUT_RA1_2821_Site", "08009"},
-                {"AUT_GEMPERM1", "57007"}
+                {"AUT_GRA_FUL_Site", "60061"},
+                {"AUT_GRA_FULm _Site", "60061"}
         };
     }
 
@@ -108,11 +108,11 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad();
         FollowupLetter followupLetter = new FollowupLetter();
         switch (zipCode) {
-            case "19901":
-                followupLetter.assertgmailFUL("63149356", true);
+            case "AUT_GRA_FUL_Site":
+                followupLetter.assertgmailFUL("63149356", false);
                 break;
-            case "57007":
-                followupLetter.assertgmailFUL("63149358", false);
+            case "AUT_GRA_FULm _Site":
+                followupLetter.assertgmailFUL("63149358", true);
         }
     }
 }
