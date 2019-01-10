@@ -20,7 +20,6 @@ public class HSGeneralPageOLS extends MainPageOLS{
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
     
-    
     public final String titleExpected1 = "We're glad the location is convenient for you.\n" +
 			"\n" +
             "Next Steps:\n" +
@@ -34,7 +33,12 @@ public class HSGeneralPageOLS extends MainPageOLS{
     public final String titleRaExpected = "Your medical records related to your Arthritis, Low Back Pain, Rheumatoid Arthritis, Diabetes history are required for the study doctor to evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
-    
+
+    public final String titleRa1Expected = "Your medical records related to your Low Back Pain, Diabetes, Arthritis, " +
+            "Rheumatoid Arthritis history are required for the study doctor to evaluate you for participation. " +
+            "In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.";
     
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;

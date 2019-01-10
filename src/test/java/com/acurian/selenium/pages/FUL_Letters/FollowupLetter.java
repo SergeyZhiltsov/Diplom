@@ -27,15 +27,20 @@ public class FollowupLetter extends BasePage {
             "\n" +
             "Dover, DE 19901\n" +
             "Dear Acurian,\n" +
-            "Thank you for your recent interest in participating in one of our Rheumatoid Arthritis, Diabetes, Low Back Pain, Arthritis clinical research studies.\n" +
-            "We have forwarded your information to the study doctor’s office that you selected. If the study doctor’s office has not already contacted you, they should be contacting you within the next few days to further discuss the study and to set up an in-person evaluation.\n" +
+            "Thank you for your recent interest in participating in one of our Low Back Pain, Diabetes, Arthritis, Rheumatoid Arthritis clinical research studies.\n" +
+            "We have forwarded your information to the study doctor’s office that you selected. If the study doctor’s office has not already contacted you, they should " +
+            "be contacting you within the next few days to further discuss the study and to set up an in-person evaluation.\n" +
             "If you are not contacted within the next 5 business days, please contact them directly.\n" +
             "The study doctor’s office that you selected is:\n" +
-            "Dr. OriFName OriLName, MD\n" +
+            "Dr. OriFName Ted OriLName, MD\n" +
             "AUT_GRA1_Site\n" +
-            "11 Walnut Grove Dr\n" +
+            "1 Walnutgrove Rd\n" +
             "Dover, DE 19901\n" +
             "(123) 456-7899\n" +
+            "To allow us to send your medical records to the study doctor, please provide information on the doctors who are treating, or have treated, your Low Back Pain, " +
+            "Diabetes, Arthritis, Rheumatoid Arthritis. Please complete all details required by clicking on the link below. Please click here to learn more.\n" +
+            "Please click here to learn more.\n" +
+            "Please be assured that your records will be kept confidential and only shared with the study research facility.\n" +
             "Clinical research studies greatly contribute to the overall progress in understanding and finding future treatments for diseases and we appreciate your interest in participation.\n" +
             "The AcurianHealth Team";
 
@@ -64,13 +69,13 @@ public class FollowupLetter extends BasePage {
         wait = new WebDriverWait(driver, 20);
         fluentWait = new FluentWait<>(driver)
                 .withTimeout(30, TimeUnit.MINUTES)
-                .pollingEvery(30, TimeUnit.SECONDS)
+                .pollingEvery(10, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
 
     @Step
     public FollowupLetter assertgmailFUL(String pid) {
-        By emailLocator = new By.ByXPath("//div//span//span[contains(text(),'" + pid + "')]");
+        By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid +"')]");
         WebElement emailTitle = null;
         driver.navigate().to(gmailServiceURL);
         emailField.sendKeys("qa.acurian@gmail.com");
@@ -82,9 +87,9 @@ public class FollowupLetter extends BasePage {
         emailSearchBox.sendKeys(Keys.ENTER);
         System.out.println("Waiting for email...");
         try {
-            emailTitle = fluentWait.until(webDriver -> webDriver.findElement(emailLocator));
-            emailTitle.click();
-        } catch (WebDriverException e) {
+            emailTitle = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(emailLocator));
+            driver.findElement(emailLocator).click();
+        } catch (TimeoutException e) {
             Assert.fail("Email wasn't received");
         }
         System.out.println("Recieved email: " + emailTitle.getText());
