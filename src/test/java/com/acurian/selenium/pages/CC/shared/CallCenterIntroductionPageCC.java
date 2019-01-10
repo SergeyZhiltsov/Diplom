@@ -14,7 +14,7 @@ public class CallCenterIntroductionPageCC extends MainPageCC {
 
     public final String titleExpected = "Thank you for calling Acurian Health's research study line. My name is AUTOTEST AUTOTEST and I'll be able to help you today. Are you calling about a research study?\n" +
             "\n" +
-            "Agent Notes:\n" +
+            "Agent notes:\n" +
             "If at any point during the call, the respondent indicates that he or she is providing information on behalf of someone else, follow the call center SOP for obtaining verbal consent before continuing with the call.\n" +
             "Always select \"Learn more about matching to clinical trials\" unless prompted by a caller to pick another selection.";
 

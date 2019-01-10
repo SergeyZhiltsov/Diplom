@@ -41,7 +41,9 @@ public class FaqCC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+
+        if (env.equals("STG") || env.equals("PRD"))
+        {Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");}
 
         HeaderMenuPage headerMenuPage = new HeaderMenuPage();
         FaqPage faqPage = headerMenuPage
