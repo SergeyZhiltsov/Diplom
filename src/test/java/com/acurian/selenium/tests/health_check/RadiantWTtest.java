@@ -18,9 +18,9 @@ public class RadiantWTtest extends BaseTest {
     @Description("WT for RA")
     public void warmTransferTest(final String username, final String password) {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "an irritable bowel syndrome (IBS) study";
-        String siteName = "AUT_GRAD2_3138";
-        String zipCode = "19044";
+        String studyName = "an osteoarthritis study";
+        String siteName = "AUT_GRA_WT_site";//AUT_GOA3_2108_Site
+        String zipCode = "08204";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -59,6 +59,9 @@ public class RadiantWTtest extends BaseTest {
 
         ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
                 .waitForPageLoadGmega()
+                .getPage(new CallCenterIntroductionPageCC())
+                .activateDebugOnProd(env)
+                .getPage(genderPageCC)
                 .clickOnAnswerGmega("Female")
                 .clickNextButton(new ApproximateHeightPageCC());
 
