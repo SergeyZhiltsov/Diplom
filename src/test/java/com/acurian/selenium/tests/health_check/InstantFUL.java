@@ -11,6 +11,8 @@ import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.utils.PassPID;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -20,9 +22,19 @@ public class InstantFUL extends BaseTest {
     @DataProvider(name = "sites")
     public static Object[][] getData() {
         return new Object[][]{
-                {"AUT_GRA1_Site", "19901"},
+                {"AUT_RA1_2821_Site", "08009"},
                 {"AUT_GEMPERM1", "57007"}
         };
+    }
+
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
     }
 
     @Test(dataProvider = "sites")
@@ -97,10 +109,10 @@ public class InstantFUL extends BaseTest {
         FollowupLetter followupLetter = new FollowupLetter();
         switch (zipCode) {
             case "19901":
-                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
+                followupLetter.assertgmailFUL("63149356", true);
                 break;
             case "57007":
-                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), false);
+                followupLetter.assertgmailFUL("63149358", false);
         }
     }
 }
