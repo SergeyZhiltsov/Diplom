@@ -14,10 +14,10 @@ public class SiteIndicatorTest extends BaseTest {
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("Site Indicator Test, yellow mark check")
     public void siteIndicatorTest(final String username, final String password) {
-        String phoneNumber = "AUTGMEGA01";
+        String phoneNumber = "AUTGMEG41C";
         String studyName = "an irritable bowel syndrome (IBS) study";
-        String siteName = "AUT_GRAD2_3138";
-        String zipCode = "19044";
+        String siteName = "AUT_GMEGA_01";
+        String zipCode = "08204";
 
         String env = System.getProperty("acurian.env", "STG");
 
