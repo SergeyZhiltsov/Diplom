@@ -40,7 +40,7 @@ public class SiteSelectionPageCC extends MainPageCC {
             "[Offer second closest site if necessary and if reasonable]\n" +
             "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and you can talk to them about the study. Which would you prefer?\"";
 
-    public final String titleGmegaExpected = "The closest doctor's office available for Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis study is located at [name of street and city]. Is that convenient for you?\n" +
+    public final String titleGmegaExpected = "The closest doctor's office available for Arthritis,a low back pain study,a rheumatoid arthritis (RA) study is located at [name of street and city]. Is that convenient for you?\n" +
             "\n" +
             "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered: \"You may have seen a letter or ad that mentioned a specific diabetes complication such as stomach problems due to diabetes or foot sores or ulcers due to diabetes. Based on your answers, you are not an exact match for that study; however, you have prequalified for another study for people with diabetes.\"]\n" +
             "\n" +
@@ -90,8 +90,14 @@ public class SiteSelectionPageCC extends MainPageCC {
 
     @Step
     public SiteSelectionPageCC waitForPageLoadGmega() {
-        waitForPageLoadMain(titleText,titleGmegaExpected);
-        return this;
+        waitForAnimation();
+        try {
+            waitForPageLoadMain(titleText, titleGmegaExpected);
+            return this;
+        } catch (StaleElementReferenceException e) {
+            waitForPageLoadMain(getDriver().findElement(By.xpath(unstableTitleText)), titleGmegaExpected);
+            return this;
+        }
     }
 
     @Step
