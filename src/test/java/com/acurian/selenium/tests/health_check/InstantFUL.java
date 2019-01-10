@@ -21,17 +21,11 @@ public class InstantFUL extends BaseTest {
     @Test
     @Description("Test for Instant FOllow-Up Letter (FUL) Validation")
     public void instantFUL() {
-        String phoneNumber = "GMEGA00001";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
-        String siteName = "AUT_GRA1_Site";
-        String zipCode = "19901";
+        final String phoneNumber = "GMEGA00001";
+        final String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
+        final String siteName = "AUT_GRA1_Site";
+        final String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
-
-        if (env.equals("PRD")) {
-            System.out.println("Skip FUL check for PRD");
-            System.out.println("Setting default env - STG");
-            env = "STG";
-        }
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
@@ -47,7 +41,7 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
-                .waitForPageLoadGmega();
+                .waitForPageLoad();
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());

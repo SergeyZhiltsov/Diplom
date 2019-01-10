@@ -65,7 +65,7 @@ public class HelloSignTest extends BaseTest {
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
