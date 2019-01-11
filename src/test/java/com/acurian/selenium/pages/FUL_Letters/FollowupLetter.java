@@ -25,7 +25,7 @@ public class FollowupLetter extends BasePage {
     private final String emailContentExpectedMR = monthNames[date.get(Calendar.MONTH)] + " " + date.get(Calendar.DATE) + ", " + date.get(Calendar.YEAR) + "\n" +
             "Acurian Trial\n" +
             "\n" +
-            "Dover, DE 19901\n" +
+            "Vernon Hills, IL 60061\n" +
             "Dear Acurian,\n" +
             "Thank you for your recent interest in participating in one of our Arthritis, Low Back Pain, Rheumatoid Arthritis, Diabetes clinical research studies.\n" +
             "We have forwarded your information to the study doctor’s office that you selected. If the study doctor’s office has not already contacted you, they should " +
@@ -33,9 +33,9 @@ public class FollowupLetter extends BasePage {
             "If you are not contacted within the next 5 business days, please contact them directly.\n" +
             "The study doctor’s office that you selected is:\n" +
             "Dr. OriFName Ted OriLName, MD\n" +
-            "AUT_GRA1_Site\n" +
-            "1 Walnutgrove Rd\n" +
-            "Dover, DE 19901\n" +
+            "AUT_GRA_FULm_Site\n" +
+            "433, Main Street\n" +
+            "VERNON HILLS, IL 60061\n" +
             "(123) 456-7899\n" +
             "To allow us to send your medical records to the study doctor, please provide information on the doctors who are treating, or have treated, your Arthritis, Low Back Pain, " +
             "Rheumatoid Arthritis, Diabetes. Please complete all details required by clicking on the link below. Please click here to learn more.\n" +
@@ -47,18 +47,18 @@ public class FollowupLetter extends BasePage {
     private final String emailContentExpected = monthNames[date.get(Calendar.MONTH)] + " " + date.get(Calendar.DATE) + ", " + date.get(Calendar.YEAR) + "\n" +
             "Acurian Trial\n" +
             "\n" +
-            "Brookings, SD 57007\n" +
+            "Chicago Ridge, IL 60415\n" +
             "Dear Acurian,\n" +
             "Thank you for your recent interest in participating in one of our Arthritis, Low Back Pain, Rheumatoid Arthritis, Diabetes clinical research studies.\n" +
             "We have forwarded your information to the study doctor’s office that you selected. If the study doctor’s office has not already contacted you, they should be " +
             "contacting you within the next few days to further discuss the study and to set up an in-person evaluation.\n" +
             "If you are not contacted within the next 5 business days, please contact them directly.\n" +
             "The study doctor’s office that you selected is:\n" +
-            "Dr. OldFirst OldLast, MD\n" +
-            "AUT_GEMPERM1\n" +
-            "Loop\n" +
-            "Brookings, SD 57007\n" +
-            "(215) 323-9000\n" +
+            "Dr. OriFName Ted OriLName, MD\n" +
+            "AUT_GRA_FUL_Site\n" +
+            "002, Main Str\n" +
+            "Chicago Ridge, il 60415\n" +
+            "(123) 456-7899\n" +
             "Clinical research studies greatly contribute to the overall progress in understanding and finding future treatments for diseases and we appreciate your interest in participation.\n" +
             "The AcurianHealth Team";
 
@@ -94,7 +94,7 @@ public class FollowupLetter extends BasePage {
     @Step
     public FollowupLetter assertgmailFUL(String pid, boolean isMedicalRecords) {
         By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid +"')]");
-        WebElement emailTitle = null;
+        WebElement emailTitle;
         driver.navigate().to(gmailServiceURL);
         emailField.sendKeys("qa.acurian@gmail.com");
         emailNextButton.click();
@@ -106,11 +106,11 @@ public class FollowupLetter extends BasePage {
         System.out.println("Waiting for email...");
         try {
             emailTitle = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(emailLocator));
+            System.out.println("Recieved email: " + emailTitle.getText());
             driver.findElement(emailLocator).click();
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received");
         }
-        System.out.println("Recieved email: " + emailTitle.getText());
         if(isMedicalRecords) Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
         else Assert.assertEquals(emailContent.getText(), emailContentExpected, "Email content is diff");
         return this;

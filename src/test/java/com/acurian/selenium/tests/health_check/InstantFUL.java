@@ -22,7 +22,7 @@ public class InstantFUL extends BaseTest {
     @DataProvider(name = "sites")
     public static Object[][] getData() {
         return new Object[][]{
-                {"AUT_GRA_FUL_Site", "60061"},
+                {"AUT_GRA_FUL_Site", "60415"},
                 {"AUT_GRA_FULm_Site", "60061"}
         };
     }
@@ -43,6 +43,7 @@ public class InstantFUL extends BaseTest {
         final String phoneNumber = "GMEGA00001";
         final String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String env = System.getProperty("acurian.env", "QA");
+        FollowupLetter followupLetter;
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
@@ -106,13 +107,14 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
-        FollowupLetter followupLetter = new FollowupLetter();
-        switch (zipCode) {
+        switch (siteName) {
             case "AUT_GRA_FUL_Site":
-                followupLetter.assertgmailFUL("63149356", false);
+                followupLetter = new FollowupLetter();
+                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), false);
                 break;
-            case "AUT_GRA_FULm _Site":
-                followupLetter.assertgmailFUL("63149358", true);
+            case "AUT_GRA_FULm_Site":
+                followupLetter = new FollowupLetter();
+                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
         }
     }
 }
