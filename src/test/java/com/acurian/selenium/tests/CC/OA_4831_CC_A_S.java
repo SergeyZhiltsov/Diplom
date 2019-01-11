@@ -370,9 +370,9 @@ public class OA_4831_CC_A_S extends BaseTest {
                 siteSelectionPageCC
                         .clickOnAnswer(siteName)
                         .clickNextButton(new QualifiedClose2PageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(new SynexusHealthyMindsPageCC())
-                        .clickOnAnswer("No")
+//                        .waitForPageLoad()
+//                        .clickNextButton(new SynexusHealthyMindsPageCC())
+//                        .clickOnAnswer("No")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
