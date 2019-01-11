@@ -32,7 +32,7 @@ public class CV_3140_OLS_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {"AUT_CV_3140_site", "41C", "19901"},
+//                {"AUT_CV_3140_site", "41C", "19901"},
                 {"AUT_CV_3140A_site", "1R", "45205"}
         };
     }
@@ -375,9 +375,9 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
+//                .clickNextButton(new SynexusHealthyMindsPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
