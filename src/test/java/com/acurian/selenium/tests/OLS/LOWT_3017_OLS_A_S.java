@@ -389,9 +389,9 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickConnect()*/
 
                 .waitToClickNext()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
+//                .clickNextButton(new SynexusHealthyMindsPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
