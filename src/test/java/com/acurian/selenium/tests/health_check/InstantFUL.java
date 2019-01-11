@@ -23,7 +23,7 @@ public class InstantFUL extends BaseTest {
     public static Object[][] getData() {
         return new Object[][]{
                 {"AUT_GRA_FUL_Site", "60061"},
-                {"AUT_GRA_FULm _Site", "60061"}
+                {"AUT_GRA_FULm_Site", "60061"}
         };
     }
 
@@ -107,12 +107,12 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
         FollowupLetter followupLetter = new FollowupLetter();
-        switch (zipCode) {
+        switch (siteName) {
             case "AUT_GRA_FUL_Site":
-                followupLetter.assertgmailFUL("63149356", false);
+                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), false);
                 break;
-            case "AUT_GRA_FULm _Site":
-                followupLetter.assertgmailFUL("63149358", true);
+            case "AUT_GRA_FULm_Site":
+                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
         }
     }
 }
