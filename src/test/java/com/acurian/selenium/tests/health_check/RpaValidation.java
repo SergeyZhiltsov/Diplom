@@ -13,7 +13,7 @@ public class RpaValidation extends BaseTest {
     @Test
     @Description("RPA validation only for submit button is shown")
     public void rpaValidationTest() {
-        String siteName = "AUT_GRA1 - OriFName OriLName"; //"AUT_GRA1_Site";
+        String siteName = "AUT_GRA_FUL - OriFName OriLName";
         String projectName = "GRA1-Rheumatoid Arthritis (RA) ";
         String pid = "63323079";
 
