@@ -405,7 +405,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a men's low testosterone study")
+                .waitForPageLoad("a men’s health study")
                 .getPID();
         switch (siteName) {
             case "AUT_LOWT_3017S_Site":

@@ -36,7 +36,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         String esperionProtocolA = "1002_043_A";
         String kowaProtocolA = "K_877_302_A";
         String kowaProtocolS = "K_877_302_S";
-        String studyName = "a men's low testosterone";
+        String studyName = "a men’s health";
         String site_Indication = "low testosterone or hypogonadism";
 //        String siteName = "AUT_LOWT_3017_Site";
 //        String zipCode = "19901";

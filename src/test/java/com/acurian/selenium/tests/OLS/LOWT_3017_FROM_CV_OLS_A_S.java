@@ -36,7 +36,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         final String novoProtocol = "EX9536_4388";
         String[] cvModuleProtocols = {esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS};
         String dqedStudyName = "a heart health study";
-        String studyName = "a men's low testosterone study";
+        String studyName = "a men’s health study";
         String site_Indication = "low testosterone or hypogonadism";
 //        String siteName = "AUT_LOWT_3017_Site";
 //        String zipCode = "19901";
