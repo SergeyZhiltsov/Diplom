@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS extends MainPageOLS{
 
     public final String titleExpected = "Are you currently receiving regular doses of any of the following \"biologic\" medications?\n" +
-    		"\"Biologics\" are medications that affect the body’s immune system.  They are given as an infusion (into a vein) or injection (a shot under the skin).\n" +
+    		"\"Biologics\" are medications that affect the body's immune system. They are given as an infusion (into a vein) or an injection (a shot under the skin).\n" +
     		"Please select all that apply.";
     		
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
