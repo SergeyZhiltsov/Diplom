@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.OLS.Derm;
 
-import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS extends MainPageOLS {
+public class EczemaSymptomsExperienceOLS extends MainPageOLS {
     private final String titleExpected = "Which of the following eczema symptoms do you experience?\n" +
             "Please select all that apply.";
 
@@ -17,23 +16,22 @@ public class WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS extends MainPag
     private WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
-    List<WebElement> radioButtonList;
+    List<WebElement> checkboxList;
 
-    public WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS() {
+    public EczemaSymptomsExperienceOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS waitForPageLoad() {
+    public EczemaSymptomsExperienceOLS waitForPageLoad() {
         waitForAnimation();
-        waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS clickOnAnswer(String answerText) {
-        getActions().moveToElement(radioButtonList.stream().filter(el -> el.getText().contains(answerText))
+    public EczemaSymptomsExperienceOLS clickOnAnswers(String answerText) {
+        getActions().moveToElement(checkboxList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get())
                 .click()
