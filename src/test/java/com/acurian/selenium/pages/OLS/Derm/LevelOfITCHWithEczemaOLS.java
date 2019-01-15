@@ -9,8 +9,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class OverThePastWeekHowManyDaysHasSkinBeenItchyOLS extends MainPageOLS {
-    private final String titleExpected = "Over the past week, how many days has your skin been itchy?";
+public class LevelOfITCHWithEczemaOLS extends MainPageOLS {
+    private final String titleExpected = "What is the level of ITCH you feel with your eczema?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     private WebElement titleText;
@@ -18,20 +18,18 @@ public class OverThePastWeekHowManyDaysHasSkinBeenItchyOLS extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonList;
 
-    public OverThePastWeekHowManyDaysHasSkinBeenItchyOLS() {
+    public LevelOfITCHWithEczemaOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public OverThePastWeekHowManyDaysHasSkinBeenItchyOLS waitForPageLoad() {
-        waitForAnimation();
-        waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+    public LevelOfITCHWithEczemaOLS waitForPageLoad() {
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public OverThePastWeekHowManyDaysHasSkinBeenItchyOLS clickOnAnswer(String answerText) {
+    public LevelOfITCHWithEczemaOLS clickOnAnswer(String answerText) {
         getActions().moveToElement(radioButtonList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get())

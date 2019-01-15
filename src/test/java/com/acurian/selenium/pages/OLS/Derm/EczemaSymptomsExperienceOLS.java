@@ -7,39 +7,35 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS extends MainPageOLS {
+public class EczemaSymptomsExperienceOLS extends MainPageOLS {
     private final String titleExpected = "Which of the following eczema symptoms do you experience?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     private WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
-    List<WebElement> radioButtonList;
+    @FindBy(xpath = Locators.CHEKBOX_LIST2_OLS)
+    List<WebElement> checkBoxList;
 
-    public WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS() {
+    public EczemaSymptomsExperienceOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS waitForPageLoad() {
-        waitForAnimation();
-        waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+    public EczemaSymptomsExperienceOLS waitForPageLoad() {
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS clickOnAnswers(String answerText) {
-        getActions().moveToElement(radioButtonList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get())
-                .click()
-                .build()
-                .perform();
-        waitForAnimation();
+    public EczemaSymptomsExperienceOLS clickOnAnswers(String ...answerText) {
+        List<String> answers = Arrays.asList(answerText);
+        checkBoxList.stream().filter(element -> answers.contains(element.getText()))
+                .forEach(element -> getActions().moveToElement(element).click().build().perform());
+//        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
