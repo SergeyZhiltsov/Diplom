@@ -1,5 +1,7 @@
 package com.acurian.selenium.models;
 
+import java.util.Arrays;
+
 public class Site {
     public final String name;
     public final String zipCode;
@@ -38,7 +40,7 @@ public class Site {
 
     @Override
     public String toString() {
-        return name;
+        return "[" + name + ", " + zipCode + ", " + dispo + ", " + Arrays.toString(activeProtocols) + ", " + dispo + "]";
     }
 
     private Site(Builder builder) {
