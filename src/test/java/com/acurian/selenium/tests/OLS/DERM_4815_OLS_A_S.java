@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
@@ -24,16 +25,15 @@ public class DERM_4815_OLS_A_S extends BaseTest {
     @DataProvider(name = "sites")
     public Object[][] getData() {
         return new Object[][] {
-                {"AUT_DERM_4815_Site", "19901", "1R"},
-                {"AUT_DERM_4815S_Site", "19901", "41C"}
+                {new Site.Builder("AUT_DERM_4815_Site").withZipcode("19901").withDispo("1R").withActiveProtocols("B7451029").build()},
+                {new Site.Builder("AUT_DERM_4815S_Site").withZipcode("19901").withDispo("41C").withActiveProtocols("B7451029").build()}
         };
     }
 
     @Test(dataProvider = "sites")
     @Description("DERM_4815_OLS_A_S")
-    public void derm4815Ols(final String siteName, final String zipCode, final String expectedDispo) {
+    public void derm4815Ols(final Site site) {
         final String phoneNumber = "AUTAMSDERM";
-        String protocol1 = "B7451029";
         String studyName = "an eczema (atopic dermatitis)";
         DebugPageOLS debugPageOls = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");
@@ -49,7 +49,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         ageUnqualifiedClose_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QSI8004", protocol1)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
@@ -59,7 +59,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols = genderPageOLS
@@ -75,7 +75,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5802", protocol1)
+                .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
                 .back(hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols);
 
         HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczema_OLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
@@ -90,7 +90,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5831", protocol1)
+                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
@@ -98,7 +98,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5831", protocol1)
+                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
 
         howLongHaveYouBeenSufferingFromEczema_OLS
@@ -107,7 +107,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5831", protocol1)
+                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
 
         howLongHaveYouBeenSufferingFromEczema_OLS
@@ -126,7 +126,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5805", protocol1)
+                .checkProtocolsContainsForQNumber("QS5805", site.activeProtocols)
                 .back();
 
         WeWantToMakeSureTheImagesDisplayProperly_OLS weWantToMakeSureTheImagesDisplayProperly_OLS = whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
@@ -162,7 +162,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("G")
@@ -186,7 +186,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         haveYouEverTreatedYourEczema_ols
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5837", protocol1)
+                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
                 .back();
 
         WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_ols = howManyDaysHasSkinBeenItchyOLS
@@ -205,7 +205,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols = didYouReceiveAnyTherapiesPastYear_ols
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5827", protocol1)
+                .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
                 .back(whichofthefollowingMedicationsTherapies_ols)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -213,7 +213,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5829", protocol1)
+                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
                 .back(whichofthefollowingMedicationsTherapies_ols)
                 .waitForPageLoad()
                 .clickOnAnswers("Azasan or Imuran (azathioprine)")
@@ -252,7 +252,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                     .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_ols)
                     .waitForPageLoad()
                     .getPage(debugPageOls)
-                    .checkProtocolsContainsForQNumber("QS5821", protocol1)
+                    .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                     .back();
         }
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols
@@ -266,7 +266,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5830", protocol1)
+                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
@@ -276,7 +276,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5830", protocol1)
+                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
@@ -286,7 +286,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5830", protocol1)
+                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
@@ -302,7 +302,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS38", protocol1)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
 
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -323,7 +323,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalConditionsProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS42", protocol1)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
 
         otherThanSkinCancerPageOLS
@@ -351,7 +351,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -364,7 +364,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -378,7 +378,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -392,7 +392,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -406,7 +406,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -420,7 +420,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -434,7 +434,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -448,7 +448,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -472,7 +472,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
 
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
@@ -480,8 +480,9 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
 
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
@@ -497,7 +498,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS52", protocol1)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
 
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
@@ -513,7 +514,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageOLS
@@ -523,7 +524,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageOLS
@@ -546,7 +547,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOls)
-                    .checkProtocolsContainsForQNumber("QS59", protocol1)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
@@ -564,17 +565,17 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(expectedDispo);
+                .dispoShouldMatch(site.dispo);
     }
 }
