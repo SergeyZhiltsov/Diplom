@@ -25,8 +25,8 @@ public class DERM_4815_OLS_A_S extends BaseTest {
     @DataProvider(name = "sites")
     public Object[][] getData() {
         return new Object[][] {
-                {new Site.Builder("AUT_DERM_4815_Site").withZipcode("19901").withDispo("1R").withActiveProtocols("B7451029").build()},
-                {new Site.Builder("AUT_DERM_4815S_Site").withZipcode("19901").withDispo("41C").withActiveProtocols("B7451029").build()}
+                {Site.AUT_DERM_4815_Site},
+                {Site.AUT_DERM_4815S_Site}
         };
     }
 
