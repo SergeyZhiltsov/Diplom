@@ -35,7 +35,6 @@ public class HFL_4722_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(), dateOfBirthPageOLS.titleExpected, "Question is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleHeartFailure4722_Expected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091940")

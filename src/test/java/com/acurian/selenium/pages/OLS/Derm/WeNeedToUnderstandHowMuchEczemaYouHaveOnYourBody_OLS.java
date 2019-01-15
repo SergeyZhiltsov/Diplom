@@ -1,12 +1,10 @@
 package com.acurian.selenium.pages.OLS.Derm;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.Derm_4631.WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS extends MainPageOLS {
@@ -26,8 +24,7 @@ public class WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS extends MainPa
 
     @Step
     public WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
