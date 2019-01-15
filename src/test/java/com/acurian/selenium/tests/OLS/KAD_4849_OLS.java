@@ -27,7 +27,7 @@ public class KAD_4849_OLS extends BaseTest {
     @Test()
     @Description("kad4849 OLS Test")
     public void kad4849_OLS_Test() {
-        Site site = new Site.Builder("AUT_DERM_4849_Site").withZipcode("19901").withDispo("1R").withActiveProtocols("ANB020_005").build();
+        Site site = Site.AUT_DERM_4849_Site;
         String phoneNumberMIG = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis)";
         DebugPageOLS debugPageOLS = new DebugPageOLS();

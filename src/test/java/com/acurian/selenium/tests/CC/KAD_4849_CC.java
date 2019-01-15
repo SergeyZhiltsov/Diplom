@@ -23,7 +23,7 @@ public class KAD_4849_CC extends BaseTest {
     @TestCaseId("Kiniksa Atopic Dermatitis")
     @Description("KAD 4849 for CC")
     public void kad4849_CC_Test(final String username, final String password) {
-        Site site = new Site.Builder("AUT_DERM_4849_Site").withZipcode("19901").withDispo("1R").withActiveProtocols("ANB020_005").build();
+        Site site = Site.AUT_DERM_4849_Site;
         String phoneNumber = "AUTAMS1KAD";
         String studyName = "eczema, or atopic dermatitis";
         String studyNameForTrans = "eczema, or atopic dermatitis";
