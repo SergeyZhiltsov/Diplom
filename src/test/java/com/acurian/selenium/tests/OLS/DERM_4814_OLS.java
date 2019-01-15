@@ -29,7 +29,7 @@ public class DERM_4814_OLS extends BaseTest {
     @Test(enabled = true, dataProvider = "sites")
     @Description("DERM_4814_OLS_test")
     public void derm4814olsTest(String siteName, String expectedDispo, String zipCode) {
-        String phoneNumber = "AUTAMS1KAD";
+        String phoneNumber = "AUTAMSDERM";
         String protocol1 = "INCB 18424_303";
         String protocol2 = "INCB 18424_304";
         String[] protocols = {protocol1, protocol2};
@@ -41,14 +41,15 @@ public class DERM_4814_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText2Ver(), dateOfBirthPageOLS.titleCVExpected, "Title is diff");
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDermExpected, "Title is diff");
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
-                .clickNextButton(new IdentificationPageOLS());
+                .clickNextButton(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = identificationPageOLS
-                .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+        zipCodePageOLS
+                .waitForPageLoad();
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .typeZipCode(zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols = genderPageOLS
@@ -143,11 +144,11 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 
-        WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS whichOfTheFollowingEczemaSymptomsDoYouExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_comp_ols
+        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_comp_ols
                 .waitForPageLoad()
                 .clickOnAnswer("B")
-                .clickNextButton(new WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS());
-        whichOfTheFollowingEczemaSymptomsDoYouExperienceOLS
+                .clickNextButton(new EczemaSymptomsExperienceOLS());
+        eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", protocols)
@@ -181,8 +182,8 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(whichOfThesePicsLooksSimilarOnYourLegsFeet_comp_ols)
                 .waitForPageLoad()
                 .clickOnAnswer("E")
-                .clickNextButton(whichOfTheFollowingEczemaSymptomsDoYouExperienceOLS);
-        whichOfTheFollowingEczemaSymptomsDoYouExperienceOLS
+                .clickNextButton(eczemaSymptomsExperienceOLS);
+        eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", protocols)
@@ -190,19 +191,19 @@ public class DERM_4814_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourLegsFeet_comp_ols
                 .waitForPageLoad()
                 .clickOnAnswer("D")
-                .clickNextButton(whichOfTheFollowingEczemaSymptomsDoYouExperienceOLS);
+                .clickNextButton(eczemaSymptomsExperienceOLS);
 
-        WhatIsTheLevelOfITCHYouFeelWithEczemaOLS whatIsTheLevelOfITCHYouFeelWithEczemaOLS = whichOfTheFollowingEczemaSymptomsDoYouExperienceOLS
+        LevelOfITCHWithEczemaOLS levelOfITCHWithEczemaOLS = eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Redness")
-                .clickNextButton(new WhatIsTheLevelOfITCHYouFeelWithEczemaOLS());
+                .clickNextButton(new LevelOfITCHWithEczemaOLS());
 
-        OverThePastWeekHowManyDaysHasSkinBeenItchyOLS overThePastWeekHowManyDaysHasSkinBeenItchyOLS = whatIsTheLevelOfITCHYouFeelWithEczemaOLS
+        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = levelOfITCHWithEczemaOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Mildly itchy (Mildly irritating/Some scratching)")
-                .clickNextButton(new OverThePastWeekHowManyDaysHasSkinBeenItchyOLS());
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
 
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_ols = overThePastWeekHowManyDaysHasSkinBeenItchyOLS
+        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_ols = howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is never itchy")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
@@ -322,41 +323,18 @@ public class DERM_4814_OLS extends BaseTest {
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
-        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = otherThanSkinCancerPageOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
-        whichOfFollowingDigestiveConditionPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1)
-                .back();
-        otherThanSkinCancerPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Diagnosed with skin cancer only")
-                .clickNextButton(whichOfFollowingDigestiveConditionPageOLS);
-
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whichOfFollowingDigestiveConditionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS44", protocol1)
+                .checkProtocolsContainsForQNumber("QS42", protocols)
                 .back();
-        whichOfFollowingDigestiveConditionPageOLS
+        otherThanSkinCancerPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Ulcerative colitis")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS44", protocol1)
-                .back();
-        whichOfFollowingDigestiveConditionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
 
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
@@ -387,19 +365,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", protocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -411,7 +377,19 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", protocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", protocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -423,7 +401,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", protocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -445,7 +423,7 @@ public class DERM_4814_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", protocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -454,7 +432,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", protocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -468,37 +446,54 @@ public class DERM_4814_OLS extends BaseTest {
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", protocol1)
+                .checkProtocolsContainsForQNumber("QS52", protocols)
                 .back();
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(following_mentalEmotionalHealthPageOLS);
 
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = following_mentalEmotionalHealthPageOLS
+        WhichOfTheFollowingSkinConditionsDoYouSufferOLS whichOfTheFollowingSkinConditionsDoYouSufferOLS = following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferOLS());
+        whichOfTheFollowingSkinConditionsDoYouSufferOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", protocols)
                 .back();
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .clickNextButton(whichOfTheFollowingSkinConditionsDoYouSufferOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", protocols)
                 .back();
         following_mentalEmotionalHealthPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(whichOfTheFollowingSkinConditionsDoYouSufferOLS);
+
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whichOfTheFollowingSkinConditionsDoYouSufferOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Psoriasis")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS55", protocols)
+                .back();
+        whichOfTheFollowingSkinConditionsDoYouSufferOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .back();
+        whichOfTheFollowingSkinConditionsDoYouSufferOLS
                 .waitForPageLoad()
                 .back();
         following_mentalEmotionalHealthPageOLS
@@ -516,9 +511,6 @@ public class DERM_4814_OLS extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .back();
-        whichOfFollowingDigestiveConditionPageOLS
-                .waitForPageLoad()
-                .back();
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
                 .back();
@@ -534,7 +526,7 @@ public class DERM_4814_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -543,7 +535,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -552,7 +544,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -561,7 +553,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -570,7 +562,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -579,7 +571,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -588,7 +580,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -597,7 +589,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1)
+                .checkProtocolsContainsForQNumber("QS61", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -606,7 +598,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1)
+                .checkProtocolsContainsForQNumber("QS61", protocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -615,17 +607,8 @@ public class DERM_4814_OLS extends BaseTest {
 
         EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "270")
+                .setAll("5", "5", "160")
                 .clickNextButton(new EthnicBackgroundPageOLS());
-//        ethnicBackgroundPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS60", protocol1)
-//                .back();
-//        approximateHeightPageOLS
-//                .waitForPageLoad()
-//                .setAll("5", "5", "260")
-//                .clickNextButton(ethnicBackgroundPageOLS);
 
         ethnicBackgroundPageOLS
                 .waitForPageLoad()
@@ -643,13 +626,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
-
-
-
-
-
-
-
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(expectedDispo);
     }
 }

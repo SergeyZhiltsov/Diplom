@@ -27,6 +27,7 @@ public class WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS extends MainPa
         waitForAnimation();
         waitForImagesToLoad();
         driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 

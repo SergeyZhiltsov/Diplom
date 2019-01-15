@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class WeWantToMakeSureTheImagesDisplayProperly_OLS extends MainPageOLS {
 
     public final String titleExpected = "Next, we are going to show you images to help us understand the area(s) of your body currently affected by eczema (atopic dermatitis).\n" +
-            "We want to make sure the images display properly on your screen.  What device are you using to answer this screener?";
+            "We want to make sure the images display properly on your screen. What device are you using to answer this screener?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;

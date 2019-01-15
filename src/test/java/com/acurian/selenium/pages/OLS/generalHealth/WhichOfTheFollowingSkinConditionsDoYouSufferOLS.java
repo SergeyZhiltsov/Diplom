@@ -32,10 +32,6 @@ public class WhichOfTheFollowingSkinConditionsDoYouSufferOLS extends MainPageOLS
     @Step
     public WhichOfTheFollowingSkinConditionsDoYouSufferOLS clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
-//        List<String> answerTextList = Arrays.asList(answerText);
-//        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-//                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label")),5,5).click().build().perform());
-//        waitForAnimation();
         return this;
     }
 
