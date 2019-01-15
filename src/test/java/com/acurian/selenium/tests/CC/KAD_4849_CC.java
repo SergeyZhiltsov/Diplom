@@ -1,11 +1,8 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.Derm_4631.AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC;
-import com.acurian.selenium.pages.CC.Derm_4631.HaveYouEverTakenEitherAnyOfFollowingMeds_CC;
-import com.acurian.selenium.pages.CC.Derm_4631.HowLongHaveYouBeenSufferingFromEczema_CC;
-import com.acurian.selenium.pages.CC.Derm_4631.IfYouUseYourHandToCoverAllOfTheEczema_CC;
-import com.acurian.selenium.pages.CC.Derm_4631.OverallHowWellDidTopicalMedicationYouTried_CC;
+import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -26,14 +23,13 @@ public class KAD_4849_CC extends BaseTest {
     @TestCaseId("Kiniksa Atopic Dermatitis")
     @Description("KAD 4849 for CC")
     public void kad4849_CC_Test(final String username, final String password) {
+        Site site = new Site.Builder("AUT_DERM_4849_Site").withZipcode("19901").withDispo("1R").withActiveProtocols("ANB020_005").build();
         String phoneNumber = "AUTAMS1KAD";
-        String protocol1 = "ANB020_005";
         String studyName = "eczema, or atopic dermatitis";
-        String siteName = "AUT_DERM_4849_Site";
-        String zipCode = "19901";
+        String studyNameForTrans = "eczema, or atopic dermatitis";
         DebugPageCC debugPageCC = new DebugPageCC();
 
-        String env = System.getProperty("acurian.env", "STG");//was in prod
+        String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -74,7 +70,7 @@ public class KAD_4849_CC extends BaseTest {
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
                 .back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setYear("1942")
@@ -83,26 +79,23 @@ public class KAD_4849_CC extends BaseTest {
         identificationPageCC
                 .waitForPageLoad1()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
                 .back();
         dateOfBirthPageCC
                 .setYear("1980")
                 .clickNextButton(identificationPageCC);
 
-
         //------------PII Question------------
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoad1()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
-
 
         //-----------GenderPageCC-------------
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC = genderPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
-
 
         //------------Q2:  hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC----
         NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
@@ -113,7 +106,7 @@ public class KAD_4849_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", site.activeProtocols)
                 .back();
 
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_CC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
@@ -123,151 +116,127 @@ public class KAD_4849_CC extends BaseTest {
 
 
         //----------Q3:  HowLongHaveYouBeenSufferingFromEczema_CC---------------
-        IfYouUseYourHandToCoverAllOfTheEczema_CC ifYouUseYourHandToCoverAllOfTheEczema_CC = howLongHaveYouBeenSufferingFromEczema_CC
+        WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months")
-                .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_CC());
+                .clickOnAnswer("2 months or less")
+                .clickNextButton(new WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC());
 
-        ifYouUseYourHandToCoverAllOfTheEczema_CC
+        howMuchEczemaYouHaveOnYOurBody_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
                 .back();
 
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("3 to less than 6 months")
-                .clickNextButton(ifYouUseYourHandToCoverAllOfTheEczema_CC)
+                .clickOnAnswer("3 - 6 months")
+                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0016361-QS5803-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
                 .back();
 
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("6 to less than 12 months")
-                .clickNextButton(ifYouUseYourHandToCoverAllOfTheEczema_CC);
+                .clickOnAnswer("2 years or more")
+                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
-
-        //------------Q4:  IfYouUseYourHandToCoverAllOfTheEczema_CC -------------------
-        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_CC = ifYouUseYourHandToCoverAllOfTheEczema_CC
+        DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc
                 .waitForPageLoad()
-                .selectFromDropDown("1")
+                .selectFromDropDown("6")
+                .clickNextButton(new DollarBillsToCoverEczemaCC());
+
+        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = dollarBillsToCoverEczemaCC
+                .waitForPageLoad()
+                .selectFromDropDown("6")
+                .clickNextButton(new EczemaSymptomsExperienceCC());
+
+        eczemaSymptomsExperienceCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", site.activeProtocols)
+                .back();
+
+        dollarBillsToCoverEczemaCC
+                .waitForPageLoad()
+                .selectFromDropDown("11")
+                .clickNextButton(eczemaSymptomsExperienceCC);
+
+        LevelOfITCHWithEczemaCC levelOfITCHWithEczemaCC = eczemaSymptomsExperienceCC
+                .waitForPageLoad()
+                .clickOnAnswers("None")
+                .clickNextButton(new LevelOfITCHWithEczemaCC());
+
+        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = levelOfITCHWithEczemaCC
+                .waitForPageLoad()
+                .clickOnAnswer("Mildly itchy (Mildly irritating/Some scratching)")
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
+
+        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_cc = howManyDaysHasSkinBeenItchyCC
+                .waitForPageLoad()
+                .clickOnAnswer("1 - 2 days")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
 
-        haveYouEverTreatedYourEczema_CC
+        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_cc = haveYouEverTreatedYourEczema_cc
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1)
-                .back();
-
-        ifYouUseYourHandToCoverAllOfTheEczema_CC
-                .waitForPageLoad()
-                .selectFromDropDown("5")
-                .clickNextButton(haveYouEverTreatedYourEczema_CC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1)
-                .back();
-
-        ifYouUseYourHandToCoverAllOfTheEczema_CC
-                .waitForPageLoad()
-                .selectFromDropDown("9")
-                .clickNextButton(haveYouEverTreatedYourEczema_CC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0016362-QS5804-STUDYQUES", protocol1)
-                .back();
-
-        ifYouUseYourHandToCoverAllOfTheEczema_CC
-                .waitForPageLoad()
-                .selectFromDropDown("10")
-                .clickNextButton(haveYouEverTreatedYourEczema_CC);
-
-        //-----------------Q17: HaveYouEverTreatedYourEczema_CC -------------
-        haveYouEverTreatedYourEczema_CC
-                .waitForPageLoad();
-        //-----------select NO to skip to Q19, otherwise goto Q18
-        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_CC
                 .clickOnAnswer("No")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
 
-        whichofthefollowingMedicationsTherapies_CC
-                .waitForPageLoad()
-                .back();
-        OverallHowWellDidTopicalMedicationYouTried_CC overallHowWellDidTopicalMedicationYouTried_CC = haveYouEverTreatedYourEczema_CC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, within the past year")    //final selection
-                .clickNextButton(new OverallHowWellDidTopicalMedicationYouTried_CC());
-
-//--------------Q18- OverallHowWellDidTopicalMedicationYouTried_CC ----------
-        overallHowWellDidTopicalMedicationYouTried_CC
-                .waitForPageLoad()
-                .clickOnAnswer("My symptoms went away completely")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_CC)
-                .waitForPageLoad()
-                .back(overallHowWellDidTopicalMedicationYouTried_CC)
-                .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_CC)
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_CC);
-
-//--------------Q19- whichofthefollowingMedicationsTherapies_CC ----------
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMedsCc = whichofthefollowingMedicationsTherapies_CC
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc = whichofthefollowingMedicationsTherapies_cc
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-        areYouCurrentlyReceivingRegularDosesOfBiologicMedsCc
+
+        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
                 .back();
 
-        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
+        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_cc
                 .waitForPageLoad()
-                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
+                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)")
                 .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
 
-//--------------Q20- DidYouReceiveAnyTherapiesPastYear_CC ----------
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC = didYouReceiveAnyTherapiesPastYear_CC
+        didYouReceiveAnyTherapiesPastYear_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc);
 
-        //-----------------Q22:  AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC--
+        List<String> medications = Arrays.asList(
+                "Actemra (Agent Note: ac-TEM-ruh)",
+                "Benlysta (Agent Note: ben-LIST-uh)",
+                "Cimzia (Agent Note: SIM-zee-uh)",
+                "Cosentyx (Agent Note: co-SEN-tix)",
+                "Enbrel (Agent Note: EN-brel)",
+                "Entyvio (Agent Note: en-TIV-ee-oh)",
+                "Humira (Agent Note: hue-MAIR-uh)",
+                "Kineret (Agent Note: KIN-er-et)",
+                "Orencia (Agent Note: oh-REN-see-uh)",
+                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
+                "Raptiva (Agent Note: rap-TEE-vuh)",
+                "Remicade (Agent Note: REM-ih-cade)",
+                "Rituxan (Agent Note: rih-TUX-an)",
+                "Simponi (Agent Note: SIM-po-nee)",
+                "Stelara (Agent Note: ste-LAHR-uh)",
+                "Taltz (Agent Note: TALTS)",
+                "Tysabri (Agent Note: tie-SAB-ree)"
+        );
+
         HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = new HaveYouEverTakenEitherAnyOfFollowingMeds_CC();
-        //add more protocols if needed
-        LinkedHashMap<String, List<String>> medications = new LinkedHashMap<>();
-        medications.put("Actemra (Agent Note: ac-TEM-ruh)", Arrays.asList(protocol1));
-        medications.put("Benlysta (Agent Note: ben-LIST-uh)", Arrays.asList(protocol1));
-        medications.put("Cimzia (Agent Note: SIM-zee-uh)", Arrays.asList(protocol1));
-        medications.put("Cosentyx (Agent Note: co-SEN-tix)", Arrays.asList(protocol1));
-        medications.put("Enbrel (Agent Note: EN-brel)", Arrays.asList(protocol1));
-        medications.put("Entyvio (Agent Note: en-TIV-ee-oh)", Arrays.asList(protocol1));
-        medications.put("Humira (Agent Note: hue-MAIR-uh)", Arrays.asList(protocol1));
-        medications.put("Kineret (Agent Note: KIN-er-et)", Arrays.asList(protocol1));
-        medications.put("Orencia (Agent Note: oh-REN-see-uh)", Arrays.asList(protocol1));
-        medications.put("Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)", Arrays.asList(protocol1));
-        medications.put("Raptiva (Agent Note: rap-TEE-vuh)", Arrays.asList(protocol1));
-        medications.put("Remicade (Agent Note: REM-ih-cade)", Arrays.asList(protocol1));
-        medications.put("Rituxan (Agent Note: rih-TUX-an)", Arrays.asList(protocol1));
-        medications.put("Simponi (Agent Note: SIM-po-nee)", Arrays.asList(protocol1));
-        medications.put("Stelara (Agent Note: ste-LAHR-uh)", Arrays.asList(protocol1));
-        medications.put("Taltz (Agent Note: TALTS)", Arrays.asList(protocol1));
-        medications.put("Tysabri (Agent Note: tie-SAB-ree)", Arrays.asList(protocol1));
-        for (Map.Entry<String, List<String>> entry : medications.entrySet()) {
-            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+        for (String medication : medications) {
+            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
                     .waitForPageLoadKAD()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
+                    .clickOnAnswers(medication)
                     .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", (String[]) entry.getValue().toArray())
+                    .checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", site.activeProtocols)
                     .back();
         }
 
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC);
@@ -279,7 +248,7 @@ public class KAD_4849_CC extends BaseTest {
                 .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-                .waitForPageLoadWithCurvesKAD(studyName)
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -297,7 +266,7 @@ public class KAD_4849_CC extends BaseTest {
         kidneyProblemsPage
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
                 .back();
 
         WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = whenDiagnosedWithCancerCC
@@ -311,7 +280,7 @@ public class KAD_4849_CC extends BaseTest {
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
                 .back();
 
         kidneyProblemsPage
@@ -321,7 +290,7 @@ public class KAD_4849_CC extends BaseTest {
                 .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
                 .back();
 
         kidneyProblemsPage
@@ -337,7 +306,7 @@ public class KAD_4849_CC extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
                 .back();
 
         whichOfTheFollowingLiverProblemsPageСС
@@ -353,7 +322,7 @@ public class KAD_4849_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageCC
@@ -363,7 +332,7 @@ public class KAD_4849_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageCC
@@ -379,7 +348,7 @@ public class KAD_4849_CC extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -389,7 +358,7 @@ public class KAD_4849_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -398,7 +367,7 @@ public class KAD_4849_CC extends BaseTest {
                 .clickOnAnswers("Hepatitis C")
                 .clickNextButton(approximateHeightPageCC)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -408,7 +377,7 @@ public class KAD_4849_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -428,7 +397,7 @@ public class KAD_4849_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("an eczema (atopic dermatitis) study")
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())

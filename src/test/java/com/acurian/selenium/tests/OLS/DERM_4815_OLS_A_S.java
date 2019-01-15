@@ -42,7 +42,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDerm_Expected, "Title is diff");
         AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
                 .clickNextButton(new AgeUnqualifiedClose_OLS());

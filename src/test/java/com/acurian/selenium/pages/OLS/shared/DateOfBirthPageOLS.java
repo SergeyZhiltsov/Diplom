@@ -192,7 +192,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleDerm_Expected = "Let's get started to see if you qualify for an eczema (atopic dermatitis) study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $800\n" +
+            "Payment which varies by study up to $400\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
