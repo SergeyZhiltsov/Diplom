@@ -1,9 +1,9 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.OtherStudiesThatAreCurrentlyEnrollingCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
@@ -36,9 +36,8 @@ public class DERM_4815_CC_A_S extends BaseTest {
 
     @Test(dataProvider = "sites", dataProviderClass = DERM_4815_OLS_A_S.class)
     @Description("DERM_4815_CC_A_S")
-    public void derm1815CCAS(final String siteName, final String zipCode, final String expectedDispo) {
+    public void derm1815CCAS(Site site) {
         final String phoneNumber = "AUTAMSDERM";
-        String protocol1 = "B7451029";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -82,7 +81,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
                 .back();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
@@ -94,7 +93,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc = genderPageCC
@@ -110,7 +109,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", site.activeProtocols)
                 .back();
 
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_cc = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
@@ -125,7 +124,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
                 .back();
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
@@ -133,7 +132,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
                 .back();
 
         howLongHaveYouBeenSufferingFromEczema_cc
@@ -142,7 +141,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
                 .back();
 
         howLongHaveYouBeenSufferingFromEczema_cc
@@ -163,7 +162,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         eczemaSymptomsExperienceCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", site.activeProtocols)
                 .back();
 
         dollarBillsToCoverEczemaCC
@@ -189,7 +188,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         haveYouEverTreatedYourEczema_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019079-QS5837-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0019079-QS5837-STUDYQUES", site.activeProtocols)
                 .back();
 
         WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_cc = howManyDaysHasSkinBeenItchyCC
@@ -208,7 +207,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc = didYouReceiveAnyTherapiesPastYear_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017868-QS5827-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0017868-QS5827-STUDYQUES", site.activeProtocols)
                 .back(whichofthefollowingMedicationsTherapies_cc)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -216,7 +215,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
                 .back(whichofthefollowingMedicationsTherapies_cc)
                 .waitForPageLoad()
                 .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
@@ -228,23 +227,23 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc);
 
         List<String> medications = Arrays.asList(
-                "Actemra (Agent Note: ac-TEM-ruh)"
-//                "Benlysta (Agent Note: ben-LIST-uh)",
-//                "Cimzia (Agent Note: SIM-zee-uh)",
-//                "Cosentyx (Agent Note: co-SEN-tix)",
-//                "Enbrel (Agent Note: EN-brel)",
-//                "Entyvio (Agent Note: en-TIV-ee-oh)",
-//                "Humira (Agent Note: hue-MAIR-uh)",
-//                "Kineret (Agent Note: KIN-er-et)",
-//                "Orencia (Agent Note: oh-REN-see-uh)",
-//                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
-//                "Raptiva (Agent Note: rap-TEE-vuh)",
-//                "Remicade (Agent Note: REM-ih-cade)",
-//                "Rituxan (Agent Note: rih-TUX-an)",
-//                "Simponi (Agent Note: SIM-po-nee)",
-//                "Stelara (Agent Note: ste-LAHR-uh)",
-//                "Taltz (Agent Note: TALTS)",
-//                "Tysabri (Agent Note: tie-SAB-ree)"
+                "Actemra (Agent Note: ac-TEM-ruh)",
+                "Benlysta (Agent Note: ben-LIST-uh)",
+                "Cimzia (Agent Note: SIM-zee-uh)",
+                "Cosentyx (Agent Note: co-SEN-tix)",
+                "Enbrel (Agent Note: EN-brel)",
+                "Entyvio (Agent Note: en-TIV-ee-oh)",
+                "Humira (Agent Note: hue-MAIR-uh)",
+                "Kineret (Agent Note: KIN-er-et)",
+                "Orencia (Agent Note: oh-REN-see-uh)",
+                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
+                "Raptiva (Agent Note: rap-TEE-vuh)",
+                "Remicade (Agent Note: REM-ih-cade)",
+                "Rituxan (Agent Note: rih-TUX-an)",
+                "Simponi (Agent Note: SIM-po-nee)",
+                "Stelara (Agent Note: ste-LAHR-uh)",
+                "Taltz (Agent Note: TALTS)",
+                "Tysabri (Agent Note: tie-SAB-ree)"
         );
          HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = new HaveYouEverTakenEitherAnyOfFollowingMeds_CC();
         for (String medication : medications) {
@@ -255,7 +254,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                     .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", protocol1)
+                    .checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", site.activeProtocols)
                     .back();
         }
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
@@ -270,7 +269,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         transitionStatementCC
                 .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
                 .back();
 
         haveYouEverTakenEitherAnyOfFollowingMeds_CC
@@ -280,7 +279,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
                 .back();
 
         haveYouEverTakenEitherAnyOfFollowingMeds_CC
@@ -290,7 +289,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
                 .back();
 
         haveYouEverTakenEitherAnyOfFollowingMeds_CC
@@ -310,7 +309,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", site.activeProtocols)
                 .back();
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -331,7 +330,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalConditionsProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
                 .back();
 
         whenDiagnosedWithCancerCC
@@ -359,7 +358,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
@@ -372,7 +371,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -386,7 +385,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -400,7 +399,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -414,7 +413,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -428,7 +427,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -442,7 +441,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -456,7 +455,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -480,7 +479,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
                 .back();
 
         kidneyProblemsPage
@@ -489,7 +488,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
                 .back();
 
         kidneyProblemsPage
@@ -505,7 +504,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
                 .back();
 
         whichOfTheFollowingLiverProblemsPageСС
@@ -521,7 +520,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageCC
@@ -531,7 +530,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageCC
@@ -554,7 +553,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1)
+                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                     .back();
         }
 
@@ -572,14 +571,14 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();
-        switch (expectedDispo) {
+        switch (site.dispo) {
             case "1R":
                 selectionPageCC
-                        .clickOnAnswer(siteName)
+                        .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
                         .clickNextButton(new ThankYouCloseSimplePageCC())
@@ -587,18 +586,18 @@ public class DERM_4815_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(expectedDispo);
+                        .dispoShouldMatch(site.dispo);
                 break;
             case "41C":
                 selectionPageCC
-                        .clickOnAnswer(siteName)
+                        .clickOnAnswer(site.dispo)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(expectedDispo);
+                        .dispoShouldMatch(site.dispo);
         }
 
     }

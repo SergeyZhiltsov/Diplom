@@ -24,9 +24,7 @@ public class LevelOfITCHWithEczemaOLS extends MainPageOLS {
 
     @Step
     public LevelOfITCHWithEczemaOLS waitForPageLoad() {
-        waitForAnimation();
-        waitForImagesToLoad();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
