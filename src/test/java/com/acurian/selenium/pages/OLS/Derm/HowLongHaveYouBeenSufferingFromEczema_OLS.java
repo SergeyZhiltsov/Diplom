@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.OLS.Derm;
 
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,12 +11,13 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowLongHaveYouBeenSufferingFromEczema_OLS extends MainPageOLS {
+
 	public final String titleExpected = "How long have you been suffering from eczema (atopic dermatitis)?";
 
-    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
     public HowLongHaveYouBeenSufferingFromEczema_OLS() {
@@ -23,18 +26,13 @@ public class HowLongHaveYouBeenSufferingFromEczema_OLS extends MainPageOLS {
 
     @Step
     public HowLongHaveYouBeenSufferingFromEczema_OLS waitForPageLoad() {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public HowLongHaveYouBeenSufferingFromEczema_OLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
@@ -42,5 +40,4 @@ public class HowLongHaveYouBeenSufferingFromEczema_OLS extends MainPageOLS {
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

@@ -32,7 +32,7 @@ public class WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS extends MainPag
     }
 
     @Step
-    public WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS clickOnAnswer(String answerText) {
+    public WhichOfTheFollowingEczemaSymptomsDoYouExperienceOLS clickOnAnswers(String answerText) {
         getActions().moveToElement(radioButtonList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get())
