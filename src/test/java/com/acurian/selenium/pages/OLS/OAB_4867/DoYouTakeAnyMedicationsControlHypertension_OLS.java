@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class DoYouTakeAnyMedicationsControlHypertension_OLS extends MainPageOLS{
 
-    public final String titleExpected = "Do you take any medications to control your high blood pressure or hypertension?";
+    public final String titleExpected = "Do you take any medications to control high blood pressure or hypertension?";
     
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")

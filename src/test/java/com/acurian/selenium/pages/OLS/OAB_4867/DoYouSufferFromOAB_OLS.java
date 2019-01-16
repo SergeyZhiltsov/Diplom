@@ -12,7 +12,7 @@ public class DoYouSufferFromOAB_OLS extends MainPageOLS{
     public final String titleExpected = "Do you suffer from overactive bladder or OAB?";
     
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "//div[contains(@class,'question_text')]//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
     @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
