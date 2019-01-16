@@ -16,7 +16,6 @@ import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -618,7 +617,7 @@ public class DERM_4814_CC extends BaseTest {
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "09/09/1980", "US", "Dover, DE",
-                                site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "%SYN_SITE_NUM%", site.name, "INCPPDATO303")
+                                site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "123456a", site.name, "INCPPDATO303")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
