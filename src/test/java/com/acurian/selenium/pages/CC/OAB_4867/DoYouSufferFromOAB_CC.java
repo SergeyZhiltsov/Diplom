@@ -14,7 +14,7 @@ public class DoYouSufferFromOAB_CC extends MainPageCC{
     public final String titleExpected = "Do you suffer from overactive bladder or OAB?";
     
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    @FindBy(xpath = "//div[@class='subquestion']/span[@class='sub_question_text']")
     WebElement titleText;
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
