@@ -32,7 +32,7 @@ public class DERM_4814_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {"AUT_CV1_4450S_Syn", "41C", "19901"},
+                {"AUT_AD4814_site", "1R", "19901"},
 //                {"AUT_CV_3140A_site", "1R", "45205"}
         };
     }
@@ -44,7 +44,7 @@ public class DERM_4814_CC extends BaseTest {
         String protocol1 = "INCB 18424_303";
         String protocol2 = "INCB 18424_304";
         String[] protocols = {protocol1, protocol2};
-        String studyName = "an eczema (atopic dermatitis)";
+        String studyName = "an eczema (atopic dermatitis) study";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -250,7 +250,7 @@ public class DERM_4814_CC extends BaseTest {
 
         EitherOfTheFollowingMedicationsCC eitherOfTheFollowingMedicationsCC = areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
                 .waitForPageLoadKAD()
-                .clickOnAnswers("Cosentyx")
+                .clickOnAnswers("Cosentyx (Agent Note: co-SEN-tix)")
                 .clickNextButton(new EitherOfTheFollowingMedicationsCC());
         eitherOfTheFollowingMedicationsCC
                 .waitForPageLoad()
@@ -267,7 +267,7 @@ public class DERM_4814_CC extends BaseTest {
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoad("eczema, or atopic dermatitis")
+                .waitForPageLoadWithCurvesKAD("eczema, or atopic dermatitis")
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", protocols)
                 .back();
@@ -276,7 +276,7 @@ public class DERM_4814_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Olumiant (Agent Note: oh-LOO-me-ant)")
                 .clickNextButton(transitionStatementCC)
-                .waitForPageLoad("eczema, or atopic dermatitis")
+                .waitForPageLoadWithCurvesKAD("eczema, or atopic dermatitis")
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", protocols)
                 .back();
@@ -285,7 +285,7 @@ public class DERM_4814_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
                 .clickNextButton(transitionStatementCC)
-                .waitForPageLoad("eczema, or atopic dermatitis")
+                .waitForPageLoadWithCurvesKAD("eczema, or atopic dermatitis")
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", protocols)
                 .back();
@@ -295,7 +295,7 @@ public class DERM_4814_CC extends BaseTest {
                 .clickNextButton(transitionStatementCC);
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-                .waitForPageLoad("eczema, or atopic dermatitis")
+                .waitForPageLoadWithCurvesKAD("eczema, or atopic dermatitis")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 
@@ -341,8 +341,8 @@ public class DERM_4814_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected5)
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
@@ -469,7 +469,7 @@ public class DERM_4814_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS55", protocols)
+                .checkProtocolsContainsForQNumber("Q0015145-QS55-STUDYQUES", protocols)
                 .back();
         whichOfTheFollowingSkinConditionsDoYouSufferСС
                 .waitForPageLoad()
