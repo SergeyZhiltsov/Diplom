@@ -1,6 +1,9 @@
 package com.acurian.selenium.models;
 
 public enum Site {
+    //4814
+    AUT_AD4814_site("AUT_AD4814_site", "19901", "1R", "INCB 18424_303", "INCB 18424_304"),
+    AUT_AD4814S_site("AUT_AD4814S_site", "19901", "41C", "INCB 18424_303", "INCB 18424_304"),
     //4815
     AUT_DERM_4815_Site("AUT_DERM_4815_Site", "19901", "1R", "B7451029"),
     AUT_DERM_4815S_Site("AUT_DERM_4815S_Site", "19901", "41C", "B7451029"),

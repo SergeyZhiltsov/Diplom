@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
@@ -21,18 +22,18 @@ public class DERM_4814_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {"AUT_AD4814_site", "1R", "19901"},
-//                {"AUT_CV_3140A_site", "1R", "45205"}
+//                {Site.AUT_AD4814_site},
+                {Site.AUT_AD4814S_site}
         };
     }
 
     @Test(enabled = true, dataProvider = "sites")
     @Description("DERM_4814_OLS_test")
-    public void derm4814olsTest(String siteName, String expectedDispo, String zipCode) {
+    public void derm4814olsTest(final Site site) {
         String phoneNumber = "AUTAMSDERM";
-        String protocol1 = "INCB 18424_303";
-        String protocol2 = "INCB 18424_304";
-        String[] protocols = {protocol1, protocol2};
+//        String protocol1 = "INCB 18424_303";
+//        String protocol2 = "INCB 18424_304";
+        String[] protocols = site.activeProtocols;
         String studyName = "an eczema (atopic dermatitis)";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -49,7 +50,7 @@ public class DERM_4814_OLS extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols = genderPageOLS
@@ -615,11 +616,11 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
@@ -627,6 +628,6 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(expectedDispo);
+                .dispoShouldMatch(site.dispo);
     }
 }
