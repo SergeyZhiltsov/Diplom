@@ -1,14 +1,17 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LPS_4442.EitherOfTheFollowingMedicationsCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.tests.OLS.DERM_4814_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -29,21 +32,14 @@ public class DERM_4814_CC extends BaseTest {
         super.tearDown();
     }
 
-    @DataProvider
-    public Object[][] sites() {
-        return new Object[][] {
-                {"AUT_AD4814_site", "1R", "19901"},
-//                {"AUT_CV_3140A_site", "1R", "45205"}
-        };
-    }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = true, dataProvider = "sites", dataProviderClass = DERM_4814_OLS.class)
     @Description("DERM_4814_CC_Test")
-    public void derm4814ccTest(String siteName, String expectedDispo, String zipCode) {
+    public void derm4814ccTest(final Site site) {
         String phoneNumber = "AUTAMSDERM";
-        String protocol1 = "INCB 18424_303";
-        String protocol2 = "INCB 18424_304";
-        String[] protocols = {protocol1, protocol2};
+//        String protocol1 = "INCB 18424_303";
+//        String protocol2 = "INCB 18424_304";
+        String[] protocols = site.activeProtocols;
         String studyName = "an eczema (atopic dermatitis) study";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -85,7 +81,7 @@ public class DERM_4814_CC extends BaseTest {
         zipCodePageCC
                 .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC
@@ -591,25 +587,43 @@ public class DERM_4814_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
 
-        approximateHeightPageCC
+        SiteSelectionPageCC siteSelectionPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .dispoShouldMatch(expectedDispo);
+                .getPID();
+
+        switch (site.dispo) {
+            case "1R":
+                siteSelectionPageCC
+                        .clickOnAnswer(site.name)
+                        .clickNextButton(new QualifiedClose2PageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo);
+                break;
+            case "41C":
+                siteSelectionPageCC
+                        .clickOnAnswer(site.name)
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "09/09/1980", "US", "Dover, DE",
+                                site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "%SYN_SITE_NUM%", site.name, "INCPPDATO303")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo);
+        }
     }
 }
