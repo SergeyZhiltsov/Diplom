@@ -493,47 +493,6 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
-
-
-                //issue that not fixed
-
-//                .clickNextButton(new DyslipidemiaHealthcarePageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HeartrelatedMedicalProceduresPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-
-//issue that not fixed
-//                .clickNextButton(takeYourInsulinPageCC)
-//                .waitForPageLoad()
-//                .clickOnAnswers("Daily injections", "Insulin pump, which delivers insulin continuously","Inhaled insulin (Afrezza)")
-//                .clickNextButton(takeYourInsulinInjectionsPageCC)
-//                .waitForPageLoad()
-//                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
-//                .clickNextButton(brandsOfInsulinPageCC)
-//                .waitForPageLoad()
-//                .clickOnAnswers("Insulin glargine, also known as Basaglar, Lantus, or Toujeo")
-//                .clickNextButton(new DyslipidemiaHealthcarePageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HaveYouEverBeenDiagnosedAdditionalHeartRelatedCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HeartrelatedMedicalProceduresPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-
-
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)

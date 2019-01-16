@@ -6,6 +6,7 @@ import com.acurian.selenium.utils.Properties;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 
@@ -55,6 +56,7 @@ public class LoginPageCC extends MainPageCC {
     public LoginPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.waitforVisibility(loginButton);
+        Assert.assertEquals(this.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         return this;
     }
 

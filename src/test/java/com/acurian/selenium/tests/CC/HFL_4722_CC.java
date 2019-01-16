@@ -22,7 +22,6 @@ import java.util.List;
 public class HFL_4722_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
-    @TestCaseId("00045")
     @Description("HFL_4722 test CC")
     public void hfl_4722_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1HFL";
@@ -179,14 +178,13 @@ public class HFL_4722_CC extends BaseTest {
                 .clickOnAnswer(siteName)
                 .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
-//                .clickNextButton(new SynexusHealthyMindsPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
+                .clickNextButton(new SynexusHealthyMindsPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
     }
 }
