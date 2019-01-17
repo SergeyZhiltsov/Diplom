@@ -83,11 +83,11 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
-        WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols = howLongHaveYouBeenSufferingFromEczema_OLS
+        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_ols = howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months or less")
-                .clickNextButton(new WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS());
-        weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols
+                .clickNextButton(new HowMuchEczemaYouHaveOnYourBody_OLS());
+        howMuchEczemaYouHaveOnYourBody_ols
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
@@ -95,7 +95,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months")
-                .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols)
+                .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
@@ -104,7 +104,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months")
-                .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols)
+                .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
@@ -113,9 +113,9 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 years or more")
-                .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols);
+                .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols);
 
-        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols = weNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_ols
+        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols = howMuchEczemaYouHaveOnYourBody_ols
                 .waitForPageLoad()
                 .selectFromDropDown("6")
                 .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());

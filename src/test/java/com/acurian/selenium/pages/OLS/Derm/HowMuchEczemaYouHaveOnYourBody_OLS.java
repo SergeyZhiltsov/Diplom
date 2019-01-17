@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS extends MainPageOLS {
+public class HowMuchEczemaYouHaveOnYourBody_OLS extends MainPageOLS {
 
     public final String titleExpected = "We need to understand how much eczema you have on your body. Use your hand to cover all of the eczema patches currently on your skin. " +
             "About how many hand prints does it take to cover all the eczema on your body?";
@@ -18,18 +18,18 @@ public class WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS extends MainPa
     @FindBy(xpath = "//div[contains(@class,'dropdown')]/select")
     WebElement dropDownList;
 
-    public WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS() {
+    public HowMuchEczemaYouHaveOnYourBody_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS waitForPageLoad() {
+    public HowMuchEczemaYouHaveOnYourBody_OLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS selectFromDropDown(String answerText) {
+    public HowMuchEczemaYouHaveOnYourBody_OLS selectFromDropDown(String answerText) {
         selectDropDownListOptionByText(dropDownList, answerText);
         return this;
     }
