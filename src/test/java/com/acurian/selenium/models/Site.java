@@ -1,5 +1,7 @@
 package com.acurian.selenium.models;
 
+import java.util.Arrays;
+
 public enum Site {
     //4631
     AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", "KPL_716_C001"),
@@ -24,5 +26,10 @@ public enum Site {
         this.zipCode = zipCode;
         this.dispo = dispo;
         this.activeProtocols = activeProtocols;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + name + ", " + zipCode + ", " + dispo + ", " + Arrays.toString(activeProtocols) + "]";
     }
 }

@@ -116,10 +116,10 @@ public class KAD_4849_CC extends BaseTest {
 
 
         //----------Q3:  HowLongHaveYouBeenSufferingFromEczema_CC---------------
-        WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = howLongHaveYouBeenSufferingFromEczema_CC
+        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months or less")
-                .clickNextButton(new WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC());
+                .clickNextButton(new HowMuchEczemaYouHaveOnYOurBody_CC());
 
         howMuchEczemaYouHaveOnYOurBody_cc
                 .waitForPageLoad()
