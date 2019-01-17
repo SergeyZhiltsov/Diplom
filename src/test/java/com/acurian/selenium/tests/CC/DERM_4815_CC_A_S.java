@@ -117,11 +117,11 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
 
-        WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc = howLongHaveYouBeenSufferingFromEczema_cc
+        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("2 months or less")
-                .clickNextButton(new WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC());
-        weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc
+                .clickNextButton(new HowMuchEczemaYouHaveOnYOurBody_CC());
+        howMuchEczemaYouHaveOnYOurBody_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
@@ -129,7 +129,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months")
-                .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc)
+                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
@@ -138,7 +138,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months")
-                .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc)
+                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
@@ -147,9 +147,9 @@ public class DERM_4815_CC_A_S extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("2 years or more")
-                .clickNextButton(weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc);
+                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
-        DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = weNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_cc
+        DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc
                 .waitForPageLoad()
                 .selectFromDropDown("6")
                 .clickNextButton(new DollarBillsToCoverEczemaCC());

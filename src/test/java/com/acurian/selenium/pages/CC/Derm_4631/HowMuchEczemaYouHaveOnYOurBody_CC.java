@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 import com.acurian.selenium.pages.CC.MainPageCC;
 
-public class WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC extends MainPageCC{
+public class HowMuchEczemaYouHaveOnYOurBody_CC extends MainPageCC{
 
     public final String titleExpected = "We need to understand how much eczema you have on your body. Use your hand to cover all of the eczema patches currently on your skin. " +
             "About how many hand prints does it take to cover all the eczema on your body?";
@@ -19,19 +19,19 @@ public class WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC extends MainPag
     @FindBy(xpath = "//div[@class='ddlist_container']//select")
     WebElement dropDownList;
 
-    public WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC() {
+    public HowMuchEczemaYouHaveOnYOurBody_CC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC waitForPageLoad() {
+    public HowMuchEczemaYouHaveOnYOurBody_CC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public WeNeedToUnderstandHowMuchEczemaYouHaveOnYOurBody_CC selectFromDropDown(String answerText) {
+    public HowMuchEczemaYouHaveOnYOurBody_CC selectFromDropDown(String answerText) {
     	selectDropDownListOptionByText(dropDownList, answerText);
         return this;
     }
