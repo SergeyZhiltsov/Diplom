@@ -2,9 +2,6 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.Derm_4631.HowManyDaysHasSkinBeenItchyCC;
-import com.acurian.selenium.pages.CC.Derm_4631.LevelOfITCHWithEczemaCC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverTreatedYourEczema_CC;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -87,10 +84,10 @@ public class KAD_4849_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
-        WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaOnYourBody_ols = howLongHaveYouBeenSufferingFromEczema_OLS
+        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaOnYourBody_ols = howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months or less")
-                .clickNextButton(new WeNeedToUnderstandHowMuchEczemaYouHaveOnYourBody_OLS());
+                .clickNextButton(new HowMuchEczemaYouHaveOnYourBody_OLS());
 
         howMuchEczemaOnYourBody_ols
                 .waitForPageLoad()
@@ -280,7 +277,7 @@ public class KAD_4849_OLS extends BaseTest {
 
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "TIA or \"mini-stroke\"", "Angina (heart-related chest pain) that required an overnight hospital stay", "Heart failure or congestive heart failure (CHF)")
+                .clickOnAnswers("Heart attack", "Stroke", "TIA or \"mini-stroke\"", "Angina (heart-related chest pain) that required an overnight hospital stay")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad();
@@ -397,6 +394,7 @@ public class KAD_4849_OLS extends BaseTest {
         aboutHealthPageOLS
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo);
     }
 }
