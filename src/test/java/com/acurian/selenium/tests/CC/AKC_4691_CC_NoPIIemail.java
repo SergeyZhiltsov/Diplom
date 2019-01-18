@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.DoYouExperienceDPN_CC;
@@ -31,15 +32,13 @@ import java.util.Map;
 public class AKC_4691_CC_NoPIIemail extends BaseTest {
 
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @TestCaseId("00004")
     @Description("Akcea_4691 for CC")
     public void akc_4691_CC_NoPIIemail(final String username, final String password) {
+        Site site = Site.AUT_AKC4691_MR;
         String phoneNumber = "AUTAMS1AKC";
-        String protocol1 = "ISIS 703802_CS2";
         String studyName = "a study for diabetics";
-        String siteName = "AUT_AKC4691_MR";
-        String zipCode = "08204";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -81,7 +80,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         zipCodePageCC
                 .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         genderPageCC
@@ -99,7 +98,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005996-QS4602-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0005996-QS4602-STUDYQUES", site.activeProtocols)
                 .back();
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
@@ -113,7 +112,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -121,7 +120,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -129,7 +128,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -138,7 +137,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         treatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -158,7 +157,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018438-QS4631-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0018438-QS4631-STUDYQUES", site.activeProtocols)
                 .back();
 
         treatingYourDiabetesPageCC
@@ -167,7 +166,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018438-QS4631-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0018438-QS4631-STUDYQUES", site.activeProtocols)
                 .back();
 
         LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
@@ -181,7 +180,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, site.activeProtocols)
                 .back();
 
         lastTimeYouTookPageCC
@@ -190,7 +189,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, site.activeProtocols)
                 .back();
 
         lastTimeYouTookPageCC
@@ -199,7 +198,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, site.activeProtocols)
                 .back();
 
         MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
@@ -240,8 +239,8 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         ApartFromMetforminPageCC apartFromMetforminPageCC = new ApartFromMetforminPageCC();
 
         HashMap<String, List<String>> options = new HashMap<>();
-        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(protocol1));
-        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(protocol1));
+        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(site.activeProtocols));
+        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(site.activeProtocols));
 
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
@@ -269,10 +268,10 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
 
         CurrentlyTakeInsulinPageCC currentlyTakeInsulinPageCC = new CurrentlyTakeInsulinPageCC();
         options.clear();
-        options.put("Actos (pioglitazone)", Arrays.asList(protocol1));
-        options.put("Avandia (rosiglitazone)", Arrays.asList(protocol1));
-        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(protocol1));
-        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol1));
+        options.put("Actos (pioglitazone)", Arrays.asList(site.activeProtocols));
+        options.put("Avandia (rosiglitazone)", Arrays.asList(site.activeProtocols));
+        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(site.activeProtocols));
+        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(site.activeProtocols));
 
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
@@ -300,7 +299,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         takeYourInsulinPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(currentlyTakeInsulinPageCC.titleExpected, protocol1);
+                .checkProtocolsContains(currentlyTakeInsulinPageCC.titleExpected, site.activeProtocols);
 
         InjectableMedicationsForYourDiabetesPageCC injectableMedicationsForYourDiabetesPageCC = takeYourInsulinPageCC
                 .waitForPageLoad()
@@ -350,7 +349,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -359,7 +358,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -368,7 +367,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -377,7 +376,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -386,7 +385,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -395,7 +394,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -404,7 +403,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, protocol1)
+                .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
@@ -423,7 +422,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         followingToLoseWeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, protocol1)
+                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
         followingLiverRelatedConditionCC
                 .waitForPageLoad()
@@ -432,7 +431,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, protocol1)
+                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
         followingLiverRelatedConditionCC
                 .waitForPageLoad()
@@ -441,7 +440,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, protocol1)
+                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
         followingLiverRelatedConditionCC
                 .waitForPageLoad()
@@ -450,7 +449,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, protocol1)
+                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
         followingLiverRelatedConditionCC
                 .waitForPageLoad()
@@ -459,7 +458,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, protocol1)
+                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
         followingLiverRelatedConditionCC
                 .waitForPageLoad()
@@ -468,7 +467,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, protocol1)
+                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
         followingLiverRelatedConditionCC
                 .waitForPageLoad()
@@ -498,7 +497,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(poundsOrMorePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0005313-QS4616-STUDYQUES", site.activeProtocols)
                 .back();
         procedureForWeightLossPageCC
                 .waitForPageLoad()
@@ -512,7 +511,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         transitionStatementCC
                 .waitForPageLoad("diabetes")
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0013992-QS4617-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("Q0013992-QS4617-STUDYQUES", site.activeProtocols)
                 .back();
         poundsOrMorePageCC
                 .waitForPageLoad()
@@ -534,11 +533,11 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "", "9999999999", zipCode)
+                .setAllFields("Auto", "Test", "", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
 
                 .waitForPageLoadT2DM()
@@ -551,6 +550,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo);
     }
 }
