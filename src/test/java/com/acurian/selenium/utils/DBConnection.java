@@ -91,7 +91,7 @@ public class DBConnection {
         try {
             stmt = getDbCon(env).createStatement();
             final String query = "select ANSWER_DATE from PATIENT_QSTNR_ANSWER_RESP where patient_id in (select patient_id from call where old_patient_id = '" + pidNumber + "' " +
-                    "and phone_number like '" + studyId + "%');";
+                    "and phone_number like '" + studyId + "%')";
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 dobCell = rset.getString("ANSWER_DATE");

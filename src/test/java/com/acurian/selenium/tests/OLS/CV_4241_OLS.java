@@ -264,7 +264,5 @@ public class CV_4241_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-
     }
 }
