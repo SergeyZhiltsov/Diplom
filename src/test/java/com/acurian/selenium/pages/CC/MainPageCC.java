@@ -38,8 +38,8 @@ public class MainPageCC extends BasePage {
         ));
     }
 
-    public MainPageCC assertChildDOBIsNull(String env) {
-        String childDOBCell = getDbConnection().dbReadChildDOB(env, pid);
+    public MainPageCC assertChildDOBIsNull(String env, String studyId) {
+        String childDOBCell = getDbConnection().dbReadChildDOB(env, pid, studyId);
         Assert.assertNull(childDOBCell,"Child DOB is not NULL");
         logTextToAllure("Child DOB cell: " + childDOBCell);
         return this;
