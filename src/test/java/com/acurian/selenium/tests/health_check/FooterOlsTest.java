@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 public class FooterOlsTest extends BaseTest {
 
     @Test
-    @Description("Test for items(links, text) in footer")
+    @Description("Test for items(links, text) in footer, or external URLs")
     public void footerOlsTest() {
         String phoneNumber = "AUTAMS1MIG";
 

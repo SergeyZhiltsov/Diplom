@@ -15,6 +15,7 @@ public class IdentificationPageOLS extends MainPageOLS{
             "Enrollment is limited. Please complete the following information so that we may match you with a study doctor.";
 
     public final String titleExpectedNotQ = "Personal details (*required fields)";
+    public final String titleExpectedCaregiver = "Patient details (*required fields)";
 
     @FindBy(xpath = "//h2[@id='patient-title']")
     WebElement titleTextNotQ;
@@ -73,6 +74,12 @@ public class IdentificationPageOLS extends MainPageOLS{
     }
 
     @Step
+    public IdentificationPageOLS waitForPageLoadCaregiver () {
+        waitForPageLoadMain(titleTextNotQ, titleExpectedCaregiver);
+        return this;
+    }
+
+    @Step
     public IdentificationPageOLS setAllFields(String firstName, String lastName, String email, String phoneNumber, String zipCode) {
         setFirstName(firstName);
         setLastName(lastName);
@@ -95,6 +102,16 @@ public class IdentificationPageOLS extends MainPageOLS{
         typeTextWithoutClear(lastNameField, name);
         waitForAnimation();
         return this;
+    }
+
+    @Step
+    public String getFirstName() {
+        return getText(firstNameField);
+    }
+
+    @Step
+    public String getLastName() {
+        return getText(lastNameField);
     }
 
     @Step

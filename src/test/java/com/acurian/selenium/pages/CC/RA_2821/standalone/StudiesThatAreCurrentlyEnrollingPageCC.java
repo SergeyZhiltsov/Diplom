@@ -9,7 +9,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class OtherStudiesThatAreCurrentlyEnrollingCC extends MainPageCC {
+public class StudiesThatAreCurrentlyEnrollingPageCC extends MainPageCC {
+
     public final String titleExpected = "We may have other research studies that are currently enrolling patients in your area. " +
             "Would you like to see if we have another study that you are interested in?";
 
@@ -19,18 +20,18 @@ public class OtherStudiesThatAreCurrentlyEnrollingCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonList;
 
-    public OtherStudiesThatAreCurrentlyEnrollingCC() {
+    public StudiesThatAreCurrentlyEnrollingPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public OtherStudiesThatAreCurrentlyEnrollingCC waitForPageLoad() {
+    public StudiesThatAreCurrentlyEnrollingPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public OtherStudiesThatAreCurrentlyEnrollingCC clickOnAnswer(String answerText) {
+    public StudiesThatAreCurrentlyEnrollingPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonList, answerText);
         return this;
     }
