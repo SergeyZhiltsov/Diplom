@@ -5,6 +5,8 @@ import java.util.Arrays;
 public enum Site {
     //4631
     AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", "KPL_716_C001"),
+    //4691
+    AUT_AKC4691_MR("AUT_AKC4691_MR", "08204", "1R", "ISIS 703802_CS2"),
     //4814
     AUT_AD4814_site("AUT_AD4814_site", "19901", "1R", "INCB 18424_303", "INCB 18424_304"),
     AUT_AD4814S_site("AUT_AD4814S_site", "19901", "41C", "INCB 18424_303", "INCB 18424_304"),

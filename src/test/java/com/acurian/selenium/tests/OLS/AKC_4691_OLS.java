@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -46,17 +47,12 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AKC_4691_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     @TestCaseId("0001")
     @Description("Akcea_4691 OLS")
     public void AKC_4691_OLS_EmailAtPII() {
-
+        Site site = Site.AUT_AKC4691_MR;
         String phoneNumber = "AUTAMS1AKC";
-//        List<String> protocols = Arrays.asList("ISIS 703802_CS2");
-        String protocol1 = "ISIS 703802_CS2";
-//        String studyName = "a study for diabetics";
-        String siteName = "AUT_AKC4691_MR";
-        String zipCode = "08204";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -76,7 +72,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad();
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         //--------------GENDER Question------------
@@ -96,7 +92,7 @@ public class AKC_4691_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS4602", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4602", site.activeProtocols);
         debugPageOLS.back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -111,7 +107,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -119,7 +115,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -127,7 +123,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
@@ -136,7 +132,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(new TreatingYourDiabetesPageOLS());
         treatingYourDiabetesPageOLS.waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -159,7 +155,7 @@ public class AKC_4691_OLS extends BaseTest {
         noOfAlcoholicDrinksOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4631", protocol1)
+                .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
                 .back();
 
         treatingYourDiabetesPageOLS
@@ -168,7 +164,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4631", protocol1)
+                .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
                 .back();
 
         LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
@@ -178,9 +174,9 @@ public class AKC_4691_OLS extends BaseTest {
 
         //--------------Q6: When was the last time you took medication for your diabetes? -----------
         HashMap<String, List<String>> cases = new HashMap<>();
-        cases.put("2 - 3 months ago", Arrays.asList(protocol1));
-        cases.put("4 - 5 months ago", Arrays.asList(protocol1));
-        cases.put("6 months ago or longer", Arrays.asList(protocol1));
+        cases.put("2 - 3 months ago", Arrays.asList(site.activeProtocols));
+        cases.put("4 - 5 months ago", Arrays.asList(site.activeProtocols));
+        cases.put("6 months ago or longer", Arrays.asList(site.activeProtocols));
         for(Map.Entry<String, List<String>> entry : cases.entrySet()) {
             lastTimeYouTookPageOLS
                     .waitForPageLoad()
@@ -236,7 +232,7 @@ public class AKC_4691_OLS extends BaseTest {
         apartFromMetforminPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4607", protocol1)
+                .checkProtocolsContainsForQNumber("QS4607", site.activeProtocols)
                 .back();
         metforminMedicationsPageOLS
                 .waitForPageLoad()
@@ -246,7 +242,7 @@ public class AKC_4691_OLS extends BaseTest {
         apartFromMetforminPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4607", protocol1)
+                .checkProtocolsContainsForQNumber("QS4607", site.activeProtocols)
                 .back();
         metforminMedicationsPageOLS
                 .waitForPageLoad()
@@ -258,10 +254,10 @@ public class AKC_4691_OLS extends BaseTest {
         //----------Q8: Apart from metformin, what other oral (taken by mouth) medications do you currently take for your diabetes?  ----------
         CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = new CurrentlyTakeInsulinPageOLS();
         cases.clear();
-        cases.put("Actos (pioglitazone)", Arrays.asList(protocol1));
-        cases.put("Avandia (rosiglitazone)", Arrays.asList(protocol1));
-        cases.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(protocol1));
-        cases.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol1));
+        cases.put("Actos (pioglitazone)", Arrays.asList(site.activeProtocols));
+        cases.put("Avandia (rosiglitazone)", Arrays.asList(site.activeProtocols));
+        cases.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(site.activeProtocols));
+        cases.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(site.activeProtocols));
         for(Map.Entry<String, List<String>> entry : cases.entrySet()) {
             apartFromMetforminPageOLS
                     .waitForPageLoad()
@@ -289,7 +285,7 @@ public class AKC_4691_OLS extends BaseTest {
         InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = takeYourInsulinPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4633", protocol1)
+                .checkProtocolsContainsForQNumber("QS4633", site.activeProtocols)
                 .getPage(takeYourInsulinPageOLS)
                 .clickOnAnswers("Inhaled insulin (Afrezza)")
                 .clickNextButton(new InjectableMedicationsForYourDiabetesPageOLS());
@@ -376,7 +372,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4611", protocol1)
+                .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -385,7 +381,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4611", protocol1)
+                .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -394,7 +390,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4611", protocol1)
+                .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -403,7 +399,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4611", protocol1)
+                .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -412,7 +408,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4611", protocol1)
+                .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -421,7 +417,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4611", protocol1)
+                .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -430,7 +426,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinksOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4611", protocol1)
+                .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -465,7 +461,7 @@ public class AKC_4691_OLS extends BaseTest {
         followingToLoseWeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4624", protocol1)
+                .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                 .back();
         liverRelatedConditionOLS
                 .waitForPageLoad()
@@ -474,7 +470,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4624", protocol1)
+                .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                 .back();
         liverRelatedConditionOLS
                 .waitForPageLoad()
@@ -483,7 +479,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4624", protocol1)
+                .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                 .back();
         liverRelatedConditionOLS
                 .waitForPageLoad()
@@ -492,7 +488,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4624", protocol1)
+                .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                 .back();
         liverRelatedConditionOLS
                 .waitForPageLoad()
@@ -501,7 +497,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4624", protocol1)
+                .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                 .back();
         liverRelatedConditionOLS
                 .waitForPageLoad()
@@ -510,7 +506,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4624", protocol1)
+                .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                 .back();
         liverRelatedConditionOLS
                 .waitForPageLoad()
@@ -551,7 +547,7 @@ public class AKC_4691_OLS extends BaseTest {
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616", protocol1)
+                .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -566,7 +562,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4617", protocol1)
+                .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)
                 .back();
         poundsOrMorePageOLS
                 .waitForPageLoad()
@@ -584,7 +580,7 @@ public class AKC_4691_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
@@ -599,7 +595,7 @@ public class AKC_4691_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -608,7 +604,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -617,7 +613,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -626,7 +622,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -635,7 +631,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -649,7 +645,7 @@ public class AKC_4691_OLS extends BaseTest {
         ethnicBackgroundPageOLS
         		.waitForPageLoad()
         		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS60", protocol1)
+        		.checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
         		.back();
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
 				.waitForPageLoad()
@@ -682,12 +678,12 @@ public class AKC_4691_OLS extends BaseTest {
                 //----------PII (IdentificationPageOLS) Page--------------------
         identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoadAKC()
                 .getPID()
                 //----------SITE Selection Page--------------------
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 //----------Special Type 2 Diabetes HELLO SIGN Page (Email entered at PII)--------------------
                 .waitForPageLoadT2DM()
@@ -718,6 +714,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo);
     }
 }

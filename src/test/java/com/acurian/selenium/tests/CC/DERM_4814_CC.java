@@ -609,7 +609,8 @@ public class DERM_4814_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo);
+                        .dispoShouldMatch(site.dispo)
+                        .assertChildDOBIsNull(env, "4814");
                 break;
             case "41C":
                 siteSelectionPageCC
@@ -622,7 +623,8 @@ public class DERM_4814_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo);
+                        .dispoShouldMatch(site.dispo)
+                        .assertChildDOBIsNull(env, "4814");
         }
     }
 }
