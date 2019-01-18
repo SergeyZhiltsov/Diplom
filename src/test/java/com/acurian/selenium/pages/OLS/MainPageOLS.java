@@ -109,8 +109,8 @@ public class MainPageOLS extends BasePage{
         return (T)page;
     }
 
-    public MainPageOLS assertChildDOBIsNull(String env) {
-        String childDOBCell = getDbConnection().dbReadChildDOB(env, pid);
+    public MainPageOLS assertChildDOBIsNull(String env, String studyId) {
+        String childDOBCell = getDbConnection().dbReadChildDOB(env, pid, studyId);
         Assert.assertNull(childDOBCell,"Child DOB is not NULL");
         logTextToAllure("Child DOB cell: " + childDOBCell);
         return this;
