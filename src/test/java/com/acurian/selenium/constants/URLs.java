@@ -25,4 +25,8 @@ public interface URLs {
     String RPA_STG = "https://stg-appservice.acurian.com/rpa/login.htm";
     String RPA_QA = "https://qa-appservice.acurian.com/rpa/login.htm";
     String RPA_PROD = "http://prod-appservice.acurian.com/rpa/login.htm";
+
+    //ScreenBuilder
+    String SB_QA = "https://qa-sb.acurian.com/sb/";
+    String SB_PRD = "https://sb.acurian.com/";
 }
