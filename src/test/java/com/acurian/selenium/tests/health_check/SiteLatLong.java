@@ -1,41 +1,44 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.RA_2821.*;
+import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class GmegaToGban extends BaseTest {
+public class SiteLatLong extends BaseTest {
 
     @Test
-    @Description("Test for 1R DB Validation")
-    public void gmegaToGban() {
+    @Description("Test for user lat long after zip")
+    public void patientLatLongTest() {
         String phoneNumber = "AUTGMEGA01";
         String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
-        String zipCode = "19044";
-        String firstName = "Acurian";
-        String lastName = "Trial";
-
+        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
-                .setDate("09091930")
+                .setDate("09091980")
                 .clickNextButton(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields(firstName, lastName, "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -45,12 +48,12 @@ public class GmegaToGban extends BaseTest {
 
         FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "150")
+                .setAll("5", "5", "160")
                 .clickNextButton(new FollowingNeurologicalConditionsPageOLS());
 
         DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Alzheimer's disease")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new DigestiveConditionsPageOLS());
 
         BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = digestiveConditionsPageOLS
@@ -68,45 +71,16 @@ public class GmegaToGban extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 
-        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
+        whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
-
-        WhichContainAcetaminophenPageOLS whichContainAcetaminophenPageOLS = whereDoYouHaveArthritisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(new WhichContainAcetaminophenPageOLS());
-
-        UndergoneGeneticTestingPageOLS undergoneGeneticTestingPageOLS = whichContainAcetaminophenPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("I cannot take acetaminophen or Tylenol because of allergy or another health reason")
-                .clickNextButton(new UndergoneGeneticTestingPageOLS());
-
-        StudiesThatAreCurrentlyEnrollingPageOLS studiesThatAreCurrentlyEnrollingPageOLS = undergoneGeneticTestingPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new StudiesThatAreCurrentlyEnrollingPageOLS());
-
-        StandAlone4295SwitchOLS standAlone4295SwitchOLS = studiesThatAreCurrentlyEnrollingPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new StandAlone4295SwitchOLS());
-
-        standAlone4295SwitchOLS
-                .waitForPageLoad();
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
-
-        BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = standAlone4295SwitchOLS
-                .clickNextButton(new BehalfOfSomeoneElsePageOLS());
-        behalfOfSomeoneElsePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Someone else")
+                .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoadCaregiver();
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(siteName);
 
-        Assert.assertEquals(identificationPageOLS.getFirstName(), firstName, "First name is diff");
-        Assert.assertEquals(identificationPageOLS.getLastName(), lastName, "Last name is diff");
+        Assert.assertEquals(debugPageOLS.getPatientLatLongText(), "Patient LatLong: 39.296578,-75.3860779", "Patient lat long is diff");
     }
 }
