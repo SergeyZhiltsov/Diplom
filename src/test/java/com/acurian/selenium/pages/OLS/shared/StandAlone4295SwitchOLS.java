@@ -14,8 +14,8 @@ public class StandAlone4295SwitchOLS extends MainPageOLS{
     @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[@class='show-in-ols'])[2]")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
-    List<WebElement> radioButtonsList;
+//    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+//    List<WebElement> radioButtonsList;
 
     public StandAlone4295SwitchOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -27,11 +27,11 @@ public class StandAlone4295SwitchOLS extends MainPageOLS{
         return this;
     }
 
-    @Step
-    public StandAlone4295SwitchOLS clickOnAnswers(String answerText) {
-        clickOnRadioButton(radioButtonsList, answerText);
-        return this;
-    }
+//    @Step
+//    public StandAlone4295SwitchOLS clickOnAnswers(String answerText) {
+//        clickOnRadioButton(radioButtonsList, answerText);
+//        return this;
+//    }
 
     @Step
     public String getTitleText(){

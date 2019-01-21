@@ -22,6 +22,8 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//span[text()='Close']")
     WebElement closeButton;
 
+
+    //info window
     @FindBy(xpath = "//div[contains(@class,'k-widget')][1]//span[text()='Close']")
     WebElement infoCloseButton;
 
@@ -31,6 +33,10 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Verity Score')]/..")
     WebElement verity4Field;
 
+    @FindBy(xpath = "//div[@class='k-window-content k-content']/div/strong[1]")
+    WebElement projectInfoNameField;
+
+
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[3]")
     List<WebElement> questionList1;
 
@@ -38,15 +44,6 @@ public class DebugPageOLS extends MainPageOLS{
     List<WebElement> questionList2;
 
     List<WebElement> questionList;
-
-    @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='VK2809_201']")
-    WebElement protocolVK;
-
-    @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='20150230']")
-    WebElement protocol201;   
-    
-    @FindBy(xpath = "//div[contains(@class,'k-content')]//td[text()='R727_CL_1532']")
-    WebElement protocolR727;
     
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[1]")
     List<WebElement> questionNumberList1;
@@ -104,12 +101,20 @@ public class DebugPageOLS extends MainPageOLS{
         return this;
     }
 
-    public String getVerityText(){
+    private String getTextFromInfoRowByElement(WebElement el){
         openInfoWindow();
         waitForAnimation();
-        String verityText = getText(verity4Field);
+        String text = getText(el);
         closeInfoWindow();
-        return verityText;
+        return text;
+    }
+
+    public String getVerityText(){
+        return getTextFromInfoRowByElement(verity4Field);
+    }
+
+    public String projectNameText(){
+        return getTextFromInfoRowByElement(projectInfoNameField);
     }
 
     @Step

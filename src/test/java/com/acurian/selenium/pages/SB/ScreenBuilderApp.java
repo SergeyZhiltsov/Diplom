@@ -24,7 +24,7 @@ public class ScreenBuilderApp extends BasePage {
     @FindBy(id = "username")
     WebElement loginUsername;
 
-    @FindBy(id ="password")
+    @FindBy(id = "password")
     WebElement loginPassword;
 
     @FindBy(xpath = "//table[@id='mytable']//span/a")
@@ -59,8 +59,9 @@ public class ScreenBuilderApp extends BasePage {
         CachEnv(String name) {
             this.name = name;
         }
+
         public String name;
-        }
+    }
 
     @Step
     public ScreenBuilderApp openPage(String env) {
@@ -132,13 +133,11 @@ public class ScreenBuilderApp extends BasePage {
         WebElement clearCacheDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Clear Cache"))
                 .findFirst()
                 .get();
-
         getActions()
                 .moveToElement(clearCacheDropdownItem)
                 .moveToElement(clearCacheDropdownItem.findElement(By.xpath("//following-sibling::ul/li[1]/a[contains(@id,'clear')]"))) // First Sub Menu of Clear Cache Menu
                 .click()
                 .build().perform();
-
         driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(clearCacheEnvs.get(0)));
         clearCacheEnvs.stream().filter(element -> element.getText().startsWith(env.name))
                 .findFirst()

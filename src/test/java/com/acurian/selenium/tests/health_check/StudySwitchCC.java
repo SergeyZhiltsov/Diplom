@@ -4,7 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.RA_2821.standalone.ExperiencedAnyOfTheFollowingConditionsInPast6Months;
 import com.acurian.selenium.pages.CC.RA_2821.standalone.HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC;
 import com.acurian.selenium.pages.CC.RA_2821.WhenYouDiagnosedWithRaPageCC;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.OtherStudiesThatAreCurrentlyEnrollingCC;
+import com.acurian.selenium.pages.CC.RA_2821.standalone.StudiesThatAreCurrentlyEnrollingPageCC;
 import com.acurian.selenium.pages.CC.RA_2821.standalone.StudySwitchPageCC;
 import com.acurian.selenium.pages.CC.closes.standalone.UnqualifiedStudySwitchCloseOldCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -87,11 +87,11 @@ public class StudySwitchCC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new UnqualifiedStudySwitchCloseOldCC());
 
-        OtherStudiesThatAreCurrentlyEnrollingCC otherStudiesThatAreCurrentlyEnrollingCC = unqualifiedStudySwitchCloseOldCC
+        StudiesThatAreCurrentlyEnrollingPageCC studiesThatAreCurrentlyEnrollingPageCC = unqualifiedStudySwitchCloseOldCC
                 .waitForPageLoad()
-                .clickNextButton(new OtherStudiesThatAreCurrentlyEnrollingCC());
+                .clickNextButton(new StudiesThatAreCurrentlyEnrollingPageCC());
 
-        StudySwitchPageCC studySwitchPageCC = otherStudiesThatAreCurrentlyEnrollingCC
+        StudySwitchPageCC studySwitchPageCC = studiesThatAreCurrentlyEnrollingPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new StudySwitchPageCC());
