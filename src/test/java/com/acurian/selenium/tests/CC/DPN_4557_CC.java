@@ -425,7 +425,7 @@ public class DPN_4557_CC extends BaseTest{
 				
 				//----------PII (IdentificationPageCC) Page--------------------
 						.waitForPageLoad()
-				        .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", "19044")
+				        .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", "19044")
 				        .clickNextButton(new SiteSelectionPageCC())
 				        .waitForPageLoad("a study for diabetics")
 				        .getPID()				        
