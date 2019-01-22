@@ -533,7 +533,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()

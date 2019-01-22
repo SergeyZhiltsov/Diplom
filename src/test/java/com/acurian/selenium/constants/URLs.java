@@ -29,4 +29,9 @@ public interface URLs {
     //ScreenBuilder
     String SB_QA = "https://qa-sb.acurian.com/sb/";
     String SB_PRD = "https://sb.acurian.com/";
+
+    //Screeners Clear Cache services
+    String QA_CLEAR_CACHE_OLS = "qa-api.acurian.com/ols/ctrl/index.htm"; // do not add http:// prefix to the URL as these urls are secured and require authentication
+    String STG_CLEAR_CACHE_OLS = "stg-api.acurian.com/ols/ctrl/index.htm"; // see clearCacheApp.openSecuredPage method
+    String PRD_CLEAR_CACHE_OLS = "api.acurian.com/ols/ctrl/index.htm";
 }

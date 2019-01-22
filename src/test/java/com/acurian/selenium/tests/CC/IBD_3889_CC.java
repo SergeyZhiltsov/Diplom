@@ -100,7 +100,7 @@ public class IBD_3889_CC extends BaseTest{
        
         GenderPageCC genderPageCC = identificationPageCC
      		   .waitForPageLoad1()
-     		   .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+     		   .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
      		   .clickNextButton(new GenderPageCC());
         
         DiagnosedWithCrohnsPageCC  diagnosedWithCrohnsPageCC = genderPageCC

@@ -90,7 +90,6 @@ public class IBD_4533_CC extends BaseTest {
 
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoad1()
-                //.setAllFields("Auto", "Test", eMailId, "9999999999", zipCode)
                 .setAllFields("Acurian", "Trial", "", "9999999999", zipCode)
                 .clickNextButton(new GenderPageCC());
 

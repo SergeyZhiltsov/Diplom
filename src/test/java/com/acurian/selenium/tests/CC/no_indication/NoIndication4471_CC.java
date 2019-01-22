@@ -476,7 +476,7 @@ public class NoIndication4471_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoadMCC(studyName)
                 .getPID()
