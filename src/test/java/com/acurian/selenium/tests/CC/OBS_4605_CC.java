@@ -9,15 +9,16 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 public class OBS_4605_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
+    @Test(enabled = true)
     @Description("OBS_4605_CC")
-    public void obs4605cc(final String username, final String password) {
+    public void obs4605cc() {
         final String phoneNumber = "AUTAMS1OBS";
         final String protocol = "RM_493_013";
         final String studyName = "a genetic obesity study";
@@ -32,8 +33,8 @@ public class OBS_4605_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -54,7 +55,6 @@ public class OBS_4605_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleObesityExpected, "Title is diff");
-
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("15")
