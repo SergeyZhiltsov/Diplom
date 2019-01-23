@@ -57,13 +57,9 @@ public class CV_4450_CC extends BaseTest {
     public void cv4450ccTest(String siteName, String expectedDispo, String zipCode) {
         String phoneNumber = "AUTAMS1CV1";
         String protocol1 = "EX9536_4388";
-//        String protocol2 = "1002_043_A";
         String[] protocols = {protocol1};
         String studyName = "a heart health study";
-//        String siteName = "AUT_CV_3140_site";
         String debugSiteName = "";
-//        String zipCode = "19901";
-//        String expectedDispo = "41C";
 
         String env = System.getProperty("acurian.env", "STG");
 
