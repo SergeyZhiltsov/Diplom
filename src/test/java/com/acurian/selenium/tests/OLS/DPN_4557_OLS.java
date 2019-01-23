@@ -383,7 +383,7 @@ public class DPN_4557_OLS extends BaseTest {
                 // ----------PII (IdentificationPageOLS)
                 // Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Auto", "Test", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
 
                 //----------SiteSelection Page--------------------

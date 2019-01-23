@@ -98,7 +98,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad1();
         Assert.assertEquals(identificationPageCC.getEarlyCaptureTitleText(), "Personal details (*required fields)");
         GenderPageCC genderPageCC = identificationPageCC
-                .setAllFields("Auto", "Test", "", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "", "9999999999", zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC

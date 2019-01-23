@@ -36,6 +36,9 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Design')]/..")
     WebElement themeField;
 
+    @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Patient LatLong:')]/..")
+    WebElement patientLatLongText;
+
     @FindBy(xpath = "//div[@class='k-window-content k-content']/div/strong[1]")
     WebElement projectInfoNameField;
 
@@ -120,8 +123,12 @@ public class DebugPageOLS extends MainPageOLS{
         return getTextFromInfoRowByElement(themeField);
     }
 
-    public String projectNameText(){
+    public String getProjectNameText(){
         return getTextFromInfoRowByElement(projectInfoNameField);
+    }
+
+    public String getPatientLatLongText(){
+        return getTextFromInfoRowByElement(patientLatLongText);
     }
 
     @Step
