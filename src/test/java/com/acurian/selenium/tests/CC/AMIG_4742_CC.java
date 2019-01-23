@@ -41,7 +41,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class AMIG_4742_CC extends BaseTest{
 	
-	@Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void AMig_4742_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1MIG";
