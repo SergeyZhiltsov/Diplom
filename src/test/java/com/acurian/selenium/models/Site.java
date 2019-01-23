@@ -18,7 +18,9 @@ public enum Site {
     //4849
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", "ANB020_005"),
     //4867
-    AUT_OAB_4867("AUT_OAB4867_site", "08204", "41C", "URO_901_1001");
+    AUT_OAB_4867("AUT_OAB4867_site", "08204", "41C", "URO_901_1001"),
+    //Others
+    GFLR1_1234_GFLR1("GFLR1_1234_GFLR1", "08204", "", ""); //FlareActivationCode.java
 
     public String name;
     public String zipCode;
