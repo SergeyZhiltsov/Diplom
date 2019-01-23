@@ -1,30 +1,64 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.outer.AcurianHealthPage;
+import com.acurian.selenium.pages.outer.OlsLegacyDateOfBirthPage;
+import com.acurian.selenium.pages.outer.OlsLegacyNumberPage;
+import com.acurian.selenium.pages.outer.TheStudyPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 public class WLPvalidation extends BaseTest {
 
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
     @Test
-    @Description("WLP URL Validation & Re-direct Validation")
-    public void dBValidation1Rgmega() {
+    @Description("WLP URL Validation & Re-direct Validation, only for PROD")
+    public void wlpOlsTest() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GRA1_Site";
-        String zipCode = "19901";
 
-        String env = System.getProperty("acurian.env", "STG");
+        TheStudyPage theStudyPage = new TheStudyPage();
+        theStudyPage
+                .openPage()
+                .waitForPageLoad();
+        Assert.assertEquals(theStudyPage.getTitleText(), "Have MIGRAINES?", "Title text is diff");
+        theStudyPage
+                .clickGetStartedButton();
 
+        OlsLegacyNumberPage olsLegacyNumberPage = new OlsLegacyNumberPage();
+        OlsLegacyDateOfBirthPage olsLegacyDateOfBirthPage = olsLegacyNumberPage
+                .waitForPageLoad()
+                .typePhone(phoneNumber)
+                .clickGoButton();
 
+        olsLegacyDateOfBirthPage
+                .waitForPageLoad();
+    }
+
+    @Test
+    @Description("WLP URL Validation & Re-direct Validation, only for PROD")
+    public void wlpOlsWsTest() {
+
+        AcurianHealthPage acurianHealthPage = new AcurianHealthPage();
+        DateOfBirthPageOLS dateOfBirthPageOLS = acurianHealthPage
+                .openPage()
+                .waitForPageLoad()
+                .clickSeeIfYouQualifyButton()
+                .switchTab();
+        dateOfBirthPageOLS
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText2Ver(), dateOfBirthPageOLS.titleGHExpected, "Title is diff");
     }
 }

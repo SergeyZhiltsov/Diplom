@@ -45,7 +45,6 @@ public class CV_5034_CC_A_S extends BaseTest {
     }
 
     @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS_A_S.class)
-    @TestCaseId("00020")
     @Description("Diabetes_4356A_Synexus for CC")
     public void CV_5034_CC_Test(final String siteName, final String dispo, final String zipCode) {
         String phoneNumber = "AUTAMS1CV1";
