@@ -73,7 +73,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleAKC_4691_Expected = "Let's get started to see if you qualify for a study for people with diabetes and related health conditions!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $750\n" +
+            "Payment up to $750, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
@@ -255,7 +255,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleNASHExpected = "Let's get started to see if you qualify for a NASH study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $750\n" +
+            "Payment up to $750, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 

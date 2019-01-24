@@ -1,8 +1,6 @@
 package com.acurian.selenium.pages.CC.closes;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;

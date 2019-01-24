@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.CC.pediatric;
 
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,12 +18,10 @@ public class HSCrohns2PageCC extends MainPageCC{
     		"Please be assured that your records will be kept confidential and only shared with the research facility.";
     
     public final String titleExpected1 = "Your medical records related to your Ulcerative Colitis history are required for the study doctor to effectively evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
-    		"\n" +
-    		"Please provide the contact information of both the specialist who treats you for your Ulcerative Colitis, your gastroenterologist (GI), as well as your primary care physician or general practitioner (GP). Your medical records from both doctors are critical since they are more detailed and provide information on your diagnosis, all of your medications, and the imaging/ scoping that may have been done for your digestive condition.\n" +
-    		"\n" +
-    		"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
-    		"\n" +
-    		"To start this process, you will need to provide an email address. What email address should we use:";
+            "\n" +
+            "Please provide the contact information of both the specialist who treats you for your Ulcerative Colitis, your gastroenterologist (GI), as well as your primary care physician or general practitioner (GP). Your medical records from both doctors are critical since they are more detailed and provide information on your diagnosis, all of your medications, and the imaging/ scoping that may have been done for your digestive condition.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.";
     
     
     public final String titleExpectedIBD = "Your medical records related to your %s history are required for the study doctor to effectively evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
@@ -31,11 +30,11 @@ public class HSCrohns2PageCC extends MainPageCC{
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
     
-    @FindBy(xpath = "//input[contains(@id,'answersQSC9092.rawAnswer')]")
-    WebElement email;
+    @FindBy(xpath = "//div[@class='text_email_container']/input[@type='text']")
+    WebElement emailBox;
     
 
     public HSCrohns2PageCC() {
@@ -59,16 +58,12 @@ public class HSCrohns2PageCC extends MainPageCC{
         waitForPageLoadMain(titleText, titleExpectedIBD);
         return this;
     }
-
-
     
     @Step
-    public HSCrohns2PageCC setEmailID(String name) {
-        typeTextWithoutClear(email, name);
+    public HSCrohns2PageCC typeEmail(String text) {
+        typeText(emailBox, text);
         return this;
     }
-    
-
     
     @Step
     public String getTitleText(){

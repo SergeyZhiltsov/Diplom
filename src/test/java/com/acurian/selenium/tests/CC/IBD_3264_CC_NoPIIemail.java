@@ -216,7 +216,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
         medications.put("Taltz (Agent Note: TALTS)", protocol2);
         medications.put("Tysabri (Agent Note: tie-SAB-ree)", protocol2);
 
-        for (Map.Entry<String, String> entry : medications.entrySet()){
+        for (Map.Entry<String, String> entry : medications.entrySet()) {
             biologicMedicationsPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -280,7 +280,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveAnyOfTheFollowingPageCC());
 
-         ProcedureForWeightLossPageCC lastTimeWeightLossSurgeryOrProcedureСС = haveAnyOfTheFollowingPageCC
+        ProcedureForWeightLossPageCC lastTimeWeightLossSurgeryOrProcedureСС = haveAnyOfTheFollowingPageCC
                 .waitForPageLoad()
                 .back(weightLossSurgeryPageCC)
                 .waitForPageLoad()
@@ -296,36 +296,44 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Colostomy and/or Colectomy")
                 .clickNextButton(new TransitionStatementCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol2);
-        debugPageCC.back();
+        transitionStatementCC
+                .waitForPageLoadWithCurves(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol2)
+                .back();
         haveAnyOfTheFollowingPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Ileostomy")
                 .clickOnAnswers("Colostomy and/or Colectomy")
-                .clickNextButton(new TransitionStatementCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol2);
-        debugPageCC.back();
-
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithCurves(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol2)
+                .back();
         haveAnyOfTheFollowingPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Another type of stomach or colon surgery")
-                .clickNextButton(new TransitionStatementCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol2);
-        debugPageCC.back();
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithCurves(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol2)
+                .back();
         haveAnyOfTheFollowingPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)")
-                .clickNextButton(new TransitionStatementCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol2);
-        debugPageCC.back();
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithCurves(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol2)
+                .back();
 
         haveAnyOfTheFollowingPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Ileostomy")
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC());
+                .clickNextButton(transitionStatementCC);
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoadWithCurves(studyName)
@@ -425,9 +433,6 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC());
         letMeSeePageCC
                 .waitForPageLoad()
-//        		.clickNextButton(new ChildrenUnderPageCC())
-//        		.waitForPageLoad()
-//        		.clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())
@@ -436,8 +441,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSCrohns2PageCC())
                 .waitForPageLoad1()
-                .setEmailID("qa.acurian@gmail.com")
-                //.waitForPageLoadIBD(studyIndication)
+                .typeEmail("qa.acurian@gmail.com")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())

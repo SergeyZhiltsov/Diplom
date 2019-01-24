@@ -9,7 +9,6 @@ import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.TransitionStatementCVbeginPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
@@ -31,17 +30,34 @@ public class DIA_4708_OLS extends BaseTest {
         Site site = Site.AUT_NASH4708_site;
         String phoneNumber = "AUTAMSNASH";
         String studyName = "a NASH";
-
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleNASHExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091968")
+                .setDate("09091969")//1969 and 1942 //1968
                 .clickNextButton(new ZipCodePageOLS());
+        zipCodePageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .back();
+        dateOfBirthPageOLS
+                .waitForPageLoad()
+                .setDate("09091942")
+                .clickNextButton(zipCodePageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .back();
+        dateOfBirthPageOLS
+                .waitForPageLoad()
+                .setDate("09091968")
+                .clickNextButton(zipCodePageOLS);
 
         zipCodePageOLS
                 .waitForPageLoad();
@@ -55,7 +71,6 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
