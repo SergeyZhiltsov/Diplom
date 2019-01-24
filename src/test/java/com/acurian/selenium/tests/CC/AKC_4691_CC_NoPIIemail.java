@@ -540,8 +540,8 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
 
-                .waitForPageLoadT2DM()
-                .typeEmail_T2Dia("qa.acurian@gmail.com")
+                .waitForPageLoad("Type 2 Diabetes and related health conditions")
+                .typeEmail("qa.acurian@gmail.com")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())

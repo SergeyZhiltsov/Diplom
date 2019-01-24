@@ -25,12 +25,10 @@ public class HSGeneralCC extends MainPageCC{
 			
 	
 	public final String titelExpected_NoPIIemail = "We're glad the location is convenient for you.\n" +
-			"\n" +
-			"The last step is to provide information about the doctors who are currently treating, or have previously treated, your Type 2 Diabetes and related health conditions so we can request your medical records and send them to the study doctor.\n" +
-			"\n" +
-			"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
-			"\n" +
-			"To start this process, you will need to provide an email address. What email address should we use:";
+            "\n" +
+            "The last step is to provide information about the doctors who are currently treating, or have previously treated, your Type 2 Diabetes and related health conditions so we can request your medical records and send them to the study doctor.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.";
 	
 	
 	public final String titleExpected_IND = "We're glad the location is convenient for you.\n" +
@@ -42,17 +40,11 @@ public class HSGeneralCC extends MainPageCC{
 			"You will need to provide us with an email address to start this process. What email address should we use:";
 	
 	
-	
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
     
-   // @FindBy(xpath = "//div[@class='text_email_container']/input[@class='input-text']")
-   // WebElement emailBox;
-    
     @FindBy(xpath = "//div[@class='text_email_container']/input[@type='text']")
     WebElement emailBox;
-    
-  
     
     @FindBy(xpath = "//input[@id='answersQSC9111.rawAnswer']")
     WebElement emailBoxT2Dia;
@@ -63,15 +55,15 @@ public class HSGeneralCC extends MainPageCC{
     }
 
     @Step
-    public HSGeneralCC waitForPageLoad(String StudyIndication) {
-        String titleExpectedMod = String.format(titleExpected, StudyIndication);
+    public HSGeneralCC waitForPageLoad(String studyIndication) {
+        String titleExpectedMod = String.format(titleExpected, studyIndication);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
     
     @Step
-    public HSGeneralCC waitForPageLoadInd(String StudyIndication) {
-        String titleExpectedMod = String.format(titleExpected_IND, StudyIndication);
+    public HSGeneralCC waitForPageLoadInd(String studyIndication) {
+        String titleExpectedMod = String.format(titleExpected_IND, studyIndication);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
@@ -86,19 +78,6 @@ public class HSGeneralCC extends MainPageCC{
     @Step
     public HSGeneralCC typeEmail(String text) {
         typeText(emailBox, text);
-        return this;
-    }
-    
-    @Step
-    public HSGeneralCC typeEmailAut(String text) {
-        typeText(emailBox, text);
-        return this;
-    }
-
-    @Step
-    public HSGeneralCC typeEmail_T2Dia(String text) {
-        //typeTextWithoutClear(ageMig, text);
-        typeText(emailBoxT2Dia, text);
         return this;
     }
 

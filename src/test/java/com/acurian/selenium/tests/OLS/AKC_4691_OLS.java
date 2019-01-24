@@ -47,8 +47,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AKC_4691_OLS extends BaseTest {
 
-    @Test()
-    @TestCaseId("0001")
+    @Test
     @Description("Akcea_4691 OLS")
     public void AKC_4691_OLS_EmailAtPII() {
         Site site = Site.AUT_AKC4691_MR;
@@ -647,46 +646,24 @@ public class AKC_4691_OLS extends BaseTest {
         		.getPage(debugPageOLS)
         		.checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
         		.back();
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
 				.waitForPageLoad()
 				.setIncheswithClear("9")
 				.setLbs("240")
                 .clickNextButton(ethnicBackgroundPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS());
-//				.clickNextButton(new ChildrenUnderPageOLS());
-//
-//        childrenUnderPageOLS
-//				.waitForPageLoad()
-//				.clickOnAnswer("No")
-//                .clickNextButton(new TheStudySitePageOLS());
-//                TheStudySitePageOLS theStudySitePageOLS = new TheStudySitePageOLS();
-//
-//
-//
-//  //----------*******NEW GENERAL HEALTH Questions********---------------------------
-//		//-------------------PEDIATRIC QUESTIONS-----------------------------
-//         theStudySitePageOLS.waitForPageLoad()
-//         .clickOnAnswer("Public transportation")
-//         .clickNextButton(new WhatMedicalCoveragePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("No, I have no coverage")
-//        .clickNextButton(new EthnicBackgroundPageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("Prefer not to answer")
-                //----------PII (IdentificationPageOLS) Page--------------------
-        identificationPageOLS
+                .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoadAKC()
                 .getPID()
                 //----------SITE Selection Page--------------------
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
-                //----------Special Type 2 Diabetes HELLO SIGN Page (Email entered at PII)--------------------
                 .waitForPageLoadT2DM()
+                .typeEmail("qa.acurian@gmail.com")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())
