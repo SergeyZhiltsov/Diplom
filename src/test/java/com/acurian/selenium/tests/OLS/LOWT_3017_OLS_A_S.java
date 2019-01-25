@@ -21,7 +21,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-//                {"AUT_LOWT_3017S", "41C", "19901"},
+                {"AUT_LOWT_3017S", "41C", "19901"},
                 {"AUT_LOWT_3017_Site", "1R", "19901"}
         };
     }
