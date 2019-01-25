@@ -666,7 +666,7 @@ public class DIA_5062_OLS extends BaseTest {
 
         EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("4", "8", "125")//bmi 29
+                .setAll("4", "9", "138")
                 .clickNextButton(new EthnicBackgroundPageOLS());
         AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = ethnicBackgroundPageOLS
                 .waitForPageLoad()
