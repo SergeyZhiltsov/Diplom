@@ -50,13 +50,13 @@ public class ScreenBuilderApp extends BasePage {
         driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
     }
 
-    public enum CachEnv {
+    public enum CacheEnv {
         DEV("Dev"),
         QA("Qa"),
         STAGING("Staging"),
         PRODUCTION("Production");
 
-        CachEnv(String name) {
+        CacheEnv(String name) {
             this.name = name;
         }
 
@@ -128,7 +128,7 @@ public class ScreenBuilderApp extends BasePage {
     }
 
     @Step
-    public ScreenBuilderApp clearStudyCacheOf(String screenerName, CachEnv env) {
+    public ScreenBuilderApp clearStudyCacheOf(String screenerName, CacheEnv env) {
         openActionsOf(screenerName);
         WebElement clearCacheDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Clear Cache"))
                 .findFirst()

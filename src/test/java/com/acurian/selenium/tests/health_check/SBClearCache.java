@@ -29,7 +29,7 @@ public class SBClearCache extends BaseTest {
 
         screenBuilder.loginAs(username, password);
         screenBuilder.searchStudy("GRA1");
-        screenBuilder.clearStudyCacheOf("GRA1 - Rheumatoid Arthritis (RA)", ScreenBuilderApp.CachEnv.QA);
+        screenBuilder.clearStudyCacheOf("GRA1 - Rheumatoid Arthritis (RA)", ScreenBuilderApp.CacheEnv.QA);
 
         Assert.assertEquals(screenBuilder.cacheClearedSuccessAlert.getText(), "×\nCleared Cache for Study 6697 successfully on QA.", "Success alert is diff or absent");
 

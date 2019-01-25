@@ -1,9 +1,12 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.VACC_4556_CC.AreYouInterestedInPneumoniaVaccineStudyCC;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
@@ -27,10 +30,8 @@ public class DIA_5062_OLS extends BaseTest {
     @Description("NASH study 5062 OLS")
     public void dia4708olsTest() {
         String phoneNumber = "AUTAMSNASH";
-        String protocol1 = "3152_301_002";
+        Site site = Site.AUT_NASH5062_site; //Synexus Site
         String studyName = "a NASH";
-        String siteName = "AUT_NASH5062_site"; //Synexus Site
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -38,7 +39,7 @@ public class DIA_5062_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleNASHExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleAllegranNASHExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091968")
                 .clickNextButton(new ZipCodePageOLS());
@@ -46,7 +47,7 @@ public class DIA_5062_OLS extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -64,7 +65,7 @@ public class DIA_5062_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4602", protocol1)
+                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
                 .back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -77,7 +78,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -85,7 +86,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -93,7 +94,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -102,7 +103,7 @@ public class DIA_5062_OLS extends BaseTest {
         treatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", protocol1)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -115,7 +116,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4604", protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -123,7 +124,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4604", protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -131,7 +132,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4604", protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -139,7 +140,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4604", protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -147,7 +148,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(treatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4604", protocol1)
+                .checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -259,7 +260,7 @@ public class DIA_5062_OLS extends BaseTest {
         liverRelatedConditionOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4623", protocol1)
+                .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
                 .back();
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
@@ -268,12 +269,12 @@ public class DIA_5062_OLS extends BaseTest {
 
         FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = new FollowingToLoseWeightPageOLS();
         HashMap<String, List<String>> options = new HashMap<>();
-        options.put("Alcoholic liver disease", Arrays.asList(protocol1));
-        options.put("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus", Arrays.asList(protocol1));
+        options.put("Alcoholic liver disease", Arrays.asList(site.activeProtocols));
+        options.put("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus", Arrays.asList(site.activeProtocols));
 //        options.put("Hemochromatosis or iron overload ", Arrays.asList(protocol1));
 //        options.put("Liver cancer or hepatocellular carcinoma ", Arrays.asList(protocol1));
-        options.put("Primary sclerosing cholangitis or primary biliary cirrhosis", Arrays.asList(protocol1));
-        options.put("Wilson's disease", Arrays.asList(protocol1));
+        options.put("Primary sclerosing cholangitis or primary biliary cirrhosis", Arrays.asList(site.activeProtocols));
+        options.put("Wilson's disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
             liverRelatedConditionOLS
@@ -334,7 +335,7 @@ public class DIA_5062_OLS extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
@@ -369,8 +370,25 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
+
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
@@ -381,8 +399,48 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
+
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
@@ -393,8 +451,22 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
+
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                        "1 - 3 months ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
@@ -416,7 +488,7 @@ public class DIA_5062_OLS extends BaseTest {
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
                 .back();
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
@@ -424,16 +496,9 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
+                .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
                 .back();
-        mostRecentHeartProcedurePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS49", protocol1)
-                .back();
+
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 12 months ago")
@@ -446,7 +511,7 @@ public class DIA_5062_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -460,7 +525,7 @@ public class DIA_5062_OLS extends BaseTest {
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", protocol1)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
@@ -474,7 +539,7 @@ public class DIA_5062_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
@@ -483,7 +548,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
@@ -529,7 +594,7 @@ public class DIA_5062_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -538,7 +603,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -547,7 +612,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -556,7 +621,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -565,16 +630,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -583,7 +639,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -592,7 +648,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -601,7 +657,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -612,26 +668,27 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAll("4", "8", "125")//bmi 29
                 .clickNextButton(new EthnicBackgroundPageOLS());
-        IdentificationPageOLS identificationPageOLS = ethnicBackgroundPageOLS
+        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
-                .waitForPageLoadNotQ()
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+        areYouInterestedInPneumoniaVaccineStudyOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS67", protocol1)
+                .checkProtocolsContainsForQNumber("QS67", site.activeProtocols)
                 .back();
 
-        ethnicBackgroundPageOLS
+        IdentificationPageOLS identificationPageOLS = ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Asian (Asian Indian, Chinese, Korean, Filipino, Japanese, Vietnamese)")
-                .clickNextButton(identificationPageOLS)
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
@@ -641,6 +698,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo);
     }
 }
