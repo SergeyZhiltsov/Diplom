@@ -19,6 +19,8 @@ public enum Site {
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", "ANB020_005"),
     //4867
     AUT_OAB_4867("AUT_OAB4867_site", "08204", "41C", "URO_901_1001"),
+    //5062
+    AUT_NASH5062_site("AUT_NASH5062_site", "19901", "41C", "3152_301_002"),
     //Others
     GFLR1_1234_GFLR1("GFLR1_1234_GFLR1", "08204", "", ""); //FlareActivationCode.java
 
