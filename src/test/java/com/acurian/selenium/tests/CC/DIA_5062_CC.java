@@ -571,8 +571,19 @@ public class DIA_5062_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
-                .setAll("5", "5", "250")
+                .setAll("4", "9", "138")
                 .clickNextButton(new LetMeSeePageCC());
+
+        letMeSeePageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", site.activeProtocols)
+                .back();
+
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .setAll("4", "9", "139")
+                .clickNextButton(letMeSeePageCC);
 
         letMeSeePageCC
                 .waitForPageLoad()
