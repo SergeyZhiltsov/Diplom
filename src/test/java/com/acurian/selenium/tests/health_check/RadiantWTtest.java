@@ -5,18 +5,18 @@ import com.acurian.selenium.pages.CC.RA_2821.WhenYouDiagnosedWithRaPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.gmega.WarmTransferGmegaPageCC;
-import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 public class RadiantWTtest extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @Description("WT for RA")
-    public void warmTransferTest(final String username, final String password) {
+    @Test(enabled = true)
+    @Description("WT for RA , wt + 41C = directSchedule")
+    public void warmTransferFor41CTest() {
         String phoneNumber = "AUTGMEGA01";
         String studyName = "an osteoarthritis study";
         String siteName = "AUT_GRA_WT_site";//AUT_GOA3_2108_Site
@@ -30,8 +30,8 @@ public class RadiantWTtest extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         selectActionPageCC
