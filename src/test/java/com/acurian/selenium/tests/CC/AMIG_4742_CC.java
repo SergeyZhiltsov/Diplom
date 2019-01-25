@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.models.Site;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -41,16 +42,15 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class AMIG_4742_CC extends BaseTest{
 	
-	@Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	
 	public void AMig_4742_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1MIG";
+        Site site = Site.AUT_MIG4742_site;
         String studyName1 = "a migraine study";
         String protocol1 = "3101_301_002";
         String protocol2 = "3101_302_002";
         String studyName = "migraine";
-        String siteName = "AUT_MIG4742_site";
-        String zip_Code = "08204";
         
         String env = System.getProperty("acurian.env", "STG");
         
@@ -515,14 +515,14 @@ LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
 		.setFirstName("Acurian")
 		.setLastName("Trial")
 		.setPhone("9999999999")
-		.setZipCode(zip_Code)		
+		.setZipCode(site.zipCode)
 		.clickNextButton(new SiteSelectionPageCC())
         //----------SITE Selection Page--------------------
         .waitForPageLoad(studyName1)
         .getPID()				        
         
         //----------SITE Selection Page--------------------
-        .clickOnAnswer(siteName)
+        .clickOnAnswer(site.name)
         .clickNextButton(new QualifiedClose2PageCC())
         .waitForPageLoad()
         .clickNextButton(new ThankYouCloseSimplePageCC())    

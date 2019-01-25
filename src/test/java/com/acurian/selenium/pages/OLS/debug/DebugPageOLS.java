@@ -33,6 +33,9 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Verity Score')]/..")
     WebElement verity4Field;
 
+    @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Design')]/..")
+    WebElement themeField;
+
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Patient LatLong:')]/..")
     WebElement patientLatLongText;
 
@@ -114,6 +117,10 @@ public class DebugPageOLS extends MainPageOLS{
 
     public String getVerityText(){
         return getTextFromInfoRowByElement(verity4Field);
+    }
+
+    public String getThemeText(){
+        return getTextFromInfoRowByElement(themeField);
     }
 
     public String getProjectNameText(){

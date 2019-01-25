@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LMG_4686.*;
@@ -15,16 +16,15 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AMIG_4742_OLS extends BaseTest {
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     @TestCaseId("00059")
     public void AMig_4742_OLS() {
         String phoneNumberMIG = "AUTAMS1MIG";
+        Site site = Site.AUT_MIG4742_site;
         String protocol1 = "3101_301_002";
         String protocol2 = "3101_302_002";
         String protocol3 = "I5Q_MC_CGAW"; //---MIG 4686 protocol
         String studyName = "a migraine";
-        String siteName = "AUT_MIG4742_site";
-        String zip_Code = "08204";
         String site_Indication = "Migraines";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -43,7 +43,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(zipCodePageOLS.getTitleText(), zipCodePageOLS.titleExpected, "Title is diff");
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zip_Code)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -457,13 +457,13 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
         //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
 
         //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
