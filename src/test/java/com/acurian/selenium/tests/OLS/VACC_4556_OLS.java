@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.models.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS;
@@ -10,6 +11,7 @@ import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.tests.CC.VACC_4556_CC;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -18,17 +20,16 @@ import java.util.ArrayList;
 
 public class VACC_4556_OLS extends BaseTest {
 
-    @Test(enabled = true)
+
+    @Test(enabled = true, dataProviderClass = VACC_4556_CC.class, dataProvider = "sites")
     @Description("VACC_4556_OLS")
-    public void vacc4556Ols() {
+    public void vacc4556Ols(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
         final String protocol1 = "B7471006";
         final String protocol2 = "B7471007";
         final String protocol3 = "B7471008";
         final String[] protocols = {protocol1, protocol2, protocol3};
         final String studyName = "a pneumonia vaccine";
-        final String siteName = "AUT_VAC_4556_Site";
-        final String zipCode = "19901";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");
 
@@ -58,10 +59,10 @@ public class VACC_4556_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", protocol1, protocol3)
                 .back(dateOfBirthPageOLS)
                 .waitForPageLoad()
-                .setDate("05051990")
+                .setDate("05051969")
                 .clickNextButton(zipCodePageOLS)
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = genderPageOLS
@@ -207,22 +208,60 @@ public class VACC_4556_OLS extends BaseTest {
                 .setAll("5", "5", "250")
                 .clickNextButton(new EthnicBackgroundPageOLS());
 
-        ethnicBackgroundPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .getPID();
+        switch (site) {
+            case AUT_VAC_4556M:
+                siteSelectionPageOLS
+                        .clickOnFacilityName(site.name)
+                        .clickNextButton(new HSGeneralPageOLS())
+                        .waitForPageLoadByTitle(new HSGeneralPageOLS().titleExpected4556)
+                        .clickNextButton(new DoctorInformationCollectionPageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new HS1PageOLS())
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature()
+
+                        .getPage(new HumanAPIOLS())
+                        .waitForPageLoad()
+                        .connectBTN()
+                        .switchToAPI()
+                        .waitForProvider()
+                        .clickANY()
+                        .waitSearchAll()
+                        .search("cleveland clinic")
+                        .waitProvider()
+                        .clickProvider()
+                        .typeUserName("democlinical@gmail.com")
+                        .typePWD("password")
+                        .clickConnect()
+                        .waitToClickNext()
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForSENRPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo);
+                break;
+            case AUT_VAC_4556_Site:
+                siteSelectionPageOLS
+                        .clickOnFacilityName(site.name)
+                        .clickNextButton(new QualifiedClose2PageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForSENRPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo);
+        }
     }
 }

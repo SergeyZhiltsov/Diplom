@@ -32,12 +32,18 @@ public class HSGeneralCC extends MainPageCC{
 	
 	
 	public final String titleExpected_IND = "We're glad the location is convenient for you.\n" +
-			"\n" +
-			"The last step is to provide information about the doctors who are currently treating, or have previously treated, your %s so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
-			"\n" +
-			"Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
-			"\n" +
-			"You will need to provide us with an email address to start this process. What email address should we use:";
+            "\n" +
+            "The last step is to provide information about the doctors who are currently treating, or have previously treated, your %s so we can send your medical records to the study doctor. Please complete all details required on the next screen.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
+            "\n" +
+            "You will need to provide us with an email address to start this process. What email address should we use:";
+
+    public final String titleExpected4556 = "We're glad the location is convenient for you.\n" +
+            "\n" +
+            "The last step is to provide information about the doctors who manage your routine care, including vaccinations, so we can request your medical records and send them to the study doctor.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.";
 	
 	
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
@@ -58,6 +64,12 @@ public class HSGeneralCC extends MainPageCC{
     public HSGeneralCC waitForPageLoad(String studyIndication) {
         String titleExpectedMod = String.format(titleExpected, studyIndication);
         waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+
+    @Step
+    public HSGeneralCC waitForPageLoadWithTitle(String title) {
+        waitForPageLoadMain(titleText, title);
         return this;
     }
     
