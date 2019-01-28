@@ -109,6 +109,28 @@ public class DBConnection {
         return dobCell;
     }
 
+    public String dbReadFulIsSent(String env, String pid) {
+        String fulCell = null;
+        try {
+            stmt = getDbCon(env).createStatement();
+            final String query = "SELECT VALUE from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN (('" + pid + "'),(select b.PATIENT_ID from call b where b.OLD_PATIENT_ID = '" + pid + "')) " +
+                    "AND a.KEY = 'FOLLOW_UP_LETTER'";
+            rset = stmt.executeQuery(query);
+            while (rset.next()) {
+                fulCell = rset.getString("VALUE");
+            }
+            System.out.println("--::Reading value of FUL from DB::--");
+            System.out.println("Fetched value of FUL cell: " + fulCell);
+            System.out.println("DB read completed");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResources();
+        }
+        return fulCell;
+    }
+
     public RadiantResults dbReadRadiant(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
