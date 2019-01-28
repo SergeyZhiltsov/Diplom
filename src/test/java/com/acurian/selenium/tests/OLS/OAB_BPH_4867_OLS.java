@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import java.util.Arrays;
 import java.util.List;
 
-import com.acurian.selenium.models.Site;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;

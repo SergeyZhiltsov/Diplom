@@ -1,6 +1,6 @@
 package com.acurian.selenium.tests.health_check;
 
-import com.acurian.selenium.models.Site;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.FLARE.ChooseTheMatterYouAreHereOLS;
 import com.acurian.selenium.pages.OLS.FLARE.MostImportantChoiceOLS;

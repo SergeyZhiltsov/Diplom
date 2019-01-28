@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.acurian.selenium.models.Site;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -43,7 +43,6 @@ import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AKC_4691_OLS extends BaseTest {
 

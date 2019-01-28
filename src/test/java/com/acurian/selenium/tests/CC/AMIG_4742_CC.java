@@ -1,6 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
-import com.acurian.selenium.models.Site;
+import com.acurian.selenium.constants.Site;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;

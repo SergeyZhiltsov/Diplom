@@ -1,4 +1,4 @@
-package com.acurian.selenium.models;
+package com.acurian.selenium.constants;
 
 import java.util.Arrays;
 

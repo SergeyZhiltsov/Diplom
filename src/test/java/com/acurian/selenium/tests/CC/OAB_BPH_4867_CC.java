@@ -1,6 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
-import com.acurian.selenium.models.Site;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
@@ -13,7 +13,6 @@ import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.utils.DataProviderPool;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
