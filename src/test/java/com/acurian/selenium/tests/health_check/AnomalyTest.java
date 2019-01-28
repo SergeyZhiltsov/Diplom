@@ -41,7 +41,7 @@ public class AnomalyTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -74,10 +74,12 @@ public class AnomalyTest extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
-                .getPID()
+                .waitForPageLoad();
+                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .clickNextButton(new SiteSelectionPageOLS());
+                //.waitForPageLoad(studyName)
+                siteSelectionPageOLS.threadSleep(2000);
+                siteSelectionPageOLS.getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()

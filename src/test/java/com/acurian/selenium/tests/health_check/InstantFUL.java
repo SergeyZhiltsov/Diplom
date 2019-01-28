@@ -59,7 +59,7 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
-                .waitForPageLoad();
+                .waitForPageLoadGmega();
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
@@ -96,9 +96,10 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
-
-        siteSelectionPageOLS
-                .waitForPageLoad(studyName)
+                //.waitForPageLoad(studyName)
+        
+                siteSelectionPageOLS.threadSleep(2000);
+                siteSelectionPageOLS.getPID()
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())
