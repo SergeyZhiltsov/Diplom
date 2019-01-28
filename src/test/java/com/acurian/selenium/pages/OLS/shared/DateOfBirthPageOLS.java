@@ -163,7 +163,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleGmegaExpected = "Let's get started to see if you qualify for a study!\n" +
             "Those who qualify may receive*:\n" +
-            "Payment up to $1,000, which varies by study\n" +
+            "Payment which varies by study up to $1,000\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
@@ -241,7 +241,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleRA2821Expected = "Let's get started to see if you qualify for a rheumatoid arthritis (RA) study!\n" +
             "Those who qualify may receive*:\n" +
-            "Payment up to $625, which varies by study\n" +
+            "Payment which varies by study up to $625\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
