@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.CC;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.RadiantResults;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,6 +65,30 @@ public class MainPageCC extends BasePage {
         AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
         logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
         return this;
+    }
+
+    @Step
+    public synchronized void queueStudyForFULCheck(String studyId) {
+        FollowupLetter ful = new FollowupLetter();
+        String stringQuery = studyId + "," + pid;
+        StringBuilder sb = new StringBuilder();
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(ful.getFulsToBeVerifiedFile()))) {
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            System.out.println("Reading file:");
+            System.out.println(sb);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
+            bw.write(sb.toString());
+            bw.write(stringQuery);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Step

@@ -2,6 +2,8 @@ package com.acurian.selenium.pages.FUL_Letters;
 
 import com.acurian.selenium.pages.BasePage;
 
+import java.io.File;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +16,7 @@ import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class FollowupLetter extends BasePage {
+    private File fulsToBeVerified;
     private final String gmailServiceURL = "https://mail.google.com/";
     private WebDriver driver = getDriver();
     private WebDriverWait wait;
@@ -21,6 +24,24 @@ public class FollowupLetter extends BasePage {
     private Calendar date = Calendar.getInstance();
     private final String[] monthNames = {"January", "February", "March", "April", "May", "June", "July",
             "August", "September", "October", "November", "December"};
+
+    @FindBy(id = "identifierId")
+    private WebElement emailField;
+
+    @FindBy(id = "identifierNext")
+    private WebElement emailNextButton;
+
+    @FindBy(xpath = "//input[@name='password']")
+    private WebElement passwordField;
+
+    @FindBy(id = "passwordNext")
+    private WebElement passwordNextButton;
+
+    @FindBy(css = "input[aria-label='Search mail']")
+    private WebElement emailSearchBox;
+
+    @FindBy(xpath = "//h3[contains(@style, 'margin')]/..")
+    private WebElement emailContent;
 
     private final String emailContentExpectedMR = monthNames[date.get(Calendar.MONTH)] + " " + date.get(Calendar.DATE) + ", " + date.get(Calendar.YEAR) + "\n" +
             "Acurian Trial\n" +
@@ -62,24 +83,6 @@ public class FollowupLetter extends BasePage {
             "Clinical research studies greatly contribute to the overall progress in understanding and finding future treatments for diseases and we appreciate your interest in participation.\n" +
             "The AcurianHealth Team";
 
-    @FindBy(id = "identifierId")
-    private WebElement emailField;
-
-    @FindBy(id = "identifierNext")
-    private WebElement emailNextButton;
-
-    @FindBy(xpath = "//input[@name='password']")
-    private WebElement passwordField;
-
-    @FindBy(id = "passwordNext")
-    private WebElement passwordNextButton;
-
-    @FindBy(css = "input[aria-label='Search mail']")
-    private WebElement emailSearchBox;
-
-    @FindBy(xpath = "//h3[contains(@style, 'margin')]/..")
-    private WebElement emailContent;
-
     public FollowupLetter() {
         PageFactory.initElements(getDriver(), this);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -89,11 +92,32 @@ public class FollowupLetter extends BasePage {
                 .withTimeout(30, TimeUnit.MINUTES)
                 .pollingEvery(10, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
+        fulsToBeVerified = new File(System.getProperty("resources.dir") + "FULs_to_be_verified" + LocalDate.now() + ".txt");
+    }
+
+    private enum FUL_RELATIONSHIP {
+        STUDY_4691("4691", true, true, "");
+
+        FUL_RELATIONSHIP(String studyId, boolean hasFUL, boolean withMedicalRecords, String emailBody) {
+            this.studyId = studyId;
+            this.hasFUL = hasFUL;
+            this.withMedicalRecords = withMedicalRecords;
+            this.emailBody = emailBody;
+        }
+
+        public final String studyId;
+        public final boolean hasFUL;
+        public final boolean withMedicalRecords;
+        public String emailBody;
+    }
+
+    public File getFulsToBeVerifiedFile() {
+        return fulsToBeVerified;
     }
 
     @Step
-    public FollowupLetter assertgmailFUL(String pid, boolean isMedicalRecords) {
-        By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid +"')]");
+    public FollowupLetter assertgmailFUL(String pid, boolean withMedicalRecords) {
+        By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid + "')]");
         WebElement emailTitle;
         driver.navigate().to(gmailServiceURL);
         emailField.sendKeys("qa.acurian@gmail.com");
@@ -111,8 +135,17 @@ public class FollowupLetter extends BasePage {
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received");
         }
-        if(isMedicalRecords) Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
+        if (withMedicalRecords)
+            Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
         else Assert.assertEquals(emailContent.getText(), emailContentExpected, "Email content is diff");
         return this;
     }
+
+    public FollowupLetter assertDbFulIsSent(String env, String pid) {
+        String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
+        Assert.assertNotNull(fulIsSentCell, "FUL VALUE cell is null");
+        logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        return this;
+    }
+
 }
