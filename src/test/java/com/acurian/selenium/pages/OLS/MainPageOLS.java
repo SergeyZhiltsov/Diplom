@@ -129,23 +129,27 @@ public class MainPageOLS extends BasePage {
     }
 
     @Step
-    public synchronized void queueStudyForFULCheck(String studyId) {
+    public synchronized void queueStudyForFULCheck(String siteName) {
         FollowupLetter ful = new FollowupLetter();
-        String stringQuery = studyId + "," + pid;
+        String stringQuery = pid + "," + siteName;
         StringBuilder sb = new StringBuilder();
         String line;
-        try (BufferedReader br = new BufferedReader(new FileReader(ful.getFulsToBeVerifiedFile()))) {
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
+
+        if(ful.getFulsToBeVerifiedFile().exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(ful.getFulsToBeVerifiedFile()))) {
+                while ((line = br.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
+                System.out.println("Fetching existing data from file:");
+                System.out.println(sb);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            System.out.println("Reading file:");
-            System.out.println(sb);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
             bw.write(sb.toString());
+            System.out.println("Writing new line to file: " + stringQuery);
             bw.write(stringQuery);
         } catch (IOException e) {
             e.printStackTrace();

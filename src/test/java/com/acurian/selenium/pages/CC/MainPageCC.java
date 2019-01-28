@@ -70,17 +70,20 @@ public class MainPageCC extends BasePage {
     @Step
     public synchronized void queueStudyForFULCheck(String studyId) {
         FollowupLetter ful = new FollowupLetter();
-        String stringQuery = studyId + "," + pid;
+        String stringQuery = pid + "," + studyId;
         StringBuilder sb = new StringBuilder();
         String line;
-        try (BufferedReader br = new BufferedReader(new FileReader(ful.getFulsToBeVerifiedFile()))) {
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
+
+        if(ful.getFulsToBeVerifiedFile().exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(ful.getFulsToBeVerifiedFile()))) {
+                while ((line = br.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
+                System.out.println("Reading file:");
+                System.out.println(sb);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            System.out.println("Reading file:");
-            System.out.println(sb);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {

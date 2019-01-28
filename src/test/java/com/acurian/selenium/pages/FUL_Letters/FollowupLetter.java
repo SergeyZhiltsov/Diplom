@@ -1,13 +1,16 @@
 package com.acurian.selenium.pages.FUL_Letters;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Calendar;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
@@ -88,27 +91,14 @@ public class FollowupLetter extends BasePage {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 20);
+        /*
+        Waiting email for 15 mins with 10 seconds pulling delay
+         */
         fluentWait = new FluentWait<>(driver)
-                .withTimeout(30, TimeUnit.MINUTES)
+                .withTimeout(15, TimeUnit.MINUTES)
                 .pollingEvery(10, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
         fulsToBeVerified = new File(System.getProperty("resources.dir") + "FULs_to_be_verified" + LocalDate.now() + ".txt");
-    }
-
-    private enum FUL_RELATIONSHIP {
-        STUDY_4691("4691", true, true, "");
-
-        FUL_RELATIONSHIP(String studyId, boolean hasFUL, boolean withMedicalRecords, String emailBody) {
-            this.studyId = studyId;
-            this.hasFUL = hasFUL;
-            this.withMedicalRecords = withMedicalRecords;
-            this.emailBody = emailBody;
-        }
-
-        public final String studyId;
-        public final boolean hasFUL;
-        public final boolean withMedicalRecords;
-        public String emailBody;
     }
 
     public File getFulsToBeVerifiedFile() {
@@ -133,7 +123,7 @@ public class FollowupLetter extends BasePage {
             System.out.println("Recieved email: " + emailTitle.getText());
             driver.findElement(emailLocator).click();
         } catch (TimeoutException e) {
-            Assert.fail("Email wasn't received");
+            Assert.fail("Email wasn't received within 15 mins timeout");
         }
         if (withMedicalRecords)
             Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
@@ -141,11 +131,43 @@ public class FollowupLetter extends BasePage {
         return this;
     }
 
-    public FollowupLetter assertDbFulIsSent(String env, String pid) {
+    @Step
+    public FollowupLetter assertFULDbRecordIsNotNull(String env, String pid) {
         String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
         Assert.assertNotNull(fulIsSentCell, "FUL VALUE cell is null");
         logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
         return this;
     }
 
+    @Step
+    public FollowupLetter assertFULDbRecordIsNull(String env, String pid) {
+        String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
+        Assert.assertNull(fulIsSentCell, "FUL VALUE cell is NOT null");
+        logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        return this;
+    }
+
+    @Step
+    public FollowupLetter assertFULDbRecords(String env) {
+        LinkedHashMap<String, String> list = null;
+        try {
+            list = getCsvParser().getDataAsMap(fulsToBeVerified.getName(), false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (Map.Entry<String, String> entry : list.entrySet()) {
+            for (Site site : Site.values()) {
+                if (site.name.equals(entry.getValue())) {
+                    System.out.println("Matched: " + site.name + " with: " + entry.getValue());
+                    if (site.hasFul) {
+//                        assertFULDbRecordIsNotNull(env, entry.getKey());
+                    }
+//                    else assertFULDbRecordIsNull(env, entry.getKey());
+                }
+            }
+        }
+        if(fulsToBeVerified.delete()) System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " is deleted.");
+        else System.out.println("Couldn't delete file: " + fulsToBeVerified.getName());
+        return this;
+    }
 }
