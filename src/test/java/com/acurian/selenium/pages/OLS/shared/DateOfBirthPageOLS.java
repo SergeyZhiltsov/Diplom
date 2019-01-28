@@ -276,7 +276,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleVaccineExpected = "Let's get started to see if you qualify for a pneumonia vaccine study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment up to $others , which varies by study\n" +
+            "Payment up to $170, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 

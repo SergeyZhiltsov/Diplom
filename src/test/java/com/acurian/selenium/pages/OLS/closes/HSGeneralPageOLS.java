@@ -39,6 +39,16 @@ public class HSGeneralPageOLS extends MainPageOLS{
             "In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
+
+    public final String titleExpected4556 = "We're glad the location is convenient for you.\n" +
+            "\n" +
+            "Next Steps:\n" +
+            "On the next screen, please provide information about the doctors who manage your routine care, including vaccinations.\n" +
+            "You will need to complete the medical authorization form, then you will be asked to connect your health data.\n" +
+            "\n" +
+            "This information will be sent to the study site to allow them to evaluate you for the research study.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.";
     
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
