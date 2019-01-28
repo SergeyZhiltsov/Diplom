@@ -45,7 +45,7 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
@@ -65,10 +65,12 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(identificationPageOLS);
 
         identificationPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
-                .getPID()
+                .waitForPageLoad();
+                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .clickNextButton(new SiteSelectionPageOLS());
+                //.waitForPageLoad(studyName)
+                siteSelectionPageOLS.threadSleep(2000);
+                siteSelectionPageOLS.getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected);

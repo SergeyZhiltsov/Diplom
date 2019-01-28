@@ -39,7 +39,7 @@ public class HelloSignTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
@@ -57,10 +57,12 @@ public class HelloSignTest extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
-                .getPID()
+                .waitForPageLoad();
+                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .clickNextButton(new SiteSelectionPageOLS());
+                //.waitForPageLoad(studyName)
+                siteSelectionPageOLS.threadSleep(2000);
+                siteSelectionPageOLS.getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)

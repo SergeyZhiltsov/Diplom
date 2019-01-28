@@ -39,7 +39,7 @@ public class GmegaToGban extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -74,7 +74,7 @@ public class GmegaToGban extends BaseTest {
                 .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
 
         WhichContainAcetaminophenPageOLS whichContainAcetaminophenPageOLS = whereDoYouHaveArthritisPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickOnAnswers("Other")
                 .clickNextButton(new WhichContainAcetaminophenPageOLS());
 

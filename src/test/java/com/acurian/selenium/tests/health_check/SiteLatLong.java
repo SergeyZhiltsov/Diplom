@@ -42,7 +42,7 @@ public class SiteLatLong extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -75,9 +75,12 @@ public class SiteLatLong extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad();
+                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .clickNextButton(new SiteSelectionPageOLS());
+                //.waitForPageLoad(studyName)
+                siteSelectionPageOLS.threadSleep(2000);
+                siteSelectionPageOLS.getPID()
                 .getPID()
                 .clickOnFacilityName(siteName);
 
