@@ -1,6 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
-import com.acurian.selenium.models.Site;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
