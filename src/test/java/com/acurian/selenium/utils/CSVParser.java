@@ -7,8 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CSVParser {
     private CSVReader reader;
@@ -21,6 +20,23 @@ public class CSVParser {
         try {
             while ((line = reader.readNext()) != null) {
                 data.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    /*
+    Applicable only for csv files with 2 columns
+     */
+    public LinkedHashMap<String, String> getDataAsMap(String csvFileName, boolean withHeader) {
+        setupParser(csvFileName, withHeader);
+        LinkedHashMap<String, String> data = new LinkedHashMap<>();;
+        String[] line;
+        try {
+            while ((line = reader.readNext()) != null) {
+                data.put(line[0], line[1]);
             }
         } catch (IOException e) {
             e.printStackTrace();

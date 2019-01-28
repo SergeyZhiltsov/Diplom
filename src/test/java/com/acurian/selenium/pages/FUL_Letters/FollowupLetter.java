@@ -4,10 +4,11 @@ import com.acurian.selenium.pages.BasePage;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.Calendar;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
@@ -24,6 +25,29 @@ public class FollowupLetter extends BasePage {
     private Calendar date = Calendar.getInstance();
     private final String[] monthNames = {"January", "February", "March", "April", "May", "June", "July",
             "August", "September", "October", "November", "December"};
+
+    private enum FUL_RELATIONSHIP {
+        STUDY_4691("4691", true, true, ""),
+        STUDY_4556("4556", true, false, "");
+
+        FUL_RELATIONSHIP(String studyId, boolean hasFUL, boolean withMedicalRecords, String emailBody) {
+            this.studyId = studyId;
+            this.hasFUL = hasFUL;
+            this.withMedicalRecords = withMedicalRecords;
+            this.emailBody = emailBody;
+        }
+
+        public final String studyId;
+        public final boolean hasFUL;
+        public final boolean withMedicalRecords;
+        public String emailBody;
+
+
+        @Override
+        public String toString() {
+            return studyId;
+        }
+    }
 
     @FindBy(id = "identifierId")
     private WebElement emailField;
@@ -92,23 +116,7 @@ public class FollowupLetter extends BasePage {
                 .withTimeout(30, TimeUnit.MINUTES)
                 .pollingEvery(10, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
-        fulsToBeVerified = new File(System.getProperty("resources.dir") + "FULs_to_be_verified" + LocalDate.now() + ".txt");
-    }
-
-    private enum FUL_RELATIONSHIP {
-        STUDY_4691("4691", true, true, "");
-
-        FUL_RELATIONSHIP(String studyId, boolean hasFUL, boolean withMedicalRecords, String emailBody) {
-            this.studyId = studyId;
-            this.hasFUL = hasFUL;
-            this.withMedicalRecords = withMedicalRecords;
-            this.emailBody = emailBody;
-        }
-
-        public final String studyId;
-        public final boolean hasFUL;
-        public final boolean withMedicalRecords;
-        public String emailBody;
+        fulsToBeVerified = new File(System.getProperty("resources.dir") + "FULs_to_be_verified" + LocalDate.now() + "test1.txt");
     }
 
     public File getFulsToBeVerifiedFile() {
@@ -135,17 +143,39 @@ public class FollowupLetter extends BasePage {
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received");
         }
-        if (withMedicalRecords)
-            Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
+        if (withMedicalRecords) Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
         else Assert.assertEquals(emailContent.getText(), emailContentExpected, "Email content is diff");
         return this;
     }
 
-    public FollowupLetter assertDbFulIsSent(String env, String pid) {
+    @Step
+    public FollowupLetter assertFULDbRecordIsNotNull(String env, String pid) {
         String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
         Assert.assertNotNull(fulIsSentCell, "FUL VALUE cell is null");
         logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
         return this;
     }
 
+    @Step
+    public FollowupLetter assertFULDbRecordIsNull(String env, String pid) {
+        String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
+        Assert.assertNull(fulIsSentCell, "FUL VALUE cell is NOT null");
+        logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        return this;
+    }
+
+    @Step
+    public FollowupLetter assertFULDbRecords(String env) {
+        LinkedHashMap<String, String> list = getCsvParser().getDataAsMap(fulsToBeVerified.getName(), false);
+        for (Map.Entry<String, String> entry : list.entrySet()) {
+            for (FUL_RELATIONSHIP studyId : FUL_RELATIONSHIP.values()) {
+                if(studyId.toString().equals(entry.getValue())) {
+                    System.out.println("Matched: " + studyId.toString() + " with: " + entry.getValue());
+                    if(studyId.hasFUL) assertFULDbRecordIsNotNull(env, entry.getKey());
+                    else assertFULDbRecordIsNull(env, entry.getKey());
+                }
+            }
+        }
+        return this;
+    }
 }
