@@ -1,9 +1,12 @@
 package com.acurian.selenium.pages.OLS;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.RadiantResults;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -14,10 +17,11 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainPageOLS extends BasePage{
+public class MainPageOLS extends BasePage {
 
     @FindBy(xpath = "//button[@id='submit']")
     WebElement nextButton;
@@ -33,20 +37,19 @@ public class MainPageOLS extends BasePage{
         PageFactory.initElements(getDriver(), this);
     }
 
-    public void waitForAnimation(){
+    public void waitForAnimation() {
         ngDriver.waitForAngularRequestsToFinish();
     }
 
     @Step
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
         logTextToAllure(this.getClass().getSimpleName() + " class with:");
-        textToAttachment(titleExpected,"Title text expected");
+        textToAttachment(titleExpected, "Title text expected");
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         try {
             driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
-        }
-        catch (TimeoutException ex){
+        } catch (TimeoutException ex) {
             Assert.assertEquals(titleText.getText(), titleExpected, "Failed after timeout wait cause Title is diff");
             throw ex;
         }
@@ -74,14 +77,14 @@ public class MainPageOLS extends BasePage{
             throw e;
         }
     }
-    
+
     @Step
     public <T extends MainPageOLS> T clickNextButton(T page) {
         nextButton.click();
-        return (T)page;
+        return (T) page;
     }
 
-    protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText){
+    protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {
         radioButtonList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()
@@ -89,10 +92,10 @@ public class MainPageOLS extends BasePage{
         waitForAnimation();
     }
 
-    protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String ...answerText){
+    protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String... answerText) {
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label/span[contains(@class,'debug-question-helper')]")),5,5).click().build().perform());
+                .forEach(el -> getActions().moveToElement(el.findElement(By.xpath("ancestor::label/span[contains(@class,'debug-question-helper')]")), 5, 5).click().build().perform());
 //            for (WebElement el : checkBoxList) {
 //                if (answerTextList.contains(el.getText())) {
 ////                scrollToElement(el, true);
@@ -106,54 +109,79 @@ public class MainPageOLS extends BasePage{
 
     @Step
     public <T extends MainPageOLS> T getPage(T page) {
-        return (T)page;
+        return (T) page;
     }
 
     public MainPageOLS assertChildDOBIsNull(String env, String studyId) {
         String childDOBCell = getDbConnection().dbReadChildDOB(env, pid, studyId);
-        Assert.assertNull(childDOBCell,"Child DOB is not NULL");
+        Assert.assertNull(childDOBCell, "Child DOB is not NULL");
         logTextToAllure("Child DOB cell: " + childDOBCell);
         return this;
     }
 
     @Step
-    public MainPageOLS pidFromDbToLog(String env){
+    public MainPageOLS pidFromDbToLog(String env) {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo="+dispoParent+" for pid "+pid);
-        return this;
-    }
-    
-    public MainPageOLS childPidFromDbToLog(String env){
-        pid = PassPID.getInstance().getPidNumber();
-        getDbConnection().dbReadChilPID(env, pid);
-        logTextToAllure("Dispo="+getDbConnection().getDispo()+" for pid "+pid);
+        logTextToAllure("Dispo=" + dispoParent + " for pid " + pid);
         return this;
     }
 
     @Step
-    public MainPageOLS convert54Cto1R(String env){
+    public synchronized void queueStudyForFULCheck(String studyId) {
+        FollowupLetter ful = new FollowupLetter();
+        String stringQuery = studyId + "," + pid;
+        StringBuilder sb = new StringBuilder();
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(ful.getFulsToBeVerifiedFile()))) {
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            System.out.println("Reading file:");
+            System.out.println(sb);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
+            bw.write(sb.toString());
+            bw.write(stringQuery);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Step
+    public MainPageOLS childPidFromDbToLog(String env) {
+        pid = PassPID.getInstance().getPidNumber();
+        getDbConnection().dbReadChilPID(env, pid);
+        logTextToAllure("Dispo=" + getDbConnection().getDispo() + " for pid " + pid);
+        return this;
+    }
+
+    @Step
+    public MainPageOLS convert54Cto1R(String env) {
         getDbConnection().convert54Cto1R(env, pid);
         logTextToAllure("54 to 1R conversion completed");
         threadSleep(2000);
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo="+dispoParent+" for pid "+pid+"  after conversion");
+        logTextToAllure("Dispo=" + dispoParent + " for pid " + pid + "  after conversion");
         return this;
     }
 
     @Step
-    public MainPageOLS getRadiantDbToLog(String env){
+    public MainPageOLS getRadiantDbToLog(String env) {
         RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
-        logTextToAllure("Radiant::: Current Status="+radiantResults.getCurrentStatus()+" for pid "+pid);
+        logTextToAllure("Radiant::: Current Status=" + radiantResults.getCurrentStatus() + " for pid " + pid);
         return this;
     }
 
     @Step
-    public MainPageOLS getAnomalyDbToLog(String env){
+    public MainPageOLS getAnomalyDbToLog(String env) {
         AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
-        logTextToAllure("Anomaly : Current Status="+anomalyResults.getCurrentStatus()+" Request Status id="+anomalyResults.getRequestStatus()+" for pid "+pid);
+        logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
         return this;
     }
 
@@ -166,7 +194,7 @@ public class MainPageOLS extends BasePage{
     }
 
     @Step
-    public MainPageOLS dispoShouldMatch(String expectedParentDispo){
+    public MainPageOLS dispoShouldMatch(String expectedParentDispo) {
         Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo id different");
         return this;
     }
@@ -178,9 +206,9 @@ public class MainPageOLS extends BasePage{
     }
 
     @Step
-    public <T extends MainPageOLS> T back(T page){
+    public <T extends MainPageOLS> T back(T page) {
         back();
-        return (T)page;
+        return (T) page;
     }
 
 //MainPageOLS<Z> and DateOfBirthPageOLS extends MainPageOLS<DateOfBirthPageOLS>
