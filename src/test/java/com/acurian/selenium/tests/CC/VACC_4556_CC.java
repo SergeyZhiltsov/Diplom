@@ -265,7 +265,7 @@ public class VACC_4556_CC extends BaseTest {
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new HSGeneralCC())
-                        .waitForPageLoadWithTitle(new HSGeneralCC().titleExpected4556)
+                        .waitForPageLoadByTitle(new HSGeneralCC().titleExpected4556)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoad()
                         .clickNextButton(new HSMedicalRecordsPageCC())

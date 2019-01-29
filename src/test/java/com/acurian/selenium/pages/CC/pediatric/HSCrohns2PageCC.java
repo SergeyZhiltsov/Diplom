@@ -3,6 +3,7 @@ package com.acurian.selenium.pages.CC.pediatric;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -30,6 +31,13 @@ public class HSCrohns2PageCC extends MainPageCC{
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
 
+    public final String titleExpectedGmega = "Your medical records related to your Rheumatoid Arthritis, Diabetes, Low Back Pain, Arthritis history are required for the study doctor to evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
+            "\n" +
+            "You will need to provide us with some information on the doctors who are treating or have treated your condition. We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
+
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
     
@@ -44,6 +52,12 @@ public class HSCrohns2PageCC extends MainPageCC{
     @Step
     public HSCrohns2PageCC waitForPageLoad(String ibdStudy) {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public HSCrohns2PageCC waitForPageLoadByTitle(String title) {
+        waitForPageLoadMain(titleText, title);
         return this;
     }
     

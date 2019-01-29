@@ -12,11 +12,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class HelloSignTest extends BaseTest {
+public class HelloSignOls extends BaseTest {
 
     @Test(enabled = true)
     @Description("Test for Hello Sign")
-    public void helloSign() {
+    public void helloSignOlsTest() {
         String phoneNumber = "GMEGA30003";
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
