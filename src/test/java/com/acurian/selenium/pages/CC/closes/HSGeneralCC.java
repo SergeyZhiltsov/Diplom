@@ -68,7 +68,7 @@ public class HSGeneralCC extends MainPageCC{
     }
 
     @Step
-    public HSGeneralCC waitForPageLoadWithTitle(String title) {
+    public HSGeneralCC waitForPageLoadByTitle(String title) {
         waitForPageLoadMain(titleText, title);
         return this;
     }

@@ -65,12 +65,10 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(identificationPageOLS);
 
         identificationPageOLS
-                .waitForPageLoad();
-                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .clickNextButton(new SiteSelectionPageOLS());
-                //.waitForPageLoad(studyName)
-                siteSelectionPageOLS.threadSleep(2000);
-                siteSelectionPageOLS.getPID()
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected);
