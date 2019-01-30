@@ -12,11 +12,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class HelloSignTest extends BaseTest {
+public class HelloSignOls extends BaseTest {
 
     @Test(enabled = true)
     @Description("Test for Hello Sign")
-    public void helloSign() {
+    public void helloSignOlsTest() {
         String phoneNumber = "GMEGA30003";
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
@@ -39,7 +39,7 @@ public class HelloSignTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
@@ -57,10 +57,12 @@ public class HelloSignTest extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
-                .getPID()
+                .waitForPageLoad();
+                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .clickNextButton(new SiteSelectionPageOLS());
+                //.waitForPageLoad(studyName)
+                siteSelectionPageOLS.threadSleep(2000);
+                siteSelectionPageOLS.getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)

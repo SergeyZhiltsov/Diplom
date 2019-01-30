@@ -1,17 +1,18 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.pages.CC.VACC_4556_CC.AreYouInterestedInPneumoniaVaccineStudyCC;
 import com.acurian.selenium.pages.CC.VACC_4556_CC.DiagnosedWithAnyOfTheFollowingTypesOfCancerCC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -19,17 +20,33 @@ import java.util.ArrayList;
 
 public class VACC_4556_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][] {
+                {Site.AUT_VAC_4556M},
+                {Site.AUT_VAC_4556_Site}
+        };
+    }
+
+    @Test(enabled = true, dataProvider = "sites")
     @Description("VACC_4556_CC")
-    public void vacc4556cc(final String username, final String password) {
+    public void vacc4556cc(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
         final String protocol1 = "B7471006";
         final String protocol2 = "B7471007";
         final String protocol3 = "B7471008";
         final String[] protocols = {protocol1, protocol2, protocol3};
         final String studyName = "a pneumonia vaccine study";
-        final String siteName = "AUT_VAC_4556_Site";
-        final String zipCode = "19901";
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
 
@@ -39,8 +56,8 @@ public class VACC_4556_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -83,10 +100,10 @@ public class VACC_4556_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol3)
                 .back(dateOfBirthPageCC)
                 .waitForPageLoad()
-                .setYear("1990")
+                .setYear("1969")//HS 1953 , 1969
                 .clickNextButton(zipCodePageOLS)
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         AreYouInterestedInPneumoniaVaccineStudyCC areYouInterestedInPneumoniaVaccineStudyCC = genderPageOLS
@@ -235,22 +252,43 @@ public class VACC_4556_CC extends BaseTest {
                 .setAll("5", "5", "250")
                 .clickNextButton(new LetMeSeePageCC());
 
-        letMeSeePageCC
+        SiteSelectionPageCC siteSelectionPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnAnswer(siteName)
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .getPID();
+        switch (site) {
+            case AUT_VAC_4556M:
+                siteSelectionPageCC
+                        .clickOnAnswer(site.name)
+                        .clickNextButton(new HSGeneralCC())
+                        .waitForPageLoadByTitle(new HSGeneralCC().titleExpected4556)
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo);
+                break;
+            case AUT_VAC_4556_Site:
+                siteSelectionPageCC
+                        .clickOnAnswer(site.name)
+                        .clickNextButton(new QualifiedClose2PageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo);
+        }
 
     }
 }

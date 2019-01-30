@@ -2,23 +2,35 @@ package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.RA_2821.WhenYouDiagnosedWithRaPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.RA_2821.standalone.ExperiencedAnyOfTheFollowingConditionsInPast6Months;
+import com.acurian.selenium.pages.CC.RA_2821.standalone.HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC;
+import com.acurian.selenium.pages.CC.RA_2821.standalone.StudiesThatAreCurrentlyEnrollingPageCC;
+import com.acurian.selenium.pages.CC.RA_2821.standalone.StudySwitchPageCC;
+import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
+import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.standalone.UnqualifiedStudySwitchCloseOldCC;
+import com.acurian.selenium.pages.CC.debug.DebugPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
+import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class SiteIndicatorTest extends BaseTest {
+public class HelloSignCC extends BaseTest {
 
-    @Test(enabled = true)
-    @Description("Site Indicator Test, yellow mark check")
-    public void siteIndicatorTest() {
-        String phoneNumber = "AUTGMEG41C";
-        String studyName = "an irritable bowel syndrome (IBS) study";
-        String siteName = "AUT_GMEGA_01";
-        String zipCode = "08204";
-
+    @Test
+    @Description("StudySwitchCC")
+    public void helloSignCCtest() {
+        final String phoneNumber = "GMEGA30003";
+        String studyName = "a rheumatoid arthritis (RA)";
+        String siteName = "AUT_GRA1_Site";
+        String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
@@ -33,8 +45,8 @@ public class SiteIndicatorTest extends BaseTest {
 
         selectActionPageCC
                 .waitForPageLoad()
-                .typeStudyName("GMEGA")
-                .clickPopupStudy("GMEGA")
+                .typeStudyName("GMEGA3")
+                .clickPopupStudy("GMEGA3")
                 .typePhoneNumber(phoneNumber)
                 .clickPopupPhoneNumber(phoneNumber)
                 .clickBeginButton();
@@ -54,24 +66,12 @@ public class SiteIndicatorTest extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
+        BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = genderPageCC
                 .waitForPageLoadGmega()
+                .getPage(new CallCenterIntroductionPageCC())
+                .activateDebugOnProd(env)
+                .getPage(genderPageCC)
                 .clickOnAnswerGmega("Female")
-                .clickNextButton(new ApproximateHeightPageCC());
-
-        FollowingNeurologicalConditions followingNeurologicalConditions = approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new FollowingNeurologicalConditions());
-
-        FollowingDigestiveConditionsPageCC followingDigestiveConditionsPageCC = followingNeurologicalConditions
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingDigestiveConditionsPageCC());
-
-        BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = followingDigestiveConditionsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(new BoneOrJointConditionsPageCC());
 
         WhatKindOfArthritisCC whatKindOfArthritisCC = boneOrJointConditionsPageCC
@@ -90,9 +90,19 @@ public class SiteIndicatorTest extends BaseTest {
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoadGmega()
+                .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(siteName)
-                .assertTestSiteIndicator(siteName);
+                .clickNextButton(new HSCrohns2PageCC())
+                .waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmega)
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
     }
 }

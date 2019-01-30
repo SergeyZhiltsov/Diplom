@@ -58,7 +58,7 @@ public class GenderPageOLS extends MainPageOLS{
 
     @Step
     public GenderPageOLS waitForPageLoadGmega() {
-        waitForPageLoadMain(titleTextGmega, titleExpectedGmega);
+        waitForPageLoadMain(titleTextGmega, titleExpected);
         return this;
     }
 

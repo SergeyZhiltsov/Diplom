@@ -20,10 +20,9 @@ import java.util.ArrayList;
 
 public class VACC_4556_OLS extends BaseTest {
 
-    @Test(priority = 0, dataProvider = "sites", dataProviderClass = VACC_4556_CC.class)
+    @Test(priority = 99, dataProviderClass = VACC_4556_CC.class, dataProvider = "sites")
     @Description("VACC_4556_OLS")
-    public void vacc4556Ols() {
-        Site site = Site.AUT_VAC_4556_Site;
+    public void vacc4556Ols(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
         final String protocol1 = "B7471006";
         final String protocol2 = "B7471007";
@@ -59,7 +58,7 @@ public class VACC_4556_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", protocol1, protocol3)
                 .back(dateOfBirthPageOLS)
                 .waitForPageLoad()
-                .setDate("05051990")
+                .setDate("05051969")
                 .clickNextButton(zipCodePageOLS)
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
@@ -208,7 +207,7 @@ public class VACC_4556_OLS extends BaseTest {
                 .setAll("5", "5", "250")
                 .clickNextButton(new EthnicBackgroundPageOLS());
 
-        ethnicBackgroundPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
@@ -216,15 +215,54 @@ public class VACC_4556_OLS extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .queueStudyForFULCheck(site.name);
+                .getPID();
+        switch (site) {
+            case AUT_VAC_4556M:
+                siteSelectionPageOLS
+                        .clickOnFacilityName(site.name)
+                        .clickNextButton(new HSGeneralPageOLS())
+                        .waitForPageLoadByTitle(new HSGeneralPageOLS().titleExpected4556)
+                        .clickNextButton(new DoctorInformationCollectionPageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new HS1PageOLS())
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature()
+
+                        .getPage(new HumanAPIOLS())
+                        .waitForPageLoad()
+                        .connectBTN()
+                        .switchToAPI()
+                        .waitForProvider()
+                        .clickANY()
+                        .waitSearchAll()
+                        .search("cleveland clinic")
+                        .waitProvider()
+                        .clickProvider()
+                        .typeUserName("democlinical@gmail.com")
+                        .typePWD("password")
+                        .clickConnect()
+                        .waitToClickNext()
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForSENRPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo)
+                        .queueStudyForFULCheck(site.name);
+                break;
+            case AUT_VAC_4556_Site:
+                siteSelectionPageOLS
+                        .clickOnFacilityName(site.name)
+                        .clickNextButton(new QualifiedClose2PageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForSENRPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo)
+                        .queueStudyForFULCheck(site.name);
+        }
     }
 }

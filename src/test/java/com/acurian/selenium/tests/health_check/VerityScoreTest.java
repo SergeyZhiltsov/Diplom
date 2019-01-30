@@ -45,7 +45,7 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
