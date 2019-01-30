@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum Site {
     //4556
     AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, false, "B7471006","B7471007","B7471008"),
-    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "19901", "1R", true, false, "B7471006","B7471007","B7471008"),
+    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471006","B7471007","B7471008"),
     //4631
     AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", false, false, "4631", "KPL_716_C001"),
     //4691
