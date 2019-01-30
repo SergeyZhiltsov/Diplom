@@ -107,7 +107,7 @@ public class VACC_4556_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer", "Kidney disease", "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)"
-                        )
+                )
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = otherThanSkinCancerPageOLS

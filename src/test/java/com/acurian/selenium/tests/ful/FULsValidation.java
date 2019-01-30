@@ -31,9 +31,6 @@ public class FULsValidation extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
 
-        zipCodePageOLS
-                .queueStudyForFULCheck("AUT_VAC_4556_Site");
-
         ful.assertFULDbRecords(env);
 
     }

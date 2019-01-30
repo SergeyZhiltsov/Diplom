@@ -134,16 +134,16 @@ public class FollowupLetter extends BasePage {
     @Step
     public FollowupLetter assertFULDbRecordIsNotNull(String env, String pid) {
         String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
-        Assert.assertNotNull(fulIsSentCell, "FUL VALUE cell is null");
         logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        Assert.assertNotNull(fulIsSentCell, "FUL VALUE cell is null");
         return this;
     }
 
     @Step
     public FollowupLetter assertFULDbRecordIsNull(String env, String pid) {
         String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
-        Assert.assertNull(fulIsSentCell, "FUL VALUE cell is NOT null");
         logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        Assert.assertNull(fulIsSentCell, "FUL VALUE cell is NOT null");
         return this;
     }
 
@@ -158,15 +158,13 @@ public class FollowupLetter extends BasePage {
         for (Map.Entry<String, String> entry : list.entrySet()) {
             for (Site site : Site.values()) {
                 if (site.name.equals(entry.getValue())) {
-                    System.out.println("Matched: " + site.name + " with: " + entry.getValue());
-                    if (site.hasFul) {
-//                        assertFULDbRecordIsNotNull(env, entry.getKey());
-                    }
-//                    else assertFULDbRecordIsNull(env, entry.getKey());
+                    System.out.println("Matched: " + site.name + " with quequed site: " + entry.getValue());
+                    if(site.hasFul) assertFULDbRecordIsNotNull(env, entry.getKey());
+                    else assertFULDbRecordIsNull(env, entry.getKey());
                 }
             }
         }
-        if(fulsToBeVerified.delete()) System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " is deleted.");
+        if (fulsToBeVerified.delete()) System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " is deleted.");
         else System.out.println("Couldn't delete file: " + fulsToBeVerified.getName());
         return this;
     }
