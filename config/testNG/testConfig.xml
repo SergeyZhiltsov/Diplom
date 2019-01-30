@@ -4,7 +4,8 @@
 
     <test name="Just for checking">
         <classes>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4815_OLS_A_S"/>
+            <class name="com.acurian.selenium.tests.OLS.VACC_4556_OLS"/>
+            <class name="com.acurian.selenium.tests.ful.FULsValidation"/>
             <!--<class name="com.acurian.selenium.tests.CC.DERM_4814_CC"/>-->
             <!--<class name="com.acurian.selenium.tests.health_check.Conversion54Cto1Rtest"/>-->
         </classes>

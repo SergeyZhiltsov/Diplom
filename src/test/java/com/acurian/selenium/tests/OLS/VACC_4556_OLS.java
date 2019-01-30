@@ -20,15 +20,14 @@ import java.util.ArrayList;
 
 public class VACC_4556_OLS extends BaseTest {
 
-
-    @Test(enabled = true, dataProviderClass = VACC_4556_CC.class, dataProvider = "sites")
+    @Test(dataProviderClass = VACC_4556_CC.class, dataProvider = "sites")
     @Description("VACC_4556_OLS")
     public void vacc4556Ols(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
         final String protocol1 = "B7471006";
         final String protocol2 = "B7471007";
         final String protocol3 = "B7471008";
-        final String[] protocols = {protocol1, protocol2, protocol3};
+        final String[] protocols = site.activeProtocols;
         final String studyName = "a pneumonia vaccine";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");
@@ -108,7 +107,7 @@ public class VACC_4556_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer", "Kidney disease", "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)"
-                        )
+                )
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = otherThanSkinCancerPageOLS
@@ -249,7 +248,8 @@ public class VACC_4556_OLS extends BaseTest {
                         .clickNextButton(new AboutHealthPageOLS())
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo);
+                        .dispoShouldMatch(site.dispo)
+                        .queueStudyForFULCheck(site.name);
                 break;
             case AUT_VAC_4556_Site:
                 siteSelectionPageOLS
@@ -261,7 +261,8 @@ public class VACC_4556_OLS extends BaseTest {
                         .clickNextButton(new AboutHealthPageOLS())
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo);
+                        .dispoShouldMatch(site.dispo)
+                        .queueStudyForFULCheck(site.name);
         }
     }
 }

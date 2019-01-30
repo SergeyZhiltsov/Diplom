@@ -1,11 +1,16 @@
 package com.acurian.selenium.pages.FUL_Letters;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
 
-import java.util.Calendar;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
@@ -14,6 +19,7 @@ import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class FollowupLetter extends BasePage {
+    private File fulsToBeVerified;
     private final String gmailServiceURL = "https://mail.google.com/";
     private WebDriver driver = getDriver();
     private WebDriverWait wait;
@@ -21,6 +27,24 @@ public class FollowupLetter extends BasePage {
     private Calendar date = Calendar.getInstance();
     private final String[] monthNames = {"January", "February", "March", "April", "May", "June", "July",
             "August", "September", "October", "November", "December"};
+
+    @FindBy(id = "identifierId")
+    private WebElement emailField;
+
+    @FindBy(id = "identifierNext")
+    private WebElement emailNextButton;
+
+    @FindBy(xpath = "//input[@name='password']")
+    private WebElement passwordField;
+
+    @FindBy(id = "passwordNext")
+    private WebElement passwordNextButton;
+
+    @FindBy(css = "input[aria-label='Search mail']")
+    private WebElement emailSearchBox;
+
+    @FindBy(xpath = "//h3[contains(@style, 'margin')]/..")
+    private WebElement emailContent;
 
     private final String emailContentExpectedMR = monthNames[date.get(Calendar.MONTH)] + " " + date.get(Calendar.DATE) + ", " + date.get(Calendar.YEAR) + "\n" +
             "Acurian Trial\n" +
@@ -62,38 +86,28 @@ public class FollowupLetter extends BasePage {
             "Clinical research studies greatly contribute to the overall progress in understanding and finding future treatments for diseases and we appreciate your interest in participation.\n" +
             "The AcurianHealth Team";
 
-    @FindBy(id = "identifierId")
-    private WebElement emailField;
-
-    @FindBy(id = "identifierNext")
-    private WebElement emailNextButton;
-
-    @FindBy(xpath = "//input[@name='password']")
-    private WebElement passwordField;
-
-    @FindBy(id = "passwordNext")
-    private WebElement passwordNextButton;
-
-    @FindBy(css = "input[aria-label='Search mail']")
-    private WebElement emailSearchBox;
-
-    @FindBy(xpath = "//h3[contains(@style, 'margin')]/..")
-    private WebElement emailContent;
-
     public FollowupLetter() {
         PageFactory.initElements(getDriver(), this);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 20);
+        /*
+        Waiting email for 15 mins with 10 seconds pulling delay
+         */
         fluentWait = new FluentWait<>(driver)
-                .withTimeout(30, TimeUnit.MINUTES)
+                .withTimeout(15, TimeUnit.MINUTES)
                 .pollingEvery(10, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
+        fulsToBeVerified = new File(System.getProperty("resources.dir") + "FULs_to_be_verified" + LocalDate.now() + ".txt");
+    }
+
+    public File getFulsToBeVerifiedFile() {
+        return fulsToBeVerified;
     }
 
     @Step
-    public FollowupLetter assertgmailFUL(String pid, boolean isMedicalRecords) {
-        By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid +"')]");
+    public FollowupLetter assertgmailFUL(String pid, boolean withMedicalRecords) {
+        By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid + "')]");
         WebElement emailTitle;
         driver.navigate().to(gmailServiceURL);
         emailField.sendKeys("qa.acurian@gmail.com");
@@ -109,10 +123,49 @@ public class FollowupLetter extends BasePage {
             System.out.println("Recieved email: " + emailTitle.getText());
             driver.findElement(emailLocator).click();
         } catch (TimeoutException e) {
-            Assert.fail("Email wasn't received");
+            Assert.fail("Email wasn't received within 15 mins timeout");
         }
-        if(isMedicalRecords) Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
+        if (withMedicalRecords)
+            Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
         else Assert.assertEquals(emailContent.getText(), emailContentExpected, "Email content is diff");
+        return this;
+    }
+
+    @Step
+    public FollowupLetter assertFULDbRecordIsNotNull(String env, String pid) {
+        String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
+        logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        Assert.assertNotNull(fulIsSentCell, "FUL VALUE cell is null");
+        return this;
+    }
+
+    @Step
+    public FollowupLetter assertFULDbRecordIsNull(String env, String pid) {
+        String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
+        logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        Assert.assertNull(fulIsSentCell, "FUL VALUE cell is NOT null");
+        return this;
+    }
+
+    @Step
+    public FollowupLetter assertFULDbRecords(String env) {
+        LinkedHashMap<String, String> list = null;
+        try {
+            list = getCsvParser().getDataAsMap(fulsToBeVerified.getName(), false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (Map.Entry<String, String> entry : list.entrySet()) {
+            for (Site site : Site.values()) {
+                if (site.name.equals(entry.getValue())) {
+                    System.out.println("Matched: " + site.name + " with quequed site: " + entry.getValue());
+                    if(site.hasFul) assertFULDbRecordIsNotNull(env, entry.getKey());
+                    else assertFULDbRecordIsNull(env, entry.getKey());
+                }
+            }
+        }
+        if (fulsToBeVerified.delete()) System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " is deleted.");
+        else System.out.println("Couldn't delete file: " + fulsToBeVerified.getName());
         return this;
     }
 }

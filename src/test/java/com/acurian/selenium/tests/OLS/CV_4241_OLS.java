@@ -29,6 +29,7 @@ public class CV_4241_OLS extends BaseTest {
         final String matchedStudyName = "a study for diabetics";
         final String siteName = "AUT_CV1_4241";
         final String zipCode = "19901";
+        final String studyId = "4241";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         String env = System.getProperty("acurian.env", "STG");
