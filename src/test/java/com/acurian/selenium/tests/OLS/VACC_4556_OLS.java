@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class VACC_4556_OLS extends BaseTest {
 
-    @Test(priority = 99, dataProviderClass = VACC_4556_CC.class, dataProvider = "sites")
+    @Test(dataProviderClass = VACC_4556_CC.class, dataProvider = "sites")
     @Description("VACC_4556_OLS")
     public void vacc4556Ols(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
