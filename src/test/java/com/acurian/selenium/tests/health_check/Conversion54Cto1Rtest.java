@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 public class Conversion54Cto1Rtest extends BaseTest {
 
     @Test(enabled = true)
-    @Description("Test for Hello Sign")
+    @Description("Conversion 54 to 1R test")
     public void conversion54Cto1R() {
         String phoneNumber = "GMEGA30003";
         String studyName = "a rheumatoid arthritis (RA)";
@@ -58,15 +58,13 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad();
-                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .clickNextButton(new SiteSelectionPageOLS());
-                //.waitForPageLoad(studyName)
-                siteSelectionPageOLS.threadSleep(2000);
-                siteSelectionPageOLS.getPID()
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)
+                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTG)
                 .pidFromDbToLog(env)
                 .convert54Cto1R(env);
     }

@@ -57,15 +57,13 @@ public class HelloSignOls extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad();
-                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .clickNextButton(new SiteSelectionPageOLS());
-                //.waitForPageLoad(studyName)
-                siteSelectionPageOLS.threadSleep(2000);
-                siteSelectionPageOLS.getPID()
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected)
+                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTG)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

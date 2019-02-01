@@ -2,16 +2,9 @@ package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.RA_2821.WhenYouDiagnosedWithRaPageCC;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.ExperiencedAnyOfTheFollowingConditionsInPast6Months;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.StudiesThatAreCurrentlyEnrollingPageCC;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.StudySwitchPageCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
-import com.acurian.selenium.pages.CC.closes.standalone.UnqualifiedStudySwitchCloseOldCC;
-import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.BoneOrJointConditionsPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
@@ -25,7 +18,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 public class HelloSignCC extends BaseTest {
 
     @Test
-    @Description("StudySwitchCC")
+    @Description("Hello sign CC")
     public void helloSignCCtest() {
         final String phoneNumber = "GMEGA30003";
         String studyName = "a rheumatoid arthritis (RA)";
@@ -54,7 +47,7 @@ public class HelloSignCC extends BaseTest {
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmegaExpected, "Title is diff");
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
