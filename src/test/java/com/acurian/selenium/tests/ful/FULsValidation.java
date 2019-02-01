@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.ful;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,22 +15,15 @@ public class FULsValidation extends BaseTest {
     public void validateFul() {
         FollowupLetter ful = new FollowupLetter();
         String env = System.getProperty("acurian.env", "STG");
+
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, "AUTAMS1AKC")
-                .waitForPageLoadGROUP()
-                .maximizePage();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleAKC_4691_Expected, "Title is diff");
 
-        //--------------DOB Question------------
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091980")
-                .clickNextButton(new ZipCodePageOLS());
+        dateOfBirthPageOLS
+                .queueStudyForFULCheck("AUT_VAC_4556_Site");
+        dateOfBirthPageOLS
+                .queueStudyForFULCheck("AUT_VAC_4556M");
 
-        //--------------ZIP_CODE Question------------
-        zipCodePageOLS
-                .waitForPageLoad();
-
-        ful.assertFULDbRecords(env);
+        ful.assertAllFULs(env);
 
     }
 }

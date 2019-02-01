@@ -19,32 +19,44 @@ import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class FollowupLetter extends BasePage {
+    String gmailServiceURL = "https://mail.google.com/";
+    WebDriver driver = getDriver();
+    WebDriverWait wait;
+    Wait<WebDriver> fluentWait;
     private File fulsToBeVerified;
-    private final String gmailServiceURL = "https://mail.google.com/";
-    private WebDriver driver = getDriver();
-    private WebDriverWait wait;
-    private Wait<WebDriver> fluentWait;
     private Calendar date = Calendar.getInstance();
     private final String[] monthNames = {"January", "February", "March", "April", "May", "June", "July",
             "August", "September", "October", "November", "December"};
 
     @FindBy(id = "identifierId")
-    private WebElement emailField;
+    WebElement emailField;
 
     @FindBy(id = "identifierNext")
-    private WebElement emailNextButton;
+    WebElement emailNextButton;
 
     @FindBy(xpath = "//input[@name='password']")
-    private WebElement passwordField;
+    WebElement passwordField;
 
     @FindBy(id = "passwordNext")
-    private WebElement passwordNextButton;
+    WebElement passwordNextButton;
 
     @FindBy(css = "input[aria-label='Search mail']")
-    private WebElement emailSearchBox;
+    WebElement emailSearchBox;
 
     @FindBy(xpath = "//h3[contains(@style, 'margin')]/..")
-    private WebElement emailContent;
+    WebElement emailContent;
+
+    @FindBy(xpath = "//a[contains(@aria-label,'Google Account')]")
+    WebElement accountLabel;
+
+    @FindBy(xpath = "//a[text() = 'Sign out']")
+    WebElement signOut;
+
+    @FindBy(id = "profileIdentifier")
+    WebElement accountsDropdown;
+
+    @FindBy(xpath = "//form[@method='post']//li[2]/div[@role='link']")
+    WebElement changeAccount;
 
     private final String emailContentExpectedMR = monthNames[date.get(Calendar.MONTH)] + " " + date.get(Calendar.DATE) + ", " + date.get(Calendar.YEAR) + "\n" +
             "Acurian Trial\n" +
@@ -105,6 +117,14 @@ public class FollowupLetter extends BasePage {
         return fulsToBeVerified;
     }
 
+    WebDriverWait getWaiter() {
+        return wait;
+    }
+
+    Wait<WebDriver> getFluentWait() {
+        return fluentWait;
+    }
+
     @Step
     public FollowupLetter assertgmailFUL(String pid, boolean withMedicalRecords) {
         By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid + "')]");
@@ -148,24 +168,43 @@ public class FollowupLetter extends BasePage {
     }
 
     @Step
-    public FollowupLetter assertFULDbRecords(String env) {
-        LinkedHashMap<String, String> list = null;
+    public FollowupLetter assertAllFULs(String env) {
+        LinkedHashMap<String, String> list;
         try {
             list = getCsvParser().getDataAsMap(fulsToBeVerified.getName(), false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (Map.Entry<String, String> entry : list.entrySet()) {
-            for (Site site : Site.values()) {
-                if (site.name.equals(entry.getValue())) {
-                    System.out.println("Matched: " + site.name + " with quequed site: " + entry.getValue());
-                    if(site.hasFul) assertFULDbRecordIsNotNull(env, entry.getKey());
-                    else assertFULDbRecordIsNull(env, entry.getKey());
+            for (Map.Entry<String, String> entry : list.entrySet()) {
+                for (Site site : Site.values()) {
+                    if (site.name.equals(entry.getValue())) {
+                        System.out.println("Matched: " + site.name + " with quequed site: " + entry.getValue());
+                        if (site.hasFul) {
+//                            assertFULDbRecordIsNotNull(env, entry.getKey());
+                            System.out.println("DB is checked");
+                            if (site.withMedicalRecords)
+                                new MedicalRecordsFUL().assertgmailMRFUL(entry.getKey(), entry.getValue());
+                            else new RegularFUL().assertgmailRegularFUL(entry.getKey(), entry.getValue());
+                        } else assertFULDbRecordIsNull(env, entry.getKey());
+                    }
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fulsToBeVerified.delete()) System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " has been deleted.");
+            else System.out.println("Couldn't delete file: " + fulsToBeVerified.getName());
         }
-        if (fulsToBeVerified.delete()) System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " is deleted.");
-        else System.out.println("Couldn't delete file: " + fulsToBeVerified.getName());
+        return this;
+    }
+
+    @Step
+    public FollowupLetter gmailLogout() {
+        accountLabel.click();
+        wait.until(ExpectedConditions.visibilityOf(signOut));
+        signOut.click();
+        driver.navigate().refresh();
+        driver.manage().deleteCookieNamed("ACCOUNT_CHOOSER");
+//        accountsDropdown.click();
+//        wait.until(ExpectedConditions.visibilityOf(changeAccount));
+//        changeAccount.click();
         return this;
     }
 }
