@@ -34,7 +34,7 @@ public class CV_4450_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {"AUT_CV1_4450S_Syn", "41C", "19901"},
-//                {"AUT_CV_3140A_site", "1R", "45205"}
+                {"AUT_CV_3140A_site", "1R", "45205"}
         };
     }
 

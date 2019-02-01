@@ -33,7 +33,7 @@ public class CV_3140_OLS_A_S extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {"AUT_CV_3140_site", "41C", "19901"},
-//                {"AUT_CV_3140A_site", "1R", "45205"}
+                {"AUT_CV_3140A_site", "1R", "45205"}
         };
     }
 
