@@ -120,17 +120,48 @@ public class CV_3140_CC_A_S extends BaseTest {
 
         TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswerForSubQuestion("Atorvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
+                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "Never taken")
+                .clickOnAnswerForSubQuestion("Fluvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "Never taken")
+                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lovastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Pravastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Rosuvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Simvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
+                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")
                 .clickNextButton(new TriglyceridesOrLipidsPageCC());
         triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018278-QS6707-STUDYQUES", protocols)
+                .checkProtocolsContainsForQNumber("Q0019267-QS6730-STUDYQUES", protocols)
                 .back();
+
         StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Atorvastatin")
+                .clickOnAnswerForSubQuestion("Atorvastatin", "Currently taking")
                 .clickNextButton(new StopTakingStatinPageCC());
+
+        stopTakingStatinPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0019267-QS6730-STUDYQUES", protocols)
+                .back();
+
+        statinMedicationsHavePageCC
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion("Atorvastatin", "Took in the past, but have stopped taking")
+                .clickNextButton(stopTakingStatinPageCC);
 
         WhileTakingStatinPageCC whileTakingStatinPageCC = stopTakingStatinPageCC
                 .waitForPageLoad()
@@ -152,17 +183,8 @@ public class CV_3140_CC_A_S extends BaseTest {
 
         HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HeartOrBloodVesselPageCC());
-        heartOrBloodVesselPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018142-QS6711-STUDYQUES", protocols)
-                .back();
-        triglyceridesOrLipidsPageCC
-                .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(heartOrBloodVesselPageCC);
+                .clickNextButton(new HeartOrBloodVesselPageCC());
 
         HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
                 .waitForPageLoad()
