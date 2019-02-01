@@ -241,14 +241,52 @@ public class CV_5034_CC_A_S extends BaseTest {
         //-------Q7: Which of the following statin medications have you ever taken on a daily basis?
         TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswerForSubQuestion("Atorvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
+                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "Never taken")
+                .clickOnAnswerForSubQuestion("Fluvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "Never taken")
+                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lovastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Pravastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Rosuvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Simvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
+                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")
                 .clickNextButton(new TriglyceridesOrLipidsPageCC());
         triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
                 .back();
         StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Atorvastatin")
+                .clickOnAnswerForSubQuestion("Atorvastatin", "Took in the past, but have stopped taking")
+                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
+                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "Never taken")
+                .clickOnAnswerForSubQuestion("Fluvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "Never taken")
+                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lovastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Pravastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Rosuvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Simvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
+                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")
                 .clickNextButton(new StopTakingStatinPageCC());
 
         //-------Q8: Has a doctor ever told you to stop taking a statin medication due to side effects or intolerance?
@@ -260,14 +298,7 @@ public class CV_5034_CC_A_S extends BaseTest {
         //-------Q9: Have you ever experienced any of the following while taking a statin medication?
         whileTakingStatinPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Muscle weakness",
-                        "Muscle pain, aches, or soreness",
-                        "Muscle cramping",
-                        "Muscle inflammation or myositis",
-                        "Elevated levels of creatine kinase, a muscle enzyme",
-                        "Rhabdomyolysis, which is extreme muscle inflammation and damage that can lead to kidney failure",
-                        "My medication was changed or the dose was lowered because of the symptoms I experienced")
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Muscle weakness")
                 .clickNextButton(triglyceridesOrLipidsPageCC);
 
         //-------Q11: triglyceridesOrLipidsPageCC 
@@ -278,7 +309,7 @@ public class CV_5034_CC_A_S extends BaseTest {
         heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018142-QS6711-STUDYQUES", protocols)
+                .checkProtocolsContainsForQNumber("Q0019288-QS6731-STUDYQUES", protocols)
                 .back();
         triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
@@ -380,12 +411,12 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        TransitionStatementLowT_CC transitionalStatementLowtPageCC = approximateHeightPageCC
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new TransitionStatementLowT_CC());
+                .clickNextButton(new WeightLossSurgeryPageCC());
 
-        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = transitionalStatementLowtPageCC
+        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", protocols)
@@ -402,7 +433,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickOnAnswers("Procedure to clear plaque from blood vessels in the neck such as carotid endarterectomy")
                 .clickNextButton(new ReceivedHeartProcedurePageCC());
 
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = receivedHeartProcedurePageCC
+        receivedHeartProcedurePageCC
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(relativesHeartAttackPageCC)
                 .waitForPageLoad()
@@ -419,7 +450,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
-                .clickNextButton(new WeightLossSurgeryPageCC());
+                .clickNextButton(weightLossSurgeryPageCC);
 
         ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
@@ -433,6 +464,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageCC);
 
         HashMap<String, List<String>> options = new HashMap<>();
+        TransitionStatementLowT_CC transitionStatementLowT_cc = new TransitionStatementLowT_CC();
         options.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(protocols));
         options.put("Cirrhosis of the liver", Arrays.asList(protocols));
         options.put("Drug or alcohol abuse within the past year", Arrays.asList(protocols));
@@ -446,8 +478,8 @@ public class CV_5034_CC_A_S extends BaseTest {
             healthcareDiagnosedConditionsPageCC
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(transitionalStatementLowtPageCC);
-            transitionalStatementLowtPageCC
+                    .clickNextButton(transitionStatementLowT_cc);
+            transitionStatementLowT_cc
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0018797-QS6725-STUDYQUES", (String[]) entry.getValue().toArray())

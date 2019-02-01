@@ -106,7 +106,7 @@ public class DYS_3140_CC extends BaseTest {
 
         TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("None of the above")
                 .clickNextButton(new TriglyceridesOrLipidsPageCC());
         triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
@@ -115,7 +115,7 @@ public class DYS_3140_CC extends BaseTest {
                 .back();
         StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Atorvastatin")
+//                .clickOnAnswers("Atorvastatin")
                 .clickNextButton(new StopTakingStatinPageCC());
 
         WhileTakingStatinPageCC whileTakingStatinPageCC = stopTakingStatinPageCC

@@ -106,13 +106,13 @@ public class MedCo_3962_CC extends BaseTest {
         //---------------statinMedicationsCC---------------
         AreYouTakingAnyOfMedicationsCC areYouTakingAnyOfMedicationsCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("None of the above")
                 .clickNextButton(new AreYouTakingAnyOfMedicationsCC());
         debugPageCC.checkProtocolsEquals("One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is a ...", protocol1);
         debugPageCC.back();
         StatinMedicationPreviousQuestionPageCC statinMedicationPreviousQuestionPageCC = statinMedicationsHavePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Rosuvastatin")
+//                .clickOnAnswers("Rosuvastatin")
                 .clickNextButton(new StatinMedicationPreviousQuestionPageCC());
         //---------------statinMedicationPreviousQuestionPageCC---------------
         statinMedicationPreviousQuestionPageCC
