@@ -73,6 +73,7 @@ public class RegularFUL extends FollowupLetter {
         sa.assertEquals(siteName.getText(), siteNameText, "Site name is Diff");
         sa.assertEquals(fourthParag.getText(), fourthParagText, "Fourth <p> is Diff");
         sa.assertAll();
+        gmailLogout();
         return this;
     }
 }

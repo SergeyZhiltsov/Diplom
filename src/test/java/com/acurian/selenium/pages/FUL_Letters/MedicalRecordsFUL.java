@@ -83,6 +83,7 @@ public class MedicalRecordsFUL extends FollowupLetter {
         sa.assertEquals(fourthParag.getText(), fourthParagText, "Sixth <p> is Diff");
         sa.assertEquals(fifthParag.getText(), fifthParagText, "Seventh <p> is Diff");
         sa.assertAll();
+        gmailLogout();
         return this;
     }
 }

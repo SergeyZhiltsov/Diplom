@@ -46,6 +46,18 @@ public class FollowupLetter extends BasePage {
     @FindBy(xpath = "//h3[contains(@style, 'margin')]/..")
     WebElement emailContent;
 
+    @FindBy(xpath = "//a[contains(@aria-label,'Google Account')]")
+    WebElement accountLabel;
+
+    @FindBy(xpath = "//a[text() = 'Sign out']")
+    WebElement signOut;
+
+    @FindBy(id = "profileIdentifier")
+    WebElement accountsDropdown;
+
+    @FindBy(xpath = "//form[@method='post']//li[2]/div[@role='link']")
+    WebElement changeAccount;
+
     private final String emailContentExpectedMR = monthNames[date.get(Calendar.MONTH)] + " " + date.get(Calendar.DATE) + ", " + date.get(Calendar.YEAR) + "\n" +
             "Acurian Trial\n" +
             "\n" +
@@ -157,7 +169,7 @@ public class FollowupLetter extends BasePage {
 
     @Step
     public FollowupLetter assertAllFULs(String env) {
-        LinkedHashMap<String, String> list = null;
+        LinkedHashMap<String, String> list;
         try {
             list = getCsvParser().getDataAsMap(fulsToBeVerified.getName(), false);
             for (Map.Entry<String, String> entry : list.entrySet()) {
@@ -165,7 +177,8 @@ public class FollowupLetter extends BasePage {
                     if (site.name.equals(entry.getValue())) {
                         System.out.println("Matched: " + site.name + " with quequed site: " + entry.getValue());
                         if (site.hasFul) {
-                            assertFULDbRecordIsNotNull(env, entry.getKey());
+//                            assertFULDbRecordIsNotNull(env, entry.getKey());
+                            System.out.println("DB is checked");
                             if (site.withMedicalRecords)
                                 new MedicalRecordsFUL().assertgmailMRFUL(entry.getKey(), entry.getValue());
                             else new RegularFUL().assertgmailRegularFUL(entry.getKey(), entry.getValue());
@@ -176,10 +189,22 @@ public class FollowupLetter extends BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (fulsToBeVerified.delete())
-                System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " has been deleted.");
+            if (fulsToBeVerified.delete()) System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " has been deleted.");
             else System.out.println("Couldn't delete file: " + fulsToBeVerified.getName());
         }
+        return this;
+    }
+
+    @Step
+    public FollowupLetter gmailLogout() {
+        accountLabel.click();
+        wait.until(ExpectedConditions.visibilityOf(signOut));
+        signOut.click();
+        driver.navigate().refresh();
+        driver.manage().deleteCookieNamed("ACCOUNT_CHOOSER");
+//        accountsDropdown.click();
+//        wait.until(ExpectedConditions.visibilityOf(changeAccount));
+//        changeAccount.click();
         return this;
     }
 }

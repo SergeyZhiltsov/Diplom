@@ -16,6 +16,13 @@ public class FULsValidation extends BaseTest {
         FollowupLetter ful = new FollowupLetter();
         String env = System.getProperty("acurian.env", "STG");
 
+        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+
+        dateOfBirthPageOLS
+                .queueStudyForFULCheck("AUT_VAC_4556_Site");
+        dateOfBirthPageOLS
+                .queueStudyForFULCheck("AUT_VAC_4556M");
+
         ful.assertAllFULs(env);
 
     }
