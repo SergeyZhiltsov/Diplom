@@ -32,6 +32,8 @@
 # List included csv files
 !faqDataNew.csv
 
+# Temp files
+FULs_to_be_verified*.txt
 
 # IntelliJ
 /out/

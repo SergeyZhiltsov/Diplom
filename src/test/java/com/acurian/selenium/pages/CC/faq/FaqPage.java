@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +41,11 @@ public class FaqPage extends MainPageCC {
 
     public FaqPage() {
         PageFactory.initElements(getDriver(), this);
-        expectedFaqData = getCsvParser().getData(csvFileName, true);
+        try {
+            expectedFaqData = getCsvParser().getData(csvFileName, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         expectedFaqTitles = getExpectedFaqTitles();
         expectedFaqDefinisions = getExpectedFaqDefinisions();
     }

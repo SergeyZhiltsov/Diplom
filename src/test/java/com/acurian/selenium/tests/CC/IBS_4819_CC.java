@@ -15,7 +15,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class IBS_4819_CC extends BaseTest {
 
-    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("IBS 4819 CC")
     public void ibs4819ccTest(final String username, final String password) {
         String phoneNumber = "AUTAMS1IBS";
@@ -588,24 +588,26 @@ public class IBS_4819_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
 
-        IdentificationPageCC identificationPageCC = approximateHeightPageCC
-                .waitForPageLoad()
+        approximateHeightPageCC
+                .waitForPageLoad();
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .setAll("5", "5", "270")
-                .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
+                .clickNextButton(new LetMeSeePageCC());
+        letMeSeePageCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", protocol1)
                 .back();
-        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+        approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "260")
                 .clickNextButton(new LetMeSeePageCC());
 
         letMeSeePageCC
-                .waitForPageLoad()
-                .clickNextButton(identificationPageCC)
-                .waitForPageLoad()
+                .waitForPageLoad();
+                IdentificationPageCC identificationPageCC = letMeSeePageCC
+                        .clickNextButton(new IdentificationPageCC());
+        identificationPageCC.waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
