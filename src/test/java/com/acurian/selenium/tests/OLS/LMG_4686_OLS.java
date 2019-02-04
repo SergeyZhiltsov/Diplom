@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class LMG_4686_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @TestCaseId("00056")
     @Description("MIG_4356B_Synexus_OLS module")
     public void lmg_4686_ols() {

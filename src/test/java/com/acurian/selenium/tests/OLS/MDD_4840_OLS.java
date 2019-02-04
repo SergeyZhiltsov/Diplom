@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class MDD_4840_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("MDD_4840_OLS")
     public void Mdd_4840_OLS() {
         String phoneNumber = "AUTAMS1MDD";

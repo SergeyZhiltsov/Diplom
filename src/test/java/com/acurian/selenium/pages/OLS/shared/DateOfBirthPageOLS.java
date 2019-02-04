@@ -335,7 +335,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleGHExpected = "Let's get started to see if you qualify for a study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment which varies by study up to $1,000\n" +
+            "Payment up to $1,000, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
