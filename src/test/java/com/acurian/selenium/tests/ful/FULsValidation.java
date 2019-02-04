@@ -2,9 +2,6 @@ package com.acurian.selenium.tests.ful;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 

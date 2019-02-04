@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All" verbose="4" parallel="classes" thread-count="2">
+<suite name="All" verbose="4">
 
     <test name="Just for checking">
         <classes>
             <class name="com.acurian.selenium.tests.OLS.VACC_4556_OLS"/>
+            <class name="com.acurian.selenium.tests.OLS.DIA_5062_OLS"/>
             <class name="com.acurian.selenium.tests.ful.FULsValidation"/>
             <!--<class name="com.acurian.selenium.tests.CC.DERM_4814_CC"/>-->
             <!--<class name="com.acurian.selenium.tests.health_check.Conversion54Cto1Rtest"/>-->

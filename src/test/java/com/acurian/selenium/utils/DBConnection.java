@@ -113,8 +113,7 @@ public class DBConnection {
         String fulCell = null;
         try {
             stmt = getDbCon(env).createStatement();
-            final String query = "SELECT VALUE from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN (('" + pid + "'),(select b.PATIENT_ID from call b where b.OLD_PATIENT_ID = '" + pid + "')) " +
-                    "AND a.KEY = 'FOLLOW_UP_LETTER'";
+            final String query = "SELECT VALUE from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN '" + pid + "' AND a.KEY = 'FOLLOW_UP_LETTER'";
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 fulCell = rset.getString("VALUE");

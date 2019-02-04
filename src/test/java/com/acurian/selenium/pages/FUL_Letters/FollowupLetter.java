@@ -94,9 +94,10 @@ public class FollowupLetter extends BasePage {
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 20);
         fluentWait = new FluentWait<>(driver)
-                .withTimeout(15, TimeUnit.MINUTES)
-                .pollingEvery(10, TimeUnit.SECONDS)
-                .ignoring(NoSuchElementException.class);
+                .withTimeout(25, TimeUnit.MINUTES)
+                .pollingEvery(5, TimeUnit.SECONDS)
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class);
         fulsToBeVerified = new File(System.getProperty("resources.dir") + "FULs_to_be_verified" + LocalDate.now() + ".txt");
     }
 
