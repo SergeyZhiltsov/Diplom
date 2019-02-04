@@ -19,10 +19,12 @@ import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class FollowupLetter extends BasePage {
-    String gmailServiceURL = "https://mail.google.com/";
     WebDriver driver = getDriver();
     WebDriverWait wait;
     Wait<WebDriver> fluentWait;
+    private final String gmailServiceURL = "https://mail.google.com/";
+    private final String emailAddress = "qa.acurian@gmail.com";
+    private final String password = "automation";
     private File fulsToBeVerified;
     private Calendar date = Calendar.getInstance();
     private final String[] monthNames = {"January", "February", "March", "April", "May", "June", "July",
@@ -45,18 +47,6 @@ public class FollowupLetter extends BasePage {
 
     @FindBy(xpath = "//h3[contains(@style, 'margin')]/..")
     WebElement emailContent;
-
-    @FindBy(xpath = "//a[contains(@aria-label,'Google Account')]")
-    WebElement accountLabel;
-
-    @FindBy(xpath = "//a[text() = 'Sign out']")
-    WebElement signOut;
-
-    @FindBy(id = "profileIdentifier")
-    WebElement accountsDropdown;
-
-    @FindBy(xpath = "//form[@method='post']//li[2]/div[@role='link']")
-    WebElement changeAccount;
 
     private final String emailContentExpectedMR = monthNames[date.get(Calendar.MONTH)] + " " + date.get(Calendar.DATE) + ", " + date.get(Calendar.YEAR) + "\n" +
             "Acurian Trial\n" +
@@ -103,13 +93,11 @@ public class FollowupLetter extends BasePage {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 20);
-        /*
-        Waiting email for 15 mins with 10 seconds pulling delay
-         */
         fluentWait = new FluentWait<>(driver)
-                .withTimeout(15, TimeUnit.MINUTES)
-                .pollingEvery(10, TimeUnit.SECONDS)
-                .ignoring(NoSuchElementException.class);
+                .withTimeout(25, TimeUnit.MINUTES)
+                .pollingEvery(5, TimeUnit.SECONDS)
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class);
         fulsToBeVerified = new File(System.getProperty("resources.dir") + "FULs_to_be_verified" + LocalDate.now() + ".txt");
     }
 
@@ -125,15 +113,19 @@ public class FollowupLetter extends BasePage {
         return fluentWait;
     }
 
+    /*
+    Check hardcoded regular or medical records FUL body
+    Used for InstandFUL test
+     */
     @Step
     public FollowupLetter assertgmailFUL(String pid, boolean withMedicalRecords) {
         By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid + "')]");
         WebElement emailTitle;
         driver.navigate().to(gmailServiceURL);
-        emailField.sendKeys("qa.acurian@gmail.com");
+        emailField.sendKeys(emailAddress);
         emailNextButton.click();
         wait.until(ExpectedConditions.visibilityOf(passwordField));
-        passwordField.sendKeys("automation");
+        passwordField.sendKeys(password);
         passwordNextButton.click();
         emailSearchBox.sendKeys(pid);
         emailSearchBox.sendKeys(Keys.ENTER);
@@ -172,15 +164,14 @@ public class FollowupLetter extends BasePage {
         LinkedHashMap<String, String> list;
         try {
             list = getCsvParser().getDataAsMap(fulsToBeVerified.getName(), false);
+            gmailLogin(emailAddress, password);
             for (Map.Entry<String, String> entry : list.entrySet()) {
                 for (Site site : Site.values()) {
                     if (site.name.equals(entry.getValue())) {
                         System.out.println("Matched: " + site.name + " with quequed site: " + entry.getValue());
                         if (site.hasFul) {
-//                            assertFULDbRecordIsNotNull(env, entry.getKey());
-                            System.out.println("DB is checked");
-                            if (site.withMedicalRecords)
-                                new MedicalRecordsFUL().assertgmailMRFUL(entry.getKey(), entry.getValue());
+                            assertFULDbRecordIsNotNull(env, entry.getKey());
+                            if (site.withMedicalRecords) new MedicalRecordsFUL().assertgmailMRFUL(entry.getKey(), entry.getValue());
                             else new RegularFUL().assertgmailRegularFUL(entry.getKey(), entry.getValue());
                         } else assertFULDbRecordIsNull(env, entry.getKey());
                     }
@@ -196,15 +187,13 @@ public class FollowupLetter extends BasePage {
     }
 
     @Step
-    public FollowupLetter gmailLogout() {
-        accountLabel.click();
-        wait.until(ExpectedConditions.visibilityOf(signOut));
-        signOut.click();
-        driver.navigate().refresh();
-        driver.manage().deleteCookieNamed("ACCOUNT_CHOOSER");
-//        accountsDropdown.click();
-//        wait.until(ExpectedConditions.visibilityOf(changeAccount));
-//        changeAccount.click();
+    public FollowupLetter gmailLogin(String emailAddress, String password) {
+        driver.navigate().to(gmailServiceURL);
+        typeTextWithoutClear(emailField, emailAddress);
+        emailNextButton.click();
+        wait.until(ExpectedConditions.visibilityOf(passwordField));
+        typeTextWithoutClear(passwordField, password);
+        passwordNextButton.click();
         return this;
     }
 }

@@ -2,6 +2,10 @@ package com.acurian.selenium.constants;
 
 import java.util.Arrays;
 
+/*
+Designed to contain all the sites that being used in tests.
+By default FUL parameters are: false, false;
+ */
 public enum Site {
     //4450
     AUT_CV1_4450S_Syn("AUT_CV1_4450S_Syn", "19901", "41C", true, false, "EX9536_4388"),
