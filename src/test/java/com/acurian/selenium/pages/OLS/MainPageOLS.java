@@ -128,6 +128,11 @@ public class MainPageOLS extends BasePage {
         return this;
     }
 
+    /**
+    Save site name to temp file for further validation
+
+     @param siteName to queue for validation
+     */
     @Step
     public synchronized void queueStudyForFULCheck(String siteName) {
         FollowupLetter ful = new FollowupLetter();

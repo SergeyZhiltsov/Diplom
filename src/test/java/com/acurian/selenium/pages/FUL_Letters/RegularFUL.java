@@ -51,13 +51,7 @@ public class RegularFUL extends FollowupLetter {
     public FollowupLetter assertgmailRegularFUL(String pid, String siteNameText) {
         By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid + "')]");
         WebElement emailTitle;
-        driver.navigate().to(gmailServiceURL);
-        emailField.sendKeys("qa.acurian@gmail.com");
-        emailNextButton.click();
-        wait.until(ExpectedConditions.visibilityOf(passwordField));
-        passwordField.sendKeys("automation");
-        passwordNextButton.click();
-        emailSearchBox.sendKeys(pid);
+        typeText(emailSearchBox, pid);
         emailSearchBox.sendKeys(Keys.ENTER);
         System.out.println("Waiting for email...");
         try {
@@ -67,13 +61,13 @@ public class RegularFUL extends FollowupLetter {
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received within 15 mins timeout");
         }
+        wait.until(ExpectedConditions.visibilityOf(firstParag));
         sa.assertEquals(firstParag.getText(), firstParagText, "First <p> is Diff");
         sa.assertEquals(secondParag.getText(), secondParagText, "Second <p> is Diff");
         sa.assertEquals(thirdParag.getText(), thirdParagText, "Third <p> is Diff");
         sa.assertEquals(siteName.getText(), siteNameText, "Site name is Diff");
         sa.assertEquals(fourthParag.getText(), fourthParagText, "Fourth <p> is Diff");
         sa.assertAll();
-        gmailLogout();
         return this;
     }
 }

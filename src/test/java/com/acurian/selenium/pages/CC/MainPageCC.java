@@ -67,10 +67,15 @@ public class MainPageCC extends BasePage {
         return this;
     }
 
+    /**
+     Save site name to temp file for further validation
+
+     @param siteName to queue for validation
+     */
     @Step
-    public synchronized void queueStudyForFULCheck(String studyId) {
+    public synchronized void queueStudyForFULCheck(String siteName) {
         FollowupLetter ful = new FollowupLetter();
-        String stringQuery = pid + "," + studyId;
+        String stringQuery = pid + "," + siteName;
         StringBuilder sb = new StringBuilder();
         String line;
 
@@ -79,7 +84,7 @@ public class MainPageCC extends BasePage {
                 while ((line = br.readLine()) != null) {
                     sb.append(line).append("\n");
                 }
-                System.out.println("Reading file:");
+                System.out.println("Fetching existing data from file:");
                 System.out.println(sb);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -88,6 +93,7 @@ public class MainPageCC extends BasePage {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
             bw.write(sb.toString());
+            System.out.println("Writing new line to file: " + stringQuery);
             bw.write(stringQuery);
         } catch (IOException e) {
             e.printStackTrace();
