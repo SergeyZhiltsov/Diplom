@@ -18,7 +18,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class MDD_4840_CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("MDD_4840_CC")
     public void mdd_4840_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1MDD";
