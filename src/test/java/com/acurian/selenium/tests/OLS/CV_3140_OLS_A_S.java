@@ -1,7 +1,7 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.DY_4356.StatinMedicationsHavePageOLS;
+import com.acurian.selenium.pages.OLS.DY_4356.SubquestionStatinMedicationsHavePageOLS;
 import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
 import com.acurian.selenium.pages.OLS.DY_4356.WhileTakingStatinPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
@@ -32,7 +32,7 @@ public class CV_3140_OLS_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-//                {"AUT_CV_3140_site", "41C", "19901"},
+                {"AUT_CV_3140_site", "41C", "19901"},
                 {"AUT_CV_3140A_site", "1R", "45205"}
         };
     }
@@ -80,24 +80,43 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6703", protocols)
                 .back();
-        StatinMedicationsHavePageOLS statinMedicationsHavePageOLS = cardiovascularDiseaseThanOthersPageOLS
+        SubquestionStatinMedicationsHavePageOLS subquestionStatinMedicationsHavePageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new StatinMedicationsHavePageOLS());
+                .clickNextButton(new SubquestionStatinMedicationsHavePageOLS());
 
-        TriglyceridesOrLipidsPageOLS triglyceridesOrLipidsPageOLS = statinMedicationsHavePageOLS
+        TriglyceridesOrLipidsPageOLS triglyceridesOrLipidsPageOLS = subquestionStatinMedicationsHavePageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswerForSubQuestion("Atorvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
+                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "Never taken")
+                .clickOnAnswerForSubQuestion("Fluvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "Never taken")
+                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Lovastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Pravastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Rosuvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Simvastatin", "Never taken")
+                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
+                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")
                 .clickNextButton(new TriglyceridesOrLipidsPageOLS());
         triglyceridesOrLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6707", protocols)
+                .checkProtocolsContainsForQNumber("QS6730", protocols)
                 .back();
-        StopTakingStatinPageOLS stopTakingStatinPageOLS = statinMedicationsHavePageOLS
+        StopTakingStatinPageOLS stopTakingStatinPageOLS = subquestionStatinMedicationsHavePageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Atorvastatin")
+                .clickOnAnswerForSubQuestion("Atorvastatin", "Took in the past, but have stopped taking")
                 .clickNextButton(new StopTakingStatinPageOLS());
 
         WhileTakingStatinPageOLS whileTakingStatinPageOLS = stopTakingStatinPageOLS
@@ -122,15 +141,15 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HeartOrBloodVesselPageOLS());
-        heartOrBloodVesselPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6711", protocols)
-                .back();
-        triglyceridesOrLipidsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(heartOrBloodVesselPageOLS);
+//        heartOrBloodVesselPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6711", protocols)
+//                .back();
+//        triglyceridesOrLipidsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(heartOrBloodVesselPageOLS);
 
         HaveDoctorEverDiagnosedYou_OLS haveDoctorEverDiagnosedYou_ols = heartOrBloodVesselPageOLS
                 .waitForPageLoad()

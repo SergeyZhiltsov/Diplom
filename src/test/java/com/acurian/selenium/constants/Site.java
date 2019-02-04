@@ -10,8 +10,8 @@ public enum Site {
     //4450
     AUT_CV1_4450S_Syn("AUT_CV1_4450S_Syn", "19901", "41C", true, false, "EX9536_4388"),
     //4556
-    AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471006","B7471007","B7471008"),
-    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471006","B7471007","B7471008"),
+    AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471006", "B7471007", "B7471008"),
+    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471006", "B7471007", "B7471008"),
     //4631
     AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", false, false, "4631", "KPL_716_C001"),
     //4691

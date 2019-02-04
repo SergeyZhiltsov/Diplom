@@ -5,7 +5,6 @@ import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -22,7 +21,7 @@ public class AnomalyTest extends BaseTest {
         String phoneNumber = "AUTGMEG41C";
         String siteName = "AUT_GMEGA_01"; //"AUT_GRA1_Site";
         String zipCode = "08204";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
+        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -74,12 +73,10 @@ public class AnomalyTest extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad();
-                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .clickNextButton(new SiteSelectionPageOLS());
-                //.waitForPageLoad(studyName)
-                siteSelectionPageOLS.threadSleep(2000);
-                siteSelectionPageOLS.getPID()
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()

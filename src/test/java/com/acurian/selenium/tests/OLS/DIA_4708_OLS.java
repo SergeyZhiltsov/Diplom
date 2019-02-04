@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class DIA_4708_OLS extends BaseTest {
 
-    @Test()
+    @Test
     @Description("NASH study 4708 OLS")
     public void dia4708olsTest() {
         Site site = Site.AUT_NASH4708_site;

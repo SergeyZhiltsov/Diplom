@@ -71,7 +71,7 @@ public class VerityScoreTest extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpected);
+                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTG);
         Assert.assertEquals(debugPageOLS.getVerityText(), "Verity Score: 0", "verity score is diff");
     }
 }
