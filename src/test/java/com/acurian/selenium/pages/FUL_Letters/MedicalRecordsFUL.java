@@ -65,7 +65,7 @@ public class MedicalRecordsFUL extends FollowupLetter {
         try {
             emailTitle = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(emailLocator));
             System.out.println("Recieved email: " + emailTitle.getText());
-            driver.findElement(emailLocator).click();
+            driver.findElement(By.xpath("//div[@role='main']")).click();
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received within 15 mins timeout");
         }
