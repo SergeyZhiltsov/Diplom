@@ -96,8 +96,7 @@ public class FollowupLetter extends BasePage {
         fluentWait = new FluentWait<>(driver)
                 .withTimeout(25, TimeUnit.MINUTES)
                 .pollingEvery(5, TimeUnit.SECONDS)
-                .ignoring(NoSuchElementException.class)
-                .ignoring(StaleElementReferenceException.class);
+                .ignoring(NoSuchElementException.class);
         fulsToBeVerified = new File(System.getProperty("resources.dir") + "FULs_to_be_verified" + LocalDate.now() + ".txt");
     }
 
@@ -137,8 +136,7 @@ public class FollowupLetter extends BasePage {
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received within 15 mins timeout");
         }
-        if (withMedicalRecords)
-            Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
+        if (withMedicalRecords) Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
         else Assert.assertEquals(emailContent.getText(), emailContentExpected, "Email content is diff");
         return this;
     }
