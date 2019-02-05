@@ -21,7 +21,7 @@ public class HelloSignCC extends BaseTest {
     @Description("Hello sign CC")
     public void helloSignCCtest() {
         final String phoneNumber = "GMEGA30003";
-        String studyName = "a rheumatoid arthritis (RA)";
+        String studyName = "a rheumatoid arthritis (RA) study";
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
@@ -77,21 +77,28 @@ public class HelloSignCC extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageCC());
 
-        whenYouDiagnosedWithRaPageCC
+        SiteSelectionPageCC siteSelectionPageCC = whenYouDiagnosedWithRaPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad(studyName)
+                .clickNextButton(new SiteSelectionPageCC());
+
+        if (env.equals("QA")) {
+            siteSelectionPageCC.waitForPageLoad(studyName);
+        } else {
+            siteSelectionPageCC.waitForPageLoadGmega(studyName);
+        }
+
+        siteSelectionPageCC
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSCrohns2PageCC())
                 .waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmega)
                 .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)

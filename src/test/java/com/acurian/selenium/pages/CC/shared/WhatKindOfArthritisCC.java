@@ -1,14 +1,13 @@
 package com.acurian.selenium.pages.CC.shared;
 
-import java.util.Arrays;
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
+
+import java.util.List;
 
 public class WhatKindOfArthritisCC extends MainPageCC {
 
@@ -27,23 +26,18 @@ public class WhatKindOfArthritisCC extends MainPageCC {
 
     @Step
     public WhatKindOfArthritisCC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhatKindOfArthritisCC clickOnAnswers(String ...answerText) {
-        List<String> answerTextList = Arrays.asList(answerText);
-        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
-                .forEach(el -> el.click());
-        waitForAnimation();
+    public WhatKindOfArthritisCC clickOnAnswers(String... answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
-
 }
