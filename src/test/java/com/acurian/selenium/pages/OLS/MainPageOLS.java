@@ -145,7 +145,7 @@ public class MainPageOLS extends BasePage {
                 while ((line = br.readLine()) != null) {
                     sb.append(line).append("\n");
                 }
-                System.out.println("Fetching existing data from file:");
+                System.out.println("Rewriting existing data from file:");
                 System.out.println(sb);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -154,7 +154,7 @@ public class MainPageOLS extends BasePage {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
             bw.write(sb.toString());
-            System.out.println("Writing new line to file: " + stringQuery);
+            System.out.println("Queued new site for FUL validation to file: " + stringQuery);
             bw.write(stringQuery);
         } catch (IOException e) {
             e.printStackTrace();

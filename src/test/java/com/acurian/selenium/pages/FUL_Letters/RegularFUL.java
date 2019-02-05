@@ -57,7 +57,9 @@ public class RegularFUL extends FollowupLetter {
         try {
             emailTitle = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(emailLocator));
             System.out.println("Recieved email: " + emailTitle.getText());
-            driver.findElement(By.xpath("//div[@role='main']")).click();
+            threadSleep(750);
+            driver.findElement(emailLocator).click();
+            threadSleep(750);
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received within 15 mins timeout");
         }
