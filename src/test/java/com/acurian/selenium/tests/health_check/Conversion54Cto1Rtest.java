@@ -54,7 +54,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 
-        whenYouDiagnosedWithRaPageOLS
+        HSGeneralPageOLS hsGeneralPageOLS = whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
@@ -63,9 +63,16 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTG)
+                .clickNextButton(new HSGeneralPageOLS());
+
+        if (env.equals("QA")) {
+            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedQA);
+        } else {
+            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTG);
+        }
+        hsGeneralPageOLS
                 .pidFromDbToLog(env)
-                .convert54Cto1R(env);
+                .convert54Cto1R(env)
+                .dispoShouldMatch("1R");
     }
 }

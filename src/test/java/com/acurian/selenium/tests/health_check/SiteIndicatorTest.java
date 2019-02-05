@@ -90,7 +90,7 @@ public class SiteIndicatorTest extends BaseTest {
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoadGmega()
+                .waitForPageLoadGmega(studyName)
                 .getPID()
                 .clickOnAnswer(siteName)
                 .assertTestSiteIndicator(siteName);

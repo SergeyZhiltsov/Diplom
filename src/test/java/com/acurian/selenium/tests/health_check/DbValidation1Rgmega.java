@@ -19,11 +19,11 @@ public class DbValidation1Rgmega extends BaseTest {
     @Description("Test for 1R DB Validation")
     public void dBValidation1Rgmega() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
-
         String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -73,12 +73,10 @@ public class DbValidation1Rgmega extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad();
-                SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .clickNextButton(new SiteSelectionPageOLS());
-                //.waitForPageLoad(studyName)
-                siteSelectionPageOLS.threadSleep(2000);
-                siteSelectionPageOLS.getPID()
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad(studyName)
+                .getPID()
                 .clickOnFacilityName(siteName)
                 //.clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
                 .clickNextButton(new QualifiedClose2PageOLS())

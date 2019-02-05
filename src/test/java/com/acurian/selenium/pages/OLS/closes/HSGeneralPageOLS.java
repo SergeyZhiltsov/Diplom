@@ -40,6 +40,12 @@ public class HSGeneralPageOLS extends MainPageOLS{
             "\n" +
             "You will need to provide us with some information on the doctors who are treating or have treated your condition.  We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
 
+    public final String titleRaExpectedQA = "Your medical records related to your Arthritis, Low Back Pain, Rheumatoid Arthritis, Diabetes history are required for the study doctor to evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
+            "\n" +
+            "Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
+            "\n" +
+            "You will need to provide us with some information on the doctors who are treating or have treated your condition. We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
+
     public final String titleRa1Expected = "Your medical records related to your Low Back Pain, Diabetes, Arthritis, " +
             "Rheumatoid Arthritis history are required for the study doctor to evaluate you for participation. " +
             "In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
