@@ -13,7 +13,7 @@ public enum Site {
     AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471006", "B7471007", "B7471008"),
     AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471006", "B7471007", "B7471008"),
     //4631
-    AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", false, false, "4631", "KPL_716_C001"),
+    AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", false, false,  "KPL_716_C001"),
     //4691
     AUT_AKC4691_MR("AUT_AKC4691_MR", "08204", "1R", false, false, "ISIS 703802_CS2"),
     //4708
@@ -22,10 +22,10 @@ public enum Site {
     AUT_MIG4742_site("AUT_MIG4742_site", "08204", "1R", false, false, "3101_301_002", "3101_302_002"),
     //4814
     AUT_AD4814_site("AUT_AD4814_site", "19901", "1R", false, false, "INCB 18424_303", "INCB 18424_304"),
-    AUT_AD4814S_site("AUT_AD4814S_site", "19901", "41C", false, false, "INCB 18424_303", "INCB 18424_304"),
+    AUT_AD4814S_site("AUT_AD4814S_site", "45205", "41C", false, false, "INCB 18424_303", "INCB 18424_304"),
     //4815
     AUT_DERM_4815_Site("AUT_DERM_4815_Site", "19901", "1R", false, false, "B7451029"),
-    AUT_DERM_4815S_Site("AUT_DERM_4815S_Site", "19901", "41C", false, false, "B7451029"),
+    AUT_DERM_4815S_Site("AUT_DERM_4815S_Site", "45205", "41C", false, false, "B7451029"),
     //4849
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", false, false, "ANB020_005"),
     //4867

@@ -45,7 +45,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 
 public class LMG_4686_CC extends BaseTest{
 	
-	@Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+	@Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	public void LMG_4686_cc(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1LMG";
         List<String> protocols = Arrays.asList("I5Q_MC_CGAW");
