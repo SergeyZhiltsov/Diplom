@@ -128,11 +128,13 @@ public class FollowupLetter extends BasePage {
         passwordNextButton.click();
         emailSearchBox.sendKeys(pid);
         emailSearchBox.sendKeys(Keys.ENTER);
-        System.out.println("Waiting for email...");
+        logTextToAllureAndConsole("Waiting for email...");
         try {
             emailTitle = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(emailLocator));
-            System.out.println("Recieved email: " + emailTitle.getText());
+            logTextToAllureAndConsole("Recieved email: " + emailTitle.getText());
+            threadSleep(750);
             driver.findElement(emailLocator).click();
+            threadSleep(750);
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received within 15 mins timeout");
         }
@@ -144,7 +146,7 @@ public class FollowupLetter extends BasePage {
     @Step
     public FollowupLetter assertFULDbRecordIsNotNull(String env, String pid) {
         String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
-        logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        logTextToAllureAndConsole("FUL VALUE cell: " + fulIsSentCell);
         Assert.assertNotNull(fulIsSentCell, "FUL VALUE cell is null");
         return this;
     }
@@ -152,7 +154,7 @@ public class FollowupLetter extends BasePage {
     @Step
     public FollowupLetter assertFULDbRecordIsNull(String env, String pid) {
         String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
-        logTextToAllure("FUL VALUE cell: " + fulIsSentCell);
+        logTextToAllureAndConsole("FUL VALUE cell: " + fulIsSentCell);
         Assert.assertNull(fulIsSentCell, "FUL VALUE cell is NOT null");
         return this;
     }
@@ -166,11 +168,11 @@ public class FollowupLetter extends BasePage {
             for (Map.Entry<String, String> entry : list.entrySet()) {
                 for (Site site : Site.values()) {
                     if (site.name.equals(entry.getValue())) {
-                        System.out.println("Matched: " + site.name + " with quequed site: " + entry.getValue());
+                       logTextToAllureAndConsole("Matched: " + site.name + " with quequed site: " + entry.getValue());
                         if (site.hasFul) {
                             assertFULDbRecordIsNotNull(env, entry.getKey());
-                            if (site.withMedicalRecords) new MedicalRecordsFUL().assertgmailMRFUL(entry.getKey(), entry.getValue());
-                            else new RegularFUL().assertgmailRegularFUL(entry.getKey(), entry.getValue());
+                            if (site.withMedicalRecords && !env.equals("PRD")) new MedicalRecordsFUL().assertgmailMRFUL(entry.getKey(), entry.getValue());
+                            else if(!env.equals("PRD")) new RegularFUL().assertgmailRegularFUL(entry.getKey(), entry.getValue());
                         } else assertFULDbRecordIsNull(env, entry.getKey());
                     }
                 }
@@ -178,8 +180,8 @@ public class FollowupLetter extends BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (fulsToBeVerified.delete()) System.out.println("Temp file: " + fulsToBeVerified.getAbsolutePath() + " has been deleted.");
-            else System.out.println("Couldn't delete file: " + fulsToBeVerified.getName());
+            if (fulsToBeVerified.delete()) logTextToAllureAndConsole("Temp file: " + fulsToBeVerified.getAbsolutePath() + " has been deleted.");
+            else logTextToAllureAndConsole("Couldn't delete file: " + fulsToBeVerified.getName());
         }
         return this;
     }
