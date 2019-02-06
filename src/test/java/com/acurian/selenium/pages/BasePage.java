@@ -346,6 +346,11 @@ public abstract class BasePage {
         //empty method
     }
 
+    @Step("{0}")
+    public void logTextToAllureAndConsole(String text) {
+        System.out.println(text);
+    }
+
     @Attachment
     public String textToAttachment(String textToAttachment) {
         return textToAttachment;

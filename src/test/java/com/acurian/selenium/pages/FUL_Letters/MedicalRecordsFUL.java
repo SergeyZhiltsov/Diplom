@@ -61,10 +61,10 @@ public class MedicalRecordsFUL extends FollowupLetter {
         WebElement emailTitle;
         typeText(emailSearchBox, pid);
         emailSearchBox.sendKeys(Keys.ENTER);
-        System.out.println("Waiting for email...");
+        logTextToAllureAndConsole("Waiting for email...");
         try {
             emailTitle = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(emailLocator));
-            System.out.println("Recieved email: " + emailTitle.getText());
+            logTextToAllureAndConsole("Recieved email: " + emailTitle.getText());
             threadSleep(750);
             driver.findElement(emailLocator).click();
             threadSleep(750);
