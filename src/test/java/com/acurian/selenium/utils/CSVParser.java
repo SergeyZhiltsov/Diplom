@@ -23,7 +23,7 @@ public class CSVParser {
         return data;
     }
 
-    /*
+    /**
     Applicable only for csv files with 2 columns
      */
     public LinkedHashMap<String, String> getDataAsMap(String csvFileName, boolean withHeader) throws IOException {
