@@ -171,8 +171,8 @@ public class FollowupLetter extends BasePage {
                        logTextToAllureAndConsole("Matched: " + site.name + " with quequed site: " + entry.getValue());
                         if (site.hasFul) {
                             assertFULDbRecordIsNotNull(env, entry.getKey());
-                            if (site.withMedicalRecords) new MedicalRecordsFUL().assertgmailMRFUL(entry.getKey(), entry.getValue());
-                            else new RegularFUL().assertgmailRegularFUL(entry.getKey(), entry.getValue());
+                            if (site.withMedicalRecords && !env.equals("PRD")) new MedicalRecordsFUL().assertgmailMRFUL(entry.getKey(), entry.getValue());
+                            else if(!env.equals("PRD")) new RegularFUL().assertgmailRegularFUL(entry.getKey(), entry.getValue());
                         } else assertFULDbRecordIsNull(env, entry.getKey());
                     }
                 }
