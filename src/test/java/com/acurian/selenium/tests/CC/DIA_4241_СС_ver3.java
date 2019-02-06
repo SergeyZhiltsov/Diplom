@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
+import com.acurian.selenium.pages.CC.VACC_4556_CC.AreYouInterestedInPneumoniaVaccineStudyCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -492,6 +493,10 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyCC())
+                .clickOnAnswer("No")
+                .clickNextButton(new NonQRtransitionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
