@@ -249,7 +249,7 @@ public class VACC_4556_OLS extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo)
-                        .queueStudyForFULCheck(site.name);
+                        .queueSiteForFULCheck(site.name);
                 break;
             case AUT_VAC_4556_Site:
                 siteSelectionPageOLS
@@ -262,7 +262,7 @@ public class VACC_4556_OLS extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo)
-                        .queueStudyForFULCheck(site.name);
+                        .queueSiteForFULCheck(site.name);
         }
     }
 }
