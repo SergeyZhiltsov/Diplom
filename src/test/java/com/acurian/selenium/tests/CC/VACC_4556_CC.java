@@ -38,7 +38,7 @@ public class VACC_4556_CC extends BaseTest {
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(dataProvider = "sites")
     @Description("VACC_4556_CC")
     public void vacc4556cc(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
@@ -275,7 +275,8 @@ public class VACC_4556_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo);
+                        .dispoShouldMatch(site.dispo)
+                        .queueSiteForFULCheck(site.name);
                 break;
             case AUT_VAC_4556_Site:
                 siteSelectionPageCC
@@ -287,7 +288,8 @@ public class VACC_4556_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo);
+                        .dispoShouldMatch(site.dispo)
+                        .queueSiteForFULCheck(site.name);
         }
 
     }

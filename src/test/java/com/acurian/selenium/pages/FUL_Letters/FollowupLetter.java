@@ -159,7 +159,6 @@ public class FollowupLetter extends BasePage {
         return this;
     }
 
-    @Step
     public FollowupLetter assertAllFULs(String env) {
         LinkedHashMap<String, String> list;
         try {

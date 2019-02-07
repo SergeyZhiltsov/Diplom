@@ -699,6 +699,6 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo)
-                .queueStudyForFULCheck(site.name);
+                .queueSiteForFULCheck(site.name);
     }
 }

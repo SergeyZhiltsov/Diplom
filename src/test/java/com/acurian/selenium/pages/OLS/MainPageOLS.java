@@ -134,7 +134,7 @@ public class MainPageOLS extends BasePage {
      @param siteName to queue for validation
      */
     @Step
-    public synchronized void queueStudyForFULCheck(String siteName) {
+    public synchronized void queueSiteForFULCheck(String siteName) {
         FollowupLetter ful = new FollowupLetter();
         String stringQuery = pid + "," + siteName;
         StringBuilder sb = new StringBuilder();

@@ -6,7 +6,6 @@
         <classes>
             <class name="com.acurian.selenium.tests.OLS.VACC_4556_OLS"/>
             <class name="com.acurian.selenium.tests.OLS.DIA_5062_OLS"/>
-            <class name="com.acurian.selenium.tests.ful.FULsValidation"/>
             <!--<class name="com.acurian.selenium.tests.CC.DERM_4814_CC"/>-->
             <!--<class name="com.acurian.selenium.tests.health_check.Conversion54Cto1Rtest"/>-->
         </classes>

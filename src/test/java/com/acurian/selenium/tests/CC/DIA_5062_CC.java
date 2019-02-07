@@ -599,8 +599,7 @@ public class DIA_5062_CC extends BaseTest {
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
-
-
+                .pidFromDbToLog(env)
+                .queueSiteForFULCheck(site.name);
     }
 }

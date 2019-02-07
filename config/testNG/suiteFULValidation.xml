@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All" verbose="4">
+
+    <test name="Validate ALL FULs">
+        <classes>
+            <class name="com.acurian.selenium.tests.ful.FULsValidation"/>
+        </classes>
+    </test>
+</suite>

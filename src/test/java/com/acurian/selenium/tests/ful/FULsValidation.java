@@ -12,7 +12,7 @@ public class FULsValidation extends BaseTest {
      */
     @Test()
     @Description("Validate all FULs sent during test session")
-    public void validateFul() {
+    public void validateAllFuls() {
         FollowupLetter ful = new FollowupLetter();
         String env = System.getProperty("acurian.env", "STG");
 
