@@ -47,6 +47,7 @@ public class MainPageCC extends BasePage {
         return this;
     }
 
+    //should use only once cause PassPID.getInstance() after second get will be null
     public MainPageCC pidFromDbToLog(String env) {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);

@@ -13,7 +13,7 @@ public class GenderPageCC extends MainPageCC {
 
     public final String titleExpected = "This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, is your gender male or female?";
 
-    public final String titleExpectedGmega = "This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, is your gender male or female?";
+    public final String titleExpectedGmega = "Please select your gender:";
 
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")

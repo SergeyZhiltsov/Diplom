@@ -17,11 +17,12 @@ public class SiteLatLong extends BaseTest {
     @Description("Test for user lat long after zip")
     public void patientLatLongTest() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
+//        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
-
         String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
