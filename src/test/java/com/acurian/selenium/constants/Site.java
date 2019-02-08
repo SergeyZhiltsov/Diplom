@@ -34,6 +34,8 @@ public enum Site {
     AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471006", "B7471007", "B7471008"),
     //4631
     AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", false, false,  "KPL_716_C001"),
+    //4656
+    AUT_PSO4656("AUT_PSO4656", "19901", "1R", false, false, "CC_10004_PSOR_022"),
     //4691
     AUT_AKC4691_MR("AUT_AKC4691_MR", "08204", "1R", false, false, "ISIS 703802_CS2"),
     //4708
