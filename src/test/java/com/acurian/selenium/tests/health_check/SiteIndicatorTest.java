@@ -15,11 +15,12 @@ public class SiteIndicatorTest extends BaseTest {
     @Description("Site Indicator Test, yellow mark check")
     public void siteIndicatorTest() {
         String phoneNumber = "AUTGMEG41C";
-        String studyName = "an irritable bowel syndrome (IBS) study";
+//        String studyName = "an irritable bowel syndrome (IBS) study";
         String siteName = "AUT_GMEGA_01";
         String zipCode = "08204";
-
         String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "an irritable bowel syndrome (IBS) study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

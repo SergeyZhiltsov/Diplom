@@ -18,11 +18,12 @@ public class RadiantWTtest extends BaseTest {
     @Description("WT for RA , wt + 41C = directSchedule")
     public void warmTransferFor41CTest() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "an osteoarthritis study";
+//        String studyName = "an osteoarthritis study";
         String siteName = "AUT_GRA_WT_site";//AUT_GOA3_2108_Site
         String zipCode = "08204";
-
         String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "an osteoarthritis study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

@@ -77,24 +77,23 @@ public class HelloSignCC extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageCC());
 
-        SiteSelectionPageCC siteSelectionPageCC = whenYouDiagnosedWithRaPageCC
+        HSCrohns2PageCC hsCrohns2PageCC = whenYouDiagnosedWithRaPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageCC());
-
-        if (env.equals("QA")) {
-            siteSelectionPageCC.waitForPageLoad(studyName);
-        } else {
-            siteSelectionPageCC.waitForPageLoadGmega(studyName);
-        }
-
-        siteSelectionPageCC
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoadGmega(studyName)
                 .getPID()
                 .clickOnAnswer(siteName)
-                .clickNextButton(new HSCrohns2PageCC())
-                .waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmega)
+                .clickNextButton(new HSCrohns2PageCC());
+
+        if (env.equals("QA")) {
+            hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaQA);
+        } else {
+            hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaSTG);
+        }
+        hsCrohns2PageCC
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoadGmega()
                 .clickNextButton(new HSMedicalRecordsPageCC())
