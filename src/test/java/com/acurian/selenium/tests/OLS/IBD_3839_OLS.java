@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
@@ -22,12 +23,9 @@ public class IBD_3839_OLS extends BaseTest {
     @TestCaseId("00029")
     @Description("IBD_3839_OLS")
     public void IBD_3839_UC_OLS_Screener() {
+        Site site = Site.AUT_IBD_3839_Site;
         String phoneNumber = "AUTAMS1IBD";
-        String protocol1 = "SHP647_301";
-        String protocol2 = "SHP647_302";
         String studyName = "a colitis";
-        String siteName = "AUT_IBD_3839_Site";
-        String zipCode = "19901";
         String indication = "a Ulcerative Colitis";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -47,7 +45,7 @@ public class IBD_3839_OLS extends BaseTest {
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         ageUnqualifiedClose_OLS.getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
                 .waitForPageLoadGROUP();
@@ -58,7 +56,7 @@ public class IBD_3839_OLS extends BaseTest {
         //---------------PII Page Question-------------------
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         //---------------GENDER Question-------------------
@@ -79,7 +77,7 @@ public class IBD_3839_OLS extends BaseTest {
                 .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitis_OLS());
         whenWereYouDiagnosedWithUlcerativeColitis_OLS
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5702", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS5702", site.activeProtocols);
         debugPageOLS.back();
         haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS.waitForPageLoad()
                 //WhenWereYouDiagnosedWithUlcerativeColitis_OLS whenWereYouDiagnosedWithUlcerativeColitis_OLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
@@ -96,7 +94,7 @@ public class IBD_3839_OLS extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5704", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS5704", site.activeProtocols);
         debugPageOLS.back();
         whenWereYouDiagnosedWithUlcerativeColitis_OLS.waitForPageLoad();
         WhenWasYourMostRecentColonoscopy_OLS whenWasYourMostRecentColonoscopy_OLS = whenWereYouDiagnosedWithUlcerativeColitis_OLS
@@ -123,7 +121,7 @@ public class IBD_3839_OLS extends BaseTest {
                 .clickNextButton(new AreYouCurrentlyExperiencingFlareUp_OLS());
         areYouCurrentlyExperiencingFlareUp_OLS
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5706", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS5706", site.activeProtocols);
         debugPageOLS.back();
         haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS.waitForPageLoad();
         HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS = haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS
@@ -200,7 +198,7 @@ public class IBD_3839_OLS extends BaseTest {
                 .clickNextButton(new AreYouCurrentlyExperiencingFlareUp_OLS());
         areYouCurrentlyExperiencingFlareUp_OLS.waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5710", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS5710", site.activeProtocols)
                 .back();
         biologicMedicationsPageOLS
                 .waitForPageLoad()
@@ -289,7 +287,7 @@ public class IBD_3839_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5718", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS5718", site.activeProtocols)
                 .back();
         haveAnyOfTheFollowingPageOLS
                 .waitForPageLoad()
@@ -569,7 +567,7 @@ public class IBD_3839_OLS extends BaseTest {
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS.waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose_OLS())
                 .waitForPageLoad(indication)
                 .clickNextButton(new ThankYouCloseSimplePageOLS())

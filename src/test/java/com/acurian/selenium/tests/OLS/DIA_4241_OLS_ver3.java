@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
@@ -21,9 +22,10 @@ import java.util.Map;
 
 public class DIA_4241_OLS_ver3 extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     @Description("Diabetes_4241 OLS")
     public void dia4241olsVer3Test() {
+        Site site = Site.AUT_DIA_4241;
         String phoneNumber = "AUTAMS1DIA";
         String protocol1 = "EFC14822";
         String protocol2 = "EFC14829";
@@ -32,8 +34,6 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         String AKC = "ISIS 703802_CS2";
         String[] protocols = {protocol1,protocol2,AKC,protocol3};
         String studyName = "a diabetes";
-        String siteName = "AUT_DIA_4241";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -49,7 +49,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -494,11 +494,11 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoadAKC()
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())

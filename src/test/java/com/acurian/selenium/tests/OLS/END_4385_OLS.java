@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.END_4385.*;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
@@ -17,13 +18,9 @@ public class END_4385_OLS extends BaseTest {
     @Test
     @Description("a cluster headache study 3237 - OLS")
     public void end_4385_OLS() {
-
+        Site site = Site.AUT_END_4385;
         String phoneNumberRA = "AUTAMS1END";
-        String protocol1 = "MVT_601_3101";
-        String protocol2 = "MVT_601_3102";
         String studyName = "an endometriosis";
-        String siteName = "AUT_END_4385";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -54,7 +51,7 @@ public class END_4385_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1, protocol2)
+                .checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", site.activeProtocols)
                 .back();
         DiagnoseYourEndometriosisOLS diagnoseYourEndometriosisOLS = followingGynecologicalConditionOLS
                 .waitForPageLoad()
@@ -69,7 +66,7 @@ public class END_4385_OLS extends BaseTest {
         haveYouGoneThroughMenopauseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2)
+                .checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", site.activeProtocols)
                 .back();
         diagnoseYourEndometriosisOLS
                 .waitForPageLoad()
@@ -77,7 +74,7 @@ public class END_4385_OLS extends BaseTest {
                 .clickNextButton(haveYouGoneThroughMenopauseOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2)
+                .checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", site.activeProtocols)
                 .back();
         diagnoseYourEndometriosisOLS
                 .waitForPageLoad()
@@ -92,7 +89,7 @@ public class END_4385_OLS extends BaseTest {
         haveYouHadHysterectomyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1, protocol2)
+                .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", site.activeProtocols)
                 .back();
         haveYouGoneThroughMenopauseOLS.waitForPageLoad()
                 .clickOnAnswer("No")
@@ -107,7 +104,7 @@ public class END_4385_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Have you had a hysterectomy (surgical removal of the uterus)?", protocol1, protocol2)
+                .checkProtocolsEquals("Have you had a hysterectomy (surgical removal of the uterus)?", site.activeProtocols)
                 .back();
         PlzDescribeYourMenstrualCyclesOLS plzDescribeYourMenstrualCyclesOLS = haveYouHadHysterectomyOLS
                 .clickOnAnswer("No")
@@ -141,7 +138,7 @@ public class END_4385_OLS extends BaseTest {
         pelvicPainOtherTimesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Do you ever experience pelvic pain during your menstrual period?", protocol1, protocol2)
+                .checkProtocolsEquals("Do you ever experience pelvic pain during your menstrual period?", site.activeProtocols)
                 .back();
         DescribesPelvicPainOLS describesPelvicPainOLS = pelvicPainOLS
                 .waitForPageLoad()
@@ -176,7 +173,7 @@ public class END_4385_OLS extends BaseTest {
         diagnosedWithGynecologicalConditionOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", protocol1, protocol2)
+                .checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", site.activeProtocols)
                 .back();
         hormonalBirthControlOLS.waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -196,7 +193,7 @@ public class END_4385_OLS extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?", protocol1, protocol2)
+                .checkProtocolsEquals("Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?", site.activeProtocols)
                 .back();
         areYouCurrentlyPregnantOLS
                 .waitForPageLoad()
@@ -239,11 +236,11 @@ public class END_4385_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad("Endometriosis")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())

@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import java.util.Arrays;
 import java.util.List;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.CC.IBD.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -42,16 +43,10 @@ public class IBD_3839_CC extends BaseTest {
     @TestCaseId("IBD1")
     @Description("IBD 3839 for CC")
     public void ibd3839ccTest(final String username, final String password) {
+        Site site = Site.AUT_IBD_3839_Site;
         String phoneNumber = "AUTAMS1IBD";
-        String protocol1 = "SHP647_301";
-        String protocol2 = "SHP647_302";
-        List<String> protocols = Arrays.asList(protocol1, protocol2);
         String studyName = "Crohn's or colitis";
         String studyIndication = "a colitis study";
-        String siteName = "AUT_IBD_3839_Site";
-        String debugSiteName = "";
-        //      String env = "STG";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -93,13 +88,13 @@ public class IBD_3839_CC extends BaseTest {
                 .setYear("2003")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
 
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setYear("1937")
                 .clickNextButton(new IdentificationPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         dateOfBirthPageCC
                 .setYear("1980")
@@ -108,7 +103,7 @@ public class IBD_3839_CC extends BaseTest {
 
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoad1()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
@@ -120,13 +115,13 @@ public class IBD_3839_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new WhenDiagnosedCrohnsPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         diagnosedWithCrohnsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new LetMeSeePageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         diagnosedWithCrohnsPageCC
                 .waitForPageLoad()
@@ -137,13 +132,13 @@ public class IBD_3839_CC extends BaseTest {
                 .waitForPageLoadULC()
                 .clickOnAnswer("Less than 3 months ago")
                 .clickNextButton(new LetMeSeePageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         whenDiagnosedCrohnsPageCC
                 .waitForPageLoadULC()
                 .clickOnAnswer("Not officially diagnosed with ulcerative colitis by a doctor")
                 .clickNextButton(new LetMeSeePageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         MostRecentColonoscopyCC mostRecentColonoscopyCC = whenDiagnosedCrohnsPageCC
                 .waitForPageLoadULC()
@@ -159,7 +154,7 @@ public class IBD_3839_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new CurrentlyExperiencingFlareUpCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015883-QS5706-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015883-QS5706-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         SteroidMedicationsForCrohnsCC steroidMedicationsForCrohnsCC = manageYourCrohnsPageCC
                 .waitForPageLoad()
@@ -184,19 +179,19 @@ public class IBD_3839_CC extends BaseTest {
         biologicMedicationsPageCC
                 .clickOnAnswers("Entyvio (Agent Note: en-TIV-ee-oh)")
                 .clickNextButton(new CurrentlyExperiencingFlareUpCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005225-QS5710-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0005225-QS5710-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         biologicMedicationsPageCC
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Raptiva (Agent Note: rap-TEE-vuh)")
                 .clickNextButton(new CurrentlyExperiencingFlareUpCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005225-QS5710-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0005225-QS5710-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         biologicMedicationsPageCC
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tysabri (Agent Note: tie-SAB-ree)")
                 .clickNextButton(new CurrentlyExperiencingFlareUpCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005225-QS5710-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0005225-QS5710-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         biologicMedicationsPageCC
                 .clickOnAnswers("None of the above")
@@ -234,14 +229,14 @@ public class IBD_3839_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Colostomy and/or Colectomy")
                 .clickNextButton(new TransitionStatementCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         haveAnyOfTheFollowingPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Ileostomy")
                 .clickOnAnswers("Colostomy and/or Colectomy")
                 .clickNextButton(new TransitionStatementCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0012938-QS5718-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
 
         haveAnyOfTheFollowingPageCC
@@ -294,7 +289,7 @@ public class IBD_3839_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyIndication)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())
                 //		.waitForPageLoadIBD(studyIndication)
                 .clickNextButton(new ThankYouCloseSimplePageCC())

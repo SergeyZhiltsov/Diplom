@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.GERD.*;
 import com.acurian.selenium.pages.CC.closes.*;
@@ -15,14 +16,11 @@ public class GERD_4301_CC extends BaseTest {
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 
     public void Gerd_4301_CC(final String username, final String password) {
+        Site site = Site.AUT_GER_4301_Site;
         String phoneNumber = "AUTAMSGERD";
-        String protocol1 = "C3718_301";
-        String protocol2 = "C3718_302";
         String studyName = "heartburn, reflux, or GERD history";
         String site_Indication = "a heartburn or reflux study";
         String site_Indication1 = "Gastroesophageal Reflux Disease (GERD)";
-        String siteName = "AUT_GER_4301_Site";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -65,7 +63,7 @@ public class GERD_4301_CC extends BaseTest {
                 .setYear("2010")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         dateOfBirthPageCC
                 .waitForPageLoad();
@@ -77,7 +75,7 @@ public class GERD_4301_CC extends BaseTest {
         //-------------DOB Page----------------------------------
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
 
@@ -96,7 +94,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017973-QS6302-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017973-QS6302-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         doYouExperienceAnyOfFollowingSymptoms_CC
                 .waitForPageLoad();
@@ -117,7 +115,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_CC());
         haveYouEverHadSurgeryOnStomach_CC
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017975-QS6303-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017975-QS6303-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         whichoOfFollowingMedicationsCurrentlyGERD_CC
                 .waitForPageLoad();
@@ -173,7 +171,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_CC());
         despiteTakingMedicationDoYouStillExperienceSymptoms_CC
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018004-QS6306-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0018004-QS6306-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         howLongHaveYouBeenTaking_CC
                 .waitForPageLoad(1, howLongHaveYouBeenTaking_CC.titleExpected4)
@@ -189,7 +187,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswer("No, my symptoms are well-controlled")
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_CC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018005-QS6307-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0018005-QS6307-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         despiteTakingMedicationDoYouStillExperienceSymptoms_CC
                 .waitForPageLoad();
@@ -206,14 +204,14 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswer("1 day per week or less")
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_CC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018001-QS6308-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0018001-QS6308-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         thinkingAboutThePast2Months_CC
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 days per week")
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_CC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018001-QS6308-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0018001-QS6308-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         thinkingAboutThePast2Months_CC
                 .waitForPageLoad()
@@ -270,7 +268,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
                 .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017976-QS6311-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017976-QS6311-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         whenDidYouHaveAppendixRemoved_CC
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_CC.titleExpected1)
@@ -286,7 +284,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC())
                 .waitForPageLoadGERD(studyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018000-QS6312-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0018000-QS6312-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         areYouCurrentlyAbleToSwallowTablets_CC
                 .waitForPageLoad();
@@ -336,11 +334,11 @@ public class GERD_4301_CC extends BaseTest {
 //        		.clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(site_Indication)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
                 .waitForPageLoad(site_Indication1)
                 .clickNextButton(new DoctorInformationCollectionPageCC())

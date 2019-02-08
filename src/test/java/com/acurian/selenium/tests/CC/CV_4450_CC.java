@@ -53,7 +53,7 @@ public class CV_4450_CC extends BaseTest {
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(dataProvider = "sites")
     @Description("CV 4450 CC")
     public void cv4450ccTest(Site site) {
         String phoneNumber = "AUTAMS1CV1";

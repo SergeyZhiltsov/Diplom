@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -34,13 +35,10 @@ public class AUT_3973_OLS extends BaseTest {
 	@Description("Akcea_4691 OLS")
 
 	public void AUT_3973_OLS_EmailAtPII() {
-
+		Site site = Site.AUT_ROC_3973_site;
 		String phoneNumber = "AUTAMS1ROC";
-		String AUTISM = "WN39434";
 		String studyName = "an autism spectrum disorder";
 		String siteIndication = "Autism";
-		String siteName = "AUT_ROC_3973_site";
-		String zipCode = "19901";
 
 		String env = System.getProperty("acurian.env");
 		if (env == null)
@@ -61,7 +59,7 @@ public class AUT_3973_OLS extends BaseTest {
 				.waitForPageLoad();
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
 		ageUnqualifiedClose_OLS
-				.getPage(debugPageOLS).checkProtocolsContainsForQNumber("QSI8004", AUTISM).back();
+				.getPage(debugPageOLS).checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols).back();
 		dateOfBirthPageOLS
 				.waitForPageLoad();
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS.setDate("09091980").clickNextButton(new ZipCodePageOLS());
@@ -70,7 +68,7 @@ public class AUT_3973_OLS extends BaseTest {
 		zipCodePageOLS
 				.waitForPageLoad();
 		Assert.assertEquals(zipCodePageOLS.getTitleText(), zipCodePageOLS.titleExpected, "Title is diff");
-		GenderPageOLS genderPageOLS = zipCodePageOLS.typeZipCode(zipCode).clickNextButton(new GenderPageOLS());
+		GenderPageOLS genderPageOLS = zipCodePageOLS.typeZipCode(site.zipCode).clickNextButton(new GenderPageOLS());
 
 		
 		// --------------GENDER Question------------
@@ -92,7 +90,7 @@ public class AUT_3973_OLS extends BaseTest {
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 		haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.waitForPageLoad();
 		debugPageOLS
-				.checkProtocolsContainsForQNumber("QS5902", AUTISM)
+				.checkProtocolsContainsForQNumber("QS5902", site.activeProtocols)
 				.back();
 		InThePast3MonthsHaveYouExperienced_OLS inThePast3MonthsHaveYouExperienced_OLS = haveYouEverBeenToldByDoctorAutism_OLS
 				.waitForPageLoad()
@@ -109,7 +107,7 @@ public class AUT_3973_OLS extends BaseTest {
 		inThePast3MonthsHaveYouExperienced_OLS
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new HaveYouHadSeizureInLast6Mon_OLS()).waitForPageLoad().getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS5903", AUTISM).back();
+				.checkProtocolsContainsForQNumber("QS5903", site.activeProtocols).back();
 		inThePast3MonthsHaveYouExperienced_OLS
 				.waitForPageLoad();
 		HaveYouHadSeizureInLast6Mon_OLS haveYouHadSeizureInLast6Mon_OLS = inThePast3MonthsHaveYouExperienced_OLS
@@ -132,7 +130,7 @@ public class AUT_3973_OLS extends BaseTest {
 				.clickNextButton(new HaveYouEverHadAnIQtest_OLS())
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS5904", AUTISM)
+				.checkProtocolsContainsForQNumber("QS5904", site.activeProtocols)
 				.back();
 		haveYouHadSeizureInLast6Mon_OLS
 				.waitForPageLoad();
@@ -170,7 +168,7 @@ public class AUT_3973_OLS extends BaseTest {
 				.clickNextButton(new DoYouKnowSomeoneStudyPartner_OLS())
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS5906", AUTISM)
+				.checkProtocolsContainsForQNumber("QS5906", site.activeProtocols)
 				.back();
 		howDidYouScoreOnTheTest_OLS
 				.waitForPageLoad();
@@ -219,7 +217,7 @@ public class AUT_3973_OLS extends BaseTest {
 		otherThanSkinCancerPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS38", AUTISM)
+				.checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
 				.back();
 		WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
 				.waitForPageLoad()
@@ -237,7 +235,7 @@ public class AUT_3973_OLS extends BaseTest {
 		following_MentalEmotionalHealthPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS51", AUTISM)
+				.checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
 				.back();
 		whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
 				.waitForPageLoad()		
@@ -256,7 +254,7 @@ public class AUT_3973_OLS extends BaseTest {
 		doAnyOftheFollowingAdditionalDiagnosesOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS53", AUTISM)
+				.checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
 				.back();
 		following_MentalEmotionalHealthPageOLS
 				.waitForPageLoad()
@@ -279,7 +277,7 @@ public class AUT_3973_OLS extends BaseTest {
 		approximateHeightPageOLS
 				.waitForPageLoad()
 				.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QS59", AUTISM)
+				.checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
 				.back();
 		doAnyOftheFollowingAdditionalDiagnosesOLS
 				.waitForPageLoad()
@@ -299,12 +297,12 @@ public class AUT_3973_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
-		        .clickOnFacilityName(siteName)
+		        .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad(siteIndication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())

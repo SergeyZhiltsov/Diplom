@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.acurian.selenium.constants.Site;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -46,14 +48,10 @@ public class End_4385_CC extends BaseTest{
 	
 	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
 	public void end_4385_CC(final String username, final String password) {
+		Site site = Site.AUT_END_4385;
         String phoneNumberOA = "AUTAMS1END";
-        List<String> protocols = Arrays.asList("MVT_601_3101", "MVT_601_3102");
-        String protocol1 = "MVT_601_3101";
-        String protocol2 = "MVT_601_3102";
         String studyName = "an endometriosis";
         String studyName1 = "endometriosis";
-        String siteName = "AUT_END_4385";
-        String zipCode  = "19901";
         String site_Indication = "Endometriosis";
         
         String env = System.getProperty("acurian.env", "STG");
@@ -111,7 +109,7 @@ public class End_4385_CC extends BaseTest{
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new NonQRtransitionPageCC());
        DebugPageCC debugPageCC = new DebugPageCC();       
-       debugPageCC.checkProtocolsEquals(hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.titleExpected, protocol1, protocol2);
+       debugPageCC.checkProtocolsEquals(hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.titleExpected, site.activeProtocols);
        nonQRtransitionPageCC.back();
        DiagnoseYourEndometriosisCC diagnoseYourEndometriosisCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
     		   .waitForPageLoad()
@@ -122,7 +120,7 @@ public class End_4385_CC extends BaseTest{
     		   .waitForPageLoad()
     		   .clickOnAnswer("11 or more years ago")
     		   .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
-       debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2);
+       debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", site.activeProtocols);
        debugPageCC.back();
        diagnoseYourEndometriosisCC.waitForPageLoad()
     		   .clickOnAnswer("2 - 3 months ago")
@@ -140,7 +138,7 @@ public class End_4385_CC extends BaseTest{
     		   .clickNextButton(new NonQRtransitionPageCC());
        
        
-       debugPageCC.checkProtocolsEquals(haveYouHadHysterectomyUF_CC.titleExpected, protocol1, protocol2);
+       debugPageCC.checkProtocolsEquals(haveYouHadHysterectomyUF_CC.titleExpected, site.activeProtocols);
        debugPageCC.back();
        
        
@@ -200,7 +198,7 @@ public class End_4385_CC extends BaseTest{
     		   .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());
     		   hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
     		   	.waitForPageLoad();
-    	       debugPageCC.checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", protocol1, protocol2);
+    	       debugPageCC.checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", site.activeProtocols);
     	       debugPageCC.back();
     	       hormonalBirthControlCC.waitForPageLoad()
     	    	 .clickOnAnswer("Yes")
@@ -240,11 +238,11 @@ public class End_4385_CC extends BaseTest{
         //----------Resume GENERAL HEALTH Questions----------
                .clickNextButton(new IdentificationPageCC())
                .waitForPageLoad()
-               .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)              
+               .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                .clickNextButton(new SiteSelectionPageCC())
                .waitForPageLoad("an endometriosis study")
                .getPID()
-               .clickOnAnswer(siteName)
+               .clickOnAnswer(site.name)
                .clickNextButton(new HSGeneralCC())
                .waitForPageLoad(site_Indication)
                .clickNextButton(new DoctorInformationCollectionPageCC())

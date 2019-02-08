@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.HFL_4722.HeartTransplantPageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.SymptomsOfHeartFailurePageOLS;
@@ -23,12 +24,9 @@ public class HFL_4722_OLS extends BaseTest {
     @TestCaseId("00017")
     @Description("Heart_Failure 4722 OLS")
     public void hfl4722olsTest() {
+        Site site = Site.AUT_HFL_4722_Site;
         String phoneNumber = "AUTAMS1HFL";
-        List<String> protocols = Arrays.asList("EFC14822");
-        String protocol1 = "C1973_204";
         String studyName = "a heart failure";
-        String siteName = "AUT_HFL_4722_Site";
-        String zipCode = "19044";
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -43,7 +41,7 @@ public class HFL_4722_OLS extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -60,7 +58,7 @@ public class HFL_4722_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS6402", protocol1)
+                .checkProtocolsEqualsForQNumber("QS6402", site.activeProtocols)
                 .back();
         congestiveHeartFailurePageOLS
                 .waitForPageLoad()
@@ -68,7 +66,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS6402", protocol1)
+                .checkProtocolsEqualsForQNumber("QS6402", site.activeProtocols)
                 .back();
         SymptomsOfHeartFailurePageOLS symptomsOfHeartFailurePageOLS = congestiveHeartFailurePageOLS
                 .waitForPageLoad()
@@ -82,7 +80,7 @@ public class HFL_4722_OLS extends BaseTest {
         treatYourHeartFailurePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS6403", protocol1)
+                .checkProtocolsEqualsForQNumber("QS6403", site.activeProtocols)
                 .back();
         symptomsOfHeartFailurePageOLS
                 .waitForPageLoad()
@@ -109,7 +107,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS6405", protocol1)
+                .checkProtocolsEqualsForQNumber("QS6405", site.activeProtocols)
                 .back();
         heartTransplantPageOLS
                 .waitForPageLoad()
@@ -129,7 +127,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS66", protocol1)
+                .checkProtocolsEqualsForQNumber("QS66", site.activeProtocols)
                 .back(new ApproximateHeightPageOLS())
                 .setLbs("250")
                 .clickNextButton(new EthnicBackgroundPageOLS())
@@ -137,11 +135,11 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())

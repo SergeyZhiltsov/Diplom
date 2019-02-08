@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -40,15 +41,13 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class AUT_3973_CC_NoPIIemail extends BaseTest {
 
 
-    @Test(enabled = true)
+    @Test()
     @Description("Diabetes_4356A_Synexus for CC")
     public void aut3973CCnoPIIemail() {
+        Site site = Site.AUT_ROC_3973_site;
         String phoneNumber = "AUTAMS1ROC";
-        String AUTISM = "WN39434";
         String studyName = "an autism spectrum disorder study";
         String siteIndication = "Autism";
-        String siteName = "AUT_ROC_3973_site";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -99,7 +98,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(zipCodePageCC.getTitleText(), zipCodePageCC.titleExpected, "Title is diff");
         GenderPageCC genderPageCC = zipCodePageCC
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
 
@@ -124,7 +123,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC
-                .checkProtocolsContainsForQNumber("Q0017138-QS5902-STUDYQUES", AUTISM)
+                .checkProtocolsContainsForQNumber("Q0017138-QS5902-STUDYQUES", site.activeProtocols)
                 .back();
         InThePast3MonthsHaveYouExperienced_CC inThePast3MonthsHaveYouExperienced_CC = haveYouEverBeenToldByDoctorAutism_CC
                 .waitForPageLoad()
@@ -142,7 +141,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new HaveYouHadSeizureInLast6Mon_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017141-QS5903-STUDYQUES", AUTISM).back();
+                .checkProtocolsContainsForQNumber("Q0017141-QS5903-STUDYQUES", site.activeProtocols).back();
         inThePast3MonthsHaveYouExperienced_CC
                 .waitForPageLoad();
         HaveYouHadSeizureInLast6Mon_CC haveYouHadSeizureInLast6Mon_CC = inThePast3MonthsHaveYouExperienced_CC
@@ -164,7 +163,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new HaveYouEverHadAnIQtest_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017142-QS5904-STUDYQUES", AUTISM)
+                .checkProtocolsContainsForQNumber("Q0017142-QS5904-STUDYQUES", site.activeProtocols)
                 .back();
         haveYouHadSeizureInLast6Mon_CC
                 .waitForPageLoad();
@@ -200,7 +199,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new DoYouKnowSomeoneStudyPartner_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017143-QS5906-STUDYQUES", AUTISM)
+                .checkProtocolsContainsForQNumber("Q0017143-QS5906-STUDYQUES", site.activeProtocols)
                 .back();
         howDidYouScoreOnTheTest_CC
                 .waitForPageLoad();
@@ -252,7 +251,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
         otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", AUTISM)
+                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", site.activeProtocols)
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad();
@@ -271,7 +270,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
         followingMentalEmotionalHealth_Page_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", AUTISM)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -289,7 +288,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", AUTISM)
+                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
                 .back();
         followingMentalEmotionalHealth_Page_CC
                 .waitForPageLoad()
@@ -311,7 +310,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", AUTISM)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -327,11 +326,11 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("an autism spectrum disorder study")
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
                 .waitForPageLoad(siteIndication)
                 .typeEmail("qa.acurian@gmail.com")
