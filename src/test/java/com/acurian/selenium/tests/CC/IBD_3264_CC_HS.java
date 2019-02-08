@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.acurian.selenium.constants.Site;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -49,14 +51,12 @@ public class IBD_3264_CC_HS extends BaseTest{
     @TestCaseId("IBD")
     @Description("IBD 3264 for CC")
     public void IBD3264cc_HS(final String username, final String password) {
+		Site site = Site.AUT_IBD_3264_Site;
         String phoneNumber = "AUTAMS1IBD";
         //String protocol1 = "M14_234";
-        String protocol2 = "M16_067";        
-        List<String> protocols = Arrays.asList(protocol2);
+        String protocol2 = "M16_067";
         String studyName = "Crohn's or colitis";
-        String siteName = "AUT_IBD_3264_Site";
         String studyIndication = "Ulcerative Colitis";
-        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env", "STG");
 
@@ -118,7 +118,7 @@ public class IBD_3264_CC_HS extends BaseTest{
        
         GenderPageCC genderPageCC = identificationPageCC
      		   .waitForPageLoad1()
-     		   .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+     		   .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
      		   .clickNextButton(new GenderPageCC());
         
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
@@ -423,7 +423,7 @@ public class IBD_3264_CC_HS extends BaseTest{
         		.clickNextButton(new SiteSelectionPageCC())
         		.waitForPageLoad("a colitis study")
         		.getPID()
-        		.clickOnAnswer(siteName)
+        		.clickOnAnswer(site.name)
         		.clickNextButton(new HSCrohns2PageCC())
         		.clickNextButton(new DoctorInformationCollectionPageCC())
         		.waitForPageLoad()

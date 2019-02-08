@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
@@ -33,6 +34,7 @@ public class IBD_3889_OLS extends BaseTest {
     @TestCaseId("00019")
     @Description("IBD_3889_OLS")
     public void IBD_3889_Crohns_OLS_Screener() {
+        Site site = Site.AUT_CRN_3889_HS;
         String phoneNumber = "AUTAMS1IBD";
         String protocol1 = "M14_431";
         String protocol2 = "M14_433";
@@ -41,8 +43,6 @@ public class IBD_3889_OLS extends BaseTest {
         //String studyName = "a Crohn's or colitis"; // For IBD-UC modules
         String studyName = "a Crohn's";
         String site_Indication = "a Crohn's or colitis";
-        String siteName = "AUT_CRN_3889_HS";
-        String zipCode = "19044";   //19901 for IBD-UC modules
         String indication = "a Crohn's Disease";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -73,7 +73,7 @@ public class IBD_3889_OLS extends BaseTest {
         //---------------PII Page Question-------------------
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         //---------------GENDER Question-------------------
@@ -658,7 +658,7 @@ public class IBD_3889_OLS extends BaseTest {
         siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSCrohns2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())

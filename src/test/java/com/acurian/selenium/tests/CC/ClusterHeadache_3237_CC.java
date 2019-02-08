@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ClusterHeadache_3237.AreYouCurrentlyExperiencingClusterHeadacheAttacksDaily_CC;
 import com.acurian.selenium.pages.CC.ClusterHeadache_3237.WhenYouAreExperiencingCHattackIsTheLocationPain_CC;
@@ -22,13 +23,9 @@ public class ClusterHeadache_3237_CC extends BaseTest{
     @TestCaseId("00020")
     @Description("a cluster headache study 3237 CC")
     public void clusterHeadache_3237_CC(final String username, final String password) {
+        Site site = Site.AUT_CLH_3237_Site;
         String phoneNumber = "AUTAMS1CLH";
-        String protocol1 = "TV48125_CNS_30056";
-        String protocol2 = "TV48125_CNS_30057";
         String studyName = "a cluster headache";
-       // String env = "STG";  //Enter which CC environment to use for testing
-        String siteName = "AUT_CLH_3237_Site";
-        String zip_Code = "19044";
         
         String env = System.getProperty("acurian.env");
         if (env == null) env = "STG";
@@ -75,7 +72,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
         //------------ZIP_CODE question---------------
         GenderPageCC genderPageCC = zipCodePageCC  //[create NEXT PAGE Object = THIS page object] 
         		.waitForPageLoad()
-        		.typeZipCode(zip_Code)
+        		.typeZipCode(site.zipCode)
         		.clickNextButton(new GenderPageCC());
 
 
@@ -101,7 +98,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
              //------Validate protocol DQs in debug window----------
        
        DebugPageCC debugPageCC = new DebugPageCC();
-       debugPageCC.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", protocol1,protocol2);
+       debugPageCC.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", site.activeProtocols);
                 //------Go BACK and change your answer to QR answer - to qualify----------
        debugPageCC.back();
                 //------------ Change your answer to next DQ option---------------          
@@ -111,7 +108,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 .clickNextButton(new NonQRtransitionPageCC());    
             //------Validate protocol DQs in debug window----------
                 nonQRtransitionPageCC.waitForPageLoad();
-                debugPageCC.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", protocol1,protocol2);
+                debugPageCC.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", site.activeProtocols);
                 //------Go BACK and change your answer to QR answer - to qualify----------
                 debugPageCC.back();
                 //------------ Change your answer to next DQ option---------------          
@@ -120,7 +117,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 .clickNextButton(new NonQRtransitionPageCC());    
              //------Validate protocol DQs in debug window----------
                 nonQRtransitionPageCC.waitForPageLoad();
-                debugPageCC.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", protocol1,protocol2);
+                debugPageCC.checkProtocolsEquals("Cluster headache is a very rare condition that causes severe pain, usually around one eye, and occur...", site.activeProtocols);
                 //------Go BACK and change your answer to QR answer - to qualify----------
                 debugPageCC.back();
                 //------------ Change your answer to CORRECT QR option---------------          
@@ -140,7 +137,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 //********Validate Question History for DQ and then click BACK button
                 transitionStatementCC.waitForPageLoad("cluster headache")
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("What type of doctor diagnosed you with cluster headache?Agent Note: If multiple doctors confirmed th...",protocol1,protocol2);
+                .checkProtocolsEquals("What type of doctor diagnosed you with cluster headache?Agent Note: If multiple doctors confirmed th...",site.activeProtocols);
                 debugPageCC.back();
                 //------------ Change your answer to correct QR age in howOldWereYouMigHeadachePageOLS---------------   
                 whatTypeOfDoctorDiagnosedCH_CC.waitForPageLoad();
@@ -174,7 +171,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 .clickNextButton(new TransitionStatementCC());    
              //------Validate protocol DQs in debug window----------
                 transitionStatementCC.waitForPageLoad("cluster headache");
-                debugPageCC.checkProtocolsEquals("When you are having a cluster headache attack, do you experience any of the following symptoms in yo...", protocol1,protocol2);
+                debugPageCC.checkProtocolsEquals("When you are having a cluster headache attack, do you experience any of the following symptoms in yo...", site.activeProtocols);
                 //------Go BACK and change your answer to QR answer - to qualify----------
                 debugPageCC.back();
                 //------------ Change your answer to CORRECT QR option---------------          
@@ -192,7 +189,7 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 .clickNextButton(new WhenYouAreExperiencingCHattackIsTheLocationPain_CC());    
                 //------Validate protocol DQs in debug window----------
                 whenYouAreExperiencingCHattackIsTheLocationPain_CC.waitForPageLoad();
-                debugPageCC.checkProtocolsEquals("Do you experience any of the following feelings or behaviors when you are having a cluster headache ...", protocol1,protocol2);
+                debugPageCC.checkProtocolsEquals("Do you experience any of the following feelings or behaviors when you are having a cluster headache ...", site.activeProtocols);
                 //------Go BACK and change your answer to QR answer - to qualify----------
                 debugPageCC.back();
                 //------------ Change your answer to CORRECT QR option---------------          
@@ -243,11 +240,11 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 .clickNextButton(new IdentificationPageCC())
            	 //----------PII Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zip_Code)              
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a cluster headache study")
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())

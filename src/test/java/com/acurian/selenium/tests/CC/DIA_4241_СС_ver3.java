@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
@@ -20,9 +21,10 @@ import java.util.Map;
 
 public class DIA_4241_СС_ver3 extends BaseTest{
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("Diabetes_4241 CC")
     public void dia4241ccTest(final String username, final String password) {
+        Site site = Site.AUT_DIA_4241;
         String phoneNumber = "AUTAMS1DIA";
         String protocol1 = "EFC14822";
         String protocol2 = "EFC14829";
@@ -31,9 +33,6 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         String AKC = "ISIS 703802_CS2";
         String[] protocols = {protocol1,protocol2,protocol3,AKC};
         String studyName = "a study for diabetics";
-        String siteName = "AUT_DIA_4241";
-        String debugSiteName = "";
-        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env", "STG");
 
@@ -500,11 +499,11 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
         		.getPID()
-        		.clickOnAnswer(siteName)
+        		.clickOnAnswer(site.name)
         		.clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                

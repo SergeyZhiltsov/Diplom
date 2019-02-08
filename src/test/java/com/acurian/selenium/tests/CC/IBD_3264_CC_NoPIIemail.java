@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.*;
 import com.acurian.selenium.pages.CC.IBD.*;
@@ -28,14 +29,12 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
     @TestCaseId("IBD")
     @Description("IBD 3264 for CC")
     public void ibd_3264_CC_HS_NoEmailAtPII(final String username, final String password) {
+        Site site = Site.AUT_IBD_3264_Site;
         String phoneNumber = "AUTAMS1IBD";
         //String protocol1 = "M14_234";
         String protocol2 = "M16_067";
-        List<String> protocols = Arrays.asList(protocol2);
         String studyName = "Crohn's or colitis";
-        String siteName = "AUT_IBD_3264_Site";
         String studyIndication = "Ulcerative Colitis";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -98,7 +97,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad1();
         Assert.assertEquals(identificationPageCC.getEarlyCaptureTitleText(), "Personal details (*required fields)");
         GenderPageCC genderPageCC = identificationPageCC
-                .setAllFields("Acurian", "Trial", "", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
@@ -438,7 +437,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a colitis study")
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new HSCrohns2PageCC())
                 .waitForPageLoad1()
                 .typeEmail("qa.acurian@gmail.com")

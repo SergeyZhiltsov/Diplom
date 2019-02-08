@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.HFL_4722.HeartTransplantPageCC;
 import com.acurian.selenium.pages.CC.HFL_4722.SymptomsOfHeartFailurePageCC;
@@ -24,14 +25,9 @@ public class HFL_4722_CC extends BaseTest {
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
     @Description("HFL_4722 test CC")
     public void hfl_4722_CC(final String username, final String password) {
+        Site site = Site.AUT_HFL_4722_Site;
         String phoneNumber = "AUTAMS1HFL";
-        String protocol1 = "C1973_204";
-        List<String> protocols = Arrays.asList(protocol1);
         String studyName = "a heart failure study";
-        String siteName = "AUT_HFL_4722_Site";
-        String debugSiteName = "";
-        String zipCode = "19044";
-
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
@@ -90,7 +86,7 @@ public class HFL_4722_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018012-QS6402-STUDYQUES", protocol1)
+                .checkProtocolsEqualsForQNumber("Q0018012-QS6402-STUDYQUES", site.activeProtocols)
                 .back();
         congestiveHeartFailurePageCC
                 .waitForPageLoad()
@@ -98,7 +94,7 @@ public class HFL_4722_CC extends BaseTest {
                 .clickNextButton(nonQRtransitionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018012-QS6402-STUDYQUES", protocol1)
+                .checkProtocolsEqualsForQNumber("Q0018012-QS6402-STUDYQUES", site.activeProtocols)
                 .back();
         SymptomsOfHeartFailurePageCC symptomsOfHeartFailurePageCC = congestiveHeartFailurePageCC
                 .waitForPageLoad()
@@ -112,7 +108,7 @@ public class HFL_4722_CC extends BaseTest {
         treatYourHeartFailurePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018014-QS6403-STUDYQUES", protocol1)
+                .checkProtocolsEqualsForQNumber("Q0018014-QS6403-STUDYQUES", site.activeProtocols)
                 .back();
         symptomsOfHeartFailurePageCC
                 .waitForPageLoad()
@@ -140,7 +136,7 @@ public class HFL_4722_CC extends BaseTest {
         transitionStatementCC
                 .waitForPageLoad("heart failure")
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018016-QS6405-STUDYQUES", protocol1)
+                .checkProtocolsEqualsForQNumber("Q0018016-QS6405-STUDYQUES", site.activeProtocols)
                 .back();
         heartTransplantPageCC
                 .waitForPageLoad()
@@ -164,18 +160,18 @@ public class HFL_4722_CC extends BaseTest {
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoadNotQ()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018025-QS66-STUDYQUES", protocol1)
+                .checkProtocolsEqualsForQNumber("Q0018025-QS66-STUDYQUES", site.activeProtocols)
                 .back(new ApproximateHeightPageCC())
                 .setLbs("250")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageCC())

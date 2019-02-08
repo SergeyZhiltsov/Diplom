@@ -1,6 +1,8 @@
 package com.acurian.selenium.tests.OLS;
 
 import java.time.Instant;
+
+import com.acurian.selenium.constants.Site;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -41,16 +43,14 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class Chronic_4471_OLS extends BaseTest{
 
-    @Test(enabled = true)
+    @Test()
     @TestCaseId("0019")
     @Description("4471 Chronic Cough")
     public void chronicCough_4471() {
+		Site site = Site.AUT_MCC;
         String phoneNumberMIG = "AUTAMS1MCC";
         String protocol1 = "MK_7264_027";
-        String protocol2 = "MK_7264_030";
-        String studyName =  "a chronic cough"; 
-        String siteName = "AUT_MCC";
-        String zipCode = "19341";        
+        String studyName =  "a chronic cough";
         String env = System.getProperty("acurian.env", "STG");
 
         String time = String.valueOf(Instant.now().getEpochSecond());
@@ -68,7 +68,7 @@ public class Chronic_4471_OLS extends BaseTest{
                 	.clickNextButton(new AgeUnqualifiedClose_OLS());
         ageUnqualifiedClose_OLS.waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
 		debugPageOLS.back();
 		
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
@@ -90,7 +90,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.clickOnAnswer("No")
 				.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6202", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6202", site.activeProtocols);
 		debugPageOLS.back();
 		
 		HowLongYouHadChronicCoughOLS howLongYouHadChronicCoughOLS = currentlySufferFromChronicCoughOLS
@@ -103,7 +103,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.clickOnAnswer("Less than 6 months")
 				.clickNextButton(new TreatingYourChronicCoughOLS())
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6203", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6203", site.activeProtocols);
 		debugPageOLS.back();
 		
 		howLongYouHadChronicCoughOLS
@@ -140,7 +140,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.clickOnAnswers("Yes, I currently smoke")
 				.clickNextButton(new HowManyCigarettesOLS())
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6206", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6206", site.activeProtocols);
 		debugPageOLS.back();
 		
 		QuitSmokingOLS quitSmokingOLS = haveYouSmokedCigarettes
@@ -153,7 +153,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.clickOnAnswer("I quit smoking within the past year")
 				.clickNextButton(new HowManyCigarettesOLS())
 				.waitForPageLoad1();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6207", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6207", site.activeProtocols);
 		debugPageOLS.back();
 		quitSmokingOLS
 				.waitForPageLoad()
@@ -166,7 +166,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.howManyCigarettes("21")
 				.clickNextButton(new DiagnosedWithFollowingConditionsOLS())
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6209", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6209", site.activeProtocols);
 		debugPageOLS.back();
 		howManyCigarettesOLS
 				.waitForPageLoad1()
@@ -192,7 +192,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.clickOnAnswers("Trandolapril ( Brand names: Mavik, Odrik, Gopten)", "Zofenopril (Brand names: Zofenil, Bifril, Zopranol)")
 				.clickNextButton(new ExperienceWithYourChronicCoughOLS())
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6211", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6211", site.activeProtocols);
 		debugPageOLS.back();
 		aCEInhibitorsLS
 				.waitForPageLoad()		
@@ -219,7 +219,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.clickOnAnswers("Dialysis")
 				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS51", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS51", site.activeProtocols);
 		debugPageOLS.back();
 		whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
 				.waitForPageLoad()
@@ -227,7 +227,7 @@ public class Chronic_4471_OLS extends BaseTest{
 				.clickOnAnswers("Dialysis")
 				.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS51", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS51", site.activeProtocols);
 		debugPageOLS.back();
 		whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
 				.waitForPageLoad()
@@ -302,11 +302,11 @@ public class Chronic_4471_OLS extends BaseTest{
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", eMailId, "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", eMailId, "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad("Chronic Cough")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())

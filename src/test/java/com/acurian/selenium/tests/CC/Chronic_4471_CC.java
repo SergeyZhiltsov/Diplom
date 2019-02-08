@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ChronicCough.*;
 import com.acurian.selenium.pages.CC.closes.*;
@@ -12,14 +13,11 @@ import org.testng.annotations.Test;
 
 public class Chronic_4471_CC extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     public void chronic4471ccTest() {
+        Site site = Site.AUT_MCC;
         String phoneNumberOA = "AUTAMS1MCC";
-        String protocol1 = "MK_7264_027";
-        String protocol2 = "MK_7264_030";
         String studyName = "a chronic cough study";
-        String siteName = "AUT_MCC";
-        String zipCode = "19341";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -65,7 +63,7 @@ public class Chronic_4471_CC extends BaseTest {
 
         lessThan18YearsOldPageCC.waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
@@ -88,7 +86,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017638-QS6202-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017638-QS6202-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
 
         HowLongYouHadChronicCoughCC howLongYouHadChronicCoughCC = currentlySufferFromChronicCoughCC
@@ -101,14 +99,14 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswer("Less than 6 months")
                 .clickNextButton(new TreatingYourChronicCoughCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017639-QS6203-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017639-QS6203-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         howLongYouHadChronicCoughCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 to 11 months")
                 .clickNextButton(new TreatingYourChronicCoughCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017639-QS6203-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017639-QS6203-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         howLongYouHadChronicCoughCC
                 .waitForPageLoad()
@@ -137,7 +135,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickNextButton(new HowManyYearsYouSmokeCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017025-QS6206-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017025-QS6206-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
 
         QuitSmokingCC quitSmokingCC = smokedCigarettesPageCC
@@ -150,7 +148,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswer("I quit smoking within the past year")
                 .clickNextButton(new HowManyYearsYouSmokeCC())
                 .waitForPageLoad1();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017651-QS6207-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017651-QS6207-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         quitSmokingCC
                 .waitForPageLoad()
@@ -163,7 +161,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .enterCigrettes("21")
                 .clickNextButton(new FollowingConditionsCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017642-QS6209-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017642-QS6209-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         howManyYearsYouSmokeCC
                 .waitForPageLoad1()
@@ -188,7 +186,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("Fosinopril (Foe-sin-uh-pril) - Brand names Fositen, Monopril (Foe-sit-en / Mono-pril)", "Imidapril (Im-eh-di-prell) - Brand name Tanatril (Tan-eh-tril)")
                 .clickNextButton(new ExperienceWithYourChronicCoughCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017644-QS6211-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017644-QS6211-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         aCEInhibitorsCC
                 .waitForPageLoad()
@@ -233,7 +231,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -252,7 +250,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -260,7 +258,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("Hepatitis B")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -268,7 +266,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("Hepatitis C")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -276,7 +274,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("HIV or AIDS")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -291,7 +289,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -299,7 +297,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("Drug or alcohol abuse within the past year")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -307,7 +305,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -322,11 +320,11 @@ public class Chronic_4471_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
                 .waitForPageLoad("Chronic Cough")
                 .clickNextButton(new DoctorInformationCollectionPageCC())

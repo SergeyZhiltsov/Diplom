@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -31,20 +32,16 @@ public class CV_5034_OLS_A_S extends BaseTest {
     @DataProvider(name = "5034Sites")
     public static Object[][] getData() {
         return new Object[][] {
-                {"AUT_CV_5034A_site", "1R", "45205"},
-                {"AUT_CV_5034S_site", "41C", "19901"}
+                {Site.AUT_CV_5034A_site},
+                {Site.AUT_CV_5034S_site}
         };
     }
 
     @Test(dataProvider = "5034Sites")
     @TestCaseId("00053")
     @Description("CV_5034_OLS_A_S")
-    public void CV_5034_OLS_Test(final String siteName, final String dispo, final String zipCode) {
-
+    public void CV_5034_OLS_Test(Site site) {
         final String phoneNumber = "AUTAMS1CV1";
-        final String protocolA = "K_877_302_A";
-        final String protocolS = "K_877_302_S";
-        final String[] protocols = {protocolA, protocolS};
         final String studyName = "a heart health";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -61,7 +58,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         //-------GENDER Page--------
@@ -82,7 +79,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", protocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
         SubquestionStatinMedicationsHavePageOLS subquestionStatinMedicationsHavePageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
@@ -92,7 +89,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         subquestionStatinMedicationsHavePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", protocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
 //        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = cardiovascularDiseaseThanOthersPageOLS
@@ -113,7 +110,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(subquestionStatinMedicationsHavePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", protocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageOLS
@@ -123,7 +120,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(subquestionStatinMedicationsHavePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", protocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageOLS
@@ -132,7 +129,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(subquestionStatinMedicationsHavePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", protocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageOLS
@@ -149,7 +146,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         medicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6704", protocols)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -158,7 +155,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         medicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6704", protocols)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -167,7 +164,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         medicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6704", protocols)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -176,7 +173,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         medicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6704", protocols)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
@@ -192,7 +189,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         medicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6705", protocols)
+                .checkProtocolsContainsForQNumber("QS6705", site.activeProtocols)
                 .back();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
@@ -267,7 +264,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         heartOrBloodVesselPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6731", protocols)
+                .checkProtocolsContainsForQNumber("QS6731", site.activeProtocols)
                 .back();
         triglyceridesOrLipidsPageOLS
                 .waitForPageLoad()
@@ -308,7 +305,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         haveDoctorEverDiagnosedYou_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6713", protocols)
+                .checkProtocolsContainsForQNumber("QS6713", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -318,7 +315,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_OLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6713", protocols)
+                .checkProtocolsContainsForQNumber("QS6713", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -368,7 +365,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         ReceivedHeartProcedurePageOLS receivedHeartProcedurePageOLS = transitionalStatementLowtPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6722", protocols)
+                .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .back(everSmokedCigarettesPageOLS)
@@ -388,7 +385,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(relativesHeartAttackPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6717", protocols)
+                .checkProtocolsContainsForQNumber("QS6717", site.activeProtocols)
                 .back(receivedHeartProcedurePageOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("More than 6 months ago")
@@ -414,13 +411,13 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS);
 
         HashMap<String, List<String>> options = new HashMap<>();
-        options.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(protocols));
-        options.put("Cirrhosis of the liver", Arrays.asList(protocols));
-        options.put("Drug or alcohol abuse within the past year", Arrays.asList(protocols));
-        options.put("Hepatitis B", Arrays.asList(protocols));
-        options.put("Hepatitis C", Arrays.asList(protocols));
-        options.put("HIV or AIDS", Arrays.asList(protocols));
-        options.put("Kidney disease requiring dialysis or transplant", Arrays.asList(protocols));
+        options.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(site.activeProtocols));
+        options.put("Cirrhosis of the liver", Arrays.asList(site.activeProtocols));
+        options.put("Drug or alcohol abuse within the past year", Arrays.asList(site.activeProtocols));
+        options.put("Hepatitis B", Arrays.asList(site.activeProtocols));
+        options.put("Hepatitis C", Arrays.asList(site.activeProtocols));
+        options.put("HIV or AIDS", Arrays.asList(site.activeProtocols));
+        options.put("Kidney disease requiring dialysis or transplant", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             //System.out.println(entry.getKey());
             healthcareDiagnosedConditionsPageOLS
@@ -441,11 +438,11 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
@@ -456,6 +453,6 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(dispo);
+                .dispoShouldMatch(site.dispo);
     }
 }

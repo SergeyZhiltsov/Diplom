@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -67,12 +68,9 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
 
     @Test
     public void endUnqualifiedCloseOLS() {
+        Site site = Site.AUT_END_4385;
         String phoneNumberRA = "AUTAMS1END";
-        String protocol1 = "MVT_601_3101";
-        String protocol2 = "MVT_601_3102";
         String studyName = "an endometriosis";
-        String siteName = "AUT_END_4385";
-        String zipCode = "19901";
         String ExpStudySwich = "4733";
 
         String env = System.getProperty("acurian.env");
@@ -138,7 +136,7 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
                 .clickNextButton(new PersonalDetails())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new UnqualifiedCloseOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Yes - I will continue with the next few questions");

@@ -38,7 +38,7 @@ public class CV_4450_OLS extends BaseTest {
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(dataProvider = "sites")
     @Description("CV 4450 OLS")
     public void cv4450olsTest(String siteName, String expectedDispo, String zipCode) {
         String phoneNumber = "AUTAMS1CV1";

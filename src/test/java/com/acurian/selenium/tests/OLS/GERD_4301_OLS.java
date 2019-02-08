@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.GERD.AreYouCurrentlyAbleToSwallowTablets_OLS;
 import com.acurian.selenium.pages.OLS.GERD.DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS;
@@ -29,13 +30,10 @@ public class GERD_4301_OLS extends BaseTest{
     @TestCaseId("00023")
     @Description("GERD_4301_OLS")
     public void Gerd_4301_OLS() {
+    	Site site = Site.AUT_GER_4301_Site;
         String phoneNumber = "AUTAMSGERD";
-        String protocol1 = "C3718_301";
-        String protocol2 = "C3718_302";
         String studyName = "a heartburn or reflux";
         String site_Indication = "Gastroesophageal Reflux Disease (GERD)";
-        String siteName = "AUT_GER_4301_Site";
-        String zipCode = "19901";
         
         String env = System.getProperty("acurian.env", "STG");
         
@@ -55,7 +53,7 @@ public class GERD_4301_OLS extends BaseTest{
         		.waitForPageLoad();
 				DebugPageOLS debugPageOLS = new DebugPageOLS();
 				ageUnqualifiedClose_OLS.getPage(debugPageOLS)
-				.checkProtocolsContainsForQNumber("QSI8004", protocol1, protocol2)
+				.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
 				.back();
 				dateOfBirthPageOLS.waitForPageLoad();
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
@@ -68,7 +66,7 @@ public class GERD_4301_OLS extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(zipCodePageOLS.getTitleText(),zipCodePageOLS.titleExpected, "Title is diff");
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         //---------------GENDER Question-------------------
@@ -88,7 +86,7 @@ public class GERD_4301_OLS extends BaseTest{
         		.clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS6302", protocol1, protocol2);
+        		debugPageOLS.checkProtocolsContainsForQNumber("QS6302", site.activeProtocols);
         		debugPageOLS.back();
         doYouExperienceAnyOfFollowingSymptoms_OLS
         		.waitForPageLoad();
@@ -109,7 +107,7 @@ public class GERD_4301_OLS extends BaseTest{
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS());
         haveYouEverHadSurgeryOnStomach_OLS
         		.waitForPageLoad();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS6303", protocol1, protocol2);
+        		debugPageOLS.checkProtocolsContainsForQNumber("QS6303", site.activeProtocols);
         		debugPageOLS.back();
         whichoOfFollowingMedicationsCurrentlyGERD_OLS
         		.waitForPageLoad(); 		
@@ -165,7 +163,7 @@ public class GERD_4301_OLS extends BaseTest{
 		        .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
         despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6306", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols);
 		debugPageOLS.back();
 		howLongHaveYouBeenTaking_OLS
 				.waitForPageLoad(1,howDoYouBuyFollowingMedications_OLS.titleExpected1)
@@ -182,7 +180,7 @@ public class GERD_4301_OLS extends BaseTest{
 				.clickOnAnswer("No, my symptoms are well-controlled")
 				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS())
 				.waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6307", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6307", site.activeProtocols);
 		debugPageOLS.back();
 		despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
 				.waitForPageLoad();
@@ -200,14 +198,14 @@ public class GERD_4301_OLS extends BaseTest{
         		.clickOnAnswer("1 day per week or less")
 				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS())
         		.waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6308", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
 		debugPageOLS.back();
 		thinkingAboutThePast2Months_OLS
 				.waitForPageLoad()
 				.clickOnAnswer("2 - 3 days per week")
 				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS())
 				.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6308", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
 		debugPageOLS.back();
 		thinkingAboutThePast2Months_OLS
 				.waitForPageLoad()
@@ -267,7 +265,7 @@ public class GERD_4301_OLS extends BaseTest{
         		.clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
         		.clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS())
         		.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6311", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6311", site.activeProtocols);
 		debugPageOLS.back();
 		whenDidYouHaveAppendixRemoved_OLS
 				.waitForPageLoad(1,whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
@@ -282,7 +280,7 @@ public class GERD_4301_OLS extends BaseTest{
         		.clickOnAnswer("No")
         	   .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
         		.waitForPageLoad();
-		debugPageOLS.checkProtocolsContainsForQNumber("QS6312", protocol1, protocol2);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6312", site.activeProtocols);
 		debugPageOLS.back();
 		areYouCurrentlyAbleToSwallowTablets_OLS
 				.waitForPageLoad()
@@ -321,7 +319,7 @@ public class GERD_4301_OLS extends BaseTest{
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -353,13 +351,13 @@ public class GERD_4301_OLS extends BaseTest{
                 // ----------PII (IdentificationPageOLS)
                 // Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
 
                 //----------SiteSelection Page--------------------
         		.waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
