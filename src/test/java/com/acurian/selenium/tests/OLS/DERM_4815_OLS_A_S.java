@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -22,7 +23,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
     @DataProvider(name = "sites")
     public Object[][] getData() {
         return new Object[][] {
-                {Site.AUT_DERM_4815_Site},
+                //{Site.AUT_DERM_4815_Site},
                 {Site.AUT_DERM_4815S_Site}
         };
     }
@@ -64,12 +65,12 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
+        HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        healthcareDiagnosedPsoriasisPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -120,12 +121,11 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
                 .waitForPageLoad()
                 .clickOnAnswers("None of these")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(healthcareDiagnosedPsoriasisPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5805", site.activeProtocols)
                 .back();
-
         WeWantToMakeSureTheImagesDisplayProperly_OLS weWantToMakeSureTheImagesDisplayProperly_OLS = whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
                 .waitForPageLoad()
                 .clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
@@ -259,18 +259,18 @@ public class DERM_4815_OLS_A_S extends BaseTest {
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
+        //HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .clickOnAnswers("Jakafi")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
-
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Olumiant")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
@@ -280,16 +280,17 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Xeljanz")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
-                .waitForPageLoad()
+                .waitForPageLoad();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
