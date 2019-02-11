@@ -11,7 +11,9 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 
 public class IfYouUseYourHandToCoverAllOfTheEczema_CC extends MainPageCC{
 
-    public final String titleExpected = "If you use your hand to cover all of the eczema (atopic dermatitis) patches currently on your skin, approximately how many hand prints does it take to cover all the affected areas?";
+    public final String titleExpected = "We need to understand how much eczema you have on your body.\n" +
+            "\n" +
+            "Use your hand to cover all of the eczema patches currently on your skin. About how many hand prints does it take to cover all the eczema on your body?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

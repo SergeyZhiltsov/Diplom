@@ -11,7 +11,8 @@ import java.util.List;
 
 public class WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS extends MainPageOLS {
 
-    public final String titleExpected = "Which parts of your body are currently affected by eczema (atopic dermatitis)?";
+    public final String titleExpected = "Which parts of your body are currently affected by eczema (atopic dermatitis)?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
