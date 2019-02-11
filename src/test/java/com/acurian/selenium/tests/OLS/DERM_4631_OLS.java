@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.Derm_4631.IfYouUseYourHandToCoverAllOfTheEczema_CC;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -70,7 +71,7 @@ public class DERM_4631_OLS extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
+        /*HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -79,7 +80,7 @@ public class DERM_4631_OLS extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
-                .back();
+                .back();*/
 
         HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczema_OLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
                 .waitForPageLoad()
@@ -116,9 +117,16 @@ public class DERM_4631_OLS extends BaseTest {
                 .back();
 
         howLongHaveYouBeenSufferingFromEczema_OLS
-                .waitForPageLoad()
+                .waitForPageLoad();
+                IfYouUseYourHandToCoverAllOfTheEczema_OLS ifYouUseYourHandToCoverAllOfTheEczema_OLS = howLongHaveYouBeenSufferingFromEczema_OLS
                 .clickOnAnswer("2 years or more")
-                .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols);
+                .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_OLS());
+
+        ifYouUseYourHandToCoverAllOfTheEczema_OLS
+                .waitForPageLoad()
+                .selectFromDropDown("7")
+                .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
+
 
         WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols = howMuchEczemaYouHaveOnYourBody_ols
                 .waitForPageLoad()
@@ -127,8 +135,9 @@ public class DERM_4631_OLS extends BaseTest {
 
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
                 .waitForPageLoad()
+        //HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
                 .clickOnAnswers("None of these")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5805", site.activeProtocols)
@@ -251,9 +260,10 @@ public class DERM_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_ols);
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
-                .waitForPageLoad()
+                .waitForPageLoad();
+                HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .clickOnAnswers("Jakafi")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         //**************************************************
         //------------GENERAL HEALTH  Questions-------------
