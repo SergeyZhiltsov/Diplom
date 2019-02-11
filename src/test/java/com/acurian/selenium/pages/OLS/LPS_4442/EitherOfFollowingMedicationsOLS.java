@@ -40,5 +40,4 @@ public class EitherOfFollowingMedicationsOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }
