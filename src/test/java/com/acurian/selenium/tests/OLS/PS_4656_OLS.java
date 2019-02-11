@@ -3,23 +3,19 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
-import com.acurian.selenium.pages.OLS.DY_4356.SubquestionStatinMedicationsHavePageOLS;
-import com.acurian.selenium.pages.OLS.DY_4356.WhileTakingStatinPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.TriglyceridesOrLipidsPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.*;
 import com.acurian.selenium.pages.OLS.PS_4656.*;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -44,14 +40,14 @@ public class PS_4656_OLS extends BaseTest {
     public void ps4556olsTest(Site site) {
         String phoneNumber = "AUTAMS1PSO";
         final String[] protocols = site.activeProtocols;
-        String studyName = "a psoriasis study";
+        String studyName = "a psoriasis";
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText2Ver(), dateOfBirthPageOLS.title4656Expected, "Title is diff");
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.title4656Expected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());
@@ -345,6 +341,16 @@ public class PS_4656_OLS extends BaseTest {
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+//        areYouInterestedInPneumoniaVaccineStudyOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS())
+//                .waitForPageLoad()
+//                .back();
+//        areYouInterestedInPneumoniaVaccineStudyOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)

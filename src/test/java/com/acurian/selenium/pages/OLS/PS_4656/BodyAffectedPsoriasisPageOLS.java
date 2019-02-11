@@ -15,10 +15,10 @@ public class BodyAffectedPsoriasisPageOLS extends MainPageOLS{
             "Please select all that apply.";
 
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
+    @FindBy(xpath = Locators.CHEKBOX_LIST2_OLS)
     List<WebElement> checkBoxList;
 
     public BodyAffectedPsoriasisPageOLS() {
