@@ -10,6 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS extends MainPageOLS {
+
     private final String titleExpected = "Have you ever been diagnosed with any of the following types of cancer?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
