@@ -1,18 +1,19 @@
-package com.acurian.selenium.pages.OLS.LPS_4442;
+package com.acurian.selenium.pages.OLS.PS_4656;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class EitherOfFollowingMedicationsOLS extends MainPageOLS{
+import java.util.List;
 
-    public final String titleExpected = "Have you ever taken any of the following medications?\n" +
-    		"Please select all that apply.";
-            
+public class TypePsoriasisPageOLS extends MainPageOLS{
+
+    public final String titleExpected = "Which type(s) of psoriasis do you have?\n" +
+            "Please select all that apply.";
+
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
@@ -20,18 +21,18 @@ public class EitherOfFollowingMedicationsOLS extends MainPageOLS{
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public EitherOfFollowingMedicationsOLS() {
+    public TypePsoriasisPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public EitherOfFollowingMedicationsOLS waitForPageLoad() {
+    public TypePsoriasisPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public EitherOfFollowingMedicationsOLS clickOnAnswers(String ...answerText) {
+    public TypePsoriasisPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
