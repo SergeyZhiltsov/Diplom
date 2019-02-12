@@ -21,7 +21,7 @@ public class DIA_5062_CC extends BaseTest {
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     public void dia5062cc(final String username, final String password) {
         final String phoneNumber = "AUTAMSNASH";
-        final String studyName = "a NASH study";
+        final String studyName = "a fatty liver study for diabetics"; //"a NASH study";
         final String indicationHistroyName = "diabetes";
         Site site = Site.AUT_NASH5062_site; //Synexus Site
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -163,7 +163,7 @@ public class DIA_5062_CC extends BaseTest {
                     .clickNextButton(treatingYourDiabetesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES")
+                    //.checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES")
                     .back();
         }
 
@@ -582,7 +582,7 @@ public class DIA_5062_CC extends BaseTest {
 
         approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("4", "9", "139")
+                .setAll("4", "10", "139")
                 .clickNextButton(letMeSeePageCC);
 
         letMeSeePageCC

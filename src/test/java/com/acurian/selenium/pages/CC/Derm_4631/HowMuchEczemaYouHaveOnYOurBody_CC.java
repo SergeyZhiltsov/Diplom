@@ -10,8 +10,9 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 
 public class HowMuchEczemaYouHaveOnYOurBody_CC extends MainPageCC{
 
-    public final String titleExpected = "We need to understand how much eczema you have on your body. Use your hand to cover all of the eczema patches currently on your skin. " +
-            "About how many hand prints does it take to cover all the eczema on your body?";
+    public final String titleExpected = "We need to understand how much eczema you have on your body.\n" +
+            "\n" +
+            "Use your hand to cover all of the eczema patches currently on your skin. About how many hand prints does it take to cover all the eczema on your body?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;

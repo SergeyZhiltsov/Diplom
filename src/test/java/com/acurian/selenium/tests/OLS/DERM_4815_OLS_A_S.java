@@ -23,7 +23,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
     @DataProvider(name = "sites")
     public Object[][] getData() {
         return new Object[][] {
-                //{Site.AUT_DERM_4815_Site},
+                {Site.AUT_DERM_4815_Site},
                 {Site.AUT_DERM_4815S_Site}
         };
     }
