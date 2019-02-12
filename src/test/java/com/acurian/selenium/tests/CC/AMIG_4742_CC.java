@@ -89,7 +89,7 @@ public class AMIG_4742_CC extends BaseTest {
 
         lessThan18YearsOldPageCC.waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
