@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.IBS.*;
@@ -16,15 +17,12 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class IBS_4819_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     @Description("IBS 4819 OLS")
     public void ibs4819olsTest() {
+        Site site = Site.AUT_IBS4819_site;
         String phoneNumber = "AUTAMS1IBS";
-        String protocol1 = "URO_901_2001";
-//        String[] protocols = {protocol1, protocol2, AKC, protocol3};
         String studyName = "an irritable bowel syndrome (IBS)";
-        String siteName = "AUT_IBS4819_site";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -40,7 +38,7 @@ public class IBS_4819_OLS extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -58,7 +56,7 @@ public class IBS_4819_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6602", protocol1)
+                .checkProtocolsContainsForQNumber("QS6602", site.activeProtocols)
                 .back();
         HowLongExperiencingIrritablePageOLS howLongExperiencingIrritablePageOLS = sufferFromIrritablePageOLS
                 .waitForPageLoad()
@@ -72,7 +70,7 @@ public class IBS_4819_OLS extends BaseTest {
         whichOfTheFollowingExperienceIrritablePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6603", protocol1)
+                .checkProtocolsContainsForQNumber("QS6603", site.activeProtocols)
                 .back();
         howLongExperiencingIrritablePageOLS
                 .waitForPageLoad()
@@ -80,7 +78,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(whichOfTheFollowingExperienceIrritablePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6603", protocol1)
+                .checkProtocolsContainsForQNumber("QS6603", site.activeProtocols)
                 .back();
         howLongExperiencingIrritablePageOLS
                 .waitForPageLoad()
@@ -94,7 +92,7 @@ public class IBS_4819_OLS extends BaseTest {
         abdominalPainWhenHavingIBSPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6604", protocol1)
+                .checkProtocolsContainsForQNumber("QS6604", site.activeProtocols)
                 .back();
         whichOfTheFollowingExperienceIrritablePageOLS
                 .waitForPageLoad()
@@ -102,7 +100,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(abdominalPainWhenHavingIBSPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6604", protocol1)
+                .checkProtocolsContainsForQNumber("QS6604", site.activeProtocols)
                 .back();
         WhichSymptomOccursPageOLS whichSymptomOccursPageOLS = whichOfTheFollowingExperienceIrritablePageOLS
                 .waitForPageLoad()
@@ -121,7 +119,7 @@ public class IBS_4819_OLS extends BaseTest {
         currentlyTakeTreatIBSPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6606", protocol1)
+                .checkProtocolsContainsForQNumber("QS6606", site.activeProtocols)
                 .back();
         HowOftenAbdominalPainPageOLS howOftenAbdominalPainPageOLS = abdominalPainWhenHavingIBSPageOLS
                 .waitForPageLoad()
@@ -135,7 +133,7 @@ public class IBS_4819_OLS extends BaseTest {
         abdominalPainOverPastPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6607", protocol1)
+                .checkProtocolsContainsForQNumber("QS6607", site.activeProtocols)
                 .back();
         howOftenAbdominalPainPageOLS
                 .waitForPageLoad()
@@ -148,7 +146,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(currentlyTakeTreatIBSPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6608", protocol1)
+                .checkProtocolsContainsForQNumber("QS6608", site.activeProtocols)
                 .back();
         abdominalPainOverPastPageOLS
                 .waitForPageLoad()
@@ -162,7 +160,7 @@ public class IBS_4819_OLS extends BaseTest {
         celiacDiseasePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6609", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", site.activeProtocols)
                 .back();
         currentlyTakeTreatIBSPageOLS
                 .waitForPageLoad()
@@ -171,7 +169,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(celiacDiseasePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6609", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", site.activeProtocols)
                 .back();
         currentlyTakeTreatIBSPageOLS
                 .waitForPageLoad()
@@ -180,7 +178,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(celiacDiseasePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6609", protocol1)
+                .checkProtocolsContainsForQNumber("QS6609", site.activeProtocols)
                 .back();
         currentlyTakeTreatIBSPageOLS
                 .waitForPageLoad()
@@ -194,7 +192,7 @@ public class IBS_4819_OLS extends BaseTest {
         weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6610", protocol1)
+                .checkProtocolsContainsForQNumber("QS6610", site.activeProtocols)
                 .back();
         celiacDiseasePageOLS
                 .waitForPageLoad()
@@ -212,7 +210,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6612", protocol1)
+                .checkProtocolsContainsForQNumber("QS6612", site.activeProtocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -220,7 +218,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6612", protocol1)
+                .checkProtocolsContainsForQNumber("QS6612", site.activeProtocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -228,7 +226,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6612", protocol1)
+                .checkProtocolsContainsForQNumber("QS6612", site.activeProtocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -236,7 +234,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6612", protocol1)
+                .checkProtocolsContainsForQNumber("QS6612", site.activeProtocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -244,7 +242,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6612", protocol1)
+                .checkProtocolsContainsForQNumber("QS6612", site.activeProtocols)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -273,7 +271,7 @@ public class IBS_4819_OLS extends BaseTest {
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
@@ -287,7 +285,7 @@ public class IBS_4819_OLS extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS44", protocol1)
+                .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
                 .back();
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
@@ -296,7 +294,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS44", protocol1)
+                .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
                 .back();
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
@@ -331,7 +329,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -343,7 +341,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -355,7 +353,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -367,7 +365,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -389,7 +387,7 @@ public class IBS_4819_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -398,7 +396,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -412,7 +410,7 @@ public class IBS_4819_OLS extends BaseTest {
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", protocol1)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
@@ -426,7 +424,7 @@ public class IBS_4819_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
@@ -435,7 +433,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
@@ -478,7 +476,7 @@ public class IBS_4819_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -487,7 +485,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -496,7 +494,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -505,7 +503,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -514,7 +512,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -523,7 +521,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -532,7 +530,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -541,7 +539,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -550,7 +548,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -564,7 +562,7 @@ public class IBS_4819_OLS extends BaseTest {
         ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", protocol1)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
         approximateHeightPageOLS
                 .waitForPageLoad()
@@ -576,11 +574,11 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
