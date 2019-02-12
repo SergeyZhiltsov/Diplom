@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LPS_4442.EitherOfTheFollowingMedicationsCC;
+import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -91,11 +92,12 @@ public class DERM_4814_CC extends BaseTest {
 
         DebugPageCC debugPageCC = new DebugPageCC();
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
+        //NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
+        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new NonQRtransitionPageCC());
-        nonQRtransitionPageCC
+                .clickNextButton(new DiagnosedWithPsoriasisCC());
+        diagnosedWithPsoriasisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", protocols)
@@ -132,7 +134,7 @@ public class DERM_4814_CC extends BaseTest {
                 .back();
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
-                .clickOnAnswer("1 year")
+                .clickOnAnswer("2 years or more")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
         DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc

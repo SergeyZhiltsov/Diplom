@@ -23,7 +23,7 @@ public class DIA_4708_CC extends BaseTest {
     public void dia4708cc() {
         Site site = Site.AUT_NASH4708_site;
         final String phoneNumber = "AUTAMSNASH";
-        final String studyName = "a NASH study";
+        final String studyName = "a fatty liver study for diabetics";
         final String indicationHistroyName = "diabetes";
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
@@ -164,7 +164,7 @@ public class DIA_4708_CC extends BaseTest {
                     .clickNextButton(treatingYourDiabetesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", site.activeProtocols)
+                    //.checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", site.activeProtocols)
                     .back();
         }
 
@@ -506,7 +506,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
-                .setAll("5", "5", "250")
+                .setAll("5", "5", "180")
                 .clickNextButton(new LetMeSeePageCC());
 
         letMeSeePageCC
