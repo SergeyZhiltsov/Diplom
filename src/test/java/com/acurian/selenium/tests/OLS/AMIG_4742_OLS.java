@@ -21,9 +21,6 @@ public class AMIG_4742_OLS extends BaseTest {
     public void AMig_4742_OLS() {
         String phoneNumberMIG = "AUTAMS1MIG";
         Site site = Site.AUT_MIG4742_site;
-        String protocol1 = "3101_301_002";
-        String protocol2 = "3101_302_002";
-        String protocol3 = "I5Q_MC_CGAW"; //---MIG 4686 protocol
         String studyName = "a migraine";
         String site_Indication = "Migraines";
 
@@ -52,7 +49,7 @@ public class AMIG_4742_OLS extends BaseTest {
         DoYouSufferFromMigHeadachesOLS doYouSufferFromMigHeadachesOLS = genderPageOLS
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromMigHeadachesOLS());
-        
+
 
         doYouSufferFromMigHeadachesOLS
                 .waitForPageLoad();
@@ -60,196 +57,183 @@ public class AMIG_4742_OLS extends BaseTest {
         HasDoctorDiagnosedYouWithClusterHeadache_OLS hasDoctorDiagnosedYouWithClusterHeadache_OLS = doYouSufferFromMigHeadachesOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new HasDoctorDiagnosedYouWithClusterHeadache_OLS());
-        
+
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6002", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6002", site.activeProtocols);
         debugPageOLS.back();
         AgeWhenDiagnosedWithMigOLS ageWhenDiagnosedWithMigOLS = doYouSufferFromMigHeadachesOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new AgeWhenDiagnosedWithMigOLS());
-        
 
-       //--------Q3:  Approximately how old were you when you were diagnosed with migraine headaches?
+
+        //--------Q3:  Approximately how old were you when you were diagnosed with migraine headaches?
         ApproxHowLongSufferingFromMIG approxHowLongSufferingFromMIG = ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("51")
                 .clickNextButton(new ApproxHowLongSufferingFromMIG());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6003", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6003", site.activeProtocols);
         debugPageOLS.back();
         ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("37")
                 .clickNextButton(new ApproxHowLongSufferingFromMIG());
 
-        
-      //---------------Q4: For approximately how long have you been suffering from migraine headaches?
+
+        //---------------Q4: For approximately how long have you been suffering from migraine headaches?
         HowManyDaysYouSufferOLS howManyDaysYouSufferOLS = approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", site.activeProtocols);
         debugPageOLS.back();
         approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 11 months")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", site.activeProtocols);
         debugPageOLS.back();
         approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
-        
-        
-       //---------------Q5: In a typical month, how many days do you suffer from migraines? 
+
+
+        //---------------Q5: In a typical month, how many days do you suffer from migraines?
         HowOftenDoYouTypicallyTakeMedicationOLS howOftenDoYouTypicallyTakeMedicationOLS = howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("3")
                 .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS())
-        		.waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", protocol1,protocol2);
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", site.activeProtocols);
         debugPageOLS.back();
         howManyDaysYouSufferOLS
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .selectDays("15")
                 .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", protocol1,protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", site.activeProtocols);
         debugPageOLS.back();
         howManyDaysYouSufferOLS
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .selectDays("4")
-                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS());		
-        		
-        		
+                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS());
+
+
         //---------------Q6: How often do you typically take medication to stop an active migraine, either as it starts or while you are experiencing it?-------------
-        HowManyDifferentMedicationsOLS howManyDifferentMedicationsOLS = howOftenDoYouTypicallyTakeMedicationOLS
+        AnyMedicationsToPreventMigrainesOLS anyMedicationsToPreventMigrainesOLS = howOftenDoYouTypicallyTakeMedicationOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Half the days in a month or more")
-                .clickNextButton(new HowManyDifferentMedicationsOLS())
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6023", protocol1,protocol2);
-        debugPageOLS.back();
-        howOftenDoYouTypicallyTakeMedicationOLS
-        		.waitForPageLoad()
-                .clickOnAnswer("Less than half the days in a month")
-                .clickOnAnswer("I do not take any medication to stop active migraines – I wait for them to go away on their own")
-                .clickNextButton(new HowManyDifferentMedicationsOLS());
-        
-        
-      //---------------Q7: HowManyDifferentMedicationsOLS -----------
-        FollowingMedicationsToPreventOLS followingMedicationsToPreventOLS = howManyDifferentMedicationsOLS
+                .clickNextButton(new AnyMedicationsToPreventMigrainesOLS());
+
+
+        //---------------Q7: HowManyDifferentMedicationsOLS -----------
+        HaveYouEverHadBotoxbotulinumtoxin_OLS haveYouEverHadBotoxbotulinumtoxin_OLS = anyMedicationsToPreventMigrainesOLS
                 .waitForPageLoad()
-                .noOfMedications("4")
-                .clickNextButton(new FollowingMedicationsToPreventOLS());
-        
-        
-      //---------------Q8: FollowingMedicationsToPreventOLS -----------
-        followingMedicationsToPreventOLS
-        		.waitForPageLoad();
-        HaveYouEverHadBotoxbotulinumtoxin_OLS haveYouEverHadBotoxbotulinumtoxin_OLS = followingMedicationsToPreventOLS
-                .clickOnAnswers("Metoprolol, Lopressor, or Toprol",
-                				"Propranolol, Hemangeol, Inderal, or Innopran",
-                				"Topamax, Qudexy, Trokendi, or topiramate",
-                				"Depacon or valproate",
-                				"Depakote or divalproex",
-                				"Elavil or amitriptyline",
-                				"Sibelium or Flunarizine",
-                				"Botox injections (botulinum toxin) – specifically for chronic migraines",
-                				"Atacand or candesartan",
-                				"Timolol")
-                .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS())
-                .waitForPageLoad();
-        		debugPageOLS.back();
-        followingMedicationsToPreventOLS
-        		.waitForPageLoad()
-        		.clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS())
-        		.waitForPageLoad();
-        		//debugPageOLS.checkProtocolsContainsForQNumber("QS6024", protocol3);  //---4686 protocol
-        		debugPageOLS.back();
-        followingMedicationsToPreventOLS
-				.waitForPageLoad()
-                .clickOnAnswers("Metoprolol, Lopressor, or Toprol",
-                		"Topamax, Qudexy, Trokendi, or topiramate")
-				.clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS());        		
-        		
-        
-        
+                .clickOnAnswer("No")
+                .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS());
+
+        haveYouEverHadBotoxbotulinumtoxin_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6030", site.activeProtocols)
+                .back();
+
+        anyMedicationsToPreventMigrainesOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
+
         //---------------SKIP to Q18: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
         WhenDidYouLastHaveBotoxInjectionOLS whenDidYouLastHaveBotoxInjectionOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
                 .waitForPageLoad()
-                .clickOnAnswers("Yes, to treat migraines","Yes, as a cosmetic treatment for lines on the face")
+                .clickOnAnswers("Yes, to treat migraines")
                 .clickNextButton(new WhenDidYouLastHaveBotoxInjectionOLS());
-        
-        
+
         //---------------Q19: When did you last have a Botox (botulinum toxin) injection?-----------
         HaveYouEverDiagnosedByHealthcareProfOLS haveYouEverDiagnosedByHealthcareProfOLS = whenDidYouLastHaveBotoxInjectionOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 months ago or less")
-                .clickOnAnswer("More than 1 year ago")
-                .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(new HaveYouEverDiagnosedByHealthcareProfOLS())
-                .waitForPageLoad();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS6026", protocol1,protocol2);
-        		debugPageOLS.back();
-        whenDidYouLastHaveBotoxInjectionOLS
-                .waitForPageLoad()       
-                .clickOnAnswer("7 months - 1 year ago")
                 .clickNextButton(new HaveYouEverDiagnosedByHealthcareProfOLS());
-        
 
-        
-      //---------------Q20: HaveYouEverDiagnosedByHealthcareProfOLS-----
         haveYouEverDiagnosedByHealthcareProfOLS
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6026", site.activeProtocols)
+                .back();
+
+        whenDidYouLastHaveBotoxInjectionOLS
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(haveYouEverDiagnosedByHealthcareProfOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6026", site.activeProtocols)
+                .back();
+
+        whenDidYouLastHaveBotoxInjectionOLS
+                .waitForPageLoad()
+                .clickOnAnswer("7 months - 1 year ago")
+                .clickNextButton(haveYouEverDiagnosedByHealthcareProfOLS);
+
+        //---------------Q20: HaveYouEverDiagnosedByHealthcareProfOLS-----
         DoYouCurrentlyUseMarijuanaOLS doYouCurrentlyUseMarijuanaOLS = haveYouEverDiagnosedByHealthcareProfOLS
+                .waitForPageLoad()
                 .clickOnAnswers("Trigeminal Neuralgia - severe pain in the nerves of the face")
+                .clickNextButton(new DoYouCurrentlyUseMarijuanaOLS());
+
+        doYouCurrentlyUseMarijuanaOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6027", site.activeProtocols)
+                .back();
+
+        haveYouEverDiagnosedByHealthcareProfOLS
                 .clickOnAnswers("Temporomandibular Joint Disorders also known as TMD or TMJ")
-                .clickNextButton(new DoYouCurrentlyUseMarijuanaOLS())
-                .waitForPageLoad();
-                debugPageOLS.checkProtocolsContainsForQNumber("QS6027", protocol1,protocol2);
-        		debugPageOLS.back();
+                .clickNextButton(doYouCurrentlyUseMarijuanaOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6027", site.activeProtocols)
+                .back();
+
         haveYouEverDiagnosedByHealthcareProfOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoYouCurrentlyUseMarijuanaOLS());
-                
- 
-        
+                .clickNextButton(doYouCurrentlyUseMarijuanaOLS);
+
+
         //---------------Q21: DoYouCurrentlyUseMarijuanaOLS-----
-        doYouCurrentlyUseMarijuanaOLS
-                .waitForPageLoad();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouCurrentlyUseMarijuanaOLS
+                .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
-                .waitForPageLoad();
-        		debugPageOLS.back();
-        doYouCurrentlyUseMarijuanaOLS
-                .waitForPageLoad();
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .back();
+
         IfYouQualifyForStudyWillingtoStopOLS ifYouQualifyForStudyWillingtoStopOLS = doYouCurrentlyUseMarijuanaOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IfYouQualifyForStudyWillingtoStopOLS());
-        
 
         //---------------Q22: IfYouQualifyForStudyWillingtoStopOLS-----
         ifYouQualifyForStudyWillingtoStopOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
-                .waitForPageLoad();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS6029", protocol1,protocol2);
-        		debugPageOLS.back();
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6029", site.activeProtocols)
+                .back();
+
         ifYouQualifyForStudyWillingtoStopOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-                
-                
-        
-        
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+
         //-----------------GENERAL HEALTH questions-------------------
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -309,20 +293,20 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoadHeartAttack()
                 .clickOnAnswers("Less than 30 days ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadHeartAttack()
                 .clickOnAnswers("1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadHeartAttack()
                 .clickOnAnswers("4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS.back();
 
@@ -335,19 +319,19 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoadStroke()
                 .clickOnAnswers("Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadStroke()
                 .clickOnAnswers("1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoadStroke()
                 .clickOnAnswers("4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1,protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS.back();
 
@@ -366,41 +350,41 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
-        
+
 
         following_MentalEmotionalHealthPageOLS
-        		.waitForPageLoad();
+                .waitForPageLoad();
         WomenHealthConditions womenHealthConditions = following_MentalEmotionalHealthPageOLS
                 .clickOnAnswers("Generalized anxiety disorder (GAD)",
-                		"Major depressive disorder (MDD) or depression",
-                		"None of the above")
+                        "Major depressive disorder (MDD) or depression",
+                        "None of the above")
                 .clickOnAnswers("Bipolar disorder", "Schizophrenia")
                 .clickNextButton(new WomenHealthConditions());
         womenHealthConditions
                 .waitForPageLoad();
-                debugPageOLS.checkProtocolsContainsForQNumber("QS53", protocol1,protocol2);
-                debugPageOLS.back();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS53", site.activeProtocols);
+        debugPageOLS.back();
         following_MentalEmotionalHealthPageOLS
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WomenHealthConditions());
-        
-        
+
+
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS()); 
-        
-        
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+
+
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad();
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-        		.clickOnAnswers("Drug or alcohol abuse within the past year")
+                .clickOnAnswers("Drug or alcohol abuse within the past year")
                 .clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -408,7 +392,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -416,7 +400,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -424,7 +408,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -432,7 +416,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -440,13 +424,13 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
-        
+
 
         approximateHeightPageOLS
                 .waitForPageLoad()
@@ -455,12 +439,12 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
-        //----------PII (IdentificationPageOLS) Page--------------------
+                //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
 
-        //----------SiteSelection Page--------------------
+                //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
@@ -470,7 +454,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad();
         AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
         aboutHealthPageOLS
-        		.clickNextButton(new AboutHealthPageOLS())
+                .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .threadSleep(2000);
         aboutHealthPageOLS
