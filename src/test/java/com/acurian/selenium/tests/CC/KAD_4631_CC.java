@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
+import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -96,18 +97,19 @@ public class KAD_4631_CC extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         //-----------GenderPageCC-------------
+        genderPageCC
+                .waitForPageLoad();
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC = genderPageCC
-                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
         //------------Q2:  hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC----
-        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
+        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new NonQRtransitionPageCC());
+                .clickNextButton(new DiagnosedWithPsoriasisCC());
 
-        nonQRtransitionPageCC
+        diagnosedWithPsoriasisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", site.activeProtocols)
@@ -260,7 +262,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-                .waitForPageLoadWithCurvesKAD(studyName)
+                .waitForPageLoadWithCurvesKAD("eczema, or atopic dermatitis")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -574,19 +576,20 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
 
-        UnqualifiedCloseCC unqualifiedCloseCC = approximateHeightPageCC
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "10", "120")
-                .clickNextButton(new UnqualifiedCloseCC());
+                .clickNextButton(new LetMeSeePageCC());
 
-        unqualifiedCloseCC
+        letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", site.activeProtocols)
-                .back(unqualifiedCloseCC)
-                .back();
+                .back(letMeSeePageCC);
+                //.back();
 
-        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+        //LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+        approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC());

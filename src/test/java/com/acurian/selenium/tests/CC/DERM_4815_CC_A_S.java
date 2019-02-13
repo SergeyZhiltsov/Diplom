@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -98,12 +99,12 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
+        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new NonQRtransitionPageCC());
+                .clickNextButton(new DiagnosedWithPsoriasisCC());
 
-        nonQRtransitionPageCC
+        diagnosedWithPsoriasisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", site.activeProtocols)
@@ -257,14 +258,14 @@ public class DERM_4815_CC_A_S extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC);
+                .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
 
-        TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
+        //TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
-                .clickNextButton(new TransitionStatementCC());
-        transitionStatementCC
-                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .clickNextButton(new DiagnosedWithPsoriasisCC());
+        diagnosedWithPsoriasisCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
                 .back();
@@ -273,8 +274,8 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Olumiant (Agent Note: oh-LOO-me-ant)")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .clickNextButton(diagnosedWithPsoriasisCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
                 .back();
@@ -283,16 +284,17 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .clickNextButton(diagnosedWithPsoriasisCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
                 .back();
 
         haveYouEverTakenEitherAnyOfFollowingMeds_CC
-                .waitForPageLoad()
+                .waitForPageLoad();
+        TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
                 .clickOnAnswers("None of the above")
-                .clickNextButton(transitionStatementCC);
+                .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoadWithCurvesKAD(studyNameForTrans)
