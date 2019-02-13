@@ -92,7 +92,6 @@ public class DERM_4814_CC extends BaseTest {
 
         DebugPageCC debugPageCC = new DebugPageCC();
 
-        //NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
         DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -619,7 +618,7 @@ public class DERM_4814_CC extends BaseTest {
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "09/09/1980", "US", "Dover, DE",
+                        .assertVariables("Acurian", "Trial", "09/09/1980", "US", "Cincinnati, OH",
                                 site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "123456a", site.name, "INCPPDATO303")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

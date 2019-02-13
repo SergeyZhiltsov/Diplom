@@ -264,7 +264,7 @@ public class DIA_5062_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0016650-QS4623-STUDYQUES", site.activeProtocols)
                 .back(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
-                .setDrinks("14")
+                .setDrinks("1")
                 .clickNextButton(followingLiverRelatedConditionCC);
 
         ArrayList<String> conditions = new ArrayList<>();
@@ -582,7 +582,7 @@ public class DIA_5062_CC extends BaseTest {
 
         approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("4", "10", "139")
+                .setAll("4", "10", "180")
                 .clickNextButton(letMeSeePageCC);
 
         letMeSeePageCC

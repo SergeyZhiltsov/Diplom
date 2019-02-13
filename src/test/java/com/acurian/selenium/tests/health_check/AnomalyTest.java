@@ -19,7 +19,7 @@ public class AnomalyTest extends BaseTest {
     @Description("Test for 41C Anomaly")
     public void anomalyTest() {
         String phoneNumber = "AUTGMEG41C";
-        String siteName = "AUT_GMEGA_01"; //"AUT_GRA1_Site";
+        String siteName = "AUT_GEMGA_01A";
         String zipCode = "08204";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
