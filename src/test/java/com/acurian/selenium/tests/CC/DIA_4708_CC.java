@@ -322,7 +322,9 @@ public class DIA_4708_CC extends BaseTest {
                         "Kidney disease",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids")
                 .clickNextButton(new OtherThanSkinCancerPageCC());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = otherThanSkinCancerPageCC
@@ -406,7 +408,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswers("Angioplasty")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
-        KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
+        DoYouTakeAnyMedicationsToControlHighBloodPressureCC doYouTakeAnyMedicationsToControlHighBloodPressureCC = new DoYouTakeAnyMedicationsToControlHighBloodPressureCC();
         ArrayList<String> heartProcedurePeriods = new ArrayList<>();
         heartProcedurePeriods.add("Less than 30 days ago");
         heartProcedurePeriods.add("1 - 3 months ago");
@@ -415,17 +417,21 @@ public class DIA_4708_CC extends BaseTest {
             mostRecentHeartProcedurePageСС
                     .waitForPageLoad()
                     .clickOnAnswer(period)
-                    .clickNextButton(kidneyProblemsPage)
+                    .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0015137-QS49-STUDYQUES", site.activeProtocols)
                     .back();
         }
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = mostRecentHeartProcedurePageСС
+        KidneyProblemsPage kidneyProblemsPage = mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(kidneyProblemsPage)
+                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureCC)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new KidneyProblemsPage());
+        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
