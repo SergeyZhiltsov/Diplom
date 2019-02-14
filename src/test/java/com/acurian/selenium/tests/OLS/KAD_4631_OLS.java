@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
@@ -27,11 +28,9 @@ public class KAD_4631_OLS extends BaseTest {
     @TestCaseId("00002")
     @Description("KAD 4631 for OLS")
     public void kad_4631() {
+        Site site = Site.AUT_DERM_4631_Site;
         String phoneNumberMIG = "AUTAMS1KAD";
-        String protocol1 = "KPL_716_C001";
         String studyName = "an eczema (atopic dermatitis)";
-        String siteName = "AUT_DERM_4631_Site";
-        String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
 
         String eMailId = "qa.acurian@gmail.com";
@@ -45,14 +44,14 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(new AgeUnqualifiedClose_OLS());
         ageUnqualifiedClose_OLS.waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
         debugPageOLS.back();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .waitForPageLoad()
                 .setDate("09091951")
                 .clickNextButton(new PersonalDetails());
         personalDetails.waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", protocol1);
+        debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
         debugPageOLS.back();
         dateOfBirthPageOLS
                 .waitForPageLoad()
@@ -62,7 +61,7 @@ public class KAD_4631_OLS extends BaseTest {
 
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", eMailId, "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", eMailId, "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS = genderPageOLS
@@ -78,7 +77,7 @@ public class KAD_4631_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5802", protocol1)
+                .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
                 .back();
         HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczema_OLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
                 .waitForPageLoad()
@@ -93,7 +92,7 @@ public class KAD_4631_OLS extends BaseTest {
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5803", protocol1)
+                .checkProtocolsContainsForQNumber("QS5803", site.activeProtocols)
                 .back();
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
@@ -101,7 +100,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5803", protocol1)
+                .checkProtocolsContainsForQNumber("QS5803", site.activeProtocols)
                 .back();
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
@@ -109,7 +108,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5803", protocol1)
+                .checkProtocolsContainsForQNumber("QS5803", site.activeProtocols)
                 .back();
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
@@ -123,7 +122,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5805", protocol1)
+                .checkProtocolsContainsForQNumber("QS5805", site.activeProtocols)
                 .back();
         WeWantToMakeSureTheImagesDisplayProperly_OLS weWantToMakeSureTheImagesDisplayProperly_OLS = whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
                 .waitForPageLoad()
@@ -159,7 +158,7 @@ public class KAD_4631_OLS extends BaseTest {
         haveYouEverTreatedYourEczema_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
         whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
@@ -167,7 +166,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
         whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
@@ -175,7 +174,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
         whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
@@ -210,7 +209,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
@@ -218,7 +217,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
@@ -226,7 +225,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
@@ -234,7 +233,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
@@ -242,7 +241,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", protocol1)
+                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back(whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS)
                 .waitForPageLoad()
                 .back(weWantToMakeSureTheImagesDisplayProperly_OLS)
@@ -311,23 +310,23 @@ public class KAD_4631_OLS extends BaseTest {
         //---------Q22:  BiologicMedications---------------
         HaveYouEverTakenEitherAnyOfFollowingMeds_OLS haveYouEverTakenEitherAnyOfFollowingMeds_ols = new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS();
         HashMap<String, List<String>> cases = new HashMap<>();
-        cases.put("Actemra", Arrays.asList(protocol1));
-        cases.put("Benlysta", Arrays.asList(protocol1));
-        cases.put("Cimzia", Arrays.asList(protocol1));
-        cases.put("Cosentyx", Arrays.asList(protocol1));
-        cases.put("Enbrel", Arrays.asList(protocol1));
-        cases.put("Entyvio", Arrays.asList(protocol1));
-        cases.put("Humira", Arrays.asList(protocol1));
-        cases.put("Kineret", Arrays.asList(protocol1));
-        cases.put("Orencia", Arrays.asList(protocol1));
-        cases.put("Prolia or Xgeva", Arrays.asList(protocol1));
-        cases.put("Raptiva", Arrays.asList(protocol1));
-        cases.put("Remicade", Arrays.asList(protocol1));
-        cases.put("Rituxan", Arrays.asList(protocol1));
-        cases.put("Simponi", Arrays.asList(protocol1));
-        cases.put("Stelara", Arrays.asList(protocol1));
-        cases.put("Taltz", Arrays.asList(protocol1));
-        cases.put("Tysabri", Arrays.asList(protocol1));
+        cases.put("Actemra", Arrays.asList(site.activeProtocols));
+        cases.put("Benlysta", Arrays.asList(site.activeProtocols));
+        cases.put("Cimzia", Arrays.asList(site.activeProtocols));
+        cases.put("Cosentyx", Arrays.asList(site.activeProtocols));
+        cases.put("Enbrel", Arrays.asList(site.activeProtocols));
+        cases.put("Entyvio", Arrays.asList(site.activeProtocols));
+        cases.put("Humira", Arrays.asList(site.activeProtocols));
+        cases.put("Kineret", Arrays.asList(site.activeProtocols));
+        cases.put("Orencia", Arrays.asList(site.activeProtocols));
+        cases.put("Prolia or Xgeva", Arrays.asList(site.activeProtocols));
+        cases.put("Raptiva", Arrays.asList(site.activeProtocols));
+        cases.put("Remicade", Arrays.asList(site.activeProtocols));
+        cases.put("Rituxan", Arrays.asList(site.activeProtocols));
+        cases.put("Simponi", Arrays.asList(site.activeProtocols));
+        cases.put("Stelara", Arrays.asList(site.activeProtocols));
+        cases.put("Taltz", Arrays.asList(site.activeProtocols));
+        cases.put("Tysabri", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : cases.entrySet()) {
             biologicMedications
                     .waitForPageLoadKAD()
@@ -366,7 +365,7 @@ public class KAD_4631_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         cancerPage
                 .waitForPageLoad()
@@ -398,7 +397,7 @@ public class KAD_4631_OLS extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -411,7 +410,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -424,7 +423,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageOLS
@@ -437,7 +436,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = subquestionExperiencedHeartPageOLS
@@ -470,7 +469,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
 
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
@@ -480,7 +479,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS)
                 .waitForPageLoad()
                 .back();
@@ -497,7 +496,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", protocol1)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
                 .waitForPageLoad()
                 .back();
@@ -514,7 +513,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageOLS
@@ -524,7 +523,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageOLS)
                 .waitForPageLoad()
                 .back();
@@ -542,7 +541,7 @@ public class KAD_4631_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -553,7 +552,7 @@ public class KAD_4631_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -562,7 +561,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -571,7 +570,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -580,7 +579,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -589,7 +588,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -598,7 +597,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -607,7 +606,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -617,7 +616,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -633,7 +632,7 @@ public class KAD_4631_OLS extends BaseTest {
         ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", protocol1)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
         approximateHeightPageOLS
                 .waitForPageLoad()
@@ -643,7 +642,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(ethnicBackgroundPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", protocol1)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
         approximateHeightPageOLS
                 .waitForPageLoad()
@@ -657,7 +656,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())

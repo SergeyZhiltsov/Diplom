@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
@@ -14,12 +15,11 @@ import org.testng.annotations.Test;
 
 public class OA_4109_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     public void OA_4109_OLS_Script() {
+        Site site = Site.AUT_OA_4109_Site;
         String phoneNumber = "AUTAMS1OA1";
-        String zipCode = "60540";
         String studyName = "an osteoarthritis";
-        String siteName = "AUT_OA_4109_Site";
         String protocol1 = "R475_OA_1611";
         String protocol2 = "R475_OA_1688";
 
@@ -37,7 +37,7 @@ public class OA_4109_OLS extends BaseTest {
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         DoYouSufferFromArthritis doYouSufferFromArthritis = genderPageOLS
@@ -193,11 +193,11 @@ public class OA_4109_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())

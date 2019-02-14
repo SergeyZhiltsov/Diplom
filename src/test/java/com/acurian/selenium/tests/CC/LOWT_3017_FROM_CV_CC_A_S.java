@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
@@ -31,7 +32,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
 
     @Test(dataProvider = "sites", dataProviderClass = LOWT_3017_FROM_CV_OLS_A_S.class)
     @Description("LowT_3017_From_Cv_Cc")
-    public void lowt3017FromCvCc(final String siteName, final String expectedDispo, final String zipCode) {
+    public void lowt3017FromCvCc(Site site) {
         final String phoneNumber = "AUTAMS1CV1";
         final String protocol1 = "M16_100";
         final String protocol2 = "M16_100_S";
@@ -86,7 +87,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = genderPageCC
@@ -298,15 +299,15 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .clickNextButton(new IdentificationPageCC());
         IncongruentSiteSelectionCloseCC incongruentSiteSelectionCloseCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new IncongruentSiteSelectionCloseCC());
         incongruentSiteSelectionCloseCC
                 .waitForPageLoad(studyName, dqedStudyName)
                 .getPID();
-        switch (siteName) {
+        switch (site.name) {
             case "AUT_LOWT_3017S_Site":
                 incongruentSiteSelectionCloseCC
-                        .clickOnAnswer(siteName)
+                        .clickOnAnswer(site.name)
                         .clickNextButton(new HSGeneralCC())
                         .waitForPageLoad(siteIndication)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
@@ -319,11 +320,11 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(expectedDispo);
+                        .dispoShouldMatch(site.dispo);
                 break;
             case "AUT_LOWT_3017_Site":
                 incongruentSiteSelectionCloseCC
-                        .clickOnAnswer(siteName)
+                        .clickOnAnswer(site.name)
                         .clickNextButton(new HSGeneralCC())
                         .waitForPageLoad(siteIndication)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
@@ -338,7 +339,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(expectedDispo);
+                        .dispoShouldMatch(site.dispo);
         }
     }
 }

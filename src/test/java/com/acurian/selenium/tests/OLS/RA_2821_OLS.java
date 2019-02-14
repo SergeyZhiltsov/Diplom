@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA_2821.*;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -14,14 +15,11 @@ import org.testng.annotations.Test;
 
 public class RA_2821_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     public void ra_2821_OLS() {
+        Site site = Site.AUT_RA2821_Site;
         String phoneNumberRA = "AUTAMS1RA1";
-//		String protocol2 = "M13_545";  Protocol Disabled
-        String protocol1 = "M15_925";
         String studyName = "a rheumatoid arthritis (RA)";
-        String siteName = "AUT_RA2821_Site";
-        String zipCode = "19044";
         String Siteindicator = "Rheumatoid Arthritis";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -52,7 +50,7 @@ public class RA_2821_OLS extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, protocol1);
+        debugPageOLS.checkProtocolsEquals(doYouSufferFromArthritis.titleExpected, site.activeProtocols);
         debugPageOLS.back();
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = doYouSufferFromArthritis
                 .waitForPageLoad()
@@ -77,7 +75,7 @@ public class RA_2821_OLS extends BaseTest {
                 .setAge("16")
                 .clickNextButton(new HowYourRASymptomsStartedFirstTime())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals("Approximately how old were you when you were diagnosed with RA?Agent Note: If patient is unsure, sa...", protocol1); //protocol2
+        debugPageOLS.checkProtocolsEquals("Approximately how old were you when you were diagnosed with RA?Agent Note: If patient is unsure, sa...", site.activeProtocols); //protocol2
         debugPageOLS.back();
         ageWhenDiagnosedWithRA
                 .waitForPageLoad()
@@ -102,7 +100,7 @@ public class RA_2821_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new FollowingJointSymptoms())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals(areYouCurrentlyExperiencing.titleExpected, protocol1); //protocol2
+        debugPageOLS.checkProtocolsEquals(areYouCurrentlyExperiencing.titleExpected, site.activeProtocols); //protocol2
         debugPageOLS.back();
         areYouCurrentlyExperiencing
                 .waitForPageLoad()
@@ -139,7 +137,7 @@ public class RA_2821_OLS extends BaseTest {
                 .clickOnAnswer("Less than 1 month")
                 .clickNextButton(new MedicationsToTreatYourRA())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals(howLongTakingMethotrexate.titleExpected, protocol1); //protocol2
+        debugPageOLS.checkProtocolsEquals(howLongTakingMethotrexate.titleExpected, site.activeProtocols); //protocol2
         debugPageOLS.back();
         howLongTakingMethotrexate
                 .waitForPageLoad()
@@ -152,7 +150,7 @@ public class RA_2821_OLS extends BaseTest {
                 .clickOnAnswers("Leukeran (chlorambucil)")
                 .clickNextButton(new BiologicMedications())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals("Are you currently taking any of the following medications to treat your RA?Agent Note: Read medicat...", protocol1); //protocol2
+        debugPageOLS.checkProtocolsEquals("Are you currently taking any of the following medications to treat your RA?Agent Note: Read medicat...", site.activeProtocols); //protocol2
         debugPageOLS.back();
         medicationsToTreatYourRA
                 .waitForPageLoad()
@@ -167,7 +165,7 @@ public class RA_2821_OLS extends BaseTest {
                 .clickOnAnswer("Less than 1 month")
                 .clickNextButton(new BiologicMedications())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsEqualsForQNumber("QS521", protocol1); //protocol2
+        debugPageOLS.checkProtocolsEqualsForQNumber("QS521", site.activeProtocols); //protocol2
         debugPageOLS.back();
         howLongTakingPlaquenil
                 .waitForPageLoad()
@@ -181,7 +179,7 @@ public class RA_2821_OLS extends BaseTest {
                 .clickNextButton(new TakenXeljanz())
                 .waitForPageLoad()
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-549, (\"Biol...", protocol1); //protocol2
+        debugPageOLS.checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-549, (\"Biol...", site.activeProtocols); //protocol2
         debugPageOLS.back();
         LastReceivedTysabri lastReceivedTysabri = biologicMedications
                 .waitForPageLoad()
@@ -200,7 +198,7 @@ public class RA_2821_OLS extends BaseTest {
                 .clickOnAnswer("Yes, I am currently taking it")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", protocol1); //protocol2
+        debugPageOLS.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", site.activeProtocols); //protocol2
         debugPageOLS.back();
         takenXeljanz
                 .waitForPageLoad()
@@ -237,11 +235,11 @@ public class RA_2821_OLS extends BaseTest {
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad(Siteindicator)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())

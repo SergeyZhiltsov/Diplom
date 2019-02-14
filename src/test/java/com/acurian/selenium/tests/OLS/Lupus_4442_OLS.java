@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.AS_4319.AreYouWheelchairBoundOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
@@ -20,15 +21,14 @@ import java.time.Instant;
 
 public class Lupus_4442_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     @Description("4442 Lilly Lupus OLS")
     public void lupus_4442_OLS() {
+        Site site = Site.LPS_4442;
         String phoneNumberMIG = "AUTAMS1LPS";
         String protocol1 = "I4V_MC_JAHZ";
         String protocol2 = "I4V_MC_JAIA";
         String studyName = "a lupus";
-        String siteName = "LPS_4442";
-        String zipCode = "08204";
         String site_Indication = "Lupus (SLE)";
         String env = System.getProperty("acurian.env", "STG");
 
@@ -303,11 +303,11 @@ public class Lupus_4442_OLS extends BaseTest {
                 .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", eMailId, "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", eMailId, "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())

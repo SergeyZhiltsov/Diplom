@@ -6,6 +6,11 @@ import java.util.Arrays;
 Designed to contain all sites that being used in tests.
  */
 public enum Site {
+    //
+    AUT_RA2821_Site("AUT_RA2821_Site", "19044", "1R", false, true, "M15_925"),
+    //3017
+    AUT_LOWT_3017S_Site("AUT_LOWT_3017S_Site", "19901", "41C", false, true, "M16_100_S"),
+    AUT_LOWT_3017_Site("AUT_LOWT_3017_Site", "19901", "1R", false, true, "M16_100"),
     //3140
     AUT_CV_3140A_site("AUT_CV_3140A_site", "45205", "1R", false, false, "1002_043", "1002_043_A"),
     AUT_CV_3140_site("AUT_CV_3140_site", "19901", "41C", false, false, "1002_043", "1002_043_A"),
@@ -19,19 +24,27 @@ public enum Site {
     AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19044" , "1R", false, false, "M14_431", "M14_433", "M15_991", "M16_006"),
     //3973
     AUT_ROC_3973_site("AUT_ROC_3973_site", "19901", "1R", false, true, "WN39434"),
+    //4109
+    AUT_OA_4109_Site("AUT_OA_4109_Site", "60540", "1R", false, false, "R475_OA_1611", "R475_OA_1688"),
     //4241
     AUT_DIA_4241("AUT_DIA_4241", "19901", "41C", false, true, "EFC14822", "EFC14829", "EFC14893"),
     //4301
     AUT_GER_4301_Site("AUT_GER_4301_Site", "19901", "1R", false, true, "C3718_301", "C3718_302"),
     //4385
     AUT_END_4385("AUT_END_4385", "19901", "1R", false, true, "MVT_601_3101", "MVT_601_3102"),
+    //4442
+    LPS_4442("LPS_4442", "08204", "1R", false, false, "I4V_MC_JAHZ", "I4V_MC_JAHZ"),
     //4450
     AUT_CV1_4450S_Syn("AUT_CV1_4450S_Syn", "19901", "41C", true, false, "EX9536_4388"),
     //4471
     AUT_MCC("AUT_MCC", "19341", "1R", false, true, "MK_7264_027", "MK_7264_030"),
+    //4533
+    AUT_SHIRE_4533_site("AUT_SHIRE_4533_site", "19901", "1R", false, false, "SHP647_305", "SHP647_306"),
     //4556
     AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471006", "B7471007", "B7471008"),
     AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471006", "B7471007", "B7471008"),
+    //4605
+    AUT_OBS_4605_Site("AUT_OBS_4605_Site", "19901", "1R", false, false, "RM_493_013"),
     //4631
     AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", false, false,  "KPL_716_C001"),
     //4656
@@ -52,6 +65,9 @@ public enum Site {
     AUT_DERM_4815S_Site("AUT_DERM_4815S_Site", "45205", "41C", false, false, "B7451029"),
     //4819
     AUT_IBS4819_site("AUT_IBS4819_site", "19901", "1R", false, false, "URO_901_2001"),
+    //4831
+    AUT_OA_4831_Syn("AUT_OA_4831_Syn", "19901", "41C", false, false, "R475_PN_1523_B"),
+    AUT_OA_4831_site("AUT_OA_4831_site", "19901", "1R", false, false, "R475_PN_1523_B"),
     //4849
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", false, false, "ANB020_005"),
     //4867
@@ -59,6 +75,10 @@ public enum Site {
     //5034
     AUT_CV_5034A_site("AUT_CV_5034A_site", "45205", "1R", false, false, "K_877_302_A", "K_877_302_S"),
     AUT_CV_5034S_site("AUT_CV_5034S_site", "19901", "41C", false, false, "K_877_302_A", "K_877_302_S"),
+    //5044
+    AUT_OA_5044_S("AUT_OA_5044_S", "19901", "41C", false, false, "R475_OA_1758"),
+    //5055
+    AUT_OA_5055_S("AUT_OA_5055_S", "19901", "41C", false, false, "R475_PN_1602"),
     //5062
     AUT_NASH5062_site("AUT_NASH5062_site", "19901", "41C", false, false, "3152_301_002"),
     //Others

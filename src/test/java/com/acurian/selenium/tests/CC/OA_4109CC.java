@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
@@ -25,18 +26,15 @@ import java.util.List;
 
 public class OA_4109CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    
-    
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     public void OA_4109_cc(final String username, final String password) {
+        Site site = Site.AUT_OA_4109_Site;
         String phoneNumberOA = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("R475_OA_1611", "R475_OA_1688");
         String protocol1 = "R475_OA_1611";
         String protocol2 = "R475_OA_1688";
         String studyName = "osteoarthritis";
         String studyName1 = "an osteoarthritis study";
-        String siteName = "AUT_OA_4109_Site";
-        String zipCode = "60540";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -240,12 +238,12 @@ public class OA_4109CC extends BaseTest {
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 //----------SITE Selection Page--------------------
                 .waitForPageLoad(studyName1)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new Regular_WarmTransfer1())
