@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
@@ -18,14 +19,14 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {"AUT_LOWT_3017S_Site", "41C", "19901"},
-                {"AUT_LOWT_3017_Site", "1R", "19901"}
+                {Site.AUT_LOWT_3017S_Site},
+                {Site.AUT_LOWT_3017_Site}
         };
     }
 
     @Test(dataProvider = "sites")
     @Description("LowT_3017_FromCv_Ols")
-    public void lowt3017FromCvOls(final String siteName, final String expectedDispo, final String zipCode) {
+    public void lowt3017FromCvOls(Site site) {
         String phoneNumber = "AUTAMS1CV1";
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
@@ -38,8 +39,6 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         String dqedStudyName = "a heart health study";
         String studyName = "a men’s health study";
         String site_Indication = "low testosterone or hypogonadism";
-//        String siteName = "AUT_LOWT_3017_Site";
-//        String zipCode = "19901";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         String env = System.getProperty("acurian.env", "STG");
@@ -59,7 +58,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         //---------------ZIP-CODE Question-------------------
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         //---------------GENDER Question-------------------
@@ -265,14 +264,14 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         //----------PII (IdentificationPageOLS) Page--------------------
         IncongruentSiteSelectionClose_OLS incongruentSiteSelectionClose_ols = identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new IncongruentSiteSelectionClose_OLS());
 
         //----------SiteSelection Page--------------------
         incongruentSiteSelectionClose_ols
                 .waitForPageLoad(studyName, dqedStudyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())

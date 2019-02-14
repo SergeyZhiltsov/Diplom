@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.CC;
 
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.AS_4319.PermanentlyWheelchairBoundCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
@@ -17,13 +18,12 @@ public class Lupus_4442_CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     public void lupus_4442_cc(final String username, final String password) {
+        Site site = Site.LPS_4442;
         String phoneNumberOA = "AUTAMS1LPS";
         String protocol1 = "I4V_MC_JAHZ";
         String protocol2 = "I4V_MC_JAIA";
         String studyName = "migraine";
-        String siteName = "LPS_4442";
         String site_indication = "Ankylosing Spondylitis";
-        String zipCode = "08204";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -346,11 +346,11 @@ public class Lupus_4442_CC extends BaseTest {
 // 					.clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a lupus study")
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
                 .waitForPageLoad("Lupus (SLE)")
                 .clickNextButton(new DoctorInformationCollectionPageCC())

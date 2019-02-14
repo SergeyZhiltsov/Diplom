@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
@@ -29,17 +30,16 @@ public class OA_4831_CC_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {"AUT_OA_4831_Syn", "41C", "19901"},
-                {"AUT_OA_4831_site", "1R", "19901"}
+                {Site.AUT_OA_4831_Syn},
+                {Site.AUT_OA_4831_site}
         };
     }
 
     @Test(dataProvider = "sites")
-    public void OA_4831_CC_NonSynexus_Script(final String siteName, final String expectedDispo, final String zipCode) {
+    public void OA_4831_CC_NonSynexus_Script(Site site) {
         String phoneNumber = "AUTAMS1OA1";
         String studyName = "osteoarthritis";
         String studyName1 = "an osteoarthritis study";
-        String protocol1 = "R475_PN_1523_B";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -85,7 +85,7 @@ public class OA_4831_CC_A_S extends BaseTest {
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
 
@@ -114,7 +114,7 @@ public class OA_4831_CC_A_S extends BaseTest {
         transitionStatementCC
                 .waitForPageLoad(studyName);
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004964-QS4504-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004964-QS4504-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         AnyTypeOfMedicationForYourArthritisCC anyTypeOfMedicationForYourArthritisCC = whereYouHaveArthritis
                 .waitForPageLoad()
@@ -131,7 +131,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickNextButton(new NSAIDMedicationsForArthritisPainCC());
         nSAIDMedicationsForArthritisPainCC
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0007717-QS4520-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0007717-QS4520-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         anyTypeOfMedicationForYourArthritisCC
                 .waitForPageLoad()
@@ -175,7 +175,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         transitionStatementCC
                 .waitForPageLoad(studyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005279-QS4511-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0005279-QS4511-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         AreYouCurrentlyOnPageCC areYouCurrentlyOnPageCC = hasYourDoctorEverPrescribedOpioidNarcotic_CC
                 .waitForPageLoad()
@@ -190,7 +190,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
                 .clickNextButton(new TransitionStatementCC())
                 .waitForPageLoad(studyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005281-QS4513-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0005281-QS4513-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         areYouCurrentlyOnPageCC
                 .waitForPageLoad();
@@ -274,7 +274,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         whenDiagnosedWithCancerCC.back();
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -289,14 +289,14 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -359,16 +359,16 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickNextButton(new IdentificationPageCC());
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
         //----------SITE Selection Page--------------------
         siteSelectionPageCC
                 .waitForPageLoad(studyName1)
                 .getPID();
-        switch (zipCode) {
-            case "45205":
+        switch (site.name) {
+            case "AUT_OA_4831_Syn":
                 siteSelectionPageCC
-                        .clickOnAnswer(siteName)
+                        .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
                         .clickNextButton(new SynexusHealthyMindsPageCC())
@@ -376,11 +376,11 @@ public class OA_4831_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(expectedDispo);
+                        .dispoShouldMatch(site.dispo);
                 break;
-            case "19901":
+            case "AUT_OA_4831_site":
                 siteSelectionPageCC
-                        .clickOnAnswer(siteName)
+                        .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
                         //*******************Regular WARM TRANSFER (non-synexus)*******************
@@ -393,7 +393,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(expectedDispo);
+                        .dispoShouldMatch(site.dispo);
         }
     }
 }

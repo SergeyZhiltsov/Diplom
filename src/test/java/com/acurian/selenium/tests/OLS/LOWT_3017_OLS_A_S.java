@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
@@ -21,14 +22,14 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {"AUT_LOWT_3017S", "41C", "19901"},
-                {"AUT_LOWT_3017_Site", "1R", "19901"}
+                {Site.AUT_LOWT_3017S_Site},
+                {Site.AUT_LOWT_3017_Site}
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(dataProvider = "sites")
     @Description("LOWT_3017_OLS_A_S")
-    public void lowt_3017_OLS(String siteName, String expectedDispo, String zipCode) {
+    public void lowt_3017_OLS(Site site) {
         String phoneNumber = "AUTAMSLOWT";
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
@@ -38,8 +39,6 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         String kowaProtocolS = "K_877_302_S";
         String studyName = "a men’s health";
         String site_Indication = "low testosterone or hypogonadism";
-//        String siteName = "AUT_LOWT_3017_Site";
-//        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -77,7 +76,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         //---------------GENDER Question-------------------
@@ -357,13 +356,13 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
 
                 //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
                 .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
@@ -397,6 +396,6 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(expectedDispo);
+                .dispoShouldMatch(site.dispo);
     }
 }

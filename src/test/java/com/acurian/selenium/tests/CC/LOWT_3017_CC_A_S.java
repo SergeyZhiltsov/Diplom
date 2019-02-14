@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
@@ -43,14 +44,14 @@ public class LOWT_3017_CC_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {"AUT_LOWT_3017S_Site", "41C", "19901"},
-                {"AUT_LOWT_3017_Site", "1R", "19901"}
+                {Site.AUT_LOWT_3017S_Site},
+                {Site.AUT_LOWT_3017_Site}
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(dataProvider = "sites")
     @Description("LOWT_3017_CC_A_S")
-    public void lowTcc(String siteName, String expectedDispo, String zipCode) {
+    public void lowTcc(Site site) {
         String phoneNumber = "AUTAMSLOWT";
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");
         String protocol1 = "M16_100";
@@ -60,9 +61,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         String kowaProtocolA = "K_877_302_A";
         String kowaProtocolS = "K_877_302_S";
         String studyName = "a high cholesterol and heart disease";
-//        String siteName = "AUT_LOWT_3017_Site";
         String siteIndication = "low testosterone or hypogonadism";
-//        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -109,7 +108,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
-                .typeZipCode("19044")
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = genderPageCC
@@ -403,14 +402,14 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .setAll("5", "6", "166")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a men’s health study")
                 .getPID();
-        switch (siteName) {
+        switch (site.name) {
             case "AUT_LOWT_3017S_Site":
                 selectionPageCC
-                        .clickOnAnswer(siteName)
+                        .clickOnAnswer(site.name)
                         .clickNextButton(new HSGeneralCC())
                         .waitForPageLoad(siteIndication)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
@@ -423,11 +422,11 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(expectedDispo);
+                        .dispoShouldMatch(site.dispo);
                 break;
             case "AUT_LOWT_3017_Site":
                 selectionPageCC
-                        .clickOnAnswer(siteName)
+                        .clickOnAnswer(site.name)
                         .clickNextButton(new HSGeneralCC())
                         .waitForPageLoad(siteIndication)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
@@ -442,7 +441,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(expectedDispo);
+                        .dispoShouldMatch(site.dispo);
         }
     }
 }

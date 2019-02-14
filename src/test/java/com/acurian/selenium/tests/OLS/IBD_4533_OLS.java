@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
@@ -34,6 +35,7 @@ public class IBD_4533_OLS extends BaseTest {
     @TestCaseId("00039")
     @Description("IBD_4533_OLS")
     public void IBD_4533_Crohns_OLS_Screener() {
+        Site site = Site.AUT_SHIRE_4533_site;
         String phoneNumber = "AUTAMS1CRN";
         String protocol1 = "M14_431";
         String protocol2 = "M14_433";
@@ -43,8 +45,6 @@ public class IBD_4533_OLS extends BaseTest {
         String protocol6 = "SHP647_306";
         //String studyName = "a Crohn's or colitis"; // For IBD-UC modules
         String studyName = "a Crohn's";
-        String siteName = "AUT_SHIRE_4533_site";
-        String zipCode = "19901";   //19901 for IBD-UC modules
         String indication = "a Crohn's Disease";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -81,7 +81,7 @@ public class IBD_4533_OLS extends BaseTest {
         //---------------PII Page Question-------------------
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", eMailId, "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", eMailId, "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
 
@@ -690,7 +690,7 @@ public class IBD_4533_OLS extends BaseTest {
         siteSelectionPageOLS.threadSleep(5000);
         siteSelectionPageOLS.waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
                 .waitForPageLoad()
                 .getActivationCode()

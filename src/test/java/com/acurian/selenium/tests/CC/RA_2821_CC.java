@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.RA_2821.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
@@ -18,16 +19,12 @@ import java.util.List;
 
 public class RA_2821_CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     public void ra_2821_CC(final String username, final String password) {
+        Site site = Site.AUT_RA2821_Site;
         String phoneNumberOA = "AUTAMS1RA1";
-        List<String> protocols = Arrays.asList("M15_925", "M13_545");
-        String protocol1 = "M15_925";
-//        String protocol2 = "M13_545"; //This protocol is disabled
         String studyName = "Rheumatoid Arthritis";
         String studyName1 = "a rheumatoid arthritis (RA) study";
-        String siteName = "AUT_RA2821_Site";
-        String zipCode = "19044";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -88,7 +85,7 @@ public class RA_2821_CC extends BaseTest {
 
 
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsEquals(doYouSufferFromArthritisCC.titleExpected, protocol1);
+        debugPageCC.checkProtocolsEquals(doYouSufferFromArthritisCC.titleExpected, site.activeProtocols);
         debugPageCC.back();
 
         WhatKindOfArthritisCC whatKindOfArthritisCC = doYouSufferFromArthritisCC
@@ -107,7 +104,7 @@ public class RA_2821_CC extends BaseTest {
                 .clickOnAnswer("Within the past 2 months")
                 .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005177-QS503-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0005177-QS503-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenYouDiagnosedWithRaPageCC
                 .waitForPageLoad()
@@ -120,7 +117,7 @@ public class RA_2821_CC extends BaseTest {
                 .typeAge("16")
                 .clickNextButton(new FollowingDescribesYourRASymptomsStartedCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsEquals("Approximately how old were you when you were diagnosed with RA?Agent Note: If patient is unsure, say...", protocol1);
+        debugPageCC.checkProtocolsEquals("Approximately how old were you when you were diagnosed with RA?Agent Note: If patient is unsure, say...", site.activeProtocols);
         debugPageCC.back();
         FollowingDescribesYourRASymptomsStartedCC followingDescribesYourRASymptomsStartedCC = howOldWereUWhenDiagnosedWithRACC
                 .waitForPageLoad()
@@ -145,7 +142,7 @@ public class RA_2821_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new CurrentlyExperiencingJointSymptomsYourRACC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsEquals(tenderPainfulOrSwollenJointsCC.titleExpected, protocol1);
+        debugPageCC.checkProtocolsEquals(tenderPainfulOrSwollenJointsCC.titleExpected, site.activeProtocols);
         debugPageCC.back();
         CurrentlyExperiencingJointSymptomsYourRACC currentlyExperiencingJointSymptomsYourRACC = tenderPainfulOrSwollenJointsCC
                 .waitForPageLoad()
@@ -182,7 +179,7 @@ public class RA_2821_CC extends BaseTest {
                 .clickOnAnswer("Less than 1 month")
                 .clickNextButton(new FollowingMedicationsToTreatYourRACC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsEquals(howLongTakingMethotrexateCC.titleExpected, protocol1);
+        debugPageCC.checkProtocolsEquals(howLongTakingMethotrexateCC.titleExpected, site.activeProtocols);
         debugPageCC.back();
         FollowingMedicationsToTreatYourRACC followingMedicationsToTreatYourRACC = howLongTakingMethotrexateCC
                 .waitForPageLoad()
@@ -195,7 +192,7 @@ public class RA_2821_CC extends BaseTest {
                 .clickOnAnswers("Leukeran (chlorambucil)")
                 .clickNextButton(new BiologicMedicationsCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsEquals("Are you currently taking any of the following medications to treat your RA?Agent Note: Read medicati...", protocol1);
+        debugPageCC.checkProtocolsEquals("Are you currently taking any of the following medications to treat your RA?Agent Note: Read medicati...", site.activeProtocols);
         debugPageCC.back();
         HowLongTakingPlaquenilCC howLongTakingPlaquenilCC = followingMedicationsToTreatYourRACC
                 .waitForPageLoad()
@@ -209,7 +206,7 @@ public class RA_2821_CC extends BaseTest {
                 .clickOnAnswer("Less than 1 month")
                 .clickNextButton(new BiologicMedicationsCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsEqualsForQNumber("Q0005220-QS521-STUDYQUES", protocol1);
+        debugPageCC.checkProtocolsEqualsForQNumber("Q0005220-QS521-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         BiologicMedicationsCC biologicMedicationsCC = howLongTakingPlaquenilCC
                 .waitForPageLoad()
@@ -222,7 +219,7 @@ public class RA_2821_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTakenXeljanzCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-5...", protocol1);
+        debugPageCC.checkProtocolsEquals("Ghost Question - 2821 RA bDMARD protocol logic - (\"bDMARD Exposure\") for M14-465 and M13-5...", site.activeProtocols);
         debugPageCC.back();
         WhenLastReceivedTysabriCC whenLastReceivedTysabriCC = biologicMedicationsCC
                 .waitForPageLoad()
@@ -240,7 +237,7 @@ public class RA_2821_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I am currently taking it")
                 .clickNextButton(new TransitionStatementCC());
-        debugPageCC.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", protocol1);
+        debugPageCC.checkProtocolsEquals("Xeljanz is a pill that is taken for rheumatoid arthritis (RA). Xeljanz is also called tofacitinib.Ha...", site.activeProtocols);
         debugPageCC.back();
         TransitionStatementCC transitionStatementCC = everTakenXeljanzCC
                 .waitForPageLoad()
@@ -278,11 +275,11 @@ public class RA_2821_CC extends BaseTest {
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName1)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
                 .waitForPageLoad(studyName)
                 .clickNextButton(new DoctorInformationCollectionPageCC())
