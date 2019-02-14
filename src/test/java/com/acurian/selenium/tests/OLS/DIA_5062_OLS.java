@@ -32,7 +32,7 @@ public class DIA_5062_OLS extends BaseTest {
     public void dia5062olsTest() {
         String phoneNumber = "AUTAMSNASH";
         Site site = Site.AUT_NASH5062_site; //Synexus Site
-        String studyName = "a fatty liver study for diabetics";//"a NASH";
+        String studyName = "a fatty liver study for diabetics!";//"a NASH";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -702,7 +702,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad1(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
