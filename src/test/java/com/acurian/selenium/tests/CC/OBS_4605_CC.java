@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Obesity_4605.*;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
@@ -16,14 +17,12 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class OBS_4605_CC extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     @Description("OBS_4605_CC")
     public void obs4605cc() {
+        Site site = Site.AUT_OBS_4605_Site;
         final String phoneNumber = "AUTAMS1OBS";
-        final String protocol = "RM_493_013";
         final String studyName = "a genetic obesity study";
-        final String siteName = "AUT_OBS_4605_Site";
-        final String zipCode = "19901";
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
 
@@ -64,7 +63,7 @@ public class OBS_4605_CC extends BaseTest {
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol)
+                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
                 .back();
 
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
@@ -73,7 +72,7 @@ public class OBS_4605_CC extends BaseTest {
 
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         ApproximateHeightPageCC approximateHeightPageCC = genderPageCC
@@ -89,7 +88,7 @@ public class OBS_4605_CC extends BaseTest {
         ExperienceExcessiveHungerOrIncreasedAppetiteCC experienceExcessiveHunGerOrIncreasedAppetiteCC = nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004980-QS6802-STUDYQUES", protocol)
+                .checkProtocolsContainsForQNumber("Q0004980-QS6802-STUDYQUES", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setLbs("300")
@@ -130,7 +129,7 @@ public class OBS_4605_CC extends BaseTest {
         weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018840-QS6806-STUDYQUES", protocol)
+                .checkProtocolsContainsForQNumber("Q0018840-QS6806-STUDYQUES", site.activeProtocols)
                 .back(diagnosedWithPraderWilliSyndromeCC)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -174,7 +173,7 @@ public class OBS_4605_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())

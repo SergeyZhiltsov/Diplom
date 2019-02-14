@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
@@ -20,16 +21,15 @@ public class OA_4831_OLS_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {"AUT_OA_4831_Syn", "41C", "19901"},
-                {"AUT_OA_4831_site", "1R", "19901"}
+                {Site.AUT_OA_4831_Syn},
+                {Site.AUT_OA_4831_site}
         };
     }
 
     @Test(dataProvider = "sites")
-    public void OA_4831_OLS_NonSynexus_Script(final String siteName,final String expectedDispo, final String zipCode) {
+    public void OA_4831_OLS_NonSynexus_Script(Site site) {
         String phoneNumberDY = "AUTAMS1OA1";
         String studyName = "an osteoarthritis";
-        String protocol1 = "R475_PN_1523_B";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -46,7 +46,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         ageUnqualifiedClose_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", protocol1)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
@@ -56,7 +56,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         DoYouSufferFromArthritis doYouSufferFromArthritis = genderPageOLS
@@ -72,7 +72,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4502", protocol1)
+                .checkProtocolsContainsForQNumber("QS4502", site.activeProtocols)
                 .back();
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = doYouSufferFromArthritis
@@ -88,7 +88,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4503", protocol1)
+                .checkProtocolsContainsForQNumber("QS4503", site.activeProtocols)
                 .back();
 
         whatKindOfArthritisPageOLS
@@ -98,7 +98,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4503", protocol1)
+                .checkProtocolsContainsForQNumber("QS4503", site.activeProtocols)
                 .back();
 
         WhereYouHaveArthritisOLS whereYouHaveArthritisOLS = whatKindOfArthritisPageOLS
@@ -113,7 +113,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4504", protocol1)
+                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
                 .back();
 
         whereYouHaveArthritisOLS
@@ -123,7 +123,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4504", protocol1)
+                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
                 .back();
 
         whereYouHaveArthritisOLS
@@ -133,7 +133,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4504", protocol1)
+                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
                 .back();
 
         whereYouHaveArthritisOLS
@@ -143,7 +143,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4504", protocol1)
+                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
                 .back();
 
         AnyMedicationForYourArthritisOLS anyMedicationForYourArthritisOLS = whereYouHaveArthritisOLS
@@ -161,7 +161,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         nSAIDMedicationOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4520", protocol1)
+                .checkProtocolsContainsForQNumber("QS4520", site.activeProtocols)
                 .back();
 
         anyMedicationForYourArthritisOLS
@@ -170,7 +170,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(nSAIDMedicationOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4520", protocol1)
+                .checkProtocolsContainsForQNumber("QS4520", site.activeProtocols)
                 .back();
 
         anyMedicationForYourArthritisOLS
@@ -184,7 +184,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4505", protocol1)
+                .checkProtocolsContainsForQNumber("QS4505", site.activeProtocols)
                 .back();
 
         CurrentlyTakinnFollowingNSAIDMedicationOLS currentlyTakinnFollowingNSAIDMedicationOLS = nSAIDMedicationOLS
@@ -229,7 +229,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4511", protocol1)
+                .checkProtocolsContainsForQNumber("QS4511", site.activeProtocols)
                 .back();
 
         AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = hasYourDoctorEverPrescribedOpioidNarcotic_OLS
@@ -243,7 +243,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4513", protocol1)
+                .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
                 .back();
 
         areYouCurrentlyOnPageOLS
@@ -252,7 +252,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4513", protocol1)
+                .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
                 .back();
 
         areYouCurrentlyOnPageOLS
@@ -261,7 +261,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4513", protocol1)
+                .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
                 .back();
 
         HaveYouEverHadKneeReplacementSurgeryOLS haveYouEverHadKneeReplacementSurgery_OLS = areYouCurrentlyOnPageOLS
@@ -307,7 +307,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4514", protocol1)
+                .checkProtocolsContainsForQNumber("QS4514", site.activeProtocols)
                 .back();
 
         followingDevicesInYourBodyOLS
@@ -317,7 +317,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4514", protocol1)
+                .checkProtocolsContainsForQNumber("QS4514", site.activeProtocols)
                 .back();
 
         followingDevicesInYourBodyOLS
@@ -327,7 +327,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4514", protocol1)
+                .checkProtocolsContainsForQNumber("QS4514", site.activeProtocols)
                 .back();
 
         DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome = followingDevicesInYourBodyOLS
@@ -350,7 +350,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         areYouCurrentlyReceivingWorkersPage_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4516", protocol1)
+                .checkProtocolsContainsForQNumber("QS4516", site.activeProtocols)
                 .back(withinThePast6MonthsHaveYouHadNumbness_ols)
                 .waitForPageLoad()
                 .back();
@@ -386,11 +386,11 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
@@ -402,6 +402,6 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .threadSleep(2000);
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(expectedDispo);
+                .dispoShouldMatch(site.dispo);
     }
 }

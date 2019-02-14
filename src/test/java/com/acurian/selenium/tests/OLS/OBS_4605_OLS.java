@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Obesity_4605.*;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -19,14 +20,12 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class OBS_4605_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     @Description("OBS_4605_OLS")
     public void obs4605Ols() {
+        Site site = Site.AUT_OBS_4605_Site;
         final String phoneNumber = "AUTAMS1OBS";
-        final String protocol = "RM_493_013";
         final String studyName = "a genetic obesity";
-        final String siteName = "AUT_OBS_4605_Site";
-        final String zipCode = "19901";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");
 
@@ -43,7 +42,7 @@ public class OBS_4605_OLS extends BaseTest {
         ageUnqualifiedClose_ols
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", protocol)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
@@ -52,7 +51,7 @@ public class OBS_4605_OLS extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -68,7 +67,7 @@ public class OBS_4605_OLS extends BaseTest {
         ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetitehaveOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6802", protocol)
+                .checkProtocolsContainsForQNumber("QS6802", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setLbs("300")
@@ -109,7 +108,7 @@ public class OBS_4605_OLS extends BaseTest {
         weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6806", protocol)
+                .checkProtocolsContainsForQNumber("QS6806", site.activeProtocols)
                 .back(diagnosedWithPraderWilliSyndromeOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -148,7 +147,7 @@ public class OBS_4605_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
@@ -156,6 +155,5 @@ public class OBS_4605_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
     }
 }

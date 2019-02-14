@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
@@ -24,6 +25,7 @@ public class IBD_4533_CC extends BaseTest {
     @TestCaseId("IBD_Crohn's")
     @Description("IBD 45335 for CC")
     public void IBD_4533_CCTest(final String username, final String password) {
+        Site site = Site.AUT_SHIRE_4533_site;
         String phoneNumber = "AUTAMS1CRN";
         String protocol1 = "M14_431";
         String protocol2 = "M14_433";
@@ -34,9 +36,6 @@ public class IBD_4533_CC extends BaseTest {
         List<String> protocols = Arrays.asList(protocol1, protocol2, protocol3, protocol4);
         String studyName = "Crohn's";
         String studyIndication = "Crohn's or colitis";
-        String siteName = "AUT_SHIRE_4533_site";
-        String debugSiteName = "";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -90,7 +89,7 @@ public class IBD_4533_CC extends BaseTest {
 
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoad1()
-                .setAllFields("Acurian", "Trial", "", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
@@ -513,7 +512,7 @@ public class IBD_4533_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a Crohn's study")
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedFlareMonitoringAppClose_CC())
                 .threadSleep(5000);
         //.waitForPageLoad()
