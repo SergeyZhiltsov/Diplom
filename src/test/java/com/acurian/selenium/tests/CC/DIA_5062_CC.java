@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
+import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -321,7 +322,9 @@ public class DIA_5062_CC extends BaseTest {
                         "Kidney disease",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "High cholesterol, triglycerides, or lipids",
+                        "High blood pressure or hypertension")
                 .clickNextButton(new OtherThanSkinCancerPageCC());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = otherThanSkinCancerPageCC
@@ -473,6 +476,7 @@ public class DIA_5062_CC extends BaseTest {
                 .clickOnAnswers("Angioplasty")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
+        DoYouTakeAnyMedicationsControlHypertension_CC doYouTakeAnyMedicationsControlHypertension_cc = new DoYouTakeAnyMedicationsControlHypertension_CC();
         KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
         ArrayList<String> heartProcedurePeriods = new ArrayList<>();
         heartProcedurePeriods.add("Less than 30 days ago");
@@ -481,7 +485,7 @@ public class DIA_5062_CC extends BaseTest {
             mostRecentHeartProcedurePageСС
                     .waitForPageLoad()
                     .clickOnAnswer(period)
-                    .clickNextButton(kidneyProblemsPage)
+                    .clickNextButton(doYouTakeAnyMedicationsControlHypertension_cc)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0015137-QS49-STUDYQUES", site.activeProtocols)
@@ -491,6 +495,9 @@ public class DIA_5062_CC extends BaseTest {
         WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
+                .clickNextButton(doYouTakeAnyMedicationsControlHypertension_cc)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(kidneyProblemsPage)
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
@@ -600,6 +607,7 @@ public class DIA_5062_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo)
                 .queueSiteForFULCheck(site.name);
     }
 }

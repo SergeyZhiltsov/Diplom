@@ -4,12 +4,14 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.LOWT_3017.TransitionalStatementLowtPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.cv_study.TransitionStatementCVbeginPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
@@ -27,7 +29,7 @@ public class DIA_5062_OLS extends BaseTest {
 
     @Test(enabled = true)
     @Description("NASH study 5062 OLS")
-    public void dia4708olsTest() {
+    public void dia5062olsTest() {
         String phoneNumber = "AUTAMSNASH";
         Site site = Site.AUT_NASH5062_site; //Synexus Site
         String studyName = "a fatty liver study for diabetics";//"a NASH";
@@ -198,7 +200,7 @@ public class DIA_5062_OLS extends BaseTest {
         ApartFromMetforminPageOLS apartFromMetforminPageOLS = new ApartFromMetforminPageOLS();
         metforminMedicationsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Metformin")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(apartFromMetforminPageOLS);
 
         CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = new CurrentlyTakeInsulinPageOLS();
@@ -324,7 +326,9 @@ public class DIA_5062_OLS extends BaseTest {
                         "Kidney disease",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "High cholesterol, triglycerides, or lipids",
+                        "High blood pressure or hypertension")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
@@ -480,11 +484,11 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswers("Angioplasty")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS());
 
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = mostRecentHeartProcedurePageOLS
+        DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = new DoYouTakeAnyMedicationsToControlHighBloodPressureOLS();
+        mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
@@ -492,7 +496,7 @@ public class DIA_5062_OLS extends BaseTest {
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS)
+                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
@@ -501,7 +505,12 @@ public class DIA_5062_OLS extends BaseTest {
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 12 months ago")
-                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
+                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS);
+
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = doYouTakeAnyMedicationsToControlHighBloodPressureOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
 
         WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -566,6 +575,9 @@ public class DIA_5062_OLS extends BaseTest {
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .back();
+        doYouTakeAnyMedicationsToControlHighBloodPressureOLS
+                .waitForPageLoad()
+                .back();
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .back();
@@ -584,7 +596,12 @@ public class DIA_5062_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids")
+                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS)
+                .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+
 
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -667,11 +684,11 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAll("4", "9", "138")
                 .clickNextButton(new EthnicBackgroundPageOLS());
-        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = ethnicBackgroundPageOLS
+        TransitionStatementCVbeginPageOLS transitionStatementCVbeginPageOLS = ethnicBackgroundPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
-        areYouInterestedInPneumoniaVaccineStudyOLS
+                .clickNextButton(new TransitionStatementCVbeginPageOLS());
+        transitionStatementCVbeginPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS67", site.activeProtocols)
