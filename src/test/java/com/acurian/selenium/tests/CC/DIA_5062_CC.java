@@ -282,6 +282,7 @@ public class DIA_5062_CC extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(condition)
                     .clickNextButton(followingToLoseWeightPageCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0016651-QS4624-STUDYQUES", site.activeProtocols)
                     .back();
