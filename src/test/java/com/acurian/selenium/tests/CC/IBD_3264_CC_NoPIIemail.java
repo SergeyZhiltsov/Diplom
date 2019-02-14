@@ -449,6 +449,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo);
     }
 }
