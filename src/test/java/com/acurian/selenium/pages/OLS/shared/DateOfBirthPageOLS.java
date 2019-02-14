@@ -290,7 +290,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String title4656Expected = "Let's get started to see if you qualify for a psoriasis study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment up to $1,000, which varies by study\n" +
+            "Payment up to $350, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 

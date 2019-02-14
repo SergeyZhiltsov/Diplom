@@ -42,10 +42,10 @@ public class VACC_4556_CC extends BaseTest {
     @Description("VACC_4556_CC")
     public void vacc4556cc(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
-        final String protocol1 = "B7471006";
+//        final String protocol1 = "B7471006";
         final String protocol2 = "B7471007";
-        final String protocol3 = "B7471008";
-        final String[] protocols = {protocol1, protocol2, protocol3};
+//        final String protocol3 = "B7471008";
+        final String[] protocols = {protocol2};
         final String studyName = "a pneumonia vaccine study";
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
@@ -97,7 +97,7 @@ public class VACC_4556_CC extends BaseTest {
         GenderPageCC genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol3)
+//                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
                 .back(dateOfBirthPageCC)
                 .waitForPageLoad()
                 .setYear("1969")//HS 1953 , 1969
