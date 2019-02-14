@@ -22,7 +22,7 @@ public class VACC_4556_OLS extends BaseTest {
 
     @Test(dataProviderClass = VACC_4556_CC.class, dataProvider = "sites")
     @Description("VACC_4556_OLS")
-    public void vacc4556Ols(Site site) {
+    public void vacc4556OlsTest(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
         final String protocol1 = "B7471006";
         final String protocol2 = "B7471007";
@@ -37,7 +37,6 @@ public class VACC_4556_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleVaccineExpected);
         AgeUnqualifiedClose_OLS ageUnqualifiedClose_ols = dateOfBirthPageOLS
                 .setDate("05052005")
@@ -55,7 +54,7 @@ public class VACC_4556_OLS extends BaseTest {
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", protocol1, protocol3)
+//                .checkProtocolsContainsForQNumber("QSI8004", protocol1, protocol3)
                 .back(dateOfBirthPageOLS)
                 .waitForPageLoad()
                 .setDate("05051969")
