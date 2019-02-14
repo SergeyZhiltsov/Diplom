@@ -217,17 +217,17 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .checkProtocolsEquals(lastTimeYouTookPageCC.titleExpected, protocol1);
         HashMap<String, List<String>> options = new HashMap<>();
         options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(AKC, protocol2));
-//        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(AKC, protocol2));
-//        options.put("Glucovance (metformin and glyburide)", Arrays.asList(protocol2));
-//        options.put("Invokamet (metformin and canagliflozin)", Arrays.asList(protocol2));
-//        options.put("Janumet (metformin and sitagliptin)", Arrays.asList(protocol2, protocol3));
-//        options.put("Jentadueto (metformin and linagliptin)", Arrays.asList(protocol2, protocol3));
-//        options.put("Kazano (metformin and alogliptin)", Arrays.asList(protocol2, protocol3));
-//        options.put("Kombiglyze (metformin and saxagliptin)", Arrays.asList(protocol2, protocol3));
-//        options.put("Metformin and glipizide", Arrays.asList(protocol2));
-//        options.put("PrandiMet (metformin and repaglinide)", Arrays.asList(protocol2));
-//        options.put("Synjardy (metformin and empagliflozin)", Arrays.asList(protocol2));
-//        options.put("Xigduo (metformin and dapagliflozin)", Arrays.asList(protocol2));
+        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(AKC, protocol2));
+        options.put("Glucovance (metformin and glyburide)", Arrays.asList(protocol2));
+        options.put("Invokamet (metformin and canagliflozin)", Arrays.asList(protocol2));
+        options.put("Janumet (metformin and sitagliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Jentadueto (metformin and linagliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Kazano (metformin and alogliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Kombiglyze (metformin and saxagliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Metformin and glipizide", Arrays.asList(protocol2));
+        options.put("PrandiMet (metformin and repaglinide)", Arrays.asList(protocol2));
+        options.put("Synjardy (metformin and empagliflozin)", Arrays.asList(protocol2));
+        options.put("Xigduo (metformin and dapagliflozin)", Arrays.asList(protocol2));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
             metforminMedicationsPageCC
@@ -257,22 +257,22 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         CurrentlyTakeInsulinPageCC currentlyTakeInsulinPageCC = new CurrentlyTakeInsulinPageCC();
         options.clear();
         options.put("Actos (pioglitazone)", Arrays.asList(AKC,protocol2));
-//        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC,protocol2));
-//        options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2));
-//        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC,protocol2));
-//        options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2));
-//        options.put("Glyset (miglitol)", Arrays.asList(protocol2));
-//        options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2,protocol3));
-//        options.put("Invokana (canagliflozin)", Arrays.asList(protocol2));
-//        options.put("Januvia (sitagliptin)", Arrays.asList(protocol2,protocol3));
-//        options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2));
-//        options.put("Nesina (alogliptin)", Arrays.asList(protocol2,protocol3));
-//        options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2,protocol3));
-//        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2,AKC, protocol3));
-//        options.put("Prandin (repaglinide)", Arrays.asList(protocol2));
-//        options.put("Precose (acarbose)", Arrays.asList(protocol2));
-//        options.put("Starlix (nateglinide)", Arrays.asList(protocol2));
-//        options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC,protocol2));
+        options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2));
+        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC,protocol2));
+        options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2));
+        options.put("Glyset (miglitol)", Arrays.asList(protocol2));
+        options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Invokana (canagliflozin)", Arrays.asList(protocol2));
+        options.put("Januvia (sitagliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2));
+        options.put("Nesina (alogliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2,protocol3));
+        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2,AKC, protocol3));
+        options.put("Prandin (repaglinide)", Arrays.asList(protocol2));
+        options.put("Precose (acarbose)", Arrays.asList(protocol2));
+        options.put("Starlix (nateglinide)", Arrays.asList(protocol2));
+        options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2,protocol3));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
             apartFromMetforminPageCC
