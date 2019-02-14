@@ -17,11 +17,11 @@ public class Dispo54C extends BaseTest {
     @Description("Dispo 54C")
     public void dispo54C() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
+        String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
         String siteName = "AUT_GMEGA_01";
         String zipCode = "08204";
-
-        String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

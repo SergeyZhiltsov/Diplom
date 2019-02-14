@@ -19,11 +19,11 @@ public class Dispo43C extends BaseTest {
     @Description("Dispo 43C BucketedPatients")
     public void dispo43C() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
+        String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
         String siteName = "AUT_GOA3_43C_Site";
         String zipCode = "08204";
-
-        String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
