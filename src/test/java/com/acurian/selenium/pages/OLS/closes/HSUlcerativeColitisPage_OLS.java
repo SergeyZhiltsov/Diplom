@@ -20,7 +20,7 @@ public class HSUlcerativeColitisPage_OLS extends MainPageOLS{
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
     
-    @FindBy(xpath = "//input[contains(@id,'QSC9092')]")
+    @FindBy(xpath = "//input[@type='email']")
     WebElement email;
     
     @Step
