@@ -34,7 +34,7 @@ public class VACC_4556_CC extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_VAC_4556M},
-                {Site.AUT_VAC_4556_Site}
+//                {Site.AUT_VAC_4556_Site}// because protocol deactivation r68
         };
     }
 
