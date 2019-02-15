@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BasedOnInformationGmegaPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Based on the information you have provided, you have prequalified for this study. Unfortunately, study sites in your area are not accepting patients at this time. We will contact you as soon as a study site near you accepts new patients.";
+    public final String titleExpected = "Based on the information you have provided, you have prequalified for this study. Unfortunately, study sites in your area are not accepting patients at this time. We will contact you as soon as a study site near you accepts new patients or if another study opens in your area.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;

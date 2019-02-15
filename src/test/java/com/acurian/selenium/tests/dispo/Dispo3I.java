@@ -41,7 +41,7 @@ public class Dispo3I extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -70,10 +70,11 @@ public class Dispo3I extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 
-        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
+        //WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
+        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
+              /*  .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
 
         TakingAcetaminophenTylenolPageOLS takingAcetaminophenTylenolPageOLS = whereDoYouHaveArthritisPageOLS
                 .waitForPageLoad()
@@ -82,7 +83,7 @@ public class Dispo3I extends BaseTest {
 
         UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = takingAcetaminophenTylenolPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("Yes")*/
                 .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
 
         unqualifiedCloseOLS_gmega
