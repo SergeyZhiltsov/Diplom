@@ -2,7 +2,6 @@ package com.acurian.selenium.pages.CC.VACC_4556_CC;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class AreYouInterestedInPneumoniaVaccineStudyCC extends MainPageCC {
+public class CalledPrevnarPageCC extends MainPageCC{
 
-    private final String titleExpected = "Are you interested in taking part in a pneumonia vaccine research study? (Agent Note: noo-MOAN-yuh)";
+    public final String titleExpected = "Have you ever received a pneumococcal vaccine? It is also called Prevnar 13 or Pneumovax 23.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -20,24 +19,24 @@ public class AreYouInterestedInPneumoniaVaccineStudyCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public AreYouInterestedInPneumoniaVaccineStudyCC() {
+    public CalledPrevnarPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AreYouInterestedInPneumoniaVaccineStudyCC waitForPageLoad() {
+    public CalledPrevnarPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AreYouInterestedInPneumoniaVaccineStudyCC clickOnAnswer(String answer) {
-        clickOnRadioButton(radioButtonsList, answer);
+    public CalledPrevnarPageCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText(){
         return getText(titleText);
     }
 }

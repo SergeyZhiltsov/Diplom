@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.CalledPrevnarPageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -73,14 +74,28 @@ public class VACC_4556_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS diagnosedWithAnyOfTheFollowingTypesOfCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        CalledPrevnarPageOLS calledPrevnarPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6902", protocols)
                 .back(areYouInterestedInPneumoniaVaccineStudyOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
+                .clickNextButton(new CalledPrevnarPageOLS());
+
+        DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS diagnosedWithAnyOfTheFollowingTypesOfCancerOLS = calledPrevnarPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS());
+        diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6907", protocols)
+                .back();
+        calledPrevnarPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerOLS);
 
         diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
                 .waitForPageLoad()
