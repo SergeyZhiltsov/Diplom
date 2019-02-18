@@ -41,7 +41,7 @@ public enum Site {
     //4533
     AUT_SHIRE_4533_site("AUT_SHIRE_4533_site", "19901", "1R", false, false, "SHP647_305", "SHP647_306"),
     //4556
-    AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471007"),//"B7471007"
+    AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471007", "B7471007_A"),//"B7471007"
     AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471007"),//"B7471007"
     //4605
     AUT_OBS_4605_Site("AUT_OBS_4605_Site", "19901", "1R", false, false, "RM_493_013"),

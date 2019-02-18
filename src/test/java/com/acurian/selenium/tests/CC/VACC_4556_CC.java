@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.VACC_4556_CC.AreYouInterestedInPneumoniaVaccineStudyCC;
+import com.acurian.selenium.pages.CC.VACC_4556_CC.CalledPrevnarPageCC;
 import com.acurian.selenium.pages.CC.VACC_4556_CC.DiagnosedWithAnyOfTheFollowingTypesOfCancerCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -115,15 +116,28 @@ public class VACC_4556_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
-
-        DiagnosedWithAnyOfTheFollowingTypesOfCancerCC diagnosedWithAnyOfTheFollowingTypesOfCancerCC = nonQRtransitionPageCC
+        CalledPrevnarPageCC calledPrevnarPageCC = nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018854-QS6902-STUDYQUES", protocols)
                 .back(areYouInterestedInPneumoniaVaccineStudyCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
+                .clickNextButton(new CalledPrevnarPageCC());
+
+        DiagnosedWithAnyOfTheFollowingTypesOfCancerCC diagnosedWithAnyOfTheFollowingTypesOfCancerCC = calledPrevnarPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new DiagnosedWithAnyOfTheFollowingTypesOfCancerCC());
+        diagnosedWithAnyOfTheFollowingTypesOfCancerCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols)
+                .back();
+        calledPrevnarPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerCC);
 
         TransitionStatementCC transitionStatementCC = diagnosedWithAnyOfTheFollowingTypesOfCancerCC
                 .waitForPageLoad()
