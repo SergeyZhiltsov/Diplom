@@ -37,14 +37,14 @@ public class IBD_3839_OLS extends BaseTest {
                 .maximizePage();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleIBD_Expected, "Title is diff");
 
-        AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
+        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
                 .setDate("09092001")
-                .clickNextButton(new AgeUnqualifiedClose_OLS());
-        ageUnqualifiedClose_OLS
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+        lessThan18YearsOldPage_OLS
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        ageUnqualifiedClose_OLS.getPage(debugPageOLS)
+        lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS

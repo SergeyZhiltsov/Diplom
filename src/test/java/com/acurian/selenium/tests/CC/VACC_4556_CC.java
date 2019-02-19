@@ -34,8 +34,9 @@ public class VACC_4556_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {Site.AUT_VAC_4556M},
-//                {Site.AUT_VAC_4556_Site}// because protocol deactivation r68
+//                {Site.AUT_VAC_4556M},
+//                {Site.AUT_VAC_4556_Site},
+                {Site.AUT_VAC_4556_A}
         };
     }
 
@@ -43,10 +44,7 @@ public class VACC_4556_CC extends BaseTest {
     @Description("VACC_4556_CC")
     public void vacc4556cc(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
-//        final String protocol1 = "B7471006";
-        final String protocol2 = "B7471007";
-//        final String protocol3 = "B7471008";
-        final String[] protocols = {protocol2};
+        final String[] protocols = site.activeProtocols;
         final String studyName = "a pneumonia vaccine study";
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
@@ -85,29 +83,59 @@ public class VACC_4556_CC extends BaseTest {
                 .setDay("15")
                 .setYear("2005")
                 .clickNextButton(new LessThan18YearsOldPageCC());
-
-        ZipCodePageCC zipCodePageOLS = lessThan18YearsOldPageCC
+        lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
-                .back(dateOfBirthPageCC)
-                .waitForPageLoad()
-                .setYear("1965")
-                .clickNextButton(new ZipCodePageCC());
+                .back();
+        ZipCodePageCC zipCodePageCC = new ZipCodePageCC();
+        switch (site) {
+            case AUT_VAC_4556M:
+                dateOfBirthPageCC
+                        .waitForPageLoad()
+                        .setYear("1954")//64
+                        .clickNextButton(zipCodePageCC)
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols[1])
+                        .back(dateOfBirthPageCC)
+                        .waitForPageLoad()
+                        .setYear("1953")//65
+                        .clickNextButton(zipCodePageCC);
+                break;
+            case AUT_VAC_4556_Site:
+                dateOfBirthPageCC
+                        .waitForPageLoad()
+                        .setYear("1968")//50
+                        .clickNextButton(zipCodePageCC)
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
+                        .back(dateOfBirthPageCC)
+                        .waitForPageLoad()
+                        .setYear("1969")//49
+                        .clickNextButton(zipCodePageCC);
+                break;
+            case AUT_VAC_4556_A:
+                dateOfBirthPageCC
+                        .waitForPageLoad()
+                        .setYear("1959")//59
+                        .clickNextButton(zipCodePageCC)
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
+                        .back(dateOfBirthPageCC)
+                        .waitForPageLoad()
+                        .setYear("1958")//60
+                        .clickNextButton(zipCodePageCC);
+        }
 
-        GenderPageCC genderPageOLS = zipCodePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
-                .back(dateOfBirthPageCC)
-                .waitForPageLoad()
-                .setYear("1969")//HS 1953 , 1969
-                .clickNextButton(zipCodePageOLS)
+        GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        AreYouInterestedInPneumoniaVaccineStudyCC areYouInterestedInPneumoniaVaccineStudyCC = genderPageOLS
+        AreYouInterestedInPneumoniaVaccineStudyCC areYouInterestedInPneumoniaVaccineStudyCC = genderPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyCC());
@@ -129,14 +157,39 @@ public class VACC_4556_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DiagnosedWithAnyOfTheFollowingTypesOfCancerCC());
-        diagnosedWithAnyOfTheFollowingTypesOfCancerCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols)
-                .back();
+        switch (site) {
+            case AUT_VAC_4556M:
+                diagnosedWithAnyOfTheFollowingTypesOfCancerCC
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols[0])
+                        .back();
+                calledPrevnarPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerCC)
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols[1])
+                        .back();
+                break;
+            case AUT_VAC_4556_Site:
+                diagnosedWithAnyOfTheFollowingTypesOfCancerCC
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols)
+                        .back();
+                break;
+            case AUT_VAC_4556_A:
+                diagnosedWithAnyOfTheFollowingTypesOfCancerCC
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols)
+                        .back();
+        }
         calledPrevnarPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("I am unsure")
                 .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerCC);
 
         TransitionStatementCC transitionStatementCC = diagnosedWithAnyOfTheFollowingTypesOfCancerCC
@@ -276,6 +329,7 @@ public class VACC_4556_CC extends BaseTest {
                 .getPID();
         switch (site) {
             case AUT_VAC_4556M:
+            case AUT_VAC_4556_A:
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new HSGeneralCC())
@@ -284,6 +338,9 @@ public class VACC_4556_CC extends BaseTest {
                         .waitForPageLoad()
                         .clickNextButton(new HSMedicalRecordsPageCC())
                         .waitForPageLoad()
+                        .clickNextButton(new SynexusHealthyMindsPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)

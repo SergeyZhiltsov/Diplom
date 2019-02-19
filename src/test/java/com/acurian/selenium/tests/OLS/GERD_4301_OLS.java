@@ -46,13 +46,13 @@ public class GERD_4301_OLS extends BaseTest{
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGERD_4301_Expected, "Title is diff");
         
 
-        AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
+        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("08082005")
-                .clickNextButton(new AgeUnqualifiedClose_OLS());
-        ageUnqualifiedClose_OLS
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+        lessThan18YearsOldPage_OLS
         		.waitForPageLoad();
 				DebugPageOLS debugPageOLS = new DebugPageOLS();
-				ageUnqualifiedClose_OLS.getPage(debugPageOLS)
+				lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
 				.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
 				.back();
 				dateOfBirthPageOLS.waitForPageLoad();

@@ -12,7 +12,7 @@ import com.acurian.selenium.pages.OLS.AUTI_3973.HaveYouHadSeizureInLast6Mon_OLS;
 import com.acurian.selenium.pages.OLS.AUTI_3973.HowDidYouScoreOnTheTest_OLS;
 import com.acurian.selenium.pages.OLS.AUTI_3973.InThePast3MonthsHaveYouExperienced_OLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
@@ -49,16 +49,16 @@ public class AUT_3973_OLS extends BaseTest {
 		Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titelAutism_Expected,"Title is diff");
 
 		// --------------DOB Question------------
-		AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
+		LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
 		// ------------Disqualify (“Age < 18 years old”) if <18
 			// -----------------------------------------
 				.waitForPageLoad()
 				.setDate("09092002")
-				.clickNextButton(new AgeUnqualifiedClose_OLS());
-		ageUnqualifiedClose_OLS
+				.clickNextButton(new LessThan18YearsOldPageOLS());
+		lessThan18YearsOldPage_OLS
 				.waitForPageLoad();
 		DebugPageOLS debugPageOLS = new DebugPageOLS();
-		ageUnqualifiedClose_OLS
+		lessThan18YearsOldPage_OLS
 				.getPage(debugPageOLS).checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols).back();
 		dateOfBirthPageOLS
 				.waitForPageLoad();

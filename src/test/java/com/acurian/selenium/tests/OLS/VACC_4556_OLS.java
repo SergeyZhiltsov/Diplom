@@ -25,9 +25,6 @@ public class VACC_4556_OLS extends BaseTest {
     @Description("VACC_4556_OLS")
     public void vacc4556OlsTest(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
-        final String protocol1 = "B7471006";
-        final String protocol2 = "B7471007";
-        final String protocol3 = "B7471008";
         final String[] protocols = site.activeProtocols;
         final String studyName = "a pneumonia vaccine";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -39,27 +36,57 @@ public class VACC_4556_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleVaccineExpected);
-        AgeUnqualifiedClose_OLS ageUnqualifiedClose_ols = dateOfBirthPageOLS
+        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .setDate("05052005")
-                .clickNextButton(new AgeUnqualifiedClose_OLS());
-
-        ZipCodePageOLS zipCodePageOLS = ageUnqualifiedClose_ols
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+        lessThan18YearsOldPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", protocols)
-                .back(dateOfBirthPageOLS)
-                .waitForPageLoad()
-                .setDate("05051965")
-                .clickNextButton(new ZipCodePageOLS());
+                .back();
+        ZipCodePageOLS zipCodePageOLS = new ZipCodePageOLS();
+        switch (site) {
+            case AUT_VAC_4556M:
+                dateOfBirthPageOLS
+                        .waitForPageLoad()
+                        .setDate("05051954")//64
+                        .clickNextButton(zipCodePageOLS)
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QSI8004", protocols[1])
+                        .back(dateOfBirthPageOLS)
+                        .waitForPageLoad()
+                        .setDate("05051953")//65
+                        .clickNextButton(zipCodePageOLS);
+                break;
+            case AUT_VAC_4556_Site:
+                dateOfBirthPageOLS
+                        .waitForPageLoad()
+                        .setDate("05051968")//50
+                        .clickNextButton(zipCodePageOLS)
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QSI8004", protocols)
+                        .back(dateOfBirthPageOLS)
+                        .waitForPageLoad()
+                        .setDate("05051969")//49
+                        .clickNextButton(zipCodePageOLS);
+                break;
+            case AUT_VAC_4556_A:
+                dateOfBirthPageOLS
+                        .waitForPageLoad()
+                        .setDate("05051959")//59
+                        .clickNextButton(zipCodePageOLS)
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QSI8004", protocols)
+                        .back(dateOfBirthPageOLS)
+                        .waitForPageLoad()
+                        .setDate("05051958")//60
+                        .clickNextButton(zipCodePageOLS);
+        }
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QSI8004", protocol1, protocol3)
-                .back(dateOfBirthPageOLS)
-                .waitForPageLoad()
-                .setDate("05051969")
-                .clickNextButton(zipCodePageOLS)
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
@@ -87,14 +114,39 @@ public class VACC_4556_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS());
-        diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6907", protocols)
-                .back();
+        switch (site) {
+            case AUT_VAC_4556M:
+                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QS6907", protocols[0])
+                        .back();
+                calledPrevnarPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerOLS)
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QS6907", protocols[1])
+                        .back();
+                break;
+            case AUT_VAC_4556_Site:
+                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QS6907", protocols)
+                        .back();
+                break;
+            case AUT_VAC_4556_A:
+                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QS6907", protocols)
+                        .back();
+        }
         calledPrevnarPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("I am unsure")
                 .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerOLS);
 
         diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
@@ -232,6 +284,7 @@ public class VACC_4556_OLS extends BaseTest {
                 .getPID();
         switch (site) {
             case AUT_VAC_4556M:
+            case AUT_VAC_4556_A:
                 siteSelectionPageOLS
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new HSGeneralPageOLS())
@@ -257,6 +310,9 @@ public class VACC_4556_OLS extends BaseTest {
                         .typePWD("password")
                         .clickConnect()
                         .waitToClickNext()
+                        .clickNextButton(new SynexusHealthyMindsPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No, I am not interested in receiving information")
                         .clickNextButton(new ThankYouCloseSimplePageOLS())
                         .waitForSENRPageLoad()
                         .clickNextButton(new AboutHealthPageOLS())
