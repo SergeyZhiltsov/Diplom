@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
 import com.acurian.selenium.pages.OLS.DY_4356.WhileTakingStatinPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.HeartProceduresFromLastPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.TriglyceridesOrLipidsPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
@@ -40,11 +39,11 @@ public class CV_4241_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText2Ver(), dateOfBirthPageOLS.titleCVExpected);
-        AgeUnqualifiedClose_OLS ageUnqualifiedClose_ols = dateOfBirthPageOLS
+        LessThan18YearsOldPageOLS lessThan18YearsOldPage_ols = dateOfBirthPageOLS
                 .setDate("05052005")
-                .clickNextButton(new AgeUnqualifiedClose_OLS());
+                .clickNextButton(new LessThan18YearsOldPageOLS());
 
-        ageUnqualifiedClose_ols
+        lessThan18YearsOldPage_ols
                 .waitForPageLoad()
                 .back();
 

@@ -1,16 +1,13 @@
 package com.acurian.selenium.tests.OLS;
 
-import com.acurian.selenium.App;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.cv_study.HeartrelatedMedicalConditionsProceduresPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AgeUnqualifiedClose_OLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -38,10 +35,10 @@ public class OA_5055_OLS_S extends BaseTest {
 
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
+        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092002")
-                .clickNextButton(new AgeUnqualifiedClose_OLS());
-        ageUnqualifiedClose_OLS
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+        lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)

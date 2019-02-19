@@ -41,10 +41,10 @@ public class Lupus_4442_OLS extends BaseTest {
                 .openPage(env, phoneNumberMIG)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleLPSExpected, "Title is diff");
-        AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
+        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
-                .clickNextButton(new AgeUnqualifiedClose_OLS());
-        ageUnqualifiedClose_OLS.waitForPageLoad();
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+        lessThan18YearsOldPage_OLS.waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", protocol1, protocol2);
         debugPageOLS.back();

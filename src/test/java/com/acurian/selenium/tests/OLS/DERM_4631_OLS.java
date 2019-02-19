@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.Derm_4631.IfYouUseYourHandToCoverAllOfTheEczema_CC;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
@@ -36,11 +35,11 @@ public class DERM_4631_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumberMIG)
                 .waitForPageLoad();
-        AgeUnqualifiedClose_OLS ageUnqualifiedClose_OLS = dateOfBirthPageOLS
+        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
-                .clickNextButton(new AgeUnqualifiedClose_OLS());
+                .clickNextButton(new LessThan18YearsOldPageOLS());
 
-        ageUnqualifiedClose_OLS
+        lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
