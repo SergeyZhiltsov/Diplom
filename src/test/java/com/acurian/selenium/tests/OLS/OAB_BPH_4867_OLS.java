@@ -161,9 +161,8 @@ public class OAB_BPH_4867_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6504", site.activeProtocols)
+//                .checkProtocolsContainsForQNumber("QS6504", site.activeProtocols)
                 .back();
-
         doYouTakeAnyMedicationsControlHypertension_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -538,7 +537,5 @@ public class OAB_BPH_4867_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .pidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo);
-
     }
-
 }
