@@ -443,8 +443,7 @@ public class CV_4450_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
-                        .getAnomalyDbToLog(env);
+                        .dispoShouldMatch(site.dispo);
         }
     }
 }

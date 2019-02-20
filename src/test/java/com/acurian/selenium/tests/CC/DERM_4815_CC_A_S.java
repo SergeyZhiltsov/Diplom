@@ -34,7 +34,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
 
     @Test(dataProvider = "sites", dataProviderClass = DERM_4815_OLS_A_S.class)
     @Description("DERM_4815_CC_A_S")
-    public void derm1815CCAS(Site site) {
+    public void derm4815ccaasTest(Site site) {
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";

@@ -36,7 +36,7 @@ public class OA_4831_CC_A_S extends BaseTest {
     }
 
     @Test(dataProvider = "sites")
-    public void OA_4831_CC_NonSynexus_Script(Site site) {
+    public void oa4831ccTest(Site site) {
         String phoneNumber = "AUTAMS1OA1";
         String studyName = "osteoarthritis";
         String studyName1 = "an osteoarthritis study";
@@ -63,7 +63,6 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickPopupPhoneNumber(phoneNumber)
                 .clickBeginButton();
 
-
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
@@ -71,7 +70,6 @@ public class OA_4831_CC_A_S extends BaseTest {
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
-
 
         dateOfBirthPageCC
                 .waitForPageLoad();
@@ -365,8 +363,8 @@ public class OA_4831_CC_A_S extends BaseTest {
         siteSelectionPageCC
                 .waitForPageLoad(studyName1)
                 .getPID();
-        switch (site.name) {
-            case "AUT_OA_4831_Syn":
+        switch (site) {
+            case AUT_OA_4831_Syn:
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
@@ -378,7 +376,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo);
                 break;
-            case "AUT_OA_4831_site":
+            case AUT_OA_4831_site:
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())

@@ -40,6 +40,7 @@ public class MainPageCC extends BasePage {
         ));
     }
 
+    @Step
     public MainPageCC assertChildDOBIsNull(String env, String studyId) {
         String childDOBCell = getDbConnection().dbReadChildDOB(env, pid, studyId);
         Assert.assertNull(childDOBCell,"Child DOB is not NULL");
@@ -48,6 +49,7 @@ public class MainPageCC extends BasePage {
     }
 
     //should use only once cause PassPID.getInstance() after second get will be null
+    @Step
     public MainPageCC pidFromDbToLog(String env) {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
@@ -56,17 +58,19 @@ public class MainPageCC extends BasePage {
         return this;
     }
 
+    @Step
     public MainPageCC getRadiantDbToLog(String env) {
         RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
         logTextToAllure("Radiant::: Current Status=" + radiantResults.getCurrentStatus() + " for pid " + pid);
         return this;
     }
 
-    public MainPageCC getAnomalyDbToLog(String env) {
-        AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
-        logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
-        return this;
-    }
+//    @Step
+//    public MainPageCC getAnomalyDbToLog(String env) {
+//        AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
+//        logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
+//        return this;
+//    }
 
     /**
      Save site name to temp file for further validation

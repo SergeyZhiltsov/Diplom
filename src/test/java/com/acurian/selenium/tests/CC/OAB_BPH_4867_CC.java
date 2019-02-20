@@ -178,11 +178,10 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
-
         transitionStatementCC
                 .waitForPageLoadDYS()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015141-QS6504-STUDYQUES", site.activeProtocols)
+//                .checkProtocolsContainsForQNumber("Q0015141-QS6504-STUDYQUES", site.activeProtocols)
                 .back();
 
         doYouTakeAnyMedicationsControlHypertension_CC
