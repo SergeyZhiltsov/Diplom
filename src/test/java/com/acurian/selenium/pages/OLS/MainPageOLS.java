@@ -192,7 +192,7 @@ public class MainPageOLS extends BasePage {
         AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
         logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
         Assert.assertEquals(anomalyResults.getCurrentStatus(), "SENT", "Current status is not SENT");
-        Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
+        Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
         return this;
     }
 

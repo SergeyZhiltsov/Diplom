@@ -23,7 +23,7 @@ public class FlareActivationCode extends BaseTest {
 
         String phoneNumber = "AUTGMEGA01";
         Site site = Site.GFLR1_1234_GFLR1;
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study,an arthritis";
+        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study, an osteoarthritis";
         String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();

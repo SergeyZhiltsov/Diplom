@@ -3,12 +3,12 @@ package com.acurian.selenium.tests.health_check;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.testng.Assert;
@@ -69,9 +69,16 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTG);
+                .clickOnFacilityName(siteName);
+        HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
+                .clickNextButton(new HSGeneralPageOLS());
+
+        if (env.equals("QA")) {
+            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedQA);
+        } else {
+            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTGGMEGA3);
+        }
+
         Assert.assertEquals(debugPageOLS.getVerityText(), "Verity Score: 0", "verity score is diff");
     }
 }
