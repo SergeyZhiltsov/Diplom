@@ -23,7 +23,7 @@ public class RadiantWTtest extends BaseTest {
         String zipCode = "08204";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
-                "an osteoarthritis study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study";
+                "an osteoarthritis study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC

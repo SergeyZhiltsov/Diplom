@@ -12,7 +12,7 @@ public class SBClearCache extends BaseTest {
     @DataProvider(name = "logins")
     public Object[][] getData() {
         return new Object[][]{
-                {"tanywhere02", "Automation2015"},
+                {"tanywhere02@acurian.com", "Automation2015"},
         };
     }
 
