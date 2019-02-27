@@ -13,8 +13,8 @@ public class HSMedicalRecordsPageCC extends MainPageCC{
     public final String titleExpected = "Thank you for providing this information. You will receive an email from us shortly. Please verify the information and provide your e-signature as soon as you receive this email.\n" +
             "Agent Note: Do not wait to confirm receipt of email. Click \"next\" to continue.";
 
-    public final String titleExpectedGmega = "Thank you for providing this information.\n" +
-            "You will receive an email from us shortly.\n" +
+    public final String titleExpectedGmega = "Thank you for providing this information. \n" +
+            "You will receive an email from us shortly. \n" +
             "Please verify the information and provide your e-signature as soon as you receive this email.\n" +
             "Agent Note: Do not wait for patient to retrieve email. Move to next screen.";
 

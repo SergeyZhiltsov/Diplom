@@ -20,7 +20,7 @@ public class SiteIndicatorTest extends BaseTest {
         String zipCode = "19422";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
-                "an irritable bowel syndrome (IBS) study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+                "an irritable bowel syndrome (IBS) study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -38,7 +38,8 @@ public class SiteIndicatorTest extends BaseTest {
                 .clickPopupStudy("GMEGA")
                 .typePhoneNumber(phoneNumber)
                 .clickPopupPhoneNumber(phoneNumber)
-                .clickBeginButton();
+                .clickBeginButton()
+                .activateDebugOnProd(env);
 
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC

@@ -111,7 +111,7 @@ public class InstantFUL extends BaseTest {
         switch (siteName) {
             case "AUT_GRA_FUL_Site":
                 followupLetter = new FollowupLetter();
-                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), false);
+                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
                 break;
             case "AUT_GRA_FULm_Site":
                 followupLetter = new FollowupLetter();

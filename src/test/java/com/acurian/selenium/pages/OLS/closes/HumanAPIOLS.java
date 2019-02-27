@@ -27,6 +27,8 @@ public class HumanAPIOLS extends MainPageOLS{
             "Connect >>\n" +
             "Add additional providers\n" +
             "Please click 'Next' when you have added all your medical data providers.";
+
+    public final String titleGmegaExpected1 = "Thank you again for contacting Acurian's Research Information Center. To further allow us to assist you, please register with www.acurian.com and we will keep you informed of important treatment options for your condition.";
     
     public final String titleFind = "Find your provider";
     
@@ -80,6 +82,12 @@ public class HumanAPIOLS extends MainPageOLS{
     @Step
     public HumanAPIOLS waitForPageLoadGmega() {
         waitForPageLoadMain(titleTextGmega, titleGmegaExpected);
+        return this;
+    }
+
+    @Step
+    public HumanAPIOLS waitForPageLoadGmega1() {
+        waitForPageLoadMain(titleTextGmega, titleGmegaExpected1);
         return this;
     }
     

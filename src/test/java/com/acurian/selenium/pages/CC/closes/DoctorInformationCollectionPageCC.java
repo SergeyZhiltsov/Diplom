@@ -11,7 +11,7 @@ public class DoctorInformationCollectionPageCC extends MainPageCC{
 
     public final String titleExpected = "You will need to provide us with some information on the doctors who are treating or have treated your condition. We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
 
-    public final String titleExpectedGmega = "We now need some information on the doctors who are treating or who have treated your condition.\n" +
+    public final String titleExpectedGmega = "We now need some information on the doctors who are treating or who have treated your condition.  \n" +
             "We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
 
 

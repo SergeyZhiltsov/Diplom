@@ -86,7 +86,7 @@ public class HS1PageOLS extends MainPageOLS{
     public HS1PageOLS setSignature() {
         waitForAnimation();
         firstNameField.click();
-        for (int i = 0; i < 17; i++) {
+        for (int i = 0; i < 18; i++) {
             threadSleep(500);
             getActions().sendKeys(Keys.TAB).build().perform();
         }
