@@ -39,7 +39,7 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 

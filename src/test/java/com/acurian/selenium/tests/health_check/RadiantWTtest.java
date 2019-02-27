@@ -23,7 +23,7 @@ public class RadiantWTtest extends BaseTest {
         String zipCode = "08204";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
-                "an osteoarthritis study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
@@ -58,12 +58,18 @@ public class RadiantWTtest extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
-                .waitForPageLoadGmega()
-                .getPage(new CallCenterIntroductionPageCC())
+        //ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
+                if(env.equals("QA")){
+                    genderPageCC.waitForPageLoad();}
+                else{
+                    genderPageCC.waitForPageLoadGmega();
+                    }
+
+                genderPageCC.getPage(new CallCenterIntroductionPageCC())
                 .activateDebugOnProd(env)
                 .getPage(genderPageCC)
-                .clickOnAnswerGmega("Female")
+                .clickOnAnswerGmega("Female");
+                ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
                 .clickNextButton(new ApproximateHeightPageCC());
 
         FollowingNeurologicalConditions followingNeurologicalConditions = approximateHeightPageOLS
@@ -105,9 +111,17 @@ public class RadiantWTtest extends BaseTest {
                 .clickNextButton(new Regular_WarmTransfer1())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new WarmTransferGmegaPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("Successful transfer made to site")
+                .clickNextButton(new WarmTransferGmegaPageCC());
+                WarmTransferGmegaPageCC warmTransferGmegaPageCC = new WarmTransferGmegaPageCC();
+                    if(env.equals("QA")){
+                        warmTransferGmegaPageCC.waitForPageLoad();
+                    }
+                    else {
+                        warmTransferGmegaPageCC.waitForPageLoadPRD();
+                    }
+        warmTransferGmegaPageCC
+                .clickOnAnswer("No: Ok - we will send their RPA over within the next 24 hours and you can review their qualifications at a more convenient time. Their name is (Patient Name)")
+                .clickOnAnswer("[site not available]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
