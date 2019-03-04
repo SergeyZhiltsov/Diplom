@@ -142,7 +142,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .back();
 
         howOldWereYouMigHeadachePageCC
-                .typeAge("37")
+                .typeAge("40")
                 .clickNextButton(howLongSufferingFromMigraineCC);
 
 
