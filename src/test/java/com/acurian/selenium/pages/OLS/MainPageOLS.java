@@ -3,6 +3,7 @@ package com.acurian.selenium.pages.OLS;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
+import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.RadiantResults;
@@ -192,7 +193,11 @@ public class MainPageOLS extends BasePage {
         AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
         logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
         Assert.assertEquals(anomalyResults.getCurrentStatus(), "SENT", "Current status is not SENT");
-        Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
+        if (env.equals("PRD")) {
+            Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
+        } else {
+            Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
+        }
         return this;
     }
 
