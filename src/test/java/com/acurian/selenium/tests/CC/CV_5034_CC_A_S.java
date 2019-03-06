@@ -30,7 +30,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
 public class CV_5034_CC_A_S extends BaseTest {
@@ -462,7 +461,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickNextButton(healthcareDiagnosedConditionsPageCC);
 
         HashMap<String, List<String>> options = new HashMap<>();
-        TransitionStatementLowT_CC transitionStatementLowT_cc = new TransitionStatementLowT_CC();
+        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = new TransitionalStatementLowtPageCC();
         options.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(site.activeProtocols));
         options.put("Cirrhosis of the liver", Arrays.asList(site.activeProtocols));
         options.put("Drug or alcohol abuse within the past year", Arrays.asList(site.activeProtocols));
@@ -476,8 +475,8 @@ public class CV_5034_CC_A_S extends BaseTest {
             healthcareDiagnosedConditionsPageCC
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(transitionStatementLowT_cc);
-            transitionStatementLowT_cc
+                    .clickNextButton(transitionalStatementLowtPageCC);
+            transitionalStatementLowtPageCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0018797-QS6725-STUDYQUES", (String[]) entry.getValue().toArray())

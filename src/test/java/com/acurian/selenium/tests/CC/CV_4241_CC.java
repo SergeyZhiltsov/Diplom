@@ -108,13 +108,13 @@ public class CV_4241_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocol1)
                 .back();
 
-        TransitionStatementLowT_CC transitionStatementLowT_cc = cardiovascularDiseaseThanOthersPageCC
+        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(new TransitionStatementLowT_CC());
+                .clickNextButton(new TransitionalStatementLowtPageCC());
 
-        transitionStatementLowT_cc
+        transitionalStatementLowtPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocol1)
@@ -124,7 +124,7 @@ public class CV_4241_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Chronic Kidney Disease")
-                .clickNextButton(transitionStatementLowT_cc)
+                .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocol1)
@@ -133,7 +133,7 @@ public class CV_4241_CC extends BaseTest {
         cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(transitionStatementLowT_cc)
+                .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", protocol1)
@@ -148,7 +148,7 @@ public class CV_4241_CC extends BaseTest {
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(transitionStatementLowT_cc)
+                .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", protocol1)
@@ -157,7 +157,7 @@ public class CV_4241_CC extends BaseTest {
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(transitionStatementLowT_cc)
+                .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", protocol1)
@@ -166,7 +166,7 @@ public class CV_4241_CC extends BaseTest {
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(transitionStatementLowT_cc)
+                .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", protocol1)
@@ -259,7 +259,7 @@ public class CV_4241_CC extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("9", "10", "260")
-                .clickNextButton(transitionStatementLowT_cc)
+                .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", protocol1)
