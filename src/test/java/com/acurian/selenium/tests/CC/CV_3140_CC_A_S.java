@@ -319,15 +319,111 @@ public class CV_3140_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new ApproximateHeightPageCC());
-        TransitionStatementLowT_CC transitionStatementLowT_cc = approximateHeightPageCC
+        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new TransitionStatementLowT_CC());
-        transitionStatementLowT_cc
+                .clickNextButton(new TransitionalStatementLowtPageCC());
+        transitionalStatementLowtPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", site.activeProtocols)
                 .back();
+
+
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .back();
+        everSmokedCigarettesPageCC
+                .waitForPageLoad()
+                .back();
+        firstHeartAttackPageCC
+                .waitForPageLoad()
+                .back();
+        relativesHeartAttackPageCC
+                .waitForPageLoad()
+                .back();
+        heartrelatedMedicalConditionsProceduresPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Heart failure or congestive heart failure (CHF)")
+                .clickNextButton(relativesHeartAttackPageCC)
+                .waitForPageLoad()
+                .clickNextButton(firstHeartAttackPageCC)
+                .waitForPageLoad()
+                .clickNextButton(everSmokedCigarettesPageCC)
+                .waitForPageLoad()
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .clickNextButton(transitionalStatementLowtPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", site.activeProtocols)
+                .back();
+
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .back();
+        everSmokedCigarettesPageCC
+                .waitForPageLoad()
+                .back();
+        firstHeartAttackPageCC
+                .waitForPageLoad()
+                .back();
+        relativesHeartAttackPageCC
+                .waitForPageLoad()
+                .back();
+        heartrelatedMedicalConditionsProceduresPageCC
+                .waitForPageLoad()
+                .back();
+        haveDoctorEverDiagnosedYou_cc
+                .waitForPageLoad()
+                .back();
+        heartOrBloodVesselPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("TIA or \"Mini-Stroke\"")
+                .clickNextButton(subquestionExperiencedHeartPageCC)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .clickNextButton(haveDoctorEverDiagnosedYou_cc)
+                .waitForPageLoad()
+                .clickNextButton(heartrelatedMedicalConditionsProceduresPageCC)
+                .waitForPageLoad()
+                .clickNextButton(relativesHeartAttackPageCC)
+                .waitForPageLoad()
+                .clickNextButton(firstHeartAttackPageCC)
+                .waitForPageLoad()
+                .clickNextButton(everSmokedCigarettesPageCC)
+                .waitForPageLoad()
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .clickNextButton(transitionalStatementLowtPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", site.activeProtocols)
+                .back();
+
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .back();
+        everSmokedCigarettesPageCC
+                .waitForPageLoad()
+                .back();
+        firstHeartAttackPageCC
+                .waitForPageLoad()
+                .back();
+        relativesHeartAttackPageCC
+                .waitForPageLoad()
+                .back();
+        heartrelatedMedicalConditionsProceduresPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Peripheral Artery Disease or PAD (narrowed or hardened blood vessels in your arms or legs)")
+                .clickNextButton(relativesHeartAttackPageCC)
+                .waitForPageLoad()
+                .clickNextButton(firstHeartAttackPageCC)
+                .waitForPageLoad()
+                .clickNextButton(everSmokedCigarettesPageCC)
+                .waitForPageLoad()
+                .clickNextButton(approximateHeightPageCC);
+
+
         approximateHeightPageCC
                 .waitForPageLoad()
                 .back();
@@ -408,7 +504,7 @@ public class CV_3140_CC_A_S extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(transitionStatementLowT_cc)
+                    .clickNextButton(transitionalStatementLowtPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0018797-QS6725-STUDYQUES", (String[]) entry.getValue().toArray())

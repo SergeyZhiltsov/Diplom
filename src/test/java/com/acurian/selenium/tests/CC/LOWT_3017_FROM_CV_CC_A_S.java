@@ -285,10 +285,10 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        TransitionStatementLowT_CC transitionStatementLowT_CC = approximateHeightPageCC
+        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("4", "0", "166")
-                .clickNextButton(new TransitionStatementLowT_CC())
+                .clickNextButton(new TransitionalStatementLowtPageCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0004980-QS5627-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();

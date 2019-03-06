@@ -293,6 +293,100 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
                 .back();
+
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .back();
+        everSmokedCigarettesPageOLS
+                .waitForPageLoad()
+                .back();
+        firstHeartAttackPageOLS
+                .waitForPageLoad()
+                .back();
+        relativesHeartAttackPageOLS
+                .waitForPageLoad()
+                .back();
+        heartrelatedMedicalConditionsProceduresPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Heart failure or congestive heart failure (CHF)")
+                .clickNextButton(relativesHeartAttackPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(firstHeartAttackPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(everSmokedCigarettesPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(transitionalStatementLowtPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
+                .back();
+
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .back();
+        everSmokedCigarettesPageOLS
+                .waitForPageLoad()
+                .back();
+        firstHeartAttackPageOLS
+                .waitForPageLoad()
+                .back();
+        relativesHeartAttackPageOLS
+                .waitForPageLoad()
+                .back();
+        heartrelatedMedicalConditionsProceduresPageOLS
+                .waitForPageLoad()
+                .back();
+        haveDoctorEverDiagnosedYou_ols
+                .waitForPageLoad()
+                .back();
+        heartOrBloodVesselPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("TIA or \"Mini-Stroke\"")
+                .clickNextButton(subquestionExperiencedHeartPageOLS)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .clickNextButton(haveDoctorEverDiagnosedYou_ols)
+                .waitForPageLoad()
+                .clickNextButton(heartrelatedMedicalConditionsProceduresPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(relativesHeartAttackPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(firstHeartAttackPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(everSmokedCigarettesPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(transitionalStatementLowtPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
+                .back();
+
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .back();
+        everSmokedCigarettesPageOLS
+                .waitForPageLoad()
+                .back();
+        firstHeartAttackPageOLS
+                .waitForPageLoad()
+                .back();
+        relativesHeartAttackPageOLS
+                .waitForPageLoad()
+                .back();
+        heartrelatedMedicalConditionsProceduresPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Peripheral Artery Disease or PAD (narrowed or hardened blood vessels in your arms or legs)")
+                .clickNextButton(relativesHeartAttackPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(firstHeartAttackPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(everSmokedCigarettesPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(approximateHeightPageOLS);
+
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .back();

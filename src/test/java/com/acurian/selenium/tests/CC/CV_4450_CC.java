@@ -324,11 +324,11 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new ApproximateHeightPageCC());
-        TransitionStatementLowT_CC transitionStatementLowT_cc = approximateHeightPageCC
+        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(new TransitionStatementLowT_CC());
-        transitionStatementLowT_cc
+                .clickNextButton(new TransitionalStatementLowtPageCC());
+        transitionalStatementLowtPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", site.activeProtocols)
@@ -360,7 +360,7 @@ public class CV_4450_CC extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(transitionStatementLowT_cc)
+                .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004980-QS6721-STUDYQUES", site.activeProtocols)
@@ -399,7 +399,7 @@ public class CV_4450_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(transitionStatementLowT_cc)
+                    .clickNextButton(transitionalStatementLowtPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0018797-QS6725-STUDYQUES", (String[]) entry.getValue().toArray())
