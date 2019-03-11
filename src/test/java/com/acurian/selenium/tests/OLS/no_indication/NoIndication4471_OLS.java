@@ -470,8 +470,9 @@ public class NoIndication4471_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
-                .setSignature()
-                .getPage(new HumanAPIOLS())
+                .setSignature();
+
+/*                .getPage(new HumanAPIOLS())
                 .waitForPageLoad()
                 .connectBTN()
                 .switchToAPI()
@@ -485,20 +486,13 @@ public class NoIndication4471_OLS extends BaseTest {
                 .typePWD("password")
                 .clickConnect()
                 .waitToClickNext()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new ThankYouCloseSimplePageOLS())*/
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+        thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-
-
-
-
-
-
-
-
-
     }
 }
