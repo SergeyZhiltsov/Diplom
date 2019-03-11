@@ -9,7 +9,7 @@ public enum Site {
     //
     AUT_RA2821_Site("AUT_RA2821_Site", "19044", "1R", false, true, "M15_925"),
     //3017
-    AUT_LOWT_3017S_Site("AUT_LOWT_3017S_Site", "19901", "41C", false, true, "M16_100_S"),
+    AUT_LOWT_3017S_Site("AUT_LOWT_3017S_Site", "19422", "41C", false, true, "M16_100_S"),
     AUT_LOWT_3017_Site("AUT_LOWT_3017_Site", "19901", "1R", false, true, "M16_100"),
     //3140
     AUT_CV_3140A_site("AUT_CV_3140A_site", "45205", "1R", false, false, "1002_043", "1002_043_A"),
@@ -67,7 +67,7 @@ public enum Site {
     //4819
     AUT_IBS4819_site("AUT_IBS4819_site", "19901", "1R", false, false, "URO_901_2001"),
     //4831
-    AUT_OA_4831_Syn("AUT_OA_4831_Syn", "19901", "41C", false, false, "R475_PN_1523_B"),
+    AUT_OA_4831_Syn("AUT_OA_4831_Syn", "19422", "41C", false, false, "R475_PN_1523_B"),
     AUT_OA_4831_site("AUT_OA_4831_site", "19901", "1R", false, false, "R475_PN_1523_B"),
     //4849
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", false, false, "ANB020_005"),

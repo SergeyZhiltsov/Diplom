@@ -19,7 +19,7 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
         String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
         String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
