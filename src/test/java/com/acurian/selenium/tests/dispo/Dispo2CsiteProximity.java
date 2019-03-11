@@ -21,7 +21,7 @@ public class Dispo2CsiteProximity extends BaseTest {
         String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
         String siteName = "AUT_GEMGA_01A";
         String zipCode = "99546";
 
@@ -72,8 +72,8 @@ public class Dispo2CsiteProximity extends BaseTest {
         whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
+                //.clickNextButton(identificationPageOLS)
+                //.waitForPageLoad()
                 .clickNextButton(new BasedOnInformationGmegaPageOLS())
                 .waitForPageLoad();
         BasedOnInformationGmegaPageOLS basedOnInformationGmegaPageOLS = new BasedOnInformationGmegaPageOLS();
