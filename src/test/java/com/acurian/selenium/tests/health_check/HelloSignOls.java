@@ -75,9 +75,9 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
-                .setSignature()
+                .setSignature();
 
-                .getPage(new HumanAPIOLS())
+/*                .getPage(new HumanAPIOLS())
                 .waitForPageLoadGmega()
                 .connectBTN()
                 .switchToAPI()
@@ -92,7 +92,10 @@ public class HelloSignOls extends BaseTest {
                 .clickConnect()
                 .waitToClickNext()
 
-                .clickNextButton(new ThankYouCloseGmegaOLS())
+                .clickNextButton(new ThankYouCloseGmegaOLS())*/
+
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = new ThankYouCloseGmegaOLS();
+        thankYouCloseGmegaOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
 //                .waitForPageLoad()

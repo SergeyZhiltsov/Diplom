@@ -16,7 +16,6 @@ import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HumanAPIOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.FollowingMentalEmotionalHealthPageOLS;
@@ -310,9 +309,9 @@ public class AUT_3973_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
-                .setSignature()
+                .setSignature();
 
-                //------------HUMAN API Interface in HelloSign----------------
+/*                //------------HUMAN API Interface in HelloSign----------------
                 .getPage(new HumanAPIOLS())
                 .waitForPageLoad()
                 .connectBTN()
@@ -328,8 +327,11 @@ public class AUT_3973_OLS extends BaseTest {
                 .clickConnect()
 
                 .waitToClickNext()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())*/
+
+		ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+		thankYouCloseSimplePageOLS
+				.waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
