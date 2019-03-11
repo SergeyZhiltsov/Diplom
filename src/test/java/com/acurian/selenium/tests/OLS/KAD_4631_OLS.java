@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
+import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
@@ -74,52 +75,57 @@ public class KAD_4631_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS = new HealthcareDiagnosedPsoriasisPageOLS();
+        healthcareDiagnosedPsoriasisPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
                 .back();
-        HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczema_OLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
+        HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczemaOLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
-
-        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS = howLongHaveYouBeenSufferingFromEczema_OLS
+        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS = howLongHaveYouBeenSufferingFromEczemaOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months")
+                .clickOnAnswer("2 months or less")
                 .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
-        whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
+        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBodyOls = new HowMuchEczemaYouHaveOnYourBody_OLS();
+        howMuchEczemaYouHaveOnYourBodyOls
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5803", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
-        howLongHaveYouBeenSufferingFromEczema_OLS
+        howLongHaveYouBeenSufferingFromEczemaOLS
                 .waitForPageLoad()
-                .clickOnAnswer("3 to less than 6 months")
-                .clickNextButton(whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS)
+                .clickOnAnswer("3 - 6 months")
+                .clickNextButton(howMuchEczemaYouHaveOnYourBodyOls)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5803", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
-        howLongHaveYouBeenSufferingFromEczema_OLS
+        howLongHaveYouBeenSufferingFromEczemaOLS
                 .waitForPageLoad()
-                .clickOnAnswer("6 to less than 12 months")
-                .clickNextButton(whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS)
+                .clickOnAnswer("7 - 11 months")
+                .clickNextButton(howMuchEczemaYouHaveOnYourBodyOls)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5803", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
-        howLongHaveYouBeenSufferingFromEczema_OLS
+        howLongHaveYouBeenSufferingFromEczemaOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 years or more")
+                .clickNextButton(howMuchEczemaYouHaveOnYourBodyOls);
+        howMuchEczemaYouHaveOnYourBodyOls
+                .waitForPageLoad()
+                .selectFromDropDown("9")
                 .clickNextButton(whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS);
 
 
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of these")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(healthcareDiagnosedPsoriasisPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5805", site.activeProtocols)
@@ -150,12 +156,11 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
-
-        haveYouEverTreatedYourEczema_OLS
+                .clickNextButton(new EczemaSymptomsExperienceOLS());
+        eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -163,7 +168,8 @@ public class KAD_4631_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("B")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS)
+                .clickNextButton(eczemaSymptomsExperienceOLS);
+        eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -171,12 +177,18 @@ public class KAD_4631_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("C")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS)
+                .clickNextButton(eczemaSymptomsExperienceOLS);
+        eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
-        whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+/*        eczemaSymptomsExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+                .waitForPageLoad()
+                .clickOnAnswer("D")
+                .clickNextButton(eczemaSymptomsExperienceOLS);*/
+
+whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
                 .back();
         whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS
@@ -202,11 +214,11 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickOnAnswer("Computer or tablet")
                 .clickNextButton(weWantToMakeSureTheImagesDisplayProperly_OLS);
 
-
+        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = new HaveYouEverTreatedYourEczema_OLS();
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS)
+                .clickNextButton(eczemaSymptomsExperienceOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -214,7 +226,7 @@ public class KAD_4631_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("B")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS)
+                .clickNextButton(eczemaSymptomsExperienceOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -222,7 +234,7 @@ public class KAD_4631_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("C")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS)
+                .clickNextButton(eczemaSymptomsExperienceOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -230,7 +242,7 @@ public class KAD_4631_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("D")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS)
+                .clickNextButton(eczemaSymptomsExperienceOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -238,7 +250,7 @@ public class KAD_4631_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("G")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS)
+                .clickNextButton(eczemaSymptomsExperienceOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -264,6 +276,27 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickOnAnswer("C")
                 .clickNextButton(haveYouEverTreatedYourEczema_OLS);
 
+        LevelOfITCHWithEczemaOLS levelOfITCHWithEczemaOLS = eczemaSymptomsExperienceOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None")
+                .clickNextButton(new LevelOfITCHWithEczemaOLS());
+
+        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = levelOfITCHWithEczemaOLS
+                .waitForPageLoad()
+                .clickOnAnswer("None (No itching)")
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
+
+        haveYouEverTreatedYourEczema_OLS = howManyDaysHasSkinBeenItchyOLS
+                .waitForPageLoad()
+                .clickOnAnswer("My skin is never itchy")
+                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+
+        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapiesOls = haveYouEverTreatedYourEczema_OLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
+
+/*
 
         //--------------Q17- HaveYouEverTreatedYourEczema_OLS ----------
         haveYouEverTreatedYourEczema_OLS
@@ -280,15 +313,17 @@ public class KAD_4631_OLS extends BaseTest {
         OverallHowWellDidTopicalMedicationYouTried_OLS overallHowWellDidTopicalMedicationYouTried_OLS = haveYouEverTreatedYourEczema_OLS
                 .clickOnAnswer("Yes, within the past year")    //final selection
                 .clickNextButton(new OverallHowWellDidTopicalMedicationYouTried_OLS());
+*/
 
 
-        //--------------Q18- OverallHowWellDidTopicalMedicationYouTried_OLS ----------
+/*        //--------------Q18- OverallHowWellDidTopicalMedicationYouTried_OLS ----------
         overallHowWellDidTopicalMedicationYouTried_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("My symptoms went away completely")  //final selection
-                .clickNextButton(whichofthefollowingMedicationsTherapies_OLS);
+                .clickNextButton(whichofthefollowingMedicationsTherapies_OLS);*/
 
-        //--------------Q19- whichofthefollowingMedicationsTherapies_OLS ----------
+        //--------------Q23- whichofthefollowingMedicationsTherapies_OLS ----------
+        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = new WhichofthefollowingMedicationsTherapies_OLS();
         BiologicMedications biologicMedications = whichofthefollowingMedicationsTherapies_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -301,13 +336,13 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickOnAnswers("Azasan or Imuran (azathioprine)")
                 .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
 
-        //--------------Q20- DidYouReceiveAnyTherapiesPastYear_OLS ----------
+        //--------------Q24- DidYouReceiveAnyTherapiesPastYear_OLS ----------
         didYouReceiveAnyTherapiesPastYear_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(biologicMedications);
 
-        //---------Q22:  BiologicMedications---------------
+        //---------Q26:  BiologicMedications---------------
         HaveYouEverTakenEitherAnyOfFollowingMeds_OLS haveYouEverTakenEitherAnyOfFollowingMeds_ols = new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS();
         HashMap<String, List<String>> cases = new HashMap<>();
         cases.put("Actemra", Arrays.asList(site.activeProtocols));
@@ -345,7 +380,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_ols);
 
 
-        //------------Q23- HaveYouEverTakenEitherAnyOfFollowingMeds ----------------
+        //------------Q27- HaveYouEverTakenEitherAnyOfFollowingMeds ----------------
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi")

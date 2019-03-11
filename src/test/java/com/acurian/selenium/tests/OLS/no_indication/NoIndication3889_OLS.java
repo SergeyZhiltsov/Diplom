@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -401,11 +402,12 @@ public class NoIndication3889_OLS extends BaseTest {
 
 
         //---------------Q3 When were you diagnosed with Crohn's disease? -------------------
-        UnqualifiedCloseOLS unqualifiedCloseOLS = whenWereYouDiagnosedWithCrohnsDisease_OLS
+        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS
+                = whenWereYouDiagnosedWithCrohnsDisease_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Not officially diagnosed with Crohn's by a doctor")
-                .clickNextButton(new UnqualifiedCloseOLS());
-        unqualifiedCloseOLS
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+        areYouInterestedInPneumoniaVaccineStudyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5703", protocol1, protocol2, protocol3, protocol4)
@@ -414,7 +416,6 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(new WhenWasYourMostRecentColonoscopy_OLS());
-
 
         //---------------Q5 whenWasYourMostRecentColonoscopy_OLS Page-----------
         HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS = whenWasYourMostRecentColonoscopy_OLS
@@ -630,8 +631,8 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickOnAnswers("Colostomy and/or Colectomy",
                         "Ileostomy",
                         "Another type of stomach or colon surgery")
-                .clickNextButton(unqualifiedCloseOLS);
-        unqualifiedCloseOLS
+                .clickNextButton(areYouInterestedInPneumoniaVaccineStudyOLS);
+        areYouInterestedInPneumoniaVaccineStudyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5718", protocol1, protocol2, protocol3, protocol4)
