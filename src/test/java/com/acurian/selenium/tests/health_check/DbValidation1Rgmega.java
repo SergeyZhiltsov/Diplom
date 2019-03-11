@@ -22,8 +22,9 @@ public class DbValidation1Rgmega extends BaseTest {
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
+        // studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
+               "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

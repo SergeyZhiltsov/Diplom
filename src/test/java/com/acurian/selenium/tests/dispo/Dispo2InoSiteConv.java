@@ -21,11 +21,12 @@ public class Dispo2InoSiteConv extends BaseTest {
     @Description("Dispo 2I No Site Convenient")
     public void dispo2I() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
+        String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
         String siteName = "QSC9005_None";
         String zipCode = "08204";
 
-        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -42,7 +43,7 @@ public class Dispo2InoSiteConv extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

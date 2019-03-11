@@ -20,7 +20,7 @@ public class AnomalyTest extends BaseTest {
     public void anomalyTest() {
         String phoneNumber = "AUTGMEG41C";
         String siteName = "AUT_GEMGA_01A";
-        String zipCode = "08204";
+        String zipCode = "19422";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
                 "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";

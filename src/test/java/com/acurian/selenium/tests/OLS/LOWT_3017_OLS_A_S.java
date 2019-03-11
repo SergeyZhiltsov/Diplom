@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.DY_4356.SubquestionStatinMedicationsHavePageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
@@ -121,11 +122,11 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        StatinMedicationsOnPageOLS statinMedicationsOnPageOLS = approximateHeightPageOLS
+        SubquestionStatinMedicationsHavePageOLS subquestionStatinMedicationsHavePageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(new StatinMedicationsOnPageOLS());
-        statinMedicationsOnPageOLS
+                .clickNextButton(new SubquestionStatinMedicationsHavePageOLS());
+        subquestionStatinMedicationsHavePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
@@ -140,7 +141,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS);
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .clickNextButton(statinMedicationsOnPageOLS)
+                .clickNextButton(subquestionStatinMedicationsHavePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
@@ -344,8 +345,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()//---Disqualify ("High BMI") if > 50 - Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]
                 .setAll("5", "0", "256")
-                .clickNextButton(statinMedicationsOnPageOLS);
-        statinMedicationsOnPageOLS
+                .clickNextButton(subquestionStatinMedicationsHavePageOLS);
+        subquestionStatinMedicationsHavePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2)

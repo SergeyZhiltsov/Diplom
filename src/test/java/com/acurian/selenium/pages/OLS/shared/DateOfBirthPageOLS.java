@@ -24,14 +24,14 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleMIGExpected = "Let's get started to see if you qualify for a migraine study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment up to $1,150, which varies by study\n" +
+            "Payment up to $400, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
     public final String titleLMGExpected = "Let's get started to see if you qualify for a migraine study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment up to $450, which varies by study\n" +
+            "Payment up to $400, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 

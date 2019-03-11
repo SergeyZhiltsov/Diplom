@@ -17,7 +17,7 @@ public class GmegaToGban extends BaseTest {
         String phoneNumber = "AUTGMEGA01";
         String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
-        String zipCode = "19044";
+        String zipCode = "19901";
         String firstName = "Acurian";
         String lastName = "Trial";
 

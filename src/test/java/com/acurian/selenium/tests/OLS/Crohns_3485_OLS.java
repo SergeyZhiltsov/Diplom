@@ -575,9 +575,9 @@ public class Crohns_3485_OLS extends BaseTest{
         .clickNextButton(new HS1PageOLS())
         .waitForPageLoad()
         .clickOkInPopUp()
-        .setSignature()
+        .setSignature();
         
-        //------------HUMAN API Interface in HelloSign----------------
+/*        //------------HUMAN API Interface in HelloSign----------------
         .getPage(new HumanAPIOLS())
         .waitForPageLoad()		        
         .connectBTN()
@@ -593,7 +593,10 @@ public class Crohns_3485_OLS extends BaseTest{
         .clickConnect()
         
         .waitToClickNext()
-        .clickNextButton(new ThankYouCloseSimplePageOLS())
+        .clickNextButton(new ThankYouCloseSimplePageOLS())*/
+
+    ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+    thankYouCloseSimplePageOLS
         .waitForPageLoad()
         .clickNextButton(new AboutHealthPageOLS())
         .waitForPageLoad()

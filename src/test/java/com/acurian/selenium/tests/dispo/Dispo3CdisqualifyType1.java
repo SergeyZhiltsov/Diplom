@@ -17,11 +17,10 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
     @Description("Dispo_3C_DisQualify_Type1")
     public void dispo3Ctype1() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
-//        String siteName = "QSC9005_None";
-        String zipCode = "08204";
-
         String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -38,7 +37,7 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

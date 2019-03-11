@@ -294,9 +294,9 @@ public class VACC_4556_OLS extends BaseTest {
                         .clickNextButton(new HS1PageOLS())
                         .waitForPageLoad()
                         .clickOkInPopUp()
-                        .setSignature()
+                        .setSignature();
 
-                        .getPage(new HumanAPIOLS())
+/*                        .getPage(new HumanAPIOLS())
                         .waitForPageLoad()
                         .connectBTN()
                         .switchToAPI()
@@ -310,7 +310,10 @@ public class VACC_4556_OLS extends BaseTest {
                         .typePWD("password")
                         .clickConnect()
                         .waitToClickNext()
-                        .clickNextButton(new SynexusHealthyMindsPageOLS())
+                        .clickNextButton(new SynexusHealthyMindsPageOLS())*/
+
+                SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = new SynexusHealthyMindsPageOLS();
+                        synexusHealthyMindsPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer("No, I am not interested in receiving information")
                         .clickNextButton(new ThankYouCloseSimplePageOLS())

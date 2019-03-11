@@ -21,11 +21,10 @@ public class Dispo3I extends BaseTest {
     @Description("Dispo_3I_NonQRDisq")
     public void dispo3I() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
-//        String siteName = "QSC9005_None";
-        String zipCode = "08204";
-
         String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -42,7 +41,7 @@ public class Dispo3I extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -71,10 +70,11 @@ public class Dispo3I extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 
-        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
+        //WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
+        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
+              /*  .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
 
         TakingAcetaminophenTylenolPageOLS takingAcetaminophenTylenolPageOLS = whereDoYouHaveArthritisPageOLS
                 .waitForPageLoad()
@@ -83,7 +83,7 @@ public class Dispo3I extends BaseTest {
 
         UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = takingAcetaminophenTylenolPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("Yes")*/
                 .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
 
         unqualifiedCloseOLS_gmega

@@ -60,7 +60,7 @@ public class HelloSignCC extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = genderPageCC
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .getPage(new CallCenterIntroductionPageCC())
                 .activateDebugOnProd(env)
                 .getPage(genderPageCC)

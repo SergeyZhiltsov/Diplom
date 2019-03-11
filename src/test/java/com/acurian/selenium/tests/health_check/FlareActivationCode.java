@@ -23,8 +23,11 @@ public class FlareActivationCode extends BaseTest {
 
         String phoneNumber = "AUTGMEGA01";
         Site site = Site.GFLR1_1234_GFLR1;
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study,an arthritis";
         String env = System.getProperty("acurian.env", "QA");
+        //String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study,an arthritis" : "Arthritis, a Crohn's study, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -62,8 +65,13 @@ public class FlareActivationCode extends BaseTest {
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new ChooseTheMatterYouAreHereOLS());
 
+        //MostImportantChoiceOLS mostImportantChoiceOLS = chooseTheMatterYouAreHereOLS;
+        if (env.equals("QA")) {
+            chooseTheMatterYouAreHereOLS.waitForPageLoadQA();
+        } else {
+            chooseTheMatterYouAreHereOLS.waitForPageLoad();
+        }
         MostImportantChoiceOLS mostImportantChoiceOLS = chooseTheMatterYouAreHereOLS
-                .waitForPageLoad()
                 .clickOnAnswers("B")
                 .clickNextButton(new MostImportantChoiceOLS());
 

@@ -67,7 +67,7 @@ public class StudySwitchCC extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC hasAHealtcareDiagnosedWithAnyTypeOfArthritisCC = genderPageCC
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC());
 

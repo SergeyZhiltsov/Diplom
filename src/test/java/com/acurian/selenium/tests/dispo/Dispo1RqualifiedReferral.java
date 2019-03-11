@@ -19,11 +19,12 @@ public class Dispo1RqualifiedReferral extends BaseTest {
     @Description("Dispo 1R QualifiedReferral")
     public void dispo1R() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
+        String env = System.getProperty("acurian.env", "STG");
+
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
         String siteName = "AUT_GMEGA_Site";//AUT_GMEGA_01
         String zipCode = "08204";
-
-        String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS

@@ -19,11 +19,11 @@ public class Dispo41C extends BaseTest {
     @Description("Dispo 41C RefVerificationFlag")
     public void dispo41C() {
         String phoneNumber = "AUTGMEG41C";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GMEGA_01";
+        String env = System.getProperty("acurian.env", "STG");
+        String studyName = env.equals("QA") ?
+                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
+        String siteName = "AUT_GEMGA_01A";
         String zipCode = "08204";
-
-        String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -40,7 +40,7 @@ public class Dispo41C extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
