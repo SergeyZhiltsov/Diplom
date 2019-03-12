@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.END_4385.*;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -230,9 +229,9 @@ public class END_4385_OLS extends BaseTest {
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
+/*                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("No")*/
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()

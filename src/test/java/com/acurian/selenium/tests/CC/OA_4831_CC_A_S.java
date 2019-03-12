@@ -367,14 +367,17 @@ public class OA_4831_CC_A_S extends BaseTest {
             case AUT_OA_4831_Syn:
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose2PageCC())
+/*                        .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
-                        .clickNextButton(new SynexusHealthyMindsPageCC())
-                        .clickOnAnswer("No")
+                        .clickNextButton(new SynexusHealthyMindsPageCC())*/
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+//                        .clickOnAnswer("No")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor] ")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo);
+                SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
                 break;
             case AUT_OA_4831_site:
                 siteSelectionPageCC

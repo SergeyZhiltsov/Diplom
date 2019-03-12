@@ -2,22 +2,18 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
+import com.acurian.selenium.pages.CC.DYS_4356C.StatinMedicationsHavePageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
+import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.DY_4356.StopTakingStatinPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
-import com.acurian.selenium.pages.OLS.shared.StatinMedicationsOnPageOLS;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
-import com.acurian.selenium.utils.DataProviderPool;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -151,11 +147,12 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        StatinMedicationsOnPageCC statinMedicationsOnPageCC = approximateHeightPageCC
+        StatinMedicationsHavePageCC statinMedicationsHavePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(new StatinMedicationsOnPageCC());
-        statinMedicationsOnPageCC
+                .clickNextButton(new StatinMedicationsHavePageCC());
+
+        statinMedicationsHavePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
@@ -171,7 +168,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickNextButton(approximateHeightPageCC);
         approximateHeightPageCC
                 .waitForPageLoad()
-                .clickNextButton(statinMedicationsOnPageCC)
+                .clickNextButton(statinMedicationsHavePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", kowaProtocolA, kowaProtocolS)
@@ -390,8 +387,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("4", "0", "166")
-                .clickNextButton(statinMedicationsOnPageCC);
-        statinMedicationsOnPageCC
+                .clickNextButton(statinMedicationsHavePageCC);
+        statinMedicationsHavePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004980-QS5627-STUDYQUES", protocol1, protocol2)
