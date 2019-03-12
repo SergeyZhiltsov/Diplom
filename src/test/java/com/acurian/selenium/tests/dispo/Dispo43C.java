@@ -25,7 +25,7 @@ public class Dispo43C extends BaseTest {
         String studyName = env.equals("QA") ?
                 "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA_43C_Site";
-        String zipCode = "19901";
+        String zipCode = "73159";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
