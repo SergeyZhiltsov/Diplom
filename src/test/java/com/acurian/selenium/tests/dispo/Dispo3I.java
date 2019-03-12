@@ -70,20 +70,19 @@ public class Dispo3I extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
 
-        //WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
-        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = whenYouDiagnosedWithRaPageOLS
+        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
-              /*  .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
+                .clickNextButton(new WhereDoYouHaveArthritisPageOLS());
 
-        TakingAcetaminophenTylenolPageOLS takingAcetaminophenTylenolPageOLS = whereDoYouHaveArthritisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Left Knee")
-                .clickNextButton(new TakingAcetaminophenTylenolPageOLS());
+          TakingAcetaminophenTylenolPageOLS takingAcetaminophenTylenolPageOLS = whereDoYouHaveArthritisPageOLS
+                  .waitForPageLoad()
+                  .clickOnAnswers("Left Knee")
+                  .clickNextButton(new TakingAcetaminophenTylenolPageOLS());
 
-        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = takingAcetaminophenTylenolPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")*/
+          UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = takingAcetaminophenTylenolPageOLS
+                  .waitForPageLoad()
+                  .clickOnAnswer("Yes")
                 .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
 
         unqualifiedCloseOLS_gmega
