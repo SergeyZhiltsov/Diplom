@@ -244,7 +244,8 @@ public class AKC_4691_OLS extends BaseTest {
         metforminMedicationsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Metformin")
+                //.clickOnAnswers("Metformin")
+                .clickOnAnswers("Xigduo (metformin and dapagliflozin)")
                 .clickNextButton(apartFromMetforminPageOLS);
 
 
