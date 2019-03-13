@@ -4,7 +4,9 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.IncongruentSiteSelectionClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -26,6 +28,8 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
     @Description("Diabetes_4241 OLS")
     public void dia4241olsVer3Test() {
         Site site = Site.AUT_DIA_4241;
+        String dquedStudyName = "a heart health study";
+        String matchedStudyName = "a men’s health study";
         String phoneNumber = "AUTAMS1DIA";
         String protocol1 = "EFC14822";
         String protocol2 = "EFC14829";
@@ -225,7 +229,8 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         metforminMedicationsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")// done for some issue with not checking Metformin
-                .clickOnAnswers("Metformin")
+                //.clickOnAnswers("Metformin")
+                .clickOnAnswers("Xigduo (metformin and dapagliflozin)")
                 .clickNextButton(apartFromMetforminPageOLS);
 
         CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = new CurrentlyTakeInsulinPageOLS();
@@ -492,11 +497,16 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 //                .waitForPageLoad()
 //                .clickOnAnswers("None of the above")
 
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoadAKC()
+                //.clickNextButton(new SiteSelectionPageOLS())
+                .clickNextButton(new IncongruentSiteSelectionClose_OLS())
+                .waitForPageLoad(matchedStudyName, dquedStudyName)
+                //.waitForPageLoadAKC()
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
