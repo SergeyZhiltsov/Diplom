@@ -576,6 +576,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo);
     }
