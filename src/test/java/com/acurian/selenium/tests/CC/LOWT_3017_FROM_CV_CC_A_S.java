@@ -43,7 +43,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
         final String novoProtocol = "EX9536_4388";
         final String[] cvModuleProtocols = {esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS, novoProtocol};
         final String dqedStudyName = "a heart health study";
-        final String studyName = "a men’s health study";
+        final String studyName = "a men's health study";
         final String siteIndication = "low testosterone or hypogonadism";
         DebugPageCC debugPageCC = new DebugPageCC();
 
