@@ -43,8 +43,7 @@ public abstract class BaseTest {
 //        driver =  new StaleTolerantWebDriver(driverch);
         switch (Locators.isEnvWeb) {
             case Platforms.WEB:
-                //driver.manage().window().setSize(new Dimension(1400, 1050));
-                driver.manage().window().maximize();
+                driver.manage().window().setSize(new Dimension(1400, 1050));
                 break;
             case Platforms.TABLET:
                 driver.manage().window().setSize(new Dimension(900, 1050));

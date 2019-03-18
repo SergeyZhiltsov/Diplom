@@ -19,7 +19,7 @@ public class ValidateTheme extends BaseTest {
 
     @Test(enabled = true)
     @Description("Test for 1R and Verity Check")
-    public void verityScoreTest() {
+    public void verityThemeTest() {
         String phoneNumber = "AUTGMEGA01";
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";

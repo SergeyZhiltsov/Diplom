@@ -48,6 +48,7 @@ public class DebugPageCC extends MainPageCC{
 
     public DebugPageCC closeDebugWindow(){
         closeButton.click();
+        waitForAnimation();
         return this;
     }
 
@@ -94,7 +95,7 @@ public class DebugPageCC extends MainPageCC{
                 .getText();
         String[] tempArr = temp.split("\n");
         closeDebugWindow();
-        logTextToAllure("Protocol(s)="+tempArr);
+        logTextToAllure("Protocol(s) got ="+ Arrays.toString(tempArr));
         return tempArr;
     }
 
