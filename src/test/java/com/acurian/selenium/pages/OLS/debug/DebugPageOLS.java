@@ -99,6 +99,7 @@ public class DebugPageOLS extends MainPageOLS{
                 openDebugWindow();
                 break;
         }
+        waitForAnimation();
         return this;
     }
 

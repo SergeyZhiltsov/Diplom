@@ -108,14 +108,22 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad();
-        switch (siteName) {
-            case "AUT_GRA_FUL_Site":
-                followupLetter = new FollowupLetter();
-                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
+        switch (env) {
+            case "PRD":
+                //Will be updated after PID is displayed in PRD FUL subject line.
                 break;
-            case "AUT_GRA_FULm_Site":
-                followupLetter = new FollowupLetter();
-                followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
+            case "STG":
+            default:
+                switch (siteName) {
+                    case "AUT_GRA_FUL_Site":
+                        followupLetter = new FollowupLetter();
+                        followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
+                        break;
+                    case "AUT_GRA_FULm_Site":
+                        followupLetter = new FollowupLetter();
+                        followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
+                }
+                break;
         }
     }
 }
