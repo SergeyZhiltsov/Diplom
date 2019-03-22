@@ -11,6 +11,18 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     public final String titleExpected = "May I have your date of birth?";
 
+    public final String titleCommonExpected = "This is the first part of the process to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now.\n" +
+            "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive:\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $%1$s for time and travel, for qualified participants who complete study related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
+            "\n" +
+            "Let's get started to see if there is %2$s that's right for you.";
+
     public final String titleExpectedLBP = "If you qualify and participate in a low back pain study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
@@ -361,6 +373,10 @@ public class DateOfBirthPageCC extends MainPageCC{
     @Step
     public String getTitleText() {
         return getText(titleText);
+    }
+
+    public String getExpectedModifiedTitle(String indication, String compensation) {
+        return String.format(titleCommonExpected, compensation, indication);
     }
 
     @Step
