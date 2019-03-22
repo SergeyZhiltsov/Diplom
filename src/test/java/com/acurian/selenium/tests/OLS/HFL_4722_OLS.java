@@ -5,18 +5,20 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.HFL_4722.HeartTransplantPageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.SymptomsOfHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.TreatYourHeartFailurePageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class HFL_4722_OLS extends BaseTest {
 
@@ -33,7 +35,7 @@ public class HFL_4722_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleHeartFailure4722_Expected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a heart failure study", "500"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091940")
                 .clickNextButton(new ZipCodePageOLS());

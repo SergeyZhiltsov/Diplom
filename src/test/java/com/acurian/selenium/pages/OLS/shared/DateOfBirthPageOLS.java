@@ -14,6 +14,16 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleExpected = "What is your date of birth?";
 
+    public final String titleCommonExpected = "This is the first part of the process to match you with a research study.\n" +
+            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
+            "Payment up to $%1$s, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication\n" +
+            "\n" +
+            "Let's get started to see if there is %2$s that's right for you!";
+
     public final String titleLBPExpected = "Let's get started to see if you qualify for a low back pain study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
@@ -442,6 +452,11 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public String getTitleText() {
         return getText(titleText);
+    }
+
+
+    public String getExpectedModifiedTitle(String indication, String compensation) {
+        return String.format(titleCommonExpected, compensation, indication);
     }
 
     //GH methods
