@@ -2,13 +2,10 @@ package com.acurian.selenium.pages.CC.closes.standalone;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.ExperiencedAnyOfTheFollowingConditionsInPast6Months;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
-
-import java.util.List;
 
 public class UnqualifiedStudySwitchCloseOldCC extends MainPageCC {
     public final String titleExpected = "We certainly appreciate your interest in this study. Unfortunately, " +

@@ -3,14 +3,16 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.SubquestionLastReceivedPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.GERD.HowLongHaveYouBeenTaking_CC;
 import com.acurian.selenium.pages.CC.LPS_4442.EitherOfTheFollowingMedicationsCC;
-import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
 import com.acurian.selenium.pages.CC.RA.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -22,10 +24,9 @@ public class RA_4835_CC extends BaseTest {
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
     public void ra_4835_CC(final String username, final String password) {
         Site site = Site.AUT_RA_4835_Site;
+        String compensation = "180";
+        String indication = "a rheumatoid arthritis (RA) study";
         String phoneNumberOA = "AUTAMS1RA1";
-        String studyName = "Rheumatoid Arthritis";
-        String studyName1 = "a rheumatoid arthritis (RA) study";
-        String studyName2 = "RA";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -61,8 +62,8 @@ public class RA_4835_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
 
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleExpectedRA2821, "Title is diff");
+        //Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.getExpectedModifiedTitle(indication, compensation), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .waitForPageLoad()
@@ -101,7 +102,7 @@ public class RA_4835_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(doYouSufferFromArthritisCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0005578-QS7102-STUDYQUES", site.activeProtocols)
                 .back();
 
         WhatKindOfArthritisCC whatKindOfArthritisCC = doYouSufferFromArthritisCC
@@ -121,7 +122,7 @@ public class RA_4835_CC extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Q0004962-QS7103-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0004962-QS7103-STUDYQUES", site.activeProtocols)
                 .back();
 
         WhereYouHaveArthritisCC whereYouHaveArthritisCC = whatKindOfArthritisCC
@@ -134,7 +135,7 @@ public class RA_4835_CC extends BaseTest {
         whereYouHaveArthritisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Q0004962-QS7103-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0004962-QS7103-STUDYQUES", site.activeProtocols)
                 .back();
 
         WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisCC
@@ -217,9 +218,9 @@ public class RA_4835_CC extends BaseTest {
         BiologicMedicationsCC biologicMedicationsCC = new BiologicMedicationsCC();
         HashMap<String, List<String>> disqualifyQ9 = new HashMap<>();
         disqualifyQ9.put("CellCept or Myfortic (mycophenolate mofetil)", Arrays.asList(site.activeProtocols));
-        disqualifyQ9.put("Cuprimine or Depen (penicillamine)", Arrays.asList(site.activeProtocols));
+        disqualifyQ9.put("Cuprimine or Depen (penicillamine)", Arrays.asList(site.activeProtocols));
         disqualifyQ9.put("Cytoxan (cyclophosphamide)", Arrays.asList(site.activeProtocols));
-        disqualifyQ9.put("Imuran or Azasan (azathioprine)", Arrays.asList(site.activeProtocols));
+        disqualifyQ9.put("Imuran or Azasan (azathioprine)", Arrays.asList(site.activeProtocols));
         disqualifyQ9.put("Leukeran (chlorambucil)", Arrays.asList(site.activeProtocols));
         disqualifyQ9.put("Neoral, Gengraf, or Sandimmune (cyclosporine)", Arrays.asList(site.activeProtocols));
         disqualifyQ9.put("Gold salts such as Myochrysine, Solganal, or Ridaura (auranofin)", Arrays.asList(site.activeProtocols));
@@ -304,9 +305,10 @@ public class RA_4835_CC extends BaseTest {
         followingMedicationsToTreatYourRACC
                 .waitForPageLoad()
                 .back();
-        followingMedicationsToTreatYourRACC
+        howLongTakingMethotrexateCC
                 .waitForPageLoad()
                 .back();
+
         //Q7
         areYouCurrentlyTakingMethotrexateCC
                 .waitForPageLoad()
@@ -365,7 +367,7 @@ public class RA_4835_CC extends BaseTest {
             .back();
         howLongHaveYouBeenTaking_CC
                 .waitForPageLoad(1, howLongHaveYouBeenTaking_CC.titleExpected10)
-                .clickOnAnswerForSubQuestion(1, "1 month")
+                .clickOnAnswerForSubQuestion(1, "2 months")
                 .clickNextButton(biologicMedicationsCC);
 
         //Q12
@@ -391,30 +393,31 @@ public class RA_4835_CC extends BaseTest {
                         "Tysabri (Agent Note: tie-SAB-ree)")
                 .clickNextButton(new SubquestionLastReceivedPageCC());
         subquestionLastReceivedPageCC
-                .waitForPageLoad(1, subquestionLastReceivedPageCC.titleExpected11) //Q13
+                .waitForPageLoad(1, subquestionLastReceivedPageCC.titleExpected16) //Q13
                 .back();
-        biologicMedicationsCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above") //Disqualify ("No qualifying biologic therapy”)
-                .clickNextButton(subquestionLastReceivedPageCC);
-        subquestionLastReceivedPageCC
-                .waitForPageLoad(1, subquestionLastReceivedPageCC.titleExpected11) //Q13
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber(biologicMedicationsCC.titleExpected, site.activeProtocols)
-                .back();
-        //Q12
         EitherOfTheFollowingMedicationsCC eitherOfTheFollowingMedicationsCC = biologicMedicationsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)") //Skip to Q14
+                .clickOnAnswers("None of the above") //Disqualify ("No qualifying biologic therapy”)
                 .clickNextButton(new EitherOfTheFollowingMedicationsCC());
+        eitherOfTheFollowingMedicationsCC
+                .waitForPageLoad() //Q14
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0005225-QS7112-STUDYQUES", site.activeProtocols)
+                .back();
+        //Q12
+        //EitherOfTheFollowingMedicationsCC eitherOfTheFollowingMedicationsCC = biologicMedicationsCC
+        biologicMedicationsCC
+                .waitForPageLoad()
+                .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)") //Skip to Q14
+                .clickNextButton(eitherOfTheFollowingMedicationsCC);
 
         //Q14
         //Disqualify ("History of JAK inhibitor")
-        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
         HashMap<String, List<String>> disqualifyQ14 = new HashMap<>();
         disqualifyQ14.put("Jakafi (Agent Note: JAK-uh-fie)", Arrays.asList(site.activeProtocols));
         disqualifyQ14.put("Olumiant (Agent Note: oh-LOO-me-ant)", Arrays.asList(site.activeProtocols));
         disqualifyQ14.put("Xeljanz (Agent Note: ZEL-jans)", Arrays.asList(site.activeProtocols));
+        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
         for (Map.Entry<String, List<String>> entry : disqualifyQ14.entrySet()) {
             System.out.println(entry.getKey());
             eitherOfTheFollowingMedicationsCC
@@ -422,9 +425,9 @@ public class RA_4835_CC extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
                     .clickNextButton(transitionStatementCC)
-                    .waitForPageLoad(studyName2)
+                    .waitForPageLoad("RA")
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber(eitherOfTheFollowingMedicationsCC.titleExpected, site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("Q0017453-QS7114-STUDYQUES", site.activeProtocols)
                     .back();
         }
         eitherOfTheFollowingMedicationsCC
@@ -436,45 +439,340 @@ public class RA_4835_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 //-------------------New GENERAL HEALTH---------------------------
+        WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers(//Select all values to check it presence in the page
+                        "ADHD or attention deficit hyperactivity disorder",
+                        "ADHD or attention deficit hyperactivity disorder",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Cancer",
+                        "Diabetes (type 1 or type 2)",
+                        "Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis," +
+                                " heartburn or GERD)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's " +
+                                "disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
+                .clickNextButton(new WhichFollowingBonesJoints_CC());
+        //Check flow logic for Q2
+        //Q4: QS40
+        whichFollowingBonesJoints_CC
+                .waitForPageLoad()
+                .back();
+
+        WhichOfTheFollowingBreathingLungPageСС whichOfTheFollowingBreathingLungPageСС =
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Lupus", //Deselect to remove DQ? Is checked bellow
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")  //Deselect
+                .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
+        //Q5: QS41
+        whichOfTheFollowingBreathingLungPageСС
+                .waitForPageLoad()
+                .back();
+
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)") //Deselect
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
+
+        //Q6: QS42
+        HashMap<String, List<String>> disqualifyQ6 = new HashMap<>();
+        disqualifyQ6.put("Within the past 5 years", Arrays.asList(site.activeProtocols)); //Disqualify ("Cancer <= 5 years")
+        disqualifyQ6.put("6 - 10 years ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Cancer > 5 years")
+        disqualifyQ6.put("11 or more years ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Cancer > 5 years")
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = new WhatKindOfDiabetesPageCC();
+        for (Map.Entry<String, List<String>> entry : disqualifyQ6.entrySet()) {
+            System.out.println(entry.getKey());
+            whenDiagnosedWithCancerCC
+                    .waitForPageLoad()
+                    .clickOnAnswer(entry.getKey())
+                    .clickNextButton(whatKindOfDiabetesPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                    .back();
+        }
+        //Back to haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        whenDiagnosedWithCancerCC
+                .waitForPageLoad()
+                .back();
+
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Cancer") //Deselect
+                .clickNextButton(new WhatKindOfDiabetesPageCC());
+        //Q6: QS42
+                whatKindOfDiabetesPageCC
+                        .waitForPageLoad()
+                        .back();
+
+        WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC =
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetes (type 1 or type 2)") //Deselect
+                .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
+        //Q8: QS44
+        whichOfFollowingDigestiveConditionPageCC
+                .waitForPageLoad()
+                .back();
+
+        WhichTypeOfHeadacheCC whichTypeOfHeadacheCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Digestive disorders (IBS or irritable bowel syndrome, IBD," +
+                                " Crohn's disease, ulcerative colitis, heartburn or GERD)") //Deselect
+                        .clickNextButton(new WhichTypeOfHeadacheCC());
+        //Q10: QS45
+        whichTypeOfHeadacheCC
+                .waitForPageLoad()
+                .back();
+
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC =
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Headaches (migraine, cluster, tension)") //Deselect
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+        //Q11: QS46
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .back();
+
+        DoYouTakeAnyMedicationsControlHypertension_CC doYouTakeAnyMedicationsControlHypertension_CC =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)") //Deselect
+                        .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_CC());
+        //Q15: QS50
+        doYouTakeAnyMedicationsControlHypertension_CC
+                .waitForPageLoad()
+                .back();
+
+        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("High blood pressure or hypertension") //Deselect
+                        .clickNextButton(new KidneyProblemsPage());
+        //Q16: QS51
+        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
+                .waitForPageLoad()
+                .clickOnAnswers("Dialysis")
+                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+        whichOfTheFollowingLiverProblemsPageСС
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .back();
+        kidneyProblemsPage
+                .waitForPageLoad()
+                .back();
+
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Kidney disease") //Deselect
+                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+        //Q17: QS52
+        whichOfTheFollowingLiverProblemsPageСС
+                .waitForPageLoad()
+                .back();
+
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)") //Deselect
+                        .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
+        //Q18: QS53
+        followingMentalEmotionalHealthPageCC
+                .waitForPageLoad()
+                .back();
+
+        WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC whichOfFollowingHaveYouDiagnosedWith_neurologicalCC =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, " +
+                                "depression, schizophrenia)") //Deselect
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC());
+        //Q19: QS54
+        WhichOfTheFollowingSkinConditionsDoYouSufferСС whichOfTheFollowingSkinConditionsDoYouSufferСС =
+        whichOfFollowingHaveYouDiagnosedWith_neurologicalCC
+                .waitForPageLoad()
+                .clickOnAnswers("Multiple sclerosis (MS)")
+                .clickNextButton(new  WhichOfTheFollowingSkinConditionsDoYouSufferСС());
+        whichOfTheFollowingSkinConditionsDoYouSufferСС
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015147-QS54-STUDYQUES", site.activeProtocols)
+                .back();
+        whichOfFollowingHaveYouDiagnosedWith_neurologicalCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Fibromyalgia")
+                .clickNextButton(whichOfTheFollowingSkinConditionsDoYouSufferСС);
+        whichOfTheFollowingSkinConditionsDoYouSufferСС
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015147-QS54-STUDYQUES", site.activeProtocols)
+                .back();
+        whichOfFollowingHaveYouDiagnosedWith_neurologicalCC
+                .waitForPageLoad()
+                .back();
+
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)") //Deselect
+                .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferСС());
+
+        //Q20: QS55
+        whichOfTheFollowingSkinConditionsDoYouSufferСС
+                .waitForPageLoad()
+                .back();
+
+        WomenHealthConditionsCC womenHealthConditionsCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)") //Deselect
+                        .clickNextButton(new WomenHealthConditionsCC());
+        //Q22: QS57
+        womenHealthConditionsCC
+                .waitForPageLoad()
+                .back();
+        //Flow for Q2: QS38 was checked
+
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Lupus") //Disqualify ("Lupus")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", site.activeProtocols)
+                .back();
+
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
-                //----------Q23 - Do any of the following additional diagnoses apply to you?--------
+                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
+                .clickNextButton(whichFollowingBonesJoints_CC);
+
+        //Q4: QS40
+        whichFollowingBonesJoints_CC
+                .waitForPageLoad()
+                .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis") //Disqualify ("Ankylosing spondylitis") if selected this option OR "Yes" in AS Q2
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015115-QS40-STUDYQUES", site.activeProtocols)
+                .back();
+
+        //Q4: QS40
+                whichFollowingBonesJoints_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageCC())
-                //----------Height and Weight Question Page--------------------
+                .clickOnAnswers("Gout") //Disqualify ("Gout")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015115-QS40-STUDYQUES", site.activeProtocols)
+                .back();
+
+        whichFollowingBonesJoints_CC
+                .waitForPageLoad()
+                .back();
+
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above") //Deselect
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+
+        //Q24: QS59
+        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers( //Select all to check quantity
+                        "Bipolar disorder",
+                        "Cancer in the past 5 years, except skin cancer",
+                        "Cirrhosis",
+                        "Drug or alcohol abuse within the past year",
+                        "Hepatitis B",
+                        "Hepatitis C",
+                        "HIV or AIDS",
+                        "Kidney disease requiring dialysis",
+                        "Multiple sclerosis (MS)",
+                        "Neuropathy (nerve damage due to diabetes or another condition)",
+                        "Seizure disorder such as epilepsy",
+                        "Schizophrenia",
+                        "None of the above")
+                .clickNextButton(new ApproximateHeightPageCC());
+        //Q28: QS60
+        approximateHeightPageCC
+                .waitForPageLoad()
+                .back();
+        //Q24: QS59
+        HashMap<String, List<String>> disqualifyQ24 = new HashMap<>();
+        disqualifyQ24.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(site.activeProtocols)); //Cancer in the past 5 years, except skin cancer
+        disqualifyQ24.put("Drug or alcohol abuse within the past year", Arrays.asList(site.activeProtocols)); //Disqualify ("Substance abuse")
+        disqualifyQ24.put("Hepatitis B", Arrays.asList(site.activeProtocols)); //Disqualify ("HBV")
+        disqualifyQ24.put("Hepatitis C", Arrays.asList(site.activeProtocols)); //Disqualify ("HCV")
+        disqualifyQ24.put("HIV or AIDS", Arrays.asList(site.activeProtocols)); //Disqualify ("HIV")
+        //disqualifyQ24.put("Kidney disease requiring dialysis", Arrays.asList((site.activeProtocols))); //Disqualify ("Dialysis")
+        for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
+            System.out.println(entry.getKey());
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(entry.getKey())
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES" , site.activeProtocols)
+                    .back();
+        }
+
+        //Q24: QS59
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("Kidney disease requiring dialysis")
+                .clickNextButton(approximateHeightPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .back();
+
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(approximateHeightPageCC);
+
+        approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC())
-                //----------ChildrenUnderTheAge Page--------------------
-                .waitForPageLoad()
-//        .clickNextButton(new ChildrenUnderPageCC())
-//        .waitForPageLoad()
-//        .clickOnAnswer("Yes")
-//        //----------PEDIATRIC HEALTH Questions----------
-//        .clickNextButton(new HouseholdHavePageCC())
-//        .waitForPageLoad()
-//        .clickOnAnswers("None of the above")
-                //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad(studyName1)
+                .waitForPageLoad(indication)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new HSGeneralCC())
-                .waitForPageLoad(studyName)
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
-                .clickNextButton(new HSMedicalRecordsPageCC())
+                .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo);
     }
 }
