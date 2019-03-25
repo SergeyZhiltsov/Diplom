@@ -9,13 +9,12 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class StatinMedicationsHavePageCC extends MainPageCC{
+public class AreYouCurrentlyTakingStatinMedsCC extends MainPageCC{
 
-    public final String titleExpected = "One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is called a statin. Most people with these conditions are prescribed this kind of medicine. Statins are prescribed under many different names.\n" +
-            "\n" +
-            "Which of the following statin medications have you ever taken on a daily basis?\n" +
-            "Think about statin medications you may be taking now as well as those you may have taken in the past.\n" +
-            "Agent Note: Select all that apply";
+    public final String titleExpected = "Are you currently taking (read medication listed below)?\n" +
+            "Agent Notes:\n" +
+            "If applicable, ask about each medication separately.\n" +
+            "If caller is not sure of the names of their medications, say \"Please first get your medication bottles or packages to confirm the names of your medications.";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -23,18 +22,18 @@ public class StatinMedicationsHavePageCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='subquestion']/span[@class='sub_question_text']")
     List<WebElement> subQuestions;
 
-    public StatinMedicationsHavePageCC() {
+    public AreYouCurrentlyTakingStatinMedsCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public StatinMedicationsHavePageCC waitForPageLoad() {
+    public AreYouCurrentlyTakingStatinMedsCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public StatinMedicationsHavePageCC clickOnAnswerForSubQuestion(String questionText, String answerText) {
+    public AreYouCurrentlyTakingStatinMedsCC clickOnAnswerForSubQuestion(String questionText, String answerText) {
         List<WebElement> checkBoxListFromTitle = subQuestions.stream().filter(el -> questionText.contains(el.getText()))
                 .findFirst()
                 .get()
