@@ -405,19 +405,7 @@ public class GERD_4301_OLS extends BaseTest{
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-//				.clickNextButton(new ChildrenUnderPageOLS());
-
-
-//		//----Do you have any children under the age of 18 in your household? ------------
-//		childrenUnderPageOLS
-//				.waitForPageLoad()
-//				.clickOnAnswer("No")
-//				.clickNextButton(new TheStudySitePageOLS())
-//				.waitForPageLoad()
-//				.clickOnAnswer("Public transportation")
-//				.clickNextButton(new WhatMedicalCoveragePageOLS())
-//				.waitForPageLoad()
-//				.clickOnAnswers("No, I have no coverage")
+		//----EthnicBackgroundPageOLS ------------
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
@@ -432,16 +420,15 @@ public class GERD_4301_OLS extends BaseTest{
         		.waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSGeneralPageOLS())
-				//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                .waitForPageLoad(site_Indication)
+                //.clickNextButton(new HSGeneralPageOLS())
+                //.waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature();
-                
+
 /*                //------------HUMAN API Interface in HelloSign----------------
                 .getPage(new HumanAPIOLS())
                 .waitForPageLoad()		        
