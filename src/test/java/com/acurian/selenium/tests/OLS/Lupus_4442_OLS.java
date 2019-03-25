@@ -23,9 +23,9 @@ public class Lupus_4442_OLS extends BaseTest {
 
     @Test()
     @Description("4442 Lilly Lupus OLS")
-    public void lupus_4442_OLS() {
+    public void lupus4442olsTest() {
         Site site = Site.LPS_4442;
-        String phoneNumberMIG = "AUTAMS1LPS";
+        String phoneNumber = "AUTAMS1LPS";
         String protocol1 = "I4V_MC_JAHZ";
         String protocol2 = "I4V_MC_JAIA";
         String studyName = "a lupus";
@@ -38,9 +38,9 @@ public class Lupus_4442_OLS extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberMIG)
+                .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleLPSExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a lupus study", "500"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
@@ -308,8 +308,8 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(site_Indication)
+//                .clickNextButton(new HSGeneralPageOLS())
+//                .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

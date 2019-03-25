@@ -30,8 +30,7 @@ public class Lupus_4442_CC extends BaseTest {
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
-                .waitForPageLoad()
-                .maximizePage();
+                .waitForPageLoad();
 
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
@@ -351,8 +350,8 @@ public class Lupus_4442_CC extends BaseTest {
                 .waitForPageLoad("a lupus study")
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new HSGeneralCC())
-                .waitForPageLoad("Lupus (SLE)")
+//                .clickNextButton(new HSGeneralCC())
+//                .waitForPageLoad("Lupus (SLE)")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())
