@@ -15,8 +15,8 @@ public class SubquestionStatinMedicationsHavePageOLS extends MainPageOLS{
     public final String titleExpected = "One of the most common kinds of medicines to manage high cholesterol, triglycerides, or lipids is called a statin. Most people with these conditions are prescribed this kind of medicine. Statins are prescribed under many different names.\n" +
             "\n" +
             "Which of the following statin medications have you ever taken on a daily basis?\n" +
-            "For each medication, please indicate if you are taking it now (currently), have taken it in the past (but stopped taking it), or if you have never taken it.\n" +
-            "If you are not sure of the names of your medications, please first get your medication bottles or packages to confirm.";
+            "Think about statin medications you may be taking now as well as those you may have taken in the past.\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
