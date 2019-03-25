@@ -308,7 +308,7 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-//                .clickNextButton(new HSGeneralPageOLS())
+                .clickNextButton(new HSGeneralPageOLS())
 //                .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()

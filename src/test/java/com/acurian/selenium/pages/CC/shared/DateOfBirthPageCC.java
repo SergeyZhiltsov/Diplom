@@ -165,12 +165,17 @@ public class DateOfBirthPageCC extends MainPageCC{
     		"\n" +
     		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
-    public final String titleIBD3264 = "If you qualify and participate in a Crohn's or colitis study, you may receive:\n" +
-    		"Study medication or placebo, at no-cost to you\n" +
-    		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-    		"And depending on the study, compensation of up to $700 for time and travel, for qualified participants who complete study related visits\n" +
-    		"\n" +
-    		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    public final String titleIBD3264 = "This is the first part of the process to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now.\n" +
+            "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive:\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $700 for time and travel, for qualified participants who complete study related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
+            "\n" +
+            "Let’s get started to see if there is a Crohn's or colitis study that's right for you!";
 
     public final String titleKAD4631 = "If you qualify and participate in an eczema (atopic dermatitis) study, you may receive:\n" +
     		"Study medication or placebo, at no-cost to you\n" +
@@ -382,6 +387,11 @@ public class DateOfBirthPageCC extends MainPageCC{
     @Step
     public String getTitleText2Ver() {
         return getText(titleText2Ver);
+    }
+
+    @Step
+    public String getTitleTextVer3() {
+        return getText(titleText) + "\n" + getText(titleText2Ver);
     }
 
     //GH methods

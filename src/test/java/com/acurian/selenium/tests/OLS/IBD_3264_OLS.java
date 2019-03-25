@@ -43,9 +43,8 @@ public class IBD_3264_OLS extends BaseTest {
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoadGROUP()
-                .maximizePage();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleIBD_Expected, "Title is diff");
+                .waitForPageLoadGROUP();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.titleIBD_Expected, "Title is diff");// old because of coma
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
@@ -651,10 +650,10 @@ public class IBD_3264_OLS extends BaseTest {
         siteSelectionPageOLS.waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSUlcerativeColitisPage_OLS())
-                .waitForPageLoad()
+//                .clickNextButton(new HSUlcerativeColitisPage_OLS())
+//                .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
+                .waitForPageLoadIBD("Ulcerative Colitis")
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()

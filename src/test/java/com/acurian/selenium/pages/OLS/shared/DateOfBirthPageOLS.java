@@ -192,12 +192,15 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study medication";
 
 
-    public final String titleIBD_Expected = "Let's get started to see if you qualify for a Crohn's or colitis study!\n" +
-            "\n" +
-            "Those who qualify may receive*:\n" +
+    public final String titleIBD_Expected = "This is the first part of the process to match you with a research study.\n" +
+            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $700, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
-            "No-cost study medication";
+            "No-cost study medication\n" +
+            "\n" +
+            "Let’s get started to see if there is a Crohn's or colitis study that's right for you!";
 
     public final String titleDerm_Expected = "Let's get started to see if you qualify for an eczema (atopic dermatitis) study!\n" +
             "\n" +
@@ -485,6 +488,11 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public String getTitleText2Ver() {
         return getText(titleText2Ver);
+    }
+
+    @Step
+    public String getTitleTextVer3() {
+        return getText(titleText) + "\n" + getText(titleText2Ver);
     }
 
 }
