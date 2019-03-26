@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
-import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;

@@ -1,8 +1,8 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.RA_2821.WhenYouDiagnosedWithRaPageOLS;
+import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;

@@ -6,8 +6,11 @@ import java.util.Arrays;
 Designed to contain all sites that being used in tests.
  */
 public enum Site {
+
     //
     AUT_RA2821_Site("AUT_RA2821_Site", "19044", "1R", false, true, "M15_925"),
+    //4835
+    AUT_RA_4835_Site("AUT_RA4835_Site", "19901", "1R", true, false, "M16_063"),
     //3017
     AUT_LOWT_3017S_Site("AUT_LOWT_3017S_Site", "19422", "41C", false, true, "M16_100_S"),
     AUT_LOWT_3017_Site("AUT_LOWT_3017_Site", "19901", "1R", false, true, "M16_100"),

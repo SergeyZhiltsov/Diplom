@@ -24,7 +24,7 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.shared.ProcedureForWeightLossPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WeightLossSurgeryPageOLS;
-import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;

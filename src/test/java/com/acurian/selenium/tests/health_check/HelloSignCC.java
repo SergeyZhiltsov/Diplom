@@ -1,7 +1,7 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.RA_2821.WhenYouDiagnosedWithRaPageCC;
+import com.acurian.selenium.pages.CC.RA.WhenYouDiagnosedWithRaPageCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;

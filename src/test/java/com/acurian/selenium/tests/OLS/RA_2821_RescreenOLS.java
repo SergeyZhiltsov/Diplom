@@ -1,7 +1,7 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.RA_2821.*;
+import com.acurian.selenium.pages.OLS.RA.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 public class RA_2821_RescreenOLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void ra_2821_RescreenOLS() {
         String phoneNumberRA = "AUTAMS1RA2";  //Referral Service Code = "Rescreen 2821" in GEMBA
         String protocol1 = "M15_925";
