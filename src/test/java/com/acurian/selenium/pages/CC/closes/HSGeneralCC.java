@@ -24,11 +24,11 @@ public class HSGeneralCC extends MainPageCC{
 			"Please be assured that your records will be kept confidential and only shared with the research facility.";
 			
 	
-	public final String titelExpected_NoPIIemail = "We're glad the location is convenient for you.\n" +
+	public final String titleExpectedNoPIIemail = "We’re glad the location is convenient for you. We’re almost done with this questionnaire!\n" +
             "\n" +
-            "The last step is to provide information about the doctors who are currently treating, or have previously treated, your Type 2 Diabetes and related health conditions so we can request your medical records and send them to the study doctor.\n" +
+            "As the next step, please provide your email address. We will keep it confidential. Your email is required to move to the next step of the study pre-screening process.\n" +
             "\n" +
-            "Please be assured that your records will be kept confidential and only shared with the research facility.";
+            "What email address should we use?";
 	
 	
 	public final String titleExpected_IND = "We're glad the location is convenient for you.\n" +
@@ -52,12 +52,15 @@ public class HSGeneralCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='text_email_container']/input[@type='text']")
     WebElement emailBox;
     
-    @FindBy(xpath = "//input[@id='answersQSC9111.rawAnswer']")
-    WebElement emailBoxT2Dia;
-    
 
     public HSGeneralCC() {
         PageFactory.initElements(getDriver(), this);
+    }
+
+    @Step
+    public HSGeneralCC waitForPageLoadEmailNotProvided() {
+        waitForPageLoadMain(titleText, titleExpectedNoPIIemail);
+        return this;
     }
 
     @Step
@@ -76,13 +79,6 @@ public class HSGeneralCC extends MainPageCC{
     @Step
     public HSGeneralCC waitForPageLoadInd(String studyIndication) {
         String titleExpectedMod = String.format(titleExpected_IND, studyIndication);
-        waitForPageLoadMain(titleText, titleExpectedMod);
-        return this;
-    }
-    
-    @Step
-    public HSGeneralCC waitForPageLoadT2DM() {
-        String titleExpectedMod = String.format(titelExpected_NoPIIemail);
         waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }

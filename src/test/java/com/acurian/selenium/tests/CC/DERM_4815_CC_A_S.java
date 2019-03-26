@@ -34,7 +34,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
 
     @Test(dataProvider = "sites", dataProviderClass = DERM_4815_OLS_A_S.class)
     @Description("DERM_4815_CC_A_S")
-    public void derm4815ccaasTest(Site site) {
+    public void derm4815ccAasTest(Site site) {
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
@@ -69,7 +69,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleKAD4631, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")

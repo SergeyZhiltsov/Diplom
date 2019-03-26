@@ -25,9 +25,7 @@ public class Chronic_4471_CC extends BaseTest {
 
         loginPageCC
                 .openPage(env)
-                .waitForPageLoad()
-                .maximizePage();
-
+                .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
@@ -52,8 +50,7 @@ public class Chronic_4471_CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),  dateOfBirthPageCC.getExpectedModifiedTitle("a chronic cough study", "350"), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")
@@ -325,8 +322,8 @@ public class Chronic_4471_CC extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new HSGeneralCC())
-                .waitForPageLoad("Chronic Cough")
+//                .clickNextButton(new HSGeneralCC())
+//                .waitForPageLoad("Chronic Cough")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())

@@ -37,8 +37,6 @@ public class DERM_4814_CC extends BaseTest {
     @Description("DERM_4814_CC_Test")
     public void derm4814ccTest(final Site site) {
         String phoneNumber = "AUTAMSDERM";
-//        String protocol1 = "INCB 18424_303";
-//        String protocol2 = "INCB 18424_304";
         String[] protocols = site.activeProtocols;
         String studyName = "an eczema (atopic dermatitis) study";
 
@@ -71,7 +69,7 @@ public class DERM_4814_CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleDermExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")

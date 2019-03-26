@@ -46,8 +46,8 @@ import ru.yandex.qatools.allure.annotations.Description;
 public class AKC_4691_OLS extends BaseTest {
 
     @Test
-    @Description("Akcea_4691 OLS")
-    public void AKC_4691_OLS_EmailAtPII() {
+    @Description("Akcea 4691 OLS")
+    public void Akc4691olsEmailAtPII() {
         Site site = Site.AUT_AKC4691_MR;
         String phoneNumber = "AUTAMS1AKC";
 

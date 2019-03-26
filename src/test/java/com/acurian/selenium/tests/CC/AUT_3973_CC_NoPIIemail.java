@@ -83,8 +83,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
         //--------------DOB Question------------
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleAUT3973, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),  dateOfBirthPageCC.getExpectedModifiedTitle("an autism spectrum disorder study", "800"), "Title is diff");
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
@@ -332,7 +331,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
-                .waitForPageLoad(siteIndication)
+                .waitForPageLoadEmailNotProvided()
                 .typeEmail("qa.acurian@gmail.com")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()

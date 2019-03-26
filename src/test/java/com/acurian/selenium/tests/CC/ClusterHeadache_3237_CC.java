@@ -8,27 +8,23 @@ import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
 public class ClusterHeadache_3237_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("00020")
+    @Test()
     @Description("a cluster headache study 3237 CC")
-    public void clusterHeadache_3237_CC(final String username, final String password) {
+    public void clusterHeadache3237сс() {
         Site site = Site.AUT_CLH_3237_Site;
         String phoneNumber = "AUTAMS1CLH";
         String studyName = "a cluster headache";
-        
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+
+        String env = System.getProperty("acurian.env", "STG");
         
         
         //------------LOGIN Page for CC---------------   
@@ -39,8 +35,8 @@ public class ClusterHeadache_3237_CC extends BaseTest{
          
         Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         //------------(SelectActionPage) Study and PhoneNumber Selection Page---------------      
@@ -59,9 +55,9 @@ public class ClusterHeadache_3237_CC extends BaseTest{
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
         
-        dateOfBirthPageCC.waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleCLHExpected, "Title is diff");
+        dateOfBirthPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a cluster headache study", "300"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
         		.setMonth("Aug")
         		.setDay("1")
