@@ -15,7 +15,7 @@ public class HowLongTakingMethotrexate extends MainPageOLS{
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
     
-    @FindBy(xpath = "//label[contains(@for,'QS517_')]/span[@class='copy']")
+    @FindBy(xpath = "//label[contains(@for,'QS7108_')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
 
     public HowLongTakingMethotrexate() {

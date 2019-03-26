@@ -8,7 +8,7 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class AgeWhenDiagnosedWithRA extends MainPageOLS {
-	public final String titleExpected = "When were you diagnosed with RA? ";
+	public final String titleExpected = "When were you diagnosed with RA?";
 
     @FindBy(xpath = "//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;

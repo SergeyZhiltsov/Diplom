@@ -14,7 +14,7 @@ public class CurrentlyTakingMethotrexate extends MainPageOLS {
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@for,'QS516_')]/span[@class='copy']")
+    @FindBy(xpath = "//label[contains(@for,'QS7107_')]/span[@class='copy']")
     List<WebElement> radioButtonsList;
     
    

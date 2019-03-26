@@ -15,7 +15,7 @@ public class MedicationsToTreatYourRA extends MainPageOLS {
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
     
-    @FindBy(xpath = "//label[contains(@for,'QS519_')]/span[@class='copy']")
+    @FindBy(xpath = "//label[contains(@for,'QS7109')]/span[@class='copy']")
     List<WebElement> checkBoxList;
 
     public MedicationsToTreatYourRA() {

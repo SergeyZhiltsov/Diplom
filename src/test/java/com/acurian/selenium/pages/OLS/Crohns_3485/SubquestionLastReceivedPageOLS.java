@@ -26,6 +26,7 @@ public class SubquestionLastReceivedPageOLS extends MainPageOLS{
     public final String titleExpected13 = "Which of the following best describes when you last received Stelara? You….";
     public final String titleExpected14 = "Which of the following best describes when you last received Taltz? You….";
     public final String titleExpected15 = "Which of the following best describes when you last received Tysabri? You….";
+    public final String titleExpected16 = "Which of the following best describes when you last received Rituxan?";
 
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]")
