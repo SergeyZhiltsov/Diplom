@@ -81,8 +81,7 @@ public class CV_5034_CC_A_S extends BaseTest {
         //-------Date of Birth Page--------
         dateOfBirthPageCC
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextAKC(), "May I have your date of birth?", "Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")
                 .setDay("2")

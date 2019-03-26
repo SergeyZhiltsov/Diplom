@@ -80,7 +80,7 @@ public class CV_3140_CC_A_S extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
