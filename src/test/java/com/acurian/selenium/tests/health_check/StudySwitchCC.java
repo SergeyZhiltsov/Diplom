@@ -1,11 +1,11 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.ExperiencedAnyOfTheFollowingConditionsInPast6Months;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC;
-import com.acurian.selenium.pages.CC.RA_2821.WhenYouDiagnosedWithRaPageCC;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.StudiesThatAreCurrentlyEnrollingPageCC;
-import com.acurian.selenium.pages.CC.RA_2821.standalone.StudySwitchPageCC;
+import com.acurian.selenium.pages.CC.RA.standalone.ExperiencedAnyOfTheFollowingConditionsInPast6Months;
+import com.acurian.selenium.pages.CC.RA.standalone.HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC;
+import com.acurian.selenium.pages.CC.RA.WhenYouDiagnosedWithRaPageCC;
+import com.acurian.selenium.pages.CC.RA.standalone.StudiesThatAreCurrentlyEnrollingPageCC;
+import com.acurian.selenium.pages.CC.RA.standalone.StudySwitchPageCC;
 import com.acurian.selenium.pages.CC.closes.standalone.UnqualifiedStudySwitchCloseOldCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;

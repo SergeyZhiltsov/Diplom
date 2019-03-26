@@ -2,20 +2,20 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.RA_2821.*;
+import com.acurian.selenium.pages.OLS.RA.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
-import com.acurian.selenium.pages.OLS.RA_2821.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
 public class RA_2821_OLS extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     public void ra_2821_OLS() {
         Site site = Site.AUT_RA2821_Site;
         String phoneNumberRA = "AUTAMS1RA1";

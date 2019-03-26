@@ -2,16 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.GERD.AreYouCurrentlyAbleToSwallowTablets_OLS;
-import com.acurian.selenium.pages.OLS.GERD.DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS;
-import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
-import com.acurian.selenium.pages.OLS.GERD.HaveYouEverHadSurgeryOnStomach_OLS;
-import com.acurian.selenium.pages.OLS.GERD.HowDoYouBuyFollowingMedications_OLS;
-import com.acurian.selenium.pages.OLS.GERD.HowLongHaveYouBeenTaking_OLS;
-import com.acurian.selenium.pages.OLS.GERD.ThinkingAboutThePast2Months_OLS;
-import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
-import com.acurian.selenium.pages.OLS.GERD.WhenDidYouHaveAppendixRemoved_OLS;
-import com.acurian.selenium.pages.OLS.GERD.WhichoOfFollowingMedicationsCurrentlyGERD_OLS;
+import com.acurian.selenium.pages.OLS.GERD.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -43,8 +34,8 @@ public class GERD_4301_OLS extends BaseTest{
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGERD_4301_Expected, "Title is diff");
-        
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGERD_4301_Expected, "Title is diff");
+		Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName+" study", "500"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("08082005")
@@ -97,7 +88,7 @@ public class GERD_4301_OLS extends BaseTest{
                 .clickNextButton(new WhichoOfFollowingMedicationsCurrentlyGERD_OLS());
         		
 
-        //---------------Q3 WhichoOfFollowingMedicationsCurrentlyGEwhichoOfFollowingMedicationsCurrentlyGERD_OLSRD_OLS-------------------
+        //---------------Q3 WhichoOfFollowingMedicationsCurrentlyGERD_OLS-------------------
         whichoOfFollowingMedicationsCurrentlyGERD_OLS
                 .waitForPageLoad();
         Assert.assertEquals(whichoOfFollowingMedicationsCurrentlyGERD_OLS.getTitleText(),whichoOfFollowingMedicationsCurrentlyGERD_OLS.titleExpected, "Title is diff");
@@ -109,6 +100,14 @@ public class GERD_4301_OLS extends BaseTest{
         		.waitForPageLoad();
         		debugPageOLS.checkProtocolsContainsForQNumber("QS6303", site.activeProtocols);
         		debugPageOLS.back();
+		whichoOfFollowingMedicationsCurrentlyGERD_OLS
+				.waitForPageLoad()
+        		.clickOnAnswers("Other")
+				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS());
+		haveYouEverHadSurgeryOnStomach_OLS
+				.waitForPageLoad();
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6303", site.activeProtocols);
+		debugPageOLS.back();
         whichoOfFollowingMedicationsCurrentlyGERD_OLS
         		.waitForPageLoad(); 		
         //----SKIP to Q5 if selected any of these options in Q3:  Aciphex (rabeprazole), Dexilant (dexlansoprazole), Protonix (pantoprazole), None of the above
@@ -131,7 +130,7 @@ public class GERD_4301_OLS extends BaseTest{
 				.clickNextButton(new HowDoYouBuyFollowingMedications_OLS());
 		
         
-        //****************Q4 HowDoYouBuyFollowingMedications_OLS --------------
+        //----------------Q4 HowDoYouBuyFollowingMedications_OLS --------------
 		howDoYouBuyFollowingMedications_OLS
 			.waitForMainPageLoad()
 			.waitForPageLoad(1,howDoYouBuyFollowingMedications_OLS.titleExpected1)
@@ -145,7 +144,6 @@ public class GERD_4301_OLS extends BaseTest{
 		        .clickOnAnswerForSubQuestion(3, "With a prescription from my doctor that I get filled at the pharmacy counter")
 		        .clickOnAnswerForSubQuestion(4,"I get this medication off the shelf, or \"over-the-counter\"")
 		        .clickNextButton(new HowLongHaveYouBeenTaking_OLS());
-	    
         
 
         //---------------Q5 HowLongHaveYouBeenTaking_OLS-------------------
@@ -155,24 +153,77 @@ public class GERD_4301_OLS extends BaseTest{
 				.waitForPageLoad(3,howDoYouBuyFollowingMedications_OLS.titleExpected3)
 				.waitForPageLoad(4,howDoYouBuyFollowingMedications_OLS.titleExpected4);
         Assert.assertEquals(howLongHaveYouBeenTaking_OLS.getTitleText(1),howLongHaveYouBeenTaking_OLS.titleExpected1, "Title is diff");
-        DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS = howLongHaveYouBeenTaking_OLS
-        		.clickOnAnswerForSubQuestion(1, "Less than 1 month")
+        HowOftenDoYouTake_OLS howOftenDoYouTake_OLS = howLongHaveYouBeenTaking_OLS
+				.clickOnAnswerForSubQuestion(1, "Less than 1 month")
 		        .clickOnAnswerForSubQuestion(2, "1 month")
 		        .clickOnAnswerForSubQuestion(3, "Less than 1 month")
 		        .clickOnAnswerForSubQuestion(4, "1 month")
-		        .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
-        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
-				.waitForPageLoad();
+		        .clickNextButton(new HowOftenDoYouTake_OLS());
+		howOftenDoYouTake_OLS
+				.waitForPageLoad(1,howDoYouBuyFollowingMedications_OLS.titleExpected1);
 		debugPageOLS.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols);
 		debugPageOLS.back();
 		howLongHaveYouBeenTaking_OLS
 				.waitForPageLoad(1,howDoYouBuyFollowingMedications_OLS.titleExpected1)
         		.clickOnAnswerForSubQuestion(1, "2 months")
-		        .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
+		        .clickNextButton(new HowOftenDoYouTake_OLS());
+
+
+		//---------------Q7 HowOftenDoYouTake_OLS-------------------
+		howOftenDoYouTake_OLS
+				.waitForPageLoad(1,howOftenDoYouTake_OLS.titleExpected1)
+				.waitForPageLoad(2,howOftenDoYouTake_OLS.titleExpected2)
+				.waitForPageLoad(3,howOftenDoYouTake_OLS.titleExpected3)
+				.waitForPageLoad(4,howOftenDoYouTake_OLS.titleExpected4);
+				//.waitForPageLoad(5,howOftenDoYouTake_OLS.titleExpected5)
+				//.waitForPageLoad(6,howOftenDoYouTake_OLS.titleExpected6)
+				//.waitForPageLoad(7,howOftenDoYouTake_OLS.titleExpected7);
+		Assert.assertEquals(howOftenDoYouTake_OLS.getTitleText(1),howOftenDoYouTake_OLS.titleExpected1, "Title is diff");
+		OnaTypicalDayWhenDoYouUsually_OLS onaTypicalDayWhenDoYouUsually_OLS = howOftenDoYouTake_OLS
+				.clickOnAnswerForSubQuestion(1, "Twice a day")
+				.clickOnAnswerForSubQuestion(2, "Twice a day")
+				.clickOnAnswerForSubQuestion(3, "Other")
+				.clickOnAnswerForSubQuestion(4, "Other")
+				.clickNextButton(new OnaTypicalDayWhenDoYouUsually_OLS());
+		onaTypicalDayWhenDoYouUsually_OLS
+				.waitForPageLoad(1,onaTypicalDayWhenDoYouUsually_OLS.titleExpected1);
+		debugPageOLS.checkProtocolsContainsForQNumber("QS6316", site.activeProtocols);
+		debugPageOLS.back();
+		howOftenDoYouTake_OLS
+				.waitForPageLoad(1,howOftenDoYouTake_OLS.titleExpected1)
+				.clickOnAnswerForSubQuestion(1, "Only as needed (not regularly)")
+				.clickOnAnswerForSubQuestion(2, "Only as needed (not regularly)")
+				.clickOnAnswerForSubQuestion(3, "Once a day")
+				.clickOnAnswerForSubQuestion(4, "Once a day")
+				//.clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
+				.clickNextButton(new OnaTypicalDayWhenDoYouUsually_OLS());
+
+
+		//---------------Q9 OnaTypicalDayWhenDoYouUsually_OLS-------------------
+		onaTypicalDayWhenDoYouUsually_OLS
+				.waitForPageLoad(1,onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
+				.waitForPageLoad(2,onaTypicalDayWhenDoYouUsually_OLS.titleExpected2)
+				.waitForPageLoad(3,onaTypicalDayWhenDoYouUsually_OLS.titleExpected3)
+				.waitForPageLoad(4,onaTypicalDayWhenDoYouUsually_OLS.titleExpected4);
+		Assert.assertEquals(howLongHaveYouBeenTaking_OLS.getTitleText(1),onaTypicalDayWhenDoYouUsually_OLS.titleExpected1, "Title is diff");
+		DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS =  onaTypicalDayWhenDoYouUsually_OLS
+				.clickOnAnswerForSubQuestion(1, "Morning")
+				.clickOnAnswerForSubQuestion(2, "Afternoon")
+				.clickOnAnswerForSubQuestion(3, "Evening")
+				.clickOnAnswerForSubQuestion(4, "Night")
+				.clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
+		despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
+				.waitForPageLoad();
+		//debugPageOLS.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols);
+		debugPageOLS.back();
+		onaTypicalDayWhenDoYouUsually_OLS
+				.waitForPageLoad(1,onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
+				.clickOnAnswerForSubQuestion(4, "Morning")
+				.clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
 		
 				
 		
-        //---------------Q7 DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS-------------------
+        //---------------Q10 DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS-------------------
 		despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
         		.waitForPageLoad();
         Assert.assertEquals(despiteTakingMedicationDoYouStillExperienceSymptoms_OLS.getTitleText(),despiteTakingMedicationDoYouStillExperienceSymptoms_OLS.titleExpected, "Title is diff");
@@ -189,32 +240,55 @@ public class GERD_4301_OLS extends BaseTest{
 				.clickNextButton(new ThinkingAboutThePast2Months_OLS());
         
         
-        
-		//--------------Q8 ThinkingAboutThePast2Months_OLS ---------------------
+		//--------------Q11 ThinkingAboutThePast2Months_OLS ---------------------
 		thinkingAboutThePast2Months_OLS
 				.waitForPageLoad();
         Assert.assertEquals(thinkingAboutThePast2Months_OLS.getTitleText(),thinkingAboutThePast2Months_OLS.titleExpected, "Title is diff");
-        thinkingAboutThePast2Months_OLS
-        		.clickOnAnswer("1 day per week or less")
-				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS())
+		HasYourDoctorToldYouThatYouHaveErosion_OLS hasYourDoctorToldYouThatYouHaveErosion_OLS = thinkingAboutThePast2Months_OLS
+           		.clickOnAnswer("1 day per week or less")
+				.clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
+		hasYourDoctorToldYouThatYouHaveErosion_OLS
         		.waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
 		debugPageOLS.back();
 		thinkingAboutThePast2Months_OLS
 				.waitForPageLoad()
 				.clickOnAnswer("2 - 3 days per week")
-				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS())
+				.clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
+		hasYourDoctorToldYouThatYouHaveErosion_OLS
 				.waitForPageLoad();
 		debugPageOLS.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
 		debugPageOLS.back();
 		thinkingAboutThePast2Months_OLS
 				.waitForPageLoad()
 				.clickOnAnswer("4 - 5 days per week")
-				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS());        
-        
-		
-		
-        //---------------Q9 HaveYouEverHadSurgeryOnStomach_OLS-------------------
+				.clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
+
+
+		//--------------Q12 HasYourDoctorToldYouThatYouHaveErosion_OLS---------------------
+		hasYourDoctorToldYouThatYouHaveErosion_OLS
+				.waitForPageLoad();
+		Assert.assertEquals(hasYourDoctorToldYouThatYouHaveErosion_OLS.getTitleText(),hasYourDoctorToldYouThatYouHaveErosion_OLS.titleExpected, "Title is diff");
+		hasYourDoctorToldYouThatYouHaveErosion_OLS
+				.clickOnAnswer("Yes")
+				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS())
+				.waitForPageLoad();
+		//debugPageOLS.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
+		debugPageOLS.back();
+		hasYourDoctorToldYouThatYouHaveErosion_OLS
+				.waitForPageLoad()
+				.clickOnAnswer("No")
+				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS())
+				.waitForPageLoad();
+		//debugPageOLS.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
+		debugPageOLS.back();
+		hasYourDoctorToldYouThatYouHaveErosion_OLS
+				.waitForPageLoad()
+				.clickOnAnswer("Unsure")
+				.clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS());
+
+
+        //---------------Q13 HaveYouEverHadSurgeryOnStomach_OLS-------------------
         haveYouEverHadSurgeryOnStomach_OLS
         		.waitForPageLoad();
         Assert.assertEquals(haveYouEverHadSurgeryOnStomach_OLS.getTitleText(),haveYouEverHadSurgeryOnStomach_OLS.titleExpected, "Title is diff");
@@ -232,7 +306,7 @@ public class GERD_4301_OLS extends BaseTest{
         
         
         
-        //---------------Q10 WhatTypeOfSurgeryDidYouHave_OLS-------------------
+        //---------------Q14 WhatTypeOfSurgeryDidYouHave_OLS-------------------
         whatTypeOfSurgeryDidYouHave_OLS
         	.waitForPageLoad();
         Assert.assertEquals(whatTypeOfSurgeryDidYouHave_OLS.getTitleText(),whatTypeOfSurgeryDidYouHave_OLS.titleExpected, "Title is diff");
@@ -255,7 +329,7 @@ public class GERD_4301_OLS extends BaseTest{
         
         
         
-        //---------------Q11 WhenDidYouHaveAppendixRemoved_OLS-------------------
+        //---------------Q15 WhenDidYouHaveAppendixRemoved_OLS-------------------
         whenDidYouHaveAppendixRemoved_OLS
 				.waitForPageLoad(1,whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
 				.waitForPageLoad(2,whenDidYouHaveAppendixRemoved_OLS.titleExpected2);
@@ -274,7 +348,7 @@ public class GERD_4301_OLS extends BaseTest{
 				.clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS());
         
         
-        //---------------Q12 AreYouCurrentlyAbleToSwallowTablets_OLS-------------------
+        //---------------Q16 AreYouCurrentlyAbleToSwallowTablets_OLS-------------------
 		areYouCurrentlyAbleToSwallowTablets_OLS
         		.waitForPageLoad()
         		.clickOnAnswer("No")
@@ -331,19 +405,7 @@ public class GERD_4301_OLS extends BaseTest{
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-//				.clickNextButton(new ChildrenUnderPageOLS());
-//
-//
-//		//----Do you have any children under the age of 18 in your household? ------------
-//		childrenUnderPageOLS
-//				.waitForPageLoad()
-//				.clickOnAnswer("No")
-//				.clickNextButton(new TheStudySitePageOLS())
-//				.waitForPageLoad()
-//				.clickOnAnswer("Public transportation")
-//				.clickNextButton(new WhatMedicalCoveragePageOLS())
-//				.waitForPageLoad()
-//				.clickOnAnswers("No, I have no coverage")
+		//----EthnicBackgroundPageOLS ------------
                 .clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswers("Prefer not to answer")
@@ -358,15 +420,15 @@ public class GERD_4301_OLS extends BaseTest{
         		.waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(site_Indication)
+                //.clickNextButton(new HSGeneralPageOLS())
+                //.waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature();
-                
+
 /*                //------------HUMAN API Interface in HelloSign----------------
                 .getPage(new HumanAPIOLS())
                 .waitForPageLoad()		        

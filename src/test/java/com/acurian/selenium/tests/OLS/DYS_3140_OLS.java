@@ -79,37 +79,54 @@ public class DYS_3140_OLS extends BaseTest {
                 .clickOnAnswers("High cholesterol, or hypercholesterolemia")
                 .clickNextButton(new SubquestionStatinMedicationsHavePageOLS());
 
-        TriglyceridesOrLipidsPageOLS triglyceridesOrLipidsPageOLS = subquestionStatinMedicationsHavePageOLS
+
+        //TriglyceridesOrLipidsPageOLS triglyceridesOrLipidsPageOLS = subquestionStatinMedicationsHavePageOLS
+        AreYouCurrentlyTakingStatinMedsOLS areYouCurrentlyTakingStatinMedsOLS = subquestionStatinMedicationsHavePageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion("Atorvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
-                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "Never taken")
-                .clickOnAnswerForSubQuestion("Fluvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "Never taken")
-                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lovastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Pravastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Rosuvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Simvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
-                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")
-                .clickNextButton(new TriglyceridesOrLipidsPageOLS());
-        triglyceridesOrLipidsPageOLS
+                .clickOnAnswers("Atorvastatin")
+                .clickOnAnswers("Advicor (lovastatin and niacin)")
+                /*.clickOnAnswers("Altoprev (lovastatin)")
+                .clickOnAnswers("Caduet (atorvastatin and amlodipine)")
+                .clickOnAnswers("Crestor (rosuvastatin calcium)")
+                .clickOnAnswers("Fluvastatin")
+                .clickOnAnswers("Juvisync (simvastatin and sitagliptin)")
+                .clickOnAnswers("Lescol or Lescol XL (fluvastatin)")
+                .clickOnAnswers("Lipitor (atorvastatin)")
+                .clickOnAnswers("Liptruzet (atorvastatin and ezetimibe)")
+                .clickOnAnswers("Livalo (pitavastatin)")
+                .clickOnAnswers("Lovastatin")
+                .clickOnAnswers("Mevacor (lovastatin)")
+                .clickOnAnswers("Pravachol (pravastatin)")
+                .clickOnAnswers("Pravastatin")
+                .clickOnAnswers("Rosuvastatin")
+                .clickOnAnswers("Simcor (simvastatin and niacin)")
+                .clickOnAnswers("Simvastatin")
+                .clickOnAnswers("Vytorin (simvastatin and ezetimibe)")
+                .clickOnAnswers("Zocor (simvastatin)")*/
+                .clickNextButton(new AreYouCurrentlyTakingStatinMedsOLS());
+
+        StopTakingStatinPageOLS stopTakingStatinPageOLS = areYouCurrentlyTakingStatinMedsOLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS5222", protocol1)
-                .back();
-        StopTakingStatinPageOLS stopTakingStatinPageOLS = subquestionStatinMedicationsHavePageOLS
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion("Atorvastatin", "Currently taking")
+                .clickOnAnswerForSubQuestion(1,"No")
+                .clickOnAnswerForSubQuestion(2,"No")
+                /*.clickOnAnswerForSubQuestion(3,"No")
+                .clickOnAnswerForSubQuestion(4,"No")
+                .clickOnAnswerForSubQuestion(5,"No")
+                .clickOnAnswerForSubQuestion(6,"No")
+                .clickOnAnswerForSubQuestion(7,"No")
+                .clickOnAnswerForSubQuestion(8,"No")
+                .clickOnAnswerForSubQuestion(9,"No")
+                .clickOnAnswerForSubQuestion(10,"No")
+                .clickOnAnswerForSubQuestion(11,"No")
+                .clickOnAnswerForSubQuestion(12,"No")
+                .clickOnAnswerForSubQuestion(13,"No")
+                .clickOnAnswerForSubQuestion(14,"No")
+                .clickOnAnswerForSubQuestion(15,"No")
+                .clickOnAnswerForSubQuestion(16,"No")
+                .clickOnAnswerForSubQuestion(17,"No")
+                .clickOnAnswerForSubQuestion(18,"No")
+                .clickOnAnswerForSubQuestion(19,"No")
+                .clickOnAnswerForSubQuestion(20,"No")*/
                 .clickNextButton(new StopTakingStatinPageOLS());
 
         WhileTakingStatinPageOLS whileTakingStatinPageOLS = stopTakingStatinPageOLS
@@ -118,9 +135,11 @@ public class DYS_3140_OLS extends BaseTest {
                 .clickNextButton(new WhileTakingStatinPageOLS());
 
         whileTakingStatinPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad();
+        TriglyceridesOrLipidsPageOLS triglyceridesOrLipidsPageOLS = whileTakingStatinPageOLS
                 .clickOnAnswers("None of the above")
-                .clickNextButton(triglyceridesOrLipidsPageOLS)
+                .clickNextButton(new TriglyceridesOrLipidsPageOLS());
+        triglyceridesOrLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS5225", protocol1)
