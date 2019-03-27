@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.DYS_4356C.AreYouCurrentlyTakingStatinMedsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.StatinMedicationsHavePageCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.WhileTakingStatinPageCC;
@@ -147,14 +148,43 @@ public class CV_4450_CC extends BaseTest {
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new WithType2DiabetesPageCC());
 
-        medicationsForYourDiabetesPageCC
+        StatinMedicationsOnPageCC statinMedicationsOnPageCC = medicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(statinMedicationsHavePageCC);
+                .clickNextButton(new StatinMedicationsOnPageCC());
 
-        TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsHavePageCC
+        TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsOnPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion("Atorvastatin", "Never taken")
+                .clickOnAnswers("None of the above") //Skip to Q12
+                .clickNextButton(new TriglyceridesOrLipidsPageCC());
+        triglyceridesOrLipidsPageCC
+                .waitForPageLoad()
+                .back();
+
+        AreYouCurrentlyTakingStatinMedsCC areYouCurrentlyTakingStatinMedsCC = statinMedicationsOnPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Atorvastatin")
+                .clickOnAnswers("Advicor (lovastatin and niacin)")
+                .clickOnAnswers("Altoprev (lovastatin)")
+                .clickOnAnswers("Caduet (atorvastatin and amlodipine)")
+                .clickOnAnswers("Crestor (rosuvastatin calcium)")
+                .clickOnAnswers("Fluvastatin")
+                .clickOnAnswers("Juvisync (simvastatin and sitagliptin)")
+                .clickOnAnswers("Lescol or Lescol XL (fluvastatin)")
+                .clickOnAnswers("Lipitor (atorvastatin)")
+                .clickOnAnswers("Liptruzet (atorvastatin and ezetimibe)")
+                .clickOnAnswers("Livalo (pitavastatin)")
+                .clickOnAnswers("Lovastatin")
+                .clickOnAnswers("Mevacor (lovastatin)")
+                .clickOnAnswers("Pravachol (pravastatin)")
+                .clickOnAnswers("Pravastatin")
+                .clickOnAnswers("Rosuvastatin")
+                .clickOnAnswers("Simcor (simvastatin and niacin)")
+                .clickOnAnswers("Simvastatin")
+                .clickOnAnswers("Vytorin (simvastatin and ezetimibe)")
+                .clickOnAnswers("Zocor (simvastatin)")
+                .clickNextButton(new AreYouCurrentlyTakingStatinMedsCC());
+/*                .clickOnAnswerForSubQuestion("Atorvastatin", "Never taken")
                 .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
                 .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
                 .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
@@ -177,29 +207,31 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(new TriglyceridesOrLipidsPageCC());
         triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
-                .back();
-        StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsHavePageCC
+                .back();*/
+
+        //areYouCurrentlyTakingStatinMedsCC;
+        StopTakingStatinPageCC stopTakingStatinPageCC = areYouCurrentlyTakingStatinMedsCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion("Atorvastatin", "Currently taking")
-                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
-                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "Never taken")
-                .clickOnAnswerForSubQuestion("Fluvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "Never taken")
-                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lovastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Pravastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Rosuvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Simvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
-                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")
+                .clickOnAnswerForSubQuestion("Atorvastatin", "No")
+                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "No")
+                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "No")
+                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "No")
+                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "No")
+                .clickOnAnswerForSubQuestion("Fluvastatin", "No")
+                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "No")
+                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "No")
+                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "No")
+                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "No")
+                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "No")
+                .clickOnAnswerForSubQuestion("Lovastatin", "No")
+                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "No")
+                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "No")
+                .clickOnAnswerForSubQuestion("Pravastatin", "No")
+                .clickOnAnswerForSubQuestion("Rosuvastatin", "No")
+                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "No")
+                .clickOnAnswerForSubQuestion("Simvastatin", "No")
+                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "No")
+                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "No")
                 .clickNextButton(new StopTakingStatinPageCC());
 
         WhileTakingStatinPageCC whileTakingStatinPageCC = stopTakingStatinPageCC
@@ -207,9 +239,14 @@ public class CV_4450_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new WhileTakingStatinPageCC());
 
-        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = whileTakingStatinPageCC
+        whileTakingStatinPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Muscle weakness")
+                .clickOnAnswers("None of the above") //Muscle weakness
+                .clickNextButton(new HeartOrBloodVesselPageCC());
+
+        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = triglyceridesOrLipidsPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
         HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC

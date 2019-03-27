@@ -15,6 +15,10 @@ public class HowLongHaveYouBeenTaking_OLS extends MainPageOLS {
     public final String titleExpected2 = "How long have you been taking Prevacid (lansoprazole)?";
     public final String titleExpected3 = "How long have you been taking Prilosec (omeprazole)?";
     public final String titleExpected4 = "How long have you been taking Zegerid (omeprazole and sodium bicarbonate)?";
+    public final String titleExpected5 = "How long have you been taking Aralen (chloroquine)?";
+    public final String titleExpected6 = "How long have you been taking Arava (leflunomide)?";
+    public final String titleExpected7 = "How long have you been taking Azulfidine or Sulfazine (sulfasalazine)?";
+    public final String titleExpected8 = "How long have you been taking Plaquenil (hydroxychloroquine)?";
     
     
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")

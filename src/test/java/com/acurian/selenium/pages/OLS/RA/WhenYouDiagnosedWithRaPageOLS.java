@@ -12,7 +12,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhenYouDiagnosedWithRaPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "When were you diagnosed with RA?";
+    public final String titleExpected = "When were you diagnosed with RA (Rheumatoid Arthritis)?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
