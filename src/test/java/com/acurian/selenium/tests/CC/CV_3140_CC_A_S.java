@@ -2,7 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.DYS_4356C.StatinMedicationsHavePageCC;
+import com.acurian.selenium.pages.CC.DYS_4356C.AreYouCurrentlyTakingStatinMedsCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.StopTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.DYS_4356C.WhileTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
@@ -110,66 +110,109 @@ public class CV_3140_CC_A_S extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", site.activeProtocols)
                 .back();
-        StatinMedicationsHavePageCC statinMedicationsHavePageCC = cardiovascularDiseaseThanOthersPageCC
+        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new StatinMedicationsHavePageCC());
+                .clickNextButton(new StatinMedicationsOnPageCC());
 
-        TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsHavePageCC
+        TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsOnPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion("Atorvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
-                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "Never taken")
-                .clickOnAnswerForSubQuestion("Fluvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "Never taken")
-                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lovastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Pravastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Rosuvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Simvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
-                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")
+                .clickOnAnswers("None of the above") //Skip to Q12 //Disqualify ("Denies history of statin use")
                 .clickNextButton(new TriglyceridesOrLipidsPageCC());
         triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019267-QS6730-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0018278-QS6732-STUDYQUES", site.activeProtocols)
                 .back();
+        //Disqualify ("Current statin use") if selected "Yes" for ANY medication displayed in Q8
+        AreYouCurrentlyTakingStatinMedsCC areYouCurrentlyTakingStatinMedsCC = new AreYouCurrentlyTakingStatinMedsCC();
+        StopTakingStatinPageCC stopTakingStatinPageCC = new StopTakingStatinPageCC();
+        HashMap<String, List<String>> optionsQ8 = new HashMap<>();
+        optionsQ8.put("Atorvastatin", Arrays.asList(site.activeProtocols));
 
-        StopTakingStatinPageCC stopTakingStatinPageCC = statinMedicationsHavePageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion("Atorvastatin", "Currently taking")
-                .clickNextButton(new StopTakingStatinPageCC());
+        optionsQ8.put("Advicor (lovastatin and niacin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Altoprev (lovastatin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Caduet (atorvastatin and amlodipine)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Crestor (rosuvastatin calcium)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Fluvastatin", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Juvisync (simvastatin and sitagliptin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Lescol or Lescol XL (fluvastatin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Lipitor (atorvastatin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Liptruzet (atorvastatin and ezetimibe)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Livalo (pitavastatin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Lovastatin", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Mevacor (lovastatin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Pravachol (pravastatin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Pravastatin", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Rosuvastatin", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Simcor (simvastatin and niacin)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Simvastatin", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Vytorin (simvastatin and ezetimibe)", Arrays.asList(site.activeProtocols));
+        optionsQ8.put("Zocor (simvastatin)", Arrays.asList(site.activeProtocols));
+        for (Map.Entry<String, List<String>> entry : optionsQ8.entrySet()) {
+            System.out.println(entry.getKey());
+            statinMedicationsOnPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(entry.getKey())
+                    .clickNextButton(areYouCurrentlyTakingStatinMedsCC);
+            areYouCurrentlyTakingStatinMedsCC
+                    .waitForPageLoad()
+                    .clickOnAnswerForSubQuestion(entry.getKey(), "Yes")
+                    .clickNextButton(stopTakingStatinPageCC);
+            stopTakingStatinPageCC
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0019933-QS6733-STUDYQUES", (String[]) entry.getValue().toArray())
+                    .back();
+            areYouCurrentlyTakingStatinMedsCC
+                    .waitForPageLoad()
+                    .back();
+        }
 
-        stopTakingStatinPageCC
+        statinMedicationsOnPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019267-QS6730-STUDYQUES", site.activeProtocols)
-                .back();
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Atorvastatin")
+                .clickOnAnswers("Advicor (lovastatin and niacin)")
+                .clickNextButton(areYouCurrentlyTakingStatinMedsCC);
 
-        statinMedicationsHavePageCC
+         areYouCurrentlyTakingStatinMedsCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion("Atorvastatin", "Took in the past, but have stopped taking")
+                .clickOnAnswerForSubQuestion("Atorvastatin","No")
+                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)","No")
+                /*.clickOnAnswerForSubQuestion(3,"No")
+                .clickOnAnswerForSubQuestion(4,"No")
+                .clickOnAnswerForSubQuestion(5,"No")
+                .clickOnAnswerForSubQuestion(6,"No")
+                .clickOnAnswerForSubQuestion(7,"No")
+                .clickOnAnswerForSubQuestion(8,"No")
+                .clickOnAnswerForSubQuestion(9,"No")
+                .clickOnAnswerForSubQuestion(10,"No")
+                .clickOnAnswerForSubQuestion(11,"No")
+                .clickOnAnswerForSubQuestion(12,"No")
+                .clickOnAnswerForSubQuestion(13,"No")
+                .clickOnAnswerForSubQuestion(14,"No")
+                .clickOnAnswerForSubQuestion(15,"No")
+                .clickOnAnswerForSubQuestion(16,"No")
+                .clickOnAnswerForSubQuestion(17,"No")
+                .clickOnAnswerForSubQuestion(18,"No")
+                .clickOnAnswerForSubQuestion(19,"No")
+                .clickOnAnswerForSubQuestion(20,"No")*/
                 .clickNextButton(stopTakingStatinPageCC);
+        //Q9
 
         WhileTakingStatinPageCC whileTakingStatinPageCC = stopTakingStatinPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("No") //"Must select: "Yes" in Q9 ..."
                 .clickNextButton(new WhileTakingStatinPageCC());
 
         whileTakingStatinPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(triglyceridesOrLipidsPageCC)
+                .clickOnAnswers("None of the above") //Must select ... OR Any option except "None of the above" in Q10
+                .clickNextButton(triglyceridesOrLipidsPageCC);
+        triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018787-QS6710-STUDYQUES", site.activeProtocols)
@@ -181,7 +224,7 @@ public class CV_3140_CC_A_S extends BaseTest {
 
         HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = triglyceridesOrLipidsPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("Unsure")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
         HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
@@ -217,6 +260,26 @@ public class CV_3140_CC_A_S extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickNextButton(anginaOrChestPainPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickNextButton(anginaOrChestPainPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
@@ -230,6 +293,16 @@ public class CV_3140_CC_A_S extends BaseTest {
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "Less than 30 days ago")
+                .clickNextButton(anginaOrChestPainPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "1 - 3 months ago")
                 .clickNextButton(anginaOrChestPainPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
