@@ -6,32 +6,20 @@ import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.AreYouCurrentlyExperiencingFlareUp_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.SubquestionsIBD_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.SubquestionsIBD_ShireCrohns_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWasYourMostRecentColonoscopy_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsDisease_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitis_OLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
+import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.*;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
-import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3889_OLS extends BaseTest {
 
     @Test
-    @TestCaseId("00019")
     @Description("IBD_3889_OLS")
     public void IBD_3889_Crohns_OLS_Screener() {
         Site site = Site.AUT_CRN_3889_HS;
@@ -50,9 +38,8 @@ public class IBD_3889_OLS extends BaseTest {
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoadGROUP()
-                .maximizePage();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleIBD_Expected, "Title is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.titleIBD_Expected, "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
@@ -65,7 +52,7 @@ public class IBD_3889_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2, protocol3, protocol4)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoadGROUP();
+                .waitForPageLoad2Ver();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new PersonalDetails());
@@ -659,10 +646,8 @@ public class IBD_3889_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSCrohns2PageOLS())
-                .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
+                .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()

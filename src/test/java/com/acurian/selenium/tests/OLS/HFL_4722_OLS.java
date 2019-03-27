@@ -23,7 +23,6 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class HFL_4722_OLS extends BaseTest {
 
     @Test
-    @TestCaseId("00017")
     @Description("Heart_Failure 4722 OLS")
     public void hfl4722olsTest() {
         Site site = Site.AUT_HFL_4722_Site;

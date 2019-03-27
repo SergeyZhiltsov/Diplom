@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -24,10 +25,9 @@ import java.util.List;
 
 public class IBD_3889_CC extends BaseTest{
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("IBD_Crohn's")
+    @Test()
     @Description("IBD 3485 for CC")
-    public void IBD_3889_CCTest(final String username, final String password) {
+    public void IBD_3889_CCTest() {
 		Site site = Site.AUT_CRN_3889_HS;
         String phoneNumber = "AUTAMS1IBD";
         String protocol1 = "M14_431";
@@ -45,8 +45,8 @@ public class IBD_3889_CC extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -65,11 +65,9 @@ public class IBD_3889_CC extends BaseTest{
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-     /*   dateOfBirthPageCC
-                .waitForPageLoadIBD();*/
-        dateOfBirthPageCC.threadSleep(2000);
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextIBD(),"May I have your date of birth?","Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextIBD(), dateOfBirthPageCC.titleIBD3264, "Title is diff");
+		dateOfBirthPageCC
+				.waitForPageLoad2Ver();
+		Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
         
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")

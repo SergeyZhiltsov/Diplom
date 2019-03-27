@@ -4,15 +4,13 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.*;
 import com.acurian.selenium.pages.CC.IBD.*;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -25,10 +23,9 @@ import java.util.Map;
 
 public class IBD_3264_CC_NoPIIemail extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("IBD")
+    @Test(enabled = true)
     @Description("IBD 3264 for CC")
-    public void ibd_3264_CC_HS_NoEmailAtPII(final String username, final String password) {
+    public void ibd3264ccHsNoEmailAtPII() {
         Site site = Site.AUT_IBD_3264_Site;
         String phoneNumber = "AUTAMS1IBD";
         //String protocol1 = "M14_234";
@@ -44,8 +41,8 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -65,9 +62,9 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoadIBD();
-//        dateOfBirthPageCC.threadSleep(2000);
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextIBD(), "May I have your date of birth?", "Question text is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
+
         DebugPageCC debugPageCC = new DebugPageCC();
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
@@ -438,11 +435,12 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad("a colitis study")
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new HSCrohns2PageCC())
-                .waitForPageLoad1()
+//                .clickNextButton(new HSCrohns2PageCC())
+                .clickNextButton(new HSGeneralCC())
+                .waitForPageLoadEmailNotProvided()
                 .typeEmail("qa.acurian@gmail.com")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
+                .waitForPageLoadIBD("Ulcerative Colitis")
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())

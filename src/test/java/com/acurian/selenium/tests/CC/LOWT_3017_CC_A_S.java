@@ -87,7 +87,9 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-        //dateOfBirthPageCC.waitForPageLoad();
+        dateOfBirthPageCC
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleExpectedLOWT, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -407,8 +409,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
             case "AUT_LOWT_3017S_Site":
                 selectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new HSGeneralCC())
-                        .waitForPageLoad(siteIndication)
+//                        .clickNextButton(new HSGeneralCC())
+//                        .waitForPageLoad(siteIndication)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoad()
                         .clickNextButton(new HSMedicalRecordsPageCC())
@@ -424,8 +426,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
             case "AUT_LOWT_3017_Site":
                 selectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new HSGeneralCC())
-                        .waitForPageLoad(siteIndication)
+//                        .clickNextButton(new HSGeneralCC())
+//                        .waitForPageLoad(siteIndication)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoad()
                         .clickNextButton(new HSMedicalRecordsPageCC())

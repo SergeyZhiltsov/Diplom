@@ -34,7 +34,7 @@ public class OBS_4605_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleObesityExpected);
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleObesityExpected, "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_ols = dateOfBirthPageOLS
                 .setDate("05052005")
                 .clickNextButton(new LessThan18YearsOldPageOLS());

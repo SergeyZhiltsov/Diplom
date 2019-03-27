@@ -40,7 +40,6 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class Chronic_4471_OLS extends BaseTest{
 
     @Test()
-    @TestCaseId("0019")
     @Description("4471 Chronic Cough")
     public void chronicCough_4471() {
 		Site site = Site.AUT_MCC;
@@ -57,8 +56,7 @@ public class Chronic_4471_OLS extends BaseTest{
         dateOfBirthPageOLS
                 	.openPage(env, phoneNumberMIG)
                 	.waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),dateOfBirthPageOLS.titleMCCExpected, "Title is diff");
+		Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a chronic cough study", "350"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 	.setDate("09092003")
                 	.clickNextButton(new LessThan18YearsOldPageOLS());
@@ -303,10 +301,10 @@ public class Chronic_4471_OLS extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad("Chronic Cough")
+//                .clickNextButton(new HSGeneralPageOLS())
+//                .waitForPageLoad("Chronic Cough")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
+				.waitForPageLoadIBD("Chronic Cough")
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()

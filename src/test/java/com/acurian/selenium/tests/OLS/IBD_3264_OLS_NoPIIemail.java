@@ -30,7 +30,6 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class IBD_3264_OLS_NoPIIemail extends BaseTest {
 
     @Test
-    @TestCaseId("00026")
     @Description("IBD_3264_OLS")
     public void IBD_3264_OLS_HS_NoEmailAtPII() {
         Site site = Site.AUT_IBD_3264_Site;
@@ -44,8 +43,8 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGROUP();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleIBD_Expected, "Title is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.titleIBD_Expected, "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------

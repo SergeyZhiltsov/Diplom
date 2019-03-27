@@ -5,16 +5,17 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.*;
+import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,10 +23,9 @@ import java.util.List;
 public class DERM_4631_OLS extends BaseTest {
 
     @Test()
-    @TestCaseId("00002")
     @Description("MIG_4356B_Synexus_OLS module")
-    public void kad_4631() {
-        String phoneNumberMIG = "AUTAMS1KAD";
+    public void kad4631() {
+        String phoneNumber = "AUTAMS1KAD";
         Site site = Site.AUT_DERM_4631_Site;
         String studyName = "an eczema (atopic dermatitis)";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -33,8 +33,10 @@ public class DERM_4631_OLS extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberMIG)
+                .openPage(env, phoneNumber)
                 .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis)", "400"), "Title is diff");
+
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
