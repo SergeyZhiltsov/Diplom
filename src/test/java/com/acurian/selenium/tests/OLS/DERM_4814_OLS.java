@@ -32,8 +32,6 @@ public class DERM_4814_OLS extends BaseTest {
     @Description("DERM_4814_OLS_test")
     public void derm4814olsTest(final Site site) {
         String phoneNumber = "AUTAMSDERM";
-//        String protocol1 = "INCB 18424_303";
-//        String protocol2 = "INCB 18424_304";
         String[] protocols = site.activeProtocols;
         String studyName = "an eczema (atopic dermatitis)";
 
@@ -43,7 +41,7 @@ public class DERM_4814_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDermExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());

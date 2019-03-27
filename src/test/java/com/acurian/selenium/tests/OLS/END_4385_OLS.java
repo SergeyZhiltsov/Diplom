@@ -18,15 +18,15 @@ public class END_4385_OLS extends BaseTest {
     @Description("a cluster headache study 3237 - OLS")
     public void end_4385_OLS() {
         Site site = Site.AUT_END_4385;
-        String phoneNumberRA = "AUTAMS1END";
+        String phoneNumber = "AUTAMS1END";
         String studyName = "an endometriosis";
 
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, phoneNumberRA)
+        dateOfBirthPageOLS.openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleEND_Expected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an endometriosis study", "1775"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("10/10/1980")
                 .clickNextButton(new ZipCodePageOLS());

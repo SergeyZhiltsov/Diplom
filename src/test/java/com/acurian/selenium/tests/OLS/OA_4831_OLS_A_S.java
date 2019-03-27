@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -28,15 +29,17 @@ public class OA_4831_OLS_A_S extends BaseTest {
 
     @Test(dataProvider = "sites")
     public void OA_4831_OLS_NonSynexus_Script(Site site) {
-        String phoneNumberDY = "AUTAMS1OA1";
+        String phoneNumber = "AUTAMS1OA1";
         String studyName = "an osteoarthritis";
 
         String env = System.getProperty("acurian.env", "STG");
 
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, phoneNumberDY)
+        dateOfBirthPageOLS.openPage(env, phoneNumber)
                 .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an osteoarthritis", "850"), "Title is diff");
+
 
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
         DebugPageOLS debugPageOLS = new DebugPageOLS();

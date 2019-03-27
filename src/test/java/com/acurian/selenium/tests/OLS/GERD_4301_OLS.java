@@ -18,7 +18,6 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class GERD_4301_OLS extends BaseTest{
 
     @Test
-    @TestCaseId("00023")
     @Description("GERD_4301_OLS")
     public void Gerd_4301_OLS() {
     	Site site = Site.AUT_GER_4301_Site;
@@ -33,8 +32,6 @@ public class GERD_4301_OLS extends BaseTest{
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGERD_4301_Expected, "Title is diff");
 		Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName+" study", "500"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS

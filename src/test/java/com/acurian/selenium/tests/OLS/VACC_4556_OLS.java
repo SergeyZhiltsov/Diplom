@@ -35,7 +35,7 @@ public class VACC_4556_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleVaccineExpected);
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a pneumonia vaccine study", "170"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .setDate("05052005")
                 .clickNextButton(new LessThan18YearsOldPageOLS());

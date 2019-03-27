@@ -55,9 +55,8 @@ public class AKC_4691_OLS extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoadGROUP()
-                .maximizePage();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleAKC_4691_Expected, "Title is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.titleAKC_4691_Expected, "Title is diff");
 
         //--------------DOB Question------------
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

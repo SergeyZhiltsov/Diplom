@@ -19,7 +19,6 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class ClusterHeadache_3237_OLS extends BaseTest {
 
     @Test
-    @TestCaseId("00020")
     @Description("a cluster headache study 3237 - OLS")
     public void clusterHeadache_3237_OLS() {
         Site site = Site.AUT_CLH_3237_Site;
@@ -32,7 +31,7 @@ public class ClusterHeadache_3237_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleCLHExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a cluster headache study", "300"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091982")
                 .clickNextButton(new ZipCodePageOLS());

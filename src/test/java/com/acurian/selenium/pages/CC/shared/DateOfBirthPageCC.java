@@ -163,12 +163,17 @@ public class DateOfBirthPageCC extends MainPageCC{
     		"\n" +
     		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
-    public final String titleExpectedLOWT = "If you qualify and participate in a men's low testosterone study, you may receive:\n" +
-    		"Study medication or placebo, at no-cost to you\n" +
-    		"Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-    		"And depending on the study, compensation of up to $600 for time and travel, for qualified participants who complete study related visits\n" +
-    		"\n" +
-    		"Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+    public final String titleExpectedLOWT = "This is the first part of the process to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now.\n" +
+            "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive:\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $600 for time and travel, for qualified participants who complete study related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
+            "\n" +
+            "Let's get started to see if there is a study that's right for you!";
 
     public final String titleIBD3264 = "This is the first part of the process to see if there is a study that's right for you.\n" +
             "You'll first complete this questionnaire with me right now.\n" +
@@ -253,15 +258,17 @@ public class DateOfBirthPageCC extends MainPageCC{
             "\"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. " +
             "Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
-    public final String titleObesityExpected = "If you qualify and participate in a genetic obesity study, you may receive:\n" +
+    public final String titleObesityExpected = "This is the first part of the process to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now.\n" +
+            "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
             "And depending on the study, compensation of up to $25 per visit for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
-            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll " +
-            "let you know which research doctor's offices in your area are participating in the study, and you can select the one " +
-            "that is most convenient for you. Then we'll send them your information, so they can get in touch with you to " +
-            "continue the screening process.\"";
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
+            "\n" +
+            "Let's get started to see if there is a genetic obesity study that's right for you.";
 
     public final String titleVaccineExpected = "If you qualify and participate in a pneumonia vaccine study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
@@ -418,19 +425,8 @@ public class DateOfBirthPageCC extends MainPageCC{
 
 
     @Step
-    public String getQuestionTextAKC() {
-        return getText(questionTextAKC);
-    }
-
-    @Step
     public String getTitleText1() {
         return getText(titleText1);
-    }
-
-    @Step
-    public DateOfBirthPageCC waitForPageLoadIBD() {
-        waitForPageLoadMain(questionTextIBD, titleIBD3264);
-        return this;
     }
 
     @Step
@@ -460,5 +456,4 @@ public class DateOfBirthPageCC extends MainPageCC{
         typeText(yearField, year);
         return this;
     }
-
 }

@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
@@ -26,11 +27,10 @@ import java.util.Map;
 public class KAD_4631_OLS extends BaseTest {
 
     @Test(enabled = true)
-    @TestCaseId("00002")
     @Description("KAD 4631 for OLS")
-    public void kad_4631() {
+    public void kad4631() {
         Site site = Site.AUT_DERM_4631_Site;
-        String phoneNumberMIG = "AUTAMS1KAD";
+        String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis)";
         String env = System.getProperty("acurian.env", "STG");
 
@@ -38,8 +38,10 @@ public class KAD_4631_OLS extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumberMIG)
+                .openPage(env, phoneNumber)
                 .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis)", "400"), "Title is diff");
+
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
                 .clickNextButton(new LessThan18YearsOldPageOLS());

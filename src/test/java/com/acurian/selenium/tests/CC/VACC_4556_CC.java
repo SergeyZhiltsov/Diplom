@@ -74,10 +74,10 @@ public class VACC_4556_CC extends BaseTest {
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
+
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleVaccineExpected, "Title is diff");
-
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a pneumonia vaccine study", "170"), "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("15")
@@ -332,8 +332,8 @@ public class VACC_4556_CC extends BaseTest {
             case AUT_VAC_4556_A:
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new HSGeneralCC())
-                        .waitForPageLoadByTitle(new HSGeneralCC().titleExpected4556)
+//                        .clickNextButton(new HSGeneralCC())
+//                        .waitForPageLoadByTitle(new HSGeneralCC().titleExpected4556)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoad()
                         .clickNextButton(new HSMedicalRecordsPageCC())

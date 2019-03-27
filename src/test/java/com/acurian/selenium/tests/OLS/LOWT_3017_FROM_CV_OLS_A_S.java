@@ -47,11 +47,11 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGROUP();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleCVExpected, "Title is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.titleCVExpected, "Title is diff");
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoadGROUP()
+                .waitForPageLoad2Ver()
                 .setDate("09091960")
                 .clickNextButton(new ZipCodePageOLS());
 
@@ -272,8 +272,8 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
                 .waitForPageLoad(studyName, dqedStudyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(site_Indication)
+//                .clickNextButton(new HSGeneralPageOLS())
+//                .waitForPageLoad(site_Indication)
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

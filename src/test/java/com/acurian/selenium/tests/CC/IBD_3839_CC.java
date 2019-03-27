@@ -40,7 +40,6 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class IBD_3839_CC extends BaseTest {
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("IBD1")
     @Description("IBD 3839 for CC")
     public void ibd3839ccTest(final String username, final String password) {
         Site site = Site.AUT_IBD_3839_Site;
@@ -76,11 +75,9 @@ public class IBD_3839_CC extends BaseTest {
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-     /*   dateOfBirthPageCC
-                .waitForPageLoadIBD();*/
-        dateOfBirthPageCC.threadSleep(2000);
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextIBD(), "May I have your date of birth?", "Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextIBD(), dateOfBirthPageCC.titleIBD3264, "Title is diff");
+        dateOfBirthPageCC
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")

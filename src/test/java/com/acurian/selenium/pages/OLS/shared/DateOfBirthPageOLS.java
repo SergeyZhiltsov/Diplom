@@ -80,12 +80,15 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
-    public final String titleAKC_4691_Expected = "Let's get started to see if you qualify for a study for people with diabetes and related health conditions!\n" +
-            "\n" +
-            "Those who qualify may receive*:\n" +
+    public final String titleAKC_4691_Expected = "This is the first part of the process to match you with a research study.\n" +
+            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $750, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
-            "No-cost study medication";
+            "No-cost study medication\n" +
+            "\n" +
+            "Let’s get started to see if there is a study for people with diabetes and related health conditions that's right for you!";
 
     public final String titleOA_Expected = "Let's get started to see if you qualify for an arthritis study!\n" +
             "\n" +
@@ -177,12 +180,15 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
-    public final String titleLOWT_3017_Expected = "Let's get started to see if you qualify for a study!\n" +
-            "\n" +
-            "Those who qualify may receive*:\n" +
+    public final String titleLOWT_3017_Expected = "This is the first part of the process to match you with a research study.\n" +
+            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $600, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
-            "No-cost study medication";
+            "No-cost study medication\n" +
+            "\n" +
+            "Let's get started to see if there is a study that's right for you!";
 
     public final String titleGERD_4301_Expected = "Let's get started to see if you qualify for a heartburn or reflux study!\n" +
             "\n" +
@@ -258,12 +264,15 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
-    public final String titleCVExpected = "Let's get started to see if you qualify for a heart health study!\n" +
-            "\n" +
-            "Those who qualify may receive*:\n" +
+    public final String titleCVExpected = "This is the first part of the process to match you with a research study.\n" +
+            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $750, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
-            "No-cost study medication";
+            "No-cost study medication\n" +
+            "\n" +
+            "Let’s get started to see if there is a heart health study that's right for you!";
 
     public final String titleNASHExpected = "Let's get started to see if you qualify for a fatty liver study for diabetics!\n" +
             "\n" +
@@ -279,12 +288,15 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
-    public final String titleObesityExpected = "Let's get started to see if you qualify for a genetic obesity study!\n" +
-            "\n" +
-            "Those who qualify may receive*:\n" +
+    public final String titleObesityExpected = "This is the first part of the process to match you with a research study.\n" +
+            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $25 per visit, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
-            "No-cost study medication";
+            "No-cost study medication\n" +
+            "\n" +
+            "Let's get started to see if there is a genetic obesity study that's right for you!";
 
     public final String titleVaccineExpected = "Let's get started to see if you qualify for a pneumonia vaccine study!\n" +
             "\n" +

@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -21,8 +22,8 @@ import java.util.*;
 
 public class RA_4835_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    public void ra_4835_CC(final String username, final String password) {
+    @Test()
+    public void ra_4835_CC() {
         Site site = Site.AUT_RA_4835_Site;
         String compensation = "180";
         String indication = "a rheumatoid arthritis (RA) study";
@@ -39,8 +40,8 @@ public class RA_4835_CC extends BaseTest {
 
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -61,8 +62,6 @@ public class RA_4835_CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-
-        //Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.getExpectedModifiedTitle(indication, compensation), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC

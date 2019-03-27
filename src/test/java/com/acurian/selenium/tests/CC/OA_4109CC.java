@@ -4,20 +4,13 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
-import com.acurian.selenium.pages.CC.OA_3138.MarijuanaOrCannabisCC;
-import com.acurian.selenium.pages.CC.OA_3138.ParticipatedInAnotherClinicalStudyCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
+import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.shared.AreYouCurrentlyOnPageCC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverHadKneeReplacementSurgery_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouEverReceivedInjectionIntoYourKnee_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouReceivedKneeInjection_CC;
-import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -26,8 +19,8 @@ import java.util.List;
 
 public class OA_4109CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    public void OA_4109_cc(final String username, final String password) {
+    @Test()
+    public void OA_4109_cc() {
         Site site = Site.AUT_OA_4109_Site;
         String phoneNumberOA = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("R475_OA_1611", "R475_OA_1688");
@@ -46,8 +39,8 @@ public class OA_4109CC extends BaseTest {
 
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -68,6 +61,8 @@ public class OA_4109CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
+
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
