@@ -12,10 +12,10 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,10 +25,9 @@ import java.util.Map;
 public class AKC_4691_CC_NoPIIemail extends BaseTest {
 
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("00004")
+    @Test()
     @Description("Akcea_4691 for CC")
-    public void akc_4691_CC_NoPIIemail(final String username, final String password) {
+    public void akc_4691_CC_NoPIIemail() {
         Site site = Site.AUT_AKC4691_MR;
         String phoneNumber = "AUTAMS1AKC";
         String studyName = "a study for diabetics";
@@ -41,8 +40,8 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -63,7 +62,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleExpectedAkc_4691, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleExpectedAkc_4691, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -533,7 +532,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new HSGeneralCC())
 
-                .waitForPageLoad("Type 2 Diabetes and related health conditions")
+                .waitForPageLoadEmailNotProvided()
                 .typeEmail("qa.acurian@gmail.com")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()

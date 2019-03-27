@@ -37,8 +37,7 @@ import com.acurian.selenium.utils.DataProviderPool;
 public class AMIG_4742_CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-
-    public void AMig_4742_CC(final String username, final String password) {
+    public void Amig4742cc(final String username, final String password) {
         String phoneNumber = "AUTAMS1MIG";
         Site site = Site.AUT_MIG4742_site;
         String studyName1 = "a migraine study";
@@ -78,8 +77,8 @@ public class AMIG_4742_CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a migraine study", "400"), "Title is diff");
 
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")

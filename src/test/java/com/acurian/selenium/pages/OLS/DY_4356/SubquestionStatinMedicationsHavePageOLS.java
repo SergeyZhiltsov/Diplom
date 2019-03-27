@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
@@ -18,11 +19,11 @@ public class SubquestionStatinMedicationsHavePageOLS extends MainPageOLS{
             "Think about statin medications you may be taking now as well as those you may have taken in the past.\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')]")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
-    List<WebElement> titlesText;
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    List<WebElement> checkBoxList;
 
     public SubquestionStatinMedicationsHavePageOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -35,27 +36,14 @@ public class SubquestionStatinMedicationsHavePageOLS extends MainPageOLS{
     }
 
     @Step
-    public SubquestionStatinMedicationsHavePageOLS clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
-        List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber-1)
-                .findElements(By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
-        clickOnRadioButton(checkBoxListFromTitle, answerText);
-        return this;
-    }
-    // can be an issue with ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]
-    // because clickOnRadioButton method use label at the end, so need add ancestor::label
-
-    @Step
-    public SubquestionStatinMedicationsHavePageOLS clickOnAnswerForSubQuestion(String questionText, String answerText) {
-        List<WebElement> checkBoxListFromTitle = titlesText.stream().filter(el -> questionText.contains(el.getText()))
-                .findFirst()
-                .get()
-                .findElements(By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
-        clickOnRadioButton(checkBoxListFromTitle, answerText);
+    public SubquestionStatinMedicationsHavePageOLS clickOnAnswers(String answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
+
 }
