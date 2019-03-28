@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class RA_4835_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     public void ra_4835_OLS() {
         Site site = Site.AUT_RA_4835_Site;
         String phoneNumberRA = "AUTAMS1RA1";

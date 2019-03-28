@@ -287,8 +287,8 @@ public class VACC_4556_OLS extends BaseTest {
             case AUT_VAC_4556_A:
                 siteSelectionPageOLS
                         .clickOnFacilityName(site.name)
-                        .clickNextButton(new HSGeneralPageOLS())
-                        .waitForPageLoadByTitle(new HSGeneralPageOLS().titleExpected4556)
+//                        .clickNextButton(new HSGeneralPageOLS())
+//                        .waitForPageLoadByTitle(new HSGeneralPageOLS().titleExpected4556)
                         .clickNextButton(new DoctorInformationCollectionPageOLS())
                         .waitForPageLoad()
                         .clickNextButton(new HS1PageOLS())

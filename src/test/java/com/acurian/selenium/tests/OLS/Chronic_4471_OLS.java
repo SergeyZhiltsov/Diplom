@@ -304,7 +304,7 @@ public class Chronic_4471_OLS extends BaseTest{
 //                .clickNextButton(new HSGeneralPageOLS())
 //                .waitForPageLoad("Chronic Cough")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-				.waitForPageLoadIBD("Chronic Cough")
+				.waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()

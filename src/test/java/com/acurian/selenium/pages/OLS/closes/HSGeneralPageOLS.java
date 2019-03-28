@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,9 +31,9 @@ public class HSGeneralPageOLS extends MainPageOLS{
             "\n" +
 			"Please be assured that your records will be kept confidential and only shared with the research facility.";
 
-    public final String titleRaExpected = "Your medical records related to your Arthritis, Low Back Pain, Rheumatoid Arthritis, Diabetes history are required for the study doctor to evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
+    public final String titleExpectedNoPIIemail = "We’re glad the location is convenient for you. We’re almost done with this questionnaire! \n" +
             "\n" +
-            "Please be assured that your records will be kept confidential and only shared with the research facility.";
+            "As the next step, please enter your email address. We will keep it confidential. Your email is required to move to the next step of the study pre-screening process.";
 
     public final String titleRaExpectedSTG = "Your medical records related to your Rheumatoid Arthritis, Low Back Pain, Arthritis, Diabetes history are required for the study doctor to evaluate you for participation.  In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
             "\n" +
@@ -82,6 +83,12 @@ public class HSGeneralPageOLS extends MainPageOLS{
     public HSGeneralPageOLS waitForPageLoad(String siteIndication) {
         String titleExpectedMod = String.format(titleExpected, siteIndication);
         waitForPageLoadMain(titleText, titleExpectedMod);
+        return this;
+    }
+
+    @Step
+    public HSGeneralPageOLS waitForPageLoadEmailNotProvided() {
+        waitForPageLoadMain(titleText, titleExpectedNoPIIemail);
         return this;
     }
     
