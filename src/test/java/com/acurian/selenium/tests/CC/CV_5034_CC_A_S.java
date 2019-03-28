@@ -314,10 +314,10 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
                 .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")*/
 
-        triglyceridesOrLipidsPageCC
+        stopTakingStatinPageCC
                 .waitForPageLoad()
                 .back();
-        statinMedicationsOnPageCC
+        areYouCurrentlyTakingStatinMedsCC
                 .waitForPageLoad()
                 .clickNextButton(new StopTakingStatinPageCC());
 
