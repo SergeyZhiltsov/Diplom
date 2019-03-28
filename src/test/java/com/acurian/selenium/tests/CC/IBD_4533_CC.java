@@ -65,7 +65,7 @@ public class IBD_4533_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
@@ -88,7 +88,7 @@ public class IBD_4533_CC extends BaseTest {
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoad1()
+                .waitForPageLoadNotQ()
                 .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 

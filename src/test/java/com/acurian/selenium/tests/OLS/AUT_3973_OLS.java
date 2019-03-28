@@ -279,7 +279,7 @@ public class AUT_3973_OLS extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(siteIndication)
+                .waitForPageLoadEmailNotProvided()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

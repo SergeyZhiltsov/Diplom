@@ -22,7 +22,7 @@ import java.util.*;
 
 public class RA_4835_CC extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     public void ra_4835_CC() {
         Site site = Site.AUT_RA_4835_Site;
         String compensation = "180";

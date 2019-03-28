@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -19,10 +20,10 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3264_CC_HS extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(enabled = true)
     @TestCaseId("IBD")
     @Description("IBD 3264 for CC")
-    public void IBD3264ccHS(final String username, final String password) {
+    public void IBD3264ccHS() {
         Site site = Site.AUT_IBD_3264_Site;
         String phoneNumber = "AUTAMS1IBD";
         //String protocol1 = "M14_234";
@@ -38,8 +39,8 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC

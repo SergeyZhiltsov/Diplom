@@ -32,7 +32,7 @@ public class OA_5055_OLS_S extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an osteoarthritis", "850"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
 
 
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------

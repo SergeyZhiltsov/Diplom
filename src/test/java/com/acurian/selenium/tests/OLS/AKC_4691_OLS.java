@@ -660,7 +660,7 @@ public class AKC_4691_OLS extends BaseTest {
                 //----------SITE Selection Page--------------------
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoadT2DM()
+                .waitForPageLoadEmailNotProvided()
                 .typeEmail("qa.acurian@gmail.com")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
