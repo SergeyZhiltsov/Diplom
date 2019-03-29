@@ -4,6 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -63,12 +64,12 @@ public class GmegaToGban extends BaseTest {
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        WhenYouDiagnosedWithRaPageOLS whenYouDiagnosedWithRaPageOLS = whatKindOfArthritisPageOLS
+        WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
+                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaPageOLS
+        WhereDoYouHaveArthritisPageOLS whereDoYouHaveArthritisPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
                 .clickNextButton(new WhereDoYouHaveArthritisPageOLS());

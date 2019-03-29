@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
+import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.utils.PassPID;
@@ -85,12 +86,12 @@ public class InstantFUL extends BaseTest {
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        WhenYouDiagnosedWithRaPageOLS whenYouDiagnosedWithRaPageOLS = whatKindOfArthritisPageOLS
+        WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
+                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        SiteSelectionPageOLS siteSelectionPageOLS = whenYouDiagnosedWithRaPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)

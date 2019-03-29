@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.testng.Assert;
@@ -49,12 +50,12 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        WhenYouDiagnosedWithRaPageOLS whenYouDiagnosedWithRaPageOLS = whatKindOfArthritisPageOLS
+        WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
+                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        HSGeneralPageOLS hsGeneralPageOLS = whenYouDiagnosedWithRaPageOLS
+        HSGeneralPageOLS hsGeneralPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
