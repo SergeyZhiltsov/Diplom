@@ -10,10 +10,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.ashot.Screenshot;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static com.sun.webkit.network.URLs.newURL;
 
 public class ScreenBuilderApp extends BasePage {
     private WebDriver driver;
@@ -26,6 +30,9 @@ public class ScreenBuilderApp extends BasePage {
 
     @FindBy(id = "password")
     WebElement loginPassword;
+
+    @FindBy(css = "img.customimg")
+    WebElement logoImage;
 
     @FindBy(xpath = "//table[@id='mytable']//span/a")
     List<WebElement> screeners;
@@ -145,5 +152,26 @@ public class ScreenBuilderApp extends BasePage {
                 .click();
         clearCacheButton.click();
         return this;
+    }
+
+    @Step("Getting actual image logo")
+    public Screenshot getActualLogoImage() {
+        String src = logoImage.getAttribute("src");
+        try {
+            return new Screenshot(ImageIO.read(newURL(src)));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Step("Getting expected image logo")
+    public Screenshot getExpectedLogoImage() {
+        try {
+            return new Screenshot(ImageIO.read((ScreenBuilderApp.class.getResource("/AcurianSB_wtint.png"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

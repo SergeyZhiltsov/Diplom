@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.ashot.comparison.ImageDiff;
 
 public class SBClearCache extends BaseTest {
 
@@ -27,13 +28,13 @@ public class SBClearCache extends BaseTest {
 
         screenBuilder.openPage(env);
 
+        ImageDiff diff = screenBuilder.getDiff(screenBuilder.getExpectedLogoImage(), screenBuilder.getActualLogoImage());
+        Assert.assertFalse(diff.hasDiff(), "Logos are differs!");
+
         screenBuilder.loginAs(username, password);
         screenBuilder.searchStudy("GRA1");
         screenBuilder.clearStudyCacheOf("GRA1 - Rheumatoid Arthritis (RA)", ScreenBuilderApp.CacheEnv.QA);
 
         Assert.assertEquals(screenBuilder.cacheClearedSuccessAlert.getText(), "×\nCleared Cache for Study 6697 successfully on QA.", "Success alert is diff or absent");
-
-
     }
-
 }
