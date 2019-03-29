@@ -59,6 +59,6 @@ public class WLPvalidation extends BaseTest {
                 .switchTab();
         dateOfBirthPageOLS
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText2Ver(), dateOfBirthPageOLS.titleGHExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.titleGHExpected, "Title is diff");
     }
 }

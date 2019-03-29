@@ -9,6 +9,7 @@ import com.acurian.selenium.pages.CC.RA.standalone.StudySwitchPageCC;
 import com.acurian.selenium.pages.CC.closes.standalone.UnqualifiedStudySwitchCloseOldCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
+import com.acurian.selenium.pages.CC.gmega.WhenYouDiagnosedWithRaGmegaPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
@@ -71,13 +72,13 @@ public class StudySwitchCC extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC());
 
-        WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = hasAHealtcareDiagnosedWithAnyTypeOfArthritisCC
+        WhenYouDiagnosedWithRaGmegaPageCC whenYouDiagnosedWithRaGmegaPageCC = hasAHealtcareDiagnosedWithAnyTypeOfArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid Arthritis, a serious disease caused by your immune system attacking your joints, " +
                         "which can cause fatigue with pain and swelling of multiple joints throughout your body ")
-                .clickNextButton(new WhenYouDiagnosedWithRaPageCC());
+                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageCC());
 
-        ExperiencedAnyOfTheFollowingConditionsInPast6Months experiencedAnyOfTheFollowingConditionsInPast6Months = whenYouDiagnosedWithRaPageCC
+        ExperiencedAnyOfTheFollowingConditionsInPast6Months experiencedAnyOfTheFollowingConditionsInPast6Months = whenYouDiagnosedWithRaGmegaPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months ")
                 .clickNextButton(new ExperiencedAnyOfTheFollowingConditionsInPast6Months());

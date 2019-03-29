@@ -72,7 +72,7 @@ public class HelloSignOls extends BaseTest {
         }
         hsGeneralPageOLS
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
