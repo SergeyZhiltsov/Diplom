@@ -27,7 +27,7 @@ public class KAD_4631_OLS extends BaseTest {
 
     @Test(enabled = true)
     @Description("KAD 4631 for OLS")
-    public void kad4631() {
+    public void kad4631olsTest() {
         Site site = Site.AUT_DERM_4631_Site;
         String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis)";

@@ -23,14 +23,13 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
         String studyName = "an endometriosis";
         String ExpStudySwich = "4733";
 
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumberRA)
-                .waitForPageLoad()
-                .maximizePage();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for an endometriosis study!"), true);
+                .waitForPageLoad();
+
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an endometriosis study", "1775"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("10/10/1980")
                 .clickNextButton(new ZipCodePageOLS());
@@ -91,7 +90,8 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes - I will continue with the next few questions");
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-        siteSelectionPageOLS.getPID()
+        siteSelectionPageOLS
+                .getPID()
                 .clickNextButton(new DateOfBirthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);

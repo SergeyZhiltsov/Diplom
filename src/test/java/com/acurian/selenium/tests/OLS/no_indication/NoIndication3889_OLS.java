@@ -19,7 +19,6 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 public class NoIndication3889_OLS extends BaseTest {
 
     @Test(enabled = true)
-    @TestCaseId("00034")
     @Description("No Indication 3889 OLS")
     public void ibd_3889_OLS_NI() {
         String phoneNumber = "AUTAMS1GEN";
@@ -38,8 +37,8 @@ public class NoIndication3889_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageGHLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(), dateOfBirthPageOLS.titleGHExpected, "Title is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.titleGHExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());
@@ -647,8 +646,8 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new HSCrohns2PageOLS())
-                .waitForPageLoad()
+//                .clickNextButton(new HSCrohns2PageOLS())
+//                .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())
