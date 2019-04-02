@@ -24,7 +24,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
 
         String studyName = env.equals("QA") ?
                 "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GMEGA_Site";//AUT_GMEGA_01
+        String siteName = "AUT_GMEGA_New"; //"AUT_GMEGA_Site";//AUT_GMEGA_01
         String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();

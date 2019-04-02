@@ -23,7 +23,6 @@ public class Dispo2CsiteProximity extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
                 "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GEMGA_01A";
         String zipCode = "99546";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
