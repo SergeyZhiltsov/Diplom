@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class AMIG_4742_OLS extends BaseTest {
 
     @Test(enabled = true)
-    public void Amig_4742_OLS() {
+    public void amig4742ols() {
         String phoneNumberMIG = "AUTAMS1MIG";
         Site site = Site.AUT_MIG4742_site;
         String studyName = "a migraine";
@@ -85,12 +85,15 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
+        howManyDaysYouSufferOLS
+                .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6004", site.activeProtocols);
         debugPageOLS.back();
         approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 11 months")
-                .clickNextButton(new HowManyDaysYouSufferOLS());
+                .clickNextButton(howManyDaysYouSufferOLS)
+                .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6004", site.activeProtocols);
         debugPageOLS.back();
         approxHowLongSufferingFromMIG

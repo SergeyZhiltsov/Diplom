@@ -20,7 +20,7 @@ public class IBD_3264_OLS extends BaseTest {
 
     @Test
     @Description("IBD_3264_OLS")
-    public void IBD_3264_UC_OLS_Screener() {
+    public void ibd3264olsTest() {
         Site site = Site.AUT_IBD_3264_Site;
         String phoneNumber = "AUTAMS1IBD";
         String protocol1 = "M14_234"; //deactivated

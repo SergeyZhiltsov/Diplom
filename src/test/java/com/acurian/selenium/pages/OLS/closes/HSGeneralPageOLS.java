@@ -31,7 +31,7 @@ public class HSGeneralPageOLS extends MainPageOLS{
             "\n" +
 			"Please be assured that your records will be kept confidential and only shared with the research facility.";
 
-    public final String titleExpectedNoPIIemail = "We’re glad the location is convenient for you. We’re almost done with this questionnaire! \n" +
+    public final String titleExpectedNoPIIemail = "We’re glad the location is convenient for you. We’re almost done with this questionnaire!\n" +
             "\n" +
             "As the next step, please enter your email address. We will keep it confidential. Your email is required to move to the next step of the study pre-screening process.";
 
