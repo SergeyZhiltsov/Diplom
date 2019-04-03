@@ -54,9 +54,7 @@ public class DBConnection {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-            System.out.println("--::DispoRead from DB::--");
-            System.out.println("Dispo ="+dispoCode+applicantStatus);
-            System.out.println("DB read completed");
+            System.out.println("DB dispo = " + dispoCode + applicantStatus);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,7 +76,7 @@ public class DBConnection {
             stmt.execute(sql);
             connTemp.commit();
             connTemp.setAutoCommit(true);
-            System.out.println("--::DispoConvert 54C to 1R::--");
+            System.out.println("DB dispo converted from 54C to 1R");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -97,9 +95,7 @@ public class DBConnection {
                 dobCell = rset.getString("ANSWER_DATE");
                 if(dobCell != null) break;
             }
-            System.out.println("--::ChildDOBRead from DB::--");
-            System.out.println("Fetched child DOB cell: " + dobCell);
-            System.out.println("DB read completed");
+            System.out.println("DB fetched child DOB cell: " + dobCell);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -118,9 +114,7 @@ public class DBConnection {
             while (rset.next()) {
                 fulCell = rset.getString("VALUE");
             }
-            System.out.println("--::Reading value of FUL from DB::--");
-            System.out.println("Fetched value of FUL cell: " + fulCell);
-            System.out.println("DB read completed");
+            System.out.println("DB fetched value of FUL cell: " + fulCell);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -140,10 +134,13 @@ public class DBConnection {
             while (rset.next()) {
                 radiantResults = new RadiantResults();
                 radiantResults.setCurrentStatus(rset.getString("current_status"));
+                radiantResults.setStudyReference(rset.getString("study_reference"));
+                radiantResults.setResponseMessage(rset.getString("response_message"));
+
             }
-            System.out.println("--::Radiant read::--");
-            System.out.println("Current Status =" + radiantResults.getCurrentStatus());
-            System.out.println("DB read completed");
+            System.out.println("DB Radiant: current status = " + radiantResults.getCurrentStatus() +
+                               ", study reference = " + radiantResults.getStudyReference() +
+                               ", response message = " + radiantResults.getResponseMessage());
             return radiantResults;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,7 +151,7 @@ public class DBConnection {
         return null;
     }
     
-    public String dbReadChilPID(String environment, String pidNumber) {
+    public String dbReadChildPID(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
             String sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'";
@@ -164,9 +161,7 @@ public class DBConnection {
             while (rset.next()) {
                 childPID = rset.getString("patient_id");
             }
-            System.out.println("--::Child PID read::--");
-            System.out.println("Child PID =" + childPID);
-            System.out.println("DB read completed");
+            System.out.println("DB Child PID = " + childPID);
             return childPID;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -190,10 +185,8 @@ public class DBConnection {
                 anomalyResults.setCurrentStatus(rset.getString("current_status"));
                 anomalyResults.setRequestStatus(rset.getString("request_status_id"));
             }
-            System.out.println("--::Anomaly read::--");
-            System.out.println("Current Status =" + anomalyResults.getCurrentStatus());
-            System.out.println("Request Status id=" + anomalyResults.getRequestStatus());
-            System.out.println("DB read completed");
+            System.out.println("DB Anomaly: current status = " + anomalyResults.getCurrentStatus() +
+                               ", request status id = " + anomalyResults.getRequestStatus());
             return anomalyResults;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -236,6 +229,6 @@ public class DBConnection {
     }
 
     public String getDispo() {
-        return dispoCode+applicantStatus;
+        return dispoCode + applicantStatus;
     }
 }
