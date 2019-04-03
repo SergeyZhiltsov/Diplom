@@ -54,14 +54,18 @@ public class MainPageCC extends BasePage {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo="+dispoParent+" for pid "+pid);
+        logTextToAllure("Dispo="+dispoParent+" for PID "+pid);
         return this;
     }
 
     @Step
     public MainPageCC getRadiantDbToLog(String env) {
         RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
-        logTextToAllure("Radiant::: Current Status=" + radiantResults.getCurrentStatus() + " for pid " + pid);
+        logTextToAllure("Radiant : current status = " + radiantResults.getCurrentStatus() +
+                ", response message = " + radiantResults.getResponseMessage() +
+                ", study reference = " + radiantResults.getStudyReference() +
+                " for PID " + pid);
+        Assert.assertEquals(radiantResults.getCurrentStatus(), "SENT", "Current status is not SENT");
         return this;
     }
 
@@ -118,7 +122,7 @@ public class MainPageCC extends BasePage {
 
     @Step
     public MainPageCC dispoShouldMatch(String expectedParentDispo){
-        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo id different");
+        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo ID different");
         return this;
     }
 

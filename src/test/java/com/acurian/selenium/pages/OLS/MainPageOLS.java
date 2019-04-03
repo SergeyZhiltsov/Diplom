@@ -32,6 +32,7 @@ public class MainPageOLS extends BasePage {
 
     String pid;
     String dispoParent;
+    String dispoChild;
 
 
     public MainPageOLS() {
@@ -125,7 +126,9 @@ public class MainPageOLS extends BasePage {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo=" + dispoParent + " for pid " + pid);
+        logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        System.out.println("Parent PID = " + pid);
+        System.out.println("Parent dispo = " + dispoParent);
         return this;
     }
 
@@ -165,8 +168,10 @@ public class MainPageOLS extends BasePage {
     @Step
     public MainPageOLS childPidFromDbToLog(String env) {
         pid = PassPID.getInstance().getPidNumber();
-        getDbConnection().dbReadChilPID(env, pid);
-        logTextToAllure("Dispo=" + getDbConnection().getDispo() + " for pid " + pid);
+        dispoChild = getDbConnection().dbReadChildPID(env, pid);
+        logTextToAllure("Child dispo = " + dispoChild + " for PID " + pid);
+        System.out.println("Child PID = " + pid);
+        System.out.println("Child dispo = " + dispoChild);
         return this;
     }
 
@@ -177,21 +182,26 @@ public class MainPageOLS extends BasePage {
         threadSleep(2000);
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo=" + dispoParent + " for pid " + pid + "  after conversion");
+        logTextToAllure("Dispo = " + dispoParent + " for PID " + pid + "  after conversion");
         return this;
     }
 
     @Step
     public MainPageOLS getRadiantDbToLog(String env) {
         RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
-        logTextToAllure("Radiant::: Current Status=" + radiantResults.getCurrentStatus() + " for pid " + pid);
+        logTextToAllure("Radiant : current status = " + radiantResults.getCurrentStatus() +
+                        ", response message = " + radiantResults.getResponseMessage() +
+                        ", study reference = " + radiantResults.getStudyReference() +
+                        " for PID " + pid);
+        Assert.assertEquals(radiantResults.getCurrentStatus(), "SENT", "Current status is not SENT");
         return this;
     }
 
     @Step
     public MainPageOLS getAnomalyDbToLog(String env) {
         AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
-        logTextToAllure("Anomaly : Current Status=" + anomalyResults.getCurrentStatus() + " Request Status id=" + anomalyResults.getRequestStatus() + " for pid " + pid);
+        logTextToAllure("Anomaly : current status = " + anomalyResults.getCurrentStatus() +
+                        ", request status id = " + anomalyResults.getRequestStatus() + " for PID " + pid);
         Assert.assertEquals(anomalyResults.getCurrentStatus(), "SENT", "Current status is not SENT");
         if (env.equals("PRD")) {
             Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
@@ -211,7 +221,7 @@ public class MainPageOLS extends BasePage {
 
     @Step
     public MainPageOLS dispoShouldMatch(String expectedParentDispo) {
-        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo id different");
+        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo ID different");
         return this;
     }
 
