@@ -191,7 +191,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickOnAnswer("1 - 2 days")
                 .clickNextButton(haveYouEverTreatedYourEczema_ols)
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
 
         DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_ols = whichofthefollowingMedicationsTherapies_ols
@@ -199,15 +199,40 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickOnAnswers("Dupixent (dupilumab)")
                 .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
 
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols = didYouReceiveAnyTherapiesPastYear_ols
+        didYouReceiveAnyTherapiesPastYear_ols
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_ols)
+                .back(whichofthefollowingMedicationsTherapies_ols);
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols =
+        whichofthefollowingMedicationsTherapies_ols
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols
+                .waitForPageLoad()
+                .getPage(debugPageOls)
+                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic") //Must ... in Q22 selected "Yes, within the past year"
+                .back(whichofthefollowingMedicationsTherapies_ols)
+                .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_ols)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, but more than 1 year ago")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_ols)
+                .waitForPageLoad()
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
+                .waitForPageLoad()
+                .getPage(debugPageOls)
+                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
+                .back(whichofthefollowingMedicationsTherapies_ols)
+                .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_ols)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_ols);
+        whichofthefollowingMedicationsTherapies_ols
+                .waitForPageLoad()
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)

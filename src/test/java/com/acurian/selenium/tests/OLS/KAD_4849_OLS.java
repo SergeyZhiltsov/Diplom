@@ -18,7 +18,9 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class KAD_4849_OLS extends BaseTest {
 
@@ -182,7 +184,7 @@ public class KAD_4849_OLS extends BaseTest {
 
         WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = haveYouEverTreatedYourEczema_ols
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
 
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols = whichofthefollowingMedicationsTherapies_OLS
@@ -193,13 +195,61 @@ public class KAD_4849_OLS extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
-                .back();
-
-        DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_ols = whichofthefollowingMedicationsTherapies_OLS
+                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
+                .back(whichofthefollowingMedicationsTherapies_OLS)
                 .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_ols);
+        haveYouEverTreatedYourEczema_ols
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, but more than 1 year ago")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_OLS)
+                .waitForPageLoad()
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
+                .back(whichofthefollowingMedicationsTherapies_OLS)
+                .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_ols);
+        haveYouEverTreatedYourEczema_ols
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_OLS)
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
+                .back(whichofthefollowingMedicationsTherapies_OLS);
+
+        DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_ols = new DidYouReceiveAnyTherapiesPastYear_OLS();
+        HashMap<String, List<String>> disqualifyQ23 = new HashMap<>();
+        disqualifyQ23.put("Fasenra (benralizumab)", Arrays.asList(site.activeProtocols));
+        disqualifyQ23.put("Nucala (mepolizumab)", Arrays.asList(site.activeProtocols));
+        disqualifyQ23.put("Otezla (apremilast)", Arrays.asList(site.activeProtocols));
+        for (Map.Entry<String, List<String>> entry : disqualifyQ23.entrySet()) {
+            System.out.println(entry.getKey());
+            whichofthefollowingMedicationsTherapies_OLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(entry.getKey())
+                    .clickNextButton(didYouReceiveAnyTherapiesPastYear_ols)
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
+                    .back(didYouReceiveAnyTherapiesPastYear_ols)
+                    .waitForPageLoad()
+                    .back(whichofthefollowingMedicationsTherapies_OLS);
+        }
+
+
+        whichofthefollowingMedicationsTherapies_OLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Dupixent (dupilumab)")
-                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
+                .clickNextButton(didYouReceiveAnyTherapiesPastYear_ols);
 
         didYouReceiveAnyTherapiesPastYear_ols
                 .waitForPageLoad()
