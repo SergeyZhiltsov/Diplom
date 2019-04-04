@@ -194,35 +194,58 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickOnAnswer("1 - 2 days")
                 .clickNextButton(haveYouEverTreatedYourEczema_cc)
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
 
         DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_cc = whichofthefollowingMedicationsTherapies_cc
                 .waitForPageLoad()
-                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)")
+                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)") //Disqualify (“Current biologic use”)
                 .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
-
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc = didYouReceiveAnyTherapiesPastYear_cc
+        didYouReceiveAnyTherapiesPastYear_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017868-QS5827-STUDYQUES", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_cc)
+                .back(whichofthefollowingMedicationsTherapies_cc);
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
+        whichofthefollowingMedicationsTherapies_cc
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
+        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+                .waitForPageLoadKAD()
+                .getPage(debugPageCC)
+                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic") //Must ... in Q22 selected "Yes, within the past year"
+                .back(whichofthefollowingMedicationsTherapies_cc)
+                .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_cc)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, but more than 1 year ago")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_cc)
+                .waitForPageLoad()
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
+                .waitForPageLoadKAD()
+                .getPage(debugPageCC)
+                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
+                .back(whichofthefollowingMedicationsTherapies_cc)
+                .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_cc)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_cc);
+        whichofthefollowingMedicationsTherapies_cc
+                .waitForPageLoad()
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
                 .back(whichofthefollowingMedicationsTherapies_cc)
-                .waitForPageLoad()
                 .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
                 .clickNextButton(didYouReceiveAnyTherapiesPastYear_cc);
 
         didYouReceiveAnyTherapiesPastYear_cc
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc);
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);
 
         List<String> medications = Arrays.asList(
                 "Actemra (Agent Note: ac-TEM-ruh)",
@@ -245,7 +268,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         );
          HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = new HaveYouEverTakenEitherAnyOfFollowingMeds_CC();
         for (String medication : medications) {
-            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
+            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                     .waitForPageLoadKAD()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(medication)
@@ -255,7 +278,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                     .checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", site.activeProtocols)
                     .back();
         }
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
+        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
