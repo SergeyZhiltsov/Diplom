@@ -16,7 +16,9 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class KAD_4849_CC extends BaseTest {
 
@@ -182,7 +184,7 @@ public class KAD_4849_CC extends BaseTest {
 
         WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_cc = haveYouEverTreatedYourEczema_cc
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
 
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc = whichofthefollowingMedicationsTherapies_cc
@@ -193,13 +195,60 @@ public class KAD_4849_CC extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
-                .back();
-
-        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_cc
+                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
+                .back(whichofthefollowingMedicationsTherapies_cc)
                 .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_cc);
+        haveYouEverTreatedYourEczema_cc
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, but more than 1 year ago")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_cc)
+                .waitForPageLoad()
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc)
+                .waitForPageLoadKAD()
+                .getPage(debugPageCC)
+                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
+                .back(whichofthefollowingMedicationsTherapies_cc)
+                .waitForPageLoad()
+                .back(haveYouEverTreatedYourEczema_cc);
+        haveYouEverTreatedYourEczema_cc
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(whichofthefollowingMedicationsTherapies_cc)
+                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc)
+                .waitForPageLoadKAD()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
+                .back(whichofthefollowingMedicationsTherapies_cc);
+
+        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = new DidYouReceiveAnyTherapiesPastYear_CC();
+        HashMap<String, List<String>> disqualifyQ23 = new HashMap<>();
+        disqualifyQ23.put("Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)", Arrays.asList(site.activeProtocols));
+        disqualifyQ23.put("Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)", Arrays.asList(site.activeProtocols));
+        disqualifyQ23.put("Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)", Arrays.asList(site.activeProtocols));
+        for (Map.Entry<String, List<String>> entry : disqualifyQ23.entrySet()) {
+            System.out.println(entry.getKey());
+            whichofthefollowingMedicationsTherapies_cc
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(entry.getKey())
+                    .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC)
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc)
+                    .waitForPageLoadKAD()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
+                    .back(didYouReceiveAnyTherapiesPastYear_CC)
+                    .waitForPageLoad()
+                    .back(whichofthefollowingMedicationsTherapies_cc);
+        }
+
+        whichofthefollowingMedicationsTherapies_cc
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)")
-                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
+                .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC);
 
         didYouReceiveAnyTherapiesPastYear_CC
                 .waitForPageLoad()
