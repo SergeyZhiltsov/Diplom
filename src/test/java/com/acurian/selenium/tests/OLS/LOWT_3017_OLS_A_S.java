@@ -30,7 +30,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
     @Test(dataProvider = "sites")
     @Description("LOWT_3017_OLS_A_S")
-    public void lowt_3017_OLS(Site site) {
+    public void lowt3017ols(Site site) {
         String phoneNumber = "AUTAMSLOWT";
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
@@ -48,7 +48,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.titleLOWT_3017_Expected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091990")

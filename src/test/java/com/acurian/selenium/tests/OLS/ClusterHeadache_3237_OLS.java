@@ -14,13 +14,12 @@ import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class ClusterHeadache_3237_OLS extends BaseTest {
 
     @Test
     @Description("a cluster headache study 3237 - OLS")
-    public void clusterHeadache_3237_OLS() {
+    public void clusterHeadache3237ols() {
         Site site = Site.AUT_CLH_3237_Site;
         String phoneNumber = "AUTAMS1CLH";
         String studyName = "a cluster headache";
