@@ -24,7 +24,7 @@ public class DERM_4631_OLS extends BaseTest {
 
     @Test()
     @Description("MIG_4356B_Synexus_OLS module")
-    public void kad4631() {
+    public void kad4631ols() {
         String phoneNumber = "AUTAMS1KAD";
         Site site = Site.AUT_DERM_4631_Site;
         String studyName = "an eczema (atopic dermatitis)";
@@ -35,7 +35,7 @@ public class DERM_4631_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis)", "400"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")

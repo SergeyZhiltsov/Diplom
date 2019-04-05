@@ -4,9 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.IncongruentSiteSelectionClose_OLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -25,8 +23,8 @@ import java.util.Map;
 public class DIA_4241_OLS_ver3 extends BaseTest {
 
     @Test()
-    @Description("Diabetes_4241 OLS")
-    public void dia4241olsVer3Test() {
+    @Description("Diabetes 4241 OLS")
+    public void dia4241olsTest() {
         Site site = Site.AUT_DIA_4241;
         String dquedStudyName = "a heart health study";
         String matchedStudyName = "a men’s health study";

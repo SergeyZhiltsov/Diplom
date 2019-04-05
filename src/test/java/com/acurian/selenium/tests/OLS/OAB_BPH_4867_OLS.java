@@ -1,32 +1,33 @@
 package com.acurian.selenium.tests.OLS;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.acurian.selenium.constants.Site;
+import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
-import com.acurian.selenium.pages.OLS.generalHealth.*;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouSufferFromOAB_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.HaveYouEverHadBotoxInjectionbladder_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.SubquestionOABandBPH_OLS;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class OAB_BPH_4867_OLS extends BaseTest {
 
     @Test()
-    @TestCaseId("0029")
     @Description("OAB_BPH_4867_OLS")
     public void OAB_BPH_4867_OLS_Script() {
         Site site = Site.AUT_OAB_4867;
@@ -40,7 +41,8 @@ public class OAB_BPH_4867_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an overactive bladder study", "300"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
+                dateOfBirthPageOLS.getExpectedModifiedTitle("an overactive bladder study", "300"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092005")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
