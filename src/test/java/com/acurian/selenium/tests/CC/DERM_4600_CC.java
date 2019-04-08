@@ -68,14 +68,14 @@ public class DERM_4600_CC extends BaseTest {
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2003")
-                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
+        //        .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
                 //.clickNextButton(new DoesNotGivePermissionToProceedCloseCC()) ////TODO Set created page
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
 //                .waitForPageLoad() //TODO Remove comment when title will be updated
-                .clickOnAnswer("Yes")
+        //        .clickOnAnswer("Yes")
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2001")
