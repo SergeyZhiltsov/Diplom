@@ -28,7 +28,7 @@ public class DERM_4825_OLS extends BaseTest {
     }
 
     @Test(dataProvider = "sites")
-    @Description("DERM_4815_OLS_A_S")
+    @Description("DERM_4825_OLS")
     public void derm4815Ols(final Site site) {
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis)";
@@ -97,7 +97,6 @@ public class DERM_4825_OLS extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
-
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months")
@@ -106,11 +105,19 @@ public class DERM_4825_OLS extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
-
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
-                .clickOnAnswer("2 years or more")
+                .clickOnAnswer("2 years")
+                .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols)
+                .waitForPageLoad()
+                .getPage(debugPageOls)
+                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+                .back();
+        howLongHaveYouBeenSufferingFromEczema_OLS
+                .waitForPageLoad()
+                .clickOnAnswer("3 years or more")
                 .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols);
+
 
         WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols = howMuchEczemaYouHaveOnYourBody_ols
                 .waitForPageLoad()
