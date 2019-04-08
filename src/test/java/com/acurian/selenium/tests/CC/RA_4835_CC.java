@@ -483,7 +483,7 @@ public class RA_4835_CC extends BaseTest {
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)") //Deselect
+                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
                 .clickNextButton(new WhenDiagnosedWithCancerCC());
 
         //Q6: QS42
