@@ -69,7 +69,7 @@ public class DERM_4825_CC extends BaseTest {
                 .setDay("5")
                 .setYear("2003")
                 .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
-                .clickNextButton(new DoesNotGivePermissionToProceedCloseCC())
+        //        .clickNextButton(new DoesNotGivePermissionToProceedCloseCC()) //TODO Set created page
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
