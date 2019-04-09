@@ -287,12 +287,11 @@ public class IBS_4819_CC extends BaseTest {
 
         OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
-                        "Cancer",
-                        "Kidney disease",
-                        "Heart or circulation problems (heart attack, heart failure, stroke)",
-                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                .clickOnAnswers("Cancer",
+                                "Kidney disease",
+                                "Heart or circulation problems (heart attack, heart failure, stroke)",
+                                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageCC());
 
         WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC = otherThanSkinCancerPageCC
