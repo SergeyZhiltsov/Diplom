@@ -607,18 +607,11 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+
+        approximateHeightPageOLS
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
-                /* .clickNextButton(new EthnicBackgroundPageOLS());
-
-         ethnicBackgroundPageOLS
-                 .waitForPageLoad()
-                 .clickOnAnswers("Prefer not to answer")*/
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
