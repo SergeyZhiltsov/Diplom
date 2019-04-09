@@ -100,7 +100,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .back();
         howLongHaveYouBeenSufferingFromEczema_ols
                 .waitForPageLoad()
-                .clickOnAnswer("2 years or more")
+                .clickOnAnswer("2 years")
                 .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols);
 
         WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols = howMuchEczemaYouHaveOnYourBody_ols
@@ -607,14 +607,18 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
+        //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS());
+                .clickOnAnswers("None of the above")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .setAll("5", "5", "250")
+                /* .clickNextButton(new EthnicBackgroundPageOLS());
 
-        ethnicBackgroundPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+         ethnicBackgroundPageOLS
+                 .waitForPageLoad()
+                 .clickOnAnswers("Prefer not to answer")*/
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)

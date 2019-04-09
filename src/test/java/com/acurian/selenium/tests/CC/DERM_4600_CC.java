@@ -285,7 +285,7 @@ public class DERM_4600_CC extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
                     .clickNextButton(transitionStatementCC)
-//                    .waitForPageLoad(studyNameForTrans) //TODO Check with page
+                    .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES" , site.activeProtocols)
                     .back();

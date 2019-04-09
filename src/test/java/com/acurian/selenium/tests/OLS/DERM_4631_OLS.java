@@ -99,7 +99,6 @@ public class DERM_4631_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
-
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months")
@@ -108,7 +107,6 @@ public class DERM_4631_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
-
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months")
@@ -117,11 +115,10 @@ public class DERM_4631_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                 .back();
-
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad();
                 IfYouUseYourHandToCoverAllOfTheEczema_OLS ifYouUseYourHandToCoverAllOfTheEczema_OLS = howLongHaveYouBeenSufferingFromEczema_OLS
-                .clickOnAnswer("2 years or more")
+                .clickOnAnswer("2 years")
                 .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_OLS());
 
         ifYouUseYourHandToCoverAllOfTheEczema_OLS
@@ -503,11 +500,11 @@ public class DERM_4631_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "10", "120")
-                .clickNextButton(new EthnicBackgroundPageOLS());
-        ethnicBackgroundPageOLS
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -517,7 +514,7 @@ public class DERM_4631_OLS extends BaseTest {
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188")
-                .clickNextButton(ethnicBackgroundPageOLS)
+                .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -526,10 +523,7 @@ public class DERM_4631_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setFeatwithClear("5")
                 .setLbs("160")
-                .clickNextButton(ethnicBackgroundPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(identificationPageOLS)
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
