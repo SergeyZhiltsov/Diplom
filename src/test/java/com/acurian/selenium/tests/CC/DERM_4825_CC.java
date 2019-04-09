@@ -60,16 +60,16 @@ public class DERM_4825_CC extends BaseTest {
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-//        dateOfBirthPageCC //TODO Remove comment when title will be updated
-//                .waitForPageLoad();
-//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
+        dateOfBirthPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
 
         dateOfBirthPageCC
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2003")
-         //       .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
-        //        .clickNextButton(new DoesNotGivePermissionToProceedCloseCC()) //TODO Set created page
+                .clickOnAnswer("No")
+                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
@@ -78,7 +78,7 @@ public class DERM_4825_CC extends BaseTest {
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("1943")
-        //        .clickOnAnswer("Yes")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
         zipCodePageCC
                 .waitForPageLoad()
@@ -87,8 +87,8 @@ public class DERM_4825_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         dateOfBirthPageCC
-//                .waitForPageLoad()  //TODO Remove comment when title will be updated
-        //        .clickOnAnswer("Yes")
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2001") //

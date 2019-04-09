@@ -41,7 +41,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_LOWT_3017S_Site},
-//                {Site.AUT_LOWT_3017_Site}
+                {Site.AUT_LOWT_3017_Site}
         };
     }
 
@@ -100,7 +100,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2)
                 .back();
         dateOfBirthPageCC
-                .waitForPageLoadAKC()
+                .waitForPageLoad2Ver()
                 .setYear("1960")
                 .clickNextButton(new ZipCodePageCC());
 

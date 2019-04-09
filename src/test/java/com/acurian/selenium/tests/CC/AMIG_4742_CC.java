@@ -96,7 +96,8 @@ public class AMIG_4742_CC extends BaseTest {
                 .setYear("1942")
                 .clickNextButton(new ZipCodePageCC());
 
-        zipCodePageCC.waitForPageLoad();
+        zipCodePageCC
+                .waitForPageLoad();
 //debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
         debugPageCC.back();
         dateOfBirthPageCC
