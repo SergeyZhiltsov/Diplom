@@ -8,7 +8,6 @@ import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOL
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -18,19 +17,18 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class DERM_4815_OLS_A_S extends BaseTest {
+public class DERM_4600_OLS extends BaseTest {
 
     @DataProvider(name = "sites")
     public Object[][] getData() {
         return new Object[][] {
-                {Site.AUT_DERM_4815_Site},
-                {Site.AUT_DERM_4815S_Site}
+                {Site.AUT_AMS1_4600_site}
         };
     }
 
     @Test(dataProvider = "sites")
-    @Description("DERM_4815_OLS_A_S")
-    public void derm4815Ols(final Site site) {
+    @Description("DERM_4600_OLS")
+    public void derm4600Ols(final Site site) {
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis)";
         DebugPageOLS debugPageOls = new DebugPageOLS();
@@ -49,7 +47,6 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
-
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad()
                 .setDate("09091942")
@@ -109,7 +106,14 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 years")
+                .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols)
+                .waitForPageLoad()
+                .back();
+        howLongHaveYouBeenSufferingFromEczema_OLS
+                .waitForPageLoad()
+                .clickOnAnswer("3 years or more")
                 .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols);
+
 
         WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols = howMuchEczemaYouHaveOnYourBody_ols
                 .waitForPageLoad()
@@ -298,7 +302,6 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
-
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -308,7 +311,6 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
-
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverTakenEitherAnyOfFollowingMeds_ols
@@ -320,12 +322,12 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickOnAnswers("Lupus")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
+
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
-
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -579,11 +581,11 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
-                /* .clickNextButton(new EthnicBackgroundPageOLS());
+               /* .clickNextButton(new EthnicBackgroundPageOLS());
 
-         ethnicBackgroundPageOLS
-                 .waitForPageLoad()
-                 .clickOnAnswers("Prefer not to answer")*/
+        ethnicBackgroundPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")*/
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()

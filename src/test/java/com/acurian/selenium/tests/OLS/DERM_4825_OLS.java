@@ -29,7 +29,7 @@ public class DERM_4825_OLS extends BaseTest {
 
     @Test(dataProvider = "sites")
     @Description("DERM_4825_OLS")
-    public void derm4815Ols(final Site site) {
+    public void derm4825Ols(final Site site) {
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis)";
         DebugPageOLS debugPageOls = new DebugPageOLS();
@@ -48,10 +48,18 @@ public class DERM_4825_OLS extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
-
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad()
                 .setDate("09091942")
+                .clickNextButton(new ZipCodePageOLS());
+        zipCodePageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOls)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .back();
+        dateOfBirthPageOLS
+                .waitForPageLoad()
+                .setDate("04042001")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
@@ -290,33 +298,18 @@ public class DERM_4825_OLS extends BaseTest {
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
-        //HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverTakenEitherAnyOfFollowingMeds_ols
-                .clickOnAnswers("Jakafi")
-                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
-                .back();
-        haveYouEverTakenEitherAnyOfFollowingMeds_ols
-                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Olumiant")
-                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS())
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
-
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Xeljanz")
-                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS())
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
-
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverTakenEitherAnyOfFollowingMeds_ols
@@ -328,12 +321,10 @@ public class DERM_4825_OLS extends BaseTest {
                 .clickOnAnswers("Lupus")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
+
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
-
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -580,19 +571,23 @@ public class DERM_4825_OLS extends BaseTest {
                     .back();
         }
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+
+        doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
-                .clickNextButton(new EthnicBackgroundPageOLS());
-
-        ethnicBackgroundPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
+                .waitForPageLoad()
+                .getPage(debugPageOls)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .setAll("5", "5", "155")
+                .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
@@ -601,9 +596,9 @@ public class DERM_4825_OLS extends BaseTest {
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+               // .clickNextButton(new SynexusHealthyMindsPageOLS())
+               // .waitForPageLoad()
+              //  .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
