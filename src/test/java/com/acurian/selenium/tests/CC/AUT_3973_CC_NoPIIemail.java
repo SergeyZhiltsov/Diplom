@@ -95,7 +95,6 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
         //--------------ZIP_CODE Question------------
         zipCodePageCC
                 .waitForPageLoad();
-        Assert.assertEquals(zipCodePageCC.getTitleText(), zipCodePageCC.titleExpected, "Title is diff");
         GenderPageCC genderPageCC = zipCodePageCC
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());

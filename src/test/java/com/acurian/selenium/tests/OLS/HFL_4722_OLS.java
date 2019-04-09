@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.HFL_4722.HeartTransplantPageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.SymptomsOfHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.TreatYourHeartFailurePageOLS;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
@@ -125,15 +126,15 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS66", site.activeProtocols)
                 .back(new ApproximateHeightPageOLS())
                 .setLbs("250")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
