@@ -68,14 +68,13 @@ public class DERM_4600_CC extends BaseTest {
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2003")
-                .clickOnAnswer("No")
+                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2001")
@@ -274,12 +273,29 @@ public class DERM_4600_CC extends BaseTest {
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC);
+        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
+        HashMap<String, List<String>> disqualifyQ27 = new HashMap<>();
+        disqualifyQ27.put("Jakafi (Agent Note: JAK-uh-fie)", Arrays.asList(site.activeProtocols)); //Disqualify (“History of JAK inhibitor use”)
+        disqualifyQ27.put("Olumiant (Agent Note: oh-LOO-me-ant)", Arrays.asList(site.activeProtocols)); //Disqualify (“History of JAK inhibitor use”)
+        disqualifyQ27.put("Xeljanz (Agent Note: ZEL-jans)", Arrays.asList(site.activeProtocols)); //Disqualify (“History of JAK inhibitor use”)
+        for (Map.Entry<String, List<String>> entry : disqualifyQ27.entrySet()) {
+            System.out.println(entry.getKey());
+            haveYouEverTakenEitherAnyOfFollowingMeds_CC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(entry.getKey())
+                    .clickNextButton(transitionStatementCC)
+//                    .waitForPageLoad(studyNameForTrans) //TODO Check with page
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES" , site.activeProtocols)
+                    .back();
+        }
 
         haveYouEverTakenEitherAnyOfFollowingMeds_CC
                 .waitForPageLoad();
-        TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
+        haveYouEverTakenEitherAnyOfFollowingMeds_CC
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC());
+                .clickNextButton(transitionStatementCC);
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 transitionStatementCC

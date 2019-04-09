@@ -79,12 +79,11 @@ public class NoIndication3889_OLS extends BaseTest {
                 .back();
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
-                        "Cancer",
-                        "Kidney disease",
-                        "Heart or circulation problems (heart attack, heart failure, stroke)",
-                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                .clickOnAnswers("Cancer",
+                                "Kidney disease",
+                                "Heart or circulation problems (heart attack, heart failure, stroke)",
+                                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
         WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = otherThanSkinCancerPageOLS
@@ -300,7 +299,6 @@ public class NoIndication3889_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)")
                 .clickNextButton(whichOfFollowingDigestiveConditionPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);

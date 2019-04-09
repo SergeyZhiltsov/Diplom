@@ -246,10 +246,11 @@ public class AMIG_4742_OLS extends BaseTest {
                         "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
-                        "Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
                         "Headaches (migraine, cluster, tension)",
                         "High blood pressure or hypertension",
                         "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Lupus",
@@ -262,7 +263,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
         whatKindOfArthritisPageOLS.waitForPageLoad();
         whatKindOfArthritisPageOLS.back();
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -271,7 +272,6 @@ public class AMIG_4742_OLS extends BaseTest {
                         "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
-                        "Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
                         "Headaches (migraine, cluster, tension)",
                         "High blood pressure or hypertension",
                         "High cholesterol, triglycerides, or lipids",
@@ -284,6 +284,11 @@ public class AMIG_4742_OLS extends BaseTest {
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids, PCOS, dense breasts)")
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
+
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whichOfFollowingDigestiveConditionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
 
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
@@ -437,9 +442,9 @@ public class AMIG_4742_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "7", "166")
-                .clickNextButton(new EthnicBackgroundPageOLS())
+                /*.clickNextButton(new EthnicBackgroundPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+                .clickOnAnswers("Prefer not to answer")*/
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
