@@ -21,7 +21,6 @@ import java.util.List;
 public class LBP_2108_CC extends BaseTest{
 
     @Test(enabled = false, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    @TestCaseId("00001")
     @Description(" 1. Open the page, URL: " +
             " 2. Type login and correct password of registered user" +
             " 3. Click the Sign In button")

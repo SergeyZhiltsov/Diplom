@@ -25,7 +25,6 @@ import java.util.List;
 public class KAD_4631_CC extends BaseTest {
 
     @Test()
-    @TestCaseId("Kiniksa Atopic Dermatitis")
     @Description("KAD 4631 for CC")
     public void kad4631_CCTest() {
         Site site = Site.AUT_DERM_4631_Site;

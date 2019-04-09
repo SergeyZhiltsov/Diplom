@@ -13,7 +13,6 @@ import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.time.Instant;
 import java.util.Arrays;
@@ -22,7 +21,6 @@ import java.util.List;
 public class IBD_4533_CC extends BaseTest {
 
     @Test()
-    @TestCaseId("IBD_Crohn's")
     @Description("IBD 45335 for CC")
     public void IBD_4533_CCTest() {
         Site site = Site.AUT_SHIRE_4533_site;
