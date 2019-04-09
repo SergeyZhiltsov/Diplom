@@ -24,6 +24,15 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
+    public final String titleCommonExpected2 = "Let's get started to see if there is %2$s that's right for you!\n" +
+            "\n" +
+            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            "Then, if there is a study right for you, you'll schedule an in person visit at the study doctor's office.\n" +
+            "If you attend all required study visits, you may receive*:\n" +
+            "Payment up to $%1$s, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+
     public final String titleLBPExpected = "Let's get started to see if you qualify for a low back pain study!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
@@ -473,7 +482,10 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     }
 
 
-    public String getExpectedModifiedTitle(String indication, String compensation) {
+    public String getExpectedModifiedTitle(String indication, String compensation, boolean...isVerticalComa) {
+        if (isVerticalComa.length == 1 && isVerticalComa[0]){ //some anti patern for workaround;)
+            return String.format(titleCommonExpected2, compensation, indication);
+        }
         return String.format(titleCommonExpected, compensation, indication);
     }
 
