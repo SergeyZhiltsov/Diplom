@@ -507,7 +507,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @Step
     public String getTitleTextVer3() {
-        return getText(titleText)  + getText(titleText2Ver);
+        return getText(titleText) + getText(titleText2Ver);
     }
 
 }

@@ -1,27 +1,31 @@
 package com.acurian.selenium.pages.CC.shared;
 
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.AST_4337.RescueOrShortactingPageCC;
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.List;
+
 public class DateOfBirthPageCC extends MainPageCC{
 
-    public final String titleExpected = "May I have your date of birth?";
+    public final String titleExpected = "First, may I have your date of birth? You must be 18 years or older to complete this questionnaire.";
 
-    public final String titleCommonExpected = "This is the first part of the process to see if there is a study that's right for you.\n" +
-            "You'll first complete this questionnaire with me right now.\n" +
+    public final String titleCommonExpected = "Let's get started to see if there is %2$s that's right for you.\n" +
+            "\n" +
+            "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
             "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
-            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive:\n" +
+            "If you attend all required study visits, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
             "And depending on the study, compensation of up to $%1$s for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
             "\n" +
-            "Let's get started to see if there is %2$s that's right for you.";
+            "If you have any questions, you can contact information@acurian.com.";
 
     public final String titleExpectedLBP = "If you qualify and participate in a low back pain study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
@@ -52,17 +56,19 @@ public class DateOfBirthPageCC extends MainPageCC{
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
-    public final String titleExpectedAkc_4691 = "This is the first part of the process to see if there is a study that's right for you.\n" +
-            "You'll first complete this questionnaire with me right now.\n" +
+    public final String titleExpectedAkc_4691 = "Let's get started to see if there is a study for people with diabetes and related health conditions that's right for you!\n" +
+            "\n" +
+            "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
             "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
-            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive:\n" +
+            "If you attend all required study visits, you may receive:\n" +
+            "\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
             "And depending on the study, compensation of up to $750 for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
             "\n" +
-            "Let’s get started to see if there is a study for people with diabetes and related health conditions that's right for you!";
+            "If you have any questions, you can contact information@acurian.com.";
 
     public final String titleExpectedOA3138 = "If you qualify and participate in an osteoarthritis study, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
@@ -237,17 +243,19 @@ public class DateOfBirthPageCC extends MainPageCC{
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 
-    public final String titleCVExpected = "This is the first part of the process to see if there is a study that's right for you.\n" +
-            "You'll first complete this questionnaire with me right now.\n" +
+    public final String titleCVExpected = "Let's get started to see if there is a heart health study that's right for you!\n" +
+            "\n" +
+            "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
             "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
-            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive:\n" +
+            "If you attend all required study visits, you may receive:\n" +
+            "\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
             "And depending on the study, compensation of up to $750 for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
             "\n" +
-            "Let’s get started to see if there is a heart health study that's right for you!";
+            "If you have any questions, you can contact information@acurian.com.";
 
     public final String titleNashExpected = "If you qualify and participate in a fatty liver study for diabetics, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
@@ -311,10 +319,10 @@ public class DateOfBirthPageCC extends MainPageCC{
             "them your information, so they can get in touch with you to continue the screening process.\"";
 
 
-    @FindBy(xpath = "//div[@class='subquestion']//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
     WebElement questionText;
 
-    @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='subquestion'][3]//div[@class='show-in-cc']")
     WebElement questionText2Ver;
 
     @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
@@ -357,6 +365,9 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
     WebElement titleTextGH;
+
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    List<WebElement> radioButtonsList;
 
 
     public DateOfBirthPageCC() {
@@ -408,7 +419,7 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     @Step
     public String getTitleTextVer3() {
-        return getText(titleText) + "\n" + getText(titleText2Ver);
+        return getText(titleText2Ver);
     }
 
     //GH methods
@@ -454,6 +465,13 @@ public class DateOfBirthPageCC extends MainPageCC{
     @Step
     public DateOfBirthPageCC setYear(String year) {
         typeText(yearField, year);
+        clickOnAnswer("Yes");//def click
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 }
