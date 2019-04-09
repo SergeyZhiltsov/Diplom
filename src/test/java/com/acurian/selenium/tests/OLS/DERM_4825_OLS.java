@@ -330,31 +330,41 @@ public class DERM_4825_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)")
+                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
                 .clickOnAnswers("Kidney disease")
                 .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
                 .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS heartrelatedMedicalConditionsProceduresPageCC = otherThanSkinCancerPageOLS
+        //HaveYouEverExperiencedHeartRelatedMedicalCondOLS heartrelatedMedicalConditionsProceduresPageCC = otherThanSkinCancerPageOLS
+        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = otherThanSkinCancerPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-
-        heartrelatedMedicalConditionsProceduresPageCC
+                //.clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+                .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
+        whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
-
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
-                .clickNextButton(heartrelatedMedicalConditionsProceduresPageCC);
+                .clickNextButton(whichOfFollowingDigestiveConditionPageOLS);
 
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = heartrelatedMedicalConditionsProceduresPageCC
+
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS heartrelatedMedicalConditionsProceduresPageOLS = whichOfFollowingDigestiveConditionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+
+
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = heartrelatedMedicalConditionsProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack", "Stroke", "TIA or \"mini-stroke\"", "Angina (heart-related chest pain) that required an overnight hospital stay", "Heart failure or congestive heart failure (CHF)")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad();
@@ -488,13 +498,11 @@ public class DERM_4825_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
-
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
@@ -504,39 +512,36 @@ public class DERM_4825_OLS extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
 
+
         FollowingMentalEmotionalHealthPageOLS followingMentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
-
         followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
-
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealthPageOLS);
 
+
         followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
-
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
-
         followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -546,11 +551,11 @@ public class DERM_4825_OLS extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
-
         followingMentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+
 
         List<String> diagnoses = Arrays.asList(
                 "Drug or alcohol abuse within the past year",
@@ -579,7 +584,14 @@ public class DERM_4825_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
                 .clickNextButton(new IdentificationPageOLS())
-                //----------PII (IdentificationPageOLS) Page--------------------
+                .waitForPageLoad()
+                .getPage(debugPageOls)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .setAll("5", "5", "100")
+                .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -587,6 +599,7 @@ public class DERM_4825_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "155")
+                //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
