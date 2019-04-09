@@ -22,7 +22,7 @@ public class OA_4109CC extends BaseTest {
     @Test()
     public void OA_4109_cc() {
         Site site = Site.AUT_OA_4109_Site;
-        String phoneNumberOA = "AUTAMS1OA1";
+        String phoneNumber = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("R475_OA_1611", "R475_OA_1688");
         String protocol1 = "R475_OA_1611";
         String protocol2 = "R475_OA_1688";
@@ -47,8 +47,8 @@ public class OA_4109CC extends BaseTest {
                 .waitForPageLoad()
                 .typeStudyName("AMS1")
                 .clickPopupStudy("AMS1")
-                .typePhoneNumber(phoneNumberOA)
-                .clickPopupPhoneNumber(phoneNumberOA)
+                .typePhoneNumber(phoneNumber)
+                .clickPopupPhoneNumber(phoneNumber)
                 .clickBeginButton();
 
         callCenterIntroductionPageCC

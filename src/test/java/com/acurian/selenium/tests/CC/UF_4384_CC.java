@@ -26,7 +26,6 @@ import java.util.List;
 public class UF_4384_CC extends BaseTest{
 
     @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
-    @TestCaseId("00011")
     @Description("UF_4384_CC")
     public void uf_4384_CC(final String username, final String password) {
         String phoneNumber = "AUTAMS1UF1";
