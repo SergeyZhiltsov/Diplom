@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -57,7 +58,7 @@ public class AKC_4691_OLS extends BaseTest {
         dateOfBirthPageOLS.openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for people with diabetes and related health conditions", "750"), "Title is diff");
+                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for people with diabetes and related health conditions", "750", true), "Title is diff");
 
         //--------------DOB Question------------
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
@@ -636,11 +637,11 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
+        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS());
-        ethnicBackgroundPageOLS
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+        areYouInterestedInPneumoniaVaccineStudyOLS
         		.waitForPageLoad()
         		.getPage(debugPageOLS)
         		.checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -649,9 +650,6 @@ public class AKC_4691_OLS extends BaseTest {
 				.waitForPageLoad()
 				.setIncheswithClear("9")
 				.setLbs("240")
-                .clickNextButton(ethnicBackgroundPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
