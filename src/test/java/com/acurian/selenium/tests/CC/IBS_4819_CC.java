@@ -290,6 +290,7 @@ public class IBS_4819_CC extends BaseTest {
                 .clickOnAnswers("Cancer",
                                 "Kidney disease",
                                 "Heart or circulation problems (heart attack, heart failure, stroke)",
+                                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
                                 "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                                 "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageCC());

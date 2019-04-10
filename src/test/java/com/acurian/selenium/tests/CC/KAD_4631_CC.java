@@ -151,7 +151,7 @@ public class KAD_4631_CC extends BaseTest {
 
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("2 years or more")
+                .clickOnAnswer("2 years")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
         //------------Q4:  IfYouUseYourHandToCoverAllOfTheEczema_CC -------------------  
