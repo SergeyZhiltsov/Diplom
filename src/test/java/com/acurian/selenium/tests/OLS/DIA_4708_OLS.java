@@ -641,24 +641,25 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
+        //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("4", "8", "125")//bmi 29
-                .clickNextButton(new EthnicBackgroundPageOLS());
-        TransitionStatementCVbeginPageOLS transitionStatementCVbeginPageOLS = ethnicBackgroundPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new TransitionStatementCVbeginPageOLS());
-
-        transitionStatementCVbeginPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS67", site.activeProtocols)
-                .back();
-
-        IdentificationPageOLS identificationPageOLS = ethnicBackgroundPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Asian (Asian Indian, Chinese, Korean, Filipino, Japanese, Vietnamese)")
+                .setAll("4", "8", "135") //bmi 30
+//                .clickNextButton(new EthnicBackgroundPageOLS());
+//        TransitionStatementCVbeginPageOLS transitionStatementCVbeginPageOLS = ethnicBackgroundPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new TransitionStatementCVbeginPageOLS());
+//
+//        transitionStatementCVbeginPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS67", site.activeProtocols)
+//                .back();
+//
+//        IdentificationPageOLS identificationPageOLS = ethnicBackgroundPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Asian (Asian Indian, Chinese, Korean, Filipino, Japanese, Vietnamese)")
                 .clickNextButton(new IdentificationPageOLS());
         identificationPageOLS
                 .waitForPageLoad()

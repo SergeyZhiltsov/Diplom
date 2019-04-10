@@ -189,9 +189,9 @@ public class OA_4109_OLS extends BaseTest {
                 //----------ProvideHeight-Weight Page--------------------
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()

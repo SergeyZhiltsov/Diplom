@@ -286,15 +286,16 @@ public class Chronic_4471_OLS extends BaseTest{
 				.waitForPageLoad()
 				.clickOnAnswers("None of the above")
 				.clickNextButton(new ApproximateHeightPageOLS());
-		
-		EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
+
+		IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
 				.waitForPageLoad()
 				.setAll("5", "7", "166")
-                .clickNextButton(new EthnicBackgroundPageOLS());
-        ethnicBackgroundPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
+//                .clickNextButton(new EthnicBackgroundPageOLS());
+//        ethnicBackgroundPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS());
+		identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", eMailId, "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())

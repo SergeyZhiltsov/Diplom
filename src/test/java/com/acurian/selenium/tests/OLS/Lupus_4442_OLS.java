@@ -298,9 +298,9 @@ public class Lupus_4442_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", eMailId, "9999999999", site.zipCode)

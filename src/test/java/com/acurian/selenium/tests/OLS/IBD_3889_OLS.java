@@ -614,7 +614,7 @@ public class IBD_3889_OLS extends BaseTest {
 
 
         //--------------Q26:  Are you currently taking a hormonal form of birth control?-----------------------
-        approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 //WhatTypeOfLupusOLS whatTypeOfLupusOLS = approximateHeightPageOLS
                 .setAll("5", "5", "160")
@@ -636,10 +636,10 @@ public class IBD_3889_OLS extends BaseTest {
 //                .clickNextButton(new EthnicBackgroundPageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageOLS());
                 //----------PII (IdentificationPageOLS) Page--------------------
-                .waitForPageLoad();
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
 
         //----------SiteSelection Page--------------------
