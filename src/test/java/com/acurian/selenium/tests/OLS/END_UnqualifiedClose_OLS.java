@@ -3,13 +3,14 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
+import com.acurian.selenium.pages.OLS.closes.AnotherSuperScrPageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.closes.UnqualifiedCloseOLS;
 import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -88,21 +89,26 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new UnqualifiedCloseOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("Yes - I will continue with the next few questions");
+                .clickOnAnswer("No");
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
         siteSelectionPageOLS
                 .getPID()
-                .clickNextButton(new DateOfBirthPageOLS())
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .back(new UnqualifiedCloseOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new AnotherSuperScrPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
 
 
-        //--------------------Standalone study Switch- 4295-----------
-        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a study for diabetics!"), true);
-        ConfigPageOLS configPageOLS = new ConfigPageOLS();
-        configPageOLS
-                .getPID()
-                .openDebugWindow();
-        Assert.assertEquals(configPageOLS.getTextfromStudySwitch(), ExpStudySwich, "studySwitch from AMS1 to Standalone 4733 failed");
+
+
+
+//                .clickNextButton(new ConfigPageOLS())
+//                .getPID()
+//                .openDebugWindow();
+//        Assert.assertEquals(configPageOLS.getTextfromStudySwitch(), ExpStudySwich, "studySwitch from AMS1 to Standalone 4733 failed");
     }
 }
