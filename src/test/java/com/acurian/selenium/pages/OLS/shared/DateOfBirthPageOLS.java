@@ -12,8 +12,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class DateOfBirthPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "What is your date of birth?\n" +
-            "Must be 18 years or older to complete this questionnaire.";
+    public final String titleExpected = "What is your date of birth?";
 
     public final String titleCommonExpected = "Let's get started to see if there is %2$s that's right for you!\n" +
             "\n" +

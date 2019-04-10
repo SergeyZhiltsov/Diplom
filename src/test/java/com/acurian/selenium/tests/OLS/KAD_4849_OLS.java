@@ -111,7 +111,7 @@ public class KAD_4849_OLS extends BaseTest {
 
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
-                .clickOnAnswer("2 years or more")
+                .clickOnAnswer("2 years")
                 .clickNextButton(howMuchEczemaOnYourBody_ols);
 
         WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols = howMuchEczemaOnYourBody_ols
@@ -215,11 +215,7 @@ public class KAD_4849_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(whichofthefollowingMedicationsTherapies_OLS)
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_OLS);
+                .waitForPageLoad();
 
         DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_ols = new DidYouReceiveAnyTherapiesPastYear_OLS();
         HashMap<String, List<String>> disqualifyQ23 = new HashMap<>();
@@ -430,9 +426,6 @@ public class KAD_4849_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
