@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
@@ -34,7 +35,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         String protocol3 = "EFC14893";
 //        String protocol4 = "EFC15337";
         String AKC = "ISIS 703802_CS2";
-        String[] protocols = {protocol1,protocol2,AKC,protocol3};
+        String[] protocols = {protocol1, protocol2, AKC, protocol3};
         String studyName = "a diabetes";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -233,10 +234,10 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 
         CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = new CurrentlyTakeInsulinPageOLS();
         options.clear();
-        options.put("Actos (pioglitazone)", Arrays.asList(AKC,protocol2));
-        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC,protocol2));
+        options.put("Actos (pioglitazone)", Arrays.asList(AKC, protocol2));
+        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC, protocol2));
         options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2));
-        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC,protocol2));
+        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC, protocol2));
         options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2));
         options.put("Glyset (miglitol)", Arrays.asList(protocol2));
         options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2, protocol3));
@@ -245,7 +246,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2));
         options.put("Nesina (alogliptin)", Arrays.asList(protocol2, protocol3));
         options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2, protocol3));
-        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2,AKC, protocol3));
+        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2, AKC, protocol3));
         options.put("Prandin (repaglinide)", Arrays.asList(protocol2));
         options.put("Precose (acarbose)", Arrays.asList(protocol2));
         options.put("Starlix (nateglinide)", Arrays.asList(protocol2));
@@ -430,7 +431,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616",  protocol1, protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("QS4616", protocol1, protocol2, protocol3)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -438,7 +439,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616",  protocol1, protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("QS4616", protocol1, protocol2, protocol3)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -468,9 +469,9 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
 
                 //issue that not fixed
 //                .clickNextButton(takeYourInsulinPageOLS)
@@ -495,9 +496,9 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 //                .waitForPageLoad()
 //                .clickOnAnswers("None of the above")
 
-/*                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")*/
+//                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
