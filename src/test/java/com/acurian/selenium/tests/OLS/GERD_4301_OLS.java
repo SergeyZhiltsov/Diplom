@@ -403,9 +403,9 @@ public class GERD_4301_OLS extends BaseTest{
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
 		//----EthnicBackgroundPageOLS ------------
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 // ----------PII (IdentificationPageOLS)
                 // Page--------------------

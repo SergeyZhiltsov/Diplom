@@ -620,7 +620,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
 
 
         //--------------Q26:  Are you currently taking a hormonal form of birth control?-----------------------
-        approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
 //		        .clickNextButton(new ChildrenUnderPageOLS())
@@ -643,21 +643,21 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
 //                .clickNextButton(new EthnicBackgroundPageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageOLS());
                 //----------PII (IdentificationPageOLS) Page--------------------
-                .waitForPageLoad();
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
 
-
         //----------SiteSelection Page--------------------
-        siteSelectionPageOLS
+        HSGeneralPageOLS hSGeneralPageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSUlcerativeColitisPage_OLS())
-                .waitForPageLoad()
-                .setEmailID("qa.acurian@gmail.com")  //------EMail not Set at PII.  so enter at Hello sign close
+                .clickNextButton(new HSGeneralPageOLS());
+        hSGeneralPageOLS
+                .waitForPageLoadEmailNotProvided()
+                .typeEmail("qa.acurian@gmail.com")  //------EMail not Set at PII.  so enter at Hello sign close
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

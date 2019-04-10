@@ -338,9 +338,9 @@ public class PS_4656_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
 //                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
 //        areYouInterestedInPneumoniaVaccineStudyOLS
 //                .waitForPageLoad()

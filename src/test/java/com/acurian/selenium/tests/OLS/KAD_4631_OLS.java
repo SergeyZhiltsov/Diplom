@@ -5,7 +5,9 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
+import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
@@ -115,7 +117,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .back();
         howLongHaveYouBeenSufferingFromEczemaOLS
                 .waitForPageLoad()
-                .clickOnAnswer("2 years or more")
+                .clickOnAnswer("2 years")
                 .clickNextButton(howMuchEczemaYouHaveOnYourBodyOls);
         howMuchEczemaYouHaveOnYourBodyOls
                 .waitForPageLoad()
@@ -661,34 +663,36 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .clickNextButton(approximateHeightPageOLS);
 
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
+        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "10", "120")
-                .clickNextButton(new EthnicBackgroundPageOLS());
-        ethnicBackgroundPageOLS
+                .setAll("5", "10", "120") //BMI 17.25
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+        areYouInterestedInPneumoniaVaccineStudyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
-        approximateHeightPageOLS
+        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188")
-                .clickNextButton(ethnicBackgroundPageOLS)
+                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+        experienceExcessiveHungerOrIncreasedAppetiteOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
-        approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("5")
                 .setLbs("160")
-                .clickNextButton(ethnicBackgroundPageOLS)
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
-                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new IdentificationPageOLS())
+//                .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()

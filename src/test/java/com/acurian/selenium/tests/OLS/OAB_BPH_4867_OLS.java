@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.OLS.OAB_4867.DoYouSufferFromOAB_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.HaveYouEverHadBotoxInjectionbladder_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.SubquestionOABandBPH_OLS;
+import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
@@ -499,30 +500,34 @@ public class OAB_BPH_4867_OLS extends BaseTest {
                     .back();
         }
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setAll("5", "5", "90")
-                .clickNextButton(new EthnicBackgroundPageOLS());
-
-        ethnicBackgroundPageOLS
+                .setAll("5", "5", "90") //BMI <15
+                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+//                .clickNextButton(new EthnicBackgroundPageOLS());
+//
+//        ethnicBackgroundPageOLS
+        areYouInterestedInPneumoniaVaccineStudyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
 
-        approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setLbs("166")
-                .clickNextButton(ethnicBackgroundPageOLS);
-
-        ethnicBackgroundPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
+                .setLbs("166")//BMI 27
+//                .clickNextButton(ethnicBackgroundPageOLS);
+//
+//        ethnicBackgroundPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
+                .clickNextButton(new IdentificationPageOLS());
                 //----------PII (IdentificationPageOLS) Page--------------------
+        identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", email, "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
