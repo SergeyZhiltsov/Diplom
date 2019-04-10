@@ -268,14 +268,18 @@ public class VACC_4556_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "250")
-                .clickNextButton(new EthnicBackgroundPageOLS());
 
-        SiteSelectionPageOLS siteSelectionPageOLS = ethnicBackgroundPageOLS
+
+
+        //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+                .setAll("5", "5", "250");
+                //.clickNextButton(new EthnicBackgroundPageOLS());
+
+        SiteSelectionPageOLS siteSelectionPageOLS = approximateHeightPageOLS
+              /*  .waitForPageLoad()
+                .clickOnAnswers("Prefer not to answer")*/
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)

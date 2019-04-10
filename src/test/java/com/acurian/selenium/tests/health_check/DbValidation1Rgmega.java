@@ -87,6 +87,7 @@ public class DbValidation1Rgmega extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env);
     }
 }

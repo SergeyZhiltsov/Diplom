@@ -135,14 +135,9 @@ public class OBS_4605_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
-        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new EthnicBackgroundPageOLS());
-
-        ethnicBackgroundPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
