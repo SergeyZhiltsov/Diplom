@@ -204,9 +204,9 @@ public class ClusterHeadache_3237_OLS extends BaseTest {
 //                .clickNextButton(new WhatMedicalCoveragePageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("No, I have no coverage")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()

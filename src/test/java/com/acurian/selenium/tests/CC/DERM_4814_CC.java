@@ -131,7 +131,7 @@ public class DERM_4814_CC extends BaseTest {
                 .back();
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
-                .clickOnAnswer("2 years or more")
+                .clickOnAnswer("2 years")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
         DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc

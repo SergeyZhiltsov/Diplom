@@ -31,6 +31,7 @@ public class MainPageOLS extends BasePage {
     private List<WebElement> images;
 
     String pid;
+    String cpid;
     String dispoParent;
     String dispoChild;
 
@@ -167,10 +168,10 @@ public class MainPageOLS extends BasePage {
 
     @Step
     public MainPageOLS childPidFromDbToLog(String env) {
-        pid = PassPID.getInstance().getPidNumber();
-        dispoChild = getDbConnection().dbReadChildPID(env, pid);
-        logTextToAllure("Child dispo = " + dispoChild + " for PID " + pid);
-        System.out.println("Child PID = " + pid);
+        cpid = PassPID.getInstance().getPidNumber();
+        dispoChild = getDbConnection().dbReadChildPID(env, cpid);
+        logTextToAllure("Child dispo = " + dispoChild + " for PID " + cpid);
+        System.out.println("Child PID = " + cpid);
         System.out.println("Child dispo = " + dispoChild);
         return this;
     }

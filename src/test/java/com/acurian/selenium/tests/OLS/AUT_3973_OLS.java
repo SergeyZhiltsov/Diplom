@@ -266,9 +266,9 @@ public class AUT_3973_OLS extends BaseTest {
                 //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
+//                .clickNextButton(new EthnicBackgroundPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswers("Prefer not to answer")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
@@ -278,8 +278,8 @@ public class AUT_3973_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoadEmailNotProvided()
+//                .clickNextButton(new HSGeneralPageOLS())
+//                .waitForPageLoadEmailNotProvided()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

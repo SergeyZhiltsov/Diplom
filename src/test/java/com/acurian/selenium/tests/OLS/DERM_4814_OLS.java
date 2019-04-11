@@ -609,7 +609,6 @@ public class DERM_4814_OLS extends BaseTest {
 
 
         approximateHeightPageOLS
-                .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
                 .clickNextButton(new IdentificationPageOLS())

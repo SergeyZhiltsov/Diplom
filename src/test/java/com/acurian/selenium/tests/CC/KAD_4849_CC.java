@@ -89,7 +89,8 @@ public class KAD_4849_CC extends BaseTest {
 
         //------------PII Question------------
         GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoad1()
+                //.waitForPageLoad1()
+                .waitForPageLoadNotQ()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
@@ -143,7 +144,7 @@ public class KAD_4849_CC extends BaseTest {
 
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("2 years or more")
+                .clickOnAnswer("2 years")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
         DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc

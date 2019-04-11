@@ -163,7 +163,6 @@ public class END_4385_OLS extends BaseTest {
                 .clickNextButton(new HormonalBirthControlOLS());
 
         //-------------------------Q13 - Are you currently taking a hormonal form of birth control?----------
-        //SurgicalProceduresOLS surgicalProceduresOLS = hormonalBirthControlOLS
         DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = hormonalBirthControlOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -212,26 +211,6 @@ public class END_4385_OLS extends BaseTest {
                 //----------ProvideHeight-Weight Page--------------------
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-//        .clickNextButton(new ChildrenUnderPageOLS())
-//		//----------ChildrenUnderTheAge Page--------------------
-//        .waitForPageLoad()
-//        .clickOnAnswer("Yes")
-//        .clickNextButton(new HouseholdHavePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("None of the above")
-//        .clickNextButton(new TheStudySitePageOLS())
-//        .waitForPageLoad()
-//		//-------------------PEDIATRIC QUESTIONS-----------------------------
-//        .clickOnAnswer("Public transportation")
-//        .clickNextButton(new WhatMedicalCoveragePageOLS())
-//        .waitForPageLoad()
-//        .clickOnAnswers("No, I have no coverage")
-//                .clickNextButton(new EthnicBackgroundPageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("Prefer not to answer")
-/*                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")*/
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
@@ -240,8 +219,6 @@ public class END_4385_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-//                .clickNextButton(new HSGeneralPageOLS())
-//                .waitForPageLoad("Endometriosis")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())
