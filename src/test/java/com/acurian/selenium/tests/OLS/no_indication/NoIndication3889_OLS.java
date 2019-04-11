@@ -51,7 +51,6 @@ public class NoIndication3889_OLS extends BaseTest {
 
         genderPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = genderPageOLS
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -83,6 +82,8 @@ public class NoIndication3889_OLS extends BaseTest {
                                 "Kidney disease",
                                 "Heart or circulation problems (heart attack, heart failure, stroke)",
                                 "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
                                 "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
@@ -299,8 +300,6 @@ public class NoIndication3889_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(whichOfFollowingDigestiveConditionPageOLS)
-                .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -389,27 +388,38 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        WhenWereYouDiagnosedWithCrohnsDisease_OLS whenWereYouDiagnosedWithCrohnsDisease_OLS = approximateHeightPageOLS
+        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new EthnicBackgroundPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new WhenWereYouDiagnosedWithCrohnsDisease_OLS());
-
-
-        //---------------Q3 When were you diagnosed with Crohn's disease? -------------------
-        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS
-                = whenWereYouDiagnosedWithCrohnsDisease_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("Not officially diagnosed with Crohn's by a doctor")
                 .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+
         areYouInterestedInPneumoniaVaccineStudyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5703", protocol1, protocol2, protocol3, protocol4)
-                .clickOnQNumber("QS5703");
-        WhenWasYourMostRecentColonoscopy_OLS whenWasYourMostRecentColonoscopy_OLS = whenWereYouDiagnosedWithCrohnsDisease_OLS
+                .checkProtocolsContainsForQNumber("QS38", protocol1, protocol2, protocol3, protocol4)
+                .back();
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .back();
+
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .back();
+
+        WhenWereYouDiagnosedWithCrohnsDisease_OLS whenWereYouDiagnosedWithCrohnsDisease_ols = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers(
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)")
+                .clickNextButton(whichOfFollowingDigestiveConditionPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(new WhenWereYouDiagnosedWithCrohnsDisease_OLS());
+
+        WhenWasYourMostRecentColonoscopy_OLS whenWasYourMostRecentColonoscopy_OLS = whenWereYouDiagnosedWithCrohnsDisease_ols
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(new WhenWasYourMostRecentColonoscopy_OLS());
@@ -647,7 +657,7 @@ public class NoIndication3889_OLS extends BaseTest {
 //                .clickNextButton(new HSCrohns2PageOLS())
 //                .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
+                .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
