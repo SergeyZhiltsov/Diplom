@@ -4,6 +4,7 @@ public class ChildResult {
     private String dispoCd;
     private String applicantStatus;
     private String phoneNumber;
+    private String childPid;
 
     public String getChildPid() {
         return childPid;
@@ -12,8 +13,6 @@ public class ChildResult {
     public void setChildPid(String childPid) {
         this.childPid = childPid;
     }
-
-    private String childPid;
 
     public String getDispoCd() {
         return dispoCd;

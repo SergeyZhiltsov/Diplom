@@ -160,6 +160,7 @@ public class DBConnection {
 
             ChildResult childResult = null;
             while (rset.next()) {
+                childResult = new ChildResult();
                 childResult.setDispoCd(rset.getString("dispo_cd"));
                 childResult.setApplicantStatus(rset.getString("applicant_status_cd"));
                 childResult.setPhoneNumber(rset.getString("phone_number"));
