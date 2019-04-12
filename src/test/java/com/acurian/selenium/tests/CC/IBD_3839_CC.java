@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.CC.IBD.*;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -39,9 +40,9 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3839_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test()
     @Description("IBD 3839 for CC")
-    public void ibd3839ccTest(final String username, final String password) {
+    public void ibd3839ccTest() {
         Site site = Site.AUT_IBD_3839_Site;
         String phoneNumber = "AUTAMS1IBD";
         String studyName = "Crohn's or colitis";
@@ -55,8 +56,8 @@ public class IBD_3839_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -253,7 +254,7 @@ public class IBD_3839_CC extends BaseTest {
                 .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)", "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)", "Kidney disease")
                 .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)", "Lupus", "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)", "Skin problems (eczema or atopic dermatitis, psoriasis)")
-                .clickOnAnswers( "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
+                .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
                 .clickNextButton(new WhatKindOfArthritisCC());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC.back();
@@ -293,8 +294,9 @@ public class IBD_3839_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
-
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 
 }

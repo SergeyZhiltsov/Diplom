@@ -249,6 +249,8 @@ public class OA_4109CC extends BaseTest {
                 .clickOnAnswer("Successful transfer made to site")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

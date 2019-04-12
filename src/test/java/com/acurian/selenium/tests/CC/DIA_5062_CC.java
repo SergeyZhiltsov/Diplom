@@ -11,7 +11,7 @@ import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 public class DIA_5062_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    public void dia5062cc(final String username, final String password) {
+    @Test()
+    public void dia5062ccTest() {
         final String phoneNumber = "AUTAMSNASH";
         final String studyName = "a fatty liver study for diabetics"; //"a NASH study";
         final String indicationHistroyName = "diabetes";
@@ -35,8 +35,8 @@ public class DIA_5062_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -608,7 +608,8 @@ public class DIA_5062_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo)
                 .queueSiteForFULCheck(site.name);
     }
 }

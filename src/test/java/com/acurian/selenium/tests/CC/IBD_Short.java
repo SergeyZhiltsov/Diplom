@@ -211,8 +211,9 @@ public class IBD_Short extends BaseTest{
         		.waitForPageLoad()
         		.clickNextButton(selectActionPageCC)
         		.waitForPageLoad()
-        		.pidFromDbToLog(env);
-        
+        		.pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch("1R", "1R");
     }
 
 }

@@ -535,6 +535,8 @@ public class IBD_4533_CC extends BaseTest {
                 .clickOnAnswer("Successful transfer made to site")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

@@ -39,7 +39,6 @@ public class CV_5034_OLS_A_S extends BaseTest {
     }
 
     @Test(dataProvider = "5034Sites")
-    @TestCaseId("00053")
     @Description("CV_5034_OLS_A_S")
     public void CV_5034_OLS_Test(Site site) {
         final String phoneNumber = "AUTAMS1CV1";
@@ -473,6 +472,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo);
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

@@ -678,7 +678,8 @@ public class DIA_4708_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo)
                 .getAnomalyDbToLog(env);
     }
 }
