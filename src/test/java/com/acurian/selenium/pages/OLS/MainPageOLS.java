@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
+import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.By;
@@ -169,10 +170,8 @@ public class MainPageOLS extends BasePage {
     @Step
     public MainPageOLS childPidFromDbToLog(String env) {
 //        cpid = PassPID.getInstance().getPidNumber();
-        dispoChild = getDbConnection().dbReadChildPID(env, pid);
-        logTextToAllure("Child dispo = " + dispoChild + " for PID " + pid);
-        System.out.println("Child PID = " + pid);
-        System.out.println("Child dispo = " + dispoChild);
+        ChildResult childResult = getDbConnection().dbReadChildPID(env, pid);
+        logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid);
         return this;
     }
 
