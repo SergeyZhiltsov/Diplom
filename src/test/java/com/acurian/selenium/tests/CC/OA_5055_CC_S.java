@@ -539,6 +539,7 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo);
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

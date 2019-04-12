@@ -11,20 +11,16 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class HFL_4722_CC extends BaseTest {
 
-    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = true)
+    @Test(enabled = true)
     @Description("HFL_4722 test CC")
-    public void hfl_4722_CC(final String username, final String password) {
+    public void hfl_4722_CC() {
         Site site = Site.AUT_HFL_4722_Site;
         String phoneNumber = "AUTAMS1HFL";
         String studyName = "a heart failure study";
@@ -36,8 +32,8 @@ public class HFL_4722_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
@@ -119,15 +115,6 @@ public class HFL_4722_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HeartTransplantPageCC());
-//        heartTransplantPageCC
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsEqualsForQNumber("Q0018015-QS6404-STUDYQUES", protocol1)
-//                .back();
-//        treatYourHeartFailurePageCC
-//                .waitForPageLoad()
-//                .clickOnAnswer("Yes")
-//                .clickNextButton(heartTransplantPageCC);
 
         TransitionStatementCC transitionStatementCC = heartTransplantPageCC
                 .waitForPageLoad()
@@ -183,6 +170,6 @@ public class HFL_4722_CC extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .dispoShouldMatch("1R", "1R");
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

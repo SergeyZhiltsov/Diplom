@@ -421,7 +421,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo);
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case "AUT_LOWT_3017_Site":
                 selectionPageCC
@@ -440,7 +441,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo);
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
         }
     }
 }

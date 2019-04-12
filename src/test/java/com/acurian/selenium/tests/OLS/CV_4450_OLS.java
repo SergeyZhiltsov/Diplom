@@ -383,6 +383,7 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(expectedDispo);
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(expectedDispo, expectedDispo);
     }
 }

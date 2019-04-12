@@ -503,6 +503,8 @@ public class IBD_3889_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

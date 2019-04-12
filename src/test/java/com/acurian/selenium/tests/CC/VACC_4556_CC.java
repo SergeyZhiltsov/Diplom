@@ -33,7 +33,7 @@ public class VACC_4556_CC extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_VAC_4556M},
                 {Site.AUT_VAC_4556_Site},
                 {Site.AUT_VAC_4556_A}
@@ -346,7 +346,8 @@ public class VACC_4556_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
                         .queueSiteForFULCheck(site.name);
                 break;
             case AUT_VAC_4556_Site:
@@ -359,7 +360,8 @@ public class VACC_4556_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
                         .queueSiteForFULCheck(site.name);
         }
 

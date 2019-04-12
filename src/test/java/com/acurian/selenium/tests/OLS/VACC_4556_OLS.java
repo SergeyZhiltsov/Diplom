@@ -269,17 +269,15 @@ public class VACC_4556_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS);
 
 
-
-
         //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "250");
-                //.clickNextButton(new EthnicBackgroundPageOLS());
+        //.clickNextButton(new EthnicBackgroundPageOLS());
 
         SiteSelectionPageOLS siteSelectionPageOLS = approximateHeightPageOLS
-              /*  .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")*/
+                /*  .waitForPageLoad()
+                  .clickOnAnswers("Prefer not to answer")*/
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
@@ -317,7 +315,7 @@ public class VACC_4556_OLS extends BaseTest {
                         .clickNextButton(new SynexusHealthyMindsPageOLS())*/
 
                 SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = new SynexusHealthyMindsPageOLS();
-                        synexusHealthyMindsPageOLS
+                synexusHealthyMindsPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer("No, I am not interested in receiving information")
                         .clickNextButton(new ThankYouCloseSimplePageOLS())
@@ -325,7 +323,8 @@ public class VACC_4556_OLS extends BaseTest {
                         .clickNextButton(new AboutHealthPageOLS())
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
                         .queueSiteForFULCheck(site.name);
                 break;
             case AUT_VAC_4556_Site:
@@ -338,7 +337,8 @@ public class VACC_4556_OLS extends BaseTest {
                         .clickNextButton(new AboutHealthPageOLS())
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
                         .queueSiteForFULCheck(site.name);
         }
     }

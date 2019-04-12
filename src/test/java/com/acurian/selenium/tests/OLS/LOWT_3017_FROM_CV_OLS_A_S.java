@@ -289,6 +289,8 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

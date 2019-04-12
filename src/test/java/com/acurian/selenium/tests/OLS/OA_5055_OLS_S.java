@@ -670,6 +670,7 @@ public class OA_5055_OLS_S extends BaseTest {
                 .threadSleep(2000);
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo);
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

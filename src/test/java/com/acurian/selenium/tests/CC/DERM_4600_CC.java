@@ -90,7 +90,7 @@ public class DERM_4600_CC extends BaseTest {
                 .clickOnAnswer("Male")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
-       DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
+        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Disqualify ("No atopic dermatitis")
                 .clickNextButton(new DiagnosedWithPsoriasisCC());
@@ -287,7 +287,7 @@ public class DERM_4600_CC extends BaseTest {
                     .clickNextButton(transitionStatementCC)
                     .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
                     .back();
         }
 
@@ -723,7 +723,7 @@ public class DERM_4600_CC extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                     .back();
         }
 
@@ -782,6 +782,7 @@ public class DERM_4600_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo);
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
