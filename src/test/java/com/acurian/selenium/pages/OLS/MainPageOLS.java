@@ -66,7 +66,7 @@ public class MainPageOLS extends BasePage {
         waitForAnimation();
     }
 
-    /*
+    /**
     Wait for images from third party resources to load both on mobile and desktop
     Use it when you need to wait until all external images are loaded
      */
@@ -171,6 +171,7 @@ public class MainPageOLS extends BasePage {
     public MainPageOLS childPidFromDbToLog(String env) {
 //        cpid = PassPID.getInstance().getPidNumber();
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid);
+        dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid);
         return this;
     }
@@ -227,9 +228,16 @@ public class MainPageOLS extends BasePage {
         return dispoParent;
     }
 
+    public String getChildDispo() {
+        return dispoChild;
+    }
+
     @Step
-    public MainPageOLS dispoShouldMatch(String expectedParentDispo) {
-        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo ID different");
+    public MainPageOLS dispoShouldMatch(String expectedParentDispo, String ...expectedChildDispo) {
+        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo for Parent is different");
+        if (expectedChildDispo.length == 1){
+            Assert.assertEquals(getChildDispo(), expectedChildDispo[0], "Dispo for Child is different");
+        }
         return this;
     }
 
