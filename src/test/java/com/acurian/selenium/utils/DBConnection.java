@@ -55,7 +55,7 @@ public class DBConnection {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-            System.out.println("DB parent: dispo = " + dispoCode + applicantStatus +", parent child =" + pidNumber);
+            System.out.println("DB parent: dispo = " + dispoCode + applicantStatus +", parent pid =" + pidNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         }

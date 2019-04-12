@@ -181,6 +181,8 @@ public class HFL_4722_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch("1R", "1R");
     }
 }
