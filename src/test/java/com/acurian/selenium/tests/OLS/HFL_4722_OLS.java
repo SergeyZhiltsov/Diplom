@@ -151,7 +151,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .dispoShouldMatch("1R", "1D");
+                .dispoShouldMatch("1R", "1R");
 
     }
 }

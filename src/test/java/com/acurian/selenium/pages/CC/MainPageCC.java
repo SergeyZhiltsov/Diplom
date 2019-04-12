@@ -4,6 +4,7 @@ import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
+import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -26,6 +27,7 @@ public class MainPageCC extends BasePage {
 
     String pid;
     String dispoParent;
+    String dispoChild;
 
     public MainPageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -54,7 +56,15 @@ public class MainPageCC extends BasePage {
         pid = PassPID.getInstance().getPidNumber();
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
-        logTextToAllure("Dispo="+dispoParent+" for PID "+pid);
+        logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        return this;
+    }
+
+    @Step
+    public MainPageCC childPidFromDbToLog(String env) {
+        ChildResult childResult = getDbConnection().dbReadChildPID(env, pid);
+        dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
+        logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid);
         return this;
     }
 
@@ -128,9 +138,16 @@ public class MainPageCC extends BasePage {
         return dispoParent;
     }
 
+    public String getChildDispo() {
+        return dispoChild;
+    }
+
     @Step
-    public MainPageCC dispoShouldMatch(String expectedParentDispo){
-        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo ID different");
+    public MainPageCC dispoShouldMatch(String expectedParentDispo, String ...expectedChildDispo) {
+        Assert.assertEquals(getParentDispo(), expectedParentDispo, "Dispo for Parent is different");
+        if (expectedChildDispo.length == 1){
+            Assert.assertEquals(getChildDispo(), expectedChildDispo[0], "Dispo for Child is different");
+        }
         return this;
     }
 
