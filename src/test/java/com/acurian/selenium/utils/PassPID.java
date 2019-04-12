@@ -22,7 +22,7 @@ public class PassPID {
 
     public String getPidNumber() {
         String pid = th.get();
-//        pidNumber = "null";
+        pidNumber = "null";
         th.remove();
         return pid;
     }
