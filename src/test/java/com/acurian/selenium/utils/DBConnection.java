@@ -1,6 +1,7 @@
 package com.acurian.selenium.utils;
 
 import com.acurian.selenium.utils.db.AnomalyResults;
+import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -54,7 +55,7 @@ public class DBConnection {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-            System.out.println("DB dispo = " + dispoCode + applicantStatus);
+            System.out.println("DB parent: dispo = " + dispoCode + applicantStatus +", parent child =" + pidNumber);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -151,18 +152,24 @@ public class DBConnection {
         return null;
     }
     
-    public String dbReadChildPID(String environment, String pidNumber) {
+    public ChildResult dbReadChildPID(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
             String sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'";
             rset = stmt.executeQuery(sql);
 
-            String childPID = null;
+            ChildResult childResult = null;
             while (rset.next()) {
-                childPID = rset.getString("patient_id");
+                childResult = new ChildResult();
+                childResult.setDispoCd(rset.getString("dispo_cd"));
+                childResult.setApplicantStatus(rset.getString("applicant_status_cd"));
+                childResult.setPhoneNumber(rset.getString("phone_number"));
+                childResult.setChildPid(rset.getString("patient_id"));
             }
-            System.out.println("DB Child PID = " + childPID);
-            return childPID;
+            System.out.println("DB Child: dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() +
+                    ", phone number = " + childResult.getPhoneNumber() +
+                    ", child PID = " + childResult.getChildPid());
+            return childResult;
         } catch (SQLException e) {
             e.printStackTrace();
         }
