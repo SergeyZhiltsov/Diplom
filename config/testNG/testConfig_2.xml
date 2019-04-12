@@ -4,7 +4,7 @@
 
     <test name="Just for checking">
         <classes>
-            <class name="com.acurian.selenium.tests.OLS.HFL_4722_OLS"/>
+            <class name="com.acurian.selenium.tests.dispo.Dispo41C"/>
             <!--<class name="com.acurian.selenium.tests.OLS.DIA_5062_OLS"/>            -->
         </classes>
     </test>
