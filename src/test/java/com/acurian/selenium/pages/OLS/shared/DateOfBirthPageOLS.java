@@ -327,6 +327,14 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
+    public final String titleAHExpected = "Let's get started to see if there is a study that's right for you!\n" +
+            "\n" +
+            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            "Then, if there is a study right for you, you'll schedule an in person visit at the study doctor's office.\n" +
+            "\n" +
+            "What is your date of birth?\n" +
+            "Must be 18 years or older to complete this questionnaire.";
+
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText1;
@@ -346,6 +354,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[3]")
     WebElement questionText2Ver;
+
+    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')]")
+    WebElement questionTextAH1;
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
@@ -383,7 +394,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "Let's get started to see if there is a study that's right for you!";
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
-    WebElement questionTextGH;
+    WebElement titleTextAH;
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleTextGH1;
@@ -397,6 +408,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     WebElement titleTextGH;
 
 
+
     public DateOfBirthPageOLS() {
         PageFactory.initElements(getDriver(), this);
         switch (Locators.isEnvWeb) {
@@ -404,6 +416,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
                 questionText = questionText1;
                 titleText = titleText1;
                 titleTextGH = titleTextGH1;
+                titleTextAH = questionTextAH1;
                 titleText2Ver = titleText2Ver1;
                 break;
             case Platforms.TABLET:
@@ -430,6 +443,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
                 break;
             case "PRD":
                 openURL(String.format(URLs.OLS_PROD, phoneNumber, URLs.CODE_FOR_DEBUG_OLS));
+                break;
+            case "AH_STG":
+                openURL(String.format(URLs.AH_STG, phoneNumber));
+                break;
+            case "AH_PROD":
+                openURL(String.format(URLs.AH_PROD, phoneNumber, URLs.CODE_FOR_DEBUG_OLS));
                 break;
             default:
                 openURL(Properties.getBaseURL());
@@ -460,7 +479,13 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @Step
     public DateOfBirthPageOLS waitForPageGHLoad() {
-        waitForPageLoadMain(questionTextGH, titleExpected);
+        waitForPageLoadMain(questionText, titleGHExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageAHLoad() {
+        waitForPageLoadMain(questionTextAH1, titleAHExpected);
         return this;
     }
 
@@ -492,12 +517,17 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @Step
     public String getQuestionTextGH() {
-        return getText(questionTextGH);
+        return getText(titleTextGH);
     }
 
     @Step
     public String getTitleTextGH() {
         return getText(titleTextGH);
+    }
+
+    @Step
+    public String getTitleTextAH() {
+        return getText(questionTextAH1);
     }
 
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
