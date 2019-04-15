@@ -351,53 +351,53 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2)
                 .back();
-        approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad() //----------Change inches to maje BMI to <50--------------------
                 .setIncheswithClear("5")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageOLS());
                 //----------PII (IdentificationPageOLS) Page--------------------
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
-
-                //----------SiteSelection Page--------------------
+                .clickNextButton(new SiteSelectionPageOLS());
+        siteSelectionPageOLS
                 .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnFacilityName(site.name)
-                .clickNextButton(new HSGeneralPageOLS())
-                .waitForPageLoad(site_Indication)
-                .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature()
-
-                //------------HUMAN API Interface in HelloSign----------------
-                /*.getPage(new HumanAPIOLS())
-                .waitForPageLoad()
-                .connectBTN()
-                .switchToAPI()
-                .waitForProvider()
-                .clickANY()
-                .waitSearchAll()
-                .search("cleveland clinic")
-                .waitProvider()
-                .clickProvider()
-                .typeUserName("democlinical@gmail.com")
-                .typePWD("password")
-                .clickConnect()*/
-
-                .waitToClickNext()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .getPID();
+        switch (site.dispo) {
+            case "1R":
+                siteSelectionPageOLS
+                        .clickOnFacilityName(site.name)
+                        .clickNextButton(new QualifiedClose2PageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new SynexusHealthyMindsPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No, I am not interested in receiving information")
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+            case "41C":
+                siteSelectionPageOLS
+                        .clickOnFacilityName(site.name)
+                        .clickNextButton(new DoctorInformationCollectionPageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new HS1PageOLS())
+                        .clickOkInPopUp()
+                        .setSignature()
+                        .waitToClickNext()
+                        .clickNextButton(new SynexusHealthyMindsPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No, I am not interested in receiving information")
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }
