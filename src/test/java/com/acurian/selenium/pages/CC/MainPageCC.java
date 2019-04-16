@@ -78,8 +78,8 @@ public class MainPageCC extends BasePage {
                 " for PID " + pid);
         Assert.assertEquals(radiantResults.getCurrentStatus(), "SENT", "Current status is not SENT");
         Assert.assertEquals(radiantResults.getResponseMessage(), "Success", "Response message is not Success");
-        Assert.assertNotNull(radiantResults.getResponseMessage(), "Study reference is NULL");
-        List<String> studyReference = Arrays.asList(radiantResults.getResponseMessage().split(":"));
+        Assert.assertNotNull(radiantResults.getStudyReference(), "Study reference is NULL");
+        List<String> studyReference = Arrays.asList(radiantResults.getStudyReference().split(":"));
         Assert.assertFalse(studyReference.size() < 2, "Study reference response is not full");
         Assert.assertFalse(studyReference.get(0).isEmpty() || studyReference.get(0).contentEquals("null"),
                 "First part is empty or null");

@@ -308,8 +308,8 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
             case "AUT_LOWT_3017S_Site":
                 incongruentSiteSelectionCloseCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new HSGeneralCC())
-                        .waitForPageLoad(siteIndication)
+//                        .clickNextButton(new HSGeneralCC())
+//                        .waitForPageLoad(siteIndication)
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoad()
                         .clickNextButton(new HSMedicalRecordsPageCC())
@@ -326,12 +326,12 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
             case "AUT_LOWT_3017_Site":
                 incongruentSiteSelectionCloseCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new HSGeneralCC())
-                        .waitForPageLoad(siteIndication)
-                        .clickNextButton(new DoctorInformationCollectionPageCC())
+//                        .clickNextButton(new HSGeneralCC())
+//                        .waitForPageLoad(siteIndication)
+                        .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
-                        .clickNextButton(new HSMedicalRecordsPageCC())
-                        .waitForPageLoad()
+//                        .clickNextButton(new HSMedicalRecordsPageCC())
+//                        .waitForPageLoad()
                         .clickNextButton(new SynexusHealthyMindsPageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("No")

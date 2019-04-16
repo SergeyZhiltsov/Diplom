@@ -267,30 +267,45 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new IncongruentSiteSelectionClose_OLS());
-
         //----------SiteSelection Page--------------------
         incongruentSiteSelectionClose_ols
                 .waitForPageLoad(studyName, dqedStudyName)
-                .getPID()
-                .clickOnFacilityName(site.name)
-//                .clickNextButton(new HSGeneralPageOLS())
-//                .waitForPageLoad(site_Indication)
-                .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature()
-                .waitToClickNext()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .getPID();
+        switch(site.dispo) {
+            case "1R":
+                incongruentSiteSelectionClose_ols
+                        .clickNextButton(new QualifiedClose2PageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new SynexusHealthyMindsPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No, I am not interested in receiving information")
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+            case "41C":
+                incongruentSiteSelectionClose_ols
+                        .clickNextButton(new DoctorInformationCollectionPageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new HS1PageOLS())
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature()
+                        .waitToClickNext()
+                        .clickNextButton(new SynexusHealthyMindsPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No, I am not interested in receiving information")
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+        }
     }
 }
