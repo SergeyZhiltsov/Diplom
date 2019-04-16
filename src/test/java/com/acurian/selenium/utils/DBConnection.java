@@ -152,10 +152,16 @@ public class DBConnection {
         return null;
     }
     
-    public ChildResult dbReadChildPID(String environment, String pidNumber) {
+    public ChildResult dbReadChildPID(String environment, String pidNumber, String ...firstPartOfChildPhoneNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
+
             String sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'";
+            if(firstPartOfChildPhoneNumber.length == 1){
+                sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'" +
+                        " and PHONE_NUMBER like '" +firstPartOfChildPhoneNumber+ "%'";
+            }
+
             rset = stmt.executeQuery(sql);
 
             ChildResult childResult = null;

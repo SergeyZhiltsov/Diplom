@@ -802,7 +802,7 @@ public class DERM_4825_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4825")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

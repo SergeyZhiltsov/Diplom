@@ -166,9 +166,9 @@ public class MainPageOLS extends BasePage {
     }
 
     @Step
-    public MainPageOLS childPidFromDbToLog(String env) {
+    public MainPageOLS childPidFromDbToLog(String env, String ...firstPartOfChildPhoneNumber) {
 //        cpid = PassPID.getInstance().getPidNumber();
-        ChildResult childResult = getDbConnection().dbReadChildPID(env, pid);
+        ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid);
         return this;

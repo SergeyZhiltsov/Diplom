@@ -61,8 +61,8 @@ public class MainPageCC extends BasePage {
     }
 
     @Step
-    public MainPageCC childPidFromDbToLog(String env) {
-        ChildResult childResult = getDbConnection().dbReadChildPID(env, pid);
+    public MainPageCC childPidFromDbToLog(String env, String ...firstPartOfChildPhoneNumber) {
+        ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid);
         return this;
