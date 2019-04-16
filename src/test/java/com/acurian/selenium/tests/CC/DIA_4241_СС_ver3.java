@@ -510,6 +510,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
+                .pidFromDbToLog(env)
                 .childPidFromDbToLog(env,"4241")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
