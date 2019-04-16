@@ -530,7 +530,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4708")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

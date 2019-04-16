@@ -340,7 +340,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
+                        .childPidFromDbToLog(env, "3017")
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
     }

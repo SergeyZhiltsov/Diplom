@@ -387,7 +387,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
+                        .childPidFromDbToLog(env, "4831")
                         .dispoShouldMatch(site.dispo, site.dispo);
                 SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
                 break;
@@ -406,7 +406,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
+                        .childPidFromDbToLog(env, "4831")
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
     }

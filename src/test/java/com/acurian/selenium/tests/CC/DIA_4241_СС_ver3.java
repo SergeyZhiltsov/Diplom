@@ -9,7 +9,6 @@ import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.utils.DataProviderPool;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -511,7 +510,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env,"4241")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

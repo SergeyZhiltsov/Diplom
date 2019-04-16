@@ -602,7 +602,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4815")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
