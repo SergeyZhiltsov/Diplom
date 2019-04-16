@@ -159,7 +159,7 @@ public class DBConnection {
             String sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'";
             if(firstPartOfChildPhoneNumber.length == 1){
                 sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'" +
-                        " and PHONE_NUMBER like '" +firstPartOfChildPhoneNumber+ "%'";
+                        " and PHONE_NUMBER like '" +firstPartOfChildPhoneNumber[0]+ "%'";
             }
 
             rset = stmt.executeQuery(sql);
