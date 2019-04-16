@@ -608,7 +608,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4631")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

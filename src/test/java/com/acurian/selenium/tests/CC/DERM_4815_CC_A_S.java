@@ -609,7 +609,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
+                        .childPidFromDbToLog(env,"4815")
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case "41C":
@@ -621,7 +621,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
+                        .childPidFromDbToLog(env,"4815")
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
 

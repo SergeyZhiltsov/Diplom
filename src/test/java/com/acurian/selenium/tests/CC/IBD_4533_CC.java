@@ -536,7 +536,7 @@ public class IBD_4533_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4533")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

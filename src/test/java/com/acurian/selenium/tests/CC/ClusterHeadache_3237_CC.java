@@ -246,7 +246,7 @@ public class ClusterHeadache_3237_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "3237")
                 .dispoShouldMatch(site.dispo, site.dispo);
                 
                 

@@ -704,7 +704,7 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4631")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

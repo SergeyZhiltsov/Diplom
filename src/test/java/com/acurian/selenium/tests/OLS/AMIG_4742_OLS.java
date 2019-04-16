@@ -466,7 +466,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .threadSleep(2000);
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4742")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
