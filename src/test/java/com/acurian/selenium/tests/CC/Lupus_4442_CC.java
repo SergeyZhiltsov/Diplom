@@ -360,7 +360,7 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4442")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
