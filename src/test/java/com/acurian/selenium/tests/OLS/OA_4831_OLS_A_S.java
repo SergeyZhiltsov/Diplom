@@ -3,6 +3,9 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
+import com.acurian.selenium.pages.OLS.OA_3138.SubquestionCurrentlyTakingPainMedicationPageOLS;
+import com.acurian.selenium.pages.OLS.OA_3138.SubquestionHowManyTotalDaysYouTakeFollowingNSAIDOLS;
+import com.acurian.selenium.pages.OLS.OA_3138.SubquestionNSAIDMedicationPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -11,11 +14,15 @@ import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class OA_4831_OLS_A_S extends BaseTest {
 
@@ -67,11 +74,11 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritis());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouSufferFromArthritis
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                doYouSufferFromArthritis
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -83,12 +90,10 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
-        WhenYouDiagnosedWithRaPageOLS whenYouDiagnosedWithRaPageOLS = whatKindOfArthritisPageOLS
+        whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(new WhenYouDiagnosedWithRaPageOLS());
-
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4503", site.activeProtocols)
@@ -96,53 +101,24 @@ public class OA_4831_OLS_A_S extends BaseTest {
 
         whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickOnAnswers("Psoriatic Arthritis")
+                .clickOnAnswers("Psoriatic Arthritis") //Select
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints") //Deselect
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4503", site.activeProtocols)
                 .back();
 
+
         WhereYouHaveArthritisOLS whereYouHaveArthritisOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Psoriatic Arthritis")
-                .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
+                .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging") //Select
+                .clickOnAnswers("Psoriatic Arthritis") //Deselect
                 .clickNextButton(new WhereYouHaveArthritisOLS());
 
         whereYouHaveArthritisOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Hands or feet")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
-                .back();
-
-        whereYouHaveArthritisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Hands or feet")
                 .clickOnAnswer("Spine or shoulders")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
-                .back();
-
-        whereYouHaveArthritisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Spine or shoulders")
-                .clickOnAnswer("Wrists or ankles")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
-                .back();
-
-        whereYouHaveArthritisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Wrists or ankles")
-                .clickOnAnswer("Other")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -151,25 +127,23 @@ public class OA_4831_OLS_A_S extends BaseTest {
 
         AnyMedicationForYourArthritisOLS anyMedicationForYourArthritisOLS = whereYouHaveArthritisOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Other")
-                .clickOnAnswer("Left Hip")
-                .clickOnAnswer("Right Hip")
+                .clickOnAnswer("Left Knee")
+                .clickOnAnswer("Spine or shoulders")
                 .clickNextButton(new AnyMedicationForYourArthritisOLS());
+
 
         NSAIDMedicationOLS nSAIDMedicationOLS = anyMedicationForYourArthritisOLS
                 .waitForPageLoad()
-                .clickOnAnswer("I do not take any medication for arthritis pain")
+                .clickOnAnswer("I do not take any medication for arthritis pain") // Disqualify ("Frequency of analgesic use")
                 .clickNextButton(new NSAIDMedicationOLS());
-
         nSAIDMedicationOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4520", site.activeProtocols)
                 .back();
-
         anyMedicationForYourArthritisOLS
                 .waitForPageLoad()
-                .clickOnAnswer("1 - 2 days per week or less")
+                .clickOnAnswer("1 - 2 days per week or less") // Disqualify ("Frequency of analgesic use")
                 .clickNextButton(nSAIDMedicationOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -179,53 +153,87 @@ public class OA_4831_OLS_A_S extends BaseTest {
         anyMedicationForYourArthritisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 days per week")
-                .clickNextButton(nSAIDMedicationOLS);
-
-        nSAIDMedicationOLS
+                .clickNextButton(nSAIDMedicationOLS)
                 .waitForPageLoad()
-                .clickOnAnswer("None of the above")
+                .clickOnAnswers("None of the above") //"Skip to Q10 //Disqualify ("No history of NSAIDs")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4505", site.activeProtocols)
                 .back();
 
-        CurrentlyTakinnFollowingNSAIDMedicationOLS currentlyTakinnFollowingNSAIDMedicationOLS = nSAIDMedicationOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Aspirin (Anacin, Ascriptin, Bayer, Bufferin, Ecotrin, Excedrin)")
-                .clickNextButton(new CurrentlyTakinnFollowingNSAIDMedicationOLS());
+        SubquestionNSAIDMedicationPageOLS subquestionNSAIDMedicationPageOLS =
+                nSAIDMedicationOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("Aspirin (Anacin, Ascriptin, Bayer, Bufferin, Ecotrin, Excedrin)",
+                                "Naproxen (Aleve, Naprosyn, Naprelan, Anaprox)",
+                                "Ibuprofen (Motrin, Advil, Nuprin)",
+                                "Indomethacin (Indocin)",
+                                "Celebrex (celecoxib)",
+                                "Meloxicam (Mobic)",
+                                "Ketoprofen (Orudis, Oruvail)",
+                                "Fenoprofen (Nalfon)",
+                                "Diclofenac (Cataflam, Voltaren, Arthrotec)",
+                                "Ketorolac (Sprix, Toradol)",
+                                "Piroxicam (Feldene)",
+                                "Flurbiprofen (Ansaid)",
+                                "Magnesium salicylate (Arthritab, Bayer Select, Magan, Mobidin, Mobogesic)",
+                                "Nabumetone (Relafen)",
+                                "Oxaprozin (Daypro)",
+                                "Sulindac")
+                        .clickNextButton(new SubquestionNSAIDMedicationPageOLS());
 
-        TreatedYourArthritisPainAcetaminophenOLS treatedYourArthritisPainAcetaminophenOLS = currentlyTakinnFollowingNSAIDMedicationOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new TreatedYourArthritisPainAcetaminophenOLS());
+        SubquestionHowManyTotalDaysYouTakeFollowingNSAIDOLS subquestionHowManyTotalDaysYouTakeFollowingNSAIDOLS =
+                subquestionNSAIDMedicationPageOLS
+                        .waitForPageLoad(1, subquestionNSAIDMedicationPageOLS.titleExpected1)
+                        .waitForPageLoad(2, subquestionNSAIDMedicationPageOLS.titleExpected2)
+                        .waitForPageLoad(3, subquestionNSAIDMedicationPageOLS.titleExpected3)
+                        .waitForPageLoad(4, subquestionNSAIDMedicationPageOLS.titleExpected4)
+                        .waitForPageLoad(5, subquestionNSAIDMedicationPageOLS.titleExpected5)
+                        .waitForPageLoad(6, subquestionNSAIDMedicationPageOLS.titleExpected6)
+                        .waitForPageLoad(7, subquestionNSAIDMedicationPageOLS.titleExpected7)
+                        .waitForPageLoad(8, subquestionNSAIDMedicationPageOLS.titleExpected8)
+                        .waitForPageLoad(9, subquestionNSAIDMedicationPageOLS.titleExpected9)
+                        .waitForPageLoad(10, subquestionNSAIDMedicationPageOLS.titleExpected10)
+                        .waitForPageLoad(11, subquestionNSAIDMedicationPageOLS.titleExpected11)
+                        .waitForPageLoad(12, subquestionNSAIDMedicationPageOLS.titleExpected12)
+                        .waitForPageLoad(13, subquestionNSAIDMedicationPageOLS.titleExpected13)
+                        .waitForPageLoad(14, subquestionNSAIDMedicationPageOLS.titleExpected14)
+                        .waitForPageLoad(15, subquestionNSAIDMedicationPageOLS.titleExpected15)
+                        .waitForPageLoad(16, subquestionNSAIDMedicationPageOLS.titleExpected16)
+                        .clickOnAnswerForAllSubQuestion("Yes")
+                        .clickNextButton(new SubquestionHowManyTotalDaysYouTakeFollowingNSAIDOLS());
 
-        treatedYourArthritisPainAcetaminophenOLS
-                .waitForPageLoad()
-                .back();
-
-        HowManyTotalDaysYouTakeFollowingNSAIDOLS howManyTotalDaysYouTakeFollowingNSAIDOLS = currentlyTakinnFollowingNSAIDMedicationOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HowManyTotalDaysYouTakeFollowingNSAIDOLS());
-
-        howManyTotalDaysYouTakeFollowingNSAIDOLS
-                .waitForPageLoad()
-                .clickOnAnswer("2 days")
-                .clickNextButton(treatedYourArthritisPainAcetaminophenOLS);
+        TreatedYourArthritisPainAcetaminophenOLS treatedYourArthritisPainAcetaminophenOLS =
+                subquestionHowManyTotalDaysYouTakeFollowingNSAIDOLS
+                        .waitForPageLoad(1, subquestionNSAIDMedicationPageOLS.titleExpected1)
+                        .waitForPageLoad(2, subquestionNSAIDMedicationPageOLS.titleExpected2)
+                        .waitForPageLoad(3, subquestionNSAIDMedicationPageOLS.titleExpected3)
+                        .waitForPageLoad(4, subquestionNSAIDMedicationPageOLS.titleExpected4)
+                        .waitForPageLoad(5, subquestionNSAIDMedicationPageOLS.titleExpected5)
+                        .waitForPageLoad(6, subquestionNSAIDMedicationPageOLS.titleExpected6)
+                        .waitForPageLoad(7, subquestionNSAIDMedicationPageOLS.titleExpected7)
+                        .waitForPageLoad(8, subquestionNSAIDMedicationPageOLS.titleExpected8)
+                        .waitForPageLoad(9, subquestionNSAIDMedicationPageOLS.titleExpected9)
+                        .waitForPageLoad(10, subquestionNSAIDMedicationPageOLS.titleExpected10)
+                        .waitForPageLoad(11, subquestionNSAIDMedicationPageOLS.titleExpected11)
+                        .waitForPageLoad(12, subquestionNSAIDMedicationPageOLS.titleExpected12)
+                        .waitForPageLoad(13, subquestionNSAIDMedicationPageOLS.titleExpected13)
+                        .waitForPageLoad(14, subquestionNSAIDMedicationPageOLS.titleExpected14)
+                        .waitForPageLoad(15, subquestionNSAIDMedicationPageOLS.titleExpected15)
+                        .waitForPageLoad(16, subquestionNSAIDMedicationPageOLS.titleExpected16)
+                        .clickOnAnswerForAllSubQuestion("1 day per week or less")
+                        .clickNextButton(new TreatedYourArthritisPainAcetaminophenOLS());
 
         PrescriptionPainMedicationsForArthritis prescriptionPainMedicationsForArthritis = treatedYourArthritisPainAcetaminophenOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
                 .clickNextButton(new PrescriptionPainMedicationsForArthritis());
 
-
         HasYourDoctorEverPrescribedOpioidNarcoticOLS hasYourDoctorEverPrescribedOpioidNarcotic_OLS = prescriptionPainMedicationsForArthritis
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("None of the above") //Skip to Q13
                 .clickNextButton(new HasYourDoctorEverPrescribedOpioidNarcoticOLS());
-
-
         hasYourDoctorEverPrescribedOpioidNarcotic_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No, my doctor never offered me a prescription for opioids or narcotics for pain")
@@ -233,143 +241,146 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4511", site.activeProtocols)
-                .back();
-
-        AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = hasYourDoctorEverPrescribedOpioidNarcotic_OLS
+                .back(hasYourDoctorEverPrescribedOpioidNarcotic_OLS)
                 .waitForPageLoad()
-                .clickOnAnswer("Yes, and I have taken an opioid or narcotic for pain")
+                .back(prescriptionPainMedicationsForArthritis);
+
+        SubquestionCurrentlyTakingPainMedicationPageOLS subquestionCurrentlyTakingPainMedicationPageOLS =
+                prescriptionPainMedicationsForArthritis
+                        .waitForPageLoad()
+                        .clickOnAnswers("Oxycodone (Oxaydo, Oxycontin, Roxicodone)",
+                                "Oxycodone and acetaminophen (Endocet, Percocet, Primlev, Roxicet, Xartemis)",
+                                "Hydrocodone (Hysingla, Zohydro)",
+                                "Hydrocodone and acetaminophen (Hycet, Lortab, Norco, Verdrocet, Vicodin, Xodol, Zamicet)",
+                                "Tramadol (ConZip, Synapryn FusePaq, Ultram)",
+                                "Morphine (Astramorph, Duramorph, Infumorph, Kadian, MS Contin)",
+                                "Morphine and naltrexone (Embeda)",
+                                "Meperidine (Demerol, Meperitab)",
+                                "Fentanyl (Abstral, Actiq, Fentora, Lazanda, Subsys)",
+                                "Fentanyl patch (Duragesic, Ionsys)",
+                                "Codeine",
+                                "Tylenol #3 or Tylenol #4 (acetaminophen with codeine)",
+                                "Capital with codeine",
+                                "Oxymorphone (Opana)",
+                                "Hydromorphone (Dilaudid, Exalgo)",
+                                "Methadone (Dolophine, Intensol, Methadose)",
+                                "Buprenorphine (Belbuca, Buprenex, Butrans)",
+                                "Buprenorphine and naloxone (Suboxone)",
+                                "Oxycodone and naloxone")
+                        .clickNextButton(new SubquestionCurrentlyTakingPainMedicationPageOLS());
+
+        subquestionCurrentlyTakingPainMedicationPageOLS
+                .waitForPageLoad(1, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected4)
+                .waitForPageLoad(5, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected5)
+                .waitForPageLoad(6, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected6)
+                .waitForPageLoad(7, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected7)
+                .waitForPageLoad(8, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected8)
+                .waitForPageLoad(9, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected9)
+                .waitForPageLoad(10, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected10)
+                .waitForPageLoad(11, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected11)
+                .waitForPageLoad(12, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected12)
+                .waitForPageLoad(13, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected13)
+                .waitForPageLoad(14, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected14)
+                .waitForPageLoad(15, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected15)
+                .waitForPageLoad(16, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected16)
+                .waitForPageLoad(17, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected17)
+                .waitForPageLoad(18, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected18)
+                .waitForPageLoad(19, subquestionCurrentlyTakingPainMedicationPageOLS.titleExpected19)
+                .clickOnAnswerForAllSubQuestion("Yes")
                 .clickNextButton(new AreYouCurrentlyOnPageOLS());
 
-        areYouCurrentlyOnPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, for arthritis")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
-                .back();
+        HashMap<String, List<String>> disqualifyQ15 = new HashMap<>();
+        AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = new AreYouCurrentlyOnPageOLS();
+        disqualifyQ15.put("Yes, for arthritis", Arrays.asList(site.activeProtocols));
+        disqualifyQ15.put("Yes, for another chronic condition", Arrays.asList(site.activeProtocols));
+        disqualifyQ15.put("I am currently taking a short course of steroids (10 days or less)", Arrays.asList(site.activeProtocols));
+        for (Map.Entry<String, List<String>> entry : disqualifyQ15.entrySet()) {
+            areYouCurrentlyOnPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer(entry.getKey())
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+            haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
+                    .back();
+        }
 
-        areYouCurrentlyOnPageOLS
+        HaveYouEverHadKneeReplacementSurgeryOLS haveYouEverHadKneeReplacementSurgeryOLS = areYouCurrentlyOnPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes, for another chronic condition")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
-                .back();
-
-        areYouCurrentlyOnPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
-                .back();
-
-        HaveYouEverHadKneeReplacementSurgeryOLS haveYouEverHadKneeReplacementSurgery_OLS = areYouCurrentlyOnPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
+                .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverHadKneeReplacementSurgeryOLS());
 
-
-        //-----------HaveYouEverHadKneeReplacementSurgeryOLS--------------------
-        HaveYouEverReceivedInjectionIntoYourKneeOLS haveYouEverReceivedInjectionIntoYourKnee_OLS = haveYouEverHadKneeReplacementSurgery_OLS
+        HaveYouEverReceivedInjectionIntoYourKneeOLS haveYouEverReceivedInjectionIntoYourKneeOLS = haveYouEverHadKneeReplacementSurgeryOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverReceivedInjectionIntoYourKneeOLS());
 
-
-        //-----------HaveYouEverReceivedInjectionIntoYourKneeOLS--------------------
-        FollowingDevicesInYourBodyOLS followingDevicesInYourBodyOLS = haveYouEverReceivedInjectionIntoYourKnee_OLS
+        haveYouEverReceivedInjectionIntoYourKneeOLS
                 .waitForPageLoad()
-                .clickOnAnswer("I have never received a knee injection for my arthritis pain")
+                .clickOnAnswer("Yes, a joint fluid supplement injection such as Synvisc or Hyalgan") //Continue to Q18
+                .clickNextButton(new HaveYouReceivedKneeInjectionWithinPast3MonthsOLS())
+                .waitForPageLoad()
+                .back(haveYouEverReceivedInjectionIntoYourKneeOLS);
+
+        haveYouEverReceivedInjectionIntoYourKneeOLS
+                .waitForPageLoad()
+                .clickOnAnswer("I have never received a knee injection for my arthritis pain") //Skip to Q19
                 .clickNextButton(new FollowingDevicesInYourBodyOLS());
 
-        followingDevicesInYourBodyOLS
-                .waitForPageLoad()
-                .back();
-
-        HaveYouReceivedKneeInjectionWithinPast3MonthsOLS haveYouReceivedKneeInjection_WithinPast3Months_OLS = haveYouEverReceivedInjectionIntoYourKnee_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, a corticosteroid or \"steroid\" injection")
-                .clickNextButton(new HaveYouReceivedKneeInjectionWithinPast3MonthsOLS());
-
-
-        //-------------------------HaveYouReceivedKneeInjectionWithinPast3MonthsOLS---------------
-        haveYouReceivedKneeInjection_WithinPast3Months_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(followingDevicesInYourBodyOLS);
-
-
-        //---------------------------FollowingDevicesInYourBodyOLS--------------------
-        followingDevicesInYourBodyOLS
-                .waitForPageLoad()
-                .clickOnAnswer("A pacemaker")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4514", site.activeProtocols)
-                .back();
-
-        followingDevicesInYourBodyOLS
-                .waitForPageLoad()
-                .clickOnAnswer("None of the above")
-                .clickOnAnswer("Aneurysm clip")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4514", site.activeProtocols)
-                .back();
-
-        followingDevicesInYourBodyOLS
-                .waitForPageLoad()
-                .clickOnAnswer("None of the above")
-                .clickOnAnswer("Artificial heart valve")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4514", site.activeProtocols)
-                .back();
+        HashMap<String, List<String>> disqualifyQ19 = new HashMap<>();
+        FollowingDevicesInYourBodyOLS followingDevicesInYourBodyOLS = new FollowingDevicesInYourBodyOLS();
+        disqualifyQ19.put("A pacemaker", Arrays.asList(site.activeProtocols));
+        disqualifyQ19.put("Aneurysm clip", Arrays.asList(site.activeProtocols));
+        disqualifyQ19.put("Artificial heart valve", Arrays.asList(site.activeProtocols));
+        for (Map.Entry<String, List<String>> entry : disqualifyQ19.entrySet()) {
+            followingDevicesInYourBodyOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("None of the above")
+                    .clickOnAnswer(entry.getKey())
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS4514", site.activeProtocols)
+                    .back();
+        }
 
         DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome = followingDevicesInYourBodyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("None of the above")
+                .clickOnAnswer("Unsure")
                 .clickNextButton(new DiagnosedwithCarpalTunnelSyndrome());
 
-
-        //---------------------DiagnosedwithCarpalTunnelSyndrome--------------
-        WithinThePast6MonthsHaveYouHadNumbnessOLS withinThePast6MonthsHaveYouHadNumbness_ols = diagnosedwithCarpalTunnelSyndrome
+        WithinThePast6MonthsHaveYouHadNumbnessOLS withinThePast6MonthsHaveYouHadNumbnessOLS = diagnosedwithCarpalTunnelSyndrome
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("Yes") //Continue to Q21
                 .clickNextButton(new WithinThePast6MonthsHaveYouHadNumbnessOLS());
 
-        AreYouCurrentlyReceivingWorkersPageOLS areYouCurrentlyReceivingWorkersPage_OLS = withinThePast6MonthsHaveYouHadNumbness_ols
+        AreYouCurrentlyReceivingWorkersPageOLS areYouCurrentlyReceivingWorkersPageOLS = withinThePast6MonthsHaveYouHadNumbnessOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new AreYouCurrentlyReceivingWorkersPageOLS());
 
-        areYouCurrentlyReceivingWorkersPage_OLS
+        areYouCurrentlyReceivingWorkersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4516", site.activeProtocols)
-                .back(withinThePast6MonthsHaveYouHadNumbness_ols)
+                .back(withinThePast6MonthsHaveYouHadNumbnessOLS)
                 .waitForPageLoad()
                 .back();
 
         diagnosedwithCarpalTunnelSyndrome
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(areYouCurrentlyReceivingWorkersPage_OLS);
+                .clickOnAnswer("No") //Skip to Q22
+                .clickNextButton(areYouCurrentlyReceivingWorkersPageOLS);
 
-
-        //------------------AreYouCurrentlyReceivingWorkersPageOLS-------------
-        areYouCurrentlyReceivingWorkersPage_OLS
+        areYouCurrentlyReceivingWorkersPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-
 
         //----------*******NEW GENERAL HEALTH Questions**************************----------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
