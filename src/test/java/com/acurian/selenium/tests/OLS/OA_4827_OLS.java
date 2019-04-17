@@ -97,7 +97,7 @@ public class OA_4827_OLS extends BaseTest {
         nSAIDMedicationOLS
                 .waitForPageLoad()
         //HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = nSAIDMedicationOLS
-                .clickOnAnswer("None of the above")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
         		.waitForPageLoad();
@@ -106,7 +106,7 @@ public class OA_4827_OLS extends BaseTest {
         nSAIDMedicationOLS
         		.waitForPageLoad();
         CurrentlyTakinnFollowingNSAIDMedicationOLS currentlyTakinnFollowingNSAIDMedicationOLS = nSAIDMedicationOLS
-                .clickOnAnswer("Aspirin (Anacin, Ascriptin, Bayer, Bufferin, Ecotrin, Excedrin)")
+                .clickOnAnswers("Aspirin (Anacin, Ascriptin, Bayer, Bufferin, Ecotrin, Excedrin)")
                 .clickNextButton(new CurrentlyTakinnFollowingNSAIDMedicationOLS());
         
 

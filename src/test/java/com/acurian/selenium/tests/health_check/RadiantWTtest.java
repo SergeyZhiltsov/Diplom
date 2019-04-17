@@ -19,6 +19,7 @@ public class RadiantWTtest extends BaseTest {
     @Description("WT for RA , wt + 41C = directSchedule")
     public void warmTransferFor41CTest() {
         String phoneNumber = "AUTGMEGA01";
+        String studyReferenceSql = "UCBPXLPSO014:109010";
 //        String studyName = "an osteoarthritis study";
         String siteName = "AUT_GRA_WT_site";//AUT_GOA3_2108_Site
         String zipCode = "08204";
@@ -126,5 +127,9 @@ public class RadiantWTtest extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
+        if(env.equals("QA")){
+            selectActionPageCC
+                .getRadiantDbToLog(env, studyReferenceSql);
+        }
     }
 }
