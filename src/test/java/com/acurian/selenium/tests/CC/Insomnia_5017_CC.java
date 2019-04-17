@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.CongestiveHeartFailurePageCC;
+import com.acurian.selenium.pages.CC.insomnia_5017.DoYouSufferFromInsomniaPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
@@ -17,8 +18,8 @@ public class Insomnia_5017_CC extends BaseTest{
     @Description("Insomnia 5017")
     public void insomnia5017ccTest() {
         Site site = Site.AUT_INS_5017_Site;
-        String phoneNumber = "AUTAMS1KAD";
-        String studyName = "eczema, or atopic dermatitis";
+        String phoneNumber = "AUTAMS1INS";
+        String studyName = "an insomnia";
         String env = System.getProperty("acurian.env", "STG");
         DebugPageCC debugPageCC = new DebugPageCC();
 
@@ -62,9 +63,9 @@ public class Insomnia_5017_CC extends BaseTest{
                 .typeZipCode("19044")
                 .clickNextButton(new GenderPageCC());
 
-        CongestiveHeartFailurePageCC congestiveHeartFailurePageCC = genderPageCC
+        DoYouSufferFromInsomniaPageCC doYouSufferFromInsomniaPageCC = genderPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
-                .clickNextButton(new CongestiveHeartFailurePageCC());
+                .clickNextButton(new DoYouSufferFromInsomniaPageCC());
     }
 }
