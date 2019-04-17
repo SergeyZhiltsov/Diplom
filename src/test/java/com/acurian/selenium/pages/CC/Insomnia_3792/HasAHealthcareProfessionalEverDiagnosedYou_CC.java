@@ -16,7 +16,7 @@ public class HasAHealthcareProfessionalEverDiagnosedYou_CC extends MainPageCC{
     public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of the following sleep related conditions?\n"+
             "Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc'] ")
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
