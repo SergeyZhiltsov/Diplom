@@ -35,6 +35,9 @@ public enum Site {
     AUT_DIA_4241("AUT_DIA_4241", "19901", "41C", false, true, "EFC14822", "EFC14829", "EFC14893"),
     //4301
     AUT_GER_4301_Site("AUT_GER_4301_Site", "19901", "1R", false, true, "C3718_301", "C3718_302"),
+    //4357
+    AUT_GAST4357S_site("AUT_GAST4357S_site", "19901", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
+    AUT_GAST4357_site("AUT_GAST4357_site", "08204", "1R", false, true, "RLM_MD_01", "RLM_MD_02"),
     //4385
     AUT_END_4385("AUT_END_4385", "19901", "1R", false, true, "MVT_601_3101", "MVT_601_3102"),
     //4442
@@ -82,6 +85,9 @@ public enum Site {
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", false, false, "ANB020_005"),
     //4867
     AUT_OAB_4867("AUT_OAB4867_site", "08204", "41C", false, false, "URO_901_1001"),
+    //5017
+    AUT_INS_5017S_site("AUT_INS_5017S_site", "19901", "41C", false, false, "ID_078A301", "ID_078A302"),
+    AUT_INS_5017_site("AUT_INS_5017_site", "08204", "1R", false, false, "ID_078A301", "ID_078A302"),
     //5034
     AUT_CV_5034A_site("AUT_CV_5034A_site", "45205", "1R", false, false, "K_877_302_A", "K_877_302_S"),
     AUT_CV_5034S_site("AUT_CV_5034S_site", "19901", "41C", false, false, "K_877_302_A", "K_877_302_S"),
