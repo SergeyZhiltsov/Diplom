@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.OLS.shared;
 
 import java.util.List;
 
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -16,8 +17,8 @@ public class NSAIDMedicationOLS extends MainPageOLS {
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
-    List<WebElement> radioButtonsList;
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
+    List<WebElement> checkBoxList;
 
     public NSAIDMedicationOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -31,12 +32,8 @@ public class NSAIDMedicationOLS extends MainPageOLS {
     }
 
     @Step
-    public NSAIDMedicationOLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+    public NSAIDMedicationOLS clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
