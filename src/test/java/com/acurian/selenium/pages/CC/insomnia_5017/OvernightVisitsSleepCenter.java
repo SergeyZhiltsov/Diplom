@@ -9,15 +9,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DoYouSufferFromInsomniaPageCC extends MainPageCC {
+public class OvernightVisitsSleepCenter extends MainPageCC {
 
-    public final String titleExpected = "Insomnia is a sleep disorder that may cause you to have difficulty:\n" +
-                                        "Falling asleep\n" +
-                                        "Staying asleep\n" +
-                                        "Going back to sleep when you wake up during the night\n" +
-                                        "Going back to sleep when you wake up earlier than you intend\n" +
-                                        "\n" +
-                                        "Do you suffer from insomnia, or any of these sleep problems?";
+    public final String titleExpected = "This study requires several overnight visits at a sleep center.\n" +
+                                        "Would you be willing and able to complete these visits?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -25,18 +20,18 @@ public class DoYouSufferFromInsomniaPageCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public DoYouSufferFromInsomniaPageCC() {
+    public OvernightVisitsSleepCenter() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DoYouSufferFromInsomniaPageCC waitForPageLoad() {
+    public OvernightVisitsSleepCenter waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DoYouSufferFromInsomniaPageCC clickOnAnswer(String answerText) {
+    public OvernightVisitsSleepCenter clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -45,4 +40,5 @@ public class DoYouSufferFromInsomniaPageCC extends MainPageCC {
     public String getTitleText(){
         return getText(titleText);
     }
+
 }
