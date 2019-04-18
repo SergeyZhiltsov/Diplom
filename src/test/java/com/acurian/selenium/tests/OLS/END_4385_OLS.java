@@ -3,10 +3,12 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.END_4385.*;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,11 +18,10 @@ public class END_4385_OLS extends BaseTest {
 
     @Test
     @Description("a cluster headache study 3237 - OLS")
-    public void end_4385_OLS() {
+    public void end4385ols() {
         Site site = Site.AUT_END_4385;
         String phoneNumber = "AUTAMS1END";
         String studyName = "an endometriosis";
-
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -28,12 +29,12 @@ public class END_4385_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an endometriosis study", "1775"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("10/10/1980")
+                .setDate("09091980")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .typeZipCode("19044")
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         FollowingGynecologicalConditionOLS followingGynecologicalConditionOLS = genderPageOLS
