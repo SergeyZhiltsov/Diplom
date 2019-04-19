@@ -36,7 +36,7 @@ public enum Site {
     //4301
     AUT_GER_4301_Site("AUT_GER_4301_Site", "19901", "1R", false, true, "C3718_301", "C3718_302"),
     //4385
-    AUT_END_4385("AUT_END_4385", "19044", "1R", false, true, "MVT_601_3101", "MVT_601_3102"),
+    AUT_END_4385("AUT_END_4385", "19901", "1R", false, true, "MVT_601_3101", "MVT_601_3102"),
     //4442
     LPS_4442("LPS_4442", "08204", "1R", false, false, "I4V_MC_JAHZ", "I4V_MC_JAHZ"),
     //4450

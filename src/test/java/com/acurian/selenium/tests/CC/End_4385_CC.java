@@ -3,8 +3,8 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.END_4385.*;
+import com.acurian.selenium.pages.CC.SUI_3923.HaveYouGoneThroughMenopauseCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -20,20 +20,14 @@ public class End_4385_CC extends BaseTest {
     @Test()
     public void end4385cc() {
         Site site = Site.AUT_END_4385;
-        String phoneNumberOA = "AUTAMS1END";
+        String phoneNumber = "AUTAMS1END";
         String studyName = "an endometriosis";
-        String studyName1 = "endometriosis";
-        String site_Indication = "Endometriosis";
-
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
-
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -43,8 +37,8 @@ public class End_4385_CC extends BaseTest {
                 .waitForPageLoad()
                 .typeStudyName("AMS1")
                 .clickPopupStudy("AMS1")
-                .typePhoneNumber(phoneNumberOA)
-                .clickPopupPhoneNumber(phoneNumberOA)
+                .typePhoneNumber(phoneNumber)
+                .clickPopupPhoneNumber(phoneNumber)
                 .clickBeginButton();
 
         callCenterIntroductionPageCC
@@ -58,8 +52,6 @@ public class End_4385_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an endometriosis study", "1775"), "Title is diff");
-
-
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -71,123 +63,224 @@ public class End_4385_CC extends BaseTest {
                 .typeZipCode("19044")
                 .clickNextButton(new GenderPageCC());
 
-        HasHealthcareProfEverDiagnosedFollowingGynoUF_CC hasHealthcareProfEverDiagnosedFollowingGynoUF_CC = genderPageCC
+        FollowingGynecologicalConditionСС followingGynecologicalConditionСС = genderPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
-                .clickNextButton(new HasHealthcareProfEverDiagnosedFollowingGynoUF_CC());
+                .clickNextButton(new FollowingGynecologicalConditionСС());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+        DebugPageCC debugPageCC = new DebugPageCC();
+
+        NonQRtransitionPageCC nonQRtransitionPageCC = followingGynecologicalConditionСС
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NonQRtransitionPageCC());
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsEquals(hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.titleExpected, site.activeProtocols);
-        nonQRtransitionPageCC.back();
-        DiagnoseYourEndometriosisCC diagnoseYourEndometriosisCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+        nonQRtransitionPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Endometriosis (Agent Note: end-oh-me-tree-OH-sis)")
-                .clickNextButton(new DiagnoseYourEndometriosisCC());
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0014078-QS4902-STUDYQUES", site.activeProtocols)
+                .back();
+        TreatYourEndometriosisPageСС treatYourEndometriosisPageСС = followingGynecologicalConditionСС
+                .waitForPageLoad()
+                .clickOnAnswers("Endometriosis")
+                .clickNextButton(new TreatYourEndometriosisPageСС());
 
-        HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = diagnoseYourEndometriosisCC
+        HaveYouGoneThroughMenopauseCC haveYouGoneThroughMenopauseCC = treatYourEndometriosisPageСС
+                .waitForPageLoad()
+                .clickOnAnswers("I have never had a procedure to confirm my diagnosis or treat my endometriosis")
+                .clickNextButton(new HaveYouGoneThroughMenopauseCC());
+        haveYouGoneThroughMenopauseCC
+                .waitForPageLoad()
+                .back();
+        DiagnoseYourEndometriosisCC diagnoseYourEndometriosisCC = treatYourEndometriosisPageСС
+                .waitForPageLoad()
+                .clickOnAnswers("Ultrasound")
+                .clickNextButton(new DiagnoseYourEndometriosisCC());
+        diagnoseYourEndometriosisCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0020254-QS4928-STUDYQUES", site.activeProtocols)
+                .back();
+        treatYourEndometriosisPageСС
+                .waitForPageLoad()
+                .clickOnAnswers("I have never had a procedure to confirm my diagnosis or treat my endometriosis")
+                .clickOnAnswers("CT scan")
+                .clickNextButton(diagnoseYourEndometriosisCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0020254-QS4928-STUDYQUES", site.activeProtocols)
+                .back();
+        treatYourEndometriosisPageСС
+                .waitForPageLoad()
+                .clickOnAnswers("I have never had a procedure to confirm my diagnosis or treat my endometriosis")
+                .clickOnAnswers("MRI")
+                .clickNextButton(diagnoseYourEndometriosisCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0020254-QS4928-STUDYQUES", site.activeProtocols)
+                .back();
+        treatYourEndometriosisPageСС
+                .waitForPageLoad()
+                .clickOnAnswers("Surgery, but unsure what type",
+                        "Laparoscopy, which is a surgical procedure in which a scope is inserted through a small cut in the abdomen",
+                        "Laparotomy, which is a surgical procedure in which a large cut is made into the abdomen",
+                        "Seen or biopsied during an examination of the vagina, cervix, or other location (such as a cesarean section scar)")
+                .clickNextButton(diagnoseYourEndometriosisCC);
+
+        diagnoseYourEndometriosisCC
                 .waitForPageLoad()
                 .clickOnAnswer("11 or more years ago")
-                .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
-        debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", site.activeProtocols);
-        debugPageCC.back();
-        diagnoseYourEndometriosisCC.waitForPageLoad()
+                .clickNextButton(haveYouGoneThroughMenopauseCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0015212-QS4921-STUDYQUES", site.activeProtocols)
+                .back();
+        diagnoseYourEndometriosisCC
+                .waitForPageLoad()
+                .clickOnAnswer("1 month ago or less")
+                .clickNextButton(haveYouGoneThroughMenopauseCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015212-QS4921-STUDYQUES", site.activeProtocols)
+                .back();
+        diagnoseYourEndometriosisCC
+                .waitForPageLoad()
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
+                .clickNextButton(haveYouGoneThroughMenopauseCC);
 
-        haveYouGoneThroughMenopauseUF_CC
-                .waitForPageLoad();
-        HaveYouHadHysterectomyUF_CC haveYouHadHysterectomyUF_CC = haveYouGoneThroughMenopauseUF_CC
+        HaveYouHadHysterectomyСС haveYouHadHysterectomyСС = haveYouGoneThroughMenopauseCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
+                .clickNextButton(new HaveYouHadHysterectomyСС());
+        haveYouHadHysterectomyСС
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0013713-QS4905-STUDYQUES", site.activeProtocols)
+                .back();
+        haveYouGoneThroughMenopauseCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
+                .clickNextButton(haveYouHadHysterectomyСС)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0013713-QS4905-STUDYQUES", site.activeProtocols)
+                .back();
+        haveYouGoneThroughMenopauseCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, menopause for another reason, such as premature ovarian failure or exposure to a medical treatment like chemotherapy")
+                .clickNextButton(haveYouHadHysterectomyСС)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0013713-QS4905-STUDYQUES", site.activeProtocols)
+                .back();
+        haveYouGoneThroughMenopauseCC
+                .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouHadHysterectomyUF_CC());
+                .clickNextButton(haveYouHadHysterectomyСС);
 
-        NonQRtransitionPageCC nonQRtransitionPageCC1 = haveYouHadHysterectomyUF_CC
+        haveYouHadHysterectomyСС
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new NonQRtransitionPageCC());
-
-
-        debugPageCC.checkProtocolsEquals(haveYouHadHysterectomyUF_CC.titleExpected, site.activeProtocols);
-        debugPageCC.back();
-
-
-        PlzDescribeYourMenstrualCyclesCC plzDescribeYourMenstrualCyclesCC = haveYouHadHysterectomyUF_CC
+                .clickNextButton(nonQRtransitionPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0014084-QS4906-STUDYQUES", site.activeProtocols)
+                .back();
+        PlzDescribeYourMenstrualCyclesCC plzDescribeYourMenstrualCyclesCC = haveYouHadHysterectomyСС
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new PlzDescribeYourMenstrualCyclesCC());
 
-
-        //-------------------------Q6- Please describe your menstrual cycles:-----------------------------
-        ApproxHowManyDaysInYourMenstrualCycle_CC approxHowManyDaysInYourMenstrualCycle_CC = plzDescribeYourMenstrualCyclesCC
+        ApproxHowManyDaysInYourMenstrualCycle_CC approxHowManyDaysInYourMenstrualCycle_cc = plzDescribeYourMenstrualCyclesCC
                 .waitForPageLoad()
                 .clickOnAnswer("Never regular")
                 .clickNextButton(new ApproxHowManyDaysInYourMenstrualCycle_CC());
 
-        //*******************************
-        //-------------------------new  Q7- Approximately how many days are in your menstrual cycle?-----------------------------
-        HowManyTimesDidYouGetYourPeriodInThreeMons_CC howManyTimesDidYouGetYourPeriodInThreeMons_CC = approxHowManyDaysInYourMenstrualCycle_CC
+        HowManyTimesDidYouGetYourPeriodInThreeMons_CC howManyTimesDidYouGetYourPeriodInThreeMons_cc = approxHowManyDaysInYourMenstrualCycle_cc
                 .waitForPageLoad()
                 .setDays("15")
                 .clickNextButton(new HowManyTimesDidYouGetYourPeriodInThreeMons_CC());
 
-        //-------------------------new Q8- How many times did you get your period in the past three months?-----------------------------
-        PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = howManyTimesDidYouGetYourPeriodInThreeMons_CC
+        PelvicPainCC pelvicPainCC = howManyTimesDidYouGetYourPeriodInThreeMons_cc
                 .waitForPageLoad()
                 .clickOnAnswer("Did not get period at all in the past 3 months")
-                .clickNextButton(new PelvicPainDuringMenstrualCC());
-        //*******************************
+                .clickNextButton(new PelvicPainCC());
 
-
-        //-------------Q9 - Do you experience pelvic pain during your menstrual period?-----------------
-        DescribesThePelvicPainCC describesThePelvicPainCC = pelvicPainDuringMenstrualCC
+        PelvicPainOtherTimesCC pelvicPainOtherTimesCC = pelvicPainCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new PelvicPainOtherTimesCC());
+        pelvicPainOtherTimesCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0014086-QS4908-STUDYQUES", site.activeProtocols)
+                .back();
+        DescribesPelvicPainCC describesPelvicPainCC = pelvicPainCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new DescribesThePelvicPainCC());
+                .clickNextButton(new DescribesPelvicPainCC());
 
-
-        PelvicPainOtherTimesCC pelvicPainOtherTimesCC = describesThePelvicPainCC
+        describesPelvicPainCC
                 .waitForPageLoad()
-                .clickOnAnswer("Severe - the pain is so intense that I have great difficulty completing my daily activities")
+                .clickOnAnswer("Mild - I have some pain, but I am still able to complete my daily activities")
                 .clickNextButton(new PelvicPainOtherTimesCC());
 
-
-        NonMenstrualPelvicPainCC nonMenstrualPelvicPainCC = pelvicPainOtherTimesCC
+        HormonalBirthControlCC hormonalBirthControlCC = pelvicPainOtherTimesCC
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new NonMenstrualPelvicPainCC());
-
-        HormonalBirthControlCC hormonalBirthControlCC = nonMenstrualPelvicPainCC
-                .waitForPageLoad()
-                .clickOnAnswer("Moderate - the pain is strong enough that I have some difficulty completing my daily activities")
-                .clickNextButton(new HormonalBirthControlCC());
-
-        hormonalBirthControlCC.waitForPageLoad();
-        HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = hormonalBirthControlCC
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());
-        hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", site.activeProtocols);
-        debugPageCC.back();
-        hormonalBirthControlCC.waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());
-
-
-        AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
+                .clickNextButton(new HormonalBirthControlCC());
+        hormonalBirthControlCC
                 .waitForPageLoad()
-                .clickOnAnswers("Endometrioma, (Agent Note: end-oh-me-tree-OH-ma) also known as endometrial (Agent Note: end-oh-ME-tree-ul) or endometrioid (Agent Note: endo-oh-ME-tree-oid) cyst or \"chocolate cyst\"")
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0015214-QS4923-STUDYQUES", site.activeProtocols)
+                .back();
+        DescribesNonMenstrualPelvicPainCC describesNonMenstrualPelvicPainCC = pelvicPainOtherTimesCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new DescribesNonMenstrualPelvicPainCC());
+
+        describesNonMenstrualPelvicPainCC
+                .waitForPageLoad()
+                .clickOnAnswer("Mild - I have some pain, but I am still able to complete my daily activities")
+                .clickNextButton(hormonalBirthControlCC);
+
+        DiagnosedWithGynecologicalConditionCC diagnosedWithGynecologicalConditionCC = hormonalBirthControlCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new DiagnosedWithGynecologicalConditionCC());
+        diagnosedWithGynecologicalConditionCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0015753-QS4925-STUDYQUES", site.activeProtocols)
+                .back();
+        BirthControlMethodPageCC birthControlMethodPageCC = hormonalBirthControlCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new BirthControlMethodPageCC());
+
+        birthControlMethodPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(diagnosedWithGynecologicalConditionCC);
+
+        AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = diagnosedWithGynecologicalConditionCC
+                .waitForPageLoad()
+                .clickOnAnswers("Vaginismus, also known as vaginal muscle spasm")
                 .clickNextButton(new AreYouCurrentlyPregnantCC());
 
         TransitionStatementCC transitionStatementCC = areYouCurrentlyPregnantCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        transitionStatementCC
+                .waitForPageLoadWithTitle(transitionStatementCC.titleExpectedEndo)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0008690-QS4916-STUDYQUES", site.activeProtocols)
+                .back();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = areYouCurrentlyPregnantCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithTitle(transitionStatementCC.titleExpectedEndo)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 

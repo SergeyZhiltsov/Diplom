@@ -51,22 +51,62 @@ public class END_4385_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS4902", site.activeProtocols)
                 .back();
-        DiagnoseYourEndometriosisOLS diagnoseYourEndometriosisOLS = followingGynecologicalConditionOLS
+        TreatYourEndometriosisPageOLS treatYourEndometriosisPageOLS = followingGynecologicalConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Endometriosis")
-                .clickNextButton(new DiagnoseYourEndometriosisOLS());
+                .clickNextButton(new TreatYourEndometriosisPageOLS());
 
-        //-------------------------Q3-When was your most recent surgery to treat or diagnose your endometriosis performed?---------------------------------------------
-        HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = diagnoseYourEndometriosisOLS
+        HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = treatYourEndometriosisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("11 or more years ago")
+                .clickOnAnswers("I have never had a procedure to confirm my diagnosis or treat my endometriosis")
                 .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
         haveYouGoneThroughMenopauseOLS
                 .waitForPageLoad()
+                .back();
+        DiagnoseYourEndometriosisOLS diagnoseYourEndometriosisOLS = treatYourEndometriosisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Ultrasound")
+                .clickNextButton(new DiagnoseYourEndometriosisOLS());
+        diagnoseYourEndometriosisOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4928", site.activeProtocols)
+                .back();
+        treatYourEndometriosisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("I have never had a procedure to confirm my diagnosis or treat my endometriosis")
+                .clickOnAnswers("CT scan")
+                .clickNextButton(diagnoseYourEndometriosisOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4928", site.activeProtocols)
+                .back();
+        treatYourEndometriosisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("I have never had a procedure to confirm my diagnosis or treat my endometriosis")
+                .clickOnAnswers("MRI")
+                .clickNextButton(diagnoseYourEndometriosisOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4928", site.activeProtocols)
+                .back();
+        treatYourEndometriosisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Surgery, but unsure what type",
+                        "Laparoscopy, which is a surgical procedure in which a scope is inserted through a small cut in the abdomen",
+                        "Laparotomy, which is a surgical procedure in which a large cut is made into the abdomen",
+                        "Seen or biopsied during an examination of the vagina, cervix, or other location (such as a cesarean section scar)")
+                .clickNextButton(diagnoseYourEndometriosisOLS);
+
+        diagnoseYourEndometriosisOLS
+                .waitForPageLoad()
+                .clickOnAnswer("11 or more years ago")
+                .clickNextButton(haveYouGoneThroughMenopauseOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEqualsForQNumber("QS4921", site.activeProtocols)
                 .back();
         diagnoseYourEndometriosisOLS
                 .waitForPageLoad()
@@ -74,14 +114,13 @@ public class END_4385_OLS extends BaseTest {
                 .clickNextButton(haveYouGoneThroughMenopauseOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4921", site.activeProtocols)
                 .back();
         diagnoseYourEndometriosisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
+                .clickNextButton(haveYouGoneThroughMenopauseOLS);
 
-        //-------------------------Q4- Have you gone through menopause?---------------------------------------------
         HaveYouHadHysterectomyOLS haveYouHadHysterectomyOLS = haveYouGoneThroughMenopauseOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
@@ -89,48 +128,57 @@ public class END_4385_OLS extends BaseTest {
         haveYouHadHysterectomyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS4905", site.activeProtocols)
                 .back();
-        haveYouGoneThroughMenopauseOLS.waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouHadHysterectomyOLS());
-
-
-        //-------------------------Q5- Have you had a hysterectomy (surgical removal of the uterus)?----------------------------------------------
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1 = haveYouHadHysterectomyOLS
+        haveYouGoneThroughMenopauseOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS1
+                .clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
+                .clickNextButton(haveYouHadHysterectomyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Have you had a hysterectomy (surgical removal of the uterus)?", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS4905", site.activeProtocols)
+                .back();
+        haveYouGoneThroughMenopauseOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, menopause for another reason, such as premature ovarian failure or exposure to a medical treatment like chemotherapy")
+                .clickNextButton(haveYouHadHysterectomyOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEqualsForQNumber("QS4905", site.activeProtocols)
+                .back();
+        haveYouGoneThroughMenopauseOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(haveYouHadHysterectomyOLS);
+
+        haveYouHadHysterectomyOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4906", site.activeProtocols)
                 .back();
         PlzDescribeYourMenstrualCyclesOLS plzDescribeYourMenstrualCyclesOLS = haveYouHadHysterectomyOLS
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new PlzDescribeYourMenstrualCyclesOLS());
 
-        //-------------------------Q6- Please describe your menstrual cycles:-----------------------------
         ApproxHowManyDaysInYourMenstrualCycle_OLS approxHowManyDaysInYourMenstrualCycle_OLS = plzDescribeYourMenstrualCyclesOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Never regular")
                 .clickNextButton(new ApproxHowManyDaysInYourMenstrualCycle_OLS());
 
-
-        //-------------------------new  Q7- Approximately how many days are in your menstrual cycle?-----------------------------
         HowManyTimesDidYouGetYourPeriodInThreeMons_OLS howManyTimesDidYouGetYourPeriodInThreeMons_OLS = approxHowManyDaysInYourMenstrualCycle_OLS
                 .waitForPageLoad()
                 .setDays("15")
                 .clickNextButton(new HowManyTimesDidYouGetYourPeriodInThreeMons_OLS());
 
-        //-------------------------new Q8- How many times did you get your period in the past three months?-----------------------------
         PelvicPainOLS pelvicPainOLS = howManyTimesDidYouGetYourPeriodInThreeMons_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Did not get period at all in the past 3 months")
                 .clickNextButton(new PelvicPainOLS());
 
-
-        //-------------Q9 - Do you experience pelvic pain during your menstrual period?-----------------
         PelvicPainOtherTimesOLS pelvicPainOtherTimesOLS = pelvicPainOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -138,66 +186,73 @@ public class END_4385_OLS extends BaseTest {
         pelvicPainOtherTimesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Do you ever experience pelvic pain during your menstrual period?", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS4908", site.activeProtocols)
                 .back();
         DescribesPelvicPainOLS describesPelvicPainOLS = pelvicPainOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DescribesPelvicPainOLS());
 
-        //---------------------"Q10 - Which of the following best describes the pelvic pain that you experience during your period, and how it affects your life?"---------
         describesPelvicPainOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Mild - I have some pain, but I am still able to complete my daily activities")
                 .clickNextButton(new PelvicPainOtherTimesOLS());
 
-        //-----------------------Q11 - Do you experience pelvic pain at other times, when you do NOT have your period?------------
+        HormonalBirthControlOLS hormonalBirthControlOLS = pelvicPainOtherTimesOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new HormonalBirthControlOLS());
+        hormonalBirthControlOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEqualsForQNumber("QS4923", site.activeProtocols)
+                .back();
         DescribesNonMenstrualPelvicPainOLS describesNonMenstrualPelvicPainOLS = pelvicPainOtherTimesOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DescribesNonMenstrualPelvicPainOLS());
 
-        //---------------------------Q12 - Which of the following best describes your pelvic pain at times when you do NOT have your period, and how it affects your life?--------
-        HormonalBirthControlOLS hormonalBirthControlOLS = describesNonMenstrualPelvicPainOLS
+        describesNonMenstrualPelvicPainOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Mild - I have some pain, but I am still able to complete my daily activities")
                 .clickNextButton(new HormonalBirthControlOLS());
 
-        //-------------------------Q13 - Are you currently taking a hormonal form of birth control?----------
         DiagnosedWithGynecologicalConditionOLS diagnosedWithGynecologicalConditionOLS = hormonalBirthControlOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
-        //------------------R 50.1-----
         diagnosedWithGynecologicalConditionOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Ghost Question - Irregular Menstrual Cycle DQ Logic", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS4925", site.activeProtocols)
                 .back();
-        hormonalBirthControlOLS.waitForPageLoad()
+        BirthControlMethodPageOLS birthControlMethodPageOLS = hormonalBirthControlOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new DiagnosedWithGynecologicalConditionOLS());
+                .clickNextButton(new BirthControlMethodPageOLS());
 
+        birthControlMethodPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(diagnosedWithGynecologicalConditionOLS);
 
-        //---------Q12 - Has a healthcare professional ever diagnosed you with any of these other gynecological or women's health conditions? ---
         AreYouCurrentlyPregnantOLS areYouCurrentlyPregnantOLS = diagnosedWithGynecologicalConditionOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Vaginismus")
+                .clickOnAnswers("Vaginismus, also known as vaginal muscle spasm")
                 .clickNextButton(new AreYouCurrentlyPregnantOLS());
 
-        //-------------Q13 - Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?-------
         areYouCurrentlyPregnantOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals("Are you currently pregnant, breastfeeding or planning to become pregnant in the next year?", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4916", site.activeProtocols)
                 .back();
         areYouCurrentlyPregnantOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
 
         //----------*******NEW GENERAL HEALTH Questions********----------     
@@ -205,15 +260,12 @@ public class END_4385_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
-                //----------Q23 - Do any of the following additional diagnoses apply to you?--------
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS())
-                //----------ProvideHeight-Weight Page--------------------
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new IdentificationPageOLS())
-                //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())

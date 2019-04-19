@@ -17,7 +17,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.util.Arrays;
 import java.util.List;
@@ -86,15 +85,15 @@ public class UF_4384_CC extends BaseTest{
         genderPageCC
                 .waitForPageLoad();
         Assert.assertEquals(genderPageCC.getTitleText(), genderPageCC.titleExpected, "Title is diff");
-        HasHealthcareProfEverDiagnosedFollowingGynoUF_CC hasHealthcareProfEverDiagnosedFollowingGynoUF_CC = genderPageCC
+        FollowingGynecologicalConditionСС followingGynecologicalConditionСС = genderPageCC
                 .clickOnAnswer("Female")
-                .clickNextButton(new HasHealthcareProfEverDiagnosedFollowingGynoUF_CC());
+                .clickNextButton(new FollowingGynecologicalConditionСС());
 
         //---------------Q2 Has a healthcare professional ever diagnosed you with any of the following gynecological or women's health conditions? -------------------
-        hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+        followingGynecologicalConditionСС
                 .waitForPageLoad();
-        Assert.assertEquals(hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.getTitleText(),hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.titleExpected, "Title is diff");
-        NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+        Assert.assertEquals(followingGynecologicalConditionСС.getTitleText(), followingGynecologicalConditionСС.titleExpected, "Title is diff");
+        NonQRtransitionPageCC nonQRtransitionPageCC = followingGynecologicalConditionСС
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC
@@ -102,7 +101,7 @@ public class UF_4384_CC extends BaseTest{
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1,protocol2);
         debugPageCC.back();
-        HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+        HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = followingGynecologicalConditionСС
                 .waitForPageLoad()
                 .clickOnAnswers("Endometriosis (Agent Note: end-oh-me-tree-OH-sis)","None of the above") //Check this on screener
                 .clickOnAnswers("Uterine fibroids, also known as leiomyomas or myomas (Agent Note: lie-oh-my-OH-muhs, my-OH-muhs)")
@@ -113,10 +112,10 @@ public class UF_4384_CC extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(haveYouGoneThroughMenopauseUF_CC.getTitleText(),haveYouGoneThroughMenopauseUF_CC.titleExpected, "Title is diff");
         //----DQ if selected any option other than None of the above-----------
-        HaveYouHadHysterectomyUF_CC haveYouHadHysterectomyUF_CC = haveYouGoneThroughMenopauseUF_CC
+        HaveYouHadHysterectomyСС haveYouHadHysterectomyСС = haveYouGoneThroughMenopauseUF_CC
                 .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
-                .clickNextButton(new HaveYouHadHysterectomyUF_CC());
-        haveYouHadHysterectomyUF_CC
+                .clickNextButton(new HaveYouHadHysterectomyСС());
+        haveYouHadHysterectomyСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1,protocol2)
@@ -124,8 +123,8 @@ public class UF_4384_CC extends BaseTest{
         		haveYouGoneThroughMenopauseUF_CC
         		.waitForPageLoad()
         		.clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
-        		.clickNextButton(new HaveYouHadHysterectomyUF_CC());
-        haveYouHadHysterectomyUF_CC
+        		.clickNextButton(new HaveYouHadHysterectomyСС());
+        haveYouHadHysterectomyСС
         		.waitForPageLoad()
         		.getPage(debugPageCC)
         		.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1,protocol2)
@@ -133,8 +132,8 @@ public class UF_4384_CC extends BaseTest{
 				haveYouGoneThroughMenopauseUF_CC
 				.waitForPageLoad()
 				.clickOnAnswer("Yes, menopause for another reason, such as premature ovarian failure or exposure to a medical treatment like chemotherapy")
-				.clickNextButton(new HaveYouHadHysterectomyUF_CC());
-		haveYouHadHysterectomyUF_CC
+				.clickNextButton(new HaveYouHadHysterectomyСС());
+		haveYouHadHysterectomyСС
 				.waitForPageLoad()
 				.getPage(debugPageCC)
 				.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1,protocol2)
@@ -142,22 +141,22 @@ public class UF_4384_CC extends BaseTest{
         		haveYouGoneThroughMenopauseUF_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouHadHysterectomyUF_CC());
+                .clickNextButton(new HaveYouHadHysterectomyСС());
 
         //---------------Q4 Have you had a hysterectomy (surgical removal of the uterus)?-------------------
-        haveYouHadHysterectomyUF_CC
+        haveYouHadHysterectomyСС
                 .waitForPageLoad();
-        Assert.assertEquals(haveYouHadHysterectomyUF_CC.getTitleText(),haveYouHadHysterectomyUF_CC.titleExpected, "Title is diff");
-        NonQRtransitionPageCC nonQRtransitionPageCC1 = haveYouHadHysterectomyUF_CC
+        Assert.assertEquals(haveYouHadHysterectomyСС.getTitleText(), haveYouHadHysterectomyСС.titleExpected, "Title is diff");
+        NonQRtransitionPageCC nonQRtransitionPageCC1 = haveYouHadHysterectomyСС
                 .clickOnAnswer("Yes")
                 .clickNextButton(new NonQRtransitionPageCC());
         		nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals(haveYouHadHysterectomyUF_CC.titleExpected, protocol1, protocol2)
+                .checkProtocolsEquals(haveYouHadHysterectomyСС.titleExpected, protocol1, protocol2)
                 .back();
-        haveYouHadHysterectomyUF_CC.waitForPageLoad();
-        PlzDescribeYourMenstrualCyclesCC plzDescribeYourMenstrualCyclesCC = haveYouHadHysterectomyUF_CC
+        haveYouHadHysterectomyСС.waitForPageLoad();
+        PlzDescribeYourMenstrualCyclesCC plzDescribeYourMenstrualCyclesCC = haveYouHadHysterectomyСС
                 .clickOnAnswer("No")
                 .clickNextButton(new PlzDescribeYourMenstrualCyclesCC());
         
@@ -218,23 +217,23 @@ public class UF_4384_CC extends BaseTest{
         haveYouHadSurgicalProcedurePast6MonthsUF_CC
                 .waitForPageLoad();
         Assert.assertEquals(haveYouHadSurgicalProcedurePast6MonthsUF_CC.getTitleText(), haveYouHadSurgicalProcedurePast6MonthsUF_CC.titleExpected, "Title is diff");
-        HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = haveYouHadSurgicalProcedurePast6MonthsUF_CC
+        DiagnosedWithGynecologicalConditionCC diagnosedWithGynecologicalConditionCC = haveYouHadSurgicalProcedurePast6MonthsUF_CC
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());
-        hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC.waitForPageLoad()
+                .clickNextButton(new DiagnosedWithGynecologicalConditionCC());
+        diagnosedWithGynecologicalConditionCC.waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEquals("Have you had a surgical procedure to treat your uterine fibroids in the past 6 months?This surgery m...", protocol1, protocol2)
                 .back();
         haveYouHadSurgicalProcedurePast6MonthsUF_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());
+                .clickNextButton(new DiagnosedWithGynecologicalConditionCC());
 
 		//---------------Q9 Has a healthcare professional ever diagnosed you with any of these other women's health conditions? -------------------	         
-        hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
+        diagnosedWithGynecologicalConditionCC
                 .waitForPageLoad();
-        Assert.assertEquals(hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC.getTitleText(),hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC.titleExpected, "Title is diff");
-        		AreYouCurrentlyPregnantUF_CC areYouCurrentlyPregnantUF_CC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
+        Assert.assertEquals(diagnosedWithGynecologicalConditionCC.getTitleText(), diagnosedWithGynecologicalConditionCC.titleExpected, "Title is diff");
+        		AreYouCurrentlyPregnantUF_CC areYouCurrentlyPregnantUF_CC = diagnosedWithGynecologicalConditionCC
                 .clickOnAnswers("Uterine polyps, also known as endometrial polyps (Agent Note: end-oh-ME-tree-ul PAHL-ips)",
                 		        "Cervical polyps (Agent Note: PAHL-ips)",
                 		        "Ovarian cyst that is currently causing symptoms",
@@ -246,7 +245,7 @@ public class UF_4384_CC extends BaseTest{
                 //.getPage(debugPageCC)
                 //.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of these other gynecological or women's he...", protocol1, protocol2)
                 .back();
-        hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC.waitForPageLoad()
+        diagnosedWithGynecologicalConditionCC.waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new AreYouCurrentlyPregnantUF_CC());
 
