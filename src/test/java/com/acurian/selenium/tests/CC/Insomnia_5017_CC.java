@@ -129,7 +129,7 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickNextButton(new NonQRtransitionPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020234-QS7302-STUDYQUES", site.activeProtocols) //TODO
+                .checkProtocolsContainsForQNumber("Q0020234-QS7302-STUDYQUES", site.activeProtocols)
                 .back(doYouSufferFromInsomniaPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
