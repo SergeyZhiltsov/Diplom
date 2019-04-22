@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.insomnia_5017;
+package com.acurian.selenium.pages.OLS.ADG_4357;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,15 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DoYouSufferFromInsomniaPageOLS extends MainPageOLS {
+public class WithType1DiabetesPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Insomnia is a sleep disorder that may cause you to have difficulty:\n" +
-            "Falling asleep\n" +
-            "Staying asleep\n" +
-            "Going back to sleep when you wake up during the night\n" +
-            "Going back to sleep when you wake up earlier than you intend\n" +
-            "\n" +
-            "Do you suffer from insomnia, or any of these sleep problems?";
+    public final String titleExpected = "How long ago were you diagnosed with type 1 diabetes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -25,18 +19,18 @@ public class DoYouSufferFromInsomniaPageOLS extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public DoYouSufferFromInsomniaPageOLS() {
+    public WithType1DiabetesPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DoYouSufferFromInsomniaPageOLS waitForPageLoad() {
+    public WithType1DiabetesPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DoYouSufferFromInsomniaPageOLS clickOnAnswer(String answerText) {
+    public WithType1DiabetesPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
