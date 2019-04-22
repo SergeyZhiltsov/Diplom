@@ -40,7 +40,7 @@ public class Insomnia_5017_CC extends BaseTest{
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                //{Site.AUT_INS_5017S_site},
+                {Site.AUT_INS_5017S_site},
                 {Site.AUT_INS_5017_Site}
         };
     }
@@ -224,7 +224,7 @@ public class Insomnia_5017_CC extends BaseTest{
                 .waitForPageLoadWithCurves(transitionStatement)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        //-------------------New GENERAL HEALTH---------------------------
+//-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder")
@@ -373,6 +373,17 @@ public class Insomnia_5017_CC extends BaseTest{
         doYouTakeAnyMedicationsControlHypertension_CC
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+
+        WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC =
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
+                .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
+        //Q8: QS44
+        whichOfFollowingDigestiveConditionPageCC
+                .waitForPageLoad()
+                .back();
 
         //Q16: QS51
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
