@@ -9,15 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DoYouSufferFromInsomniaPageCC extends MainPageCC {
+public class ElectronicDeviceSleep extends MainPageCC {
 
-    public final String titleExpected = "Insomnia is a sleep disorder that may cause you to have difficulty:\n" +
-                                        "Falling asleep\n" +
-                                        "Staying asleep\n" +
-                                        "Going back to sleep when you wake up during the night\n" +
-                                        "Going back to sleep when you wake up earlier than you intend\n" +
-                                        "\n" +
-                                        "Do you suffer from insomnia, or any of these sleep problems?";
+    public final String titleExpected = "Are you comfortable using a study-provided electronic device to answer daily questions about your sleep?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -25,18 +19,18 @@ public class DoYouSufferFromInsomniaPageCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public DoYouSufferFromInsomniaPageCC() {
+    public ElectronicDeviceSleep() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DoYouSufferFromInsomniaPageCC waitForPageLoad() {
+    public ElectronicDeviceSleep waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DoYouSufferFromInsomniaPageCC clickOnAnswer(String answerText) {
+    public ElectronicDeviceSleep clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

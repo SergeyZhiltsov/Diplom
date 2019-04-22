@@ -90,6 +90,16 @@ public class SubquestionExperiencedHeartPageCC extends MainPageCC{
     }
 
     @Step
+    public SubquestionExperiencedHeartPageCC clickOnAnswerForAllSubQuestion(String answerText) {
+        titlesText.forEach(el -> {
+            List<WebElement> checkBoxListFromTitle = el.findElements(
+                    By.xpath("ancestor::div[@class='subquestion']/div[@class='radio_btns_container']//label"));
+            clickOnRadioButton(checkBoxListFromTitle, answerText);
+        });
+        return this;
+    }
+
+    @Step
     public String getTitleText(int titleIndex){
         return getText(titlesText.get(titleIndex-1));
     }
