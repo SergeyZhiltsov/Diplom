@@ -9,10 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class OvernightVisitsSleepCenter extends MainPageCC {
+public class ElectronicDeviceSleepPageCC extends MainPageCC {
 
-    public final String titleExpected = "This study requires several overnight visits at a sleep center.\n" +
-                                        "Would you be willing and able to complete these visits?";
+    public final String titleExpected = "Are you comfortable using a study-provided electronic device to answer daily questions about your sleep?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -20,18 +19,18 @@ public class OvernightVisitsSleepCenter extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public OvernightVisitsSleepCenter() {
+    public ElectronicDeviceSleepPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public OvernightVisitsSleepCenter waitForPageLoad() {
+    public ElectronicDeviceSleepPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public OvernightVisitsSleepCenter clickOnAnswer(String answerText) {
+    public ElectronicDeviceSleepPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,5 +39,4 @@ public class OvernightVisitsSleepCenter extends MainPageCC {
     public String getTitleText(){
         return getText(titleText);
     }
-
 }
