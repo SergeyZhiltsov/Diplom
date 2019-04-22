@@ -1,16 +1,17 @@
-package com.acurian.selenium.pages.CC.END_4385;
+package com.acurian.selenium.pages.CC.shared;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DescribesThePelvicPainCC extends MainPageCC{
+import java.util.List;
 
-    public final String titleExpected = "Which of the following most accurately describes your worst pelvic pain during your period, and how it affects your life?";
+public class HaveYouHadHysterectomyСС extends MainPageCC{
+
+    public final String titleExpected = "Have you had a hysterectomy (surgical removal of the uterus)?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -18,25 +19,24 @@ public class DescribesThePelvicPainCC extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public DescribesThePelvicPainCC() {
+    public HaveYouHadHysterectomyСС() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DescribesThePelvicPainCC waitForPageLoad() {
+    public HaveYouHadHysterectomyСС waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DescribesThePelvicPainCC clickOnAnswer(String answerText) {
+    public HaveYouHadHysterectomyСС clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
-
 }

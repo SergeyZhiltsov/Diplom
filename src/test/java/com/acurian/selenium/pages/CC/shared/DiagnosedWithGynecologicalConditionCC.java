@@ -1,41 +1,43 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.CC.shared;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DiagnosedWithGynecologicalConditionOLS extends MainPageOLS{
-    
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of these other women's health conditions?\n" +
-            "Please select all that apply.";
+import java.util.List;
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+public class DiagnosedWithGynecologicalConditionCC extends MainPageCC{
+
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of these other women's health conditions?\n" +
+            "Agent Note: Select all that apply";
+
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
+    @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
-    
-    public DiagnosedWithGynecologicalConditionOLS() {
+
+    public DiagnosedWithGynecologicalConditionCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnosedWithGynecologicalConditionOLS waitForPageLoad() {
+    public DiagnosedWithGynecologicalConditionCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedWithGynecologicalConditionOLS clickOnAnswers(String ...answerText) {
+    public DiagnosedWithGynecologicalConditionCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText(){
         return getText(titleText);
     }
 }

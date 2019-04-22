@@ -2,16 +2,18 @@ package com.acurian.selenium.tests.CC;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.acurian.selenium.pages.CC.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.END_4385.ApproxHowManyDaysInYourMenstrualCycle_CC;
-import com.acurian.selenium.pages.CC.END_4385.DescribesThePelvicPainCC;
+import com.acurian.selenium.pages.CC.END_4385.DescribesPelvicPainCC;
 import com.acurian.selenium.pages.CC.END_4385.DiagnoseYourEndometriosisCC;
 import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.END_4385.HowManyTimesDidYouGetYourPeriodInThreeMons_CC;
-import com.acurian.selenium.pages.CC.END_4385.NonMenstrualPelvicPainCC;
-import com.acurian.selenium.pages.CC.END_4385.PelvicPainDuringMenstrualCC;
+import com.acurian.selenium.pages.CC.END_4385.DescribesNonMenstrualPelvicPainCC;
+import com.acurian.selenium.pages.CC.END_4385.PelvicPainCC;
 import com.acurian.selenium.pages.CC.END_4385.PelvicPainOtherTimesCC;
 import com.acurian.selenium.pages.CC.END_4385.PlzDescribeYourMenstrualCyclesCC;
 import com.acurian.selenium.pages.CC.closes.RadiantWarmTransferClose1PageCC;
@@ -27,19 +29,7 @@ import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.shared.AreYouCurrentlyPregnantCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HasHealthcareProfEverDiagnosedFollowingGynoUF_CC;
-import com.acurian.selenium.pages.CC.shared.HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouGoneThroughMenopauseUF_CC;
-import com.acurian.selenium.pages.CC.shared.HaveYouHadHysterectomyUF_CC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
+import com.acurian.selenium.pages.CC.shared.DiagnosedWithGynecologicalConditionCC;
 import com.acurian.selenium.utils.DataProviderPool;
 
 public class Endo_4356E_CC extends BaseTest{
@@ -104,22 +94,22 @@ public class Endo_4356E_CC extends BaseTest{
     		   .typeZipCode("19044")
     		   .clickNextButton(new GenderPageCC());
        
-       HasHealthcareProfEverDiagnosedFollowingGynoUF_CC hasHealthcareProfEverDiagnosedFollowingGynoUF_CC = genderPageCC
+       FollowingGynecologicalConditionСС followingGynecologicalConditionСС = genderPageCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Female")
-    		   .clickNextButton(new HasHealthcareProfEverDiagnosedFollowingGynoUF_CC());
+    		   .clickNextButton(new FollowingGynecologicalConditionСС());
        
-       NonQRtransitionPageCC nonQRtransitionPageCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+       NonQRtransitionPageCC nonQRtransitionPageCC = followingGynecologicalConditionСС
     		   .waitForPageLoad()
     		   .clickOnAnswers("None of the above")
     		   .clickNextButton(new NonQRtransitionPageCC())
        		   .waitForPageLoad();
             
        DebugPageCC debugPageCC = new DebugPageCC();       
-       debugPageCC.checkProtocolsEquals(hasHealthcareProfEverDiagnosedFollowingGynoUF_CC.titleExpected, protocol1, protocol2);
+       debugPageCC.checkProtocolsEquals(followingGynecologicalConditionСС.titleExpected, protocol1, protocol2);
        debugPageCC.back(); 
        
-       DiagnoseYourEndometriosisCC diagnoseYourEndometriosisCC = hasHealthcareProfEverDiagnosedFollowingGynoUF_CC
+       DiagnoseYourEndometriosisCC diagnoseYourEndometriosisCC = followingGynecologicalConditionСС
     		   .waitForPageLoad()
     		   .clickOnAnswers("Endometriosis (Agent Note: end-oh-me-tree-OH-sis)")    		   
     		   .clickNextButton(new DiagnoseYourEndometriosisCC());
@@ -136,19 +126,19 @@ public class Endo_4356E_CC extends BaseTest{
        
        haveYouGoneThroughMenopauseUF_CC
     		   .waitForPageLoad();
-    		   HaveYouHadHysterectomyUF_CC haveYouHadHysterectomyUF_CC = haveYouGoneThroughMenopauseUF_CC
+    		   HaveYouHadHysterectomyСС haveYouHadHysterectomyСС = haveYouGoneThroughMenopauseUF_CC
     		   .clickOnAnswer("No")
-    		   .clickNextButton(new HaveYouHadHysterectomyUF_CC());
+    		   .clickNextButton(new HaveYouHadHysterectomyСС());
        
-       NonQRtransitionPageCC nonQRtransitionPageCC1 = haveYouHadHysterectomyUF_CC
+       NonQRtransitionPageCC nonQRtransitionPageCC1 = haveYouHadHysterectomyСС
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
     		   .clickNextButton(new NonQRtransitionPageCC());
 
-       debugPageCC.checkProtocolsEquals(haveYouHadHysterectomyUF_CC.titleExpected, protocol1, protocol2);
+       debugPageCC.checkProtocolsEquals(haveYouHadHysterectomyСС.titleExpected, protocol1, protocol2);
        debugPageCC.back();
      
-       PlzDescribeYourMenstrualCyclesCC plzDescribeYourMenstrualCyclesCC = haveYouHadHysterectomyUF_CC
+       PlzDescribeYourMenstrualCyclesCC plzDescribeYourMenstrualCyclesCC = haveYouHadHysterectomyСС
     		   .waitForPageLoad()
     		   .clickOnAnswer("No")
     		   .clickNextButton(new PlzDescribeYourMenstrualCyclesCC());
@@ -163,45 +153,45 @@ public class Endo_4356E_CC extends BaseTest{
           		.setDays("15")
           		.clickNextButton(new HowManyTimesDidYouGetYourPeriodInThreeMons_CC());
        
-       PelvicPainDuringMenstrualCC pelvicPainDuringMenstrualCC = howManyTimesDidYouGetYourPeriodInThreeMons_CC
+       PelvicPainCC pelvicPainCC = howManyTimesDidYouGetYourPeriodInThreeMons_CC
           		.waitForPageLoad()
           		.clickOnAnswer("Did not get period at all in the past 3 months")
-          		.clickNextButton(new PelvicPainDuringMenstrualCC());
+          		.clickNextButton(new PelvicPainCC());
        
-       DescribesThePelvicPainCC describesThePelvicPainCC = pelvicPainDuringMenstrualCC
+       DescribesPelvicPainCC describesPelvicPainCC = pelvicPainCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
-    		   .clickNextButton(new DescribesThePelvicPainCC());
+    		   .clickNextButton(new DescribesPelvicPainCC());
        
-       PelvicPainOtherTimesCC pelvicPainOtherTimesCC = describesThePelvicPainCC
+       PelvicPainOtherTimesCC pelvicPainOtherTimesCC = describesPelvicPainCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Severe - the pain is so intense that I have great difficulty completing my daily activities")
     		   .clickNextButton(new PelvicPainOtherTimesCC());
        
-       NonMenstrualPelvicPainCC nonMenstrualPelvicPainCC = pelvicPainOtherTimesCC
+       DescribesNonMenstrualPelvicPainCC describesNonMenstrualPelvicPainCC = pelvicPainOtherTimesCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Yes")
-    		   .clickNextButton(new NonMenstrualPelvicPainCC());
+    		   .clickNextButton(new DescribesNonMenstrualPelvicPainCC());
        
-       HormonalBirthControlCC hormonalBirthControlCC = nonMenstrualPelvicPainCC
+       HormonalBirthControlCC hormonalBirthControlCC = describesNonMenstrualPelvicPainCC
     		   .waitForPageLoad()
     		   .clickOnAnswer("Moderate - the pain is strong enough that I have some difficulty completing my daily activities")
     		   .clickNextButton(new HormonalBirthControlCC());
        
        //SurgicalProceduresCC surgicalProceduresCC = hormonalBirthControlCC
        hormonalBirthControlCC.waitForPageLoad();
-    		   HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = hormonalBirthControlCC
+    		   DiagnosedWithGynecologicalConditionCC diagnosedWithGynecologicalConditionCC = hormonalBirthControlCC
     		   .clickOnAnswer("Yes")
-    		   .clickNextButton(new HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());    		   
+    		   .clickNextButton(new DiagnosedWithGynecologicalConditionCC());
     		   
 /*    		   .clickNextButton(new SurgicalProceduresCC());
        surgicalProceduresCC
     		   .waitForPageLoad();
-               HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC = surgicalProceduresCC
+               DiagnosedWithGynecologicalConditionCC diagnosedWithGynecologicalConditionCC = surgicalProceduresCC
                 .clickOnAnswer("1")
-    		   .clickNextButton(new  HasHealthcareProfEverDiagnosedYouOtherGynoUF_CC());  */    
+    		   .clickNextButton(new  DiagnosedWithGynecologicalConditionCC());  */
        
-       AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = hasHealthcareProfEverDiagnosedYouOtherGynoUF_CC
+       AreYouCurrentlyPregnantCC areYouCurrentlyPregnantCC = diagnosedWithGynecologicalConditionCC
     		   .waitForPageLoad()
     		   .clickOnAnswers("Endometrioma, (Agent Note: end-oh-me-tree-OH-ma) also known as endometrial (Agent Note: end-oh-ME-tree-ul) or endometrioid (Agent Note: endo-oh-ME-tree-oid) cyst or \"chocolate cyst\"")
     		   .clickNextButton(new AreYouCurrentlyPregnantCC());
