@@ -1,12 +1,10 @@
 package com.acurian.selenium.pages.CC.END_4385;
 
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.END_4385.ApproxHowManyDaysInYourMenstrualCycle_OLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class ApproxHowManyDaysInYourMenstrualCycle_CC extends MainPageCC{
@@ -36,7 +34,6 @@ public class ApproxHowManyDaysInYourMenstrualCycle_CC extends MainPageCC{
 
     @Step
     public ApproxHowManyDaysInYourMenstrualCycle_CC typeAge(String text) {
-        //typeTextWithoutClear(ageMig, text);
         typeText(ageMig, text);
         return this;
     }
@@ -51,5 +48,4 @@ public class ApproxHowManyDaysInYourMenstrualCycle_CC extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

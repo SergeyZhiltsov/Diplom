@@ -1,18 +1,17 @@
 package com.acurian.selenium.pages.CC.END_4385;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.OLS.END_4385.DiagnoseYourEndometriosisOLS;
-
 import ru.yandex.qatools.allure.annotations.Step;
+
+import java.util.List;
 
 public class DiagnoseYourEndometriosisCC extends MainPageCC{
 
-    public final String titleExpected = "When was your most recent surgery to treat or diagnose your endometriosis performed?";
+    public final String titleExpected = "When was your most recent procedure to treat or diagnose your endometriosis performed?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -40,5 +39,4 @@ public class DiagnoseYourEndometriosisCC extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

@@ -1,17 +1,17 @@
 package com.acurian.selenium.pages.OLS.END_4385;
 
-import java.util.List;
-
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DescribesPelvicPainOLS extends MainPageOLS {
+import java.util.List;
 
-	public final String titleExpected = "Which of the following most accurately describes your worst pelvic pain during your period, and how it affects your life?";
+public class BirthControlMethodPageOLS extends MainPageOLS {
+
+	public final String titleExpected = "Are you willing to temporarily stop using this birth control method to be in this study?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,18 +19,18 @@ public class DescribesPelvicPainOLS extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public DescribesPelvicPainOLS() {
+    public BirthControlMethodPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DescribesPelvicPainOLS waitForPageLoad() {
+    public BirthControlMethodPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DescribesPelvicPainOLS clickOnAnswer(String answerText) {
+    public BirthControlMethodPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
