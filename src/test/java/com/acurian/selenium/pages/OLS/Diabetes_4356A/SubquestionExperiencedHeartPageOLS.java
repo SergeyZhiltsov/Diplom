@@ -13,8 +13,9 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageOLS{
 
     public final String titleExpected1 = "When was the last time that you experienced a heart attack?";
     public final String titleExpected2 = "When was the last time that you experienced a stroke?";
-    public final String titleExpected3 = "When was the last time that you experienced a TIA or mini-stroke?";
-    public final String titleExpected4 = "When was the last time that you experienced angina or chest pain that required an overnight hospital stay?";
+    public final String titleExpected3 = "Do you experience any remaining muscle weakness or paralysis of the arms or legs that was caused by the stroke?";
+    public final String titleExpected4 = "When was the last time that you experienced a TIA or mini-stroke?";
+    public final String titleExpected5 = "When was the last time that you experienced angina or chest pain that required an overnight hospital stay?";
 
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]")
@@ -79,6 +80,16 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageOLS{
                 .get()
                 .findElements(By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
         clickOnRadioButton(checkBoxListFromTitle, answerText);
+        return this;
+    }
+
+    @Step
+    public SubquestionExperiencedHeartPageOLS clickOnAnswerForAllSubQuestion(String answerText) {
+        titlesText.forEach(el -> {
+            List<WebElement> checkBoxListFromTitle = el.findElements(
+                    By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
+            clickOnRadioButton(checkBoxListFromTitle, answerText);
+        });
         return this;
     }
     
