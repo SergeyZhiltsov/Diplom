@@ -45,7 +45,7 @@ public class Insomnia_5017_OLS extends BaseTest{
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_INS_5017S_site},
+                //{Site.AUT_INS_5017S_site}, //Not required
                 {Site.AUT_INS_5017_site}
         };
     }
@@ -604,7 +604,6 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "5017")
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .getAnomalyDbToLog(env);
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
