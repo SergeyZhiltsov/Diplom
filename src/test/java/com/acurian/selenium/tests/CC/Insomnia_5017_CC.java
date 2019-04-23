@@ -632,7 +632,7 @@ public class Insomnia_5017_CC extends BaseTest{
                 .waitForPageLoad(studyName)
                 .getPID();
         switch (site.zipCode) {
-            case "19044":
+            case "08204": //1R
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())

@@ -97,7 +97,7 @@ public class VACC_4556_CC extends BaseTest {
                         .clickNextButton(zipCodePageCC)
                         .waitForPageLoad()
                         .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols[1])
+                        .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols[0])
                         .back(dateOfBirthPageCC)
                         .waitForPageLoad()
                         .setYear("1953")//65
@@ -144,33 +144,28 @@ public class VACC_4556_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
-        CalledPrevnarPageCC calledPrevnarPageCC = nonQRtransitionPageCC
+        nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018854-QS6902-STUDYQUES", protocols)
-                .back(areYouInterestedInPneumoniaVaccineStudyCC)
+                .back(areYouInterestedInPneumoniaVaccineStudyCC);
+        areYouInterestedInPneumoniaVaccineStudyCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CalledPrevnarPageCC());
 
-        DiagnosedWithAnyOfTheFollowingTypesOfCancerCC diagnosedWithAnyOfTheFollowingTypesOfCancerCC = calledPrevnarPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new DiagnosedWithAnyOfTheFollowingTypesOfCancerCC());
-        switch (site) {
+        DiagnosedWithAnyOfTheFollowingTypesOfCancerCC diagnosedWithAnyOfTheFollowingTypesOfCancerCC = new DiagnosedWithAnyOfTheFollowingTypesOfCancerCC();
+        CalledPrevnarPageCC calledPrevnarPageCC = new CalledPrevnarPageCC();
+         switch (site) {
             case AUT_VAC_4556M:
-                diagnosedWithAnyOfTheFollowingTypesOfCancerCC
-                        .waitForPageLoad()
-                        .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols[0])
-                        .back();
                 calledPrevnarPageCC
                         .waitForPageLoad()
                         .clickOnAnswer("No")
-                        .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerCC)
+                        .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerCC);
+                diagnosedWithAnyOfTheFollowingTypesOfCancerCC
                         .waitForPageLoad()
                         .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols[1])
+                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", site.activeProtocols)
                         .back();
                 break;
 //            case AUT_VAC_4556_Site:
@@ -181,10 +176,13 @@ public class VACC_4556_CC extends BaseTest {
 //                        .back();
 //                break;
             case AUT_VAC_4556_A:
-                diagnosedWithAnyOfTheFollowingTypesOfCancerCC
+                calledPrevnarPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerCC)
                         .waitForPageLoad()
                         .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols)
+                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", site.activeProtocols)
                         .back();
         }
         calledPrevnarPageCC
