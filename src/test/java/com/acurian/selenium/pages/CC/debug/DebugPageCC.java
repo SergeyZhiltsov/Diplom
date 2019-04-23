@@ -10,6 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class DebugPageCC extends MainPageCC{
 
@@ -118,8 +119,17 @@ public class DebugPageCC extends MainPageCC{
     private String[] getProtocolsForQuestionNumber(String questionNumber){
         openDebugWindow();
         waitForAnimation();
+
+        Predicate<WebElement> predicate;// function block to use QS6401 instead Q0018010-QS6401-STUDYQUES
+        if (questionNumber.contains("-")) {
+            predicate = (el) -> questionNumber.equals(el.getText());
+        }
+        else {
+            predicate = (el) -> el.getText().contains(questionNumber.replaceFirst("(^.*)(-.*-)(.*$)","$2"));
+        }
+
         String temp = questionNumberList.stream()
-                .filter(el -> questionNumber.equals(el.getText()))
+                .filter(predicate)
                 .findFirst()
                 .get()
                 .findElement(By.xpath("following-sibling::*[5]"))
