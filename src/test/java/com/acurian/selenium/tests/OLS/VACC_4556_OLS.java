@@ -99,34 +99,26 @@ public class VACC_4556_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-
-        CalledPrevnarPageOLS calledPrevnarPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6902", protocols)
-                .back(areYouInterestedInPneumoniaVaccineStudyOLS)
+                .back();
+        CalledPrevnarPageOLS calledPrevnarPageOLS = areYouInterestedInPneumoniaVaccineStudyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CalledPrevnarPageOLS());
 
-        DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS diagnosedWithAnyOfTheFollowingTypesOfCancerOLS = calledPrevnarPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS());
+        DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS diagnosedWithAnyOfTheFollowingTypesOfCancerOLS = new DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS();
         switch (site) {
             case AUT_VAC_4556M:
-                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
-                        .waitForPageLoad()
-                        .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS6907", protocols[0])
-                        .back();
                 calledPrevnarPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer("No")
                         .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS6907", protocols[1])
+                        .checkProtocolsContainsForQNumber("QS6907", protocols[0])
                         .back();
                 break;
 //            case AUT_VAC_4556_Site:
@@ -137,10 +129,13 @@ public class VACC_4556_OLS extends BaseTest {
 //                        .back();
 //                break;
             case AUT_VAC_4556_A:
-                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
+                calledPrevnarPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS6907", protocols)
+                        .checkProtocolsContainsForQNumber("QS6907", protocols[0])
                         .back();
         }
         calledPrevnarPageOLS
