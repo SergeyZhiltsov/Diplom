@@ -35,7 +35,7 @@ public class VACC_4556_CC extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_VAC_4556M},
-                {Site.AUT_VAC_4556_Site},
+//                {Site.AUT_VAC_4556_Site},
                 {Site.AUT_VAC_4556_A}
         };
     }
@@ -103,19 +103,19 @@ public class VACC_4556_CC extends BaseTest {
                         .setYear("1953")//65
                         .clickNextButton(zipCodePageCC);
                 break;
-            case AUT_VAC_4556_Site:
-                dateOfBirthPageCC
-                        .waitForPageLoad()
-                        .setYear("1968")//50
-                        .clickNextButton(zipCodePageCC)
-                        .waitForPageLoad()
-                        .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
-                        .back(dateOfBirthPageCC)
-                        .waitForPageLoad()
-                        .setYear("1969")//49
-                        .clickNextButton(zipCodePageCC);
-                break;
+//            case AUT_VAC_4556_Site:
+//                dateOfBirthPageCC
+//                        .waitForPageLoad()
+//                        .setYear("1968")//50
+//                        .clickNextButton(zipCodePageCC)
+//                        .waitForPageLoad()
+//                        .getPage(debugPageCC)
+//                        .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
+//                        .back(dateOfBirthPageCC)
+//                        .waitForPageLoad()
+//                        .setYear("1969")//49
+//                        .clickNextButton(zipCodePageCC);
+//                break;
             case AUT_VAC_4556_A:
                 dateOfBirthPageCC
                         .waitForPageLoad()
@@ -173,13 +173,13 @@ public class VACC_4556_CC extends BaseTest {
                         .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols[1])
                         .back();
                 break;
-            case AUT_VAC_4556_Site:
-                diagnosedWithAnyOfTheFollowingTypesOfCancerCC
-                        .waitForPageLoad()
-                        .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols)
-                        .back();
-                break;
+//            case AUT_VAC_4556_Site:
+//                diagnosedWithAnyOfTheFollowingTypesOfCancerCC
+//                        .waitForPageLoad()
+//                        .getPage(debugPageCC)
+//                        .checkProtocolsContainsForQNumber("Q0019390-QS6907-STUDYQUES", protocols)
+//                        .back();
+//                break;
             case AUT_VAC_4556_A:
                 diagnosedWithAnyOfTheFollowingTypesOfCancerCC
                         .waitForPageLoad()
@@ -350,19 +350,19 @@ public class VACC_4556_CC extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo)
                         .queueSiteForFULCheck(site.name);
                 break;
-            case AUT_VAC_4556_Site:
-                siteSelectionPageCC
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose2PageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo)
-                        .queueSiteForFULCheck(site.name);
+//            case AUT_VAC_4556_Site:
+//                siteSelectionPageCC
+//                        .clickOnAnswer(site.name)
+//                        .clickNextButton(new QualifiedClose2PageCC())
+//                        .waitForPageLoad()
+//                        .clickNextButton(new ThankYouCloseSimplePageCC())
+//                        .waitForPageLoad()
+//                        .clickNextButton(selectActionPageCC)
+//                        .waitForPageLoad()
+//                        .pidFromDbToLog(env)
+//                        .childPidFromDbToLog(env)
+//                        .dispoShouldMatch(site.dispo, site.dispo)
+//                        .queueSiteForFULCheck(site.name);
         }
 
     }

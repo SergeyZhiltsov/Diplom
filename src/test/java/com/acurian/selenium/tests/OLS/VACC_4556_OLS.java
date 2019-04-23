@@ -8,7 +8,6 @@ import com.acurian.selenium.pages.OLS.Vaccine_4556.DiagnosedWithAnyOfTheFollowin
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
@@ -59,19 +58,19 @@ public class VACC_4556_OLS extends BaseTest {
                         .setDate("05051953")//65
                         .clickNextButton(zipCodePageOLS);
                 break;
-            case AUT_VAC_4556_Site:
-                dateOfBirthPageOLS
-                        .waitForPageLoad()
-                        .setDate("05051968")//50
-                        .clickNextButton(zipCodePageOLS)
-                        .waitForPageLoad()
-                        .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QSI8004", protocols)
-                        .back(dateOfBirthPageOLS)
-                        .waitForPageLoad()
-                        .setDate("05051969")//49
-                        .clickNextButton(zipCodePageOLS);
-                break;
+//            case AUT_VAC_4556_Site:
+//                dateOfBirthPageOLS
+//                        .waitForPageLoad()
+//                        .setDate("05051968")//50
+//                        .clickNextButton(zipCodePageOLS)
+//                        .waitForPageLoad()
+//                        .getPage(debugPageOLS)
+//                        .checkProtocolsContainsForQNumber("QSI8004", protocols)
+//                        .back(dateOfBirthPageOLS)
+//                        .waitForPageLoad()
+//                        .setDate("05051969")//49
+//                        .clickNextButton(zipCodePageOLS);
+//                break;
             case AUT_VAC_4556_A:
                 dateOfBirthPageOLS
                         .waitForPageLoad()
@@ -100,48 +99,43 @@ public class VACC_4556_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-
-        CalledPrevnarPageOLS calledPrevnarPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6902", protocols)
-                .back(areYouInterestedInPneumoniaVaccineStudyOLS)
+                .back();
+        CalledPrevnarPageOLS calledPrevnarPageOLS = areYouInterestedInPneumoniaVaccineStudyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CalledPrevnarPageOLS());
 
-        DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS diagnosedWithAnyOfTheFollowingTypesOfCancerOLS = calledPrevnarPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS());
+        DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS diagnosedWithAnyOfTheFollowingTypesOfCancerOLS = new DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS();
         switch (site) {
             case AUT_VAC_4556M:
-                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
-                        .waitForPageLoad()
-                        .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS6907", protocols[0])
-                        .back();
                 calledPrevnarPageOLS
                         .waitForPageLoad()
                         .clickOnAnswer("No")
                         .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS6907", protocols[1])
+                        .checkProtocolsContainsForQNumber("QS6907", protocols[0])
                         .back();
                 break;
-            case AUT_VAC_4556_Site:
-                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
-                        .waitForPageLoad()
-                        .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS6907", protocols)
-                        .back();
-                break;
+//            case AUT_VAC_4556_Site:
+//                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
+//                        .waitForPageLoad()
+//                        .getPage(debugPageOLS)
+//                        .checkProtocolsContainsForQNumber("QS6907", protocols)
+//                        .back();
+//                break;
             case AUT_VAC_4556_A:
-                diagnosedWithAnyOfTheFollowingTypesOfCancerOLS
+                calledPrevnarPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(diagnosedWithAnyOfTheFollowingTypesOfCancerOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS6907", protocols)
+                        .checkProtocolsContainsForQNumber("QS6907", protocols[0])
                         .back();
         }
         calledPrevnarPageOLS
@@ -327,19 +321,19 @@ public class VACC_4556_OLS extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo)
                         .queueSiteForFULCheck(site.name);
                 break;
-            case AUT_VAC_4556_Site:
-                siteSelectionPageOLS
-                        .clickOnFacilityName(site.name)
-                        .clickNextButton(new QualifiedClose2PageOLS())
-                        .waitForPageLoad()
-                        .clickNextButton(new ThankYouCloseSimplePageOLS())
-                        .waitForSENRPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS())
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo)
-                        .queueSiteForFULCheck(site.name);
+//            case AUT_VAC_4556_Site:
+//                siteSelectionPageOLS
+//                        .clickOnFacilityName(site.name)
+//                        .clickNextButton(new QualifiedClose2PageOLS())
+//                        .waitForPageLoad()
+//                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+//                        .waitForSENRPageLoad()
+//                        .clickNextButton(new AboutHealthPageOLS())
+//                        .waitForPageLoad()
+//                        .pidFromDbToLog(env)
+//                        .childPidFromDbToLog(env)
+//                        .dispoShouldMatch(site.dispo, site.dispo)
+//                        .queueSiteForFULCheck(site.name);
         }
     }
 }
