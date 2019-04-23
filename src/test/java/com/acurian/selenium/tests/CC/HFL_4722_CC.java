@@ -82,7 +82,7 @@ public class HFL_4722_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018012-QS6402-STUDYQUES", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS6402", site.activeProtocols)
                 .back();
         congestiveHeartFailurePageCC
                 .waitForPageLoad()
