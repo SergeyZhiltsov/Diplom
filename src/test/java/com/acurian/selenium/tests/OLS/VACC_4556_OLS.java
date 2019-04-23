@@ -52,7 +52,7 @@ public class VACC_4556_OLS extends BaseTest {
                         .clickNextButton(zipCodePageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QSI8004", protocols[1])
+                        .checkProtocolsContainsForQNumber("QSI8004", protocols)
                         .back(dateOfBirthPageOLS)
                         .waitForPageLoad()
                         .setDate("05051953")//65
