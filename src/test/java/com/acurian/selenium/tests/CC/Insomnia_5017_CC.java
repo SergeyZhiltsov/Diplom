@@ -40,8 +40,8 @@ public class Insomnia_5017_CC extends BaseTest{
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_INS_5017S_site},
-                {Site.AUT_INS_5017_Site}
+                //{Site.AUT_INS_5017S_site}, //Not required
+                {Site.AUT_INS_5017_site}
         };
     }
 
@@ -196,11 +196,11 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(rotatingNightShiftPageCC);
         //Q6
-        ElectronicDeviceSleep electronicDeviceSleep = rotatingNightShiftPageCC
+        ElectronicDeviceSleepPageCC electronicDeviceSleepPageCC = rotatingNightShiftPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes") //Disqualify (“Night shift or alternating sleep schedule”)
-                .clickNextButton(new ElectronicDeviceSleep());
-        electronicDeviceSleep
+                .clickNextButton(new ElectronicDeviceSleepPageCC());
+        electronicDeviceSleepPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0020239-QS7306-STUDYQUES", site.activeProtocols)
@@ -209,15 +209,15 @@ public class Insomnia_5017_CC extends BaseTest{
         rotatingNightShiftPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(electronicDeviceSleep);
+                .clickNextButton(electronicDeviceSleepPageCC);
 
-        OvernightVisitsSleepCenter overnightVisitsSleepCenter = electronicDeviceSleep
+        OvernightVisitsSleepCenterPageCC overnightVisitsSleepCenterPageCC = electronicDeviceSleepPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new OvernightVisitsSleepCenter());
+                .clickNextButton(new OvernightVisitsSleepCenterPageCC());
         //Q8
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        overnightVisitsSleepCenter
+        overnightVisitsSleepCenterPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC())
@@ -648,17 +648,17 @@ public class Insomnia_5017_CC extends BaseTest{
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case "19901":
-                selectionPageCC
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
-                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+//            case "19901":
+//                selectionPageCC
+//                        .clickOnAnswer(site.name)
+//                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+//                        .waitForPageLoadSyn()
+//                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+//                        .clickNextButton(selectActionPageCC)
+//                        .waitForPageLoad()
+//                        .pidFromDbToLog(env)
+//                        .childPidFromDbToLog(env)
+//                        .dispoShouldMatch(site.dispo, site.dispo);
         }
     }
 }

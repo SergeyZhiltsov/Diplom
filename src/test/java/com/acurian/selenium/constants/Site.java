@@ -23,8 +23,6 @@ public enum Site {
     AUT_IBD_3264_Site("AUT_IBD_3264_Site", "19901", "1R", false, true, "M14_234", "M16_067"),
     //3839
     AUT_IBD_3839_Site("AUT_IBD_3839_Site", "19901", "1R", false, false, "SHP647_301", "SHP647_302"),
-    //4631
-    AUT_INS_5017_Site("AUT_INS_5017_Site", "19044", "1R", false, false,  "ID-078A301"),
     //3889
     AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19044" , "1R", false, false, "M14_431", "M14_433", "M15_991", "M16_006"),
     //3973
@@ -86,7 +84,7 @@ public enum Site {
     //4867
     AUT_OAB_4867("AUT_OAB4867_site", "08204", "41C", false, false, "URO_901_1001"),
     //5017
-    AUT_INS_5017S_site("AUT_INS_5017S_site", "19901", "41C", false, false, "ID_078A301", "ID_078A302"),
+    //AUT_INS_5017S_site("AUT_INS_5017S_site", "19901", "41C", false, false, "ID_078A301", "ID_078A302"), //Not required in spec
     AUT_INS_5017_site("AUT_INS_5017_site", "08204", "1R", false, false, "ID_078A301", "ID_078A302"),
     //5034
     AUT_CV_5034A_site("AUT_CV_5034A_site", "45205", "1R", false, false, "K_877_302_A", "K_877_302_S"),
