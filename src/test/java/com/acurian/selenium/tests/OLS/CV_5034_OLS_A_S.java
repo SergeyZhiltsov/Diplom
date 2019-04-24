@@ -315,7 +315,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
                 //HaveDoctorEverDiagnosedYou_OLS haveDoctorEverDiagnosedYou_OLS = subquestionExperiencedHeartPageOLS
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")

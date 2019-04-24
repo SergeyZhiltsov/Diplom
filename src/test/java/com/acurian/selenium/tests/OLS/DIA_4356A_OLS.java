@@ -184,11 +184,14 @@ public class DIA_4356A_OLS extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5,"1 - 3 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

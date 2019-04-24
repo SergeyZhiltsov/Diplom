@@ -62,7 +62,8 @@ public class GeneralH_OLS extends BaseTest{
 
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Heart Attack","Stroke")
+                .clickOnAnswers("Heart Attack",
+                        "Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad();

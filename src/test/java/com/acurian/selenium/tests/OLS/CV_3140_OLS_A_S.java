@@ -184,13 +184,15 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .back();
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = heartOrBloodVesselPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "TIA or \"Mini-Stroke\"")
+                .clickOnAnswers("Heart attack",
+                        "Stroke",
+                        "TIA or \"Mini-Stroke\"")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected5)
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
@@ -364,7 +366,7 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("TIA or \"Mini-Stroke\"")
                 .clickNextButton(subquestionExperiencedHeartPageOLS)
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickNextButton(haveDoctorEverDiagnosedYou_ols)
                 .waitForPageLoad()
                 .clickNextButton(heartrelatedMedicalConditionsProceduresPageOLS)

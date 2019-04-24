@@ -46,24 +46,7 @@ public class SubquestionExperiencedHeartPageCC extends MainPageCC{
         waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
         return this;
     }
-    
-    @Step
-    public SubquestionExperiencedHeartPageCC waitForPageLoadStroke() {
-        waitForPageLoadMain(titleText, titleExpected2);
-        return this;
-    }
-    
-    @Step
-    public SubquestionExperiencedHeartPageCC waitForPageLoadTIA() {
-        waitForPageLoadMain(titleText, titleExpected4);
-        return this;
-    }
-    
-    @Step
-    public SubquestionExperiencedHeartPageCC waitForPageLoadAngina() {
-        waitForPageLoadMain(titleText, titleExpected5);
-        return this;
-    }
+
 
     @Step
     public SubquestionExperiencedHeartPageCC clickOnAnswerForSubQuestion(int questionNumber, String answerText) {

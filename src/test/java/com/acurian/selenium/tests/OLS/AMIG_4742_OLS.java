@@ -297,20 +297,20 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
-                .waitForPageLoadHeartAttack()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswers("Less than 30 days ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoadHeartAttack()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswers("1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
 
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoadHeartAttack()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswers("4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
@@ -323,19 +323,19 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .clickOnAnswers("Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .clickOnAnswers("1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .clickOnAnswers("4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
@@ -349,7 +349,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoadTIA()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswers("More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 

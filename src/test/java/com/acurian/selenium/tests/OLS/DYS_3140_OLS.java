@@ -184,11 +184,14 @@ public class DYS_3140_OLS extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5,"4 - 6 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -206,15 +209,6 @@ public class DYS_3140_OLS extends BaseTest {
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Less than 30 days ago")
-                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS5218", protocol1)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"Less than 30 days ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
                 .waitForPageLoad()
@@ -223,8 +217,8 @@ public class DYS_3140_OLS extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5,"Less than 30 days ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -232,8 +226,17 @@ public class DYS_3140_OLS extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5,"1 - 3 months ago")
+                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsEqualsForQNumber("QS5218", protocol1)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5,"4 - 6 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -242,7 +245,7 @@ public class DYS_3140_OLS extends BaseTest {
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"4 - 6 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

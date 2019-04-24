@@ -399,19 +399,19 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickOnAnswers("Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
@@ -425,7 +425,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadTIA()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
