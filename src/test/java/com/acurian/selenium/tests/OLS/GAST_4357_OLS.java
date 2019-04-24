@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ADG_4357_OLS extends BaseTest {
+public class GAST_4357_OLS extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -46,8 +46,8 @@ public class ADG_4357_OLS extends BaseTest {
     }
 
     @Test(dataProvider = "sites")
-    @Description("DERM_4600_OLS")
-    public void adg4357olsTest(final Site site) {
+    @Description("GAST 4357 OLS (Allergan Diabetic Gastroparesis)")
+    public void gast4357olsTest(final Site site) {
         final String phoneNumber = "AUTAMSGAST";
         String studyName = "a study for diabetics with digestion problems";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -761,7 +761,7 @@ public class ADG_4357_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
         siteSelectionPageOLS
-                .waitForPageLoad1("a study for diabetics with digestion problems!") //TODO
+                .waitForPageLoad1("a study for diabetics with digestion problems!")
                 .getPID();
         siteSelectionPageOLS
                 .clickOnFacilityName(site.name)
@@ -776,6 +776,5 @@ public class ADG_4357_OLS extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo);
-
     }
 }

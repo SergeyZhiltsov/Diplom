@@ -178,14 +178,14 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .clickOnAnswers("Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
@@ -199,14 +199,14 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .clickOnAnswers("TIA or \"Mini-Stroke\"")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadTIA()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadTIA()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad();
@@ -219,7 +219,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .clickOnAnswers("Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
 

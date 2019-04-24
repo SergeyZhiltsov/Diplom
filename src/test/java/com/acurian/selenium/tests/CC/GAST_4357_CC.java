@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ADG_4357_CC extends BaseTest {
+public class GAST_4357_CC extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -48,7 +48,7 @@ public class ADG_4357_CC extends BaseTest {
     }
 
     @Test(dataProvider = "sites", enabled = true)
-    @Description("ADG 4357 CC Allergan Diabetic Gastroparesis")
+    @Description("GAST 4357 CC (Allergan Diabetic Gastroparesis)")
     public void adg4357ccTest(Site site) {
         String phoneNumber = "AUTAMSGAST";
         String studyName = "a study for diabetics with digestion problems";
@@ -75,16 +75,16 @@ public class ADG_4357_CC extends BaseTest {
                 .clickBeginButton();
 
         callCenterIntroductionPageCC
-//                .waitForPageLoad()
+                .waitForPageLoad()
                 .activateDebugOnProd(env);
-//        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-//        dateOfBirthPageCC
-//                .waitForPageLoad();
-//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "750"), "Title is diff");
+        dateOfBirthPageCC
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "others"), "Title is diff"); //TODO
 
         dateOfBirthPageCC
                 .setMonth("Apr")
@@ -360,29 +360,28 @@ public class ADG_4357_CC extends BaseTest {
 //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder")
-                .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickOnAnswers("Autism spectrum")
-                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                .clickOnAnswers("Cancer")
-                .clickOnAnswers("Headaches (migraine, cluster, tension)")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickOnAnswers("High cholesterol, triglycerides, or lipids")
-                .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)")
-                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
-                .clickOnAnswers("Kidney disease")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickOnAnswers("Lupus")
-                .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
-                        "schizophrenia)")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)")
-                .clickOnAnswers("Sleep problems (insomnia, sleep apnea, narcolepsy)")
-                .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                .clickOnAnswers("Women's health issues (endometriosis, uterine fibroids)")
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
+                                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                                "Autism spectrum",
+                                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                                "Cancer",
+                                "Headaches (migraine, cluster, tension)",
+                                "Heart or circulation problems (heart attack, heart failure, stroke)",
+                                "High blood pressure or hypertension",
+                                "High cholesterol, triglycerides, or lipids",
+                                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                                "Kidney disease",
+                                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                                "Lupus",
+                                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                                "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                                "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                                "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisCC());
         whatKindOfArthritisCC
                 .waitForPageLoad()
@@ -796,15 +795,15 @@ public class ADG_4357_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();
-        switch (site.zipCode) {
-            case "08204":
+        switch (site) {
+            case AUT_GAST4357_site:
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
-                        .clickNextButton(new SynexusHealthyMindsPageCC())
-                        .waitForPageLoad()
-                        .clickOnAnswer("No")
+//                        .clickNextButton(new SynexusHealthyMindsPageCC())
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
@@ -813,11 +812,13 @@ public class ADG_4357_CC extends BaseTest {
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case "19901":
+            case AUT_GAST4357S_site:
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "04/19/2001", "US", "Dover, DE",
+                         site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "4357synexus", site.name, "ALLXXXDGP01")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

@@ -339,19 +339,19 @@ public class IBD_3889_CC extends BaseTest {
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadStroke()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
@@ -364,19 +364,19 @@ public class IBD_3889_CC extends BaseTest {
                 .clickOnAnswers("Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadTIA()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadTIA()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadTIA()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
@@ -389,19 +389,19 @@ public class IBD_3889_CC extends BaseTest {
                 .clickOnAnswers("TIA or \"mini-stroke\"")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadAngina()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadAngina()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoadAngina()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4);

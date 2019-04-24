@@ -101,7 +101,7 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
         softAssert.assertEquals(emailField.getText(), "Email: " + email, "Email is diff");
         softAssert.assertEquals(phoneNumberField.getText(), "Phone Number: " + phoneNumber, "Phone number is diff");
         softAssert.assertEquals(zipCodeField.getText(), "Zip Code: " + zipCode, "Zip code is diff");
-        softAssert.assertTrue(allText.getText().contains("Site: " + siteNumber + " - " + siteName), "Site not contains" + siteNumber +" - "+siteName);
+        softAssert.assertTrue(allText.getText().contains("Site: " + siteNumber + " - " + siteName), "Site not contains " + siteNumber +" - "+siteName);
         softAssert.assertTrue(allText.getText().contains("Study: " + studyName), "Study not contains " +studyName);
         softAssert.assertAll();
         return this;
