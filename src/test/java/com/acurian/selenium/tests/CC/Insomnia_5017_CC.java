@@ -46,7 +46,7 @@ public class Insomnia_5017_CC extends BaseTest{
     }
 
     @Test(dataProvider = "sites", enabled = true)
-    @Description("Insomnia 5017")
+    @Description("Insomnia 5017 CC (Idorsia Insomnia)")
     public void insomnia5017ccTest(Site site) {
         String phoneNumber = "AUTAMS1INS";
         String studyName = "an insomnia study";
@@ -631,8 +631,8 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();
-        switch (site.zipCode) {
-            case "08204": //1R
+        switch (site) {
+            case AUT_INS_5017_site:
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
@@ -648,7 +648,7 @@ public class Insomnia_5017_CC extends BaseTest{
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-//            case "19901":
+//            case AUT_INS_5017S_site:
 //                selectionPageCC
 //                        .clickOnAnswer(site.name)
 //                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
