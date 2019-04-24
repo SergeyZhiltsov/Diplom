@@ -82,7 +82,7 @@ public class Insomnia_5017_CC extends BaseTest{
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "1,250"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "1,450"), "Title is diff");
         dateOfBirthPageCC
                 .waitForPageLoad()
                 .setMonth("Apr")

@@ -96,7 +96,7 @@ public enum Site {
     //5062
     AUT_NASH5062_site("AUT_NASH5062_site", "19901", "41C", false, false, "3152_301_002"),
     //Others
-    GFLR1_1234_GFLR1("GFLR1_1234_GFLR1", "08204", "", false, false); //FlareActivationCode.java
+    GFLR1_1234_GFLR1("GFLR1_1234_GFLR1", "68588", "", false, false); //FlareActivationCode.java
 
     public final String name;
     public final String zipCode;
