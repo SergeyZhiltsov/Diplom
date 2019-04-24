@@ -48,7 +48,7 @@ public class GAST_4357_CC extends BaseTest {
     }
 
     @Test(dataProvider = "sites", enabled = true)
-    @Description("GAST 4357 CC (Allergan Diabetic Gastroparesis")
+    @Description("GAST 4357 CC (Allergan Diabetic Gastroparesis)")
     public void adg4357ccTest(Site site) {
         String phoneNumber = "AUTAMSGAST";
         String studyName = "a study for diabetics with digestion problems";
@@ -801,9 +801,9 @@ public class GAST_4357_CC extends BaseTest {
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
-                        .clickNextButton(new SynexusHealthyMindsPageCC())
-                        .waitForPageLoad()
-                        .clickOnAnswer("No")
+//                        .clickNextButton(new SynexusHealthyMindsPageCC())
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
