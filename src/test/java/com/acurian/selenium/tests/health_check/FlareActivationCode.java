@@ -83,7 +83,9 @@ public class FlareActivationCode extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .threadSleep(10000);
+        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+        siteSelectionPageOLS
                 .clickOnFacilityName(site.name)
                 .getPID()
                 .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
