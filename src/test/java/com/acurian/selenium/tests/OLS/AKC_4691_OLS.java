@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.ADG_4357.DigestiveConditionsAffectDiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
@@ -74,10 +76,11 @@ public class AKC_4691_OLS extends BaseTest {
 
 
         //--------------Q3: What kind of diabetes do you have?------------
-        whatKindOfDiabetesPageOLS
+        WithType1DiabetesPageOLS withType1DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new WithType1DiabetesPageOLS());
+        withType1DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -533,7 +536,7 @@ public class AKC_4691_OLS extends BaseTest {
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)
@@ -612,11 +615,11 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = approximateHeightPageOLS
+        DigestiveConditionsAffectDiabetesPageOLS digestiveConditionsAffectDiabetesPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
-        areYouInterestedInPneumoniaVaccineStudyOLS
+                .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS());
+        digestiveConditionsAffectDiabetesPageOLS
         		.waitForPageLoad()
         		.getPage(debugPageOLS)
         		.checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

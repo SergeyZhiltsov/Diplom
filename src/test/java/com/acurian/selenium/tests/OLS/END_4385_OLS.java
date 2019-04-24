@@ -2,7 +2,10 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.*;
+import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
+import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
@@ -255,14 +258,323 @@ public class END_4385_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
 
-        //----------*******NEW GENERAL HEALTH Questions********----------     
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+
+        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Bipolar disorder")
+                .clickNextButton(new ApproximateHeightPageOLS());
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageOLS())
+                .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Drug or alcohol abuse within the past year")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Hepatitis B")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Hepatitis C")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("HIV or AIDS")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Kidney disease requiring dialysis")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Schizophrenia")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .back();
+
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Cancer",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
+                .clickNextButton(new WhatKindOfArthritisPageOLS());
+
+        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols = whatKindOfArthritisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS());
+        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
+                .back();
+        whatKindOfArthritisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickOnAnswers("Psoriatic Arthritis")
+                .clickNextButton(whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
+                .back();
+        whatKindOfArthritisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Psoriatic Arthritis")
+                .clickOnAnswers("Unsure")
+                .clickNextButton(whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols);
+
+        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
+                .waitForPageLoad()
+                .clickOnAnswers("Osteoporosis")
+                .clickNextButton(new OtherThanSkinCancerPageOLS());
+        otherThanSkinCancerPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS40", site.activeProtocols)
+                .back();
+        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(otherThanSkinCancerPageOLS);
+
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back();
+        otherThanSkinCancerPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Diagnosed with skin cancer only")
+                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
+
+        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Heart failure or congestive heart failure (CHF)")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+        heartrelatedMedicalProceduresPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS46", site.activeProtocols)
+                .back();
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart attack",
+                        "Stroke",
+                        "TIA or \"mini-stroke\"",
+                        "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "More than 1 year ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "Less than 30 days ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad()
+                .back();
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
+
+        MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Angioplasty")
+                .clickNextButton(new MostRecentHeartProcedurePageOLS());
+
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = mostRecentHeartProcedurePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
+                .back();
+        mostRecentHeartProcedurePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("More than 1 year ago")
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS);
+
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Dialysis")
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
+        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back();
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Neither")
+                .clickOnAnswers("Kidney transplant")
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back();
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Neither")
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
+
+        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+        following_mentalEmotionalHealthPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
+                .back();
+        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Unsure which type of liver disease")
+                .clickNextButton(following_mentalEmotionalHealthPageOLS);
+
+        WomenHealthConditions womenHealthConditions = following_mentalEmotionalHealthPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Bipolar disorder")
+                .clickNextButton(new WomenHealthConditions());
+        womenHealthConditions
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
+                .back();
+        following_mentalEmotionalHealthPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Schizophrenia")
+                .clickNextButton(womenHealthConditions)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
+                .back();
+        following_mentalEmotionalHealthPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(womenHealthConditions);
+
+        womenHealthConditions
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(approximateHeightPageOLS);
+
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new IdentificationPageOLS())

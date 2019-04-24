@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.DigestiveConditionsAffectDiabetesPageCC;
+import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
@@ -96,22 +98,23 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = whatKindOfDiabetesPageCC
+        WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(new WithType1DiabetesPageCC());
+        withType1DiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+                .back();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, site.activeProtocols)
-                .back();
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -119,7 +122,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -128,7 +131,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         treatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(whatKindOfDiabetesPageCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
@@ -495,19 +498,19 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer("More than 2 years ago")
                 .clickNextButton(poundsOrMorePageCC);
 
-        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
+        DigestiveConditionsAffectDiabetesPageCC digestiveConditionsAffectDiabetesPageCC = poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new TransitionStatementCC());
-        transitionStatementCC
-                .waitForPageLoad("diabetes")
+                .clickNextButton(new DigestiveConditionsAffectDiabetesPageCC());
+        digestiveConditionsAffectDiabetesPageCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0013992-QS4617-STUDYQUES", site.activeProtocols)
                 .back();
-        poundsOrMorePageCC
+        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(transitionStatementCC);
+                .clickNextButton(new TransitionStatementCC());
 
         transitionStatementCC
                 .waitForPageLoad("diabetes")
