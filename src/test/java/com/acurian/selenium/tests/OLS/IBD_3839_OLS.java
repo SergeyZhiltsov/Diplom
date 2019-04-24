@@ -421,16 +421,15 @@ public class IBD_3839_OLS extends BaseTest {
                         "Heart failure or congestive heart failure (CHF)")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(1), subquestionExperiencedHeartPageOLS.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(2), subquestionExperiencedHeartPageOLS.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(3), subquestionExperiencedHeartPageOLS.titleExpected3, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(4), subquestionExperiencedHeartPageOLS.titleExpected4, "Title is diff");
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5);
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "4 - 6 months ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
 
 

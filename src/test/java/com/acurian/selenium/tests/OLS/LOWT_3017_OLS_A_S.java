@@ -265,7 +265,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
         //---------------Q9 SubquestionExperiencedHeartPageOLS-------------------
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoadHeartAttack();
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1);
         HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS = subquestionExperiencedHeartPageOLS
                 .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")

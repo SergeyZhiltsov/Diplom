@@ -220,19 +220,21 @@ public class Lupus_4442_OLS extends BaseTest {
 
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "TIA or \"mini-stroke\"", "Angina (heart-related chest pain) that required an overnight hospital stay", "Heart failure or congestive heart failure (CHF)")
+                .clickOnAnswers("Heart attack",
+                        "Stroke",
+                        "TIA or \"mini-stroke\"",
+                        "Angina (heart-related chest pain) that required an overnight hospital stay", "Heart failure or congestive heart failure (CHF)")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(1), subquestionExperiencedHeartPageOLS.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(2), subquestionExperiencedHeartPageOLS.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(3), subquestionExperiencedHeartPageOLS.titleExpected3, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageOLS.getTitleText(4), subquestionExperiencedHeartPageOLS.titleExpected4, "Title is diff");
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5);
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "Less than 30 days ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad();
@@ -243,8 +245,8 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS47", protocol1);

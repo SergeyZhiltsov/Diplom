@@ -36,24 +36,6 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageOLS{
         waitForPageLoadMain(titleText, titleExpected1);
         return this;
     }
-    
-    @Step
-    public SubquestionExperiencedHeartPageOLS waitForPageLoadHeartAttack() {
-        waitForPageLoadMain(titleText, titleExpected1);
-        return this;
-    }
-    
-    @Step
-    public SubquestionExperiencedHeartPageOLS waitForPageLoadStroke() {
-        waitForPageLoadMain(titleText, titleExpected2);
-        return this;
-    }
-    
-    @Step
-    public SubquestionExperiencedHeartPageOLS waitForPageLoadTIA() {
-        waitForPageLoadMain(titleText, titleExpected3);
-        return this;
-    }
 
     @Step
     public SubquestionExperiencedHeartPageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
