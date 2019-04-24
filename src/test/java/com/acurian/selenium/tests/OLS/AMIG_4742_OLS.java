@@ -257,7 +257,7 @@ public class AMIG_4742_OLS extends BaseTest {
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, PTSD, schizophrenia)",
                         "Neurological issues (memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        //"Sleep problems (insomnia, sleep apnea, narcolepsy)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());

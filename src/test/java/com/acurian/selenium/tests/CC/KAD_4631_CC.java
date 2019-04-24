@@ -491,11 +491,16 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
-                .back();
+                .back(followingMentalEmotionalHealthPageCC)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
-        followingMentalEmotionalHealthPageCC
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Women's health issues (endometriosis, uterine fibroids)")
+                .clickNextButton(new WomenHealthConditionsCC())
+                .clickOnAnswers("Endometriosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
         ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
