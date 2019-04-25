@@ -254,8 +254,8 @@ public class GAST_4357_CC extends BaseTest {
                                 "Bloating") //Deselect Bloating
                 .clickNextButton(symptomsFirstStartPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic")
+//                .getPage(debugPageCC)
+//                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic")
                 .back(symptomsRegularlyOncePerWeekPageCC)
                 .waitForPageLoad()
                 .back(digestiveConditionsAffectDiabetesPageCC)
@@ -264,10 +264,10 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(symptomsRegularlyOncePerWeekPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(thrownUpVomitedPast2weeksPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic");
+                .clickNextButton(thrownUpVomitedPast2weeksPageCC);
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic");
 //---- END of Q9 Ghost Question - Gastroparesis Logic check ----
         //Q11
         CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = thrownUpVomitedPast2weeksPageCC

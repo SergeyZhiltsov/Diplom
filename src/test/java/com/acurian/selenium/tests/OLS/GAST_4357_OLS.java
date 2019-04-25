@@ -219,8 +219,8 @@ public class GAST_4357_OLS extends BaseTest {
                         "Bloating") //Deselect Bloating
                 .clickNextButton(symptomsFirstStartPageOLS)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic")
+//                .getPage(debugPageOLS)
+//                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic")
                 .back(symptomsRegularlyOncePerWeekPageOLS)
                 .waitForPageLoad()
                 .back(digestiveConditionsAffectDiabetesPageOLS)
@@ -229,10 +229,10 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickNextButton(symptomsRegularlyOncePerWeekPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(thrownUpVomitedPast2weeksPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic");
+                .clickNextButton(thrownUpVomitedPast2weeksPageOLS);
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic");
 //---- END of Q9 Ghost Question - Gastroparesis Logic check ----
         //Q11
         HaveAnyOfTheFollowingPageOLS currentlyHaveAnyOffFollowingPageCC = thrownUpVomitedPast2weeksPageOLS

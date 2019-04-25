@@ -8,10 +8,7 @@ import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
@@ -666,15 +663,15 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .clickNextButton(approximateHeightPageOLS);
 
 
-        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = approximateHeightPageOLS
+        UnqualifiedCloseOLS unqualifiedCloseOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "10", "120") //BMI 17.25
-                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
-        areYouInterestedInPneumoniaVaccineStudyOLS
+                .clickNextButton(new UnqualifiedCloseOLS());
+        unqualifiedCloseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back();
+                .clickOnQNumber("QS60");
         ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("4")
