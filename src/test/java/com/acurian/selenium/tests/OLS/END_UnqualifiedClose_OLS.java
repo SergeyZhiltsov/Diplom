@@ -80,9 +80,9 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
 //                .clickNextButton(new EthnicBackgroundPageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+//                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
                 .clickNextButton(new PersonalDetails())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()

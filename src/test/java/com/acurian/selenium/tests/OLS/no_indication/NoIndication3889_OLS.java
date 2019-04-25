@@ -388,23 +388,23 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = approximateHeightPageOLS
+        UnqualifiedCloseOLS unqualifiedCloseOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+                .clickNextButton(new UnqualifiedCloseOLS());
 
-        areYouInterestedInPneumoniaVaccineStudyOLS
+        unqualifiedCloseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS38", protocol1, protocol2, protocol3, protocol4)
-                .back();
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .back();
+                .clickOnQNumber("QS38");
+//        approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .back();
+//
+//        doAnyOftheFollowingAdditionalDiagnosesOLS
+//                .waitForPageLoad()
+//                .back();
 
         WhenWereYouDiagnosedWithCrohnsDisease_OLS whenWereYouDiagnosedWithCrohnsDisease_ols = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -638,8 +638,8 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickOnAnswers("Colostomy and/or Colectomy",
                         "Ileostomy",
                         "Another type of stomach or colon surgery")
-                .clickNextButton(areYouInterestedInPneumoniaVaccineStudyOLS);
-        areYouInterestedInPneumoniaVaccineStudyOLS
+                .clickNextButton(unqualifiedCloseOLS);
+        unqualifiedCloseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5718", protocol1, protocol2, protocol3, protocol4)

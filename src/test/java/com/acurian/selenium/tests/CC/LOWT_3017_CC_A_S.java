@@ -405,8 +405,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a men's health study")
                 .getPID();
-        switch (site.name) {
-            case "AUT_LOWT_3017S_Site":
+        switch (site) {
+            case AUT_LOWT_3017S_Site:
                 selectionPageCC
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
@@ -417,6 +417,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
+       //                 .assertVariables()
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
@@ -424,7 +425,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .childPidFromDbToLog(env, "3017")
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case "AUT_LOWT_3017_Site":
+            case AUT_LOWT_3017_Site:
                 selectionPageCC
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
