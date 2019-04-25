@@ -9,10 +9,7 @@ import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHyp
 import com.acurian.selenium.pages.OLS.OAB_4867.HaveYouEverHadBotoxInjectionbladder_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.SubquestionOABandBPH_OLS;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
@@ -503,21 +500,21 @@ public class OAB_BPH_4867_OLS extends BaseTest {
         }
 
         //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        UnqualifiedCloseOLS unqualifiedCloseOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "90") //BMI <15
-                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
+                .clickNextButton(new UnqualifiedCloseOLS());
 //                .clickNextButton(new EthnicBackgroundPageOLS());
 //
 //        ethnicBackgroundPageOLS
-        areYouInterestedInPneumoniaVaccineStudyOLS
+        unqualifiedCloseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back();
+                .clickOnQNumber("QS60");
 
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
