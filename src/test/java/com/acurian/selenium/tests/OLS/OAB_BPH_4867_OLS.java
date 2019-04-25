@@ -542,6 +542,8 @@ public class OAB_BPH_4867_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
+                .getRadiantDbToLog(env)
+                .getAnomalyDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }

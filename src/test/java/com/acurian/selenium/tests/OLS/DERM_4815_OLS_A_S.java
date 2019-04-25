@@ -576,7 +576,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         }
 
         //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+        AboutHealthPageOLS aboutHealthPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
@@ -602,10 +602,24 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4815")
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .clickNextButton(new AboutHealthPageOLS());
+        switch (site) {
+                case AUT_DERM_4815_Site: //1R
+                    aboutHealthPageOLS
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env, "4815")
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                    break;
+                case AUT_DERM_4815S_Site: //41C
+                    aboutHealthPageOLS
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            .getAnomalyDbToLog(env)
+                            .childPidFromDbToLog(env, "4815")
+                            .dispoShouldMatch(site.dispo, site.dispo);
+                    break;
+                }
     }
 }

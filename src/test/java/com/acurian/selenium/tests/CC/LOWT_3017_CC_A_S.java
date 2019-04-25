@@ -406,7 +406,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad("a men's health study")
                 .getPID();
         switch (site) {
-            case AUT_LOWT_3017S_Site:
+            case AUT_LOWT_3017S_Site: //41C
                 selectionPageCC
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
@@ -422,6 +422,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
                         .childPidFromDbToLog(env, "3017")
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;

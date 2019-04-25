@@ -714,6 +714,8 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
+                .getRadiantDbToLog(env)
+                .getAnomalyDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .queueSiteForFULCheck(site.name);

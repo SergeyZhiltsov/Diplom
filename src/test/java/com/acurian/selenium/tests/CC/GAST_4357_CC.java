@@ -796,7 +796,7 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID();
         switch (site) {
-            case AUT_GAST4357_site:
+            case AUT_GAST4357_site: //1R
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
@@ -812,17 +812,18 @@ public class GAST_4357_CC extends BaseTest {
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case AUT_GAST4357S_site:
+            case AUT_GAST4357S_site: //41C
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "04/19/2001", "US", "Dover, DE",
-                         site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "4357synexus", site.name, "ALLXXXDGP01")
+                         site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "4357synexus", site.name, "ALLXXXDGP01")//TODO Set the same site number for STG and PRD
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
