@@ -28,6 +28,7 @@ public class ThankYouCloseSimplePageOLS extends MainPageOLS{
     @Step
     public ThankYouCloseSimplePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        attachPageScreenshot();
         return this;
     }
     

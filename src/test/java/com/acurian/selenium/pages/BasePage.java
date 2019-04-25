@@ -18,6 +18,7 @@ import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
+import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +107,11 @@ public abstract class BasePage {
         driver.navigate().to(driver.getCurrentUrl());
         waitForNetwork(5);
         return this;
+    }
+
+    @Step
+    public void attachPageScreenshot() {
+        TestListener.attachScreenshot(new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(driver));
     }
 
     @Step
