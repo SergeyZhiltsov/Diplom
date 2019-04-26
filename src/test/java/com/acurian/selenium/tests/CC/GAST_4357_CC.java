@@ -818,7 +818,7 @@ public class GAST_4357_CC extends BaseTest {
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "04/19/2001", "US", "Dover, DE",
-                         site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "4357synexus", site.name, "ALLXXXDGP01")//TODO Set the same site number for STG and PRD
+                         site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", env.equals("STG") ? "4357synexus" : "4357S", site.name, "ALLXXXDGP01")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
