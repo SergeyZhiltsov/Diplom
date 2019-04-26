@@ -25,6 +25,7 @@ public class ThankYouCloseSimplePageCC extends MainPageCC{
     @Step
     public ThankYouCloseSimplePageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        attachPageScreenshot();
         return this;
     }
 

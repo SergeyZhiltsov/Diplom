@@ -4,8 +4,8 @@
 
     <test name="Just for checking">
         <classes>
-            <class name="com.acurian.selenium.tests.CC.DERM_4825_CC"/>
-            <!--<class name="com.acurian.selenium.tests.OLS.DIA_5062_OLS"/>            -->
+            <class name="com.acurian.selenium.tests.CC.HFL_4722_CC"/>
+            <class name="com.acurian.selenium.tests.OLS.HFL_4722_OLS"/>
         </classes>
     </test>
 
