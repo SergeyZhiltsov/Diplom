@@ -596,8 +596,8 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();
-        switch (site.dispo) {
-            case "1R":
+        switch (site) {
+            case AUT_DERM_4815_Site: //1R
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
@@ -612,7 +612,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                         .childPidFromDbToLog(env,"4815")
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case "41C":
+            case AUT_DERM_4815S_Site: //41C
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
@@ -621,6 +621,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
                         .childPidFromDbToLog(env,"4815")
                         .dispoShouldMatch(site.dispo, site.dispo);
         }

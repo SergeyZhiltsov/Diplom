@@ -49,7 +49,7 @@ public class GAST_4357_CC extends BaseTest {
 
     @Test(dataProvider = "sites", enabled = true)
     @Description("GAST 4357 CC (Allergan Diabetic Gastroparesis)")
-    public void adg4357ccTest(Site site) {
+    public void gast4357ccTest(Site site) {
         String phoneNumber = "AUTAMSGAST";
         String studyName = "a study for diabetics with digestion problems";
 
