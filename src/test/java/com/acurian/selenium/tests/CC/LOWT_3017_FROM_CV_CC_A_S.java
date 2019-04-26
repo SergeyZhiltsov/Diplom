@@ -304,8 +304,8 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
         incongruentSiteSelectionCloseCC
                 .waitForPageLoad(studyName, dqedStudyName)
                 .getPID();
-        switch (site.name) {
-            case "AUT_LOWT_3017S_Site":
+        switch (site) {
+            case AUT_LOWT_3017S_Site: //41C
                 incongruentSiteSelectionCloseCC
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
@@ -320,10 +320,11 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case "AUT_LOWT_3017_Site":
+            case AUT_LOWT_3017_Site: //1R
                 incongruentSiteSelectionCloseCC
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())

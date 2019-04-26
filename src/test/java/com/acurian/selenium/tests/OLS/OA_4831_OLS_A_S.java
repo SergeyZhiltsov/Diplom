@@ -414,9 +414,22 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .threadSleep(2000);
-        aboutHealthPageOLS
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4831")
-                .dispoShouldMatch(site.dispo, site.dispo);
+
+        switch (site) {
+            case AUT_OA_4831_Syn: //41C
+                aboutHealthPageOLS
+                        .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
+                        .getAnomalyDbToLog(env)
+                        .childPidFromDbToLog(env, "4831")
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+            case AUT_OA_4831_site: //1R
+                aboutHealthPageOLS
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env, "4831")
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+        }
     }
 }

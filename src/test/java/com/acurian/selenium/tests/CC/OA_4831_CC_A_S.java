@@ -375,7 +375,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .waitForPageLoad(studyName1)
                 .getPID();
         switch (site) {
-            case AUT_OA_4831_Syn:
+            case AUT_OA_4831_Syn: //41C
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
 /*                        .clickNextButton(new QualifiedClose2PageCC())
@@ -387,11 +387,12 @@ public class OA_4831_CC_A_S extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
                         .childPidFromDbToLog(env, "4831")
                         .dispoShouldMatch(site.dispo, site.dispo);
                 SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
                 break;
-            case AUT_OA_4831_site:
+            case AUT_OA_4831_site: //1R
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())

@@ -363,8 +363,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID();
-        switch (site.dispo) {
-            case "1R":
+        switch (site) {
+            case AUT_LOWT_3017_Site: //1R
                 siteSelectionPageOLS
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new QualifiedClose2PageOLS())
@@ -379,7 +379,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case "41C":
+            case AUT_LOWT_3017S_Site: //41C
                 siteSelectionPageOLS
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new DoctorInformationCollectionPageOLS())
@@ -396,6 +396,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         .clickNextButton(new AboutHealthPageOLS())
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
+                        .getAnomalyDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }

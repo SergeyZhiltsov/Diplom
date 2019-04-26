@@ -597,8 +597,8 @@ public class DERM_4814_CC extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID();
 
-        switch (site.dispo) {
-            case "1R":
+        switch (site) {
+            case AUT_AD4814_site: //1R
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
@@ -611,7 +611,7 @@ public class DERM_4814_CC extends BaseTest {
                         .dispoShouldMatch(site.dispo)
                         .assertChildDOBIsNull(env, "4814");
                 break;
-            case "41C":
+            case AUT_AD4814S_site: //41C
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
@@ -622,6 +622,7 @@ public class DERM_4814_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
                         .dispoShouldMatch(site.dispo)
                         .assertChildDOBIsNull(env, "4814");
         }

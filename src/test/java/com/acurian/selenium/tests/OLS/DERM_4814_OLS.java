@@ -608,7 +608,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS);
 
 
-        approximateHeightPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
                 .clickNextButton(new IdentificationPageOLS())
@@ -622,10 +622,24 @@ public class DERM_4814_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo)
-                .assertChildDOBIsNull(env, "4814");
+                .clickNextButton(new AboutHealthPageOLS());
+        switch (site) {
+            case AUT_AD4814_site: //1R
+                aboutHealthPageOLS
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo)
+                        .assertChildDOBIsNull(env, "4814");
+                break;
+            case AUT_AD4814S_site: //41C
+                aboutHealthPageOLS
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
+                        .getAnomalyDbToLog(env)
+                        .dispoShouldMatch(site.dispo)
+                        .assertChildDOBIsNull(env, "4814");
+                break;
+        }
     }
 }
