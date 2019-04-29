@@ -86,7 +86,7 @@ public class Dispo2CsiteProximity extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
                 .dispoShouldMatch("2C");
+                //.childPidFromDbToLog(env);
     }
 }

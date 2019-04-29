@@ -89,5 +89,6 @@ public class Dispo2InoSiteConv extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch("2I");
+                //.childPidFromDbToLog(env);
     }
 }
