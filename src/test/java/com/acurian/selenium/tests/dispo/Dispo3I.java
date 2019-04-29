@@ -98,5 +98,6 @@ public class Dispo3I extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch("3I");
+                //.childPidFromDbToLog(env);
     }
 }

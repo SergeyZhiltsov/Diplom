@@ -79,5 +79,6 @@ public class Dispo3CdisqualifyType2 extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch("3C");
+                //.childPidFromDbToLog(env);
     }
 }
