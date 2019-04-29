@@ -528,7 +528,7 @@ public class IBD_4533_CC extends BaseTest {
                 .clickOnAnswer("[site did not answer]")
                 //--------Regualr Warm Transfer Page#3
                 .clickNextButton(new Regular_WarmTransfer3())
-                .waitForPageLoad()
+                .waitForPageLoad(env.equals("STG") ? "Test SiteCC" : "Ramya Avunuri")
                 //--------Regualr Warm Transfer Page#4
                 .clickNextButton(new Regular_WarmTransfer4())
                 .waitForPageLoad()
