@@ -375,6 +375,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageOLS())
                         .waitForPageLoad()
                         .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
