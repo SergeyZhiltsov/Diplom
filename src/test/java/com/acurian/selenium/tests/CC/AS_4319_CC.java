@@ -266,6 +266,5 @@ public class AS_4319_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch("1R", "1R");
-
     }
 }
