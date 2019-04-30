@@ -46,6 +46,21 @@ public class ScreenBuilderApp extends BasePage {
     @FindBy(id = "clearCacheBtn")
     WebElement clearCacheButton;
 
+    @FindBy(id = "publishBtn")
+    WebElement publishButton;
+
+    @FindBy(id = "btnPublishStudy")
+    WebElement finalpublishButton;
+
+    @FindBy(xpath = "//button[@class='btn btn-danger']")
+    WebElement confirmPublish;
+
+    @FindBy(id = "comment")
+    WebElement commentfield;
+
+    @FindBy(id = "publishProd")
+    WebElement prodEnvButton;
+
     @FindBy(xpath = "//div[contains(@class,'alert-success')]")
     public WebElement cacheClearedSuccessAlert;
 
@@ -134,6 +149,36 @@ public class ScreenBuilderApp extends BasePage {
         return this;
     }
 
+
+    @Step
+    public ScreenBuilderApp publishStudySetup(String screenerName, CacheEnv env) {
+        openActionsOf(screenerName);
+        WebElement publishdropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
+                .findFirst()
+                .get();
+        getActions()
+                .moveToElement(publishdropdownItem)
+                .moveToElement(publishdropdownItem.findElement(By.xpath("//following-sibling::ul/li[1]/a[contains(@id,'publishStdy')]"))) // First Sub Menu of Clear Cache Menu
+                .click()
+                .build().perform();
+        //------enter Comment before selecting environment to publish
+        commentfield.sendKeys("No changes, testing publish feature for Healthcheck");
+
+        /*driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(clearCacheEnvs.get(0)));
+        clearCacheEnvs.stream().filter(element -> element.getText().startsWith(env.name))
+                .findFirst()
+                .get()
+                .click();*/
+        prodEnvButton.click();
+
+        publishButton.click();
+        finalpublishButton.click();
+        confirmPublish.click();
+        return this;
+    }
+
+
+
     @Step
     public ScreenBuilderApp clearStudyCacheOf(String screenerName, CacheEnv env) {
         openActionsOf(screenerName);
@@ -172,6 +217,13 @@ public class ScreenBuilderApp extends BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    @Step("Enter comment before PublishStudySetup")
+    public ScreenBuilderApp entercomment()
+    {
+        typeText(commentfield, "No changes, testing publish feature for Healthcheck");
         return null;
     }
 }
