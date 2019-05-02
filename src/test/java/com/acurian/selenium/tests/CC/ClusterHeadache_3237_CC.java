@@ -61,6 +61,7 @@ public class ClusterHeadache_3237_CC extends BaseTest {
                 .setMonth("Aug")
                 .setDay("1")
                 .setYear("1982")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
 

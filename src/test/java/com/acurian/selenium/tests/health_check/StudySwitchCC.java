@@ -54,8 +54,7 @@ public class StudySwitchCC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-
+                .waitForPageLoadGmega();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")

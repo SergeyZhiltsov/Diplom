@@ -45,10 +45,10 @@ import com.acurian.selenium.pages.CC.shared.WhenLastReceivedOrenciaCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 
-public class RA_4356F_CC extends BaseTest{
-	
-	@Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
-	public void RA_4356F_CC(final String username, final String password) {
+public class RA_4356F_CC extends BaseTest {
+
+    @Test(dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class, enabled = false)
+    public void RA_4356F_CC(final String username, final String password) {
         String phoneNumberOA = "AUTAMS1OA1";
         List<String> protocols = Arrays.asList("M15_925");//,"M13_545");
         String protocol1 = "M15_925";
@@ -56,24 +56,24 @@ public class RA_4356F_CC extends BaseTest{
         String protocol3 = "CL04041023";
         String studyName = "a rheumatoid arthritis (RA)";
         String indication = "an arthritis";
-   //     String env = "PRD";
+        //     String env = "PRD";
         String siteName = "AUT_RA_4356F_Site";
-        String zipCode  = "19044";
-        
+        String zipCode = "19044";
+
         String env = System.getProperty("acurian.env", "STG");
-        
+
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
 
-        Assert.assertEquals(loginPageCC.getTitleText(),"Please enter your username and password to login:","Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(username)
                 .typePassword(password)
                 .clickLoginButton();
-        
+
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
                 .waitForPageLoad()
                 .typeStudyName("AMS1")
@@ -81,176 +81,177 @@ public class RA_4356F_CC extends BaseTest{
                 .typePhoneNumber(phoneNumberOA)
                 .clickPopupPhoneNumber(phoneNumberOA)
                 .clickBeginButton();
-        
+
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-       Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
-       DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-        .clickOnAnswer("Learn more about matching to clinical trials")
-        .clickNextButton(new DateOfBirthPageCC());
-       
-       dateOfBirthPageCC
-       .waitForPageLoad();
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
+                .clickOnAnswer("Learn more about matching to clinical trials")
+                .clickNextButton(new DateOfBirthPageCC());
 
-       Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
-      // Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedOA, "Title is diff");
+        dateOfBirthPageCC
+                .waitForPageLoad();
 
-       ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-               .setMonth("Sep")
-               .setDay("9")
-               .setYear("1980")
-               .clickNextButton(new ZipCodePageCC());
-       
-       GenderPageCC genderPageCC = zipCodePageCC
-    		   .waitForPageLoad()
-    		   .typeZipCode("19044")
-    		   .clickNextButton(new GenderPageCC());
-       
-       DoYouSufferFromArthritisCC doYouSufferFromArthritisCC = genderPageCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Female")
-    		   .clickNextButton(new DoYouSufferFromArthritisCC());
-       
-       WhatKindOfArthritisCC whatKindOfArthritisCC = doYouSufferFromArthritisCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Yes")
-    		   .clickNextButton(new WhatKindOfArthritisCC());
-       
-       WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-    		   .clickNextButton(new WhenYouDiagnosedWithRaPageCC());
-       
-       HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenYouDiagnosedWithRaPageCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("7 - 11 months ago")
-    		   .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC());
-       
-       FollowingDescribesYourRASymptomsStartedCC followingDescribesYourRASymptomsStartedCC = howOldWereUWhenDiagnosedWithRACC
-    		   .waitForPageLoad()
-    		   .typeAge("28")
-    		   .clickNextButton(new FollowingDescribesYourRASymptomsStartedCC());
-       
-       WhatTestsDoctorLedToDiagnosingRACC whatTestsDoctorLedToDiagnosingRACC = followingDescribesYourRASymptomsStartedCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Symptoms took several months to develop; the pain built gradually over a period of time")
-    		   .clickNextButton(new WhatTestsDoctorLedToDiagnosingRACC());
-       
-       TenderPainfulOrSwollenJointsCC tenderPainfulOrSwollenJointsCC = whatTestsDoctorLedToDiagnosingRACC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("An x-ray of your affected joints, which included multiple joints such as your hands and feet")
-    		   .clickNextButton(new TenderPainfulOrSwollenJointsCC());
-       
-       CurrentlyExperiencingJointSymptomsYourRACC currentlyExperiencingJointSymptomsYourRACC = tenderPainfulOrSwollenJointsCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Yes")
-    		   .clickNextButton(new CurrentlyExperiencingJointSymptomsYourRACC());
-       
-       DoYouUseAnyOralSteroidCC doYouUseAnyOralSteroidCC = currentlyExperiencingJointSymptomsYourRACC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Pain or swelling in at least 3 separate joints")
-    		   .clickNextButton(new DoYouUseAnyOralSteroidCC());
-       
-       AnySteroidsForYourRACC anySteroidsForYourRACC = doYouUseAnyOralSteroidCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("No")
-    		   .clickNextButton(new AnySteroidsForYourRACC());
-       
-       AreYouCurrentlyTakingMethotrexateCC areYouCurrentlyTakingMethotrexateCC = anySteroidsForYourRACC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Yes")
-    		   .clickNextButton(new AreYouCurrentlyTakingMethotrexateCC());
-       
-       HowLongTakingMethotrexateCC howLongTakingMethotrexateCC = areYouCurrentlyTakingMethotrexateCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("")
-    		   .clickNextButton(new HowLongTakingMethotrexateCC());
-       
-       FollowingMedicationsToTreatYourRACC followingMedicationsToTreatYourRACC = howLongTakingMethotrexateCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("4 - 6 months")
-    		   .clickNextButton(new FollowingMedicationsToTreatYourRACC());
-       
-       HowLongTakingPlaquenilCC howLongTakingPlaquenilCC = followingMedicationsToTreatYourRACC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Plaquenil (hydroxychloroquine)")
-    		   .clickNextButton(new HowLongTakingPlaquenilCC());
-       
-       BiologicMedicationsCC biologicMedicationsCC = howLongTakingPlaquenilCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("4 - 6 months")
-    		   .clickNextButton(new BiologicMedicationsCC());
-       
-       WhenLastReceivedOrenciaCC whenLastReceivedOrenciaCC = biologicMedicationsCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswers("Orencia (Agent Note: oh-REN-see-uh)")
-    		   .clickNextButton(new WhenLastReceivedOrenciaCC());
-       
-       EverTakenXeljanzCC EverTakenXeljanzCC = whenLastReceivedOrenciaCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("Last received 7 to 11 months ago")
-    		   .clickNextButton(new EverTakenXeljanzCC());
-       
-       TransitionStatementCC transitionStatementCC = EverTakenXeljanzCC
-    		   .waitForPageLoad()
-    		   .clickOnAnswer("No, I have never taken it")
-    		   .clickNextButton(new TransitionStatementCC());
-       
-       HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
-               .waitForPageLoad("RA")
-               .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-       
-       
-       //-------------------New GENERAL HEALTH---------------------------
-       haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-       		.waitForPageLoad()
-       		.clickOnAnswers("None of the above")                	
-       		.clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
-       		//----------Q23 - Do any of the following additional diagnoses apply to you?--------
-       		.waitForPageLoad()
-       		.clickOnAnswers("None of the above")
-               .clickNextButton(new ApproximateHeightPageCC())
-       		//----------Height and Weight Question Page--------------------
-               .waitForPageLoad()
-               .setAll("5", "5", "160")
-               .clickNextButton(new LetMeSeePageCC())
-       		//----------ChildrenUnderTheAge Page--------------------
-               .waitForPageLoad()
-               .clickNextButton(new ChildrenUnderPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("Yes")
-               //----------PEDIATRIC HEALTH Questions----------
-               .clickNextButton(new HouseholdHavePageCC())
-               .waitForPageLoad()
-               .clickOnAnswers("None of the above")
-       		//----------PII (IdentificationPageOLS) Page--------------------
-               .clickNextButton(new IdentificationPageCC())
-               .waitForPageLoad()
-               .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
-               .clickNextButton(new IncongruentSiteSelectionCloseCC())
-               .waitForPageLoad(studyName)
-               .getPID()
-       		//----------SITE Selection Page--------------------
-               .clickOnAnswer(siteName)
-               .clickNextButton(new RadiantWarmTransferClose1PageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("[patient agrees to be transferred]")
-               .clickNextButton(new SynexusDirectScheduleWTC2PageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("Yes")
-               .clickNextButton(new SynexusDirectScheduleWTC3PageCC())
-               .waitForPageLoad()
-               .clickNextButton(new SRDirectScheduleWTTCPageCC())
-               .waitForPageLoad()
-               .clickOnAnswer("Transferred for Scheduling")
-               .clickNextButton(selectActionPageCC)
-               .waitForPageLoad()
-               .pidFromDbToLog(env);
-       		   //.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
-               //.getAnomalyDbToLog(env); //Not applicable for Call center
+        Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
+        // Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedOA, "Title is diff");
 
-       //------------------OLD General Health--------------------
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1980")
+                .clickOnAnswer("Yes")
+                .clickNextButton(new ZipCodePageCC());
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode("19044")
+                .clickNextButton(new GenderPageCC());
+
+        DoYouSufferFromArthritisCC doYouSufferFromArthritisCC = genderPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Female")
+                .clickNextButton(new DoYouSufferFromArthritisCC());
+
+        WhatKindOfArthritisCC whatKindOfArthritisCC = doYouSufferFromArthritisCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WhatKindOfArthritisCC());
+
+        WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisCC
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(new WhenYouDiagnosedWithRaPageCC());
+
+        HowOldWereUWhenDiagnosedWithRACC howOldWereUWhenDiagnosedWithRACC = whenYouDiagnosedWithRaPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(new HowOldWereUWhenDiagnosedWithRACC());
+
+        FollowingDescribesYourRASymptomsStartedCC followingDescribesYourRASymptomsStartedCC = howOldWereUWhenDiagnosedWithRACC
+                .waitForPageLoad()
+                .typeAge("28")
+                .clickNextButton(new FollowingDescribesYourRASymptomsStartedCC());
+
+        WhatTestsDoctorLedToDiagnosingRACC whatTestsDoctorLedToDiagnosingRACC = followingDescribesYourRASymptomsStartedCC
+                .waitForPageLoad()
+                .clickOnAnswer("Symptoms took several months to develop; the pain built gradually over a period of time")
+                .clickNextButton(new WhatTestsDoctorLedToDiagnosingRACC());
+
+        TenderPainfulOrSwollenJointsCC tenderPainfulOrSwollenJointsCC = whatTestsDoctorLedToDiagnosingRACC
+                .waitForPageLoad()
+                .clickOnAnswers("An x-ray of your affected joints, which included multiple joints such as your hands and feet")
+                .clickNextButton(new TenderPainfulOrSwollenJointsCC());
+
+        CurrentlyExperiencingJointSymptomsYourRACC currentlyExperiencingJointSymptomsYourRACC = tenderPainfulOrSwollenJointsCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CurrentlyExperiencingJointSymptomsYourRACC());
+
+        DoYouUseAnyOralSteroidCC doYouUseAnyOralSteroidCC = currentlyExperiencingJointSymptomsYourRACC
+                .waitForPageLoad()
+                .clickOnAnswers("Pain or swelling in at least 3 separate joints")
+                .clickNextButton(new DoYouUseAnyOralSteroidCC());
+
+        AnySteroidsForYourRACC anySteroidsForYourRACC = doYouUseAnyOralSteroidCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new AnySteroidsForYourRACC());
+
+        AreYouCurrentlyTakingMethotrexateCC areYouCurrentlyTakingMethotrexateCC = anySteroidsForYourRACC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new AreYouCurrentlyTakingMethotrexateCC());
+
+        HowLongTakingMethotrexateCC howLongTakingMethotrexateCC = areYouCurrentlyTakingMethotrexateCC
+                .waitForPageLoad()
+                .clickOnAnswer("")
+                .clickNextButton(new HowLongTakingMethotrexateCC());
+
+        FollowingMedicationsToTreatYourRACC followingMedicationsToTreatYourRACC = howLongTakingMethotrexateCC
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 6 months")
+                .clickNextButton(new FollowingMedicationsToTreatYourRACC());
+
+        HowLongTakingPlaquenilCC howLongTakingPlaquenilCC = followingMedicationsToTreatYourRACC
+                .waitForPageLoad()
+                .clickOnAnswers("Plaquenil (hydroxychloroquine)")
+                .clickNextButton(new HowLongTakingPlaquenilCC());
+
+        BiologicMedicationsCC biologicMedicationsCC = howLongTakingPlaquenilCC
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 6 months")
+                .clickNextButton(new BiologicMedicationsCC());
+
+        WhenLastReceivedOrenciaCC whenLastReceivedOrenciaCC = biologicMedicationsCC
+                .waitForPageLoad()
+                .clickOnAnswers("Orencia (Agent Note: oh-REN-see-uh)")
+                .clickNextButton(new WhenLastReceivedOrenciaCC());
+
+        EverTakenXeljanzCC EverTakenXeljanzCC = whenLastReceivedOrenciaCC
+                .waitForPageLoad()
+                .clickOnAnswer("Last received 7 to 11 months ago")
+                .clickNextButton(new EverTakenXeljanzCC());
+
+        TransitionStatementCC transitionStatementCC = EverTakenXeljanzCC
+                .waitForPageLoad()
+                .clickOnAnswer("No, I have never taken it")
+                .clickNextButton(new TransitionStatementCC());
+
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+                .waitForPageLoad("RA")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+
+        //-------------------New GENERAL HEALTH---------------------------
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+                //----------Q23 - Do any of the following additional diagnoses apply to you?--------
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new ApproximateHeightPageCC())
+                //----------Height and Weight Question Page--------------------
+                .waitForPageLoad()
+                .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                //----------ChildrenUnderTheAge Page--------------------
+                .waitForPageLoad()
+                .clickNextButton(new ChildrenUnderPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                //----------PEDIATRIC HEALTH Questions----------
+                .clickNextButton(new HouseholdHavePageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                //----------PII (IdentificationPageOLS) Page--------------------
+                .clickNextButton(new IdentificationPageCC())
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .clickNextButton(new IncongruentSiteSelectionCloseCC())
+                .waitForPageLoad(studyName)
+                .getPID()
+                //----------SITE Selection Page--------------------
+                .clickOnAnswer(siteName)
+                .clickNextButton(new RadiantWarmTransferClose1PageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("[patient agrees to be transferred]")
+                .clickNextButton(new SynexusDirectScheduleWTC2PageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new SynexusDirectScheduleWTC3PageCC())
+                .waitForPageLoad()
+                .clickNextButton(new SRDirectScheduleWTTCPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Transferred for Scheduling")
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env);
+        //.getRadiantDbToLog(env); //Radiant warm transfer and Radiant processing has been replaced with Direct Scheduling
+        //.getAnomalyDbToLog(env); //Not applicable for Call center
+
+        //------------------OLD General Health--------------------
       /* haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                .waitForPageLoad()
                .clickOnAnswers("None of the above")
@@ -332,5 +333,5 @@ public class RA_4356F_CC extends BaseTest{
                .clickNextButton(selectActionPageCC)
                .waitForPageLoad()
                .pidFromDbToLog(env);  */
-	}
+    }
 }

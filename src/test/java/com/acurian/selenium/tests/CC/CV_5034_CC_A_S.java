@@ -87,6 +87,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .setMonth("Mar")
                 .setDay("2")
                 .setYear("2005")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC.waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();

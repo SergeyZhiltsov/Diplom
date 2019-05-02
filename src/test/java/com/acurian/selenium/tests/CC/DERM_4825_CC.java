@@ -68,6 +68,7 @@ public class DERM_4825_CC extends BaseTest {
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2003")
+                .clickOnAnswer("Yes")
                 .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()

@@ -31,7 +31,6 @@ public class RadiantWTtest extends BaseTest {
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -47,7 +46,7 @@ public class RadiantWTtest extends BaseTest {
 
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
-                .waitForPageLoad();
+                .waitForPageLoadGmega();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setMonth("Sep")

@@ -71,6 +71,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .setMonth("Mar")
                 .setDay("2")
                 .setYear("2003")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()

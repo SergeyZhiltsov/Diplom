@@ -66,6 +66,7 @@ public class End_4385_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC

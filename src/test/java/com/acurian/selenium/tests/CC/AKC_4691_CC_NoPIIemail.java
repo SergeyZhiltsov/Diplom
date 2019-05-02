@@ -68,6 +68,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC

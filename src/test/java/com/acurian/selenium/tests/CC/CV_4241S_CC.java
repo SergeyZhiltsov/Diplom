@@ -71,6 +71,7 @@ public class CV_4241S_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("2005")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC

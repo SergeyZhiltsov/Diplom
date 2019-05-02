@@ -61,6 +61,7 @@ public class GERD_4301_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("2010")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols);

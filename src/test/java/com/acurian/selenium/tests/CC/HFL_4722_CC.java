@@ -59,6 +59,7 @@ public class HFL_4722_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1940")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC

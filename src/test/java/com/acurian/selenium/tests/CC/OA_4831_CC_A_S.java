@@ -80,6 +80,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
 

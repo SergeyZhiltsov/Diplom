@@ -78,6 +78,7 @@ public class DERM_4600_CC extends BaseTest {
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2001")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC

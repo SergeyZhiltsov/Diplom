@@ -35,7 +35,7 @@ public class HSGeneralPageOLS extends MainPageOLS{
             "\n" +
             "As the next step, please enter your email address. We will keep it confidential. Your email is required to move to the next step of the study pre-screening process.";
 
-    public final String titleRaExpectedSTG = "Your medical records related to your Rheumatoid Arthritis, Low Back Pain, Arthritis, Diabetes history are required for the study doctor to evaluate you for participation.  In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
+    public final String titleRaExpectedSTG = "Your medical records related to your Diabetes, Low Back Pain, Arthritis, Rheumatoid Arthritis history are required for the study doctor to evaluate you for participation.  In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
             "\n" +
