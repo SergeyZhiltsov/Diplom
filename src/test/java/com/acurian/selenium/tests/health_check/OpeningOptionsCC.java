@@ -52,7 +52,7 @@ public class OpeningOptionsCC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .back();
 
         System.out.println("Clicking General Information");
