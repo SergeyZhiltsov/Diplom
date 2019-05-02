@@ -44,7 +44,7 @@ public class SiteIndicatorTest extends BaseTest {
 
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
-                .waitForPageLoad();
+                .waitForPageLoadGmega();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setMonth("Sep")

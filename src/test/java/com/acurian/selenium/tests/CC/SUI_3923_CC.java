@@ -74,6 +74,7 @@ public class SUI_3923_CC extends BaseTest{
                 .setMonth("Aug")
                 .setDay("1")
                 .setYear("1982")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
                 
         

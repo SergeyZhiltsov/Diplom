@@ -80,6 +80,7 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
                 .setMonth("Aug")
                 .setDay("1")
                 .setYear("1982")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
                 
         

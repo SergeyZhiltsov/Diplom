@@ -67,6 +67,7 @@ public class MDD_4840_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC
@@ -93,13 +94,13 @@ public class MDD_4840_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad();
         DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0014051-QS4802-STUDYQUES", protocol1,protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0014051-QS4802-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         AreYouCurrentlyFeelingSadDepressedCC areYouCurrentlyFeelingSadDepressedCC = hasHealthcareProfDiagnosedMDDCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new AreYouCurrentlyFeelingSadDepressedCC());
-        
+
 
         //---------------Q3 -AreYouCurrentlyFeelingSadDepressedCC-------------------
         areYouCurrentlyFeelingSadDepressedCC
@@ -112,160 +113,157 @@ public class MDD_4840_CC extends BaseTest {
         haveYouEverHadElectroconvulsiveTherapyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018168-QS4820-STUDYQUES", protocol1,protocol2)
+                .checkProtocolsContainsForQNumber("Q0018168-QS4820-STUDYQUES", protocol1, protocol2)
                 .back();
         CurrentEpisodeOfDepressionCC currentEpisodeOfDepressionCC = areYouCurrentlyFeelingSadDepressedCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CurrentEpisodeOfDepressionCC());
-        
-        
+
+
         //-------------------Q4 -When did your current episode of depression start?----------------
-        HowManyDifferentPrescriptionAntidepresMedsCC howManyDifferentPrescriptionAntidepresMedsCC= currentEpisodeOfDepressionCC
+        HowManyDifferentPrescriptionAntidepresMedsCC howManyDifferentPrescriptionAntidepresMedsCC = currentEpisodeOfDepressionCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 1/2 - 2 years ago")
                 .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
-        		howManyDifferentPrescriptionAntidepresMedsCC
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-        		//.checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1,protocol2)
-        		.back();
+        howManyDifferentPrescriptionAntidepresMedsCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                //.checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1,protocol2)
+                .back();
         currentEpisodeOfDepressionCC
-        		.waitForPageLoad()
-        		.clickOnAnswer("More than 2 years ago")
-        		.clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
-        		howManyDifferentPrescriptionAntidepresMedsCC
-				.waitForPageLoad()
-				.getPage(debugPageCC)
-				.checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1,protocol2)
-				.back();
+                .waitForPageLoad()
+                .clickOnAnswer("More than 2 years ago")
+                .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
+        howManyDifferentPrescriptionAntidepresMedsCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0014055-QS4804-STUDYQUES", protocol1, protocol2)
+                .back();
         currentEpisodeOfDepressionCC
-        		.waitForPageLoad()
-        		.clickOnAnswer("1 month ago or less")
-        		.clickOnAnswer("2 - 3 months ago")
-        		.clickOnAnswer("4 - 6 months ago")       		
-        		.clickOnAnswer("7 - 11 months ago")
-        		.clickOnAnswer("About 1 year ago")
-        		.clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
-        
-        
+                .waitForPageLoad()
+                .clickOnAnswer("1 month ago or less")
+                .clickOnAnswer("2 - 3 months ago")
+                .clickOnAnswer("4 - 6 months ago")
+                .clickOnAnswer("7 - 11 months ago")
+                .clickOnAnswer("About 1 year ago")
+                .clickNextButton(new HowManyDifferentPrescriptionAntidepresMedsCC());
+
+
         //-------------------Q5-HowManyDifferentPrescriptionAntidepresMedsCC----------------     
         howManyDifferentPrescriptionAntidepresMedsCC
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("I have not taken any prescription medications for my current episode of depression")
                 .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
-        		haveYouEverHadElectroconvulsiveTherapyCC
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1,protocol2)
-        		.back();
+        haveYouEverHadElectroconvulsiveTherapyCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1, protocol2)
+                .back();
         howManyDifferentPrescriptionAntidepresMedsCC
-        		.waitForPageLoad();
-        WhichOfTheFollowingPrescriptionMedications_CC whichOfTheFollowingPrescriptionMedications_CC= howManyDifferentPrescriptionAntidepresMedsCC
-        		.clickOnAnswer("1")
-        		.clickOnAnswer("3")
-        		.clickOnAnswer("4 or more")
-        		.clickNextButton(new WhichOfTheFollowingPrescriptionMedications_CC());
+                .waitForPageLoad();
+        WhichOfTheFollowingPrescriptionMedications_CC whichOfTheFollowingPrescriptionMedications_CC = howManyDifferentPrescriptionAntidepresMedsCC
+                .clickOnAnswer("1")
+                .clickOnAnswer("3")
+                .clickOnAnswer("4 or more")
+                .clickNextButton(new WhichOfTheFollowingPrescriptionMedications_CC());
         whichOfTheFollowingPrescriptionMedications_CC
-				.waitForPageLoad()
-				.getPage(debugPageCC)
-				.checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1,protocol2)
-				.back();
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0014057-QS4805-STUDYQUES", protocol1, protocol2)
+                .back();
         howManyDifferentPrescriptionAntidepresMedsCC
-        		.waitForPageLoad()
-        		.clickOnAnswer("2")
-        		.clickNextButton(new WhichOfTheFollowingPrescriptionMedications_CC());        
-        
-        
+                .waitForPageLoad()
+                .clickOnAnswer("2")
+                .clickNextButton(new WhichOfTheFollowingPrescriptionMedications_CC());
+
+
         //--------------------Q6 - WhichOfTheFollowingPrescriptionMedications_CC----------------     
         whichOfTheFollowingPrescriptionMedications_CC
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
-        		haveYouEverHadElectroconvulsiveTherapyCC
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1,protocol2)
-        		.back();
-        whichOfTheFollowingPrescriptionMedications_CC
-        		.waitForPageLoad();
-        		SubquestionWhenDidYouTakeFollowingMeds_CC subquestionWhenDidYouTakeFollowingMeds_CC= whichOfTheFollowingPrescriptionMedications_CC
-        		.clickOnAnswers("Celexa (citalopram)")
-        		.clickOnAnswers("Cymbalta (duloxetine)") 
-        		.clickOnAnswers("Effexor (venlafaxine)") 
-        		.clickOnAnswers("Fetzima (levomilnacipran)")
-        		.clickOnAnswers("Another antidepressant not listed")
-        		.clickNextButton(new SubquestionWhenDidYouTakeFollowingMeds_CC());
-        
-        
-       //---------------------Q7 SubquestionWhenDidYouTakeFollowingMeds_CC-------------------- 
-        subquestionWhenDidYouTakeFollowingMeds_CC
-        		.waitForPageLoad(1, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected1)
-        		.waitForPageLoad(2, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected2)
-        		.waitForPageLoad(3, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected3)
-        		.waitForPageLoad(4, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected4)
-        		.waitForPageLoad(5, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected5)
-        		.clickOnAnswerForSubQuestion(1, "Took in the past for a different episode of depression")
-        		.clickOnAnswerForSubQuestion(2, "Took in the past for a different episode of depression")        		
-        		.clickOnAnswerForSubQuestion(3, "Took in the past for a different episode of depression")       		
-        		.clickOnAnswerForSubQuestion(4, "Took in the past for a different episode of depression")
-        		.clickOnAnswerForSubQuestion(5, "Took in the past for a different episode of depression")
-        		.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
         haveYouEverHadElectroconvulsiveTherapyCC
-				.waitForPageLoad()
-				.getPage(debugPageCC)
-				.checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1,protocol2)  //disqualifies both 3159, 4850 protocols
-				.back();
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1, protocol2)
+                .back();
+        whichOfTheFollowingPrescriptionMedications_CC
+                .waitForPageLoad();
+        SubquestionWhenDidYouTakeFollowingMeds_CC subquestionWhenDidYouTakeFollowingMeds_CC = whichOfTheFollowingPrescriptionMedications_CC
+                .clickOnAnswers("Celexa (citalopram)")
+                .clickOnAnswers("Cymbalta (duloxetine)")
+                .clickOnAnswers("Effexor (venlafaxine)")
+                .clickOnAnswers("Fetzima (levomilnacipran)")
+                .clickOnAnswers("Another antidepressant not listed")
+                .clickNextButton(new SubquestionWhenDidYouTakeFollowingMeds_CC());
+
+
+        //---------------------Q7 SubquestionWhenDidYouTakeFollowingMeds_CC--------------------
         subquestionWhenDidYouTakeFollowingMeds_CC
-        		.waitForPageLoad(1, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected1)		
-        		.clickOnAnswerForSubQuestion(1, "Currently taking") //Select "Currently taking" to qualify for 4850
-        		.clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
-        
-        		
-        		
+                .waitForPageLoad(1, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected1)
+                .waitForPageLoad(2, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected2)
+                .waitForPageLoad(3, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected3)
+                .waitForPageLoad(4, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected4)
+                .waitForPageLoad(5, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected5)
+                .clickOnAnswerForSubQuestion(1, "Took in the past for a different episode of depression")
+                .clickOnAnswerForSubQuestion(2, "Took in the past for a different episode of depression")
+                .clickOnAnswerForSubQuestion(3, "Took in the past for a different episode of depression")
+                .clickOnAnswerForSubQuestion(4, "Took in the past for a different episode of depression")
+                .clickOnAnswerForSubQuestion(5, "Took in the past for a different episode of depression")
+                .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
+        haveYouEverHadElectroconvulsiveTherapyCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0014063-QS4808-STUDYQUES", protocol1, protocol2)  //disqualifies both 3159, 4850 protocols
+                .back();
+        subquestionWhenDidYouTakeFollowingMeds_CC
+                .waitForPageLoad(1, subquestionWhenDidYouTakeFollowingMeds_CC.titleExpected1)
+                .clickOnAnswerForSubQuestion(1, "Currently taking") //Select "Currently taking" to qualify for 4850
+                .clickNextButton(new HaveYouEverHadElectroconvulsiveTherapyCC());
+
+
         //-------------------Q9 HaveYouEverHadElectroconvulsiveTherapyCC----------------     
         haveYouEverHadElectroconvulsiveTherapyCC
-        		.waitForPageLoad();
+                .waitForPageLoad();
         HasHealthcareProfEverDiagnosedMntalHealthCC hasHealthcareProfEverDiagnosedMntalHealthCC = haveYouEverHadElectroconvulsiveTherapyCC
                 .clickOnAnswer("Yes, more than 6 months ago")
-        		.clickOnAnswer("Yes, in the past 6 months")
+                .clickOnAnswer("Yes, in the past 6 months")
                 .clickNextButton(new HasHealthcareProfEverDiagnosedMntalHealthCC());
-        		hasHealthcareProfEverDiagnosedMntalHealthCC
-        		.waitForPageLoad()
-        		.getPage(debugPageCC)
-        		.checkProtocolsContainsForQNumber("Q0014064-QS4809-STUDYQUES", protocol1,protocol2)
-        		.back();
+        hasHealthcareProfEverDiagnosedMntalHealthCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0014064-QS4809-STUDYQUES", protocol1, protocol2)
+                .back();
         haveYouEverHadElectroconvulsiveTherapyCC
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("No")   //Select "No" to qualify for 4850
-        		.clickNextButton(new HasHealthcareProfEverDiagnosedMntalHealthCC());
-       
-        
+                .clickNextButton(new HasHealthcareProfEverDiagnosedMntalHealthCC());
+
 
         //---------------Q10 Has a healthcare professional ever diagnosed you with any of the following mental health conditions? "HasHealthcareProfEverDiagnosedMntalHealthCC"-------------------
         hasHealthcareProfEverDiagnosedMntalHealthCC
                 .waitForPageLoad();
         Assert.assertEquals(hasHealthcareProfEverDiagnosedMntalHealthCC.getTitleText(), hasHealthcareProfEverDiagnosedMntalHealthCC.titleExpected, "Title is diff");
         HaveYouBeenHospitalizedForDepressionCC haveYouBeenHospitalizedForDepressionCC = hasHealthcareProfEverDiagnosedMntalHealthCC
-                .clickOnAnswers("Anorexia") 
+                .clickOnAnswers("Anorexia")
                 .clickOnAnswers("Bulimia")
                 .clickOnAnswers("Obsessive-compulsive disorder (OCD)")
-                .clickOnAnswers("Panic disorder") 
+                .clickOnAnswers("Panic disorder")
                 .clickOnAnswers("Psychosis")
-                .clickOnAnswers("Antisocial personality disorder") 
+                .clickOnAnswers("Antisocial personality disorder")
                 .clickOnAnswers("Borderline personality disorder")
                 .clickNextButton(new HaveYouBeenHospitalizedForDepressionCC());
         haveYouBeenHospitalizedForDepressionCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0014066-QS4810-STUDYQUES", protocol1,protocol2)
+                .checkProtocolsContainsForQNumber("Q0014066-QS4810-STUDYQUES", protocol1, protocol2)
                 .back();
         hasHealthcareProfEverDiagnosedMntalHealthCC.waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouBeenHospitalizedForDepressionCC());
-        
-        
-        
+
+
         //---------------Q11 Have you been hospitalized for depression or any other mental health condition in the past year?-------------------
         haveYouBeenHospitalizedForDepressionCC
                 .waitForPageLoad();
@@ -274,12 +272,12 @@ public class MDD_4840_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PregnancyAndFertilityCC());
         pregnancyAndFertilityCC
-        		.back();
+                .back();
         haveYouBeenHospitalizedForDepressionCC
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new PregnancyAndFertilityCC());
-        
+
 
         //---------------Q12 PregnancyAndFertilityCC-------------------
         pregnancyAndFertilityCC
@@ -289,17 +287,17 @@ public class MDD_4840_CC extends BaseTest {
                 .clickOnAnswer("None of the above")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-        		.waitForPageLoadMDD(studyName1);
-        		 debugPageCC.checkProtocolsContainsForQNumber("Q0013673-QS4823-STUDYQUES", protocol1,protocol2); //DQ for 4850
-        		 debugPageCC.back();
+                .waitForPageLoadMDD(studyName1);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0013673-QS4823-STUDYQUES", protocol1, protocol2); //DQ for 4850
+        debugPageCC.back();
         pregnancyAndFertilityCC
-        		.waitForPageLoad()
-                .clickOnAnswer("I have gone through menopause - my last menstrual period was 1 year ago or longer") 
+                .waitForPageLoad()
+                .clickOnAnswer("I have gone through menopause - my last menstrual period was 1 year ago or longer")
                 .clickOnAnswer("I currently have my \"tubes tied\" (also called bilateral tubal ligation, a sterilization procedure)")
                 .clickOnAnswer("I have had both ovaries surgically removed (bilateral oophorectomy) and/or my uterus surgically removed (hysterectomy)")
                 .clickOnAnswer("I am unable to become pregnant due to another medical condition")
                 .clickNextButton(new TransitionStatementCC());
-        
+
 
         //----------Q13 -Transition Statement - Display for Call Center only-------------
         transitionStatementCC
@@ -308,8 +306,6 @@ public class MDD_4840_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 
-        
-        
         //-------------------New GENERAL HEALTH---------------------------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()

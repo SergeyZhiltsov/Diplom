@@ -47,7 +47,7 @@ public class HelloSignCC extends BaseTest {
 
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
-                .waitForPageLoad();
+                .waitForPageLoadGmega();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmegaExpected, "Title is diff");
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setMonth("Sep")
@@ -89,10 +89,16 @@ public class HelloSignCC extends BaseTest {
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSCrohns2PageCC());
 
-        if (env.equals("QA")) {
-            hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaQA);
-        } else {
-            hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaSTG);
+        switch (env){
+            case "QA":
+                hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaQA);
+                break;
+            case "STG":
+                hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaSTG);
+                break;
+            case "PRD":
+                hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaPRD);
+                break;
         }
         hsCrohns2PageCC
                 .clickNextButton(new DoctorInformationCollectionPageCC())

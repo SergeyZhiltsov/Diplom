@@ -86,6 +86,7 @@ public class CV_4241_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1950")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC

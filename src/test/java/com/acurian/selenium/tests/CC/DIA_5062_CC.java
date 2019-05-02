@@ -64,6 +64,7 @@ public class DIA_5062_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("2005")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC

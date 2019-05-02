@@ -99,7 +99,8 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .setMonth("Apr")
                 .setDay("19")
-                .setYear("2002") //Disqualify ("Age") if < 18
+                .setYear("2002")
+                .clickOnAnswer("Yes")//Disqualify ("Age") if < 18
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)

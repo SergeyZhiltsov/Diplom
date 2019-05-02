@@ -94,6 +94,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1990")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC

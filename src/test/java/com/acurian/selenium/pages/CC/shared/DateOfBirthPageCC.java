@@ -13,6 +13,8 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     public final String titleExpected = "First, may I have your date of birth? You must be 18 years or older to complete this questionnaire.";
 
+    public final String titleGMEGAExpected = "May I have your date of birth?";
+
     public final String titleCommonExpected = "Let's get started to see if there is %2$s that's right for you.\n" +
             "\n" +
             "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
@@ -202,6 +204,9 @@ public class DateOfBirthPageCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='subquestion'][3]//div[@class='show-in-cc']")
     WebElement questionText2Ver;
 
+    @FindBy(xpath = "//div[@class='subquestion']//div[@class='show-in-cc']")
+    WebElement questionTextGmega;
+
     @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
     WebElement questionTextAKC;
 
@@ -254,6 +259,12 @@ public class DateOfBirthPageCC extends MainPageCC{
     @Step
     public DateOfBirthPageCC waitForPageLoad() {
         waitForPageLoadMain(questionText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageCC waitForPageLoadGmega() {
+        waitForPageLoadMain(questionTextGmega, titleGMEGAExpected);
         return this;
     }
 
@@ -342,7 +353,7 @@ public class DateOfBirthPageCC extends MainPageCC{
     @Step
     public DateOfBirthPageCC setYear(String year) {
         typeText(yearField, year);
-        clickOnAnswer("Yes");//def click
+//        clickOnAnswer("Yes");//def click
         return this;
     }
 

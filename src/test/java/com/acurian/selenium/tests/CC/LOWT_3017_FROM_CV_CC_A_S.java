@@ -83,6 +83,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .setMonth("Jun")
                 .setDay("5")
                 .setYear("1960")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC

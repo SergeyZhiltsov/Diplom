@@ -98,6 +98,7 @@ public class Insomnia_5017_CC extends BaseTest{
                 .setMonth("Apr")
                 .setDay("18")
                 .setYear("1955")//Disqualify ("Age") if < 65
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
         zipCodePageCC
                 .waitForPageLoad()

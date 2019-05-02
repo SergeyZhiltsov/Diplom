@@ -69,6 +69,7 @@ public class RA_4835_CC extends BaseTest {
                 .setMonth("Mar")
                 .setDay("21")
                 .setYear("2002") //Disqualify (“Age < 18 years old”) if <18
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC

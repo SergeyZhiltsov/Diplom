@@ -82,6 +82,7 @@ public class DIA_4356A_CC extends BaseTest{
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC

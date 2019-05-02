@@ -64,6 +64,7 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("2006")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC
