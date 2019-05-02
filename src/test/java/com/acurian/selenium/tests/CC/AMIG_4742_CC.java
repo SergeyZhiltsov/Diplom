@@ -84,6 +84,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .setMonth("Mar")
                 .setDay("2")
                 .setYear("2003")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC.waitForPageLoad();

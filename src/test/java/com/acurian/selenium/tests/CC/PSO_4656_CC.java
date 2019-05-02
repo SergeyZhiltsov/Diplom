@@ -62,6 +62,7 @@ public class PSO_4656_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("15")
                 .setYear("2005")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         ZipCodePageCC zipCodePageOLS = lessThan18YearsOldPageCC

@@ -76,6 +76,7 @@ public class IBD_4533_CC extends BaseTest {
                 .setMonth("Mar")
                 .setDay("2")
                 .setYear("2003")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol5, protocol6);

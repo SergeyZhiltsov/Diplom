@@ -96,6 +96,7 @@ public class CV_4450_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1952")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC

@@ -59,6 +59,7 @@ public class OBS_4605_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("15")
                 .setYear("2005")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC

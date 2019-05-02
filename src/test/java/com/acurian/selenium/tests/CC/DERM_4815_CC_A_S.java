@@ -75,6 +75,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .setMonth("Mar")
                 .setDay("2")
                 .setYear("2003")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
