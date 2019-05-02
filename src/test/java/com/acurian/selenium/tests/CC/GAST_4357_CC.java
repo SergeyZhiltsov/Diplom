@@ -49,7 +49,7 @@ public class GAST_4357_CC extends BaseTest {
 
     @Test(dataProvider = "sites", enabled = true)
     @Description("GAST 4357 CC (Allergan Diabetic Gastroparesis)")
-    public void adg4357ccTest(Site site) {
+    public void gast4357ccTest(Site site) {
         String phoneNumber = "AUTAMSGAST";
         String studyName = "a study for diabetics with digestion problems";
 
@@ -796,7 +796,7 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID();
         switch (site) {
-            case AUT_GAST4357_site:
+            case AUT_GAST4357_site: //1R
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
@@ -812,17 +812,18 @@ public class GAST_4357_CC extends BaseTest {
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case AUT_GAST4357S_site:
+            case AUT_GAST4357S_site: //41C
                 selectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "04/19/2001", "US", "Dover, DE",
-                         site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "4357synexus", site.name, "ALLXXXDGP01")
+                         site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", env.equals("STG") ? "4357synexus" : "4357S", site.name, "ALLXXXDGP01")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }

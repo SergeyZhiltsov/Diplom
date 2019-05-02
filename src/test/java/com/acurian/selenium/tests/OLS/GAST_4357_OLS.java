@@ -763,7 +763,7 @@ public class GAST_4357_OLS extends BaseTest {
         siteSelectionPageOLS
                 .waitForPageLoad1("a study for diabetics with digestion problems!")
                 .getPID();
-        siteSelectionPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
@@ -772,9 +772,23 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .clickNextButton(new AboutHealthPageOLS());
+
+        switch (site) {
+            case AUT_GAST4357_site: //1R
+                aboutHealthPageOLS
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+            case AUT_GAST4357S_site: //41C
+                aboutHealthPageOLS
+                        .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
+                        .getAnomalyDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+        }
     }
 }

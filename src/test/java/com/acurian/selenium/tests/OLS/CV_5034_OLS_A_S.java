@@ -452,7 +452,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                     .back();
         }
 
-        healthcareDiagnosedConditionsPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new IdentificationPageOLS())
@@ -469,10 +469,24 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .clickNextButton(new AboutHealthPageOLS());
+        switch (site) {
+            case AUT_CV_5034A_site: //1R
+                aboutHealthPageOLS
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+            case AUT_CV_5034S_site: //41C
+                aboutHealthPageOLS
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
+                        .getAnomalyDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+        }
     }
 }

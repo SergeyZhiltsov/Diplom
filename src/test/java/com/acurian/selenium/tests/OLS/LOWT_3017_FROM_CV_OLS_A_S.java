@@ -271,8 +271,8 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         incongruentSiteSelectionClose_ols
                 .waitForPageLoad(studyName, dqedStudyName)
                 .getPID();
-        switch(site.dispo) {
-            case "1R":
+        switch(site) {
+            case AUT_LOWT_3017_Site: //1R
                 incongruentSiteSelectionClose_ols
                         .clickNextButton(new QualifiedClose2PageOLS())
                         .waitForPageLoad()
@@ -286,7 +286,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case "41C":
+            case AUT_LOWT_3017S_Site: //41C
                 incongruentSiteSelectionClose_ols
                         .clickNextButton(new DoctorInformationCollectionPageOLS())
                         .waitForPageLoad()
@@ -303,6 +303,8 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
                         .clickNextButton(new AboutHealthPageOLS())
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
+                        .getAnomalyDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;

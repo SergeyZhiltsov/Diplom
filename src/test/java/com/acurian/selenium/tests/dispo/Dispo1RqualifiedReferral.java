@@ -88,6 +88,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch("1R");
+                .dispoShouldMatch("1R")
+                .childPidFromDbToLog(env);
     }
 }

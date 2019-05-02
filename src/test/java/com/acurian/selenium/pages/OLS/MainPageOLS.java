@@ -188,23 +188,25 @@ public class MainPageOLS extends BasePage {
 
     @Step
     public MainPageOLS getRadiantDbToLog(String env, String ... assertStudyReference) {
-        RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
-        logTextToAllure("Radiant : current status = " + radiantResults.getCurrentStatus() +
-                        ", response message = " + radiantResults.getResponseMessage() +
-                        ", study reference = " + radiantResults.getStudyReference() +
-                        " for PID " + pid);
-        Assert.assertEquals(radiantResults.getCurrentStatus(), "SENT", "Current status is not SENT");
-        Assert.assertEquals(radiantResults.getResponseMessage(), "Success", "Response message is not Success");
-        Assert.assertNotNull(radiantResults.getStudyReference(), "Study reference is NULL");
-        List<String> studyReference = Arrays.asList(radiantResults.getStudyReference().split(":"));
-        Assert.assertFalse(studyReference.size() < 2, "Study reference response is not full");
-        Assert.assertFalse(studyReference.get(0).isEmpty() || studyReference.get(0).contentEquals("null"),
-                "First part is empty or null");
-        Assert.assertFalse(studyReference.get(1).isEmpty() || studyReference.get(1).contentEquals("null"),
-                "Second part is empty or null");
-        if(assertStudyReference.length == 1){
+        if(env.equals("QA")) {
+            RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
+            logTextToAllure("Radiant : current status = " + radiantResults.getCurrentStatus() +
+                    ", response message = " + radiantResults.getResponseMessage() +
+                    ", study reference = " + radiantResults.getStudyReference() +
+                    " for PID " + pid);
+            Assert.assertEquals(radiantResults.getCurrentStatus(), "SENT", "Current status is not SENT");
+            Assert.assertEquals(radiantResults.getResponseMessage(), "Success", "Response message is not Success");
             Assert.assertNotNull(radiantResults.getStudyReference(), "Study reference is NULL");
-            Assert.assertEquals(radiantResults.getStudyReference(), assertStudyReference[0], "Study reference is not matched!");
+            List<String> studyReference = Arrays.asList(radiantResults.getStudyReference().split(":"));
+            Assert.assertFalse(studyReference.size() < 2, "Study reference response is not full");
+            Assert.assertFalse(studyReference.get(0).isEmpty() || studyReference.get(0).contentEquals("null"),
+                    "First part is empty or null");
+            Assert.assertFalse(studyReference.get(1).isEmpty() || studyReference.get(1).contentEquals("null"),
+                    "Second part is empty or null");
+            if (assertStudyReference.length == 1) {
+                Assert.assertNotNull(radiantResults.getStudyReference(), "Study reference is NULL");
+                Assert.assertEquals(radiantResults.getStudyReference(), assertStudyReference[0], "Study reference is not matched!");
+            }
         }
         return this;
     }

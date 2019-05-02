@@ -608,6 +608,7 @@ public class DIA_5062_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
+                .getRadiantDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .queueSiteForFULCheck(site.name);
