@@ -50,6 +50,12 @@ public class HowWouldYouRateCC extends MainPageCC{
     }
 
     @Step
+    public HowWouldYouRateCC waitForPageLoadSymptoms() {
+        waitForPageLoadMain(titleTextIBD, titleSymptoms);
+        return this;
+    }
+
+    @Step
     public HowWouldYouRateCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;

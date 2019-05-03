@@ -174,4 +174,34 @@ public class DebugPageCC extends MainPageCC{
         return this;
     }
 
+    private String getStudyStatusForQuestionNumber(String questionNumber){
+        openDebugWindow();
+        waitForAnimation();
+        Predicate<WebElement> predicate;// function block to use QS6401 instead Q0018010-QS6401-STUDYQUES
+        if (questionNumber.contains("-")) {
+            predicate = (el) -> questionNumber.equals(el.getText());
+        }
+        else {
+            predicate = (el) -> el.getText().contains(questionNumber.replaceFirst("(^.*)(-.*-)(.*$)","$2"));
+        }
+
+        String temp = questionNumberList.stream()
+                .filter(predicate)
+                .findFirst()
+                .get()
+                .findElement(By.xpath("following-sibling::*[6]"))
+                .getText();
+        closeDebugWindow();
+        logTextToAllure("Study status got = " + temp);
+        return temp;
+    }
+
+    @Step
+    public DebugPageCC checkStudyStatusContainsForQNumber(String questionNumber, String expectedStudyStatus) {
+        String actualStudyStatus =  getStudyStatusForQuestionNumber(questionNumber);
+        Assert.assertTrue(actualStudyStatus.contains(expectedStudyStatus), "Study status expected "
+                + expectedStudyStatus + " are not included in actual " + actualStudyStatus);
+        return this;
+    }
+
 }

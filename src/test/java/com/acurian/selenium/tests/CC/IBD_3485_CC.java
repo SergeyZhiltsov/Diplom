@@ -17,7 +17,7 @@ import com.acurian.selenium.pages.CC.IBD.EverTreatedCrohnOrColitisCC;
 import com.acurian.selenium.pages.CC.IBD.HowWouldYouRateCC;
 import com.acurian.selenium.pages.CC.IBD.MostRecentColonoscopyCC;
 import com.acurian.selenium.pages.CC.IBD.SteroidMedicationsForCrohnsCC;
-import com.acurian.selenium.pages.CC.IBD.SubquestionsIBD_ShireCrohns_CC;
+import com.acurian.selenium.pages.CC.IBD.SubquestionsIBDShireCrohnsPageCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
@@ -232,20 +232,20 @@ public class IBD_3485_CC extends BaseTest {
         debugPageCC.back();
         currentlyExperiencingFlareUpCC
                 .waitForPageLoad();
-        SubquestionsIBD_ShireCrohns_CC subquestionsIBD_ShireCrohns_CC = currentlyExperiencingFlareUpCC
+        SubquestionsIBDShireCrohnsPageCC subquestionsIBDShireCrohnsPageCC = currentlyExperiencingFlareUpCC
                 .clickOnAnswer("I am unsure as to whether I am in a flare with my Crohn's or colitis")
-                .clickNextButton(new SubquestionsIBD_ShireCrohns_CC());
+                .clickNextButton(new SubquestionsIBDShireCrohnsPageCC());
 
 
         //-----------------------Q15 Please think about your Crohn's disease symptoms when answering the questions below.----------------------
-        subquestionsIBD_ShireCrohns_CC
-                .waitForPageLoad(1, subquestionsIBD_ShireCrohns_CC.titleExpected1)
-                .waitForPageLoad(2, subquestionsIBD_ShireCrohns_CC.titleExpected2)
-                .waitForPageLoad(3, subquestionsIBD_ShireCrohns_CC.titleExpected3);
+        subquestionsIBDShireCrohnsPageCC
+                .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionsIBDShireCrohnsPageCC.titleExpected3);
         //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
         //WeightLossSurgeryPageCC weightLossSurgeryPageOLS = subquestionsIBD_CC
-        //HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_ShireCrohns_CC
-        subquestionsIBD_ShireCrohns_CC
+        //HowWouldYouRateCC howWouldYouRateCC = subquestionsIBDShireCrohnsPageCC
+        subquestionsIBDShireCrohnsPageCC
                 .avgDayBowelMovements("2")
                 .past24hrBowelMovements("2")
                 .abdominalpainOnaScale("2")
