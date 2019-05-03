@@ -2,13 +2,8 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.AreYouCurrentlyExperiencingFlareUp_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenAnyOtherPrescriptionMedicinesToTreatYourCrohns_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsDisease_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitis_OLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -89,60 +84,60 @@ public class IBD_3485_SHORT_OLS extends BaseTest{
         haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
                 .waitForPageLoad();
         Assert.assertEquals(haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS.getTitleText(),haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS.titleExpected, "Title is diff");
-        WhenWereYouDiagnosedWithUlcerativeColitis_OLS whenWereYouDiagnosedWithUlcerativeColitis_OLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
+        WhenWereYouDiagnosedWithUlcerativeColitisPageOLS whenWereYouDiagnosedWithUlcerativeColitisPageOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
         .clickOnAnswers("Ulcerative colitis")
-                .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitis_OLS());
-        whenWereYouDiagnosedWithUlcerativeColitis_OLS
+                .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitisPageOLS());
+        whenWereYouDiagnosedWithUlcerativeColitisPageOLS
                 .waitForPageLoad();
         		debugPageOLS.checkProtocolsContainsForQNumber("QS5702", protocol1,protocol2);
         		debugPageOLS.back();
         		haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS.waitForPageLoad();
-        		WhenWereYouDiagnosedWithCrohnsDisease_OLS whenWereYouDiagnosedWithCrohnsDisease_OLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
+        		WhenWereYouDiagnosedWithCrohnsPageOLS whenWereYouDiagnosedWithCrohnsPageOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
         		.clickOnAnswers("Ulcerative colitis","Crohn's disease") //UnCheck UC and Check Crohn's only
-                .clickNextButton(new WhenWereYouDiagnosedWithCrohnsDisease_OLS());
+                .clickNextButton(new WhenWereYouDiagnosedWithCrohnsPageOLS());
         		
 
         //---------------Q3 When were you diagnosed with Crohn's disease? -------------------
-        whenWereYouDiagnosedWithCrohnsDisease_OLS
+        whenWereYouDiagnosedWithCrohnsPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(whenWereYouDiagnosedWithCrohnsDisease_OLS.getTitleText(),whenWereYouDiagnosedWithCrohnsDisease_OLS.titleExpected, "Title is diff");
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = whenWereYouDiagnosedWithCrohnsDisease_OLS
+        Assert.assertEquals(whenWereYouDiagnosedWithCrohnsPageOLS.getTitleText(), whenWereYouDiagnosedWithCrohnsPageOLS.titleExpected, "Title is diff");
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = whenWereYouDiagnosedWithCrohnsPageOLS
                 .clickOnAnswer("Not officially diagnosed with Crohn's by a doctor")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad();
         		debugPageOLS.checkProtocolsContainsForQNumber("QS5703", protocol1,protocol2);
         		debugPageOLS.back();
-        		whenWereYouDiagnosedWithCrohnsDisease_OLS.waitForPageLoad();
-        		HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS = whenWereYouDiagnosedWithCrohnsDisease_OLS
+        		whenWereYouDiagnosedWithCrohnsPageOLS.waitForPageLoad();
+        		ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = whenWereYouDiagnosedWithCrohnsPageOLS
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(new HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS());       		
+                .clickNextButton(new ManageYourCrohnsPageOLS());
 
        
         //------------If Patient's tracking/phone # is on for this Referral Service Code: "3485 SHORT", Skip to Q6------------
-		//---------------Q6 HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS page-------------------		
-        haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS
+		//---------------Q6 ManageYourCrohnsPageOLS page-------------------
+        manageYourCrohnsPageOLS
         	.waitForPageLoad();
-        Assert.assertEquals(haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS.getTitleText(),haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS.titleExpected, "Title is diff");		
+        Assert.assertEquals(manageYourCrohnsPageOLS.getTitleText(), manageYourCrohnsPageOLS.titleExpected, "Title is diff");
         //-------------If selected 'NO', disqualify and SKIP to Q14, otherwise goto Q7	
-        AreYouCurrentlyExperiencingFlareUp_OLS areYouCurrentlyExperiencingFlareUp_OLS = haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS
+        AreYouCurrentlyExperiencingFlareUp_OLS areYouCurrentlyExperiencingFlareUp_OLS = manageYourCrohnsPageOLS
         		.clickOnAnswer("No")
                 .clickNextButton(new AreYouCurrentlyExperiencingFlareUp_OLS());
         		areYouCurrentlyExperiencingFlareUp_OLS
                 .waitForPageLoad();
         		debugPageOLS.checkProtocolsContainsForQNumber("QS5706", protocol1,protocol2);
         		debugPageOLS.back();
-        		haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS.waitForPageLoad();
-        		HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS = haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS
+        		manageYourCrohnsPageOLS.waitForPageLoad();
+        		SteroidMedicationsForCrohnsOLS steroidMedicationsForCrohnsOLS = manageYourCrohnsPageOLS
         		.clickOnAnswer("Yes")
-        		.clickNextButton(new HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS());
+        		.clickNextButton(new SteroidMedicationsForCrohnsOLS());
 
         
 		//---------------Q7 Have you ever taken steroid medications for your Crohn's or colitis?--------------------------------------------
-        haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS
+        steroidMedicationsForCrohnsOLS
                 .waitForPageLoad();
-        Assert.assertEquals(haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS.getTitleText(),haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS.titleExpected, "Title is diff");	
-        BiologicMedicationsPageOLS biologicMedicationsPageOLS = haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS
+        Assert.assertEquals(steroidMedicationsForCrohnsOLS.getTitleText(), steroidMedicationsForCrohnsOLS.titleExpected, "Title is diff");
+        BiologicMedicationsPageOLS biologicMedicationsPageOLS = steroidMedicationsForCrohnsOLS
         		//If Patient's tracking/phone # is on for this Referral Service Code: "3485 SHORT", skip to Q10 (biologics)
         		.clickOnAnswer("Yes")
                 .clickNextButton(new BiologicMedicationsPageOLS());
