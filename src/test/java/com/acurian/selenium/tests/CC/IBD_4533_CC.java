@@ -207,20 +207,20 @@ public class IBD_4533_CC extends BaseTest {
 
 
         //HowWouldYouRateCC howWouldYouRateCC = currentlyExperiencingFlareUpCC
-        SubquestionsIBD_ShireCrohns_CC subquestionsIBD_ShireCrohns_CC = currentlyExperiencingFlareUpCC
+        SubquestionsIBDShireCrohnsPageCC subquestionsIBDShireCrohnsPageCC = currentlyExperiencingFlareUpCC
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not currently in a flare with my Crohn's or colitis")
-                .clickNextButton(new SubquestionsIBD_ShireCrohns_CC());
+                .clickNextButton(new SubquestionsIBDShireCrohnsPageCC());
 
 
         //-----------------------Q15 Please think about your Crohn's disease symptoms when answering the questions below.----------------------
-        subquestionsIBD_ShireCrohns_CC
-                .waitForPageLoad(1, subquestionsIBD_ShireCrohns_CC.titleExpected1)
-                .waitForPageLoad(2, subquestionsIBD_ShireCrohns_CC.titleExpected2)
-                .waitForPageLoad(3, subquestionsIBD_ShireCrohns_CC.titleExpected3);
+        subquestionsIBDShireCrohnsPageCC
+                .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionsIBDShireCrohnsPageCC.titleExpected3);
         //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
         //WeightLossSurgeryPageCC weightLossSurgeryPageOLS = subquestionsIBD_CC
-        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_ShireCrohns_CC
+        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBDShireCrohnsPageCC
                 .avgDayBowelMovements("2")
                 .past24hrBowelMovements("2")
                 .abdominalpainOnaScale("2")
