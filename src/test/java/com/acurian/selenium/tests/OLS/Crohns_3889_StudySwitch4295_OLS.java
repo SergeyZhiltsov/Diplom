@@ -5,6 +5,8 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.OLS.Crohns_3485.*;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.FollowingMedicationsCrohnsPageOLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.ManageYourCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;

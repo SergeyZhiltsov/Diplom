@@ -5,16 +5,13 @@ import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class NoIndication3889_OLS extends BaseTest {
 
@@ -406,7 +403,7 @@ public class NoIndication3889_OLS extends BaseTest {
 //                .waitForPageLoad()
 //                .back();
 
-        WhenWereYouDiagnosedWithCrohnsDisease_OLS whenWereYouDiagnosedWithCrohnsDisease_ols = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenWereYouDiagnosedWithCrohnsPageOLS whenWereYouDiagnosedWithCrohnsPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers(
                         "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
@@ -417,74 +414,74 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .clickNextButton(new WhenWereYouDiagnosedWithCrohnsDisease_OLS());
+                .clickNextButton(new WhenWereYouDiagnosedWithCrohnsPageOLS());
 
-        WhenWasYourMostRecentColonoscopy_OLS whenWasYourMostRecentColonoscopy_OLS = whenWereYouDiagnosedWithCrohnsDisease_ols
+        WhenWasYourMostRecentColonoscopy_OLS whenWasYourMostRecentColonoscopy_OLS = whenWereYouDiagnosedWithCrohnsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(new WhenWasYourMostRecentColonoscopy_OLS());
 
         //---------------Q5 whenWasYourMostRecentColonoscopy_OLS Page-----------
-        HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS = whenWasYourMostRecentColonoscopy_OLS
+        ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = whenWasYourMostRecentColonoscopy_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("I have never had a colonoscopy")
-                .clickNextButton(new HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS());
-        haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS
+                .clickNextButton(new ManageYourCrohnsPageOLS());
+        manageYourCrohnsPageOLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5705", protocol1, protocol2, protocol3, protocol4);
         debugPageOLS.back();
         whenWasYourMostRecentColonoscopy_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("More than 2 years ago")
-                .clickNextButton(new HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS());
+                .clickNextButton(new ManageYourCrohnsPageOLS());
 
 
-        //---------------Q6 HaveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS page-------------------
-        haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS
+        //---------------Q6 ManageYourCrohnsPageOLS page-------------------
+        manageYourCrohnsPageOLS
                 .waitForPageLoad();
         //-------------If selected 'NO', disqualify and SKIP to Q14, otherwise goto Q7
-        AreYouCurrentlyExperiencingFlareUp_OLS areYouCurrentlyExperiencingFlareUp_OLS = haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS
+        AreYouCurrentlyExperiencingFlareUp_OLS areYouCurrentlyExperiencingFlareUp_OLS = manageYourCrohnsPageOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new AreYouCurrentlyExperiencingFlareUp_OLS());
         areYouCurrentlyExperiencingFlareUp_OLS
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5706", protocol1, protocol2, protocol3, protocol4);
         debugPageOLS.back();
-        haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS.waitForPageLoad();
-        HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS = haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS
+        manageYourCrohnsPageOLS.waitForPageLoad();
+        SteroidMedicationsForCrohnsOLS steroidMedicationsForCrohnsOLS = manageYourCrohnsPageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS());
+                .clickNextButton(new SteroidMedicationsForCrohnsOLS());
 
 
         //---------------Q7 Have you ever taken steroid medications for your Crohn's or colitis?--------------------------------------------
-        haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS
+        steroidMedicationsForCrohnsOLS
                 .waitForPageLoad();
-        HaveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS haveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS = haveYouEverTakenSteroidMedicationsForYourCrohnsColitis_OLS
+        FollowingMedicationsCrohnsPageOLS followingMedicationsCrohnsPageOLS = steroidMedicationsForCrohnsOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS());
-        haveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS
+                .clickNextButton(new FollowingMedicationsCrohnsPageOLS());
+        followingMedicationsCrohnsPageOLS
                 .waitForPageLoad()
                 .back();
-        haveYouEverTakenAnyMedicationsToTreatManageCrohns_OLS.waitForPageLoad()
+        manageYourCrohnsPageOLS.waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS());
+                .clickNextButton(new FollowingMedicationsCrohnsPageOLS());
 
 
         //---------------Q8 Have you ever taken any of the following medications for your Crohn's or colitis? page------------------
-        haveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS
+        followingMedicationsCrohnsPageOLS
                 .waitForPageLoad();
-        HaveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS haveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS = haveYouEverTakenAnyOfFollowingMedicationsForCrohnsColitis_OLS
+        EverTreatedCrohnOrColitisOLS everTreatedCrohnOrColitisOLS = followingMedicationsCrohnsPageOLS
                 .clickOnAnswers("Apriso, Asacol, Canasa, Delzicol, Lialda, Pentasa, or Rowasa (mesalamine)",
                         "Azulfidine (sulfasalazine)",
                         "Colazal or Giazo (balsalazide)",
                         "Dipentum (olsalazine)")
-                .clickNextButton(new HaveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS());
+                .clickNextButton(new EverTreatedCrohnOrColitisOLS());
 
 
         //---------------Q9 heartrelatedMedicalProceduresPageOLS page------------------
-        haveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS
+        everTreatedCrohnOrColitisOLS
                 .waitForPageLoad();
-        BiologicMedicationsPageOLS biologicMedicationsPageOLS = haveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS
+        BiologicMedicationsPageOLS biologicMedicationsPageOLS = everTreatedCrohnOrColitisOLS
                 .clickOnAnswers("Astagraf, Envarsus, or Prograf (tacrolimus)",
                         "Azasan or Imuran (azathioprine)",
                         "CellCept or Myfortic (mycophenolate)",
@@ -500,7 +497,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5709", protocol1, protocol2);
         debugPageOLS.back();
-        haveYouEverTreatedYourCrohnsColitisWithAnyOfTheFollowingMeds_OLS
+        everTreatedCrohnOrColitisOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BiologicMedicationsPageOLS());
@@ -540,22 +537,20 @@ public class NoIndication3889_OLS extends BaseTest {
         //---------------Q14 Are you currently experiencing a flare-up? page------------------
         areYouCurrentlyExperiencingFlareUp_OLS
                 .waitForPageLoad();
-        SubquestionsIBD_ShireCrohns_OLS subquestionsIBD_ShireCrohns_OLS = areYouCurrentlyExperiencingFlareUp_OLS
+        SubquestionsIbdPleaseThinkCrohnsPageOLS subquestionsIbdPleaseThinkCrohnsPageOLS = areYouCurrentlyExperiencingFlareUp_OLS
                 .clickOnAnswer("No, I am not currently in a flare with my Crohn's or colitis")
-                .clickNextButton(new SubquestionsIBD_ShireCrohns_OLS());
+                .clickNextButton(new SubquestionsIbdPleaseThinkCrohnsPageOLS());
 
 
         //-----------------------Q15 Please think about your Crohn's disease symptoms when answering the questions below.----------------------
-        subquestionsIBD_ShireCrohns_OLS
-                .waitForPageLoad(1, subquestionsIBD_ShireCrohns_OLS.titleExpected1)
-                .waitForPageLoad(2, subquestionsIBD_ShireCrohns_OLS.titleExpected2)
-                .waitForPageLoad(3, subquestionsIBD_ShireCrohns_OLS.titleExpected3);
+        subquestionsIbdPleaseThinkCrohnsPageOLS
+                .waitForPageLoad(1, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected3);
         //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
         //WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_OLS
-        SubquestionsIBD_OLS subquestionsIBD_OLS = subquestionsIBD_ShireCrohns_OLS
-                .avgDayBowelMovements("2")
-                .past24hrBowelMovements("2")
-                .abdominalpainOnaScale("2")
+        SubquestionsIBD_OLS subquestionsIBD_OLS = subquestionsIbdPleaseThinkCrohnsPageOLS
+                .setAvgDayBowelMovements("2")
                 .clickNextButton(new SubquestionsIBD_OLS());
 
 
@@ -567,15 +562,15 @@ public class NoIndication3889_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QS5714", protocol2)
                 .back();
-        subquestionsIBD_ShireCrohns_OLS.back();
+        subquestionsIbdPleaseThinkCrohnsPageOLS.back();
         areYouCurrentlyExperiencingFlareUp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure as to whether I am in a flare with my Crohn's or colitis")
                 .clickNextButton(new SubquestionsIBD_OLS());
-        subquestionsIBD_ShireCrohns_OLS
-                .waitForPageLoad(1, subquestionsIBD_ShireCrohns_OLS.titleExpected1)
-                .waitForPageLoad(2, subquestionsIBD_ShireCrohns_OLS.titleExpected2)
-                .waitForPageLoad(3, subquestionsIBD_ShireCrohns_OLS.titleExpected3)
+        subquestionsIbdPleaseThinkCrohnsPageOLS
+                .waitForPageLoad(1, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected3)
                 .getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QS5714", protocol1)
                 .clickNextButton(new SubquestionsIBD_OLS());
