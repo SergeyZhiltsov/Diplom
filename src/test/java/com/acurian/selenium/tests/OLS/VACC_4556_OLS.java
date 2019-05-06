@@ -48,14 +48,14 @@ public class VACC_4556_OLS extends BaseTest {
             case AUT_VAC_4556M:
                 dateOfBirthPageOLS
                         .waitForPageLoad()
-                        .setDate("05051954")//64
+                        .setDate("05011959")//65
                         .clickNextButton(zipCodePageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QSI8004", protocols)
                         .back(dateOfBirthPageOLS)
                         .waitForPageLoad()
-                        .setDate("05051953")//65
+                        .setDate("05011954")//65
                         .clickNextButton(zipCodePageOLS);
                 break;
 //            case AUT_VAC_4556_Site:
@@ -74,14 +74,14 @@ public class VACC_4556_OLS extends BaseTest {
             case AUT_VAC_4556_A:
                 dateOfBirthPageOLS
                         .waitForPageLoad()
-                        .setDate("05051959")//59
+                        .setDate("05011940")//<80
                         .clickNextButton(zipCodePageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QSI8004", protocols)
                         .back(dateOfBirthPageOLS)
                         .waitForPageLoad()
-                        .setDate("05051958")//60
+                        .setDate("05011939")//>=80
                         .clickNextButton(zipCodePageOLS);
         }
 
