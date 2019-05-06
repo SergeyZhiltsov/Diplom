@@ -264,7 +264,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC);
 
         //Q17
-        SubquestionsIBDUlcerativeColitisPageCC subquestionsIBD_UlcerativeColitis_Page_CC = new SubquestionsIBDUlcerativeColitisPageCC();
+        SubquestionsIBDUlcerativeColitisPageCC subquestionsIBDUlcerativeColitisPageCC = new SubquestionsIBDUlcerativeColitisPageCC();
         HashMap<String, List<String>> flareQ17 = new HashMap<>();
         flareQ17.put("Mild symptoms, but tolerable", Arrays.asList(site.activeProtocols)); //Flare Status: "INITIAL_ACTIVE" (In Flare)
         flareQ17.put("Moderate symptoms, but managing", Arrays.asList(site.activeProtocols));
@@ -275,10 +275,10 @@ public class IBD_3264_CC_HS extends BaseTest {
             crohnsDiseaseOrUlcerativeColitisFlarePageCC
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(subquestionsIBD_UlcerativeColitis_Page_CC)
-                    .waitForPageLoad(1, subquestionsIBD_UlcerativeColitis_Page_CC.titleExpected1)
-                    .waitForPageLoad(2, subquestionsIBD_UlcerativeColitis_Page_CC.titleExpected2)
-                    .waitForPageLoad(3, subquestionsIBD_UlcerativeColitis_Page_CC.titleExpected3)
+                    .clickNextButton(subquestionsIBDUlcerativeColitisPageCC)
+                    .waitForPageLoad(1, subquestionsIBDUlcerativeColitisPageCC.titleExpected1)
+                    .waitForPageLoad(2, subquestionsIBDUlcerativeColitisPageCC.titleExpected2)
+                    .waitForPageLoad(3, subquestionsIBDUlcerativeColitisPageCC.titleExpected3)
                     .getPage(debugPageCC)
                     .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-3")
                     .back();
@@ -286,15 +286,15 @@ public class IBD_3264_CC_HS extends BaseTest {
         crohnsDiseaseOrUlcerativeColitisFlarePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
-                .clickNextButton(subquestionsIBD_UlcerativeColitis_Page_CC)
+                .clickNextButton(subquestionsIBDUlcerativeColitisPageCC)
                 .getPage(debugPageCC)
                 .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-4"); //Flare Status: "INITIAL_INACTIVE" (Not in Flare)
 
         //Q18
-        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_UlcerativeColitis_Page_CC
-                .waitForPageLoad(1, subquestionsIBD_UlcerativeColitis_Page_CC.titleExpected1)
-                .waitForPageLoad(2, subquestionsIBD_UlcerativeColitis_Page_CC.titleExpected2)
-                .waitForPageLoad(3, subquestionsIBD_UlcerativeColitis_Page_CC.titleExpected3)
+        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBDUlcerativeColitisPageCC
+                .waitForPageLoad(1, subquestionsIBDUlcerativeColitisPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionsIBDUlcerativeColitisPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionsIBDUlcerativeColitisPageCC.titleExpected3)
                 .totalBowelMovements("2")
                 .totalpast24hrBowelMovements("2")
                 .clickOnAnswer("Yes")
