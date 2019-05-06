@@ -1,8 +1,5 @@
 package com.acurian.selenium.tests.CC;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.CC.IBD.*;
 import com.acurian.selenium.utils.Properties;
@@ -33,10 +30,8 @@ import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
 import com.acurian.selenium.pages.CC.shared.WeightLossSurgeryPageCC;
 import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
-import com.acurian.selenium.utils.DataProviderPool;
 
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class IBD_3839_CC extends BaseTest {
 
@@ -196,17 +191,17 @@ public class IBD_3839_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new CurrentlyExperiencingFlareUpCC());
 
-        SubquestionsIBD_UlcerativeColitis_CC subquestionsIBD_ulcerativeColitis_cc = currentlyExperiencingFlareUpCC
+        SubquestionsIBDUlcerativeColitisPageCC subquestionsIBD_ulcerativeColitis_Page_cc = currentlyExperiencingFlareUpCC
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not currently in a flare with my Crohn's or colitis")
-                .clickNextButton(new SubquestionsIBD_UlcerativeColitis_CC());
+                .clickNextButton(new SubquestionsIBDUlcerativeColitisPageCC());
 
         //added after failing
 
-        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_ulcerativeColitis_cc
-                .waitForPageLoad(1, subquestionsIBD_ulcerativeColitis_cc.titleExpected1)
-                .waitForPageLoad(2, subquestionsIBD_ulcerativeColitis_cc.titleExpected2)
-                .waitForPageLoad(3, subquestionsIBD_ulcerativeColitis_cc.titleExpected3)
+        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_ulcerativeColitis_Page_cc
+                .waitForPageLoad(1, subquestionsIBD_ulcerativeColitis_Page_cc.titleExpected1)
+                .waitForPageLoad(2, subquestionsIBD_ulcerativeColitis_Page_cc.titleExpected2)
+                .waitForPageLoad(3, subquestionsIBD_ulcerativeColitis_Page_cc.titleExpected3)
                 .totalBowelMovements("4")
                 .totalpast24hrBowelMovements("4")
                 .clickOnAnswer("Yes")

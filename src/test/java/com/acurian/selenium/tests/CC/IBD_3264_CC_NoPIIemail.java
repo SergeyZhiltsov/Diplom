@@ -7,18 +7,13 @@ import com.acurian.selenium.pages.CC.IBD.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
-import com.acurian.selenium.pages.CC.pediatric.HSCrohns2PageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.utils.DataProviderPool;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class IBD_3264_CC_NoPIIemail extends BaseTest {
@@ -238,22 +233,22 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswers("Remicade (Agent Note: REM-ih-cade)")
                 .clickNextButton(currentlyExperiencingFlareUpCC);
 
-        SubquestionsIBD_UlcerativeColitis_CC subquestionsIBD_UlcerativeColitis_CC = currentlyExperiencingFlareUpCC
+        SubquestionsIBDUlcerativeColitisPageCC subquestionsIBDUlcerativeColitisPageCC = currentlyExperiencingFlareUpCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I am currently in a flare with my Crohn's or colitis")
-                .clickNextButton(new SubquestionsIBD_UlcerativeColitis_CC());
+                .clickNextButton(new SubquestionsIBDUlcerativeColitisPageCC());
 
 
         //-------------changes as per R59-------
         //-----------Q16 Please think about your Ulcerative Colitis symptoms when answering the questions below.----------------------
         //------------------------On an average day, how many total bowel movements do you have?------
-        subquestionsIBD_UlcerativeColitis_CC
-                .waitForPageLoad(1, subquestionsIBD_UlcerativeColitis_CC.titleExpected1)
-                .waitForPageLoad(2, subquestionsIBD_UlcerativeColitis_CC.titleExpected2)
-                .waitForPageLoad(3, subquestionsIBD_UlcerativeColitis_CC.titleExpected3);
+        subquestionsIBDUlcerativeColitisPageCC
+                .waitForPageLoad(1, subquestionsIBDUlcerativeColitisPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionsIBDUlcerativeColitisPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionsIBDUlcerativeColitisPageCC.titleExpected3);
         //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
         //WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_UlcerativeColitis_OLS
-        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBD_UlcerativeColitis_CC
+        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBDUlcerativeColitisPageCC
                 .totalBowelMovements("4")
                 .totalpast24hrBowelMovements("4")
                 .clickOnAnswer("Yes")
