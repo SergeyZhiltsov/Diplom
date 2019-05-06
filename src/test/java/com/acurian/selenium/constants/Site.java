@@ -20,7 +20,7 @@ public enum Site {
     //3237
     AUT_CLH_3237_Site("AUT_CLH_3237_Site", "19044", "1R", false, false, "TV48125_CNS_30056", "TV48125_CNS_30057"),
     //3264
-    AUT_IBD_3264_Site("AUT_IBD_3264_Site", "19901", "1R", false, true, "M14_234", "M16_067"),
+    AUT_IBD_3264_Site("AUT_IBD_3264_Site", "19901", "1R", false, true, "M16_067"), //"M14_234"
     //3839
     AUT_IBD_3839_Site("AUT_IBD_3839_Site", "19901", "1R", false, false, "SHP647_301", "SHP647_302"),
     //3889

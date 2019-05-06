@@ -10,7 +10,7 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class SubquestionsIBD_UlcerativeColitis_CC extends MainPageCC{
+public class SubquestionsIBDUlcerativeColitisPageCC extends MainPageCC{
 
     public final String titleExpected1 = "On an average day, how many total bowel movements do you have?";
     public final String titleExpected2 = "In the past 24 hours, how many total bowel movements did you have?";
@@ -35,12 +35,12 @@ public class SubquestionsIBD_UlcerativeColitis_CC extends MainPageCC{
     List<WebElement> radioButtonsList;
     
 
-    public SubquestionsIBD_UlcerativeColitis_CC() {
+    public SubquestionsIBDUlcerativeColitisPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SubquestionsIBD_UlcerativeColitis_CC waitForPageLoad(int actualTitleIndex, String expectedTitle) {
+    public SubquestionsIBDUlcerativeColitisPageCC waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
         waitForPageLoadMain(titlesText.get(actualTitleIndex-1), expectedTitle);
@@ -48,25 +48,25 @@ public class SubquestionsIBD_UlcerativeColitis_CC extends MainPageCC{
     }
     
     @Step
-    public SubquestionsIBD_UlcerativeColitis_CC totalBowelMovements(String text) {
+    public SubquestionsIBDUlcerativeColitisPageCC totalBowelMovements(String text) {
         typeText(avgDayBowel, text);
         return this;
     }
     
     @Step
-    public SubquestionsIBD_UlcerativeColitis_CC totalpast24hrBowelMovements(String text) {
+    public SubquestionsIBDUlcerativeColitisPageCC totalpast24hrBowelMovements(String text) {
         typeText(past24hrBowel, text);
         return this;
     }
     
     @Step
-    public SubquestionsIBD_UlcerativeColitis_CC abdominalpainOnaScale(String text) {
+    public SubquestionsIBDUlcerativeColitisPageCC abdominalpainOnaScale(String text) {
         typeText(abdominalpainScale, text);
         return this;
     }
 
     @Step
-    public SubquestionsIBD_UlcerativeColitis_CC clickOnAnswer(String answerText) {
+    public SubquestionsIBDUlcerativeColitisPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
