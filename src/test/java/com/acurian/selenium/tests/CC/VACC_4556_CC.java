@@ -79,9 +79,9 @@ public class VACC_4556_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a pneumonia vaccine study", "170"), "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("15")
-                .setYear("2005")
+                .setMonth("May")
+                .setDay("1")
+                .setYear("2006")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
@@ -94,14 +94,14 @@ public class VACC_4556_CC extends BaseTest {
             case AUT_VAC_4556M:
                 dateOfBirthPageCC
                         .waitForPageLoad()
-                        .setYear("1954")//64
+                        .setYear("1959")//64
                         .clickNextButton(zipCodePageCC)
                         .waitForPageLoad()
                         .getPage(debugPageCC)
                         .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols[0])
                         .back(dateOfBirthPageCC)
                         .waitForPageLoad()
-                        .setYear("1953")//65
+                        .setYear("1954")//65
                         .clickNextButton(zipCodePageCC);
                 break;
 //            case AUT_VAC_4556_Site:
@@ -120,14 +120,14 @@ public class VACC_4556_CC extends BaseTest {
             case AUT_VAC_4556_A:
                 dateOfBirthPageCC
                         .waitForPageLoad()
-                        .setYear("1959")//59
+                        .setYear("1940")//<80
                         .clickNextButton(zipCodePageCC)
                         .waitForPageLoad()
                         .getPage(debugPageCC)
                         .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
                         .back(dateOfBirthPageCC)
                         .waitForPageLoad()
-                        .setYear("1958")//60
+                        .setYear("1939")//>=80
                         .clickNextButton(zipCodePageCC);
         }
 
