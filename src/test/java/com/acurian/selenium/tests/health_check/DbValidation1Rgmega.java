@@ -80,7 +80,7 @@ public class DbValidation1Rgmega extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
-                //.clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
+                //.clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseGmegaOLS())

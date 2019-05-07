@@ -654,8 +654,8 @@ public class IBD_3889_OLS extends BaseTest {
                     .childPidFromDbToLog(env)
                     .dispoShouldMatch(site.dispo, site.dispo);
         } else {
-            QualifiedFlareMonitoringAppCLose_OLS qualifiedFlareMonitoringAppCLose_ols = new QualifiedFlareMonitoringAppCLose_OLS();
-            qualifiedFlareMonitoringAppCLose_ols
+            QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
+            qualifiedFlareMonitoringAppClosePageOLS
                     .waitForPageLoad()
                     .getActivationCode()
                     .clickNextButton(thankYouCloseSimplePageOLS)

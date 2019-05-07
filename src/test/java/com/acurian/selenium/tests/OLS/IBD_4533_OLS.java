@@ -9,7 +9,7 @@ import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppClosePageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -678,7 +678,7 @@ public class IBD_4533_OLS extends BaseTest {
         siteSelectionPageOLS.waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
+                .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
                 .waitForPageLoad()
                 .getActivationCode()
                 //.enterEmail(eMailId)

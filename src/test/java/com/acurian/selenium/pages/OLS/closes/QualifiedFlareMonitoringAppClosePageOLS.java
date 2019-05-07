@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class QualifiedFlareMonitoringAppCLose_OLS extends MainPageOLS{
+public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
     private String activationCode;
     private String emailAddress;
 
@@ -22,19 +22,19 @@ public class QualifiedFlareMonitoringAppCLose_OLS extends MainPageOLS{
     @FindBy(xpath = "//input[@type='email']")
     WebElement emailidField;
 
-    public QualifiedFlareMonitoringAppCLose_OLS() {
+    public QualifiedFlareMonitoringAppClosePageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public QualifiedFlareMonitoringAppCLose_OLS waitForPageLoad() {
+    public QualifiedFlareMonitoringAppClosePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
     
     
     @Step
-    public QualifiedFlareMonitoringAppCLose_OLS getActivationCode(){
+    public QualifiedFlareMonitoringAppClosePageOLS getActivationCode(){
         activationCode = getText(activationCodePath);
         logTextToAllure("Activation Code " + activationCode);
         System.out.println("Activation Code = " + activationCode);
@@ -42,7 +42,7 @@ public class QualifiedFlareMonitoringAppCLose_OLS extends MainPageOLS{
     }
 
     @Step
-    public QualifiedFlareMonitoringAppCLose_OLS getActivationCodeQA(){
+    public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeQA(){
         String titleTextTemp = titleText.getText();
         activationCode = titleTextTemp.substring(titleTextTemp.lastIndexOf("is:") + 4, titleTextTemp.lastIndexOf(":") + 8);
         logTextToAllure("Activation Code " + activationCode);
@@ -51,7 +51,7 @@ public class QualifiedFlareMonitoringAppCLose_OLS extends MainPageOLS{
     }
     
     @Step
-    public QualifiedFlareMonitoringAppCLose_OLS enterEmail(String emailid) {
+    public QualifiedFlareMonitoringAppClosePageOLS enterEmail(String emailid) {
         emailAddress = emailid;
         typeText(emailidField, emailid);
         logTextToAllure("Email_ID "+emailid);
