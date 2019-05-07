@@ -29,7 +29,7 @@ public class IBD_3889_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {true},
-//                {false}
+                {false}
         };
     }
 
