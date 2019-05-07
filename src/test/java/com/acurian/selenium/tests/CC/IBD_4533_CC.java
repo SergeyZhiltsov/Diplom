@@ -20,8 +20,8 @@ import java.util.List;
 
 public class IBD_4533_CC extends BaseTest {
 
-    @Test()
-    @Description("IBD 45335 for CC")
+    @Test(enabled = false)
+    @Description("IBD 4533 for CC")
     public void IBD_4533_CCTest() {
         Site site = Site.AUT_SHIRE_4533_site;
         String phoneNumber = "AUTAMS1CRN";
@@ -512,10 +512,10 @@ public class IBD_4533_CC extends BaseTest {
                 .waitForPageLoad("a Crohn's study")
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedFlareMonitoringAppClose_CC())
+                .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
                 .threadSleep(5000);
         //.waitForPageLoad()
-        QualifiedFlareMonitoringAppClose_CC qualified = new QualifiedFlareMonitoringAppClose_CC();
+        QualifiedFlareMonitoringAppClosePageCC qualified = new QualifiedFlareMonitoringAppClosePageCC();
         qualified.getActivationCode()
                 .enterEmail(eMailId)
                 //------------Warm Transfer----------
