@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -20,9 +21,17 @@ import java.util.Map;
 
 public class IBD_3264_OLS extends BaseTest {
 
-    @Test
+    @DataProvider
+    public Object[][] flare() {
+        return new Object[][]{
+                {true},
+                {false}
+        };
+    }
+
+    @Test(dataProvider = "flare")
     @Description("IBD_3264_OLS")
-    public void ibd3264olsTest() {
+    public void ibd3264olsTest(boolean inFlare) {
         Site site = Site.AUT_IBD_3264_Site;
         String phoneNumber = "AUTAMS1IBD";
         String protocol2 = "M16_067";
@@ -216,31 +225,33 @@ public class IBD_3264_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")// not in flare
                 .clickNextButton(new SubquestionsIbdPleaseThinkUlcerativeColitisPageOLS());
-        subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
-                .waitForPageLoad()
-                .back();
-        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Mild symptoms, but tolerable")// in flare
-                .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
-                .waitForPageLoad()
-                .back();
-        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Moderate symptoms, but managing")// in flare
-                .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
-                .waitForPageLoad()
-                .back();
-        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Severe symptoms that make life difficult")// in flare
-                .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
-                .waitForPageLoad()
-                .back();
-        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")// in flare
-                .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS);
+        if(inFlare) {
+            subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
+                    .waitForPageLoad()
+                    .back();
+            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("Mild symptoms, but tolerable")// in flare
+                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
+                    .waitForPageLoad()
+                    .back();
+            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("Moderate symptoms, but managing")// in flare
+                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
+                    .waitForPageLoad()
+                    .back();
+            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("Severe symptoms that make life difficult")// in flare
+                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
+                    .waitForPageLoad()
+                    .back();
+            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("Unsure")// in flare
+                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS);
+        }
 
         SubquestionsIBD_OLS subquestionsIBD_ols = subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
                 .waitForPageLoad()
