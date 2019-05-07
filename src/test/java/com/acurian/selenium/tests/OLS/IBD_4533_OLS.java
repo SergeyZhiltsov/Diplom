@@ -22,7 +22,7 @@ import java.time.Instant;
 
 public class IBD_4533_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("IBD_4533_OLS")
     public void IBD_4533_Crohns_OLS_Screener() {
         Site site = Site.AUT_SHIRE_4533_site;

@@ -288,7 +288,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                     .waitForPageLoad(2, subquestionsIBDUlcerativeColitisPageCC.titleExpected2)
                     .waitForPageLoad(3, subquestionsIBDUlcerativeColitisPageCC.titleExpected3)
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-3")
+                    .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-3") //Flare Status: "INITIAL_ACTIVE" (In Flare)
                     .back();
         }
         crohnsDiseaseOrUlcerativeColitisFlarePageCC
@@ -297,7 +297,6 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(subquestionsIBDUlcerativeColitisPageCC)
                 .getPage(debugPageCC)
                 .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-4"); //Flare Status: "INITIAL_INACTIVE" (Not in Flare)
-
 
         //Q18
         HowWouldYouRateCC howWouldYouRateCC = subquestionsIBDUlcerativeColitisPageCC
@@ -347,14 +346,28 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
 
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickOnAnswers("Autism spectrum", "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)", "Cancer", "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                .clickOnAnswers("Diabetes (type 1 or type 2)", "Headaches (migraine, cluster, tension)")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)", "High blood pressure or hypertension", "High cholesterol, triglycerides, or lipids")
-                .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)", "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)", "Kidney disease")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)", "Lupus", "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)", "Skin problems (eczema or atopic dermatitis, psoriasis)")
-                .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Cancer",
+                        "Diabetes (type 1 or type 2)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new WhatKindOfArthritisCC());
 

@@ -5,15 +5,15 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.IBD.*;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -24,9 +24,27 @@ import java.util.Map;
 
 public class IBD_3889_CC extends BaseTest {
 
-    @Test()
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @DataProvider(name = "Flare status")
+    public Object[][] flareStatus() {
+        return new Object[][]{
+                {"Not in Flare"},
+                {"In Flare"}
+        };
+    }
+
+    @Test(dataProvider = "Flare status")
     @Description("IBD 3485 for CC")
-    public void IBD_3889_CCTest() {
+    public void IBD_3889_CCTest(String flareStatus) {
         Site site = Site.AUT_CRN_3889_HS;
         String phoneNumber = "AUTAMS1IBD";
 
@@ -336,37 +354,33 @@ public class IBD_3889_CC extends BaseTest {
         //Q17
         SubquestionsIBDShireCrohnsPageCC subquestionsIBDShireCrohnsPageCC = crohnsDiseaseOrUlcerativeColitisFlarePageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Unsure")
+                .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
                 .clickNextButton(new SubquestionsIBDShireCrohnsPageCC());
 
         //Q18
-        HowWouldYouRateCC howWouldYouRateCC = subquestionsIBDShireCrohnsPageCC
-                .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-                .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-                .overPastWeekAvgDayBowel("2")
-                .clickOnAnswerForSubQuestion(2, "No pain or cramping")
-                .clickNextButton(new HowWouldYouRateCC());
-        howWouldYouRateCC
-                .waitForPageLoadSymptoms()
-                .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("Q0020435-QS5732-STUDYQUES", "2-4")
-                .back(subquestionsIBDShireCrohnsPageCC)
-                .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-                .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-                .clickOnAnswerForSubQuestion(2, "Moderate (interferes with my usual activity)")
-                .clickNextButton(howWouldYouRateCC)
-                .waitForPageLoadSymptoms()
-                .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("Q0020435-QS5732-STUDYQUES", "2-3")
-                .back(subquestionsIBDShireCrohnsPageCC)
-                .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-                .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-                .overPastWeekAvgDayBowel("3")
-                .clickOnAnswerForSubQuestion(2, "No pain or cramping")
-                .clickNextButton(howWouldYouRateCC)
-                .waitForPageLoadSymptoms()
-                .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("Q0020435-QS5732-STUDYQUES", "2-3");
+        HowWouldYouRateCC howWouldYouRateCC = new HowWouldYouRateCC();
+        switch (flareStatus) {
+            case "Not in Flare":
+                subquestionsIBDShireCrohnsPageCC
+                        .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
+                        .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
+                        .overPastWeekAvgDayBowel("1")
+                        .clickOnAnswerForSubQuestion(2, "No pain or cramping")
+                        .clickNextButton(howWouldYouRateCC)
+                        .getPage(debugPageCC)
+                        .checkStudyStatusContainsForQNumber("Q0020435-QS5732-STUDYQUES", "2-4");
+                break;
+            case "In Flare":
+                subquestionsIBDShireCrohnsPageCC
+                        .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
+                        .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
+                        .overPastWeekAvgDayBowel("3")
+                        .clickOnAnswerForSubQuestion(2, "Moderate (interferes with my usual activity)")
+                        .clickNextButton(howWouldYouRateCC)
+                        .getPage(debugPageCC)
+                        .checkStudyStatusContainsForQNumber("Q0020435-QS5732-STUDYQUES", "2-3");
+                break;
+        }
         //Q21.3
         HaveAnyOfTheFollowingPageCC haveAnyOfTheFollowingPageCC = howWouldYouRateCC
                 .clickOnAnswers("Abdominal pain or cramps",
@@ -408,6 +422,29 @@ public class IBD_3889_CC extends BaseTest {
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough",
+                        "Cancer",
+                        "Diabetes (type 1 or type 2)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
                 .clickNextButton(new WhenDiagnosedWithCancerCC());
 
@@ -577,7 +614,7 @@ public class IBD_3889_CC extends BaseTest {
         subquestionExperiencedHeartPageCC.back();
         haveYouEverExperiencedHeartRelatedMedicalCondCC.back();
 
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+    KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
@@ -670,11 +707,8 @@ public class IBD_3889_CC extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "7", "170")
                 .clickNextButton(new LetMeSeePageCC());
-        letMeSeePageCC
+        HSMedicalRecordsPageCC hsMedicalRecordsPageCC  = letMeSeePageCC
                 .waitForPageLoad()
-//          		.clickNextButton(new ChildrenUnderPageCC())
-//          		.waitForPageLoad()
-//          		.clickOnAnswer("No")
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())
@@ -684,7 +718,14 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad()
+                .waitForPageLoad();
+        if(flareStatus.equals("Not in Flare")) {
+            hsMedicalRecordsPageCC
+                    .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
+                    .waitForPageLoad()
+                    .getActivationCode();
+        }
+        hsMedicalRecordsPageCC
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
