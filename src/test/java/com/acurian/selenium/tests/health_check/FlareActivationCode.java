@@ -5,8 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.FLARE.ChooseTheMatterYouAreHereOLS;
 import com.acurian.selenium.pages.OLS.FLARE.MostImportantChoiceOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppCLose_OLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppClosePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -88,7 +87,7 @@ public class FlareActivationCode extends BaseTest {
         siteSelectionPageOLS
                 .clickOnFacilityName(site.name)
                 .getPID()
-                .clickNextButton(new QualifiedFlareMonitoringAppCLose_OLS())
+                .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
                 .waitForPageLoad()
                 .getActivationCodeQA()
                 .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
