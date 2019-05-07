@@ -26,14 +26,14 @@ import java.util.Map;
 public class IBD_3889_OLS extends BaseTest {
 
     @DataProvider
-    public Object[][] sites() {
+    public Object[][] flare() {
         return new Object[][]{
                 {true},
                 {false}
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "flare")
     @Description("IBD_3889_OLS")
     public void ibd3889CrohnsOlsTest(boolean inFlare) {
         Site site = Site.AUT_CRN_3889_HS;
