@@ -16,6 +16,7 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -24,9 +25,17 @@ import java.util.Map;
 
 public class IBD_3889_OLS extends BaseTest {
 
-    @Test
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {true},
+//                {false}
+        };
+    }
+
+    @Test(dataProvider = "sites")
     @Description("IBD_3889_OLS")
-    public void ibd3889CrohnsOlsTest() {
+    public void ibd3889CrohnsOlsTest(boolean inFlare) {
         Site site = Site.AUT_CRN_3889_HS;
         String phoneNumber = "AUTAMS1IBD";
         String protocol1 = "M14_431";
@@ -239,16 +248,18 @@ public class IBD_3889_OLS extends BaseTest {
 
         SubquestionsIbdPleaseThinkUlcerativeColitisPageOLS subquestionsIbdPleaseThinkUlcerativeColitisPageOLS = subquestionsIbdPleaseThinkCrohnsPageOLS
                 .waitForPageLoad()
-                .setAvgDayBowelMovements("3")
+                .setAvgDayBowelMovements("2")
                 .clickOnAnswer("Mild (aware but tolerable)")// not in flare
                 .clickNextButton(new SubquestionsIbdPleaseThinkUlcerativeColitisPageOLS());
-        subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
-                .waitForPageLoad()
-                .back();
-        subquestionsIbdPleaseThinkCrohnsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Severe (intolerable)")// in flare
-                .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS);
+        if (inFlare) {
+            subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
+                    .waitForPageLoad()
+                    .back();
+            subquestionsIbdPleaseThinkCrohnsPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("Severe (intolerable)")// in flare
+                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS);
+        }
 
         SubquestionsIBD_OLS subquestionsIBD_ols = subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
                 .waitForPageLoad()
@@ -631,13 +642,29 @@ public class IBD_3889_OLS extends BaseTest {
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())*/
 
+
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        thankYouCloseSimplePageOLS
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+
+        if(inFlare) {
+            thankYouCloseSimplePageOLS
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        } else {
+            QualifiedFlareMonitoringAppCLose_OLS qualifiedFlareMonitoringAppCLose_ols = new QualifiedFlareMonitoringAppCLose_OLS();
+            qualifiedFlareMonitoringAppCLose_ols
+                    .waitForPageLoad()
+                    .getActivationCode()
+                    .clickNextButton(thankYouCloseSimplePageOLS)
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+        }
     }
 }
