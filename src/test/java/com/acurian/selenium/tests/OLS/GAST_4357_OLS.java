@@ -408,6 +408,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(otherThanSkinCancerPageOLS)

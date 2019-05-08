@@ -17,7 +17,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class ClusterHeadache_3237_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false) // Deactivate module: "Cluster_Headache_3237" R72 72.2 02-May-19
     @Description("a cluster headache study 3237 - OLS")
     public void clusterHeadache3237ols() {
         Site site = Site.AUT_CLH_3237_Site;

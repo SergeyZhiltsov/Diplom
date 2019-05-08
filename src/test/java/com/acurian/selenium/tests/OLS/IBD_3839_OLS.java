@@ -20,7 +20,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class IBD_3839_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false) //Deactivate 3839 Shire UC R72.0
     @Description("IBD_3839_OLS")
     public void IBD_3839_UC_OLS_Screener() {
         Site site = Site.AUT_IBD_3839_Site;

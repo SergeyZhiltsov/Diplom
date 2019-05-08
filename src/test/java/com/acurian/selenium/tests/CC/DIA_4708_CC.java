@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class DIA_4708_CC extends BaseTest {
 
-    @Test
+    @Test(enabled = false) //Deactivate 4708 Enanta NASH (all protocols: EDP 305-101) R72	72.2	02-May-19
     public void dia4708cc() {
         Site site = Site.AUT_NASH4708_site;
         final String phoneNumber = "AUTAMSNASH";

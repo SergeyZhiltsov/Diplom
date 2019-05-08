@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS.no_indication;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
@@ -13,21 +14,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class NoIndication3889_OLS extends BaseTest {
 
     @Test(enabled = true)
     @Description("No Indication 3889 OLS")
     public void ibd_3889_OLS_NI() {
+        Site site = Site.AUT_CRN_3889_HS;
         String phoneNumber = "AUTAMS1GEN";
-        String protocol1 = "M14_431";
-        String protocol2 = "M14_433";
-        String protocol3 = "M15_991";
-        String protocol4 = "M16_006";
-//        List<String> protocols = Arrays.asList(protocol1, protocol2);
         String studyName = "a Crohn's";
-        String siteName = "AUT_CRN_3889_HS";
-        String debugSiteName = "";
-        String zipCode = "19044";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -43,7 +40,7 @@ public class NoIndication3889_OLS extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -63,7 +60,7 @@ public class NoIndication3889_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS38", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -71,7 +68,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS38", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -91,7 +88,7 @@ public class NoIndication3889_OLS extends BaseTest {
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
@@ -99,7 +96,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(whichOfFollowingDigestiveConditionPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
@@ -107,7 +104,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(whichOfFollowingDigestiveConditionPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
@@ -121,7 +118,7 @@ public class NoIndication3889_OLS extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS44", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
                 .back();
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
@@ -156,7 +153,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -168,7 +165,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -180,7 +177,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -192,7 +189,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -215,7 +212,7 @@ public class NoIndication3889_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -224,7 +221,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -238,7 +235,7 @@ public class NoIndication3889_OLS extends BaseTest {
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
@@ -251,7 +248,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
@@ -260,7 +257,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
@@ -306,7 +303,7 @@ public class NoIndication3889_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -315,7 +312,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -324,7 +321,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -333,7 +330,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -342,7 +339,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -351,7 +348,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -360,7 +357,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -369,7 +366,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -378,7 +375,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -393,7 +390,7 @@ public class NoIndication3889_OLS extends BaseTest {
         unqualifiedCloseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS38", protocol1, protocol2, protocol3, protocol4)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .clickOnQNumber("QS38");
 //        approximateHeightPageOLS
 //                .waitForPageLoad()
@@ -403,7 +400,7 @@ public class NoIndication3889_OLS extends BaseTest {
 //                .waitForPageLoad()
 //                .back();
 
-        WhenWereYouDiagnosedWithCrohnsPageOLS whenWereYouDiagnosedWithCrohnsPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers(
                         "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
@@ -412,57 +409,77 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
-                .clickNextButton(approximateHeightPageOLS)
+                .clickNextButton(approximateHeightPageOLS);
+        CrohnsDiseaseDoctorOrNursePageOLS crohnsDiseaseDoctorOrNursePageOLS =  approximateHeightPageOLS
                 .waitForPageLoad()
+                .clickNextButton(new CrohnsDiseaseDoctorOrNursePageOLS());
+        crohnsDiseaseDoctorOrNursePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("I am unsure")
+                .clickNextButton(unqualifiedCloseOLS)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
+                .clickOnQNumber("QS5726");
+        crohnsDiseaseDoctorOrNursePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(unqualifiedCloseOLS)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
+                .clickOnQNumber("QS5726");
+        WhenWereYouDiagnosedWithCrohnsPageOLS whenWereYouDiagnosedWithCrohnsPageOLS = crohnsDiseaseDoctorOrNursePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new WhenWereYouDiagnosedWithCrohnsPageOLS());
 
-        WhenWasYourMostRecentColonoscopy_OLS whenWasYourMostRecentColonoscopy_OLS = whenWereYouDiagnosedWithCrohnsPageOLS
+        ReviewMedicalRecordsCrohnsDiagnosisPageOLS reviewMedicalRecordsCrohnsDiagnosisPageOLS = whenWereYouDiagnosedWithCrohnsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 3 months ago")
+                .clickNextButton(new ReviewMedicalRecordsCrohnsDiagnosisPageOLS());
+        reviewMedicalRecordsCrohnsDiagnosisPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5703", site.activeProtocols)
+                .back(whenWereYouDiagnosedWithCrohnsPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(new WhenWasYourMostRecentColonoscopy_OLS());
+                .clickNextButton(reviewMedicalRecordsCrohnsDiagnosisPageOLS);
 
-        //---------------Q5 whenWasYourMostRecentColonoscopy_OLS Page-----------
-        ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = whenWasYourMostRecentColonoscopy_OLS
+        PartOfDiagnosisFollowingProceduresDonePageOLS partOfDiagnosisFollowingProceduresDonePageOLS =
+        reviewMedicalRecordsCrohnsDiagnosisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("I have never had a colonoscopy")
-                .clickNextButton(new ManageYourCrohnsPageOLS());
-        manageYourCrohnsPageOLS
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5705", protocol1, protocol2, protocol3, protocol4);
-        debugPageOLS.back();
-        whenWasYourMostRecentColonoscopy_OLS
+                .clickOnAnswer("I am unsure")
+                .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageOLS());
+
+        ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = partOfDiagnosisFollowingProceduresDonePageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("More than 2 years ago")
+                .clickOnAnswers("Endoscopy - a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
                 .clickNextButton(new ManageYourCrohnsPageOLS());
 
-
-        //---------------Q6 ManageYourCrohnsPageOLS page-------------------
-        manageYourCrohnsPageOLS
-                .waitForPageLoad();
-        //-------------If selected 'NO', disqualify and SKIP to Q14, otherwise goto Q7
-        AreYouCurrentlyExperiencingFlareUp_OLS areYouCurrentlyExperiencingFlareUp_OLS = manageYourCrohnsPageOLS
+        CrohnsDiseaseOrUlcerativeColitisFlarePageOLS crohnsDiseaseOrUlcerativeColitisFlarePageOLS = manageYourCrohnsPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new AreYouCurrentlyExperiencingFlareUp_OLS());
-        areYouCurrentlyExperiencingFlareUp_OLS
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5706", protocol1, protocol2, protocol3, protocol4);
-        debugPageOLS.back();
-        manageYourCrohnsPageOLS.waitForPageLoad();
+                .clickNextButton(new CrohnsDiseaseOrUlcerativeColitisFlarePageOLS());
+        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5706", site.activeProtocols)
+                .back(manageYourCrohnsPageOLS);
         SteroidMedicationsForCrohnsOLS steroidMedicationsForCrohnsOLS = manageYourCrohnsPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new SteroidMedicationsForCrohnsOLS());
 
-
         //---------------Q7 Have you ever taken steroid medications for your Crohn's or colitis?--------------------------------------------
-        steroidMedicationsForCrohnsOLS
-                .waitForPageLoad();
         FollowingMedicationsCrohnsPageOLS followingMedicationsCrohnsPageOLS = steroidMedicationsForCrohnsOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new FollowingMedicationsCrohnsPageOLS());
         followingMedicationsCrohnsPageOLS
                 .waitForPageLoad()
                 .back();
-        manageYourCrohnsPageOLS.waitForPageLoad()
+        steroidMedicationsForCrohnsOLS.
+                waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new FollowingMedicationsCrohnsPageOLS());
 
@@ -495,7 +512,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(new BiologicMedicationsPageOLS());
         biologicMedicationsPageOLS
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5709", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0], site.activeProtocols[1]);
         debugPageOLS.back();
         everTreatedCrohnOrColitisOLS
                 .waitForPageLoad()
@@ -506,7 +523,7 @@ public class NoIndication3889_OLS extends BaseTest {
         //---------------Q10 Have you ever received any of the following "biologic" medications? page------------------
         biologicMedicationsPageOLS
                 .waitForPageLoad();
-        biologicMedicationsPageOLS.clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)",
+        biologicMedicationsPageOLS.clickOnAnswers("Actemra",
                 "Benlysta",
                 "Cimzia",
                 "Cosentyx",
@@ -523,132 +540,59 @@ public class NoIndication3889_OLS extends BaseTest {
                 "Stelara",
                 "Taltz",
                 "Tysabri")
-                .clickNextButton(new AreYouCurrentlyExperiencingFlareUp_OLS());
-        areYouCurrentlyExperiencingFlareUp_OLS.waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5710", protocol3, protocol4)
-                .back();
-        biologicMedicationsPageOLS
-                .waitForPageLoad()
                 .clickOnAnswers("Tysabri")  //DOn't Uncheck "Stelara (Agent Note: ste-LAHR-uh)" option to qualify
-                .clickNextButton(new AreYouCurrentlyExperiencingFlareUp_OLS());
-
+                .clickNextButton(new CrohnsDiseaseOrUlcerativeColitisFlarePageOLS());
 
         //---------------Q14 Are you currently experiencing a flare-up? page------------------
-        areYouCurrentlyExperiencingFlareUp_OLS
+        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
                 .waitForPageLoad();
-        SubquestionsIbdPleaseThinkCrohnsPageOLS subquestionsIbdPleaseThinkCrohnsPageOLS = areYouCurrentlyExperiencingFlareUp_OLS
-                .clickOnAnswer("No, I am not currently in a flare with my Crohn's or colitis")
+        SubquestionsIbdPleaseThinkCrohnsPageOLS subquestionsIbdPleaseThinkCrohnsPageOLS = crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
                 .clickNextButton(new SubquestionsIbdPleaseThinkCrohnsPageOLS());
 
-
-        //-----------------------Q15 Please think about your Crohn's disease symptoms when answering the questions below.----------------------
-        subquestionsIbdPleaseThinkCrohnsPageOLS
-                .waitForPageLoad(1, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected3);
-        //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
-        //WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_OLS
         SubquestionsIBD_OLS subquestionsIBD_OLS = subquestionsIbdPleaseThinkCrohnsPageOLS
+                .waitForPageLoad()
                 .setAvgDayBowelMovements("2")
+                .clickOnAnswer("No pain or cramping")
                 .clickNextButton(new SubquestionsIBD_OLS());
 
-
-        //-----------------------Q17 In general, how would you rate your health, living with Crohn's or colitis?----------------------
-        subquestionsIBD_OLS
-                .waitForPageLoad(1, subquestionsIBD_OLS.titleExpected1)
-                .waitForPageLoad(2, subquestionsIBD_OLS.titleExpected2)
-                .waitForPageLoad(3, subquestionsIBD_OLS.titleExpected3)
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS5714", protocol2)
-                .back();
-        subquestionsIbdPleaseThinkCrohnsPageOLS.back();
-        areYouCurrentlyExperiencingFlareUp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("I am unsure as to whether I am in a flare with my Crohn's or colitis")
-                .clickNextButton(new SubquestionsIBD_OLS());
-        subquestionsIbdPleaseThinkCrohnsPageOLS
-                .waitForPageLoad(1, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionsIbdPleaseThinkCrohnsPageOLS.titleExpected3)
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS5714", protocol1)
-                .clickNextButton(new SubquestionsIBD_OLS());
-        subquestionsIBD_OLS.waitForPageLoad(1, subquestionsIBD_OLS.titleExpected1);
-        //----------Select options for 15.1, 15.2 and 15.3 sub-questions---------
-        subquestionsIBD_OLS.waitForPageLoad(1, subquestionsIBD_OLS.titleExpected1);
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = subquestionsIBD_OLS
-                .clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected1, "Good")
-                .clickOnAnswersForSubQuestion(subquestionsIBD_OLS.titleExpected2, "Somewhat better now")
-                .clickOnAnswerForSubQuestion(subquestionsIBD_OLS.titleExpected3, "Loss of bowel control")
-                .clickNextButton(new WeightLossSurgeryPageOLS());
-
-
-        //-----------------------Q16 - Have you ever had any of the following types of bariatric or weight loss surgery?  page----------------------
-        weightLossSurgeryPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(weightLossSurgeryPageOLS.getTitleText(), weightLossSurgeryPageOLS.titleExpected, "Title is diff");
-        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = weightLossSurgeryPageOLS
-                //-----SKIP to Q18 if selected "None of the above" in Q16, otherwise goto Q17
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
-                .waitForPageLoad()
-                .back();
-        weightLossSurgeryPageOLS
-                .waitForPageLoad();
-        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
-                .clickOnAnswers("Gastric bypass",
-                        "Gastric sleeve or sleeve gastrectomy",
-                        "Duodenal switch",
-                        "Lap band or gastric banding",
-                        "Gastric balloon",
-                        "I had a weight loss surgery, but I am unsure which type")
-                .clickNextButton(new ProcedureForWeightLossPageOLS());
-
-
-        //----------------Q17 - When was the last time that you had a surgery or medical procedure for weight loss?  page----------------------
-        procedureForWeightLossPageOLS
-                .waitForPageLoad();
-        procedureForWeightLossPageOLS.clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
-                .waitForPageLoad()
-                .back();
-        procedureForWeightLossPageOLS
-                .waitForPageLoad()
-                .back();
-        weightLossSurgeryPageOLS
-                .waitForPageLoad()
-                //------------------Change Answer in Q16 to "None of the Above"  to qualify and goto Q18
-                .clickOnAnswers("None of the above")
+        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = subquestionsIBD_OLS
+                .waitForPageLoad(1, subquestionsIBD_OLS.titleExpected3)
+                .clickOnAnswersForSubQuestion(1,"Abdominal pain or cramps")
                 .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
 
-
-        //----------------Q18 - Do you currently have any of the following? page----------------------
-        haveAnyOfTheFollowingPageOLS
-                .waitForPageLoad();
-        //-----DQ if selected any/all of these options - "Colostomy and/or Colectomy","Ileostomy","Another type of stomach or colon surgery" in Q18 -------
-        haveAnyOfTheFollowingPageOLS
-                .clickOnAnswers("Colostomy and/or Colectomy",
-                        "Ileostomy",
-                        "Another type of stomach or colon surgery")
-                .clickNextButton(unqualifiedCloseOLS);
-        unqualifiedCloseOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5718", protocol1, protocol2, protocol3, protocol4)
-                .clickOnQNumber("QS5718");
-        haveAnyOfTheFollowingPageOLS
+        HashMap<String, String[]> options = new HashMap<>();
+        options.put("History of a bowel resection within the past 3 months", site.activeProtocols);
+        options.put("Colostomy", site.activeProtocols);
+        options.put("Ileostomy", site.activeProtocols);
+        options.put("An abscess in your abdomen or pelvic region (an inflamed area with collection of pus)", site.activeProtocols);
+        options.put("Feeding tube", site.activeProtocols);
+        options.put("IV (parenteral) nutrition", site.activeProtocols);
+        options.put("A planned or scheduled surgery for Crohn’s disease", site.activeProtocols);
+        for (Map.Entry<String, String[]> entry : options.entrySet()) {
+            System.out.println(entry.getKey());
+            haveAnyOfTheFollowingPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(entry.getKey())
+                    .clickNextButton(unqualifiedCloseOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5733", entry.getValue())
+                    .clickOnQNumber("QS5733");
+        }
+        IdentificationPageOLS identificationPageOLS = haveAnyOfTheFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageOLS());
+
+        identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
 //                .clickNextButton(new HSCrohns2PageOLS())
 //                .waitForPageLoad()
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
@@ -657,7 +601,6 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature();
-
 /*                //------------HUMAN API Interface in HelloSign----------------
                 .getPage(new HumanAPIOLS())
                 .waitForPageLoad()
@@ -677,10 +620,13 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())*/
 
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        thankYouCloseSimplePageOLS
-                .waitForSENRPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env);
+            thankYouCloseSimplePageOLS
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+
     }
 }
