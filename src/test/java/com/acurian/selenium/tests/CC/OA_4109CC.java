@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
+import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
@@ -64,10 +65,18 @@ public class OA_4109CC extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
 
 
-        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
+        ZipCodePageCC zipCodePageCC = doesNotGivePermissionToProceedClosePageCC
+                .waitForPageLoad()
+                .back(dateOfBirthPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC

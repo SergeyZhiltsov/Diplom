@@ -35,7 +35,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class IBD_3839_CC extends BaseTest {
 
-    @Test()
+    @Test(enabled = false) //Deactivate 3839 Shire UC R72.0
     @Description("IBD 3839 for CC")
     public void ibd3839ccTest() {
         Site site = Site.AUT_IBD_3839_Site;

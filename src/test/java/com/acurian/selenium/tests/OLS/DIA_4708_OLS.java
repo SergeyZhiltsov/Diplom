@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class DIA_4708_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false) ////Deactivate 4708 Enanta NASH (all protocols: EDP 305-101) R72	72.2	02-May-19
     @Description("NASH study 4708 OLS")
     public void dia4708olsTest() {
         Site site = Site.AUT_NASH4708_site;

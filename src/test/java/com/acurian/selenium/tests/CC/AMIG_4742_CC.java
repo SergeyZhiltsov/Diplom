@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.CC.LMG_4686.*;
+import com.acurian.selenium.pages.CC.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
@@ -17,20 +18,6 @@ import com.acurian.selenium.pages.CC.generalHealth.HeartrelatedMedicalProcedures
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.shared.CallCenterIntroductionPageCC;
-import com.acurian.selenium.pages.CC.shared.DateOfBirthPageCC;
-import com.acurian.selenium.pages.CC.shared.DoYouSufferFromMigPageCC;
-import com.acurian.selenium.pages.CC.shared.GenderPageCC;
-import com.acurian.selenium.pages.CC.shared.HasDoctorDiagnosedYouWithClusterHeadache_CC;
-import com.acurian.selenium.pages.CC.shared.HaveUeverDiagnosedByHealthcareProfesionalCC;
-import com.acurian.selenium.pages.CC.shared.HowLongSufferingFromMigraineCC;
-import com.acurian.selenium.pages.CC.shared.HowOldWereYouMigHeadachePageCC;
-import com.acurian.selenium.pages.CC.shared.LoginPageCC;
-import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
-import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
-import com.acurian.selenium.pages.CC.shared.WhenYouLastHaveBotoxMigCC;
-import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 
@@ -116,12 +103,12 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromMigPageCC());
 
-        HasDoctorDiagnosedYouWithClusterHeadache_CC hasDoctorDiagnosedYouWithClusterHeadache_CC = doYouSufferFromMigPageCC
+        NonQRtransitionPageCC nonQRtransitionPageCC = doYouSufferFromMigPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HasDoctorDiagnosedYouWithClusterHeadache_CC());
+                .clickNextButton(new NonQRtransitionPageCC());
 
-        hasDoctorDiagnosedYouWithClusterHeadache_CC
+        nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0005097-QS6002-STUDYQUES", site.activeProtocols)
