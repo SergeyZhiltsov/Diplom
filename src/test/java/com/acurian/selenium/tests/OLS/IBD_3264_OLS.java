@@ -113,7 +113,7 @@ public class IBD_3264_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitisPageOLS());
         whenWereYouDiagnosedWithUlcerativeColitisPageOLS
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols)
                 .back();
@@ -121,7 +121,7 @@ public class IBD_3264_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
                 .clickNextButton(whenWereYouDiagnosedWithUlcerativeColitisPageOLS)
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols)
                 .back();
