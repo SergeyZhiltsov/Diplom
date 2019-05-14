@@ -169,16 +169,16 @@ public class IBD_3889_CC extends BaseTest {
         crohnsDiseaseDoctorOrNursePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure") // Disqualify ("No official Crohn's diagnosis") Otherwise (No UC & still eligible for Crohn's), go to Q5 (duration of crohn's)
-                .clickNextButton(whenDiagnosedCrohnsPageCC); //Q4
-        whenDiagnosedCrohnsPageCC
-//                .waitForPageLoad()
+                .clickNextButton(nonQRtransitionPageCC); //Q4
+        nonQRtransitionPageCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0020425-QS5726-STUDYQUES", site.activeProtocols)
                 .back(crohnsDiseaseDoctorOrNursePageСС)
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Disqualify ("No official Crohn's diagnosis")
-                .clickNextButton(whenDiagnosedCrohnsPageCC)
-//                .waitForPageLoad()
+                .clickNextButton(nonQRtransitionPageCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0020425-QS5726-STUDYQUES", site.activeProtocols)
                 .back(crohnsDiseaseDoctorOrNursePageСС)

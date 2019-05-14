@@ -108,16 +108,16 @@ public class IBD_3889_OLS extends BaseTest {
         crohnsDiseaseDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(ulcerativeColitisDoctorOrNursePageOLS)
- //               .waitForPageLoad()
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
                 .back();
         crohnsDiseaseDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
-                .clickNextButton(ulcerativeColitisDoctorOrNursePageOLS)
-//                .waitForPageLoad()
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
                 .back();

@@ -146,16 +146,16 @@ public class IBD_3264_CC_HS extends BaseTest {
         ulcerativeColitisDoctorOrNursePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(whenDiagnosedCrohnsPageCC);
-        whenDiagnosedCrohnsPageCC
-//                .waitForPageLoadULC()
+                .clickNextButton(nonQRtransitionPageCC);
+        nonQRtransitionPageCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0020426-QS5727-STUDYQUES", site.activeProtocols)
                 .back(ulcerativeColitisDoctorOrNursePageСС)
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
-                .clickNextButton(whenDiagnosedCrohnsPageCC)
-//                .waitForPageLoadULC()
+                .clickNextButton(nonQRtransitionPageCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0020426-QS5727-STUDYQUES", site.activeProtocols)
                 .back(ulcerativeColitisDoctorOrNursePageСС)

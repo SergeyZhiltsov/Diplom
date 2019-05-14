@@ -27,7 +27,6 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
     public void ibd3264OlsHsNoEmailAtPII() {
         Site site = Site.AUT_IBD_3264_Site;
         String phoneNumber = "AUTAMS1IBD";
-        String protocol2 = "M16_067";
         String studyName = "a colitis";
         String env = System.getProperty("acurian.env", "STG");
 
@@ -47,7 +46,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", protocol2)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         //------------Disqualify (“Age”) if >= 76 years -----------------------------------------
         dateOfBirthPageOLS
@@ -101,11 +100,11 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new UlcerativeColitisDoctorOrNursePageOLS());
 
-        WhenWereYouDiagnosedWithUlcerativeColitisPageOLS whenWereYouDiagnosedWithUlcerativeColitisPageOLS = ulcerativeColitisDoctorOrNursePageOLS
+        ulcerativeColitisDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitisPageOLS());
-        whenWereYouDiagnosedWithUlcerativeColitisPageOLS
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols)
@@ -113,15 +112,15 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         ulcerativeColitisDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
-                .clickNextButton(whenWereYouDiagnosedWithUlcerativeColitisPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols)
                 .back();
-        ulcerativeColitisDoctorOrNursePageOLS
+        WhenWereYouDiagnosedWithUlcerativeColitisPageOLS whenWereYouDiagnosedWithUlcerativeColitisPageOLS = ulcerativeColitisDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(whenWereYouDiagnosedWithUlcerativeColitisPageOLS);
+                .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitisPageOLS());
 
         PartOfDiagnosisFollowingProceduresDonePageOLS partOfDiagnosisFollowingProceduresDonePageOLS = whenWereYouDiagnosedWithUlcerativeColitisPageOLS
                 .waitForPageLoad()
@@ -356,7 +355,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol2)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
@@ -455,7 +454,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", protocol2)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -473,7 +472,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", protocol2)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
@@ -491,7 +490,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", protocol2)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
         following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad()
@@ -556,7 +555,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol2)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
