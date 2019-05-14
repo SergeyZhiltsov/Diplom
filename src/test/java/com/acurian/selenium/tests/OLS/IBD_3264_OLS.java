@@ -108,27 +108,27 @@ public class IBD_3264_OLS extends BaseTest {
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new UlcerativeColitisDoctorOrNursePageOLS());
 
-        WhenWereYouDiagnosedWithUlcerativeColitisPageOLS whenWereYouDiagnosedWithUlcerativeColitisPageOLS = ulcerativeColitisDoctorOrNursePageOLS
+        ulcerativeColitisDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitisPageOLS());
-        whenWereYouDiagnosedWithUlcerativeColitisPageOLS
-                //.waitForPageLoad()
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols)
                 .back();
         ulcerativeColitisDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
-                .clickNextButton(whenWereYouDiagnosedWithUlcerativeColitisPageOLS)
-                //.waitForPageLoad()
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols)
                 .back();
-        ulcerativeColitisDoctorOrNursePageOLS
+        WhenWereYouDiagnosedWithUlcerativeColitisPageOLS whenWereYouDiagnosedWithUlcerativeColitisPageOLS = ulcerativeColitisDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(whenWereYouDiagnosedWithUlcerativeColitisPageOLS);
+                .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitisPageOLS());
 
         PartOfDiagnosisFollowingProceduresDonePageOLS partOfDiagnosisFollowingProceduresDonePageOLS = whenWereYouDiagnosedWithUlcerativeColitisPageOLS
                 .waitForPageLoad()

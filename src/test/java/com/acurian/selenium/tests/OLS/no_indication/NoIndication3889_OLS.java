@@ -547,13 +547,13 @@ public class NoIndication3889_OLS extends BaseTest {
         crohnsDiseaseOrUlcerativeColitisFlarePageOLS
                 .waitForPageLoad();
         SubquestionsIbdPleaseThinkCrohnsPageOLS subquestionsIbdPleaseThinkCrohnsPageOLS = crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
+                .clickOnAnswer("Severe symptoms that make life difficult")
                 .clickNextButton(new SubquestionsIbdPleaseThinkCrohnsPageOLS());
 
         SubquestionsIBD_OLS subquestionsIBD_OLS = subquestionsIbdPleaseThinkCrohnsPageOLS
                 .waitForPageLoad()
-                .setAvgDayBowelMovements("2")
-                .clickOnAnswer("No pain or cramping")
+                .setAvgDayBowelMovements("3")
+                .clickOnAnswer("Moderate (interferes with my usual activity)")
                 .clickNextButton(new SubquestionsIBD_OLS());
 
         HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = subquestionsIBD_OLS

@@ -26,6 +26,7 @@ public class AMIG_4742_OLS extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumberMIG)
@@ -53,14 +54,15 @@ public class AMIG_4742_OLS extends BaseTest {
         doYouSufferFromMigHeadachesOLS
                 .waitForPageLoad();
         Assert.assertEquals(doYouSufferFromMigHeadachesOLS.getTitleText(), doYouSufferFromMigHeadachesOLS.titleExpected, "Title is diff");
+
         HasDoctorDiagnosedYouWithClusterHeadache_OLS hasDoctorDiagnosedYouWithClusterHeadache_OLS = doYouSufferFromMigHeadachesOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new HasDoctorDiagnosedYouWithClusterHeadache_OLS());
-
-
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6002", site.activeProtocols);
-        debugPageOLS.back();
+        hasDoctorDiagnosedYouWithClusterHeadache_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6002", site.activeProtocols)
+                .back();
         AgeWhenDiagnosedWithMigOLS ageWhenDiagnosedWithMigOLS = doYouSufferFromMigHeadachesOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -72,12 +74,15 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAge("51")
                 .clickNextButton(new ApproxHowLongSufferingFromMIG());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6003", site.activeProtocols);
-        debugPageOLS.back();
+        approxHowLongSufferingFromMIG
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6003", site.activeProtocols)
+                .back();
         ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("37")
-                .clickNextButton(new ApproxHowLongSufferingFromMIG());
+                .clickNextButton(approxHowLongSufferingFromMIG);
 
 
         //---------------Q4: For approximately how long have you been suffering from migraine headaches?
@@ -86,41 +91,46 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
         howManyDaysYouSufferOLS
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", site.activeProtocols);
-        debugPageOLS.back();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6004", site.activeProtocols)
+                .back();
         approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 11 months")
                 .clickNextButton(howManyDaysYouSufferOLS)
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6004", site.activeProtocols);
-        debugPageOLS.back();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6004", site.activeProtocols)
+                .back();
         approxHowLongSufferingFromMIG
                 .waitForPageLoad()
                 .clickOnAnswer("1 year or more")
-                .clickNextButton(new HowManyDaysYouSufferOLS());
+                .clickNextButton(howManyDaysYouSufferOLS);
 
 
         //---------------Q5: In a typical month, how many days do you suffer from migraines?
         HowOftenDoYouTypicallyTakeMedicationOLS howOftenDoYouTypicallyTakeMedicationOLS = howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("3")
-                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS())
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", site.activeProtocols);
-        debugPageOLS.back();
+                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS());
+        howOftenDoYouTypicallyTakeMedicationOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6005", site.activeProtocols)
+                .back();
         howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("15")
-                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS())
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6005", site.activeProtocols);
-        debugPageOLS.back();
+                .clickNextButton(howOftenDoYouTypicallyTakeMedicationOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6005", site.activeProtocols)
+                .back();
         howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("4")
-                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS());
+                .clickNextButton(howOftenDoYouTypicallyTakeMedicationOLS);
 
 
         //---------------Q6: How often do you typically take medication to stop an active migraine, either as it starts or while you are experiencing it?-------------
@@ -300,21 +310,28 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswers("Less than 30 days ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
-        debugPageOLS.back();
+        heartrelatedMedicalProceduresPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswers("1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
-        debugPageOLS.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .clickOnAnswers("4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
-        debugPageOLS.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageOLS.back();
 
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
@@ -325,21 +342,27 @@ public class AMIG_4742_OLS extends BaseTest {
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .clickOnAnswers("Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
-        debugPageOLS.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .clickOnAnswers("1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
-        debugPageOLS.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .clickOnAnswers("4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-        debugPageOLS.checkProtocolsContainsForQNumber("QS47", site.activeProtocols);
-        debugPageOLS.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageOLS.back();
 
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
@@ -368,13 +391,14 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Bipolar disorder", "Schizophrenia")
                 .clickNextButton(new WomenHealthConditions());
         womenHealthConditions
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS53", site.activeProtocols);
-        debugPageOLS.back();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
+                .back();
         following_MentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new WomenHealthConditions());
+                .clickNextButton(womenHealthConditions);
 
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
