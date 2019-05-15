@@ -70,6 +70,7 @@ public class SiteSelectionPageCC extends MainPageCC {
     @Step
     public SiteSelectionPageCC waitForPageLoad(String studyName) {
         waitForAnimation();
+        attachPageScreenshot();    //--Take Screenshot of Site selection page
         String titleExpectedMod = String.format(titleExpected, studyName);
         try {
             waitForPageLoadMain(titleText, titleExpectedMod);

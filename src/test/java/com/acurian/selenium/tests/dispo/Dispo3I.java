@@ -97,7 +97,8 @@ public class Dispo3I extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch("3I");
-                //.childPidFromDbToLog(env);
+                .dispoShouldMatch("3I")
+                .copyRun(env)
+                .childPidFromDbToLog(env);
     }
 }

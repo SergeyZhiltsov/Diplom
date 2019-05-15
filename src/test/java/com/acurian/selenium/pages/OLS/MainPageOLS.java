@@ -132,6 +132,14 @@ public class MainPageOLS extends BasePage {
         return this;
     }
 
+    @Step
+    public MainPageOLS copyRun(String env) {
+        getDbConnection().dbCOPYProc(env, pid);
+        //dispoParent = getDbConnection().getDispo();
+        //logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        return this;
+    }
+
     /**
     Save site name to temp file for further validation
 

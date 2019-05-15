@@ -46,6 +46,42 @@ public class DBConnection {
         return conn;
     }
 
+    public void dbCOPYProc(String environment, String pidNumber){
+        try {
+            stmt = getDbCon(environment).createStatement();
+            String sql = "DECLARE\n" +
+                    "    v_user_id  NUMBER :=5953; \n" +
+                    "    v_study_id NUMBER;\n" +
+                    "    v_call_id NUMBER;\n" +
+                    "    v_study_group_id NUMBER;    \n" +
+                    "BEGIN\n" +
+                    "    FOR REC IN\n" +
+                    "    ( select call_id ,PATIENT_ID,STUDY_ID\n" +
+                    "    from call where patient_id IN ('"+pidNumber+"')-- enter patient id\n" +
+                    "    ) LOOP\n" +
+                    "        BEGIN    \n" +
+                    "            select study_group_id INTO v_study_group_id from study_group \n" +
+                    "            where STUDY_GROUP_TYPE = 'SU' and GENERAL_STUDY_ID = REC.STUDY_ID;\n" +
+                    "            cc_dev.mega_study.process_call(v_study_group_id,REC.CALL_ID, v_user_id);\n" +
+                    "            COMMIT;\n" +
+                    "        END ;  \n" +
+                    "    END LOOP;\n" +
+                    "END;";
+            rset = stmt.executeQuery(sql);
+            while (rset.next()) {
+                dispoCode = rset.getString("dispo_cd");
+                applicantStatus = rset.getString("applicant_status_cd");
+            }
+            //System.out.println("DB parent: dispo = " + dispoCode + applicantStatus +", parent pid =" + pidNumber);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResources();
+        }
+    }
+
+
     public void dbReadPID(String environment, String pidNumber){
         try {
             stmt = getDbCon(environment).createStatement();
