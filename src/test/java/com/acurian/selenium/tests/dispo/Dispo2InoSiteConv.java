@@ -88,7 +88,8 @@ public class Dispo2InoSiteConv extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch("2I");
-                //.childPidFromDbToLog(env);
+                .dispoShouldMatch("2I")
+                .copyRun(env)
+                .childPidFromDbToLog(env);
     }
 }

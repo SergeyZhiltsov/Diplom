@@ -70,6 +70,7 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     @Step
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
         waitForAnimation();
+        attachPageScreenshot();
         String titleExpectedMod = String.format(titleExpected, studyName);
         try {
             waitForPageLoadMain(titleText, titleExpectedMod);
