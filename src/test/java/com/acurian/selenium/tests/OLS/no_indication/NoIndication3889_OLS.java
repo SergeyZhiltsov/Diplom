@@ -28,6 +28,7 @@ public class NoIndication3889_OLS extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
@@ -56,7 +57,7 @@ public class NoIndication3889_OLS extends BaseTest {
                         "High cholesterol, triglycerides, or lipids",
                         "Lupus")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
+
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -417,6 +418,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
                 .clickNextButton(unqualifiedCloseOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
                 .clickOnQNumber("QS5726");
@@ -424,6 +426,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(unqualifiedCloseOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
                 .clickOnQNumber("QS5726");

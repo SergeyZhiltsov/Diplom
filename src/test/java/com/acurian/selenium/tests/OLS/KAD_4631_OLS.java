@@ -34,6 +34,7 @@ public class KAD_4631_OLS extends BaseTest {
 
         String eMailId = "qa.acurian@gmail.com";
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
@@ -43,17 +44,20 @@ public class KAD_4631_OLS extends BaseTest {
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
-        lessThan18YearsOldPage_OLS.waitForPageLoad();
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
-        debugPageOLS.back();
+        lessThan18YearsOldPage_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .back();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .waitForPageLoad()
                 .setDate("09091951")
                 .clickNextButton(new PersonalDetails());
-        personalDetails.waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
-        debugPageOLS.back();
+        personalDetails.waitForPageLoad()
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .back();
         dateOfBirthPageOLS
                 .waitForPageLoad()
                 .setDate("09091980")
