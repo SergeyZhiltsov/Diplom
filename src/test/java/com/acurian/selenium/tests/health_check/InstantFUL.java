@@ -20,14 +20,6 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class InstantFUL extends BaseTest {
 
-    @DataProvider(name = "sites")
-    public static Object[][] getData() {
-        return new Object[][]{
-                {"AUT_GRA_FUL_Site", "60415"},
-                {"AUT_GRA_FULm_Site", "60061"}
-        };
-    }
-
     @BeforeMethod
     public void setUp() {
         super.setUp();
@@ -36,6 +28,14 @@ public class InstantFUL extends BaseTest {
     @AfterMethod
     public void tearDown() {
         super.tearDown();
+    }
+
+    @DataProvider(name = "sites")
+    public static Object[][] getData() {
+        return new Object[][]{
+                {"AUT_GRA_FUL_Site", "60415"},
+                {"AUT_GRA_FULm_Site", "60061"}
+        };
     }
 
     @Test(dataProvider = "sites")

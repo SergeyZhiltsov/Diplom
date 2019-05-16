@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -29,6 +31,16 @@ import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
 public class CV_5034_OLS_A_S extends BaseTest {
+
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
 
     @DataProvider(name = "5034Sites")
     public static Object[][] getData() {
