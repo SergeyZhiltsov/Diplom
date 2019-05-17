@@ -778,12 +778,14 @@ public class GAST_4357_OLS extends BaseTest {
         switch (site) {
             case AUT_GAST4357_site: //1R
                 aboutHealthPageOLS
+                        .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_GAST4357S_site: //41C
                 aboutHealthPageOLS
+                        .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .getRadiantDbToLog(env)
                         .getAnomalyDbToLog(env)

@@ -10,11 +10,23 @@ import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
+
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
 
     @DataProvider
     public Object[][] sites() {
@@ -282,6 +294,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageOLS())
                         .waitForPageLoad()
                         .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
