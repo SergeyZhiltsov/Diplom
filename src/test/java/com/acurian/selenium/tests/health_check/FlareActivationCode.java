@@ -88,7 +88,7 @@ public class FlareActivationCode extends BaseTest {
                 .clickOnFacilityName(site.name)
                 .getPID()
                 .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
-                .waitForPageLoad()
+                .waitForPageLoadHealthCheck()
                 .getActivationCodeQA()
                 .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
                 .clickNextButton(new ThankYouCloseGmegaOLS())
