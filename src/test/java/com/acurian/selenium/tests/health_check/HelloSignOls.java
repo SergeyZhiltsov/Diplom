@@ -18,7 +18,7 @@ public class HelloSignOls extends BaseTest {
     @Test(enabled = true)
     @Description("Test for Hello Sign")
     public void helloSignOlsTest() {
-        String phoneNumber = "GMEGA30003";
+        String phoneNumber = "AUTGMEGA03"; //Indication RA
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
@@ -29,7 +29,7 @@ public class HelloSignOls extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGmegaExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new IdentificationPageOLS());
@@ -39,25 +39,27 @@ public class HelloSignOls extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
-                .clickNextButton(new BoneOrJointConditionsPageOLS());
-
-        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Any type of arthritis")
-                .clickNextButton(new WhatKindOfArthritisPageOLS());
+                .clickNextButton(new WhatKindOfArthritisPageOLS()); //BoneOrJointConditionsPageOLS
 
         WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        HSGeneralPageOLS hsGeneralPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
+        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(identificationPageOLS)
+                .clickNextButton(new BoneOrJointConditionsPageOLS());
+
+        boneOrJointConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Any type of arthritis")
+                .clickNextButton(identificationPageOLS);
+
+        HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
@@ -65,41 +67,72 @@ public class HelloSignOls extends BaseTest {
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS());
 
-        if (env.equals("QA")) {
-            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedQA);
-        } else {
-            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTG);
-        }
-        hsGeneralPageOLS
-                .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoadGmega()
-                .clickNextButton(new HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
-
-/*                .getPage(new HumanAPIOLS())
-                .waitForPageLoadGmega()
-                .connectBTN()
-                .switchToAPI()
-                .waitForProvider()
-                .clickANY()
-                .waitSearchAll()
-                .search("cleveland clinic")
-                .waitProvider()
-                .clickProvider()
-                .typeUserName("democlinical@gmail.com")
-                .typePWD("password")
-                .clickConnect()
-                .waitToClickNext()
-
-                .clickNextButton(new ThankYouCloseGmegaOLS())*/
-
+        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = new DoctorInformationCollectionPageOLS();
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = new ThankYouCloseGmegaOLS();
-        thankYouCloseGmegaOLS
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-//                .waitForPageLoad()
-                .pidFromDbToLog(env);
+        HS1PageOLS hs1PageOLS = new HS1PageOLS();
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+        switch (env) {
+            case "QA":
+                HumanAPIOLS humanAPIOLS = new HumanAPIOLS();
+                hsGeneralPageOLS
+                        .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA)
+                        .clickNextButton(doctorInformationCollectionPageOLS)
+                        .waitForPageLoadByTitle(doctorInformationCollectionPageOLS.titleGmegaQAExpected)
+                        .clickNextButton(hs1PageOLS)
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature();
+                humanAPIOLS
+                        .getPage(new HumanAPIOLS())
+                        .waitForPageLoadGmega()
+                        .connectBTN()
+                        .switchToAPI()
+                        .waitForProvider()
+                        .clickANY()
+                        .waitSearchAll()
+                        .search("cleveland clinic")
+                        .waitProvider()
+                        .clickProvider()
+                        .typeUserName("democlinical@gmail.com")
+                        .typePWD("password")
+                        .clickConnect()
+                        .waitToClickNext()
+                        .clickNextButton(thankYouCloseGmegaOLS)
+                        .waitForPageLoad()
+                        .clickNextButton(aboutHealthPageOLS)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env);
+                break;
+            case "STG":
+                hsGeneralPageOLS.
+                        waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedSTG)
+                        .clickNextButton(doctorInformationCollectionPageOLS)
+                        .waitForPageLoadGmega()
+                        .clickNextButton(hs1PageOLS)
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature();
+                thankYouCloseGmegaOLS
+                        .waitForPageLoad()
+                        .clickNextButton(aboutHealthPageOLS)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env);
+                break;
+            case "PRD":
+                hsGeneralPageOLS
+                        .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedSTGGMEGA3)
+                        .clickNextButton(doctorInformationCollectionPageOLS)
+                        .waitForPageLoadGmega()
+                        .clickNextButton(hs1PageOLS)
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature();
+                thankYouCloseGmegaOLS
+                        .waitForPageLoad()
+                        .clickNextButton(aboutHealthPageOLS)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env);
+                break;
+        }
     }
 }
