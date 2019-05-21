@@ -15,8 +15,11 @@ public class DoctorInformationCollectionPageCC extends MainPageCC{
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the study doctor's office, except as required by law.";
 
-    public final String titleExpectedGmega = "We now need some information on the doctors who are treating or who have treated your condition.  \n" +
+    public final String titleExpectedGmega = "We now need some information on the doctors who are treating or who have treated your condition.\n" +
             "We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
+
+    public final String titleExpectedGmegaPRD = "We now need some information on the doctors who are treating or who have treated your condition.  \n" +
+            "We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records. ";
 
     public final String titleExpectedIBDcommon = "We're almost done with this questionnaire!\n" +
             "\n" +
@@ -41,8 +44,8 @@ public class DoctorInformationCollectionPageCC extends MainPageCC{
     }
 
     @Step
-    public DoctorInformationCollectionPageCC waitForPageLoadGmega() {
-        waitForPageLoadMain(titleText, titleExpectedGmega);
+    public DoctorInformationCollectionPageCC waitForPageLoadByTitle(String title) {
+        waitForPageLoadMain(titleText, title);
         return this;
     }
 

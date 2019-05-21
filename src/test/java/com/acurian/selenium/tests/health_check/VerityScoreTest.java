@@ -20,7 +20,7 @@ public class VerityScoreTest extends BaseTest {
     @Test(enabled = true)
     @Description("Test for 1R and Verity Check")
     public void verityScoreTest() {
-        String phoneNumber = "GMEGA30003";
+        String phoneNumber = "AUTGMEGA03"; //Indication RA
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
@@ -32,7 +32,7 @@ public class VerityScoreTest extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGmegaExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
         IdentificationPageOLS identificationPageOLS= dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new IdentificationPageOLS());
@@ -44,14 +44,9 @@ public class VerityScoreTest extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
                 .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
-                .clickNextButton(new BoneOrJointConditionsPageOLS());
-
-        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
         WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
@@ -59,9 +54,14 @@ public class VerityScoreTest extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        whenYouDiagnosedWithRaGmegaPageOLS
+        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
+                .clickNextButton(new BoneOrJointConditionsPageOLS());
+
+        boneOrJointConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Any type of arthritis")
                 .clickNextButton(identificationPageOLS);
 
         identificationPageOLS
@@ -72,13 +72,17 @@ public class VerityScoreTest extends BaseTest {
                 .clickOnFacilityName(siteName);
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
                 .clickNextButton(new HSGeneralPageOLS());
-
-        if (env.equals("QA")) {
-            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedQA);
-        } else {
-            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTGGMEGA3);
+        switch (env) {
+            case "QA":
+                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA);
+                break;
+            case "STG":
+                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedSTG);
+                break;
+            case "PRD":
+                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedSTGGMEGA3);
+                break;
         }
-
         Assert.assertEquals(debugPageOLS.getVerityText(), "Verity Score: 0", "verity score is diff");
     }
 }

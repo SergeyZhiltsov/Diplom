@@ -19,7 +19,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
     @Test(enabled = true)
     @Description("Conversion 54 to 1R test")
     public void conversion54Cto1R() {
-        String phoneNumber = "GMEGA30003";
+        String phoneNumber = "AUTGMEGA03"; //Indication RA
         String studyName = "a rheumatoid arthritis (RA)";
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
@@ -30,7 +30,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGmegaExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new IdentificationPageOLS());
@@ -40,25 +40,27 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
-                .clickOnAnswer("Female")
-                .clickNextButton(new BoneOrJointConditionsPageOLS());
-
-        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = boneOrJointConditionsPageOLS
+        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Any type of arthritis")
-                .clickNextButton(new WhatKindOfArthritisPageOLS());
+                .clickOnAnswer("Female")
+                .clickNextButton(new WhatKindOfArthritisPageOLS()); //BoneOrJointConditionsPageOLS
 
         WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        HSGeneralPageOLS hsGeneralPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
+        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(identificationPageOLS)
+                .clickNextButton(new BoneOrJointConditionsPageOLS());
+
+        boneOrJointConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Any type of arthritis")
+                .clickNextButton(identificationPageOLS);
+
+        HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
@@ -66,10 +68,16 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new HSGeneralPageOLS());
 
-        if (env.equals("QA")) {
-            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedQA);
-        } else {
-            hsGeneralPageOLS.waitForPageLoadByTitle(new HSGeneralPageOLS().titleRaExpectedSTG);
+        switch (env) {
+            case "QA":
+                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA);
+                break;
+            case "STG":
+                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedSTG);
+                break;
+            case "PRD":
+                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedSTGGMEGA3);
+                break;
         }
         hsGeneralPageOLS
                 .pidFromDbToLog(env)

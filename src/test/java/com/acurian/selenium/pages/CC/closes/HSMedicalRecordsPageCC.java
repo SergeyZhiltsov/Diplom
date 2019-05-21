@@ -18,6 +18,11 @@ public class HSMedicalRecordsPageCC extends MainPageCC{
             "Please verify the information and provide your e-signature as soon as you receive this email.\n" +
             "Agent Note: Do not wait for patient to retrieve email. Move to next screen.";
 
+    public final String titleExpectedGmegaSTG = "Thank you for providing this information.\n" +
+            "You will receive an email from us shortly.\n" +
+            "Please verify the information and provide your e-signature as soon as you receive this email.\n" +
+            "Agent Note: Do not wait for patient to retrieve email. Move to next screen.";
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
@@ -34,6 +39,12 @@ public class HSMedicalRecordsPageCC extends MainPageCC{
     @Step
     public HSMedicalRecordsPageCC waitForPageLoadGmega() {
         waitForPageLoadMain(titleText, titleExpectedGmega);
+        return this;
+    }
+
+    @Step
+    public HSMedicalRecordsPageCC waitForPageLoadByTitle(String title) {
+        waitForPageLoadMain(titleText, title);
         return this;
     }
 

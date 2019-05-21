@@ -21,7 +21,7 @@ public class HelloSignCC extends BaseTest {
     @Test
     @Description("Hello sign CC")
     public void helloSignCCtest() {
-        final String phoneNumber = "GMEGA30003";
+        final String phoneNumber = "AUTGMEGA03"; //Indication RA
         String studyName = "a rheumatoid arthritis (RA) study";
         String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
@@ -37,7 +37,7 @@ public class HelloSignCC extends BaseTest {
                 .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
-        selectActionPageCC
+        CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
                 .waitForPageLoad()
                 .typeStudyName("GMEGA3")
                 .clickPopupStudy("GMEGA3")
@@ -45,10 +45,14 @@ public class HelloSignCC extends BaseTest {
                 .clickPopupPhoneNumber(phoneNumber)
                 .clickBeginButton();
 
+        callCenterIntroductionPageCC
+                .waitForPageLoad()
+                .activateDebugOnProd(env);
+
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
                 .waitForPageLoadGmega();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmegaExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
@@ -60,17 +64,9 @@ public class HelloSignCC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = genderPageCC
+        WhatKindOfArthritisCC whatKindOfArthritisCC = genderPageCC
                 .waitForPageLoad()
-                .getPage(new CallCenterIntroductionPageCC())
-                .activateDebugOnProd(env)
-                .getPage(genderPageCC)
-                .clickOnAnswerGmega("Female")
-                .clickNextButton(new BoneOrJointConditionsPageCC());
-
-        WhatKindOfArthritisCC whatKindOfArthritisCC = boneOrJointConditionsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Any type of arthritis")
+                .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisCC());
 
         WhenYouDiagnosedWithRaGmegaPageCC whenYouDiagnosedWithRaGmegaPageCC = whatKindOfArthritisCC
@@ -78,36 +74,59 @@ public class HelloSignCC extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageCC());
 
-        HSCrohns2PageCC hsCrohns2PageCC = whenYouDiagnosedWithRaGmegaPageCC
+        BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = whenYouDiagnosedWithRaGmegaPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(identificationPageCC)
+                .clickNextButton(new BoneOrJointConditionsPageCC());
+
+        boneOrJointConditionsPageCC
                 .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageCC())
+                .clickOnAnswers("Any type of arthritis")
+                .clickNextButton(identificationPageCC);
+
+        SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageCC());
+
+        HSCrohns2PageCC hsCrohns2PageCC = siteSelectionPageCC
                 .waitForPageLoadGmega(studyName)
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new HSCrohns2PageCC());
-
+        DoctorInformationCollectionPageCC doctorInformationCollectionPageCC = new DoctorInformationCollectionPageCC();
+        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = new ThankYouCloseSimplePageCC();
+        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = new HSMedicalRecordsPageCC();
         switch (env){
             case "QA":
-                hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaQA);
+                hsCrohns2PageCC
+                        .waitForPageLoadByTitle(hsCrohns2PageCC.titleExpectedGmegaQA)
+                        .clickNextButton(doctorInformationCollectionPageCC)
+                        .waitForPageLoadByTitle(doctorInformationCollectionPageCC.titleExpectedGmega)
+                        .clickNextButton(hsMedicalRecordsPageCC)
+                        .waitForPageLoadByTitle(hsMedicalRecordsPageCC.titleExpectedGmegaSTG);
+
                 break;
             case "STG":
-                hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaSTG);
+                hsCrohns2PageCC
+                        .waitForPageLoadByTitle(hsCrohns2PageCC.titleExpectedGmegaSTG)
+                        .clickNextButton(doctorInformationCollectionPageCC)
+                        .waitForPageLoadByTitle(doctorInformationCollectionPageCC.titleExpectedGmega)
+                        .clickNextButton(hsMedicalRecordsPageCC)
+                        .waitForPageLoadByTitle(hsMedicalRecordsPageCC.titleExpectedGmegaSTG);
                 break;
             case "PRD":
-                hsCrohns2PageCC.waitForPageLoadByTitle(new HSCrohns2PageCC().titleExpectedGmegaPRD);
+                hsCrohns2PageCC.waitForPageLoadByTitle(hsCrohns2PageCC.titleExpectedGmegaPRD)
+                        .clickNextButton(doctorInformationCollectionPageCC)
+                        .waitForPageLoadByTitle(doctorInformationCollectionPageCC.titleExpectedGmegaPRD)
+                        .clickNextButton(hsMedicalRecordsPageCC)
+                        .waitForPageLoadByTitle(hsMedicalRecordsPageCC.titleExpectedGmega);
                 break;
         }
-        hsCrohns2PageCC
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoadGmega()
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoadGmega()
-                .clickNextButton(new ThankYouCloseSimplePageCC())
+        hsMedicalRecordsPageCC
+                .clickNextButton(thankYouCloseSimplePageCC)
                 .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
+                .clickNextButton(selectActionPageCC);
+        selectActionPageCC
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
     }
