@@ -31,7 +31,7 @@ public class HSCrohns2PageCC extends MainPageCC{
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
 
-    public final String titleExpectedGmegaPRD = "Your medical records related to your Rheumatoid Arthritis, Arthritis, Low Back Pain, Diabetes history are required for the study doctor to evaluate you for participation.  In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
+    public final String titleExpectedGmegaPRD = "Your medical records related to your Arthritis, Rheumatoid Arthritis, Low Back Pain, Diabetes history are required for the study doctor to evaluate you for participation.  In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
             "\n" +

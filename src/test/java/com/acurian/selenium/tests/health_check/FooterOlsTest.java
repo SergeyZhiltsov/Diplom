@@ -26,8 +26,16 @@ public class FooterOlsTest extends BaseTest {
 
         FooterPageOls footerPageOls = new FooterPageOls();
 
-        Assert.assertEquals(footerPageOls.getFooterText(), "* In a research study, the participants may receive investigational study product or may receive an inactive substance, or placebo, depending on the study design. Participants receive study-related care from a doctor/research team for the duration of the study. For studies that offer compensation, reasonable payments will be made for participation. The length of the study may vary.");
-
+        if(env.equals("QA")) Assert.assertEquals(footerPageOls.getFooterText(), "* In a clinical research study, " +
+                "the participants may receive investigational study product or may receive an inactive substance, " +
+                "or placebo, depending on the study design. Participants receive study-related care from a " +
+                "doctor/research team for the duration of the study. Reasonable payments will be made for participation " +
+                "and the length of the study may vary.");
+        else Assert.assertEquals(footerPageOls.getFooterText(), "* In a research study, the participants may receive " +
+                "investigational study product or may receive an inactive substance, or placebo, depending on the study " +
+                "design. Participants receive study-related care from a doctor/research team for the duration of the " +
+                "study. For studies that offer compensation, reasonable payments will be made for participation. " +
+                "The length of the study may vary.");
 
         PrivacyPolicyPage privacyPolicyPage = footerPageOls.clickPrivacyPolicyLink();
         privacyPolicyPage.switchTab();
