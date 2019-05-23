@@ -647,6 +647,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Seizure disorder, such as epilepsy")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS54", site.activeProtocols)
                 .back(whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS)
@@ -747,6 +748,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
