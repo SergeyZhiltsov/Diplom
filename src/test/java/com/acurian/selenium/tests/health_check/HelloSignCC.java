@@ -1,7 +1,7 @@
 package com.acurian.selenium.tests.health_check;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.RA.WhenYouDiagnosedWithRaPageCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -21,10 +21,9 @@ public class HelloSignCC extends BaseTest {
     @Test
     @Description("Hello sign CC")
     public void helloSignCCtest() {
+        Site site = Site.AUT_GRA1_Site;
         final String phoneNumber = "AUTGMEGA03"; //Indication RA
         String studyName = "a rheumatoid arthritis (RA) study";
-        String siteName = "AUT_GRA1_Site";
-        String zipCode = "19901";
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
@@ -53,15 +52,21 @@ public class HelloSignCC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoadGmega();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+
+        BehalfOfSomeoneElsePageCC behalfOfSomeoneElsePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickNextButton(new BehalfOfSomeoneElsePageCC());
+
+        IdentificationPageCC identificationPageCC = behalfOfSomeoneElsePageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         WhatKindOfArthritisCC whatKindOfArthritisCC = genderPageCC
@@ -91,41 +96,25 @@ public class HelloSignCC extends BaseTest {
         HSCrohns2PageCC hsCrohns2PageCC = siteSelectionPageCC
                 .waitForPageLoadGmega(studyName)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new HSCrohns2PageCC());
-        DoctorInformationCollectionPageCC doctorInformationCollectionPageCC = new DoctorInformationCollectionPageCC();
-        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = new ThankYouCloseSimplePageCC();
-        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = new HSMedicalRecordsPageCC();
-        switch (env){
-            case "QA":
-                hsCrohns2PageCC
-                        .waitForPageLoadByTitle(hsCrohns2PageCC.titleExpectedGmegaQA)
-                        .clickNextButton(doctorInformationCollectionPageCC)
-                        .waitForPageLoadByTitle(doctorInformationCollectionPageCC.titleExpectedGmega)
-                        .clickNextButton(hsMedicalRecordsPageCC)
-                        .waitForPageLoadByTitle(hsMedicalRecordsPageCC.titleExpectedGmegaSTG);
 
-                break;
-            case "STG":
-                hsCrohns2PageCC
-                        .waitForPageLoadByTitle(hsCrohns2PageCC.titleExpectedGmegaSTG)
-                        .clickNextButton(doctorInformationCollectionPageCC)
-                        .waitForPageLoadByTitle(doctorInformationCollectionPageCC.titleExpectedGmega)
-                        .clickNextButton(hsMedicalRecordsPageCC)
-                        .waitForPageLoadByTitle(hsMedicalRecordsPageCC.titleExpectedGmegaSTG);
-                break;
-            case "PRD":
-                hsCrohns2PageCC.waitForPageLoadByTitle(hsCrohns2PageCC.titleExpectedGmegaPRD)
-                        .clickNextButton(doctorInformationCollectionPageCC)
-                        .waitForPageLoadByTitle(doctorInformationCollectionPageCC.titleExpectedGmegaPRD)
-                        .clickNextButton(hsMedicalRecordsPageCC)
-                        .waitForPageLoadByTitle(hsMedicalRecordsPageCC.titleExpectedGmega);
-                break;
-        }
-        hsMedicalRecordsPageCC
-                .clickNextButton(thankYouCloseSimplePageCC)
+        DoctorInformationCollectionPageCC doctorInformationCollectionPageCC = hsCrohns2PageCC
+                .waitForPageLoadByTitle(hsCrohns2PageCC.titleExpectedGmegaQA)
+                .clickNextButton(new DoctorInformationCollectionPageCC());
+
+        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = doctorInformationCollectionPageCC
+                .waitForPageLoadByTitle(doctorInformationCollectionPageCC.titleExpectedGmega)
+                .clickNextButton(new HSMedicalRecordsPageCC());
+
+        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC =  hsMedicalRecordsPageCC
+                .waitForPageLoadByTitle(hsMedicalRecordsPageCC.titleExpectedGmegaSTG)
+                .clickNextButton(new ThankYouCloseSimplePageCC());
+
+        thankYouCloseSimplePageCC
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC);
+
         selectActionPageCC
                 .waitForPageLoad()
                 .pidFromDbToLog(env);

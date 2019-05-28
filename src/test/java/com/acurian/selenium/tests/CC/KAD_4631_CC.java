@@ -75,6 +75,7 @@ public class KAD_4631_CC extends BaseTest {
                 .back();
 
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+                .waitForPageLoad()
                 .setYear("1942")
                 .clickNextButton(new IdentificationPageCC());
 
@@ -85,6 +86,7 @@ public class KAD_4631_CC extends BaseTest {
                 .back();
 
         dateOfBirthPageCC
+                .waitForPageLoad()
                 .setYear("1980")
                 .clickNextButton(identificationPageCC);
 
@@ -95,9 +97,8 @@ public class KAD_4631_CC extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         //-----------GenderPageCC-------------
-        genderPageCC
-                .waitForPageLoad();
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC = genderPageCC
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
@@ -259,7 +260,8 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
                 .clickNextButton(new TransitionStatementCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+        transitionStatementCC
                 .waitForPageLoadWithCurvesKAD("eczema, or atopic dermatitis")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
@@ -439,8 +441,7 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
-                .back();
-        kidneyProblemsPage
+                .back(kidneyProblemsPage)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
@@ -570,6 +571,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
                 .back();
@@ -589,9 +591,7 @@ public class KAD_4631_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", site.activeProtocols)
                 .back(letMeSeePageCC);
-                //.back();
 
-        //LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
