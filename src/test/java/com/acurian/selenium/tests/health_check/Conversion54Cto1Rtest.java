@@ -1,13 +1,14 @@
 package com.acurian.selenium.tests.health_check;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
+import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.testng.Assert;
@@ -19,10 +20,9 @@ public class Conversion54Cto1Rtest extends BaseTest {
     @Test(enabled = true)
     @Description("Conversion 54 to 1R test")
     public void conversion54Cto1R() {
+        Site site = Site.AUT_GRA1_Site;
         String phoneNumber = "AUTGMEGA03"; //Indication RA
         String studyName = "a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GRA1_Site";
-        String zipCode = "19901";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -31,13 +31,19 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+
+        BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
+                .clickNextButton(new BehalfOfSomeoneElsePageOLS());
+
+        IdentificationPageOLS identificationPageOLS = behalfOfSomeoneElsePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
@@ -65,23 +71,13 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS());
 
-        switch (env) {
-            case "QA":
-                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA);
-                break;
-            case "STG":
-                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedSTG);
-                break;
-            case "PRD":
-                hsGeneralPageOLS.waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedSTGGMEGA3);
-                break;
-        }
         hsGeneralPageOLS
+                .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA)
                 .pidFromDbToLog(env)
                 .convert54Cto1R(env)
-                .dispoShouldMatch("1R");
+                .dispoShouldMatch(site.dispo);
     }
 }

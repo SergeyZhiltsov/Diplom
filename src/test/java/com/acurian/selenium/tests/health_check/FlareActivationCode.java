@@ -24,9 +24,8 @@ public class FlareActivationCode extends BaseTest {
     public void flareActivationCode() {
 
         String phoneNumber = "AUTGMEGA01";
-        Site site = Site.GFLR1_1234_GFLR1;
+        Site site = Site.AUT_GFLR1_site;
         String env = System.getProperty("acurian.env", "QA");
-        //String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study, an osteoarthritis";
         String studyName = env.equals("QA") ?
                 "Arthritis,a Crohn's study,a low back pain study,a rheumatoid arthritis (RA) study,an arthritis" : "Arthritis, a Crohn's study, a low back pain study, a rheumatoid arthritis (RA) study, an osteoarthritis";
 
