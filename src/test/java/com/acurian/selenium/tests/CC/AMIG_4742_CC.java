@@ -1,30 +1,23 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
-import com.acurian.selenium.pages.CC.LMG_4686.*;
-import com.acurian.selenium.pages.CC.shared.*;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.LMG_4686.*;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartrelatedMedicalProceduresPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.utils.DataProviderPool;
+import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.utils.Properties;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class AMIG_4742_CC extends BaseTest {
 
-    @Test(enabled = true, dataProvider = "UserCredentials", dataProviderClass = DataProviderPool.class)
-    public void Amig4742cc(final String username, final String password) {
+    @Test(enabled = true)
+    public void Amig4742cc() {
         String phoneNumber = "AUTAMS1MIG";
         Site site = Site.AUT_MIG4742_site;
         String studyName1 = "a migraine study";
@@ -42,8 +35,8 @@ public class AMIG_4742_CC extends BaseTest {
 
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
-                .typeUsername(username)
-                .typePassword(password)
+                .typeUsername(Properties.getUsername())
+                .typePassword(Properties.getPassword())
                 .clickLoginButton();
 
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
