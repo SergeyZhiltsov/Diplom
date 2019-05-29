@@ -15,10 +15,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class KAD_4849_CC extends BaseTest {
 
@@ -123,29 +120,25 @@ public class KAD_4849_CC extends BaseTest {
 
 
         //----------Q3:  HowLongHaveYouBeenSufferingFromEczema_CC---------------
-        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = howLongHaveYouBeenSufferingFromEczema_CC
-                .waitForPageLoad()
-                .clickOnAnswer("2 months or less")
-                .clickNextButton(new HowMuchEczemaYouHaveOnYOurBody_CC());
-
-        howMuchEczemaYouHaveOnYOurBody_cc
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
-                .back();
-
+        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = new HowMuchEczemaYouHaveOnYOurBody_CC();
+        List<String> disqualifyQ3 = new LinkedList();
+        disqualifyQ3.add("2 months or less"); //Disqualify (“Atopic Derm < 3 years”)
+        disqualifyQ3.add("3 - 6 months");
+        for(String answer: disqualifyQ3)
+        {
+            System.out.println(answer);
+            howLongHaveYouBeenSufferingFromEczema_CC
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
+                    .back();
+        }
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months")
-                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howLongHaveYouBeenSufferingFromEczema_CC
-                .waitForPageLoad()
-                .clickOnAnswer("2 years")
+                .clickOnAnswer("1 year")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
         DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc
@@ -153,12 +146,12 @@ public class KAD_4849_CC extends BaseTest {
                 .selectFromDropDown("6")
                 .clickNextButton(new DollarBillsToCoverEczemaCC());
 
-        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = dollarBillsToCoverEczemaCC
+        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = dollarBillsToCoverEczemaCC
                 .waitForPageLoad()
                 .selectFromDropDown("6")
-                .clickNextButton(new EczemaSymptomsExperienceCC());
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
 
-        eczemaSymptomsExperienceCC
+        howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", site.activeProtocols)
@@ -167,29 +160,43 @@ public class KAD_4849_CC extends BaseTest {
         dollarBillsToCoverEczemaCC
                 .waitForPageLoad()
                 .selectFromDropDown("11")
-                .clickNextButton(eczemaSymptomsExperienceCC);
+                .clickNextButton(howManyDaysHasSkinBeenItchyCC);
 
-        LevelOfITCHWithEczemaCC levelOfITCHWithEczemaCC = eczemaSymptomsExperienceCC
+        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
-                .clickOnAnswers("None")
-                .clickNextButton(new LevelOfITCHWithEczemaCC());
+                .clickOnAnswer("My skin is never itchy")
+                .clickNextButton(new EczemaSymptomsExperienceCC());
 
-        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = levelOfITCHWithEczemaCC
+        eczemaSymptomsExperienceCC
                 .waitForPageLoad()
-                .clickOnAnswer("Mildly itchy (Mildly irritating/Some scratching)")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
+                .back();
 
-        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_cc = howManyDaysHasSkinBeenItchyCC
+        RateAaverageItchinessEczemaPageCC rateAaverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 days")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
+                .clickNextButton(new RateAaverageItchinessEczemaPageCC());
+        rateAaverageItchinessEczemaPageCC
+                .waitForPageLoad()
+                .selectFromDropDown("1")
+                .clickNextButton(eczemaSymptomsExperienceCC);
 
-        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_cc = haveYouEverTreatedYourEczema_cc
+        //Q21
+        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_cc = eczemaSymptomsExperienceCC
+                .waitForPageLoad()
+                .clickOnAnswers("Redness",
+                        "Swelling",
+                        "Oozing/Crusting",
+                        "Dryness",
+                        "Scratch marks",
+                        "Skin thickening")
+                .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
+        //Q22
+        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
 
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc = whichofthefollowingMedicationsTherapies_cc
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc = whichofthefollowingMedicationsTherapies_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
@@ -198,30 +205,30 @@ public class KAD_4849_CC extends BaseTest {
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
                 .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
-                .back(whichofthefollowingMedicationsTherapies_cc)
+                .back(whichofthefollowingMedicationsTherapies_CC)
                 .waitForPageLoad()
                 .back(haveYouEverTreatedYourEczema_cc);
         haveYouEverTreatedYourEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, but more than 1 year ago")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_cc)
+                .clickNextButton(whichofthefollowingMedicationsTherapies_CC)
                 .waitForPageLoad()
                 .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc)
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
                 .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
-                .back(whichofthefollowingMedicationsTherapies_cc)
+                .back(whichofthefollowingMedicationsTherapies_CC)
                 .waitForPageLoad()
                 .back(haveYouEverTreatedYourEczema_cc);
         haveYouEverTreatedYourEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_cc)
+                .clickNextButton(whichofthefollowingMedicationsTherapies_CC)
                 .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_cc)
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_cc);
+                .back(whichofthefollowingMedicationsTherapies_CC);
 
         DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = new DidYouReceiveAnyTherapiesPastYear_CC();
         HashMap<String, List<String>> disqualifyQ23 = new HashMap<>();
@@ -230,7 +237,7 @@ public class KAD_4849_CC extends BaseTest {
         disqualifyQ23.put("Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ23.entrySet()) {
             System.out.println(entry.getKey());
-            whichofthefollowingMedicationsTherapies_cc
+            whichofthefollowingMedicationsTherapies_CC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
@@ -243,10 +250,10 @@ public class KAD_4849_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
                     .back(didYouReceiveAnyTherapiesPastYear_CC)
                     .waitForPageLoad()
-                    .back(whichofthefollowingMedicationsTherapies_cc);
+                    .back(whichofthefollowingMedicationsTherapies_CC);
         }
 
-        whichofthefollowingMedicationsTherapies_cc
+        whichofthefollowingMedicationsTherapies_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)")
