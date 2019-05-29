@@ -17,7 +17,7 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     public final String titleCommonExpected = "Let's get started to see if there is %2$s that's right for you.\n" +
             "\n" +
-            "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
             "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "If you attend all required study visits, you may receive:\n" +
             "Study medication or placebo, at no-cost to you\n" +
@@ -59,7 +59,7 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     public final String titleExpectedAkc_4691 = "Let's get started to see if there is a study for people with diabetes and related health conditions that's right for you.\n" +
             "\n" +
-            "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
             "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "If you attend all required study visits, you may receive:\n" +
             "\n" +
@@ -143,7 +143,7 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     public final String titleExpectedLOWT = "Let's get started to see if there is a study that's right for you.\n" +
             "\n" +
-            "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
             "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "If you attend all required study visits, you may receive:\n" +
             "\n" +
@@ -157,7 +157,7 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     public final String titleIBD3264 = "Let's get started to see if there is a Crohn's or colitis study that's right for you.\n" +
             "\n" +
-            "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
             "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "If you attend all required study visits, you may receive:\n" +
             "\n" +
@@ -178,7 +178,7 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     public final String titleCVExpected = "Let's get started to see if there is a heart health study that's right for you.\n" +
             "\n" +
-            "You'll first complete this questionnaire with me right now. You don’t have to answer any questions you don’t want to answer. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
+            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
             "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "If you attend all required study visits, you may receive:\n" +
             "\n" +

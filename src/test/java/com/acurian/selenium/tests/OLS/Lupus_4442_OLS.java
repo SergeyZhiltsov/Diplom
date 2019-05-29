@@ -98,24 +98,47 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6103", protocol1, protocol2);
         debugPageOLS.back();
-
-        WhenWereYouDiagnosedOLS whenWereYouDiagnosedOLS = whatTypeOfLupusOLS
+        whatTypeOfLupusOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
+                .clickNextButton(new WhenWereYouDiagnosedOLS())
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6103", protocol1, protocol2);
+        debugPageOLS.back();
+        WhenWereYouDiagnosedOLS whenWereYouDiagnosedOLS = whatTypeOfLupusOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Systemic lupus (SLE) - the most common form of lupus, which may affect multiple organs and tissues in the body")
                 .clickNextButton(new WhenWereYouDiagnosedOLS());
 
-        MedicationsCurrentlyTakingToTreatLupusOLS medicationsCurrentlyTakingToTreatLupusOLS = whenWereYouDiagnosedOLS
+
+        TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS typeOfDoctorCurrentlySeeToHelpManageYourLupusOLS = whenWereYouDiagnosedOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 6 months ago")
-                .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusOLS())
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS())
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6104", protocol1, protocol2);
         debugPageOLS.back();
         whenWereYouDiagnosedOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 years ago")
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS())
+                .waitForPageLoad();
+
+
+        MedicationsCurrentlyTakingToTreatLupusOLS medicationsCurrentlyTakingToTreatLupusOLS = typeOfDoctorCurrentlySeeToHelpManageYourLupusOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above - I do not currently see a doctor for my lupus")
                 .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusOLS())
                 .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6115", protocol1, protocol2);
+        debugPageOLS.back();
+        typeOfDoctorCurrentlySeeToHelpManageYourLupusOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Primary care physician or general practitioner","Rheumatologist","Other specialist")
+                .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusOLS())
+                .waitForPageLoad();
+
+
 
         BiologicMedications biologicMedications = medicationsCurrentlyTakingToTreatLupusOLS
                 .waitForPageLoad()
