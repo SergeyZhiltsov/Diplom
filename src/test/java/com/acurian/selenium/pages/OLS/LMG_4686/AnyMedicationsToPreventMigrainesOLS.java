@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class AnyMedicationsToPreventMigrainesOLS extends MainPageOLS {
-    public final String titleExpected = "Have you ever tried taking any daily medications to prevent migraines from occurring?\n" +
+    public final String titleExpected = "Have you ever tried taking any daily prescription medications to prevent migraines from occurring?\n" +
             "These could include anticonvulsants such as topiramate, beta-blockers such as propranolol, anti-depressants, or any other medication that " +
             "was taken daily specifically for migraine prevention.";
 
