@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -123,25 +124,40 @@ public class Lupus_4442_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new WhenDiagnosedWithLupusCC())
-                .waitForPageLoad()
-                .back();
-
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017448-QS6103-STUDYQUES", protocol1, protocol2);
+        debugPageCC.back();
         whatTypeOfLupusCC
                 .waitForPageLoad()
                 .clickOnAnswer("Systemic lupus (SLE) (Agent Note: sis-STEM-ic LOOP-us) - the most common form of lupus, which may affect multiple organs and tissues in the body")
                 .clickNextButton(new WhenDiagnosedWithLupusCC());
 
-        MedicationsCurrentlyTakingToTreatLupusCC medicationsCurrentlyTakingToTreatLupusCC = whenDiagnosedWithLupusCC
+
+        TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC typeOfDoctorCurrentlySeeToHelpManageYourLupusCC = whenDiagnosedWithLupusCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 6 months ago")
-                .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusCC())
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017449-QS6104-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         whenDiagnosedWithLupusCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 years ago")
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC());
+
+
+        MedicationsCurrentlyTakingToTreatLupusCC medicationsCurrentlyTakingToTreatLupusCC = typeOfDoctorCurrentlySeeToHelpManageYourLupusCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above - I do not currently see a doctor for my lupus")
+                .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusCC())
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0020566-QS6115-STUDYQUES", protocol1, protocol2);
+        debugPageCC.back();
+        typeOfDoctorCurrentlySeeToHelpManageYourLupusCC
+                .waitForPageLoad()
+                .clickOnAnswers("Primary care physician or general practitioner","Rheumatologist","Other specialist")
                 .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusCC());
+
 
         BiologicMedicationsCC biologicMedicationsCC = medicationsCurrentlyTakingToTreatLupusCC
                 .waitForPageLoad()
@@ -162,6 +178,7 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickOnAnswers("Chloroquine (Agent Note: KLOR-oh-quinn)", "Plaquenil, also known as hydroxychloroquine (Agent Note: PLACK-kwuh-nil, hi-droxy-KLOR-oh-quinn)")
                 .clickOnAnswers("Arava, also known as leflunomide (Agent Note: uh-RAHV-uh, leh-FLOO-no-myde)")
                 .clickNextButton(new BiologicMedicationsCC());
+
 
         EitherOfTheFollowingMedicationsCC eitherOfTheFollowingMedicationsCC = biologicMedicationsCC
                 .waitForPageLoadNew()
@@ -228,12 +245,29 @@ public class Lupus_4442_CC extends BaseTest {
                 .waitForPageLoadNew("lupus")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
+//--------------------
+        WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
+                .clickNextButton(new WhatKindOfArthritisCC());
+
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whatKindOfArthritisCC
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0004962-QS39-STUDYQUES", protocol1, protocol2);
+        debugPageCC.back();
+        whatKindOfArthritisCC.back();
+
+
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
+                .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
                 .clickOnAnswers("Cancer")
                 .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
