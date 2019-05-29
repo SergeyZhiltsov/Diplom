@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.CC.Diabetes_4356A;
 
-import com.acurian.selenium.pages.CC.Crohns_3485.SubquestionLastReceivedPageCC;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
