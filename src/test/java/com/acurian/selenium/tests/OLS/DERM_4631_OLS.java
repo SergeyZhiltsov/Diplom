@@ -180,25 +180,14 @@ public class DERM_4631_OLS extends BaseTest {
                 .clickOnAnswer("G")
                 .clickNextButton(howManyDaysHasSkinBeenItchyOLS);
 
-        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = howManyDaysHasSkinBeenItchyOLS
-                .waitForPageLoad()
-                .clickOnAnswer("My skin is never itchy")
-                .clickNextButton(new EczemaSymptomsExperienceOLS());
-
-        eczemaSymptomsExperienceOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
-                .back();
-
         RateAverageItchinessEczemaPageOLS rateAverageItchinessEczemaPageOLS = howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 days")
                 .clickNextButton(new RateAverageItchinessEczemaPageOLS());
-        rateAverageItchinessEczemaPageOLS
+        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = rateAverageItchinessEczemaPageOLS
                 .waitForPageLoad()
                 .selectFromDropDown("2")
-                .clickNextButton(eczemaSymptomsExperienceOLS);
+                .clickNextButton(new EczemaSymptomsExperienceOLS());
 
         HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
