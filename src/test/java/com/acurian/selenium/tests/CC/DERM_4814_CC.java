@@ -181,30 +181,30 @@ public class DERM_4814_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is never itchy") //Disqualify ("No pruritus")
                 .clickNextButton(new EczemaSymptomsExperienceCC());
-        RateAaverageItchinessEczemaPageCC rateAaverageItchinessEczemaPageCC = eczemaSymptomsExperienceCC
+        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = eczemaSymptomsExperienceCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019079-QS5837-STUDYQUES", protocols)
                 .back(howManyDaysHasSkinBeenItchyCC)
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is itchy every day")
-                .clickNextButton(new RateAaverageItchinessEczemaPageCC());
+                .clickNextButton(new RateAverageItchinessEczemaPageCC());
         //Q20
-        rateAaverageItchinessEczemaPageCC
+        rateAverageItchinessEczemaPageCC
                 .waitForPageLoad()
                 .selectFromDropDown("0 - No itch")
                 .clickNextButton(eczemaSymptomsExperienceCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0020569-QS5838-STUDYQUES", protocols)
-                .back(rateAaverageItchinessEczemaPageCC)
+                .back(rateAverageItchinessEczemaPageCC)
                 .waitForPageLoad()
                 .selectFromDropDown("1")
                 .clickNextButton(eczemaSymptomsExperienceCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0020569-QS5838-STUDYQUES", protocols)
-                .back(rateAaverageItchinessEczemaPageCC)
+                .back(rateAverageItchinessEczemaPageCC)
                 .waitForPageLoad()
                 .selectFromDropDown("2")
                 .clickNextButton(eczemaSymptomsExperienceCC);

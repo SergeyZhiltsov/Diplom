@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EczemaSymptomsExperienceOLS extends MainPageOLS {
-    private final String titleExpected = "Which of the following eczema symptoms do you experience?\n" +
+    private final String titleExpected = "Which of the following additional eczema symptoms do you experience?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")

@@ -166,16 +166,16 @@ public class DERM_4825_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is never itchy") //Disqualify ("No pruritus")
                 .clickNextButton(new EczemaSymptomsExperienceCC());
-        RateAaverageItchinessEczemaPageCC rateAaverageItchinessEczemaPageCC = eczemaSymptomsExperienceCC
+        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = eczemaSymptomsExperienceCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019079-QS5837-STUDYQUES", site.activeProtocols)
                 .back(howManyDaysHasSkinBeenItchyCC)
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is itchy every day")
-                .clickNextButton(new RateAaverageItchinessEczemaPageCC());
+                .clickNextButton(new RateAverageItchinessEczemaPageCC());
 
-        rateAaverageItchinessEczemaPageCC
+        rateAverageItchinessEczemaPageCC
                 .waitForPageLoad()
                 .selectFromDropDown("2")
                 .clickNextButton(eczemaSymptomsExperienceCC);

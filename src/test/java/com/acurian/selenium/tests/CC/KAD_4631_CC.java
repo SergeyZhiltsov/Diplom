@@ -174,11 +174,11 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        RateAaverageItchinessEczemaPageCC rateAaverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
+        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 days")
-                .clickNextButton(new RateAaverageItchinessEczemaPageCC());
-        rateAaverageItchinessEczemaPageCC
+                .clickNextButton(new RateAverageItchinessEczemaPageCC());
+        rateAverageItchinessEczemaPageCC
                 .waitForPageLoad()
                 .selectFromDropDown("1")
                 .clickNextButton(eczemaSymptomsExperienceCC);

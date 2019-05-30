@@ -172,11 +172,11 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0019079-QS5837-STUDYQUES", site.activeProtocols)
                 .back();
 
-        RateAaverageItchinessEczemaPageCC rateAaverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
+        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 days")
-                .clickNextButton(new RateAaverageItchinessEczemaPageCC());
-        rateAaverageItchinessEczemaPageCC
+                .clickNextButton(new RateAverageItchinessEczemaPageCC());
+        rateAverageItchinessEczemaPageCC
                 .waitForPageLoad()
                 .selectFromDropDown("1")
                 .clickNextButton(eczemaSymptomsExperienceCC);
