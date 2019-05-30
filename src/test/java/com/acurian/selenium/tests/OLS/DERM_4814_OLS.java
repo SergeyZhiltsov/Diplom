@@ -156,11 +156,12 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 
-        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_comp_ols
+        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_comp_ols
                 .waitForPageLoad()
                 .clickOnAnswer("B")
-                .clickNextButton(new EczemaSymptomsExperienceOLS());
-        eczemaSymptomsExperienceOLS
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
+
+        howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", protocols)
@@ -194,8 +195,8 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(whichOfThesePicsLooksSimilarOnYourLegsFeet_comp_ols)
                 .waitForPageLoad()
                 .clickOnAnswer("E")
-                .clickNextButton(eczemaSymptomsExperienceOLS);
-        eczemaSymptomsExperienceOLS
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS);
+        howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", protocols)
@@ -203,24 +204,63 @@ public class DERM_4814_OLS extends BaseTest {
         whichOfThesePicsLooksSimilarOnYourLegsFeet_comp_ols
                 .waitForPageLoad()
                 .clickOnAnswer("D")
-                .clickNextButton(eczemaSymptomsExperienceOLS);
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS);
 
-        LevelOfITCHWithEczemaOLS levelOfITCHWithEczemaOLS = eczemaSymptomsExperienceOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Redness")
-                .clickNextButton(new LevelOfITCHWithEczemaOLS());
-
-        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = levelOfITCHWithEczemaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Mildly itchy (Mildly irritating/Some scratching)")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
-
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_ols = howManyDaysHasSkinBeenItchyOLS
+        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is never itchy")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+                .clickNextButton(new EczemaSymptomsExperienceOLS());
 
-        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_ols = haveYouEverTreatedYourEczema_ols
+        RateAverageItchinessEczemaPageOLS rateAverageItchinessEczemaPageOLS = eczemaSymptomsExperienceOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
+                .back(howManyDaysHasSkinBeenItchyOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("My skin is itchy every day")
+                .clickNextButton(new RateAverageItchinessEczemaPageOLS());
+
+        //Q20
+        rateAverageItchinessEczemaPageOLS
+                .waitForPageLoad()
+                .selectFromDropDown("0 - No itch")
+                .clickNextButton(eczemaSymptomsExperienceOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5838", protocols)
+                .back(rateAverageItchinessEczemaPageOLS)
+                .waitForPageLoad()
+                .selectFromDropDown("1")
+                .clickNextButton(eczemaSymptomsExperienceOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5838", protocols)
+                .back(rateAverageItchinessEczemaPageOLS)
+                .waitForPageLoad()
+                .selectFromDropDown("2")
+                .clickNextButton(eczemaSymptomsExperienceOLS);
+
+        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = eczemaSymptomsExperienceOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None")
+                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+        haveYouEverTreatedYourEczema_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5835", protocols)
+                .back(eczemaSymptomsExperienceOLS);
+
+        eczemaSymptomsExperienceOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Redness",
+                        "Swelling",
+                        "Oozing/Crusting",
+                        "Dryness",
+                        "Scratch marks",
+                        "Skin thickening")
+                .clickNextButton(haveYouEverTreatedYourEczema_OLS);
+
+        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_ols = haveYouEverTreatedYourEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());

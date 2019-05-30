@@ -17,10 +17,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DERM_4600_CC extends BaseTest {
 
@@ -107,99 +104,107 @@ public class DERM_4600_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
 
-        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = howLongHaveYouBeenSufferingFromEczema_cc
-                .waitForPageLoad()
-                .clickOnAnswer("2 months or less") //Disqualify ("Atopic Derm < 1 year")
-                .clickNextButton(new HowMuchEczemaYouHaveOnYOurBody_CC());
-        howMuchEczemaYouHaveOnYOurBody_cc
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
-                .back();
-        howLongHaveYouBeenSufferingFromEczema_cc
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months") //Disqualify ("Atopic Derm < 1 year")
-                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howLongHaveYouBeenSufferingFromEczema_cc
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months") //Disqualify ("Atopic Derm < 1 year")
-                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
-                .back();
-
+        //Q3
+        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = new HowMuchEczemaYouHaveOnYOurBody_CC();
+        List<String> disqualifyQ3 = new LinkedList();
+        disqualifyQ3.add("2 months or less"); //Disqualify (“Atopic Derm < 3 years”)
+        disqualifyQ3.add("3 - 6 months");
+        disqualifyQ3.add("7 - 11 months");
+        for(String answer: disqualifyQ3)
+        {
+            System.out.println(answer);
+            howLongHaveYouBeenSufferingFromEczema_cc
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
+                    .back();
+        }
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("1 year")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
+        //Q4
         DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc
                 .waitForPageLoad()
                 .selectFromDropDown("6")
                 .clickNextButton(new DollarBillsToCoverEczemaCC());
 
-        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = dollarBillsToCoverEczemaCC
+        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = dollarBillsToCoverEczemaCC
                 .waitForPageLoad()
                 .selectFromDropDown("6")
-                .clickNextButton(new EczemaSymptomsExperienceCC());
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
 
-        eczemaSymptomsExperienceCC
+        howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", site.activeProtocols)
-                .back();
-
-        dollarBillsToCoverEczemaCC
+                .back(dollarBillsToCoverEczemaCC)
                 .waitForPageLoad()
                 .selectFromDropDown("7")
-                .clickNextButton(eczemaSymptomsExperienceCC);
+                .clickNextButton(howManyDaysHasSkinBeenItchyCC);
 
-        LevelOfITCHWithEczemaCC levelOfITCHWithEczemaCC = eczemaSymptomsExperienceCC
+        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
-                .clickOnAnswers("None")
-                .clickNextButton(new LevelOfITCHWithEczemaCC());
-
-        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = levelOfITCHWithEczemaCC
-                .waitForPageLoad()
-                .clickOnAnswer("Mildly itchy (Mildly irritating/Some scratching)")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
-
-        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_cc = howManyDaysHasSkinBeenItchyCC
-                .waitForPageLoad()
-                .clickOnAnswer("My skin is never itchy")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
-
-        haveYouEverTreatedYourEczema_cc
+                .clickOnAnswer("My skin is never itchy") //Disqualify ("No pruritus")
+                .clickNextButton(new EczemaSymptomsExperienceCC());
+        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = eczemaSymptomsExperienceCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019079-QS5837-STUDYQUES", site.activeProtocols)
-                .back();
-
-        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_cc = howManyDaysHasSkinBeenItchyCC
+                .back(howManyDaysHasSkinBeenItchyCC)
                 .waitForPageLoad()
-                .clickOnAnswer("1 - 2 days")
-                .clickNextButton(haveYouEverTreatedYourEczema_cc)
+                .clickOnAnswer("My skin is itchy every day")
+                .clickNextButton(new RateAverageItchinessEczemaPageCC());
+
+        rateAverageItchinessEczemaPageCC
+                .waitForPageLoad()
+                .selectFromDropDown("2")
+                .clickNextButton(eczemaSymptomsExperienceCC);
+
+        //Q21
+        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_cc = eczemaSymptomsExperienceCC
+                .waitForPageLoad()
+                .clickOnAnswers("Redness",
+                        "Swelling",
+                        "Oozing/Crusting",
+                        "Dryness",
+                        "Scratch marks",
+                        "Skin thickening")
+                .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
+
+        //Q22
+        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
-
-        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_cc = whichofthefollowingMedicationsTherapies_cc
+        //23
+        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
                 .waitForPageLoad()
+                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)",
+                        "CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)",
+                        "Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)",
+                        "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
+                        "Neoral, Sandimmune, or Gengraf, also known as cyclosporine (Agent Note: NEE-oh-ral, GEN-graf, cy-clo-SPOR-in)",
+                        "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
+                        "Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)",
+                        "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)",
+                        "Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)",
+                        "Phototherapy, Ultraviolet, or UV light")
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)") //Disqualify (“Current biologic use”)
                 .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
-        didYouReceiveAnyTherapiesPastYear_cc
+        didYouReceiveAnyTherapiesPastYear_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017868-QS5827-STUDYQUES", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_cc);
+                .back(whichofthefollowingMedicationsTherapies_CC);
+
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
-                whichofthefollowingMedicationsTherapies_cc
+                whichofthefollowingMedicationsTherapies_CC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
@@ -207,34 +212,34 @@ public class DERM_4600_CC extends BaseTest {
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
                 .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic") //Must ... in Q22 selected "Yes, within the past year"
-                .back(whichofthefollowingMedicationsTherapies_cc)
+                .back(whichofthefollowingMedicationsTherapies_CC)
                 .waitForPageLoad()
                 .back(haveYouEverTreatedYourEczema_cc)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, but more than 1 year ago")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_cc)
+                .clickNextButton(whichofthefollowingMedicationsTherapies_CC)
                 .waitForPageLoad()
                 .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
                 .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
-                .back(whichofthefollowingMedicationsTherapies_cc)
+                .back(whichofthefollowingMedicationsTherapies_CC)
                 .waitForPageLoad()
                 .back(haveYouEverTreatedYourEczema_cc)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_cc);
-        whichofthefollowingMedicationsTherapies_cc
+                .clickNextButton(whichofthefollowingMedicationsTherapies_CC);
+        whichofthefollowingMedicationsTherapies_CC
                 .waitForPageLoad()
                 .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_cc)
+                .back(whichofthefollowingMedicationsTherapies_CC)
                 .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
-                .clickNextButton(didYouReceiveAnyTherapiesPastYear_cc);
+                .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC);
 
-        didYouReceiveAnyTherapiesPastYear_cc
+        didYouReceiveAnyTherapiesPastYear_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);

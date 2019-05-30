@@ -166,58 +166,53 @@ public class DERM_4631_OLS extends BaseTest {
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 
-        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
-                .clickNextButton(new EczemaSymptomsExperienceOLS());
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
 
-        eczemaSymptomsExperienceOLS
+        howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("G")
-                .clickNextButton(eczemaSymptomsExperienceOLS);
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS);
 
-        LevelOfITCHWithEczemaOLS levelOfITCHWithEczemaOLS = eczemaSymptomsExperienceOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None")
-                .clickNextButton(new LevelOfITCHWithEczemaOLS());
-
-        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = levelOfITCHWithEczemaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Mildly itchy (Mildly irritating/Some scratching)")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
-
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_ols = howManyDaysHasSkinBeenItchyOLS
+        RateAverageItchinessEczemaPageOLS rateAverageItchinessEczemaPageOLS = howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 days")
+                .clickNextButton(new RateAverageItchinessEczemaPageOLS());
+        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = rateAverageItchinessEczemaPageOLS
+                .waitForPageLoad()
+                .selectFromDropDown("2")
+                .clickNextButton(new EczemaSymptomsExperienceOLS());
+
+        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = eczemaSymptomsExperienceOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Redness",
+                        "Swelling",
+                        "Oozing/Crusting",
+                        "Dryness",
+                        "Scratch marks",
+                        "Skin thickening")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
 
-        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = haveYouEverTreatedYourEczema_ols
+        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_ols = haveYouEverTreatedYourEczema_OLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
 
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols = whichofthefollowingMedicationsTherapies_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
-
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols
-                .waitForPageLoad()
-                .back();
-
-        DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_ols = whichofthefollowingMedicationsTherapies_OLS
+        DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_ols = whichofthefollowingMedicationsTherapies_ols
                 .waitForPageLoad()
                 .clickOnAnswers("Dupixent (dupilumab)")
                 .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
 
-        didYouReceiveAnyTherapiesPastYear_ols
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols = didYouReceiveAnyTherapiesPastYear_ols
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols);
+                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
 
         List<String> medications = Arrays.asList(
                 "Actemra",

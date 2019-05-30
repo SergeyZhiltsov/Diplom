@@ -177,45 +177,51 @@ public class DERM_4825_OLS extends BaseTest {
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 
-        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
-                .clickNextButton(new EczemaSymptomsExperienceOLS());
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
 
-        eczemaSymptomsExperienceOLS
+        howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("G")
-                .clickNextButton(eczemaSymptomsExperienceOLS);
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS);
 
-        LevelOfITCHWithEczemaOLS levelOfITCHWithEczemaOLS = eczemaSymptomsExperienceOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None")
-                .clickNextButton(new LevelOfITCHWithEczemaOLS());
-
-        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = levelOfITCHWithEczemaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Mildly itchy (Mildly irritating/Some scratching)")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
-
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_ols = howManyDaysHasSkinBeenItchyOLS
+        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is never itchy")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+                .clickNextButton(new EczemaSymptomsExperienceOLS());
 
-        haveYouEverTreatedYourEczema_ols
+        eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
                 .back();
 
-        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_ols = howManyDaysHasSkinBeenItchyOLS
+        RateAverageItchinessEczemaPageOLS rateAverageItchinessEczemaPageOLS = howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 days")
-                .clickNextButton(haveYouEverTreatedYourEczema_ols)
+                .clickNextButton(new RateAverageItchinessEczemaPageOLS());
+        rateAverageItchinessEczemaPageOLS
+                .waitForPageLoad()
+                .selectFromDropDown("2")
+                .clickNextButton(eczemaSymptomsExperienceOLS);
+
+        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = eczemaSymptomsExperienceOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Redness",
+                        "Swelling",
+                        "Oozing/Crusting",
+                        "Dryness",
+                        "Scratch marks",
+                        "Skin thickening")
+                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+
+        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_ols = haveYouEverTreatedYourEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
@@ -241,7 +247,7 @@ public class DERM_4825_OLS extends BaseTest {
                 .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic") //Must ... in Q22 selected "Yes, within the past year"
                 .back(whichofthefollowingMedicationsTherapies_ols)
                 .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_ols)
+                .back(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, but more than 1 year ago")
                 .clickNextButton(whichofthefollowingMedicationsTherapies_ols)
@@ -252,7 +258,7 @@ public class DERM_4825_OLS extends BaseTest {
                 .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
                 .back(whichofthefollowingMedicationsTherapies_ols)
                 .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_ols)
+                .back(haveYouEverTreatedYourEczema_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(whichofthefollowingMedicationsTherapies_ols);

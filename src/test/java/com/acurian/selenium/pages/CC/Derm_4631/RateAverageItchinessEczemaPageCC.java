@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class RateAaverageItchinessEczemaPageCC extends MainPageCC {
+public class RateAverageItchinessEczemaPageCC extends MainPageCC {
 
     public final String titleExpected = "On a scale from 0 (no itch) to 10 (severe itch), how would you rate your average itchiness due to eczema?";
 
@@ -17,19 +17,19 @@ public class RateAaverageItchinessEczemaPageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='ddlist_container']//select")
     WebElement dropDownList;
 
-    public RateAaverageItchinessEczemaPageCC() {
+    public RateAverageItchinessEczemaPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public RateAaverageItchinessEczemaPageCC waitForPageLoad() {
+    public RateAverageItchinessEczemaPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public RateAaverageItchinessEczemaPageCC selectFromDropDown(String answerText) {
+    public RateAverageItchinessEczemaPageCC selectFromDropDown(String answerText) {
         selectDropDownListOptionByText(dropDownList, answerText);
         return this;
     }

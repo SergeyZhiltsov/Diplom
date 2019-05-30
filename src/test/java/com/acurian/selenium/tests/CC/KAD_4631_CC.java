@@ -18,6 +18,7 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class KAD_4631_CC extends BaseTest {
@@ -120,38 +121,26 @@ public class KAD_4631_CC extends BaseTest {
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
 
         //----------Q3:  HowLongHaveYouBeenSufferingFromEczema_CC---------------
-        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = howLongHaveYouBeenSufferingFromEczema_CC
-                .waitForPageLoad()
-                .clickOnAnswer("2 months or less")
-                .clickNextButton(new HowMuchEczemaYouHaveOnYOurBody_CC());
-
-        howMuchEczemaYouHaveOnYOurBody_cc
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
-                .back();
-
+        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_cc = new HowMuchEczemaYouHaveOnYOurBody_CC();
+        List<String> disqualifyQ3 = new LinkedList();
+        disqualifyQ3.add("2 months or less"); //Disqualify (“Atopic Derm < 3 years”)
+        disqualifyQ3.add("3 - 6 months");
+        disqualifyQ3.add("7 - 11 months");
+        for(String answer: disqualifyQ3)
+        {
+            System.out.println(answer);
+            howLongHaveYouBeenSufferingFromEczema_CC
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
+                    .back();
+        }
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months")
-                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howLongHaveYouBeenSufferingFromEczema_CC
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months")
-                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howLongHaveYouBeenSufferingFromEczema_CC
-                .waitForPageLoad()
-                .clickOnAnswer("2 years")
+                .clickOnAnswer("1 year")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
         //------------Q4:  IfYouUseYourHandToCoverAllOfTheEczema_CC -------------------  
@@ -160,12 +149,12 @@ public class KAD_4631_CC extends BaseTest {
                 .selectFromDropDown("6")
                 .clickNextButton(new DollarBillsToCoverEczemaCC());
 
-        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = dollarBillsToCoverEczemaCC
+        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = dollarBillsToCoverEczemaCC
                 .waitForPageLoad()
                 .selectFromDropDown("6")
-                .clickNextButton(new EczemaSymptomsExperienceCC());
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
 
-        eczemaSymptomsExperienceCC
+        howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", site.activeProtocols)
@@ -174,21 +163,35 @@ public class KAD_4631_CC extends BaseTest {
         dollarBillsToCoverEczemaCC
                 .waitForPageLoad()
                 .selectFromDropDown("11")
-                .clickNextButton(eczemaSymptomsExperienceCC);
+                .clickNextButton(howManyDaysHasSkinBeenItchyCC);
 
-        LevelOfITCHWithEczemaCC levelOfITCHWithEczemaCC = eczemaSymptomsExperienceCC
+        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
-                .clickOnAnswers("None")
-                .clickNextButton(new LevelOfITCHWithEczemaCC());
+                .clickOnAnswer("My skin is never itchy")
+                .clickNextButton(new EczemaSymptomsExperienceCC());
 
-        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = levelOfITCHWithEczemaCC
+        eczemaSymptomsExperienceCC
                 .waitForPageLoad()
-                .clickOnAnswer("Mildly itchy (Mildly irritating/Some scratching)")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
+                .back();
 
-        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_CC = howManyDaysHasSkinBeenItchyCC
+        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 days")
+                .clickNextButton(new RateAverageItchinessEczemaPageCC());
+        rateAverageItchinessEczemaPageCC
+                .waitForPageLoad()
+                .selectFromDropDown("1")
+                .clickNextButton(eczemaSymptomsExperienceCC);
+
+        //Q21
+        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_CC = eczemaSymptomsExperienceCC
+                .waitForPageLoad()
+                .clickOnAnswers("Redness",
+                        "Swelling",
+                        "Oozing/Crusting",
+                        "Dryness",
+                        "Scratch marks",
+                        "Skin thickening")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
 
         //-----------------Q17: HaveYouEverTreatedYourEczema_CC -------------
