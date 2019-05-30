@@ -172,10 +172,8 @@ public class KAD_4849_OLS extends BaseTest {
                 .clickOnAnswer("My skin is never itchy")
                 .clickNextButton(new EczemaSymptomsExperienceOLS());
 
-        eczemaSymptomsExperienceOLS
+        eczemaSymptomsExperienceOLS //check flow
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
                 .back();
 
         RateAverageItchinessEczemaPageOLS rateAverageItchinessEczemaPageOLS = howManyDaysHasSkinBeenItchyOLS
@@ -197,12 +195,7 @@ public class KAD_4849_OLS extends BaseTest {
                         "Skin thickening")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
 
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_ols = howManyDaysHasSkinBeenItchyOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 2 days")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
-
-        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = haveYouEverTreatedYourEczema_ols
+        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = haveYouEverTreatedYourEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, within the past year")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
@@ -218,8 +211,8 @@ public class KAD_4849_OLS extends BaseTest {
                 .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
                 .back(whichofthefollowingMedicationsTherapies_OLS)
                 .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_ols);
-        haveYouEverTreatedYourEczema_ols
+                .back(haveYouEverTreatedYourEczema_OLS);
+        haveYouEverTreatedYourEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, but more than 1 year ago")
                 .clickNextButton(whichofthefollowingMedicationsTherapies_OLS)
@@ -230,8 +223,8 @@ public class KAD_4849_OLS extends BaseTest {
                 .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
                 .back(whichofthefollowingMedicationsTherapies_OLS)
                 .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_ols);
-        haveYouEverTreatedYourEczema_ols
+                .back(haveYouEverTreatedYourEczema_OLS);
+        haveYouEverTreatedYourEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(whichofthefollowingMedicationsTherapies_OLS)
