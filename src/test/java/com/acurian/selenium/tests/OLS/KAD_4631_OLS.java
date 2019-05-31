@@ -7,20 +7,15 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeart
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class KAD_4631_OLS extends BaseTest {
 
@@ -90,41 +85,30 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
-        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS = howLongHaveYouBeenSufferingFromEczemaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("2 months or less")
-                .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
-        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBodyOls = new HowMuchEczemaYouHaveOnYourBody_OLS();
-        howMuchEczemaYouHaveOnYourBodyOls
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-                .back();
-        howLongHaveYouBeenSufferingFromEczemaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months")
-                .clickNextButton(howMuchEczemaYouHaveOnYourBodyOls)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-                .back();
-        howLongHaveYouBeenSufferingFromEczemaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months")
-                .clickNextButton(howMuchEczemaYouHaveOnYourBodyOls)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-                .back();
+        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
+        List<String> disqualifyQ3 = new LinkedList<>();
+        disqualifyQ3.add("2 months or less");
+        disqualifyQ3.add("3 - 6 months");
+        disqualifyQ3.add("7 - 11 months");
+        for (String answer: disqualifyQ3) {
+            howLongHaveYouBeenSufferingFromEczemaOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+                    .back();
+        }
         howLongHaveYouBeenSufferingFromEczemaOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 years")
-                .clickNextButton(howMuchEczemaYouHaveOnYourBodyOls);
-        howMuchEczemaYouHaveOnYourBodyOls
+                .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS);
+        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
+                = howMuchEczemaYouHaveOnYourBody_OLS
                 .waitForPageLoad()
                 .selectFromDropDown("9")
-                .clickNextButton(whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS);
-
+                .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
 
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
                 .waitForPageLoad()
@@ -160,37 +144,29 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 
-        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
-                .clickNextButton(new EczemaSymptomsExperienceOLS());
-        eczemaSymptomsExperienceOLS
+                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
+        howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
-                .back();
-        whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+                .back(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("B")
-                .clickNextButton(eczemaSymptomsExperienceOLS);
-        eczemaSymptomsExperienceOLS
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
-                .back();
-        whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+                .back(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("C")
-                .clickNextButton(eczemaSymptomsExperienceOLS);
-        eczemaSymptomsExperienceOLS
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
                 .back();
-/*        eczemaSymptomsExperienceOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("D")
-                .clickNextButton(eczemaSymptomsExperienceOLS);*/
 
 whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
@@ -209,20 +185,18 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .back();
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
                 .waitForPageLoad()
-                .clickOnAnswers("Chest, stomach, and back", "Arms and hands", "Legs and feet")
+                .clickOnAnswers("Chest, stomach, and back", "Arms and hands", "Legs and feet") //deselect
                 .clickNextButton(weWantToMakeSureTheImagesDisplayProperly_OLS);
-
 
         weWantToMakeSureTheImagesDisplayProperly_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Computer or tablet")
                 .clickNextButton(weWantToMakeSureTheImagesDisplayProperly_OLS);
 
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = new HaveYouEverTreatedYourEczema_OLS();
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
-                .clickNextButton(eczemaSymptomsExperienceOLS)
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -230,7 +204,7 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("B")
-                .clickNextButton(eczemaSymptomsExperienceOLS)
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -238,7 +212,7 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("C")
-                .clickNextButton(eczemaSymptomsExperienceOLS)
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -246,7 +220,7 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("D")
-                .clickNextButton(eczemaSymptomsExperienceOLS)
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -254,7 +228,7 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("G")
-                .clickNextButton(eczemaSymptomsExperienceOLS)
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
@@ -272,62 +246,34 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .clickOnAnswer("Computer or tablet")
                 .clickNextButton(whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS);
 
-        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
+        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("D")
                 .clickNextButton(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("C")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS);
-
-        LevelOfITCHWithEczemaOLS levelOfITCHWithEczemaOLS = eczemaSymptomsExperienceOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None")
-                .clickNextButton(new LevelOfITCHWithEczemaOLS());
-
-        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = levelOfITCHWithEczemaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("None (No itching)")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
-
-        haveYouEverTreatedYourEczema_OLS = howManyDaysHasSkinBeenItchyOLS
-                .waitForPageLoad()
-                .clickOnAnswer("My skin is never itchy")
                 .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
 
-        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapiesOls = haveYouEverTreatedYourEczema_OLS
+        EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
+                .clickOnAnswer("My skin is never itchy")
+                .clickNextButton(new EczemaSymptomsExperienceOLS());
 
-/*
+        eczemaSymptomsExperienceOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Redness",
+                        "Swelling",
+                        "Oozing/Crusting",
+                        "Dryness",
+                        "Scratch marks",
+                        "Skin thickening")
+                .clickNextButton(haveYouEverTreatedYourEczema_OLS);
 
-        //--------------Q17- HaveYouEverTreatedYourEczema_OLS ----------
-        haveYouEverTreatedYourEczema_OLS
-                .waitForPageLoad();
-        //-----------select NO to skip to Q19, otherwise goto Q18
         WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = haveYouEverTreatedYourEczema_OLS
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
-        whichofthefollowingMedicationsTherapies_OLS
-                .waitForPageLoad()
-                .back();
-        haveYouEverTreatedYourEczema_OLS
-                .waitForPageLoad();
-        OverallHowWellDidTopicalMedicationYouTried_OLS overallHowWellDidTopicalMedicationYouTried_OLS = haveYouEverTreatedYourEczema_OLS
-                .clickOnAnswer("Yes, within the past year")    //final selection
-                .clickNextButton(new OverallHowWellDidTopicalMedicationYouTried_OLS());
-*/
 
-
-/*        //--------------Q18- OverallHowWellDidTopicalMedicationYouTried_OLS ----------
-        overallHowWellDidTopicalMedicationYouTried_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("My symptoms went away completely")  //final selection
-                .clickNextButton(whichofthefollowingMedicationsTherapies_OLS);*/
-
-        //--------------Q23- whichofthefollowingMedicationsTherapies_OLS ----------
-        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = new WhichofthefollowingMedicationsTherapies_OLS();
         BiologicMedications biologicMedications = whichofthefollowingMedicationsTherapies_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
