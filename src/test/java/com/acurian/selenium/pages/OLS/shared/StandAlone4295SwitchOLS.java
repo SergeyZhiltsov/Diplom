@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class StandAlone4295SwitchOLS extends MainPageOLS{
 
-    public final String titleExpected = "What is your date of birth?";
+    public final String titleExpected = "Thank you for calling Acurian's Alzheimer's risk research line. My name is Online Screening. Are you calling about a research study today?";//"What is your date of birth?";
 
     @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[@class='show-in-ols'])[2]")
     WebElement titleText;
