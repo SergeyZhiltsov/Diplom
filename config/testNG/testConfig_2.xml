@@ -9,7 +9,7 @@
 <!--            <class name="com.acurian.selenium.tests.OLS.DERM_4600_OLS"/>-->
 <!--            <class name="com.acurian.selenium.tests.OLS.DERM_4815_OLS_A_S"/>-->
 <!--            <class name="com.acurian.selenium.tests.OLS.KAD_4849_OLS"/>-->
-            <class name="com.acurian.selenium.tests.OLS.DERM_4631_OLS"/>
+            <class name="com.acurian.selenium.tests.health_check.SiteIndicatorTest"/>
         </classes>
     </test>
 

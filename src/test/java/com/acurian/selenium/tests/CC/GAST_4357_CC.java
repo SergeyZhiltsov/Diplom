@@ -84,7 +84,7 @@ public class GAST_4357_CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "others"), "Title is diff"); //TODO
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "500"), "Title is diff");
 
         dateOfBirthPageCC
                 .setMonth("Apr")
