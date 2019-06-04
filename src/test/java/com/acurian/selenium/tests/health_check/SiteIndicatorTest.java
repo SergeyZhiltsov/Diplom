@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.CC.RA.WhenYouDiagnosedWithRaPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.gmega.WhenYouDiagnosedWithRaGmegaPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -45,11 +46,18 @@ public class SiteIndicatorTest extends BaseTest {
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
                 .waitForPageLoadGmega();
+
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+
+        BehalfOfSomeoneElsePageCC behalfOfSomeoneElsePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickNextButton(new BehalfOfSomeoneElsePageCC());
+
+        IdentificationPageCC identificationPageCC = behalfOfSomeoneElsePageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC

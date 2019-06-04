@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedFlareMonitoringAppClosePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
+import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.testng.Assert;
@@ -17,6 +18,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.time.Instant;
 
 public class FlareActivationCode extends BaseTest {
+
 
     @Test
     @Description("Flare Activation Code verification")
@@ -35,8 +37,14 @@ public class FlareActivationCode extends BaseTest {
 
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
 
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+        BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
+                .waitForPageLoad()
                 .setDate("09091980")
+                .clickNextButton(new BehalfOfSomeoneElsePageOLS());
+
+        IdentificationPageOLS identificationPageOLS = behalfOfSomeoneElsePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS
@@ -64,13 +72,8 @@ public class FlareActivationCode extends BaseTest {
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new ChooseTheMatterYouAreHereOLS());
 
-        //MostImportantChoiceOLS mostImportantChoiceOLS = chooseTheMatterYouAreHereOLS;
-        if (env.equals("QA")) {
-            chooseTheMatterYouAreHereOLS.waitForPageLoadQA();
-        } else {
-            chooseTheMatterYouAreHereOLS.waitForPageLoad();
-        }
         MostImportantChoiceOLS mostImportantChoiceOLS = chooseTheMatterYouAreHereOLS
+                .waitForPageLoadQA()
                 .clickOnAnswers("B")
                 .clickNextButton(new MostImportantChoiceOLS());
 

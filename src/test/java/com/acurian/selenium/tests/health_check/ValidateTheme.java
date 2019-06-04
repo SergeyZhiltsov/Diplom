@@ -4,6 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
+import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.testng.Assert;
@@ -28,8 +29,14 @@ public class ValidateTheme extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
-        IdentificationPageOLS identificationPageOLS= dateOfBirthPageOLS
+
+        BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
+                .clickNextButton(new BehalfOfSomeoneElsePageOLS());
+
+        IdentificationPageOLS identificationPageOLS = behalfOfSomeoneElsePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageOLS());
 
         identificationPageOLS
@@ -38,8 +45,8 @@ public class ValidateTheme extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-        .waitForPageLoadGmega()
+        genderPageOLS
+                .waitForPageLoadGmega()
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad();
