@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All" verbose="4" thread-count="5">
-
     <test name="Just for checking">
         <classes>
-<!--            <class name="com.acurian.selenium.tests.OLS.DERM_4814_OLS"/>-->
-<!--            <class name="com.acurian.selenium.tests.OLS.DERM_4825_OLS"/>-->
-<!--            <class name="com.acurian.selenium.tests.OLS.DERM_4600_OLS"/>-->
-<!--            <class name="com.acurian.selenium.tests.OLS.DERM_4815_OLS_A_S"/>-->
-<!--            <class name="com.acurian.selenium.tests.OLS.KAD_4849_OLS"/>-->
-            <class name="com.acurian.selenium.tests.OLS.DERM_4631_OLS"/>
+            <class name="com.acurian.selenium.tests.health_check.AnomalyTest"/>
+            <class name="com.acurian.selenium.tests.health_check.AnomalyTest"/>
+            <class name="com.acurian.selenium.tests.health_check.DbValidation1Rgmega"/>
+            <class name="com.acurian.selenium.tests.health_check.FlareActivationCode"/>
+            <class name="com.acurian.selenium.tests.health_check.GmegaToGban"/>
+<!--            <class name="com.acurian.selenium.tests.health_check.InstantFUL"/>-->
+            <class name="com.acurian.selenium.tests.health_check.RadiantWTtest"/>
+            <class name="com.acurian.selenium.tests.health_check.RpaValidation"/> <!-- need to remove from test?-->
+            <class name="com.acurian.selenium.tests.health_check.SBClearCachePublish"/>
+            <class name="com.acurian.selenium.tests.health_check.SiteIndicatorTest"/>
+            <class name="com.acurian.selenium.tests.health_check.SiteLatLong"/>
+            <class name="com.acurian.selenium.tests.health_check.ValidateTheme"/>
         </classes>
     </test>
-
 </suite>

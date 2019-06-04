@@ -48,10 +48,16 @@ public class RadiantWTtest extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoadGmega();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+
+        BehalfOfSomeoneElsePageCC behalfOfSomeoneElsePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
+                .clickNextButton(new BehalfOfSomeoneElsePageCC());
+
+        IdentificationPageCC identificationPageCC = behalfOfSomeoneElsePageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC
@@ -59,19 +65,13 @@ public class RadiantWTtest extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        //ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
-                if(env.equals("QA")){
-                    genderPageCC.waitForPageLoad();}
-                else{
-                    genderPageCC.waitForPageLoadGmega();
-                    }
-
-                genderPageCC.getPage(new CallCenterIntroductionPageCC())
-                .activateDebugOnProd(env)
-                .getPage(genderPageCC)
-                .clickOnAnswerGmega("Female");
-                ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
-                .clickNextButton(new ApproximateHeightPageCC());
+        ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
+               .waitForPageLoadGmega()
+               .getPage(new CallCenterIntroductionPageCC())
+               .activateDebugOnProd(env)
+               .getPage(genderPageCC)
+               .clickOnAnswer("Female")
+               .clickNextButton(new ApproximateHeightPageCC());
 
         FollowingNeurologicalConditions followingNeurologicalConditions = approximateHeightPageOLS
                 .waitForPageLoad()

@@ -30,8 +30,15 @@ public class GmegaToGban extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+
+        BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
+                .waitForPageLoad()
                 .setDate("09091930")
+                .clickNextButton(new BehalfOfSomeoneElsePageOLS());
+
+        IdentificationPageOLS identificationPageOLS = behalfOfSomeoneElsePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS
@@ -99,8 +106,8 @@ public class GmegaToGban extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
 
-        BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = standAlone4295SwitchOLS
-                .clickNextButton(new BehalfOfSomeoneElsePageOLS());
+        standAlone4295SwitchOLS
+                .clickNextButton(behalfOfSomeoneElsePageOLS);
         behalfOfSomeoneElsePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Someone else")
