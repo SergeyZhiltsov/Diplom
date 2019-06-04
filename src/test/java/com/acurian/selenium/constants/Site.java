@@ -96,7 +96,7 @@ public enum Site {
     //5062
     AUT_NASH5062_site("AUT_NASH5062_site", "19901", "41C", false, false, "3152_301_002"),
     //Others
-    AUT_GFLR1_site("AUT_GFLR1_site", "19901", "", false, false), //FlareActivationCode.java
+    AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java
     //Health check
     AUT_GRA1_Site("AUT_GRA1_Site", "19901", "1R", false, false);
 

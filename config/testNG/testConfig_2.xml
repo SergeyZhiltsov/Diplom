@@ -8,7 +8,7 @@
             <class name="com.acurian.selenium.tests.health_check.DbValidation1Rgmega"/>
             <class name="com.acurian.selenium.tests.health_check.FlareActivationCode"/>
             <class name="com.acurian.selenium.tests.health_check.GmegaToGban"/>
-            <class name="com.acurian.selenium.tests.health_check.InstantFUL"/>
+<!--            <class name="com.acurian.selenium.tests.health_check.InstantFUL"/>-->
             <class name="com.acurian.selenium.tests.health_check.RadiantWTtest"/>
             <class name="com.acurian.selenium.tests.health_check.RpaValidation"/> <!-- need to remove from test?-->
             <class name="com.acurian.selenium.tests.health_check.SBClearCachePublish"/>

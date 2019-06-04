@@ -15,7 +15,7 @@ public class SiteIndicatorTest extends BaseTest {
     @Test(enabled = true)
     @Description("Site Indicator Test, yellow mark check")
     public void siteIndicatorTest() {
-        String phoneNumber = "AUTGMEG41C";
+        String phoneNumber = "AUTGMEGA01";
         String siteName = "AUT_GEMGA_01A";
         String zipCode = "19422";
         String env = System.getProperty("acurian.env", "STG");
@@ -58,7 +58,7 @@ public class SiteIndicatorTest extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
-                .waitForPageLoad()
+                .waitForPageLoadGmega()
                 .clickOnAnswerGmega("Female")
                 .clickNextButton(new ApproximateHeightPageCC());
 
