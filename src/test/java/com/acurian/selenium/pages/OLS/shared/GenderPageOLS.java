@@ -15,7 +15,7 @@ public class GenderPageOLS extends MainPageOLS{
 
     public final String titleExpected = "Please select your gender:";
 
-    public final String titleExpectedGmega = "Please select your gender:";
+    public final String titleExpectedGmega = "Please confirm your gender:";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
