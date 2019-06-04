@@ -18,7 +18,6 @@ import java.time.Instant;
 
 public class FlareActivationCode extends BaseTest {
 
-
     @Test
     @Description("Flare Activation Code verification")
     public void flareActivationCode() {

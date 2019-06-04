@@ -13,7 +13,7 @@ import java.util.List;
 
 public class GenderPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Please select your gender:";
+    public final String titleExpected = "Please confirm your gender:";
 
     public final String titleExpectedGmega = "This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, is your gender male or female?";
 
