@@ -2,18 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All" verbose="4" thread-count="5">
     <test name="Just for checking">
-        <classes>
-            <class name="com.acurian.selenium.tests.CC.CV_3140_CC_A_S"/>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4814_OLS"/>
-<!--            <class name="com.acurian.selenium.tests.health_check.FlareActivationCode"/>-->
-<!--            <class name="com.acurian.selenium.tests.health_check.GmegaToGban"/>-->
-<!--&lt;!&ndash;            <class name="com.acurian.selenium.tests.health_check.InstantFUL"/>&ndash;&gt;-->
-<!--            <class name="com.acurian.selenium.tests.health_check.RadiantWTtest"/>-->
-<!--            <class name="com.acurian.selenium.tests.health_check.RpaValidation"/> &lt;!&ndash; need to remove from test?&ndash;&gt;-->
-<!--            <class name="com.acurian.selenium.tests.health_check.SBClearCachePublish"/>-->
-<!--            <class name="com.acurian.selenium.tests.health_check.SiteIndicatorTest"/>-->
-<!--            <class name="com.acurian.selenium.tests.health_check.SiteLatLong"/>-->
-<!--            <class name="com.acurian.selenium.tests.health_check.ValidateTheme"/>-->
-        </classes>
+        <packages>
+            <package name="com.acurian.selenium.tests.dispo.*" />
+            <package name="com.acurian.selenium.tests.health_check.*" />
+        </packages>
     </test>
 </suite>

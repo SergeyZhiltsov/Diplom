@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
+import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.testng.Assert;
@@ -29,8 +30,14 @@ public class Dispo54C extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
-        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
+
+        BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS  = dateOfBirthPageOLS
                 .setDate("09091980")
+                .clickNextButton(new BehalfOfSomeoneElsePageOLS());
+
+        IdentificationPageOLS identificationPageOLS = behalfOfSomeoneElsePageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS

@@ -51,7 +51,7 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 
