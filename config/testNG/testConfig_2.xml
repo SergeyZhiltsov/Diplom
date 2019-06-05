@@ -2,19 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All" verbose="4" thread-count="5">
     <test name="Just for checking">
-        <classes>
-            <class name="com.acurian.selenium.tests.health_check.AnomalyTest"/>
-            <class name="com.acurian.selenium.tests.health_check.AnomalyTest"/>
-            <class name="com.acurian.selenium.tests.health_check.DbValidation1Rgmega"/>
-            <class name="com.acurian.selenium.tests.health_check.FlareActivationCode"/>
-            <class name="com.acurian.selenium.tests.health_check.GmegaToGban"/>
-<!--            <class name="com.acurian.selenium.tests.health_check.InstantFUL"/>-->
-            <class name="com.acurian.selenium.tests.health_check.RadiantWTtest"/>
-            <class name="com.acurian.selenium.tests.health_check.RpaValidation"/> <!-- need to remove from test?-->
-            <class name="com.acurian.selenium.tests.health_check.SBClearCachePublish"/>
-            <class name="com.acurian.selenium.tests.health_check.SiteIndicatorTest"/>
-            <class name="com.acurian.selenium.tests.health_check.SiteLatLong"/>
-            <class name="com.acurian.selenium.tests.health_check.ValidateTheme"/>
-        </classes>
+        <packages>
+            <package name="com.acurian.selenium.tests.dispo.*" />
+            <package name="com.acurian.selenium.tests.health_check.*" />
+        </packages>
     </test>
 </suite>
