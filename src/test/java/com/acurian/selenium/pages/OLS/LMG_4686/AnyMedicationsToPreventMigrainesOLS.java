@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AnyMedicationsToPreventMigrainesOLS extends MainPageOLS {
     public final String titleExpected = "Have you ever tried taking any daily prescription medications to prevent migraines from occurring?\n" +
-            "These could include anticonvulsants such as topiramate, beta-blockers such as propranolol, anti-depressants, or any other medication that " +
+            "These could include anticonvulsants such as topiramate, beta-blockers such as propranolol, anti-depressants, or any other prescription medication that " +
             "was taken daily specifically for migraine prevention.";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")

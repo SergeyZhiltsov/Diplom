@@ -148,7 +148,7 @@ public class PS_4656_OLS extends BaseTest {
 
         LegsFeetPsoriasisPageOLS legsFeetPsoriasisPageOLS = armsHandsPsoriasisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("A")
+                .clickOnAnswer("B")
                 .clickNextButton(new LegsFeetPsoriasisPageOLS());
 
         legsFeetPsoriasisPageOLS
