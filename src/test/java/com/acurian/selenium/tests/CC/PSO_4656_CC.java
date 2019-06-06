@@ -150,6 +150,15 @@ public class PSO_4656_CC extends BaseTest {
 
         howMuchPsoriasisOnYourBodyCC
                 .waitForPageLoad()
+                .selectFromDropDown("1")
+                .clickNextButton(treatYourPsoriasisCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0019303-QS7005-STUDYQUES", site.activeProtocols)
+                .back();
+
+        howMuchPsoriasisOnYourBodyCC
+                .waitForPageLoad()
                 .selectFromDropDown("21 +")
                 .clickNextButton(treatYourPsoriasisCC)
                 .waitForPageLoad()
