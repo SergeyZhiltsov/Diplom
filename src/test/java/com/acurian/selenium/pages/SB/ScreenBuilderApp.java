@@ -43,6 +43,9 @@ public class ScreenBuilderApp extends BasePage {
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(@id, 'clearCache')]")
     List<WebElement> clearCacheEnvs;
 
+    @FindBy(xpath = "//button[contains(@id, 'publish')][contains(@data-target, 'initStudy')]")
+    List<WebElement> publishStudyEnvs;
+
     @FindBy(id = "clearCacheBtn")
     WebElement clearCacheButton;
 
@@ -50,9 +53,9 @@ public class ScreenBuilderApp extends BasePage {
     WebElement publishButton;
 
     @FindBy(id = "btnPublishStudy")
-    WebElement finalpublishButton;
+    WebElement btnPublishStudy;
 
-    @FindBy(xpath = "//button[@class='btn btn-danger']")
+    @FindBy(xpath = "//div[@class='bootstrap-dialog-footer-buttons']/button[text() ='Yes']")
     WebElement confirmPublish;
 
     @FindBy(id = "comment")
@@ -64,6 +67,9 @@ public class ScreenBuilderApp extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'alert-success')]")
     public WebElement cacheClearedSuccessAlert;
 
+    @FindBy(css = "div.alert.alert-warning.alert-dismissable")
+    WebElement alertDismissableMessage;
+
 
     public ScreenBuilderApp() {
         PageFactory.initElements(getDriver(), this);
@@ -72,13 +78,13 @@ public class ScreenBuilderApp extends BasePage {
         driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
     }
 
-    public enum CacheEnv {
+    public enum SetupEnv {
         DEV("Dev"),
         QA("Qa"),
-        STAGING("Staging"),
-        PRODUCTION("Production");
+        STG("Staging"),
+        PRD("Production");
 
-        CacheEnv(String name) {
+        SetupEnv(String name) {
             this.name = name;
         }
 
@@ -103,6 +109,7 @@ public class ScreenBuilderApp extends BasePage {
 
     @Step
     public ScreenBuilderApp searchStudy(String studyName) {
+        driverWait.waitforVisibility(search);
         getActions()
                 .moveToElement(search)
                 .click()
@@ -149,9 +156,8 @@ public class ScreenBuilderApp extends BasePage {
         return this;
     }
 
-
     @Step
-    public ScreenBuilderApp publishStudySetup(String screenerName, CacheEnv env) {
+    public ScreenBuilderApp publishStudySetup(String screenerName, SetupEnv setupEnv, String env) {
         openActionsOf(screenerName);
         WebElement publishdropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
                 .findFirst()
@@ -164,23 +170,24 @@ public class ScreenBuilderApp extends BasePage {
         //------enter Comment before selecting environment to publish
         commentfield.sendKeys("No changes, testing publish feature for Healthcheck");
 
-        /*driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(clearCacheEnvs.get(0)));
-        clearCacheEnvs.stream().filter(element -> element.getText().startsWith(env.name))
+        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(publishStudyEnvs.get(0)));
+        publishStudyEnvs.stream().filter(element -> element.getText().startsWith(setupEnv.name))
                 .findFirst()
                 .get()
-                .click();*/
-        prodEnvButton.click();
+                .click();
 
-        publishButton.click();
-        finalpublishButton.click();
-        confirmPublish.click();
+        waitAndClickWebElement(publishButton);
+        waitAndClickWebElement(btnPublishStudy);
+        waitAndClickWebElement(confirmPublish);
+
+        if (env.equals("QA")) {
+            waitAndClickWebElement(publishButton);
+        }
         return this;
     }
 
-
-
     @Step
-    public ScreenBuilderApp clearStudyCacheOf(String screenerName, CacheEnv env) {
+    public ScreenBuilderApp clearStudyCacheOf(String screenerName, SetupEnv env) {
         openActionsOf(screenerName);
         WebElement clearCacheDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Clear Cache"))
                 .findFirst()
@@ -195,7 +202,8 @@ public class ScreenBuilderApp extends BasePage {
                 .findFirst()
                 .get()
                 .click();
-        clearCacheButton.click();
+
+        waitAndClickWebElement(clearCacheButton);
         return this;
     }
 
@@ -225,5 +233,14 @@ public class ScreenBuilderApp extends BasePage {
     {
         typeText(commentfield, "No changes, testing publish feature for Healthcheck");
         return null;
+    }
+
+    public WebElement waitToBeClickable(WebElement element) {
+        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public WebElement waitAndClickWebElement(WebElement element) {
+        waitToBeClickable(element).click();
+        return element;
     }
 }

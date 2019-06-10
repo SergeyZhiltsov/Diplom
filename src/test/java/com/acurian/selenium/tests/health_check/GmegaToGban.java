@@ -102,12 +102,19 @@ public class GmegaToGban extends BaseTest {
                 .clickNextButton(new StandAlone4295SwitchOLS());
 
         standAlone4295SwitchOLS
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .clickOnAnswers("Learn more about matching to clinical trials");
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
 
         standAlone4295SwitchOLS
+                .clickNextButton(dateOfBirthPageOLS);
+
+        dateOfBirthPageOLS
+                .waitForPageLoad()
+                .setDate("09/09/1955")
                 .clickNextButton(behalfOfSomeoneElsePageOLS);
+
         behalfOfSomeoneElsePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Someone else")

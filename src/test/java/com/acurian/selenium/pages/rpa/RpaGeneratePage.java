@@ -70,6 +70,6 @@ public class RpaGeneratePage extends RpaMainPage {
     @Step
     public boolean isSubmitButtonPresent(){
         waitForAnimation();
-        return isElementPresent(10,By.xpath("//input[@id='submit_button']"));
+        return isElementPresent(15,By.xpath("//input[@id='submit_button']"));
     }
 }

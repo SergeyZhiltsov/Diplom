@@ -1,16 +1,12 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.SB.ScreenBuilderApp;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
-
-import java.util.Date;
 
 public class SBClearCachePublish extends BaseTest {
 
@@ -26,10 +22,10 @@ public class SBClearCachePublish extends BaseTest {
     public void checkSbClearCache(String username, String password) {
         String env = System.getProperty("acurian.env", "QA");
         ScreenBuilderApp screenBuilder = new ScreenBuilderApp();
-        String comment;
 
-        if (!env.equals("QA") && !env.equals("PRD"))
+        if (env.equals("STG")) {
             throw new IllegalArgumentException("SB available only on QA or PRD env");
+        }
 
         screenBuilder.openPage(env);
 
@@ -39,12 +35,12 @@ public class SBClearCachePublish extends BaseTest {
         screenBuilder.loginAs(username, password);
         screenBuilder.searchStudy("GRA1");
 
-        screenBuilder.publishStudySetup("GRA1 - Rheumatoid Arthritis (RA)", ScreenBuilderApp.CacheEnv.PRODUCTION);
-        //screenBuilder.clearStudyCacheOf("GRA1 - Rheumatoid Arthritis (RA)", ScreenBuilderApp.CacheEnv.PRODUCTION);
+        screenBuilder.publishStudySetup("GRA1 - Rheumatoid Arthritis (RA)", ScreenBuilderApp.SetupEnv.valueOf(env), env);
+        Assert.assertEquals(screenBuilder.cacheClearedSuccessAlert.getText(), "×\nGRA1 published to "
+                + (env.equals("QA") ? env : "PROD") + " Successfully. Cleared Cache for Study 6697 successfully.", "Success alert is diff or absent");
 
-
-        //screenBuilder.clearStudyCacheOf("GRA1 - Rheumatoid Arthritis (RA)", ScreenBuilderApp.CacheEnv.valueOf(env));
-
-        //Assert.assertEquals(screenBuilder.cacheClearedSuccessAlert.getText(), "×\nCleared Cache for Study 6697 successfully on " +env, "Success alert is diff or absent");
+        screenBuilder.clearStudyCacheOf("GRA1 - Rheumatoid Arthritis (RA)", ScreenBuilderApp.SetupEnv.valueOf(env));
+        Assert.assertEquals(screenBuilder.cacheClearedSuccessAlert.getText(), "×\nCleared Cache for Study 6697 " +
+                "successfully on " + (env.equals("QA") ? env : "PROD") + ".", "Success alert is diff or absent");
     }
 }
