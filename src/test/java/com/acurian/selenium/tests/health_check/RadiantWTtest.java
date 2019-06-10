@@ -126,9 +126,9 @@ public class RadiantWTtest extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-        if(env.equals("QA")){
-            selectActionPageCC
-                .getRadiantDbToLog(env, studyReferenceSql);
-        }
+//        if(env.equals("QA")){
+//            selectActionPageCC
+//                .getRadiantDbToLog(env, studyReferenceSql);
+//        }
     }
 }

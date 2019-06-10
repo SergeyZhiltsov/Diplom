@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.OLS.shared;
 
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,11 +13,11 @@ public class StandAlone4295SwitchOLS extends MainPageOLS{
 
     public final String titleExpected = "Thank you for calling Acurian's Alzheimer's risk research line. My name is Online Screening. Are you calling about a research study today?";//"What is your date of birth?";
 
-    @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[@class='show-in-ols'])[2]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-//    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
-//    List<WebElement> radioButtonsList;
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
+    List<WebElement> radioButtonsList;
 
     public StandAlone4295SwitchOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -27,11 +29,11 @@ public class StandAlone4295SwitchOLS extends MainPageOLS{
         return this;
     }
 
-//    @Step
-//    public StandAlone4295SwitchOLS clickOnAnswers(String answerText) {
-//        clickOnRadioButton(radioButtonsList, answerText);
-//        return this;
-//    }
+    @Step
+    public StandAlone4295SwitchOLS clickOnAnswers(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
+        return this;
+    }
 
     @Step
     public String getTitleText(){
