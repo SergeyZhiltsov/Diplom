@@ -737,6 +737,6 @@ public class RA_4835_OLS extends BaseTest {
                 //.clickNextButton(selectActionPageOLS)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo);
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

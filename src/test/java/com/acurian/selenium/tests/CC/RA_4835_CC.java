@@ -773,6 +773,6 @@ public class RA_4835_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo);
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

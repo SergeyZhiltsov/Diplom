@@ -13,14 +13,16 @@ import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.utils.PassPID;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import ru.yandex.qatools.allure.annotations.Description;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class InstantFUL extends BaseTest {
 
+    List<String> pidsToVerify = new LinkedList();
+    
     @BeforeMethod
     public void setUp() {
         super.setUp();
@@ -39,13 +41,13 @@ public class InstantFUL extends BaseTest {
         };
     }
 
+    @BeforeSuite
     @Test(dataProvider = "sites")
-    @Description("Test for Instant FOllow-Up Letter (FUL) Validation")
-    public void instantFUL(final String siteName, final String zipCode) {
+    @Description("Test for Instant Follow-Up Letter (FUL) Validation")
+    public void instantFULemailGeneration(final String siteName, final String zipCode) {
         final String phoneNumber = "GMEGA00001";
         final String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
         String env = System.getProperty("acurian.env", "QA");
-        FollowupLetter followupLetter;
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
@@ -123,14 +125,20 @@ public class InstantFUL extends BaseTest {
             default:
                 switch (siteName) {
                     case "AUT_GRA_FUL_Site":
-                        followupLetter = new FollowupLetter();
-                        followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
+                        pidsToVerify.add(PassPID.getInstance().getPidNumber());
                         break;
                     case "AUT_GRA_FULm_Site":
-                        followupLetter = new FollowupLetter();
-                        followupLetter.assertgmailFUL(PassPID.getInstance().getPidNumber(), true);
+                        pidsToVerify.add(PassPID.getInstance().getPidNumber());
                 }
                 break;
+        }
+    }
+
+    @Test(priority = 1, dependsOnMethods = "instantFULemailGeneration")
+    public void instantFULemailCheck() {
+        FollowupLetter followupLetter = new FollowupLetter();
+        for (String pid: pidsToVerify) {
+            followupLetter.assertgmailFUL(pid, true);
         }
     }
 }
