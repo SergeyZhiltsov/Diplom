@@ -228,7 +228,7 @@ public class MainPageOLS extends BasePage {
         if (env.equals("PRD")) {
             Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
         } else {
-            Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
+            Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
         }
         return this;
     }
