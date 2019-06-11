@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.health_check;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -41,8 +40,7 @@ public class InstantFUL extends BaseTest {
         };
     }
 
-    @BeforeSuite
-    @Test(dataProvider = "sites")
+    @Test(priority = -1, dataProvider = "sites")
     @Description("Test for Instant Follow-Up Letter (FUL) Validation")
     public void instantFULemailGeneration(final String siteName, final String zipCode) {
         final String phoneNumber = "GMEGA00001";
