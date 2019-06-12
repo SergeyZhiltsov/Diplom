@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class DbValidation1Rgmega_STG_Temp extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("Test for 1R DB Validation")
     public void dBValidation1Rgmega() {
         String phoneNumber = "AUTGMEGA01";
