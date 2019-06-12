@@ -15,12 +15,12 @@ import com.acurian.selenium.utils.PassPID;
 import org.testng.annotations.*;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InstantFUL extends BaseTest {
 
-    List<String> pidsToVerify = new LinkedList();
+    Map<String, Boolean> pidsToVerify = new HashMap<>();
     
     @BeforeMethod
     public void setUp() {
@@ -123,10 +123,10 @@ public class InstantFUL extends BaseTest {
             default:
                 switch (siteName) {
                     case "AUT_GRA_FUL_Site":
-                        pidsToVerify.add(PassPID.getInstance().getPidNumber());
+                        pidsToVerify.put(PassPID.getInstance().getPidNumber(), false);
                         break;
                     case "AUT_GRA_FULm_Site":
-                        pidsToVerify.add(PassPID.getInstance().getPidNumber());
+                        pidsToVerify.put(PassPID.getInstance().getPidNumber(), true);
                 }
                 break;
         }
@@ -135,8 +135,8 @@ public class InstantFUL extends BaseTest {
     @Test(priority = 1, dependsOnMethods = "instantFULemailGeneration")
     public void instantFULemailCheck() {
         FollowupLetter followupLetter = new FollowupLetter();
-        for (String pid: pidsToVerify) {
-            followupLetter.assertgmailFUL(pid, true);
+        for (Map.Entry<String, Boolean> pid: pidsToVerify.entrySet()) {
+            followupLetter.assertgmailFUL(pid.getKey(), pid.getValue());
         }
     }
 }

@@ -78,6 +78,6 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA)
                 .pidFromDbToLog(env)
                 .convert54Cto1R(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .dispoShouldMatch(site.dispo);
     }
 }

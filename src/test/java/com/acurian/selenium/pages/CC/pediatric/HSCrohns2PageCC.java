@@ -44,11 +44,7 @@ public class HSCrohns2PageCC extends MainPageCC{
             "\n" +
             "You will need to provide us with some information on the doctors who are treating or have treated your condition. We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
 
-    public final String titleExpectedGmegaQA = "Your medical records related to your Arthritis, Rheumatoid Arthritis, Diabetes, Low Back Pain history are required for the study doctor to evaluate you for participation. In order to help make this process easier for you, we have a free service that will obtain these records on your behalf.\n" +
-            "\n" +
-            "Please be assured that your records will be kept confidential and only shared with the research facility.\n" +
-            "\n" +
-            "You will need to provide us with some information on the doctors who are treating or have treated your condition. We will then email you a link where you can verify your information and e-sign a release form so that we can obtain your records.";
+    public final String titleExpectedGmegaQA = "Your medical records related to your ";
 
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)

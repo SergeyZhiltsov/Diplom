@@ -225,10 +225,10 @@ public class MainPageOLS extends BasePage {
         logTextToAllure("Anomaly : current status = " + anomalyResults.getCurrentStatus() +
                         ", request status id = " + anomalyResults.getRequestStatus() + " for PID " + pid);
         Assert.assertEquals(anomalyResults.getCurrentStatus(), "SENT", "Current status is not SENT");
-        if (env.equals("PRD")) {
-            Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
-        } else {
+        if (env.equals("STG")) {
             Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
+        } else {
+            Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
         }
         return this;
     }
