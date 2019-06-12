@@ -145,9 +145,11 @@ public class FollowupLetter extends BasePage {
         } else if (isWordsMatchOnly[0]) {
             Assert.assertTrue(containsWordsArray(emailContentExpected, actualEmail), "Email content is diff." +
                     " Expected [" + emailContentExpected + "] But found [" + actualEmail + "]");
+        } else if (withMedicalRecords) {
+            Assert.assertEquals(actualEmail, emailContentExpectedMR, "Email content is diff");
+        } else {
+            Assert.assertEquals(actualEmail, emailContentExpected, "Email content is diff");
         }
-        if (withMedicalRecords) Assert.assertEquals(actualEmail, emailContentExpectedMR, "Email content is diff");
-        else Assert.assertEquals(actualEmail, emailContentExpected, "Email content is diff");
         return this;
     }
 
