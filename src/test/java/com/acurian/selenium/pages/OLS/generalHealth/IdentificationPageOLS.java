@@ -17,6 +17,9 @@ public class IdentificationPageOLS extends MainPageOLS{
     public final String titleExpectedNotQ = "Personal details (*required fields)";
     public final String titleExpectedCaregiver = "Patient details (*required fields)";
 
+    public final String titleExpected_SB = "Congratulations, you have prequalified for the study!  \n" +
+            "Enrollment is limited. Please confirm your contact information below to reserve your space.";
+
     @FindBy(xpath = "//h2[@id='patient-title']")
     WebElement titleTextNotQ;
 
@@ -64,6 +67,12 @@ public class IdentificationPageOLS extends MainPageOLS{
     @Step
     public IdentificationPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageOLS waitForPageLoadSB() {
+        waitForPageLoadMain(titleText, titleExpected_SB);
         return this;
     }
 
