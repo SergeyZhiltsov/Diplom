@@ -27,6 +27,7 @@ public class LoginSBPage extends BasePage {
 
     public LoginSBPage() {
         PageFactory.initElements(getDriver(), this);
+        waitForJavaScriptComplete(); //TODO Check and move to BasePage
     }
 
     @Step
@@ -46,14 +47,14 @@ public class LoginSBPage extends BasePage {
     }
 
     @Step
-    public HomePage loginAs(String username, String password) {
+    public StudyProjectsListPage loginAs(String username, String password) {
         waitForAnimation();
         waitForVisibility(loginUsername);
         waitForVisibility(loginPassword);
         loginUsername.sendKeys(username);
         loginPassword.sendKeys(password);
         loginPassword.sendKeys(Keys.ENTER);
-        return new HomePage();
+        return new StudyProjectsListPage();
     }
 
     @Step("Getting actual image logo")

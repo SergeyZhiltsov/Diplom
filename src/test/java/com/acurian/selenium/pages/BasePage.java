@@ -278,13 +278,15 @@ public abstract class BasePage {
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
                 "return document.readyState"
         ).equals("complete"));
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) driver).executeScript(
-//                "return jQuery.active == 0"
-//        ));
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> (boolean)((JavascriptExecutor) driver).executeScript(
+                "return jQuery.active == 0"
+        ));
     }
 
-    protected void waitForNumberOfWindowsToEqual(int numberOfWindows) {
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) webDriver -> webDriver.getWindowHandles().size() == numberOfWindows);
+    public void waitForJavaScriptComplete() {
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
+                "return document.readyState"
+        ).equals("complete"));
     }
 
     /**

@@ -12,10 +12,12 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 
-public class HomePage extends BasePage {
+public class StudyProjectsListPage extends BasePage {
 
     @FindBy(id = "mytable_filter")
     WebElement search;
+    @FindBy(id ="publishBtn")
+    WebElement publishBtn;
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(@id, 'clearCache')]")
     List<WebElement> clearCacheEnvs;
     @FindBy(xpath = "//button[contains(@id, 'publish')][contains(@data-target, 'initStudy')]")
@@ -29,16 +31,16 @@ public class HomePage extends BasePage {
     @FindBy(id = "comment")
     WebElement commentField;
     @FindBy(css = "div.alert.alert-success.alert-dismissable")
-    WebElement allertMessage;
+    WebElement alertMessage;
 
 
-    public HomePage() {
+    public StudyProjectsListPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForAnimation(); //TODO Check and move to BasePage
+        waitForJavaScriptComplete(); //TODO Check and move to BasePage
     }
 
     @Step
-    public HomePage searchForStudy(String studyName) {
+    public StudyProjectsListPage searchForStudy(String studyName) {
         driverWait.waitforVisibility(search);
         getActions()
                 .moveToElement(search)
@@ -50,8 +52,8 @@ public class HomePage extends BasePage {
     }
 
     @Step()
-    public HomePage checkAlertMessage(String expectedMessage) {
-        Assert.assertEquals(expectedMessage, allertMessage.getText(), "Alert message is different");
+    public StudyProjectsListPage checkAlertMessage(String expectedMessage) {
+        Assert.assertEquals(alertMessage.getText(), expectedMessage,  "Alert message is different");
         return this;
     }
 
@@ -61,7 +63,7 @@ public class HomePage extends BasePage {
     }
 
     @Step
-    public StudySetupChangesSummaryPage clickPublishStudySetup(String studyName, SetupEnv setupEnv) {
+    public StudySetupDiffSummaryPage clickPublishStudySetup(String studyName, SetupEnv setupEnv) {
         openActionsOf(studyName);
         WebElement publishdropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
                 .findFirst()
@@ -81,11 +83,12 @@ public class HomePage extends BasePage {
                 .findFirst()
                 .get()
                 .click();
-        return new StudySetupChangesSummaryPage();
+        waitAndClickWebElement(publishBtn);
+        return new StudySetupDiffSummaryPage();
     }
 
     @Step
-    public HomePage openActionsOf(String studyName) {
+    public StudyProjectsListPage openActionsOf(String studyName) {
         waitForAnimation();
         WebElement screenerRow = screeners.stream().filter(element -> element.getText().equals(studyName))
                 .findFirst()
@@ -95,7 +98,7 @@ public class HomePage extends BasePage {
     }
 
     @Step
-    public HomePage clearStudyCacheOf(String screenerName, SetupEnv env) {
+    public StudyProjectsListPage clearStudyCacheOf(String screenerName, SetupEnv env) {
         openActionsOf(screenerName);
         WebElement clearCacheDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Clear Cache"))
                 .findFirst()
