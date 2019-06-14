@@ -10,4 +10,11 @@ public class DataProviderPool {
                 {"aautotest", "aautotest"}
         };
     }
+
+    @DataProvider(name = "SBUserCredentials")
+    public static Object[][] getSBLoginData() {
+        return new Object[][] {
+                {"tanywhere02@acurian.com", "Automation2015"}
+        };
+    }
 }
