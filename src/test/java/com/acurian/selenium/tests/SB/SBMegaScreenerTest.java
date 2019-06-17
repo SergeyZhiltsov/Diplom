@@ -4,6 +4,8 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.SB.LoginSBPage;
 import com.acurian.selenium.pages.SB.StudyEditPage;
 import com.acurian.selenium.pages.SB.StudyProjectsListPage;
+import com.acurian.selenium.tests.OLS.SB_AUTSBMG;
+import com.acurian.selenium.tests.OLS.SB_AUTSBSS;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -99,5 +101,13 @@ public class SBMegaScreenerTest extends BaseTest {
                 .clickPublishToEnvironment()
                 .checkAlertMessage(String.format("×\n%s published to %s Successfully. Cleared Cache for Study %s successfully.",
                         projectCode, (env.equals("QA") ? env : "PROD"), studyId));
+    }
+
+    @Test()
+    @Description("Run_MegaScreener_AUTSBMG")
+    public void run_AUTSBMG()
+    {
+        SB_AUTSBMG sb_MG = new SB_AUTSBMG();
+        sb_MG.sb_AUTSBMG();
     }
 }
