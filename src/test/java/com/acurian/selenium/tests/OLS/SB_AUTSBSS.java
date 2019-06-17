@@ -80,24 +80,17 @@ public class SB_AUTSBSS extends BaseTest{
                 .clickOnAnswers_SB("None of the above")
                 .clickNextButton(new IdentificationPageOLS());
 
-
         identificationPageOLS
-                .clickNextButton(identificationPageOLS)
                 .waitForPageLoadSB()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .threadSleep(2000);
-                //.waitForPageLoad()
-        identificationPageOLS
+                .waitForPageLoad_SB()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
-                //.waitForPageLoad()
-                .threadSleep(2000);
-        identificationPageOLS
+                .waitForPageLoad_SB()
                 .clickNextButton(new AboutHealthPageOLS())
-                .threadSleep(4000);
-                //.waitForPageLoad()
+                .threadSleep(3000);
         identificationPageOLS
                 .pidFromDbToLog(env)
                 .dispoShouldMatch("1R");
