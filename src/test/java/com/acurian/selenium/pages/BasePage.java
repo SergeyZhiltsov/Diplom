@@ -75,6 +75,35 @@ public abstract class BasePage {
         executor.executeScript("arguments[0].click();", element);
     }
 
+    public WebElement waitForVisibility(WebElement element) {
+        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public WebElement waitForVisibility(By locator) {
+        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    protected WebElement waitToBeClickable(By locator) {
+        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    protected WebElement waitToBeClickable(WebElement element) {
+        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    @Step()
+    protected WebElement waitAndClickWebElement(By locator) {
+        WebElement element = waitToBeClickable(locator);
+        element.click();
+        return element;
+    }
+
+    @Step()
+    protected WebElement waitAndClickWebElement(WebElement element) {
+        waitToBeClickable(element).click();
+        return element;
+    }
+
     @Step
     protected void hoverTo(WebElement element) {
         actions.moveToElement(element).build().perform();
@@ -254,8 +283,10 @@ public abstract class BasePage {
         ));
     }
 
-    protected void waitForNumberOfWindowsToEqual(int numberOfWindows) {
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) webDriver -> webDriver.getWindowHandles().size() == numberOfWindows);
+    public void waitForJavaScriptComplete() {
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
+                "return document.readyState"
+        ).equals("complete"));
     }
 
     /**
