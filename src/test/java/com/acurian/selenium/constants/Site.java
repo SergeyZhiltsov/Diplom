@@ -52,6 +52,8 @@ public enum Site {
 //    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
     //4600
     AUT_AMS1_4600_site("AUT_AMS1_4600_site", "08204", "1R", true, false, "B7451014"),
+    //7036
+    AUT_AMS1_7036_Site("AUT_AMS1_7036_Site", "08204", "1R", true, false, "4083_006"),
     //4605
     AUT_OBS_4605_Site("AUT_OBS_4605_Site", "19901", "1R", false, false, "RM_493_013"),
     //4631
