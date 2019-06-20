@@ -566,7 +566,7 @@ public class DERM_7036_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "7036")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

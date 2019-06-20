@@ -16,6 +16,9 @@ import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -23,10 +26,26 @@ import java.util.*;
 
 public class DERM_7036_CC extends BaseTest {
 
-    @Test()
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @DataProvider(name = "sites")
+    public Object[][] getData() {
+        return new Object[][] {
+                {Site.AUT_AMS1_7036_Site}
+        };
+    }
+
+    @Test(dataProvider = "sites")
     @Description("DERM 7036 CC Kyowa Atopic Derm")
-    public void derm7036ccTest() {
-        Site site = Site.AUT_AMS1_7036_site;
+    public void derm7036ccTest(final Site site) {
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
