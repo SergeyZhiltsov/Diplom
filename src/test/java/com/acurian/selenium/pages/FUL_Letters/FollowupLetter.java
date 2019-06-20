@@ -117,7 +117,7 @@ public class FollowupLetter extends BasePage {
     Used for InstandFUL test
      */
     @Step
-    public FollowupLetter assertgmailFUL(String pid, boolean withMedicalRecords) {
+    public FollowupLetter assertgmailFUL(String pid, boolean withMedicalRecords, boolean ...isWordsMatchOnly) {
         By emailLocator = new By.ByXPath("//div[2]/span/span[contains(text(),'" + pid + "')]");
         WebElement emailTitle;
         driver.navigate().to(gmailServiceURL);
@@ -138,9 +138,25 @@ public class FollowupLetter extends BasePage {
         } catch (TimeoutException e) {
             Assert.fail("Email wasn't received within 15 mins timeout");
         }
-        if (withMedicalRecords) Assert.assertEquals(emailContent.getText(), emailContentExpectedMR, "Email content is diff");
-        else Assert.assertEquals(emailContent.getText(), emailContentExpected, "Email content is diff");
+        String actualEmail = emailContent.getText();
+        if (withMedicalRecords && isWordsMatchOnly[0]) {
+            Assert.assertTrue(containsWordsArray(emailContentExpectedMR, actualEmail), "Email content is diff." +
+                    " Expected [" + emailContentExpectedMR + "] But found [" + actualEmail + "]");
+        } else if (isWordsMatchOnly[0]) {
+            Assert.assertTrue(containsWordsArray(emailContentExpected, actualEmail), "Email content is diff." +
+                    " Expected [" + emailContentExpected + "] But found [" + actualEmail + "]");
+        } else if (withMedicalRecords) {
+            Assert.assertEquals(actualEmail, emailContentExpectedMR, "Email content is diff");
+        } else {
+            Assert.assertEquals(actualEmail, emailContentExpected, "Email content is diff");
+        }
         return this;
+    }
+
+    private boolean containsWordsArray(String expectedEmail, String actualEmail) {
+        List<String> wordsListActualEmail = Arrays.asList(expectedEmail.replaceAll(",", "").split(" "));
+        List<String> wordsListExpectedEmail = Arrays.asList(actualEmail.replaceAll(",", "").split(" "));
+        return wordsListExpectedEmail.stream().allMatch(wordsListActualEmail::contains);
     }
 
     @Step
