@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ThrownUpVomitedPast2weeksPageCC extends MainPageCC {
 
-    public final String titleExpected = "How many times have you thrown up or vomited in the past 2 weeks?";
+    public final String titleExpected = "How many times have you thrown up or vomited in the past month?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

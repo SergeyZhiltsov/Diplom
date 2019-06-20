@@ -42,14 +42,14 @@ public class GAST_4357_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_GAST4357S_site},
-                {Site.AUT_GAST4357_site}
+                {Site.AUT_GAST4357S_site, true},
+                {Site.AUT_GAST4357_site, false}
         };
     }
 
     @Test(dataProvider = "sites", enabled = true)
     @Description("GAST 4357 CC (Allergan Diabetic Gastroparesis)")
-    public void gast4357ccTest(Site site) {
+    public void gast4357ccTest(Site site, boolean inFlare) {
         String phoneNumber = "AUTAMSGAST";
         String studyName = "a study for diabetics with digestion problems";
 
@@ -273,15 +273,57 @@ public class GAST_4357_CC extends BaseTest {
         //Q11
         CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = thrownUpVomitedPast2weeksPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("None, I have not vomited in the past 2 weeks")
-                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageCC());
-        currentlyHaveAnyOffFollowingPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020224-QS7211-STUDYQUES", site.activeProtocols)
-                .back(thrownUpVomitedPast2weeksPageCC)
-                .clickOnAnswer("4 or more times")
-                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+                .clickOnAnswer("None, I have not vomited in the past month")
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageCC());// not in flare
+        if (inFlare){
+            currentlyHaveAnyOffFollowingPageCC
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswer("1 time")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-3")
+                    .back();
+            thrownUpVomitedPast2weeksPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswer("2 times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-3")
+                    .back();
+            thrownUpVomitedPast2weeksPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswer("3 times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-3")
+                    .back();
+            thrownUpVomitedPast2weeksPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswer("4 or more times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-3");
+        }
+        else{
+            currentlyHaveAnyOffFollowingPageCC
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-4");
+        }
+//        currentlyHaveAnyOffFollowingPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0020224-QS7211-STUDYQUES", site.activeProtocols)
+//                .back(thrownUpVomitedPast2weeksPageCC)
+//                .clickOnAnswer("4 or more times")
+//                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
         //Q12
         HashMap<String, List<String>> disqualifyQ12 = new HashMap<>();
         SurgeriesPerformedPageCC surgeriesPerformedPageCC = new SurgeriesPerformedPageCC(); //Disqualify ("Parenteral feeding or tube")
@@ -411,31 +453,31 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC); //Back to Q2: QS38
 
-        WhichOfTheFollowingBreathingLungPageСС whichOfTheFollowingBreathingLungPageСС =
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
-        //Q5: QS41
-        HashMap<String, List<String>> dqQ5 = new HashMap<>();
-        dqQ5.put("COPD", Arrays.asList(site.activeProtocols)); //Disqualify ("COPD")
-        dqQ5.put("Emphysema", Arrays.asList(site.activeProtocols)); //Disqualify ("Emphysema")
-        for (Map.Entry<String, List<String>> entry : dqQ5.entrySet()) {
-            System.out.println(entry.getKey());
-            whichOfTheFollowingBreathingLungPageСС
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES" , site.activeProtocols)
-                    .back(whichOfTheFollowingBreathingLungPageСС);
-        }
-        whichOfTheFollowingBreathingLungPageСС
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+//        WhichOfTheFollowingBreathingLungPageСС whichOfTheFollowingBreathingLungPageСС =
+//                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("None of the above")
+//                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
+//                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
+//        //Q5: QS41
+//        HashMap<String, List<String>> dqQ5 = new HashMap<>();
+//        dqQ5.put("COPD", Arrays.asList(site.activeProtocols)); //Disqualify ("COPD")
+//        dqQ5.put("Emphysema", Arrays.asList(site.activeProtocols)); //Disqualify ("Emphysema")
+//        for (Map.Entry<String, List<String>> entry : dqQ5.entrySet()) {
+//            System.out.println(entry.getKey());
+//            whichOfTheFollowingBreathingLungPageСС
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(entry.getKey())
+//                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES" , site.activeProtocols)
+//                    .back(whichOfTheFollowingBreathingLungPageСС);
+//        }
+//        whichOfTheFollowingBreathingLungPageСС
+//                .waitForPageLoad()
+//                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         WhenDiagnosedWithCancerCC otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -801,7 +843,7 @@ public class GAST_4357_CC extends BaseTest {
             case AUT_GAST4357_site: //1R
                 selectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose2PageCC())
+                        .clickNextButton(new QualifiedCloseGastroPageCC())
                         .waitForPageLoad()
 //                        .clickNextButton(new SynexusHealthyMindsPageCC())
 //                        .waitForPageLoad()

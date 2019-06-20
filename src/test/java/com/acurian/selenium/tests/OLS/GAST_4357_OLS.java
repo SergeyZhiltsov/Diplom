@@ -40,14 +40,15 @@ public class GAST_4357_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_GAST4357_site},
-                {Site.AUT_GAST4357S_site}
+                {Site.AUT_GAST4357_site, false},
+                {Site.AUT_GAST4357_site, true},
+                {Site.AUT_GAST4357S_site, true}
         };
     }
 
     @Test(dataProvider = "sites")
     @Description("GAST 4357 OLS (Allergan Diabetic Gastroparesis)")
-    public void gast4357olsTest(final Site site) {
+    public void gast4357olsTest(final Site site, boolean inFlare) {
         final String phoneNumber = "AUTAMSGAST";
         String studyName = "a study for diabetics with digestion problems";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -237,15 +238,42 @@ public class GAST_4357_OLS extends BaseTest {
         //Q11
         HaveAnyOfTheFollowingPageOLS currentlyHaveAnyOffFollowingPageCC = thrownUpVomitedPast2weeksPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("None, I have not vomited in the past 2 weeks")
+                .clickOnAnswer("None, I have not vomited in the past month")// not in flare
                 .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        currentlyHaveAnyOffFollowingPageCC
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7211", site.activeProtocols)
-                .back(thrownUpVomitedPast2weeksPageOLS)
-                .clickOnAnswer("4 or more times")
-                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+        if (inFlare){
+            currentlyHaveAnyOffFollowingPageCC
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("1 time")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("2 times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("3 times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("4 or more times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+        }
+//        currentlyHaveAnyOffFollowingPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7211", site.activeProtocols)
+//                .back(thrownUpVomitedPast2weeksPageOLS)
+//                .clickOnAnswer("4 or more times")
+//                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
         //Q12
         HashMap<String, List<String>> disqualifyQ12 = new HashMap<>();
         SurgeriesPerformedPageOLS surgeriesPerformedPageOLS = new SurgeriesPerformedPageOLS(); //Disqualify ("Parenteral feeding or tube")
@@ -371,31 +399,31 @@ public class GAST_4357_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS); //Back to Q2: QS38
 
-        WhichOfTheFollowingBreathingLungPageOLS whichOfTheFollowingBreathingLungPageOLS =
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
-        //Q5: QS41
-        HashMap<String, List<String>> dqQ5 = new HashMap<>();
-        dqQ5.put("COPD", Arrays.asList(site.activeProtocols)); //Disqualify ("COPD")
-        dqQ5.put("Emphysema", Arrays.asList(site.activeProtocols)); //Disqualify ("Emphysema")
-        for (Map.Entry<String, List<String>> entry : dqQ5.entrySet()) {
-            System.out.println(entry.getKey());
-            whichOfTheFollowingBreathingLungPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS41", site.activeProtocols)
-                    .back(whichOfTheFollowingBreathingLungPageOLS);
-        }
-        whichOfTheFollowingBreathingLungPageOLS
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+//        WhichOfTheFollowingBreathingLungPageOLS whichOfTheFollowingBreathingLungPageOLS =
+//                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("None of the above")
+//                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
+//                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
+//        //Q5: QS41
+//        HashMap<String, List<String>> dqQ5 = new HashMap<>();
+//        dqQ5.put("COPD", Arrays.asList(site.activeProtocols)); //Disqualify ("COPD")
+//        dqQ5.put("Emphysema", Arrays.asList(site.activeProtocols)); //Disqualify ("Emphysema")
+//        for (Map.Entry<String, List<String>> entry : dqQ5.entrySet()) {
+//            System.out.println(entry.getKey());
+//            whichOfTheFollowingBreathingLungPageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(entry.getKey())
+//                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS41", site.activeProtocols)
+//                    .back(whichOfTheFollowingBreathingLungPageOLS);
+//        }
+//        whichOfTheFollowingBreathingLungPageOLS
+//                .waitForPageLoad()
+//                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -766,16 +794,30 @@ public class GAST_4357_OLS extends BaseTest {
         siteSelectionPageOLS
                 .waitForPageLoad1("a study for diabetics with digestion problems!")
                 .getPID();
-        AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
-                .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+        if (inFlare) {
+            siteSelectionPageOLS
+                    .clickOnFacilityName(site.name)
+                    .clickNextButton(new QualifiedClose2PageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(new SynexusHealthyMindsPageOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No, I am not interested in receiving information")
+                    .clickNextButton(new ThankYouCloseSimplePageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(aboutHealthPageOLS);
+        } else {
+            siteSelectionPageOLS
+                    .clickOnFacilityName(site.name)
+                    .clickNextButton(new QualifiedCloseGastroPageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(new SynexusHealthyMindsPageOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No, I am not interested in receiving information")
+                    .clickNextButton(new ThankYouCloseSimplePageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(aboutHealthPageOLS);
+        }
 
         switch (site) {
             case AUT_GAST4357_site: //1R
