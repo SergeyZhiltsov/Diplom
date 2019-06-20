@@ -722,7 +722,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "7036")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

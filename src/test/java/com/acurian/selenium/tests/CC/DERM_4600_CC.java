@@ -788,7 +788,7 @@ public class DERM_4600_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4600")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
