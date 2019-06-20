@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All" verbose="4">
+<suite name="All" verbose="4" parallel="classes" thread-count="5">
 
     <test name="Just for checking">
         <classes>
-            <class name="com.acurian.selenium.tests.health_check.InstantFUL"/>
-<!--            <class name="com.acurian.selenium.tests.OLS.DIA_5062_OLS"/>-->
-            <!--<class name="com.acurian.selenium.tests.CC.DERM_4814_CC"/>-->
-            <!--<class name="com.acurian.selenium.tests.health_check.Conversion54Cto1Rtest"/>-->
+            <class name="com.acurian.selenium.tests.CC.DERM_7036_CC"/>
+            <class name="com.acurian.selenium.tests.CC.DERM_4825_CC"/>
+            <class name="com.acurian.selenium.tests.CC.DERM_4600_CC"/>
+            <class name="com.acurian.selenium.tests.CC.DERM_4815_CC_A_S"/>
+            <class name="com.acurian.selenium.tests.CC.DERM_4814_CC"/>
+            <class name="com.acurian.selenium.tests.CC.KAD_4849_CC"/>
+            <class name="com.acurian.selenium.tests.CC.KAD_4631_CC"/>
+            <!--<class name="com.acurian.selenium.tests.OLS.DERM_7036_OLS"/>-->
+            <class name="com.acurian.selenium.tests.OLS.DERM_4825_OLS"/>
+            <class name="com.acurian.selenium.tests.OLS.DERM_4600_OLS"/>
+            <class name="com.acurian.selenium.tests.OLS.DERM_4815_OLS_A_S"/>
+            <class name="com.acurian.selenium.tests.OLS.DERM_4814_OLS"/>
+            <class name="com.acurian.selenium.tests.OLS.KAD_4849_OLS"/>
+            <class name="com.acurian.selenium.tests.OLS.KAD_4631_OLS"/>
         </classes>
     </test>
 
