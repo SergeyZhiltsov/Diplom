@@ -40,14 +40,15 @@ public class GAST_4357_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_GAST4357_site},
-                {Site.AUT_GAST4357S_site}
+                {Site.AUT_GAST4357_site, false},
+                {Site.AUT_GAST4357_site, true},
+                {Site.AUT_GAST4357S_site, true}
         };
     }
 
     @Test(dataProvider = "sites")
     @Description("GAST 4357 OLS (Allergan Diabetic Gastroparesis)")
-    public void gast4357olsTest(final Site site) {
+    public void gast4357olsTest(final Site site, boolean inFlare) {
         final String phoneNumber = "AUTAMSGAST";
         String studyName = "a study for diabetics with digestion problems";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -83,10 +84,10 @@ public class GAST_4357_OLS extends BaseTest {
 
         //Q2
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-        diagnosedAnyTypeOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No") //Disqualify ("No diabetes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                diagnosedAnyTypeOfDiabetesPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("No") //Disqualify ("No diabetes")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -97,10 +98,10 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswer("Yes") //Continue to Q3
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
         //Q3
-         whatKindOfDiabetesPageOLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
-                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -237,15 +238,42 @@ public class GAST_4357_OLS extends BaseTest {
         //Q11
         HaveAnyOfTheFollowingPageOLS currentlyHaveAnyOffFollowingPageCC = thrownUpVomitedPast2weeksPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("None, I have not vomited in the past 2 weeks")
+                .clickOnAnswer("None, I have not vomited in the past month")// not in flare
                 .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        currentlyHaveAnyOffFollowingPageCC
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7211", site.activeProtocols)
-                .back(thrownUpVomitedPast2weeksPageOLS)
-                .clickOnAnswer("4 or more times")
-                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+        if (inFlare){
+            currentlyHaveAnyOffFollowingPageCC
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("1 time")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("2 times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("3 times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                    .waitForPageLoad()
+                    .back();
+            thrownUpVomitedPast2weeksPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("4 or more times")// in flare
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+        }
+//        currentlyHaveAnyOffFollowingPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7211", site.activeProtocols)
+//                .back(thrownUpVomitedPast2weeksPageOLS)
+//                .clickOnAnswer("4 or more times")
+//                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
         //Q12
         HashMap<String, List<String>> disqualifyQ12 = new HashMap<>();
         SurgeriesPerformedPageOLS surgeriesPerformedPageOLS = new SurgeriesPerformedPageOLS(); //Disqualify ("Parenteral feeding or tube")
@@ -322,27 +350,27 @@ public class GAST_4357_OLS extends BaseTest {
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                                "Autism spectrum",
-                                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
-                                "Cancer",
-                                "Headaches (migraine, cluster, tension)",
-                                "Heart or circulation problems (heart attack, heart failure, stroke)",
-                                "High blood pressure or hypertension",
-                                "High cholesterol, triglycerides, or lipids",
-                                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                                "Kidney disease",
-                                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                                "Lupus",
-                                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
-                                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                                "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                                "Sleep problems (insomnia, sleep apnea, narcolepsy)",
-                                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                                "Men's health issues (prostate enlargement or BPH, low testosterone)")
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Cancer",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Men's health issues (prostate enlargement or BPH, low testosterone)")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
         whatKindOfArthritisPageOLS
                 .waitForPageLoad()
@@ -371,31 +399,31 @@ public class GAST_4357_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS); //Back to Q2: QS38
 
-        WhichOfTheFollowingBreathingLungPageOLS whichOfTheFollowingBreathingLungPageOLS =
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
-        //Q5: QS41
-        HashMap<String, List<String>> dqQ5 = new HashMap<>();
-        dqQ5.put("COPD", Arrays.asList(site.activeProtocols)); //Disqualify ("COPD")
-        dqQ5.put("Emphysema", Arrays.asList(site.activeProtocols)); //Disqualify ("Emphysema")
-        for (Map.Entry<String, List<String>> entry : dqQ5.entrySet()) {
-            System.out.println(entry.getKey());
-            whichOfTheFollowingBreathingLungPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS41" , site.activeProtocols)
-                    .back(whichOfTheFollowingBreathingLungPageOLS);
-        }
-        whichOfTheFollowingBreathingLungPageOLS
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+//        WhichOfTheFollowingBreathingLungPageOLS whichOfTheFollowingBreathingLungPageOLS =
+//                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("None of the above")
+//                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
+//                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
+//        //Q5: QS41
+//        HashMap<String, List<String>> dqQ5 = new HashMap<>();
+//        dqQ5.put("COPD", Arrays.asList(site.activeProtocols)); //Disqualify ("COPD")
+//        dqQ5.put("Emphysema", Arrays.asList(site.activeProtocols)); //Disqualify ("Emphysema")
+//        for (Map.Entry<String, List<String>> entry : dqQ5.entrySet()) {
+//            System.out.println(entry.getKey());
+//            whichOfTheFollowingBreathingLungPageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(entry.getKey())
+//                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS41", site.activeProtocols)
+//                    .back(whichOfTheFollowingBreathingLungPageOLS);
+//        }
+//        whichOfTheFollowingBreathingLungPageOLS
+//                .waitForPageLoad()
+//                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -466,7 +494,7 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS47" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                     .back(subquestionExperiencedHeartPageOLS);
         }
         subquestionExperiencedHeartPageOLS
@@ -490,7 +518,7 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS47" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                     .back(subquestionExperiencedHeartPageOLS);
         }
         subquestionExperiencedHeartPageOLS
@@ -515,7 +543,7 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS49" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
                     .back(mostRecentHeartProcedurePageOLS);
         }
         mostRecentHeartProcedurePageOLS
@@ -568,7 +596,7 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS44" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
                     .back(whichOfFollowingDigestiveConditionPageOLS);
         }
         whichOfFollowingDigestiveConditionPageOLS
@@ -636,12 +664,12 @@ public class GAST_4357_OLS extends BaseTest {
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
                                 "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
         //Q19: QS54
         whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
                 .waitForPageLoad()
@@ -728,7 +756,7 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS59" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
@@ -739,7 +767,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61" , site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         //Q24: QS59
@@ -766,16 +794,30 @@ public class GAST_4357_OLS extends BaseTest {
         siteSelectionPageOLS
                 .waitForPageLoad1("a study for diabetics with digestion problems!")
                 .getPID();
-        AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
-                .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+        if (inFlare) {
+            siteSelectionPageOLS
+                    .clickOnFacilityName(site.name)
+                    .clickNextButton(new QualifiedClose2PageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(new SynexusHealthyMindsPageOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No, I am not interested in receiving information")
+                    .clickNextButton(new ThankYouCloseSimplePageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(aboutHealthPageOLS);
+        } else {
+            siteSelectionPageOLS
+                    .clickOnFacilityName(site.name)
+                    .clickNextButton(new QualifiedCloseGastroPageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(new SynexusHealthyMindsPageOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No, I am not interested in receiving information")
+                    .clickNextButton(new ThankYouCloseSimplePageOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(aboutHealthPageOLS);
+        }
 
         switch (site) {
             case AUT_GAST4357_site: //1R
