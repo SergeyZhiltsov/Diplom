@@ -17,11 +17,19 @@ public class StudyProjectsListPage extends BasePage {
     @FindBy(id = "mytable_filter")
     WebElement search;
     @FindBy(id ="publishBtn")
-    WebElement publishBtn;
+    WebElement publishStudySetup;
+    @FindBy(id="scrPublishBtn")
+    WebElement publishQuestions;
+    @FindBy(id = "publishLogicBtn")
+    WebElement publishLogic;
     @FindBy(xpath = "//div[@class='btn-group']/button[contains(@id, 'clearCache')]")
     List<WebElement> clearCacheEnvs;
     @FindBy(xpath = "//button[contains(@id, 'publish')][contains(@data-target, 'initStudy')]")
     List<WebElement> publishStudyEnvs;
+    @FindBy(xpath = "//button[contains(@id, 'Publish')][contains(@data-target, 'initQBuilderDiffSummary')]")
+    List<WebElement> publishQuestionEnvs;
+    @FindBy(xpath = "//button[contains(@id, 'publish')][contains(@data-target, 'initLBuilderDiffSummary')]")
+    List<WebElement> publishLogicEnvs;
     @FindBy(id = "clearCacheBtn")
     WebElement clearCacheButton;
     @FindBy(xpath = "//table[@id='mytable']//span/a")
@@ -29,10 +37,13 @@ public class StudyProjectsListPage extends BasePage {
     @FindBy(xpath = "//ul[contains(@class,'dropdown-menu-right')]/li/a")
     List<WebElement> screenerActions;
     @FindBy(id = "comment")
-    WebElement commentField;
+    WebElement commentStudySetupField;
+    @FindBy(id = "scrComment")
+    WebElement commentQuestionField;
+    @FindBy(id = "logicComment")
+    WebElement commentLogicField;
     @FindBy(css = "div.alert.alert-success.alert-dismissable")
     WebElement alertMessage;
-
 
     public StudyProjectsListPage() {
         PageFactory.initElements(getDriver(), this);
@@ -41,7 +52,7 @@ public class StudyProjectsListPage extends BasePage {
 
     @Step
     public StudyProjectsListPage searchForStudy(String studyName) {
-        driverWait.waitforVisibility(search);
+        waitForVisibility(search);
         getActions()
                 .moveToElement(search)
                 .click()
@@ -54,6 +65,7 @@ public class StudyProjectsListPage extends BasePage {
     @Step()
     public StudyProjectsListPage checkAlertMessage(String expectedMessage) {
         Assert.assertEquals(alertMessage.getText(), expectedMessage,  "Alert message is different");
+        waitForAbsence(alertMessage);
         return this;
     }
 
@@ -65,26 +77,72 @@ public class StudyProjectsListPage extends BasePage {
     @Step
     public StudySetupDiffSummaryPage clickPublishStudySetup(String studyName, SetupEnv setupEnv) {
         openActionsOf(studyName);
-        WebElement publishdropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
+        WebElement publishDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
                 .findFirst()
                 .get();
         getActions()
-                .moveToElement(publishdropdownItem)
-                .moveToElement(publishdropdownItem.findElement(By.xpath("//following-sibling::ul/li[1]/a[contains(@id,'publishStdy')]"))) // First Sub Menu of Clear Cache Menu
+                .moveToElement(publishDropdownItem)
+                .moveToElement(publishDropdownItem.findElement(By.xpath("//following-sibling::ul/li[1]/a[contains(@id,'publishStdy')]"))) // First Sub Menu of Clear Cache Menu
                 .click()
                 .build().perform();
         //------enter Comment before selecting environment to publish
 
-        waitForVisibility(commentField);
-        commentField.sendKeys("No changes, testing publish feature for Healthcheck");
+        waitForVisibility(commentStudySetupField);
+        commentStudySetupField.sendKeys("Testing SB publish study setup");
 
         driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(publishStudyEnvs.get(0)));
         publishStudyEnvs.stream().filter(element -> element.getText().startsWith(setupEnv.name))
                 .findFirst()
                 .get()
                 .click();
-        waitAndClickWebElement(publishBtn);
+        waitAndClickWebElement(publishStudySetup);
         return new StudySetupDiffSummaryPage();
+    }
+
+    @Step
+    public QuestionnaireDiffSummaryPage clickPublishQuestions(String studyName, SetupEnv setupEnv) {
+        openActionsOf(studyName);
+        WebElement publishDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
+                .findFirst()
+                .get();
+        getActions()
+                .moveToElement(publishDropdownItem)
+                .moveToElement(publishDropdownItem.findElement(By.xpath("//following-sibling::ul/li[3]/a[contains(@id,'publishScr')]")))
+                .click()
+                .build().perform();
+        waitForVisibility(commentQuestionField);
+        commentQuestionField.sendKeys("Testing SB questions");
+
+        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(publishQuestionEnvs.get(0)));
+        publishQuestionEnvs.stream().filter(element -> element.getAttribute("data-env").startsWith(setupEnv.name))
+                .findFirst()
+                .get()
+                .click();
+        waitAndClickWebElement(publishQuestions);
+        return new QuestionnaireDiffSummaryPage();
+    }
+
+    @Step
+    public LogicDiffSummaryPage clickPublishLogic(String studyName, SetupEnv setupEnv) {
+        openActionsOf(studyName);
+        WebElement publishDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
+                .findFirst()
+                .get();
+        getActions()
+                .moveToElement(publishDropdownItem)
+                .moveToElement(publishDropdownItem.findElement(By.xpath("//following-sibling::ul/li[6]/a[contains(@id,'publishLogic')]")))
+                .click()
+                .build().perform();
+        waitForVisibility(commentLogicField);
+        commentLogicField.sendKeys("Testing SB logic");
+
+        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(publishLogicEnvs.get(0)));
+        publishLogicEnvs.stream().filter(element -> element.getAttribute("data-env").startsWith(setupEnv.name))
+                .findFirst()
+                .get()
+                .click();
+        waitAndClickWebElement(publishLogic);
+        return new LogicDiffSummaryPage();
     }
 
     @Step
@@ -122,7 +180,7 @@ public class StudyProjectsListPage extends BasePage {
         DEV("Dev"),
         QA("Qa"),
         STG("Staging"),
-        PRD("Production");
+        PRD("Prod");
 
         SetupEnv(String name) {
             this.name = name;

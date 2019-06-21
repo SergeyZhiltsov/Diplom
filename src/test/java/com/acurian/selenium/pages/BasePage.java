@@ -104,6 +104,15 @@ public abstract class BasePage {
         return element;
     }
 
+    public WebElement waitForPresence(By locator) {
+        return driverWait.getWaitDriver().until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+    public void waitForAbsence(WebElement element) {
+        driverWait.getWaitDriver().until(driver -> !isElementPresent(element));
+        waitForJavaScriptComplete();
+    }
+
     @Step
     protected void hoverTo(WebElement element) {
         actions.moveToElement(element).build().perform();
@@ -284,7 +293,8 @@ public abstract class BasePage {
     }
 
     public void waitForJavaScriptComplete() {
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) driver).executeScript(
+        driverWait.getWaitDriver().withTimeout(60, TimeUnit.SECONDS).until((ExpectedCondition<Boolean>) wdriver
+                -> ((JavascriptExecutor) driver).executeScript(
                 "return document.readyState"
         ).equals("complete"));
     }
@@ -308,6 +318,15 @@ public abstract class BasePage {
 
     protected boolean isCheckBoxChecked(WebElement element) {
         return (Boolean) ((JavascriptExecutor) driver).executeScript("return arguments[0].checked", element);
+    }
+
+    public boolean isElementPresent(WebElement element) {
+        try {
+            element.getTagName();
+            return true;
+        } catch (WebDriverException ignored) {
+            return false;
+        }
     }
 
     protected boolean isElementPresent(int timeout, By by) {

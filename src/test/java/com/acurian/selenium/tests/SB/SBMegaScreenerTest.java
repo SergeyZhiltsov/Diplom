@@ -4,8 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.SB.LoginSBPage;
 import com.acurian.selenium.pages.SB.StudyEditPage;
 import com.acurian.selenium.pages.SB.StudyProjectsListPage;
-import com.acurian.selenium.tests.OLS.SB_AUTSBMG;
-import com.acurian.selenium.tests.OLS.SB_AUTSBSS;
+import com.acurian.selenium.tests.SB.dependentScreeners.SB_AUTSBMG;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -47,9 +46,9 @@ public class SBMegaScreenerTest extends BaseTest {
                 .checkSaveAlertMessage(String.format("%s saved Successfully", projectCode))
         //Question changes
                 .clickQuestionBuilderLink()
-                .clickOnIntroQuestion(1)
-                .typeQuestionTextToFirstIntro(questionText)
-                .clickSaveFirstQuestion()
+                .clickIntroLink("1")
+                .typeQuestionTextInVisibleField(questionText, 2)
+                .clickSaveQuestion()
                 .clickSave()
                 .checkStudyAlertMessage(String.format("×\nQuestions for study %s saved Successfully", projectCode));
         //Public study
@@ -59,7 +58,7 @@ public class SBMegaScreenerTest extends BaseTest {
                 .clickPublishStudySetup(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
                 .checkDeletedTherapeutic(therapeuticName)
                 .checkDeletedIndication(indicationName)
-                .clickOnSaveAndPublish()
+                .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp()
                 .clickPublishToEnvironment()
                 .checkAlertMessage(String.format("×\n%s published to %s Successfully. Cleared Cache for Study %s successfully.",
@@ -84,9 +83,9 @@ public class SBMegaScreenerTest extends BaseTest {
                 .checkSaveAlertMessage(String.format("%s saved Successfully", projectCode))
         //Question changes
                 .clickQuestionBuilderLink()
-                .clickOnIntroQuestion(1)
-                .typeQuestionTextToFirstIntro(oldQuestionText)
-                .clickSaveFirstQuestion()
+                .clickIntroLink("1")
+                .typeQuestionTextInVisibleField(oldQuestionText, 2)
+                .clickSaveQuestion()
                 .clickSave()
                 .checkStudyAlertMessage(String.format("×\nQuestions for study %s saved Successfully", projectCode));
         //Public study
@@ -96,7 +95,7 @@ public class SBMegaScreenerTest extends BaseTest {
                 .clickPublishStudySetup(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
                 .checkAddedTherapeutic(therapeuticName)
                 .checkAddedIndication(indicationName)
-                .clickOnSaveAndPublish()
+                .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp()
                 .clickPublishToEnvironment()
                 .checkAlertMessage(String.format("×\n%s published to %s Successfully. Cleared Cache for Study %s successfully.",

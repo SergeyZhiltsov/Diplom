@@ -4,7 +4,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.SB.StudyEditPage;
 import com.acurian.selenium.pages.SB.StudyProjectsListPage;
 import com.acurian.selenium.pages.SB.LoginSBPage;
-import com.acurian.selenium.tests.OLS.SB_AUTSBSS;
+import com.acurian.selenium.tests.SB.dependentScreeners.SB_AUTSBSSmodified;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -29,14 +29,14 @@ public class SBStandAloneTest extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class)
+    @Test(priority = -1, dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("Basic project changes test (deletion/addition data)")
     public void initialProjectChanges(String username, String password) {
         final String env = System.getProperty("acurian.env", "QA");
-        final String questionText = "Thank you for calling Acurian's rheumatoid (some changes in text) arthritis research line. " +
-                "My name is %OPERATOR_NAME% and I'll be able to help you. Are you calling about a research study today?";
+        final String modifiedQuestionText = "What is your date of birth? (some text modified)";
 
         LoginSBPage loginSBPage = new LoginSBPage();
+        StudyEditPage studyEditPage = new StudyEditPage();
 
         loginSBPage.openPage(env).loginAs(username, password)
                 .searchForStudy(studyName)
@@ -45,36 +45,62 @@ public class SBStandAloneTest extends BaseTest {
                 .addTherapeutic(therapeuticName)
                 .clickSave()
                 .checkSaveAlertMessage(String.format("%s saved Successfully", projectCode))
-         //Question changes
+        //Question changes
                 .clickQuestionBuilderLink()
-                .clickOnIntroQuestion(1)
-                .typeQuestionTextToFirstIntro(questionText)
-                .clickSaveFirstQuestion()
+                .clickIntroLink("2")
+                .clickIntroSubQuestionTab("OLS")
+                .clickIntroSubQuestionOLS("2.1")
+                .typeQuestionTextInVisibleField(modifiedQuestionText, 2)
+                .clickSaveChildQuestion()
+                //.checkQuestionSaveAlertMessage("Question saved successfully!!!, Make sure to save parent question!!") //TODO
+                .clickSaveQuestion()
+                //.checkQuestionSaveAlertMessage("Question saved successfully!!!") //TODO
                 .clickSave()
                 .checkStudyAlertMessage(String.format("×\nQuestions for study %s saved Successfully", projectCode));
+        //Logic changes
+        studyEditPage
+                .clickLogicBuilderLink()
+                .clickCoreLink()
+                .clickSubCoreLink(1)
+                .clickFlowLogicOption(1)
+                .selectActionForCoreAndRule(1, 2, "Core-QS3")
+                .clickSaveLogic()
+                .checkAlertMessage("Saved all modified logic Successfully !!!");
         //Public study
-        StudyEditPage studyEditPage = new StudyEditPage();
         studyEditPage
                 .clickDashboard()
                 .clickPublishStudySetup(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
                 .checkAddedTherapeutic(therapeuticName)
                 .checkDeletedIndication(indicationName)
-                .clickOnSaveAndPublish()
+                .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp()
                 .clickPublishToEnvironment()
                 .checkAlertMessage(String.format("×\n%s published to %s Successfully. Cleared Cache for Study %s successfully.",
-                projectCode, (env.equals("QA") ? env : "PROD"), studyId));
+                projectCode, (env.equals("QA") ? env : "PROD"), studyId))
+
+                .clickPublishQuestions(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
+                .clickSaveAndPublish()
+                .clickConfirmPublishOnPopUp()
+                .clickPublishToEnvironment()
+                .checkAlertMessage(String.format("×\nScreener for project %s published to %s Successfully. Cleared Cache for Study %s successfully.",
+                        projectCode, (env.equals("QA") ? env : "PROD"), studyId))
+
+                .clickPublishLogic(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
+                .clickSaveAndPublish()
+                .clickConfirmPublishOnPopUp()
+                .clickPublishToEnvironment()
+                .checkAlertMessage(String.format("×\nScreener Logic for project %s published to %s Successfully. Cleared Cache for Study %s successfully.",
+                        projectCode, (env.equals("QA") ? env : "PROD"), studyId));
     }
 
-    @Test(dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class,
-            dependsOnMethods = "initialProjectChanges")
+    @Test(priority = 1, dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class)
     @Description("Basic SA project changes test (deletion/addition data)")
     public void revertProjectChanges(String username, String password) {
         final String env = System.getProperty("acurian.env", "QA");
-        final String oldQuestionText = "Thank you for calling Acurian's rheumatoid arthritis research line. " +
-                "My name is %OPERATOR_NAME% and I'll be able to help you. Are you calling about a research study today?";
+        final String oldQuestionText = "What is your date of birth?";
 
         LoginSBPage loginSBPage = new LoginSBPage();
+        StudyEditPage studyEditPage = new StudyEditPage();
 
         loginSBPage.openPage(env).loginAs(username, password)
                 .searchForStudy(studyName)
@@ -83,32 +109,58 @@ public class SBStandAloneTest extends BaseTest {
                 .deleteTherapeutic(therapeuticName)
                 .clickSave()
                 .checkSaveAlertMessage(String.format("%s saved Successfully", projectCode))
-        //Question changes
+                //Question changes
                 .clickQuestionBuilderLink()
-                .clickOnIntroQuestion(1)
-                .typeQuestionTextToFirstIntro(oldQuestionText)
-                .clickSaveFirstQuestion()
+                .clickIntroLink("2")
+                .clickIntroSubQuestionTab("OLS")
+                .clickIntroSubQuestionOLS("2.1")
+                .typeQuestionTextInVisibleField(oldQuestionText, 2)
+                .clickSaveChildQuestion()
+                //.checkQuestionSaveAlertMessage("Question saved successfully!!!, Make sure to save parent question!!") //TODO
+                .clickSaveQuestion()
+                //.checkQuestionSaveAlertMessage("Question saved successfully!!!") //TODO
                 .clickSave()
                 .checkStudyAlertMessage(String.format("×\nQuestions for study %s saved Successfully", projectCode));
-        //Public study
-        StudyEditPage studyEditPage = new StudyEditPage();
+        //Logic changes
+        studyEditPage
+                .clickLogicBuilderLink()
+                .clickCoreLink()
+                .clickSubCoreLink(1)
+                .clickFlowLogicOption(1)
+                .selectActionForCoreAndRule(1, 2, "Core-QS2")
+                .clickSaveLogic()
+                .checkAlertMessage("Saved all modified logic Successfully !!!");
         studyEditPage
                 .clickDashboard()
                 .clickPublishStudySetup(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
                 .checkDeletedTherapeutic(therapeuticName)
                 .checkAddedIndication(indicationName)
-                .clickOnSaveAndPublish()
+                .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp()
                 .clickPublishToEnvironment()
                 .checkAlertMessage(String.format("×\n%s published to %s Successfully. Cleared Cache for Study %s successfully.",
+                        projectCode, (env.equals("QA") ? env : "PROD"), studyId))
+
+                .clickPublishQuestions(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
+                .clickSaveAndPublish()
+                .clickConfirmPublishOnPopUp()
+                .clickPublishToEnvironment()
+                .checkAlertMessage(String.format("×\nScreener for project %s published to %s Successfully. Cleared Cache for Study %s successfully.",
+                        projectCode, (env.equals("QA") ? env : "PROD"), studyId))
+
+                .clickPublishLogic(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
+                .clickSaveAndPublish()
+                .clickConfirmPublishOnPopUp()
+                .clickPublishToEnvironment()
+                .checkAlertMessage(String.format("×\nScreener Logic for project %s published to %s Successfully. Cleared Cache for Study %s successfully.",
                         projectCode, (env.equals("QA") ? env : "PROD"), studyId));
     }
 
-    @Test()
-    @Description("Run_StandaloneScreener_AUTSBSS")
+    @Test(priority = 0)
+    @Description("Run Standalone Screener AUTSBSS after SB changes is published")
     public void run_AUTSBSS()
     {
-        SB_AUTSBSS sb_SS = new SB_AUTSBSS();
-        sb_SS.sb_AUTSBSS();
+        SB_AUTSBSSmodified autsbsSmodified = new SB_AUTSBSSmodified();
+        autsbsSmodified.sb_AUTSBSSmodified();
     }
 }

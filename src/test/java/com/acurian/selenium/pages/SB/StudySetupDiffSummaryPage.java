@@ -121,7 +121,7 @@ public class StudySetupDiffSummaryPage extends BasePage {
     }
 
     @Step
-    public StudySetupDiffSummaryPage clickOnSaveAndPublish() {
+    public StudySetupDiffSummaryPage clickSaveAndPublish() {
         waitAndClickWebElement(btnPublishStudy);
         return this;
     }

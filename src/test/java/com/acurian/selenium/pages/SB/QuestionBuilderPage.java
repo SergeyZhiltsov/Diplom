@@ -8,62 +8,97 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.List;
+
 
 public class QuestionBuilderPage extends BasePage {
 
-    @FindBy(id = "intro-link")
-    WebElement introduction;
     @FindBy(xpath = "//div[@class='bootstrap-dialog-footer-buttons']/button[text() ='Yes']")
     WebElement confirmModify;
-    @FindBy(css = "#saveMsgCC0")
-    WebElement firstQuestionSaveAlertMessage;
     @FindBy(xpath = "//button[@type='submit'][text() ='Save']")
     WebElement save;
     @FindBy(css = "#qbFormErr > div")
     WebElement studyAlertMessage;
-    @FindBy(css = "#qsPanel0 > div:nth-child(1) > div.col-md-1 > div > div > button.btn.btn-default.glyphicon.glyphicon-floppy-disk")
-    WebElement saveFlopyIcon;
+    @FindBy(css = "div.form-control.question-editor")
+    List<WebElement> questionEditorList;
+    @FindBy(css = "div[contenteditable='true']")
+    WebElement contentEditableTextField;
+    @FindBy(css = "button[title='Save Question']")
+    List<WebElement> saveQuestionList;
+    @FindBy(css = "button[title='Save Child Question']")
+    List<WebElement> saveChildQuestionList;
+    @FindBy(css = "#qsSaveMsg")
+    WebElement questionSaveAlertMessage;
+
 
 
     public QuestionBuilderPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete(); //TODO Check and move to BasePage
+        waitForAnimation();
     }
 
     @Step
-    public QuestionBuilderPage clickOnIntroduction() {
-        waitAndClickWebElement(introduction);
+    public QuestionBuilderPage clickIntroLink(String introNumber) {
+        waitAndClickWebElement(By.xpath(String.format("//label[@for='question.questionText'][text() ='%s']",
+                introNumber)));
         return this;
     }
 
-    @Step()
-    public QuestionBuilderPage clickOnIntroQuestion(int introNumber) {
-        waitAndClickWebElement(By.cssSelector(String.format("#frm-%d-item", introNumber - 1)));
+    @Step
+    public QuestionBuilderPage clickIntroSubQuestionOLS(String introNumber) {
+        waitAndClickWebElement(By.xpath(String.format("//div[@id='quest1OLS']//label[text() ='Intro']" +
+                "/following-sibling::label[text() ='%s ']", introNumber)));
         return this;
     }
 
-    @Step()
-    public QuestionBuilderPage typeQuestionTextToFirstIntro(String text) { //TODO change later
-        waitAndClickWebElement(By.cssSelector("#qsTxtErr0 > div"));
+    @Step
+    public QuestionBuilderPage clickIntroSubQuestionCC(String introNumber) {
+        waitAndClickWebElement(By.xpath(String.format("//div[@id='quest1CC']//label[text() ='Intro']" +
+                "/following-sibling::label[text() ='%s ']", introNumber)));
+        return this;
+    }
+
+    @Step
+    public QuestionBuilderPage clickIntroSubQuestionTab(String tabName) {
+        waitAndClickWebElement(By.xpath(String.format("//a[@data-toggle='tab'][text() ='%s']", tabName)));
+        return this;
+    }
+
+    @Step
+    public QuestionBuilderPage typeQuestionTextInVisibleField(String text, int numberOfVisibleField) {
+        for (WebElement questionEditorField: questionEditorList) {
+            if (questionEditorField.isDisplayed()) {
+                if (numberOfVisibleField > 1) {
+                    numberOfVisibleField--;
+                    continue;
+                }
+                questionEditorField.click();
+                break;
+            }
+        }
         waitAndClickWebElement(confirmModify);
-        WebElement textField = getDriver().findElement(By.cssSelector("#qsTxtErr0 > div > div.froala-wrapper.f-basic > div"));
-        typeText(textField, text);
-        waitAndClickWebElement(By.cssSelector("#Intro-questions-div > table > tbody > tr > td:nth-child(3)"));
+        typeText(contentEditableTextField, text);
+        return this;
+    }
+
+    public QuestionBuilderPage clickSaveChildQuestion() {
+        for (WebElement saveChildIcon: saveChildQuestionList) {
+            if (saveChildIcon.isDisplayed()) {
+                saveChildIcon.click();
+                break;
+            }
+        }
         return this;
     }
 
     @Step
-    public QuestionBuilderPage clickSaveFirstQuestion() {
-        waitAndClickWebElement(saveFlopyIcon);
-        checkFirstQuestionAlertMessage();
-        return this;
-    }
-
-    @Step
-    private QuestionBuilderPage checkFirstQuestionAlertMessage() {
-        waitForVisibility(firstQuestionSaveAlertMessage);
-        Assert.assertEquals(firstQuestionSaveAlertMessage.getText(), "Question saved successfully!!!",
-                "Save alert message is diff.");
+    public QuestionBuilderPage clickSaveQuestion() {
+        for (WebElement saveQuestion: saveQuestionList) {
+            if (saveQuestion.isDisplayed()) {
+                saveQuestion.click();
+                break;
+            }
+        }
         return this;
     }
 
@@ -73,6 +108,14 @@ public class QuestionBuilderPage extends BasePage {
         return this;
     }
 
+    @Step
+    public QuestionBuilderPage checkQuestionSaveAlertMessage(String expectedText) {
+        waitForPresence(By.cssSelector("#qsSaveMsg"));
+        Assert.assertEquals(questionSaveAlertMessage.getText(), expectedText, "Save alert message is different.");
+        return this;
+    }
+
+    @Step
     public QuestionBuilderPage checkStudyAlertMessage(String projectCode) {
         waitForVisibility(studyAlertMessage);
         Assert.assertEquals(studyAlertMessage.getText(), projectCode);

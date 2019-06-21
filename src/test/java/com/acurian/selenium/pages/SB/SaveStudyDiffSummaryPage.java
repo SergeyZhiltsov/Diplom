@@ -12,7 +12,7 @@ public class SaveStudyDiffSummaryPage extends BasePage {
 
     public SaveStudyDiffSummaryPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete(); //TODO Check and move to BasePage
+        waitForJavaScriptComplete();
     }
 
     public StudyProjectsListPage clickPublishToEnvironment() {
