@@ -21,7 +21,7 @@ import java.util.Map;
 public class InstantFUL extends BaseTest {
 
     Map<String, Boolean> pidsToVerify = new HashMap<>();
-    
+
     @BeforeMethod
     public void setUp() {
         super.setUp();
@@ -136,7 +136,7 @@ public class InstantFUL extends BaseTest {
     public void instantFULemailCheck() {
         FollowupLetter followupLetter = new FollowupLetter();
         for (Map.Entry<String, Boolean> pid: pidsToVerify.entrySet()) {
-            followupLetter.assertgmailFUL(pid.getKey(), pid.getValue());
+            followupLetter.assertgmailFUL(pid.getKey(), pid.getValue(), true);
         }
     }
 }
