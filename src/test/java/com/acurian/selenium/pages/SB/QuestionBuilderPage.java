@@ -66,14 +66,16 @@ public class QuestionBuilderPage extends BasePage {
 
     @Step
     public QuestionBuilderPage typeQuestionTextInVisibleField(String text, int numberOfVisibleField) {
-        waitForJavaScriptComplete();
         for (WebElement questionEditorField: questionEditorList) {
             if (questionEditorField.isDisplayed()) {
                 if (numberOfVisibleField > 1) {
                     numberOfVisibleField--;
                     continue;
                 }
-                waitAndClickWebElement(questionEditorField);
+                getActions()
+                        .moveToElement(questionEditorField)
+                        .click(questionEditorField)
+                        .build().perform();
                 break;
             }
         }
