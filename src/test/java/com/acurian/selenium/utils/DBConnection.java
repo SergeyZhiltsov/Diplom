@@ -199,6 +199,8 @@ public class DBConnection {
                         " and PHONE_NUMBER like '" +firstPartOfChildPhoneNumber[0]+ "%'";
             }
 
+            rset = stmt.executeQuery(sql);
+
             ChildResult childResult = null;
             while (rset.next()) {
                 childResult = new ChildResult();
