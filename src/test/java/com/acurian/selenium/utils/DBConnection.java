@@ -2,6 +2,7 @@ package com.acurian.selenium.utils;
 
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
+import com.acurian.selenium.utils.db.FULResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -193,12 +194,19 @@ public class DBConnection {
             stmt = getDbCon(environment).createStatement();
 
             String sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'";
+            String FUL_call_attribute = "select * from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN ((" + pidNumber + ")) AND a.KEY = 'FOLLOW_UP_LETTER';";
             if(firstPartOfChildPhoneNumber.length == 1){
                 sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'" +
                         " and PHONE_NUMBER like '" +firstPartOfChildPhoneNumber[0]+ "%'";
             }
 
             rset = stmt.executeQuery(sql);
+            ResultSet rset1 = stmt.executeQuery(FUL_call_attribute);
+
+            while (rset1.next()) {
+                rset1.getString("KEY");
+                rset1.getString("VALUE");
+            }
 
             ChildResult childResult = null;
             while (rset.next()) {
@@ -212,6 +220,33 @@ public class DBConnection {
                     ", phone number = " + childResult.getPhoneNumber() +
                     ", child PID = " + childResult.getChildPid());
             return childResult;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResources();
+        }
+        return null;
+    }
+
+    public FULResult dbReadFULAttribute(String environment, String pidNumber) {
+        try {
+            stmt = getDbCon(environment).createStatement();
+
+            String sql = "select * from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN ((" + pidNumber + ")) AND a.KEY = 'FOLLOW_UP_LETTER';";
+
+            rset = stmt.executeQuery(sql);
+
+            FULResult fulResult = null;
+            while (rset.next()) {
+                fulResult = new FULResult();
+                fulResult.setKeyResult(rset.getString("KEY"));
+                fulResult.setValueResult(rset.getString("VALUE"));
+                String str = fulResult.getValueResult();
+            }
+            System.out.println(String.format("Parent PID = %s, FUL value = %s, KEY value = %s", pidNumber,
+                    fulResult.getValueResult(), fulResult.getKeyResult()));
+            return fulResult;
         } catch (SQLException e) {
             e.printStackTrace();
         }

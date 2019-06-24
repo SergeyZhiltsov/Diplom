@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
+import com.acurian.selenium.utils.db.FULResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -58,6 +59,10 @@ public class MainPageCC extends BasePage {
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
         logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        //FUL DB validation from call attribute table
+        FULResult fulResult = getDbConnection().dbReadFULAttribute(env, pid);
+        logTextToAllure(String.format("Parent PID = %s, FUL value = %s, KEY value = %s", pid,
+                fulResult.getValueResult(), fulResult.getKeyResult()));
         return this;
     }
 
