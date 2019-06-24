@@ -122,6 +122,7 @@ public class StudyEditPage extends BasePage {
     @Step()
     public LogicBuilderPage clickLogicBuilderLink() {
         waitAndClickWebElement(logicBuilderLink);
+        waitForVisibility(blockOverlay);
         waitForAbsence(blockOverlay);
         return new LogicBuilderPage();
     }

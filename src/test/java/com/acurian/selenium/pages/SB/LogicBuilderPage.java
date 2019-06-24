@@ -3,6 +3,7 @@ package com.acurian.selenium.pages.SB;
 import com.acurian.selenium.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,15 +26,18 @@ public class LogicBuilderPage extends BasePage {
     }
 
     public LogicBuilderPage clickCoreLink() {
-        waitForAbsence(blockOverlay);
         waitAndClickWebElement(coreLink);
+        try {
+            waitForVisibility(blockOverlay);
+            waitForAbsence(blockOverlay);
+        } catch (NoSuchElementException ex) {
+            System.out.println("Overlay block was not displayed.");
+        }
         return this;
     }
 
     @Step
     public LogicBuilderPage clickSubCoreLink(int number) {
-        threadSleep(3000); //TODO Remove
-        waitForAbsence(blockOverlay);
         waitAndClickWebElement(By.xpath(String.format("//*[@id='floating-sidebar']//a[contains(text(),'Core-%d')]",
                 number)));
         return this;
@@ -50,7 +54,7 @@ public class LogicBuilderPage extends BasePage {
 
     @Step
     public LogicBuilderPage clickFlowLogicOption(int coreNumber) {
-        threadSleep(3000); //TODO Remove
+        threadSleep(2000);
         waitAndClickWebElement(By.cssSelector(String.format("#headingFlowLogicCore-QS%d > h4 > a", coreNumber)));
         return this;
     }
