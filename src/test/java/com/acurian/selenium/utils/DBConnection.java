@@ -194,18 +194,9 @@ public class DBConnection {
             stmt = getDbCon(environment).createStatement();
 
             String sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'";
-            String FUL_call_attribute = "select * from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN ((" + pidNumber + ")) AND a.KEY = 'FOLLOW_UP_LETTER';";
             if(firstPartOfChildPhoneNumber.length == 1){
                 sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'" +
                         " and PHONE_NUMBER like '" +firstPartOfChildPhoneNumber[0]+ "%'";
-            }
-
-            rset = stmt.executeQuery(sql);
-            ResultSet rset1 = stmt.executeQuery(FUL_call_attribute);
-
-            while (rset1.next()) {
-                rset1.getString("KEY");
-                rset1.getString("VALUE");
             }
 
             ChildResult childResult = null;
@@ -233,7 +224,7 @@ public class DBConnection {
         try {
             stmt = getDbCon(environment).createStatement();
 
-            String sql = "select * from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN ((" + pidNumber + ")) AND a.KEY = 'FOLLOW_UP_LETTER';";
+            String sql = "select * from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN (" + pidNumber + ") AND a.KEY = 'FOLLOW_UP_LETTER'";
 
             rset = stmt.executeQuery(sql);
 
