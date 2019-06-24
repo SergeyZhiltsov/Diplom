@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
+import com.acurian.selenium.utils.db.FULResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.By;
@@ -130,6 +131,10 @@ public class MainPageOLS extends BasePage {
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
         logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        //FUL DB validation from call attribute table
+        FULResult fulResult = getDbConnection().dbReadFULAttribute(env, pid);
+        logTextToAllure(String.format("Parent PID = %s, FUL value = %s, KEY value = %s", pid,
+                fulResult.getValueResult(), fulResult.getKeyResult()));
         return this;
     }
 
