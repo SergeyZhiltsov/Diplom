@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All" verbose="4" thread-count="2" parallel="classes">
+<suite name="Screen Builder regression">
     <!--Above line corresponds to running below 2 clasees in parallel threads-->
-    <test name="Just for checking">
+    <test name="Screen Builder basic regression">
         <classes>
-            <class name="com.acurian.selenium.tests.SB.SBMegaScreenerTest"/>
+            <!--<class name="com.acurian.selenium.tests.SB.SBMegaScreenerTest"/>-->
             <class name="com.acurian.selenium.tests.SB.SBStandAloneTest"/>
         </classes>
     </test>
