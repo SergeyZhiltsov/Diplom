@@ -72,7 +72,7 @@ public class QuestionBuilderPage extends BasePage {
                     numberOfVisibleField--;
                     continue;
                 }
-                questionEditorField.click();
+                waitAndClickWebElement(questionEditorField);
                 break;
             }
         }
@@ -84,7 +84,7 @@ public class QuestionBuilderPage extends BasePage {
     public QuestionBuilderPage clickSaveChildQuestion() {
         for (WebElement saveChildIcon: saveChildQuestionList) {
             if (saveChildIcon.isDisplayed()) {
-                saveChildIcon.click();
+                waitAndClickWebElement(saveChildIcon);
                 break;
             }
         }
@@ -95,7 +95,7 @@ public class QuestionBuilderPage extends BasePage {
     public QuestionBuilderPage clickSaveQuestion() {
         for (WebElement saveQuestion: saveQuestionList) {
             if (saveQuestion.isDisplayed()) {
-                saveQuestion.click();
+                waitAndClickWebElement(saveQuestion);
                 break;
             }
         }
