@@ -47,7 +47,7 @@ public class GAST_4357_CC extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = true)
+    @Test(dataProvider = "sites", enabled = false)
     @Description("GAST 4357 CC (Allergan Diabetic Gastroparesis)")
     public void gast4357ccTest(Site site, boolean inFlare) {
         String phoneNumber = "AUTAMSGAST";
