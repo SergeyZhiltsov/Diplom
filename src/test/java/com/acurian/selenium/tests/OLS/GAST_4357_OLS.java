@@ -837,5 +837,6 @@ public class GAST_4357_OLS extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
         }
+        aboutHealthPageOLS.flareCodeShouldMatch(env, inFlare ? "3" : "4");
     }
 }

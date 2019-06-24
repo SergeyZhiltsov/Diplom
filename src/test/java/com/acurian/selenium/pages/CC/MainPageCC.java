@@ -26,6 +26,7 @@ public class MainPageCC extends BasePage {
     private WebElement nextButton;
 
     String pid;
+    String childPid;
     String dispoParent;
     String dispoChild;
 
@@ -64,6 +65,7 @@ public class MainPageCC extends BasePage {
     public MainPageCC childPidFromDbToLog(String env, String ...firstPartOfChildPhoneNumber) {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
+        childPid = childResult.getChildPid();
         logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
                 " with child pid = "+ childResult.getChildPid());
         return this;
@@ -132,6 +134,14 @@ public class MainPageCC extends BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Step
+    public MainPageCC flareCodeShouldMatch(String env, String statusCode) {
+        String flareStatus = getDbConnection().dbGetStatusFlare(env, childPid);
+        logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + childPid);
+        Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
+        return this;
     }
 
     @Step
