@@ -32,6 +32,7 @@ public class MainPageOLS extends BasePage {
     private List<WebElement> images;
 
     String pid;
+    String childPid;
 //    String cpid;
     String dispoParent;
     String dispoChild;
@@ -178,6 +179,7 @@ public class MainPageOLS extends BasePage {
 //        cpid = PassPID.getInstance().getPidNumber();
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
+        childPid = childResult.getChildPid();
         logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
         " with child pid = "+ childResult.getChildPid());
         return this;
@@ -230,6 +232,14 @@ public class MainPageOLS extends BasePage {
         } else {
             Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
         }
+        return this;
+    }
+
+    @Step
+    public MainPageOLS flareCodeShouldMatch(String env, String statusCode) {
+        String flareStatus = getDbConnection().dbGetStatusFlare(env, childPid);
+        logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + childPid);
+        Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
         return this;
     }
 

@@ -871,5 +871,6 @@ public class GAST_4357_CC extends BaseTest {
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
+        selectActionPageCC.flareCodeShouldMatch(env, inFlare ? "3" : "4");
     }
 }
