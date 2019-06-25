@@ -235,8 +235,10 @@ public class MainPageCC extends BasePage {
     }
 
     public enum FULType {
-        REGULAR_FUL("followup_call_1R___1R_NULL___10___CALLCENTER"),
-        WITH_MEDICAL_RELEASE("followup_call_1R___1R_MED___10___CALLCENTER");
+        REGULAR("followup_call_1R___1R_NULL___10___CALLCENTER"),
+        MEDICAL_RECORD("followup_call_1R___1R_MED___10___CALLCENTER"),
+        BUCKET("followup_call_1R___BUCKET___33___CALLCENTER"),
+        RADIANT("followup_call_1R___HOLDINGBIN___5___CALLCENTER");
 
         private String fulType;
 

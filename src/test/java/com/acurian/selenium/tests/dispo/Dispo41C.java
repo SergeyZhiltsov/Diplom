@@ -93,7 +93,7 @@ public class Dispo41C extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .assertGeneratedFul(env, true, FULType.REGULAR_FUL)
+                .assertGeneratedFul(env, true, FULType.RADIANT)
                 .dispoShouldMatch("41C")
                 .childPidFromDbToLog(env);
     }

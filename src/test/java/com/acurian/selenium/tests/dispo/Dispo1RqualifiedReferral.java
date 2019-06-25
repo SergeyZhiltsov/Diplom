@@ -1,9 +1,7 @@
 package com.acurian.selenium.tests.dispo;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -97,7 +95,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .assertGeneratedFul(env, true, FULType.REGULAR_FUL)
+                .assertGeneratedFul(env, true, FULType.MEDICAL_RECORD)
                 .dispoShouldMatch("1R")
                 .childPidFromDbToLog(env);
     }

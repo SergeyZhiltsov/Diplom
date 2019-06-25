@@ -287,8 +287,10 @@ public class MainPageOLS extends BasePage {
     }
 
     public enum FULType {
-        REGULAR_FUL("followup_call_1R___1R_NULL___10___OLS"),
-        WITH_MEDICAL_RELEASE("followup_call_1R___1R_MED___10___OLS");
+        REGULAR("followup_call_1R___1R_NULL___10___OLS"),
+        MEDICAL_RECORD("followup_call_1R___1R_MED___10___OLS"),
+        BUCKET("followup_call_1R___BUCKET___33___OLS"),
+        RADIANT("followup_call_1R___HOLDINGBIN___5___OLS");
 
         private String fulType;
 
