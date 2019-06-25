@@ -132,12 +132,12 @@ public class MainPageOLS extends BasePage {
 
 
     @Step
-    public MainPageOLS assertGeneratedFul(String env, boolean hasFul, FULType fulType ) {
+    public MainPageOLS assertGeneratedFul(String env, boolean hasFul, FULType fulType) {
         if (hasFul) {
             String fulValueField = getDbConnection().dbReadFulValue(env, pid);
             logTextToAllureAndConsole("FUL VALUE cell: " + fulValueField);
             Assert.assertNotNull(fulValueField, "FUL VALUE is null");
-            Assert.assertEquals(fulValueField, fulType, "FUL VALUE is different");
+            Assert.assertEquals(fulValueField, fulType.toString(), "FUL VALUE is different");
         }
 
         return this;
