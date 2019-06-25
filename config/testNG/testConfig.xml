@@ -2,12 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
 
-    <test name="Just for checking">
-        <classes>
-            <class name="com.acurian.selenium.tests.dispo.Dispo1RqualifiedReferral"/>
-            <class name="com.acurian.selenium.tests.dispo.Dispo41C"/>
-            <class name="com.acurian.selenium.tests.dispo.Dispo43C"/>
-        </classes>
+    <test name="Regression1">
+        <packages>
+            <package name="com.acurian.selenium.tests.CC.*" />
+            <package name="com.acurian.selenium.tests.OLS.*" />
+        </packages>
     </test>
 
 </suite>

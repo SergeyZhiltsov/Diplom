@@ -335,6 +335,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

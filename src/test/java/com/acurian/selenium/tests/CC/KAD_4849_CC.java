@@ -467,6 +467,7 @@ public class KAD_4849_CC extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

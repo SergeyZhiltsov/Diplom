@@ -443,6 +443,9 @@ public class GERD_4301_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
-                .pidFromDbToLog(env);
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

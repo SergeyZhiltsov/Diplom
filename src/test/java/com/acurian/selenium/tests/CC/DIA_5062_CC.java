@@ -611,6 +611,7 @@ public class DIA_5062_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
                 .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .queueSiteForFULCheck(site.name);
     }

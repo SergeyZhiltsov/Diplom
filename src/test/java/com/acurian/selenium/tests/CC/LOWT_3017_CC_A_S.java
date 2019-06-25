@@ -445,6 +445,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env, "3017")
+                        .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
     }

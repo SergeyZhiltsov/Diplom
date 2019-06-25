@@ -671,6 +671,7 @@ public class OA_5044_OLS_S extends BaseTest {
                 .getRadiantDbToLog(env)
                 .getAnomalyDbToLog(env)
                 .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

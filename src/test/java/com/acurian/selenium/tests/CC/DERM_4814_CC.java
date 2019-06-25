@@ -619,6 +619,7 @@ public class DERM_4814_CC extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo)
+                        .assertGeneratedFul(env, site)
                         .assertChildDOBIsNull(env, "4814");
                 break;
             case AUT_AD4814S_site: //41C

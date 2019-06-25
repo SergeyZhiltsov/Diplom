@@ -517,6 +517,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
                 .childPidFromDbToLog(env,"4241")
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

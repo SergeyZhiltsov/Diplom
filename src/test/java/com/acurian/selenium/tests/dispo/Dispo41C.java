@@ -17,7 +17,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class Dispo41C extends BaseTest {
 
-    @Test(enabled= true)
+    @Test(enabled = true)
     @Description("Dispo 41C RefVerificationFlag")
     public void dispo41C() {
         Site site = Site.AUT_GMEGA_New;
@@ -94,7 +94,7 @@ public class Dispo41C extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo)
+                .dispoShouldMatch("41C")
                 .childPidFromDbToLog(env);
     }
 }

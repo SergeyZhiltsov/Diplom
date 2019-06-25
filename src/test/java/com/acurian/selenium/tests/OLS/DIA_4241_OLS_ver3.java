@@ -519,6 +519,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .getRadiantDbToLog(env)
                 .getAnomalyDbToLog(env)
                 .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
