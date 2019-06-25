@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.dispo;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -11,6 +12,7 @@ import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.MainPageOLS.FULType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -95,6 +97,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
+                .assertGeneratedFul(env, true, FULType.REGULAR_FUL)
                 .dispoShouldMatch("1R")
                 .childPidFromDbToLog(env);
     }

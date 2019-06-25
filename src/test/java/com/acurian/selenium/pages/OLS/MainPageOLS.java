@@ -1,15 +1,11 @@
 package com.acurian.selenium.pages.OLS;
 
 import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
-import com.acurian.selenium.utils.db.FULResult;
 import com.acurian.selenium.utils.db.RadiantResults;
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -131,10 +127,19 @@ public class MainPageOLS extends BasePage {
         getDbConnection().dbReadPID(env, pid);
         dispoParent = getDbConnection().getDispo();
         logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
-        //FUL DB validation from call attribute table
-        FULResult fulResult = getDbConnection().dbReadFULAttribute(env, pid);
-        logTextToAllure(String.format("Parent PID = %s, FUL value = %s, KEY value = %s", pid,
-                fulResult.getValueResult(), fulResult.getKeyResult()));
+        return this;
+    }
+
+
+    @Step
+    public MainPageOLS assertGeneratedFul(String env, boolean hasFul, FULType fulType ) {
+        if (hasFul) {
+            String fulValueField = getDbConnection().dbReadFulValue(env, pid);
+            logTextToAllureAndConsole("FUL VALUE cell: " + fulValueField);
+            Assert.assertNotNull(fulValueField, "FUL VALUE is null");
+            Assert.assertEquals(fulValueField, fulType, "FUL VALUE is different");
+        }
+
         return this;
     }
 
@@ -279,6 +284,22 @@ public class MainPageOLS extends BasePage {
     public <T extends MainPageOLS> T back(T page) {
         back();
         return (T) page;
+    }
+
+    public enum FULType {
+        REGULAR_FUL("followup_call_1R___1R_NULL___10___OLS"),
+        WITH_MEDICAL_RELEASE("followup_call_1R___1R_MED___10___OLS");
+
+        private String fulType;
+
+        FULType(String fulType) {
+            this.fulType = fulType;
+        }
+
+        @Override
+        public String toString() {
+            return fulType;
+        }
     }
 
 //MainPageOLS<Z> and DateOfBirthPageOLS extends MainPageOLS<DateOfBirthPageOLS>

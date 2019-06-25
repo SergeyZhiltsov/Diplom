@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.dispo;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.MainPageOLS.FULType;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -93,6 +94,7 @@ public class Dispo43C extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
+                .assertGeneratedFul(env, true, FULType.REGULAR_FUL)
                 .dispoShouldMatch("43C")
                 .childPidFromDbToLog(env);
     }
