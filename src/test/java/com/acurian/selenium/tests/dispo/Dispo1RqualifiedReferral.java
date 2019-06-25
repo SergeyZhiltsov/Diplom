@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.dispo;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
@@ -10,23 +11,23 @@ import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.MainPageOLS.FULType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 public class Dispo1RqualifiedReferral extends BaseTest {
 
-    @Test(enabled= true)
+    @Test(enabled = true)
     @Description("Dispo 1R QualifiedReferral")
     public void dispo1R() {
+        Site site = Site.AUT_GMEGA_New;
         String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
 
         String studyName = env.equals("QA") ?
                 "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GMEGA_New"; //"AUT_GMEGA_Site";//AUT_GMEGA_01
-        String zipCode = "08204";
+//        String siteName = "AUT_GMEGA_New"; //"AUT_GMEGA_Site";//AUT_GMEGA_01
+//        String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -45,7 +46,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -86,7 +87,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 //.clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
@@ -95,8 +96,7 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .assertGeneratedFul(env, true, FULType.MEDICAL_RECORD)
-                .dispoShouldMatch("1R")
+                .dispoShouldMatch(site.dispo)
                 .childPidFromDbToLog(env);
     }
 }

@@ -1,5 +1,7 @@
 package com.acurian.selenium.pages.CC;
 
+import com.acurian.selenium.constants.FULType;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.utils.PassPID;
@@ -61,14 +63,16 @@ public class MainPageCC extends BasePage {
     }
 
     @Step
-    public MainPageCC assertGeneratedFul(String env, String pid, boolean hasFul, FULType fulType ) {
-        if (hasFul) {
+    public MainPageCC assertGeneratedFul(String env, Site site) {
+        if (site.hasFul) {
             String fulValueField = getDbConnection().dbReadFulValue(env, pid);
-            logTextToAllureAndConsole("FUL VALUE cell: " + fulValueField);
             Assert.assertNotNull(fulValueField, "FUL VALUE is null");
-            Assert.assertEquals(fulValueField, fulType, "FUL VALUE is different");
+            if (site.withMedicalRecords) {
+                Assert.assertTrue(fulValueField.contains(FULType.MEDICAL_RECORD.toString()),
+                        String.format("FUL VALUE contains different string. Expected [%s] but found [%s]",
+                                FULType.MEDICAL_RECORD.toString(), fulValueField));
+            }
         }
-
         return this;
     }
 
@@ -232,23 +236,5 @@ public class MainPageCC extends BasePage {
         checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::startsWith))//answerTextList.contains(el.getText())
                 .forEach(el -> el.click());
         waitForAnimation();
-    }
-
-    public enum FULType {
-        REGULAR("followup_call_1R___1R_NULL___10___CALLCENTER"),
-        MEDICAL_RECORD("followup_call_1R___1R_MED___10___CALLCENTER"),
-        BUCKET("followup_call_1R___BUCKET___33___CALLCENTER"),
-        RADIANT("followup_call_1R___HOLDINGBIN___5___CALLCENTER");
-
-        private String fulType;
-
-        FULType(String fulType) {
-            this.fulType = fulType;
-        }
-
-        @Override
-        public String toString() {
-            return fulType;
-        }
     }
 }

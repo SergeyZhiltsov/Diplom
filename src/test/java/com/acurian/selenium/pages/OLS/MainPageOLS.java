@@ -1,5 +1,7 @@
 package com.acurian.selenium.pages.OLS;
 
+import com.acurian.selenium.constants.FULType;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.utils.PassPID;
@@ -132,14 +134,16 @@ public class MainPageOLS extends BasePage {
 
 
     @Step
-    public MainPageOLS assertGeneratedFul(String env, boolean hasFul, FULType fulType) {
-        if (hasFul) {
+    public MainPageOLS assertGeneratedFul(String env, Site site) {
+        if (site.hasFul) {
             String fulValueField = getDbConnection().dbReadFulValue(env, pid);
-            logTextToAllureAndConsole("FUL VALUE cell: " + fulValueField);
             Assert.assertNotNull(fulValueField, "FUL VALUE is null");
-            Assert.assertEquals(fulValueField, fulType.toString(), "FUL VALUE is different");
+            if (site.withMedicalRecords) {
+                Assert.assertTrue(fulValueField.contains(FULType.MEDICAL_RECORD.toString()),
+                        String.format("FUL VALUE contains different string. Expected [%s] but found [%s]",
+                                FULType.MEDICAL_RECORD.toString(), fulValueField));
+            }
         }
-
         return this;
     }
 
@@ -284,24 +288,6 @@ public class MainPageOLS extends BasePage {
     public <T extends MainPageOLS> T back(T page) {
         back();
         return (T) page;
-    }
-
-    public enum FULType {
-        REGULAR("followup_call_1R___1R_NULL___10___OLS"),
-        MEDICAL_RECORD("followup_call_1R___1R_MED___10___OLS"),
-        BUCKET("followup_call_1R___BUCKET___33___OLS"),
-        RADIANT("followup_call_1R___HOLDINGBIN___5___OLS");
-
-        private String fulType;
-
-        FULType(String fulType) {
-            this.fulType = fulType;
-        }
-
-        @Override
-        public String toString() {
-            return fulType;
-        }
     }
 
 //MainPageOLS<Z> and DateOfBirthPageOLS extends MainPageOLS<DateOfBirthPageOLS>

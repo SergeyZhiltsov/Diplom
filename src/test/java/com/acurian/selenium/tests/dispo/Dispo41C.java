@@ -1,7 +1,7 @@
 package com.acurian.selenium.tests.dispo;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.MainPageOLS.FULType;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
@@ -20,12 +20,11 @@ public class Dispo41C extends BaseTest {
     @Test(enabled= true)
     @Description("Dispo 41C RefVerificationFlag")
     public void dispo41C() {
+        Site site = Site.AUT_GMEGA_New;
         String phoneNumber = "AUTGMEG41C";
         String env = System.getProperty("acurian.env", "STG");
         String studyName = env.equals("QA") ?
                 "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GMEGA_New"; //"AUT_GMEGA_Site";
-        String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -44,7 +43,8 @@ public class Dispo41C extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -85,7 +85,7 @@ public class Dispo41C extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
@@ -93,8 +93,8 @@ public class Dispo41C extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .assertGeneratedFul(env, true, FULType.RADIANT)
-                .dispoShouldMatch("41C")
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo)
                 .childPidFromDbToLog(env);
     }
 }
