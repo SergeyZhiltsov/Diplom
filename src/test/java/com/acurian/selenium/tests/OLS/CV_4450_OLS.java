@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.OLS;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DY_4356.AreYouCurrentlyTakingStatinMedsOLS;
 import com.acurian.selenium.pages.OLS.DY_4356.SubquestionStatinMedicationsHavePageOLS;
@@ -34,13 +35,13 @@ public class CV_4450_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {"AUT_CV1_4450S_Syn", "41C", "19901"},
+                {Site.AUT_CV1_4450S_Syn},
         };
     }
 
     @Test(dataProvider = "sites")
     @Description("CV 4450 OLS")
-    public void cv4450olsTest(String siteName, String expectedDispo, String zipCode) {
+    public void cv4450olsTest(Site site) {
         String phoneNumber = "AUTAMS1CV1";
         String protocol1 = "EX9536_4388";
 //        String protocol2 = "1002_043_A";
@@ -62,7 +63,7 @@ public class CV_4450_OLS extends BaseTest {
         zipCodePageOLS
                 .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -368,11 +369,12 @@ public class CV_4450_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(siteName)
+                .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
@@ -384,6 +386,7 @@ public class CV_4450_OLS extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .dispoShouldMatch(expectedDispo, expectedDispo);
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

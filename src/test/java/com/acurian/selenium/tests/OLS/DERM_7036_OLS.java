@@ -19,7 +19,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class DERM_4600_OLS extends BaseTest {
+public class DERM_7036_OLS extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -34,13 +34,13 @@ public class DERM_4600_OLS extends BaseTest {
     @DataProvider(name = "sites")
     public Object[][] getData() {
         return new Object[][] {
-                {Site.AUT_AMS1_4600_site}
+                {Site.AUT_AMS1_7036_Site}
         };
     }
 
     @Test(dataProvider = "sites")
-    @Description("DERM_4600_OLS")
-    public void derm4600Ols(final Site site) {
+    @Description("DERM_7036_OLS")
+    public void derm7036OLS(final Site site) {
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis)";
         DebugPageOLS debugPageOls = new DebugPageOLS();
@@ -118,12 +118,6 @@ public class DERM_4600_OLS extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 years")
-                .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols)
-                .waitForPageLoad()
-                .back();
-        howLongHaveYouBeenSufferingFromEczema_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("3 years or more")
                 .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols);
 
 
@@ -183,21 +177,6 @@ public class DERM_4600_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is never itchy")
                 .clickNextButton(new EczemaSymptomsExperienceOLS());
-
-        eczemaSymptomsExperienceOLS
-                .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
-                .back();
-
-        RateAverageItchinessEczemaPageOLS rateAverageItchinessEczemaPageOLS = howManyDaysHasSkinBeenItchyOLS
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 2 days")
-                .clickNextButton(new RateAverageItchinessEczemaPageOLS());
-        rateAverageItchinessEczemaPageOLS
-                .waitForPageLoad()
-                .selectFromDropDown("2")
-                .clickNextButton(eczemaSymptomsExperienceOLS);
 
         HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
@@ -304,7 +283,6 @@ public class DERM_4600_OLS extends BaseTest {
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
-        //HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .clickOnAnswers("Jakafi")
                 .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS())
                 .waitForPageLoad()
@@ -343,8 +321,6 @@ public class DERM_4600_OLS extends BaseTest {
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -394,8 +370,6 @@ public class DERM_4600_OLS extends BaseTest {
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
@@ -407,10 +381,7 @@ public class DERM_4600_OLS extends BaseTest {
 
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
-
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
@@ -421,10 +392,7 @@ public class DERM_4600_OLS extends BaseTest {
 
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
-
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
@@ -435,10 +403,7 @@ public class DERM_4600_OLS extends BaseTest {
 
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
-
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
@@ -449,10 +414,7 @@ public class DERM_4600_OLS extends BaseTest {
 
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
-
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
@@ -463,10 +425,7 @@ public class DERM_4600_OLS extends BaseTest {
 
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
-
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
@@ -477,10 +436,7 @@ public class DERM_4600_OLS extends BaseTest {
 
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
-
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
@@ -491,10 +447,7 @@ public class DERM_4600_OLS extends BaseTest {
 
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
-
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
@@ -515,20 +468,14 @@ public class DERM_4600_OLS extends BaseTest {
 
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
                 .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
@@ -544,7 +491,6 @@ public class DERM_4600_OLS extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
-
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
@@ -602,11 +548,6 @@ public class DERM_4600_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
-               /* .clickNextButton(new EthnicBackgroundPageOLS());
-
-        ethnicBackgroundPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Prefer not to answer")*/
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
@@ -625,7 +566,7 @@ public class DERM_4600_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4600")
+                .childPidFromDbToLog(env, "7036")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }

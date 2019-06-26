@@ -590,6 +590,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

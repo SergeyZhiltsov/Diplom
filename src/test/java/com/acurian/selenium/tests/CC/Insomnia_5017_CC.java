@@ -647,6 +647,7 @@ public class Insomnia_5017_CC extends BaseTest{
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
 //            case AUT_INS_5017S_site:

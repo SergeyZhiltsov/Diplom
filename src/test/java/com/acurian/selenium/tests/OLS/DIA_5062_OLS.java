@@ -718,6 +718,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .getAnomalyDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
+                .assertGeneratedFul(env, site)
                 .queueSiteForFULCheck(site.name);
     }
 }
