@@ -32,7 +32,7 @@ public class StudySetupDiffSummaryPage extends BasePage {
 
     public StudySetupDiffSummaryPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete(); //TODO Check and move to BasePage
+        waitForJavaScriptComplete();
     }
 
     @Step()
@@ -121,7 +121,7 @@ public class StudySetupDiffSummaryPage extends BasePage {
     }
 
     @Step
-    public StudySetupDiffSummaryPage clickOnSaveAndPublish() {
+    public StudySetupDiffSummaryPage clickSaveAndPublish() {
         waitAndClickWebElement(btnPublishStudy);
         return this;
     }

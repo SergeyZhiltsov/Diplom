@@ -34,7 +34,7 @@ public class LoginSBPage extends BasePage {
     public LoginSBPage openPage(String env) {
         switch (env) {
             case "STG":
-                throw new IllegalArgumentException("SB available only on QA or PRD env");
+                logTextToAllureAndConsole("The SB available only on QA or PRD env, will be opened PRD page for selected STG env");
             case "PRD":
                 openURL(URLs.SB_PRD);
                 break;

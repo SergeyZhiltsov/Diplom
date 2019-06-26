@@ -1,4 +1,4 @@
-package com.acurian.selenium.tests.OLS;
+package com.acurian.selenium.tests.SB.dependentScreeners;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
@@ -95,6 +95,5 @@ public class SB_AUTSBMG extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch("1R");
-                //.childPidFromDbToLog(env);
     }
 }

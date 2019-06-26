@@ -12,10 +12,11 @@ public class SaveStudyDiffSummaryPage extends BasePage {
 
     public SaveStudyDiffSummaryPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete(); //TODO Check and move to BasePage
+        waitForJavaScriptComplete();
     }
 
     public StudyProjectsListPage clickPublishToEnvironment() {
+        waitForJavaScriptComplete();
         waitAndClickWebElement(publishBtn);
         return new StudyProjectsListPage();
     }

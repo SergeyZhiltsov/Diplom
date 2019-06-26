@@ -1,50 +1,38 @@
-package com.acurian.selenium.tests.OLS;
+package com.acurian.selenium.tests.SB.dependentScreeners;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.RA.standalone.HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC;
-import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.UnqualifiedCloseOLS_GMEGA;
-import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.gmega.HasAHealthcareDiagnosedWithAnyTypeOfArthOLS;
 import com.acurian.selenium.pages.OLS.gmega.HaveYouExperiencedanyOftheFollowingConfOLS;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
-import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
-import com.acurian.selenium.pages.OLS.shared.WhereDoYouHaveArthritisPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class SB_AUTSBSS extends BaseTest{
+public class SB_AUTSBSSmodified extends BaseTest{
 
     @Test(enabled = true)
     @TestCaseId("001124")
     @Description("SB_Standalone test Screener")
-    public void sb_AUTSBSS() {
+    public void sb_AUTSBSSmodified() {
         String phoneNumber = "AUTSBSS001";
-        String protocol1 = "RA01_Generic";
-        String studyName = "an arthritis";
         String siteName = "AUT_SB_SS_site";
         String zipCode = "19901";
-        String env = System.getProperty("acurian.env");
-        if (env == null) env = "STG";
+        String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(), dateOfBirthPageOLS.titleExpected, "Question is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(), "What is your date of birth? (some text modified)",
+                "Question is diff");
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new PersonalDetails());
@@ -64,14 +52,8 @@ public class SB_AUTSBSS extends BaseTest{
         hasAHealthcareDiagnosedWithAnyTypeOfArthOLS
                 .waitForPageLoadSB();
         Assert.assertEquals(hasAHealthcareDiagnosedWithAnyTypeOfArthOLS.getTitleTextSB(), hasAHealthcareDiagnosedWithAnyTypeOfArthOLS.titleExpected, "Title is diff");
-        WhenYouDiagnosedWithRaGmegaPageOLS whenYouDiagnosedWithRaGmegaPageOLS = hasAHealthcareDiagnosedWithAnyTypeOfArthOLS
+        HaveYouExperiencedanyOftheFollowingConfOLS haveYouExperiencedanyOftheFollowingConfOLS = hasAHealthcareDiagnosedWithAnyTypeOfArthOLS
                 .clickOnAnswers_SB("Rheumatoid Arthritis, a serious disease caused by your immune system attacking your joints, which can cause fatigue with pain and swelling of multiple joints throughout your body")
-                .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
-
-        whenYouDiagnosedWithRaGmegaPageOLS
-                .waitForPageLoad();
-        HaveYouExperiencedanyOftheFollowingConfOLS haveYouExperiencedanyOftheFollowingConfOLS = whenYouDiagnosedWithRaGmegaPageOLS
-                .clickOnAnswer("3 - 6 months")
                 .clickNextButton(new HaveYouExperiencedanyOftheFollowingConfOLS());
 
         haveYouExperiencedanyOftheFollowingConfOLS

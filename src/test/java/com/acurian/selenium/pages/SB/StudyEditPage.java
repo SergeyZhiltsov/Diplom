@@ -33,8 +33,10 @@ public class StudyEditPage extends BasePage {
     WebElement studySetupLink;
     @FindBy(css = "a[data-nxtpage='Question Builder']")
     WebElement questionBuilderLink;
-    @FindBy(css = "a[data-nxtpage='Question Builder']")
+    @FindBy(css = "a[data-nxtpage='Logic Builder']")
     WebElement logicBuilderLink;
+    @FindBy(css = "div.blockUI.blockOverlay")
+    WebElement blockOverlay;
 
     public StudyEditPage() {
         PageFactory.initElements(getDriver(), this);
@@ -118,9 +120,11 @@ public class StudyEditPage extends BasePage {
     }
 
     @Step()
-    public QuestionBuilderPage clickLogicBuilderLink() {
+    public LogicBuilderPage clickLogicBuilderLink() {
         waitAndClickWebElement(logicBuilderLink);
-        return new QuestionBuilderPage();
+        waitForVisibility(blockOverlay);
+        waitForAbsence(blockOverlay);
+        return new LogicBuilderPage();
     }
 //----------------------------------------------------------
 
