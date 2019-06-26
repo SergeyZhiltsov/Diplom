@@ -17,6 +17,7 @@ public class QuestionnaireDiffSummaryPage extends BasePage {
 
     public QuestionnaireDiffSummaryPage() {
         PageFactory.initElements(getDriver(), this);
+        waitForJavaScriptComplete();
     }
 
     @Step

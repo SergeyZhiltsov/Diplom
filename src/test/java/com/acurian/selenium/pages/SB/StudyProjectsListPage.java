@@ -64,6 +64,7 @@ public class StudyProjectsListPage extends BasePage {
 
     @Step()
     public StudyProjectsListPage checkAlertMessage(String expectedMessage) {
+        waitForVisibility(alertMessage);
         Assert.assertEquals(alertMessage.getText(), expectedMessage,  "Alert message is different");
         waitForAbsence(alertMessage);
         return this;
@@ -124,6 +125,7 @@ public class StudyProjectsListPage extends BasePage {
 
     @Step
     public LogicDiffSummaryPage clickPublishLogic(String studyName, SetupEnv setupEnv) {
+        waitForJavaScriptComplete();
         openActionsOf(studyName);
         WebElement publishDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
                 .findFirst()

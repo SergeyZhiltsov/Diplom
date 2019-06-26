@@ -17,6 +17,7 @@ public class LogicDiffSummaryPage extends BasePage {
 
     public LogicDiffSummaryPage() {
         PageFactory.initElements(getDriver(), this);
+        waitForJavaScriptComplete();
     }
 
     @Step

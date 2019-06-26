@@ -16,6 +16,7 @@ public class SaveStudyDiffSummaryPage extends BasePage {
     }
 
     public StudyProjectsListPage clickPublishToEnvironment() {
+        waitForJavaScriptComplete();
         waitAndClickWebElement(publishBtn);
         return new StudyProjectsListPage();
     }
