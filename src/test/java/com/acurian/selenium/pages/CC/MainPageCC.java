@@ -1,9 +1,10 @@
 package com.acurian.selenium.pages.CC;
 
+import com.acurian.selenium.constants.FULType;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.utils.PassPID;
-import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import org.openqa.selenium.JavascriptExecutor;
@@ -26,6 +27,7 @@ public class MainPageCC extends BasePage {
     private WebElement nextButton;
 
     String pid;
+    String childPid;
     String dispoParent;
     String dispoChild;
 
@@ -61,9 +63,24 @@ public class MainPageCC extends BasePage {
     }
 
     @Step
+    public MainPageCC assertGeneratedFul(String env, Site site) {
+        if (site.hasFul) {
+            String fulValueField = getDbConnection().dbReadFulValue(env, pid);
+            Assert.assertNotNull(fulValueField, "FUL VALUE is null");
+            if (site.withMedicalRecords) {
+                Assert.assertTrue(fulValueField.contains(FULType.MEDICAL_RECORD.toString()),
+                        String.format("FUL VALUE contains different string. Expected [%s] but found [%s]",
+                                FULType.MEDICAL_RECORD.toString(), fulValueField));
+            }
+        }
+        return this;
+    }
+
+    @Step
     public MainPageCC childPidFromDbToLog(String env, String ...firstPartOfChildPhoneNumber) {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
+        childPid = childResult.getChildPid();
         logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
                 " with child pid = "+ childResult.getChildPid());
         return this;
@@ -132,6 +149,14 @@ public class MainPageCC extends BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Step
+    public MainPageCC flareCodeShouldMatch(String env, String statusCode) {
+        String flareStatus = getDbConnection().dbGetStatusFlare(env, childPid);
+        logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + childPid);
+        Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
+        return this;
     }
 
     @Step

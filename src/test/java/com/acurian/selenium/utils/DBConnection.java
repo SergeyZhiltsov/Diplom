@@ -81,7 +81,6 @@ public class DBConnection {
         }
     }
 
-
     public void dbReadPID(String environment, String pidNumber){
         try {
             stmt = getDbCon(environment).createStatement();
@@ -142,7 +141,7 @@ public class DBConnection {
         return dobCell;
     }
 
-    public String dbReadFulIsSent(String env, String pid) {
+    public String dbReadFulValue(String env, String pid) {
         String fulCell = null;
         try {
             stmt = getDbCon(env).createStatement();
@@ -220,7 +219,6 @@ public class DBConnection {
         }
         return null;
     }
-    
 
     public AnomalyResults dbReadAnomaly(String environment, String pidNumber) {
         try {
@@ -244,6 +242,25 @@ public class DBConnection {
             closeResources();
         }
         return null;
+    }
+
+    public String dbGetStatusFlare(String env, String childPid) {
+        String flareStatus = null;
+        try {
+            stmt = getDbCon(env).createStatement();
+            final String query = "Select patient_id, status_set_member_id from patient_study_secondary_status where patient_id in ("+childPid+")";
+            rset = stmt.executeQuery(query);
+            while (rset.next()) {
+                flareStatus = rset.getString("status_set_member_id");
+            }
+            System.out.println("DB fetched value of FLARE cell: " + flareStatus);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResources();
+        }
+        return flareStatus;
     }
 
     private void closeResources(){

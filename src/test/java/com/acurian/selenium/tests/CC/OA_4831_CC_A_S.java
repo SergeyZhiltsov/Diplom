@@ -409,6 +409,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env, "4831")
+                        .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
     }

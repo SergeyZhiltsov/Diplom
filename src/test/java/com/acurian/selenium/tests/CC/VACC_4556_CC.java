@@ -347,6 +347,7 @@ public class VACC_4556_CC extends BaseTest {
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo)
+                        .assertGeneratedFul(env, site)
                         .queueSiteForFULCheck(site.name);
                 break;
 //            case AUT_VAC_4556_Site:

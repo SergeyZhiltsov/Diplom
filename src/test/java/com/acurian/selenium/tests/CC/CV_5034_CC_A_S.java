@@ -544,6 +544,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_CV_5034S_site: //41C

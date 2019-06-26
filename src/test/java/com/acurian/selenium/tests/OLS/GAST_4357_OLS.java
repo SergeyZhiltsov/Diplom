@@ -46,7 +46,7 @@ public class GAST_4357_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("GAST 4357 OLS (Allergan Diabetic Gastroparesis)")
     public void gast4357olsTest(final Site site, boolean inFlare) {
         final String phoneNumber = "AUTAMSGAST";
@@ -837,5 +837,6 @@ public class GAST_4357_OLS extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
         }
+        aboutHealthPageOLS.flareCodeShouldMatch(env, inFlare ? "3" : "4");
     }
 }

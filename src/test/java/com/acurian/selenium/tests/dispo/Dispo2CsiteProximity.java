@@ -17,7 +17,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class Dispo2CsiteProximity extends BaseTest {
 
-    @Test(enabled= true)
+    @Test(enabled = true)
     @Description("Dispo_2C_SiteProximity")
     public void dispo2C() {
         String phoneNumber = "AUTGMEGA01";

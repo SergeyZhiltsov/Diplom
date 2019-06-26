@@ -621,6 +621,7 @@ public class IBS_4819_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo)
                 .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

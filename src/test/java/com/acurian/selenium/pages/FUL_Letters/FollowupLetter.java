@@ -161,7 +161,7 @@ public class FollowupLetter extends BasePage {
 
     @Step
     public FollowupLetter assertFULDbRecordIsNotNull(String env, String pid) {
-        String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
+        String fulIsSentCell = getDbConnection().dbReadFulValue(env, pid);
         logTextToAllureAndConsole("FUL VALUE cell: " + fulIsSentCell);
         Assert.assertNotNull(fulIsSentCell, "FUL VALUE cell is null");
         return this;
@@ -169,7 +169,7 @@ public class FollowupLetter extends BasePage {
 
     @Step
     public FollowupLetter assertFULDbRecordIsNull(String env, String pid) {
-        String fulIsSentCell = getDbConnection().dbReadFulIsSent(env, pid);
+        String fulIsSentCell = getDbConnection().dbReadFulValue(env, pid);
         logTextToAllureAndConsole("FUL VALUE cell: " + fulIsSentCell);
         Assert.assertNull(fulIsSentCell, "FUL VALUE cell is NOT null");
         return this;

@@ -627,6 +627,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                             .waitForPageLoad()
                             .pidFromDbToLog(env)
                             .childPidFromDbToLog(env, "4815")
+                            .assertGeneratedFul(env, site)
                             .dispoShouldMatch(site.dispo, site.dispo);
                     break;
                 case AUT_DERM_4815S_Site: //41C

@@ -1,14 +1,13 @@
 package com.acurian.selenium.pages.OLS;
 
+import com.acurian.selenium.constants.FULType;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
-import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
 import com.acurian.selenium.utils.db.RadiantResults;
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -32,6 +31,7 @@ public class MainPageOLS extends BasePage {
     private List<WebElement> images;
 
     String pid;
+    String childPid;
 //    String cpid;
     String dispoParent;
     String dispoChild;
@@ -132,6 +132,21 @@ public class MainPageOLS extends BasePage {
         return this;
     }
 
+
+    @Step
+    public MainPageOLS assertGeneratedFul(String env, Site site) {
+        if (site.hasFul) {
+            String fulValueField = getDbConnection().dbReadFulValue(env, pid);
+            Assert.assertNotNull(fulValueField, "FUL VALUE is null");
+            if (site.withMedicalRecords) {
+                Assert.assertTrue(fulValueField.contains(FULType.MEDICAL_RECORD.toString()),
+                        String.format("FUL VALUE contains different string. Expected [%s] but found [%s]",
+                                FULType.MEDICAL_RECORD.toString(), fulValueField));
+            }
+        }
+        return this;
+    }
+
     @Step
     public MainPageOLS copyRun(String env) {
         getDbConnection().dbCOPYProc(env, pid);
@@ -178,6 +193,7 @@ public class MainPageOLS extends BasePage {
 //        cpid = PassPID.getInstance().getPidNumber();
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
+        childPid = childResult.getChildPid();
         logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
         " with child pid = "+ childResult.getChildPid());
         return this;
@@ -230,6 +246,14 @@ public class MainPageOLS extends BasePage {
         } else {
             Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
         }
+        return this;
+    }
+
+    @Step
+    public MainPageOLS flareCodeShouldMatch(String env, String statusCode) {
+        String flareStatus = getDbConnection().dbGetStatusFlare(env, childPid);
+        logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + childPid);
+        Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
         return this;
     }
 

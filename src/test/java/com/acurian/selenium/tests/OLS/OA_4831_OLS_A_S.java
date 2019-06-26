@@ -440,6 +440,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 aboutHealthPageOLS
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env, "4831")
+                        .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
         }
