@@ -2,7 +2,6 @@ package com.acurian.selenium.utils;
 
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
-import com.acurian.selenium.utils.db.FULResult;
 import com.acurian.selenium.utils.db.RadiantResults;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -82,7 +81,6 @@ public class DBConnection {
         }
     }
 
-
     public void dbReadPID(String environment, String pidNumber){
         try {
             stmt = getDbCon(environment).createStatement();
@@ -143,7 +141,7 @@ public class DBConnection {
         return dobCell;
     }
 
-    public String dbReadFulIsSent(String env, String pid) {
+    public String dbReadFulValue(String env, String pid) {
         String fulCell = null;
         try {
             stmt = getDbCon(env).createStatement();
@@ -221,34 +219,6 @@ public class DBConnection {
         }
         return null;
     }
-
-    public FULResult dbReadFULAttribute(String environment, String pidNumber) {
-        try {
-            stmt = getDbCon(environment).createStatement();
-
-            String sql = "select * from S_CALL.CALL_ATTRIBUTE a where a.PATIENT_ID IN (" + pidNumber + ") AND a.KEY = 'FOLLOW_UP_LETTER'";
-
-            rset = stmt.executeQuery(sql);
-
-            FULResult fulResult = null;
-            while (rset.next()) {
-                fulResult = new FULResult();
-                fulResult.setKeyResult(rset.getString("KEY"));
-                fulResult.setValueResult(rset.getString("VALUE"));
-                String str = fulResult.getValueResult();
-            }
-            System.out.println(String.format("Parent PID = %s, FUL value = %s, KEY value = %s", pidNumber,
-                    fulResult.getValueResult(), fulResult.getKeyResult()));
-            return fulResult;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally {
-            closeResources();
-        }
-        return null;
-    }
-    
 
     public AnomalyResults dbReadAnomaly(String environment, String pidNumber) {
         try {

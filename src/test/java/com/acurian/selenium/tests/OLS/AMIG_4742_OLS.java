@@ -491,6 +491,7 @@ public class AMIG_4742_OLS extends BaseTest {
         aboutHealthPageOLS
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4742")
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

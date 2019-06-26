@@ -297,6 +297,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_LOWT_3017S_Site: //41C

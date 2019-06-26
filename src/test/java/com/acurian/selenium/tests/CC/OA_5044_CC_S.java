@@ -543,6 +543,7 @@ public class OA_5044_CC_S extends BaseTest {
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
                 .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
