@@ -1,10 +1,7 @@
 package com.acurian.selenium.tests.SB;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.SB.SaveStudyDiffSummaryPage;
-import com.acurian.selenium.pages.SB.StudyEditPage;
-import com.acurian.selenium.pages.SB.StudyProjectsListPage;
-import com.acurian.selenium.pages.SB.LoginSBPage;
+import com.acurian.selenium.pages.SB.*;
 import com.acurian.selenium.tests.SB.dependentScreeners.SB_AUTSBSSmodified;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.annotations.AfterMethod;
@@ -92,8 +89,9 @@ public class SBStandAloneTest extends BaseTest {
                 .clickPublishQuestions(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
                 .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp();
+        QuestionnaireDiffSummaryPage questionnaireDiffSummaryPage = new QuestionnaireDiffSummaryPage();
         if (env.equals("QA")) {
-            saveStudyDiffSummaryPage.clickPublishToEnvironment();
+            questionnaireDiffSummaryPage.clickPublishToEnvironment();
         }
         studyProjectsListPage
                 .checkAlertMessage(String.format("×\nScreener for project %s published to %s Successfully. " +
@@ -101,10 +99,10 @@ public class SBStandAloneTest extends BaseTest {
         //Public logic
                 .clickPublishLogic(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
                 .clickSaveAndPublish()
-                .clickConfirmPublishOnPopUp()
-                .clickPublishToEnvironment();
+                .clickConfirmPublishOnPopUp();
+        LogicDiffSummaryPage logicDiffSummaryPage = new LogicDiffSummaryPage();
         if (env.equals("QA")) {
-            saveStudyDiffSummaryPage.clickPublishToEnvironment();
+            logicDiffSummaryPage.clickPublishToEnvironment();
         }
         studyProjectsListPage
                 .checkAlertMessage(String.format("×\nScreener Logic for project %s published to %s Successfully. " +
@@ -167,8 +165,9 @@ public class SBStandAloneTest extends BaseTest {
                 .clickPublishQuestions(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
                 .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp();
+        QuestionnaireDiffSummaryPage questionnaireDiffSummaryPage = new QuestionnaireDiffSummaryPage();
         if (env.equals("QA")) {
-            saveStudyDiffSummaryPage.clickPublishToEnvironment();
+            questionnaireDiffSummaryPage.clickPublishToEnvironment();
         }
         studyProjectsListPage
                 .checkAlertMessage(String.format("×\nScreener for project %s published to %s Successfully. " +
@@ -177,8 +176,9 @@ public class SBStandAloneTest extends BaseTest {
                 .clickPublishLogic(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
                 .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp();
+        LogicDiffSummaryPage logicDiffSummaryPage = new LogicDiffSummaryPage();
         if (env.equals("QA")) {
-            saveStudyDiffSummaryPage.clickPublishToEnvironment();
+            logicDiffSummaryPage.clickPublishToEnvironment();
         }
         studyProjectsListPage
                 .checkAlertMessage(String.format("×\nScreener Logic for project %s published to %s Successfully. " +
