@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class KAD_4849_OLS extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     @Description("kad4849 OLS Test")
     public void kad4849_OLS_Test() {
         Site site = Site.AUT_DERM_4849_Site;
