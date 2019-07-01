@@ -231,55 +231,62 @@ public class Chronic_4471_OLS extends BaseTest {
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageOLS.back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Drug or alcohol abuse within the past year")
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageOLS.back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Hepatitis B")
                 .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageOLS.back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Hepatitis C")
                 .clickOnAnswers("Hepatitis B")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageOLS.back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("HIV or AIDS")
                 .clickOnAnswers("Hepatitis C")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageOLS.back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Schizophrenia")
                 .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS61", protocol1);
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS61", protocol1);
         debugPageOLS.back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
                 .clickOnAnswers("Schizophrenia")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
+                .clickNextButton(new ApproximateHeightPageOLS())
+                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageOLS.back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS

@@ -32,7 +32,7 @@ public class VACC_4556_OLS extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProviderClass = VACC_4556_CC.class, dataProvider = "sites")
+    @Test(dataProviderClass = VACC_4556_CC.class, dataProvider = "sites", enabled =false)
     @Description("VACC_4556_OLS")
     public void vacc4556OlsTest(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
