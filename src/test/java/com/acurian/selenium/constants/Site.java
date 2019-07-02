@@ -85,6 +85,8 @@ public enum Site {
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", true, false, "ANB020_005"),
     //4867
     AUT_OAB_4867("AUT_OAB4867_site", "08204", "41C", false, false, "URO_901_1001"),
+    //4967
+    AUT_AMS1_4967_site("AUT_AMS1_4967_site", "08204", "1R", false, false, "R3500_AD_1798", "R3500_AD_1805"),
     //5017
     //AUT_INS_5017S_site("AUT_INS_5017S_site", "19901", "41C", false, false, "ID_078A301", "ID_078A302"), //Not required in spec
     AUT_INS_5017_site("AUT_INS_5017_site", "08204", "1R", true, false, "ID_078A301", "ID_078A302"),
