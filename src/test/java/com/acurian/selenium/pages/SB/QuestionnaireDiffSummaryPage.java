@@ -1,12 +1,11 @@
 package com.acurian.selenium.pages.SB;
 
-import com.acurian.selenium.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class QuestionnaireDiffSummaryPage extends BasePage {
+public class QuestionnaireDiffSummaryPage extends MainPageSB {
 
     @FindBy(id = "btnQuestionPublish")
     WebElement btnQuestionPublish;
@@ -17,7 +16,6 @@ public class QuestionnaireDiffSummaryPage extends BasePage {
 
     public QuestionnaireDiffSummaryPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete();
     }
 
     @Step
