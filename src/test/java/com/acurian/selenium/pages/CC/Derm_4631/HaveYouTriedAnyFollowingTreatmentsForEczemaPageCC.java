@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC extends MainPageCC {
-    public final String titleExpected = "Have you tried any of the following treatments for your eczema (atopic dermatitis)?\n" +
+    public final String titleExpected = "Have you tried any of the following treatments for your eczema?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
