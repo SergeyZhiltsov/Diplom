@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DupixentInjectionPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Dupixent (dupilumab) is a biologic medication used to treat certain types of asthma. It is given as a shot (injection).\n" +
+    public final String titleExpected = "Dupixent (dupilumab) is a biologic medication used to treat eczema and certain types of asthma. It is given as a shot (injection).\n" +
             "Have you ever taken Dupixent, either currently or in the past?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
