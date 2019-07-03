@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Have you tried any of the following treatments for your eczema (atopic dermatitis)?\n" +
+    public final String titleExpected = "Have you tried any of the following treatments for your eczema?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)

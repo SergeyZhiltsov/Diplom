@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.Derm_4631;
+package com.acurian.selenium.pages.CC.cv_study;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
@@ -9,10 +9,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DupixentInjectionPageCC extends MainPageCC {
+public class CholesterolTriglyceridesLipidsPageCC extends MainPageCC {
 
-    public final String titleExpected = "Dupixent (dupilumab) is a biologic medication used to treat certain types of asthma. It is given as a shot (injection).\n" +
-            "Have you ever taken Dupixent, either currently or in the past?";
+    public final String titleExpected = "Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?\n" +
+            "This may include statins like Lipitor or Zocor, injectable drugs like Praluent or Repatha, or other options such as niacin, fibrates, Prevalite, or Zetia.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -20,18 +20,18 @@ public class DupixentInjectionPageCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public DupixentInjectionPageCC() {
+    public CholesterolTriglyceridesLipidsPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DupixentInjectionPageCC waitForPageLoad() {
+    public CholesterolTriglyceridesLipidsPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DupixentInjectionPageCC clickOnAnswer(String answerText) {
+    public CholesterolTriglyceridesLipidsPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
