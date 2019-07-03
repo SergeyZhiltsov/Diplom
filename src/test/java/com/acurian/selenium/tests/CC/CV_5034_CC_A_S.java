@@ -9,12 +9,7 @@ import com.acurian.selenium.pages.CC.DYS_4356C.WhileTakingStatinPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
-import com.acurian.selenium.pages.CC.cv_study.AnginaOrChestPainPageCC;
-import com.acurian.selenium.pages.CC.cv_study.FirstHeartAttackPageCC;
-import com.acurian.selenium.pages.CC.cv_study.HealthcareDiagnosedConditionsPageCC;
-import com.acurian.selenium.pages.CC.cv_study.HeartrelatedMedicalConditionsProceduresPageCC;
-import com.acurian.selenium.pages.CC.cv_study.MedicationsForYourDiabetesPageCC;
-import com.acurian.selenium.pages.CC.cv_study.RelativesHeartAttackPageCC;
+import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -53,6 +48,7 @@ public class CV_5034_CC_A_S extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
@@ -89,19 +85,19 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .setYear("2005")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
-        lessThan18YearsOldPageCC.waitForPageLoad();
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+        lessThan18YearsOldPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
+                .back();
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad2Ver()
                 .setYear("1952")
                 .clickNextButton(new ZipCodePageCC());
 
         //-------ZIP_CODE Page--------
-        zipCodePageCC
-                .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
@@ -121,46 +117,46 @@ public class CV_5034_CC_A_S extends BaseTest {
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
-        StatinMedicationsOnPageCC statinMedicationsOnPageCC = cardiovascularDiseaseThanOthersPageCC
+        CholesterolTriglyceridesLipidsPageCC сholesterolTriglyceridesLipidsPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new StatinMedicationsOnPageCC());
-        statinMedicationsOnPageCC
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
+        сholesterolTriglyceridesLipidsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(statinMedicationsOnPageCC)
+                .clickNextButton(сholesterolTriglyceridesLipidsPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Chronic Kidney Disease")
-                .clickNextButton(statinMedicationsOnPageCC)
+                .clickNextButton(сholesterolTriglyceridesLipidsPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(statinMedicationsOnPageCC)
+                .clickNextButton(сholesterolTriglyceridesLipidsPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageCC
@@ -170,45 +166,42 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
 
         //-------Q4: What kind of diabetes do you have?----------
-        MedicationsForYourDiabetesPageCC medicationsForYourDiabetesPageCC = whatKindOfDiabetesPageCC
+        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new MedicationsForYourDiabetesPageCC());
-        medicationsForYourDiabetesPageCC
+                .clickNextButton(new TransitionalStatementLowtPageCC());
+        transitionalStatementLowtPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
-        whatKindOfDiabetesPageCC
+        MedicationsForYourDiabetesPageCC medicationsForYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
                 .clickNextButton(new MedicationsForYourDiabetesPageCC());
         medicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(new MedicationsForYourDiabetesPageCC());
-        medicationsForYourDiabetesPageCC
+                .clickNextButton(medicationsForYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new MedicationsForYourDiabetesPageCC());
-        medicationsForYourDiabetesPageCC
+                .clickNextButton(medicationsForYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS6704-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
-        whatKindOfDiabetesPageCC
-                .waitForPageLoad();
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
+                .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
 
@@ -220,133 +213,43 @@ public class CV_5034_CC_A_S extends BaseTest {
         medicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0006179-QS6705-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6705", site.activeProtocols)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 to less than 5 years ago")
-                .clickNextButton(new MedicationsForYourDiabetesPageCC());
+                .clickNextButton(medicationsForYourDiabetesPageCC);
 
         //-------Q6: Do you currently take any of the following specific medications for your diabetes?------------
         medicationsForYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Glyxambi (empagliflozin and linagliptin)", "Januvia (sitagliptin)", "Nesina (alogliptin)",
-                        "Oseni (alogliptin and pioglitazone)", "Onglyza (saxagliptin)", "Tradjenta (linagliptin)",
-                        "Bydureon or Byetta (exenatide)", "Saxenda or Victoza (liraglutide)", "Adlyxin (lixisenatide)",
-                        "Tanzeum (albiglutide)", "Trulicity (dulaglutide)", "Ozempic (semaglutide)")
-                .clickNextButton(new StatinMedicationsHavePageCC());
+                .clickOnAnswers("Glyxambi (empagliflozin and linagliptin)",
+                        "Januvia (sitagliptin)",
+                        "Nesina (alogliptin)",
+                        "Oseni (alogliptin and pioglitazone)",
+                        "Onglyza (saxagliptin)",
+                        "Tradjenta (linagliptin)",
+                        "Bydureon or Byetta (exenatide)",
+                        "Saxenda or Victoza (liraglutide)",
+                        "Adlyxin (lixisenatide)",
+                        "Tanzeum (albiglutide)",
+                        "Trulicity (dulaglutide)",
+                        "Ozempic (semaglutide)")
+                .clickNextButton(сholesterolTriglyceridesLipidsPageCC);
 
-        //-------New Q7: Ask Q7 (Statins Ever) even if did not report "High cholesterol or high triglycerides?------------
-        TriglyceridesOrLipidsPageCC triglyceridesOrLipidsPageCC = statinMedicationsOnPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above") //Skip to Q12
-                .clickNextButton(new TriglyceridesOrLipidsPageCC());
-        triglyceridesOrLipidsPageCC
-                .waitForPageLoad()
-                .back();
 
-        AreYouCurrentlyTakingStatinMedsCC areYouCurrentlyTakingStatinMedsCC = statinMedicationsOnPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Atorvastatin")
-                .clickOnAnswers("Advicor (lovastatin and niacin)")
-                .clickOnAnswers("Altoprev (lovastatin)")
-                .clickOnAnswers("Caduet (atorvastatin and amlodipine)")
-                .clickOnAnswers("Crestor (rosuvastatin calcium)")
-                .clickOnAnswers("Fluvastatin")
-                .clickOnAnswers("Juvisync (simvastatin and sitagliptin)")
-                .clickOnAnswers("Lescol or Lescol XL (fluvastatin)")
-                .clickOnAnswers("Lipitor (atorvastatin)")
-                .clickOnAnswers("Liptruzet (atorvastatin and ezetimibe)")
-                .clickOnAnswers("Livalo (pitavastatin)")
-                .clickOnAnswers("Lovastatin")
-                .clickOnAnswers("Mevacor (lovastatin)")
-                .clickOnAnswers("Pravachol (pravastatin)")
-                .clickOnAnswers("Pravastatin")
-                .clickOnAnswers("Rosuvastatin")
-                .clickOnAnswers("Simcor (simvastatin and niacin)")
-                .clickOnAnswers("Simvastatin")
-                .clickOnAnswers("Vytorin (simvastatin and ezetimibe)")
-                .clickOnAnswers("Zocor (simvastatin)")
-                .clickNextButton(new AreYouCurrentlyTakingStatinMedsCC());
-
-        //-------Q7: Which of the following statin medications have you ever taken on a daily basis?
-        //areYouCurrentlyTakingStatinMedsCC
-        StopTakingStatinPageCC stopTakingStatinPageCC = areYouCurrentlyTakingStatinMedsCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion("Atorvastatin", "No")
-                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "No")
-                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "No")
-                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "No")
-                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "No")
-                .clickOnAnswerForSubQuestion("Fluvastatin", "No")
-                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "No")
-                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "No")
-                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "No")
-                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "No")
-                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "No")
-                .clickOnAnswerForSubQuestion("Lovastatin", "No")
-                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "No")
-                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "No")
-                .clickOnAnswerForSubQuestion("Pravastatin", "No")
-                .clickOnAnswerForSubQuestion("Rosuvastatin", "No")
-                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "No")
-                .clickOnAnswerForSubQuestion("Simvastatin", "No")
-                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "No")
-                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "No")
-                .clickNextButton(new StopTakingStatinPageCC());
-                /*.clickOnAnswerForSubQuestion("Atorvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Advicor (lovastatin and niacin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Altoprev (lovastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Caduet (atorvastatin and amlodipine)", "Never taken")
-                .clickOnAnswerForSubQuestion("Crestor (rosuvastatin calcium)", "Never taken")
-                .clickOnAnswerForSubQuestion("Fluvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Juvisync (simvastatin and sitagliptin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lescol or Lescol XL (fluvastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lipitor (atorvastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Liptruzet (atorvastatin and ezetimibe)", "Never taken")
-                .clickOnAnswerForSubQuestion("Livalo (pitavastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Lovastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Mevacor (lovastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Pravachol (pravastatin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Pravastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Rosuvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Simcor (simvastatin and niacin)", "Never taken")
-                .clickOnAnswerForSubQuestion("Simvastatin", "Never taken")
-                .clickOnAnswerForSubQuestion("Vytorin (simvastatin and ezetimibe)", "Never taken")
-                .clickOnAnswerForSubQuestion("Zocor (simvastatin)", "Never taken")*/
-
-        stopTakingStatinPageCC
-                .waitForPageLoad()
-                .back();
-        areYouCurrentlyTakingStatinMedsCC
-                .waitForPageLoad()
-                .clickNextButton(new StopTakingStatinPageCC());
-
-        //-------Q8: Has a doctor ever told you to stop taking a statin medication due to side effects or intolerance?
-        WhileTakingStatinPageCC whileTakingStatinPageCC = stopTakingStatinPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new WhileTakingStatinPageCC());
-
-        //-------Q9: Have you ever experienced any of the following while taking a statin medication?
-        whileTakingStatinPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Muscle weakness")
-                .clickNextButton(triglyceridesOrLipidsPageCC);
-
-        //-------Q11: triglyceridesOrLipidsPageCC 
-        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = triglyceridesOrLipidsPageCC
+        //-------New Q12: Ask Q12 (current non-statin use) even if did not report "High cholesterol or high triglycerides"------------
+        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = сholesterolTriglyceridesLipidsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
         heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019288-QS6731-STUDYQUES", site.activeProtocols)
-                .back();
-        triglyceridesOrLipidsPageCC
+                .checkProtocolsContainsForQNumber("QS6734", site.activeProtocols)
+                .back(сholesterolTriglyceridesLipidsPageCC)
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("Unsure")
                 .clickNextButton(heartOrBloodVesselPageCC);
 
         //-----Q12:  Have you experienced any of the following heart or blood vessel related events?
@@ -371,44 +274,43 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
         //---Q13: When was the last time that you experienced a heart attack? 
-        subquestionExperiencedHeartPageCC
+        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4);
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = subquestionExperiencedHeartPageCC
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
         haveDoctorEverDiagnosedYou_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6713", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017029-QS6713-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6713", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
 
         //------Q15:  Have you experienced any of the following cardiovascular interventions or surgeries?
@@ -419,7 +321,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .back(heartOrBloodVesselPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_CC())
+                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalConditionsProceduresPageCC());
@@ -444,15 +346,13 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = approximateHeightPageCC
+        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new WeightLossSurgeryPageCC());
-
-        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = weightLossSurgeryPageCC
+                .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018795-QS6722-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
                 .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .back(everSmokedCigarettesPageCC)
@@ -466,12 +366,12 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickOnAnswers("Procedure to clear plaque from blood vessels in the neck such as carotid endarterectomy")
                 .clickNextButton(new ReceivedHeartProcedurePageCC());
 
-        receivedHeartProcedurePageCC
+        HealthcareDiagnosedConditionsPageCC healthcareDiagnosedConditionsPageCC = receivedHeartProcedurePageCC
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(relativesHeartAttackPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017037-QS6717-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6717", site.activeProtocols)
                 .back(receivedHeartProcedurePageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("More than 6 months ago")
@@ -483,42 +383,27 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
-                .clickNextButton(weightLossSurgeryPageCC);
+                .clickNextButton(new HealthcareDiagnosedConditionsPageCC());
 
-        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new ProcedureForWeightLossPageCC());
-
-        HealthcareDiagnosedConditionsPageCC healthcareDiagnosedConditionsPageCC = new HealthcareDiagnosedConditionsPageCC();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(healthcareDiagnosedConditionsPageCC);
-
-        HashMap<String, List<String>> options = new HashMap<>();
-        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = new TransitionalStatementLowtPageCC();
-        options.put("Cancer in the past 5 years, except skin cancer", Arrays.asList(site.activeProtocols));
-        options.put("Cirrhosis of the liver", Arrays.asList(site.activeProtocols));
-        options.put("Drug or alcohol abuse within the past year", Arrays.asList(site.activeProtocols));
-        options.put("Hepatitis B", Arrays.asList(site.activeProtocols));
-        options.put("Hepatitis C", Arrays.asList(site.activeProtocols));
-        options.put("HIV or AIDS", Arrays.asList(site.activeProtocols));
-        options.put("Kidney disease requiring dialysis or transplant", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : options.entrySet()) {
+        List<String> options = Arrays.asList("Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis of the liver",
+                "Drug or alcohol abuse within the past year",
+                "Hepatitis B",
+                "Hepatitis C",
+                "HIV or AIDS",
+                "Kidney disease requiring dialysis or transplant");
+        for (String entry: options) {
+            System.out.println(entry);
             healthcareDiagnosedConditionsPageCC
-                    .waitForPageLoad();
-            healthcareDiagnosedConditionsPageCC
+                    .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
-                    .clickNextButton(transitionalStatementLowtPageCC);
-            transitionalStatementLowtPageCC
+                    .clickOnAnswers(entry)
+                    .clickNextButton(transitionalStatementLowtPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0018797-QS6725-STUDYQUES", (String[]) entry.getValue().toArray())
+                    .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
                     .back();
         }
-
         IdentificationPageCC identificationPageCC = healthcareDiagnosedConditionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -552,6 +437,10 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "03/02/1952", "US",
+                                "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", "5034SAUT", "AUT_CV_5034S_site",
+                                "KOWQUICAR302")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

@@ -214,8 +214,7 @@ public class DERM_4967_CC extends BaseTest {
                         "Skin thickening")
                 .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
         //Q27
-        CurrentlyTakingFollowingMedicationsCC currentlyTakingFollowingMedicationsCC =
-        haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
+        TransitionStatementCC transitionStatementCC = haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
                         "Medications taken by mouth (oral medications)",
@@ -225,15 +224,17 @@ public class DERM_4967_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Self-treatment with tanning beds or sunbathing",
                         "Phototherapy (Ultraviolet or UV light treatment)")
-                .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
-        currentlyTakingFollowingMedicationsCC
-                .waitForPageLoad()
+                .clickNextButton(new TransitionStatementCC());
+
+        CurrentlyTakingFollowingMedicationsCC currentlyTakingFollowingMedicationsCC = transitionStatementCC
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
                 .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
                 .waitForPageLoad()
-                .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)")
-                .clickNextButton(currentlyTakingFollowingMedicationsCC);
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Medications taken by mouth (oral medications)")
+                .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
         //Q30
         DupixentInjectionPageCC dupixentInjectionPageCC = currentlyTakingFollowingMedicationsCC
                 .waitForPageLoad()
@@ -317,22 +318,39 @@ public class DERM_4967_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(dupixentInjectionPageCC);
 
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
         dupixentInjectionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No, never took")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .back(dupixentInjectionPageCC)
+                .waitForPageLoad()
+                .back(currentlyTakingFollowingMedicationsCC)
+                .waitForPageLoad()
+                .back(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
+                .waitForPageLoadKAD()
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Medications taken by mouth (oral medications)")
+                .clickNextButton(currentlyTakingFollowingMedicationsCC)
+                .waitForPageLoad()
+                .clickNextButton(dupixentInjectionPageCC)
+                .waitForPageLoad()
                 .clickNextButton(eitherOfTheFollowingMedicationsCC);
 
-        TransitionStatementCC transitionStatementCC = eitherOfTheFollowingMedicationsCC
+        eitherOfTheFollowingMedicationsCC
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)",
                         "Olumiant (Agent Note: oh-LOO-me-ant)",
                         "Xeljanz (Agent Note: ZEL-jans)")
                 .clickNextButton(new TransitionStatementCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 transitionStatementCC
                         .waitForPageLoadWithCurvesKAD(studyNameForTrans)
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
         //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -712,7 +730,6 @@ public class DERM_4967_CC extends BaseTest {
                 "Drug or alcohol abuse within the past year",
                 "Hepatitis B",
                 "Hepatitis C",
-                //"Multiple sclerosis (MS)",
                 "HIV or AIDS");
         for (String answer: disqualifyQ24) {
             System.out.println(answer);
@@ -728,7 +745,9 @@ public class DERM_4967_CC extends BaseTest {
         }
 
         //Q24: QS59
-        List<String> disqualifyQ24second = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
+        List<String> disqualifyQ24second = Arrays.asList("Kidney disease requiring dialysis",
+                "Schizophrenia",
+                "Multiple sclerosis (MS)");
         for (String answer: disqualifyQ24second) {
             System.out.println(answer);
             doAnyOftheFollowingAdditionalDiagnosesCC

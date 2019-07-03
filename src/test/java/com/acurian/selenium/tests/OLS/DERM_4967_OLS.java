@@ -218,7 +218,7 @@ public class DERM_4967_OLS extends BaseTest {
                         "Skin thickening")
                 .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
-        CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS =
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
@@ -229,16 +229,18 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Self-treatment with tanning beds or sunbathing",
                         "Phototherapy (Ultraviolet or UV light treatment)")
-                .clickNextButton(new CurrentlyTakingFollowingMedicationsOLS());
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        currentlyTakingFollowingMedicationsOLS
+        CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
                 .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
                 .waitForPageLoad()
-                .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)")
-                .clickNextButton(currentlyTakingFollowingMedicationsOLS);
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Medications taken by mouth (oral medications)")
+                .clickNextButton(new CurrentlyTakingFollowingMedicationsOLS());
 
         //Q30
         DupixentInjectionPageOLS dupixentInjectionPageOLS = currentlyTakingFollowingMedicationsOLS
@@ -323,15 +325,30 @@ public class DERM_4967_OLS extends BaseTest {
         dupixentInjectionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No, never took")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
+                .back(dupixentInjectionPageOLS)
+                .waitForPageLoad()
+                .back(currentlyTakingFollowingMedicationsOLS)
+                .waitForPageLoad()
+                .back(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS)
+                .waitForPageLoad()
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Medications taken by mouth (oral medications)")
+                .clickNextButton(currentlyTakingFollowingMedicationsOLS)
+                .waitForPageLoad()
+                .clickNextButton(dupixentInjectionPageOLS)
+                .waitForPageLoad()
                 .clickNextButton(eitherOfFollowingMedicationsOLS);
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 eitherOfFollowingMedicationsOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Jakafi",
-                        "Olumiant",
-                        "Xeljanz")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Jakafi",
+                                "Olumiant",
+                                "Xeljanz")
+                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -709,7 +726,6 @@ public class DERM_4967_OLS extends BaseTest {
                 "Drug or alcohol abuse within the past year",
                 "Hepatitis B",
                 "Hepatitis C",
-                //"Multiple sclerosis (MS)",
                 "HIV or AIDS");
         for (String answer: disqualifyQ24) {
             System.out.println(answer);
@@ -724,7 +740,9 @@ public class DERM_4967_OLS extends BaseTest {
                     .back();
         }
         //Q24: QS59
-        List<String> disqualifyQ24second = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
+        List<String> disqualifyQ24second = Arrays.asList("Kidney disease requiring dialysis",
+                "Schizophrenia",
+                "Multiple sclerosis (MS)");
         for (String answer: disqualifyQ24second) {
             System.out.println(answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
