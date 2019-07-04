@@ -59,7 +59,7 @@ public class DERM_4967_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"),
+                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
                 "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
@@ -231,48 +231,12 @@ public class DERM_4967_OLS extends BaseTest {
                         "Phototherapy (Ultraviolet or UV light treatment)")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS =
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
                 .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Medications taken by mouth (oral medications)")
-                .clickNextButton(new CurrentlyTakingFollowingMedicationsOLS());
-
-        //Q30
-        DupixentInjectionPageOLS dupixentInjectionPageOLS = currentlyTakingFollowingMedicationsOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Fasenra (benralizumab)",
-                        "Nucala (mepolizumab)",
-                        "Otezla (apremilast)")
-                .clickNextButton(new DupixentInjectionPageOLS());
-
-        EitherOfFollowingMedicationsOLS eitherOfFollowingMedicationsOLS = dupixentInjectionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, currently taking")
-                .clickNextButton(new EitherOfFollowingMedicationsOLS());
-        eitherOfFollowingMedicationsOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
-                .back(dupixentInjectionPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, took in the past but not now")
-                .clickNextButton(eitherOfFollowingMedicationsOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols[0])
-                .back(dupixentInjectionPageOLS)
-                .waitForPageLoad()
-                .back(currentlyTakingFollowingMedicationsOLS)
-                .waitForPageLoad()
-                .back();
-
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS =
-                haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Shots or IV infusions (injectable medications)")
@@ -294,6 +258,8 @@ public class DERM_4967_OLS extends BaseTest {
                 "Stelara",
                 "Taltz",
                 "Tysabri");
+        CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS = new
+                CurrentlyTakingFollowingMedicationsOLS();
         for (String answer: disqualifyQ29) {
             areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
                     .waitForPageLoad()
@@ -305,11 +271,12 @@ public class DERM_4967_OLS extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                     .back();
         }
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
+        DupixentInjectionPageOLS dupixentInjectionPageOLS = areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cosentyx")
-                .clickNextButton(dupixentInjectionPageOLS)
+                .clickNextButton(new DupixentInjectionPageOLS());
+        dupixentInjectionPageOLS
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                 .back();
@@ -317,31 +284,46 @@ public class DERM_4967_OLS extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(currentlyTakingFollowingMedicationsOLS)
+                .clickNextButton(currentlyTakingFollowingMedicationsOLS);
+        //Q30
+        currentlyTakingFollowingMedicationsOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Fasenra (benralizumab)",
+                        "Nucala (mepolizumab)",
+                        "Otezla (apremilast)")
                 .clickNextButton(dupixentInjectionPageOLS);
 
         dupixentInjectionPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No, never took")
+                .clickOnAnswer("Yes, currently taking")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
+                .back(dupixentInjectionPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, took in the past but not now")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols[0])
                 .back(dupixentInjectionPageOLS)
                 .waitForPageLoad()
                 .back(currentlyTakingFollowingMedicationsOLS)
                 .waitForPageLoad()
                 .back(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS)
                 .waitForPageLoad()
-                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
+                .back();
+
+        EitherOfFollowingMedicationsOLS eitherOfFollowingMedicationsOLS =
+                haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Medications taken by mouth (oral medications)")
                 .clickNextButton(currentlyTakingFollowingMedicationsOLS)
                 .waitForPageLoad()
-                .clickNextButton(dupixentInjectionPageOLS)
-                .waitForPageLoad()
-                .clickNextButton(eitherOfFollowingMedicationsOLS);
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new EitherOfFollowingMedicationsOLS());
 
                 eitherOfFollowingMedicationsOLS
                         .waitForPageLoad()
