@@ -40,7 +40,7 @@ public class DERM_7036_OLS extends BaseTest {
 
     @Test(dataProvider = "sites")
     @Description("DERM_7036_OLS")
-    public void derm7036OLS(final Site site) {
+    public void derm7036ols(final Site site) {
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis)";
         DebugPageOLS debugPageOls = new DebugPageOLS();
@@ -50,7 +50,7 @@ public class DERM_7036_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
@@ -134,15 +134,15 @@ public class DERM_7036_OLS extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5805", site.activeProtocols)
                 .back();
-        WeWantToMakeSureTheImagesDisplayProperly_OLS weWantToMakeSureTheImagesDisplayProperly_OLS = whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
+        WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS = whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
                 .waitForPageLoad()
                 .clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
-                .clickNextButton(new WeWantToMakeSureTheImagesDisplayProperly_OLS());
-
-        WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS = weWantToMakeSureTheImagesDisplayProperly_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("Computer or tablet")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
+
+//        WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS = weWantToMakeSureTheImagesDisplayProperly_OLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Computer or tablet")
+//                .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
 
         WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS = whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
@@ -167,7 +167,7 @@ public class DERM_7036_OLS extends BaseTest {
         howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5843", site.activeProtocols)
                 .back(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("G")
@@ -178,7 +178,7 @@ public class DERM_7036_OLS extends BaseTest {
                 .clickOnAnswer("My skin is never itchy")
                 .clickNextButton(new EczemaSymptomsExperienceOLS());
 
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = eczemaSymptomsExperienceOLS
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS = eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Redness",
                         "Swelling",
@@ -186,65 +186,40 @@ public class DERM_7036_OLS extends BaseTest {
                         "Dryness",
                         "Scratch marks",
                         "Skin thickening")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
-        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_ols = haveYouEverTreatedYourEczema_OLS
+        haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes, within the past year")
-                .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
-
-        DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_ols = whichofthefollowingMedicationsTherapies_ols
-                .waitForPageLoad()
-                .clickOnAnswers("Dupixent (dupilumab)")
-                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
-
-        didYouReceiveAnyTherapiesPastYear_ols
+                .clickOnAnswers("Self-treatment with tanning beds or sunbathing")
+                .clickNextButton(healthcareDiagnosedPsoriasisPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_ols);
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols =
-        whichofthefollowingMedicationsTherapies_ols
+                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                .back();
+        haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Phototherapy (Ultraviolet or UV light treatment)")
+                .clickNextButton(healthcareDiagnosedPsoriasisPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOls)
+                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                .back();
+        haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+                .waitForPageLoad()
+                .back();
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols = haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Shots or IV infusions (injectable medications)",
+                        "Medications taken by mouth (oral medications)")
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols
-                .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic") //Must ... in Q22 selected "Yes, within the past year"
-                .back(whichofthefollowingMedicationsTherapies_ols)
-                .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_OLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, but more than 1 year ago")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_ols)
-                .waitForPageLoad()
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
-                .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
-                .back(whichofthefollowingMedicationsTherapies_ols)
-                .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_OLS)
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_ols);
-        whichofthefollowingMedicationsTherapies_ols
-                .waitForPageLoad()
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
-                .waitForPageLoad()
-                .getPage(debugPageOls)
-                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_ols)
-                .waitForPageLoad()
-                .clickOnAnswers("Azasan or Imuran (azathioprine)")
-                .clickNextButton(didYouReceiveAnyTherapiesPastYear_ols);
 
-        didYouReceiveAnyTherapiesPastYear_ols
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols);
-
+        DupixentInjectionPageOLS dupixentInjectionPageOLS = new DupixentInjectionPageOLS();
         List<String> medications = Arrays.asList(
                 "Actemra",
                 "Benlysta",
@@ -270,7 +245,7 @@ public class DERM_7036_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(medication)
-                    .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_ols)
+                    .clickNextButton(dupixentInjectionPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOls)
                     .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
@@ -279,7 +254,81 @@ public class DERM_7036_OLS extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(dupixentInjectionPageOLS);
+
+        dupixentInjectionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, currently taking")
+                .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_ols)
+                .waitForPageLoad()
+                .getPage(debugPageOls)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
+                .back();
+        dupixentInjectionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, took in the past but not now")
                 .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_ols);
+
+//
+//
+//        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_ols = haveYouEverTreatedYourEczema_OLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes, within the past year")
+//                .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
+//
+//        DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_ols = whichofthefollowingMedicationsTherapies_ols
+//                .waitForPageLoad()
+//                .clickOnAnswers("Dupixent (dupilumab)")
+//                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
+//
+//        didYouReceiveAnyTherapiesPastYear_ols
+//                .waitForPageLoad()
+//                .getPage(debugPageOls)
+//                .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
+//                .back(whichofthefollowingMedicationsTherapies_ols);
+//        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols =
+//        whichofthefollowingMedicationsTherapies_ols
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
+//        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols
+//                .waitForPageLoad()
+//                .getPage(debugPageOls)
+//                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic") //Must ... in Q22 selected "Yes, within the past year"
+//                .back(whichofthefollowingMedicationsTherapies_ols)
+//                .waitForPageLoad()
+//                .back(haveYouEverTreatedYourEczema_OLS)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes, but more than 1 year ago")
+//                .clickNextButton(whichofthefollowingMedicationsTherapies_ols)
+//                .waitForPageLoad()
+//                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
+//                .waitForPageLoad()
+//                .getPage(debugPageOls)
+//                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
+//                .back(whichofthefollowingMedicationsTherapies_ols)
+//                .waitForPageLoad()
+//                .back(haveYouEverTreatedYourEczema_OLS)
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(whichofthefollowingMedicationsTherapies_ols);
+//        whichofthefollowingMedicationsTherapies_ols
+//                .waitForPageLoad()
+//                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols)
+//                .waitForPageLoad()
+//                .getPage(debugPageOls)
+//                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
+//                .back(whichofthefollowingMedicationsTherapies_ols)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Azasan or Imuran (azathioprine)")
+//                .clickNextButton(didYouReceiveAnyTherapiesPastYear_ols);
+//
+//        didYouReceiveAnyTherapiesPastYear_ols
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_ols);
+
+
 
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
@@ -307,9 +356,8 @@ public class DERM_7036_OLS extends BaseTest {
                 .getPage(debugPageOls)
                 .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
-        haveYouEverTakenEitherAnyOfFollowingMeds_ols
-                .waitForPageLoad();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverTakenEitherAnyOfFollowingMeds_ols
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
@@ -317,6 +365,7 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Lupus")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+
 
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
