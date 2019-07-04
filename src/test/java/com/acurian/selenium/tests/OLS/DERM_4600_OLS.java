@@ -38,7 +38,7 @@ public class DERM_4600_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("DERM_4600_OLS")
     public void derm4600Ols(final Site site) {
         final String phoneNumber = "AUTAMSDERM";

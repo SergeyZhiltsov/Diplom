@@ -10,8 +10,8 @@ import java.util.List;
 
 public class WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS extends MainPageOLS {
 
-    public final String titleExpected = "Which of these pictures looks most similar to the amount of eczema (atopic dermatitis) currently on your head, face, and neck?\n" +
-            "Please focus on the amount of skin covered by eczema (atopic dermatitis), rather than the pattern in the pictures. Answer choices appear below the pictures.";
+    public final String titleExpected = "Which of these pictures looks most similar to the amount of eczema currently on your head, face, and neck?\n" +
+            "Please focus on the amount of skin covered by eczema, rather than the pattern in the pictures. Answer choices appear below the pictures.";
 
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
