@@ -17,11 +17,11 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
+import com.acurian.selenium.tests.OLS.DERM_4967_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -39,14 +39,7 @@ public class DERM_4967_CC extends BaseTest {
         super.tearDown();
     }
 
-    @DataProvider(name = "sites")
-    public Object[][] getData() {
-        return new Object[][] {
-                {Site.AUT_AMS1_4967_site}
-        };
-    }
-
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", dataProviderClass = DERM_4967_OLS.class)
     @Description("DERM 4967 Regeneron Atopic Dermatitis")
     public void derm4967ccRADtest(Site site) {
         final String phoneNumber = "AUTAMS4967";
@@ -86,7 +79,7 @@ public class DERM_4967_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName,
-                "400"), "Title is diff");
+                "600"), "Title is diff");
 
         dateOfBirthPageCC
                 .setMonth("Jul")
@@ -233,46 +226,10 @@ public class DERM_4967_CC extends BaseTest {
                 .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Medications taken by mouth (oral medications)")
-                .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
-        //Q30
-        DupixentInjectionPageCC dupixentInjectionPageCC = currentlyTakingFollowingMedicationsCC
-                .waitForPageLoad()
-                .clickOnAnswers("Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
-                        "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
-                        "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)")
-                .clickNextButton(new DupixentInjectionPageCC());
-        //Q31
-        EitherOfTheFollowingMedicationsCC eitherOfTheFollowingMedicationsCC = dupixentInjectionPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, currently taking")
-                .clickNextButton(new EitherOfTheFollowingMedicationsCC());
-        eitherOfTheFollowingMedicationsCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
-                .back(dupixentInjectionPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, took in the past but not now")
-                .clickNextButton(eitherOfTheFollowingMedicationsCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols[0])
-                .back(dupixentInjectionPageCC)
-                .waitForPageLoad()
-                .back(currentlyTakingFollowingMedicationsCC)
-                .waitForPageLoad()
-                .back();
-        //Q27
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
-                haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Shots or IV infusions (injectable medications)")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
+                .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
 
-        List<String> disqualifyQ29 = Arrays.asList(
-                "Actemra (Agent Note: ac-TEM-ruh)",
+        List<String> medications = Arrays.asList("Actemra (Agent Note: ac-TEM-ruh)",
                 "Benlysta (Agent Note: ben-LIST-uh)",
                 "Cimzia (Agent Note: SIM-zee-uh)",
                 "Enbrel (Agent Note: EN-brel)",
@@ -288,7 +245,9 @@ public class DERM_4967_CC extends BaseTest {
                 "Stelara (Agent Note: ste-LAHR-uh)",
                 "Taltz (Agent Note: TALTS)",
                 "Tysabri (Agent Note: tie-SAB-ree)");
-        for (String answer: disqualifyQ29) {
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
+                new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC();
+        for (String answer: medications) {
             System.out.println(answer);
             areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                     .waitForPageLoadKAD()
@@ -300,11 +259,12 @@ public class DERM_4967_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                     .back();
         }
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+        DupixentInjectionPageCC dupixentInjectionPageCC = areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cosentyx (Agent Note: co-SEN-tix)")
-                .clickNextButton(dupixentInjectionPageCC)
+                .clickNextButton(new DupixentInjectionPageCC());
+        dupixentInjectionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
@@ -313,44 +273,56 @@ public class DERM_4967_CC extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(currentlyTakingFollowingMedicationsCC)
+                .clickNextButton(currentlyTakingFollowingMedicationsCC);
+        //Q30
+        currentlyTakingFollowingMedicationsCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
+                        "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
+                        "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)")
                 .clickNextButton(dupixentInjectionPageCC);
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
+        //Q31
         dupixentInjectionPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No, never took")
+                .clickOnAnswer("Yes, currently taking")
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
+                .back(dupixentInjectionPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, took in the past but not now")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols[0])
                 .back(dupixentInjectionPageCC)
                 .waitForPageLoad()
                 .back(currentlyTakingFollowingMedicationsCC)
                 .waitForPageLoad()
                 .back(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
                 .waitForPageLoadKAD()
-                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
+                .back();
+        //Q27
+        EitherOfTheFollowingMedicationsCC eitherOfTheFollowingMedicationsCC =
+                haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Medications taken by mouth (oral medications)")
                 .clickNextButton(currentlyTakingFollowingMedicationsCC)
                 .waitForPageLoad()
-                .clickNextButton(dupixentInjectionPageCC)
-                .waitForPageLoad()
-                .clickNextButton(eitherOfTheFollowingMedicationsCC);
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new EitherOfTheFollowingMedicationsCC());
 
-        eitherOfTheFollowingMedicationsCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                eitherOfTheFollowingMedicationsCC
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)",
                         "Olumiant (Agent Note: oh-LOO-me-ant)",
                         "Xeljanz (Agent Note: ZEL-jans)")
-                .clickNextButton(new TransitionStatementCC());
-
-                transitionStatementCC
-                        .waitForPageLoadWithCurvesKAD(studyNameForTrans)
-                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
