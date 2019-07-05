@@ -56,7 +56,8 @@ public class DERM_7036_CC extends BaseTest {
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -73,14 +74,17 @@ public class DERM_7036_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected,
+                "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+                "Title is diff");
 
         dateOfBirthPageCC
                 .setMonth("Apr")
@@ -90,7 +94,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
@@ -119,7 +123,7 @@ public class DERM_7036_CC extends BaseTest {
         diagnosedWithPsoriasisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
                 .back();
 
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_cc = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
@@ -141,7 +145,7 @@ public class DERM_7036_CC extends BaseTest {
                     .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                     .back();
         }
         howLongHaveYouBeenSufferingFromEczema_cc
@@ -163,7 +167,7 @@ public class DERM_7036_CC extends BaseTest {
         howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5834", site.activeProtocols)
                 .back(dollarBillsToCoverEczemaCC)
                 .waitForPageLoad()
                 .selectFromDropDown("7")
@@ -220,7 +224,7 @@ public class DERM_7036_CC extends BaseTest {
         didYouReceiveAnyTherapiesPastYear_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017868-QS5827-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
                 .back(whichofthefollowingMedicationsTherapies_CC);
 
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
@@ -231,7 +235,7 @@ public class DERM_7036_CC extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
                 .back();
 
         List<String> disqualifyQ25 = Arrays.asList(
@@ -250,7 +254,7 @@ public class DERM_7036_CC extends BaseTest {
                     .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
                     .waitForPageLoadKAD()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
                     .back(didYouReceiveAnyTherapiesPastYear_CC)
                     .waitForPageLoad()
                     .back(whichofthefollowingMedicationsTherapies_CC);
@@ -296,7 +300,7 @@ public class DERM_7036_CC extends BaseTest {
                     .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                     .back();
         }
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
@@ -317,7 +321,7 @@ public class DERM_7036_CC extends BaseTest {
                     .clickNextButton(transitionStatementCC)
                     .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                     .back();
         }
 
@@ -409,7 +413,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(otherThanSkinCancerPageOLS);
         //Back to haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
         otherThanSkinCancerPageOLS
@@ -504,7 +508,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -514,7 +518,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -533,7 +537,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfTheFollowingLiverProblemsPageСС);
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
@@ -562,7 +566,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC);
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
@@ -572,7 +576,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC);
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
@@ -603,7 +607,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015145-QS55-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS55", site.activeProtocols)
                 .back(whichOfTheFollowingSkinConditionsDoYouSufferСС);
         whichOfTheFollowingSkinConditionsDoYouSufferСС
                 .waitForPageLoad()
@@ -691,7 +695,7 @@ public class DERM_7036_CC extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
@@ -702,7 +706,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(approximateHeightPageCC)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -711,7 +715,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(approximateHeightPageCC)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         LetMeSeePageCC letMeSeePageCC = doAnyOftheFollowingAdditionalDiagnosesCC
@@ -728,7 +732,8 @@ public class DERM_7036_CC extends BaseTest {
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();
