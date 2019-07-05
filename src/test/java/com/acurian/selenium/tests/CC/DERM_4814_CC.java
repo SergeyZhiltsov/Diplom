@@ -135,7 +135,7 @@ public class DERM_4814_CC extends BaseTest {
         }
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
-                .clickOnAnswer("2 years")
+                .clickOnAnswer("3 years or more")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
         //Q4
         DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc
@@ -280,7 +280,7 @@ public class DERM_4814_CC extends BaseTest {
         List<String> disqualifyQ30 = Arrays.asList("Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
                 "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
                 "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)");
-        for(String answer: disqualifyQ30) {
+        for (String answer: disqualifyQ30) {
             System.out.println(answer);
             currentlyTakingFollowingMedicationsCC
                     .waitForPageLoad()
@@ -293,6 +293,11 @@ public class DERM_4814_CC extends BaseTest {
                     .back();
         }
         EitherOfTheFollowingMedicationsCC eitherOfTheFollowingMedicationsCC = currentlyTakingFollowingMedicationsCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(dupixentInjectionPageCC)
+                .waitForPageLoad()
+                .back(currentlyTakingFollowingMedicationsCC)
                 .waitForPageLoad()
                 .back(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
                 .waitForPageLoadKAD()
@@ -321,6 +326,10 @@ public class DERM_4814_CC extends BaseTest {
                     .back();
         }
         eitherOfTheFollowingMedicationsCC
+                .waitForPageLoad()
+                .back(currentlyTakingFollowingMedicationsCC)
+                .waitForPageLoad()
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(transitionStatementCC);
@@ -553,6 +562,15 @@ public class DERM_4814_CC extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
+                .waitForPageLoad()
+                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickNextButton(subquestionExperiencedHeartPageCC)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
         //Q24: QS59
         ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();

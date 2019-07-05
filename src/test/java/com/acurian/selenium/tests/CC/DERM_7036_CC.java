@@ -56,7 +56,8 @@ public class DERM_7036_CC extends BaseTest {
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -73,14 +74,17 @@ public class DERM_7036_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected,
+                "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+                "Title is diff");
 
         dateOfBirthPageCC
                 .setMonth("Apr")
@@ -90,7 +94,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
@@ -119,7 +123,7 @@ public class DERM_7036_CC extends BaseTest {
         diagnosedWithPsoriasisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
                 .back();
 
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_cc = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
@@ -141,7 +145,7 @@ public class DERM_7036_CC extends BaseTest {
                     .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                     .back();
         }
         howLongHaveYouBeenSufferingFromEczema_cc
@@ -163,7 +167,7 @@ public class DERM_7036_CC extends BaseTest {
         howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5834", site.activeProtocols)
                 .back(dollarBillsToCoverEczemaCC)
                 .waitForPageLoad()
                 .selectFromDropDown("7")
@@ -186,7 +190,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(eczemaSymptomsExperienceCC);
 
         //Q21
-        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_cc = eczemaSymptomsExperienceCC
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC = eczemaSymptomsExperienceCC
                 .waitForPageLoad()
                 .clickOnAnswers("Redness",
                         "Swelling",
@@ -194,78 +198,32 @@ public class DERM_7036_CC extends BaseTest {
                         "Dryness",
                         "Scratch marks",
                         "Skin thickening")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
 
-        //Q22
-        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_cc
+        TransitionStatementCC transitionStatementCC = haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No") //Influence on Q25 Ghost Question - Atopic Derm Treatment History Logic
-                .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
-        //23
-        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
+                .clickOnAnswers("Self-treatment with tanning beds or sunbathing")
+                .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
                 .waitForPageLoad()
-                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)",
-                        "CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)",
-                        "Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)",
-                        "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
-                        "Neoral, Sandimmune, or Gengraf, also known as cyclosporine (Agent Note: NEE-oh-ral, GEN-graf, cy-clo-SPOR-in)",
-                        "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
-                        "Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)",
-                        "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)",
-                        "Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)",
-                        "Phototherapy, Ultraviolet, or UV light")
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)") //Disqualify (“Current biologic use”)
-                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
-        didYouReceiveAnyTherapiesPastYear_CC
-                .waitForPageLoad()
+                .clickOnAnswers("Phototherapy (Ultraviolet or UV light treatment)")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017868-QS5827-STUDYQUES", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_CC);
-
+                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
-        whichofthefollowingMedicationsTherapies_CC
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above") //if selected "None of the above", skip to Q21 Q25 Ghost - Atopic Derm Treatment History Logic
-                        .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
-                .waitForPageLoadKAD()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
-                .back();
-
-        List<String> disqualifyQ25 = Arrays.asList(
-                "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
-                "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
-                "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)"
-        );
-        for(String disqualify: disqualifyQ25) {
-            whichofthefollowingMedicationsTherapies_CC
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(disqualify)
-                    .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC)
-                    .waitForPageLoad()
-                    .clickOnAnswer("No")
-                    .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
-                    .waitForPageLoadKAD()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
-                    .back(didYouReceiveAnyTherapiesPastYear_CC)
-                    .waitForPageLoad()
-                    .back(whichofthefollowingMedicationsTherapies_CC);
-        }
-
-        whichofthefollowingMedicationsTherapies_CC
+                haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, " +
-                        "ay-zuh-THI-o-prin)")
-                .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC);
-
-        didYouReceiveAnyTherapiesPastYear_CC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Shots or IV infusions (injectable medications)",
+                        "Medications taken by mouth (oral medications)")
+                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
 
         List<String> medications = Arrays.asList(
                 "Actemra (Agent Note: ac-TEM-ruh)",
@@ -286,25 +244,145 @@ public class DERM_7036_CC extends BaseTest {
                 "Taltz (Agent Note: TALTS)",
                 "Tysabri (Agent Note: tie-SAB-ree)"
         );
-        HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC =
-                new HaveYouEverTakenEitherAnyOfFollowingMeds_CC();
-        for (String medication : medications) {
+        DupixentInjectionPageCC dupixentInjectionPageCC = new DupixentInjectionPageCC();
+        for (String answer: medications) {
+            System.out.println(answer);
             areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                     .waitForPageLoadKAD()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(medication)
-                    .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
+                    .clickOnAnswers(answer)
+                    .clickNextButton(dupixentInjectionPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                     .back();
         }
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(dupixentInjectionPageCC);
+
+        HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = dupixentInjectionPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, currently taking")
+                .clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_CC());
+        haveYouEverTakenEitherAnyOfFollowingMeds_CC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
+                .back(dupixentInjectionPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, took in the past but not now")
                 .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC);
 
-        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
+
+
+//        //Q22
+//        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_cc
+//                .waitForPageLoad()
+//                .clickOnAnswer("No") //Influence on Q25 Ghost Question - Atopic Derm Treatment History Logic
+//                .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
+//        //23
+//        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)",
+//                        "CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)",
+//                        "Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)",
+//                        "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
+//                        "Neoral, Sandimmune, or Gengraf, also known as cyclosporine (Agent Note: NEE-oh-ral, GEN-graf, cy-clo-SPOR-in)",
+//                        "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
+//                        "Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)",
+//                        "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)",
+//                        "Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)",
+//                        "Phototherapy, Ultraviolet, or UV light")
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)") //Disqualify (“Current biologic use”)
+//                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
+//        didYouReceiveAnyTherapiesPastYear_CC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
+//                .back(whichofthefollowingMedicationsTherapies_CC);
+//
+//        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
+//        whichofthefollowingMedicationsTherapies_CC
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("None of the above") //if selected "None of the above", skip to Q21 Q25 Ghost - Atopic Derm Treatment History Logic
+//                        .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
+//        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                .waitForPageLoadKAD()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
+//                .back();
+//
+//        List<String> disqualifyQ25 = Arrays.asList(
+//                "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
+//                "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
+//                "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)"
+//        );
+//        for(String disqualify: disqualifyQ25) {
+//            whichofthefollowingMedicationsTherapies_CC
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(disqualify)
+//                    .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC)
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No")
+//                    .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
+//                    .waitForPageLoadKAD()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
+//                    .back(didYouReceiveAnyTherapiesPastYear_CC)
+//                    .waitForPageLoad()
+//                    .back(whichofthefollowingMedicationsTherapies_CC);
+//        }
+//
+//        whichofthefollowingMedicationsTherapies_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, " +
+//                        "ay-zuh-THI-o-prin)")
+//                .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC);
+//
+//        didYouReceiveAnyTherapiesPastYear_CC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);
+//
+//        List<String> medications = Arrays.asList(
+//                "Actemra (Agent Note: ac-TEM-ruh)",
+//                "Benlysta (Agent Note: ben-LIST-uh)",
+//                "Cimzia (Agent Note: SIM-zee-uh)",
+//                "Cosentyx (Agent Note: co-SEN-tix)",
+//                "Enbrel (Agent Note: EN-brel)",
+//                "Entyvio (Agent Note: en-TIV-ee-oh)",
+//                "Humira (Agent Note: hue-MAIR-uh)",
+//                "Kineret (Agent Note: KIN-er-et)",
+//                "Orencia (Agent Note: oh-REN-see-uh)",
+//                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
+//                "Raptiva (Agent Note: rap-TEE-vuh)",
+//                "Remicade (Agent Note: REM-ih-cade)",
+//                "Rituxan (Agent Note: rih-TUX-an)",
+//                "Simponi (Agent Note: SIM-po-nee)",
+//                "Stelara (Agent Note: ste-LAHR-uh)",
+//                "Taltz (Agent Note: TALTS)",
+//                "Tysabri (Agent Note: tie-SAB-ree)"
+//        );
+//        for (String medication : medications) {
+//            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                    .waitForPageLoadKAD()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(medication)
+//                    .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
+//                    .back();
+//        }
+//        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                .waitForPageLoadKAD()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC);
+
         List<String> disqualifyQ27 = Arrays.asList("Jakafi (Agent Note: JAK-uh-fie)",
                 "Olumiant (Agent Note: oh-LOO-me-ant)",
                 "Xeljanz (Agent Note: ZEL-jans)");
@@ -317,7 +395,7 @@ public class DERM_7036_CC extends BaseTest {
                     .clickNextButton(transitionStatementCC)
                     .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                     .back();
         }
 
@@ -409,7 +487,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(otherThanSkinCancerPageOLS);
         //Back to haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
         otherThanSkinCancerPageOLS
@@ -504,7 +582,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -514,7 +592,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -533,7 +611,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfTheFollowingLiverProblemsPageСС);
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
@@ -562,7 +640,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC);
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
@@ -572,7 +650,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC);
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
@@ -603,7 +681,7 @@ public class DERM_7036_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015145-QS55-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS55", site.activeProtocols)
                 .back(whichOfTheFollowingSkinConditionsDoYouSufferСС);
         whichOfTheFollowingSkinConditionsDoYouSufferСС
                 .waitForPageLoad()
@@ -691,7 +769,7 @@ public class DERM_7036_CC extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
@@ -702,7 +780,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(approximateHeightPageCC)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -711,7 +789,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(approximateHeightPageCC)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         LetMeSeePageCC letMeSeePageCC = doAnyOftheFollowingAdditionalDiagnosesCC
@@ -728,7 +806,8 @@ public class DERM_7036_CC extends BaseTest {
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();

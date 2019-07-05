@@ -126,15 +126,15 @@ public class DERM_4631_OLS extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                     .back();
         }
-        howLongHaveYouBeenSufferingFromEczema_OLS
-                .waitForPageLoad();
-                IfYouUseYourHandToCoverAllOfTheEczema_OLS ifYouUseYourHandToCoverAllOfTheEczema_OLS = howLongHaveYouBeenSufferingFromEczema_OLS
+        IfYouUseYourHandToCoverAllOfTheEczema_OLS ifYouUseYourHandToCoverAllOfTheEczema_OLS =
+                howLongHaveYouBeenSufferingFromEczema_OLS
+                .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
                 .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_OLS());
 
-        ifYouUseYourHandToCoverAllOfTheEczema_OLS
-                .waitForPageLoad();
-                WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols = ifYouUseYourHandToCoverAllOfTheEczema_OLS
+        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols =
+                ifYouUseYourHandToCoverAllOfTheEczema_OLS
+                .waitForPageLoad()
                 .selectFromDropDown("9")
                 .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
 
@@ -150,30 +150,32 @@ public class DERM_4631_OLS extends BaseTest {
         WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS =
                 whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
                 .waitForPageLoad()
-                .clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
+                .clickOnAnswers("Head, face, and neck",
+                        "Chest, stomach, and back",
+                        "Arms and hands",
+                        "Legs and feet")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
 
-//        WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS = weWantToMakeSureTheImagesDisplayProperly_OLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("Computer or tablet")
-//                .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
-
-        WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS = whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
+        WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS =
+                whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS());
 
-        WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS = whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
+        WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS =
+                whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS());
 
-        WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS = whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS
+        WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS =
+                whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 
-        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
+        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS =
+                whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("A")
                 .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());

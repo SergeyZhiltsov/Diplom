@@ -768,7 +768,7 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4825")
+                .childPidFromDbToLog(env, "4967")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
