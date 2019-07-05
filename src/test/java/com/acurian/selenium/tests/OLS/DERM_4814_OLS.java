@@ -269,6 +269,7 @@ public class DERM_4814_OLS extends BaseTest {
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                         .waitForPageLoad()
                         .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
+                        .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Shots or IV infusions (injectable medications)")
                         .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
@@ -305,20 +306,58 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickOnAnswers("Actemra")
                 .clickNextButton(new CurrentlyTakingFollowingMedicationsOLS());
 
-        EitherOfFollowingMedicationsOLS eitherOfFollowingMedicationsOLS = currentlyTakingFollowingMedicationsOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Fasenra (benralizumab)",
-                        "Nucala (mepolizumab)" ,
-                        "Otezla (apremilast)")
-                .clickNextButton(new EitherOfFollowingMedicationsOLS());
+        EitherOfFollowingMedicationsOLS eitherOfFollowingMedicationsOLS = new EitherOfFollowingMedicationsOLS();
+        List<String> disqualifyQ30 = Arrays.asList("Fasenra (benralizumab)", "Nucala (mepolizumab)",
+                "Otezla (apremilast)");
+        for (String answer: disqualifyQ30) {
+            System.out.println(answer);
+            currentlyTakingFollowingMedicationsOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(dupixentInjectionPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5846", site.activeProtocols)
+                    .back();
+        }
 
+        currentlyTakingFollowingMedicationsOLS
+                .waitForPageLoad()
+                .back(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS)
+                .waitForPageLoad()
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Medications taken by mouth (oral medications)")
+                .clickNextButton(currentlyTakingFollowingMedicationsOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(eitherOfFollowingMedicationsOLS);
+
+        //Q32
+        List<String> disqualifyQ27 = Arrays.asList("Jakafi", "Olumiant", "Xeljanz");
+        for (String answer: disqualifyQ27) {
+            System.out.println(answer);
+            eitherOfFollowingMedicationsOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers(answer)
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
+                    .back();
+        }
         eitherOfFollowingMedicationsOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Jakafi",
-                        "Olumiant",
-                        "Xeljanz")
+                .back(currentlyTakingFollowingMedicationsOLS)
+                .waitForPageLoad()
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
+//General_Health
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)",
