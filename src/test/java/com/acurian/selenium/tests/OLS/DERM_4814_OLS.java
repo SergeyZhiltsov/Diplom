@@ -39,7 +39,7 @@ public class DERM_4814_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AD4814_site},
+ //               {Site.AUT_AD4814_site},
                 {Site.AUT_AD4814S_site}
         };
     }
