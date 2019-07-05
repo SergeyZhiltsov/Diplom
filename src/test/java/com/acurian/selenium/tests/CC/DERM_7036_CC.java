@@ -190,7 +190,7 @@ public class DERM_7036_CC extends BaseTest {
                 .clickNextButton(eczemaSymptomsExperienceCC);
 
         //Q21
-        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_cc = eczemaSymptomsExperienceCC
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC = eczemaSymptomsExperienceCC
                 .waitForPageLoad()
                 .clickOnAnswers("Redness",
                         "Swelling",
@@ -198,78 +198,32 @@ public class DERM_7036_CC extends BaseTest {
                         "Dryness",
                         "Scratch marks",
                         "Skin thickening")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
 
-        //Q22
-        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_cc
+        TransitionStatementCC transitionStatementCC = haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No") //Influence on Q25 Ghost Question - Atopic Derm Treatment History Logic
-                .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
-        //23
-        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
+                .clickOnAnswers("Self-treatment with tanning beds or sunbathing")
+                .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
                 .waitForPageLoad()
-                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)",
-                        "CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)",
-                        "Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)",
-                        "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
-                        "Neoral, Sandimmune, or Gengraf, also known as cyclosporine (Agent Note: NEE-oh-ral, GEN-graf, cy-clo-SPOR-in)",
-                        "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
-                        "Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)",
-                        "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)",
-                        "Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)",
-                        "Phototherapy, Ultraviolet, or UV light")
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)") //Disqualify (“Current biologic use”)
-                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
-        didYouReceiveAnyTherapiesPastYear_CC
-                .waitForPageLoad()
+                .clickOnAnswers("Phototherapy (Ultraviolet or UV light treatment)")
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_CC);
-
+                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
-        whichofthefollowingMedicationsTherapies_CC
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above") //if selected "None of the above", skip to Q21 Q25 Ghost - Atopic Derm Treatment History Logic
-                        .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
-                .waitForPageLoadKAD()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
-                .back();
-
-        List<String> disqualifyQ25 = Arrays.asList(
-                "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
-                "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
-                "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)"
-        );
-        for(String disqualify: disqualifyQ25) {
-            whichofthefollowingMedicationsTherapies_CC
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(disqualify)
-                    .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC)
-                    .waitForPageLoad()
-                    .clickOnAnswer("No")
-                    .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
-                    .waitForPageLoadKAD()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
-                    .back(didYouReceiveAnyTherapiesPastYear_CC)
-                    .waitForPageLoad()
-                    .back(whichofthefollowingMedicationsTherapies_CC);
-        }
-
-        whichofthefollowingMedicationsTherapies_CC
+                haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, " +
-                        "ay-zuh-THI-o-prin)")
-                .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC);
-
-        didYouReceiveAnyTherapiesPastYear_CC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Shots or IV infusions (injectable medications)",
+                        "Medications taken by mouth (oral medications)")
+                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
 
         List<String> medications = Arrays.asList(
                 "Actemra (Agent Note: ac-TEM-ruh)",
@@ -290,14 +244,14 @@ public class DERM_7036_CC extends BaseTest {
                 "Taltz (Agent Note: TALTS)",
                 "Tysabri (Agent Note: tie-SAB-ree)"
         );
-        HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC =
-                new HaveYouEverTakenEitherAnyOfFollowingMeds_CC();
-        for (String medication : medications) {
+        DupixentInjectionPageCC dupixentInjectionPageCC = new DupixentInjectionPageCC();
+        for (String answer: medications) {
+            System.out.println(answer);
             areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                     .waitForPageLoadKAD()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(medication)
-                    .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
+                    .clickOnAnswers(answer)
+                    .clickNextButton(dupixentInjectionPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
@@ -306,9 +260,129 @@ public class DERM_7036_CC extends BaseTest {
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(dupixentInjectionPageCC);
+
+        HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = dupixentInjectionPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, currently taking")
+                .clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_CC());
+        haveYouEverTakenEitherAnyOfFollowingMeds_CC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
+                .back(dupixentInjectionPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes, took in the past but not now")
                 .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC);
 
-        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
+
+
+//        //Q22
+//        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_cc
+//                .waitForPageLoad()
+//                .clickOnAnswer("No") //Influence on Q25 Ghost Question - Atopic Derm Treatment History Logic
+//                .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
+//        //23
+//        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_CC = whichofthefollowingMedicationsTherapies_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)",
+//                        "CellCept or Myfortic, also known as mycophenolate (Agent Note: my-co-FEN-o-late)",
+//                        "Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)",
+//                        "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
+//                        "Neoral, Sandimmune, or Gengraf, also known as cyclosporine (Agent Note: NEE-oh-ral, GEN-graf, cy-clo-SPOR-in)",
+//                        "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
+//                        "Methotrexate - Brand names: Otrexup, Rasuvo, Trexall (Agent Note: oh-TREX-up, ruh-SOO-vo, TREX-all)",
+//                        "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)",
+//                        "Prednisone - Brand names: Deltasone, Prednisone Intensol, Rayos (Agent Note: PRED-nis-own)",
+//                        "Phototherapy, Ultraviolet, or UV light")
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)") //Disqualify (“Current biologic use”)
+//                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
+//        didYouReceiveAnyTherapiesPastYear_CC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
+//                .back(whichofthefollowingMedicationsTherapies_CC);
+//
+//        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
+//        whichofthefollowingMedicationsTherapies_CC
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("None of the above") //if selected "None of the above", skip to Q21 Q25 Ghost - Atopic Derm Treatment History Logic
+//                        .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
+//        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                .waitForPageLoadKAD()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
+//                .back();
+//
+//        List<String> disqualifyQ25 = Arrays.asList(
+//                "Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
+//                "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
+//                "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)"
+//        );
+//        for(String disqualify: disqualifyQ25) {
+//            whichofthefollowingMedicationsTherapies_CC
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(disqualify)
+//                    .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC)
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No")
+//                    .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
+//                    .waitForPageLoadKAD()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
+//                    .back(didYouReceiveAnyTherapiesPastYear_CC)
+//                    .waitForPageLoad()
+//                    .back(whichofthefollowingMedicationsTherapies_CC);
+//        }
+//
+//        whichofthefollowingMedicationsTherapies_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, " +
+//                        "ay-zuh-THI-o-prin)")
+//                .clickNextButton(didYouReceiveAnyTherapiesPastYear_CC);
+//
+//        didYouReceiveAnyTherapiesPastYear_CC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);
+//
+//        List<String> medications = Arrays.asList(
+//                "Actemra (Agent Note: ac-TEM-ruh)",
+//                "Benlysta (Agent Note: ben-LIST-uh)",
+//                "Cimzia (Agent Note: SIM-zee-uh)",
+//                "Cosentyx (Agent Note: co-SEN-tix)",
+//                "Enbrel (Agent Note: EN-brel)",
+//                "Entyvio (Agent Note: en-TIV-ee-oh)",
+//                "Humira (Agent Note: hue-MAIR-uh)",
+//                "Kineret (Agent Note: KIN-er-et)",
+//                "Orencia (Agent Note: oh-REN-see-uh)",
+//                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
+//                "Raptiva (Agent Note: rap-TEE-vuh)",
+//                "Remicade (Agent Note: REM-ih-cade)",
+//                "Rituxan (Agent Note: rih-TUX-an)",
+//                "Simponi (Agent Note: SIM-po-nee)",
+//                "Stelara (Agent Note: ste-LAHR-uh)",
+//                "Taltz (Agent Note: TALTS)",
+//                "Tysabri (Agent Note: tie-SAB-ree)"
+//        );
+//        for (String medication : medications) {
+//            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                    .waitForPageLoadKAD()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(medication)
+//                    .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
+//                    .back();
+//        }
+//        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                .waitForPageLoadKAD()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC);
+
         List<String> disqualifyQ27 = Arrays.asList("Jakafi (Agent Note: JAK-uh-fie)",
                 "Olumiant (Agent Note: oh-LOO-me-ant)",
                 "Xeljanz (Agent Note: ZEL-jans)");
