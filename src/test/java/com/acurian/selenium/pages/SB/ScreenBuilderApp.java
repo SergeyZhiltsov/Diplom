@@ -1,19 +1,16 @@
 package com.acurian.selenium.pages.SB;
 
-import com.acurian.selenium.pages.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
-public class ScreenBuilderApp extends BasePage {
+public class ScreenBuilderApp extends MainPageSB {
     private WebDriver driver;
 
     @FindBy(xpath = "//table[@id='mytable']//span/a")

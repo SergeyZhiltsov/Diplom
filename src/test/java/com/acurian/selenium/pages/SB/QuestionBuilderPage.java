@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.SB;
 
-import com.acurian.selenium.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 
-public class QuestionBuilderPage extends BasePage {
+public class QuestionBuilderPage extends MainPageSB {
 
     @FindBy(xpath = "//div[@class='bootstrap-dialog-footer-buttons']/button[text() ='Yes']")
     WebElement confirmModify;
@@ -34,7 +33,6 @@ public class QuestionBuilderPage extends BasePage {
 
     public QuestionBuilderPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForAnimation();
     }
 
     @Step

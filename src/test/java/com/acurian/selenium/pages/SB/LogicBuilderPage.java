@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.SB;
 
-import com.acurian.selenium.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -9,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class LogicBuilderPage extends BasePage {
+public class LogicBuilderPage extends MainPageSB {
 
     @FindBy(css = "#core-link")
     WebElement coreLink;
@@ -22,7 +21,6 @@ public class LogicBuilderPage extends BasePage {
 
     public LogicBuilderPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete();
     }
 
     public LogicBuilderPage clickCoreLink() {

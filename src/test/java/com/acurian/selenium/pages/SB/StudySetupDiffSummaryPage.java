@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.SB;
 
-import com.acurian.selenium.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class StudySetupDiffSummaryPage extends BasePage {
+public class StudySetupDiffSummaryPage extends MainPageSB {
 
     @FindBy(xpath = "//label[@for='theraputicArea']//following-sibling::div/span")
     List<WebElement> therapeuticArea;
@@ -32,7 +31,6 @@ public class StudySetupDiffSummaryPage extends BasePage {
 
     public StudySetupDiffSummaryPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete();
     }
 
     @Step()

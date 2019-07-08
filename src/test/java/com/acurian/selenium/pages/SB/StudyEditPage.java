@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.SB;
 
-import com.acurian.selenium.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class StudyEditPage extends BasePage {
+public class StudyEditPage extends MainPageSB {
 
     @FindBy(id = "projectCode")
     WebElement projectCode;
@@ -40,7 +39,6 @@ public class StudyEditPage extends BasePage {
 
     public StudyEditPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete(); //TODO Check and move to BasePage
     }
 
     public List<String> getTherapeuticArea() {

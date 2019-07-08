@@ -75,44 +75,6 @@ public abstract class BasePage {
         executor.executeScript("arguments[0].click();", element);
     }
 
-    public WebElement waitForVisibility(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public WebElement waitForVisibility(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    protected WebElement waitToBeClickable(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
-    protected WebElement waitToBeClickable(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    @Step()
-    protected WebElement waitAndClickWebElement(By locator) {
-        WebElement element = waitToBeClickable(locator);
-        element.click();
-        return element;
-    }
-
-    @Step()
-    protected WebElement waitAndClickWebElement(WebElement element) {
-        waitToBeClickable(element).click();
-        return element;
-    }
-
-    public WebElement waitForPresence(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.presenceOfElementLocated(locator));
-    }
-
-    public void waitForAbsence(WebElement element) {
-        driverWait.getWaitDriver().until(driver -> !isElementPresent(element));
-        waitForJavaScriptComplete();
-    }
-
     @Step
     protected void hoverTo(WebElement element) {
         actions.moveToElement(element).build().perform();
@@ -292,13 +254,6 @@ public abstract class BasePage {
         ));
     }
 
-    public void waitForJavaScriptComplete() {
-        driverWait.getWaitDriver().withTimeout(60, TimeUnit.SECONDS).until((ExpectedCondition<Boolean>) wdriver
-                -> ((JavascriptExecutor) driver).executeScript(
-                "return document.readyState"
-        ).equals("complete"));
-    }
-
     /**
      * Wait alert and accept.
      * <p><b>Does not work in Safari!</b></p>
@@ -320,14 +275,6 @@ public abstract class BasePage {
         return (Boolean) ((JavascriptExecutor) driver).executeScript("return arguments[0].checked", element);
     }
 
-    public boolean isElementPresent(WebElement element) {
-        try {
-            element.getTagName();
-            return true;
-        } catch (WebDriverException ignored) {
-            return false;
-        }
-    }
 
     protected boolean isElementPresent(int timeout, By by) {
         boolean isPresent = false;

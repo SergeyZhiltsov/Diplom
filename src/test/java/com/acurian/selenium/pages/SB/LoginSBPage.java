@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.SB;
 
 import com.acurian.selenium.constants.URLs;
-import com.acurian.selenium.pages.BasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import static com.sun.webkit.network.URLs.newURL;
 
 
-public class LoginSBPage extends BasePage {
+public class LoginSBPage extends MainPageSB {
 
     @FindBy(id = "username")
     WebElement loginUsername;
@@ -27,7 +26,6 @@ public class LoginSBPage extends BasePage {
 
     public LoginSBPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete(); //TODO Check and move to BasePage
     }
 
     @Step

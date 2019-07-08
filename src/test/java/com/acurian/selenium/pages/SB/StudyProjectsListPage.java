@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.SB;
 
-import com.acurian.selenium.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 
-public class StudyProjectsListPage extends BasePage {
+public class StudyProjectsListPage extends MainPageSB {
 
     @FindBy(id = "mytable_filter")
     WebElement search;
@@ -47,7 +46,6 @@ public class StudyProjectsListPage extends BasePage {
 
     public StudyProjectsListPage() {
         PageFactory.initElements(getDriver(), this);
-        waitForJavaScriptComplete(); //TODO Check and move to BasePage
     }
 
     @Step
@@ -125,7 +123,7 @@ public class StudyProjectsListPage extends BasePage {
 
     @Step
     public LogicDiffSummaryPage clickPublishLogic(String studyName, SetupEnv setupEnv) {
-        waitForJavaScriptComplete();
+        waitForAnimation();
         openActionsOf(studyName);
         WebElement publishDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Publish"))
                 .findFirst()
