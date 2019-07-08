@@ -4,6 +4,8 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.LOWT.CurrentlyTakingFollowingMedicationsCC;
+import com.acurian.selenium.pages.CC.LPS_4442.EitherOfTheFollowingMedicationsCC;
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -46,7 +48,8 @@ public class DERM_4815_CC_A_S extends BaseTest {
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -63,14 +66,17 @@ public class DERM_4815_CC_A_S extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected,
+                "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+                "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")
@@ -81,7 +87,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
@@ -109,7 +115,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         diagnosedWithPsoriasisCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0009397-QS5802-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
                 .back();
 
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_cc = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
@@ -123,8 +129,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         disqualifyQ3.add("2 months or less"); //Disqualify (“Atopic Derm < 3 years”)
         disqualifyQ3.add("3 - 6 months");
         disqualifyQ3.add("7 - 11 months");
-        for(String answer: disqualifyQ3)
-        {
+        for(String answer: disqualifyQ3) {
             System.out.println(answer);
             howLongHaveYouBeenSufferingFromEczema_cc
                     .waitForPageLoad()
@@ -132,12 +137,12 @@ public class DERM_4815_CC_A_S extends BaseTest {
                     .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0019081-QS5831-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                     .back();
         }
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
-                .clickOnAnswer("1 year")
+                .clickOnAnswer("3 years or more")
                 .clickNextButton(howMuchEczemaYouHaveOnYOurBody_cc);
 
         DollarBillsToCoverEczemaCC dollarBillsToCoverEczemaCC = howMuchEczemaYouHaveOnYOurBody_cc
@@ -153,7 +158,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019076-QS5834-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5834", site.activeProtocols)
                 .back();
 
         dollarBillsToCoverEczemaCC
@@ -169,7 +174,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         eczemaSymptomsExperienceCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019079-QS5837-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
                 .back();
 
         RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
@@ -178,80 +183,46 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(new RateAverageItchinessEczemaPageCC());
         rateAverageItchinessEczemaPageCC
                 .waitForPageLoad()
-                .selectFromDropDown("1")
+                .selectFromDropDown("2")
                 .clickNextButton(eczemaSymptomsExperienceCC);
 
         //Q21
-        HaveYouEverTreatedYourEczema_CC haveYouEverTreatedYourEczema_cc = eczemaSymptomsExperienceCC
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
+                eczemaSymptomsExperienceCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Redness",
+                                "Swelling",
+                                "Oozing/Crusting",
+                                "Dryness",
+                                "Scratch marks",
+                                "Skin thickening")
+                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
+        //Q27
+        TransitionStatementCC transitionStatementCC = haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Redness",
-                        "Swelling",
-                        "Oozing/Crusting",
-                        "Dryness",
-                        "Scratch marks",
-                        "Skin thickening")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_CC());
-        //Q22
-        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_cc
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, within the past year")
-                .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
+                .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
+                        "Medications taken by mouth (oral medications)",
+                        "Shots or IV infusions (injectable medications)",
+                        "Self-treatment with tanning beds or sunbathing",
+                        "Phototherapy (Ultraviolet or UV light treatment)")
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Self-treatment with tanning beds or sunbathing",
+                        "Phototherapy (Ultraviolet or UV light treatment)")
+                .clickNextButton(new TransitionStatementCC());
 
-        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_cc = whichofthefollowingMedicationsTherapies_CC
-                .waitForPageLoad()
-                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)") //Disqualify (“Current biologic use”)
-                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
-        didYouReceiveAnyTherapiesPastYear_cc
-                .waitForPageLoad()
+        CurrentlyTakingFollowingMedicationsCC currentlyTakingFollowingMedicationsCC = transitionStatementCC
+                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017868-QS5827-STUDYQUES", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_CC);
-        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
-        whichofthefollowingMedicationsTherapies_CC
+                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
-        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
-                .waitForPageLoadKAD()
-                .getPage(debugPageCC)
-                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic") //Must ... in Q22 selected "Yes, within the past year"
-                .back(whichofthefollowingMedicationsTherapies_CC)
-                .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_cc)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, but more than 1 year ago")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_CC)
-                .waitForPageLoad()
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
-                .waitForPageLoadKAD()
-                .getPage(debugPageCC)
-                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
-                .back(whichofthefollowingMedicationsTherapies_CC)
-                .waitForPageLoad()
-                .back(haveYouEverTreatedYourEczema_cc)
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(whichofthefollowingMedicationsTherapies_CC);
-        whichofthefollowingMedicationsTherapies_CC
-                .waitForPageLoad()
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
-                .waitForPageLoadKAD()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017871-QS5829-STUDYQUES", site.activeProtocols)
-                .back(whichofthefollowingMedicationsTherapies_CC)
-                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
-                .clickNextButton(didYouReceiveAnyTherapiesPastYear_cc);
+                .clickOnAnswers("Shots or IV infusions (injectable medications)")
+                .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
 
-        didYouReceiveAnyTherapiesPastYear_cc
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);
-
-        List<String> medications = Arrays.asList(
-                "Actemra (Agent Note: ac-TEM-ruh)",
+        List<String> medications = Arrays.asList("Actemra (Agent Note: ac-TEM-ruh)",
                 "Benlysta (Agent Note: ben-LIST-uh)",
                 "Cimzia (Agent Note: SIM-zee-uh)",
-                "Cosentyx (Agent Note: co-SEN-tix)",
                 "Enbrel (Agent Note: EN-brel)",
                 "Entyvio (Agent Note: en-TIV-ee-oh)",
                 "Humira (Agent Note: hue-MAIR-uh)",
@@ -264,64 +235,223 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 "Simponi (Agent Note: SIM-po-nee)",
                 "Stelara (Agent Note: ste-LAHR-uh)",
                 "Taltz (Agent Note: TALTS)",
-                "Tysabri (Agent Note: tie-SAB-ree)"
-        );
-         HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = new HaveYouEverTakenEitherAnyOfFollowingMeds_CC();
-        for (String medication : medications) {
+                "Tysabri (Agent Note: tie-SAB-ree)");
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
+                new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC();
+        for (String answer: medications) {
+            System.out.println(answer);
             areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                     .waitForPageLoadKAD()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(medication)
-                    .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
+                    .clickOnAnswers(answer)
+                    .clickNextButton(currentlyTakingFollowingMedicationsCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0016383-QS5821-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                     .back();
         }
+        DupixentInjectionPageCC dupixentInjectionPageCC = areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+                .waitForPageLoadKAD()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Cosentyx (Agent Note: co-SEN-tix)")
+                .clickNextButton(new DupixentInjectionPageCC());
+        dupixentInjectionPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
+                .back();
+
         areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
                 .waitForPageLoadKAD()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
-
-        //TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
+                .clickNextButton(currentlyTakingFollowingMedicationsCC);
+        //Q30
+        currentlyTakingFollowingMedicationsCC
                 .waitForPageLoad()
-                .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
-                .clickNextButton(new DiagnosedWithPsoriasisCC());
-        diagnosedWithPsoriasisCC
+                .clickOnAnswers("Fasenra, also known as benralizumab (Agent Note: fa-SEN-ra, BEN-ra-LIZ-oo-mab)",
+                        "Nucala, also known as mepolizumab (Agent Note: new-CA-la, MEP-oh-LIZ-oo-mab)",
+                        "Otezla, also known as apremilast (Agent Note: oh-TEZ-la, a-PRE-mi-last)")
+                .clickNextButton(dupixentInjectionPageCC);
+        //Q31
+        dupixentInjectionPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
-                .back();
-
-        haveYouEverTakenEitherAnyOfFollowingMeds_CC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Olumiant (Agent Note: oh-LOO-me-ant)")
+                .clickOnAnswer("Yes, currently taking")
                 .clickNextButton(diagnosedWithPsoriasisCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
+                .back(dupixentInjectionPageCC)
+                .waitForPageLoad()
+                .back(currentlyTakingFollowingMedicationsCC)
+                .waitForPageLoad()
+                .back(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
+                .waitForPageLoadKAD()
                 .back();
+        //Q27
+        EitherOfTheFollowingMedicationsCC eitherOfTheFollowingMedicationsCC =
+                haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Medications taken by mouth (oral medications)")
+                        .clickNextButton(currentlyTakingFollowingMedicationsCC)
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new EitherOfTheFollowingMedicationsCC());
 
-        haveYouEverTakenEitherAnyOfFollowingMeds_CC
+        List<String> disqualifyQ27 = Arrays.asList("Jakafi (Agent Note: JAK-uh-fie)",
+                "Olumiant (Agent Note: oh-LOO-me-ant)",
+                "Xeljanz (Agent Note: ZEL-jans)");
+        for (String answer: disqualifyQ27) {
+            System.out.println(answer);
+            eitherOfTheFollowingMedicationsCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(diagnosedWithPsoriasisCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
+                    .back();
+        }
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                eitherOfTheFollowingMedicationsCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
-                .clickNextButton(diagnosedWithPsoriasisCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017453-QS5830-STUDYQUES", site.activeProtocols)
-                .back();
-
-        haveYouEverTakenEitherAnyOfFollowingMeds_CC
-                .waitForPageLoad();
-        TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC());
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+                .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+//        //Q22
+//        WhichofthefollowingMedicationsTherapies_CC whichofthefollowingMedicationsTherapies_CC = haveYouEverTreatedYourEczema_cc
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes, within the past year")
+//                .clickNextButton(new WhichofthefollowingMedicationsTherapies_CC());
+//
+//        DidYouReceiveAnyTherapiesPastYear_CC didYouReceiveAnyTherapiesPastYear_cc = whichofthefollowingMedicationsTherapies_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Dupixent, also known as dupilumab (Agent Note: du-PIX-ent, du-PILL-you-mab)") //Disqualify (“Current biologic use”)
+//                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_CC());
+//        didYouReceiveAnyTherapiesPastYear_cc
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5827", site.activeProtocols)
+//                .back(whichofthefollowingMedicationsTherapies_CC);
+//        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC =
+//        whichofthefollowingMedicationsTherapies_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC());
+//        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                .waitForPageLoadKAD()
+//                .getPage(debugPageCC)
+//                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic") //Must ... in Q22 selected "Yes, within the past year"
+//                .back(whichofthefollowingMedicationsTherapies_CC)
+//                .waitForPageLoad()
+//                .back(haveYouEverTreatedYourEczema_cc)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes, but more than 1 year ago")
+//                .clickNextButton(whichofthefollowingMedicationsTherapies_CC)
+//                .waitForPageLoad()
+//                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
+//                .waitForPageLoadKAD()
+//                .getPage(debugPageCC)
+//                .checkIsNoProtocolsForQuestion("Ghost Question - Atopic Derm Treatment History Logic")
+//                .back(whichofthefollowingMedicationsTherapies_CC)
+//                .waitForPageLoad()
+//                .back(haveYouEverTreatedYourEczema_cc)
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(whichofthefollowingMedicationsTherapies_CC);
+//        whichofthefollowingMedicationsTherapies_CC
+//                .waitForPageLoad()
+//                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC)
+//                .waitForPageLoadKAD()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5829", site.activeProtocols)
+//                .back(whichofthefollowingMedicationsTherapies_CC)
+//                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
+//                .clickNextButton(didYouReceiveAnyTherapiesPastYear_cc);
+//
+//        didYouReceiveAnyTherapiesPastYear_cc
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC);
+//
+//        List<String> medications = Arrays.asList(
+//                "Actemra (Agent Note: ac-TEM-ruh)",
+//                "Benlysta (Agent Note: ben-LIST-uh)",
+//                "Cimzia (Agent Note: SIM-zee-uh)",
+//                "Cosentyx (Agent Note: co-SEN-tix)",
+//                "Enbrel (Agent Note: EN-brel)",
+//                "Entyvio (Agent Note: en-TIV-ee-oh)",
+//                "Humira (Agent Note: hue-MAIR-uh)",
+//                "Kineret (Agent Note: KIN-er-et)",
+//                "Orencia (Agent Note: oh-REN-see-uh)",
+//                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
+//                "Raptiva (Agent Note: rap-TEE-vuh)",
+//                "Remicade (Agent Note: REM-ih-cade)",
+//                "Rituxan (Agent Note: rih-TUX-an)",
+//                "Simponi (Agent Note: SIM-po-nee)",
+//                "Stelara (Agent Note: ste-LAHR-uh)",
+//                "Taltz (Agent Note: TALTS)",
+//                "Tysabri (Agent Note: tie-SAB-ree)"
+//        );
+//         HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = new HaveYouEverTakenEitherAnyOfFollowingMeds_CC();
+//        for (String medication : medications) {
+//            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                    .waitForPageLoadKAD()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(medication)
+//                    .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
+//                    .back();
+//        }
+//        areYouCurrentlyReceivingRegularDosesOfBiologicMeds_CC
+//                .waitForPageLoadKAD()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_CC)
+//
+//        //TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
+//                .clickNextButton(new DiagnosedWithPsoriasisCC());
+//        diagnosedWithPsoriasisCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
+//                .back();
+//
+//        haveYouEverTakenEitherAnyOfFollowingMeds_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Olumiant (Agent Note: oh-LOO-me-ant)")
+//                .clickNextButton(diagnosedWithPsoriasisCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
+//                .back();
+//
+//        haveYouEverTakenEitherAnyOfFollowingMeds_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
+//                .clickNextButton(diagnosedWithPsoriasisCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
+//                .back();
+//
+//        haveYouEverTakenEitherAnyOfFollowingMeds_CC
+//                .waitForPageLoad();
+//        TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new TransitionStatementCC());
+//
+//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+//                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+//                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -331,7 +461,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -352,7 +482,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         heartrelatedMedicalConditionsProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
 
         whenDiagnosedWithCancerCC
@@ -366,126 +496,126 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad();
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1);
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(1),subquestionExperiencedHeartPageCC.titleExpected1, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(2),subquestionExperiencedHeartPageCC.titleExpected2, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(3),subquestionExperiencedHeartPageCC.titleExpected4, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(4),subquestionExperiencedHeartPageCC.titleExpected5, "Title is diff");
         HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4,"Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4,"1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         KidneyProblemsPage kidneyProblemsPage = heartrelatedMedicalProceduresPageCC
@@ -501,7 +631,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
 
         kidneyProblemsPage
@@ -510,7 +640,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
 
         kidneyProblemsPage
@@ -526,7 +656,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
 
         whichOfTheFollowingLiverProblemsPageСС
@@ -542,7 +672,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageCC
@@ -552,7 +682,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back();
 
         followingMentalEmotionalHealthPageCC
@@ -575,7 +705,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
@@ -593,7 +723,8 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();

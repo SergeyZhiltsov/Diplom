@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.Derm;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS extends MainPageOLS {
+public class HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Which parts of your body are currently affected by eczema?\n" +
+    public final String titleExpected = "Have you tried any of the following treatments for your eczema?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
@@ -20,24 +20,24 @@ public class WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS extends MainPa
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS() {
+    public HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS waitForPageLoad() {
+    public HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS clickOnAnswers(String... answerText) {
+    public HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText() {
+    public String getTitleText(){
         return getText(titleText);
     }
 }

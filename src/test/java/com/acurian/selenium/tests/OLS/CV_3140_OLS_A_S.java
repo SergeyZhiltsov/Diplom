@@ -51,7 +51,7 @@ public class CV_3140_OLS_A_S extends BaseTest {
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = false, dataProvider = "sites")
     @Description("CV 3140 OLS")
     public void cv3140olsTest(Site site) {
         String phoneNumber = "AUTAMS1CV1";

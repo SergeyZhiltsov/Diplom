@@ -5,24 +5,46 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
-import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class KAD_4631_OLS extends BaseTest {
 
-    @Test(enabled = true)
-    @Description("KAD 4631 for OLS")
-    public void kad4631olsTest() {
-        Site site = Site.AUT_DERM_4631_Site;
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @DataProvider(name = "sites")
+    public Object[][] getData() {
+        return new Object[][] {
+                {Site.AUT_DERM_4631_Site}
+        };
+    }
+
+    @Test(dataProvider = "sites")
+    @Description("4631 Kiniksa Atopic Derm for OLS")
+    public void kad4631olsTest(Site site) {
         String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis)";
         String env = System.getProperty("acurian.env", "STG");
@@ -34,78 +56,77 @@ public class KAD_4631_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+                "Title is diff");
 
-        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
+        PersonalDetails personalDetails = dateOfBirthPageOLS
                 .setDate("09092003")
-                .clickNextButton(new LessThan18YearsOldPageOLS());
-        lessThan18YearsOldPage_OLS
+                .clickNextButton(new LessThan18YearsOldPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-        PersonalDetails personalDetails = dateOfBirthPageOLS
+                .back(dateOfBirthPageOLS)
                 .waitForPageLoad()
                 .setDate("09091951")
                 .clickNextButton(new PersonalDetails());
-        personalDetails.waitForPageLoad()
+        personalDetails
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-        dateOfBirthPageOLS
+                .back(dateOfBirthPageOLS)
                 .waitForPageLoad()
                 .setDate("09091980")
                 .clickNextButton(new PersonalDetails());
-
 
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", eMailId, "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS = genderPageOLS
+        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS =
+                genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 
-
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
+        HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS =
+                hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS = new HealthcareDiagnosedPsoriasisPageOLS();
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
         healthcareDiagnosedPsoriasisPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
                 .back();
-        HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczemaOLS = hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
+
+        HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczema_OLS =
+                hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
-        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
-        List<String> disqualifyQ3 = new LinkedList<>();
-        disqualifyQ3.add("2 months or less");
-        disqualifyQ3.add("3 - 6 months");
-        disqualifyQ3.add("7 - 11 months");
-        for (String answer: disqualifyQ3) {
-            howLongHaveYouBeenSufferingFromEczemaOLS
+        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_ols = new HowMuchEczemaYouHaveOnYourBody_OLS();
+        List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months");
+        for(String answer: disqualifyQ3) {
+            System.out.println(answer);
+            howLongHaveYouBeenSufferingFromEczema_OLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
+                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_ols)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                     .back();
         }
-        howLongHaveYouBeenSufferingFromEczemaOLS
+        IfYouUseYourHandToCoverAllOfTheEczema_OLS ifYouUseYourHandToCoverAllOfTheEczema_OLS = howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
-                .clickOnAnswer("2 years")
-                .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS);
-        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
-                = howMuchEczemaYouHaveOnYourBody_OLS
+                .clickOnAnswer("3 years or more")
+                .clickNextButton(new IfYouUseYourHandToCoverAllOfTheEczema_OLS());
+
+        WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS =
+                ifYouUseYourHandToCoverAllOfTheEczema_OLS
                 .waitForPageLoad()
                 .selectFromDropDown("9")
                 .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
@@ -118,15 +139,14 @@ public class KAD_4631_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5805", site.activeProtocols)
                 .back();
-        WeWantToMakeSureTheImagesDisplayProperly_OLS weWantToMakeSureTheImagesDisplayProperly_OLS = whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
-                .clickNextButton(new WeWantToMakeSureTheImagesDisplayProperly_OLS());
 
-
-        WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS = weWantToMakeSureTheImagesDisplayProperly_OLS
+        WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS =
+                whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
                 .waitForPageLoad()
-                .clickOnAnswer("Computer or tablet")
+                .clickOnAnswers("Head, face, and neck",
+                        "Chest, stomach, and back",
+                        "Arms and hands",
+                        "Legs and feet")
                 .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
 
         WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS = whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
@@ -148,118 +168,66 @@ public class KAD_4631_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("A")
                 .clickNextButton(new HowManyDaysHasSkinBeenItchyOLS());
+
         howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5843", site.activeProtocols)
                 .back(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
-                .clickOnAnswer("B")
-                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
+                .back(whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
-                .back(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
+                .back(whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS)
                 .waitForPageLoad()
-                .clickOnAnswer("C")
-                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
+                .back(whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
-                .back();
-
-whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
-                .waitForPageLoad()
-                .back();
-        whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS
-                .waitForPageLoad()
-                .back();
-        whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
-                .waitForPageLoad()
-                .back();
-        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-                .waitForPageLoad()
-                .back();
-        weWantToMakeSureTheImagesDisplayProperly_OLS
-                .waitForPageLoad()
-                .back();
-        whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
+                .back(whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("Chest, stomach, and back", "Arms and hands", "Legs and feet") //deselect
-                .clickNextButton(weWantToMakeSureTheImagesDisplayProperly_OLS);
+                .clickNextButton(whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS);
 
-        weWantToMakeSureTheImagesDisplayProperly_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("Computer or tablet")
-                .clickNextButton(weWantToMakeSureTheImagesDisplayProperly_OLS);
-
-        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("A")
-                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
-                .back();
-        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("B")
-                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
-                .back();
-        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("C")
-                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
-                .back();
-        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("D")
-                .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
-                .back();
         whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("G")
                 .clickNextButton(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5815", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5843", site.activeProtocols)
                 .back(whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS)
                 .waitForPageLoad()
-                .back(weWantToMakeSureTheImagesDisplayProperly_OLS)
-                .waitForPageLoad()
-                .back();
+                .back(whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS);
 
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Legs and feet")
-                .clickNextButton(weWantToMakeSureTheImagesDisplayProperly_OLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Computer or tablet")
                 .clickNextButton(whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS);
 
-        HaveYouEverTreatedYourEczema_OLS haveYouEverTreatedYourEczema_OLS = whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
+        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("D")
                 .clickNextButton(whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS)
                 .waitForPageLoad()
                 .clickOnAnswer("C")
-                .clickNextButton(new HaveYouEverTreatedYourEczema_OLS());
+                .clickNextButton(howManyDaysHasSkinBeenItchyOLS);
 
         EczemaSymptomsExperienceOLS eczemaSymptomsExperienceOLS = howManyDaysHasSkinBeenItchyOLS
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is never itchy")
                 .clickNextButton(new EczemaSymptomsExperienceOLS());
+        RateAverageItchinessEczemaPageOLS rateAverageItchinessEczemaPageOLS = eczemaSymptomsExperienceOLS
+                .waitForPageLoad()
+                .back(howManyDaysHasSkinBeenItchyOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("My skin is itchy every day")
+                .clickNextButton(new RateAverageItchinessEczemaPageOLS());
 
-        eczemaSymptomsExperienceOLS
+        rateAverageItchinessEczemaPageOLS
+                .waitForPageLoad()
+                .selectFromDropDown("1")
+                .clickNextButton(eczemaSymptomsExperienceOLS);
+
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS =
+                eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Redness",
                         "Swelling",
@@ -267,75 +235,76 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                         "Dryness",
                         "Scratch marks",
                         "Skin thickening")
-                .clickNextButton(haveYouEverTreatedYourEczema_OLS);
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
-        WhichofthefollowingMedicationsTherapies_OLS whichofthefollowingMedicationsTherapies_OLS = haveYouEverTreatedYourEczema_OLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new WhichofthefollowingMedicationsTherapies_OLS());
+                .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
+                        "Medications taken by mouth (oral medications)",
+                        "Shots or IV infusions (injectable medications)",
+                        "Self-treatment with tanning beds or sunbathing",
+                        "Phototherapy (Ultraviolet or UV light treatment)")
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Self-treatment with tanning beds or sunbathing",
+                        "Phototherapy (Ultraviolet or UV light treatment)")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        BiologicMedications biologicMedications = whichofthefollowingMedicationsTherapies_OLS
+        AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new BiologicMedications());
-        biologicMedications
-                .waitForPageLoadKAD()
-                .back();
-        DidYouReceiveAnyTherapiesPastYear_OLS didYouReceiveAnyTherapiesPastYear_OLS = whichofthefollowingMedicationsTherapies_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("Azasan or Imuran (azathioprine)")
-                .clickNextButton(new DidYouReceiveAnyTherapiesPastYear_OLS());
+                .clickOnAnswers("Shots or IV infusions (injectable medications)")
+                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
 
-        //--------------Q24- DidYouReceiveAnyTherapiesPastYear_OLS ----------
-        didYouReceiveAnyTherapiesPastYear_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(biologicMedications);
+        List<String> medications = Arrays.asList("Actemra",
+                "Benlysta",
+                "Cimzia",
+                "Cosentyx",
+                "Enbrel",
+                "Entyvio",
+                "Humira",
+                "Kineret",
+                "Orencia",
+                "Prolia or Xgeva",
+                "Raptiva",
+                "Remicade",
+                "Rituxan",
+                "Simponi",
+                "Stelara",
+                "Taltz",
+                "Tysabri");
 
-        //---------Q26:  BiologicMedications---------------
-        HaveYouEverTakenEitherAnyOfFollowingMeds_OLS haveYouEverTakenEitherAnyOfFollowingMeds_ols = new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS();
-        HashMap<String, List<String>> cases = new HashMap<>();
-        cases.put("Actemra", Arrays.asList(site.activeProtocols));
-        cases.put("Benlysta", Arrays.asList(site.activeProtocols));
-        cases.put("Cimzia", Arrays.asList(site.activeProtocols));
-        cases.put("Cosentyx", Arrays.asList(site.activeProtocols));
-        cases.put("Enbrel", Arrays.asList(site.activeProtocols));
-        cases.put("Entyvio", Arrays.asList(site.activeProtocols));
-        cases.put("Humira", Arrays.asList(site.activeProtocols));
-        cases.put("Kineret", Arrays.asList(site.activeProtocols));
-        cases.put("Orencia", Arrays.asList(site.activeProtocols));
-        cases.put("Prolia or Xgeva", Arrays.asList(site.activeProtocols));
-        cases.put("Raptiva", Arrays.asList(site.activeProtocols));
-        cases.put("Remicade", Arrays.asList(site.activeProtocols));
-        cases.put("Rituxan", Arrays.asList(site.activeProtocols));
-        cases.put("Simponi", Arrays.asList(site.activeProtocols));
-        cases.put("Stelara", Arrays.asList(site.activeProtocols));
-        cases.put("Taltz", Arrays.asList(site.activeProtocols));
-        cases.put("Tysabri", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : cases.entrySet()) {
-            biologicMedications
-                    .waitForPageLoadKAD()
+        DupixentInjectionPageOLS dupixentInjectionPageOLS = new DupixentInjectionPageOLS();
+        for (String answer: medications) {
+            System.out.println(answer);
+            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
+                    .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
-                    .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_ols)
+                    .clickOnAnswers(answer)
+                    .clickNextButton(dupixentInjectionPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5821", (String[]) entry.getValue().toArray())
+                    .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                     .back();
         }
-
-        biologicMedications
-                .waitForPageLoadKAD()
+        HaveYouEverTakenEitherAnyOfFollowingMeds_OLS haveYouEverTakenEitherAnyOfFollowingMeds_ols =
+                areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
+                .waitForPageLoad()
+                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverTakenEitherAnyOfFollowingMeds_ols);
+                .clickOnAnswers("Medications taken by mouth (oral medications)")
+                .clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_OLS());
 
-
-        //------------Q27- HaveYouEverTakenEitherAnyOfFollowingMeds ----------------
         haveYouEverTakenEitherAnyOfFollowingMeds_ols
                 .waitForPageLoad()
-                .clickOnAnswers("Jakafi")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad();
+                .clickOnAnswers("Jakafi",
+                        "Olumiant",
+                        "Xeljanz")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -375,11 +344,10 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
 
         heartrelatedMedicalProceduresPageOLS
@@ -390,10 +358,10 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4,
                         "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
@@ -403,11 +371,10 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -416,11 +383,10 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -429,11 +395,10 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("Angioplasty")
@@ -451,24 +416,20 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .clickOnAnswers("Kidney disease")
                 .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
 
+        List<String> disqualifyQS51 = Arrays.asList("Dialysis", "Kidney transplant");
+        for (String answer: disqualifyQS51) {
+            System.out.println(answer);
+            whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("Neither")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                    .back();
+        }
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Dialysis")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back();
-
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
-                .clickOnAnswers("Kidney transplant")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS)
                 .waitForPageLoad()
                 .back();
 
@@ -495,24 +456,20 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
 
+        List<String> disqualifyQS53 = Arrays.asList("Bipolar disorder", "Schizophrenia");
+        for (String answer: disqualifyQS53) {
+            System.out.println(answer);
+            followingMentalEmotionalHealthPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
+                    .back();
+        }
         followingMentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back();
-
-        followingMentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back(followingMentalEmotionalHealthPageOLS)
                 .waitForPageLoad()
                 .back();
 
@@ -521,128 +478,64 @@ whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
-
-        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
-                .clickNextButton(approximateHeightPageOLS);
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Kidney disease requiring dialysis")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
-
+        List<String> disqualifyQS59 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
+        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
+        for (String answer: disqualifyQS59) {
+            System.out.println(answer);
+            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQS61 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
+        for (String answer: disqualifyQS61) {
+            System.out.println(answer);
+            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-
-        UnqualifiedCloseOLS unqualifiedCloseOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "10", "120") //BMI 17.25
-                .clickNextButton(new UnqualifiedCloseOLS());
-        unqualifiedCloseOLS
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .clickOnQNumber("QS60");
-        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188")
-                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
-        experienceExcessiveHungerOrIncreasedAppetiteOLS
+                .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back();
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+                .clickOnQNumber("QS60");
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("5")
                 .setLbs("160")
-                .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
+                .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
-//                .clickOnAnswers("Prefer not to answer")
-//                .clickNextButton(new IdentificationPageOLS())
-//                .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()

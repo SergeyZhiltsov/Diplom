@@ -43,7 +43,7 @@ public enum Site {
     //4450
     AUT_CV1_4450S_Syn("AUT_CV1_4450S_Syn", "19901", "41C", false, false, "EX9536_4388"),
     //4471
-    AUT_MCC("AUT_MCC", "19341", "1R", false, true, "MK_7264_027", "MK_7264_030"),
+    AUT_MCC("AUT_MCC", "19341", "1R", false, true, "MK_7264_030"),
     //4533
     AUT_SHIRE_4533_site("AUT_SHIRE_4533_site", "19901", "1R", false, false, "SHP647_305", "SHP647_306"),
     //4556
@@ -85,6 +85,8 @@ public enum Site {
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", true, false, "ANB020_005"),
     //4867
     AUT_OAB_4867("AUT_OAB4867_site", "08204", "41C", false, false, "URO_901_1001"),
+    //4967
+    AUT_AMS1_4967_site("AUT_AMS1_4967_site", "08204", "1R", false, false, "R3500_AD_1798", "R3500_AD_1805"),
     //5017
     //AUT_INS_5017S_site("AUT_INS_5017S_site", "19901", "41C", false, false, "ID_078A301", "ID_078A302"), //Not required in spec
     AUT_INS_5017_site("AUT_INS_5017_site", "08204", "1R", true, false, "ID_078A301", "ID_078A302"),
@@ -97,6 +99,8 @@ public enum Site {
     AUT_OA_5055_S("AUT_OA_5055_S", "19901", "41C", false, false, "R475_PN_1602"),
     //5062
     AUT_NASH5062_site("AUT_NASH5062_site", "19901", "41C", false, false, "3152_301_002"),
+    //4483
+    AUT_NASH4483_site("AUT_AMS1_4483_site", "19901", "1R", false, false, "MGL_3196_11"),
     //Others
     AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java
     //Health check
