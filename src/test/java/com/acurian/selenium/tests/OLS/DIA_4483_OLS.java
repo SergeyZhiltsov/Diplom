@@ -14,6 +14,9 @@ import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -24,11 +27,28 @@ import java.util.Map;
 
 public class DIA_4483_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {Site.AUT_NASH4483_site},
+                {Site.AUT_NASH4483S_site}
+        };
+    }
+
+    @Test(enabled = true, dataProvider = "sites")
     @Description("NASH study 4483 OLS")
-    public void dia4483olsTest() {
+    public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";
-        Site site = Site.AUT_NASH4483_site; //Synexus Site
         String studyName = "a fatty liver study for diabetics!";//"a NASH";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -734,9 +754,10 @@ public class DIA_4483_OLS extends BaseTest {
 //                .waitForPageLoad()
 //                .clickOnAnswers("Asian (Asian Indian, Chinese, Korean, Filipino, Japanese, Vietnamese)")
                 .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad1(studyName)
                 .getPID()
@@ -746,16 +767,25 @@ public class DIA_4483_OLS extends BaseTest {
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not interested in receiving information")
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
-                //.getAnomalyDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
                 .queueSiteForFULCheck(site.name);
+        switch (site) {
+            case AUT_NASH4483_site: //1R
+                break;
+            case AUT_NASH4483S_site: //41C
+                aboutHealthPageOLS
+                    .getAnomalyDbToLog(env);
+                break;
+        }
     }
 }
