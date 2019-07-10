@@ -10,23 +10,25 @@ public class QualifiedCloseGastroPageCC extends MainPageCC{
 
     //Show for 4357 Gastroparesis - NOT IN FLARE patients with Status: INITIAL_INACTIVE
 
-    public final String titleExpected = "This research study requires you to meet specific study requirements associated with your Diabetic Gastroparesis. Based on the information you have provided, you have not met the study requirements at this time.";
+    public final String titleExpected = "Thank you for your interest in Diabetic Gastroparesis studies. Based on the information you provided, we have matched you with a study.";
 
-    public final String titleExpected2 ="There is a helpful online symptom tracker you can access at www.mygutchecktracker.com and record your symptoms on a weekly basis (especially when your symptoms are worsening).\n" +
-            "Your information will be sent to the study site once your tracking indicates you have met the study requirements.\n" +
+    public final String titleExpected2 ="NEXT STEPS:\n" +
+            "We will email you weekly reminders to track your symptoms. This will help us send you to the doctor's office at the right time.\n" +
+            "The best way to receive these reminders is through email.\n" +
+            "Agent Note: If the caller states that they do not have an email address read: \"That's ok. We can contact you using the phone number that you provided.\"";
+
+    public final String titleExpected3 ="*Your contact information will be kept confidential and only be used to send you reminders to track your symptoms\n" +
             "\n" +
-            "There is also a number you can call to provide your symptom update: 1-855-363-4921, and you will also receive an email reminding you to use the online tracker and to call us when your symptoms are worsening.";
-
-    public final String titleExpected3 ="Once you access the online tracker www.mygutchecktracker.com, please take the time to answer the 3 questions weekly (and especially when your symptoms are worsening). The questions assess your symptom severity and determine if you are ready to see the study doctor.";
+            "Thank you for your help in advancing research for Diabetic Gastroparesis!";
 
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='subquestion'][1]/span[@class='sub_question_text']")
+    @FindBy(xpath = "//div[@class='subquestion'][1]/span[@class='sub_question_text']/div[@class='show-in-cc']")
     WebElement titleText2;
 
-    @FindBy(xpath = "//div[@class='subquestion'][2]/span[@class='sub_question_text']")
+    @FindBy(xpath = "//div[@class='subquestion'][2]/span[@class='sub_question_text']/div[@class='show-in-cc']")
     WebElement titleText3;
 
     public QualifiedCloseGastroPageCC() {
