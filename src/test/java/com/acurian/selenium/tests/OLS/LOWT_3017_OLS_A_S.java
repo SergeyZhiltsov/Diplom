@@ -61,7 +61,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600", true), "Title is diff");
+                dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091990")

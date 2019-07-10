@@ -35,7 +35,7 @@ public class AKC_4691_OLS extends BaseTest {
         dateOfBirthPageOLS.openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for people with diabetes and related health conditions", "750", true), "Title is diff");
+                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for people with diabetes and related health conditions", "750"), "Title is diff");
 
         //--------------DOB Question------------
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
