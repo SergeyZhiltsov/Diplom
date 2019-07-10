@@ -44,7 +44,7 @@ public class CV_3140_CC_A_S extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = CV_3140_OLS_A_S.class)
+    @Test(dataProvider = "sites", dataProviderClass = CV_3140_OLS_A_S.class, enabled = false)
     @Description("CV 3140 CC")
     public void cv3140ccTest(Site site) {
         String phoneNumber = "AUTAMS1CV1";

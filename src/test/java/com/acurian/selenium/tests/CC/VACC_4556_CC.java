@@ -40,7 +40,7 @@ public class VACC_4556_CC extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("VACC_4556_CC")
     public void vacc4556cc(Site site) {
         final String phoneNumber = "AUTAMS1VAC";

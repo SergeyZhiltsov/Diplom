@@ -21,7 +21,7 @@ import java.util.*;
 
 public class DERM_4600_CC extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     @Description("DERM 4600 CC Pfizer Atopic Derm")
     public void derm4600ccPadTest() {
         Site site = Site.AUT_AMS1_4600_site;

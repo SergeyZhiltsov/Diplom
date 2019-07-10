@@ -19,7 +19,7 @@ import java.util.*;
 
 public class KAD_4849_CC extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     @Description("KAD 4849 for CC")
     public void kad4849_CC_Test() {
         Site site = Site.AUT_DERM_4849_Site;
