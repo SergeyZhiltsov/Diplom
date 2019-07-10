@@ -79,7 +79,7 @@ public class GAST_4357_OLS extends BaseTest {
 
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Male")
+                .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
         //Q2
@@ -370,7 +370,7 @@ public class GAST_4357_OLS extends BaseTest {
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Sleep problems (insomnia, sleep apnea, narcolepsy)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                        "Men's health issues (prostate enlargement or BPH, low testosterone)")
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
         whatKindOfArthritisPageOLS
                 .waitForPageLoad()
@@ -693,25 +693,25 @@ public class GAST_4357_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        WhichOfTheFollowingMensHealthConditions_OLS whichOfTheFollowingMensHealthConditions_OLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WomenHealthConditions womenHealthConditions = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                .clickNextButton(new WhichOfTheFollowingMensHealthConditions_OLS());
+                .clickNextButton(new WomenHealthConditions());
         //Q22: QS57
-        whichOfTheFollowingMensHealthConditions_OLS
+        womenHealthConditions
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Men's health issues (prostate enlargement or BPH, low testosterone)")
-                .clickNextButton(whichOfTheFollowingMensHealthConditions_OLS);
-
-        whichOfTheFollowingMensHealthConditions_OLS
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Men's health issues (prostate enlargement or BPH, low testosterone)")
+//                .clickNextButton(whichOfTheFollowingMensHealthConditions_OLS);
+//
+//        whichOfTheFollowingMensHealthConditions_OLS
+//                .waitForPageLoad()
+//                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
