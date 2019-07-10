@@ -60,7 +60,8 @@ public class GAST_4357_CC extends BaseTest {
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -77,14 +78,16 @@ public class GAST_4357_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS,
+                "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "500"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle(studyName, "500"), "Title is diff");
 
         dateOfBirthPageCC
                 .setMonth("Apr")
@@ -104,7 +107,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC)
                 .waitForPageLoad()
                 .setYear("2001")
@@ -126,7 +129,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new NonQRtransitionPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005996-QS7202-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7202", site.activeProtocols)
                 .back(diagnosedAnyTypeOfDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes") //Continue to Q3
@@ -140,13 +143,13 @@ public class GAST_4357_CC extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS7203-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                 .back(whatKindOfDiabetesPageCC)
                 .clickOnAnswer("High blood sugar only")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS7203-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                 .back(whatKindOfDiabetesPageCC);
         //Q4
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
@@ -169,7 +172,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(digestiveConditionsAffectDiabetesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0006179-QS7204-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
                     .back(withType2DiabetesPageCC);
         }
 
@@ -193,7 +196,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(digestiveConditionsAffectDiabetesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0020216-QS7205-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7205", site.activeProtocols)
                     .back(withType1DiabetesPageCC);
         }
 
@@ -216,7 +219,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(digestiveConditionsAffectDiabetesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0020217-QS7206-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
                     .back(howLongAgoDiagnosedDiabetesPageCC);
         }
         //Q6
@@ -238,7 +241,7 @@ public class GAST_4357_CC extends BaseTest {
         thrownUpVomitedPast2weeksPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020222-QS7209-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
                 .back(symptomsRegularlyOncePerWeekPageCC);
         SymptomsFirstStartPageCC symptomsFirstStartPageCC = symptomsRegularlyOncePerWeekPageCC
                 .waitForPageLoad()
@@ -249,7 +252,7 @@ public class GAST_4357_CC extends BaseTest {
         symptomsFirstStartPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020222-QS7209-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
                 .back(symptomsRegularlyOncePerWeekPageCC)
                 .clickOnAnswers("Vomiting or throwing up",
                                 "Bloating") //Deselect Bloating
@@ -285,7 +288,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-3")
+                    .checkStudyStatusContainsForQNumber("QS7211", "2-3")
                     .back();
             thrownUpVomitedPast2weeksPageCC
                     .waitForPageLoad()
@@ -293,7 +296,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-3")
+                    .checkStudyStatusContainsForQNumber("QS7211", "2-3")
                     .back();
             thrownUpVomitedPast2weeksPageCC
                     .waitForPageLoad()
@@ -301,7 +304,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-3")
+                    .checkStudyStatusContainsForQNumber("QS7211", "2-3")
                     .back();
             thrownUpVomitedPast2weeksPageCC
                     .waitForPageLoad()
@@ -309,18 +312,18 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-3");
+                    .checkStudyStatusContainsForQNumber("QS7211", "2-3");
         }
         else{
             currentlyHaveAnyOffFollowingPageCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("Q0020224-QS7211-STUDYQUES", "2-4");
+                    .checkStudyStatusContainsForQNumber("QS7211", "2-4");
         }
 //        currentlyHaveAnyOffFollowingPageCC
 //                .waitForPageLoad()
 //                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("Q0020224-QS7211-STUDYQUES", site.activeProtocols)
+//                .checkProtocolsContainsForQNumber("QS7211", site.activeProtocols)
 //                .back(thrownUpVomitedPast2weeksPageCC)
 //                .clickOnAnswer("4 or more times")
 //                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
@@ -339,7 +342,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(surgeriesPerformedPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0020225-QS7212-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7212", site.activeProtocols)
                     .back(currentlyHaveAnyOffFollowingPageCC);
         }
         currentlyHaveAnyOffFollowingPageCC
@@ -362,7 +365,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(bariatricWeightLossSurgeryPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0020227-QS7213-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7213", site.activeProtocols)
                     .back(surgeriesPerformedPageCC);
         }
         surgeriesPerformedPageCC
@@ -387,7 +390,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(lastTimeSurgeryMedicalProcedureWeightLossPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0005312-QS7214-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7214", site.activeProtocols)
                     .back(bariatricWeightLossSurgeryPageCC);
         }
 
@@ -472,7 +475,7 @@ public class GAST_4357_CC extends BaseTest {
 //                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
 //                    .waitForPageLoad()
 //                    .getPage(debugPageCC)
-//                    .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES" , site.activeProtocols)
+//                    .checkProtocolsContainsForQNumber("QS41" , site.activeProtocols)
 //                    .back(whichOfTheFollowingBreathingLungPageСС);
 //        }
 //        whichOfTheFollowingBreathingLungPageСС
@@ -492,7 +495,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(otherThanSkinCancerPageOLS)
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
@@ -541,7 +544,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS47" , site.activeProtocols)
                     .back(subquestionExperiencedHeartPageCC);
         }
         subquestionExperiencedHeartPageCC
@@ -559,7 +562,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS47" , site.activeProtocols)
                     .back(subquestionExperiencedHeartPageCC);
         }
         subquestionExperiencedHeartPageCC
@@ -584,7 +587,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015137-QS49-STUDYQUES" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS49" , site.activeProtocols)
                     .back(mostRecentHeartProcedurePageСС);
         }
         mostRecentHeartProcedurePageСС
@@ -637,7 +640,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015126-QS44-STUDYQUES" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS44" , site.activeProtocols)
                     .back(whichOfFollowingDigestiveConditionPageCC);
         }
         whichOfFollowingDigestiveConditionPageCC
@@ -657,7 +660,7 @@ public class GAST_4357_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -667,7 +670,7 @@ public class GAST_4357_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -686,7 +689,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfTheFollowingLiverProblemsPageСС);
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
@@ -717,7 +720,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswers("Seizure disorder, such as epilepsy")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015147-QS54-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS54", site.activeProtocols)
                 .back(whichOfFollowingHaveYouDiagnosedWith_NeurologicalCC)
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
@@ -796,7 +799,7 @@ public class GAST_4357_CC extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59" , site.activeProtocols)
                     .back();
         }
 
@@ -807,7 +810,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES" , site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61" , site.activeProtocols)
                 .back();
 
         //Q24: QS59
@@ -817,7 +820,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(approximateHeightPageCC)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -861,8 +864,10 @@ public class GAST_4357_CC extends BaseTest {
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "04/19/2001", "US", "Dover, DE",
-                         site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", env.equals("STG") ? "4357synexus" : "4357S", site.name, "ALLXXXDGP01")
+                        .assertVariables("Acurian", "Trial", "04/19/2001", "US",
+                                "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", env.equals("STG") ? "4357synexus" : "4357S",
+                                site.name, "ALLXXXDGP01")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

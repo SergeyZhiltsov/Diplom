@@ -7,25 +7,37 @@ import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.tests.OLS.DIA_4483_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
 public class DIA_4483_CC extends BaseTest {
 
-    @Test()
-    public void dia4483ccTest() {
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @Test(dataProvider = "sites", dataProviderClass = DIA_4483_OLS.class)
+    public void dia4483ccTest(Site site) {
         final String phoneNumber = "AUTAMSNASH";
         final String studyName = "a fatty liver study for diabetics"; //"a NASH study";
         final String indicationHistroyName = "diabetes";
-        Site site = Site.AUT_NASH4483_site; //Synexus Site
+
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
 
@@ -763,25 +775,53 @@ public class DIA_4483_CC extends BaseTest {
                 .setAll("4", "10", "180")
                 .clickNextButton(letMeSeePageCC);
 
-        letMeSeePageCC
+        SiteSelectionPageCC siteSelectionPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnAnswer(site.name)
-                .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                .waitForPageLoadSyn()
-                .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .queueSiteForFULCheck(site.name);
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
+                .clickNextButton(new SiteSelectionPageCC());
+        switch (site) {
+            case AUT_NASH4483_site: //1R
+                siteSelectionPageCC
+                    .waitForPageLoad(studyName)
+                    .getPID()
+                    .clickOnAnswer(site.name)
+                    .clickNextButton(new QualifiedClose2PageCC())
+                    .waitForPageLoad()
+                    .clickNextButton(new SynexusHealthyMindsPageCC())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new ThankYouCloseSimplePageCC())
+                    .waitForPageLoad()
+                    .clickNextButton(selectActionPageCC)
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+            case AUT_NASH4483S_site: //41C
+                siteSelectionPageCC
+                    .waitForPageLoad(studyName)
+                    .getPID()
+                    .clickOnAnswer(site.name)
+                    .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                    .waitForPageLoadSyn()
+                    .assertVariables("Acurian", "Trial", "09/09/1960", "US",
+                            "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
+                            "999 -999-9999", "aut4483", site.name, "MADPRANAH611")
+                    .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                    .clickNextButton(selectActionPageCC)
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .getRadiantDbToLog(env)
+                    .childPidFromDbToLog(env)
+                    .assertGeneratedFul(env, site)
+                    .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+        }
     }
 }
