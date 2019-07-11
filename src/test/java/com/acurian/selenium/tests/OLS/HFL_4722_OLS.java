@@ -123,7 +123,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad()
-                .setAll("5", "5", "160")
+                .setAll("5", "5", "190")
                 .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

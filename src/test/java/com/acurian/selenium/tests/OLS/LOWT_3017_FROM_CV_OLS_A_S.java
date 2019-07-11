@@ -42,12 +42,12 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         String phoneNumber = "AUTAMS1CV1";
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
-        String esperionProtocol = "1002_043";
-        String esperionProtocolA = "1002_043_A";
+//        String esperionProtocol = "1002_043";
+//        String esperionProtocolA = "1002_043_A";
         String kowaProtocolA = "K_877_302_A";
         String kowaProtocolS = "K_877_302_S";
         final String novoProtocol = "EX9536_4388";
-        String[] cvModuleProtocols = {esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS};
+        String[] cvModuleProtocols = {kowaProtocolA, kowaProtocolS};
         String dqedStudyName = "a heart health study";
         String studyName = "a men's health study";
         String site_Indication = "low testosterone or hypogonadism";
@@ -90,7 +90,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         PersonalQuestionsOLS personalQuestionsOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
+                .checkProtocolsContainsForQNumber("QS6703", kowaProtocolA, kowaProtocolS)
                 .getPage(whatKindOfDiabetesPageOLS)
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new PersonalQuestionsOLS());

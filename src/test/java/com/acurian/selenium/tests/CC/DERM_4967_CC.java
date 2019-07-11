@@ -374,6 +374,7 @@ public class DERM_4967_CC extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune " +
                         "system attacking your joints")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
                 .back(whatKindOfArthritisCC)
@@ -527,6 +528,7 @@ public class DERM_4967_CC extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
                     .back();
@@ -549,6 +551,7 @@ public class DERM_4967_CC extends BaseTest {
                     .clickOnAnswers("Neither")
                     .clickOnAnswers(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                     .back();
@@ -567,8 +570,8 @@ public class DERM_4967_CC extends BaseTest {
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
-        doAnyOftheFollowingAdditionalDiagnosesCC
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfTheFollowingLiverProblemsPageСС);
@@ -603,6 +606,7 @@ public class DERM_4967_CC extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                     .back();
@@ -727,6 +731,7 @@ public class DERM_4967_CC extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                     .back();

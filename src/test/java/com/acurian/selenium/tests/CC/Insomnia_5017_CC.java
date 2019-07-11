@@ -103,7 +103,7 @@ public class Insomnia_5017_CC extends BaseTest{
         zipCodePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
 
         dateOfBirthPageCC
@@ -130,7 +130,7 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickNextButton(new NonQRtransitionPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020234-QS7302-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7302", site.activeProtocols)
                 .back(doYouSufferFromInsomniaPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -143,13 +143,13 @@ public class Insomnia_5017_CC extends BaseTest{
         longSleepProblemsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020235-QS7303-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7303", site.activeProtocols)
                 .back(oftenSleepProblemsPageCC)
                 .clickOnAnswer("1 – 2 nights per week") //Disqualify (“Frequency < 3 nights/week”)
                 .clickNextButton(longSleepProblemsPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020235-QS7303-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7303", site.activeProtocols)
                 .back(oftenSleepProblemsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("3 – 4 nights per week")
@@ -162,7 +162,7 @@ public class Insomnia_5017_CC extends BaseTest{
         healthcareDiagnosedAnySleepPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020236-QS7304-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7304", site.activeProtocols)
                 .back(longSleepProblemsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("3 – 6 months")
@@ -188,7 +188,7 @@ public class Insomnia_5017_CC extends BaseTest{
                     .clickNextButton(rotatingNightShiftPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0020237-QS7305-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7305", site.activeProtocols)
                     .back(healthcareDiagnosedAnySleepPageCC);
         }
 
@@ -204,7 +204,7 @@ public class Insomnia_5017_CC extends BaseTest{
         electronicDeviceSleepPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020239-QS7306-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7306", site.activeProtocols)
                 .back(rotatingNightShiftPageCC);
         //Q7
         rotatingNightShiftPageCC
@@ -228,29 +228,29 @@ public class Insomnia_5017_CC extends BaseTest{
 //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder")
-                .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickOnAnswers("Autism spectrum")
-                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                .clickOnAnswers("Cancer")
-                .clickOnAnswers("Diabetes (type 1 or type 2)")
-                .clickOnAnswers("Headaches (migraine, cluster, tension)")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickOnAnswers("High cholesterol, triglycerides, or lipids")
-                .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)")
-                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
-                .clickOnAnswers("Kidney disease")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickOnAnswers("Lupus")
-                .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
-                        "schizophrenia)")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)")
-                .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                .clickOnAnswers("Women's health issues (endometriosis, uterine fibroids)")
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
+                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                "Autism spectrum",
+                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                "Cancer",
+                "Diabetes (type 1 or type 2)",
+                "Headaches (migraine, cluster, tension)",
+                "Heart or circulation problems (heart attack, heart failure, stroke)",
+                "High blood pressure or hypertension",
+                "High cholesterol, triglycerides, or lipids",
+                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                "Kidney disease",
+                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                "Lupus",
+                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
+                        "schizophrenia)",
+                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisCC());
         whatKindOfArthritisCC
                 .waitForPageLoad()
@@ -292,7 +292,7 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS41", site.activeProtocols)
                 .back(whichOfTheFollowingBreathingLungPageСС)
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
@@ -399,7 +399,7 @@ public class Insomnia_5017_CC extends BaseTest{
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -409,7 +409,7 @@ public class Insomnia_5017_CC extends BaseTest{
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage);
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -425,10 +425,10 @@ public class Insomnia_5017_CC extends BaseTest{
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
-        doAnyOftheFollowingAdditionalDiagnosesCC
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfTheFollowingLiverProblemsPageСС);
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
@@ -445,21 +445,19 @@ public class Insomnia_5017_CC extends BaseTest{
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Generalized anxiety disorder (GAD)")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
-        doAnyOftheFollowingAdditionalDiagnosesCC
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC);
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Major depressive disorder (MDD) or depression")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
-        doAnyOftheFollowingAdditionalDiagnosesCC
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC);
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
@@ -469,7 +467,7 @@ public class Insomnia_5017_CC extends BaseTest{
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC);
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
@@ -479,7 +477,7 @@ public class Insomnia_5017_CC extends BaseTest{
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC);
 
         followingMentalEmotionalHealthPageCC
@@ -571,7 +569,7 @@ public class Insomnia_5017_CC extends BaseTest{
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59" , site.activeProtocols)
                     .back();
         }
 
@@ -581,8 +579,9 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -590,8 +589,9 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -599,30 +599,29 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
 
-        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+        IdentificationPageCC identificationPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "3", "100")
-                .clickNextButton(new LetMeSeePageCC());
-        letMeSeePageCC
+                .clickNextButton(new IdentificationPageCC());
+        identificationPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageCC); //Disqualify ("Low BMI") if < 18
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("3", "5", "100")
-                .clickNextButton(letMeSeePageCC);
-        letMeSeePageCC
+                .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageCC); //Disqualify ("High BMI") if > 40
-        approximateHeightPageCC
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("3", "6", "100")
-                .clickNextButton(letMeSeePageCC);
+                .clickNextButton(new LetMeSeePageCC());
 
-        IdentificationPageCC identificationPageCC = letMeSeePageCC
+        letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC());
         //----------PII (IdentificationPageOLS) Page--------------------

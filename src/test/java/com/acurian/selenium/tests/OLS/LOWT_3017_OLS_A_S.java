@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeart
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
 import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.cv_study.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
@@ -46,8 +47,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         String phoneNumber = "AUTAMSLOWT";
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
-        String esperionProtocol = "1002_043";
-        String esperionProtocolA = "1002_043_A";
+        //String esperionProtocol = "1002_043"; //Deactivate 3140 Esperion HC & CVD (all protocols: 1002-043_A & 1002-043)
+        //String esperionProtocolA = "1002_043_A"; //R74	74.0	6/21/2019 & 6/24/2019
         String kowaProtocolA = "K_877_302_A";
         String kowaProtocolS = "K_877_302_S";
         String studyName = "a men's health";
@@ -95,7 +96,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         //---------------GENDER Question-------------------
         genderPageOLS
                 .waitForPageLoad();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = genderPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                genderPageOLS
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
@@ -114,7 +116,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ExperiencedAnyOfFollowingOLS());
 
-        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS = experiencedAnyOfFollowing_OLS
+        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS =
+                experiencedAnyOfFollowing_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
@@ -125,7 +128,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
         //-----------New Switching to CV module logic-----------------------
         //Check if possible to switch to to CV module logic
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS =
+                hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
@@ -134,16 +138,15 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        SubquestionStatinMedicationsHavePageOLS subquestionStatinMedicationsHavePageOLS = approximateHeightPageOLS
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(new SubquestionStatinMedicationsHavePageOLS());
-        subquestionStatinMedicationsHavePageOLS
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
+        cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
-                .back();
-        approximateHeightPageOLS
+                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
+                .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .back();
 
@@ -153,13 +156,12 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS);
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .clickNextButton(subquestionStatinMedicationsHavePageOLS)
+                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
                 .checkProtocolsContainsForQNumber("QS6703", kowaProtocolA, kowaProtocolS)
-                .back();
-        approximateHeightPageOLS
+                .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .back();
 
@@ -173,7 +175,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickNextButton(whatKindOfDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
+                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
                 .back();
         approximateHeightPageOLS
                 .waitForPageLoad()
@@ -357,8 +359,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()//---Disqualify ("High BMI") if > 50 - Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]
                 .setAll("5", "0", "256")
-                .clickNextButton(subquestionStatinMedicationsHavePageOLS);
-        subquestionStatinMedicationsHavePageOLS
+                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2)

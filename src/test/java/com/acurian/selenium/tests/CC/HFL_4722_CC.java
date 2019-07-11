@@ -91,7 +91,7 @@ public class HFL_4722_CC extends BaseTest {
                 .clickNextButton(nonQRtransitionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018012-QS6402-STUDYQUES", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS6402", site.activeProtocols)
                 .back();
         SymptomsOfHeartFailurePageCC symptomsOfHeartFailurePageCC = congestiveHeartFailurePageCC
                 .waitForPageLoad()
@@ -105,7 +105,7 @@ public class HFL_4722_CC extends BaseTest {
         treatYourHeartFailurePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018014-QS6403-STUDYQUES", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS6403", site.activeProtocols)
                 .back();
         symptomsOfHeartFailurePageCC
                 .waitForPageLoad()
@@ -124,7 +124,7 @@ public class HFL_4722_CC extends BaseTest {
         transitionStatementCC
                 .waitForPageLoad("heart failure")
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018016-QS6405-STUDYQUES", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS6405", site.activeProtocols)
                 .back();
         heartTransplantPageCC
                 .waitForPageLoad()
@@ -144,11 +144,11 @@ public class HFL_4722_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC())
                 .waitForPageLoad()
-                .setAll("5", "5", "160")
+                .setAll("5", "5", "190")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018025-QS66-STUDYQUES", site.activeProtocols)
+                .checkProtocolsEqualsForQNumber("QS66", site.activeProtocols)
                 .back(new ApproximateHeightPageCC())
                 .setLbs("250")
                 .clickNextButton(new LetMeSeePageCC())

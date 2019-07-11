@@ -61,7 +61,8 @@ public class Insomnia_5017_OLS extends BaseTest{
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an insomnia study", "1,450"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+                .getExpectedModifiedTitle("an insomnia study", "1,450"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091940")
                 .clickNextButton(new ZipCodePageOLS());
@@ -79,7 +80,8 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .clickNextButton(new DoYouSufferFromInsomniaPageOLS());
 
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouSufferFromInsomniaPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                doYouSufferFromInsomniaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -191,29 +193,29 @@ public class Insomnia_5017_OLS extends BaseTest{
 ////-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder")
-                .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickOnAnswers("Autism spectrum")
-                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                .clickOnAnswers("Cancer")
-                .clickOnAnswers("Diabetes (type 1 or type 2)")
-                .clickOnAnswers("Headaches (migraine, cluster, tension)")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickOnAnswers("High cholesterol, triglycerides, or lipids")
-                .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)")
-                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
-                .clickOnAnswers("Kidney disease")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickOnAnswers("Lupus")
-                .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
-                        "schizophrenia)")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)")
-                .clickOnAnswers("Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                .clickOnAnswers("Women's health issues (endometriosis, uterine fibroids)")
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
+                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                "Autism spectrum",
+                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                "Cancer",
+                "Diabetes (type 1 or type 2)",
+                "Headaches (migraine, cluster, tension)",
+                "Heart or circulation problems (heart attack, heart failure, stroke)",
+                "High blood pressure or hypertension",
+                "High cholesterol, triglycerides, or lipids",
+                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                "Kidney disease",
+                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                "Lupus",
+                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
+                        "schizophrenia)",
+                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
         whatKindOfArthritisPageOLS
                 .waitForPageLoad()
@@ -298,7 +300,8 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
         //Q11: QS46
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS =
+                haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack")
                 .clickOnAnswers("Stroke")
@@ -350,7 +353,8 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .back();
 
         //Q16: QS51
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
@@ -388,8 +392,8 @@ public class Insomnia_5017_OLS extends BaseTest{
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS);
@@ -544,6 +548,7 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease requiring dialysis")
                 .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
@@ -553,6 +558,7 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
@@ -562,11 +568,11 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        AreYouInterestedInPneumoniaVaccineStudyOLS areYouInterestedInPneumoniaVaccineStudyOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "3", "100")
-                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS());
-        areYouInterestedInPneumoniaVaccineStudyOLS
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -580,14 +586,15 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS); //Disqualify ("High BMI") if > 40
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "6", "100")
-                .clickNextButton(new IdentificationPageOLS());
+                .clickNextButton(identificationPageOLS);
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad("an insomnia")
                 .getPID();
