@@ -70,7 +70,7 @@ public class RadiantWTtest extends BaseTest {
                .getPage(new CallCenterIntroductionPageCC())
                .activateDebugOnProd(env)
                .getPage(genderPageCC)
-               .clickOnAnswer("Female")
+               .clickOnAnswerGmega("Female")
                .clickNextButton(new ApproximateHeightPageCC());
 
         FollowingNeurologicalConditions followingNeurologicalConditions = approximateHeightPageOLS
