@@ -8,6 +8,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
@@ -52,8 +53,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         List<String> protocols = Arrays.asList("M16_100", "R727_CL_1532");
         String protocol1 = "M16_100";
         String protocol2 = "M16_100_S";
-        String esperionProtocol = "1002_043";
-        String esperionProtocolA = "1002_043_A";
+//        String esperionProtocol = "1002_043";    //Deactivate 3140 Esperion HC & CVD (all protocols: 1002-043_A & 1002-043)
+//        String esperionProtocolA = "1002_043_A"; //R74	74.0	6/21/2019 & 6/24/2019
         String kowaProtocolA = "K_877_302_A";
         String kowaProtocolS = "K_877_302_S";
         String studyName = "a high cholesterol and heart disease";
@@ -61,6 +62,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
@@ -96,14 +98,14 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .setYear("1990")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageCC());
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC
-                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", protocol1, protocol2)
-                .back();
-        dateOfBirthPageCC
+        zipCodePageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
+                .back(dateOfBirthPageCC)
                 .waitForPageLoad2Ver()
                 .setYear("1960")
-                .clickNextButton(new ZipCodePageCC());
+                .clickNextButton(zipCodePageCC);
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
@@ -150,17 +152,16 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
 
-        StatinMedicationsHavePageCC statinMedicationsHavePageCC = approximateHeightPageCC
+        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(new StatinMedicationsHavePageCC());
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
 
-        statinMedicationsHavePageCC
+        cholesterolTriglyceridesLipidsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
-                .back();
-        approximateHeightPageCC
+                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
+                .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .back();
 
@@ -168,16 +169,14 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(approximateHeightPageCC);
-        approximateHeightPageCC
+                .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
-                .clickNextButton(statinMedicationsHavePageCC)
+                .clickNextButton(cholesterolTriglyceridesLipidsPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", kowaProtocolA, kowaProtocolS)
-                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", kowaProtocolA, kowaProtocolS)
-                .back();
-        approximateHeightPageCC
+                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
+                .checkProtocolsContainsForQNumber("QS6703", kowaProtocolA, kowaProtocolS)
+                .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .back();
 
@@ -191,9 +190,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickNextButton(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018804-QS5632-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
-                .back();
-        approximateHeightPageCC
+                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
+                .back(approximateHeightPageCC)
                 .waitForPageLoad()
                 .back();
 
@@ -255,17 +253,17 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
+        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital",
                         "Coronary Artery Disease (blockage in a heart vessel)",
                         "Peripheral Vascular Disease (for example a blockage in your leg vessel)",
                         "Amputation of a digit or limb due to Peripheral Vascular Disease")
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC())
-                .waitForPageLoad();
-        haveDoctorEverDiagnosedYou_cc.back();
-        heartOrBloodVesselPageCC
+                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
+        haveDoctorEverDiagnosedYou_CC
+                .waitForPageLoad()
+                .back(heartOrBloodVesselPageCC)
                 .waitForPageLoad();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartOrBloodVesselPageCC
                 .clickOnAnswers("Heart attack")
@@ -274,16 +272,18 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        subquestionExperiencedHeartPageCC
+                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
+                .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        subquestionExperiencedHeartPageCC
+                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
+                .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .back();
 
@@ -295,15 +295,19 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
+                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
+                .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
+                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
+                .back();
         subquestionExperiencedHeartPageCC.back();
 
         heartOrBloodVesselPageCC
@@ -314,15 +318,18 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
+                .clickNextButton(subquestionExperiencedHeartPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
+                .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
+                .clickNextButton(subquestionExperiencedHeartPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
+                .back();
         subquestionExperiencedHeartPageCC.back();
         heartOrBloodVesselPageCC
                 .waitForPageLoad()
@@ -332,17 +339,17 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
+                .clickNextButton(subquestionExperiencedHeartPageCC);
 
-        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_cc
+        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC())
                 .waitForPageLoad();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC.back();
-        haveDoctorEverDiagnosedYou_cc
+        haveDoctorEverDiagnosedYou_CC
                 .waitForPageLoad();
-        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_cc
+        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_CC
                 .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
                         "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
@@ -353,7 +360,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017037-QS5624-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("QS5624", protocol1, protocol2);
         debugPageCC.back();
         receivedHeartProcedurePageCC
                 .waitForPageLoad()
@@ -364,23 +371,23 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("History of Prostate or Breast Cancer")
                 .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
         debugPageCC.back();
 
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .clickOnAnswers("Other cancer within the past 2 years (except skin cancer)")
                 .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
         debugPageCC.back();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .clickOnAnswers("Sleep apnea that is not currently being treated")
                 .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
         debugPageCC.back();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .clickOnAnswers("Drug, alcohol or steroid abuse in the past 12 months")
                 .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017042-QS5626-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
         debugPageCC.back();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .waitForPageLoad()
@@ -390,11 +397,10 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("4", "0", "166")
-                .clickNextButton(statinMedicationsHavePageCC);
-        statinMedicationsHavePageCC
+                .clickNextButton(cholesterolTriglyceridesLipidsPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004980-QS5627-STUDYQUES", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2)
                 .back();
 
         SiteSelectionPageCC selectionPageCC = approximateHeightPageCC

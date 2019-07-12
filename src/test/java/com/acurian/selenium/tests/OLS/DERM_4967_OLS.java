@@ -277,6 +277,7 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickOnAnswers("Cosentyx")
                 .clickNextButton(new DupixentInjectionPageOLS());
         dupixentInjectionPageOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
                 .back();
@@ -383,6 +384,7 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system " +
                         "attacking your joints")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
                 .back(whatKindOfArthritisPageOLS)
@@ -534,6 +536,7 @@ public class DERM_4967_OLS extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
                     .back();
@@ -557,6 +560,7 @@ public class DERM_4967_OLS extends BaseTest {
                     .clickOnAnswers("Neither")
                     .clickOnAnswers(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                     .back();
@@ -577,6 +581,7 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS);
@@ -611,6 +616,7 @@ public class DERM_4967_OLS extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                     .back();
@@ -732,6 +738,7 @@ public class DERM_4967_OLS extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                     .back();

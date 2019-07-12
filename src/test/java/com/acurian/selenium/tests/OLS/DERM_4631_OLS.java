@@ -226,6 +226,7 @@ public class DERM_4631_OLS extends BaseTest {
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Shots or IV infusions (injectable medications)")
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());

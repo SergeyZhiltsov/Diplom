@@ -36,12 +36,12 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
         final String phoneNumber = "AUTAMS1CV1";
         final String protocol1 = "M16_100";
         final String protocol2 = "M16_100_S";
-        final String esperionProtocol = "1002_043";
-        final String esperionProtocolA = "1002_043_A";
+        //final String esperionProtocol = "1002_043";       //Deactivate 3140 Esperion HC & CVD (all protocols: 1002-043_A & 1002-043)
+        //final String esperionProtocolA = "1002_043_A";    //AMS1 R74.0	6/21/2019 & 6/24/2019
         final String kowaProtocolA = "K_877_302_A";
         final String kowaProtocolS = "K_877_302_S";
         final String novoProtocol = "EX9536_4388";
-        final String[] cvModuleProtocols = {esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS, novoProtocol};
+        final String[] cvModuleProtocols = {kowaProtocolA, kowaProtocolS, novoProtocol};
         final String dqedStudyName = "a heart health study";
         final String studyName = "a men's health study";
         final String siteIndication = "low testosterone or hypogonadism";
@@ -104,7 +104,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
         PersonaQuestionsCC personaQuestionsCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", esperionProtocol, esperionProtocolA, kowaProtocolA, kowaProtocolS)
+                .checkProtocolsContainsForQNumber("Q0017021-QS6703-STUDYQUES", kowaProtocolA, kowaProtocolS)
                 .getPage(whatKindOfDiabetesPageCC)
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new PersonaQuestionsCC());

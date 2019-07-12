@@ -41,7 +41,7 @@ public class CV_5034_CC_A_S extends BaseTest {
     }
 
     @Test(dataProvider = "5034Sites", dataProviderClass = CV_5034_OLS_A_S.class)
-    @Description("Diabetes_4356A_Synexus for CC")
+    @Description("Diabetes_5034_Synexus for CC")
     public void CV_5034_CC_Test(Site site) {
         String phoneNumber = "AUTAMS1CV1";
         String studyName = "a heart health study";
