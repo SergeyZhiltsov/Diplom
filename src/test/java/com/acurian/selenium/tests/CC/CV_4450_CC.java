@@ -380,8 +380,9 @@ public class CV_4450_CC extends BaseTest {
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "09/09/1952", "US", "Dover, DE",
-                                site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "12345D", site.name, "NNDXXXCAR388")
+                        .assertVariables("Acurian", "Trial", "09/09/1952", "US",
+                                "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", "12345D", site.name, "NNDXXXCAR388")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

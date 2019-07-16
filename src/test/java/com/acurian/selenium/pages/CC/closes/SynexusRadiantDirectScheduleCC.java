@@ -9,6 +9,8 @@ import org.testng.asserts.SoftAssert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SynexusRadiantDirectScheduleCC extends MainPageCC{
 
@@ -101,8 +103,11 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
         softAssert.assertEquals(emailField.getText(), "Email: " + email, "Email is diff");
         softAssert.assertEquals(phoneNumberField.getText(), "Phone Number: " + phoneNumber, "Phone number is diff");
         softAssert.assertEquals(zipCodeField.getText(), "Zip Code: " + zipCode, "Zip code is diff");
-        softAssert.assertTrue(allText.getText().contains("Site: " + siteNumber + " - " + siteName), "Site not contains " + siteNumber +" - "+siteName);
-        softAssert.assertTrue(allText.getText().contains("Study: " + studyName), "Study not contains " +studyName);
+        softAssert.assertEquals(getSiteNumber(allText.getText()), siteNumber, "Site number is diff");
+        softAssert.assertEquals(getSiteName(allText.getText()), siteName, "Site name is diff");
+        softAssert.assertEquals(getStudy(allText.getText()), studyName, "Study is diff");
+        //softAssert.assertTrue(allText.getText().contains("Site: " + siteNumber + " - " + siteName), "Site not contains " + siteNumber +" - "+siteName);
+        //softAssert.assertTrue(allText.getText().contains("Study: " + studyName), "Study not contains " +studyName);
         softAssert.assertAll();
         return this;
     }
@@ -110,5 +115,26 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
     @Step
     public String getTitleText(){
         return getText(titleText);
+    }
+
+    private String getSiteNumber(String string) {
+        Pattern siteNumberPattern = Pattern.compile("(\nSite:\\s)(.*?)(?=\\s-)");
+        return getMatch(string, siteNumberPattern);
+    }
+
+    private String getSiteName(String string) {
+        Pattern siteNamePattern = Pattern.compile("(\nSite:\\s.*-\\s)(.*?)(\\n)");
+        return getMatch(string, siteNamePattern);
+    }
+
+    private String getStudy(String string) {
+        Pattern studyPattern = Pattern.compile("(\nStudy:\\s)(.*?)(\\n)");
+        return getMatch(string, studyPattern);
+    }
+
+    private String getMatch(String string, Pattern pattern) {
+        Matcher matcher = pattern.matcher(string);
+        matcher.find();
+        return matcher.group(2);
     }
 }

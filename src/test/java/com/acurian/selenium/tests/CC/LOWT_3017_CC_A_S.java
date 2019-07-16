@@ -424,7 +424,9 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-       //                 .assertVariables()
+                        .assertVariables("Acurian", "Trial", "09/09/1960", "US",
+                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", "aut3017test", site.name, "ABVCOVCAR100")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

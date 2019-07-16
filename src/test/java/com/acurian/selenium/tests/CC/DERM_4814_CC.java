@@ -642,7 +642,8 @@ public class DERM_4814_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "04/05/2000", "US",
                                 "Cincinnati, OH", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "123456a", site.name, "INCPPDATO303")
+                                "999 -999-9999", "123456a", site.name,
+                                "INCPPDATO303,INCPPDATO304")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
