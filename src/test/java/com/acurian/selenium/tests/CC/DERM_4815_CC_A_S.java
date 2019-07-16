@@ -750,6 +750,9 @@ public class DERM_4815_CC_A_S extends BaseTest {
                         .clickOnAnswer(site.name)
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "03/02/1942", "US",
+                                "Cincinnati, OH", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", "123456a", site.name, "PFZICNATO029")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

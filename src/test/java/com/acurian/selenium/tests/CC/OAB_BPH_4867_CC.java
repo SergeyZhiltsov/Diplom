@@ -561,15 +561,17 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
-				.assertVariables("Acurian", "Trial", "09/09/1978", "US", "Cape May, NJ",
-						site.zipCode, "qa.acurian@gmail.com", "999 -999-9999", "123456a", site.name, "UROPPDOAB001")
+				.assertVariables("Acurian", "Trial", "09/09/1978", "US",
+                        "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                        "123456a", site.name, "UROPPDOAB001")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
