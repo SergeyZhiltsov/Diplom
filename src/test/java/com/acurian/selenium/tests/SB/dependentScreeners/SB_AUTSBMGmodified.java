@@ -14,37 +14,42 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class SB_AUTSBMG extends BaseTest {
+public class SB_AUTSBMGmodified extends BaseTest {
 
-    @Test(enabled= true)
+    @Test(enabled = true)
     @Description("SreenerBuilder_AUTSBMG")
-    public void sb_AUTSBMG() {
+    public void sb_AUTSBMGmodified() {
         String phoneNumber = "AUTSBMG001";
         String env = System.getProperty("acurian.env", "STG");
 
-        String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
+        String studyName = env.equals("QA") ? //check for removed a low back pain study
+                "Arthritis,a rheumatoid arthritis (RA)" :
+                "Arthritis, a rheumatoid arthritis (RA)";
         String siteName = "AUT_SB_MG_site";
-        String zipCode = "19901";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(), dateOfBirthPageOLS.titleExpected, "Question is diff");
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
+                .waitForPageLoad()
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
+        behalfOfSomeoneElsePageOLS
+                .waitForPageLoad();
+        Assert.assertEquals(behalfOfSomeoneElsePageOLS.getTitleText(),
+                "Are you providing information for yourself or on behalf of someone else? (some changes in text)",
+                "Question is diff");
         IdentificationPageOLS identificationPageOLS = behalfOfSomeoneElsePageOLS
-                .waitForPageLoad()
                 .clickOnAnswer("Self")
                 .clickNextButton(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        "19901")
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -52,15 +57,17 @@ public class SB_AUTSBMG extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = approximateHeightPageOLS
+        //FollowingNeurologicalConditionsPageOLS followingNeurologicalConditionsPageOLS = approximateHeightPageOLS
+        DigestiveConditionsPageOLS digestiveConditionsPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new FollowingNeurologicalConditionsPageOLS());
-
-        DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(new DigestiveConditionsPageOLS());
+
+//Skied part by changes in flow logic
+//        DigestiveConditionsPageOLS digestiveConditionsPageOLS = followingNeurologicalConditionsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new DigestiveConditionsPageOLS());
 
         BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = digestiveConditionsPageOLS
                 .waitForPageLoad()

@@ -1,0 +1,65 @@
+package com.acurian.selenium.pages.OLS.closes;
+
+import com.acurian.selenium.pages.OLS.MainPageOLS;
+import io.qameta.allure.Step;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+public class AdobeSignMedAuthFormPage extends MainPageOLS {
+    final String titleTextExpected = "MedAuthForm";
+
+    @FindBy(css = "div.agreement-band-inner span.title")
+    WebElement titleText;
+    @FindBy(css = "button[class='popover coachmark down left sticky']")
+    WebElement startLabel;
+    @FindBy(css = "input[placeholder='Click here to sign']")
+    WebElement signatureField;
+    @FindBy(css = "div.signature-pad input[class='form-control signature-type-name adobehanda']")
+    WebElement typeYourSignatureHereField;
+    @FindBy(css = "button[class='btn btn-primary apply']")
+    WebElement applyButton;
+    @FindBy(css = "button[class='btn btn-primary click-to-esign ']")
+    WebElement clickToSign;
+
+    public AdobeSignMedAuthFormPage() {
+        PageFactory.initElements(getDriver(), this);
+    }
+
+    @Step
+    public AdobeSignMedAuthFormPage waitForPageLoad() {
+        getDriver().switchTo().frame("adobeSign");
+        waitForPageLoadMain(titleText, titleTextExpected);
+        return this;
+    }
+
+    @Step
+    public AdobeSignMedAuthFormPage setSignature(String signature) {
+        waitAndClickWebElement(startLabel);
+        getActions().
+                moveToElement(signatureField)
+                .click().build().perform();
+        waitForVisibility(typeYourSignatureHereField);
+        typeTextWithoutClear(typeYourSignatureHereField, signature);
+        waitAndClickWebElement(applyButton);
+        return this;
+    }
+
+    @Step
+    public <T extends MainPageOLS> T clickToSignButton(T page) {
+        waitAndClickWebElement(clickToSign);
+        return (T) page;
+    }
+
+    @Step()
+    private WebElement waitAndClickWebElement(WebElement element) {
+        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element)).click();
+        return element;
+    }
+
+    @Step()
+    private WebElement waitForVisibility(WebElement element) {
+        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
+    }
+}

@@ -1,7 +1,7 @@
 package com.acurian.selenium.tests.health_check;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
@@ -11,16 +11,11 @@ import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.utils.PassPID;
 import org.testng.annotations.*;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class InstantFUL extends BaseTest {
-
-    Map<String, Boolean> pidsToVerify = new HashMap<>();
 
     @BeforeMethod
     public void setUp() {
@@ -35,16 +30,16 @@ public class InstantFUL extends BaseTest {
     @DataProvider(name = "sites")
     public static Object[][] getData() {
         return new Object[][]{
-                {"AUT_GRA_FUL_Site", "60415"},
-                {"AUT_GRA_FULm_Site", "60061"}
+                {Site.AUT_GRA_FUL_Site},
+                {Site.AUT_GRA_FULm_Site}
         };
     }
 
-    @Test(priority = -1, dataProvider = "sites")
+    @Test(dataProvider = "sites")
     @Description("Test for Instant Follow-Up Letter (FUL) Validation")
-    public void instantFULemailGeneration(final String siteName, final String zipCode) {
+    public void instantFUL(Site site) {
         final String phoneNumber = "GMEGA00001";
-        final String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
+        final String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!";
         String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -62,7 +57,8 @@ public class InstantFUL extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
@@ -103,40 +99,17 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
-                //.waitForPageLoad(studyName)
-        
-                siteSelectionPageOLS.threadSleep(2000);
-                siteSelectionPageOLS.getPID()
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
+                .waitForPageLoad1(studyName)
+                .clickOnFacilityName(site.name)
                 .getPID()
-                .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS());
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedClose2PageOLS
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseGmegaOLS())
+                .clickNextButton(new ThankYouCloseGmegaOLS());
+        thankYouCloseGmegaOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad();
-        switch (env) {
-            case "PRD":
-                //Will be updated after PID is displayed in PRD FUL subject line.
-                break;
-            case "STG":
-            default:
-                switch (siteName) {
-                    case "AUT_GRA_FUL_Site":
-                        pidsToVerify.put(PassPID.getInstance().getPidNumber(), false);
-                        break;
-                    case "AUT_GRA_FULm_Site":
-                        pidsToVerify.put(PassPID.getInstance().getPidNumber(), true);
-                }
-                break;
-        }
-    }
-
-    @Test(priority = 1, dependsOnMethods = "instantFULemailGeneration")
-    public void instantFULemailCheck() {
-        FollowupLetter followupLetter = new FollowupLetter();
-        for (Map.Entry<String, Boolean> pid: pidsToVerify.entrySet()) {
-            followupLetter.assertgmailFUL(pid.getKey(), pid.getValue(), true);
-        }
+                .assertGeneratedFul(env, site);
     }
 }
