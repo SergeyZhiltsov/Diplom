@@ -1,11 +1,9 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.RA.WhenYouDiagnosedWithRaPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.gmega.WhenYouDiagnosedWithRaGmegaPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -20,15 +18,16 @@ public class SiteIndicatorTest extends BaseTest {
         String siteName = "AUT_GEMGA_01A";
         String zipCode = "19422";
         String env = System.getProperty("acurian.env", "STG");
-        //String studyName = env.equals("QA") ?
-        // "an irritable bowel syndrome (IBS) study" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study";
+        String studyName = env.equals("QA") ?
+         "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study" :
+         "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study";
 
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -47,7 +46,8 @@ public class SiteIndicatorTest extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoadGmega();
 
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected,
+                "Title is diff");
 
         BehalfOfSomeoneElsePageCC behalfOfSomeoneElsePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
@@ -62,7 +62,8 @@ public class SiteIndicatorTest extends BaseTest {
 
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        zipCode)
                 .clickNextButton(new GenderPageCC());
 
         ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC

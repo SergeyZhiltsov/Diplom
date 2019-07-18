@@ -29,6 +29,8 @@ public class SiteSelectionPageOLS extends MainPageOLS{
     public final String titleAKC = "Good news! You have been matched with the doctor(s) below for a study for diabetics!\n" +
             "Please select a doctor and click the \"Next\" button.";
 
+    public final String titleExpectedGBAN = "Has a healthcare professional ever diagnosed you with any of the following medical conditions? Select all that apply.";
+
     @FindBy(xpath = "//div[contains(@class,'question')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 

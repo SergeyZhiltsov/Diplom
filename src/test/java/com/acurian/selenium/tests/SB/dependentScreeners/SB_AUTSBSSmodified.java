@@ -1,7 +1,6 @@
 package com.acurian.selenium.tests.SB.dependentScreeners;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
@@ -11,6 +10,7 @@ import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
+import com.acurian.selenium.pages.OLS.GBAN.ThanksPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -39,41 +39,46 @@ public class SB_AUTSBSSmodified extends BaseTest{
 
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        genderPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         HasAHealthcareDiagnosedWithAnyTypeOfArthOLS hasAHealthcareDiagnosedWithAnyTypeOfArthOLS = genderPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Female1")
                 .clickNextButton(new HasAHealthcareDiagnosedWithAnyTypeOfArthOLS());
 
-        hasAHealthcareDiagnosedWithAnyTypeOfArthOLS
-                .waitForPageLoadSB();
-        Assert.assertEquals(hasAHealthcareDiagnosedWithAnyTypeOfArthOLS.getTitleTextSB(), hasAHealthcareDiagnosedWithAnyTypeOfArthOLS.titleExpected, "Title is diff");
-        HaveYouExperiencedanyOftheFollowingConfOLS haveYouExperiencedanyOftheFollowingConfOLS = hasAHealthcareDiagnosedWithAnyTypeOfArthOLS
-                .clickOnAnswers_SB("Rheumatoid Arthritis, a serious disease caused by your immune system attacking your joints, which can cause fatigue with pain and swelling of multiple joints throughout your body")
+        HaveYouExperiencedanyOftheFollowingConfOLS haveYouExperiencedanyOftheFollowingConfOLS =
+                hasAHealthcareDiagnosedWithAnyTypeOfArthOLS
+                .waitForPageLoadSB()
+                .clickOnAnswers_SB("Rheumatoid Arthritis, a serious disease caused by your immune system attacking your " +
+                        "joints, which can cause fatigue with pain and swelling of multiple joints throughout your body")
                 .clickNextButton(new HaveYouExperiencedanyOftheFollowingConfOLS());
 
-        haveYouExperiencedanyOftheFollowingConfOLS
-                .waitForPageLoadSB();
         IdentificationPageOLS identificationPageOLS = haveYouExperiencedanyOftheFollowingConfOLS
+                .waitForPageLoadSB()
                 .clickOnAnswers_SB("None of the above")
                 .clickNextButton(new IdentificationPageOLS());
 
-        identificationPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoadSB()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .getPID()
+                .clickNextButton(new SiteSelectionPageOLS());
+
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .clickOnFacilityName(siteName)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .getPID()
+                .clickNextButton(new QualifiedClose2PageOLS());
+
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedClose2PageOLS
                 .waitForPageLoad_SB()
-                .clickNextButton(new ThankYouCloseGmegaOLS())
-                .waitForPageLoad_SB()
-                .clickNextButton(new AboutHealthPageOLS())
-                .threadSleep(3000);
-        identificationPageOLS
+                .clickNextButton(new ThankYouCloseGmegaOLS());
+
+        ThanksPageOLS thanksPageOLS = thankYouCloseGmegaOLS
+                .waitForPageLoadByTitle(thankYouCloseGmegaOLS.titleExpectedSB)
+                .clickNextButton(new ThanksPageOLS());
+
+        thanksPageOLS
+                .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch("1R");
     }

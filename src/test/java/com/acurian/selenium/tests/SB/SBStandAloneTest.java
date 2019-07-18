@@ -17,7 +17,7 @@ public class SBStandAloneTest extends BaseTest {
     String studyId = null;
     String alertMessage = null;
     final String therapeuticName = "Neurology";
-    final String indicationName = "Diabetes";
+    final String indicationName = "Low Back Pain";
 
     public SBStandAloneTest() {
         setEnvData(env);

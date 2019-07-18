@@ -19,7 +19,6 @@ import java.time.Instant;
 
 public class FlareActivationCode extends BaseTest {
 
-
     @Test
     @Description("Flare Activation Code verification")
     public void flareActivationCode() {
@@ -80,19 +79,24 @@ public class FlareActivationCode extends BaseTest {
         mostImportantChoiceOLS
                 .waitForPageLoad()
                 .clickOnAnswers("B")
-                .clickNextButton(identificationPageOLS)
+                .clickNextButton(identificationPageOLS);
+
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageOLS())
-                .threadSleep(10000);
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-        siteSelectionPageOLS
+                .clickNextButton(new SiteSelectionPageOLS());
+
+        QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = siteSelectionPageOLS
                 .clickOnFacilityName(site.name)
                 .getPID()
-                .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
+                .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS());
+
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedFlareMonitoringAppClosePageOLS
                 .waitForPageLoadHealthCheck()
                 .getActivationCodeQA()
                 .enterEmail(Instant.now().getEpochSecond() + "@gmail.com")
-                .clickNextButton(new ThankYouCloseGmegaOLS())
+                .clickNextButton(new ThankYouCloseGmegaOLS());
+
+        thankYouCloseGmegaOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()

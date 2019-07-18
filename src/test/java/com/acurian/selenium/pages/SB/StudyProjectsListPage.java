@@ -89,7 +89,7 @@ public class StudyProjectsListPage extends MainPageSB {
         waitForVisibility(commentStudySetupField);
         commentStudySetupField.sendKeys("Testing SB publish study setup");
 
-        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(publishStudyEnvs.get(0)));
+        waitToBeClickable(publishStudyEnvs.get(0));
         publishStudyEnvs.stream().filter(element -> element.getText().startsWith(setupEnv.name))
                 .findFirst()
                 .get()
@@ -112,7 +112,7 @@ public class StudyProjectsListPage extends MainPageSB {
         waitForVisibility(commentQuestionField);
         commentQuestionField.sendKeys("Testing SB questions");
 
-        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(publishQuestionEnvs.get(0)));
+        waitToBeClickable(publishQuestionEnvs.get(0));
         publishQuestionEnvs.stream().filter(element -> element.getAttribute("data-env").startsWith(setupEnv.name))
                 .findFirst()
                 .get()
@@ -136,7 +136,7 @@ public class StudyProjectsListPage extends MainPageSB {
         waitForVisibility(commentLogicField);
         commentLogicField.sendKeys("Testing SB logic");
 
-        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(publishLogicEnvs.get(0)));
+        waitToBeClickable(publishLogicEnvs.get(0));
         publishLogicEnvs.stream().filter(element -> element.getAttribute("data-env").startsWith(setupEnv.name))
                 .findFirst()
                 .get()
@@ -157,6 +157,7 @@ public class StudyProjectsListPage extends MainPageSB {
 
     @Step
     public StudyProjectsListPage clearStudyCacheOf(String screenerName, SetupEnv env) {
+        waitForAnimation();
         openActionsOf(screenerName);
         WebElement clearCacheDropdownItem = screenerActions.stream().filter(element -> element.getText().equals("Clear Cache"))
                 .findFirst()
@@ -166,7 +167,7 @@ public class StudyProjectsListPage extends MainPageSB {
                 .moveToElement(clearCacheDropdownItem.findElement(By.xpath("//following-sibling::ul/li[1]/a[contains(@id,'clear')]"))) // First Sub Menu of Clear Cache Menu
                 .click()
                 .build().perform();
-        driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(clearCacheEnvs.get(0)));
+        waitToBeClickable(clearCacheEnvs.get(0));
         clearCacheEnvs.stream().filter(element -> element.getText().startsWith(env.name))
                 .findFirst()
                 .get()

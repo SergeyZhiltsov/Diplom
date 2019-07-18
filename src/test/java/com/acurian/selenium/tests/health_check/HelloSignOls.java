@@ -21,7 +21,7 @@ public class HelloSignOls extends BaseTest {
     public void helloSignOlsTest() {
         Site site = Site.AUT_GRA1_Site;
         String phoneNumber = "AUTGMEGA03"; //Indication RA
-        String studyName = "a rheumatoid arthritis (RA)";
+        String studyName = "a rheumatoid arthritis (RA) study!";
 
         String env = System.getProperty("acurian.env", "QA");
 
@@ -29,7 +29,8 @@ public class HelloSignOls extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected,
+                "Title is diff");
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
@@ -68,21 +69,18 @@ public class HelloSignOls extends BaseTest {
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad1(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new HSGeneralPageOLS());
-
-        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
 
         DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = hsGeneralPageOLS
                 .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA)
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+        doctorInformationCollectionPageOLS
                 .waitForPageLoadByTitle(doctorInformationCollectionPageOLS.titleGmegaQAExpected)
-                .clickNextButton(new HS1PageOLS());
-        hs1PageOLS
+                .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature();
@@ -105,7 +103,7 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new ThankYouCloseGmegaOLS());
         thankYouCloseGmegaOLS
                 .waitForPageLoad()
-                .clickNextButton(aboutHealthPageOLS)
+                .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
     }

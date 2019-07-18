@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.GBAN.LetsStartPageOLS;
 import com.acurian.selenium.pages.OLS.RA.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -16,14 +17,11 @@ public class GmegaToGban extends BaseTest {
     @Description("Test for 1R DB Validation")
     public void gmegaToGban() {
         String phoneNumber = "AUTGMEGA01";
-        String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA)";
-        String siteName = "AUT_GRA1_Site";
         String zipCode = "19901";
         String firstName = "Acurian";
         String lastName = "Trial";
 
-
-        String env = System.getProperty("acurian.env", "STG");
+        String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -96,18 +94,16 @@ public class GmegaToGban extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new StudiesThatAreCurrentlyEnrollingPageOLS());
 
-        StandAlone4295SwitchOLS standAlone4295SwitchOLS = studiesThatAreCurrentlyEnrollingPageOLS
+        LetsStartPageOLS letsStartPageOLS = studiesThatAreCurrentlyEnrollingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new StandAlone4295SwitchOLS());
+                .clickNextButton(new LetsStartPageOLS());
 
-        standAlone4295SwitchOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Learn more about matching to clinical trials");
+        letsStartPageOLS
+                .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
-
-        standAlone4295SwitchOLS
+        letsStartPageOLS
                 .clickNextButton(dateOfBirthPageOLS);
 
         dateOfBirthPageOLS
