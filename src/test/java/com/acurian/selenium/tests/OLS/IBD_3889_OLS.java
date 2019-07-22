@@ -40,7 +40,7 @@ public class IBD_3889_OLS extends BaseTest {
     @DataProvider
     public Object[][] flare() {
         return new Object[][]{
-                {true},
+//                {true},
                 {false}
         };
     }
@@ -69,6 +69,7 @@ public class IBD_3889_OLS extends BaseTest {
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
+                .clickOnAnswer("Yes")
                 .setDate("09092001")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
