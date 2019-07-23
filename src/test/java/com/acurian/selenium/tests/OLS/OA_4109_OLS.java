@@ -33,7 +33,7 @@ public class OA_4109_OLS extends BaseTest {
 
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("10/10/1980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
@@ -43,6 +43,7 @@ public class OA_4109_OLS extends BaseTest {
 
         DoYouSufferFromArthritis doYouSufferFromArthritis = genderPageOLS
                 .waitForPageLoad()
+                .setDate("10/10/1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritis());
 

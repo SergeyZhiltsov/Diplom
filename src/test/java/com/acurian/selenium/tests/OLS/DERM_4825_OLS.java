@@ -56,7 +56,7 @@ public class DERM_4825_OLS extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
                 .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092003")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
@@ -65,16 +65,7 @@ public class DERM_4825_OLS extends BaseTest {
                 .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad()
-                .setDate("09091942")
-                .clickNextButton(new ZipCodePageOLS());
-        zipCodePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-        dateOfBirthPageOLS
-                .waitForPageLoad()
-                .setDate("04042001")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
@@ -84,6 +75,7 @@ public class DERM_4825_OLS extends BaseTest {
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols = genderPageOLS
                 .waitForPageLoad()
+                .setDate("04042001")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 

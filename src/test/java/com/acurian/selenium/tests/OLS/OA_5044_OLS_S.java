@@ -36,7 +36,7 @@ public class OA_5044_OLS_S extends BaseTest {
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092002")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
@@ -46,7 +46,7 @@ public class OA_5044_OLS_S extends BaseTest {
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad()
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
@@ -56,6 +56,7 @@ public class OA_5044_OLS_S extends BaseTest {
 
         DoYouSufferFromArthritis doYouSufferFromArthritis = genderPageOLS
                 .waitForPageLoad()
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritis());
 

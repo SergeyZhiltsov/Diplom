@@ -49,7 +49,7 @@ public class PS_4656_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a psoriasis study", "350"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -61,6 +61,7 @@ public class PS_4656_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS = genderPageOLS
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
 

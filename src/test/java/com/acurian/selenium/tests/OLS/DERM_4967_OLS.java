@@ -41,7 +41,7 @@ public class DERM_4967_OLS extends BaseTest {
 
     @DataProvider(name = "sites")
     public Object[][] getData() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_AMS1_4967_site}
         };
     }
@@ -59,28 +59,27 @@ public class DERM_4967_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+                        .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
                 "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092003")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
+//        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+//                .waitForPageLoad()
+//                .clickNextButton(new ZipCodePageOLS());
+//        zipCodePageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+//                .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+                .clickOnAnswer("Yes")
                 .waitForPageLoad()
-                .setDate("09091942")
-                .clickNextButton(new ZipCodePageOLS());
-        zipCodePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-        dateOfBirthPageOLS
-                .waitForPageLoad()
-                .setDate("04042001")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
@@ -88,17 +87,17 @@ public class DERM_4967_OLS extends BaseTest {
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
-                genderPageOLS
+        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols = genderPageOLS
                 .waitForPageLoad()
+                .setDate("04042001")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 
         HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS =
                 hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
 
         healthcareDiagnosedPsoriasisPageOLS
                 .waitForPageLoad()
@@ -108,9 +107,9 @@ public class DERM_4967_OLS extends BaseTest {
 
         HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczema_OLS =
                 hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
         HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_ols = new HowMuchEczemaYouHaveOnYourBody_OLS();
         List<String> disqualifyQ3 = Arrays.asList("2 months or less",
@@ -118,7 +117,7 @@ public class DERM_4967_OLS extends BaseTest {
                 "7 - 11 months",
                 "1 year",
                 "2 year");
-        for (String answer: disqualifyQ3) {
+        for (String answer : disqualifyQ3) {
             System.out.println(answer);
             howLongHaveYouBeenSufferingFromEczema_OLS
                     .waitForPageLoad()
@@ -136,10 +135,10 @@ public class DERM_4967_OLS extends BaseTest {
 
 
         WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols =
-        howMuchEczemaYouHaveOnYourBody_ols
-                .waitForPageLoad()
-                .selectFromDropDown("6")
-                .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
+                howMuchEczemaYouHaveOnYourBody_ols
+                        .waitForPageLoad()
+                        .selectFromDropDown("6")
+                        .clickNextButton(new WhichPartsOfYourBodyAreCurrentlyAffectedByEczema_OLS());
 
         whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
                 .waitForPageLoad()
@@ -150,28 +149,28 @@ public class DERM_4967_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5805", site.activeProtocols)
                 .back();
         WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS =
-        whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
-                .waitForPageLoad()
-                .clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
-                .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
+                whichPartsOfYourBodyAreCurrentlyAffectedByEczema_ols
+                        .waitForPageLoad()
+                        .clickOnAnswers("Head, face, and neck", "Chest, stomach, and back", "Arms and hands", "Legs and feet")
+                        .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS());
 
         WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS =
-        whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("A")
-                .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS());
+                whichOfThesePicsLooksSimilarOnYourHeadFaceNeck_Comp_OLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("A")
+                        .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS());
 
         WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS =
-        whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("A")
-                .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS());
+                whichOfThesePicsLooksSimilarOnYourChestStomachBack_Comp_OLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("A")
+                        .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS());
 
         WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS =
                 whichOfThesePicsLooksSimilarOnYourArmsHands_Comp_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("A")
-                .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("A")
+                        .clickNextButton(new WhichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS());
 
         HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = whichOfThesePicsLooksSimilarOnYourLegsFeet_Comp_OLS
                 .waitForPageLoad()
@@ -208,39 +207,39 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickNextButton(eczemaSymptomsExperienceOLS);
 
         HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS =
-        eczemaSymptomsExperienceOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Redness",
-                        "Swelling",
-                        "Oozing/Crusting",
-                        "Dryness",
-                        "Scratch marks",
-                        "Skin thickening")
-                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
+                eczemaSymptomsExperienceOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("Redness",
+                                "Swelling",
+                                "Oozing/Crusting",
+                                "Dryness",
+                                "Scratch marks",
+                                "Skin thickening")
+                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
-                        "Medications taken by mouth (oral medications)",
-                        "Shots or IV infusions (injectable medications)",
-                        "Self-treatment with tanning beds or sunbathing",
-                        "Phototherapy (Ultraviolet or UV light treatment)")
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Self-treatment with tanning beds or sunbathing",
-                        "Phototherapy (Ultraviolet or UV light treatment)")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
+                                "Medications taken by mouth (oral medications)",
+                                "Shots or IV infusions (injectable medications)",
+                                "Self-treatment with tanning beds or sunbathing",
+                                "Phototherapy (Ultraviolet or UV light treatment)")
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Self-treatment with tanning beds or sunbathing",
+                                "Phototherapy (Ultraviolet or UV light treatment)")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
-                .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Shots or IV infusions (injectable medications)")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                        .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Shots or IV infusions (injectable medications)")
+                        .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS());
 
         List<String> disqualifyQ29 = Arrays.asList("Actemra",
                 "Benlysta",
@@ -260,7 +259,7 @@ public class DERM_4967_OLS extends BaseTest {
                 "Tysabri");
         CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS = new
                 CurrentlyTakingFollowingMedicationsOLS();
-        for (String answer: disqualifyQ29) {
+        for (String answer : disqualifyQ29) {
             areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -318,20 +317,20 @@ public class DERM_4967_OLS extends BaseTest {
 
         EitherOfFollowingMedicationsOLS eitherOfFollowingMedicationsOLS =
                 haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Medications taken by mouth (oral medications)")
-                .clickNextButton(currentlyTakingFollowingMedicationsOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new EitherOfFollowingMedicationsOLS());
-
-                eitherOfFollowingMedicationsOLS
                         .waitForPageLoad()
-                        .clickOnAnswers("Jakafi",
-                                "Olumiant",
-                                "Xeljanz")
-                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Medications taken by mouth (oral medications)")
+                        .clickNextButton(currentlyTakingFollowingMedicationsOLS)
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new EitherOfFollowingMedicationsOLS());
+
+        eitherOfFollowingMedicationsOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Jakafi",
+                        "Olumiant",
+                        "Xeljanz")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -460,24 +459,24 @@ public class DERM_4967_OLS extends BaseTest {
         //Q11: QS46
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS =
                 haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"mini-stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight hospital stay",
-                        "Heart failure or congestive heart failure (CHF)")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS()); //Display Q12.1: QS47A
+                        .waitForPageLoad()
+                        .clickOnAnswers("Heart attack",
+                                "Stroke",
+                                "TIA or \"mini-stroke\"",
+                                "Angina (heart-related chest pain) that required an overnight hospital stay",
+                                "Heart failure or congestive heart failure (CHF)")
+                        .clickNextButton(new SubquestionExperiencedHeartPageOLS()); //Display Q12.1: QS47A
         //Q12
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
-                        .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                        .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                        .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-                        .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
-                        .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                        .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                        .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
-                        .clickOnAnswerForSubQuestion(4, "7 - 12 months ago")
-                        .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(4, "7 - 12 months ago")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
         //Q13: QS48
         MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
@@ -529,7 +528,7 @@ public class DERM_4967_OLS extends BaseTest {
                         "Gastroparesis, or delayed gastric emptying",
                         "IBS, or irritable bowel syndrome");
         List<String> disqualifyQ4 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
-        for (String answer: disqualifyQ4) {
+        for (String answer : disqualifyQ4) {
             System.out.println(answer);
             whichOfFollowingDigestiveConditionPageOLS
                     .waitForPageLoad()
@@ -546,14 +545,14 @@ public class DERM_4967_OLS extends BaseTest {
                 .back();
 
         //Q16: QS51
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Kidney disease")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Kidney disease")
+                        .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
         List<String> disqualifyQ16 = Arrays.asList("Dialysis", "Kidney transplant");
-        for (String answer: disqualifyQ16) {
+        for (String answer : disqualifyQ16) {
             System.out.println(answer);
             WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                     .waitForPageLoad()
@@ -609,7 +608,7 @@ public class DERM_4967_OLS extends BaseTest {
 
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
-        for (String answer: disqualifyQ18) {
+        for (String answer : disqualifyQ18) {
             System.out.println(answer);
             followingMentalEmotionalHealthPageOLS
                     .waitForPageLoad()
@@ -715,7 +714,7 @@ public class DERM_4967_OLS extends BaseTest {
                 "Hepatitis B",
                 "Hepatitis C",
                 "HIV or AIDS");
-        for (String answer: disqualifyQ24) {
+        for (String answer : disqualifyQ24) {
             System.out.println(answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
@@ -724,14 +723,14 @@ public class DERM_4967_OLS extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS59" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
         //Q24: QS59
         List<String> disqualifyQ24second = Arrays.asList("Kidney disease requiring dialysis",
                 "Schizophrenia",
                 "Multiple sclerosis (MS)");
-        for (String answer: disqualifyQ24second) {
+        for (String answer : disqualifyQ24second) {
             System.out.println(answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()

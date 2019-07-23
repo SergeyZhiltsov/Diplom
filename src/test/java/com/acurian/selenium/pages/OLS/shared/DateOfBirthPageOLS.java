@@ -5,6 +5,7 @@ import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.constants.URLs;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.Properties;
+import org.apache.http.annotation.Obsolete;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -487,6 +488,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return this;
     }
 
+    @Deprecated
     @Step
     public DateOfBirthPageOLS setDate(String date) {
         typeText(dateField, date);

@@ -6,20 +6,18 @@ import com.acurian.selenium.pages.OLS.GERD.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class GERD_4301_OLS extends BaseTest {
 
     @Test
     @Description("GERD_4301_OLS")
-    public void Gerd_4301_OLS() {
+    public void gerd4301ols() {
         Site site = Site.AUT_GER_4301_Site;
         String phoneNumber = "AUTAMSGERD";
         String studyName = "a heartburn or reflux";
@@ -35,8 +33,7 @@ public class GERD_4301_OLS extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName + " study", "500"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .clickOnAnswer("Yes")
-                .setDate("08082005")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad();
@@ -44,16 +41,15 @@ public class GERD_4301_OLS extends BaseTest {
         lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
-        dateOfBirthPageOLS.waitForPageLoad();
+        dateOfBirthPageOLS
+                .waitForPageLoad();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
-
 
         //---------------ZIP-CODE Question-------------------
         zipCodePageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(zipCodePageOLS.getTitleText(), zipCodePageOLS.titleExpected, "Title is diff");
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
@@ -61,9 +57,9 @@ public class GERD_4301_OLS extends BaseTest {
         //---------------GENDER Question-------------------
         genderPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = genderPageOLS
                 .clickOnAnswer("Female")
+                .setDate("09091980")
                 .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
 
 
