@@ -64,10 +64,12 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleExpectedAkc_4691, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1980")
-                .clickOnAnswer("Yes")
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1980")
+//                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC
@@ -79,6 +81,9 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         genderPageCC
                 .waitForPageLoad();
         DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
 
