@@ -5,14 +5,17 @@ import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.constants.URLs;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.Properties;
+import org.apache.http.annotation.Obsolete;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.List;
+
 public class DateOfBirthPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "What is your date of birth?";
+    public final String titleExpected = "Are you age 18 or older?";
 
     public final String titleCommonExpected = "Let's get started to see if there is %2$s that's right for you!\n" +
             "\n" +
@@ -345,12 +348,13 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement questionText3;
 
+    WebElement questionText;
+
+
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
     @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[2]")
     WebElement questionTextGROUP;
 
-    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]//div[contains(text(),'What is your date of birth?')]")
-    WebElement questionText;
 
     @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[3]")
     WebElement questionText2Ver;
@@ -373,7 +377,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     WebElement titleText;
 
-    @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[2]")
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText2Ver1;
 
     WebElement titleText2Ver;
@@ -381,6 +385,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
     WebElement dateField;
+
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
+    List<WebElement> radioButtonsList;
 
     //GH pathes
     public final String titleGHExpected = "This is the first part of the process to match you with a research study.\n" +
@@ -469,14 +476,6 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return this;
     }
 
-
-    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
-    @Step
-    public DateOfBirthPageOLS waitForPageLoadGROUP() {
-        waitForPageLoadMain(questionTextGROUP, titleExpected);
-        return this;
-    }
-
     @Step
     public DateOfBirthPageOLS waitForPageGHLoad() {
         waitForPageLoadMain(questionText, titleGHExpected);
@@ -489,9 +488,16 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return this;
     }
 
+    @Deprecated
     @Step
     public DateOfBirthPageOLS setDate(String date) {
         typeText(dateField, date);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
@@ -514,7 +520,6 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     }
 
     //GH methods
-
     @Step
     public String getQuestionTextGH() {
         return getText(titleTextGH);
@@ -530,12 +535,6 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return getText(questionTextAH1);
     }
 
-    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
-    @Step
-    public String getQuestionTextGROUP() {
-        return getText(questionTextGROUP);
-    }
-
     @Step
     public String getTitleTextGROUP() {
         return getText(titleTextGROUP);
@@ -548,7 +547,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @Step
     public String getTitleTextVer3() {
-        return getText(titleText) + getText(titleText2Ver);
+        return getText(titleText2Ver);
     }
 
 }

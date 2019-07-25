@@ -63,7 +63,7 @@ public class CV_4450_OLS extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091952")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -75,6 +75,7 @@ public class CV_4450_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
+                .setDate("09091952")
                 .clickOnAnswer("Female")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 

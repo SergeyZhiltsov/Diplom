@@ -42,7 +42,7 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a lupus study", "500"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092003")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS.waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -50,7 +50,8 @@ public class Lupus_4442_OLS extends BaseTest {
         debugPageOLS.back();
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("10/10/1980")
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
@@ -60,6 +61,7 @@ public class Lupus_4442_OLS extends BaseTest {
 
         DiagnosedYouWithLupusOLS diagnosedYouWithLupusOLS = genderPageOLS
                 .waitForPageLoad()
+                .setDate("10/10/1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedYouWithLupusOLS());
 

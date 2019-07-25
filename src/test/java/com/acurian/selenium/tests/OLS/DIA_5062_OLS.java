@@ -39,7 +39,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a fatty liver study for diabetics", "750"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091968")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -51,6 +51,7 @@ public class DIA_5062_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
+                .setDate("09091968")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 

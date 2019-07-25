@@ -10,7 +10,6 @@ import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -33,7 +32,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a migraine study", "400"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091982")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -47,6 +46,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         DoYouSufferFromMigHeadachesOLS doYouSufferFromMigHeadachesOLS = genderPageOLS
+                .setDate("09091982")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromMigHeadachesOLS());
 

@@ -35,7 +35,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a heart failure study", "500"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091940")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -47,6 +47,7 @@ public class HFL_4722_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = genderPageOLS
+                .setDate("09091940")
                 .clickOnAnswer("Female")
                 .clickNextButton(new CongestiveHeartFailurePageOLS());
 

@@ -1,55 +1,28 @@
 package com.acurian.selenium.tests.OLS;
 
-import java.time.Instant;
-
 import com.acurian.selenium.constants.Site;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.ChronicCough.ACEInhibitorsLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.CurrentlySufferFromChronicCoughOLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.DiagnosedWithFollowingConditionsOLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.DoYouStillHaveCoughOLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.ExperienceWithYourChronicCoughOLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.HowLongYouHadChronicCoughOLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.HowManyCigarettesOLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.QuitSmokingOLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.SymptomsGetBetterOLS;
-import com.acurian.selenium.pages.OLS.ChronicCough.TreatingYourChronicCoughOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.DoctorInformationCollectionPageOLS;
-import com.acurian.selenium.pages.OLS.closes.HS1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.HSGeneralPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.ChronicCough.*;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouSmokedCigarettes;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class Chronic_4471_OLS extends BaseTest {
 
     @Test()
     @Description("4471 Chronic Cough")
-    public void chronicCough_4471() {
+    public void chronicCough4471ols() {
         Site site = Site.AUT_MCC;
         String phoneNumberMIG = "AUTAMS1MCC";
         String protocol1 = "MK_7264_027";
         String studyName = "a chronic cough";
         String env = System.getProperty("acurian.env", "STG");
-
-        String time = String.valueOf(Instant.now().getEpochSecond());
-        time = time.substring(time.length() - 4);
         String eMailId = "qa.acurian@gmail.com";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -58,7 +31,7 @@ public class Chronic_4471_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a chronic cough study", "350"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092003")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS.waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -66,7 +39,7 @@ public class Chronic_4471_OLS extends BaseTest {
         debugPageOLS.back();
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("10/10/1980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
@@ -76,6 +49,7 @@ public class Chronic_4471_OLS extends BaseTest {
 
         CurrentlySufferFromChronicCoughOLS currentlySufferFromChronicCoughOLS = genderPageOLS
                 .waitForPageLoad()
+                .setDate("10101980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new CurrentlySufferFromChronicCoughOLS());
 

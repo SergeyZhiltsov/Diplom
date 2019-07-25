@@ -43,7 +43,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
 
     @DataProvider(name = "5034Sites")
     public static Object[][] getData() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_CV_5034A_site},
                 {Site.AUT_CV_5034S_site}
         };
@@ -51,7 +51,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
 
     @Test(dataProvider = "5034Sites")
     @Description("CV_5034_OLS_A_S")
-    public void CV_5034_OLS_Test(Site site) {
+    public void cv5034olsTest(Site site) {
         final String phoneNumber = "AUTAMS1CV1";
         final String studyName = "a heart health";
 
@@ -65,7 +65,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091952")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -79,6 +79,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .waitForPageLoad();
         //DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
+                .setDate("09091952")
                 .clickOnAnswer("Female")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
@@ -172,7 +173,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                .back();         
+                .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -199,10 +200,10 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickOnAnswers("Glyxambi (empagliflozin and linagliptin)",
                         "Januvia (sitagliptin)",
                         "Nesina (alogliptin)",
-                        "Oseni (alogliptin and pioglitazone)", 
+                        "Oseni (alogliptin and pioglitazone)",
                         "Onglyza (saxagliptin)", "Tradjenta (linagliptin)",
                         "Bydureon or Byetta (exenatide)",
-                        "Saxenda or Victoza (liraglutide)", 
+                        "Saxenda or Victoza (liraglutide)",
                         "Adlyxin (lixisenatide)",
                         "Tanzeum (albiglutide)",
                         "Trulicity (dulaglutide)",
@@ -356,7 +357,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
-        for (String entry: options) {
+        for (String entry : options) {
             System.out.println(entry);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()

@@ -58,7 +58,7 @@ public class IBD_3485_OLS extends BaseTest {
                 .back();
         //------------Disqualify (“Age”) if >= 76 years -----------------------------------------
         dateOfBirthPageOLS
-                .waitForPageLoadGROUP();
+                .waitForPageLoad();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .setDate("09091941")
                 .clickNextButton(new PersonalDetails());
@@ -68,7 +68,7 @@ public class IBD_3485_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoadGROUP()
+                .waitForPageLoad()
                 .setDate("09091980")
                 .clickNextButton(new PersonalDetails());
 

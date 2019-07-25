@@ -60,7 +60,7 @@ public class IBD_3264_OLS extends BaseTest {
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
-                .setDate("09092001")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad();
@@ -69,19 +69,20 @@ public class IBD_3264_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", protocol2)
                 .back();
         //------------Disqualify (“Age”) if >= 76 years -----------------------------------------
-        dateOfBirthPageOLS
-                .waitForPageLoad2Ver();
-        PersonalDetails personalDetails = dateOfBirthPageOLS
-                .setDate("09091941")
-                .clickNextButton(new PersonalDetails());
-        personalDetails
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QSI8005", protocol1)
-                .back();
-        dateOfBirthPageOLS
+//        dateOfBirthPageOLS
+//                .waitForPageLoad2Ver();
+//        PersonalDetails personalDetails = dateOfBirthPageOLS
+//                .setDate("09091941")
+//                .clickNextButton(new PersonalDetails());
+//        personalDetails
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                //.checkProtocolsContainsForQNumber("QSI8005", protocol1)
+//                .back();
+        PersonalDetails personalDetails =  dateOfBirthPageOLS
                 .waitForPageLoad2Ver()
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
+//                .setDate("09091980")
                 .clickNextButton(new PersonalDetails());
 
         //---------------PII Page Question-------------------
@@ -94,6 +95,7 @@ public class IBD_3264_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS = genderPageOLS
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS());
 

@@ -65,7 +65,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad2Ver()
-                .setDate("09091960")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         //---------------ZIP-CODE Question-------------------
@@ -77,6 +77,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         //---------------GENDER Question-------------------
         HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_ols = genderPageOLS
                 .waitForPageLoad()
+                .setDate("09091960")
                 .clickOnAnswer("Male")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
 

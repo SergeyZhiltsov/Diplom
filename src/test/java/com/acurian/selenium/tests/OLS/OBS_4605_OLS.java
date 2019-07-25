@@ -37,7 +37,7 @@ public class OBS_4605_OLS extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("a genetic obesity study", "25 per visit"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_ols = dateOfBirthPageOLS
-                .setDate("05052005")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
 
         lessThan18YearsOldPage_ols
@@ -47,7 +47,7 @@ public class OBS_4605_OLS extends BaseTest {
                 .back();
 
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
-                .setDate("05051990")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS
@@ -57,6 +57,7 @@ public class OBS_4605_OLS extends BaseTest {
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
                 .waitForPageLoad()
+                .setDate("05051990")
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

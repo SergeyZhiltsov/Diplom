@@ -48,7 +48,7 @@ public class IBD_3839_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoadGROUP();
+                .waitForPageLoad();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new PersonalDetails());

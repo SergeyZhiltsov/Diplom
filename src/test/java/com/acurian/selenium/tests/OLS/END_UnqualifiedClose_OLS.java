@@ -32,7 +32,7 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
 
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an endometriosis study", "1775"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("10/10/1980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
@@ -42,6 +42,7 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
 
         FollowingGynecologicalConditionOLS followingGynecologicalConditionOLS = genderPageOLS
                 .waitForPageLoad()
+                .setDate("10/10/1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new FollowingGynecologicalConditionOLS());
 

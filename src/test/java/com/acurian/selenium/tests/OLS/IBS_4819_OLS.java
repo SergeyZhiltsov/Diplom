@@ -33,7 +33,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -45,6 +45,7 @@ public class IBS_4819_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         SufferFromIrritablePageOLS sufferFromIrritablePageOLS = genderPageOLS
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new SufferFromIrritablePageOLS());
 
