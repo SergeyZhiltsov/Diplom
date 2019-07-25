@@ -56,10 +56,12 @@ public class HFL_4722_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a heart failure study", "500"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1940")
-                .clickOnAnswer("Yes")
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1940")
+//                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC
@@ -71,6 +73,9 @@ public class HFL_4722_CC extends BaseTest {
         genderPageCC
                 .waitForPageLoad();
         CongestiveHeartFailurePageCC congestiveHeartFailurePageCC = genderPageCC
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1940")
                 .clickOnAnswer("Female")
                 .clickNextButton(new CongestiveHeartFailurePageCC());
 
