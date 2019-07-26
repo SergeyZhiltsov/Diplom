@@ -23,7 +23,7 @@ public class HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS extends MainPa
         }
 
         @Step
-        public com.acurian.selenium.pages.OLS.AMIG_4742.HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS waitForPageLoad() {
+        public HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS waitForPageLoad() {
             waitForPageLoadMain(titleText, titleExpected);
             return this;
         }
