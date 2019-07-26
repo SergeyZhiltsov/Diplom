@@ -13,8 +13,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageOLS {
     public final String titleExpected1 = "When did you have your appendix removed (appendectomy)?";
     public final String titleExpected2 = "When did you have your gallbladder removed (cholecystectomy)?";
-    
-    
+    public final String titleExpected3 = "When did you have your hemorrhoids removed (hemorrhoidectomy)?";
+    public final String titleExpected4 = "When did you have the other surgery on your stomach, intestines, colon, or esophagus?";
     
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -27,12 +27,10 @@ public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageOLS {
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
     List<WebElement> titlesText;
-    
-   
+
     public WhenDidYouHaveAppendixRemoved_OLS() {
         PageFactory.initElements(getDriver(), this);
     }
-
     
     @Step
     public WhenDidYouHaveAppendixRemoved_OLS waitForMainPageLoad() {
@@ -51,7 +49,7 @@ public class WhenDidYouHaveAppendixRemoved_OLS extends MainPageOLS {
 
     @Step
     public WhenDidYouHaveAppendixRemoved_OLS clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
-        List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber-1)
+        List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber - 1)
                 .findElements(By.xpath("ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]"));
         clickOnRadioButton(checkBoxListFromTitle, answerText);
         return this;

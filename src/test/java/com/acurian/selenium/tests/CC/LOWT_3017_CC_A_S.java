@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.DYS_4356C.StatinMedicationsHavePageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
@@ -253,15 +252,15 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_CC = heartOrBloodVesselPageCC
+        CardiovascularInterventionsOrSurgeriesPageCC cardiovascularInterventionsOrSurgeriesPageCC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital",
                         "Coronary Artery Disease (blockage in a heart vessel)",
                         "Peripheral Vascular Disease (for example a blockage in your leg vessel)",
                         "Amputation of a digit or limb due to Peripheral Vascular Disease")
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        haveDoctorEverDiagnosedYou_CC
+                .clickNextButton(new CardiovascularInterventionsOrSurgeriesPageCC());
+        cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad()
                 .back(heartOrBloodVesselPageCC)
                 .waitForPageLoad();
@@ -272,14 +271,14 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
@@ -295,7 +294,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
@@ -303,7 +302,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveDoctorEverDiagnosedYou_CC)
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
@@ -341,15 +340,15 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(subquestionExperiencedHeartPageCC);
 
-        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = haveDoctorEverDiagnosedYou_CC
+        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC())
                 .waitForPageLoad();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC.back();
-        haveDoctorEverDiagnosedYou_CC
+        cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad();
-        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = haveDoctorEverDiagnosedYou_CC
+        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = cardiovascularInterventionsOrSurgeriesPageCC
                 .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
                         "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
                         "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",

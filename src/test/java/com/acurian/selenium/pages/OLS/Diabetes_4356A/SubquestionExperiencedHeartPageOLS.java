@@ -10,13 +10,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class SubquestionExperiencedHeartPageOLS extends MainPageOLS{
-
     public final String titleExpected1 = "When was the last time that you experienced a heart attack?";
     public final String titleExpected2 = "When was the last time that you experienced a stroke?";
     public final String titleExpected3 = "Do you experience any remaining muscle weakness or paralysis of the arms or legs that was caused by the stroke?";
     public final String titleExpected4 = "When was the last time that you experienced a TIA or mini-stroke?";
     public final String titleExpected5 = "When was the last time that you experienced angina or chest pain that required an overnight hospital stay?";
-
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -52,8 +50,6 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageOLS{
         clickOnRadioButton(checkBoxListFromTitle, answerText);
         return this;
     }
-    // can be an issue with ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]
-    // because clickOnRadioButton method use label at the end, so need add ancestor::label
 
     @Step
     public SubquestionExperiencedHeartPageOLS clickOnAnswerForSubQuestion(String questionText, String answerText) {

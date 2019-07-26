@@ -4,14 +4,13 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.IBS.SufferFromIrritablePageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -48,7 +47,7 @@ public class CV_4450_OLS extends BaseTest {
     }
 
     @Test(dataProvider = "sites")
-    @Description("CV 4450 OLS")
+    @Description("CV 4450 OLS Novo Nordisk CV")
     public void cv4450olsTest(Site site) {
         String phoneNumber = "AUTAMS1CV1";
         String studyName = "a heart health";
@@ -61,23 +60,48 @@ public class CV_4450_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750"), "Title is diff");
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+                dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750"),
+                "Title is diff");
+
+        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
+                .waitForPageLoad2Ver()
+                .clickOnAnswer("No")
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+
+        ZipCodePageOLS zipCodePageOLS = lessThan18YearsOldPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
+                .back(dateOfBirthPageOLS)
+                .waitForPageLoad2Ver()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
-        zipCodePageOLS
-                .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        genderPageOLS
-                .waitForPageLoad();
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
-                .setDate("09091952")
-                .clickOnAnswer("Female")
+                        .waitForPageLoad()
+                        .clickOnAnswer("Female")
+                        .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
+                        .clickNextButton(lessThan18YearsOldPageOLS)
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                        .back(genderPageOLS)
+                        .waitForPageLoad()
+                        .setDate("01081975")//"Disqualify (“Age”) if < 45
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+
+        cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS)
+                .waitForPageLoad()
+                .setDate("01081970")
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
         CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
@@ -287,7 +311,7 @@ public class CV_4450_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setAllWithClear("5", "5", "160")
+                .setAllWithClear("5", "5", "160") //Disqualify ("BMI") if BMI < 27 kg/m2
                 .clickNextButton(transitionalStatementLowtPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -329,11 +353,12 @@ public class CV_4450_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
+                .clickOnAnswer("No")
+//                .clickNextButton(new SynexusHealthyMindsPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
