@@ -6,13 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
-
 import java.util.List;
 
 public class HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS extends MainPageOLS {
-
-
-
         public final String titleExpected = "Have you ever taken any medications to treat your migraine headaches?\n" +
                 "Please select all that apply.";
 

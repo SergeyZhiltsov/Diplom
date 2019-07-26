@@ -228,17 +228,6 @@ public class AMIG_4742_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)//QS10 Ghost QS - DISQUALIFY
                 .back();
 
-//        whenDidYouTakeYourMigraineMedicationsPageOLS
-//                .waitForPageLoad()
-//                .back();
-
-        //QS10 Ghost QS - to QUALIFY
-//        whenDidYouTakeYourMigraineMedicationsPageOLS = haveYourEverTakenAnyMedicationToTreatMigrainePageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("No")
-//                .clickOnAnswers("Yes, prescription medication")
-//                .clickNextButton(new WhenDidYouTakeYourMigraineMedicationsPageOLS());
-
         whenDidYouTakeYourMigraineMedicationsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")

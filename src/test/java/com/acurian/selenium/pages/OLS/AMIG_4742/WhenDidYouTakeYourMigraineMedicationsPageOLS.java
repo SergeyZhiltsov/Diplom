@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
-
 import java.util.List;
 
 public class WhenDidYouTakeYourMigraineMedicationsPageOLS extends MainPageOLS {
@@ -24,13 +23,13 @@ public class WhenDidYouTakeYourMigraineMedicationsPageOLS extends MainPageOLS {
     }
 
     @Step
-    public com.acurian.selenium.pages.OLS.AMIG_4742.WhenDidYouTakeYourMigraineMedicationsPageOLS waitForPageLoad() {
+    public WhenDidYouTakeYourMigraineMedicationsPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public com.acurian.selenium.pages.OLS.AMIG_4742.WhenDidYouTakeYourMigraineMedicationsPageOLS clickOnAnswers(String ...answerText) {
+    public WhenDidYouTakeYourMigraineMedicationsPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
