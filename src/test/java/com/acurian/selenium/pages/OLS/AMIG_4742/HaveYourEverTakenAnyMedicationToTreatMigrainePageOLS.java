@@ -29,7 +29,7 @@ public class HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS extends MainPa
         }
 
         @Step
-        public com.acurian.selenium.pages.OLS.AMIG_4742.HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS clickOnAnswers(String ...answerText) {
+        public HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS clickOnAnswers(String ...answerText) {
             clickOnCheckBoxes(checkBoxList, answerText);
             return this;
         }
