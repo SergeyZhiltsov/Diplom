@@ -53,10 +53,12 @@ public class Chronic_4471_CC extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(),  dateOfBirthPageCC.getExpectedModifiedTitle("a chronic cough study", "350"), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003")
-                .clickOnAnswer("Yes")
+//                .setMonth("Mar")
+//                .setDay("2")
+//                .setYear("2003")
+//                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC.waitForPageLoad();
@@ -66,7 +68,7 @@ public class Chronic_4471_CC extends BaseTest {
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setYear("1980")
+//                .setYear("1980")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC
@@ -76,6 +78,8 @@ public class Chronic_4471_CC extends BaseTest {
 
         CurrentlySufferFromChronicCoughCC currentlySufferFromChronicCoughCC = genderPageCC
                 .waitForPageLoad()
+                .setYear("1980")
+                .clickOnAnswer("Yes")
                 .clickOnAnswer("Female")
                 .clickNextButton(new CurrentlySufferFromChronicCoughCC());
 
