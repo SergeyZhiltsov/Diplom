@@ -7,10 +7,7 @@ import com.acurian.selenium.pages.OLS.AMIG_4742.WhenDidYouTakeYourMigraineMedica
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LMG_4686.*;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -19,7 +16,7 @@ import org.testng.annotations.Test;
 
 public class AMIG_4742_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     public void amig4742ols() {
         String phoneNumberMIG = "AUTAMS1MIG";
         Site site = Site.AUT_MIG4742_site;
@@ -50,7 +47,7 @@ public class AMIG_4742_OLS extends BaseTest {
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = genderPageOLS
                 .setDate("09092002")  //DQ if <18 and Age Unqualified close
-                .clickOnAnswer("Male")
+                .clickOnAnswer("Female")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
 
         lessThan18YearsOldPageOLS
@@ -296,7 +293,8 @@ public class AMIG_4742_OLS extends BaseTest {
 
 
         //---------------Q21: DoYouCurrentlyUseMarijuanaOLS-----
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouCurrentlyUseMarijuanaOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                doYouCurrentlyUseMarijuanaOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -353,7 +351,8 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
         whatKindOfArthritisPageOLS.waitForPageLoad();
         whatKindOfArthritisPageOLS.back();
-        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -376,12 +375,14 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
                 .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whichOfFollowingDigestiveConditionPageOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS =
+                whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
 
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS =
+                haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
@@ -456,7 +457,8 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
-        FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS = heartrelatedMedicalProceduresPageOLS
+        FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS =
+                heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
@@ -552,23 +554,21 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
 
                 //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad();
-        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
-        aboutHealthPageOLS
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .threadSleep(2000);
-        aboutHealthPageOLS
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4742")
                 .assertGeneratedFul(env, site)

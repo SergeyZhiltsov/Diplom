@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.CC;
 
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
@@ -12,24 +13,24 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.tests.OLS.CV_4241_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CV_4241_CC extends BaseTest {
 
-    @Test()
+    @Test(enabled = false, dataProvider = "sites", dataProviderClass = CV_4241_OLS.class)
     @Description("CV_4241S_CC")
-    public void cv4241cc() {
+    public void cv4241cc(Site site) {
         final String phoneNumber = "AUTAMS1CV1";
-        final String protocol1 = "EFC14828";
         final String dquedStudyName = "a heart health study";
         final String matchedStudyName = "a study for diabetics";
-        final String siteName = "AUT_CV1_4241_NonSynexus_site";
-        final String zipCode = "45205";
+
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
 
@@ -37,7 +38,8 @@ public class CV_4241_CC extends BaseTest {
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -61,7 +63,8 @@ public class CV_4241_CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText2Ver(), dateOfBirthPageCC.titleCVExpected,
+                "Title is diff");
 
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -77,13 +80,13 @@ public class CV_4241_CC extends BaseTest {
         ZipCodePageCC zipCodePageCC = lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8005", protocol1)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back(dateOfBirthPageCC)
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC
-                .typeZipCode(zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = genderPageCC
@@ -95,7 +98,7 @@ public class CV_4241_CC extends BaseTest {
                 .clickNextButton(lessThan18YearsOldPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8013", protocol1)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageCC)
                 .waitForPageLoad()
                 .setYear("1980")
@@ -110,7 +113,7 @@ public class CV_4241_CC extends BaseTest {
         haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6703", protocol1)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = cardiovascularDiseaseThanOthersPageCC
@@ -122,7 +125,7 @@ public class CV_4241_CC extends BaseTest {
         transitionalStatementLowtPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6703", protocol1)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageCC
@@ -132,7 +135,7 @@ public class CV_4241_CC extends BaseTest {
                 .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6703", protocol1)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         cardiovascularDiseaseThanOthersPageCC
@@ -141,7 +144,7 @@ public class CV_4241_CC extends BaseTest {
                 .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6703", protocol1)
+                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
@@ -156,7 +159,7 @@ public class CV_4241_CC extends BaseTest {
                 .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6704", protocol1)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
 
         whatKindOfDiabetesPageCC
@@ -165,7 +168,7 @@ public class CV_4241_CC extends BaseTest {
                 .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6704", protocol1)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
 
         whatKindOfDiabetesPageCC
@@ -174,7 +177,7 @@ public class CV_4241_CC extends BaseTest {
                 .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6704", protocol1)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
 
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
@@ -187,30 +190,31 @@ public class CV_4241_CC extends BaseTest {
                 .clickOnAnswer("3 - 6 months ago")
                 .clickNextButton(new MedicationsForYourDiabetesPageCC());
 
-        ArrayList<String> medications = new ArrayList<>();
-        medications.add("Glyxambi (empagliflozin and linagliptin)");
-        medications.add("Januvia (sitagliptin)");
-        medications.add("Nesina (alogliptin)");
-        medications.add("Oseni (alogliptin and pioglitazone)");
-        medications.add("Onglyza (saxagliptin)");
-        medications.add("Tradjenta (linagliptin)");
-        medications.add("Bydureon or Byetta (exenatide)");
-        medications.add("Saxenda or Victoza (liraglutide)");
-        medications.add("Adlyxin (lixisenatide)");
-        medications.add("Tanzeum (albiglutide)");
-        medications.add("Trulicity (dulaglutide)");
-        medications.add("Ozempic (semaglutide)");
+        List<String> disqualify = Arrays.asList("Glyxambi (empagliflozin and linagliptin)",
+        "Januvia (sitagliptin)",
+        "Nesina (alogliptin)",
+        "Oseni (alogliptin and pioglitazone)",
+        "Onglyza (saxagliptin)",
+        "Tradjenta (linagliptin)",
+        "Bydureon or Byetta (exenatide)",
+        "Saxenda or Victoza (liraglutide)",
+        "Adlyxin (lixisenatide)",
+        "Tanzeum (albiglutide)",
+        "Trulicity (dulaglutide)",
+        "Ozempic (semaglutide)");
 
-        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC = new CholesterolTriglyceridesLipidsPageCC();
-        for (String medication: medications) {
+        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC =
+                new CholesterolTriglyceridesLipidsPageCC();
+        for (String answer: disqualify) {
+            System.out.println("Select answer for Q7: " + answer);
             medicationsForYourDiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(medication)
+                    .clickOnAnswers(answer)
                     .clickNextButton(cholesterolTriglyceridesLipidsPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS6706", protocol1)
+                    .checkProtocolsContainsForQNumber("QS6706", site.activeProtocols)
                     .back();
         }
         HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = medicationsForYourDiabetesPageCC
@@ -262,7 +266,7 @@ public class CV_4241_CC extends BaseTest {
                 .clickNextButton(transitionalStatementLowtPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6722", protocol1)
+                .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
                 .back();
 
         approximateHeightPageCC
@@ -300,11 +304,11 @@ public class CV_4241_CC extends BaseTest {
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
-                        zipCode)
+                        site.zipCode)
                 .clickNextButton(new IncongruentSiteSelectionCloseCC())
                 .waitForPageLoad(matchedStudyName, dquedStudyName)
                 .getPID()
-                .clickOnAnswer(siteName)
+                .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

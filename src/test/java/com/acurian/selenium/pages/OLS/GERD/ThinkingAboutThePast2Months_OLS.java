@@ -23,18 +23,13 @@ public class ThinkingAboutThePast2Months_OLS extends MainPageOLS {
 
     @Step
     public ThinkingAboutThePast2Months_OLS waitForPageLoad() {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public ThinkingAboutThePast2Months_OLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
@@ -42,5 +37,4 @@ public class ThinkingAboutThePast2Months_OLS extends MainPageOLS {
     public String getTitleText(){
         return getText(titleText);
     }
-
 }
