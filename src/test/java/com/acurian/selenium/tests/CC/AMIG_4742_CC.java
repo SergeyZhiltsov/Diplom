@@ -4,6 +4,8 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LMG_4686.*;
+import com.acurian.selenium.pages.CC.Migraine.HaveYourEverTakenAnyMedicationToTreatMigrainePageCC;
+import com.acurian.selenium.pages.CC.Migraine.WhenDidYouTakeYourMigraineMedicationsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -28,12 +30,11 @@ public class AMIG_4742_CC extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
-
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(),
+                "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -50,50 +51,53 @@ public class AMIG_4742_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a migraine study", "400"), "Title is diff");
-
-
-        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003")
-                .clickOnAnswer("Yes")
-                .clickNextButton(new LessThan18YearsOldPageCC());
-
-        lessThan18YearsOldPageCC.waitForPageLoad();
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
-
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
+                                                ("a migraine study", "400"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
-                .setYear("1942")
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1940")
+//                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC
                 .waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
-        debugPageCC.back();
-        dateOfBirthPageCC
-                .waitForPageLoad()
-                .setYear("1980")
-                .clickNextButton(new ZipCodePageCC());
-
         GenderPageCC genderPageCC = zipCodePageCC
-                .waitForPageLoad()
-                .typeZipCode(site.zipCode)
+                .typeZipCode("19044")
                 .clickNextButton(new GenderPageCC());
 
-        DoYouSufferFromMigPageCC doYouSufferFromMigPageCC = genderPageCC
-                .waitForPageLoad()
+        genderPageCC
+                .waitForPageLoad();
+
+        DebugPageCC debugPageCC = new DebugPageCC();
+
+        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = genderPageCC
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("2002")
                 .clickOnAnswer("Female")
+                .clickNextButton(new LessThan18YearsOldPageCC());
+
+        lessThan18YearsOldPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021159-QSI8013-STUDYQUES", site.activeProtocols)
+                .back();
+
+        DoYouSufferFromMigPageCC doYouSufferFromMigPageCC = genderPageCC
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1982")
                 .clickNextButton(new DoYouSufferFromMigPageCC());
 
         NonQRtransitionPageCC nonQRtransitionPageCC = doYouSufferFromMigPageCC
@@ -154,12 +158,12 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickNextButton(howManyDaysYouSufferCC);
 
 //---------------Q5: In a typical month, how many days do you suffer from migraines? 
-        HowOftenDoYouTypicallyTakeMedicationCC howOftenDoYouTypicallyTakeMedicationCC = howManyDaysYouSufferCC
+        HaveYourEverTakenAnyMedicationToTreatMigrainePageCC haveYourEverTakenAnyMedicationToTreatMigrainePageCC = howManyDaysYouSufferCC
                 .waitForPageLoad()
                 .selectDay("3")
-                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationCC());
+                .clickNextButton(new HaveYourEverTakenAnyMedicationToTreatMigrainePageCC());
 
-        howOftenDoYouTypicallyTakeMedicationCC
+        haveYourEverTakenAnyMedicationToTreatMigrainePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017149-QS6005-STUDYQUES", site.activeProtocols)
@@ -168,7 +172,7 @@ public class AMIG_4742_CC extends BaseTest {
         howManyDaysYouSufferCC
                 .waitForPageLoad()
                 .selectDay("15")
-                .clickNextButton(howOftenDoYouTypicallyTakeMedicationCC)
+                .clickNextButton(haveYourEverTakenAnyMedicationToTreatMigrainePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0017149-QS6005-STUDYQUES", site.activeProtocols)
@@ -177,29 +181,99 @@ public class AMIG_4742_CC extends BaseTest {
         howManyDaysYouSufferCC
                 .waitForPageLoad()
                 .selectDay("4")
-                .clickNextButton(howOftenDoYouTypicallyTakeMedicationCC);
+                .clickNextButton(haveYourEverTakenAnyMedicationToTreatMigrainePageCC);
 
-//---------------Q6: How often do you typically take medication to stop an active migraine, either as it starts or while you are experiencing it?-------------
-        AnyMedicationsToPreventMigrainesCC anyMedicationsToPreventMigrainesCC = howOftenDoYouTypicallyTakeMedicationCC
-                .waitForPageLoad()
-                .clickOnAnswer("Half the days in a month or more")
-                .clickNextButton(new AnyMedicationsToPreventMigrainesCC());
 
-//---------------Q7: HowManyDifferentMedicationsCC -----------
-        HaveYouEverHadBotoxbotulinumtoxin_CC haveYouEverHadBotoxbotulinumtoxin_CC = anyMedicationsToPreventMigrainesCC
+//---------------NEW Q8: Have you ever taken any medications to treat your migraine headaches? -----------
+        HaveYouEverHadBotoxbotulinumtoxin_CC haveYouEverHadBotoxbotulinumtoxin_CC =
+                haveYourEverTakenAnyMedicationToTreatMigrainePageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswers("No")
                 .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_CC());
 
         haveYouEverHadBotoxbotulinumtoxin_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019319-QS6030-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0021149-QS6033-STUDYQUES", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
                 .back();
 
-        anyMedicationsToPreventMigrainesCC
+        WhenDidYouTakeYourMigraineMedicationsPageCC whenDidYouTakeYourMigraineMedicationsPageCC =
+                haveYourEverTakenAnyMedicationToTreatMigrainePageCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Yes, prescription medication")
+                        .clickNextButton(new WhenDidYouTakeYourMigraineMedicationsPageCC());
+
+        whenDidYouTakeYourMigraineMedicationsPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .back();
+
+        haveYourEverTakenAnyMedicationToTreatMigrainePageCC
+                .waitForPageLoad()
+                .clickOnAnswers("No")
+                .clickOnAnswers("Yes, over-the-counter medication")
+                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageCC);
+
+        whenDidYouTakeYourMigraineMedicationsPageCC
+                .waitForPageLoad()
+                .back();
+
+        haveYourEverTakenAnyMedicationToTreatMigrainePageCC
+                .waitForPageLoad()
+                .clickOnAnswers("No")
+                .clickOnAnswers("Yes, vitamins or herbal supplements")
+                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageCC);
+
+
+        //---------------NEW Q9: When did you take your migraine medication(s)?  + GHOST -----------
+        whenDidYouTakeYourMigraineMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
+                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
+
+        haveYouEverHadBotoxbotulinumtoxin_CC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021149-QS6033-STUDYQUES", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
+                .back();
+
+        whenDidYouTakeYourMigraineMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
+                .clickOnAnswers("Every day, to prevent migraine headaches")
+                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
+
+        haveYouEverHadBotoxbotulinumtoxin_CC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021149-QS6033-STUDYQUES", site.activeProtocols)//QS10 Ghost QS - DISQUALIFY
+                .back();
+
+        whenDidYouTakeYourMigraineMedicationsPageCC
+                .waitForPageLoad()
+                .back();
+
+        haveYourEverTakenAnyMedicationToTreatMigrainePageCC
+                .waitForPageLoad()
+                .clickOnAnswers("No")
+                .clickOnAnswers("Yes, prescription medication")
+                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageCC);
+
+        whenDidYouTakeYourMigraineMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Every day, to prevent migraine headaches")
+                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
+                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
+
+        haveYouEverHadBotoxbotulinumtoxin_CC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021149-QS6033-STUDYQUES", site.activeProtocols)//QS10 Ghost QS - DISQUALIFY
+                .back();
+
+        whenDidYouTakeYourMigraineMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
+                .clickOnAnswers("Every day, to prevent migraine headaches")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
 
 //---------------SKIP to Q18: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
