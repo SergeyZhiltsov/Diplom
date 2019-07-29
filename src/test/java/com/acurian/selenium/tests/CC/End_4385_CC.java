@@ -63,10 +63,12 @@ public class End_4385_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an endometriosis study", "1775"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1980")
-                .clickOnAnswer("Yes")
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1980")
+//                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC
@@ -76,6 +78,9 @@ public class End_4385_CC extends BaseTest {
 
         FollowingGynecologicalConditionСС followingGynecologicalConditionСС = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new FollowingGynecologicalConditionСС());
 

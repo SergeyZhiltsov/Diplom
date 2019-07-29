@@ -86,10 +86,12 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1952")
-                .clickOnAnswer("Yes")
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1952")
+//                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         zipCodePageCC
@@ -101,6 +103,9 @@ public class CV_4450_CC extends BaseTest {
         genderPageCC
                 .waitForPageLoad();
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = genderPageCC
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1952")
                 .clickOnAnswer("Female")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
 

@@ -150,6 +150,8 @@ public class AMIG_4742_OLS extends BaseTest {
 
         haveYouEverHadBotoxbotulinumtoxin_OLS
                 .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                 .back();
 
         WhenDidYouTakeYourMigraineMedicationsPageOLS whenDidYouTakeYourMigraineMedicationsPageOLS =
@@ -231,9 +233,8 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Every day, to prevent migraine headaches")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
 
-
         //---------------SKIP to Q18: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
-       // HaveYouEverHadBotoxbotulinumtoxin_OLS haveYouEverHadBotoxbotulinumtoxin_OLS = new HaveYouEverHadBotoxbotulinumtoxin_OLS();
+
         WhenDidYouLastHaveBotoxInjectionOLS whenDidYouLastHaveBotoxInjectionOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Yes, to treat migraines")
