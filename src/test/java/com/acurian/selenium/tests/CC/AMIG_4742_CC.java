@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.CC.LMG_4686.*;
 import com.acurian.selenium.pages.CC.Migraine.HaveYourEverTakenAnyMedicationToTreatMigrainePageCC;
 import com.acurian.selenium.pages.CC.Migraine.WhenDidYouTakeYourMigraineMedicationsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -572,8 +573,9 @@ public class AMIG_4742_CC extends BaseTest {
 
                 //----------SITE Selection Page--------------------
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

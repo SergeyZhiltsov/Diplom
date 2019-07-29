@@ -783,8 +783,9 @@ public class DIA_4483_CC extends BaseTest {
                     .waitForPageLoad(studyName)
                     .getPID()
                     .clickOnAnswer(site.name)
-                    .clickNextButton(new QualifiedClose2PageCC())
+                    .clickNextButton(new QualifiedClose1PageCC())
                     .waitForPageLoad()
+                    .clickOnAnswer("No")
                     .clickNextButton(new SynexusHealthyMindsPageCC())
                     .waitForPageLoad()
                     .clickOnAnswer("No")
@@ -794,7 +795,7 @@ public class DIA_4483_CC extends BaseTest {
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .getRadiantDbToLog(env)
-                    .childPidFromDbToLog(env)
+                    .childPidFromDbToLog(env, "4483")
                     .assertGeneratedFul(env, site)
                     .dispoShouldMatch(site.dispo, site.dispo);
                 break;
@@ -813,7 +814,7 @@ public class DIA_4483_CC extends BaseTest {
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .getRadiantDbToLog(env)
-                    .childPidFromDbToLog(env)
+                    .childPidFromDbToLog(env, "4483")
                     .assertGeneratedFul(env, site)
                     .dispoShouldMatch(site.dispo, site.dispo);
                 break;

@@ -79,29 +79,31 @@ public class IBD_Short extends BaseTest{
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a Crohn's study", "700"), "Title is diff");
 
-        dateOfBirthPageCC
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
-                .clickOnAnswer("Yes")
-                .clickNextButton(new LessThan18YearsOldPageCC())
+        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickNextButton(new LessThan18YearsOldPageCC());
+        lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QSI8004", protocol1)
                 .back(dateOfBirthPageCC);
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-        		.setYear("1937") //Disqualify (“Age”) if >= 81 years
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1)
-                .back();
-
-        dateOfBirthPageCC
-		   		.setYear("1980")
-		   		.clickNextButton(identificationPageCC);
-
+//        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+//        		.setYear("1937") //Disqualify (“Age”) if >= 81 years
+//                .clickNextButton(new IdentificationPageCC());
+//        identificationPageCC
+//                .waitForPageLoadNotQ()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QSI8004", protocol1)
+//                .back();
+//
+//        dateOfBirthPageCC
+//		   		.setYear("1980")
+//		   		.clickNextButton(identificationPageCC);
 
         GenderPageCC genderPageCC = identificationPageCC
      		   .waitForPageLoad1()
@@ -110,6 +112,9 @@ public class IBD_Short extends BaseTest{
 
         DiagnosedWithCrohnsPageCC  diagnosedWithCrohnsPageCC = genderPageCC
      		   .waitForPageLoad()
+               .setMonth("Mar")
+               .setDay("2")
+               .setYear("1980")
      		   .clickOnAnswer("Female")
      		   .clickNextButton(new DiagnosedWithCrohnsPageCC());
         //Q2
@@ -120,7 +125,7 @@ public class IBD_Short extends BaseTest{
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS5702", protocol1)
                 .back();
 
         CrohnsDiseaseDoctorOrNursePageСС crohnsDiseaseDoctorOrNursePageСС = diagnosedWithCrohnsPageCC
@@ -134,14 +139,14 @@ public class IBD_Short extends BaseTest{
                 .clickNextButton(nonQRtransitionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020425-QS5726-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS5726", protocol1)
                 .back(crohnsDiseaseDoctorOrNursePageСС)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(nonQRtransitionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020425-QS5726-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS5726", protocol1)
                 .back(crohnsDiseaseDoctorOrNursePageСС)
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhenDiagnosedCrohnsPageCC());
@@ -153,7 +158,7 @@ public class IBD_Short extends BaseTest{
         manageYourCrohnsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015880-QS5703-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS5703", protocol1)
                 .back(whenDiagnosedCrohnsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("More than 6 months ago")
@@ -166,7 +171,7 @@ public class IBD_Short extends BaseTest{
         SteroidMedicationsForCrohnsCC steroidMedicationsForCrohnsCC = crohnsDiseaseOrUlcerativeColitisFlarePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015883-QS5706-STUDYQUES", protocol1)
+                .checkProtocolsContainsForQNumber("QS5706", protocol1)
                 .back(manageYourCrohnsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")

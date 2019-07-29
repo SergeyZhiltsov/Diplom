@@ -6,10 +6,7 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeart
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -651,23 +648,22 @@ public class OA_5044_OLS_S extends BaseTest {
 //                .clickOnAnswers("Prefer not to answer")
 //                .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
-        identificationPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad();
-        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+                .waitForSENRPageLoad()
+                .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
-                .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .threadSleep(2000);
-        aboutHealthPageOLS
+                .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
                 .getAnomalyDbToLog(env)

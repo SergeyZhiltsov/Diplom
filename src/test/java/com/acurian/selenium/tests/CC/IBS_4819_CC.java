@@ -6,8 +6,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartP
 import com.acurian.selenium.pages.CC.GERD.WhatTypeOfSurgeryDidYouHave_CC;
 import com.acurian.selenium.pages.CC.GERD.WhenDidYouHaveAppendixRemoved_CC;
 import com.acurian.selenium.pages.CC.IBS.*;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -30,6 +29,7 @@ public class IBS_4819_CC extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
@@ -51,38 +51,52 @@ public class IBS_4819_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"), "Title is diff");
-        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-//                .setMonth("Sep")
-//                .setDay("9")
-//                .setYear("1980")
-//                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"),
+                "Title is diff");
+        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
+                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
+        doesNotGivePermissionToProceedClosePageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .back();
+        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
+                .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
+                .clickNextButton(new LessThan18YearsOldPageCC());
+        lessThan18YearsOldPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .back();
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
-        zipCodePageCC
-                .waitForPageLoad();
         GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        genderPageCC
-                .waitForPageLoad();
         SufferFromIrritablePageCC sufferFromIrritablePageCC = genderPageCC
+                .waitForPageLoad()
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new SufferFromIrritablePageCC());
-
-        DebugPageCC debugPageCC = new DebugPageCC();
 
         NonQRtransitionPageCC nonQRtransitionPageCC = sufferFromIrritablePageCC
                 .waitForPageLoad()
@@ -597,7 +611,7 @@ public class IBS_4819_CC extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad();
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
-                .setAll("5", "5", "270")
+                .setAll("5", "5", "270") //Disqualify ("High BMI") if >= 45 (formula = 45.024)
                 .clickNextButton(new LetMeSeePageCC());
         letMeSeePageCC
                 .waitForPageLoad()
@@ -620,8 +634,9 @@ public class IBS_4819_CC extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
