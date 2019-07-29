@@ -56,7 +56,7 @@ public class GERD_4301_CC extends BaseTest {
 
 
         dateOfBirthPageCC
-                .waitForPageLoad2Ver();
+                .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
                 .getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC

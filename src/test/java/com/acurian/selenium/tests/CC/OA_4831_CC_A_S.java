@@ -400,8 +400,9 @@ public class OA_4831_CC_A_S extends BaseTest {
             case AUT_OA_4831_site: //1R
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose2PageCC())
+                        .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
+                        .clickOnAnswer("No")
                         //*******************Regular WARM TRANSFER (non-synexus)*******************
                         .clickNextButton(new Regular_WarmTransfer1())
                         .waitForPageLoad()

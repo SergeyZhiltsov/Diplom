@@ -359,7 +359,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[3]")
     WebElement questionText2Ver;
 
-    @FindBy(xpath = "//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')]")
+    @FindBy(xpath = "//div[contains(@class,'visible-md-block visible-lg-block ng-scope')]")
     WebElement questionTextAH1;
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")

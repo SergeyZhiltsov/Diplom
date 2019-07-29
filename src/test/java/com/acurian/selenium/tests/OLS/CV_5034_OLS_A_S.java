@@ -177,11 +177,11 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
-        MedicationsForYourDiabetesPageOLS medicationsForYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+        TransitionStatementCVbeginPageOLS transitionStatementCVbeginPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new MedicationsForYourDiabetesPageOLS());
-        medicationsForYourDiabetesPageOLS
+                .clickNextButton(new TransitionStatementCVbeginPageOLS());
+        transitionStatementCVbeginPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
@@ -192,10 +192,10 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(new WithType2DiabetesPageOLS());
 
         //-------Q5: WithType2DiabetesPageOLS------------
-        withType2DiabetesPageOLS
+        MedicationsForYourDiabetesPageOLS medicationsForYourDiabetesPageOLS = withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(medicationsForYourDiabetesPageOLS);
+                .clickNextButton(new MedicationsForYourDiabetesPageOLS());
         medicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

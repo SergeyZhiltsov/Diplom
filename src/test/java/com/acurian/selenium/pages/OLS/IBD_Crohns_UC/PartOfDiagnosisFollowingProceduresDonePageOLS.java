@@ -11,7 +11,8 @@ import java.util.List;
 
 public class PartOfDiagnosisFollowingProceduresDonePageOLS extends MainPageOLS{
 
-    public final String titleExpected = "As part of your diagnosis, have you ever had any of the following procedures done? Please select all that apply.";
+    public final String titleExpected = "As part of your diagnosis, have you ever had any of the following procedures done?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
