@@ -170,7 +170,7 @@ public class CV_4450_CC extends BaseTest {
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
+        CardiovascularInterventionsOrSurgeriesPageCC cardiovascularInterventionsOrSurgeriesPageCC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack",
                         "Stroke",
@@ -180,8 +180,8 @@ public class CV_4450_CC extends BaseTest {
                         "Peripheral Vascular Disease (for example a blockage in your leg vessel)",
                         "Amputation of a digit or limb due to Peripheral Vascular Disease")
                 .clickOnAnswers("None of the above") //Skip to Q16
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        haveDoctorEverDiagnosedYou_cc
+                .clickNextButton(new CardiovascularInterventionsOrSurgeriesPageCC());
+        cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad()
                 .back();
         AnginaOrChestPainPageCC anginaOrChestPainPageCC = heartOrBloodVesselPageCC
@@ -243,7 +243,7 @@ public class CV_4450_CC extends BaseTest {
             anginaOrChestPainPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(haveDoctorEverDiagnosedYou_cc)
+                    .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS6714", site.activeProtocols)
@@ -259,9 +259,9 @@ public class CV_4450_CC extends BaseTest {
         heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveDoctorEverDiagnosedYou_cc);
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC);
 
-        HeartrelatedMedicalConditionsProceduresPageCC heartrelatedMedicalConditionsProceduresPageCC = haveDoctorEverDiagnosedYou_cc
+        HeartrelatedMedicalConditionsProceduresPageCC heartrelatedMedicalConditionsProceduresPageCC = cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalConditionsProceduresPageCC());

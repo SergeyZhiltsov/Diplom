@@ -9,9 +9,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class WhatTypeOfSurgeryDidYouHave_OLS extends MainPageOLS{
 
-	public final String titleExpected = "What type of surgery did you have?\n" +
+	public final String titleExpected = "Have you ever had any of the following types of surgery?\n" +
 			"Please select all that apply.";
-				
 	    		
 	    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
 	    WebElement titleText;

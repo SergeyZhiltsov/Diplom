@@ -66,7 +66,9 @@ public class MainPageCC extends BasePage {
     public MainPageCC assertGeneratedFul(String env, Site site) {
         if (site.hasFul) {
             String fulValueField = getDbConnection().dbReadFulValue(env, pid);
-            Assert.assertNotNull(fulValueField, "FUL VALUE is null");
+            logTextToAllureAndConsole("Fetched DB value of FUL cell: " + fulValueField);
+            Assert.assertNotEquals(fulValueField, "", "FUL VALUE is empty string!");
+            Assert.assertNotEquals(fulValueField.toLowerCase(), "null", "FUL VALUE is null string!");
             if (site.withMedicalRecords) {
                 Assert.assertTrue(fulValueField.contains(FULType.MEDICAL_RECORD.toString()),
                         String.format("FUL VALUE contains different string. Expected [%s] but found [%s]",

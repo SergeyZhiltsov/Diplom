@@ -25,6 +25,7 @@ public class GERD_4301_CC extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
@@ -55,16 +56,15 @@ public class GERD_4301_CC extends BaseTest {
 
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
-        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("2010")
-                .clickOnAnswer("Yes")
-                .clickNextButton(new LessThan18YearsOldPageCC());
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols);
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
+        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
+                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
+
+        debugPageCC.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
         debugPageCC.back();
         dateOfBirthPageCC
                 .waitForPageLoad();
@@ -95,7 +95,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017973-QS6302-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6302", site.activeProtocols);
         debugPageCC.back();
         doYouExperienceAnyOfFollowingSymptoms_CC
                 .waitForPageLoad();
@@ -117,7 +117,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_CC());
         hasYourDoctorToldYouThatYouHaveErosion_cc
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017975-QS6303-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6303", site.activeProtocols);
         debugPageCC.back();
         whichoOfFollowingMedicationsCurrentlyGERD_CC
                 .waitForPageLoad()
@@ -125,7 +125,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_cc);
         hasYourDoctorToldYouThatYouHaveErosion_cc
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017975-QS6303-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6303", site.activeProtocols);
         debugPageCC.back();
         whichoOfFollowingMedicationsCurrentlyGERD_CC
                 .waitForPageLoad();
@@ -181,7 +181,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new HowOftenDoYouTake_CC());
         howOftenDoYouTake_CC
                 .waitForPageLoad(1,howOftenDoYouTake_CC.titleExpected1);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018004-QS6306-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols);
         debugPageCC.back();
         howLongHaveYouBeenTaking_CC
                 .waitForPageLoad(1,howLongHaveYouBeenTaking_CC.titleExpected1)
@@ -207,7 +207,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new OnaTypicalDayWhenDoYouUsually_CC());
         onaTypicalDayWhenDoYouUsually_CC
                 .waitForPageLoad(1,onaTypicalDayWhenDoYouUsually_CC.titleExpected1);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0019978-QS6316-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6316", site.activeProtocols);
         debugPageCC.back();
         howOftenDoYouTake_CC
                 .waitForPageLoad(1,howOftenDoYouTake_CC.titleExpected1)
@@ -251,7 +251,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswer("No, my symptoms are well-controlled")
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_CC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018005-QS6307-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6307", site.activeProtocols);
         debugPageCC.back();
         despiteTakingMedicationDoYouStillExperienceSymptoms_CC
                 .waitForPageLoad();
@@ -269,7 +269,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_CC());
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018001-QS6308-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
         debugPageCC.back();
         thinkingAboutThePast2Months_CC
                 .waitForPageLoad()
@@ -277,7 +277,7 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_CC());
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018001-QS6308-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
         debugPageCC.back();
         thinkingAboutThePast2Months_CC
                 .waitForPageLoad()
@@ -293,14 +293,14 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_CC())
                 .waitForPageLoad();
-        //debugPageCC.checkProtocolsContainsForQNumber("Q0018004-QS6308-STUDYQUES", site.activeProtocols);
+        //debugPageCC.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
         debugPageCC.back();
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_CC())
                 .waitForPageLoad();
-        //debugPageCC.checkProtocolsContainsForQNumber("Q0018004-QS6309-STUDYQUES", site.activeProtocols);
+        //debugPageCC.checkProtocolsContainsForQNumber("QS6309", site.activeProtocols);
         debugPageCC.back();
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad()
@@ -353,7 +353,8 @@ public class GERD_4301_CC extends BaseTest {
         whenDidYouHaveAppendixRemoved_CC
                 .waitForPageLoad(1,whenDidYouHaveAppendixRemoved_CC.titleExpected1)
                 .waitForPageLoad(2,whenDidYouHaveAppendixRemoved_CC.titleExpected2);
-        Assert.assertEquals(whenDidYouHaveAppendixRemoved_CC.getTitleText(1),whenDidYouHaveAppendixRemoved_CC.titleExpected1, "Title is diff");
+        Assert.assertEquals(whenDidYouHaveAppendixRemoved_CC
+                .getTitleText(1),whenDidYouHaveAppendixRemoved_CC.titleExpected1, "Title is diff");
         whenDidYouHaveAppendixRemoved_CC
                 .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
@@ -374,11 +375,12 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC())
                 .waitForPageLoadGERD(studyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0018000-QS6312-STUDYQUES", site.activeProtocols);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6312", site.activeProtocols);
         debugPageCC.back();
         areYouCurrentlyAbleToSwallowTablets_CC
                 .waitForPageLoad();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = areYouCurrentlyAbleToSwallowTablets_CC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                areYouCurrentlyAbleToSwallowTablets_CC
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC())
                 .waitForPageLoadGERD(studyName)
@@ -388,27 +390,48 @@ public class GERD_4301_CC extends BaseTest {
         //------------------General Health--------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickOnAnswers("Autism spectrum", "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)", "Cancer", "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                .clickOnAnswers("Diabetes (type 1 or type 2)", "Headaches (migraine, cluster, tension)")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)", "High blood pressure or hypertension", "High cholesterol, triglycerides, or lipids")
-                .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)", "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)","Kidney disease")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)", "Lupus", "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)", "Skin problems (eczema or atopic dermatitis, psoriasis)")
-                .clickOnAnswers( "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Cancer",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Diabetes (type 1 or type 2)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension", "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
                 .clickNextButton(new WhatKindOfArthritisCC());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC.back();
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
 
         ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis", "Bipolar disorder", "Cancer in the past 5 years, except skin cancer", "Drug or alcohol abuse within the past year")
-                .clickOnAnswers("Hepatitis B", "Hepatitis C", "HIV or AIDS", "Kidney disease requiring dialysis", "Multiple sclerosis (MS)", "Neuropathy (nerve damage due to diabetes or another condition)")
-                .clickOnAnswers("Seizure disorder such as epilepsy", "Schizophrenia")
+                .clickOnAnswers("Cirrhosis",
+                        "Bipolar disorder",
+                        "Cancer in the past 5 years, except skin cancer",
+                        "Drug or alcohol abuse within the past year",
+                        "Hepatitis B",
+                        "Hepatitis C",
+                        "HIV or AIDS",
+                        "Kidney disease requiring dialysis",
+                        "Multiple sclerosis (MS)",
+                        "Neuropathy (nerve damage due to diabetes or another condition)",
+                        "Seizure disorder such as epilepsy",
+                        "Schizophrenia")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
 
@@ -425,13 +448,12 @@ public class GERD_4301_CC extends BaseTest {
 //        		.clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(site_Indication)
                 .getPID()
                 .clickOnAnswer(site.name)
-                //.clickNextButton(new HSGeneralCC())
-                //.waitForPageLoad(site_Indication1)
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())

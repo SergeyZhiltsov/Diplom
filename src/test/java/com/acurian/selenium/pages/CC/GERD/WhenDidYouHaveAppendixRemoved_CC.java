@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -14,7 +13,8 @@ public class WhenDidYouHaveAppendixRemoved_CC extends MainPageCC{
 
     public final String titleExpected1 = "When did you have your appendix removed (appendectomy)? (Agent Note: app-en-DECK-toe-mee)";
     public final String titleExpected2 = "When did you have your gallbladder removed (cholecystectomy)? (Agent Note: cole-leh-sis-TECK-toe-mee)";
-
+    public final String titleExpected3 = "When did you have your hemorrhoids removed (hemorrhoidectomy)? (Agent Note: hem-roy-DECK-toe-mee)";
+    public final String titleExpected4 = "When did you have the other surgery on your stomach, intestines, colon, or esophagus?";
 
     @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='sub_question_text']")
     WebElement titleText;
@@ -57,5 +57,4 @@ public class WhenDidYouHaveAppendixRemoved_CC extends MainPageCC{
     public String getTitleText(int titleIndex){
         return getText(titlesText.get(titleIndex-1));
     }
-
 }
