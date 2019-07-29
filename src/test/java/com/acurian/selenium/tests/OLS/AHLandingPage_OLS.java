@@ -1,14 +1,7 @@
 package com.acurian.selenium.tests.OLS;
 
-import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.LMG_4686.*;
-import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.common_elements.FooterPageOls;
 import com.acurian.selenium.pages.OLS.common_elements.MoreAboutPage;
 import com.acurian.selenium.pages.OLS.common_elements.PrivacyPolicyPage;
@@ -70,7 +63,7 @@ public class AHLandingPage_OLS extends BaseTest {
 
         //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092005")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad();
@@ -81,7 +74,7 @@ public class AHLandingPage_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .waitForPageAHLoad();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -92,7 +85,10 @@ public class AHLandingPage_OLS extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .setDate("09091980")
+                .clickOnAnswer("Female");
+
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
 
 

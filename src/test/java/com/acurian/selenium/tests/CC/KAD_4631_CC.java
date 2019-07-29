@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartP
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -78,10 +79,8 @@ public class KAD_4631_CC extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
                 .getExpectedModifiedTitle(studyName, "600"),"Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003")
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC
@@ -92,19 +91,19 @@ public class KAD_4631_CC extends BaseTest {
 
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setYear("1942")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 
-        identificationPageCC
-                .waitForPageLoad1()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-
-        dateOfBirthPageCC
-                .waitForPageLoad()
-                .setYear("1980")
-                .clickNextButton(identificationPageCC);
+//        identificationPageCC
+//                .waitForPageLoad1()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+//                .back();
+//
+//        dateOfBirthPageCC
+//                .waitForPageLoad()
+//                .setYear("1980")
+//                .clickNextButton(identificationPageCC);
 
         //------------PII Question------------
         GenderPageCC genderPageCC = identificationPageCC
@@ -117,6 +116,9 @@ public class KAD_4631_CC extends BaseTest {
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC =
                 genderPageCC
                 .waitForPageLoad()
+                .setMonth("Mar")
+                .setDay("2")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
@@ -612,8 +614,9 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)

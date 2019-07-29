@@ -61,28 +61,26 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
 
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003")
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
 
+//        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+//                .setYear("1920")
+//                .clickNextButton(new IdentificationPageCC());
+//        identificationPageCC
+//                .waitForPageLoadNotQ()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
+//                .back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .setYear("1920")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
-                .back();
-        dateOfBirthPageCC
-                .setYear("1980")
-                .clickNextButton(identificationPageCC);
 
         identificationPageCC
                 .waitForPageLoad1();
@@ -93,6 +91,9 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
 
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Mar")
+                .setDay("2")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedWithCrohnsPageCC());
 

@@ -74,24 +74,21 @@ public class DERM_4814_CC extends BaseTest {
                 .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"), "Title is diff");
 
         dateOfBirthPageCC
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("2003")
-                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC);
 
         dateOfBirthPageCC //Disqualify (“Age < 18 years old”) if <18
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
-                .back(dateOfBirthPageCC);
-
-        ZipCodePageCC zipCodePageCC  = dateOfBirthPageCC
+                .back();
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setYear("2000")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC
@@ -102,6 +99,9 @@ public class DERM_4814_CC extends BaseTest {
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc =
                 genderPageCC
                 .waitForPageLoad()
+                .setMonth("Apr")
+                .setDay("5")
+                .setYear("2000")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 

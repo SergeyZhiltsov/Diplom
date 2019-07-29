@@ -85,44 +85,50 @@ public class IBD_3889_CC extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003")
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
-
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .setYear("1942")
+                .waitForPageLoad2Ver()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols[0], site.activeProtocols[1])
-                .back();
-        dateOfBirthPageCC
-                .setYear("1937")
-                .clickNextButton(identificationPageCC)
-                .waitForPageLoadNotQ()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
-                .back();
-        dateOfBirthPageCC
-                .setYear("1980")
-                .clickNextButton(identificationPageCC);
+
+//        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+//                .setYear("1942")
+//                .clickNextButton(new IdentificationPageCC());
+//        identificationPageCC
+//                .waitForPageLoadNotQ()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols[0], site.activeProtocols[1])
+//                .back();
+//        dateOfBirthPageCC
+//                .setYear("1937")
+//                .clickNextButton(identificationPageCC)
+//                .waitForPageLoadNotQ()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
+//                .back();
+//        dateOfBirthPageCC
+//                .setYear("1980")
+//                .clickNextButton(identificationPageCC);
 
 
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoad1()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Mar")
+                .setDay("2")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedWithCrohnsPageCC());
         //Q2
@@ -135,10 +141,11 @@ public class IBD_3889_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols)
                 .clickNextButton(new WhenDiagnosedCrohnsPageCC());//Check flow to Q7 and back
         //Q6
-        PartOfDiagnosisFollowingProceduresDonePageCC partOfDiagnosisFollowingProceduresDonePageCC = whenDiagnosedCrohnsPageCC
+        PartOfDiagnosisFollowingProceduresDonePageCC partOfDiagnosisFollowingProceduresDonePageCC =
+                whenDiagnosedCrohnsPageCC
                 .waitForPageLoadULC()
                 .clickOnAnswer("Less than 3 months ago") //Otherwise, Skip to Q8
                 .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageCC());
@@ -158,7 +165,7 @@ public class IBD_3889_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols)
                 .back();
         //Q2
         CrohnsDiseaseDoctorOrNursePageСС crohnsDiseaseDoctorOrNursePageСС = diagnosedWithCrohnsPageCC
@@ -173,14 +180,14 @@ public class IBD_3889_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020425-QS5726-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
                 .back(crohnsDiseaseDoctorOrNursePageСС)
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Disqualify ("No official Crohn's diagnosis")
                 .clickNextButton(nonQRtransitionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020425-QS5726-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
                 .back(crohnsDiseaseDoctorOrNursePageСС)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -193,7 +200,7 @@ public class IBD_3889_CC extends BaseTest {
         reviewMedicalRecordsCrohnsDiagnosisPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015880-QS5703-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5703", site.activeProtocols)
                 .back(whenDiagnosedCrohnsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("More than 6 months ago")
@@ -211,7 +218,7 @@ public class IBD_3889_CC extends BaseTest {
         manageYourCrohnsPageCC //Q9
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020428-QS5729-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5729", site.activeProtocols)
                 .back(partOfDiagnosisFollowingProceduresDonePageCC);
         partOfDiagnosisFollowingProceduresDonePageCC
                 .waitForPageLoad()
@@ -226,7 +233,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(new CrohnsDiseaseOrUlcerativeColitisFlarePageCC());
         SteroidMedicationsForCrohnsCC steroidMedicationsForCrohnsCC = crohnsDiseaseOrUlcerativeColitisFlarePageCC
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015883-QS5706-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5706", site.activeProtocols)
                 .back(manageYourCrohnsPageCC)
                 .clickOnAnswer("Yes") //Q10
                 .clickNextButton(new SteroidMedicationsForCrohnsCC());
@@ -266,7 +273,7 @@ public class IBD_3889_CC extends BaseTest {
         biologicMedicationsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015890-QS5709-STUDYQUES", site.activeProtocols[0], site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0], site.activeProtocols[1])
                 .back();
         everTreatedCrohnOrColitisCC
                 .clickOnAnswers("None of the above")
@@ -274,7 +281,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015890-QS5709-STUDYQUES", site.activeProtocols[0], site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0], site.activeProtocols[1])
                 .back();
         everTreatedCrohnOrColitisCC
                 .waitForPageLoad()
@@ -287,7 +294,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -295,7 +302,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols[0],
+                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
                         site.activeProtocols[1])
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
@@ -307,7 +314,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols[0],
+                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
                         site.activeProtocols[2], site.activeProtocols[3])
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
@@ -323,7 +330,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols[0],
+                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
                         site.activeProtocols[2])
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
@@ -344,7 +351,7 @@ public class IBD_3889_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols[0],
+                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
                         site.activeProtocols[2])
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
@@ -368,7 +375,7 @@ public class IBD_3889_CC extends BaseTest {
                         .clickOnAnswerForSubQuestion(2, "No pain or cramping")
                         .clickNextButton(howWouldYouRateCC)
                         .getPage(debugPageCC)
-                        .checkStudyStatusContainsForQNumber("Q0020435-QS5732-STUDYQUES", "2-4");
+                        .checkStudyStatusContainsForQNumber("QS5732", "2-4");
                 break;
             case "In Flare":
                 subquestionsIBDShireCrohnsPageCC
@@ -378,7 +385,7 @@ public class IBD_3889_CC extends BaseTest {
                         .clickOnAnswerForSubQuestion(2, "Moderate (interferes with my usual activity)")
                         .clickNextButton(howWouldYouRateCC)
                         .getPage(debugPageCC)
-                        .checkStudyStatusContainsForQNumber("Q0020435-QS5732-STUDYQUES", "2-3");
+                        .checkStudyStatusContainsForQNumber("QS5732", "2-3");
                 break;
         }
         //Q21.3
@@ -408,7 +415,7 @@ public class IBD_3889_CC extends BaseTest {
                     .clickNextButton(transitionStatementCC)
                     .waitForPageLoadWithCurves(studyName)
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0020441-QS5733-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5733", site.activeProtocols)
                     .back();
         }
         haveAnyOfTheFollowingPageCC
@@ -455,7 +462,7 @@ public class IBD_3889_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
@@ -463,21 +470,21 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .back();
-        //debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols);
+        //debugPageCC.checkProtocolsContainsForQNumber("QS42", site.activeProtocols);
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("11 or more years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerCC
                 .back();
@@ -500,7 +507,7 @@ public class IBD_3889_CC extends BaseTest {
         haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
@@ -508,7 +515,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
@@ -516,7 +523,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC.back();
 
@@ -531,7 +538,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
@@ -539,7 +546,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
@@ -547,7 +554,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC.back();
 
@@ -562,7 +569,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
@@ -570,7 +577,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
@@ -578,7 +585,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC.back();
 
@@ -593,7 +600,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
@@ -601,7 +608,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
@@ -609,7 +616,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC.back();
         haveYouEverExperiencedHeartRelatedMedicalCondCC.back();
@@ -626,7 +633,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols[0], site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0], site.activeProtocols[1])
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -635,7 +642,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols[0], site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0], site.activeProtocols[1])
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -649,7 +656,7 @@ public class IBD_3889_CC extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -658,7 +665,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -667,7 +674,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -676,7 +683,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -686,7 +693,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -695,7 +702,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()

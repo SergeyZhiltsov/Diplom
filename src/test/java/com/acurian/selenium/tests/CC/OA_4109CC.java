@@ -4,10 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
-import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
-import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -67,16 +64,14 @@ public class OA_4109CC extends BaseTest {
 
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1980")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
         ZipCodePageCC zipCodePageCC = doesNotGivePermissionToProceedClosePageCC
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC)
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC
@@ -86,6 +81,9 @@ public class OA_4109CC extends BaseTest {
 
         DoYouSufferFromArthritisCC doYouSufferFromArthritisCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritisCC());
 
@@ -242,14 +240,16 @@ public class OA_4109CC extends BaseTest {
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 //----------SITE Selection Page--------------------
                 .waitForPageLoad(studyName1)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new Regular_WarmTransfer1())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

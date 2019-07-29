@@ -92,34 +92,36 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleExpectedLOWT, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1990")
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
-        zipCodePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
-                .back(dateOfBirthPageCC)
-                .waitForPageLoad2Ver()
-                .setYear("1960")
-                .clickNextButton(zipCodePageCC);
+//        zipCodePageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
+//                .back(dateOfBirthPageCC)
+//                .waitForPageLoad2Ver()
+//                .setYear("1960")
+//                .clickNextButton(zipCodePageCC);
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = genderPageCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                genderPageCC
                 .waitForPageLoad()
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1990")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, i...", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QSI8013", protocol1, protocol2)
                 .back();
 
         PersonaQuestionsCC personaQuestionsCC = genderPageCC
@@ -439,8 +441,9 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
 //                        .waitForPageLoad(siteIndication)
-                        .clickNextButton(new QualifiedClose2PageCC())
+                        .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
+                        .clickOnAnswer("No")
 //                        .clickNextButton(new HSMedicalRecordsPageCC())
 //                        .waitForPageLoad()
                         .clickNextButton(new SynexusHealthyMindsPageCC())
