@@ -32,10 +32,9 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         String dquedStudyName = "a heart health study";
         String matchedStudyName = "a men’s health study";
         String phoneNumber = "AUTAMS1DIA";
-//        String protocol1 = "EFC14822";
         String protocol2 = "EFC14829";
         String protocol3 = "EFC14893";
-//        String protocol4 = "EFC15337";
+        String protocol4 = "EFC15337";
         String AKC = "ISIS 703802_CS2";
         String[] protocols = {protocol2, AKC, protocol3};
         String studyName = "a diabetes";
@@ -61,7 +60,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
-                .waitForPageLoad2Ver()
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
@@ -164,7 +163,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3)
+                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
                 .back();
         treatingYourDiabetesPageOLS
                 .waitForPageLoad()
