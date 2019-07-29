@@ -212,25 +212,32 @@ public class CV_5034_CC_A_S extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                     .back();
         }
-        MedicationsForYourDiabetesPageCC medicationsForYourDiabetesPageCC = whatKindOfDiabetesPageCC
+
+        //as not eligible for ALL protocols associated with the CV module, Go to Ghost Question - CV End of Module Logic
+        //4241 EFC14828 is deactivated in R75  - logic should be updated after activation
+        transitionalStatementLowtPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new MedicationsForYourDiabetesPageCC());
-        medicationsForYourDiabetesPageCC
+                .clickNextButton(new TransitionalStatementLowtPageCC());
+
+        transitionalStatementLowtPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
+
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
 
         //-------Q5: WithType2DiabetesPageCC------------
-        withType2DiabetesPageCC
+        MedicationsForYourDiabetesPageCC medicationsForYourDiabetesPageCC=withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(medicationsForYourDiabetesPageCC)
+                .clickNextButton( new MedicationsForYourDiabetesPageCC());
+
+        medicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6705", site.activeProtocols)
