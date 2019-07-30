@@ -3,10 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Obesity_4605.*;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
@@ -37,7 +34,7 @@ public class OBS_4605_OLS extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("a genetic obesity study", "25 per visit"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_ols = dateOfBirthPageOLS
-                .setDate("05052005")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
 
         lessThan18YearsOldPage_ols
@@ -47,7 +44,7 @@ public class OBS_4605_OLS extends BaseTest {
                 .back();
 
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
-                .setDate("05051990")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS
@@ -57,6 +54,7 @@ public class OBS_4605_OLS extends BaseTest {
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
                 .waitForPageLoad()
+                .setDate("05051990")
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -144,8 +142,9 @@ public class OBS_4605_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

@@ -31,6 +31,7 @@ public class Lupus_4442_CC extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
@@ -60,29 +61,31 @@ public class Lupus_4442_CC extends BaseTest {
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003")
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
-        lessThan18YearsOldPageCC.waitForPageLoad();
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
+        lessThan18YearsOldPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1, protocol2)
+                .back();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setYear("1980")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
-                .typeZipCode("08204")
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedWithLupusCC diagnosedWithLupusCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Mar")
+                .setDay("2")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedWithLupusCC());
 

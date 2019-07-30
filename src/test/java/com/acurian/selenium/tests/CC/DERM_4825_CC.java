@@ -67,35 +67,15 @@ public class DERM_4825_CC extends BaseTest {
                 "Title is diff");
 
         dateOfBirthPageCC
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
-                .clickOnAnswer("Yes")
-                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("1943") //Disqualify ("Age") if >= 76
-                .clickOnAnswer("Yes")
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
-        zipCodePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back(dateOfBirthPageCC);
-
-        dateOfBirthPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("2001")
-                .clickNextButton(zipCodePageCC);
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
@@ -104,6 +84,9 @@ public class DERM_4825_CC extends BaseTest {
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Apr")
+                .setDay("5")
+                .setYear("2001")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 

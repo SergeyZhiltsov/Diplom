@@ -86,10 +86,12 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(),  dateOfBirthPageCC.getExpectedModifiedTitle("an autism spectrum disorder study", "800"), "Title is diff");
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1980")
-                .clickOnAnswer("Yes")
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1980")
+//                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
 
@@ -106,6 +108,9 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(genderPageCC.getTitleText(), genderPageCC.titleExpected, "Title is diff");
         HaveYouEverBeenToldByDoctorAutism_CC haveYouEverBeenToldByDoctorAutism_CC = genderPageCC
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenToldByDoctorAutism_CC());
 

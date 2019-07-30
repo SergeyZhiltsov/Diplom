@@ -17,7 +17,7 @@ public class GenderPageOLS extends MainPageOLS{
 
     public final String titleExpectedGmega = "Please confirm your gender:";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
@@ -34,6 +34,9 @@ public class GenderPageOLS extends MainPageOLS{
     //span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
     List<WebElement> radioButtonsList;
+
+    @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
+    WebElement dateField;
 
     public GenderPageOLS() {
         PageFactory.initElements(getDriver(), this);
@@ -69,9 +72,14 @@ public class GenderPageOLS extends MainPageOLS{
     }
 
     @Step
+    public GenderPageOLS setDate(String date) {
+        typeText(dateField, date);
+        return this;
+    }
+
+    @Step
     public String getTitleText(){
         return getText(titleText);
     }
-
 }
 

@@ -69,7 +69,7 @@ public class IBD_3889_OLS extends BaseTest {
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
-                .setDate("09092001")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad();
@@ -80,7 +80,7 @@ public class IBD_3889_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .waitForPageLoad2Ver();
         PersonalDetails personalDetails = dateOfBirthPageOLS
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 
         GenderPageOLS genderPageOLS = personalDetails
@@ -91,6 +91,7 @@ public class IBD_3889_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS = genderPageOLS
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS());
 

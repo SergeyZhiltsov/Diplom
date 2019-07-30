@@ -85,33 +85,33 @@ public class Insomnia_5017_CC extends BaseTest{
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "1,450"), "Title is diff");
         dateOfBirthPageCC
                 .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("2003")
-                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")//If "No", go to Does Not Give Permission to Proceed Close
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("18")
-                .setYear("1955")//Disqualify ("Age") if < 65
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
-        zipCodePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back(dateOfBirthPageCC);
-
-        dateOfBirthPageCC
-                .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("1953")
-                .clickNextButton(zipCodePageCC);
+//                .setMonth("Apr")
+//                .setDay("18")
+//                .setYear("1955")//Disqualify ("Age") if < 65
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new ZipCodePageCC());
+//        zipCodePageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+//                .back(dateOfBirthPageCC);
+//
+//        dateOfBirthPageCC
+//                .waitForPageLoad()
+//                .setMonth("Apr")
+//                .setDay("5")
+//                .setYear("1953")
+//                .clickNextButton(zipCodePageCC);
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
@@ -120,6 +120,9 @@ public class Insomnia_5017_CC extends BaseTest{
 
         DoYouSufferFromInsomniaPageCC doYouSufferFromInsomniaPageCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Apr")
+                .setDay("5")
+                .setYear("1953")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromInsomniaPageCC());
 

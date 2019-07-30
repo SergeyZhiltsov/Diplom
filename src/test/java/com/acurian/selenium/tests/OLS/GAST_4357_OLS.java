@@ -60,7 +60,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName, "500"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092003")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
@@ -69,7 +69,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .back();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .waitForPageLoad()
-                .setDate("09091942")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 
         GenderPageOLS genderPageOLS = personalDetails
@@ -79,6 +79,7 @@ public class GAST_4357_OLS extends BaseTest {
 
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                 .waitForPageLoad()
+                .setDate("09091942")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 

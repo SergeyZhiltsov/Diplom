@@ -65,7 +65,7 @@ public class ChatFillTest extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
         HSCrohns2PageOLS hsCrohns2PageOLS = siteSelectionPageOLS
-                .waitForPageLoad("")
+                .waitForPageLoadGBAN()
                 //.clickOnDebugSiteName("QSC9004_AUT_GRAD2_3138")
                 .clickOnFacilityName("AUT_GBAN1_2929")
                 .clickNextButton(new HSCrohns2PageOLS());

@@ -61,10 +61,8 @@ public class OAB_BPH_4867_CC extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an overactive bladder study", "300"), "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("2006")
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC
@@ -75,28 +73,28 @@ public class OAB_BPH_4867_CC extends BaseTest {
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setYear("1992")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
-        zipCodePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
-                .back();
-
-        dateOfBirthPageCC
-                .waitForPageLoad()
-                .setYear("1930")
-                .clickNextButton(zipCodePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
-                .back();
-
-        dateOfBirthPageCC
-                .waitForPageLoad()
-                .setYear("1978")
-                .clickNextButton(zipCodePageCC);
+//        zipCodePageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+//                .back();
+//
+//        dateOfBirthPageCC
+//                .waitForPageLoad()
+//                .setYear("1930")
+//                .clickNextButton(zipCodePageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+//                .back();
+//
+//        dateOfBirthPageCC
+//                .waitForPageLoad()
+//                .setYear("1978")
+//                .clickNextButton(zipCodePageCC);
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
@@ -106,6 +104,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
         //-------------If 'Female' AND selected "No" in Q2.1, Disqualify OAB
         DoYouSufferFromOAB_CC doYouSufferFromOAB_CC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1978")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromOAB_CC());
         //-------------Display Q2.1

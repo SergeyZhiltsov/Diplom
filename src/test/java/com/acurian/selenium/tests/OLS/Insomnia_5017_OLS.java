@@ -64,7 +64,7 @@ public class Insomnia_5017_OLS extends BaseTest{
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
                 .getExpectedModifiedTitle("an insomnia study", "1,450"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091940")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -76,6 +76,7 @@ public class Insomnia_5017_OLS extends BaseTest{
         genderPageOLS
                 .waitForPageLoad();
         DoYouSufferFromInsomniaPageOLS doYouSufferFromInsomniaPageOLS = genderPageOLS
+                .setDate("09091940")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromInsomniaPageOLS());
 

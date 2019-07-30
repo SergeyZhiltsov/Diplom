@@ -1,38 +1,43 @@
-package com.acurian.selenium.pages.CC.LOWT;
+package com.acurian.selenium.pages.CC.COPD_5042;
 
-import java.util.Arrays;
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+
+import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveDoctorEverDiagnosedYou_CC extends MainPageCC{
+import java.util.Arrays;
+import java.util.List;
 
-    public final String titleExpected = "Have you experienced any of the following cardiovascular interventions or surgeries? \n" +
-    		"Agent note: Select all that apply";
+public class HasHealthcareProfessionalDiagnosedLungCondCC extends MainPageCC{
 
+    
+    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of these lung conditions?\n" +
+    		"Agent Note: Select all that apply";
+    		
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
 
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
 
-    public HaveDoctorEverDiagnosedYou_CC() {
+    public HasHealthcareProfessionalDiagnosedLungCondCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveDoctorEverDiagnosedYou_CC waitForPageLoad() {
+    public HasHealthcareProfessionalDiagnosedLungCondCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
+    
 
     @Step
-    public HaveDoctorEverDiagnosedYou_CC clickOnAnswers(String ...answerText) {
+    public HasHealthcareProfessionalDiagnosedLungCondCC clickOnAnswers(String ...answerText) {
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
                 .forEach(el -> el.click());
@@ -45,4 +50,5 @@ public class HaveDoctorEverDiagnosedYou_CC extends MainPageCC{
         return getText(titleText);
     }
 
+	
 }

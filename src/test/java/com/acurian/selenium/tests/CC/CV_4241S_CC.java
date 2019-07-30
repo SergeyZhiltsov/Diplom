@@ -229,12 +229,12 @@ public class CV_4241S_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
+        CardiovascularInterventionsOrSurgeriesPageCC cardiovascularInterventionsOrSurgeriesPageCC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
+                .clickNextButton(new CardiovascularInterventionsOrSurgeriesPageCC());
 
-        HeartrelatedMedicalConditionsProceduresPageCC heartrelatedMedicalConditionsProceduresPageCC = haveDoctorEverDiagnosedYou_cc
+        HeartrelatedMedicalConditionsProceduresPageCC heartrelatedMedicalConditionsProceduresPageCC = cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalConditionsProceduresPageCC());

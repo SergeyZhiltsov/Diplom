@@ -1,7 +1,9 @@
 package com.acurian.selenium.pages.CC.shared;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.MainPageCC;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +13,10 @@ import java.util.List;
 
 public class DateOfBirthPageCC extends MainPageCC{
 
-    public final String titleExpected = "First, may I have your date of birth? You must be 18 years or older to complete this questionnaire.";
+    public final String titleExpected = "Are you age 18 or older?";
+
+    public final String titleExpected2 = "Do I have your permission to proceed with the questionnaire?\n" +
+            "Agent Note: if the caller does not give permission, please abort screening.";
 
     public final String titleGMEGAExpected = "May I have your date of birth?";
 
@@ -200,6 +205,8 @@ public class DateOfBirthPageCC extends MainPageCC{
 
     @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
     WebElement questionText;
+    @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
+    WebElement questionText2;
 
     @FindBy(xpath = "//div[@class='subquestion'][3]//div[@class='show-in-cc']")
     WebElement questionText2Ver;
@@ -251,6 +258,9 @@ public class DateOfBirthPageCC extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
+    @FindBy(xpath = "//div[@class='subquestion']//span[@class='sub_question_text']/div[@class='show-in-cc']")
+    List<WebElement> titlesText;
+
 
     public DateOfBirthPageCC() {
         PageFactory.initElements(getDriver(), this);
@@ -259,6 +269,7 @@ public class DateOfBirthPageCC extends MainPageCC{
     @Step
     public DateOfBirthPageCC waitForPageLoad() {
         waitForPageLoadMain(questionText, titleExpected);
+        waitForPageLoadMain(questionText2, titleExpected2);
         return this;
     }
 
@@ -338,18 +349,21 @@ public class DateOfBirthPageCC extends MainPageCC{
         return getText(titleTextIBD);
     }
 
+    @Deprecated
     @Step
     public DateOfBirthPageCC setMonth(String month) {
         selectDropDownListOptionByText(monthSelect, month);
         return this;
     }
 
+    @Deprecated
     @Step
     public DateOfBirthPageCC setDay(String day) {
         selectDropDownListOptionByText(daySelect, day);
         return this;
     }
 
+    @Deprecated
     @Step
     public DateOfBirthPageCC setYear(String year) {
         typeText(yearField, year);
@@ -357,6 +371,17 @@ public class DateOfBirthPageCC extends MainPageCC{
         return this;
     }
 
+    @Step
+    public DateOfBirthPageCC clickOnAnswerForSubQuestion(String questionText, String answerText) {
+        List<WebElement> checkBoxListFromTitle = titlesText.stream().filter(el -> questionText.contains(el.getText()))
+                .findFirst()
+                .get()
+                .findElements(By.xpath("ancestor::div[@class='subquestion']/div[@class='radio_btns_container']//label"));
+        clickOnRadioButton(checkBoxListFromTitle, answerText);
+        return this;
+    }
+
+    @Deprecated
     @Step
     public DateOfBirthPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);

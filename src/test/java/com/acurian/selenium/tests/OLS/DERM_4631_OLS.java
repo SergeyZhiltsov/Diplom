@@ -58,7 +58,7 @@ public class DERM_4631_OLS extends BaseTest {
                 "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092003")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
 
         lessThan18YearsOldPage_OLS
@@ -69,18 +69,7 @@ public class DERM_4631_OLS extends BaseTest {
 
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .waitForPageLoad()
-                .setDate("09091951")
-                .clickNextButton(new PersonalDetails());
-
-        personalDetails
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-
-        dateOfBirthPageOLS
-                .waitForPageLoad()
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 
         GenderPageOLS genderPageOLS = personalDetails
@@ -89,9 +78,9 @@ public class DERM_4631_OLS extends BaseTest {
                         site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS =
-                genderPageOLS
+        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS = genderPageOLS
                 .waitForPageLoad()
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 

@@ -79,10 +79,9 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003")
-                .clickOnAnswer("Yes")
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
@@ -92,9 +91,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("1942")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
         GenderPageCC genderPageCC = zipCodePageCC
@@ -104,6 +101,9 @@ public class DERM_4815_CC_A_S extends BaseTest {
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Mar")
+                .setDay("2")
+                .setYear("1942")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
@@ -732,8 +732,9 @@ public class DERM_4815_CC_A_S extends BaseTest {
             case AUT_DERM_4815_Site: //1R
                 selectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose2PageCC())
+                        .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
+                        .clickOnAnswer("No")
                         .clickNextButton(new SynexusHealthyMindsPageCC())
                         .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())

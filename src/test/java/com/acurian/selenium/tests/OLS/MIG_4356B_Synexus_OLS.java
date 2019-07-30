@@ -66,6 +66,7 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
        
         String env = System.getProperty("acurian.env", "STG");
 
+        
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumberMIG)

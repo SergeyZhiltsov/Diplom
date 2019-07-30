@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 
 public class DBConnection {
 
@@ -157,7 +158,7 @@ public class DBConnection {
         finally {
             closeResources();
         }
-        return fulCell;
+        return Objects.requireNonNull(fulCell, "Returned fulCell is NULL!");
     }
 
     public RadiantResults dbReadRadiant(String environment, String pidNumber) {

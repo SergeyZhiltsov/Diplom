@@ -6,10 +6,7 @@ import com.acurian.selenium.pages.OLS.HFL_4722.HeartTransplantPageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.SymptomsOfHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.TreatYourHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -35,7 +32,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a heart failure study", "500"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091940")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         zipCodePageOLS
@@ -47,6 +44,7 @@ public class HFL_4722_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         CongestiveHeartFailurePageOLS congestiveHeartFailurePageOLS = genderPageOLS
+                .setDate("09091940")
                 .clickOnAnswer("Female")
                 .clickNextButton(new CongestiveHeartFailurePageOLS());
 
@@ -123,25 +121,24 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad()
-                .setAll("5", "5", "190")
+                .setAll("5", "5", "170")
                 .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS66", site.activeProtocols)
                 .back(new ApproximateHeightPageOLS())
-                .setLbs("250")
-//                .clickNextButton(new EthnicBackgroundPageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswers("Prefer not to answer")
+                .setLbs("190")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not interested in receiving information")

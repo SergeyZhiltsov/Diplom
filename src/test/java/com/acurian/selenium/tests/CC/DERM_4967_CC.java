@@ -11,6 +11,7 @@ import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -82,34 +83,17 @@ public class DERM_4967_CC extends BaseTest {
                 "600"), "Title is diff");
 
         dateOfBirthPageCC
-                .setMonth("Jul")
-                .setDay("1")
-                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
-                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Jul")
-                .setDay("1")
-                .setYear("1943") //Disqualify ("Age") if >= 76
-                .clickOnAnswer("Yes")
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
-        zipCodePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back(dateOfBirthPageCC);
-
-        dateOfBirthPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("2001")
-                .clickNextButton(zipCodePageCC);
 
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
@@ -119,6 +103,9 @@ public class DERM_4967_CC extends BaseTest {
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC =
         genderPageCC
                 .waitForPageLoad()
+                .setMonth("Apr")
+                .setDay("5")
+                .setYear("2001")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
@@ -765,8 +752,9 @@ public class DERM_4967_CC extends BaseTest {
                 .getPID();
         selectionPageCC
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)

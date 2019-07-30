@@ -65,10 +65,9 @@ public class IBD_3264_CC_HS extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("2003")
-                .clickOnAnswer("Yes")
+                .waitForPageLoad2Ver()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
@@ -78,25 +77,29 @@ public class IBD_3264_CC_HS extends BaseTest {
 
         IdentificationPageCC identificationPageCC =
         dateOfBirthPageCC
-                .setYear("1937")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
-                .back();
-        dateOfBirthPageCC
-                .setYear("1980")
-                .clickNextButton(identificationPageCC);
+//        identificationPageCC
+//                .waitForPageLoadNotQ()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
+//                .back();
+//        dateOfBirthPageCC
+//                .setYear("1980")
+//                .clickNextButton(identificationPageCC);
 
 
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoad1()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Mar")
+                .setDay("2")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedWithCrohnsPageCC());
 

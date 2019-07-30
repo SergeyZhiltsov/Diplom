@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.HFL_4722.HeartTransplantPageCC;
 import com.acurian.selenium.pages.CC.HFL_4722.SymptomsOfHeartFailurePageCC;
 import com.acurian.selenium.pages.CC.HFL_4722.TreatYourHeartFailurePageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusHealthyMindsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -26,6 +27,7 @@ public class HFL_4722_CC extends BaseTest {
         String studyName = "a heart failure study";
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
@@ -47,35 +49,35 @@ public class HFL_4722_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a heart failure study", "500"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.
+                getExpectedModifiedTitle("a heart failure study", "500"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
+                .clickNextButton(new ZipCodePageCC());
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
+                .clickNextButton(new GenderPageCC());
+
+        CongestiveHeartFailurePageCC congestiveHeartFailurePageCC = genderPageCC
+                .waitForPageLoad()
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1940")
-                .clickOnAnswer("Yes")
-                .clickNextButton(new ZipCodePageCC());
-
-        zipCodePageCC
-                .waitForPageLoad();
-        GenderPageCC genderPageCC = zipCodePageCC
-                .typeZipCode("19044")
-                .clickNextButton(new GenderPageCC());
-
-        genderPageCC
-                .waitForPageLoad();
-        CongestiveHeartFailurePageCC congestiveHeartFailurePageCC = genderPageCC
                 .clickOnAnswer("Female")
                 .clickNextButton(new CongestiveHeartFailurePageCC());
 
 
-        DebugPageCC debugPageCC = new DebugPageCC();
         NonQRtransitionPageCC nonQRtransitionPageCC = congestiveHeartFailurePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -131,7 +133,8 @@ public class HFL_4722_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(transitionStatementCC);
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                transitionStatementCC
                 .waitForPageLoad("heart failure")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
@@ -144,24 +147,26 @@ public class HFL_4722_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC())
                 .waitForPageLoad()
-                .setAll("5", "5", "190")
+                .setAll("5", "5", "170") //BMI > 30 in Q28
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("QS66", site.activeProtocols)
                 .back(new ApproximateHeightPageCC())
-                .setLbs("250")
+                .setLbs("190")
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
+                .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

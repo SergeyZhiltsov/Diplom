@@ -73,7 +73,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         zipCodePageOLS.getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
                 .back();
-        dateOfBirthPageOLS.waitForPageLoadGROUP()
+        dateOfBirthPageOLS.waitForPageLoad2Ver()
                 .setDate("09091936")
                 .clickNextButton(new ZipCodePageOLS());
         zipCodePageOLS
@@ -82,7 +82,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoadGROUP()
+                .waitForPageLoad2Ver()
                 .setDate("09091960")
                 .clickNextButton(new ZipCodePageOLS());
 

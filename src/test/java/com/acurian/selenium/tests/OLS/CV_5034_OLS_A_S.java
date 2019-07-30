@@ -4,11 +4,10 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
+import com.acurian.selenium.pages.OLS.IBS.SufferFromIrritablePageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
@@ -43,15 +42,15 @@ public class CV_5034_OLS_A_S extends BaseTest {
 
     @DataProvider(name = "5034Sites")
     public static Object[][] getData() {
-        return new Object[][] {
-                {Site.AUT_CV_5034A_site},
+        return new Object[][]{
+                //{Site.AUT_CV_5034A_site},
                 {Site.AUT_CV_5034S_site}
         };
     }
 
     @Test(dataProvider = "5034Sites")
     @Description("CV_5034_OLS_A_S")
-    public void CV_5034_OLS_Test(Site site) {
+    public void cv5034olsTest(Site site) {
         final String phoneNumber = "AUTAMS1CV1";
         final String studyName = "a heart health";
 
@@ -63,23 +62,38 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750"), "Title is diff");
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091952")
+                dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750"),
+                "Title is diff");
+
+        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
+                .waitForPageLoad2Ver()
+                .clickOnAnswer("No")
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+
+        ZipCodePageOLS zipCodePageOLS = lessThan18YearsOldPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
+                .back(dateOfBirthPageOLS)
+                .waitForPageLoad2Ver()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
-        zipCodePageOLS
-                .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        //-------GENDER Page--------
-        genderPageOLS
-                .waitForPageLoad();
-        //DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
+                .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
+                .clickNextButton(lessThan18YearsOldPageOLS)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS)
+                .waitForPageLoad()
+                .setDate("01081990")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
         //-------Q3:  Has a doctor ever diagnosed you with any of the following medical conditions or diseases?----------
@@ -92,41 +106,35 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
-        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = cardiovascularDiseaseThanOthersPageOLS
+        HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
-        cholesterolTriglyceridesLipidsPageOLS
+                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS());
+        haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
                 .back();
 
+        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = new TransitionalStatementLowtPageOLS();
+        List<String> disqualifyQ3 = Arrays.asList("High blood pressure or hypertension", "Chronic Kidney Disease");
+                for (String answer: disqualifyQ3) {
+                    System.out.println("Select answer for Q3: " + answer);
+                    cardiovascularDiseaseThanOthersPageOLS
+                            .waitForPageLoad()
+                            .clickOnAnswers("None of the above")
+                            .clickOnAnswers(answer)
+                            .clickNextButton(transitionalStatementLowtPageOLS)
+                            .waitForPageLoad()
+                            .getPage(debugPageOLS)
+                            .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
+                            .back();
+                }
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
-                .back();
-
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Chronic Kidney Disease")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
-                .back();
-
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
+                .clickNextButton(transitionalStatementLowtPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6703", site.activeProtocols)
@@ -136,10 +144,15 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar")
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new WhatKindOfDiabetesPageOLS());
+                .clickNextButton(haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS);
+
+        haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
+                .clickNextButton(whatKindOfDiabetesPageOLS);
 
         //-------Q4: What kind of diabetes do you have?----------
-        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = whatKindOfDiabetesPageOLS
+        whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new TransitionalStatementLowtPageOLS());
@@ -148,11 +161,10 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
-        MedicationsForYourDiabetesPageOLS medicationsForYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+        whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(new MedicationsForYourDiabetesPageOLS());
-        medicationsForYourDiabetesPageOLS
+                .clickNextButton(transitionalStatementLowtPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
@@ -160,26 +172,27 @@ public class CV_5034_OLS_A_S extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(medicationsForYourDiabetesPageOLS)
+                .clickNextButton(transitionalStatementLowtPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
-        whatKindOfDiabetesPageOLS
+        TransitionStatementCVbeginPageOLS transitionStatementCVbeginPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(medicationsForYourDiabetesPageOLS)
+                .clickNextButton(new TransitionStatementCVbeginPageOLS());
+        transitionStatementCVbeginPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                .back();         
+                .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageOLS());
 
         //-------Q5: WithType2DiabetesPageOLS------------
-        withType2DiabetesPageOLS
+        MedicationsForYourDiabetesPageOLS medicationsForYourDiabetesPageOLS = withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
                 .clickNextButton(new MedicationsForYourDiabetesPageOLS());
@@ -194,21 +207,20 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(medicationsForYourDiabetesPageOLS);
 
         //-------Q6: Do you currently take any of the following specific medications for your diabetes?------------
-        medicationsForYourDiabetesPageOLS
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = medicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Glyxambi (empagliflozin and linagliptin)",
                         "Januvia (sitagliptin)",
                         "Nesina (alogliptin)",
-                        "Oseni (alogliptin and pioglitazone)", 
+                        "Oseni (alogliptin and pioglitazone)",
                         "Onglyza (saxagliptin)", "Tradjenta (linagliptin)",
                         "Bydureon or Byetta (exenatide)",
-                        "Saxenda or Victoza (liraglutide)", 
+                        "Saxenda or Victoza (liraglutide)",
                         "Adlyxin (lixisenatide)",
                         "Tanzeum (albiglutide)",
                         "Trulicity (dulaglutide)",
                         "Ozempic (semaglutide)")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
-
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
 
         //-------New Q12: Ask Q12 (current non-statin use) even if did not report "High cholesterol or high triglycerides"
         HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = cholesterolTriglyceridesLipidsPageOLS
@@ -348,7 +360,6 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new HealthcareDiagnosedConditionsPageOLS());
 
-
         List<String> options = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis of the liver",
                 "Drug or alcohol abuse within the past year",
@@ -356,7 +367,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
-        for (String entry: options) {
+        for (String entry : options) {
             System.out.println(entry);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
@@ -368,22 +379,23 @@ public class CV_5034_OLS_A_S extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
                     .back();
         }
-
         AboutHealthPageOLS aboutHealthPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
+                .clickOnAnswer("No")
+//                .clickNextButton(new SynexusHealthyMindsPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());

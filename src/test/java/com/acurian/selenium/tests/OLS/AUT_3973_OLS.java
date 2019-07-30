@@ -37,7 +37,7 @@ public class AUT_3973_OLS extends BaseTest {
                 // ------------Disqualify (“Age < 18 years old”) if <18
                 // -----------------------------------------
                 .waitForPageLoad()
-                .setDate("09092002")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad();
@@ -46,20 +46,20 @@ public class AUT_3973_OLS extends BaseTest {
                 .getPage(debugPageOLS).checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols).back();
         dateOfBirthPageOLS
                 .waitForPageLoad();
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS.setDate("09091980").clickNextButton(new ZipCodePageOLS());
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS.clickOnAnswer("Yes").clickNextButton(new ZipCodePageOLS());
 
         // --------------ZIP_CODE Question------------
         zipCodePageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(zipCodePageOLS.getTitleText(), zipCodePageOLS.titleExpected, "Title is diff");
-        GenderPageOLS genderPageOLS = zipCodePageOLS.typeZipCode(site.zipCode).clickNextButton(new GenderPageOLS());
-
+        GenderPageOLS genderPageOLS = zipCodePageOLS
+                .typeZipCode(site.zipCode)
+                .clickNextButton(new GenderPageOLS());
 
         // --------------GENDER Question------------
         genderPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
         HaveYouEverBeenToldByDoctorAutism_OLS haveYouEverBeenToldByDoctorAutism_OLS = genderPageOLS
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenToldByDoctorAutism_OLS());
 

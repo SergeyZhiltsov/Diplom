@@ -228,11 +228,11 @@ public class CV_3140_CC_A_S extends BaseTest {
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
 
-        HaveDoctorEverDiagnosedYou_CC haveDoctorEverDiagnosedYou_cc = heartOrBloodVesselPageCC
+        CardiovascularInterventionsOrSurgeriesPageCC cardiovascularInterventionsOrSurgeriesPageCC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_CC());
-        haveDoctorEverDiagnosedYou_cc
+                .clickNextButton(new CardiovascularInterventionsOrSurgeriesPageCC());
+        cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad()
                 .back();
         AnginaOrChestPainPageCC anginaOrChestPainPageCC = heartOrBloodVesselPageCC
@@ -319,7 +319,7 @@ public class CV_3140_CC_A_S extends BaseTest {
         anginaOrChestPainPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(haveDoctorEverDiagnosedYou_cc)
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018790-QS6714-STUDYQUES", site.activeProtocols)
@@ -327,7 +327,7 @@ public class CV_3140_CC_A_S extends BaseTest {
         anginaOrChestPainPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveDoctorEverDiagnosedYou_cc)
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018790-QS6714-STUDYQUES", site.activeProtocols)
@@ -342,9 +342,9 @@ public class CV_3140_CC_A_S extends BaseTest {
         heartOrBloodVesselPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveDoctorEverDiagnosedYou_cc);
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC);
 
-        HeartrelatedMedicalConditionsProceduresPageCC heartrelatedMedicalConditionsProceduresPageCC = haveDoctorEverDiagnosedYou_cc
+        HeartrelatedMedicalConditionsProceduresPageCC heartrelatedMedicalConditionsProceduresPageCC = cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartrelatedMedicalConditionsProceduresPageCC());
@@ -448,7 +448,7 @@ public class CV_3140_CC_A_S extends BaseTest {
         heartrelatedMedicalConditionsProceduresPageCC
                 .waitForPageLoad()
                 .back();
-        haveDoctorEverDiagnosedYou_cc
+        cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad()
                 .back();
         heartOrBloodVesselPageCC
@@ -456,7 +456,7 @@ public class CV_3140_CC_A_S extends BaseTest {
                 .clickOnAnswers("TIA or \"Mini-Stroke\"")
                 .clickNextButton(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
-                .clickNextButton(haveDoctorEverDiagnosedYou_cc)
+                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                 .waitForPageLoad()
                 .clickNextButton(heartrelatedMedicalConditionsProceduresPageCC)
                 .waitForPageLoad()

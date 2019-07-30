@@ -40,7 +40,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
-                .setDate("09092001")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad();
@@ -49,19 +49,19 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         //------------Disqualify (“Age”) if >= 76 years -----------------------------------------
-        dateOfBirthPageOLS
-                .waitForPageLoad2Ver();
+//        dateOfBirthPageOLS
+//                .waitForPageLoad2Ver();
+//        PersonalDetails personalDetails = dateOfBirthPageOLS
+//                .setDate("09091941")
+//                .clickNextButton(new PersonalDetails());
+//        personalDetails
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                //.checkProtocolsContainsForQNumber("QSI8005", protocol1)
+//                .back();
         PersonalDetails personalDetails = dateOfBirthPageOLS
-                .setDate("09091941")
-                .clickNextButton(new PersonalDetails());
-        personalDetails
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QSI8005", protocol1)
-                .back();
-        dateOfBirthPageOLS
                 .waitForPageLoad2Ver()
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 
         //---------------PII Page Question-------------------
@@ -74,6 +74,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS = genderPageOLS
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS());
 
@@ -133,7 +134,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
                 .back();
         whenWereYouDiagnosedWithUlcerativeColitisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageOLS());
 
         ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = partOfDiagnosisFollowingProceduresDonePageOLS

@@ -39,13 +39,12 @@ public class AKC_4691_OLS extends BaseTest {
 
         //--------------DOB Question------------
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
         //--------------ZIP_CODE Question------------
         zipCodePageOLS
                 .waitForPageLoad();
-
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
@@ -54,6 +53,7 @@ public class AKC_4691_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
