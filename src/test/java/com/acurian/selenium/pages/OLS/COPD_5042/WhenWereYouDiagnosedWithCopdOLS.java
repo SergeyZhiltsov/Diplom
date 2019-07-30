@@ -13,6 +13,7 @@ public class WhenWereYouDiagnosedWithCopdOLS extends MainPageOLS {
     public final String titleExpected = "When were you diagnosed with COPD?";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    //*[@id="question_view"]/div[1]/div/form/div/div[1]/div[2]/div/question/div/div/div/div/div[1]/div/h4/div[1]
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
