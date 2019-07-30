@@ -2,12 +2,12 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.AMIG_4742.HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS;
+import com.acurian.selenium.pages.OLS.AMIG_4742.WhenDidYouTakeYourMigraineMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LMG_4686.*;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 public class AMIG_4742_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test()
     public void amig4742ols() {
         String phoneNumberMIG = "AUTAMS1MIG";
         Site site = Site.AUT_MIG4742_site;
@@ -45,11 +45,20 @@ public class AMIG_4742_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
+        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = genderPageOLS
+                .setDate("09092002")  //DQ if <18 and Age Unqualified close
+                .clickOnAnswer("Female")
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+
+        lessThan18YearsOldPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
+
         DoYouSufferFromMigHeadachesOLS doYouSufferFromMigHeadachesOLS = genderPageOLS
                 .setDate("09091982")
-                .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromMigHeadachesOLS());
-
 
         doYouSufferFromMigHeadachesOLS
                 .waitForPageLoad();
@@ -109,12 +118,12 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(howManyDaysYouSufferOLS);
 
 
-        //---------------Q5: In a typical month, how many days do you suffer from migraines?
-        HowOftenDoYouTypicallyTakeMedicationOLS howOftenDoYouTypicallyTakeMedicationOLS = howManyDaysYouSufferOLS
+        //---------------Q5: In a typical month, how many days do you suffer from migraines? - R75 changes - SKIP to NEW QS8
+        HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS haveYourEverTakenAnyMedicationToTreatMigrainePageOLS = howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("3")
-                .clickNextButton(new HowOftenDoYouTypicallyTakeMedicationOLS());
-        howOftenDoYouTypicallyTakeMedicationOLS
+                .clickNextButton(new HaveYourEverTakenAnyMedicationToTreatMigrainePageOLS());
+        haveYourEverTakenAnyMedicationToTreatMigrainePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6005", site.activeProtocols)
@@ -122,7 +131,7 @@ public class AMIG_4742_OLS extends BaseTest {
         howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("15")
-                .clickNextButton(howOftenDoYouTypicallyTakeMedicationOLS)
+                .clickNextButton(haveYourEverTakenAnyMedicationToTreatMigrainePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6005", site.activeProtocols)
@@ -130,38 +139,107 @@ public class AMIG_4742_OLS extends BaseTest {
         howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("4")
-                .clickNextButton(howOftenDoYouTypicallyTakeMedicationOLS);
+                .clickNextButton(haveYourEverTakenAnyMedicationToTreatMigrainePageOLS);
 
 
-        //---------------Q6: How often do you typically take medication to stop an active migraine, either as it starts or while you are experiencing it?-------------
-        AnyMedicationsToPreventMigrainesOLS anyMedicationsToPreventMigrainesOLS = howOftenDoYouTypicallyTakeMedicationOLS
+        //---------------NEW Q8: Have you ever taken any medications to treat your migraine headaches? -----------
+        HaveYouEverHadBotoxbotulinumtoxin_OLS haveYouEverHadBotoxbotulinumtoxin_OLS = haveYourEverTakenAnyMedicationToTreatMigrainePageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Half the days in a month or more")
-                .clickNextButton(new AnyMedicationsToPreventMigrainesOLS());
-
-
-        //---------------Q7: HowManyDifferentMedicationsOLS -----------
-        HaveYouEverHadBotoxbotulinumtoxin_OLS haveYouEverHadBotoxbotulinumtoxin_OLS = anyMedicationsToPreventMigrainesOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswers("No")
                 .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS());
 
         haveYouEverHadBotoxbotulinumtoxin_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6030", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                 .back();
 
-        anyMedicationsToPreventMigrainesOLS
+        WhenDidYouTakeYourMigraineMedicationsPageOLS whenDidYouTakeYourMigraineMedicationsPageOLS =
+                haveYourEverTakenAnyMedicationToTreatMigrainePageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswers("Yes, prescription medication")
+                .clickNextButton(new WhenDidYouTakeYourMigraineMedicationsPageOLS());
+
+        whenDidYouTakeYourMigraineMedicationsPageOLS
+                .waitForPageLoad()
+                .back();
+
+        haveYourEverTakenAnyMedicationToTreatMigrainePageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("No")
+                .clickOnAnswers("Yes, over-the-counter medication")
+                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageOLS);
+
+        whenDidYouTakeYourMigraineMedicationsPageOLS
+                .waitForPageLoad()
+                .back();
+
+         haveYourEverTakenAnyMedicationToTreatMigrainePageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("No")
+                .clickOnAnswers("Yes, vitamins or herbal supplements")
+                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageOLS);
+
+
+        //---------------NEW Q9: When did you take your migraine medication(s)?  + GHOST -----------
+        whenDidYouTakeYourMigraineMedicationsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
+                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
+
+        haveYouEverHadBotoxbotulinumtoxin_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
+                .back();
+
+        whenDidYouTakeYourMigraineMedicationsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
+                .clickOnAnswers("Every day, to prevent migraine headaches")
+                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
+
+        haveYouEverHadBotoxbotulinumtoxin_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)//QS10 Ghost QS - DISQUALIFY
+                .back();
+
+        whenDidYouTakeYourMigraineMedicationsPageOLS
+                .waitForPageLoad()
+                .back();
+
+        haveYourEverTakenAnyMedicationToTreatMigrainePageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("No")
+                .clickOnAnswers("Yes, prescription medication")
+                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageOLS);
+
+        whenDidYouTakeYourMigraineMedicationsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Every day, to prevent migraine headaches")
+                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
+                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
+
+        haveYouEverHadBotoxbotulinumtoxin_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)//QS10 Ghost QS - DISQUALIFY
+                .back();
+
+        whenDidYouTakeYourMigraineMedicationsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
+                .clickOnAnswers("Every day, to prevent migraine headaches")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
 
         //---------------SKIP to Q18: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
+
         WhenDidYouLastHaveBotoxInjectionOLS whenDidYouLastHaveBotoxInjectionOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Yes, to treat migraines")
                 .clickNextButton(new WhenDidYouLastHaveBotoxInjectionOLS());
+
 
         //---------------Q19: When did you last have a Botox (botulinum toxin) injection?-----------
         HaveYouEverDiagnosedByHealthcareProfOLS haveYouEverDiagnosedByHealthcareProfOLS = whenDidYouLastHaveBotoxInjectionOLS
@@ -216,7 +294,8 @@ public class AMIG_4742_OLS extends BaseTest {
 
 
         //---------------Q21: DoYouCurrentlyUseMarijuanaOLS-----
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouCurrentlyUseMarijuanaOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                doYouCurrentlyUseMarijuanaOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -273,7 +352,8 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
         whatKindOfArthritisPageOLS.waitForPageLoad();
         whatKindOfArthritisPageOLS.back();
-        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -296,12 +376,14 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
                 .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whichOfFollowingDigestiveConditionPageOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS =
+                whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
 
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS =
+                haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
@@ -376,7 +458,8 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswers("More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
-        FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS = heartrelatedMedicalProceduresPageOLS
+        FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS =
+                heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
@@ -472,23 +555,21 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                        site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
 
                 //----------SiteSelection Page--------------------
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad();
-        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
-        aboutHealthPageOLS
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
-                .threadSleep(2000);
-        aboutHealthPageOLS
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4742")
                 .assertGeneratedFul(env, site)

@@ -62,6 +62,7 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS selectState(String state) {
+        waitForVisibility(selectDoctorStateList);
         selectDropDownListOptionByText(selectDoctorStateList, state);
         return this;
     }

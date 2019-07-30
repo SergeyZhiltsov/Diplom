@@ -6,7 +6,9 @@ import com.acurian.selenium.pages.OLS.ADG_4357.DigestiveConditionsAffectDiabetes
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -30,39 +32,55 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         String dquedStudyName = "a heart health study";
         String matchedStudyName = "a men’s health study";
         String phoneNumber = "AUTAMS1DIA";
-//        String protocol1 = "EFC14822";
         String protocol2 = "EFC14829";
         String protocol3 = "EFC14893";
-//        String protocol4 = "EFC15337";
+        String protocol4 = "EFC15337";
         String AKC = "ISIS 703802_CS2";
         String[] protocols = {protocol2, AKC, protocol3};
         String studyName = "a diabetes";
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a study for diabetics", "750"), "Title is diff");
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+                .getExpectedModifiedTitle("a study for diabetics", "750"), "Title is diff");
+
+        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+
+        ZipCodePageOLS zipCodePageOLS = lessThan18YearsOldPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .back(dateOfBirthPageOLS)
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
-        zipCodePageOLS
-                .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        genderPageOLS
-                .waitForPageLoad();
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Female")
+                .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
+                .clickNextButton(lessThan18YearsOldPageOLS)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS)
+                .waitForPageLoad()
                 .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
-
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
@@ -145,7 +163,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3)
+                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
                 .back();
         treatingYourDiabetesPageOLS
                 .waitForPageLoad()

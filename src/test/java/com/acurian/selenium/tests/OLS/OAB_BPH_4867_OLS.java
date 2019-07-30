@@ -42,7 +42,7 @@ public class OAB_BPH_4867_OLS extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("an overactive bladder study", "300"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .setDate("09092005")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
@@ -52,47 +52,41 @@ public class OAB_BPH_4867_OLS extends BaseTest {
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad()
-                .setDate("05051992")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
-
-        zipCodePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-
-        dateOfBirthPageOLS
-                .waitForPageLoad()
-                .setDate("05051930")
-                .clickNextButton(zipCodePageOLS);
-
-        zipCodePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-
-        dateOfBirthPageOLS
-                .waitForPageLoad()
-                .setDate("09091978")
-                .clickNextButton(zipCodePageOLS);
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        //-------------If 'Female' AND selected "No" in Q2.1, Disqualify OAB
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                genderPageOLS
+                .waitForPageLoad()
+                .setDate("05051992")
+                .clickOnAnswer("Female")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS)
+                .waitForPageLoad()
+                .setDate("05051930")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS);
         DoYouSufferFromOAB_OLS doYouSufferFromOAB_OLS = genderPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Female")
+                .setDate("09091978")
                 .clickNextButton(new DoYouSufferFromOAB_OLS());
 
         //-------------Display Q2.1
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = doYouSufferFromOAB_OLS
+        doYouSufferFromOAB_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -535,8 +529,9 @@ public class OAB_BPH_4867_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForSENRPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

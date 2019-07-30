@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveDoctorEverDiagnosedYou_CC extends MainPageCC{
+public class CardiovascularInterventionsOrSurgeriesPageCC extends MainPageCC{
 
     public final String titleExpected = "Have you experienced any of the following cardiovascular interventions or surgeries? \n" +
     		"Agent note: Select all that apply";
@@ -20,19 +20,19 @@ public class HaveDoctorEverDiagnosedYou_CC extends MainPageCC{
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
 
-    public HaveDoctorEverDiagnosedYou_CC() {
+    public CardiovascularInterventionsOrSurgeriesPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveDoctorEverDiagnosedYou_CC waitForPageLoad() {
+    public CardiovascularInterventionsOrSurgeriesPageCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public HaveDoctorEverDiagnosedYou_CC clickOnAnswers(String ...answerText) {
+    public CardiovascularInterventionsOrSurgeriesPageCC clickOnAnswers(String ...answerText) {
         List<String> answerTextList = Arrays.asList(answerText);
         checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))
                 .forEach(el -> el.click());
@@ -44,5 +44,4 @@ public class HaveDoctorEverDiagnosedYou_CC extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

@@ -90,27 +90,28 @@ public class GAST_4357_CC extends BaseTest {
                 .getExpectedModifiedTitle(studyName, "500"), "Title is diff");
 
         dateOfBirthPageCC
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("2001")
-                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
+//                .setMonth("Apr")
+//                .setDay("5")
+//                .setYear("2001")
+//                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC);
 
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("19")
-                .setYear("2002")
-                .clickOnAnswer("Yes")//Disqualify ("Age") if < 18
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC)
                 .waitForPageLoad()
-                .setYear("2001")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC
@@ -120,6 +121,9 @@ public class GAST_4357_CC extends BaseTest {
 
         DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Apr")
+                .setDay("19")
+                .setYear("2001")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
         //Q2

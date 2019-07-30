@@ -77,10 +77,11 @@ public class OA_4831_CC_A_S extends BaseTest {
 
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1980")
-                .clickOnAnswer("Yes")
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1980")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
 
@@ -92,6 +93,9 @@ public class OA_4831_CC_A_S extends BaseTest {
 
         DoYouSufferFromArthritisCC doYouSufferFromArthritisCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritisCC());
 
@@ -396,8 +400,9 @@ public class OA_4831_CC_A_S extends BaseTest {
             case AUT_OA_4831_site: //1R
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose2PageCC())
+                        .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
+                        .clickOnAnswer("No")
                         //*******************Regular WARM TRANSFER (non-synexus)*******************
                         .clickNextButton(new Regular_WarmTransfer1())
                         .waitForPageLoad()

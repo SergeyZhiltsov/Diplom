@@ -61,10 +61,8 @@ public class DIA_5062_CC extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a fatty liver study for diabetics", "750"), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("2005")
-                .clickOnAnswer("Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
         lessThan18YearsOldPageCC
@@ -74,25 +72,25 @@ public class DIA_5062_CC extends BaseTest {
                 .back();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setYear("1980")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
-
-        zipCodePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
-                .back();
-
-        GenderPageCC genderPageCC = dateOfBirthPageCC
-                .waitForPageLoad()
-                .setYear("1960")
-                .clickNextButton(zipCodePageCC)
+//
+//        zipCodePageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+//                .back();
+//
+        GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         DiagnosedAnyTypeOfDiabetesPageCC diagnosedAnyTypeOfDiabetesPageCC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1960")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
 

@@ -6,10 +6,7 @@ import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -61,22 +58,14 @@ public class KAD_4631_OLS extends BaseTest {
                 "Title is diff");
 
         PersonalDetails personalDetails = dateOfBirthPageOLS
-                .setDate("09092003")
+                .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
                 .waitForPageLoad()
-                .setDate("09091951")
-                .clickNextButton(new PersonalDetails());
-        personalDetails
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back(dateOfBirthPageOLS)
-                .waitForPageLoad()
-                .setDate("09091980")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 
         GenderPageOLS genderPageOLS = personalDetails
@@ -87,6 +76,7 @@ public class KAD_4631_OLS extends BaseTest {
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS =
                 genderPageOLS
                 .waitForPageLoad()
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
 
@@ -109,7 +99,7 @@ public class KAD_4631_OLS extends BaseTest {
 
         HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_ols = new HowMuchEczemaYouHaveOnYourBody_OLS();
         List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months");
-        for(String answer: disqualifyQ3) {
+        for (String answer: disqualifyQ3) {
             System.out.println(answer);
             howLongHaveYouBeenSufferingFromEczema_OLS
                     .waitForPageLoad()
@@ -540,7 +530,8 @@ public class KAD_4631_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickOnAnswer("No")
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()

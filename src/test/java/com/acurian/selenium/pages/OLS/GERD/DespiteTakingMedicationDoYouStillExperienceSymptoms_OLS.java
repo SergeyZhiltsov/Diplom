@@ -24,18 +24,13 @@ public class DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS extends Mai
 
     @Step
     public DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS waitForPageLoad() {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
@@ -43,5 +38,4 @@ public class DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS extends Mai
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

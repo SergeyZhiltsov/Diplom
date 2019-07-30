@@ -26,6 +26,8 @@ public enum Site {
     AUT_IBD_3264_Site("AUT_IBD_3264_Site", "19901", "1R", true, true, "M16_067"), //"M14_234"
     //3839
     AUT_IBD_3839_Site("AUT_IBD_3839_Site", "19901", "1R", false, false, "SHP647_301", "SHP647_302"),
+
+    AUT_IBD_4818_Site("AUT_IBD_4818_Site", "19422", "1R", true, true, "3151_201_008", "3150_301_008"),
     //3889
     AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19901" , "1R", true, false, "M14_431", "M14_433", "M15_991", "M16_006"),
     //3973
@@ -33,7 +35,9 @@ public enum Site {
     //4109
     AUT_OA_4109_Site("AUT_OA_4109_Site", "60540", "1R", true, false, "R475_OA_1611", "R475_OA_1688"),
     //4241
-    AUT_DIA_4241("AUT_DIA_4241", "19901", "41C", false, true, "EFC14822", "EFC14829", "EFC14893"),
+    AUT_DIA_4241("AUT_DIA_4241", "19901", "41C", false, true, "EFC14829", "EFC14893"),
+    AUT_CV1_4241_site("AUT_CV1_4241_site", "19901", "41C", false, false, "EFC14828"),
+    AUT_CV1_4241_NonSynexus_site("AUT_CV1_4241_NonSynexus_site", "45205", "1R", true, false, "EFC14828"),
     //4301
     AUT_GER_4301_Site("AUT_GER_4301_Site", "19901", "1R", true, true, "C3718_301", "C3718_302"),
     //4357
@@ -93,9 +97,12 @@ public enum Site {
     //5017
     //AUT_INS_5017S_site("AUT_INS_5017S_site", "19901", "41C", false, false, "ID_078A301", "ID_078A302"), //Not required in spec
     AUT_INS_5017_site("AUT_INS_5017_site", "08204", "1R", true, false, "ID_078A301", "ID_078A302"),
+    //5019
+    AUT_AMS1_5019_site("AUT_AMS1_5019_site", "19422", "1R", false, false, "BOS_589_201"),
+    AUT_AMS1_5019S_site("AUT_AMS1_5019S_site", "08204", "41C", false, false, "BOS_589_201"),
     //5034
-    AUT_CV_5034A_site("AUT_CV_5034A_site", "45205", "1R", true, false, "K_877_302_A", "K_877_302_S"),
-    AUT_CV_5034S_site("AUT_CV_5034S_site", "19901", "41C", false, false, "K_877_302_A", "K_877_302_S"),
+    AUT_CV_5034A_site("AUT_CV_5034A_site", "45205", "1R", true, false, "K_877_302_A"),
+    AUT_CV_5034S_site("AUT_CV_5034S_site", "19901", "41C", false, false, "K_877_302_S"),
     //5044
     AUT_OA_5044_S("AUT_OA_5044_S", "19901", "41C", true, false, "R475_OA_1758"),
     //5055

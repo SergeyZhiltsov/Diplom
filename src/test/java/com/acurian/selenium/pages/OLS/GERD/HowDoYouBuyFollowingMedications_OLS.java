@@ -20,8 +20,7 @@ public class HowDoYouBuyFollowingMedications_OLS extends MainPageOLS{
     public final String titleExpected2 = "Prevacid (lansoprazole)";
     public final String titleExpected3 = "Prilosec (omeprazole)";
     public final String titleExpected4 = "Zegerid (omeprazole and sodium bicarbonate)";
-    
-    
+
     
     @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -35,9 +34,7 @@ public class HowDoYouBuyFollowingMedications_OLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
     List<WebElement> titlesText;
     
-    
 
-   
     public HowDoYouBuyFollowingMedications_OLS() {
         PageFactory.initElements(getDriver(), this);
     }

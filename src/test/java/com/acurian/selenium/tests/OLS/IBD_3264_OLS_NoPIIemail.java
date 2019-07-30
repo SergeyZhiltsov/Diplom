@@ -134,7 +134,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
                 .back();
         whenWereYouDiagnosedWithUlcerativeColitisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageOLS());
 
         ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = partOfDiagnosisFollowingProceduresDonePageOLS
