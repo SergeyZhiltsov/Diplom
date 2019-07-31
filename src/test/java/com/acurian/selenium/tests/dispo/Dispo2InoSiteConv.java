@@ -43,7 +43,7 @@ public class Dispo2InoSiteConv extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

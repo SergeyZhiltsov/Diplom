@@ -41,7 +41,7 @@ public class Dispo3CdisqualifyType2 extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
