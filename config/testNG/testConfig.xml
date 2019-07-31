@@ -4,7 +4,7 @@
 
     <test name="Regression1">
         <packages>
-            <package name="com.acurian.selenium.tests.dispo.*"></package>
+            <package name="com.acurian.selenium.tests.health_check.*"></package>
         </packages>
     </test>
 </suite>

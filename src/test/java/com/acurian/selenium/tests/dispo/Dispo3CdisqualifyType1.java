@@ -71,17 +71,18 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
                     .dispoShouldMatch("3C")
                     .copyRun(env)
                     .childPidFromDbToLog(env);
+        } else {
+            boneOrJointConditionsPageOLS
+                    .clickNextButton(new UnqualifiedCloseOLS_GMEGA())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new ThankYouCloseGmegaOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .pidFromDbToLog(env)
+                    .dispoShouldMatch("3C")
+                    .copyRun(env)
+                    .childPidFromDbToLog(env);
         }
-        boneOrJointConditionsPageOLS
-                .clickNextButton(new UnqualifiedCloseOLS_GMEGA())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseGmegaOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .pidFromDbToLog(env)
-                .dispoShouldMatch("3C")
-                .copyRun(env)
-                .childPidFromDbToLog(env);
     }
 }
