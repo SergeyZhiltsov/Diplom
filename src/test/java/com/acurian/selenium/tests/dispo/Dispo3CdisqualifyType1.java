@@ -58,19 +58,9 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
-        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = boneOrJointConditionsPageOLS
+        boneOrJointConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
-
-        unqualifiedCloseOLS_gmega
-                .waitForPageLoad()
-                .getPage(new SiteSelectionPageOLS())
-                .getPID()
-                .getPage(unqualifiedCloseOLS_gmega)
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseGmegaOLS())
-                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
