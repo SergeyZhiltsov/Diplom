@@ -11,8 +11,7 @@ import ru.yandex.qatools.ashot.comparison.ImageDiff;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
-
-import static com.sun.webkit.network.URLs.newURL;
+import java.net.URL;
 
 
 public class LoginSBPage extends MainPageSB {
@@ -59,7 +58,7 @@ public class LoginSBPage extends MainPageSB {
     public Screenshot getActualLogoImage() {
         String src = logoImage.getAttribute("src");
         try {
-            return new Screenshot(ImageIO.read(newURL(src)));
+            return new Screenshot(ImageIO.read(new URL(src)));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -28,8 +28,8 @@ public class GenderPageOLS extends MainPageOLS{
 
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
-    WebElement titleTextGmega;
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    WebElement titleText4;
 
     //span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
@@ -60,8 +60,8 @@ public class GenderPageOLS extends MainPageOLS{
     }
 
     @Step
-    public GenderPageOLS waitForPageLoadGmega() {
-        waitForPageLoadMain(titleTextGmega, titleExpectedGmega);
+    public GenderPageOLS waitForPageLoadByTitle(String titleExpected) {
+        waitForPageLoadMain(titleText4, titleExpected);
         return this;
     }
 

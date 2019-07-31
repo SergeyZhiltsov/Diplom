@@ -46,7 +46,7 @@ public class ValidateTheme extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad();
