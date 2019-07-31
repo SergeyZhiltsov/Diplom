@@ -33,6 +33,7 @@ public enum Site {
     AUT_OA_4109_Site("AUT_OA_4109_Site", "60540", "1R", true, false, "R475_OA_1611", "R475_OA_1688"),
     //4241
     AUT_DIA_4241("AUT_DIA_4241", "19901", "41C", false, true, "EFC14829", "EFC14893"),
+    //AUT_DIA_4241 TODO add EFC15337 protocol after it becomes active in 4241 child
     AUT_CV1_4241_site("AUT_CV1_4241_site", "19901", "41C", false, false, "EFC14828"),
     AUT_CV1_4241_NonSynexus_site("AUT_CV1_4241_NonSynexus_site", "45205", "1R", true, false, "EFC14828"),
     //4301

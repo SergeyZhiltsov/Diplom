@@ -770,7 +770,7 @@ public class DIA_4483_CC extends BaseTest {
                 .setAll("4", "10", "180")
                 .clickNextButton(letMeSeePageCC);
 
-        SiteSelectionPageCC siteSelectionPageCC = letMeSeePageCC
+                SiteSelectionPageCC siteSelectionPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
