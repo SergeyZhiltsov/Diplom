@@ -5,7 +5,6 @@ import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.constants.URLs;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.Properties;
-import org.apache.http.annotation.Obsolete;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -32,6 +31,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "Then, if there is a study right for you, you'll schedule an in person visit at the study doctor's office.\n" +
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $%1$s, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+
+    public final String titleCommonExpected3 = "Let's get started to see if you qualify for %s study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $%s\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
@@ -268,7 +273,6 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "Payment up to $300, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
-
     public final String titleRA2821Expected = "Let's get started to see if you qualify for a rheumatoid arthritis (RA) study!\n" +
             "Those who qualify may receive*:\n" +
             "Payment which varies by study up to $625\n" +
@@ -463,6 +467,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public DateOfBirthPageOLS waitForPageLoad() {
         waitForPageLoadMain(questionText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
+        waitForPageLoadMain(titleText, String.format(titleCommonExpected3, indication, compensation));
         return this;
     }
 

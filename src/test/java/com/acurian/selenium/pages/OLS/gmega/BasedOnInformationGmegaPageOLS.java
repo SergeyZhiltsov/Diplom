@@ -11,7 +11,13 @@ import java.util.List;
 
 public class BasedOnInformationGmegaPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Based on the information you have provided, you have prequalified for this study. Unfortunately, study sites in your area are not accepting patients at this time. We will contact you as soon as a study site near you accepts new patients or if another study opens in your area.";
+    public final String titleExpected = "Based on the information you have provided, you have prequalified for this study. " +
+            "Unfortunately, study sites in your area are not accepting patients at this time. " +
+            "We will contact you as soon as a study site near you accepts new patients or if another study opens in your area.";
+
+    public final String titleExpectedQA = "Based on the information you have provided, you have prequalified for this study. " +
+            "Unfortunately, study sites in your area are not accepting patients at this time. " +
+            "We will contact you as soon as a study site near you accepts new patients.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -25,6 +31,12 @@ public class BasedOnInformationGmegaPageOLS extends MainPageOLS {
 
     @Step
     public BasedOnInformationGmegaPageOLS waitForPageLoad() {
+        waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public BasedOnInformationGmegaPageOLS waitForPageLoadByTitle(String titleExpected) {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
