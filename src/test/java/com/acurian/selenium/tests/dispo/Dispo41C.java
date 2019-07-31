@@ -11,7 +11,6 @@ import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -23,16 +22,11 @@ public class Dispo41C extends BaseTest {
         Site site = Site.AUT_GMEGA_New;
         String phoneNumber = "AUTGMEG41C";
         String env = System.getProperty("acurian.env", "STG");
-        String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
-
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
+                .openPage(env, phoneNumber)
+                .waitForPageLoad("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -43,8 +37,8 @@ public class Dispo41C extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
-                        site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
@@ -83,7 +77,8 @@ public class Dispo41C extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
+                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())

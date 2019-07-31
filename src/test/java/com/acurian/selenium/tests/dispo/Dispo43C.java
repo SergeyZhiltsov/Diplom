@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.dispo;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -24,8 +23,6 @@ public class Dispo43C extends BaseTest {
         Site site = Site.AUT_GRA_43C_Site;
         String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
-        String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
 //        String siteName = "AUT_GRA_43C_Site";
 //        String zipCode = "73159";
 
@@ -86,7 +83,8 @@ public class Dispo43C extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
+                        "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
