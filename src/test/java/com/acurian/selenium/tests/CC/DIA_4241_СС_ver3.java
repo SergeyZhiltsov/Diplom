@@ -31,9 +31,9 @@ public class DIA_4241_СС_ver3 extends BaseTest{
 //        String protocol1 = "EFC14822";
         String protocol2 = "EFC14829";
         String protocol3 = "EFC14893";
-//        String protocol4 = "EFC15337";
+        String protocol4 = "EFC15337";
         String AKC = "ISIS 703802_CS2";
-        String[] protocols = {protocol2, protocol3, AKC};
+        String[] protocols = {protocol2, protocol3, protocol4, AKC};
         String studyName = "a study for diabetics";
         
         String env = System.getProperty("acurian.env", "STG");
@@ -153,7 +153,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(treatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", protocol2,protocol3)
+                .checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", protocol2,protocol3, protocol4)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -161,7 +161,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(treatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", protocol2,protocol3)
+                .checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", protocol2,protocol3, protocol4)
                 .back();
         withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -175,7 +175,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018438-QS4631-STUDYQUES", AKC, protocol2, protocol3)
+                .checkProtocolsEqualsForQNumber("Q0018438-QS4631-STUDYQUES", AKC, protocol2, protocol3, protocol4)
                 .back();
         treatingYourDiabetesPageCC
                 .waitForPageLoad()
@@ -183,7 +183,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0018438-QS4631-STUDYQUES", AKC, protocol2, protocol3)
+                .checkProtocolsEqualsForQNumber("Q0018438-QS4631-STUDYQUES", AKC, protocol2, protocol3, protocol4)
                 .back();
         LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
                 .waitForPageLoad()
@@ -204,7 +204,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018436-QS4632-STUDYQUES", AKC, protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("Q0018436-QS4632-STUDYQUES", AKC, protocol2, protocol3, protocol4)
                 .back();
         lastTimeYouTookPageCC
                 .waitForPageLoad()
@@ -212,7 +212,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018436-QS4632-STUDYQUES", AKC, protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("Q0018436-QS4632-STUDYQUES", AKC, protocol2, protocol3, protocol4)
                 .back();
         MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
                 .waitForPageLoad()
