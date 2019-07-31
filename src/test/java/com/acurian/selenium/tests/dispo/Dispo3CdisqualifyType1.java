@@ -2,7 +2,9 @@ package com.acurian.selenium.tests.dispo;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.UnqualifiedCloseOLS_GMEGA;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
@@ -60,9 +62,23 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .getPage(new SiteSelectionPageOLS())
-                .getPID()
-                .clickNextButton(new AboutHealthPageOLS())
+                .getPID();
+        if (env.equals("QA")) {
+            boneOrJointConditionsPageOLS
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .dispoShouldMatch("3C")
+                    .copyRun(env)
+                    .childPidFromDbToLog(env);
+        }
+        boneOrJointConditionsPageOLS
+                .clickNextButton(new UnqualifiedCloseOLS_GMEGA())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ThankYouCloseGmegaOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
                 .pidFromDbToLog(env)
                 .dispoShouldMatch("3C")
                 .copyRun(env)
