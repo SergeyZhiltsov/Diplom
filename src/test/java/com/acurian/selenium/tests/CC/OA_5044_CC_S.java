@@ -544,7 +544,8 @@ public class OA_5044_CC_S extends BaseTest {
                 .waitForPageLoadSyn()
                 .assertVariables("Acurian", "Trial", "09/09/1980", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
-                        "aut5044test", "AUT_OA_5044_Syn", "REGXXXOSA758")
+                                   env.equals("STG") ? "aut5044test" : "AUT_OA_5044_Syn", "AUT_OA_5044_Syn",
+                        "REGXXXOSA758")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
