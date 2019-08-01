@@ -39,7 +39,7 @@ public class CV_4450_OLS extends BaseTest {
         super.tearDown();
     }
 
-    @DataProvider
+    @DataProvider(name = "sites")
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_CV1_4450S_Syn},

@@ -36,7 +36,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         String protocol3 = "EFC14893";
         String protocol4 = "EFC15337";
         String AKC = "ISIS 703802_CS2";
-        String[] protocols = {protocol2, AKC, protocol3};
+        String[] protocols = {protocol2, AKC, protocol3, protocol4};
         String studyName = "a diabetes";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -171,7 +171,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3)
+                .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
                 .back();
         LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -192,7 +192,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, AKC, protocol2, protocol3)
+                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, AKC, protocol2, protocol3, protocol4)
                 .back();
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
@@ -200,7 +200,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, AKC, protocol2, protocol3)
+                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, AKC, protocol2, protocol3, protocol4)
                 .back();
         MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
                 .waitForPageLoad()
@@ -213,18 +213,18 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 //                .getPage(debugPageOLS)
 //                .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocol2);
         HashMap<String, List<String>> options = new HashMap<>();
-        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(AKC, protocol2));
-        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(AKC, protocol2));
+        options.put("Actoplus Met (metformin and pioglitazone)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Avandamet (metformin and rosiglitazone)", Arrays.asList(AKC, protocol2, protocol4));
         options.put("Glucovance (metformin and glyburide)", Arrays.asList(protocol2));
-        options.put("Invokamet (metformin and canagliflozin)", Arrays.asList(protocol2));
-        options.put("Janumet (metformin and sitagliptin)", Arrays.asList(protocol2, protocol3));
-        options.put("Jentadueto (metformin and linagliptin)", Arrays.asList(protocol2, protocol3));
-        options.put("Kazano (metformin and alogliptin)", Arrays.asList(protocol2, protocol3));
-        options.put("Kombiglyze (metformin and saxagliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Invokamet (metformin and canagliflozin)", Arrays.asList(protocol2, protocol4));
+        options.put("Janumet (metformin and sitagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Jentadueto (metformin and linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Kazano (metformin and alogliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Kombiglyze (metformin and saxagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         options.put("Metformin and glipizide", Arrays.asList(protocol2));
-        options.put("PrandiMet (metformin and repaglinide)", Arrays.asList(protocol2));
-        options.put("Synjardy (metformin and empagliflozin)", Arrays.asList(protocol2));
-        options.put("Xigduo (metformin and dapagliflozin)", Arrays.asList(protocol2));
+        options.put("PrandiMet (metformin and repaglinide)", Arrays.asList(protocol2, protocol4));
+        options.put("Synjardy (metformin and empagliflozin)", Arrays.asList(protocol2, protocol4));
+        options.put("Xigduo (metformin and dapagliflozin)", Arrays.asList(protocol2, protocol4));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
             metforminMedicationsPageOLS
@@ -243,7 +243,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(apartFromMetforminPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(metforminMedicationsPageOLS.titleExpected, protocol2)
+                .checkProtocolsEquals(metforminMedicationsPageOLS.titleExpected, protocol2, protocol4)
                 .back();
         metforminMedicationsPageOLS
                 .waitForPageLoad()
@@ -254,23 +254,23 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 
         CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = new CurrentlyTakeInsulinPageOLS();
         options.clear();
-        options.put("Actos (pioglitazone)", Arrays.asList(AKC, protocol2));
-        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC, protocol2));
-        options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2));
-        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC, protocol2));
-        options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2));
-        options.put("Glyset (miglitol)", Arrays.asList(protocol2));
-        options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2, protocol3));
-        options.put("Invokana (canagliflozin)", Arrays.asList(protocol2));
-        options.put("Januvia (sitagliptin)", Arrays.asList(protocol2, protocol3));
-        options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2));
-        options.put("Nesina (alogliptin)", Arrays.asList(protocol2, protocol3));
-        options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2, protocol3));
-        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2, AKC, protocol3));
-        options.put("Prandin (repaglinide)", Arrays.asList(protocol2));
-        options.put("Precose (acarbose)", Arrays.asList(protocol2));
-        options.put("Starlix (nateglinide)", Arrays.asList(protocol2));
-        options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2, protocol3));
+        options.put("Actos (pioglitazone)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Avandia (rosiglitazone)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Cycloset (bromocriptine)", Arrays.asList(protocol2, protocol4));
+        options.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(AKC, protocol2, protocol4));
+        options.put("Farxiga (dapagliflozin)", Arrays.asList(protocol2, protocol4));
+        options.put("Glyset (miglitol)", Arrays.asList(protocol2, protocol4));
+        options.put("Glyxambi (empagliflozin and linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Invokana (canagliflozin)", Arrays.asList(protocol2, protocol4));
+        options.put("Januvia (sitagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Jardiance (empagliflozin)", Arrays.asList(protocol2, protocol4));
+        options.put("Nesina (alogliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Onglyza (saxagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
+        options.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(protocol2, AKC, protocol3, protocol4));
+        options.put("Prandin (repaglinide)", Arrays.asList(protocol2, protocol4));
+        options.put("Precose (acarbose)", Arrays.asList(protocol2, protocol4 ));
+        options.put("Starlix (nateglinide)", Arrays.asList(protocol2, protocol4));
+        options.put("Tradjenta (linagliptin)", Arrays.asList(protocol2, protocol3, protocol4));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
             apartFromMetforminPageOLS
@@ -305,7 +305,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         takeYourInsulinPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(currentlyTakeInsulinPageOLS.titleExpected, AKC, protocol2)
+                .checkProtocolsEquals(currentlyTakeInsulinPageOLS.titleExpected, AKC, protocol2, protocol4)
                 .getPage(takeYourInsulinPageOLS)
                 .clickOnAnswers("Inhaled insulin (Afrezza)")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageOLS);
@@ -338,7 +338,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -347,7 +347,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -356,7 +356,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -365,7 +365,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -374,7 +374,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
@@ -385,7 +385,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol2)
+                .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol2, protocol4)
                 .checkProtocolsEqualsForQNumber("QS4613", protocol3)
                 .back();
         injectableMedicationsForYourDiabetesPageOLS
@@ -443,7 +443,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -451,7 +451,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
@@ -459,7 +459,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickNextButton(poundsOrMorePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3)
+                .checkProtocolsContainsForQNumber("QS4616", protocol2, protocol3, protocol4)
                 .back();
         procedureForWeightLossPageOLS
                 .waitForPageLoad()

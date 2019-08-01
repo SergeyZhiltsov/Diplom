@@ -11,7 +11,6 @@ import ru.yandex.qatools.ashot.comparison.ImageDiff;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
-
 import static com.sun.webkit.network.URLs.newURL;
 
 

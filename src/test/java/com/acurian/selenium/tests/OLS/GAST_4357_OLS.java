@@ -645,6 +645,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
         doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS);
