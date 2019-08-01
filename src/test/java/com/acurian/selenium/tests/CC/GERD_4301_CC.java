@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.CC.GERD.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.insomnia_5017.DoYouSufferFromInsomniaPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.utils.DataProviderPool;
@@ -26,12 +27,11 @@ public class GERD_4301_CC extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         DebugPageCC debugPageCC = new DebugPageCC();
-        LoginPageCC loginPageCC = new LoginPageCC();
 
+        LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
@@ -47,44 +47,99 @@ public class GERD_4301_CC extends BaseTest {
                 .clickBeginButton();
 
         callCenterIntroductionPageCC
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .activateDebugOnProd(env);
         Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-                .activateDebugOnProd(env)
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
-        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
-                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
-
-        debugPageCC.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
-        debugPageCC.back();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
         dateOfBirthPageCC
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")//If "No", go to Does Not Give Permission to Proceed Close
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
+                .waitForPageLoad()
+                .back(dateOfBirthPageCC);
+
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .setYear("1960")
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
-
-        //-------------DOB Page----------------------------------
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-
-        //-------------GENDER Page--------------------------------
         DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC = genderPageCC
                 .waitForPageLoad()
+                .setMonth("Apr")
+                .setDay("5")
+                .setYear("1953")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC());
+
+//        loginPageCC
+//                .openPage(env)
+//                .waitForPageLoad();
+//
+//        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+//        SelectActionPageCC selectActionPageCC = loginPageCC
+//                .typeUsername(Properties.getUsername())
+//                .typePassword(Properties.getPassword())
+//                .clickLoginButton();
+//
+//        CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
+//                .waitForPageLoad()
+//                .typeStudyName("AMS1")
+//                .clickPopupStudy("AMS1")
+//                .typePhoneNumber(phoneNumber)
+//                .clickPopupPhoneNumber(phoneNumber)
+//                .clickBeginButton();
+//
+//        callCenterIntroductionPageCC
+//                .waitForPageLoad();
+//        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+//        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
+//                .activateDebugOnProd(env)
+//                .clickOnAnswer("Learn more about matching to clinical trials")
+//                .clickNextButton(new DateOfBirthPageCC());
+//
+//
+//        dateOfBirthPageCC
+//                .waitForPageLoad();
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
+//        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
+//                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+//                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
+//                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
+//
+//        debugPageCC.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
+//        debugPageCC.back();
+//        dateOfBirthPageCC
+//                .waitForPageLoad();
+//        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+//                .setYear("1960")
+//                .clickNextButton(new ZipCodePageCC());
+//
+//
+//        //-------------DOB Page----------------------------------
+//        GenderPageCC genderPageCC = zipCodePageCC
+//                .waitForPageLoad()
+//                .typeZipCode(site.zipCode)
+//                .clickNextButton(new GenderPageCC());
+//
+//
+//        //-------------GENDER Page--------------------------------
+//        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC = genderPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Female")
+//                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC());
 
 
         //-------------DoYouExperienceAnyOfFollowingSymptoms_CC----------------------------------
