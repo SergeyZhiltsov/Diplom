@@ -157,8 +157,8 @@ public class COPD_5042_OLS extends BaseTest {
         subquestionSmokedCigarettePageOLS
                 .waitForPageLoad(2,"How many years did you smoke cigarettes?");
         AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS = subquestionSmokedCigarettePageOLS
-                .setFirst("6")
-                .setSecond("10")
+                .setFirst("15")  //---10 for DQ
+                .setSecond("15")
                 .clickNextButton(new AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS());
 
 
