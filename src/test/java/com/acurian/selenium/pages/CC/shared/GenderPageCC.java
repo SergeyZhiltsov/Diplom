@@ -15,7 +15,7 @@ public class GenderPageCC extends MainPageCC {
     public final String titleExpected2 = "May I have your date of birth?";
 
 
-    public final String titleExpectedGmega = "Please confirm your gender:";
+    public final String titleExpected3 = "Please confirm your gender:";
 
 
     @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
@@ -25,7 +25,7 @@ public class GenderPageCC extends MainPageCC {
     WebElement titleText2;
 
     @FindBy(xpath = "//div[@class='question_text']")
-    WebElement titleTextGmega;
+    WebElement titleText3;
 
     @FindBy(xpath = "//div[@class='radio_btns_container']//span")
     List<WebElement> radioButtonsList;
@@ -54,8 +54,8 @@ public class GenderPageCC extends MainPageCC {
     }
 
     @Step
-    public GenderPageCC waitForPageLoadGmega() {
-        waitForPageLoadMain(titleTextGmega, titleExpectedGmega);
+    public GenderPageCC waitForPageLoadByTitle(String titleExpected) {
+        waitForPageLoadMain(titleText3, titleExpected);
         return this;
     }
 

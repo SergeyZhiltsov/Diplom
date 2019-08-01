@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.dispo;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.BasedOnInformationGmegaPageOLS;
@@ -11,7 +10,6 @@ import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -22,17 +20,12 @@ public class Dispo2CsiteProximity extends BaseTest {
     public void dispo2C() {
         String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
-        String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
         String zipCode = "99546";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
-
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
+                .openPage(env, phoneNumber)
+                .waitForPageLoad("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -43,11 +36,12 @@ public class Dispo2CsiteProximity extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -76,17 +70,19 @@ public class Dispo2CsiteProximity extends BaseTest {
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageOLS());
 
-        whenYouDiagnosedWithRaGmegaPageOLS
+        BasedOnInformationGmegaPageOLS basedOnInformationGmegaPageOLS = whenYouDiagnosedWithRaGmegaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                //.clickNextButton(identificationPageOLS)
-                //.waitForPageLoad()
-                .clickNextButton(new BasedOnInformationGmegaPageOLS())
-                .waitForPageLoad();
-        BasedOnInformationGmegaPageOLS basedOnInformationGmegaPageOLS = new BasedOnInformationGmegaPageOLS();
-                if (env.equals("QA"))
-                    {basedOnInformationGmegaPageOLS.clickOnAnswer("No");}
-        basedOnInformationGmegaPageOLS.getPage(new SiteSelectionPageOLS())
+                .clickNextButton(new BasedOnInformationGmegaPageOLS());
+        if (env.equals("QA")) {
+            basedOnInformationGmegaPageOLS
+                    .waitForPageLoadByTitle(basedOnInformationGmegaPageOLS.titleExpectedQA)
+                    .clickOnAnswer("No");
+        } else {
+            basedOnInformationGmegaPageOLS.waitForPageLoad();
+        }
+        basedOnInformationGmegaPageOLS
+                .getPage(new SiteSelectionPageOLS())
                 .getPID()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()

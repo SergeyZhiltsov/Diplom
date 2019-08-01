@@ -31,8 +31,7 @@ public class VerityScoreTest extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
+                .waitForPageLoad("a rheumatoid arthritis (RA)", "625");
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")
@@ -47,11 +46,12 @@ public class VerityScoreTest extends BaseTest {
                 .waitForPageLoadNotQ();
         Assert.assertEquals(debugPageOLS.getVerityText(), "Verity Score: -1", "verity score is diff");
         GenderPageOLS genderPageOLS = identificationPageOLS
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpected)
                 .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
 

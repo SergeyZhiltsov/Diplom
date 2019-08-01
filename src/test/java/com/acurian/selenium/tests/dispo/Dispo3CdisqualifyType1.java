@@ -8,7 +8,6 @@ import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -19,17 +18,12 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
     public void dispo3Ctype1() {
         String phoneNumber = "AUTGMEGA01";
         String env = System.getProperty("acurian.env", "STG");
-        String studyName = env.equals("QA") ?
-                "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" : "Arthritis, a low back pain study, a rheumatoid arthritis (RA)";
         String zipCode = "08204";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
-
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
+                .openPage(env, phoneNumber)
+                .waitForPageLoad("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -40,11 +34,12 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
@@ -63,24 +58,31 @@ public class Dispo3CdisqualifyType1 extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BoneOrJointConditionsPageOLS());
 
-        UnqualifiedCloseOLS_GMEGA unqualifiedCloseOLS_gmega = boneOrJointConditionsPageOLS
+        boneOrJointConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new UnqualifiedCloseOLS_GMEGA());
-
-        unqualifiedCloseOLS_gmega
-                .waitForPageLoad()
                 .getPage(new SiteSelectionPageOLS())
-                .getPID()
-                .getPage(unqualifiedCloseOLS_gmega)
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseGmegaOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .dispoShouldMatch("3C")
-                .copyRun(env)
-                .childPidFromDbToLog(env);
+                .getPID();
+        if (env.equals("QA")) {
+            boneOrJointConditionsPageOLS
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .dispoShouldMatch("3C")
+                    .copyRun(env)
+                    .childPidFromDbToLog(env);
+        } else {
+            boneOrJointConditionsPageOLS
+                    .clickNextButton(new UnqualifiedCloseOLS_GMEGA())
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new ThankYouCloseGmegaOLS())
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS())
+                    .pidFromDbToLog(env)
+                    .dispoShouldMatch("3C")
+                    .copyRun(env)
+                    .childPidFromDbToLog(env);
+        }
     }
 }

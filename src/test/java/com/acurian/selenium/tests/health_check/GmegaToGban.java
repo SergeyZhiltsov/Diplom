@@ -24,13 +24,9 @@ public class GmegaToGban extends BaseTest {
         String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
-
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .openPage(env, phoneNumber)
+                .waitForPageLoad("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091930")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -45,7 +41,7 @@ public class GmegaToGban extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoadGmega()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpectedGmega)
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
 

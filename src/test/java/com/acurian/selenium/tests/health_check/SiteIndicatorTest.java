@@ -67,7 +67,7 @@ public class SiteIndicatorTest extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
-                .waitForPageLoadGmega()
+                .waitForPageLoadByTitle(genderPageCC.titleExpected3)
                 .clickOnAnswerGmega("Female")
                 .clickNextButton(new ApproximateHeightPageCC());
 

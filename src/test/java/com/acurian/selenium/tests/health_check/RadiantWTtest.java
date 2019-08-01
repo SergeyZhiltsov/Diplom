@@ -1,7 +1,6 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.RA.WhenYouDiagnosedWithRaPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -66,7 +65,7 @@ public class RadiantWTtest extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         ApproximateHeightPageCC approximateHeightPageOLS = genderPageCC
-               .waitForPageLoadGmega()
+               .waitForPageLoadByTitle(genderPageCC.titleExpected3)
                .getPage(new CallCenterIntroductionPageCC())
                .activateDebugOnProd(env)
                .getPage(genderPageCC)
