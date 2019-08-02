@@ -518,7 +518,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoadSyn()
                 .assertVariables("Acurian", "Trial", "09/09/1980", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
-                        "010151", site.name, "SANPPDDIA893")
+                        env.equals("STG") ? "010151" : "TA4722S", site.name, "SANPPDDIA893")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

@@ -526,11 +526,11 @@ public class DERM_4631_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        UnqualifiedCloseOLS unqualifiedCloseOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "10", "120")
-                .clickNextButton(new UnqualifiedCloseOLS());
-        unqualifiedCloseOLS
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
