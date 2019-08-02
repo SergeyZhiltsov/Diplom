@@ -240,7 +240,8 @@ public class DERM_4631_OLS extends BaseTest {
         CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS =
                 new CurrentlyTakingFollowingMedicationsOLS();
         for (String answer: medications) {
-            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
+            if (answer != "Cosentyx") //If still eligible for 4814 Incyte (protocol INCB 18424-303 OR INCB 18424-304), continue to Q30
+            {areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
@@ -248,7 +249,7 @@ public class DERM_4631_OLS extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
-                    .back();
+                    .back();}
         }
         DupixentInjectionPageOLS dupixentInjectionPageOLS = areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
                 .waitForPageLoad()
