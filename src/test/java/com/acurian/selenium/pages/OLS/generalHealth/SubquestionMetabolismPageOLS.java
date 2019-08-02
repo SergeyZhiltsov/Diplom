@@ -42,8 +42,6 @@ public class SubquestionMetabolismPageOLS extends MainPageOLS{
         clickOnRadioButton(checkBoxListFromTitle, answerText);
         return this;
     }
-    // can be an issue with ancestor::div[contains(@class,'subquestion')]//span[contains(@class,'visible-md-inline')]
-    // because clickOnRadioButton method use label at the end, so need add ancestor::label
 
     @Step
     public SubquestionMetabolismPageOLS clickOnAnswerForSubQuestion(String questionText, String answerText) {
