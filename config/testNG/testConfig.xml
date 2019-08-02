@@ -4,43 +4,8 @@
 
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.CC.AMIG_4742_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.Chronic_4471_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.CV_4450_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.CV_5034_CC_A_S"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_4814_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_4815_CC_A_S"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_4967_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DIA_4483_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DIA_5062_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.GAST_4357_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.IBD_Short"></class>
-            <class name="com.acurian.selenium.tests.CC.IBS_4819_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.LOWT_3017_FROM_CV_CC_A_S"></class>
-            <class name="com.acurian.selenium.tests.CC.OA_4831_CC_A_S"></class>
-            <class name="com.acurian.selenium.tests.CC.OA_5055_CC_S"></class>
-            <class name="com.acurian.selenium.tests.CC.OAB_BPH_4867_CC"></class>
-
-            <class name="com.acurian.selenium.tests.OLS.AHLandingPage_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.AMIG_4742_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.Chronic_4471_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.CV_4450_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.CV_5034_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4814_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4815_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4967_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DIA_4241_OLS_ver3"></class>
-            <class name="com.acurian.selenium.tests.OLS.DIA_4483_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DIA_5062_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.END_UnqualifiedClose_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.GAST_4357_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.IBS_4819_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.LOWT_3017_FROM_CV_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.LOWT_3017_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.OA_4831_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.OA_5055_OLS_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.OAB_BPH_4867_OLS"></class>
-
+            <class name="com.acurian.selenium.tests.CC.DIA_4241_СС_ver3"></class>
+            <class name="com.acurian.selenium.tests.OLS.DERM_4631_OLS"></class>
         </classes>
 
 

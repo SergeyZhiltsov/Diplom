@@ -41,7 +41,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("LOWT_3017_OLS_A_S")
     public void lowt3017ols(Site site) {
         String phoneNumber = "AUTAMSLOWT";
