@@ -45,7 +45,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("LOWT_3017_CC_A_S")
     public void lowTcc(Site site) {
         String phoneNumber = "AUTAMSLOWT";
