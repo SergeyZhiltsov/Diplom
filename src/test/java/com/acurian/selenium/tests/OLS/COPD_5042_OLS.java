@@ -40,7 +40,7 @@ public class COPD_5042_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("COPD_5042_OLS_A_S")
     public void copd5042ols(Site site) {
         String phoneNumber = "AUTAMSCOPD";
@@ -118,16 +118,16 @@ public class COPD_5042_OLS extends BaseTest {
 
         //------------WhenWereYouDiagnosedWithCopdOLS-------------------
         whenWereYouDiagnosedWithCopdOLS
-                .waitForPageLoad()
+                .waitForPageLoad();
+        EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = whenWereYouDiagnosedWithCopdOLS
                 .clickOnAnswer("Less than 1 year ago")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickNextButton(new EverSmokedCigarettesPageOLS());
+        everSmokedCigarettesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7404", site.activeProtocols)
                 .back(whenWereYouDiagnosedWithCopdOLS)
-                .waitForPageLoad();
-        EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = whenWereYouDiagnosedWithCopdOLS
+                .waitForPageLoad()
                 .clickOnAnswer("More than 2 years ago")//"Chronic bronchitis","Emphysema")
                 .clickNextButton(new EverSmokedCigarettesPageOLS());
 
@@ -155,26 +155,40 @@ public class COPD_5042_OLS extends BaseTest {
                 .clickOnAnswer("I quit smoking within the past year")
                 .clickNextButton(new SubquestionSmokedCigarettePageOLS());
         subquestionSmokedCigarettePageOLS
-                .waitForPageLoad(2,"How many years did you smoke cigarettes?");
+                .waitForPageLoad(1,"How many years did you smoke cigarettes?")
+                .waitForPageLoad(2,"About how many cigarettes per day did you smoke?");
         AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS = subquestionSmokedCigarettePageOLS
                 .setFirst("15")  //---10 for DQ
                 .setSecond("15")
                 .clickNextButton(new AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS());
 
 
-        //------------AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS---------
-        WhichFollowingInhalersdoYouUseCopdOLS whichFollowingInhalersdoYouUseCopdOLS = areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS
+        //------------AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS--------
+        InThePastYearHowManyUrgentMedicalforCopdOLS inThePastYearHowManyUrgentMedicalforCopdOLS = areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WhichFollowingInhalersdoYouUseCopdOLS());
-        whichFollowingInhalersdoYouUseCopdOLS
+                .clickOnAnswer("No")
+                .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdOLS());
+        inThePastYearHowManyUrgentMedicalforCopdOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7409", site.activeProtocols)
                 .back(areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS)
                 .waitForPageLoad();
-        InThePastYearHowManyUrgentMedicalforCopdOLS inThePastYearHowManyUrgentMedicalforCopdOLS = areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS
-                .clickOnAnswer("No")
+        WhichFollowingInhalersdoYouUseCopdOLS whichFollowingInhalersdoYouUseCopdOLS = areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WhichFollowingInhalersdoYouUseCopdOLS());
+
+        whichFollowingInhalersdoYouUseCopdOLS
+                .waitForPageLoad()
+       // InThePastYearHowManyUrgentMedicalforCopdOLS inThePastYearHowManyUrgentMedicalforCopdOLS = whichFollowingInhalersdoYouUseCopdOLS
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdOLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS7410", site.activeProtocols)
+                .back(whichFollowingInhalersdoYouUseCopdOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("Asmanex or Asmanex HFA","Bevespi Aerosphere")
                 .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdOLS());
 
 
@@ -186,7 +200,7 @@ public class COPD_5042_OLS extends BaseTest {
         haveYouEverHadFollowingLungSurgeriesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7411", site.activeProtocols)
                 .back(inThePastYearHowManyUrgentMedicalforCopdOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Twice")
@@ -199,10 +213,10 @@ public class COPD_5042_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Removal of a whole lung","Lung transplant")
                 .clickNextButton(new WhenDidYouHaveYourMostRecentLungSurgeryOLS());
-        haveYouEverHadFollowingLungSurgeriesOLS
+        whenDidYouHaveYourMostRecentLungSurgeryOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7412", site.activeProtocols)
                 .back(haveYouEverHadFollowingLungSurgeriesOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above","Removal of a lobe of your lung (lobectomy)")
@@ -217,7 +231,7 @@ public class COPD_5042_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7413", site.activeProtocols)
                 .back(whenDidYouHaveYourMostRecentLungSurgeryOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Twice")
