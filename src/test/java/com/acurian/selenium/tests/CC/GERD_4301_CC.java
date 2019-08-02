@@ -344,23 +344,23 @@ public class GERD_4301_CC extends BaseTest {
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad();
         Assert.assertEquals(hasYourDoctorToldYouThatYouHaveErosion_CC.getTitleText(),hasYourDoctorToldYouThatYouHaveErosion_CC.titleExpected, "Title is diff");
-        hasYourDoctorToldYouThatYouHaveErosion_CC
+        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC=hasYourDoctorToldYouThatYouHaveErosion_CC
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouEverHadSurgeryOnStomach_CC())
+                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC())
                 .waitForPageLoad();
         //debugPageCC.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
         debugPageCC.back();
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverHadSurgeryOnStomach_CC())
+                .clickNextButton(whatTypeOfSurgeryDidYouHave_CC)
                 .waitForPageLoad();
         //debugPageCC.checkProtocolsContainsForQNumber("QS6309", site.activeProtocols);
         debugPageCC.back();
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure");
-        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = hasYourDoctorToldYouThatYouHaveErosion_CC
+        hasYourDoctorToldYouThatYouHaveErosion_CC
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
 
 
@@ -387,23 +387,22 @@ public class GERD_4301_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(whatTypeOfSurgeryDidYouHave_CC.getTitleText(),whatTypeOfSurgeryDidYouHave_CC.titleExpected, "Title is diff");
         //---------SKIP to Q12 if selected "Other surgery on my stomach, intestines, colon, or esophagus"  or go to Q11--------
-        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC =
-        whatTypeOfSurgeryDidYouHave_CC
+        WhenDidYouHaveAppendixRemoved_CC whenDidYouHaveAppendixRemoved_CC = whatTypeOfSurgeryDidYouHave_CC
                 .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC());
-        areYouCurrentlyAbleToSwallowTablets_CC
-                .waitForPageLoad()
+                .clickNextButton(new WhenDidYouHaveAppendixRemoved_CC());
+        whenDidYouHaveAppendixRemoved_CC
+                .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_CC.titleExpected4)
                 .back();
         whatTypeOfSurgeryDidYouHave_CC
                 .waitForPageLoad();
-        WhenDidYouHaveAppendixRemoved_CC whenDidYouHaveAppendixRemoved_CC = whatTypeOfSurgeryDidYouHave_CC
+        whatTypeOfSurgeryDidYouHave_CC
                 .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
                 .clickOnAnswers("Appendix removed - Appendectomy (Agent Note: app-en-DECK-toe-mee)",
                         "Gallbladder removed - Cholecystectomy (Agent Note: cole-leh-sis-TECK-toe-mee)",
                         "Biopsy (Agent Note: BY-op-see) – removal of a small piece of tissue for analysis",
                         "Tonsils removed - Tonsillectomy (Agent Note: tahn-sil-LECK-toe-mee)",
                         "Hemorrhoids removed - Hemorrhoidectomy (Agent Note, HEM-roids, hem-roy-DECK-toe-mee)")
-                .clickNextButton(new WhenDidYouHaveAppendixRemoved_CC());
+                .clickNextButton(whenDidYouHaveAppendixRemoved_CC);
 
 
         //---------------Q15 WhenDidYouHaveAppendixRemoved_CC-------------------
@@ -412,7 +411,7 @@ public class GERD_4301_CC extends BaseTest {
                 .waitForPageLoad(2,whenDidYouHaveAppendixRemoved_CC.titleExpected2);
         Assert.assertEquals(whenDidYouHaveAppendixRemoved_CC
                 .getTitleText(1),whenDidYouHaveAppendixRemoved_CC.titleExpected1, "Title is diff");
-        whenDidYouHaveAppendixRemoved_CC
+        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = whenDidYouHaveAppendixRemoved_CC
                 .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
                 .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC())
@@ -423,7 +422,7 @@ public class GERD_4301_CC extends BaseTest {
                 .waitForPageLoad(1,whenDidYouHaveAppendixRemoved_CC.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC());
+                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_CC);
 
 
         //---------------Q16 AreYouCurrentlyAbleToSwallowTablets_CC-------------------

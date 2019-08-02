@@ -223,7 +223,6 @@ public class DERM_4631_OLS extends BaseTest {
         List<String> medications = Arrays.asList("Actemra",
                 "Benlysta",
                 "Cimzia",
-                "Cosentyx",
                 "Enbrel",
                 "Entyvio",
                 "Humira",
@@ -240,7 +239,7 @@ public class DERM_4631_OLS extends BaseTest {
         CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS =
                 new CurrentlyTakingFollowingMedicationsOLS();
         for (String answer: medications) {
-            areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
+              areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
@@ -248,8 +247,8 @@ public class DERM_4631_OLS extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5821", site.activeProtocols)
-                    .back();
-        }
+                    .back();}
+
         DupixentInjectionPageOLS dupixentInjectionPageOLS = areYouCurrentlyReceivingRegularDosesOfBiologicMeds_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -527,11 +526,11 @@ public class DERM_4631_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        UnqualifiedCloseOLS unqualifiedCloseOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "10", "120")
-                .clickNextButton(new UnqualifiedCloseOLS());
-        unqualifiedCloseOLS
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
