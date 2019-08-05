@@ -606,6 +606,9 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         hSGeneralPageOLS
                 .waitForPageLoadEmailNotProvided()
                 .typeEmail("qa.acurian@gmail.com")  //------EMail not Set at PII.  so enter at Hello sign close
+                .clickNextButton(new MedicalRecordsOptionPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoadIBD("Ulcerative Colitis")
                 .clickNextButton(new HS1PageOLS())
