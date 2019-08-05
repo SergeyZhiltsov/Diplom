@@ -36,11 +36,11 @@ public class COPD_5042_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_COPD_5042S_Site},
-                //{Site.AUT_COPD_5042_Site}
+               // {Site.AUT_COPD_5042_Site}
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites")
     @Description("COPD_5042_OLS_A_S")
     public void copd5042ols(Site site) {
         String phoneNumber = "AUTAMSCOPD";
@@ -48,7 +48,7 @@ public class COPD_5042_OLS extends BaseTest {
         String protocol2 = "M16_100_S";
         String kowaProtocolA = "208657";
         String kowaProtocolS = "K_877_302_S";
-        String studyName = "a men's health";
+        String studyName = "a COPD";
         String site_Indication = "low testosterone or hypogonadism";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -139,8 +139,6 @@ public class COPD_5042_OLS extends BaseTest {
                 .clickNextButton(new SubquestionSmokedCigarettePageOLS());
         subquestionSmokedCigarettePageOLS
                 .waitForPageLoad(1,"How many years have you been smoking cigarettes?")
-                //.getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(everSmokedCigarettesPageOLS)
                 .waitForPageLoad();
         QuitSmokingOLS quitSmokingOLS = everSmokedCigarettesPageOLS
@@ -149,7 +147,6 @@ public class COPD_5042_OLS extends BaseTest {
 
 
         //-----------QuitSmokingOLS-----------------------
-        //SubquestionSmokedCigarettePageOLS subquestionSmokedCigarettePageOLS = subquestionSmokedCigarettePageOLS
         quitSmokingOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I quit smoking within the past year")
@@ -180,7 +177,6 @@ public class COPD_5042_OLS extends BaseTest {
 
         whichFollowingInhalersdoYouUseCopdOLS
                 .waitForPageLoad()
-       // InThePastYearHowManyUrgentMedicalforCopdOLS inThePastYearHowManyUrgentMedicalforCopdOLS = whichFollowingInhalersdoYouUseCopdOLS
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdOLS())
                 .waitForPageLoad()
@@ -219,41 +215,44 @@ public class COPD_5042_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS7412", site.activeProtocols)
                 .back(haveYouEverHadFollowingLungSurgeriesOLS)
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above","Removal of a lobe of your lung (lobectomy)")
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Removal of a lobe of your lung (lobectomy)")
                 .clickNextButton(new WhenDidYouHaveYourMostRecentLungSurgeryOLS());
 
 
         //------13 When did you have your most recent lung surgery?---------
-        ApproximateHeightPageOLS approximateHeightPageOLS = whenDidYouHaveYourMostRecentLungSurgeryOLS
+        //ApproximateHeightPageOLS approximateHeightPageOLS = whenDidYouHaveYourMostRecentLungSurgeryOLS
+        whenDidYouHaveYourMostRecentLungSurgeryOLS
                 .waitForPageLoad()
-                .clickOnAnswer("None")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        approximateHeightPageOLS
+                .clickOnAnswer("6 months ago or less")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7413", site.activeProtocols)
                 .back(whenDidYouHaveYourMostRecentLungSurgeryOLS)
                 .waitForPageLoad()
-                .clickOnAnswer("Twice")
-                .clickNextButton(new ApproximateHeightPageOLS());
+                .clickOnAnswer("1 year ago or more")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
 
 //General_Health
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)",
+                .clickOnAnswers(//"Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Cancer",
-                        "Kidney disease",
-                        "Heart or circulation problems (heart attack, heart failure, stroke)",
-                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                       // "Kidney disease",
+                        //"Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
+                        //"Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
+        //HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS = otherThanSkinCancerPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
+        whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
@@ -261,236 +260,22 @@ public class COPD_5042_OLS extends BaseTest {
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
-
-        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .back();
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"mini-stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight hospital stay")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
-                .back();
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
-
-        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Dialysis")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back();
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
-                .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back();
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Neither")
-                .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS);
 
-        FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
-        following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back();
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
+
+        whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
+                .waitForPageLoad();
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(following_mentalEmotionalHealthPageOLS);
-
-        WhichOfTheFollowingSkinConditionsDoYouSufferOLS whichOfTheFollowingSkinConditionsDoYouSufferOLS = following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferOLS());
-        whichOfTheFollowingSkinConditionsDoYouSufferOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back();
-        following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(whichOfTheFollowingSkinConditionsDoYouSufferOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back();
-        following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(whichOfTheFollowingSkinConditionsDoYouSufferOLS);
-
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whichOfTheFollowingSkinConditionsDoYouSufferOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Psoriasis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS55", site.activeProtocols)
-                .back();
-        whichOfTheFollowingSkinConditionsDoYouSufferOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .back();
-        whichOfTheFollowingSkinConditionsDoYouSufferOLS
-                .waitForPageLoad()
-                .back();
-        following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .back();
-        whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .back();
-        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .back();
-        heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .back();
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .back();
-        otherThanSkinCancerPageOLS
-                .waitForPageLoad()
-                .back();
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
-
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
+                .waitForPageLoad();
+        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
@@ -528,24 +313,24 @@ public class COPD_5042_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS);
 
 
-        AboutHealthPageOLS aboutHealthPageOLS = approximateHeightPageOLS
+        //AboutHealthPageOLS aboutHealthPageOLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
-                .clickNextButton(new IdentificationPageOLS())
-                .waitForPageLoad()
+                .clickNextButton(new IdentificationPageOLS());
+
+
+        //----------PII (IdentificationPageOLS) Page--------------------
+        identificationPageOLS
+                .waitForPageLoad();
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
+                .clickNextButton(new SiteSelectionPageOLS());
+        siteSelectionPageOLS
                 .waitForPageLoad(studyName)
-                .getPID()
-                .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
+                .getPID();
         switch (site) {
-            case AUT_LOWT_3017_Site: //1R
-                SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+            case AUT_COPD_5042_Site: //1R
                 siteSelectionPageOLS
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new QualifiedClose2PageOLS())
@@ -562,7 +347,7 @@ public class COPD_5042_OLS extends BaseTest {
                         .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case AUT_LOWT_3017S_Site: //41C
+            case AUT_COPD_5042S_Site: //41C
                 SiteSelectionPageOLS siteSelectionPageOLS1 = new SiteSelectionPageOLS();
                 siteSelectionPageOLS1
                         .clickOnFacilityName(site.name)

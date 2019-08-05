@@ -12,7 +12,7 @@ public class WhenDidYouHaveYourMostRecentLungSurgeryOLS extends MainPageOLS {
 
     public final String titleExpected = "When did you have your most recent lung surgery?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/ancestor::label")
