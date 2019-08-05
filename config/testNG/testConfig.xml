@@ -4,7 +4,7 @@
 
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.CC.DIA_4241_СС_ver3"></class>
+
             <class name="com.acurian.selenium.tests.OLS.DERM_4631_OLS"></class>
         </classes>
 

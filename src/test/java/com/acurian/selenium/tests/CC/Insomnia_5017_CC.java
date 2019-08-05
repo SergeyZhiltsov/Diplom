@@ -607,7 +607,7 @@ public class Insomnia_5017_CC extends BaseTest{
                 .setAll("5", "3", "100")
                 .clickNextButton(new IdentificationPageCC());
         identificationPageCC
-                .waitForPageLoad()
+                .waitForPageLoadNotQ()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageCC); //Disqualify ("Low BMI") if < 18
@@ -615,7 +615,7 @@ public class Insomnia_5017_CC extends BaseTest{
                 .waitForPageLoad()
                 .setAll("3", "5", "100")
                 .clickNextButton(identificationPageCC)
-                .waitForPageLoad()
+                .waitForPageLoadNotQ()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageCC); //Disqualify ("High BMI") if > 40

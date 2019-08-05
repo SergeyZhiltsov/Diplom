@@ -391,12 +391,13 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
                 .clickNextButton(new WhenDidYouHaveAppendixRemoved_CC());
         whenDidYouHaveAppendixRemoved_CC
-                .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_CC.titleExpected4)
+                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_CC.titleExpected4)
+                .getPage(debugPageCC).checkProtocolsContainsForQNumber("QS6310", site.activeProtocols)
                 .back();
         whatTypeOfSurgeryDidYouHave_CC
                 .waitForPageLoad();
         whatTypeOfSurgeryDidYouHave_CC
-                .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Appendix removed - Appendectomy (Agent Note: app-en-DECK-toe-mee)",
                         "Gallbladder removed - Cholecystectomy (Agent Note: cole-leh-sis-TECK-toe-mee)",
                         "Biopsy (Agent Note: BY-op-see) – removal of a small piece of tissue for analysis",
@@ -408,12 +409,14 @@ public class GERD_4301_CC extends BaseTest {
         //---------------Q15 WhenDidYouHaveAppendixRemoved_CC-------------------
         whenDidYouHaveAppendixRemoved_CC
                 .waitForPageLoad(1,whenDidYouHaveAppendixRemoved_CC.titleExpected1)
-                .waitForPageLoad(2,whenDidYouHaveAppendixRemoved_CC.titleExpected2);
+                .waitForPageLoad(2,whenDidYouHaveAppendixRemoved_CC.titleExpected2)
+                .waitForPageLoad(3,whenDidYouHaveAppendixRemoved_CC.titleExpected3);;
         Assert.assertEquals(whenDidYouHaveAppendixRemoved_CC
                 .getTitleText(1),whenDidYouHaveAppendixRemoved_CC.titleExpected1, "Title is diff");
         AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = whenDidYouHaveAppendixRemoved_CC
                 .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
                 .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017976-QS6311-STUDYQUES", site.activeProtocols);
@@ -422,6 +425,7 @@ public class GERD_4301_CC extends BaseTest {
                 .waitForPageLoad(1,whenDidYouHaveAppendixRemoved_CC.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(areYouCurrentlyAbleToSwallowTablets_CC);
 
 
