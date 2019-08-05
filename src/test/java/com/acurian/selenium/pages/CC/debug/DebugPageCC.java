@@ -9,6 +9,7 @@ import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -162,6 +163,13 @@ public class DebugPageCC extends MainPageCC{
         Object[] actualProtocols = getProtocolsForQuestion(previousPageTitle);
         Object[] expected = {"false"};
         Assert.assertEqualsNoOrder(actualProtocols, expected, "Protocols are present ");
+        return this;
+    }
+
+    @Step
+    public DebugPageCC checkIsNoSelectedProtocolsForQuestion(String questionNumber, String... expectedNotToSeeProtocols) {
+        List<String> actualProtocols =  Arrays.asList(getProtocolsForQuestionNumber(questionNumber));
+        Assert.assertTrue(Collections.disjoint(actualProtocols, Arrays.asList(expectedNotToSeeProtocols)));
         return this;
     }
 
