@@ -232,6 +232,13 @@ public class IBD_4818_CC_UC extends BaseTest {
                         "Unsure")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BiologicMedicationsPageCC());
+
+        //Q13	"Biologics" are medications that affect the body's immune system. They are usually given as an infusion (into a vein) or a shot (injection).
+        biologicMedicationsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)")
+                .clickNextButton(biologicMedicationsPageCC);
+
 //Q14	Are you currently receiving regular doses of any of the following "biologic" medications?
         List<String> disqualifyQ14 = Arrays.asList("Actemra (Agent Note: ac-TEM-ruh)",
                 "Benlysta (Agent Note: ben-LIST-uh)",
@@ -253,108 +260,113 @@ public class IBD_4818_CC_UC extends BaseTest {
         for (String answer: disqualifyQ14) {
             System.out.println("Select answer for Q14: " + answer);
             biologicMedicationsPageCC
-                    .waitForPageLoad()
+                    .waitForPageLoadNew()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
                     .back();
         }
         biologicMedicationsPageCC
-                .waitForPageLoad()
+                .waitForPageLoadNew()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)//Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic
                 .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0])
                 .back(biologicMedicationsPageCC)
+                .waitForPageLoadNew()
+                .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
-                .back(everTreatedCrohnOrColitisCC);
+                .back(everTreatedCrohnOrColitisCC)
+                .waitForPageLoad()
+                .back(followingMedicationsCrohnsPageCC);
 
-        everTreatedCrohnOrColitisCC
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
-                .clickNextButton(biologicMedicationsPageCC)
+    //    Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic check //TODO Ghost
+        followingMedicationsCrohnsPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0])
-                .back();
-        everTreatedCrohnOrColitisCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(biologicMedicationsPageCC);
-        //Q13
-        biologicMedicationsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)")
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
-                .back(biologicMedicationsPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Tysabri")
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
-                        site.activeProtocols[1])
-                .back(biologicMedicationsPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .back(everTreatedCrohnOrColitisCC)
-                .clickOnAnswers("Astagraf, Envarsus, or Prograf, also known as tacrolimus (Agent Note: tah-CRO-li-mus)")
-                .clickNextButton(biologicMedicationsPageCC)
-                .clickOnAnswers("None of the above")
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
-                        site.activeProtocols[2], site.activeProtocols[3])
-                .back(biologicMedicationsPageCC)
-                .waitForPageLoad()
-                .back(everTreatedCrohnOrColitisCC)
-                .waitForPageLoad()
-                .back(followingMedicationsCrohnsPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Mesalamine (Agent Note: MEZ-uh-luh-meen) medications, which include Apriso, Asacol, Canasa, Delzicol, Lialda, Pentasa, and Rowasa")
+                .clickOnAnswers("Mesalamine (Agent Note: MEZ-uh-luh-meen) medications, which include Apriso, Asacol, " +
+                        "Canasa, Delzicol, Lialda, Pentasa, and Rowasa")
                 .clickNextButton(everTreatedCrohnOrColitisCC)
                 .waitForPageLoad()
                 .clickNextButton(biologicMedicationsPageCC)
                 .waitForPageLoad()
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
-                        site.activeProtocols[2])
-                .back(biologicMedicationsPageCC)
-                .waitForPageLoad()
-                .back(everTreatedCrohnOrColitisCC)
-                .waitForPageLoad()
-                .back(followingMedicationsCrohnsPageCC)
-                .waitForPageLoad()
-                .back(steroidMedicationsForCrohnsCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(followingMedicationsCrohnsPageCC)
-                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(everTreatedCrohnOrColitisCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(biologicMedicationsPageCC)
-                .waitForPageLoad()
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
-                        site.activeProtocols[2])
-                .back(biologicMedicationsPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Cimzia (Agent Note: SIM-zee-uh)")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC);
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkIsNoSelectedProtocolsForQuestion("QS5711", site.activeProtocols)
+//                .back(biologicMedicationsPageCC)
+//                .waitForPageLoadNew()
+//                .back(everTreatedCrohnOrColitisCC)
+//                .waitForPageLoad()
+//                .back(followingMedicationsCrohnsPageCC);
+
+
+
+//                .back(biologicMedicationsPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Tysabri")
+//                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
+//                        site.activeProtocols[1])
+//                .back(biologicMedicationsPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .back(everTreatedCrohnOrColitisCC)
+//                .clickOnAnswers("Astagraf, Envarsus, or Prograf, also known as tacrolimus (Agent Note: tah-CRO-li-mus)")
+//                .clickNextButton(biologicMedicationsPageCC)
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
+//                        site.activeProtocols[2], site.activeProtocols[3])
+//                .back(biologicMedicationsPageCC)
+//                .waitForPageLoad()
+//                .back(everTreatedCrohnOrColitisCC)
+//                .waitForPageLoad()
+//                .back(followingMedicationsCrohnsPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Mesalamine (Agent Note: MEZ-uh-luh-meen) medications, which include Apriso, Asacol, Canasa, Delzicol, Lialda, Pentasa, and Rowasa")
+//                .clickNextButton(everTreatedCrohnOrColitisCC)
+//                .waitForPageLoad()
+//                .clickNextButton(biologicMedicationsPageCC)
+//                .waitForPageLoad()
+//                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
+//                        site.activeProtocols[2])
+//                .back(biologicMedicationsPageCC)
+//                .waitForPageLoad()
+//                .back(everTreatedCrohnOrColitisCC)
+//                .waitForPageLoad()
+//                .back(followingMedicationsCrohnsPageCC)
+//                .waitForPageLoad()
+//                .back(steroidMedicationsForCrohnsCC)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(followingMedicationsCrohnsPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(everTreatedCrohnOrColitisCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(biologicMedicationsPageCC)
+//                .waitForPageLoad()
+//                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
+//                        site.activeProtocols[2])
+//                .back(biologicMedicationsPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Cimzia (Agent Note: SIM-zee-uh)")
+//                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC);
 
         //Q17
         SubquestionsIBDShireCrohnsPageCC subquestionsIBDShireCrohnsPageCC = crohnsDiseaseOrUlcerativeColitisFlarePageCC
@@ -364,28 +376,25 @@ public class IBD_4818_CC_UC extends BaseTest {
 
         //Q18
         HowWouldYouRateCC howWouldYouRateCC = new HowWouldYouRateCC();
-//        switch (flareStatus) {
-//            case "Not in Flare":
-//                subquestionsIBDShireCrohnsPageCC
-//                        .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-//                        .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-//                        .overPastWeekAvgDayBowel("1")
-//                        .clickOnAnswerForSubQuestion(2, "No pain or cramping")
-//                        .clickNextButton(howWouldYouRateCC)
-//                        .getPage(debugPageCC)
-//                        .checkStudyStatusContainsForQNumber("QS5732", "2-4");
-//                break;
-//            case "In Flare":
-//                subquestionsIBDShireCrohnsPageCC
-//                        .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-//                        .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-//                        .overPastWeekAvgDayBowel("3")
-//                        .clickOnAnswerForSubQuestion(2, "Moderate (interferes with my usual activity)")
-//                        .clickNextButton(howWouldYouRateCC)
-//                        .getPage(debugPageCC)
-//                        .checkStudyStatusContainsForQNumber("QS5732", "2-3");
-//                break;
-//        }
+        if (flare) {
+            subquestionsIBDShireCrohnsPageCC
+                    .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
+                    .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
+                    .overPastWeekAvgDayBowel("1")
+                    .clickOnAnswerForSubQuestion(2, "No pain or cramping")
+                    .clickNextButton(howWouldYouRateCC)
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("QS5732", "2-4");
+        } else {
+            subquestionsIBDShireCrohnsPageCC
+                    .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
+                    .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
+                    .overPastWeekAvgDayBowel("3")
+                    .clickOnAnswerForSubQuestion(2, "Moderate (interferes with my usual activity)")
+                    .clickNextButton(howWouldYouRateCC)
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("QS5732", "2-3");
+        }
         //Q21.3
         HaveAnyOfTheFollowingPageCC haveAnyOfTheFollowingPageCC = howWouldYouRateCC
                 .clickOnAnswers("Abdominal pain or cramps",
