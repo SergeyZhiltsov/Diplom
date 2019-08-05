@@ -351,6 +351,9 @@ public class COPD_5042_OLS extends BaseTest {
                 SiteSelectionPageOLS siteSelectionPageOLS1 = new SiteSelectionPageOLS();
                 siteSelectionPageOLS1
                         .clickOnFacilityName(site.name)
+                        .clickNextButton(new MedicalRecordsOptionPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageOLS())
                         .waitForPageLoad()
                         .clickNextButton(new HS1PageOLS())
