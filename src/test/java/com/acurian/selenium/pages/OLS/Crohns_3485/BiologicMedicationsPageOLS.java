@@ -15,6 +15,10 @@ public class BiologicMedicationsPageOLS extends MainPageOLS{
             "Have you ever received any of the following \"biologic\" medications?\n" +
             "Please select all that apply.";
 
+    public final String titleExpectedNew = "Are you currently receiving regular doses of any of the following \"biologic\" medications?\n" +
+            "\"Biologics\" are medications that affect the body's immune system. They are given as an infusion (into a vein) or an injection (a shot under the skin).\n" +
+            "Please select all that apply.";
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
 
@@ -28,6 +32,12 @@ public class BiologicMedicationsPageOLS extends MainPageOLS{
     @Step
     public BiologicMedicationsPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public BiologicMedicationsPageOLS waitForPageLoadNew() {
+        waitForPageLoadMain(titleText, titleExpectedNew);
         return this;
     }
 
