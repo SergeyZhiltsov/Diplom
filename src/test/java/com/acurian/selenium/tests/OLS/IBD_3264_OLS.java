@@ -169,7 +169,7 @@ public class IBD_3264_OLS extends BaseTest {
                 .back();
         partOfDiagnosisFollowingProceduresDonePageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Endoscopy - a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
+                .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
                 .clickNextButton(manageYourCrohnsPageOLS);
 
         CrohnsDiseaseOrUlcerativeColitisFlarePageOLS crohnsDiseaseOrUlcerativeColitisFlarePageOLS = manageYourCrohnsPageOLS
@@ -213,59 +213,59 @@ public class IBD_3264_OLS extends BaseTest {
         biologicMedicationsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Stelara")
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS)
-                .waitForPageLoad()
+                .clickNextButton(biologicMedicationsPageOLS)
+                .waitForPageLoadNew()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5710", site.activeProtocols)
-                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
                 .back();
         biologicMedicationsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Actemra",
-                        "Benlysta",
-                        "Kineret")
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
-                .back();
-        biologicMedicationsPageOLS
-                .waitForPageLoad()
                 .clickOnAnswers("Remicade")
+                .clickNextButton(biologicMedicationsPageOLS)
+                .waitForPageLoadNew()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS);
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
+//                .back();
+//        biologicMedicationsPageOLS
+//                .waitForPageLoadNew()
+//                .clickOnAnswers("Remicade")
+//                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS);
 
         SubquestionsIbdPleaseThinkUlcerativeColitisPageOLS subquestionsIbdPleaseThinkUlcerativeColitisPageOLS = crohnsDiseaseOrUlcerativeColitisFlarePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")// not in flare
                 .clickNextButton(new SubquestionsIbdPleaseThinkUlcerativeColitisPageOLS());
-        if(inFlare) {
-            subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
-                    .waitForPageLoad()
-                    .back();
-            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("Mild symptoms, but tolerable")// in flare
-                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
-                    .waitForPageLoad()
-                    .back();
-            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("Moderate symptoms, but managing")// in flare
-                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
-                    .waitForPageLoad()
-                    .back();
-            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("Severe symptoms that make life difficult")// in flare
-                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
-                    .waitForPageLoad()
-                    .back();
-            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("Unsure")// in flare
-                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS);
-        }
+//        if(inFlare) {
+//            subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
+//                    .waitForPageLoad()
+//                    .back();
+//            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("Mild symptoms, but tolerable")// in flare
+//                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
+//                    .waitForPageLoad()
+//                    .back();
+//            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("Moderate symptoms, but managing")// in flare
+//                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
+//                    .waitForPageLoad()
+//                    .back();
+//            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("Severe symptoms that make life difficult")// in flare
+//                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS)
+//                    .waitForPageLoad()
+//                    .back();
+//            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("Unsure")// in flare
+//                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS);
+//        }
 
         SubquestionsIBD_OLS subquestionsIBD_ols = subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
                 .waitForPageLoad()

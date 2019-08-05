@@ -540,7 +540,7 @@ public class DERM_4631_OLS extends BaseTest {
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188")
-                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS())
+                .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -556,8 +556,9 @@ public class DERM_4631_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad();
         AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();

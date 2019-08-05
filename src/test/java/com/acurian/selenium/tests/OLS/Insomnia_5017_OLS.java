@@ -574,7 +574,7 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .setAll("5", "3", "100")
                 .clickNextButton(new IdentificationPageOLS());
         identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadNotQ()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS); //Disqualify ("Low BMI") if < 18
