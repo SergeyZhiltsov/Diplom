@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class IBD_3889_CC extends BaseTest {
+public class IBD_4818_CC_UC extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -34,18 +34,18 @@ public class IBD_3889_CC extends BaseTest {
         super.tearDown();
     }
 
-    @DataProvider(name = "Flare status")
-    public Object[][] flareStatus() {
+    @DataProvider
+    public Object[][] flare() {
         return new Object[][]{
-                {"Not in Flare"},
-                {"In Flare"}
+                {true},
+                {false}
         };
     }
 
-    @Test(dataProvider = "Flare status")
-    @Description("IBD 3485 for CC")
-    public void IBD_3889_CCTest(String flareStatus) {
-        Site site = Site.AUT_CRN_3889_HS;
+    @Test(dataProvider = "flare")
+    @Description("IBD 4818 for CC Allergan UC")
+    public void IBD_4818_CCTest(boolean flare) {
+        Site site = Site.AUT_IBD_4818_Site;
         String phoneNumber = "AUTAMS1IBD";
 
         String studyName = "Crohn's or colitis";
@@ -82,10 +82,19 @@ public class IBD_3889_CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff");
 
-        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
+        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
+                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
+        doesNotGivePermissionToProceedClosePageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
+                .back();
+        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
+                .waitForPageLoad2Ver()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
@@ -98,135 +107,90 @@ public class IBD_3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 
-//        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-//                .setYear("1942")
-//                .clickNextButton(new IdentificationPageCC());
-//        identificationPageCC
-//                .waitForPageLoadNotQ()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols[0], site.activeProtocols[1])
-//                .back();
-//        dateOfBirthPageCC
-//                .setYear("1937")
-//                .clickNextButton(identificationPageCC)
-//                .waitForPageLoadNotQ()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
-//                .back();
-//        dateOfBirthPageCC
-//                .setYear("1980")
-//                .clickNextButton(identificationPageCC);
-
-
         GenderPageCC genderPageCC = identificationPageCC
                 .waitForPageLoad1()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
+        genderPageCC
+                .waitForPageLoad()
+                .setMonth("Jul")
+                .setDay("1")
+                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
+                .clickOnAnswer("Female")
+                .clickNextButton(lessThan18YearsOldPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                genderPageCC
+                .waitForPageLoad()
+                .setYear("1937") //Disqualify ("Age") if >= 81
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageCC);
         DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
                 .waitForPageLoad()
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("1980")
-                .clickOnAnswer("Female")
+                .setYear("1990")
                 .clickNextButton(new DiagnosedWithCrohnsPageCC());
-        //Q2
+//Q2	Have you ever been officially diagnosed by a doctor with any of the following digestive conditions?
+        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedWithCrohnsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NonQRtransitionPageCC());
+        nonQRtransitionPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols)
+                .back();
         UlcerativeColitisDoctorOrNursePageСС ulcerativeColitisDoctorOrNursePageСС = diagnosedWithCrohnsPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Ulcerative colitis") //Skip to Q4
+                .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new UlcerativeColitisDoctorOrNursePageСС());
-        //Q4
+//Q4	Was your diagnosis of ulcerative colitis made by a doctor or nurse?
+        List<String> disqualifyQ4 = Arrays.asList("No", "I am unsure");
+        for (String answer: disqualifyQ4) {
+            System.out.println("Select answer for Q4: " + answer);
+            ulcerativeColitisDoctorOrNursePageСС
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(nonQRtransitionPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols[0])
+                    .back();
+        }
         WhenDiagnosedCrohnsPageCC whenDiagnosedCrohnsPageCC = ulcerativeColitisDoctorOrNursePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols)
-                .clickNextButton(new WhenDiagnosedCrohnsPageCC());//Check flow to Q7 and back
-        //Q6
+                .clickNextButton(new WhenDiagnosedCrohnsPageCC());
+//Q6	When were you diagnosed with ulcerative colitis?
         PartOfDiagnosisFollowingProceduresDonePageCC partOfDiagnosisFollowingProceduresDonePageCC =
                 whenDiagnosedCrohnsPageCC
                 .waitForPageLoadULC()
-                .clickOnAnswer("Less than 3 months ago") //Otherwise, Skip to Q8
+                .clickOnAnswer("Less than 3 months ago")
                 .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageCC());
         partOfDiagnosisFollowingProceduresDonePageCC
                 .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5704", site.activeProtocols[0])
                 .back(whenDiagnosedCrohnsPageCC)
                 .waitForPageLoadULC()
-                .back(ulcerativeColitisDoctorOrNursePageСС)
-                .waitForPageLoad()
-                .back();
-        //Q2
-        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedWithCrohnsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above") //CC: go to Non-QR Transition Statement
-                .clickNextButton(new NonQRtransitionPageCC());
-        //Q29
-        nonQRtransitionPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols)
-                .back();
-        //Q2
-        CrohnsDiseaseDoctorOrNursePageСС crohnsDiseaseDoctorOrNursePageСС = diagnosedWithCrohnsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Crohn's disease")
-                .clickNextButton(new CrohnsDiseaseDoctorOrNursePageСС());
-        //Q3
-        crohnsDiseaseDoctorOrNursePageСС
-                .waitForPageLoad()
-                .clickOnAnswer("I am unsure") // Disqualify ("No official Crohn's diagnosis") Otherwise (No UC & still eligible for Crohn's), go to Q5 (duration of crohn's)
-                .clickNextButton(nonQRtransitionPageCC); //Q4
-        nonQRtransitionPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
-                .back(crohnsDiseaseDoctorOrNursePageСС)
-                .waitForPageLoad()
-                .clickOnAnswer("No") //Disqualify ("No official Crohn's diagnosis")
-                .clickNextButton(nonQRtransitionPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
-                .back(crohnsDiseaseDoctorOrNursePageСС)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(whenDiagnosedCrohnsPageCC);
-        //Q5
-        ReviewMedicalRecordsCrohnsDiagnosisPageCC reviewMedicalRecordsCrohnsDiagnosisPageCC = whenDiagnosedCrohnsPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months ago") //Disqualify ("Crohn's < 3 months - Temp 3") If selected "Crohns disease" in Q2 OR if selected "Crohns disease" in GHM Q8, Skip to Q5 Q7
-                .clickNextButton(new ReviewMedicalRecordsCrohnsDiagnosisPageCC());
-        reviewMedicalRecordsCrohnsDiagnosisPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5703", site.activeProtocols)
-                .back(whenDiagnosedCrohnsPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("More than 6 months ago")
-                .clickNextButton(reviewMedicalRecordsCrohnsDiagnosisPageCC);
-        //Q7
-        reviewMedicalRecordsCrohnsDiagnosisPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(partOfDiagnosisFollowingProceduresDonePageCC);
-        //Q8
+
         ManageYourCrohnsPageCC manageYourCrohnsPageCC = partOfDiagnosisFollowingProceduresDonePageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above") //Disqualify ("No history of biopsy")
-                .clickNextButton(new ManageYourCrohnsPageCC());
-        manageYourCrohnsPageCC //Q9
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5729", site.activeProtocols)
-                .back(partOfDiagnosisFollowingProceduresDonePageCC);
-        partOfDiagnosisFollowingProceduresDonePageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
                         "Colonoscopy – a thin, flexible, lighted tube is inserted through the rectum and into the entire colon (large intestine). This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
                         "Sigmoidoscopy – a thin, flexible, lighted tube is inserted through the rectum and into the section of the colon (large intestine) closest to the rectum. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
-                .clickNextButton(manageYourCrohnsPageCC);
-        //Q9
+                .clickNextButton(new ManageYourCrohnsPageCC());
+//Q9	Have you ever taken any medications to treat or manage your Crohn's or colitis?
         CrohnsDiseaseOrUlcerativeColitisFlarePageCC crohnsDiseaseOrUlcerativeColitisFlarePageCC = manageYourCrohnsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -237,20 +201,19 @@ public class IBD_3889_CC extends BaseTest {
                 .back(manageYourCrohnsPageCC)
                 .clickOnAnswer("Yes") //Q10
                 .clickNextButton(new SteroidMedicationsForCrohnsCC());
-        //Q10
+//Q10	Have you ever taken steroid medications for your Crohn's or colitis?
         FollowingMedicationsCrohnsPageCC followingMedicationsCrohnsPageCC = steroidMedicationsForCrohnsCC
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Choice connected with Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic
-
                 .clickNextButton(new FollowingMedicationsCrohnsPageCC());
         //Q11
         EverTreatedCrohnOrColitisCC everTreatedCrohnOrColitisCC = followingMedicationsCrohnsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Mesalamine (Agent Note: MEZ-uh-luh-meen) medications, which include Apriso, Asacol, Canasa, Delzicol, Lialda, Pentasa, and Rowasa",
-                                "Azulfidine, also known as sulfasalazine (Agent Note: ay-ZULF-i-deen, sulf-uh-SAL-uh-zeen)",
-                                "Colazal or Giazo, also known as balsalazide (Agent Note: COLE-uh-zal, gee-AH-zo, bal-SAL-uh-zide)",
-                                "Dipentum, also known as olsalazine (Agent Note: di-PENT-um, ol-SAL-uh-zeen)",
-                                "Unsure")
+                        "Azulfidine, also known as sulfasalazine (Agent Note: ay-ZULF-i-deen, sulf-uh-SAL-uh-zeen)",
+                        "Colazal or Giazo, also known as balsalazide (Agent Note: COLE-uh-zal, gee-AH-zo, bal-SAL-uh-zide)",
+                        "Dipentum, also known as olsalazine (Agent Note: di-PENT-um, ol-SAL-uh-zeen)",
+                        "Unsure")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTreatedCrohnOrColitisCC());
         //Q12
@@ -268,20 +231,55 @@ public class IBD_3889_CC extends BaseTest {
                         "Xeljanz (Agent Note: ZEL-jans)",
                         "Unsure")
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)") //Disqualify ("Prohibited JAK inhibitor")
                 .clickNextButton(new BiologicMedicationsPageCC());
+//Q14	Are you currently receiving regular doses of any of the following "biologic" medications?
+        List<String> disqualifyQ14 = Arrays.asList("Actemra (Agent Note: ac-TEM-ruh)",
+                "Benlysta (Agent Note: ben-LIST-uh)",
+                "Cimzia (Agent Note: SIM-zee-uh)",
+                "Cosentyx (Agent Note: co-SEN-tix)",
+                "Enbrel (Agent Note: EN-brel)",
+                "Entyvio (Agent Note: en-TIV-ee-oh)",
+                "Humira (Agent Note: hue-MAIR-uh)",
+                "Kineret (Agent Note: KIN-er-et)",
+                "Orencia (Agent Note: oh-REN-see-uh)",
+                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
+                "Raptiva (Agent Note: rap-TEE-vuh)",
+                "Remicade (Agent Note: REM-ih-cade)",
+                "Rituxan (Agent Note: rih-TUX-an)",
+                "Simponi (Agent Note: SIM-po-nee)",
+                "Stelara (Agent Note: ste-LAHR-uh)",
+                "Taltz (Agent Note: TALTS)",
+                "Tysabri (Agent Note: tie-SAB-ree)");
+        for (String answer: disqualifyQ14) {
+            System.out.println("Select answer for Q14: " + answer);
+            biologicMedicationsPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
+                    .back();
+        }
         biologicMedicationsPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0], site.activeProtocols[1])
-                .back();
+                .clickOnAnswers("None of the above")
+                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)//Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic
+                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0])
+                .back(biologicMedicationsPageCC)
+                .waitForPageLoad()
+                .back(everTreatedCrohnOrColitisCC);
+
         everTreatedCrohnOrColitisCC
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
                 .clickNextButton(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0], site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0])
                 .back();
         everTreatedCrohnOrColitisCC
                 .waitForPageLoad()
@@ -291,28 +289,19 @@ public class IBD_3889_CC extends BaseTest {
         biologicMedicationsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)")
-                .clickNextButton(biologicMedicationsPageCC)
-                .waitForPageLoadNew()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
                 .back(biologicMedicationsPageCC)
-                .waitForPageLoadNew()
-                .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tysabri")
-                .clickNextButton(biologicMedicationsPageCC)
-                .waitForPageLoadNew()
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
                         site.activeProtocols[1])
-                .back(biologicMedicationsPageCC)
-                .waitForPageLoadNew()
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -365,8 +354,6 @@ public class IBD_3889_CC extends BaseTest {
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Cimzia (Agent Note: SIM-zee-uh)")
-                .clickNextButton(biologicMedicationsPageCC)
-                .waitForPageLoadNew()
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC);
 
         //Q17
@@ -377,28 +364,28 @@ public class IBD_3889_CC extends BaseTest {
 
         //Q18
         HowWouldYouRateCC howWouldYouRateCC = new HowWouldYouRateCC();
-        switch (flareStatus) {
-            case "Not in Flare":
-                subquestionsIBDShireCrohnsPageCC
-                        .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-                        .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-                        .overPastWeekAvgDayBowel("1")
-                        .clickOnAnswerForSubQuestion(2, "No pain or cramping")
-                        .clickNextButton(howWouldYouRateCC)
-                        .getPage(debugPageCC)
-                        .checkStudyStatusContainsForQNumber("QS5732", "2-4");
-                break;
-            case "In Flare":
-                subquestionsIBDShireCrohnsPageCC
-                        .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-                        .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-                        .overPastWeekAvgDayBowel("3")
-                        .clickOnAnswerForSubQuestion(2, "Moderate (interferes with my usual activity)")
-                        .clickNextButton(howWouldYouRateCC)
-                        .getPage(debugPageCC)
-                        .checkStudyStatusContainsForQNumber("QS5732", "2-3");
-                break;
-        }
+//        switch (flareStatus) {
+//            case "Not in Flare":
+//                subquestionsIBDShireCrohnsPageCC
+//                        .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
+//                        .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
+//                        .overPastWeekAvgDayBowel("1")
+//                        .clickOnAnswerForSubQuestion(2, "No pain or cramping")
+//                        .clickNextButton(howWouldYouRateCC)
+//                        .getPage(debugPageCC)
+//                        .checkStudyStatusContainsForQNumber("QS5732", "2-4");
+//                break;
+//            case "In Flare":
+//                subquestionsIBDShireCrohnsPageCC
+//                        .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
+//                        .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
+//                        .overPastWeekAvgDayBowel("3")
+//                        .clickOnAnswerForSubQuestion(2, "Moderate (interferes with my usual activity)")
+//                        .clickNextButton(howWouldYouRateCC)
+//                        .getPage(debugPageCC)
+//                        .checkStudyStatusContainsForQNumber("QS5732", "2-3");
+//                break;
+//        }
         //Q21.3
         HaveAnyOfTheFollowingPageCC haveAnyOfTheFollowingPageCC = howWouldYouRateCC
                 .clickOnAnswers("Abdominal pain or cramps",
@@ -434,7 +421,7 @@ public class IBD_3889_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(transitionStatementCC);
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        transitionStatementCC
                 .waitForPageLoadWithCurves(studyName)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
@@ -632,7 +619,7 @@ public class IBD_3889_CC extends BaseTest {
         subquestionExperiencedHeartPageCC.back();
         haveYouEverExperiencedHeartRelatedMedicalCondCC.back();
 
-    KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
@@ -737,12 +724,12 @@ public class IBD_3889_CC extends BaseTest {
                 .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad();
-        if(flareStatus.equals("Not in Flare")) {
-            hsMedicalRecordsPageCC
-                    .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
-                    .waitForPageLoad()
-                    .getActivationCode();
-        }
+//        if(flareStatus.equals("Not in Flare")) {
+//            hsMedicalRecordsPageCC
+//                    .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
+//                    .waitForPageLoad()
+//                    .getActivationCode();
+//        }
         hsMedicalRecordsPageCC
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
@@ -753,4 +740,5 @@ public class IBD_3889_CC extends BaseTest {
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
+
 }
