@@ -525,15 +525,15 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack")
                 .clickOnAnswers("Stroke")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC()); //Display Q12.1: QS47A
         //Q12.1 - 12.4:
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForAllSubQuestion("More than 1 year ago");
         //Q12.1
         HashMap<String, List<String>> dqQ121 = new HashMap<>();
@@ -599,7 +599,7 @@ public class GAST_4357_CC extends BaseTest {
                 .back(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .back(subquestionExperiencedHeartPageCC)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);

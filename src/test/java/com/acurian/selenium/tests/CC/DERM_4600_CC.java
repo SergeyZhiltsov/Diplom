@@ -472,13 +472,38 @@ public class DERM_4600_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(subquestionExperiencedHeartPageCC); //Display Q12.3: QS47C
         //Q12.3: QS47C
         HashMap<String, List<String>> disqualifyQ123 = new HashMap<>();
         disqualifyQ123.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent TIA - Temp 3")
         disqualifyQ123.put("1 - 3 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent TIA - Temp 3")
         for (Map.Entry<String, List<String>> entry : disqualifyQ123.entrySet()) {
+            System.out.println(entry.getKey());
+            subquestionExperiencedHeartPageCC
+                    .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
+                    .clickOnAnswer(entry.getKey())
+                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                    .back(subquestionExperiencedHeartPageCC);
+        }
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
+
+        //Q11: QS46
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickNextButton(subquestionExperiencedHeartPageCC); //Display Q12.4: QS47D
+        //Q12.4: QS47D
+        HashMap<String, List<String>> disqualifyQ124 = new HashMap<>();
+        disqualifyQ124.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent angina - Temp 3")
+        disqualifyQ124.put("1 - 3 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent angina - Temp 3")
+        for (Map.Entry<String, List<String>> entry : disqualifyQ124.entrySet()) {
             System.out.println(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
@@ -491,31 +516,6 @@ public class DERM_4600_CC extends BaseTest {
         }
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
-                .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
-
-        //Q11: QS46
-        haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
-                .clickNextButton(subquestionExperiencedHeartPageCC); //Display Q12.4: QS47D
-        //Q12.4: QS47D
-        HashMap<String, List<String>> disqualifyQ124 = new HashMap<>();
-        disqualifyQ124.put("Less than 30 days ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent angina - Temp 3")
-        disqualifyQ124.put("1 - 3 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent angina - Temp 3")
-        for (Map.Entry<String, List<String>> entry : disqualifyQ124.entrySet()) {
-            System.out.println(entry.getKey());
-            subquestionExperiencedHeartPageCC
-                    .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
-                    .clickOnAnswer(entry.getKey())
-                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
-                    .back(subquestionExperiencedHeartPageCC);
-        }
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
         //Q11: QS46
         haveYouEverExperiencedHeartRelatedMedicalCondCC

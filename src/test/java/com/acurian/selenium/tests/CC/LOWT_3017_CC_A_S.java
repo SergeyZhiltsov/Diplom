@@ -10,7 +10,6 @@ import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -376,7 +375,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickOnAnswers("TIA or \"Mini-Stroke\"")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
@@ -384,7 +383,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
                 .back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(subquestionExperiencedHeartPageCC)
                 .getPage(debugPageCC)

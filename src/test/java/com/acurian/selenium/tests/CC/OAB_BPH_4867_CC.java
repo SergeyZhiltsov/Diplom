@@ -2,7 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouSufferFromOAB_CC;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
@@ -220,36 +220,37 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(heartrelatedMedicalConditionsProceduresPageCC);
 
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartrelatedMedicalConditionsProceduresPageCC
+        SubquestionHeartPageCC subquestionHeartPageCC = heartrelatedMedicalConditionsProceduresPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "TIA or \"mini-stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight hospital stay",
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
                         "Heart failure or congestive heart failure (CHF)")
-                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+                .clickNextButton(new SubquestionHeartPageCC());
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(1),subquestionExperiencedHeartPageCC.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(2),subquestionExperiencedHeartPageCC.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(3),subquestionExperiencedHeartPageCC.titleExpected4, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(4),subquestionExperiencedHeartPageCC.titleExpected5, "Title is diff");
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -258,12 +259,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -272,12 +276,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -286,12 +293,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -300,12 +310,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -314,12 +327,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -328,12 +344,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -342,12 +361,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -356,12 +378,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"Less than 30 days ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -370,12 +395,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"1 - 3 months ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -384,12 +412,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"4 - 6 months ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         heartrelatedMedicalProceduresPageCC
@@ -398,12 +429,15 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back();
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"More than 1 year ago")
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected1,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected2,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected3,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionHeartPageCC.titleExpected4,"More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC

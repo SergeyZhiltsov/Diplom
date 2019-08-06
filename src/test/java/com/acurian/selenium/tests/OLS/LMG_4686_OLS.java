@@ -333,11 +333,11 @@ public class LMG_4686_OLS extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
                 .clickOnAnswers("More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 

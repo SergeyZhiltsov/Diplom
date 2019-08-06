@@ -10,7 +10,6 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.insomnia_5017.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.cv_study.TransitionStatementCVbeginPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
@@ -343,15 +342,15 @@ public class Insomnia_5017_CC extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack")
                 .clickOnAnswers("Stroke")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC()); //Display Q12.1: QS47A
         //Q12.1 - 12.4:
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
 
         //Q11: QS46

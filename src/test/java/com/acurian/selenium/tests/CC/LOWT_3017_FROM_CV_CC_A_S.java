@@ -10,11 +10,11 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.tests.OLS.LOWT_3017_FROM_CV_OLS_A_S;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -30,7 +30,15 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = LOWT_3017_FROM_CV_OLS_A_S.class, enabled = false)
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {Site.AUT_LOWT_3017S_Site},
+                {Site.AUT_LOWT_3017_Site}
+        };
+    }
+
+    @Test(dataProvider = "sites", enabled = false)
     @Description("LowT_3017_From_Cv_Cc")
     public void lowt3017FromCvCc(Site site) {
         final String phoneNumber = "AUTAMS1CV1";
@@ -205,14 +213,14 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .clickOnAnswers("TIA or \"Mini-Stroke\"")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new CardiovascularInterventionsOrSurgeriesPageCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017029-QS5622-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new CardiovascularInterventionsOrSurgeriesPageCC())
                 .waitForPageLoad();

@@ -567,11 +567,11 @@ public class IBD_4818_CC_UC extends BaseTest {
 
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickOnAnswers("Mini-Stroke or TIA")
                 .clickOnAnswers("Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
@@ -579,7 +579,7 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
@@ -587,7 +587,7 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
@@ -598,11 +598,11 @@ public class IBD_4818_CC_UC extends BaseTest {
 
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
@@ -610,7 +610,7 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
@@ -618,7 +618,7 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("4 - 6 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()

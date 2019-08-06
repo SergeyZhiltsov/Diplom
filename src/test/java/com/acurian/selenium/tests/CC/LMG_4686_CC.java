@@ -426,11 +426,11 @@ public class LMG_4686_CC extends BaseTest{
        haveYouEverExperiencedHeartRelatedMedicalCondCC
               .waitForPageLoad()
               .clickOnAnswers("None of the above")
-              .clickOnAnswers("TIA or \"mini-stroke\"")
+              .clickOnAnswers("Mini-Stroke or TIA")
               .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
        subquestionExperiencedHeartPageCC
-              .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+              .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
               .clickOnAnswer("More than 1 year ago")
               .clickNextButton(heartrelatedMedicalProceduresPageCC);
 

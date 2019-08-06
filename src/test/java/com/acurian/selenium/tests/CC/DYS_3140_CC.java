@@ -165,18 +165,16 @@ public class DYS_3140_CC extends BaseTest {
                 .back();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"mini-stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"4 - 6 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -194,6 +192,15 @@ public class DYS_3140_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"Less than 30 days ago")
+                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0015129-QS5218-STUDYQUES", protocol1)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"Less than 30 days ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
                 .waitForPageLoad()
@@ -202,26 +209,17 @@ public class DYS_3140_CC extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"Less than 30 days ago")
-                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0015129-QS5218-STUDYQUES", protocol1)
-                .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"1 - 3 months ago")
-                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsEqualsForQNumber("Q0015129-QS5218-STUDYQUES", protocol1)
-                .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"4 - 6 months ago")
+                .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsEqualsForQNumber("Q0015129-QS5218-STUDYQUES", protocol1)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad()
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"4 - 6 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -230,7 +228,7 @@ public class DYS_3140_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"4 - 6 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
