@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.CC.GERD.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
+import com.acurian.selenium.pages.CC.insomnia_5017.DoYouSufferFromInsomniaPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.utils.DataProviderPool;
@@ -26,12 +27,11 @@ public class GERD_4301_CC extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         DebugPageCC debugPageCC = new DebugPageCC();
-        LoginPageCC loginPageCC = new LoginPageCC();
 
+        LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-
         Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
@@ -47,57 +47,99 @@ public class GERD_4301_CC extends BaseTest {
                 .clickBeginButton();
 
         callCenterIntroductionPageCC
-                .waitForPageLoad();
+                .waitForPageLoad()
+                .activateDebugOnProd(env);
         Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-                .activateDebugOnProd(env)
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
-        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
-                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
-
-        doesNotGivePermissionToProceedClosePageCC
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
+        dateOfBirthPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
-        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")//If "No", go to Does Not Give Permission to Proceed Close
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
+                .waitForPageLoad()
+                .back(dateOfBirthPageCC);
+
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
-                .clickNextButton(new LessThan18YearsOldPageCC());
-        ZipCodePageCC zipCodePageCC = lessThan18YearsOldPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back(dateOfBirthPageCC)
-                .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
-
-        //-------------DOB Page----------------------------------
         GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-
-        //-------------GENDER Page--------------------------------
         DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC = genderPageCC
                 .waitForPageLoad()
-                .setMonth("Jan")
-                .setDay("1")
-                .setYear("1980")
+                .setMonth("Apr")
+                .setDay("5")
+                .setYear("1953")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC());
+
+//        loginPageCC
+//                .openPage(env)
+//                .waitForPageLoad();
+//
+//        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+//        SelectActionPageCC selectActionPageCC = loginPageCC
+//                .typeUsername(Properties.getUsername())
+//                .typePassword(Properties.getPassword())
+//                .clickLoginButton();
+//
+//        CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
+//                .waitForPageLoad()
+//                .typeStudyName("AMS1")
+//                .clickPopupStudy("AMS1")
+//                .typePhoneNumber(phoneNumber)
+//                .clickPopupPhoneNumber(phoneNumber)
+//                .clickBeginButton();
+//
+//        callCenterIntroductionPageCC
+//                .waitForPageLoad();
+//        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+//        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
+//                .activateDebugOnProd(env)
+//                .clickOnAnswer("Learn more about matching to clinical trials")
+//                .clickNextButton(new DateOfBirthPageCC());
+//
+//
+//        dateOfBirthPageCC
+//                .waitForPageLoad();
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle(site_Indication, "500"), "Title is diff");
+//        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
+//                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+//                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
+//                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
+//
+//        debugPageCC.checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols);
+//        debugPageCC.back();
+//        dateOfBirthPageCC
+//                .waitForPageLoad();
+//        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+//                .setYear("1960")
+//                .clickNextButton(new ZipCodePageCC());
+//
+//
+//        //-------------DOB Page----------------------------------
+//        GenderPageCC genderPageCC = zipCodePageCC
+//                .waitForPageLoad()
+//                .typeZipCode(site.zipCode)
+//                .clickNextButton(new GenderPageCC());
+//
+//
+//        //-------------GENDER Page--------------------------------
+//        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC = genderPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Female")
+//                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC());
 
 
         //-------------DoYouExperienceAnyOfFollowingSymptoms_CC----------------------------------
@@ -107,10 +149,9 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6302", site.activeProtocols)
-                .back();
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("QS6302", site.activeProtocols);
+        debugPageCC.back();
         doYouExperienceAnyOfFollowingSymptoms_CC
                 .waitForPageLoad();
         WhichoOfFollowingMedicationsCurrentlyGERD_CC whichoOfFollowingMedicationsCurrentlyGERD_CC = doYouExperienceAnyOfFollowingSymptoms_CC
@@ -130,19 +171,17 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_CC());
         hasYourDoctorToldYouThatYouHaveErosion_cc
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6303", site.activeProtocols)
-                .back();
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("QS6303", site.activeProtocols);
+        debugPageCC.back();
         whichoOfFollowingMedicationsCurrentlyGERD_CC
                 .waitForPageLoad()
                 .clickOnAnswers("Other")
                 .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_cc);
         hasYourDoctorToldYouThatYouHaveErosion_cc
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6303", site.activeProtocols)
-                .back();
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("QS6303", site.activeProtocols);
+        debugPageCC.back();
         whichoOfFollowingMedicationsCurrentlyGERD_CC
                 .waitForPageLoad();
         //----SKIP to Q5 if selected any of these options in Q3:  Aciphex (rabeprazole), Dexilant (dexlansoprazole), Protonix (pantoprazole), None of the above
@@ -196,10 +235,9 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(4, "1 month")
                 .clickNextButton(new HowOftenDoYouTake_CC());
         howOftenDoYouTake_CC
-                .waitForPageLoad(1,howOftenDoYouTake_CC.titleExpected1)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6306", site.activeProtocols)
-                .back();
+                .waitForPageLoad(1,howOftenDoYouTake_CC.titleExpected1);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols);
+        debugPageCC.back();
         howLongHaveYouBeenTaking_CC
                 .waitForPageLoad(1,howLongHaveYouBeenTaking_CC.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "2 months")
@@ -223,10 +261,9 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(4, "Other")
                 .clickNextButton(new OnaTypicalDayWhenDoYouUsually_CC());
         onaTypicalDayWhenDoYouUsually_CC
-                .waitForPageLoad(1,onaTypicalDayWhenDoYouUsually_CC.titleExpected1)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6316", site.activeProtocols)
-                .back();
+                .waitForPageLoad(1,onaTypicalDayWhenDoYouUsually_CC.titleExpected1);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6316", site.activeProtocols);
+        debugPageCC.back();
         howOftenDoYouTake_CC
                 .waitForPageLoad(1,howOftenDoYouTake_CC.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "Only as needed (not regularly)")
@@ -251,10 +288,9 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(4, "Night")
                 .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_CC());
         despiteTakingMedicationDoYouStillExperienceSymptoms_CC
-                .waitForPageLoad()
-        //        .getPage(debugPageCC)
-        //.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols)
-                .back();
+                .waitForPageLoad();
+        //debugPageCC.checkProtocolsContainsForQNumber("Q0018004-QS6306-STUDYQUES", site.activeProtocols);
+        debugPageCC.back();
         onaTypicalDayWhenDoYouUsually_CC
                 .waitForPageLoad(1,onaTypicalDayWhenDoYouUsually_CC.titleExpected1)
                 .clickOnAnswerForSubQuestion(4, "Morning")
@@ -269,10 +305,9 @@ public class GERD_4301_CC extends BaseTest {
         despiteTakingMedicationDoYouStillExperienceSymptoms_CC
                 .clickOnAnswer("No, my symptoms are well-controlled")
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_CC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6307", site.activeProtocols)
-                .back();
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("QS6307", site.activeProtocols);
+        debugPageCC.back();
         despiteTakingMedicationDoYouStillExperienceSymptoms_CC
                 .waitForPageLoad();
         ThinkingAboutThePast2Months_CC thinkingAboutThePast2Months_CC = despiteTakingMedicationDoYouStillExperienceSymptoms_CC
@@ -288,19 +323,17 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswer("1 day per week or less")
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_CC());
         hasYourDoctorToldYouThatYouHaveErosion_CC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
-                .back();
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
+        debugPageCC.back();
         thinkingAboutThePast2Months_CC
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 days per week")
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_CC());
         hasYourDoctorToldYouThatYouHaveErosion_CC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
-                .back();
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
+        debugPageCC.back();
         thinkingAboutThePast2Months_CC
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 5 days per week")
@@ -311,69 +344,89 @@ public class GERD_4301_CC extends BaseTest {
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad();
         Assert.assertEquals(hasYourDoctorToldYouThatYouHaveErosion_CC.getTitleText(),hasYourDoctorToldYouThatYouHaveErosion_CC.titleExpected, "Title is diff");
-        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = hasYourDoctorToldYouThatYouHaveErosion_CC
+        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC=hasYourDoctorToldYouThatYouHaveErosion_CC
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
-        whatTypeOfSurgeryDidYouHave_CC
-                .waitForPageLoad()
-         //       .getPage(debugPageCC)
-        //.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
-                .back();
+                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC())
+                .waitForPageLoad();
+        //debugPageCC.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols);
+        debugPageCC.back();
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(whatTypeOfSurgeryDidYouHave_CC)
-                .waitForPageLoad()
-        //        .getPage(debugPageCC)
-        //.checkProtocolsContainsForQNumber("QS6309", site.activeProtocols)
-                .back();
+                .waitForPageLoad();
+        //debugPageCC.checkProtocolsContainsForQNumber("QS6309", site.activeProtocols);
+        debugPageCC.back();
         hasYourDoctorToldYouThatYouHaveErosion_CC
                 .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(whatTypeOfSurgeryDidYouHave_CC);
+                .clickOnAnswer("Unsure");
+        hasYourDoctorToldYouThatYouHaveErosion_CC
+                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
+
+
+//        //---------------Q13 HaveYouEverHadSurgeryOnStomach_CC-------------------
+//        haveYouEverHadSurgeryOnStomach_CC
+//                .waitForPageLoad();
+//        Assert.assertEquals(haveYouEverHadSurgeryOnStomach_CC.getTitleText(),haveYouEverHadSurgeryOnStomach_CC.titleExpected, "Title is diff");
+//        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = haveYouEverHadSurgeryOnStomach_CC
+//                .clickOnAnswer("No")
+//                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC())
+//                .waitForPageLoad();
+//        areYouCurrentlyAbleToSwallowTablets_CC
+//                .back();
+//        haveYouEverHadSurgeryOnStomach_CC
+//                .waitForPageLoad();
+//        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = haveYouEverHadSurgeryOnStomach_CC
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
+
+
 
         //---------------Q14 WhatTypeOfSurgeryDidYouHave_CC-------------------
         whatTypeOfSurgeryDidYouHave_CC
                 .waitForPageLoad();
-        Assert.assertEquals(whatTypeOfSurgeryDidYouHave_CC.getTitleText(),
-                whatTypeOfSurgeryDidYouHave_CC.titleExpected, "Title is diff");
+        Assert.assertEquals(whatTypeOfSurgeryDidYouHave_CC.getTitleText(),whatTypeOfSurgeryDidYouHave_CC.titleExpected, "Title is diff");
         //---------SKIP to Q12 if selected "Other surgery on my stomach, intestines, colon, or esophagus"  or go to Q11--------
-        whatTypeOfSurgeryDidYouHave_CC
+        WhenDidYouHaveAppendixRemoved_CC whenDidYouHaveAppendixRemoved_CC = whatTypeOfSurgeryDidYouHave_CC
                 .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC())
-                .waitForPageLoad()
+                .clickNextButton(new WhenDidYouHaveAppendixRemoved_CC());
+        whenDidYouHaveAppendixRemoved_CC
+                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_CC.titleExpected4)
+                .getPage(debugPageCC).checkProtocolsContainsForQNumber("QS6310", site.activeProtocols)
                 .back();
         whatTypeOfSurgeryDidYouHave_CC
                 .waitForPageLoad();
-        WhenDidYouHaveAppendixRemoved_CC whenDidYouHaveAppendixRemoved_CC = whatTypeOfSurgeryDidYouHave_CC
-                .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
+        whatTypeOfSurgeryDidYouHave_CC
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Appendix removed - Appendectomy (Agent Note: app-en-DECK-toe-mee)",
                         "Gallbladder removed - Cholecystectomy (Agent Note: cole-leh-sis-TECK-toe-mee)",
                         "Biopsy (Agent Note: BY-op-see) – removal of a small piece of tissue for analysis",
                         "Tonsils removed - Tonsillectomy (Agent Note: tahn-sil-LECK-toe-mee)",
                         "Hemorrhoids removed - Hemorrhoidectomy (Agent Note, HEM-roids, hem-roy-DECK-toe-mee)")
-                .clickNextButton(new WhenDidYouHaveAppendixRemoved_CC());
+                .clickNextButton(whenDidYouHaveAppendixRemoved_CC);
 
 
         //---------------Q15 WhenDidYouHaveAppendixRemoved_CC-------------------
         whenDidYouHaveAppendixRemoved_CC
                 .waitForPageLoad(1,whenDidYouHaveAppendixRemoved_CC.titleExpected1)
-                .waitForPageLoad(2,whenDidYouHaveAppendixRemoved_CC.titleExpected2);
+                .waitForPageLoad(2,whenDidYouHaveAppendixRemoved_CC.titleExpected2)
+                .waitForPageLoad(3,whenDidYouHaveAppendixRemoved_CC.titleExpected3);;
         Assert.assertEquals(whenDidYouHaveAppendixRemoved_CC
                 .getTitleText(1),whenDidYouHaveAppendixRemoved_CC.titleExpected1, "Title is diff");
-        whenDidYouHaveAppendixRemoved_CC
+        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = whenDidYouHaveAppendixRemoved_CC
                 .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
                 .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6311", site.activeProtocols)
-                .back();
-        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = whenDidYouHaveAppendixRemoved_CC
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017976-QS6311-STUDYQUES", site.activeProtocols);
+        debugPageCC.back();
+        whenDidYouHaveAppendixRemoved_CC
                 .waitForPageLoad(1,whenDidYouHaveAppendixRemoved_CC.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC());
+                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
+                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_CC);
 
 
         //---------------Q16 AreYouCurrentlyAbleToSwallowTablets_CC-------------------
@@ -381,13 +434,13 @@ public class GERD_4301_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoadGERD(studyName)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6312", site.activeProtocols)
-                .back();
+                .waitForPageLoadGERD(studyName);
+        debugPageCC.checkProtocolsContainsForQNumber("QS6312", site.activeProtocols);
+        debugPageCC.back();
+        areYouCurrentlyAbleToSwallowTablets_CC
+                .waitForPageLoad();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 areYouCurrentlyAbleToSwallowTablets_CC
-                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC())
                 .waitForPageLoadGERD(studyName)

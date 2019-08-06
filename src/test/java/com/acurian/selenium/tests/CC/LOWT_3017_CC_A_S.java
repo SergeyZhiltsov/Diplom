@@ -45,7 +45,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("LOWT_3017_CC_A_S")
     public void lowTcc(Site site) {
         String phoneNumber = "AUTAMSLOWT";
@@ -61,12 +61,13 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
-        DebugPageCC debugPageCC = new DebugPageCC();
+
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(),
+                "Please enter your username and password to login:", "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -81,53 +82,111 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickBeginButton();
 
         callCenterIntroductionPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+                .waitForPageLoad()
+                .activateDebugOnProd(env);
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-                .activateDebugOnProd(env)
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleExpectedLOWT, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
+                ("a study", "600"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1940")
+//                .clickOnAnswer("Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
+
+        zipCodePageCC
+                .waitForPageLoad();
+        GenderPageCC genderPageCC = zipCodePageCC
+                .typeZipCode("19044")
+                .clickNextButton(new GenderPageCC());
+
+        genderPageCC
+                .waitForPageLoad();
+
+        DebugPageCC debugPageCC = new DebugPageCC();
+
+        PersonaQuestionsCC personaQuestionsCC = genderPageCC
+                .setMonth("Sep")
+                .setDay("9")
+                .setYear("1941")
+                .clickNextButton(new PersonaQuestionsCC());
+
+
+
+//        DebugPageCC debugPageCC = new DebugPageCC();
+//        LoginPageCC loginPageCC = new LoginPageCC();
+//        loginPageCC
+//                .openPage(env)
+//                .waitForPageLoad();
+//        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+//        SelectActionPageCC selectActionPageCC = loginPageCC
+//                .typeUsername(Properties.getUsername())
+//                .typePassword(Properties.getPassword())
+//                .clickLoginButton();
+//
+//        CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
+//                .waitForPageLoad()
+//                .typeStudyName("AMS1")
+//                .clickPopupStudy("AMS1")
+//                .typePhoneNumber(phoneNumber)
+//                .clickPopupPhoneNumber(phoneNumber)
+//                .clickBeginButton();
+//
+//        callCenterIntroductionPageCC
+//                .waitForPageLoad();
+//        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+//        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
+//                .activateDebugOnProd(env)
+//                .clickOnAnswer("Learn more about matching to clinical trials")
+//                .clickNextButton(new DateOfBirthPageCC());
+//
+//        dateOfBirthPageCC
+//                .waitForPageLoad2Ver();
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleExpectedLOWT, "Title is diff");
+//        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+//                .setMonth("Sep")
+//                .setDay("9")
+//                .setYear("1990")
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new ZipCodePageCC());
 //        zipCodePageCC
 //                .waitForPageLoad()
 //                .getPage(debugPageCC)
 //                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
 //                .back(dateOfBirthPageCC)
 //                .waitForPageLoad2Ver()
-//                .setYear("1960")
+//                .setYear("1941")
 //                .clickNextButton(zipCodePageCC);
+//
+//        GenderPageCC genderPageCC = zipCodePageCC
+//                .waitForPageLoad()
+//                .typeZipCode(site.zipCode)
+//                .clickNextButton(new GenderPageCC());
 
-        GenderPageCC genderPageCC = zipCodePageCC
-                .waitForPageLoad()
-                .typeZipCode(site.zipCode)
-                .clickNextButton(new GenderPageCC());
+//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = genderPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Male")
+//                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-                genderPageCC
-                .waitForPageLoad()
-                .setMonth("Sep")
-                .setDay("9")
-                .setYear("1990")
-                .clickOnAnswer("Female")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsEquals("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, i...", protocol1, protocol2)
+//                .back();
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8013", protocol1, protocol2)
-                .back();
-
-        PersonaQuestionsCC personaQuestionsCC = genderPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Male")
-                .clickNextButton(new PersonaQuestionsCC());
+//        PersonaQuestionsCC personaQuestionsCC = genderPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Male")
+//                .clickNextButton(new PersonaQuestionsCC());
 
         ExperiencedAnyOfFollowingCC experiencedAnyOfFollowingCC = personaQuestionsCC
                 .waitForPageLoad()
@@ -441,9 +500,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
 //                        .waitForPageLoad(siteIndication)
-                        .clickNextButton(new QualifiedClose1PageCC())
+                        .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
 //                        .clickNextButton(new HSMedicalRecordsPageCC())
 //                        .waitForPageLoad()
                         .clickNextButton(new SynexusHealthyMindsPageCC())

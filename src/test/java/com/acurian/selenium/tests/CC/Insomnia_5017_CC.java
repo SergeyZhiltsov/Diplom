@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.insomnia_5017.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.cv_study.TransitionStatementCVbeginPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
@@ -607,14 +608,14 @@ public class Insomnia_5017_CC extends BaseTest{
                 .setAll("5", "3", "100")
                 .clickNextButton(new IdentificationPageCC());
         identificationPageCC
-                .waitForPageLoad()
+                .waitForPageLoadNotQ()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageCC); //Disqualify ("Low BMI") if < 18
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("3", "5", "100")
-                .clickNextButton(identificationPageCC)
+                .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -638,8 +639,9 @@ public class Insomnia_5017_CC extends BaseTest{
             case AUT_INS_5017_site:
                 selectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose2PageCC())
+                        .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
+                        .clickOnAnswer("No")
                         .clickNextButton(new SynexusHealthyMindsPageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("No")

@@ -36,7 +36,7 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("LowT_3017_FromCv_Ols")
     public void lowt3017FromCvOls(Site site) {
         String phoneNumber = "AUTAMS1CV1";

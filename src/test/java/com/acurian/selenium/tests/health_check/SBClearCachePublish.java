@@ -58,7 +58,7 @@ public class SBClearCachePublish extends BaseTest {
         switch (env) {
             case "PRD":
                 studyId = "";
-                alertMessage = "PROD";
+                alertMessage = "6697";
                 break;
             case "STG":
                 studyId = "6697";

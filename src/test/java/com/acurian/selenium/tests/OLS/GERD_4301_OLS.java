@@ -302,7 +302,8 @@ public class GERD_4301_OLS extends BaseTest {
         //---------------Q15 WhenDidYouHaveAppendixRemoved_OLS-------------------
         whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
-                .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2);
+                .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
+                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3);
         whenDidYouHaveAppendixRemoved_OLS
                 .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
@@ -388,6 +389,9 @@ public class GERD_4301_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS())

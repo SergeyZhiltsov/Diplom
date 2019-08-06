@@ -2,9 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.IBS.SufferFromIrritablePageOLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.*;
@@ -39,7 +37,7 @@ public class CV_4450_OLS extends BaseTest {
         super.tearDown();
     }
 
-    @DataProvider
+    @DataProvider(name = "sites")
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_CV1_4450S_Syn},
@@ -103,252 +101,323 @@ public class CV_4450_OLS extends BaseTest {
                 .setDate("01081970")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
+        //Q3: QS	Certain conditions are more closely linked to cardiovascular disease than others.
         CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
                         "High blood pressure or hypertension",
                         "Chronic Kidney Disease")
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("None of the above") //skip to Q13 (current lipid lowering med use)
                 .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
-//Q12
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cholesterolTriglyceridesLipidsPageOLS
+
+        //Q13
+        cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageOLS)
+                .back();
+
+        HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS =
+                cardiovascularDiseaseThanOthersPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("High cholesterol or high triglycerides") //go to Q4 (NEW Q4)
+                        .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS());
+        haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS
                 .waitForPageLoad()
+                .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
+                .back(cardiovascularDiseaseThanOthersPageOLS);
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Diabetes or High Blood Sugar")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
-        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new TransitionalStatementLowtPageOLS());
-        transitionalStatementLowtPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                .back();
-        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new WithType2DiabetesPageOLS());
-
-        MedicationsForYourDiabetesPageOLS medicationsForYourDiabetesPageOLS = withType2DiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                .back(whatKindOfDiabetesPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new MedicationsForYourDiabetesPageOLS());
-
-        medicationsForYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Glyxambi (empagliflozin and linagliptin)",
-                        "Januvia (sitagliptin)",
-                        "Nesina (alogliptin)",
-                        "Oseni (alogliptin and pioglitazone)",
-                        "Onglyza (saxagliptin)",
-                        "Tradjenta (linagliptin)",
-                        "Bydureon or Byetta (exenatide)",
-                        "Saxenda or Victoza (liraglutide)",
-                        "Adlyxin (lixisenatide)",
-                        "Tanzeum (albiglutide)",
-                        "Trulicity (dulaglutide)",
-                        "Ozempic (semaglutide)")
-                .clickOnAnswers("None of the above")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
-
-        HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = cholesterolTriglyceridesLipidsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new HeartOrBloodVesselPageOLS());
-
-        HaveDoctorEverDiagnosedYou_OLS haveDoctorEverDiagnosedYou_OLS = heartOrBloodVesselPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"Mini-Stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight stay in a hospital",
-                        "Coronary Artery Disease (blockage in a heart vessel)",
-                        "Peripheral Vascular Disease (for example a blockage in your leg vessel)",
-                        "Amputation of a digit or limb due to Peripheral Vascular Disease")
-                .clickOnAnswers("None of the above")//Skip to Q16
-                .clickNextButton(new HaveDoctorEverDiagnosedYou_OLS());
-        haveDoctorEverDiagnosedYou_OLS
-                .waitForPageLoad()
-                .back();
-        AnginaOrChestPainPageOLS anginaOrChestPainPageOLS = heartOrBloodVesselPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital")
-                .clickNextButton(new AnginaOrChestPainPageOLS());
-        anginaOrChestPainPageOLS
-                .waitForPageLoad()
-                .back();
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = heartOrBloodVesselPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"Mini-Stroke\"")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
-                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
-                .clickNextButton(anginaOrChestPainPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6713", site.activeProtocols)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
-                .clickNextButton(anginaOrChestPainPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6713", site.activeProtocols)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
-                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
-                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
-                .clickNextButton(anginaOrChestPainPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6713", site.activeProtocols)
-                .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
-                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
-                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
-                .clickNextButton(anginaOrChestPainPageOLS);
-
-        List<String> disqulifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
-        for (String answer: disqulifyQ15) {
-            System.out.println(answer);
-            anginaOrChestPainPageOLS
+        //Q5	What kind of diabetes do you have?
+        List<String> disqualifyQ5 = Arrays.asList("Type 1 diabetes (sometimes called Juvenile diabetes)",
+                "Type 2 diabetes (sometimes called Adult-onset diabetes)");
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
+        for (String answer: disqualifyQ5) {
+            System.out.println("Select answer Q3: " + answer);
+            whatKindOfDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(haveDoctorEverDiagnosedYou_OLS)
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS6714", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                     .back();
         }
-        anginaOrChestPainPageOLS
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Display for Females only
+                .clickOnAnswer("Unsure")
+                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
+
+        //Q13	Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?
+        SufferedFollowingHeartRelatedConditionsPageOLS sufferedFollowingHeartRelatedConditionsPageOLS =
+                cholesterolTriglyceridesLipidsPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("Unsure")
+                        .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageOLS());
+
+        HeartRelatedSurgeriesProceduresPageOLS heartRelatedSurgeriesProceduresPageOLS =
+                sufferedFollowingHeartRelatedConditionsPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("Heart attack",
+                                "Stroke",
+                                "Mini-Stroke or TIA",
+                                "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
+                                "Heart failure or congestive heart failure (CHF)")
+                        .clickOnAnswers("None of the above") //Skip to Q16
+                        .clickNextButton(new HeartRelatedSurgeriesProceduresPageOLS());
+
+        //Q16	Have you ever had any of the following heart-related surgeries or procedures?
+        heartRelatedSurgeriesProceduresPageOLS
                 .waitForPageLoad()
                 .back();
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .back();
 
-        heartOrBloodVesselPageOLS
+        SubquestionHeartPageOLS subquestionHeartPageOLS = sufferedFollowingHeartRelatedConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack",
+                        "Stroke",
+                        "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickNextButton(new SubquestionHeartPageOLS());
+
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionHeartPageOLS.titleExpected4)
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveDoctorEverDiagnosedYou_OLS);
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(subquestionHeartPageOLS);
 
-        HeartrelatedMedicalConditionsProceduresPageOLS heartrelatedMedicalConditionsProceduresPageOLS = haveDoctorEverDiagnosedYou_OLS
+        //Q15.1	When was the last time that you experienced had a heart attack?
+        List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
+        for (String answer: disqualifyQ15) {
+            System.out.println("Select answer for Q15.1: " + answer);
+            subquestionHeartPageOLS
+                    .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalConditionsProceduresPageOLS());
+                .clickOnAnswers("Stroke")
+                .clickNextButton(subquestionHeartPageOLS);
 
-        RelativesHeartAttackPageOLS relativesHeartAttackPageOLS = heartrelatedMedicalConditionsProceduresPageOLS
+        //Q15.2	When was the last time that you experienced had a stroke?
+        for (String answer: disqualifyQ15) {
+            System.out.println("Select answer for Q15.2: " + answer);
+            subquestionHeartPageOLS
+                    .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new RelativesHeartAttackPageOLS());
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickNextButton(subquestionHeartPageOLS);
 
-        FirstHeartAttackPageOLS firstHeartAttackPageOLS = relativesHeartAttackPageOLS
+        //Q15.3	When was the last time that you experienced had a mini-stroke or TIA?
+        for (String answer: disqualifyQ15) {
+            System.out.println("Select answer for Q15.3: " + answer);
+            subquestionHeartPageOLS
+                    .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS)
                 .waitForPageLoad()
-                .clickOnAnswers("Sister")
-                .clickNextButton(new FirstHeartAttackPageOLS());
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickNextButton(subquestionHeartPageOLS);
 
-        EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = firstHeartAttackPageOLS
+        //Q15.4	When was the last time that you experienced suffered from angina or chest pain that required you to stay in a hospital overnight?
+        for (String answer: disqualifyQ15) {
+            System.out.println("Select answer for Q15.4: " + answer);
+            subquestionHeartPageOLS
+                    .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS)
                 .waitForPageLoad()
-                .setYears("30")
-                .clickNextButton(new EverSmokedCigarettesPageOLS());
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart failure or congestive heart failure (CHF)")
+                .clickNextButton(heartRelatedSurgeriesProceduresPageOLS);
 
-        ApproximateHeightPageOLS approximateHeightPageOLS = everSmokedCigarettesPageOLS
+        //Q16	Have you ever had any of the following heart-related surgeries or procedures?
+        MostRecentHeartRelatedSurgeryProcedurePageOLS mostRecentHeartRelatedSurgeryProcedurePageOLS =
+                heartRelatedSurgeriesProceduresPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("Stent placement in your heart, neck or legs")
+                        .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageOLS());
+
+        //Q17	When was your most recent heart-related surgery or procedure?
+        AdditionalHeartRelatedConditionsPageOLS additionalHeartRelatedConditionsPageOLS =
+                new AdditionalHeartRelatedConditionsPageOLS();
+        List<String> disqualifyQ17 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
+        for (String answer: disqualifyQ17) {
+            System.out.println("Select answer for Q17: " + answer);
+            mostRecentHeartRelatedSurgeryProcedurePageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(additionalHeartRelatedConditionsPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS6739", site.activeProtocols)
+                    .back();
+        }
+        mostRecentHeartRelatedSurgeryProcedurePageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("I used to smoke, but have since quit")
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(additionalHeartRelatedConditionsPageOLS);
+
+        //Q18	Have you ever been diagnosed with any of the following additional heart-related conditions?
+        ApproximateHeightPageOLS approximateHeightPageOLS = additionalHeartRelatedConditionsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
+
+//------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(transitionalStatementLowtPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
-                .back();
-        approximateHeightPageOLS
+                .back(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .back();
-        everSmokedCigarettesPageOLS
+                .back(additionalHeartRelatedConditionsPageOLS)
                 .waitForPageLoad()
-                .back();
-        firstHeartAttackPageOLS
+                .clickOnAnswers("None of the above")
+                .back(mostRecentHeartRelatedSurgeryProcedurePageOLS)
                 .waitForPageLoad()
-                .back();
-        relativesHeartAttackPageOLS
+                .back(heartRelatedSurgeriesProceduresPageOLS)
                 .waitForPageLoad()
-                .back();
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart attack", "Stroke") //Qualifying answer Ghost Question
+                .clickNextButton(subquestionHeartPageOLS)
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageOLS.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(mostRecentHeartRelatedSurgeryProcedurePageOLS)
+                .waitForPageLoad()
+                .clickNextButton(additionalHeartRelatedConditionsPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(approximateHeightPageOLS);
+        HealthcareDiagnosedConditionsPageOLS healthcareDiagnosedConditionsPageOLS = approximateHeightPageOLS
+                .waitForPageLoad()
+                .clickNextButton(new HealthcareDiagnosedConditionsPageOLS());
 
-        heartrelatedMedicalConditionsProceduresPageOLS
+        healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Peripheral Artery Disease or PAD (narrowed or hardened blood vessels in your arms or legs)")
-                .clickNextButton(relativesHeartAttackPageOLS)
+                .back(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .clickNextButton(firstHeartAttackPageOLS)
+                .back(additionalHeartRelatedConditionsPageOLS)
                 .waitForPageLoad()
-                .clickNextButton(everSmokedCigarettesPageOLS)
+                .back(mostRecentHeartRelatedSurgeryProcedurePageOLS)
+                .waitForPageLoad()
+                .back(heartRelatedSurgeriesProceduresPageOLS)
+                .waitForPageLoad()
+                .back(subquestionHeartPageOLS)
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionHeartPageOLS.titleExpected2)
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above") //deselect previous qualifying answer
+                .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Any other surgery on the arteries in your legs, neck or heart") //Qualifying answer Ghost Question
+                .clickNextButton(mostRecentHeartRelatedSurgeryProcedurePageOLS)
+                .waitForPageLoad()
+                .clickNextButton(additionalHeartRelatedConditionsPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setAllWithClear("5", "5", "160") //Disqualify ("BMI") if BMI < 27 kg/m2
-                .clickNextButton(transitionalStatementLowtPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6721", site.activeProtocols)
-                .back();
-        HealthcareDiagnosedConditionsPageOLS healthcareDiagnosedConditionsPageOLS = approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAllWithClear("5", "5", "170")
-                .clickNextButton(new HealthcareDiagnosedConditionsPageOLS());
+                .clickNextButton(healthcareDiagnosedConditionsPageOLS);
 
-        List<String> options = Arrays.asList("Cancer in the past 5 years, except skin cancer",
+        healthcareDiagnosedConditionsPageOLS
+                .waitForPageLoad()
+                .back(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .back(additionalHeartRelatedConditionsPageOLS)
+                .waitForPageLoad()
+                .back(mostRecentHeartRelatedSurgeryProcedurePageOLS)
+                .waitForPageLoad()
+                .back(heartRelatedSurgeriesProceduresPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(additionalHeartRelatedConditionsPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Peripheral Artery Disease or PAD (blockage in the arteries in your legs or poor circulation in legs)") //Qualifying answer Ghost Question
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(healthcareDiagnosedConditionsPageOLS);
+//------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
+
+        //Q26	Has a healthcare professional ever diagnosed you with any of the following medical conditions?
+        List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis of the liver",
                 "Drug or alcohol abuse within the past year",
                 "Hepatitis B",
                 "Hepatitis C",
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
-        for (String entry: options) {
-            System.out.println(entry);
+        for (String answer: disqualifyQ26) {
+            System.out.println("Select answer for Q26: " + answer);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry)
-                    .clickNextButton(transitionalStatementLowtPageOLS)
+                    .clickOnAnswers(answer)
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
                     .back();
         }
-
-        healthcareDiagnosedConditionsPageOLS
+        IdentificationPageOLS identificationPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageOLS());
+
+        identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
-                        site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
@@ -356,9 +425,6 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-//                .clickNextButton(new SynexusHealthyMindsPageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

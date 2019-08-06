@@ -30,7 +30,7 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = LOWT_3017_FROM_CV_OLS_A_S.class)
+    @Test(dataProvider = "sites", dataProviderClass = LOWT_3017_FROM_CV_OLS_A_S.class, enabled = false)
     @Description("LowT_3017_From_Cv_Cc")
     public void lowt3017FromCvCc(Site site) {
         final String phoneNumber = "AUTAMS1CV1";

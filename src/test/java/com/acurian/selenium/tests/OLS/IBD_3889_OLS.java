@@ -121,7 +121,7 @@ public class IBD_3889_OLS extends BaseTest {
         crohnsDiseaseDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(ulcerativeColitisDoctorOrNursePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
@@ -129,7 +129,7 @@ public class IBD_3889_OLS extends BaseTest {
         crohnsDiseaseDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(ulcerativeColitisDoctorOrNursePageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
@@ -155,7 +155,7 @@ public class IBD_3889_OLS extends BaseTest {
                 .back();
         whenWereYouDiagnosedWithCrohnsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(whenWereYouDiagnosedWithUlcerativeColitisPageOLS);
 
         ReviewMedicalRecordsCrohnsDiagnosisPageOLS reviewMedicalRecordsCrohnsDiagnosisPageOLS = whenWereYouDiagnosedWithUlcerativeColitisPageOLS
@@ -179,7 +179,7 @@ public class IBD_3889_OLS extends BaseTest {
                 .back();
         partOfDiagnosisFollowingProceduresDonePageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Endoscopy - a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
+                .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
                 .clickNextButton(manageYourCrohnsPageOLS);
 
         CrohnsDiseaseOrUlcerativeColitisFlarePageOLS crohnsDiseaseOrUlcerativeColitisFlarePageOLS = manageYourCrohnsPageOLS
@@ -252,6 +252,9 @@ public class IBD_3889_OLS extends BaseTest {
         biologicMedicationsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cimzia")
+                .clickNextButton(biologicMedicationsPageOLS)
+                .waitForPageLoadNew()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS);
 
         SubquestionsIbdPleaseThinkCrohnsPageOLS subquestionsIbdPleaseThinkCrohnsPageOLS = crohnsDiseaseOrUlcerativeColitisFlarePageOLS
@@ -630,6 +633,9 @@ public class IBD_3889_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoadIBD("Crohn's Disease")
                 .clickNextButton(new HS1PageOLS())

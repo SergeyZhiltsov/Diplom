@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.health_check;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.RA.standalone.ExperiencedAnyOfTheFollowingConditionsInPast6Months;
 import com.acurian.selenium.pages.CC.RA.standalone.HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC;
-import com.acurian.selenium.pages.CC.RA.WhenYouDiagnosedWithRaPageCC;
 import com.acurian.selenium.pages.CC.RA.standalone.StudiesThatAreCurrentlyEnrollingPageCC;
 import com.acurian.selenium.pages.CC.RA.standalone.StudySwitchPageCC;
 import com.acurian.selenium.pages.CC.closes.standalone.UnqualifiedStudySwitchCloseOldCC;
@@ -67,7 +66,7 @@ public class StudySwitchCC extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC hasAHealtcareDiagnosedWithAnyTypeOfArthritisCC = genderPageCC
-                .waitForPageLoad()
+                .waitForPageLoadByTitle(genderPageCC.titleExpected)
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasAHealtcareDiagnosedWithAnyTypeOfArthritisCC());
 

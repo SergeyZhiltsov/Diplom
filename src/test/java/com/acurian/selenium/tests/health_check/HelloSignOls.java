@@ -10,7 +10,6 @@ import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -26,13 +25,9 @@ public class HelloSignOls extends BaseTest {
         String env = System.getProperty("acurian.env", "QA");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected,
-                "Title is diff");
-
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
+                .openPage(env, phoneNumber)
+                .waitForPageLoad("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -47,7 +42,7 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpected)
                 .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisPageOLS()); //BoneOrJointConditionsPageOLS
 
@@ -79,7 +74,8 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
         doctorInformationCollectionPageOLS
-                .waitForPageLoadByTitle(doctorInformationCollectionPageOLS.titleGmegaQAExpected)
+                .waitForPageLoadByTitle(env.equals("QA") ? doctorInformationCollectionPageOLS.titleGmegaQAExpected :
+                        doctorInformationCollectionPageOLS.titleGmegaExpected)
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()

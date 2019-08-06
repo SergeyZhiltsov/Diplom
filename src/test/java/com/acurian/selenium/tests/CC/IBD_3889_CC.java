@@ -222,9 +222,9 @@ public class IBD_3889_CC extends BaseTest {
                 .back(partOfDiagnosisFollowingProceduresDonePageCC);
         partOfDiagnosisFollowingProceduresDonePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Endoscopy - a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
+                .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
                         "Colonoscopy – a thin, flexible, lighted tube is inserted through the rectum and into the entire colon (large intestine). This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
-                        "Sigmoidoscopy - a thin, flexible, lighted tube is inserted through the rectum and into the section of the colon (large intestine) closest to the rectum. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
+                        "Sigmoidoscopy – a thin, flexible, lighted tube is inserted through the rectum and into the section of the colon (large intestine) closest to the rectum. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
                 .clickNextButton(manageYourCrohnsPageCC);
         //Q9
         CrohnsDiseaseOrUlcerativeColitisFlarePageCC crohnsDiseaseOrUlcerativeColitisFlarePageCC = manageYourCrohnsPageCC
@@ -291,19 +291,28 @@ public class IBD_3889_CC extends BaseTest {
         biologicMedicationsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)")
+                .clickNextButton(biologicMedicationsPageCC)
+                .waitForPageLoadNew()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
                 .back(biologicMedicationsPageCC)
+                .waitForPageLoadNew()
+                .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tysabri")
+                .clickNextButton(biologicMedicationsPageCC)
+                .waitForPageLoadNew()
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0],
                         site.activeProtocols[1])
+                .back(biologicMedicationsPageCC)
+                .waitForPageLoadNew()
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -356,6 +365,8 @@ public class IBD_3889_CC extends BaseTest {
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Cimzia (Agent Note: SIM-zee-uh)")
+                .clickNextButton(biologicMedicationsPageCC)
+                .waitForPageLoadNew()
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC);
 
         //Q17
