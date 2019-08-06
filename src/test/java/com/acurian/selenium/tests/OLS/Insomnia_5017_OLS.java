@@ -5,11 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.TransitionStatementCVbeginPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -601,7 +597,7 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .getPID();
         siteSelectionPageOLS
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()
