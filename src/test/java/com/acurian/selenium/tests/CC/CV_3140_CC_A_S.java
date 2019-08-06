@@ -250,7 +250,7 @@ public class CV_3140_CC_A_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
                 .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
@@ -455,7 +455,7 @@ public class CV_3140_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("TIA or \"Mini-Stroke\"")
                 .clickNextButton(subquestionExperiencedHeartPageCC)
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
                 .waitForPageLoad()
                 .clickNextButton(heartrelatedMedicalConditionsProceduresPageCC)

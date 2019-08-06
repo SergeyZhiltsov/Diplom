@@ -492,16 +492,16 @@ public class DERM_4815_CC_A_S extends BaseTest {
 
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartrelatedMedicalConditionsProceduresPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "TIA or \"mini-stroke\"", "Angina (heart-related chest pain) that required an overnight hospital stay", "Heart failure or congestive heart failure (CHF)")
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
+                        "Heart failure or congestive heart failure (CHF)")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1);
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(1),subquestionExperiencedHeartPageCC.titleExpected1, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(2),subquestionExperiencedHeartPageCC.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(3),subquestionExperiencedHeartPageCC.titleExpected4, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(4),subquestionExperiencedHeartPageCC.titleExpected5, "Title is diff");
         HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
@@ -513,7 +513,10 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
@@ -527,7 +530,10 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .back();
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
@@ -541,7 +547,10 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .back();
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
@@ -555,7 +564,10 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .back();
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"Less than 30 days ago")
@@ -569,7 +581,10 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .back();
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"1 - 3 months ago")
@@ -583,7 +598,10 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .back();
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
@@ -597,7 +615,10 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .back();
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
@@ -611,7 +632,10 @@ public class DERM_4815_CC_A_S extends BaseTest {
                 .back();
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")

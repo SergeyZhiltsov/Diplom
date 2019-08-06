@@ -9,6 +9,7 @@ import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HeartrelatedMedicalProceduresPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -156,7 +157,7 @@ public class CV_4450_CC extends BaseTest {
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageCC());
 
-        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC =
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
         sufferedFollowingHeartRelatedConditionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack",
@@ -165,10 +166,10 @@ public class CV_4450_CC extends BaseTest {
                         "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
                         "Heart failure or congestive heart failure (CHF)")
                 .clickOnAnswers("None of the above") //Skip to Q16
-                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
 
         //Q16	Have you ever had any of the following heart-related surgeries or procedures?
-        heartRelatedSurgeriesProceduresPageCC
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back();
 
@@ -198,7 +199,7 @@ public class CV_4450_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
                     .back();
@@ -217,7 +218,7 @@ public class CV_4450_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
                     .back();
@@ -236,7 +237,7 @@ public class CV_4450_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected3)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
                     .back();
@@ -255,7 +256,7 @@ public class CV_4450_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
                     .back();
@@ -266,11 +267,11 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart failure or congestive heart failure (CHF)")
-                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
+                .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         //Q16	Have you ever had any of the following heart-related surgeries or procedures?
         MostRecentHeartRelatedSurgeryProcedurePageCC mostRecentHeartRelatedSurgeryProcedurePageCC =
-        heartRelatedSurgeriesProceduresPageCC
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageCC());
@@ -315,7 +316,7 @@ public class CV_4450_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .back(mostRecentHeartRelatedSurgeryProcedurePageCC)
                 .waitForPageLoad()
-                .back(heartRelatedSurgeriesProceduresPageCC)
+                .back(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .back(sufferedFollowingHeartRelatedConditionsPageCC)
                 .waitForPageLoad()
@@ -325,7 +326,7 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
                 .clickOnAnswerForAllSubQuestion("More than 1 year ago")
-                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .clickNextButton(mostRecentHeartRelatedSurgeryProcedurePageCC)
                 .waitForPageLoad()
@@ -344,7 +345,7 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(mostRecentHeartRelatedSurgeryProcedurePageCC)
                 .waitForPageLoad()
-                .back(heartRelatedSurgeriesProceduresPageCC)
+                .back(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .back(subquestionHeartPageCC)
                 .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
@@ -352,7 +353,7 @@ public class CV_4450_CC extends BaseTest {
                 .back(sufferedFollowingHeartRelatedConditionsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above") //deselect previous qualifying answer
-                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Any other surgery on the arteries in your legs, neck or heart") //Qualifying answer Ghost Question
@@ -372,7 +373,7 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(mostRecentHeartRelatedSurgeryProcedurePageCC)
                 .waitForPageLoad()
-                .back(heartRelatedSurgeriesProceduresPageCC)
+                .back(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(additionalHeartRelatedConditionsPageCC)

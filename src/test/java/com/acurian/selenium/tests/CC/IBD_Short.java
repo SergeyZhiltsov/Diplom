@@ -225,6 +225,9 @@ public class IBD_Short extends BaseTest{
         		.waitForPageLoad("a Crohn's study")
         		.getPID()
         		.clickOnAnswer(siteName)
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageCC());
         ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = new ThankYouCloseSimplePageCC();
         switch (flareStatus) {

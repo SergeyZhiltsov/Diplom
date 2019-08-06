@@ -8,7 +8,6 @@ import com.acurian.selenium.pages.CC.Migraine.HaveYourEverTakenAnyMedicationToTr
 import com.acurian.selenium.pages.CC.Migraine.WhenDidYouTakeYourMigraineMedicationsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -477,11 +476,11 @@ public class AMIG_4742_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 

@@ -457,18 +457,16 @@ public class DERM_4967_OLS extends BaseTest {
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS =
                 haveYouEverExperiencedHeartRelatedMedicalCondOLS
                         .waitForPageLoad()
-                        .clickOnAnswers("Heart attack",
-                                "Stroke",
-                                "TIA or \"mini-stroke\"",
-                                "Angina (heart-related chest pain) that required an overnight hospital stay",
-                                "Heart failure or congestive heart failure (CHF)")
+                        .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
+						"Heart failure or congestive heart failure (CHF)")
                         .clickNextButton(new SubquestionExperiencedHeartPageOLS()); //Display Q12.1: QS47A
         //Q12
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
@@ -492,8 +490,8 @@ public class DERM_4967_OLS extends BaseTest {
                 .back(subquestionExperiencedHeartPageOLS)
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
                 .waitForPageLoad()
                 .back();

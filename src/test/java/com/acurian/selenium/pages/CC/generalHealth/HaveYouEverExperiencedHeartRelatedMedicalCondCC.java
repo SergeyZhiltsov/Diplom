@@ -12,8 +12,8 @@ import java.util.List;
 
 public class HaveYouEverExperiencedHeartRelatedMedicalCondCC extends MainPageCC {
 
-    public final String titleExpected = "Have you ever experienced or been diagnosed with any of the following specific heart-related medical conditions?\n" +
-    		"Agent Note: Select all that apply";
+    public final String titleExpected = "Have you ever had or suffered from any of the following heart-related events or conditions?\n" +
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;

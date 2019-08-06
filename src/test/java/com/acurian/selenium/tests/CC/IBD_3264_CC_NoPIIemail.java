@@ -170,7 +170,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", site.activeProtocols)
                 .back(whenDiagnosedCrohnsPageCC)
                 .waitForPageLoadULC()
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(partOfDiagnosisFollowingProceduresDonePageCC);
         //Q8
         ManageYourCrohnsPageCC manageYourCrohnsPageCC = partOfDiagnosisFollowingProceduresDonePageCC

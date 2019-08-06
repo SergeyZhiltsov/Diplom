@@ -435,8 +435,8 @@ public class IBD_4818_OLS extends BaseTest {
 //                .waitForPageLoad();
 //        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
 //                .clickOnAnswers("Heart attack", "Stroke",
-//                        "TIA or \"mini-stroke\"",
-//                        "Angina (heart-related chest pain) that required an overnight hospital stay",
+//                        "Mini-Stroke or TIA",
+//                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
 //                        "Heart failure or congestive heart failure (CHF)")
 //                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 //        subquestionExperiencedHeartPageOLS

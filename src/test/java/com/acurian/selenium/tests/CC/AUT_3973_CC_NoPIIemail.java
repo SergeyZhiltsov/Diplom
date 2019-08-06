@@ -1,6 +1,7 @@
 package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,10 +12,6 @@ import com.acurian.selenium.pages.CC.AUTI_3973.HaveYouEverHadAnIQtest_CC;
 import com.acurian.selenium.pages.CC.AUTI_3973.HaveYouHadSeizureInLast6Mon_CC;
 import com.acurian.selenium.pages.CC.AUTI_3973.HowDidYouScoreOnTheTest_CC;
 import com.acurian.selenium.pages.CC.AUTI_3973.InThePast3MonthsHaveYouExperienced_CC;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSGeneralCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
@@ -335,6 +332,9 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad("an autism spectrum disorder study")
                 .getPID()
                 .clickOnAnswer(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new HSGeneralCC())
                 .waitForPageLoadEmailNotProvided()
                 .typeEmail("qa.acurian@gmail.com")
