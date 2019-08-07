@@ -117,7 +117,7 @@ public class IBD_3485_OLS extends BaseTest {
         debugPageOLS.back();
         whenWereYouDiagnosedWithCrohnsPageOLS.waitForPageLoad();
         WhenWasYourMostRecentColonoscopy_OLS whenWasYourMostRecentColonoscopy_OLS = whenWereYouDiagnosedWithCrohnsPageOLS
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(new WhenWasYourMostRecentColonoscopy_OLS());
 
 

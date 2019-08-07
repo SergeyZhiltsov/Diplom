@@ -576,7 +576,7 @@ public class GAST_4357_CC extends BaseTest {
         //Q48
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
         //QS49

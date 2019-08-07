@@ -375,7 +375,7 @@ public class OAB_BPH_4867_OLS extends BaseTest {
 
         MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS());
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = mostRecentHeartProcedurePageOLS

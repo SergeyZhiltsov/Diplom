@@ -120,7 +120,7 @@ public class IBD_4533_OLS extends BaseTest {
         debugPageOLS.checkProtocolsContainsForQNumber("QS5703", protocol5, protocol6);
         debugPageOLS.back();
         whenWereYouDiagnosedWithCrohnsPageOLS.waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(new WhenWasYourMostRecentColonoscopy_OLS());
 
 

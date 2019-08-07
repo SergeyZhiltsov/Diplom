@@ -115,7 +115,7 @@ public class MedCo_3962_OLS extends BaseTest {
         .clickNextButton(new HeartrelatedMedicalProceduresPageOLS())
         //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------	
         .waitForPageLoad()
-        .clickOnAnswers("Angioplasty")
+        .clickOnAnswers("Stent placement in your heart, neck or legs")
         .clickNextButton(new MostRecentHeartProcedurePageOLS())
         //-----------MostRecentHeartProcedurePageOLS page-----------
         .waitForPageLoad()

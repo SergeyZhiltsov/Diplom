@@ -243,7 +243,7 @@ public class DIA_4356A_CC extends BaseTest{
                 .back();
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
         mostRecentHeartProcedurePageСС

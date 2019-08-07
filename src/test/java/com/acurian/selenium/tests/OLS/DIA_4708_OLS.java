@@ -418,7 +418,7 @@ public class DIA_4708_OLS extends BaseTest {
 
         MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS());
 
         DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = mostRecentHeartProcedurePageOLS

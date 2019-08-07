@@ -150,7 +150,7 @@ public class IBD_4818_OLS extends BaseTest {
                 .back();
         whenWereYouDiagnosedWithCrohnsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(whenWereYouDiagnosedWithUlcerativeColitisPageOLS);
 
         ReviewMedicalRecordsCrohnsDiagnosisPageOLS reviewMedicalRecordsCrohnsDiagnosisPageOLS = whenWereYouDiagnosedWithUlcerativeColitisPageOLS
@@ -174,7 +174,7 @@ public class IBD_4818_OLS extends BaseTest {
                 .back();
         partOfDiagnosisFollowingProceduresDonePageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Endoscopy - a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
+                .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
                 .clickNextButton(manageYourCrohnsPageOLS);
 
         CrohnsDiseaseOrUlcerativeColitisFlarePageOLS crohnsDiseaseOrUlcerativeColitisFlarePageOLS = manageYourCrohnsPageOLS

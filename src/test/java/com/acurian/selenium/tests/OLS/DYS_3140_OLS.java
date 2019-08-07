@@ -280,7 +280,7 @@ public class DYS_3140_OLS extends BaseTest {
                 .back();
         MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS());
 
         mostRecentHeartProcedurePageOLS

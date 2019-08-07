@@ -401,7 +401,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
         DoYouTakeAnyMedicationsToControlHighBloodPressureCC doYouTakeAnyMedicationsToControlHighBloodPressureCC = new DoYouTakeAnyMedicationsToControlHighBloodPressureCC();
