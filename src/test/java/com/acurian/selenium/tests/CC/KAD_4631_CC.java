@@ -425,7 +425,7 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС())
                 .waitForPageLoad()
                 .back(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)

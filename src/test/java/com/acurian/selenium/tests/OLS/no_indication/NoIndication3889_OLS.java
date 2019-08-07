@@ -443,7 +443,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5703", site.activeProtocols)
                 .back(whenWereYouDiagnosedWithCrohnsPageOLS)
                 .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(reviewMedicalRecordsCrohnsDiagnosisPageOLS);
 
         PartOfDiagnosisFollowingProceduresDonePageOLS partOfDiagnosisFollowingProceduresDonePageOLS =
@@ -454,7 +454,7 @@ public class NoIndication3889_OLS extends BaseTest {
 
         ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = partOfDiagnosisFollowingProceduresDonePageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Endoscopy - a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
+                .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
                 .clickNextButton(new ManageYourCrohnsPageOLS());
 
         CrohnsDiseaseOrUlcerativeColitisFlarePageOLS crohnsDiseaseOrUlcerativeColitisFlarePageOLS = manageYourCrohnsPageOLS

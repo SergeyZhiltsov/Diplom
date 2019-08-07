@@ -542,12 +542,9 @@ public class DERM_7036_CC extends BaseTest {
         //Q13: QS48
         haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty",
-                        "Stent placement",
-                        "Atherectomy",
-                        "Procedure to clear plaque from blood vessels in the neck such as carotid endarterectomy",
-                        "Coronary artery bypass graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
-                        "Revascularization")
+                .clickOnAnswers("Stent placement in your heart, neck or legs",
+                        "Heart bypass surgery or Coronary Artery Bypass Graft (CABG)",
+                        "Any other surgery on the arteries in your legs, neck or heart")
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);

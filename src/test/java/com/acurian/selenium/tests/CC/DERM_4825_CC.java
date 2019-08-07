@@ -885,9 +885,13 @@ public class DERM_4825_CC extends BaseTest {
                 .getPID();
         selectionPageCC
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose1PageCC())
+                .clickNextButton(new MedicalRecordsOptionPageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)

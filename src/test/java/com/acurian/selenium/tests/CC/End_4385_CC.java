@@ -551,7 +551,7 @@ public class End_4385_CC extends BaseTest {
         //Q13: QS48
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
         //Q14: QS49
         mostRecentHeartProcedurePageСС

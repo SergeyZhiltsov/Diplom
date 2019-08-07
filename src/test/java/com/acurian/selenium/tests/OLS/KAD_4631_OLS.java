@@ -389,7 +389,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS())
                 .waitForPageLoad()
                 .back(heartrelatedMedicalProceduresPageOLS)
