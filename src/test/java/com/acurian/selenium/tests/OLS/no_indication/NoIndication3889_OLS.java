@@ -542,7 +542,12 @@ public class NoIndication3889_OLS extends BaseTest {
                 "Taltz",
                 "Tysabri")
                 .clickOnAnswers("Tysabri")  //DOn't Uncheck "Stelara (Agent Note: ste-LAHR-uh)" option to qualify
-                .clickNextButton(new CrohnsDiseaseOrUlcerativeColitisFlarePageOLS());
+                .clickNextButton(biologicMedicationsPageOLS);
+
+        biologicMedicationsPageOLS
+                .waitForPageLoadNew()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS);
 
         //---------------Q14 Are you currently experiencing a flare-up? page------------------
         crohnsDiseaseOrUlcerativeColitisFlarePageOLS

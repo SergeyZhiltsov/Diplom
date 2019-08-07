@@ -737,12 +737,14 @@ public class DERM_4825_OLS extends BaseTest {
                 .clickNextButton(new MedicalRecordsOptionPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-               // .clickNextButton(new SynexusHealthyMindsPageOLS())
-               // .waitForPageLoad()
-              //  .clickOnAnswer("No")
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature();
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+        thankYouCloseSimplePageOLS
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
