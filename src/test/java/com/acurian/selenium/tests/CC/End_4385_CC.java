@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHype
 import com.acurian.selenium.pages.CC.SUI_3923.HaveYouGoneThroughMenopauseCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
+import com.acurian.selenium.pages.CC.closes.MedicalRecordsOptionPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -806,6 +807,9 @@ public class End_4385_CC extends BaseTest {
                 .clickOnAnswer(site.name)
 //                .clickNextButton(new HSGeneralCC())
 //                .waitForPageLoad(site_Indication)
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MostRecentHeartProcedurePageOLS extends MainPageOLS {
 
-    public final String titleExpected = "When was your most recent heart procedure?";
+    public final String titleExpected = "When was your most recent heart-related surgery or procedure?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
