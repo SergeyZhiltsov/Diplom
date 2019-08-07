@@ -205,9 +205,9 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(anginaOrChestPainPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -215,9 +215,9 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(anginaOrChestPainPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -225,9 +225,9 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
                 .clickNextButton(anginaOrChestPainPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -235,9 +235,9 @@ public class CV_3140_OLS_A_S extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 6 months ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
+                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
                 .clickNextButton(anginaOrChestPainPageOLS);
 
         anginaOrChestPainPageOLS
