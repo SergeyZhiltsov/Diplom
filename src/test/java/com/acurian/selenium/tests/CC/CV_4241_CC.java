@@ -233,7 +233,7 @@ public class CV_4241_CC extends BaseTest {
                 subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
                 .back(heartOrBloodVesselPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

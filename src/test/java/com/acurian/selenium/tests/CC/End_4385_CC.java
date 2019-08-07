@@ -498,11 +498,11 @@ public class End_4385_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(subquestionExperiencedHeartPageCC); //Display Q12.3: QS47C
         //Q12.3: QS47C
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
 
         //Q11: QS46
@@ -520,7 +520,7 @@ public class End_4385_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(subquestionExperiencedHeartPageCC); //Display Q12.4: QS47D
         //Q12.4: QS47D
         HashMap<String, List<String>> disqualifyQ124 = new HashMap<>();
@@ -532,7 +532,7 @@ public class End_4385_CC extends BaseTest {
         for (Map.Entry<String, List<String>> entry : disqualifyQ124.entrySet()) {
             System.out.println(entry.getKey());
             subquestionExperiencedHeartPageCC
-                    .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
+                    .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                     .clickOnAnswer(entry.getKey())
                     .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                     .waitForPageLoad()
@@ -541,7 +541,7 @@ public class End_4385_CC extends BaseTest {
                     .back(subquestionExperiencedHeartPageCC);
         }
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
         //Q11: QS46
         haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -551,7 +551,7 @@ public class End_4385_CC extends BaseTest {
         //Q13: QS48
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
         //Q14: QS49
         mostRecentHeartProcedurePageСС

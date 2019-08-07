@@ -2,21 +2,16 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.WhichOfTheFollowingLiverProblemsPageСС;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
-import com.acurian.selenium.pages.OLS.LOWT_3017.TransitionalStatementLowtPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.TransitionStatementCVbeginPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -373,22 +368,19 @@ public class DIA_4708_OLS extends BaseTest {
                 .back();
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"mini-stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "More than 1 year ago")
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -396,11 +388,10 @@ public class DIA_4708_OLS extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -408,11 +399,10 @@ public class DIA_4708_OLS extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -420,16 +410,15 @@ public class DIA_4708_OLS extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a heart attack?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced a TIA or mini-stroke?", "More than 1 year ago")
-                .clickOnAnswerForSubQuestion("When was the last time that you experienced angina or chest pain that required an overnight hospital stay?",
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageOLS());
 
         DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = mostRecentHeartProcedurePageOLS

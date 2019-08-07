@@ -424,17 +424,15 @@ public class IBS_5019_OLS extends BaseTest {
                 .back();
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"mini-stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -477,11 +475,30 @@ public class IBS_5019_OLS extends BaseTest {
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(subquestionExperiencedHeartPageOLS);
 
         for (String answer: disqualifyQ12GH) {
             System.out.println("Select answer for Q12.3GH: " + answer);
+            subquestionExperiencedHeartPageOLS
+                    .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                    .back();
+        }
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickNextButton(subquestionExperiencedHeartPageOLS);
+
+        for (String answer: disqualifyQ12GH) {
+            System.out.println("Select answer for Q12.4GH: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
@@ -493,25 +510,6 @@ public class IBS_5019_OLS extends BaseTest {
         }
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
-                .clickNextButton(subquestionExperiencedHeartPageOLS);
-
-        for (String answer: disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.4GH: " + answer);
-            subquestionExperiencedHeartPageOLS
-                    .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected5)
-                    .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                    .back();
-        }
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected5)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

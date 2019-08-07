@@ -8,9 +8,6 @@ import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.shared.DIA.AnyPrescribedMedicationPage;
-import com.acurian.selenium.pages.CC.shared.DIA.CurrentlyUseMetforminOrInsulinPageCC;
-import com.acurian.selenium.pages.CC.shared.DIA.UseDietAndExercisePageCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -203,18 +200,16 @@ public class DIA_4356A_CC extends BaseTest{
                 .back();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"mini-stroke\"",
-                        "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5,"1 - 3 months ago")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -248,7 +243,7 @@ public class DIA_4356A_CC extends BaseTest{
                 .back();
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
         mostRecentHeartProcedurePageСС

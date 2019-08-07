@@ -296,18 +296,18 @@ public class OA_5044_CC_S extends BaseTest {
 
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Heart attack", "Stroke", "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad();
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(1), subquestionExperiencedHeartPageCC.titleExpected1, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(2), subquestionExperiencedHeartPageCC.titleExpected2, "Title is diff");
-        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(3), subquestionExperiencedHeartPageCC.titleExpected5, "Title is diff");
+        Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(3), subquestionExperiencedHeartPageCC.titleExpected4, "Title is diff");
         HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "More than 1 year ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
 
         heartrelatedMedicalProceduresPageCC
@@ -364,21 +364,21 @@ public class OA_5044_CC_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5, "4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -387,7 +387,7 @@ public class OA_5044_CC_S extends BaseTest {
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected5, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         KidneyProblemsPage kidneyProblemsPage = heartrelatedMedicalProceduresPageCC

@@ -302,15 +302,15 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack")
                 .clickOnAnswers("Stroke")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS()); //Display Q12.1: QS47A
         //Q12.1 - 12.4:
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
 
         //Q11: QS46
@@ -599,6 +599,7 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not interested in receiving information")

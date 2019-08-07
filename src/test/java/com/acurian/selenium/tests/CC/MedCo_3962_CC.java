@@ -143,7 +143,7 @@ public class MedCo_3962_CC extends BaseTest {
                 .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC())
                 //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС())
                 //-----------MostRecentHeartProcedurePageOLS page-----------
                 .waitForPageLoad()

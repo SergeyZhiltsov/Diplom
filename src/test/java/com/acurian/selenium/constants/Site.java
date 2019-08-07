@@ -88,7 +88,7 @@ public enum Site {
     AUT_OA_4831_Syn("AUT_OA_4831_Syn", "19422", "41C", false, false, "R475_PN_1523_B"),
     AUT_OA_4831_site("AUT_OA_4831_site", "19901", "1R", true, false, "R475_PN_1523_B"),
     //4825
-    AUT_AMS1_4825_site("AUT_AMS1_4825_site", "08204", "1R", true, false, "GS40965"),
+    AUT_AMS1_4825_site("AUT_AMS1_4825_site", "08204", "1R", true, true, "GS40965"),
     //4849
     AUT_DERM_4849_Site("AUT_DERM_4849_Site", "19901", "1R", true, false, "ANB020_005"),
     //4867
