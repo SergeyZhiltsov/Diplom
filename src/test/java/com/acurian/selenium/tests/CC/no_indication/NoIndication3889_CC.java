@@ -176,8 +176,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4,
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -188,8 +187,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4,
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -200,8 +198,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(4,
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -212,8 +209,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4,
-                        "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -224,8 +220,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4,
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC);
 
         KidneyProblemsPage kidneyProblemsPage = heartrelatedMedicalProceduresPageCC

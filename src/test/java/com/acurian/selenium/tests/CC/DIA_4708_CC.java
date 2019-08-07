@@ -374,8 +374,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4,
-                        "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
