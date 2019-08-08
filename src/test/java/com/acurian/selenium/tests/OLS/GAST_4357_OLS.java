@@ -814,7 +814,6 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickOnFacilityName(site.name)
                     .clickNextButton(new QualifiedCloseGastroPageOLS())
                     .waitForPageLoad()
-                    .waitForPageLoad()
                     .clickNextButton(new SynexusHealthyMindsPageOLS())
                     .waitForPageLoad()
                     .clickOnAnswer("No, I am not interested in receiving information")
