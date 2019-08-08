@@ -45,7 +45,7 @@ public class IBD_4818_CC_UC extends BaseTest {
     @Test(dataProvider = "flare")
     @Description("IBD 4818 for CC Allergan UC")
     public void IBD_4818_CCTest(boolean flare) {
-        Site site = Site.AUT_IBD_4818_Site;
+        Site site = Site.AUT_AMS1_4818_Site;
         String phoneNumber = "AUTAMS1IBD";
 
         String studyName = "Crohn's or colitis";
@@ -699,7 +699,7 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a Crohn's study")
+                .waitForPageLoad("a colitis study")
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())

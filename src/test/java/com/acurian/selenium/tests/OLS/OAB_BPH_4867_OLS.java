@@ -72,6 +72,7 @@ public class OAB_BPH_4867_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setDate("05051930")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS);
