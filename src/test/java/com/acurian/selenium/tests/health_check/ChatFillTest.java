@@ -20,70 +20,84 @@ public class ChatFillTest extends BaseTest {
     @Test()
     public void chatFillTest() {
         String phoneNumber = "GBAN100011";
-        String testUrl = "https://test-screener.acurian.com/questionnaire_test_qa_chartfill/welcome?pn=" + phoneNumber;
+        //String testUrl = "https://test-screener.acurian.com/questionnaire_test_qa_chartfill/welcome?pn=" + phoneNumber;
         String siteZipCode = "19044";
-
-        WebDriver driver = getDriver();
-        driver.navigate().to(testUrl);
+        String env = System.getProperty("acurian.env", "QA");
 
         LetsStartPageOLS letsStartPageOLS = new LetsStartPageOLS();
+        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 
-        DateOfBirthPageOLS dateOfBirthPageOLS = letsStartPageOLS
+        letsStartPageOLS
+                .getPage(dateOfBirthPageOLS)
+                .openPage(env, phoneNumber);
+
+        letsStartPageOLS
                 .waitForPageLoad()
-                .clickNextButton(new DateOfBirthPageOLS());
+                .clickNextButton(dateOfBirthPageOLS);
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGBAN()
                 .setDate("01011950")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
+
         PersonalDetails personalDetails = behalfOfSomeoneElsePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Self")
                 .clickNextButton(new PersonalDetails());
+
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         siteZipCode)
                 .clickNextButton(new GenderPageOLS());
+
         ApproximateHeightPageOLS approximateHeightPageOLS = genderPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadByTitle(genderPageOLS.titleExpected)
                 .clickOnAnswer("Female")
                 .clickNextButton(new ApproximateHeightPageOLS());
+
         HealthcareDiagnosedConditionsPageOLS healthcareDiagnosedConditionsPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new HealthcareDiagnosedConditionsPageOLS());
+
         UndergoneGeneticTestingPageOLS undergoneGeneticTestingPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoadGBAN()
                 .clickOnAnswersGBAN("Alzheimer's disease")
                 .clickNextButton(new UndergoneGeneticTestingPageOLS());
+
         undergoneGeneticTestingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, and I have or can get the results")
                 .clickNextButton(personalDetails);
+
         SiteSelectionPageOLS siteSelectionPageOLS = personalDetails
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
+
         HSCrohns2PageOLS hsCrohns2PageOLS = siteSelectionPageOLS
                 .waitForPageLoadGBAN()
-                //.clickOnDebugSiteName("QSC9004_AUT_GRAD2_3138")
+                .getPID()
                 .clickOnFacilityName("AUT_GBAN1_2929")
                 .clickNextButton(new HSCrohns2PageOLS());
+
         ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS = hsCrohns2PageOLS
                 .waitForPageLoadGBAN()
                 .clickNextButton(new ChatfillMedicalRecordReleaseFormPageOLS());
+
         AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
                 .waitForPageLoad()
                 .confirmPatientInformation()
                 .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
                         "2 walnut grove dr.", "HORSHAM", siteZipCode)
                 .clickSignForm(new AdobeSignMedAuthFormPage());
-        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = adobeSignMedAuthFormPage
+
+        ChatfillThankYouPageOLS chatfillThankYouPageOLS = adobeSignMedAuthFormPage
                 .waitForPageLoad()
                 .setSignature("Acurian")
-                .clickToSignButton(new ThankYouCloseGmegaOLS());
-        thankYouCloseGmegaOLS
-                .waitForPageLoadByTitle(thankYouCloseGmegaOLS.titleExpectedGBAN)
-                .clickNextButton(new AboutHealthPageOLS());
+                .clickToSignButton(new ChatfillThankYouPageOLS());
+
+        chatfillThankYouPageOLS
+                .waitForPageLoad();
     }
 }

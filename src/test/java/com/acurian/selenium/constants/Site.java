@@ -27,7 +27,7 @@ public enum Site {
     //3839
     AUT_IBD_3839_Site("AUT_IBD_3839_Site", "19901", "1R", false, false, "SHP647_301", "SHP647_302"),
 
-    AUT_IBD_4818_Site("AUT_IBD_4818_Site", "19422", "1R", true, true, "3151_201_008", "3150_301_008"),
+    AUT_AMS1_4818_Site("AUT_AMS1_4818_Site", "19422", "1R", true, true, "3151_201_008", "3150_301_008"),
     //3889
     AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19901" , "1R", true, false, "M14_431", "M14_433", "M15_991", "M16_006"),
     //3973
