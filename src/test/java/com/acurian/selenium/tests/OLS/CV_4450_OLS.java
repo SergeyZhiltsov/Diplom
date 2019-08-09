@@ -85,6 +85,7 @@ public class CV_4450_OLS extends BaseTest {
                         .clickOnAnswer("Female")
                         .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
                         .clickNextButton(lessThan18YearsOldPageOLS)
+                        .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                         .back(genderPageOLS)
@@ -202,6 +203,7 @@ public class CV_4450_OLS extends BaseTest {
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
                     .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
                     .back();
@@ -221,6 +223,7 @@ public class CV_4450_OLS extends BaseTest {
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
                     .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
                     .back();
@@ -240,6 +243,7 @@ public class CV_4450_OLS extends BaseTest {
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
                     .clickOnAnswerForSubQuestion(1, answer)
                     .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
                     .back();
@@ -259,6 +263,7 @@ public class CV_4450_OLS extends BaseTest {
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
                     .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
                     .back();

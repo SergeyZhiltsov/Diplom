@@ -73,6 +73,7 @@ public class IBS_5019_OLS extends BaseTest {
                 .clickOnAnswer("Male")
                 .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
                 .clickNextButton(lessThan18YearsOldPageOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS)
@@ -112,6 +113,7 @@ public class IBS_5019_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(whichOfTheFollowingExperienceIrritablePageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6603", site.activeProtocols)
                     .back();
@@ -143,6 +145,7 @@ public class IBS_5019_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Constipation")
                 .clickNextButton(abdominalPainWhenHavingIBSPageOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6605", site.activeProtocols)
                 .back(whichSymptomOccursPageOLS)

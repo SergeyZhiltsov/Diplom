@@ -18,6 +18,9 @@ public class SubquestionsIBDShireCrohnsPageCC extends MainPageCC{
     public final String titleExpected3 = "In the past 24 hours, what is your level of abdominal pain on a scale of 0 (no pain at all) to 10 (worst pain imaginable)?";
     public final String titleExpected4 = "Over the past week, how many liquid or very soft bowel movements, or episodes of diarrhea per day did you have on average?";
     public final String titleExpected5 = "Over the past week, how would you rate your average level of abdominal pain or cramping?";
+    public final String titleExpected6 = "On an average day, how many total bowel movements do you have?";
+    public final String titleExpected7 = "In the past 24 hours, how many total bowel movements did you have?";
+    public final String titleExpected8 = "Over the past 24 hours, did you notice any blood in your stool, on toilet tissue, or in the toilet bowl?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -28,11 +31,17 @@ public class SubquestionsIBDShireCrohnsPageCC extends MainPageCC{
     @FindBy(xpath = "//input[contains(@id,'QS5724A.rawAnswer')]")
     WebElement avgDayBowel;
 
+    @FindBy(xpath = "//*[@id='answersQS5725A.rawAnswer']")
+    WebElement averageDayTotalBowelMovements;
+
     @FindBy(xpath = "//input[@id = 'answersQS5731A.rawAnswer']")
     WebElement overPastWeekAvgDayBowel;
     
     @FindBy(xpath = "//input[contains(@id,'QS5724B.rawAnswer')]")
     WebElement past24hrBowel;
+
+    @FindBy(xpath = "//*[@id='answersQS5725B.rawAnswer']")
+    WebElement past24HoursTotalBowelMovements;
     
     @FindBy(xpath = "//input[contains(@id,'QS5724C.rawAnswer')]")
     WebElement abdominalpainScale;
@@ -58,10 +67,22 @@ public class SubquestionsIBDShireCrohnsPageCC extends MainPageCC{
         typeText(avgDayBowel, text);
         return this;
     }
+
+    @Step
+    public SubquestionsIBDShireCrohnsPageCC setAverageDayTotalBowelMovements(String text) {
+        typeText(averageDayTotalBowelMovements, text);
+        return this;
+    }
     
     @Step
     public SubquestionsIBDShireCrohnsPageCC past24hrBowelMovements(String text) {
         typeText(past24hrBowel, text);
+        return this;
+    }
+
+    @Step
+    public SubquestionsIBDShireCrohnsPageCC setPast24HoursTotalBowelMovements(String text) {
+        typeText(past24HoursTotalBowelMovements, text);
         return this;
     }
     

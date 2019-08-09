@@ -231,45 +231,48 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                         "Unsure")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BiologicMedicationsPageCC());
-
-        LinkedHashMap<String, List<String>> medications = new LinkedHashMap<>();
-        medications.put("Actemra (Agent Note: ac-TEM-ruh)", Arrays.asList(site.activeProtocols));
-        medications.put("Benlysta (Agent Note: ben-LIST-uh)", Arrays.asList(site.activeProtocols));
-        medications.put("Cimzia (Agent Note: SIM-zee-uh)", Arrays.asList(site.activeProtocols));
-        medications.put("Cosentyx (Agent Note: co-SEN-tix)", Arrays.asList(site.activeProtocols));
-        medications.put("Enbrel (Agent Note: EN-brel)", Arrays.asList(site.activeProtocols));
-        medications.put("Kineret (Agent Note: KIN-er-et)", Arrays.asList(site.activeProtocols));
-        medications.put("Orencia (Agent Note: oh-REN-see-uh)", Arrays.asList(site.activeProtocols));
-        medications.put("Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)", Arrays.asList(site.activeProtocols));
-        medications.put("Raptiva (Agent Note: rap-TEE-vuh)", Arrays.asList(site.activeProtocols));
-        medications.put("Rituxan (Agent Note: rih-TUX-an)", Arrays.asList(site.activeProtocols));
-        medications.put("Stelara (Agent Note: ste-LAHR-uh)", Arrays.asList(site.activeProtocols));
-        medications.put("Taltz (Agent Note: TALTS)", Arrays.asList(site.activeProtocols));
-        medications.put("Tysabri (Agent Note: tie-SAB-ree)", Arrays.asList(site.activeProtocols));
-
-        for (Map.Entry<String, List<String>> entry : medications.entrySet()) {
-            biologicMedicationsPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
-                    .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols)
-                    .back();
-        }
-        biologicMedicationsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols)
-                .back();
+//
+//        LinkedHashMap<String, List<String>> medications = new LinkedHashMap<>();
+//        medications.put("Actemra (Agent Note: ac-TEM-ruh)", Arrays.asList(site.activeProtocols));
+//        medications.put("Benlysta (Agent Note: ben-LIST-uh)", Arrays.asList(site.activeProtocols));
+//        medications.put("Cimzia (Agent Note: SIM-zee-uh)", Arrays.asList(site.activeProtocols));
+//        medications.put("Cosentyx (Agent Note: co-SEN-tix)", Arrays.asList(site.activeProtocols));
+//        medications.put("Enbrel (Agent Note: EN-brel)", Arrays.asList(site.activeProtocols));
+//        medications.put("Kineret (Agent Note: KIN-er-et)", Arrays.asList(site.activeProtocols));
+//        medications.put("Orencia (Agent Note: oh-REN-see-uh)", Arrays.asList(site.activeProtocols));
+//        medications.put("Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)", Arrays.asList(site.activeProtocols));
+//        medications.put("Raptiva (Agent Note: rap-TEE-vuh)", Arrays.asList(site.activeProtocols));
+//        medications.put("Rituxan (Agent Note: rih-TUX-an)", Arrays.asList(site.activeProtocols));
+//        medications.put("Stelara (Agent Note: ste-LAHR-uh)", Arrays.asList(site.activeProtocols));
+//        medications.put("Taltz (Agent Note: TALTS)", Arrays.asList(site.activeProtocols));
+//        medications.put("Tysabri (Agent Note: tie-SAB-ree)", Arrays.asList(site.activeProtocols));
+//
+//        for (Map.Entry<String, List<String>> entry : medications.entrySet()) {
+//            biologicMedicationsPageCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(entry.getKey())
+//                    .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols)
+//                    .back();
+//        }
+//        biologicMedicationsPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols)
+//                .back();
 
         biologicMedicationsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Remicade (Agent Note: REM-ih-cade)")
+                .clickNextButton(biologicMedicationsPageCC)
+                .waitForPageLoadNew()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC);
 
         //Q17
@@ -289,7 +292,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                     .waitForPageLoad(2, subquestionsIBDUlcerativeColitisPageCC.titleExpected2)
                     .waitForPageLoad(3, subquestionsIBDUlcerativeColitisPageCC.titleExpected3)
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-3") //Flare Status: "INITIAL_ACTIVE" (In Flare)
+                    .checkStudyStatusContainsForQNumber("QS5730", "2-3") //Flare Status: "INITIAL_ACTIVE" (In Flare)
                     .back();
         }
         crohnsDiseaseOrUlcerativeColitisFlarePageCC
@@ -297,7 +300,7 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
                 .clickNextButton(subquestionsIBDUlcerativeColitisPageCC)
                 .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-4"); //Flare Status: "INITIAL_INACTIVE" (Not in Flare)
+                .checkStudyStatusContainsForQNumber("QS5730", "2-4"); //Flare Status: "INITIAL_INACTIVE" (Not in Flare)
 
         //Q18
         HowWouldYouRateCC howWouldYouRateCC = subquestionsIBDUlcerativeColitisPageCC
@@ -478,6 +481,9 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad("a colitis study")
                 .getPID()
                 .clickOnAnswer(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new HSGeneralCC())
                 .waitForPageLoadEmailNotProvided()
                 .typeEmail("qa.acurian@gmail.com")

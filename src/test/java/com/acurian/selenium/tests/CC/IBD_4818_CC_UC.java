@@ -45,7 +45,7 @@ public class IBD_4818_CC_UC extends BaseTest {
     @Test(dataProvider = "flare")
     @Description("IBD 4818 for CC Allergan UC")
     public void IBD_4818_CCTest(boolean flare) {
-        Site site = Site.AUT_IBD_4818_Site;
+        Site site = Site.AUT_AMS1_4818_Site;
         String phoneNumber = "AUTAMS1IBD";
 
         String studyName = "Crohn's or colitis";
@@ -369,31 +369,36 @@ public class IBD_4818_CC_UC extends BaseTest {
 //                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC);
 
         //Q17
-        SubquestionsIBDShireCrohnsPageCC subquestionsIBDShireCrohnsPageCC = crohnsDiseaseOrUlcerativeColitisFlarePageCC
-                .waitForPageLoad()
-                .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
-                .clickNextButton(new SubquestionsIBDShireCrohnsPageCC());
-
-        //Q18
+        crohnsDiseaseOrUlcerativeColitisFlarePageCC
+                .waitForPageLoad();
+        SubquestionsIBDShireCrohnsPageCC subquestionsIBDShireCrohnsPageCC = new SubquestionsIBDShireCrohnsPageCC();
         HowWouldYouRateCC howWouldYouRateCC = new HowWouldYouRateCC();
         if (flare) {
-            subquestionsIBDShireCrohnsPageCC
-                    .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-                    .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-                    .overPastWeekAvgDayBowel("1")
-                    .clickOnAnswerForSubQuestion(2, "No pain or cramping")
+            crohnsDiseaseOrUlcerativeColitisFlarePageCC
+                    .clickOnAnswer("Mild symptoms, but tolerable")
+                    .clickNextButton(subquestionsIBDShireCrohnsPageCC)
+                    .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected6)
+                    .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected7)
+                    .setAverageDayTotalBowelMovements("3")
+                    .setPast24HoursTotalBowelMovements("10")
+                    .clickOnAnswerForSubQuestion(3, "Yes")
                     .clickNextButton(howWouldYouRateCC)
+                    .waitForPageLoadSymptoms()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS5732", "2-4");
+                    .checkStudyStatusContainsForQNumber("QS5730", "2-3");
         } else {
-            subquestionsIBDShireCrohnsPageCC
-                    .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected4)
-                    .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected5)
-                    .overPastWeekAvgDayBowel("3")
-                    .clickOnAnswerForSubQuestion(2, "Moderate (interferes with my usual activity)")
+            crohnsDiseaseOrUlcerativeColitisFlarePageCC
+                    .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
+                    .clickNextButton(subquestionsIBDShireCrohnsPageCC)
+                    .waitForPageLoad(1, subquestionsIBDShireCrohnsPageCC.titleExpected6)
+                    .waitForPageLoad(2, subquestionsIBDShireCrohnsPageCC.titleExpected7)
+                    .setAverageDayTotalBowelMovements("1")
+                    .setPast24HoursTotalBowelMovements("1")
+                    .clickOnAnswerForSubQuestion(3, "Yes")
                     .clickNextButton(howWouldYouRateCC)
+                    .waitForPageLoadSymptoms()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS5732", "2-3");
+                    .checkStudyStatusContainsForQNumber("QS5730", "2-4");
         }
         //Q21.3
         HaveAnyOfTheFollowingPageCC haveAnyOfTheFollowingPageCC = howWouldYouRateCC
@@ -409,7 +414,6 @@ public class IBD_4818_CC_UC extends BaseTest {
         disqualifyQ24.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols)); //Disqualify (“Crohn’s complication or surgery”)
         disqualifyQ24.put("Colostomy", Arrays.asList(site.activeProtocols));
         disqualifyQ24.put("Ileostomy", Arrays.asList(site.activeProtocols));
-        disqualifyQ24.put("An abscess in your abdomen or pelvic region (an inflamed area with collection of pus)", Arrays.asList(site.activeProtocols));
         disqualifyQ24.put("Feeding tube", Arrays.asList(site.activeProtocols));
         disqualifyQ24.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols));
         disqualifyQ24.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols));
@@ -640,7 +644,7 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0], site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -649,97 +653,57 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0], site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
-        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+        List<String> disqualifyQS59 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis",
+                "Drug or alcohol abuse within the past year",
+                "Hepatitis B",
+                "Hepatitis C",
+                "HIV or AIDS"); //Kidney disease requiring dialysis is not displayed
+        for (String answer: disqualifyQS59) {
+            System.out.println("Select answer for QS59: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
+                .clickOnAnswers("Multiple sclerosis (MS)")
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
+                .back(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
 
-
-        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+        approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "7", "170")
-                .clickNextButton(new LetMeSeePageCC());
-        HSMedicalRecordsPageCC hsMedicalRecordsPageCC  = letMeSeePageCC
+                .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a Crohn's study")
+                .waitForPageLoad("a colitis study")
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoadIBD("Crohn's Disease")
-                .clickNextButton(new HSMedicalRecordsPageCC())
-                .waitForPageLoad();
-//        if(flareStatus.equals("Not in Flare")) {
-//            hsMedicalRecordsPageCC
-//                    .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
-//                    .waitForPageLoad()
-//                    .getActivationCode();
-//        }
-        hsMedicalRecordsPageCC
+                .clickNextButton(new QualifiedClose2PageCC())
+                .waitForPageLoadIBD()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
@@ -749,5 +713,4 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
-
 }
