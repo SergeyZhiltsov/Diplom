@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LetsStartPageOLS extends MainPageOLS {
-    public final String titleExpected = "Let's start!";
+    public final String titleExpected = "The Generation Study is enrolling now.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
