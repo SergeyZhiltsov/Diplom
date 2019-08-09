@@ -110,7 +110,7 @@ public class IBD_3485_SHORT_OLS extends BaseTest{
         		debugPageOLS.back();
         		whenWereYouDiagnosedWithCrohnsPageOLS.waitForPageLoad();
         		ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = whenWereYouDiagnosedWithCrohnsPageOLS
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(new ManageYourCrohnsPageOLS());
 
        

@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHype
 import com.acurian.selenium.pages.CC.SUI_3923.HaveYouGoneThroughMenopauseCC;
 import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
 import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
+import com.acurian.selenium.pages.CC.closes.MedicalRecordsOptionPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -498,11 +499,11 @@ public class End_4385_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("TIA or \"mini-stroke\"")
+                .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(subquestionExperiencedHeartPageCC); //Display Q12.3: QS47C
         //Q12.3: QS47C
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
 
         //Q11: QS46
@@ -520,7 +521,7 @@ public class End_4385_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight hospital stay")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(subquestionExperiencedHeartPageCC); //Display Q12.4: QS47D
         //Q12.4: QS47D
         HashMap<String, List<String>> disqualifyQ124 = new HashMap<>();
@@ -532,7 +533,7 @@ public class End_4385_CC extends BaseTest {
         for (Map.Entry<String, List<String>> entry : disqualifyQ124.entrySet()) {
             System.out.println(entry.getKey());
             subquestionExperiencedHeartPageCC
-                    .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
+                    .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                     .clickOnAnswer(entry.getKey())
                     .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                     .waitForPageLoad()
@@ -541,7 +542,7 @@ public class End_4385_CC extends BaseTest {
                     .back(subquestionExperiencedHeartPageCC);
         }
         subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
         //Q11: QS46
         haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -551,7 +552,7 @@ public class End_4385_CC extends BaseTest {
         //Q13: QS48
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty")
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
         //Q14: QS49
         mostRecentHeartProcedurePageСС
@@ -806,6 +807,9 @@ public class End_4385_CC extends BaseTest {
                 .clickOnAnswer(site.name)
 //                .clickNextButton(new HSGeneralCC())
 //                .waitForPageLoad(site_Indication)
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())

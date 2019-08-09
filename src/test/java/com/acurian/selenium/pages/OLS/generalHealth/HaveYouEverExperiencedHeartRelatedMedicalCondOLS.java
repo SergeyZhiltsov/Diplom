@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HaveYouEverExperiencedHeartRelatedMedicalCondOLS extends MainPageOLS{
 
-    public final String titleExpected = "Have you ever experienced or been diagnosed with any of the following specific heart-related medical conditions?\n" +
+    public final String titleExpected = "Have you ever had or suffered from any of the following heart-related events or conditions?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
@@ -40,6 +40,4 @@ public class HaveYouEverExperiencedHeartRelatedMedicalCondOLS extends MainPageOL
     public String getTitleText(){
         return getText(titleText);
     }
-
-
 }

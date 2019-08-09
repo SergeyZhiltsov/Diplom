@@ -5,15 +5,14 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
 public class HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC extends MainPageCC {
 
-    public final String titleExpected = "Have you undergone any of the following heart-related medical procedures?\n" +
-    		"Agent Note: Select all that apply";
+    public final String titleExpected = "Have you ever had any of the following heart-related surgeries or procedures?\n" +
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;

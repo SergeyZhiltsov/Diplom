@@ -4,10 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.*;
 import com.acurian.selenium.pages.CC.IBD.*;
-import com.acurian.selenium.pages.CC.closes.DoctorInformationCollectionPageCC;
-import com.acurian.selenium.pages.CC.closes.HSMedicalRecordsPageCC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -72,7 +69,7 @@ public class IBD_3264_CC_HS extends BaseTest {
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
 
         IdentificationPageCC identificationPageCC =
@@ -82,7 +79,7 @@ public class IBD_3264_CC_HS extends BaseTest {
 //        identificationPageCC
 //                .waitForPageLoadNotQ()
 //                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("Q0004929-QSI8005-STUDYQUES", site.activeProtocols)
+//                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
 //                .back();
 //        dateOfBirthPageCC
 //                .setYear("1980")
@@ -112,7 +109,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols)
                 .clickNextButton(new WhenDiagnosedCrohnsPageCC());//Check flow to Q7 and back
         whenDiagnosedCrohnsPageCC
                 .waitForPageLoad()
@@ -124,7 +121,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .clickOnAnswers("Ulcerative colitis") //If selected both "Crohn's disease" AND "Ulcerative colitis", Disqualify ("Referral Priority")
                 .clickNextButton(crohnsDiseaseDoctorOrNursePageСС)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols)
                 .back(diagnosedWithCrohnsPageCC);
 
         //Q2
@@ -137,7 +134,7 @@ public class IBD_3264_CC_HS extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015878-QS5702-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols)
                 .back();
 
         //Q2
@@ -153,14 +150,14 @@ public class IBD_3264_CC_HS extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020426-QS5727-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols)
                 .back(ulcerativeColitisDoctorOrNursePageСС)
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
                 .clickNextButton(nonQRtransitionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020426-QS5727-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols)
                 .back(ulcerativeColitisDoctorOrNursePageСС)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -173,10 +170,10 @@ public class IBD_3264_CC_HS extends BaseTest {
         partOfDiagnosisFollowingProceduresDonePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015881-QS5704-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5704", site.activeProtocols)
                 .back(whenDiagnosedCrohnsPageCC)
                 .waitForPageLoadULC()
-                .clickOnAnswer("3 - 6 months ago")
+                .clickOnAnswer("3 – 6 months ago")
                 .clickNextButton(partOfDiagnosisFollowingProceduresDonePageCC);
         //Q8
         ManageYourCrohnsPageCC manageYourCrohnsPageCC = partOfDiagnosisFollowingProceduresDonePageCC
@@ -186,13 +183,13 @@ public class IBD_3264_CC_HS extends BaseTest {
         manageYourCrohnsPageCC //Q9
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0020428-QS5729-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5729", site.activeProtocols)
                 .back(partOfDiagnosisFollowingProceduresDonePageCC);
         partOfDiagnosisFollowingProceduresDonePageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Endoscopy - a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
+                .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
                         "Colonoscopy – a thin, flexible, lighted tube is inserted through the rectum and into the entire colon (large intestine). This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
-                        "Sigmoidoscopy - a thin, flexible, lighted tube is inserted through the rectum and into the section of the colon (large intestine) closest to the rectum. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
+                        "Sigmoidoscopy – a thin, flexible, lighted tube is inserted through the rectum and into the section of the colon (large intestine) closest to the rectum. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
                 .clickNextButton(manageYourCrohnsPageCC);
         //Q9
         CrohnsDiseaseOrUlcerativeColitisFlarePageCC crohnsDiseaseOrUlcerativeColitisFlarePageCC = manageYourCrohnsPageCC
@@ -201,7 +198,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .clickNextButton(new CrohnsDiseaseOrUlcerativeColitisFlarePageCC());
         SteroidMedicationsForCrohnsCC steroidMedicationsForCrohnsCC = crohnsDiseaseOrUlcerativeColitisFlarePageCC
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015883-QS5706-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5706", site.activeProtocols)
                 .back(manageYourCrohnsPageCC)
                 .clickOnAnswer("Yes") //Q10
                 .clickNextButton(new SteroidMedicationsForCrohnsCC());
@@ -245,25 +242,51 @@ public class IBD_3264_CC_HS extends BaseTest {
                         "Cimzia (Agent Note: SIM-zee-uh)",
                         "Cosentyx (Agent Note: co-SEN-tix)",
                         "Enbrel (Agent Note: EN-brel)",
+                        "Entyvio (Agent Note: en-TIV-ee-oh)",
+                        "Humira (Agent Note: hue-MAIR-uh)",
                         "Kineret (Agent Note: KIN-er-et)",
                         "Orencia (Agent Note: oh-REN-see-uh)",
                         "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
                         "Raptiva (Agent Note: rap-TEE-vuh)",
+                        "Remicade (Agent Note: REM-ih-cade)",
                         "Rituxan (Agent Note: rih-TUX-an)",
+                        "Simponi (Agent Note: SIM-po-nee)",
                         "Stelara (Agent Note: ste-LAHR-uh)",
                         "Taltz (Agent Note: TALTS)",
                         "Tysabri (Agent Note: tie-SAB-ree)")
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC)
-                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Stelara (Agent Note: ste-LAHR-uh)")
+                .clickNextButton(biologicMedicationsPageCC)
+                .waitForPageLoadNew()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015899-QS5711-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5710", site.activeProtocols)
                 .back(biologicMedicationsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Remicade (Agent Note: REM-ih-cade)",
+                .clickOnAnswers("Remicade (Agent Note: REM-ih-cade)")
+                .clickNextButton(biologicMedicationsPageCC);
+
+//Q14	Are you currently receiving regular doses of any of the following "biologic" medications?
+        biologicMedicationsPageCC
+                .waitForPageLoadNew()
+                .clickOnAnswers("Actemra (Agent Note: ac-TEM-ruh)",
+                        "Benlysta (Agent Note: ben-LIST-uh)",
+                        "Cimzia (Agent Note: SIM-zee-uh)",
+                        "Cosentyx (Agent Note: co-SEN-tix)",
+                        "Enbrel (Agent Note: EN-brel)",
+                        "Entyvio (Agent Note: en-TIV-ee-oh)",
                         "Humira (Agent Note: hue-MAIR-uh)",
+                        "Kineret (Agent Note: KIN-er-et)",
+                        "Orencia (Agent Note: oh-REN-see-uh)",
+                        "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
+                        "Raptiva (Agent Note: rap-TEE-vuh)",
+                        "Remicade (Agent Note: REM-ih-cade)",
+                        "Rituxan (Agent Note: rih-TUX-an)",
                         "Simponi (Agent Note: SIM-po-nee)",
-                        "Entyvio (Agent Note: en-TIV-ee-oh)")
+                        "Stelara (Agent Note: ste-LAHR-uh)",
+                        "Taltz (Agent Note: TALTS)",
+                        "Tysabri (Agent Note: tie-SAB-ree)")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageCC);
 
         //Q17
@@ -283,7 +306,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                     .waitForPageLoad(2, subquestionsIBDUlcerativeColitisPageCC.titleExpected2)
                     .waitForPageLoad(3, subquestionsIBDUlcerativeColitisPageCC.titleExpected3)
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-3")
+                    .checkStudyStatusContainsForQNumber("QS5730", "2-3")
                     .back();
         }
         crohnsDiseaseOrUlcerativeColitisFlarePageCC
@@ -291,7 +314,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
                 .clickNextButton(subquestionsIBDUlcerativeColitisPageCC)
                 .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("Q0020429-QS5730-STUDYQUES", "2-4"); //Flare Status: "INITIAL_INACTIVE" (Not in Flare)
+                .checkStudyStatusContainsForQNumber("QS5730", "2-4"); //Flare Status: "INITIAL_INACTIVE" (Not in Flare)
 
         //Q18
         HowWouldYouRateCC howWouldYouRateCC = subquestionsIBDUlcerativeColitisPageCC
@@ -327,7 +350,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                     .clickNextButton(transitionStatementCC)
                     .waitForPageLoadWithCurves(studyName)
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0020441-QS5733-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5733", site.activeProtocols)
                     .back();
         }
         haveAnyOfTheFollowingPageCC
@@ -351,7 +374,7 @@ public class IBD_3264_CC_HS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
@@ -359,7 +382,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
@@ -377,7 +400,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -385,59 +408,40 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
 
-        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+        List<String> disqualifyQS59 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis",
+                "Drug or alcohol abuse within the past year",
+                "Hepatitis B",
+                "Hepatitis C",
+                "HIV or AIDS"); //Kidney disease requiring dialysis is not displayed
+        for (String answer: disqualifyQS59) {
+            System.out.println("Select answer for QS59: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .back(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
@@ -454,6 +458,9 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .waitForPageLoad("a colitis study")
                 .getPID()
                 .clickOnAnswer(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageCC())
                 .waitForPageLoadIBD("Ulcerative Colitis")
                 .clickNextButton(new HSMedicalRecordsPageCC())

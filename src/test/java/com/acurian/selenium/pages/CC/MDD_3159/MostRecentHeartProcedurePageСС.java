@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MostRecentHeartProcedurePageСС extends MainPageCC{
 
-    public final String titleExpected = "When was your most recent heart procedure?";
+    public final String titleExpected = "When was your most recent heart-related surgery or procedure?";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -38,5 +38,4 @@ public class MostRecentHeartProcedurePageСС extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

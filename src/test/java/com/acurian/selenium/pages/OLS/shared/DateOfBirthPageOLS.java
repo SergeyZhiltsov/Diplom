@@ -338,6 +338,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
             "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.";
 
+
+    public final String titleExpectedGBAN = "The Generation Study is enrolling now.";
+
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText1;
@@ -411,6 +414,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement titleTextGH3;
+
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
+    WebElement titleTextGBAN;
 
     WebElement titleTextGH;
 
@@ -494,6 +500,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return this;
     }
 
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadGBAN() {
+        waitForPageLoadMain(titleTextGBAN, titleExpectedGBAN);
+        return this;
+    }
+
     @Deprecated
     @Step
     public DateOfBirthPageOLS setDate(String date) {
@@ -555,5 +567,4 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public String getTitleTextVer3() {
         return getText(titleText2Ver);
     }
-
 }

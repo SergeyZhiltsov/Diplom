@@ -12,7 +12,6 @@ import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHype
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -439,19 +438,17 @@ public class DERM_4967_CC extends BaseTest {
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC =
                 haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                                "Stroke",
-                                "TIA or \"mini-stroke\"",
-                                "Angina (heart-related chest pain) that required an overnight hospital stay",
-                                "Heart failure or congestive heart failure (CHF)")
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
+						"Heart failure or congestive heart failure (CHF)")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC()); //Display Q12.1: QS47A
         //Q12
         HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC =
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
@@ -460,12 +457,9 @@ public class DERM_4967_CC extends BaseTest {
         //Q13: QS48
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angioplasty",
-                        "Stent placement",
-                        "Atherectomy",
-                        "Procedure to clear plaque from blood vessels in the neck such as carotid endarterectomy",
-                        "Coronary artery bypass graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
-                        "Revascularization")
+                .clickOnAnswers("Stent placement in your heart, neck or legs",
+                        "Heart bypass surgery or Coronary Artery Bypass Graft (CABG)",
+                        "Any other surgery on the arteries in your legs, neck or heart")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
         //Q14: QS49
         mostRecentHeartProcedurePageСС
@@ -475,8 +469,8 @@ public class DERM_4967_CC extends BaseTest {
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected4)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected5)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .back();
