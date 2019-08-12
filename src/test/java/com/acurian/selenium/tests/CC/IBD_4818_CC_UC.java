@@ -703,7 +703,7 @@ public class IBD_4818_CC_UC extends BaseTest {
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoadIBD()
+                .waitForPageLoadIBD4818()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
