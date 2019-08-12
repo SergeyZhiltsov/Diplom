@@ -39,13 +39,16 @@ public class InstantFUL extends BaseTest {
     @Description("Test for Instant Follow-Up Letter (FUL) Validation")
     public void instantFUL(Site site) {
         final String phoneNumber = "GMEGA00001";
-        final String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!";
+
+        final String studyName = "a rheumatoid arthritis (RA)";
         String env = System.getProperty("acurian.env", "QA");
+        final String studyNameClose = env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!" :
+        "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("an osteoarthritis", "700")
+                .waitForPageLoad(studyName, "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -97,14 +100,17 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
+
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
-                .waitForPageLoad1(studyName)
+                .waitForPageLoad1(studyNameClose)
                 .clickOnFacilityName(site.name)
                 .getPID()
                 .clickNextButton(new QualifiedClose2PageOLS());
+
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedClose2PageOLS
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseGmegaOLS());
+
         thankYouCloseGmegaOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

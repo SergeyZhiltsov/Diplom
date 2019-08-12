@@ -103,7 +103,7 @@ public class GmegaToGban extends BaseTest {
                 .clickNextButton(dateOfBirthPageOLS);
 
         dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGBAN()
                 .setDate("09/09/1955")
                 .clickNextButton(behalfOfSomeoneElsePageOLS);
 

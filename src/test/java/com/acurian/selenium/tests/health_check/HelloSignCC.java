@@ -70,7 +70,7 @@ public class HelloSignCC extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         WhatKindOfArthritisCC whatKindOfArthritisCC = genderPageCC
-                .waitForPageLoad()
+                .waitForPageLoadByTitle(genderPageCC.titleExpected)
                 .clickOnAnswer("Female")
                 .clickNextButton(new WhatKindOfArthritisCC());
 
