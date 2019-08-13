@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.AMIG_4742;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HaveYouBeenDiagnosedWithMigrainesOLS extends MainPageOLS {
+public class HaveYouBeenDiagnosedWithMigrainesPageOLS extends MainPageOLS {
 	public final String titleExpected =
       "Migraines are intense headaches that last for hours to days and:\n" +
             "Cause pulsing or throbbing pain\n"+
@@ -16,30 +17,25 @@ public class HaveYouBeenDiagnosedWithMigrainesOLS extends MainPageOLS {
             "Can trigger nausea or sensitivity to light and/or sound\n\n"+
             "Have you been diagnosed with migraines?";
 
-    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public HaveYouBeenDiagnosedWithMigrainesOLS() {
+    public HaveYouBeenDiagnosedWithMigrainesPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouBeenDiagnosedWithMigrainesOLS waitForPageLoad() {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+    public HaveYouBeenDiagnosedWithMigrainesPageOLS waitForPageLoad() {
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouBeenDiagnosedWithMigrainesOLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+    public HaveYouBeenDiagnosedWithMigrainesPageOLS clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
