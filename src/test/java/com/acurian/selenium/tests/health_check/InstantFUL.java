@@ -1,5 +1,6 @@
 package com.acurian.selenium.tests.health_check;
 
+import com.acurian.selenium.constants.FULType;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
@@ -11,6 +12,8 @@ import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.utils.DBConnection;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -35,13 +38,14 @@ public class InstantFUL extends BaseTest {
         };
     }
 
+    private String env = System.getProperty("acurian.env", "QA");
+    private String pidNumber;
+
     @Test(dataProvider = "sites", priority = -1)
     @Description("Test for Instant Follow-Up Letter (FUL) Validation")
     public void instantFUL(Site site) {
         final String phoneNumber = "GMEGA00001";
-
         final String studyName = "a rheumatoid arthritis (RA)";
-        String env = System.getProperty("acurian.env", "QA");
         final String studyNameClose = env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!" :
         "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!";
 
@@ -101,10 +105,12 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
+        siteSelectionPageOLS
                 .waitForPageLoad1(studyNameClose)
                 .clickOnFacilityName(site.name)
-                .getPID()
+                .getPID();
+        pidNumber = siteSelectionPageOLS.getPidNumber();
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .clickNextButton(new QualifiedClose2PageOLS());
 
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedClose2PageOLS
@@ -116,5 +122,19 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
                 .assertGeneratedFul(env, site);
+    }
+
+    @Test(dataProvider = "sites", priority = 1)
+    public void instantFULAssertion(Site site) {
+        DBConnection dbConnection = new DBConnection();
+        String fulValueField = dbConnection.dbReadFulValue(env, pidNumber);
+        System.out.println("Fetched DB value of FUL cell: " + fulValueField);
+        Assert.assertNotEquals(fulValueField, "", "FUL VALUE is empty string!");
+        Assert.assertNotEquals(fulValueField.toLowerCase(), "null", "FUL VALUE is null string!");
+        if (site.withMedicalRecords) {
+            Assert.assertTrue(fulValueField.contains(FULType.MEDICAL_RECORD.toString()),
+                    String.format("FUL VALUE contains different string. Expected [%s] but found [%s]",
+                            FULType.MEDICAL_RECORD.toString(), fulValueField));
+        }
     }
 }
