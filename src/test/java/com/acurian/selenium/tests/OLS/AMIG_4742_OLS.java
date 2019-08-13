@@ -55,9 +55,9 @@ public class AMIG_4742_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
 
-        HaveYouBeenDiagnosedWithMigrainesOLS haveYouBeenDiagnosedWithMigrainesOLS = genderPageOLS
+        HaveYouBeenDiagnosedWithMigrainesPageOLS haveYouBeenDiagnosedWithMigrainesOLS = genderPageOLS
                 .setDate("09091982")
-                .clickNextButton(new HaveYouBeenDiagnosedWithMigrainesOLS());
+                .clickNextButton(new HaveYouBeenDiagnosedWithMigrainesPageOLS());
 
         haveYouBeenDiagnosedWithMigrainesOLS
                 .waitForPageLoad();
@@ -134,12 +134,12 @@ public class AMIG_4742_OLS extends BaseTest {
 
 
         //---------------Q5: In a typical month, how many days do you suffer from migraines? - R75 changes - SKIP to NEW QS8
-        HaveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS haveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS =
+        HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS =
                 howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("3")
-                .clickNextButton(new HaveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS());
-        haveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS
+                .clickNextButton(new HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS());
+        haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6005", site.activeProtocols)
@@ -147,7 +147,7 @@ public class AMIG_4742_OLS extends BaseTest {
         howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("15")
-                .clickNextButton(haveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS)
+                .clickNextButton(haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6005", site.activeProtocols)
@@ -155,15 +155,15 @@ public class AMIG_4742_OLS extends BaseTest {
         howManyDaysYouSufferOLS
                 .waitForPageLoad()
                 .selectDays("4")
-                .clickNextButton(haveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS);
+                .clickNextButton(haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS);
 
 
         //---------------NEW Q8: Have you ever taken prescription medications daily to keep migraines from starting?
         //----------------------------------------- + GHOST QS11----------------------------------------------------
         HaveYouEverHadBotoxbotulinumtoxin_OLS haveYouEverHadBotoxbotulinumtoxin_OLS =
-                haveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS
+                haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No, I have never taken any prescription migraine medication to keep migraines from starting")
+                .clickOnAnswer("No, never any daily medications that my doctor prescribed")
                 .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS());
 
         haveYouEverHadBotoxbotulinumtoxin_OLS
@@ -172,15 +172,15 @@ public class AMIG_4742_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                 .back();
 
-        DoYouTakeThePrescriptionMedicationsDailyPageOLS doYouTakeThePrescriptionMedicationsDailyPageOLS =
-                haveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS
+        AreYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS areYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS =
+                haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes, I still take medications that my doctor prescribed")
-                .clickNextButton(new DoYouTakeThePrescriptionMedicationsDailyPageOLS());
+                .clickOnAnswer("Yes, daily medications that my doctor prescribed")
+                .clickNextButton(new AreYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS());
 
-        doYouTakeThePrescriptionMedicationsDailyPageOLS
+        areYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes, every day")
+                .clickOnAnswer("Yes, I still take daily medications that my doctor prescribed")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
 
         haveYouEverHadBotoxbotulinumtoxin_OLS
@@ -189,41 +189,10 @@ public class AMIG_4742_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                 .back();
 
-        doYouTakeThePrescriptionMedicationsDailyPageOLS
+        areYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No, only sometimes, or \"as needed\"")
+                .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
-
-        haveYouEverHadBotoxbotulinumtoxin_OLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
-                .back();
-
-        doYouTakeThePrescriptionMedicationsDailyPageOLS
-                .waitForPageLoad()
-                .back();
-
-        DidYouTakeThePrescriptionMedicationsDailyPageOLS didYouTakeThePrescriptionMedicationsDailyPageOLS =
-                haveYouEverTakenPrescriptionMedsToKeepMigrainesFromStartingPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, I used to take medications that my doctor prescribed, but I stopped taking them")
-                .clickNextButton(new DidYouTakeThePrescriptionMedicationsDailyPageOLS());
-
-        didYouTakeThePrescriptionMedicationsDailyPageOLS
-               .waitForPageLoad()
-               .clickOnAnswer("No, only sometimes, or \"as needed\"" )
-               .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
-
-        haveYouEverHadBotoxbotulinumtoxin_OLS
-               .waitForPageLoad()
-               .getPage(debugPageOLS)
-               .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
-               .back();
-
-       didYouTakeThePrescriptionMedicationsDailyPageOLS  //Q
-               .clickOnAnswer("Yes, every day")
-               .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
 
         WhenDidYouLastHaveBotoxInjectionOLS whenDidYouLastHaveBotoxInjectionOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
                 .waitForPageLoad()
