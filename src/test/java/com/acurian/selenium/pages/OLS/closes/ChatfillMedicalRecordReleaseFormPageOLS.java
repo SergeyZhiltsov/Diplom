@@ -56,6 +56,7 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS typeDoctorName(String doctorName) {
+        waitForVisibility(doctorNameField);
         typeTextWithoutClear(doctorNameField, doctorName);
         return this;
     }
@@ -76,17 +77,20 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS typeTelephone(String phoneNumber) {
+        waitForVisibility(doctorTelephoneNumber);
         typeTextWithoutClear(doctorTelephoneNumber, phoneNumber);
         return this;
     }
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS typeDoctorAddress(String address) {
+        waitForVisibility(doctorAddress);
         typeTextWithoutClear(doctorAddress, address);
         return this;
     }
 
     @Step ChatfillMedicalRecordReleaseFormPageOLS typeDoctorZip(String zip) {
+        waitForVisibility(doctorZip);
         typeTextWithoutClear(doctorZip, zip);
         return this;
     }

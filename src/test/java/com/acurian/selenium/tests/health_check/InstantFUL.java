@@ -35,7 +35,7 @@ public class InstantFUL extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", priority = -1)
     @Description("Test for Instant Follow-Up Letter (FUL) Validation")
     public void instantFUL(Site site) {
         final String phoneNumber = "GMEGA00001";
@@ -111,9 +111,11 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseGmegaOLS());
 
-        thankYouCloseGmegaOLS
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS.threadSleep(60000);
+        aboutHealthPageOLS
                 .assertGeneratedFul(env, site);
     }
 }
