@@ -114,7 +114,7 @@ public class InstantFUL extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-        aboutHealthPageOLS.threadSleep(60000);
+        aboutHealthPageOLS.threadSleep(300000); //5 minutes
         aboutHealthPageOLS
                 .assertGeneratedFul(env, site);
     }

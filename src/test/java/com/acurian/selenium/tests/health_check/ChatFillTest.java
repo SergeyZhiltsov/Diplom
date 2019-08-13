@@ -31,9 +31,11 @@ public class ChatFillTest extends BaseTest {
                 .getPage(dateOfBirthPageOLS)
                 .openPage(env, phoneNumber);
 
-        letsStartPageOLS
-                .waitForPageLoad()
-                .clickNextButton(dateOfBirthPageOLS);
+        if (!env.equals("PRD")) {
+            letsStartPageOLS
+                    .waitForPageLoad()
+                    .clickNextButton(dateOfBirthPageOLS);
+        }
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .waitForPageLoadGBAN()
