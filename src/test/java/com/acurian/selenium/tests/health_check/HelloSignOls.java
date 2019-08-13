@@ -99,8 +99,11 @@ public class HelloSignOls extends BaseTest {
                     .typePWD("password")
                     .clickConnect();
         }
-        hs1PageOLS
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = hs1PageOLS
                 .waitToClickNext()
+                .clickNextButton(new ThankYouCloseGmegaOLS());
+        thankYouCloseGmegaOLS
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
