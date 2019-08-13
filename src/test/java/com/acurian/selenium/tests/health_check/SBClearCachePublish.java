@@ -57,8 +57,8 @@ public class SBClearCachePublish extends BaseTest {
     private void setEnvData(String env) {
         switch (env) {
             case "PRD":
-                studyId = "";
-                alertMessage = "6697";
+                studyId = "6697";
+                alertMessage = "PROD";
                 break;
             case "STG":
                 studyId = "6697";
