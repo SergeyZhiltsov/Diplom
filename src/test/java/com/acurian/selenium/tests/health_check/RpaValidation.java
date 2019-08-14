@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class RpaValidation extends BaseTest {
 
-    @Test
+    @Test(priority = 1)
     @Description("RPA validation only for submit button is shown")
     public void rpaValidationTest() {
         String siteName = "AUT_GRA_FUL - OriFName OriLName";

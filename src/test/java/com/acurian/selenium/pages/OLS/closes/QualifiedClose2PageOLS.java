@@ -20,6 +20,11 @@ public class QualifiedClose2PageOLS extends MainPageOLS{
             "\n" +
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
 
+
+    public final String titleExpectedIBD4818 ="We’re glad the location is convenient for you.\n" +
+            "\n" +
+            "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Crohn's Disease, Ulcerative Colitis study.";
+
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
@@ -36,6 +41,12 @@ public class QualifiedClose2PageOLS extends MainPageOLS{
     @Step
     public QualifiedClose2PageOLS waitForPageLoad_SB() {
         waitForPageLoadMain(titleText, titleExpected_SB);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageOLS waitForPageLoadIBD4818() {
+        waitForPageLoadMain(titleText, titleExpectedIBD4818);
         return this;
     }
 

@@ -73,28 +73,33 @@ public class HelloSignOls extends BaseTest {
                 .waitForPageLoadByTitle(hsGeneralPageOLS.titleRaExpectedQA)
                 .clickNextButton(new DoctorInformationCollectionPageOLS());
 
-        doctorInformationCollectionPageOLS
+        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
                 .waitForPageLoadByTitle(env.equals("QA") ? doctorInformationCollectionPageOLS.titleGmegaQAExpected :
                         doctorInformationCollectionPageOLS.titleGmegaExpected)
-                .clickNextButton(new HS1PageOLS())
+                .clickNextButton(new HS1PageOLS());
+
+        hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature();
-        HumanAPIOLS humanAPIOLS = new HumanAPIOLS();
-        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = humanAPIOLS
-                .getPage(new HumanAPIOLS())
-                .waitForPageLoadGmega()
-                .connectBTN()
-                .switchToAPI()
-                .waitForProvider()
-                .clickANY()
-                .waitSearchAll()
-                .search("cleveland clinic")
-                .waitProvider()
-                .clickProvider()
-                .typeUserName("democlinical@gmail.com")
-                .typePWD("password")
-                .clickConnect()
+        if (env.equals("QA")) {
+            HumanAPIOLS humanAPIOLS = new HumanAPIOLS();
+            humanAPIOLS
+                    .getPage(new HumanAPIOLS())
+                    .waitForPageLoadGmega()
+                    .connectBTN()
+                    .switchToAPI()
+                    .waitForProvider()
+                    .clickANY()
+                    .waitSearchAll()
+                    .search("cleveland clinic")
+                    .waitProvider()
+                    .clickProvider()
+                    .typeUserName("democlinical@gmail.com")
+                    .typePWD("password")
+                    .clickConnect();
+        }
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = hs1PageOLS
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseGmegaOLS());
         thankYouCloseGmegaOLS

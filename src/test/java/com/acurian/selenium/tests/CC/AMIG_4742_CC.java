@@ -4,8 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LMG_4686.*;
-import com.acurian.selenium.pages.CC.Migraine.HaveYourEverTakenAnyMedicationToTreatMigrainePageCC;
-import com.acurian.selenium.pages.CC.Migraine.WhenDidYouTakeYourMigraineMedicationsPageCC;
+import com.acurian.selenium.pages.CC.Migraine.*;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -16,6 +15,9 @@ import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class AMIG_4742_CC extends BaseTest {
 
     @Test(enabled = true)
@@ -23,12 +25,11 @@ public class AMIG_4742_CC extends BaseTest {
         String phoneNumber = "AUTAMS1MIG";
         Site site = Site.AUT_MIG4742_site;
         String studyName1 = "a migraine study";
-        String protocol1 = "3101_301_002";
-        String protocol2 = "3101_302_002";
         String studyName = "migraine";
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
         loginPageCC
                 .openPage(env)
@@ -62,10 +63,6 @@ public class AMIG_4742_CC extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
                                                 ("a migraine study", "400"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-//                .setMonth("Sep")
-//                .setDay("9")
-//                .setYear("1940")
-//                .clickOnAnswer("Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
@@ -79,7 +76,6 @@ public class AMIG_4742_CC extends BaseTest {
         genderPageCC
                 .waitForPageLoad();
 
-        DebugPageCC debugPageCC = new DebugPageCC();
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = genderPageCC
                 .setMonth("Sep")
@@ -91,16 +87,16 @@ public class AMIG_4742_CC extends BaseTest {
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021159-QSI8013-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
 
-        DoYouSufferFromMigPageCC doYouSufferFromMigPageCC = genderPageCC
+        HaveYouBeenDiagnosedWithMigrainesPageCC haveYouBeenDiagnosedWithMigrainesPageCC = genderPageCC
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1982")
-                .clickNextButton(new DoYouSufferFromMigPageCC());
+                .clickNextButton(new HaveYouBeenDiagnosedWithMigrainesPageCC());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = doYouSufferFromMigPageCC
+        NonQRtransitionPageCC nonQRtransitionPageCC = haveYouBeenDiagnosedWithMigrainesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
@@ -108,10 +104,10 @@ public class AMIG_4742_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005097-QS6002-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6034", site.activeProtocols)
                 .back();
 
-        HowOldWereYouMigHeadachePageCC howOldWereYouMigHeadachePageCC = doYouSufferFromMigPageCC
+        HowOldWereYouMigHeadachePageCC howOldWereYouMigHeadachePageCC = haveYouBeenDiagnosedWithMigrainesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowOldWereYouMigHeadachePageCC());
@@ -119,222 +115,142 @@ public class AMIG_4742_CC extends BaseTest {
         HowLongSufferingFromMigraineCC howLongSufferingFromMigraineCC = howOldWereYouMigHeadachePageCC
                 .typeAge("50")
                 .clickNextButton(new HowLongSufferingFromMigraineCC());
-
         howLongSufferingFromMigraineCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005098-QS6003-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howOldWereYouMigHeadachePageCC
+                .checkProtocolsContainsForQNumber("QS6003", site.activeProtocols)
+                .back(howOldWereYouMigHeadachePageCC)
                 .typeAge("40")
                 .clickNextButton(howLongSufferingFromMigraineCC);
 
 
 //---------------Q4: For approximately how long have you been suffering from migraine headaches?
-        HowManyDaysYouSufferCC howManyDaysYouSufferCC = howLongSufferingFromMigraineCC
-                .waitForPageLoad()
-                .clickOnAnswer("5 months or less")
-                .clickNextButton(new HowManyDaysYouSufferCC());
-
-        howManyDaysYouSufferCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005099-QS6004-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howLongSufferingFromMigraineCC
-                .waitForPageLoad()
-                .clickOnAnswer("6 - 11 months")
-                .clickNextButton(howManyDaysYouSufferCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005099-QS6004-STUDYQUES", site.activeProtocols)
-                .back();
-
+        HowManyDaysYouSufferCC howManyDaysYouSufferCC = new HowManyDaysYouSufferCC();
+        List<String> disqualifyQ4 = Arrays.asList("5 months or less", "6 - 11 months");
+        for (String answer: disqualifyQ4) {
+            System.out.println("Select answer for Q4: " + answer);
+            howLongSufferingFromMigraineCC
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(howManyDaysYouSufferCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS6004", site.activeProtocols)
+                    .back();
+        }
         howLongSufferingFromMigraineCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(howManyDaysYouSufferCC);
 
 //---------------Q5: In a typical month, how many days do you suffer from migraines? 
-        HaveYourEverTakenAnyMedicationToTreatMigrainePageCC haveYourEverTakenAnyMedicationToTreatMigrainePageCC = howManyDaysYouSufferCC
-                .waitForPageLoad()
-                .selectDay("3")
-                .clickNextButton(new HaveYourEverTakenAnyMedicationToTreatMigrainePageCC());
-
-        haveYourEverTakenAnyMedicationToTreatMigrainePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017149-QS6005-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howManyDaysYouSufferCC
-                .waitForPageLoad()
-                .selectDay("15")
-                .clickNextButton(haveYourEverTakenAnyMedicationToTreatMigrainePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0017149-QS6005-STUDYQUES", site.activeProtocols)
-                .back();
-
+        HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС =
+                new HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС();
+        List<String> disqualifyQ5 = Arrays.asList("3", "15");
+        for (String answer: disqualifyQ5) {
+            System.out.println("Select answer for Q5: " + answer);
+            howManyDaysYouSufferCC
+                    .waitForPageLoad()
+                    .selectDay(answer)
+                    .clickNextButton(haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS6005", site.activeProtocols)
+                    .back();
+        }
         howManyDaysYouSufferCC
                 .waitForPageLoad()
                 .selectDay("4")
-                .clickNextButton(haveYourEverTakenAnyMedicationToTreatMigrainePageCC);
+                .clickNextButton(haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС);
 
 
 //---------------NEW Q8: Have you ever taken any medications to treat your migraine headaches? -----------
         HaveYouEverHadBotoxbotulinumtoxin_CC haveYouEverHadBotoxbotulinumtoxin_CC =
-                haveYourEverTakenAnyMedicationToTreatMigrainePageCC
+        haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС
                 .waitForPageLoad()
-                .clickOnAnswers("No")
+                .clickOnAnswer("No, never any daily medications that my doctor prescribed") //skip to QS20
                 .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_CC());
-
         haveYouEverHadBotoxbotulinumtoxin_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021149-QS6033-STUDYQUES", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
+                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
                 .back();
-
-        WhenDidYouTakeYourMigraineMedicationsPageCC whenDidYouTakeYourMigraineMedicationsPageCC =
-                haveYourEverTakenAnyMedicationToTreatMigrainePageCC
-                        .waitForPageLoad()
-                        .clickOnAnswers("Yes, prescription medication")
-                        .clickNextButton(new WhenDidYouTakeYourMigraineMedicationsPageCC());
-
-        whenDidYouTakeYourMigraineMedicationsPageCC
+        AreYouCurrentlyTakingPrescriptionMedicationsDailyPageСС areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС =
+        haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС
                 .waitForPageLoad()
-                .back();
+                .clickOnAnswer("Yes, daily medications that my doctor prescribed")
+                .clickNextButton(new AreYouCurrentlyTakingPrescriptionMedicationsDailyPageСС());
 
-        haveYourEverTakenAnyMedicationToTreatMigrainePageCC
+        //Q9 Are you currently taking prescription medications daily to prevent migraines from starting?
+        areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС
                 .waitForPageLoad()
-                .clickOnAnswers("No")
-                .clickOnAnswers("Yes, over-the-counter medication")
-                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageCC);
-
-        whenDidYouTakeYourMigraineMedicationsPageCC
-                .waitForPageLoad()
-                .back();
-
-        haveYourEverTakenAnyMedicationToTreatMigrainePageCC
-                .waitForPageLoad()
-                .clickOnAnswers("No")
-                .clickOnAnswers("Yes, vitamins or herbal supplements")
-                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageCC);
-
-
-        //---------------NEW Q9: When did you take your migraine medication(s)?  + GHOST -----------
-        whenDidYouTakeYourMigraineMedicationsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
-                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
-
-        haveYouEverHadBotoxbotulinumtoxin_CC
+                .clickOnAnswer("Yes, I still take daily medications that my doctor prescribed")
+                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021149-QS6033-STUDYQUES", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
-                .back();
-
-        whenDidYouTakeYourMigraineMedicationsPageCC
+                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
+                .back(areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС)
                 .waitForPageLoad()
-                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
-                .clickOnAnswers("Every day, to prevent migraine headaches")
+                .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
 
-        haveYouEverHadBotoxbotulinumtoxin_CC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021149-QS6033-STUDYQUES", site.activeProtocols)//QS10 Ghost QS - DISQUALIFY
-                .back();
 
-        whenDidYouTakeYourMigraineMedicationsPageCC
+        //-------------20: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
+        HaveUeverDiagnosedByHealthcareProfesionalCC haveUeverDiagnosedByHealthcareProfesionalCC =
+                haveYouEverHadBotoxbotulinumtoxin_CC
                 .waitForPageLoad()
-                .back();
-
-        haveYourEverTakenAnyMedicationToTreatMigrainePageCC
-                .waitForPageLoad()
-                .clickOnAnswers("No")
-                .clickOnAnswers("Yes, prescription medication")
-                .clickNextButton(whenDidYouTakeYourMigraineMedicationsPageCC);
-
-        whenDidYouTakeYourMigraineMedicationsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Every day, to prevent migraine headaches")
-                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
-                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
-
-        haveYouEverHadBotoxbotulinumtoxin_CC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021149-QS6033-STUDYQUES", site.activeProtocols)//QS10 Ghost QS - DISQUALIFY
-                .back();
-
-        whenDidYouTakeYourMigraineMedicationsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("\"As needed\" – as my migraine started or while I had it")
-                .clickOnAnswers("Every day, to prevent migraine headaches")
-                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
-
-//---------------SKIP to Q18: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
-        WhenYouLastHaveBotoxMigCC whenYouLastHaveBotoxMigCC = haveYouEverHadBotoxbotulinumtoxin_CC
-                .waitForPageLoad()
-                .clickOnAnswers("Yes, to treat migraines")
-                .clickNextButton(new WhenYouLastHaveBotoxMigCC());
-
-//---------------Q19: When did you last have a Botox (botulinum toxin) injection?-----------
-        HaveUeverDiagnosedByHealthcareProfesionalCC haveUeverDiagnosedByHealthcareProfesionalCC = whenYouLastHaveBotoxMigCC
-                .waitForPageLoad()
-                .clickOnAnswer("3 months ago or less")
+                .clickOnAnswers("No") //Skip to Q22
                 .clickNextButton(new HaveUeverDiagnosedByHealthcareProfesionalCC());
 
         haveUeverDiagnosedByHealthcareProfesionalCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018421-QS6026-STUDYQUES", site.activeProtocols)
                 .back();
 
-        whenYouLastHaveBotoxMigCC
+        WhenYouLastHaveBotoxMigCC whenYouLastHaveBotoxMigCC = haveYouEverHadBotoxbotulinumtoxin_CC
                 .waitForPageLoad()
-                .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(haveUeverDiagnosedByHealthcareProfesionalCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018421-QS6026-STUDYQUES", site.activeProtocols)
-                .back();
+                .clickOnAnswers("Yes, to treat migraines", "Yes, as a cosmetic treatment for lines on the face")
+                .clickNextButton(new WhenYouLastHaveBotoxMigCC());
 
+//---------------Q21	When did you last have a Botox (botulinum toxin) injection?
+        List<String> disqualifyQ21 = Arrays.asList("3 months ago or less", "4 - 6 months ago");
+        for (String answer: disqualifyQ21) {
+            System.out.println("Select answer for Q21: " + answer);
+            whenYouLastHaveBotoxMigCC
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(haveUeverDiagnosedByHealthcareProfesionalCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS6026", site.activeProtocols)
+                    .back();
+        }
         whenYouLastHaveBotoxMigCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 months - 1 year ago")
                 .clickNextButton(haveUeverDiagnosedByHealthcareProfesionalCC);
 
-//---------------Q20: HaveYouEverDiagnosedByHealthcareProfCC-----
-        DoYouCurrentlyUseMarijuanaCC doYouCurrentlyUseMarijuanaCC = haveUeverDiagnosedByHealthcareProfesionalCC
-                .waitForPageLoad()
-                .clickOnAnswers("Trigeminal Neuralgia - severe pain in the nerves of the face")
-                .clickNextButton(new DoYouCurrentlyUseMarijuanaCC());
-
-        doYouCurrentlyUseMarijuanaCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005117-QS6027-STUDYQUES", site.activeProtocols)
-                .back();
-
-        haveUeverDiagnosedByHealthcareProfesionalCC
-                .waitForPageLoad()
-                .clickOnAnswers("Temporomandibular Joint Disorders also known as TMD or TMJ")
-                .clickNextButton(doYouCurrentlyUseMarijuanaCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005117-QS6027-STUDYQUES", site.activeProtocols)
-                .back();
-
+//---------------Q22: HaveYouEverDiagnosedByHealthcareProfCC-----
+        DoYouCurrentlyUseMarijuanaCC doYouCurrentlyUseMarijuanaCC = new DoYouCurrentlyUseMarijuanaCC();
+        List<String> disqualifyQ22 = Arrays.asList("Trigeminal Neuralgia - severe pain in the nerves of the face",
+                "Temporomandibular Joint Disorders also known as TMD or TMJ");
+        for (String answer: disqualifyQ22) {
+            System.out.println("Select answer for Q22: " + answer);
+            haveUeverDiagnosedByHealthcareProfesionalCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(doYouCurrentlyUseMarijuanaCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS6027", site.activeProtocols)
+                    .back();
+        }
         haveUeverDiagnosedByHealthcareProfesionalCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doYouCurrentlyUseMarijuanaCC);
 
-//---------------Q21: DoYouCurrentlyUseMarijuanaCC-----
+//---------------Q23: DoYouCurrentlyUseMarijuanaCC-----
         TransitionStatementCC transitionStatementCC = doYouCurrentlyUseMarijuanaCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
@@ -349,14 +265,14 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new IfYouQualifyForStudyWillingtoStopCC());
 
-//---------------Q22: IfYouQualifyForStudyWillingtoStopCC-----
+//---------------Q24: IfYouQualifyForStudyWillingtoStopCC-----
         ifYouQualifyForStudyWillingtoStopCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoad(studyName)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0018426-QS6029-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6029", site.activeProtocols)
                 .back();
 
         ifYouQualifyForStudyWillingtoStopCC
@@ -398,27 +314,7 @@ public class AMIG_4742_CC extends BaseTest {
         whatKindOfArthritisPage.back();
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                        "Autism spectrum",
-                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
-                        "Cancer",
-                        "Diabetes (type 1 or type 2)",
-                        "Headaches (migraine, cluster, tension)",
-                        "Heart or circulation problems (heart attack, heart failure, stroke)",
-                        "High blood pressure or hypertension",
-                        "High cholesterol, triglycerides, or lipids",
-                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                        "Kidney disease",
-                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Lupus",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
-                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                        "Women's health issues (endometriosis, uterine fibroids)")
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
 
@@ -431,21 +327,28 @@ public class AMIG_4742_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+        heartrelatedMedicalProceduresPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
 
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageCC.back();
 
         haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -456,21 +359,27 @@ public class AMIG_4742_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
         subquestionExperiencedHeartPageCC.back();
 
         haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -497,56 +406,35 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
 
 
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad();
-        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Kidney disease requiring dialysis")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
-                .back();
+        List<String> disqualifyQ24 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+        for (String answer: disqualifyQ24) {
+            System.out.println("Select answer for Q24: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQ24p2 = Arrays.asList("Seizure disorder such as epilepsy",
+                "Kidney disease requiring dialysis", "Multiple sclerosis (MS)", "Schizophrenia");
+        for (String answer: disqualifyQ24p2) {
+            System.out.println("Select answer for Q24: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

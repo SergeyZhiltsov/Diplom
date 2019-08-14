@@ -22,6 +22,7 @@ public class GmegaToGban extends BaseTest {
         String lastName = "Trial";
 
         String env = System.getProperty("acurian.env", "QA");
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -90,20 +91,23 @@ public class GmegaToGban extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new StudiesThatAreCurrentlyEnrollingPageOLS());
 
-        LetsStartPageOLS letsStartPageOLS = studiesThatAreCurrentlyEnrollingPageOLS
+        LetsStartPageOLS letsStartPageOLS = new LetsStartPageOLS();
+        studiesThatAreCurrentlyEnrollingPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new LetsStartPageOLS());
-
-        letsStartPageOLS
-                .waitForPageLoad();
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
-        letsStartPageOLS
+                .clickOnAnswer("Yes");
+        if (!env.equals("PRD")) {
+            letsStartPageOLS
+                    .clickNextButton(letsStartPageOLS)
+                    .waitForPageLoad()
+                    .clickNextButton(dateOfBirthPageOLS);
+        }
+        studiesThatAreCurrentlyEnrollingPageOLS
                 .clickNextButton(dateOfBirthPageOLS);
 
         dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGBAN();
+        Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
+        dateOfBirthPageOLS
                 .setDate("09/09/1955")
                 .clickNextButton(behalfOfSomeoneElsePageOLS);
 

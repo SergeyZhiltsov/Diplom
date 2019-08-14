@@ -7,22 +7,29 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.HealthcareDiagnosedConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 public class ChatFillTest extends BaseTest {
 
-    @Test()
+    String env = System.getProperty("acurian.env", "QA");
+
+    @Test
+    public void chatFillTestRun() {
+        if (env.equals("PRD")) {
+            System.out.println("Skipped for PRD environment");
+        } else {
+            chatFillTest();
+        }
+    }
+
     public void chatFillTest() {
-        String phoneNumber = "GBAN100011";
+        String phoneNumber = "GBAN100001";
         //String testUrl = "https://test-screener.acurian.com/questionnaire_test_qa_chartfill/welcome?pn=" + phoneNumber;
         String siteZipCode = "19044";
-        String env = System.getProperty("acurian.env", "QA");
 
         LetsStartPageOLS letsStartPageOLS = new LetsStartPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
@@ -31,9 +38,9 @@ public class ChatFillTest extends BaseTest {
                 .getPage(dateOfBirthPageOLS)
                 .openPage(env, phoneNumber);
 
-        letsStartPageOLS
-                .waitForPageLoad()
-                .clickNextButton(dateOfBirthPageOLS);
+            letsStartPageOLS
+                    .waitForPageLoad()
+                    .clickNextButton(dateOfBirthPageOLS);
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .waitForPageLoadGBAN()

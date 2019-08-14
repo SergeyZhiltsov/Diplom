@@ -21,8 +21,12 @@ public class FooterOlsTest extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .openPage(env, phoneNumber);
+            if (env.equals("QA")) {
+                dateOfBirthPageOLS.waitForPageLoad("a Migraine", "1,150"); //"a migraine study is absent in QA Gembs
+            } else {
+                dateOfBirthPageOLS.waitForPageLoad();
+            }
 
         FooterPageOls footerPageOls = new FooterPageOls();
 
