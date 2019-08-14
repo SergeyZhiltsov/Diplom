@@ -2,6 +2,10 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.AST_4337.SubquestionSmokedCigarettePageCC;
+import com.acurian.selenium.pages.CC.AS_4319.YouBeenDiagnosedWithCC;
+import com.acurian.selenium.pages.CC.COPD_5042.*;
+import com.acurian.selenium.pages.CC.ChronicCough.QuitSmokingCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
@@ -9,10 +13,10 @@ import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.COPD_5042.WhenWereYouDiagnosedWithCopdOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.EverSmokedCigarettesPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -40,11 +44,11 @@ public class COPD_5042_CC extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_COPD_5042S_Site},
-                {Site.AUT_COPD_5042_Site}
+                //{Site.AUT_COPD_5042_Site}
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("COPD_5042_CC_A_S")
     public void copdCC(Site site) {
         String phoneNumber = "AUTAMSCOPD";
@@ -87,9 +91,9 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad2Ver();
+                .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
-                ("a study", "600"), "Title is diff");
+                ("a COPD study", "others"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
 //                .setMonth("Sep")
 //                .setDay("9")
@@ -110,366 +114,247 @@ public class COPD_5042_CC extends BaseTest {
 
         DebugPageCC debugPageCC = new DebugPageCC();
 
-        PersonaQuestionsCC personaQuestionsCC = genderPageCC
+        //PersonaQuestionsCC personaQuestionsCC = genderPageCC
+        HasHealthcareProfessionalDiagnosedLungCondCC hasHealthcareProfessionalDiagnosedLungCondCC = genderPageCC
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1941")
-                .clickNextButton(new PersonaQuestionsCC());
+                .clickOnAnswer("Female")
+                .clickNextButton(new HasHealthcareProfessionalDiagnosedLungCondCC());
 
-
-
-//        DebugPageCC debugPageCC = new DebugPageCC();
-//        LoginPageCC loginPageCC = new LoginPageCC();
-//        loginPageCC
-//                .openPage(env)
-//                .waitForPageLoad();
-//        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
-//        SelectActionPageCC selectActionPageCC = loginPageCC
-//                .typeUsername(Properties.getUsername())
-//                .typePassword(Properties.getPassword())
-//                .clickLoginButton();
-//
-//        CallCenterIntroductionPageCC callCenterIntroductionPageCC = selectActionPageCC
-//                .waitForPageLoad()
-//                .typeStudyName("AMS1")
-//                .clickPopupStudy("AMS1")
-//                .typePhoneNumber(phoneNumber)
-//                .clickPopupPhoneNumber(phoneNumber)
-//                .clickBeginButton();
-//
-//        callCenterIntroductionPageCC
-//                .waitForPageLoad();
-//        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
-//        DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
-//                .activateDebugOnProd(env)
-//                .clickOnAnswer("Learn more about matching to clinical trials")
-//                .clickNextButton(new DateOfBirthPageCC());
-//
-//        dateOfBirthPageCC
-//                .waitForPageLoad2Ver();
-//        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleExpectedLOWT, "Title is diff");
-//        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-//                .setMonth("Sep")
-//                .setDay("9")
-//                .setYear("1990")
-//                .clickOnAnswer("Yes")
-//                .clickNextButton(new ZipCodePageCC());
-//        zipCodePageCC
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
-//                .back(dateOfBirthPageCC)
-//                .waitForPageLoad2Ver()
-//                .setYear("1941")
-//                .clickNextButton(zipCodePageCC);
-//
-//        GenderPageCC genderPageCC = zipCodePageCC
-//                .waitForPageLoad()
-//                .typeZipCode(site.zipCode)
-//                .clickNextButton(new GenderPageCC());
-
-//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = genderPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswer("Male")
-//                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-
-//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsEquals("This part of the questionnaire requires that we ask about your gender. To confirm, please tell me, i...", protocol1, protocol2)
-//                .back();
-
-//        PersonaQuestionsCC personaQuestionsCC = genderPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswer("Male")
-//                .clickNextButton(new PersonaQuestionsCC());
-
-        ExperiencedAnyOfFollowingCC experiencedAnyOfFollowingCC = personaQuestionsCC
-                .waitForPageLoad()
-                .clickNextButton(new ExperiencedAnyOfFollowingCC());
-
-        DiagnosedYouWithLowTestosteroneCC diagnosedYouWithLowTestosteroneCC = experiencedAnyOfFollowingCC
+        //ExperiencedAnyOfFollowingCC experiencedAnyOfFollowing_CC = hasHealthcareProfessionalDiagnosedLungCondCC
+        hasHealthcareProfessionalDiagnosedLungCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DiagnosedYouWithLowTestosteroneCC());
-        diagnosedYouWithLowTestosteroneCC
+                .clickNextButton(new NonQRtransitionPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1, protocol2);
+                .checkProtocolsContainsForQNumber("Q0021125-QS7402-STUDYQUES", site.activeProtocols)
+                .back(hasHealthcareProfessionalDiagnosedLungCondCC)
+                .waitForPageLoad();
+        WhenWereYouDiagnosedWithCopdCC whenWereYouDiagnosedWithCopdCC = hasHealthcareProfessionalDiagnosedLungCondCC
+                .clickOnAnswers("COPD")//"Chronic bronchitis","Emphysema")
+                .clickNextButton(new WhenWereYouDiagnosedWithCopdCC());
 
-        //-----------New Switching to CV module logic-----------------------
-        //Check if possible to switch to to CV module logic
-        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
-                .clickOnAnswer("Yes")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
 
-        ApproximateHeightPageCC approximateHeightPageCC = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageCC());
-
-        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC = approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
-
-        cholesterolTriglyceridesLipidsPageCC
+        //------------WhenWereYouDiagnosedWithCopdCC-------------------
+        whenWereYouDiagnosedWithCopdCC
+                .waitForPageLoad();
+        EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = whenWereYouDiagnosedWithCopdCC
+                .clickOnAnswer("Less than 1 year ago")
+                .clickNextButton(new EverSmokedCigarettesPageCC());
+        everSmokedCigarettesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
-                .back(approximateHeightPageCC)
+                .checkProtocolsContainsForQNumber("Q0021131-QS7404-STUDYQUES", site.activeProtocols)
+                .back(whenWereYouDiagnosedWithCopdCC)
                 .waitForPageLoad()
-                .back();
-
-
-        cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .clickNextButton(cholesterolTriglyceridesLipidsPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
-                .checkProtocolsContainsForQNumber("QS6703", kowaProtocolA, kowaProtocolS)
-                .back(approximateHeightPageCC)
-                .waitForPageLoad()
-                .back();
-
-        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Diabetes or High Blood Sugar")
-                .clickNextButton(new WhatKindOfDiabetesPageCC());
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .clickNextButton(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
-                .back(approximateHeightPageCC)
-                .waitForPageLoad()
-                .back();
-
-        WithType2DiabetesPageCC withType2DiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .clickNextButton(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new WithType2DiabetesPageCC());
-
-        withType2DiabetesPageCC
-                .waitForPageLoad()
-                .back(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
-                .back(approximateHeightPageCC)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .back(diagnosedYouWithLowTestosteroneCC)
-                .waitForPageLoad()
-                .back(experiencedAnyOfFollowingCC);
-
-        //module started
-        experiencedAnyOfFollowingCC
-                .waitForPageLoad()
-                .clickOnAnswers("Decreased sexual desire or libido",
-                        "Decreased spontaneous erections (e.g., morning erections)",
-                        "Decreased energy or fatigue/feeling tired",
-                        "Low mood or depressed mood",
-                        "Loss of body (axillary and pubic) hair or reduced shaving",
-                        "Hot flashes")
-                .clickNextButton(diagnosedYouWithLowTestosteroneCC);
-
-        diagnosedYouWithLowTestosteroneCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
-
-        LevelOrHypogonadismPageСС levelOrHypogonadismPageСС = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Diabetes or High Blood Sugar",
-                        "High cholesterol or high triglycerides",
-                        "High blood pressure or hypertension",
-                        "Chronic Kidney Disease")
-                .clickNextButton(new LevelOrHypogonadismPageСС());
-
-        EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = levelOrHypogonadismPageСС
-                .waitForPageLoad()
-                .clickOnAnswers("AndroGel", "Endoderm patch", "Fortesta gel", "Striant (testosterone buccal system)", "Testim gel", "Other testosterone medication not on this list", "Unsure")
-                .clickOnAnswers("Testosterone injection (Depo-Testosterone, Testosterone enanthate, Testosterone Cypionate, Delatestryl)", "Clomiphene (brand name Serophene) or another anti-estrogen therapy")
-                .clickOnAnswers("Axiron gel")
+                .clickOnAnswer("More than 2 years ago")//"Chronic bronchitis","Emphysema")
                 .clickNextButton(new EverSmokedCigarettesPageCC());
 
-        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = everSmokedCigarettesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No, I never smoked")
-                .clickNextButton(new HeartOrBloodVesselPageCC());
 
-        CardiovascularInterventionsOrSurgeriesPageCC cardiovascularInterventionsOrSurgeriesPageCC = heartOrBloodVesselPageCC
+        //-----------EverSmokedCigarettesPageCC-----------------------
+        SubquestionSmokedCigarettePageCC subquestionSmokedCigarettePageCC = everSmokedCigarettesPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Angina (heart-related chest pain) that required an overnight stay in a hospital",
-                        "Coronary Artery Disease (blockage in a heart vessel)",
-                        "Peripheral Vascular Disease (for example a blockage in your leg vessel)",
-                        "Amputation of a digit or limb due to Peripheral Vascular Disease")
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new CardiovascularInterventionsOrSurgeriesPageCC());
-        cardiovascularInterventionsOrSurgeriesPageCC
-                .waitForPageLoad()
-                .back(heartOrBloodVesselPageCC)
+                .clickOnAnswer("Yes, I currently smoke")
+                .clickNextButton(new SubquestionSmokedCigarettePageCC());
+        subquestionSmokedCigarettePageCC
+                .waitForPageLoad(1,"How many years have you been smoking cigarettes?")
+                .back(everSmokedCigarettesPageCC)
                 .waitForPageLoad();
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartOrBloodVesselPageCC
-                .clickOnAnswers("Heart attack")
-                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+        QuitSmokingCC quitSmokingCC = everSmokedCigarettesPageCC
+                .clickOnAnswer("I used to smoke, but have since quit")//"Chronic bronchitis","Emphysema")
+                .clickNextButton(new QuitSmokingCC());
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
-                .back(subquestionExperiencedHeartPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
-                .back(subquestionExperiencedHeartPageCC)
-                .waitForPageLoad()
-                .back();
 
-        heartOrBloodVesselPageCC
+        //-----------QuitSmokingCC-----------------------
+        quitSmokingCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Stroke")
-                .clickNextButton(new SubquestionExperiencedHeartPageCC());
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
-                .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(cardiovascularInterventionsOrSurgeriesPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
-                .back();
-        subquestionExperiencedHeartPageCC.back();
+                .clickOnAnswer("I quit smoking within the past year")
+                .clickNextButton(new SubquestionSmokedCigarettePageCC());
+        subquestionSmokedCigarettePageCC
+                .waitForPageLoad(1,"How many years did you smoke cigarettes?")
+                .waitForPageLoad(2,"About how many cigarettes per day did you smoke?");
+        AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC = subquestionSmokedCigarettePageCC
+                .setFirst("15")  //---10 for DQ
+                .setSecond("15")
+                .clickNextButton(new AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC());
 
-        heartOrBloodVesselPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("TIA or \"Mini-Stroke\"")
-                .clickNextButton(new SubquestionExperiencedHeartPageCC());
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
-                .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(subquestionExperiencedHeartPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
-                .back();
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(subquestionExperiencedHeartPageCC)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2)
-                .back();
-        subquestionExperiencedHeartPageCC.back();
-        heartOrBloodVesselPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Stroke")
-                .clickNextButton(new SubquestionExperiencedHeartPageCC());
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
-                .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(subquestionExperiencedHeartPageCC);
 
-        HasDoctorEverDiagnosedMedicalCondDiseases_CC hasDoctorEverDiagnosedMedicalCondDiseases_CC = cardiovascularInterventionsOrSurgeriesPageCC
+        //------------AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC--------
+        InThePastYearHowManyUrgentMedicalforCopdCC inThePastYearHowManyUrgentMedicalforCopdCC = areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC())
+                .clickOnAnswer("No")
+                .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdCC());
+        inThePastYearHowManyUrgentMedicalforCopdCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021133-QS7409-STUDYQUES", site.activeProtocols)
+                .back(areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC)
                 .waitForPageLoad();
-        hasDoctorEverDiagnosedMedicalCondDiseases_CC.back();
-        cardiovascularInterventionsOrSurgeriesPageCC
-                .waitForPageLoad();
-        ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = cardiovascularInterventionsOrSurgeriesPageCC
-                .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
-                        "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
-                        "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
-                        "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
-                .clickNextButton(new ReceivedHeartProcedurePageCC());
+        WhichFollowingInhalersdoYouUseCopdCC whichFollowingInhalersdoYouUseCopdCC = areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WhichFollowingInhalersdoYouUseCopdCC());
 
-        receivedHeartProcedurePageCC
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5624", protocol1, protocol2);
-        debugPageCC.back();
-        receivedHeartProcedurePageCC
-                .waitForPageLoad()
-                .clickOnAnswer("More than 6 months ago")
-                .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
-
-        hasDoctorEverDiagnosedMedicalCondDiseases_CC
-                .waitForPageLoad()
-                .clickOnAnswers("History of Prostate or Breast Cancer")
-                .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
-        debugPageCC.back();
-
-        hasDoctorEverDiagnosedMedicalCondDiseases_CC
-                .clickOnAnswers("Other cancer within the past 2 years (except skin cancer)")
-                .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
-        debugPageCC.back();
-        hasDoctorEverDiagnosedMedicalCondDiseases_CC
-                .clickOnAnswers("Sleep apnea that is not currently being treated")
-                .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
-        debugPageCC.back();
-        hasDoctorEverDiagnosedMedicalCondDiseases_CC
-                .clickOnAnswers("Drug, alcohol or steroid abuse in the past 12 months")
-                .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
-        debugPageCC.back();
-        hasDoctorEverDiagnosedMedicalCondDiseases_CC
+        whichFollowingInhalersdoYouUseCopdCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageCC());
+                .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdCC())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021134-QS7410-STUDYQUES", site.activeProtocols)
+                .back(whichFollowingInhalersdoYouUseCopdCC)
+                .waitForPageLoad()
+                .clickOnAnswers("Asmanex or Asmanex HFA","Bevespi Aerosphere")
+                .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdCC());
 
+
+        //------------InThePastYearHowManyUrgentMedicalforCopdCC---------
+        HaveYouEverHadFollowingLungSurgeriesCC haveYouEverHadFollowingLungSurgeriesCC = inThePastYearHowManyUrgentMedicalforCopdCC
+                .waitForPageLoad()
+                .clickOnAnswer("None")
+                .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesCC());
+        haveYouEverHadFollowingLungSurgeriesCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021136-QS7411-STUDYQUES", site.activeProtocols)
+                .back(inThePastYearHowManyUrgentMedicalforCopdCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Twice")
+                .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesCC());
+
+
+
+        //------------HaveYouEverHadFollowingLungSurgeriesCC---------
+        WhenDidYouHaveYourMostRecentLungSurgeryCC whenDidYouHaveYourMostRecentLungSurgeryCC = haveYouEverHadFollowingLungSurgeriesCC
+                .waitForPageLoad()
+                .clickOnAnswers("Removal of a whole lung","Lung transplant")
+                .clickNextButton(new WhenDidYouHaveYourMostRecentLungSurgeryCC());
+        whenDidYouHaveYourMostRecentLungSurgeryCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021137-QS7412-STUDYQUES", site.activeProtocols)
+                .back(haveYouEverHadFollowingLungSurgeriesCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Removal of a lobe of your lung (lobectomy)")
+                .clickNextButton(new WhenDidYouHaveYourMostRecentLungSurgeryCC());
+
+
+        //------13 When did you have your most recent lung surgery?---------
+        TransitionStatementCC transitionStatementCC = whenDidYouHaveYourMostRecentLungSurgeryCC
+                .waitForPageLoad()
+                .clickOnAnswer("6 months ago or less")
+                .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoadWithTitle(transitionStatementCC.titleCOPDExpected)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021138-QS7413-STUDYQUES", site.activeProtocols)
+                .back(whenDidYouHaveYourMostRecentLungSurgeryCC)
+                .waitForPageLoad()
+                .clickOnAnswer("1 year ago or more")
+                .clickNextButton(transitionStatementCC);
+
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+                .waitForPageLoadWithTitle(transitionStatementCC.titleCOPDExpected)
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+
+//-----------------------General_Health--------------------------
+        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers(//"Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Cancer",
+                        // "Kidney disease",
+                        //"Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
+                //"Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                .clickNextButton(new OtherThanSkinCancerPageCC());
+
+        //HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = otherThanSkinCancerPageCC
+        YouBeenDiagnosedWithCC youBeenDiagnosedWithCC = otherThanSkinCancerPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(new YouBeenDiagnosedWithCC());
+        youBeenDiagnosedWithCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021125-QS42-STUDYQUES", site.activeProtocols)
+                .back();
+        otherThanSkinCancerPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Diagnosed with skin cancer only")
+                .clickNextButton(new YouBeenDiagnosedWithCC());
+
+
+        youBeenDiagnosedWithCC
+                .waitForPageLoad();
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = youBeenDiagnosedWithCC
+                .clickOnAnswers("Unsure which type of liver disease")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+
+
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad();
+        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
+                .clickOnAnswers("Bipolar disorder")
+                .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("4", "0", "166")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021125-QS59-STUDYQUES", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("HIV or AIDS")
+                .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("Q0021125-QS59-STUDYQUES", site.activeProtocols)
                 .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Kidney disease requiring dialysis")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021125-QS61-STUDYQUES", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Schizophrenia")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0021125-QS61-STUDYQUES", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(approximateHeightPageCC);
 
-        SiteSelectionPageCC selectionPageCC = approximateHeightPageCC
+
+        //AboutHealthPageCC aboutHealthPageCC = approximateHeightPageCC
+        IdentificationPageCC identificationPageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("5", "6", "166")
-                .clickNextButton(new IdentificationPageCC())
-                .waitForPageLoad()
+                .setAll("5", "5", "250")
+                .clickNextButton(new IdentificationPageCC());
+
+
+        //----------PII (IdentificationPageCC) Page--------------------
+        identificationPageCC
+                .waitForPageLoad();
+        SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a men's health study")
+                .clickNextButton(new SiteSelectionPageCC());
+        selectionPageCC
+                .waitForPageLoad(studyName)
                 .getPID();
         switch (site) {
-            case AUT_LOWT_3017S_Site: //41C
+            case AUT_COPD_5042S_Site: //41C
                 selectionPageCC
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
@@ -488,10 +373,10 @@ public class COPD_5042_CC extends BaseTest {
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env, "3017")
+                        .childPidFromDbToLog(env, "5042")
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
-            case AUT_LOWT_3017_Site:
+            case AUT_COPD_5042_Site:
                 selectionPageCC
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
@@ -508,7 +393,7 @@ public class COPD_5042_CC extends BaseTest {
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env, "3017")
+                        .childPidFromDbToLog(env, "5042")
                         .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
