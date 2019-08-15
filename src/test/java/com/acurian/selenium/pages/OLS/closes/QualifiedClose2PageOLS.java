@@ -21,9 +21,15 @@ public class QualifiedClose2PageOLS extends MainPageOLS{
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
 
 
-    public final String titleExpectedIBD4818 ="We’re glad the location is convenient for you.\n" +
+    public final String titleExpectedIBD4818Stag ="We’re glad the location is convenient for you.\n" +
             "\n" +
             "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Crohn's Disease, Ulcerative Colitis study.";
+
+    public final String titleExpectedIBD4818Prod ="We’re glad the location is convenient for you.\n" +
+            "\n" +
+            "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Ulcerative Colitis, Crohn's Disease study.";
+
+    String env = System.getProperty("acurian.env", "STG");
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
@@ -46,9 +52,11 @@ public class QualifiedClose2PageOLS extends MainPageOLS{
 
     @Step
     public QualifiedClose2PageOLS waitForPageLoadIBD4818() {
+        String titleExpectedIBD4818 = env.equals("STG") ? titleExpectedIBD4818Stag : titleExpectedIBD4818Prod;
         waitForPageLoadMain(titleText, titleExpectedIBD4818);
         return this;
     }
+
 
     @Step
     public String getTitleText(){

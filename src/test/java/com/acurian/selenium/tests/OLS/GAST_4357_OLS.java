@@ -798,11 +798,12 @@ public class GAST_4357_OLS extends BaseTest {
         if (inFlare) {
             siteSelectionPageOLS
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClose2PageOLS())
+                    .clickNextButton(new QualifiedClose1PageOLS())
                     .waitForPageLoad()
-                    .clickNextButton(new MedicalRecordsOptionPageOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("Continue with medical records")
+                    .clickOnAnswer("No")
+//                  .clickNextButton(new MedicalRecordsOptionPageOLS())
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("Continue with medical records")
 //                    .clickNextButton(new SynexusHealthyMindsPageOLS())
 //                    .waitForPageLoad()
 //                    .clickOnAnswer("No, I am not interested in receiving information")
