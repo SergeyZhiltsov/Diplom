@@ -15,7 +15,8 @@ import java.util.List;
 public class WhichFollowingInhalersdoYouUseCopdCC extends MainPageCC{
 
     
-    public final String titleExpected = "Are you currently taking any inhaled or nebulized medications to treat your COPD?";
+    public final String titleExpected = "Which of the following inhalers or nebulizers do you currently use to manage your COPD?\n" +
+            "Agent Note: Select all that apply";
     		
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;

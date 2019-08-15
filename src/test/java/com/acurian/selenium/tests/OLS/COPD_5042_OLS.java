@@ -36,7 +36,7 @@ public class COPD_5042_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_COPD_5042S_Site},
-               // {Site.AUT_COPD_5042_Site}
+                {Site.AUT_COPD_5042_Site}
         };
     }
 
