@@ -44,7 +44,7 @@ public class COPD_5042_CC extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_COPD_5042S_Site},
-                //{Site.AUT_COPD_5042_Site}
+                {Site.AUT_COPD_5042_Site}
         };
     }
 
@@ -56,7 +56,7 @@ public class COPD_5042_CC extends BaseTest {
         String protocol2 = "M16_100_S";
         String kowaProtocolA = "208657";
         String kowaProtocolS = "K_877_302_S";
-        String studyName = "a COPD";
+        String studyName = "a COPD study";
         String site_Indication = "a COPD";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -224,7 +224,6 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesCC());
 
 
-
         //------------HaveYouEverHadFollowingLungSurgeriesCC---------
         WhenDidYouHaveYourMostRecentLungSurgeryCC whenDidYouHaveYourMostRecentLungSurgeryCC = haveYouEverHadFollowingLungSurgeriesCC
                 .waitForPageLoad()
@@ -279,7 +278,7 @@ public class COPD_5042_CC extends BaseTest {
         youBeenDiagnosedWithCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021125-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageCC
                 .waitForPageLoad()
@@ -302,7 +301,7 @@ public class COPD_5042_CC extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021125-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -311,7 +310,7 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021125-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -320,7 +319,7 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021125-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -329,7 +328,7 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021125-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -338,9 +337,14 @@ public class COPD_5042_CC extends BaseTest {
 
 
         //AboutHealthPageCC aboutHealthPageCC = approximateHeightPageCC
-        IdentificationPageCC identificationPageCC = approximateHeightPageCC
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
+                .clickNextButton(new LetMeSeePageCC());
+
+        letMeSeePageCC
+                .waitForPageLoad();
+        IdentificationPageCC identificationPageCC = approximateHeightPageCC
                 .clickNextButton(new IdentificationPageCC());
 
 
@@ -359,15 +363,18 @@ public class COPD_5042_CC extends BaseTest {
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
 //                        .waitForPageLoad(siteIndication)
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageCC())
                         .waitForPageLoad()
                         .clickNextButton(new HSMedicalRecordsPageCC())
                         .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "09/09/1960", "US",
-                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "aut3017test", site.name, "ABVCOVCAR100")
+                        .assertVariables("Acurian", "Trial", "09/09/1941", "US",
+                            "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                            "%SYN_SITE_NUM%", "AUT_AMS1_5042S_site", "GSKPPDCOP657")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
@@ -375,16 +382,22 @@ public class COPD_5042_CC extends BaseTest {
                         .getRadiantDbToLog(env)
                         .childPidFromDbToLog(env, "5042")
                         .dispoShouldMatch(site.dispo, site.dispo);
+
+
+
                 break;
             case AUT_COPD_5042_Site:
                 selectionPageCC
                         .clickOnAnswer(site.name)
 //                        .clickNextButton(new HSGeneralCC())
 //                        .waitForPageLoad(siteIndication)
-                        .clickNextButton(new QualifiedClose2PageCC())
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue without medical records")
+                     /*   .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
 //                        .clickNextButton(new HSMedicalRecordsPageCC())
-//                        .waitForPageLoad()
+//                        .waitForPageLoad()*/
                         .clickNextButton(new SynexusHealthyMindsPageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("No")
