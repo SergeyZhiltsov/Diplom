@@ -79,7 +79,7 @@ public class GAST_4357_OLS extends BaseTest {
 
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                 .waitForPageLoad()
-                .setDate("09091942")
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 

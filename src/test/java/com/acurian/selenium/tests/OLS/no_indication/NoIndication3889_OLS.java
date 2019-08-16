@@ -571,7 +571,7 @@ public class NoIndication3889_OLS extends BaseTest {
         options.put("History of a bowel resection within the past 3 months", site.activeProtocols);
         options.put("Colostomy", site.activeProtocols);
         options.put("Ileostomy", site.activeProtocols);
-        options.put("An abscess in your abdomen or pelvic region (an inflamed area with collection of pus)", site.activeProtocols);
+      //  options.put("An abscess in your abdomen or pelvic region (an inflamed area with collection of pus)", site.activeProtocols); //*not DQed 4818 and 3264 protocols
         options.put("Feeding tube", site.activeProtocols);
         options.put("IV (parenteral) nutrition", site.activeProtocols);
         options.put("A planned or scheduled surgery for Crohn’s disease", site.activeProtocols);
@@ -587,7 +587,20 @@ public class NoIndication3889_OLS extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS5733", entry.getValue())
                     .clickOnQNumber("QS5733");
         }
+
         IdentificationPageOLS identificationPageOLS = haveAnyOfTheFollowingPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("An abscess in your abdomen or pelvic region (an inflamed area with collection of pus)")
+                .clickNextButton(new IdentificationPageOLS());
+
+        identificationPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5733", site.activeProtocols)
+                .back();
+
+        haveAnyOfTheFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new IdentificationPageOLS());

@@ -324,7 +324,7 @@ public class COPD_5042_OLS extends BaseTest {
         identificationPageOLS
                 .waitForPageLoad();
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
         siteSelectionPageOLS
                 .waitForPageLoad(studyName)
@@ -333,15 +333,18 @@ public class COPD_5042_OLS extends BaseTest {
             case AUT_COPD_5042_Site: //1R
                 siteSelectionPageOLS
                         .clickOnFacilityName(site.name)
-                        .clickNextButton(new QualifiedClose2PageOLS())
+                        .clickNextButton(new MedicalRecordsOptionPageOLS())
                         .waitForPageLoad()
-                        .clickNextButton(new SynexusHealthyMindsPageOLS())
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new HSGeneralPageOLS())
+                        .waitForPageLoadEmailNotProvided()
+                        .typeEmail("qa.acurian@gmail.com")
+                        .clickNextButton(new DoctorInformationCollectionPageOLS())
                         .waitForPageLoad()
-                        .clickOnAnswer("No, I am not interested in receiving information")
-                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .clickNextButton(new HS1PageOLS())
                         .waitForPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS())
-                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .assertGeneratedFul(env, site)
@@ -354,6 +357,9 @@ public class COPD_5042_OLS extends BaseTest {
                         .clickNextButton(new MedicalRecordsOptionPageOLS())
                         .waitForPageLoad()
                         .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new HSGeneralPageOLS())
+                        .waitForPageLoadEmailNotProvided()
+                        .typeEmail("qa.acurian@gmail.com")
                         .clickNextButton(new DoctorInformationCollectionPageOLS())
                         .waitForPageLoad()
                         .clickNextButton(new HS1PageOLS())
