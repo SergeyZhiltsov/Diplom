@@ -2,16 +2,14 @@ package com.acurian.selenium.pages.CC.Diabetes_4356A;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class TreatingYourDiabetesPageCC extends MainPageCC{
+public class CurrentlyTreatingYourDiabetesPageCC extends MainPageCC{
 
     public final String titleExpected = "How are you currently treating your diabetes?\n" +
             "Agent Note: Select all that apply";
@@ -22,18 +20,18 @@ public class TreatingYourDiabetesPageCC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public TreatingYourDiabetesPageCC() {
+    public CurrentlyTreatingYourDiabetesPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TreatingYourDiabetesPageCC waitForPageLoad() {
+    public CurrentlyTreatingYourDiabetesPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TreatingYourDiabetesPageCC clickOnAnswers(String ...answerText) {
+    public CurrentlyTreatingYourDiabetesPageCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

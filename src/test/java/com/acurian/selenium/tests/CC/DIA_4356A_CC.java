@@ -106,12 +106,12 @@ public class DIA_4356A_CC extends BaseTest{
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
 
-        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = withType2DiabetesPageCC
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(new TreatingYourDiabetesPageCC());
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
 
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
+        LastTimeYouTookPageCC lastTimeYouTookPageCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageCC());

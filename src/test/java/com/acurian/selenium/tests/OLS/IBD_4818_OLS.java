@@ -610,7 +610,6 @@ public class IBD_4818_OLS extends BaseTest {
                 .waitForPageLoadIBD4818()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
-                .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)

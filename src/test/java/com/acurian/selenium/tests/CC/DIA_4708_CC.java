@@ -141,12 +141,12 @@ public class DIA_4708_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", site.activeProtocols)
                 .back();
 
-        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageCC());
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
 
-        WithType2DiabetesPageCC withType2DiabetesPageCC = treatingYourDiabetesPageCC
+        WithType2DiabetesPageCC withType2DiabetesPageCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .back(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
@@ -163,7 +163,7 @@ public class DIA_4708_CC extends BaseTest {
             withType2DiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(period)
-                    .clickNextButton(treatingYourDiabetesPageCC)
+                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     //.checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", site.activeProtocols)
@@ -173,19 +173,19 @@ public class DIA_4708_CC extends BaseTest {
         NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(treatingYourDiabetesPageCC)
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
                 .clickNextButton(new NoOfAlcoholicDrinksCC());
 
         LastTimeYouTookPageCC lastTimeYouTookPageCC = noOfAlcoholicDrinksCC
                 .waitForPageLoad()
-                .back(treatingYourDiabetesPageCC)
+                .back(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
-                .back(treatingYourDiabetesPageCC)
+                .back(currentlyTreatingYourDiabetesPageCC)
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageCC());
 

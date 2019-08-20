@@ -10,7 +10,7 @@ public class ThankYouCloseGmegaOLS extends MainPageOLS {
 
     public final String titleExpected = "Thank you again for contacting Acurian's Research Information Center. To further allow us to assist you, please register with www.acurian.com and we will keep you informed of important treatment options for your condition.";
     public final String titleExpectedSB = "Thank you again for contacting Acurian's Research Information Center.";
-    public final String titleExpectedGBAN = "Thank you again for contacting Acurian's Research Information Center. To further allow us to assist you, please register with www.Acurian.com and we will keep you informed of important treatment options for your condition.";
+    public final String titleExpectedGBAN = "Thank you again for contacting Acurian's Research Information Center. To further allow us to assist you, please register with www.acurianhealth.com and we will keep you informed of important treatment options for your condition.";
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;

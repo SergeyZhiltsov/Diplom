@@ -88,6 +88,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickOnAnswer("Female")
                 .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
                 .clickNextButton(lessThan18YearsOldPageOLS)
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS)

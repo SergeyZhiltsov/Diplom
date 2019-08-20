@@ -23,6 +23,7 @@ public class LogicBuilderPage extends MainPageSB {
         PageFactory.initElements(getDriver(), this);
     }
 
+    @Step
     public LogicBuilderPage clickCoreLink() {
         waitAndClickWebElement(coreLink);
         try {
