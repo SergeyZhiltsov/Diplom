@@ -643,7 +643,7 @@ public class NoIndication3889_OLS extends BaseTest {
 
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
             thankYouCloseSimplePageOLS
-                    .waitForPageLoad()
+                    .waitForSENRPageLoad()
                     .clickNextButton(new AboutHealthPageOLS())
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
