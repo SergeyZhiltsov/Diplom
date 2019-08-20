@@ -57,7 +57,7 @@ public class ABRandomnessTest extends BaseTest {
 
     @Step()
     public void checkPage(String title) {
-        logTextToAllureAndConsole(title);
+        logTextToAllureAndConsole("Page title was received: " + title);
         if (title.equals("Acurian Clinical Screener")) {
             countA++;
             Assert.assertEquals(title, "Acurian Clinical Screener");
@@ -68,7 +68,7 @@ public class ABRandomnessTest extends BaseTest {
         totalCount++;
     }
 
-    @Step("{0}")
+    @Step()
     public void logTextToAllureAndConsole(String text) {
         System.out.println(text);
     }
@@ -76,8 +76,8 @@ public class ABRandomnessTest extends BaseTest {
     @AfterClass
     @Step()
     public void showResults() {
-        System.out.println("Total count of test run: " + totalCount);
-        System.out.println("Count for Acurian: " + countA);
-        System.out.println("Count for Blinx: " + countB);
+        logTextToAllureAndConsole("Total count of test run: " + totalCount);
+        logTextToAllureAndConsole("Count for Acurian: " + countA);
+        logTextToAllureAndConsole("Count for Blinx: " + countB);
     }
 }
