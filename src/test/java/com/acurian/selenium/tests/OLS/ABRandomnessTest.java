@@ -31,8 +31,7 @@ public class ABRandomnessTest extends BaseTest {
         System.out.println("Skip standard driver quit.");
     }
 
-    @Test(invocationCount = 100, skipFailedInvocations = true)
-    @Step("{0}")
+    @Test(invocationCount = 10, skipFailedInvocations = true)
     public void abRandomnes() {
         String testURL = "https://test-screener.acurian.com/questionnaire_test_staging_redirector/welcome?pn=800AMS1TST";
 
@@ -47,10 +46,18 @@ public class ABRandomnessTest extends BaseTest {
         }
         WebDriver webDriver = new ChromeDriver(options);
         webDriver.manage().window().setSize(new Dimension(1400, 1050));
-
-                webDriver.navigate().to(testURL);
+        webDriver.navigate().to(testURL);
         String title = webDriver.getTitle();
-        System.out.println(title);
+
+        checkPage(title);
+        TestListener.attachScreenshot(new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(webDriver));
+
+        webDriver.quit();
+    }
+
+    @Step()
+    public void checkPage(String title) {
+        logTextToAllureAndConsole(title);
         if (title.equals("Acurian Clinical Screener")) {
             countA++;
             Assert.assertEquals(title, "Acurian Clinical Screener");
@@ -59,12 +66,14 @@ public class ABRandomnessTest extends BaseTest {
             Assert.assertEquals(title, "Screener");
         }
         totalCount++;
-        TestListener.attachScreenshot(new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(webDriver));
-        webDriver.quit();
+    }
+
+    @Step("{0}")
+    public void logTextToAllureAndConsole(String text) {
+        System.out.println(text);
     }
 
     @AfterClass
-    @Step("{0}")
     public void showResults() {
         System.out.println("Total count of test run: " + totalCount);
         System.out.println("Count for Acurian: " + countA);
