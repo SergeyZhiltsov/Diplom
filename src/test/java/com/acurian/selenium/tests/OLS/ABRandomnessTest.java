@@ -31,7 +31,7 @@ public class ABRandomnessTest extends BaseTest {
         System.out.println("Skip standard driver quit.");
     }
 
-    @Test(invocationCount = 10, skipFailedInvocations = true)
+    @Test(invocationCount = 100, skipFailedInvocations = true)
     public void abRandomnes() {
         String testURL = "https://test-screener.acurian.com/questionnaire_test_staging_redirector/welcome?pn=800AMS1TST";
 
@@ -74,6 +74,7 @@ public class ABRandomnessTest extends BaseTest {
     }
 
     @AfterClass
+    @Step()
     public void showResults() {
         System.out.println("Total count of test run: " + totalCount);
         System.out.println("Count for Acurian: " + countA);
