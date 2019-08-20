@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.pages.BaseTest;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -36,6 +37,7 @@ public class ABRandomnessTest extends BaseTest {
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         System.setProperty("webdriver.chrome.driver", ABRandomnessTest.class.getResource("/chromedriver.exe").getPath());
         WebDriver webDriver = new ChromeDriver(options);
+        webDriver.manage().window().setSize(new Dimension(1400, 1050));
 
         webDriver.navigate().to(testURL);
         String title = webDriver.getTitle();
