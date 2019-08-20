@@ -247,7 +247,7 @@ public class DPN_3769_OLS extends BaseTest {
         //------------ Change your answer to correct QR age in page 'studyQuestionMigPageOLS'---------------   
         whichOfTheFollowingHadAmputatedSurgically_OLS.waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
 
 
         //----------Q13 -"Do you currently use diet and exercise as a way to help treat your diabetes?"-  Page ---------------   
