@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class ThrownUpVomitedPast2weeksPageCC extends MainPageCC {
+public class ThrownUpVomitedPastMonthPageCC extends MainPageCC {
 
     public final String titleExpected = "How many times have you thrown up or vomited in the past month?";
 
@@ -19,18 +19,18 @@ public class ThrownUpVomitedPast2weeksPageCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public ThrownUpVomitedPast2weeksPageCC() {
+    public ThrownUpVomitedPastMonthPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ThrownUpVomitedPast2weeksPageCC waitForPageLoad() {
+    public ThrownUpVomitedPastMonthPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ThrownUpVomitedPast2weeksPageCC clickOnAnswer(String answerText) {
+    public ThrownUpVomitedPastMonthPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

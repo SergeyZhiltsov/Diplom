@@ -3,10 +3,8 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ADG_4357.*;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.DiagnosedAnyTypeOfDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
+import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
 import com.acurian.selenium.pages.CC.closes.*;
@@ -90,10 +88,6 @@ public class GAST_4357_CC extends BaseTest {
                 .getExpectedModifiedTitle(studyName, "500"), "Title is diff");
 
         dateOfBirthPageCC
-//                .setMonth("Apr")
-//                .setDay("5")
-//                .setYear("2001")
-//                .clickOnAnswer("No") //If "No", go to Does Not Give Permission to Proceed Close
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
@@ -162,24 +156,20 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new WithType2DiabetesPageCC());
 
         //Q4
-        HashMap<String, List<String>> disqualifyQ4 = new HashMap<>();
-        DigestiveConditionsAffectDiabetesPageCC digestiveConditionsAffectDiabetesPageCC = new DigestiveConditionsAffectDiabetesPageCC();
-        disqualifyQ4.put("Within the past 2 months", Arrays.asList(site.activeProtocols)); //Disqualify ("Diabetes < 5 years")
-        disqualifyQ4.put("3 - 6 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ4.put("7 - 11 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ4.put("1 to less than 5 years ago", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ4.entrySet()) {
-            System.out.println(entry.getKey());
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
+        List<String> disqualifyQ4 = Arrays.asList("Within the past 2 months",
+                "3 - 6 months ago", "7 - 11 months ago", "1 to less than 5 years ago");
+        for (String answer: disqualifyQ4) {
+            System.out.println("Select answer for Q4: " + answer);
             withType2DiabetesPageCC
                     .waitForPageLoad()
-                    .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(digestiveConditionsAffectDiabetesPageCC)
+                    .clickOnAnswer(answer) //skip to Q7
+                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
                     .back(withType2DiabetesPageCC);
         }
-
         WithType1DiabetesPageCC withType1DiabetesPageCC = withType2DiabetesPageCC
                 .waitForPageLoad()
                 .back(whatKindOfDiabetesPageCC)
@@ -187,17 +177,16 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new WithType1DiabetesPageCC());
 
         //Q5
-        HashMap<String, List<String>> disqualifyQ5 = new HashMap<>();
-        disqualifyQ5.put("Within the past 2 months", Arrays.asList(site.activeProtocols)); //Disqualify ("Diabetes < 5 years")
-        disqualifyQ5.put("3 - 6 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ5.put("7 - 11 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ5.put("1 to less than 5 years ago", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ5.entrySet()) {
-            System.out.println(entry.getKey());
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC =
+                new CardiovascularDiseaseThanOthersPageCC();
+        List<String> disqualifyQ5 = Arrays.asList("Within the past 2 months", "3 - 6 months ago", "7 - 11 months ago",
+        "1 to less than 5 years ago");
+        for (String answer: disqualifyQ5) {
+            System.out.println("Select answer for Q5: " + answer);
             withType1DiabetesPageCC
                     .waitForPageLoad()
-                    .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(digestiveConditionsAffectDiabetesPageCC)
+                    .clickOnAnswer(answer) //skip to Q7
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7205", site.activeProtocols)
@@ -210,139 +199,109 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswer("Unsure") //If selected "Unsure", go to Q6
                 .clickNextButton(new HowLongAgoDiagnosedDiabetesPageCC());
         //Q6
-        HashMap<String, List<String>> disqualifyQ6 = new HashMap<>();
-        disqualifyQ6.put("Within the past 2 months", Arrays.asList(site.activeProtocols)); //Disqualify ("Diabetes < 5 years")
-        disqualifyQ6.put("3 - 6 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ6.put("7 - 11 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ6.put("1 to less than 5 years ago", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ6.entrySet()) {
-            System.out.println(entry.getKey());
+        List<String> disqualifyQ6 = Arrays.asList("Within the past 2 months", "3 - 6 months ago", "7 - 11 months ago",
+                "1 to less than 5 years ago");
+        for (String answer : disqualifyQ6) {
+            System.out.println("Select answer for Q6: " + answer);
             howLongAgoDiagnosedDiabetesPageCC
                     .waitForPageLoad()
-                    .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(digestiveConditionsAffectDiabetesPageCC)
+                    .clickOnAnswer(answer) //skip to Q7
+                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
                     .back(howLongAgoDiagnosedDiabetesPageCC);
         }
         //Q6
-        howLongAgoDiagnosedDiabetesPageCC
+        DigestiveConditionsAffectDiabetesPageCC digestiveConditionsAffectDiabetesPageCC = howLongAgoDiagnosedDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(digestiveConditionsAffectDiabetesPageCC);
+                .clickNextButton(new DigestiveConditionsAffectDiabetesPageCC());
         //Q7
 // ---- START Q9 Ghost Question - Gastroparesis Logic check ----
         SymptomsRegularlyOncePerWeekPageCC symptomsRegularlyOncePerWeekPageCC = digestiveConditionsAffectDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above") //Will DQ in Q9
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new SymptomsRegularlyOncePerWeekPageCC());
         //Q8
-        ThrownUpVomitedPast2weeksPageCC thrownUpVomitedPast2weeksPageCC = symptomsRegularlyOncePerWeekPageCC
+        symptomsRegularlyOncePerWeekPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above") //Will DQ in Q9 //Skip to Q11
-                .clickNextButton(new ThrownUpVomitedPast2weeksPageCC());
-        thrownUpVomitedPast2weeksPageCC
+                .clickOnAnswers("None of the above")
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(symptomsRegularlyOncePerWeekPageCC);
-        SymptomsFirstStartPageCC symptomsFirstStartPageCC = symptomsRegularlyOncePerWeekPageCC
+                .back(currentlyTreatingYourDiabetesPageCC);
+        symptomsRegularlyOncePerWeekPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Nausea or feeling sick to your stomach",
                                 "Bloating")
-                .clickNextButton(new SymptomsFirstStartPageCC());
-        //Q10
-        symptomsFirstStartPageCC
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(symptomsRegularlyOncePerWeekPageCC)
+                .back();
+
+        SymptomsFirstStartPageCC symptomsFirstStartPageCC = symptomsRegularlyOncePerWeekPageCC
                 .clickOnAnswers("Vomiting or throwing up",
                                 "Bloating") //Deselect Bloating
-                .clickNextButton(symptomsFirstStartPageCC)
+                .clickNextButton(new SymptomsFirstStartPageCC());
+
+        //Q10
+        symptomsFirstStartPageCC
                 .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic")
-                .back(symptomsRegularlyOncePerWeekPageCC)
+                .clickOnAnswer("2 months ago or less")
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
-                .back(digestiveConditionsAffectDiabetesPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)
+                .back();
+        ThrownUpVomitedPastMonthPageCC thrownUpVomitedPastMonthPageCC = symptomsFirstStartPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Gastroparesis")
-                .clickNextButton(symptomsRegularlyOncePerWeekPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(thrownUpVomitedPast2weeksPageCC);
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic");
-//---- END of Q9 Ghost Question - Gastroparesis Logic check ----
+                .clickOnAnswer("3 to 5 months ago")
+                .clickNextButton(new ThrownUpVomitedPastMonthPageCC());
         //Q11
-        CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = thrownUpVomitedPast2weeksPageCC
+        CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = thrownUpVomitedPastMonthPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("None, I have not vomited in the past month")
                 .clickNextButton(new CurrentlyHaveAnyOffFollowingPageCC());// not in flare
-        if (inFlare){
+        if (inFlare) {
             currentlyHaveAnyOffFollowingPageCC
                     .waitForPageLoad()
                     .back();
-            thrownUpVomitedPast2weeksPageCC
+            List<String> inFlareAnswer = Arrays.asList("1 time", "2 times", "3 times", "4 or more times");
+            for (String answer: inFlareAnswer) {
+                System.out.println("Select answer for Q11: " + answer);
+                thrownUpVomitedPastMonthPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer(answer)
+                        .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkStudyStatusContainsForQNumber("QS7211", "2-3")
+                        .back();
+            }
+            thrownUpVomitedPastMonthPageCC
                     .waitForPageLoad()
-                    .clickOnAnswer("1 time")// in flare
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS7211", "2-3")
-                    .back();
-            thrownUpVomitedPast2weeksPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer("2 times")// in flare
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS7211", "2-3")
-                    .back();
-            thrownUpVomitedPast2weeksPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer("3 times")// in flare
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS7211", "2-3")
-                    .back();
-            thrownUpVomitedPast2weeksPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer("4 or more times")// in flare
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS7211", "2-3");
-        }
-        else{
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+        } else {
             currentlyHaveAnyOffFollowingPageCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkStudyStatusContainsForQNumber("QS7211", "2-4");
         }
-//        currentlyHaveAnyOffFollowingPageCC
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS7211", site.activeProtocols)
-//                .back(thrownUpVomitedPast2weeksPageCC)
-//                .clickOnAnswer("4 or more times")
-//                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+
         //Q12
-        HashMap<String, List<String>> disqualifyQ12 = new HashMap<>();
-        SurgeriesPerformedPageCC surgeriesPerformedPageCC = new SurgeriesPerformedPageCC(); //Disqualify ("Parenteral feeding or tube")
-        disqualifyQ12.put("IV nutrition or Parenteral feeding – liquid food provided through a tube into your veins (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols));
-        disqualifyQ12.put("Nasogastric tube – a tube that goes in your nose and then enters your stomach to give you food or help with symptoms (Agent Note: ney-zoh-gas-trik)", Arrays.asList(site.activeProtocols));
-        disqualifyQ12.put("Enterostomy tube – a tube that goes through your skin directly into your stomach to provide you food or help with symptoms (Agent Note: en-tuh-ros-tuh-mee)", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ12.entrySet()) {
-            System.out.println(entry.getKey());
+        SurgeriesPerformedPageCC surgeriesPerformedPageCC = new SurgeriesPerformedPageCC();
+        List<String> disqualifyQ12 = Arrays.asList("IV nutrition or Parenteral feeding – liquid food provided through a tube into your veins (Agent Note: puh-REN-ter-ul)",
+        "Nasogastric tube – a tube that goes in your nose and then enters your stomach to give you food or help with symptoms (Agent Note: ney-zoh-gas-trik)",
+        "Enterostomy tube – a tube that goes through your skin directly into your stomach to provide you food or help with symptoms (Agent Note: en-tuh-ros-tuh-mee)");
+        for (String answer : disqualifyQ12) {
+            System.out.println("Select answer for Q12: " + answer);
             currentlyHaveAnyOffFollowingPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
+                    .clickOnAnswers(answer)
                     .clickNextButton(surgeriesPerformedPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
@@ -354,18 +313,16 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(surgeriesPerformedPageCC);
         //Q13
-        HashMap<String, List<String>> disqualifyQ13 = new HashMap<>();
-        BariatricWeightLossSurgeryPageCC bariatricWeightLossSurgeryPageCC = new BariatricWeightLossSurgeryPageCC(); //Disqualify ("GI surgery")
-        disqualifyQ13.put("Gastric pacemaker placement (Agent Note: gas-trik)", Arrays.asList(site.activeProtocols));
-        disqualifyQ13.put("Gastrectomy or removal of part of the stomach (Agent Note: ga-strek-tuh-mee)", Arrays.asList(site.activeProtocols));
-        disqualifyQ13.put("Fundoplication (Agent Note: fun-do-pli-kae-tion)", Arrays.asList(site.activeProtocols));
-        disqualifyQ13.put("Vagotomy (Agent Note: vey-got-uh-mee)", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ13.entrySet()) {
-            System.out.println(entry.getKey());
+        BariatricWeightLossSurgeryPageCC bariatricWeightLossSurgeryPageCC = new BariatricWeightLossSurgeryPageCC();
+        List<String> disqualifyQ13 = Arrays.asList("Gastric pacemaker placement (Agent Note: gas-trik)",
+                "Gastrectomy or removal of part of the stomach (Agent Note: ga-strek-tuh-mee)",
+                "Fundoplication (Agent Note: fun-do-pli-kae-tion)", "Vagotomy (Agent Note: vey-got-uh-mee)");
+        for (String answer : disqualifyQ13) {
+            System.out.println("Select answer for Q13: " + answer);
             surgeriesPerformedPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
+                    .clickOnAnswers(answer)
                     .clickNextButton(bariatricWeightLossSurgeryPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
@@ -460,31 +417,6 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC); //Back to Q2: QS38
 
-//        WhichOfTheFollowingBreathingLungPageСС whichOfTheFollowingBreathingLungPageСС =
-//                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-//                        .waitForPageLoad()
-//                        .clickOnAnswers("None of the above")
-//                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-//                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
-//        //Q5: QS41
-//        HashMap<String, List<String>> dqQ5 = new HashMap<>();
-//        dqQ5.put("COPD", Arrays.asList(site.activeProtocols)); //Disqualify ("COPD")
-//        dqQ5.put("Emphysema", Arrays.asList(site.activeProtocols)); //Disqualify ("Emphysema")
-//        for (Map.Entry<String, List<String>> entry : dqQ5.entrySet()) {
-//            System.out.println(entry.getKey());
-//            whichOfTheFollowingBreathingLungPageСС
-//                    .waitForPageLoad()
-//                    .clickOnAnswers("None of the above")
-//                    .clickOnAnswers(entry.getKey())
-//                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
-//                    .waitForPageLoad()
-//                    .getPage(debugPageCC)
-//                    .checkProtocolsContainsForQNumber("QS41" , site.activeProtocols)
-//                    .back(whichOfTheFollowingBreathingLungPageСС);
-//        }
-//        whichOfTheFollowingBreathingLungPageСС
-//                .waitForPageLoad()
-//                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         WhenDiagnosedWithCancerCC otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()

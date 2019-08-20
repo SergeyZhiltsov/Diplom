@@ -6,7 +6,6 @@ import com.acurian.selenium.pages.CC.ADG_4357.DigestiveConditionsAffectDiabetesP
 import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.VACC_4556_CC.AreYouInterestedInPneumoniaVaccineStudyCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -133,11 +132,11 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", protocols)
                 .back();
-        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageCC());
-        treatingYourDiabetesPageCC
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
+        currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", AKC)
@@ -150,7 +149,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(treatingYourDiabetesPageCC)
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", protocol2,protocol3, protocol4)
@@ -158,7 +157,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(treatingYourDiabetesPageCC)
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES", protocol2,protocol3, protocol4)
@@ -166,9 +165,9 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(treatingYourDiabetesPageCC);
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
 
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = treatingYourDiabetesPageCC
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
                 .clickNextButton(new NoOfAlcoholicDrinksCC());
@@ -177,7 +176,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("Q0018438-QS4631-STUDYQUES", AKC, protocol2, protocol3, protocol4)
                 .back();
-        treatingYourDiabetesPageCC
+        currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(noOfAlcoholicDrinksCC)
@@ -185,7 +184,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("Q0018438-QS4631-STUDYQUES", AKC, protocol2, protocol3, protocol4)
                 .back();
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
+        LastTimeYouTookPageCC lastTimeYouTookPageCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageCC());

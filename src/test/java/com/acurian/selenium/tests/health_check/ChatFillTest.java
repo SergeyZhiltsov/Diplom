@@ -1,32 +1,40 @@
 package com.acurian.selenium.tests.health_check;
 
+import com.acurian.selenium.pages.AS.DashBoardPage;
+import com.acurian.selenium.pages.AS.LoginPageAS;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.GBAN.LetsStartPageOLS;
+import com.acurian.selenium.pages.OLS.GBAN.ThanksPageOLS;
 import com.acurian.selenium.pages.OLS.RA.UndergoneGeneticTestingPageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AdobeSignMedAuthFormPage;
+import com.acurian.selenium.pages.OLS.closes.ChatfillMedicalRecordReleaseFormPageOLS;
+import com.acurian.selenium.pages.OLS.closes.HSCrohns2PageOLS;
 import com.acurian.selenium.pages.OLS.cv_study.HealthcareDiagnosedConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
+import com.acurian.selenium.utils.DataProviderPool;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ChatFillTest extends BaseTest {
 
     String env = System.getProperty("acurian.env", "QA");
 
-    @Test
-    public void chatFillTestRun() {
+    @Test(dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class)
+    public void chatFillTestRun(String userName, String password) {
         if (env.equals("PRD")) {
             System.out.println("Skipped for PRD environment");
         } else {
-            chatFillTest();
+            chatFillTest(userName, password);
         }
     }
 
-    public void chatFillTest() {
+    public void chatFillTest(String userName, String password) {
         String phoneNumber = "GBAN100001";
         //String testUrl = "https://test-screener.acurian.com/questionnaire_test_qa_chartfill/welcome?pn=" + phoneNumber;
         String siteZipCode = "19044";
@@ -38,8 +46,8 @@ public class ChatFillTest extends BaseTest {
                 .getPage(dateOfBirthPageOLS)
                 .openPage(env, phoneNumber);
 
-            letsStartPageOLS
-                    .waitForPageLoad()
+        letsStartPageOLS
+                    .waitForPageLoadByTitle(letsStartPageOLS.titleExpectedQA)
                     .clickNextButton(dateOfBirthPageOLS);
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -82,10 +90,11 @@ public class ChatFillTest extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
 
+        siteSelectionPageOLS
+                .waitForPageLoadGBAN();
+        String screenerPID = siteSelectionPageOLS.getPidNumber();
         HSCrohns2PageOLS hsCrohns2PageOLS = siteSelectionPageOLS
-                .waitForPageLoadGBAN()
-                .getPID()
-                .clickOnFacilityName("AUT_GBAN1_2929")
+        .clickOnFacilityName("AUT_GBAN1_2929")
                 .clickNextButton(new HSCrohns2PageOLS());
 
         ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS = hsCrohns2PageOLS
@@ -96,15 +105,33 @@ public class ChatFillTest extends BaseTest {
                 .waitForPageLoad()
                 .confirmPatientInformation()
                 .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
-                        "2 walnut grove dr.", "HORSHAM", siteZipCode)
+                        "2 walnut grove dr.", env.equals("QA") ? "Horsham" : "HORSHAM", siteZipCode)
                 .clickSignForm(new AdobeSignMedAuthFormPage());
 
-        ChatfillThankYouPageOLS chatfillThankYouPageOLS = adobeSignMedAuthFormPage
+        ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = adobeSignMedAuthFormPage
                 .waitForPageLoad()
                 .setSignature("Acurian")
-                .clickToSignButton(new ChatfillThankYouPageOLS());
+                .clickToSignButton(new ThankYouCloseGmegaOLS());
 
-        chatfillThankYouPageOLS
-                .waitForPageLoad();
+        ThanksPageOLS thanksPageOLS = thankYouCloseGmegaOLS
+                .waitForPageLoadByTitle(thankYouCloseGmegaOLS.titleExpectedGBAN)
+                .clickNextButton(new ThanksPageOLS());
+
+        thanksPageOLS.waitForPageLoad();
+
+        LoginPageAS loginPageAS = new LoginPageAS();
+        loginPageAS
+                .openPage(env)
+                .loginToAs(userName, password)
+                .clickSideMenuLink("Audit Log")
+                .setRequestedByFilter("chartfillAPI, chartfillAPI")
+                .setSearchAppFilter("ChartFill")
+                .clickSearchButtonAndWaitResults()
+                .clickFirstViewButtonFomList();
+        DashBoardPage dashBoardPage = new DashBoardPage();
+        String auditLogPID = dashBoardPage.getPatientIdFromRequestBody();
+        Assert.assertEquals(screenerPID, auditLogPID, "PIDs are different");
+        Assert.assertEquals("200", dashBoardPage.getResponseCodeFromResponseBody(),
+                "Response was not 200 OK");
     }
 }
