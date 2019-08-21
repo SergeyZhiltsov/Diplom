@@ -4,21 +4,23 @@
 
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.CC.DERM_4967_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_7036_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_4825_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_4815_CC_A_S"></class>
+            <class name="com.acurian.selenium.tests.CC.AKC_4691_CC_NoPIIemail"></class>
+            <class name="com.acurian.selenium.tests.CC.COPD_5042_CC"></class>
             <class name="com.acurian.selenium.tests.CC.DERM_4814_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.KAD_4631_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.GAST_4357_CC"></class>
+            <class name="com.acurian.selenium.tests.CC.DIA_4241_СС_ver3"></class>
 
-            <class name="com.acurian.selenium.tests.OLS.DERM_4967_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_7036_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4825_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.AKC_4691_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.AUT_3973_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.Chronic_4471_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.COPD_5042_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.CV_5034_OLS_A_S"></class>
             <class name="com.acurian.selenium.tests.OLS.DERM_4815_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4814_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4631_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.DERM_4825_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.DERM_7036_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.DIA_4241_OLS_ver3"></class>
             <class name="com.acurian.selenium.tests.OLS.GAST_4357_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.IBD_4818_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.KAD_4631_OLS"></class>
         </classes>
     </test>
 </suite>

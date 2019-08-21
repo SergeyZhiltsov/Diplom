@@ -243,6 +243,7 @@ public class GAST_4357_CC extends BaseTest {
                 .back();
 
         SymptomsFirstStartPageCC symptomsFirstStartPageCC = symptomsRegularlyOncePerWeekPageCC
+                .waitForPageLoad()
                 .clickOnAnswers("Vomiting or throwing up",
                                 "Bloating") //Deselect Bloating
                 .clickNextButton(new SymptomsFirstStartPageCC());
@@ -313,7 +314,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(surgeriesPerformedPageCC);
         //Q13
-        BariatricWeightLossSurgeryPageCC bariatricWeightLossSurgeryPageCC = new BariatricWeightLossSurgeryPageCC();
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = new WeightLossSurgeryPageCC();
         List<String> disqualifyQ13 = Arrays.asList("Gastric pacemaker placement (Agent Note: gas-trik)",
                 "Gastrectomy or removal of part of the stomach (Agent Note: ga-strek-tuh-mee)",
                 "Fundoplication (Agent Note: fun-do-pli-kae-tion)", "Vagotomy (Agent Note: vey-got-uh-mee)");
@@ -323,7 +324,7 @@ public class GAST_4357_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(bariatricWeightLossSurgeryPageCC)
+                    .clickNextButton(weightLossSurgeryPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7213", site.activeProtocols)
@@ -332,10 +333,10 @@ public class GAST_4357_CC extends BaseTest {
         surgeriesPerformedPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(bariatricWeightLossSurgeryPageCC);
+                .clickNextButton(weightLossSurgeryPageCC);
         //Q14
         HashMap<String, List<String>> disqualifyQ14 = new HashMap<>();
-        LastTimeSurgeryMedicalProcedureWeightLossPageCC lastTimeSurgeryMedicalProcedureWeightLossPageCC = new LastTimeSurgeryMedicalProcedureWeightLossPageCC(); //Disqualify ("GI surgery")
+        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = new ProcedureForWeightLossPageCC(); //Disqualify ("GI surgery")
         disqualifyQ14.put("Gastric bypass", Arrays.asList(site.activeProtocols));
         disqualifyQ14.put("Gastric sleeve or sleeve gastrectomy", Arrays.asList(site.activeProtocols));
         disqualifyQ14.put("Duodenal switch", Arrays.asList(site.activeProtocols));
@@ -344,18 +345,18 @@ public class GAST_4357_CC extends BaseTest {
         disqualifyQ14.put("I had a weight loss surgery, but I am unsure which type", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ14.entrySet()) {
             System.out.println(entry.getKey());
-            bariatricWeightLossSurgeryPageCC
+            weightLossSurgeryPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(lastTimeSurgeryMedicalProcedureWeightLossPageCC)
+                    .clickNextButton(procedureForWeightLossPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7214", site.activeProtocols)
-                    .back(bariatricWeightLossSurgeryPageCC);
+                    .back(weightLossSurgeryPageCC);
         }
 
-        bariatricWeightLossSurgeryPageCC
+        weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new TransitionStatementCC()) //Q19

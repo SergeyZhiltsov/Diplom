@@ -8,10 +8,9 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DiagnosedWithAnkylosingSpondylitisCC extends MainPageCC {
+public class PermanentlyUnableWalkDueToMedicalConditionPageCC extends MainPageCC {
 
-    public final String titleExpected = "Have you been diagnosed with ankylosing spondylitis, or AS, by a doctor? (Agent Note: ANK-kih-low-sing spon-dill-LITE-iss)\n" +
-    		"Ankylosing spondylitis is a chronic inflammatory disease that primarily affects the spine, leading to frequent back pain and stiffness and sometimes pain in other areas of the body, too. The back pain is usually worse in the morning and after periods of rest or inactivity. In advanced cases, inflammation can cause sections of the spine to fuse together and become less flexible.";
+    public final String titleExpected = "Are you permanently unable to walk due to your medical condition?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -19,18 +18,18 @@ public class DiagnosedWithAnkylosingSpondylitisCC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public DiagnosedWithAnkylosingSpondylitisCC() {
+    public PermanentlyUnableWalkDueToMedicalConditionPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnosedWithAnkylosingSpondylitisCC waitForPageLoad() {
+    public PermanentlyUnableWalkDueToMedicalConditionPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedWithAnkylosingSpondylitisCC clickOnAnswer(String answerText) {
+    public PermanentlyUnableWalkDueToMedicalConditionPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -39,5 +38,4 @@ public class DiagnosedWithAnkylosingSpondylitisCC extends MainPageCC {
     public String getTitleText(){
         return getText(titleText);
     }
-
 }
