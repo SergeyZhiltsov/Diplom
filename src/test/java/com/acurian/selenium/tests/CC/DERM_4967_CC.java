@@ -173,6 +173,8 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
         howManyDaysHasSkinBeenItchyCC         //Q26
                 .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5849", site.activeProtocols)
                 .back(haveYouEverHadAnyOfTheFollowingSymptomsPageСС)
                 .waitForPageLoad()
                 .back(howWouldYouDescribeTheEczemaCurrentlyPageCC)
