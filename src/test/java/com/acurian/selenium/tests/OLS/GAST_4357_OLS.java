@@ -4,8 +4,10 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.*;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
@@ -79,7 +81,7 @@ public class GAST_4357_OLS extends BaseTest {
 
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                 .waitForPageLoad()
-                .setDate("09091942")
+                .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
@@ -122,7 +124,8 @@ public class GAST_4357_OLS extends BaseTest {
 
         //Q4
         HashMap<String, List<String>> disqualifyQ4 = new HashMap<>();
-        DigestiveConditionsAffectDiabetesPageOLS digestiveConditionsAffectDiabetesPageOLS = new DigestiveConditionsAffectDiabetesPageOLS();
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS =
+                new CurrentlyTreatingYourDiabetesPageOLS();
         disqualifyQ4.put("Within the past 2 months", Arrays.asList(site.activeProtocols)); //Disqualify ("Diabetes < 5 years")
         disqualifyQ4.put("3 - 6 months ago", Arrays.asList(site.activeProtocols));
         disqualifyQ4.put("7 - 11 months ago", Arrays.asList(site.activeProtocols));
@@ -132,7 +135,7 @@ public class GAST_4357_OLS extends BaseTest {
             withType2DiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(digestiveConditionsAffectDiabetesPageOLS)
+                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -146,6 +149,8 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickNextButton(new WithType1DiabetesPageOLS());
 
         //Q5
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS =
+                new CardiovascularDiseaseThanOthersPageOLS();
         HashMap<String, List<String>> disqualifyQ5 = new HashMap<>();
         disqualifyQ5.put("Within the past 2 months", Arrays.asList(site.activeProtocols)); //Disqualify ("Diabetes < 5 years")
         disqualifyQ5.put("3 - 6 months ago", Arrays.asList(site.activeProtocols));
@@ -156,7 +161,7 @@ public class GAST_4357_OLS extends BaseTest {
             withType1DiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(digestiveConditionsAffectDiabetesPageOLS)
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7205", site.activeProtocols)
@@ -179,17 +184,17 @@ public class GAST_4357_OLS extends BaseTest {
             howLongAgoDiagnosedDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(digestiveConditionsAffectDiabetesPageOLS)
+                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
                     .back(howLongAgoDiagnosedDiabetesPageOLS);
         }
         //Q6
-        howLongAgoDiagnosedDiabetesPageOLS
+        DigestiveConditionsAffectDiabetesPageOLS digestiveConditionsAffectDiabetesPageOLS = howLongAgoDiagnosedDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(digestiveConditionsAffectDiabetesPageOLS);
+                .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS());
         //Q7
 // ---- START Q9 Ghost Question - Gastroparesis Logic check ----
         SymptomsRegularlyOncePerWeekPageOLS symptomsRegularlyOncePerWeekPageOLS = digestiveConditionsAffectDiabetesPageOLS
@@ -197,84 +202,58 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswers("None of the above") //Will DQ in Q9
                 .clickNextButton(new SymptomsRegularlyOncePerWeekPageOLS());
         //Q8
-        ThrownUpVomitedPast2weeksPageOLS thrownUpVomitedPast2weeksPageOLS = symptomsRegularlyOncePerWeekPageOLS
+        symptomsRegularlyOncePerWeekPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above") //Will DQ in Q9 //Skip to Q11
-                .clickNextButton(new ThrownUpVomitedPast2weeksPageOLS());
-        thrownUpVomitedPast2weeksPageOLS
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
+                .back(currentlyTreatingYourDiabetesPageOLS);
+        symptomsRegularlyOncePerWeekPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Nausea or feeling sick to your stomach",
+                        "Bloating")
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
                 .back(symptomsRegularlyOncePerWeekPageOLS);
+
         SymptomsFirstStartPageOLS symptomsFirstStartPageOLS = symptomsRegularlyOncePerWeekPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Nausea or feeling sick to your stomach",
-                        "Bloating")
-                .clickNextButton(new SymptomsFirstStartPageOLS());
-        //Q10
-        symptomsFirstStartPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(symptomsRegularlyOncePerWeekPageOLS)
                 .clickOnAnswers("Vomiting or throwing up",
                         "Bloating") //Deselect Bloating
-                .clickNextButton(symptomsFirstStartPageOLS)
+                .clickNextButton(new SymptomsFirstStartPageOLS());
+
+//Q10
+        symptomsFirstStartPageOLS
                 .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic")
-                .back(symptomsRegularlyOncePerWeekPageOLS)
+                .clickOnAnswer("2 months ago or less")
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
-                .back(digestiveConditionsAffectDiabetesPageOLS)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)
+                .back();
+        ThrownUpVomitedPastMonthPageOLS thrownUpVomitedPastMonthPageOLS = symptomsFirstStartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Gastroparesis")
-                .clickNextButton(symptomsRegularlyOncePerWeekPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(thrownUpVomitedPast2weeksPageOLS);
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkIsNoProtocolsForQuestion("Ghost Question - Gastroparesis Logic");
-//---- END of Q9 Ghost Question - Gastroparesis Logic check ----
+                .clickOnAnswer("3 to 5 months ago")
+                .clickNextButton(new ThrownUpVomitedPastMonthPageOLS());
+
         //Q11
-        HaveAnyOfTheFollowingPageOLS currentlyHaveAnyOffFollowingPageCC = thrownUpVomitedPast2weeksPageOLS
+        HaveAnyOfTheFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = thrownUpVomitedPastMonthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("None, I have not vomited in the past month")// not in flare
                 .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        if (inFlare){
-            currentlyHaveAnyOffFollowingPageCC
+        if (inFlare) {
+            currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .back();
-            thrownUpVomitedPast2weeksPageOLS
+            thrownUpVomitedPastMonthPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("1 time")// in flare
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
-                    .waitForPageLoad()
-                    .back();
-            thrownUpVomitedPast2weeksPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("2 times")// in flare
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
-                    .waitForPageLoad()
-                    .back();
-            thrownUpVomitedPast2weeksPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("3 times")// in flare
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC)
-                    .waitForPageLoad()
-                    .back();
-            thrownUpVomitedPast2weeksPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("4 or more times")// in flare
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+                    .clickNextButton(currentlyHaveAnyOffFollowingPageOLS);
         }
-//        currentlyHaveAnyOffFollowingPageCC
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS7211", site.activeProtocols)
-//                .back(thrownUpVomitedPast2weeksPageOLS)
-//                .clickOnAnswer("4 or more times")
-//                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+
         //Q12
         HashMap<String, List<String>> disqualifyQ12 = new HashMap<>();
         SurgeriesPerformedPageOLS surgeriesPerformedPageOLS = new SurgeriesPerformedPageOLS(); //Disqualify ("Parenteral feeding or tube")
@@ -283,7 +262,7 @@ public class GAST_4357_OLS extends BaseTest {
         disqualifyQ12.put("Enterostomy tube – a tube that goes through your skin directly into your stomach to provide you food or help with symptoms", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ12.entrySet()) {
             System.out.println(entry.getKey());
-            currentlyHaveAnyOffFollowingPageCC
+            currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
@@ -291,9 +270,9 @@ public class GAST_4357_OLS extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7212", site.activeProtocols)
-                    .back(currentlyHaveAnyOffFollowingPageCC);
+                    .back();
         }
-        currentlyHaveAnyOffFollowingPageCC
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(surgeriesPerformedPageOLS);
@@ -798,11 +777,12 @@ public class GAST_4357_OLS extends BaseTest {
         if (inFlare) {
             siteSelectionPageOLS
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClose2PageOLS())
+                    .clickNextButton(new QualifiedClose1PageOLS())
                     .waitForPageLoad()
-                    .clickNextButton(new MedicalRecordsOptionPageOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("Continue with medical records")
+                    .clickOnAnswer("No")
+//                  .clickNextButton(new MedicalRecordsOptionPageOLS())
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("Continue with medical records")
 //                    .clickNextButton(new SynexusHealthyMindsPageOLS())
 //                    .waitForPageLoad()
 //                    .clickOnAnswer("No, I am not interested in receiving information")
@@ -814,9 +794,9 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickOnFacilityName(site.name)
                     .clickNextButton(new QualifiedCloseGastroPageOLS())
                     .waitForPageLoad()
-                    .clickNextButton(new SynexusHealthyMindsPageOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("No, I am not interested in receiving information")
+//                    .clickNextButton(new SynexusHealthyMindsPageOLS())
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No, I am not interested in receiving information")
                     .clickNextButton(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()
                     .clickNextButton(aboutHealthPageOLS);

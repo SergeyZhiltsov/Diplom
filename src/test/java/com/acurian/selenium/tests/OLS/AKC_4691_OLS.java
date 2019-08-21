@@ -6,7 +6,6 @@ import com.acurian.selenium.pages.OLS.ADG_4357.DigestiveConditionsAffectDiabetes
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -103,10 +102,10 @@ public class AKC_4691_OLS extends BaseTest {
                 .back();
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad();
-        TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
-        treatingYourDiabetesPageOLS.waitForPageLoad()
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+        currentlyTreatingYourDiabetesPageOLS.waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
@@ -124,7 +123,7 @@ public class AKC_4691_OLS extends BaseTest {
 
 
         //--------------Q5: How are you currently treating your diabetes? -----------
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinksOLS = treatingYourDiabetesPageOLS
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinksOLS = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
@@ -134,7 +133,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
                 .back();
 
-        treatingYourDiabetesPageOLS
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(noOfAlcoholicDrinksOLS)
@@ -143,7 +142,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
                 .back();
 
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
+        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageOLS());

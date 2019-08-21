@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
+import com.acurian.selenium.pages.OLS.Crohns_3485.WhenDiagnosedCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
@@ -22,7 +23,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class IBD_4818_OLS extends BaseTest {
@@ -47,7 +50,7 @@ public class IBD_4818_OLS extends BaseTest {
 
     @Test(dataProvider = "flare")
     @Description("IBD_3889_OLS")
-    public void ibd4818OlsTest(boolean inFlare) {
+    public void ibd4818OlsTest(boolean flare) {
         Site site = Site.AUT_AMS1_4818_Site;
         String phoneNumber = "AUTAMS1IBD";
         String studyName = "a Crohn's";
@@ -61,7 +64,8 @@ public class IBD_4818_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
+                dateOfBirthPageOLS.
+                getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -85,15 +89,30 @@ public class IBD_4818_OLS extends BaseTest {
 
         genderPageOLS
                 .waitForPageLoad();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                genderPageOLS
+                .setDate("09091937")
+                .clickOnAnswer("Female")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS);
+
+        genderPageOLS
+                .waitForPageLoad();
         HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS = genderPageOLS
                 .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
+//Q2	Have you ever been officially diagnosed by a doctor with any of the following digestive conditions?
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -103,202 +122,216 @@ public class IBD_4818_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new UlcerativeColitisDoctorOrNursePageOLS());
-        ulcerativeColitisDoctorOrNursePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5702", site.activeProtocols[1])
-                .back();
-        CrohnsDiseaseDoctorOrNursePageOLS crohnsDiseaseDoctorOrNursePageOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("Crohn's disease")
-                .clickNextButton(new CrohnsDiseaseDoctorOrNursePageOLS());
 
-        crohnsDiseaseDoctorOrNursePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
-                .back();
-        crohnsDiseaseDoctorOrNursePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("I am unsure")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5726", site.activeProtocols)
-                .back();
-        crohnsDiseaseDoctorOrNursePageOLS
+//Q4	Was your diagnosis of ulcerative colitis made by a doctor or nurse?
+        List<String> disqualifyQ4 = Arrays.asList("No", "I am unsure");
+        for (String answer: disqualifyQ4) {
+            System.out.println("Select answer for Q4: " + answer);
+            ulcerativeColitisDoctorOrNursePageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5727", site.activeProtocols[0])
+                    .back();
+        }
+        WhenDiagnosedCrohnsPageOLS whenDiagnosedCrohnsPageOLS = ulcerativeColitisDoctorOrNursePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(ulcerativeColitisDoctorOrNursePageOLS);
+                .clickNextButton(new WhenDiagnosedCrohnsPageOLS());
 
-        WhenWereYouDiagnosedWithCrohnsPageOLS whenWereYouDiagnosedWithCrohnsPageOLS = ulcerativeColitisDoctorOrNursePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new WhenWereYouDiagnosedWithCrohnsPageOLS());
-
-        WhenWereYouDiagnosedWithUlcerativeColitisPageOLS whenWereYouDiagnosedWithUlcerativeColitisPageOLS = whenWereYouDiagnosedWithCrohnsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(new WhenWereYouDiagnosedWithUlcerativeColitisPageOLS());
-        whenWereYouDiagnosedWithUlcerativeColitisPageOLS
+//Q6	When were you diagnosed with ulcerative colitis?
+        PartOfDiagnosisFollowingProceduresDonePageOLS partOfDiagnosisFollowingProceduresDonePageOLS =
+                whenDiagnosedCrohnsPageOLS
+                        .waitForPageLoadULC()
+                        .clickOnAnswer("Less than 3 months ago")
+                        .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageOLS());
+        partOfDiagnosisFollowingProceduresDonePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5703", site.activeProtocols)
-                .back();
-        whenWereYouDiagnosedWithCrohnsPageOLS
-                .waitForPageLoad()
+                .checkProtocolsContainsForQNumber("QS5704", site.activeProtocols[0])
+                .back(whenDiagnosedCrohnsPageOLS)
+                .waitForPageLoadULC()
                 .clickOnAnswer("3 – 6 months ago")
-                .clickNextButton(whenWereYouDiagnosedWithUlcerativeColitisPageOLS);
-
-        ReviewMedicalRecordsCrohnsDiagnosisPageOLS reviewMedicalRecordsCrohnsDiagnosisPageOLS = whenWereYouDiagnosedWithUlcerativeColitisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(new ReviewMedicalRecordsCrohnsDiagnosisPageOLS());
-
-        PartOfDiagnosisFollowingProceduresDonePageOLS partOfDiagnosisFollowingProceduresDonePageOLS = reviewMedicalRecordsCrohnsDiagnosisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new PartOfDiagnosisFollowingProceduresDonePageOLS());
+                .clickNextButton(partOfDiagnosisFollowingProceduresDonePageOLS);
 
         ManageYourCrohnsPageOLS manageYourCrohnsPageOLS = partOfDiagnosisFollowingProceduresDonePageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
+                        "Colonoscopy – a thin, flexible, lighted tube is inserted through the rectum and into the entire colon (large intestine). This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.",
+                        "Sigmoidoscopy – a thin, flexible, lighted tube is inserted through the rectum and into the section of the colon (large intestine) closest to the rectum. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
                 .clickNextButton(new ManageYourCrohnsPageOLS());
-        manageYourCrohnsPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5729", site.activeProtocols)
-                .back();
-        partOfDiagnosisFollowingProceduresDonePageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Endoscopy – a thin, flexible, lighted tube is inserted through the mouth. This allows the doctor to look for abnormal areas. A biopsy is sometimes taken during this test.")
-                .clickNextButton(manageYourCrohnsPageOLS);
 
+//Q9	Have you ever taken any medications to treat or manage your Crohn's or colitis?
         CrohnsDiseaseOrUlcerativeColitisFlarePageOLS crohnsDiseaseOrUlcerativeColitisFlarePageOLS = manageYourCrohnsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new CrohnsDiseaseOrUlcerativeColitisFlarePageOLS());
-        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                .waitForPageLoad()
+        SteroidMedicationsForCrohnsOLS steroidMedicationsForCrohnsOLS = crohnsDiseaseOrUlcerativeColitisFlarePageOLS
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5706", site.activeProtocols)
-                .back();
-        SteroidMedicationsForCrohnsOLS steroidMedicationsForCrohnsOLS = manageYourCrohnsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
+                .back(manageYourCrohnsPageOLS)
+                .clickOnAnswer("Yes") //Q10
                 .clickNextButton(new SteroidMedicationsForCrohnsOLS());
 
+//Q10	Have you ever taken steroid medications for your Crohn's or colitis?
         FollowingMedicationsCrohnsPageOLS followingMedicationsCrohnsPageOLS = steroidMedicationsForCrohnsOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                .clickOnAnswer("No") //Choice connected with Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic
                 .clickNextButton(new FollowingMedicationsCrohnsPageOLS());
 
+        //Q11
         EverTreatedCrohnOrColitisOLS everTreatedCrohnOrColitisOLS = followingMedicationsCrohnsPageOLS
                 .waitForPageLoad()
+                .clickOnAnswers("Mesalamine medications, which include Apriso, Asacol, Canasa, Delzicol, Lialda, Pentasa, and Rowasa",
+                        "Azulfidine, also known as sulfasalazine",
+                        "Colazal or Giazo, also known as balsalazide",
+                        "Dipentum, also known as olsalazine",
+                        "Unsure")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTreatedCrohnOrColitisOLS());
 
+        //Q12
         BiologicMedicationsPageOLS biologicMedicationsPageOLS = everTreatedCrohnOrColitisOLS
                 .waitForPageLoad()
+                .clickOnAnswers("Astagraf, Envarsus, or Prograf, also known as tacrolimus",
+                        "Azasan or Imuran, also known as azathioprine",
+                        "CellCept or Myfortic, also known as mycophenolate",
+                        "Jakafi",
+                        "Methotrexate pills or tablets, also known as Rheumatrex or Trexall",
+                        "Methotrexate injections or shots, also known as Otrexup or Rasuvo",
+                        "Purixan, also known as 6-MP or mercaptopurine",
+                        "Rapamune, also known as sirolimus",
+                        "Sandimmune, Gengraf, or Neoral, also known as cyclosporine",
+                        "Xeljanz",
+                        "Unsure")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BiologicMedicationsPageOLS());
 
+        //Q13	"Biologics" are medications that affect the body's immune system. They are usually given as an infusion (into a vein) or a shot (injection).
         biologicMedicationsPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS);
-
-        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
-                .back();
-
-        biologicMedicationsPageOLS
-                .waitForPageLoad()
-                .back();
-
-        everTreatedCrohnOrColitisOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Jakafi (ruxolitinib)")
-                .clickNextButton(biologicMedicationsPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0], site.activeProtocols[1])
-                .back();
-        everTreatedCrohnOrColitisOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Xeljanz (tofacitinib)")
-                .clickNextButton(biologicMedicationsPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5709", site.activeProtocols[0], site.activeProtocols[1])
-                .back();
-        everTreatedCrohnOrColitisOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Astagraf, Envarsus, or Prograf (tacrolimus)")
+                .clickOnAnswers("Actemra")
                 .clickNextButton(biologicMedicationsPageOLS);
 
+         //Q14	Are you currently receiving regular doses of any of the following "biologic" medications?
+        List<String> disqualifyQ14 = Arrays.asList("Actemra",
+                "Benlysta",
+                "Cimzia",
+                "Cosentyx",
+                "Enbrel",
+                "Entyvio",
+                "Humira",
+                "Kineret",
+                "Orencia",
+                "Prolia or Xgeva",
+                "Raptiva",
+                "Remicade",
+                "Rituxan",
+                "Simponi",
+                "Stelara",
+                "Taltz",
+                "Tysabri");
+        for (String answer: disqualifyQ14) {
+            System.out.println("Select answer for Q14: " + answer);
+            biologicMedicationsPageOLS
+                    .waitForPageLoadNew()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS)
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
+                    .back();
+        }
         biologicMedicationsPageOLS
+                .waitForPageLoadNew()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS)
                 .waitForPageLoad()
-                .clickOnAnswers("Cimzia")
+                .getPage(debugPageOLS)//Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic
+                .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols[0])
+                .back(biologicMedicationsPageOLS)
+                .waitForPageLoadNew()
+                .back(biologicMedicationsPageOLS)
+                .waitForPageLoad()
+                .back(everTreatedCrohnOrColitisOLS)
+                .waitForPageLoad()
+                .back(followingMedicationsCrohnsPageOLS);
+
+        //    Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic check //TODO Ghost
+        followingMedicationsCrohnsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Apriso, Asacol, Canasa, Delzicol, Lialda, Pentasa, or Rowasa (mesalamine)")
+                .clickNextButton(everTreatedCrohnOrColitisOLS)
+                .waitForPageLoad()
+                .clickNextButton(biologicMedicationsPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS);
 
-        SubquestionsIbdPleaseThinkCrohnsPageOLS subquestionsIbdPleaseThinkCrohnsPageOLS = crohnsDiseaseOrUlcerativeColitisFlarePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Mild symptoms, but tolerable")
-                .clickNextButton(new SubquestionsIbdPleaseThinkCrohnsPageOLS());
-
-        SubquestionsIbdPleaseThinkUlcerativeColitisPageOLS subquestionsIbdPleaseThinkUlcerativeColitisPageOLS = subquestionsIbdPleaseThinkCrohnsPageOLS
-                .waitForPageLoad()
-                .setAvgDayBowelMovements("2")
-                .clickOnAnswer("Mild (aware but tolerable)")// not in flare
-                .clickNextButton(new SubquestionsIbdPleaseThinkUlcerativeColitisPageOLS());
-        if (inFlare) {
-            subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
+        //Q17
+        crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                .waitForPageLoad();
+        SubquestionsIBDShireCrohnsPageOLS subquestionsIBDShireCrohnsPageOLS = new SubquestionsIBDShireCrohnsPageOLS();
+        HowWouldYouRateOLS howWouldYouRateOLS = new HowWouldYouRateOLS();
+        if (flare) {
+            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                    .clickOnAnswer("Mild symptoms, but tolerable")
+                    .clickNextButton(subquestionsIBDShireCrohnsPageOLS)
+                    .waitForPageLoad(1, subquestionsIBDShireCrohnsPageOLS.titleExpected6)
+                    .waitForPageLoad(2, subquestionsIBDShireCrohnsPageOLS.titleExpected7)
+                    .setAverageDayTotalBowelMovements("3")
+                    .setPast24HoursTotalBowelMovements("10")
+                    .clickOnAnswerForSubQuestion(3, "Yes")
+                    .clickNextButton(howWouldYouRateOLS)
+                    .waitForPageLoadSymptoms()
+                    .getPage(debugPageOLS);
+                    //.checkStudyStatusContainsForQNumber("QS5730", "2-3"); TODO
+        } else {
+            crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                    .clickOnAnswer("In remission (no symptoms, or symptoms do not interfere with daily activities)")
+                    .clickNextButton(subquestionsIBDShireCrohnsPageOLS)
+                    .waitForPageLoad(1, subquestionsIBDShireCrohnsPageOLS.titleExpected6)
+                    .waitForPageLoad(2, subquestionsIBDShireCrohnsPageOLS.titleExpected7)
+                    .setAverageDayTotalBowelMovements("1")
+                    .setPast24HoursTotalBowelMovements("1")
+                    .clickOnAnswerForSubQuestion(3, "Yes")
+                    .clickNextButton(howWouldYouRateOLS)
                     .waitForPageLoad()
-                    .back();
-            subquestionsIbdPleaseThinkCrohnsPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("Severe (intolerable)")// in flare
-                    .clickNextButton(subquestionsIbdPleaseThinkUlcerativeColitisPageOLS);
+                   // .waitForPageLoadSymptoms()
+                    .getPage(debugPageOLS);
+                  // .checkStudyStatusContainsForQNumber("QS5730", "2-4"); //TODO
         }
-
-        SubquestionsIBD_OLS subquestionsIBD_ols = subquestionsIbdPleaseThinkUlcerativeColitisPageOLS
-                .waitForPageLoad()
-                .setTotalBowelMovements("20")
-                .setTotalpast24hrBowelMovements("20")
-                .clickOnAnswer("Yes")
-                .clickNextButton(new SubquestionsIBD_OLS());
-
-        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = subquestionsIBD_ols
-                .waitForPageLoad(1,subquestionsIBD_ols.titleExpected3)
-                .clickOnAnswersForSubQuestion(1,"Abdominal pain or cramps")
+        //Q21.3
+        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = howWouldYouRateOLS
+                .clickOnAnswers("Abdominal pain or cramps",
+                        "The sensation of increased urgency for bowel movements",
+                        "Loss of bowel control",
+                        "More frequent loose bowel movements or diarrhea compared to the recent past",
+                        "Presence of blood in your stools")
                 .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
 
-        HashMap<String, String[]> options = new HashMap<>();
-        options.put("History of a bowel resection within the past 3 months", site.activeProtocols);
-        options.put("Colostomy", site.activeProtocols);
-        options.put("Ileostomy", site.activeProtocols);
-        options.put("An abscess in your abdomen or pelvic region (an inflamed area with collection of pus)", site.activeProtocols);
-        options.put("Feeding tube", site.activeProtocols);
-        options.put("IV (parenteral) nutrition", site.activeProtocols);
-        options.put("A planned or scheduled surgery for Crohn’s disease", site.activeProtocols);
-        for (Map.Entry<String, String[]> entry : options.entrySet()) {
+        //Q24
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
+        HashMap<String, List<String>> disqualifyQ24 = new HashMap<>();
+        disqualifyQ24.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols)); //Disqualify (“Crohn’s complication or surgery”)
+        disqualifyQ24.put("Colostomy", Arrays.asList(site.activeProtocols));
+        disqualifyQ24.put("Ileostomy", Arrays.asList(site.activeProtocols));
+        disqualifyQ24.put("Feeding tube", Arrays.asList(site.activeProtocols));
+        disqualifyQ24.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols));
+        disqualifyQ24.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols));
+        for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
             System.out.println(entry.getKey());
             haveAnyOfTheFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS) //TODO
+                   // .waitForPageLoadWithCurves(studyName) //todo
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5733", entry.getValue())
+                  //  .checkProtocolsContainsForQNumber("QS5733", site.activeProtocols)//todo
                     .back();
         }
         haveAnyOfTheFollowingPageOLS
@@ -306,26 +339,15 @@ public class IBD_4818_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-
-//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-//                .waitForPageLoad()
-//                .clickNextButton(new )
-
-
-
-
-        //----------****************NEW GENERAL HEALTH Questions************************----------
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad();
-        WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        CancerPage whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
                         "Autism spectrum",
                         "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
-
                         "Headaches (migraine, cluster, tension)",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "High blood pressure or hypertension",
@@ -334,347 +356,265 @@ public class IBD_4818_OLS extends BaseTest {
                         "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
                         "Kidney disease",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-
                         "Lupus",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
                         "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
-
+                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
-                .clickNextButton(new WhatKindOfArthritisPageOLS());
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Cancer")
+                .clickNextButton(new CancerPage());
 
-        //----------Q3 WhatKindOfArthritisPageOLS Page--------------------
-        whatKindOfArthritisPageOLS.waitForPageLoad();
-        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS = whatKindOfArthritisPageOLS
-                .clickOnAnswers("Unsure")
-                .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS());
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whenDiagnosedWithCancerOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back();
+        whenDiagnosedWithCancerOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back();
+        whenDiagnosedWithCancerOLS
+                .waitForPageLoad()
+                .clickOnAnswer("6 - 10 years ago")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .back();
+
+        whenDiagnosedWithCancerOLS
+                .waitForPageLoad()
+                .clickOnAnswer("11 or more years ago")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back();
+        whenDiagnosedWithCancerOLS
+                .back();
+
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+
+        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+
+        HeartrelatedMedicalProceduresPageOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS = subquestionExperiencedHeartPageOLS
+                .waitForPageLoad()
+                .clickOnAnswerForAllSubQuestion("Less than 30 days ago")
+                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+        haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad()
+                .clickOnAnswerForAllSubQuestion("1 - 3 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad()
+                .clickOnAnswerForAllSubQuestion("4 - 6 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS.back();
+
+       haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Stroke")
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS.back();
+
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickOnAnswers("Stroke")
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .clickOnAnswerForSubQuestion(1,"Less than 30 days ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS.back();
+
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1,"4 - 6 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageOLS.back();
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS.back();
+
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Kidney disease")
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+
+        kidneyProblemsPage
+                .waitForPageLoad()
+                .clickOnAnswers("Dialysis")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back();
+        kidneyProblemsPage
+                .waitForPageLoad()
+                .clickOnAnswers("Kidney transplant")
+                .clickOnAnswers("Dialysis")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back();
+        kidneyProblemsPage
+                .waitForPageLoad()
+                .clickOnAnswers("Neither")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
 
-        //----------Q4 - Which of the following have you been diagnosed with?--------
-        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS
-                .waitForPageLoad();
-        WhichOfFollowingHaveYouDiagnosedWithOLS whichOfFollowingHaveYouDiagnosedWithOLS = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS
-                .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis",
-                        "Gout",
-                        "Low back pain",
-                        "Osteoporosis")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWithOLS());
+
+        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
+        List<String> disqualifyQS59 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis",
+                "Drug or alcohol abuse within the past year",
+                "Hepatitis B",
+                "Hepatitis C",
+                "HIV or AIDS"); //Kidney disease requiring dialysis is not displayed
+        for (String answer: disqualifyQS59) {
+            System.out.println("Select answer for QS59: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        doAnyOftheFollowingAdditionalDiagnosesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Multiple sclerosis (MS)")
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(approximateHeightPageOLS);
 
 
-        //----------Q5 - whichOfFollowingHaveYouDiagnosedWithOLS --------------------
-        whichOfFollowingHaveYouDiagnosedWithOLS
-                .waitForPageLoad();
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfFollowingHaveYouDiagnosedWithOLS
-                .clickOnAnswers(
-                        "Asthma",
-                        "Chronic cough",
-
-                        "Chronic bronchitis",
-                        "COPD",
-
-                        "Emphysema")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
-
-//
-//        //----------Q6 - When were you diagnosed with cancer (other than skin cancer)? --------------------
-//        otherThanSkinCancerPageOLS
-//                .waitForPageLoad();
-//        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = otherThanSkinCancerPageOLS
-//                .clickOnAnswer("Within the past 5 years")
-//                .clickNextButton(new WhatKindOfDiabetesPageOLS());
-//        whatKindOfDiabetesPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS42", protocol1, protocol2, protocol3, protocol4)
-//                .back();
-//        otherThanSkinCancerPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("Diagnosed with skin cancer only")
-//                .clickNextButton(new WhatKindOfDiabetesPageOLS());
-//
-//
-//        //----------Q7 - What kind of diabetes do you have? --------------------
-//        whatKindOfDiabetesPageOLS
-//                .waitForPageLoad();
-//        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = whatKindOfDiabetesPageOLS
-//                .clickOnAnswer("High blood sugar only")
-//                .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
-//
-//
-//        //----------Q8 - Which of the following have you been diagnosed with by a doctor? --------------------
-//        whichOfFollowingDigestiveConditionPageOLS
-//                .waitForPageLoad();
-//        WhichTypeOfHeadacheDoYouGetOLS whichTypeOfHeadacheDoYouGetOLS = whichOfFollowingDigestiveConditionPageOLS
-//                .clickOnAnswers("IBS, or irritable bowel syndrome")
-//                .clickNextButton(new WhichTypeOfHeadacheDoYouGetOLS());
-//
-//
-//        //----------Q9 - Which of the following have you been diagnosed with? (eating disorder)--------------------
-////        whichOfTheFollowingHaveYouBeenDiagnosed_OLS
-////                .waitForPageLoad();
-////        WhichTypeOfHeadacheDoYouGetOLS whichTypeOfHeadacheDoYouGetOLS = whichOfTheFollowingHaveYouBeenDiagnosed_OLS
-////                .clickOnAnswers("Anorexia",
-////                        "Bulimia",
-////                        "Binge eating disorder")
-////                .clickNextButton(new WhichTypeOfHeadacheDoYouGetOLS());
-//
-//
-//        //----------Q10 - Which type of headache do you typically get? --------------------
-//        whichTypeOfHeadacheDoYouGetOLS
-//                .waitForPageLoad();
-//        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whichTypeOfHeadacheDoYouGetOLS
-//                .clickOnAnswers("Migraine",
-//                        "Cluster headache",
-//                        "Tension headache")
-//                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
-//
-//
-//        //----------Q11 - Have you ever experienced or been diagnosed with any of the following specific heart-related medical conditions? --------------------
-//        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-//                .waitForPageLoad();
-//        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
-//                .clickOnAnswers("Heart attack", "Stroke",
-//                        "Mini-Stroke or TIA",
-//                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
-//                        "Heart failure or congestive heart failure (CHF)")
-//                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
-//        subquestionExperiencedHeartPageOLS
-//                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
-//                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-//                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected4)
-//                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected5);
-//        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
-//                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "4 - 6 months ago")
-//                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "4 - 6 months ago")
-//                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "4 - 6 months ago")
-//                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "4 - 6 months ago")
-//                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-//        heartrelatedMedicalProceduresPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS47", protocol1, protocol2, protocol3, protocol4)
-//                .back();
-//        subquestionExperiencedHeartPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
-//                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
-//                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
-//                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected5, "More than 1 year ago")
-//                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
-//
-//
-//        //--------------Q13:  Have you undergone any of the following heart-related medical procedures?--------------
-//        heartrelatedMedicalProceduresPageOLS
-//                .waitForPageLoad();
-//        DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = heartrelatedMedicalProceduresPageOLS
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new DoYouTakeAnyMedicationsToControlHighBloodPressureOLS());
-//
-//
-//        //--------------Q15:  Do you take any medications to control your high blood pressure or hypertension?---------
-//        doYouTakeAnyMedicationsToControlHighBloodPressureOLS
-//                .waitForPageLoad();
-//        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = doYouTakeAnyMedicationsToControlHighBloodPressureOLS
-//                .clickOnAnswer("Unsure")
-//                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
-//
-//
-//        //--------------Q16: WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS ---------
-//        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-//                .waitForPageLoad();
-//        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-//                .clickOnAnswers("Dialysis", "Kidney transplant")
-//                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
-//        whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS51", protocol1, protocol2, protocol3, protocol4)
-//                .back();
-//        whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("Neither")
-//                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
-//
-//
-//        //--------------Q17: Which of the following have you been diagnosed with? ---------
-//        whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
-//                .waitForPageLoad();
-//        FollowingMentalEmotionalHealthPageOLS following_MentalEmotionalHealthPageOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
-//                .clickOnAnswers("Cirrhosis")
-//                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
-//        following_MentalEmotionalHealthPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS52", protocol1, protocol2, protocol3, protocol4)
-//                .back();
-//        whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("Unsure which type of liver disease")
-//                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
-//
-//
-//        //--------------Q18--FollowingMentalEmotionalHealthPageOLS -----------
-//        following_MentalEmotionalHealthPageOLS
-//                .waitForPageLoad();
-//        WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS = following_MentalEmotionalHealthPageOLS
-//                .clickOnAnswers("Bipolar disorder", "Schizophrenia")
-//                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
-//        whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS53", protocol1, protocol2, protocol3, protocol4)
-//                .back();
-//        following_MentalEmotionalHealthPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
-//
-//
-//        //--------------Q19:  WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS-----------------------
-//        whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
-//                .waitForPageLoad();
-//        WhichOfTheFollowingSkinConditionsDoYouSufferOLS whichOfTheFollowingSkinConditionsDoYouSufferOLS = whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
-//                .clickOnAnswers("Memory loss",
-//                        "Parkinson's disease",
-//                        "Multiple sclerosis (MS)",
-//                        "Seizure disorder, such as epilepsy",
-//                        "Fibromyalgia",
-//                        "None of the above")
-//                .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferOLS());
-//
-//
-//        //--------------Q20:  WhichOfTheFollowingSkinConditionsDoYouSufferOLS-----------------------
-//        whichOfTheFollowingSkinConditionsDoYouSufferOLS
-//                .waitForPageLoad();
-//        WomenHealthConditions womenHealthConditions = whichOfTheFollowingSkinConditionsDoYouSufferOLS
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new WomenHealthConditions());
-//
-//
-//        //--------------Q21:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
-////        whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
-////                .waitForPageLoad();
-////        WomenHealthConditions womenHealthConditions = whichOfTheFollowingSleepRelatedConditionsDiagnosedOLS
-////                .clickOnAnswers("Narcolepsy",
-////                        "Sleep apnea",
-////                        "Insomnia",
-////                        "None of the above")
-////                .clickNextButton(new WomenHealthConditions());
-//
-//
-//        //--------------Q22:  Which of the following sleep-related conditions have you been diagnosed with?-----------------------
-//        womenHealthConditions
-//                .waitForPageLoad();
-//        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = womenHealthConditions
-//                .clickOnAnswers("Uterine fibroids")
-//                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-//
-//
-//        //----------Q23 - Do any of the following additional diagnoses apply to you?--------
-//        doAnyOftheFollowingAdditionalDiagnosesOLS
-//                .waitForPageLoad();
-//        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-//                .clickOnAnswers("Drug or alcohol abuse within the past year",
-//                        "Hepatitis B",
-//                        "Hepatitis C",
-//                        "HIV or AIDS",
-//                        "Neuropathy (nerve damage due to diabetes or another condition)")
-//                .clickNextButton(new ApproximateHeightPageOLS());
-//        approximateHeightPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS59", protocol1, protocol2, protocol3, protocol4)
-//                .back();
-//        doAnyOftheFollowingAdditionalDiagnosesOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new HormonalBirthControlOLS());
-//
-//
-//        //--------------Q26:  Are you currently taking a hormonal form of birth control?-----------------------
-//        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
-//                .waitForPageLoad()
-//                //WhatTypeOfLupusOLS whatTypeOfLupusOLS = approximateHeightPageOLS
-//                .setAll("5", "5", "160")
-////        		.clickNextButton(new ChildrenUnderPageOLS())
-////		//----------ChildrenUnderTheAge Page--------------------
-////		        .waitForPageLoad()
-////		        .clickOnAnswer("Yes")
-////		        .clickNextButton(new HouseholdHavePageOLS())
-////		        .waitForPageLoad()
-////		        .clickOnAnswers("None of the above")
-////		        .clickNextButton(new TheStudySitePageOLS())
-////		        .waitForPageLoad()
-////
-////		//-------------------PEDIATRIC QUESTIONS-----------------------------
-////		        .clickOnAnswer("Public transportation")
-////		        .clickNextButton(new WhatMedicalCoveragePageOLS())
-////		        .waitForPageLoad()
-////		        .clickOnAnswers("No, I have no coverage")
-////                .clickNextButton(new EthnicBackgroundPageOLS())
-////                .waitForPageLoad()
-////                .clickOnAnswers("Prefer not to answer")
-//                .clickNextButton(new IdentificationPageOLS());
-//        //----------PII (IdentificationPageOLS) Page--------------------
-//        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
-//                .waitForPageLoad()
-//                .clickNextButton(new SiteSelectionPageOLS());
-//
-//        siteSelectionPageOLS
-//                .waitForPageLoad(studyName)
-//                .getPID()
-//                .clickOnFacilityName(site.name)
-//                .clickNextButton(new DoctorInformationCollectionPageOLS())
-//                .waitForPageLoadIBD("Crohn's Disease")
-//                .clickNextButton(new HS1PageOLS())
-//                .waitForPageLoad()
-//                .clickOkInPopUp()
-//                .setSignature();
-//
-///*                //------------HUMAN API Interface in HelloSign----------------
-//                .getPage(new HumanAPIOLS())
-//                .waitForPageLoad()
-//                .connectBTN()
-//                .switchToAPI()
-//                .waitForProvider()
-//                .clickANY()
-//                .waitSearchAll()
-//                .search("cleveland clinic")
-//                .waitProvider()
-//                .clickProvider()
-//                .typeUserName("democlinical@gmail.com")
-//                .typePWD("password")
-//                .clickConnect()
-//
-//                .waitToClickNext()
-//                .clickNextButton(new ThankYouCloseSimplePageOLS())*/
-//
-//
-//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-//
-//        if(inFlare) {
-//            thankYouCloseSimplePageOLS
-//                    .waitForPageLoad()
-//                    .clickNextButton(new AboutHealthPageOLS())
-//                    .waitForPageLoad()
-//                    .pidFromDbToLog(env)
-//                    .childPidFromDbToLog(env)
-//                    .assertGeneratedFul(env, site)
-//                    .dispoShouldMatch(site.dispo, site.dispo);
-//        } else {
-//            QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
-//            qualifiedFlareMonitoringAppClosePageOLS
-//                    .waitForPageLoad()
-//                    .getActivationCode()
-//                    .clickNextButton(thankYouCloseSimplePageOLS)
-//                    .waitForPageLoad()
-//                    .clickNextButton(new AboutHealthPageOLS())
-//                    .waitForPageLoad()
-//                    .pidFromDbToLog(env)
-//                    .childPidFromDbToLog(env)
-//                    .assertGeneratedFul(env, site)
-//                    .dispoShouldMatch(site.dispo, site.dispo);
-//        }
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+                .waitForPageLoad()
+                .setAll("5", "7", "170")
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
+                .waitForPageLoad()
+                .clickNextButton(new SiteSelectionPageOLS())
+                .waitForPageLoad("a colitis")
+                .getPID()
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoadIBD4818()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
+
+

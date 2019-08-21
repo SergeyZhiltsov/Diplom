@@ -15,8 +15,13 @@ import java.util.List;
 public class HasHealthcareProfessionalDiagnosedLungCondCC extends MainPageCC{
 
     
-    public final String titleExpected = "Has a healthcare professional ever diagnosed you with any of these lung conditions?\n" +
-    		"Agent Note: Select all that apply";
+    public final String titleExpected = "COPD, or chronic obstructive pulmonary disease, is a common lung condition that makes it difficult to breathe. It is mainly caused by smoking. There are two forms of COPD:\n" +
+            "• Chronic bronchitis, in which the lining of your airways becomes inflamed, causing a long-term cough with mucus or phlegm, and\n" +
+            "• Emphysema, in which the air sacs in your lungs become damaged, causing shortness of breath.\n" +
+            "Most people suffer from both forms, and symptoms often develop slowly over time.\n" +
+            "\n" +
+            "Has a healthcare professional ever diagnosed you with any of these lung conditions?\n" +
+            "Agent Note: Select all that apply";
     		
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;

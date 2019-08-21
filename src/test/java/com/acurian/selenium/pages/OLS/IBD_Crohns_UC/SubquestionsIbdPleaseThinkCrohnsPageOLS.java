@@ -24,6 +24,9 @@ public class SubquestionsIbdPleaseThinkCrohnsPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//input")
     WebElement avgDayBowel;
 
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//input")
+    WebElement past24hoursTotalBowelMovements;
+
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
     
@@ -51,6 +54,12 @@ public class SubquestionsIbdPleaseThinkCrohnsPageOLS extends MainPageOLS{
     @Step
     public SubquestionsIbdPleaseThinkCrohnsPageOLS setAvgDayBowelMovements(String text) {
         typeText(avgDayBowel, text);
+        return this;
+    }
+
+    @Step
+    public SubquestionsIbdPleaseThinkCrohnsPageOLS setPast24hoursTotalBowelMovements(String text) {
+        typeText(past24hoursTotalBowelMovements, text);
         return this;
     }
 

@@ -13,6 +13,9 @@ public class WhenDiagnosedCrohnsPageOLS extends MainPageOLS{
 
     public final String titleExpected = "When were you officially diagnosed with Crohn’s disease by a doctor at a hospital or doctor's office?";
 
+    public final String titleExpectedUlcerative = "When were you diagnosed with ulcerative colitis?";
+
+
     @FindBy(xpath = Locators.BASIC_TITLE2_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
@@ -26,6 +29,12 @@ public class WhenDiagnosedCrohnsPageOLS extends MainPageOLS{
     @Step
     public WhenDiagnosedCrohnsPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public WhenDiagnosedCrohnsPageOLS waitForPageLoadULC() {
+        waitForPageLoadMain(titleText, titleExpectedUlcerative);
         return this;
     }
 

@@ -35,17 +35,21 @@ public class InstantFUL extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    private String env = System.getProperty("acurian.env", "QA");
+    private String pidNumber;
+
+    @Test(dataProvider = "sites", priority = -1)
     @Description("Test for Instant Follow-Up Letter (FUL) Validation")
     public void instantFUL(Site site) {
         final String phoneNumber = "GMEGA00001";
-        final String studyName = "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!";
-        String env = System.getProperty("acurian.env", "QA");
+        final String studyName = "a rheumatoid arthritis (RA)";
+        final String studyNameClose = env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!" :
+        "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("an osteoarthritis", "700")
+                .waitForPageLoad(studyName, "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -97,17 +101,24 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(identificationPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
-        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
-                .waitForPageLoad1(studyName)
+
+        siteSelectionPageOLS
+                .waitForPageLoad1(studyNameClose)
                 .clickOnFacilityName(site.name)
-                .getPID()
+                .getPID();
+        pidNumber = siteSelectionPageOLS.getPidNumber();
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .clickNextButton(new QualifiedClose2PageOLS());
+
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedClose2PageOLS
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseGmegaOLS());
-        thankYouCloseGmegaOLS
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
+                .waitForPageLoad()
                 .assertGeneratedFul(env, site);
     }
 }

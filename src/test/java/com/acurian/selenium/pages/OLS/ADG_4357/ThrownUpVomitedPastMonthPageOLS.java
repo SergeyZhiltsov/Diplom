@@ -1,7 +1,7 @@
-package com.acurian.selenium.pages.CC.ADG_4357;
+package com.acurian.selenium.pages.OLS.ADG_4357;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,28 +9,28 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class ThrownUpVomitedPast2weeksPageCC extends MainPageCC {
+public class ThrownUpVomitedPastMonthPageOLS extends MainPageOLS {
 
     public final String titleExpected = "How many times have you thrown up or vomited in the past month?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public ThrownUpVomitedPast2weeksPageCC() {
+    public ThrownUpVomitedPastMonthPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ThrownUpVomitedPast2weeksPageCC waitForPageLoad() {
+    public ThrownUpVomitedPastMonthPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ThrownUpVomitedPast2weeksPageCC clickOnAnswer(String answerText) {
+    public ThrownUpVomitedPastMonthPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

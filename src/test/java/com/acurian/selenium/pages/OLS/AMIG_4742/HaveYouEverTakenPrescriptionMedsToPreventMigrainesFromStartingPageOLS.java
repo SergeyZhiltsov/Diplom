@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.ADG_4357;
+package com.acurian.selenium.pages.OLS.AMIG_4742;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class ThrownUpVomitedPast2weeksPageOLS extends MainPageOLS {
-
-    public final String titleExpected = "How many times have you thrown up or vomited in the past month?";
+public class HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS extends MainPageOLS {
+	public final String titleExpected =
+      "Have you ever taken prescription medications daily to prevent migraines from starting?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,18 +19,18 @@ public class ThrownUpVomitedPast2weeksPageOLS extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public ThrownUpVomitedPast2weeksPageOLS() {
+    public HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public ThrownUpVomitedPast2weeksPageOLS waitForPageLoad() {
+    public HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ThrownUpVomitedPast2weeksPageOLS clickOnAnswer(String answerText) {
+    public HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -39,4 +39,5 @@ public class ThrownUpVomitedPast2weeksPageOLS extends MainPageOLS {
     public String getTitleText(){
         return getText(titleText);
     }
+
 }

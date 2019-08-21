@@ -1,35 +1,36 @@
-package com.acurian.selenium.pages.OLS.AMIG_4742;
+package com.acurian.selenium.pages.OLS.Diabetes_4356A;
 
-import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
+
 import java.util.List;
 
-public class WhenDidYouTakeYourMigraineMedicationsPageOLS extends MainPageOLS {
-    public final String titleExpected = "When did you take your migraine medication(s)?\n" +
+public class CurrentlyTreatingYourDiabetesPageOLS extends MainPageOLS{
+
+    public final String titleExpected = "How are you currently treating your diabetes?\n" +
             "Please select all that apply.";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
+    @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public WhenDidYouTakeYourMigraineMedicationsPageOLS() {
+    public CurrentlyTreatingYourDiabetesPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhenDidYouTakeYourMigraineMedicationsPageOLS waitForPageLoad() {
+    public CurrentlyTreatingYourDiabetesPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhenDidYouTakeYourMigraineMedicationsPageOLS clickOnAnswers(String ...answerText) {
+    public CurrentlyTreatingYourDiabetesPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

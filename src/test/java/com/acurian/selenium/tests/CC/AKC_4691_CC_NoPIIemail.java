@@ -126,11 +126,11 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
-        TreatingYourDiabetesPageCC treatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageCC());
-        treatingYourDiabetesPageCC
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
+        currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -143,9 +143,9 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(treatingYourDiabetesPageCC);
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
 
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = treatingYourDiabetesPageCC
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
                 .clickNextButton(new NoOfAlcoholicDrinksCC());
@@ -156,7 +156,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0018438-QS4631-STUDYQUES", site.activeProtocols)
                 .back();
 
-        treatingYourDiabetesPageCC
+        currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(noOfAlcoholicDrinksCC)
@@ -165,7 +165,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0018438-QS4631-STUDYQUES", site.activeProtocols)
                 .back();
 
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = treatingYourDiabetesPageCC
+        LastTimeYouTookPageCC lastTimeYouTookPageCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageCC());
