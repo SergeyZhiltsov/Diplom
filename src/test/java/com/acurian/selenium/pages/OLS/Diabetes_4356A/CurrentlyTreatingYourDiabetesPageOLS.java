@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.OLS.Diabetes_4356A;
 
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class TreatingYourDiabetesPageOLS extends MainPageOLS{
+public class CurrentlyTreatingYourDiabetesPageOLS extends MainPageOLS{
 
     public final String titleExpected = "How are you currently treating your diabetes?\n" +
             "Please select all that apply.";
@@ -20,18 +19,18 @@ public class TreatingYourDiabetesPageOLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public TreatingYourDiabetesPageOLS() {
+    public CurrentlyTreatingYourDiabetesPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TreatingYourDiabetesPageOLS waitForPageLoad() {
+    public CurrentlyTreatingYourDiabetesPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TreatingYourDiabetesPageOLS clickOnAnswers(String ...answerText) {
+    public CurrentlyTreatingYourDiabetesPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

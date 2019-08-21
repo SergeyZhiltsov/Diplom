@@ -111,11 +111,11 @@ public class DIA_4708_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
-        TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
-        treatingYourDiabetesPageOLS
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -128,7 +128,7 @@ public class DIA_4708_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(treatingYourDiabetesPageOLS)
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
@@ -136,7 +136,7 @@ public class DIA_4708_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(treatingYourDiabetesPageOLS)
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
@@ -144,7 +144,7 @@ public class DIA_4708_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(treatingYourDiabetesPageOLS)
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
@@ -152,7 +152,7 @@ public class DIA_4708_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 to less than 5 years ago")
-                .clickNextButton(treatingYourDiabetesPageOLS)
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
@@ -160,7 +160,7 @@ public class DIA_4708_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("5 to less than 10 years ago")
-                .clickNextButton(treatingYourDiabetesPageOLS)
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
@@ -168,22 +168,22 @@ public class DIA_4708_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(treatingYourDiabetesPageOLS);
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = treatingYourDiabetesPageOLS
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .back();
-        treatingYourDiabetesPageOLS
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .back();
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
+        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageOLS());

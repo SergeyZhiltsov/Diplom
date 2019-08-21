@@ -113,11 +113,11 @@ public class DIA_4483_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
-        TreatingYourDiabetesPageOLS treatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(new TreatingYourDiabetesPageOLS());
-        treatingYourDiabetesPageOLS
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -130,22 +130,22 @@ public class DIA_4483_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(treatingYourDiabetesPageOLS);
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = treatingYourDiabetesPageOLS
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
                 .clickNextButton(new NoOfAlcoholicDrinkOLS());
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
                 .back();
-        treatingYourDiabetesPageOLS
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
                 .clickNextButton(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
                 .back();
-        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = treatingYourDiabetesPageOLS
+        LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageOLS());
