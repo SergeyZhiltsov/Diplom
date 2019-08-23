@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.OLS.ADG_4357.*;
 import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
@@ -101,17 +102,17 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswer("Yes") //Continue to Q3
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
         //Q3
-        whatKindOfDiabetesPageOLS
+        CardiovascularDiseaseThanOthersPageOLS сardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+        сardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                 .back(whatKindOfDiabetesPageOLS)
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
@@ -135,7 +136,7 @@ public class GAST_4357_OLS extends BaseTest {
             withType2DiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                    .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -184,7 +185,7 @@ public class GAST_4357_OLS extends BaseTest {
             howLongAgoDiagnosedDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                    .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
@@ -205,16 +206,16 @@ public class GAST_4357_OLS extends BaseTest {
         symptomsRegularlyOncePerWeekPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above") //Will DQ in Q9 //Skip to Q11
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(currentlyTreatingYourDiabetesPageOLS);
+                .back();
         symptomsRegularlyOncePerWeekPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Nausea or feeling sick to your stomach",
                         "Bloating")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
@@ -230,7 +231,7 @@ public class GAST_4357_OLS extends BaseTest {
         symptomsFirstStartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months ago or less")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)

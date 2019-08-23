@@ -133,18 +133,17 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswer("Yes") //Continue to Q3
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
         //Q3
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        whatKindOfDiabetesPageCC
+        CardiovascularDiseaseThanOthersPageCC сardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+        сardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                 .back(whatKindOfDiabetesPageCC)
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
@@ -156,7 +155,6 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new WithType2DiabetesPageCC());
 
         //Q4
-        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
         List<String> disqualifyQ4 = Arrays.asList("Within the past 2 months",
                 "3 - 6 months ago", "7 - 11 months ago", "1 to less than 5 years ago");
         for (String answer: disqualifyQ4) {
@@ -164,7 +162,7 @@ public class GAST_4357_CC extends BaseTest {
             withType2DiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                    .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -206,7 +204,7 @@ public class GAST_4357_CC extends BaseTest {
             howLongAgoDiagnosedDiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                    .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
@@ -227,16 +225,16 @@ public class GAST_4357_CC extends BaseTest {
         symptomsRegularlyOncePerWeekPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(currentlyTreatingYourDiabetesPageCC);
+                .back();
         symptomsRegularlyOncePerWeekPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Nausea or feeling sick to your stomach",
                                 "Bloating")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
@@ -252,7 +250,7 @@ public class GAST_4357_CC extends BaseTest {
         symptomsFirstStartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months ago or less")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)
@@ -355,16 +353,18 @@ public class GAST_4357_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS7214", site.activeProtocols)
                     .back(weightLossSurgeryPageCC);
         }
-
-        weightLossSurgeryPageCC
+        TransitionStatementCC transitionStatementCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC()) //Q19
+                .clickNextButton(new TransitionStatementCC()); //Q19
+
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+        transitionStatementCC
                 .waitForPageLoadWithTitle("Thank you for answering these questions about your stomach problems.\n" +
                         "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
                         "Agent Note: If \"no\" to all items in a question, select \"None of the above\"")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
-                .waitForPageLoad();
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
 //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()

@@ -2,15 +2,16 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.cv_study.SufferedFollowingHeartRelatedConditionsPageCC;
+import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
@@ -103,17 +104,17 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
         //Q3: QS	Certain conditions are more closely linked to cardiovascular disease than others.
-        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = cardiovascularDiseaseThanOthersPageOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
                         "High blood pressure or hypertension",
                         "Chronic Kidney Disease")
                 .clickOnAnswers("None of the above") //skip to Q13 (current lipid lowering med use)
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
 
-        //Q13
-        cholesterolTriglyceridesLipidsPageOLS
+        //Q14
+        haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .back();
 
@@ -122,10 +123,22 @@ public class CV_4450_OLS extends BaseTest {
                         .waitForPageLoad()
                         .clickOnAnswers("High cholesterol or high triglycerides") //go to Q4 (NEW Q4)
                         .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS());
+
+        //Q4 Have you had a blood test that confirms you have high cholesterol or high triglycerides?
+        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS =
         haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
-                .back(cardiovascularDiseaseThanOthersPageOLS);
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
+
+        //Q13 Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?
+        cholesterolTriglyceridesLipidsPageOLS
+                .waitForPageLoad()
+                .back(haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS)
+                .waitForPageLoad()
+                .back();
+
+
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -133,32 +146,30 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
         //Q5	What kind of diabetes do you have?
-        List<String> disqualifyQ5 = Arrays.asList("Type 1 diabetes (sometimes called Juvenile diabetes)",
-                "Type 2 diabetes (sometimes called Adult-onset diabetes)");
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
-        for (String answer: disqualifyQ5) {
-            System.out.println("Select answer Q3: " + answer);
-            whatKindOfDiabetesPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                    .back();
-        }
-        whatKindOfDiabetesPageOLS
+        WithType1DiabetesPageOLS withType1DiabetesPageCC = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(new WithType1DiabetesPageOLS());
+        withType1DiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                .clickNextButton(new WithType2DiabetesPageOLS());
+        withType2DiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+
+        SufferedFollowingHeartRelatedConditionsPageOLS sufferedFollowingHeartRelatedConditionsPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Display for Females only
                 .clickOnAnswer("Unsure")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS);
-
-        //Q13	Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?
-        SufferedFollowingHeartRelatedConditionsPageOLS sufferedFollowingHeartRelatedConditionsPageOLS =
-                cholesterolTriglyceridesLipidsPageOLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("Unsure")
-                        .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageOLS());
+                .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageOLS());
 
         HeartRelatedSurgeriesProceduresPageOLS heartRelatedSurgeriesProceduresPageOLS =
                 sufferedFollowingHeartRelatedConditionsPageOLS
@@ -310,10 +321,12 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(new ApproximateHeightPageOLS());
 
 //------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
+        CurrentlyTreatingYourDiabetesPageOLS сurrentlyTreatingYourDiabetesPageOLS =
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+        сurrentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
@@ -393,7 +406,6 @@ public class CV_4450_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS);
 //------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
-
         //Q26	Has a healthcare professional ever diagnosed you with any of the following medical conditions?
         List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis of the liver",
@@ -408,7 +420,7 @@ public class CV_4450_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .clickNextButton(сurrentlyTreatingYourDiabetesPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
