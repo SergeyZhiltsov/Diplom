@@ -42,5 +42,4 @@ public class FollowingSymptomsMoreThanOnceAWeekCC extends MainPageCC{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

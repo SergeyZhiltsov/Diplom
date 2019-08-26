@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.OLS.no_indication;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
+import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -562,10 +562,10 @@ public class NoIndication3889_OLS extends BaseTest {
                 .clickOnAnswer("Moderate (interferes with my usual activity)")
                 .clickNextButton(new SubquestionsIBD_OLS());
 
-        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = subquestionsIBD_OLS
+        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = subquestionsIBD_OLS
                 .waitForPageLoad(1, subquestionsIBD_OLS.titleExpected3)
                 .clickOnAnswersForSubQuestion(1,"Abdominal pain or cramps")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
 
         HashMap<String, String[]> options = new HashMap<>();
         options.put("History of a bowel resection within the past 3 months", site.activeProtocols);
@@ -577,7 +577,7 @@ public class NoIndication3889_OLS extends BaseTest {
         options.put("A planned or scheduled surgery for Crohn’s disease", site.activeProtocols);
         for (Map.Entry<String, String[]> entry : options.entrySet()) {
             System.out.println(entry.getKey());
-            haveAnyOfTheFollowingPageOLS
+            currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
@@ -588,7 +588,7 @@ public class NoIndication3889_OLS extends BaseTest {
                     .clickOnQNumber("QS5733");
         }
 
-        IdentificationPageOLS identificationPageOLS = haveAnyOfTheFollowingPageOLS
+        IdentificationPageOLS identificationPageOLS = currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("An abscess in your abdomen or pelvic region (an inflamed area with collection of pus)")
@@ -600,7 +600,7 @@ public class NoIndication3889_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5733", site.activeProtocols)
                 .back();
 
-        haveAnyOfTheFollowingPageOLS
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new IdentificationPageOLS());

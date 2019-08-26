@@ -2,8 +2,9 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.OLS.ADG_4357.*;
-import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
+import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
@@ -101,17 +102,17 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswer("Yes") //Continue to Q3
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
         //Q3
-        whatKindOfDiabetesPageOLS
+        CardiovascularDiseaseThanOthersPageOLS сardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+        сardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                 .back(whatKindOfDiabetesPageOLS)
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
@@ -135,7 +136,7 @@ public class GAST_4357_OLS extends BaseTest {
             withType2DiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                    .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -184,7 +185,7 @@ public class GAST_4357_OLS extends BaseTest {
             howLongAgoDiagnosedDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey()) //skip to Q7
-                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                    .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
@@ -205,22 +206,23 @@ public class GAST_4357_OLS extends BaseTest {
         symptomsRegularlyOncePerWeekPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above") //Will DQ in Q9 //Skip to Q11
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(currentlyTreatingYourDiabetesPageOLS);
+                .back();
         symptomsRegularlyOncePerWeekPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Nausea or feeling sick to your stomach",
                         "Bloating")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
                 .back(symptomsRegularlyOncePerWeekPageOLS);
 
         SymptomsFirstStartPageOLS symptomsFirstStartPageOLS = symptomsRegularlyOncePerWeekPageOLS
+                .waitForPageLoad()
                 .clickOnAnswers("Vomiting or throwing up",
                         "Bloating") //Deselect Bloating
                 .clickNextButton(new SymptomsFirstStartPageOLS());
@@ -229,7 +231,7 @@ public class GAST_4357_OLS extends BaseTest {
         symptomsFirstStartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months ago or less")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)
@@ -240,10 +242,10 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickNextButton(new ThrownUpVomitedPastMonthPageOLS());
 
         //Q11
-        HaveAnyOfTheFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = thrownUpVomitedPastMonthPageOLS
+        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = thrownUpVomitedPastMonthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("None, I have not vomited in the past month")// not in flare
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
         if (inFlare) {
             currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
@@ -378,32 +380,6 @@ public class GAST_4357_OLS extends BaseTest {
         whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS); //Back to Q2: QS38
-
-//        WhichOfTheFollowingBreathingLungPageOLS whichOfTheFollowingBreathingLungPageOLS =
-//                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-//                        .waitForPageLoad()
-//                        .clickOnAnswers("None of the above")
-//                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-//                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
-//        //Q5: QS41
-//        HashMap<String, List<String>> dqQ5 = new HashMap<>();
-//        dqQ5.put("COPD", Arrays.asList(site.activeProtocols)); //Disqualify ("COPD")
-//        dqQ5.put("Emphysema", Arrays.asList(site.activeProtocols)); //Disqualify ("Emphysema")
-//        for (Map.Entry<String, List<String>> entry : dqQ5.entrySet()) {
-//            System.out.println(entry.getKey());
-//            whichOfTheFollowingBreathingLungPageOLS
-//                    .waitForPageLoad()
-//                    .clickOnAnswers("None of the above")
-//                    .clickOnAnswers(entry.getKey())
-//                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-//                    .waitForPageLoad()
-//                    .getPage(debugPageOLS)
-//                    .checkProtocolsContainsForQNumber("QS41", site.activeProtocols)
-//                    .back(whichOfTheFollowingBreathingLungPageOLS);
-//        }
-//        whichOfTheFollowingBreathingLungPageOLS
-//                .waitForPageLoad()
-//                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -682,16 +658,6 @@ public class GAST_4357_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickOnAnswers("Men's health issues (prostate enlargement or BPH, low testosterone)")
-//                .clickNextButton(whichOfTheFollowingMensHealthConditions_OLS);
-//
-//        whichOfTheFollowingMensHealthConditions_OLS
-//                .waitForPageLoad()
-//                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -780,12 +746,6 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickNextButton(new QualifiedClose1PageOLS())
                     .waitForPageLoad()
                     .clickOnAnswer("No")
-//                  .clickNextButton(new MedicalRecordsOptionPageOLS())
-//                    .waitForPageLoad()
-//                    .clickOnAnswer("Continue with medical records")
-//                    .clickNextButton(new SynexusHealthyMindsPageOLS())
-//                    .waitForPageLoad()
-//                    .clickOnAnswer("No, I am not interested in receiving information")
                     .clickNextButton(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()
                     .clickNextButton(aboutHealthPageOLS);
@@ -794,9 +754,6 @@ public class GAST_4357_OLS extends BaseTest {
                     .clickOnFacilityName(site.name)
                     .clickNextButton(new QualifiedCloseGastroPageOLS())
                     .waitForPageLoad()
-//                    .clickNextButton(new SynexusHealthyMindsPageOLS())
-//                    .waitForPageLoad()
-//                    .clickOnAnswer("No, I am not interested in receiving information")
                     .clickNextButton(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()
                     .clickNextButton(aboutHealthPageOLS);

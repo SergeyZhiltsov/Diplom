@@ -38,5 +38,4 @@ public class SacroiliitisPageCC extends MainPageCC {
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

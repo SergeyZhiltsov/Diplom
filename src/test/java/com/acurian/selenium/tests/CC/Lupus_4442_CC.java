@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.AS_4319.PermanentlyWheelchairBoundCC;
+import com.acurian.selenium.pages.CC.AS_4319.PermanentlyUnableWalkDueToMedicalConditionPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LPS_4442.*;
 import com.acurian.selenium.pages.CC.closes.*;
@@ -194,10 +194,10 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EitherOfTheFollowingMedicationsCC());
 
-        PermanentlyWheelchairBoundCC permanentlyWheelchairBoundCC = eitherOfTheFollowingMedicationsCC
+        PermanentlyUnableWalkDueToMedicalConditionPageCC permanentlyUnableWalkDueToMedicalConditionPageCC = eitherOfTheFollowingMedicationsCC
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
-                .clickNextButton(new PermanentlyWheelchairBoundCC())
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017453-QS6108-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
@@ -205,23 +205,23 @@ public class Lupus_4442_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
                 .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
-                .clickNextButton(new PermanentlyWheelchairBoundCC())
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017453-QS6108-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         eitherOfTheFollowingMedicationsCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new PermanentlyWheelchairBoundCC());
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageCC());
 
-        ExperienceWithYourLupusCC experienceWithYourLupusCC = permanentlyWheelchairBoundCC
+        ExperienceWithYourLupusCC experienceWithYourLupusCC = permanentlyUnableWalkDueToMedicalConditionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ExperienceWithYourLupusCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0014045-QS6113-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        permanentlyWheelchairBoundCC
+        permanentlyUnableWalkDueToMedicalConditionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ExperienceWithYourLupusCC());

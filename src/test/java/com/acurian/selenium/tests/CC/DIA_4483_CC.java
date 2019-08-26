@@ -2,11 +2,10 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
+import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
-import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -19,6 +18,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DIA_4483_CC extends BaseTest {
 
@@ -63,19 +64,18 @@ public class DIA_4483_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a fatty liver study for diabetics", "1,550"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-//                .setMonth("Sep")
-//                .setDay("9")
-//                .setYear("2005")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
@@ -83,7 +83,7 @@ public class DIA_4483_CC extends BaseTest {
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
 
@@ -111,7 +111,7 @@ public class DIA_4483_CC extends BaseTest {
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0005996-QS4602-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
                 .back();
 
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
@@ -119,32 +119,28 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
 
-        WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new WithType1DiabetesPageCC());
-        withType1DiabetesPageCC
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+        cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", site.activeProtocols)
-                .back();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = whatKindOfDiabetesPageCC
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+                .back(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", site.activeProtocols)
-                .back();
-
-        whatKindOfDiabetesPageCC
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+                .back(whatKindOfDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004943-QS4603-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
                 .back();
 
         CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
@@ -158,23 +154,6 @@ public class DIA_4483_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
-
-//        ArrayList<String> timePeriods = new ArrayList<>();
-//        timePeriods.add("Within the past 2 months");
-//        timePeriods.add("3 - 6 months ago");
-//        timePeriods.add("7 - 11 months ago");
-//        timePeriods.add("1 to less than 5 years ago");
-//        timePeriods.add("5 to less than 10 years ago");
-//        for (String period : timePeriods) {
-//            withType2DiabetesPageCC
-//                    .waitForPageLoad()
-//                    .clickOnAnswer(period)
-//                    .clickNextButton(treatingYourDiabetesPageCC)
-//                    .waitForPageLoad()
-//                    .getPage(debugPageCC)
-//                    //.checkProtocolsContainsForQNumber("Q0006179-QS4604-STUDYQUES")
-//                    .back();
-//        }
 
         NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -195,14 +174,12 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageCC());
 
-        ArrayList<String> lastTimes = new ArrayList<>();
-        lastTimes.add("2 - 3 months ago");
-        lastTimes.add("4 - 5 months ago");
-        lastTimes.add("6 months ago or longer");
-        for (String lastTime : lastTimes) {
+        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
+        for (String answer : disqualify) {
+            System.out.println("Select answer for Q6: " + answer);
             lastTimeYouTookPageCC
                     .waitForPageLoad()
-                    .clickOnAnswer(lastTime)
+                    .clickOnAnswer(answer)
                     .clickNextButton(noOfAlcoholicDrinksCC)
                     .waitForPageLoad()
                     .back();
@@ -214,11 +191,48 @@ public class DIA_4483_CC extends BaseTest {
 
         ApartFromMetforminPageCC apartFromMetforminPageCC = metforminMedicationsPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("Metformin",
+                        "Actoplus Met (metformin and pioglitazone)",
+                        "Avandamet (metformin and rosiglitazone)",
+                        "Fortamet (metformin)",
+                        "Glucophage (metformin)",
+                        "Glucovance (metformin and glyburide)",
+                        "Glumetza (metformin)",
+                        "Invokamet (metformin and canagliflozin)",
+                        "Janumet (metformin and sitagliptin)",
+                        "Jentadueto (metformin and linagliptin)",
+                        "Kazano (metformin and alogliptin)",
+                        "Kombiglyze (metformin and saxagliptin)",
+                        "Metformin and glipizide",
+                        "PrandiMet (metformin and repaglinide)",
+                        "Synjardy (metformin and empagliflozin)",
+                        "Xigduo (metformin and dapagliflozin)")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApartFromMetforminPageCC());
 
         CurrentlyTakeInsulinPageCC currentlyTakeInsulinPageCC = apartFromMetforminPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("Actos (pioglitazone)",
+                        "Amaryl (glimepiride)",
+                        "Avandia (rosiglitazone)",
+                        "Chlorpropamide",
+                        "Cycloset (bromocriptine)",
+                        "Duetact (pioglitazone and glimepiride)",
+                        "Farxiga (dapagliflozin)",
+                        "Glipizide XL, Glucotrol, or Glucotrol XL (glipizide)",
+                        "Glynase (glyburide)",
+                        "Glyset (miglitol)",
+                        "Glyxambi (empagliflozin and linagliptin)",
+                        "Invokana (canagliflozin)",
+                        "Januvia (sitagliptin)",
+                        "Jardiance (empagliflozin)",
+                        "Nesina (alogliptin)",
+                        "Onglyza (saxagliptin)",
+                        "Oseni (alogliptin and pioglitazone)",
+                        "Prandin (repaglinide)",
+                        "Precose (acarbose)",
+                        "Starlix (nateglinide)",
+                        "Tradjenta (linagliptin)")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new CurrentlyTakeInsulinPageCC());
 
@@ -229,6 +243,13 @@ public class DIA_4483_CC extends BaseTest {
 
         TakeYourInsulinPageCC takeYourInsulinPageCC = injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("Adlyxin (lixisenatide)",
+                        "Bydureon or Byetta (exenatide)",
+                        "Tanzeum (albiglutide)",
+                        "Trulicity (dulaglutide)",
+                        "Saxenda or Victoza (liraglutide)",
+                        "SymlinPen (pramlintide)")
+                .clickOnAnswers("None of the above")
                 .back(currentlyTakeInsulinPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -247,6 +268,17 @@ public class DIA_4483_CC extends BaseTest {
 
         TakeYourInsulinInjectionsPageCC takeYourInsulinInjectionsPageCC = brandsOfInsulinPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("Insulin NPH, also known as Humulin N or Novolin N",
+                        "Insulin glargine, also known as Basaglar, Lantus, or Toujeo",
+                        "Insulin detemir, also known as Levemir",
+                        "Insulin degludec, also known as Tresiba",
+                        "Insulin regular, also known as Humulin R or Novolin R",
+                        "Insulin lispro, also known as Admelog or Humalog",
+                        "Insulin aspart, also known as Fiasp or Novolog",
+                        "Insulin glulisine, also known as Apidra",
+                        "Mixed or pre-mixed insulin, which includes Humalog Mix 50/50 or 75/25, Humulin 70/30, " +
+                                "Novolin 70/30, or Novolog Mix 70/30")
+                .clickOnAnswers("None of the above")
                 .back(takeYourInsulinPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Insulin pump, which delivers insulin continuously")
@@ -270,14 +302,13 @@ public class DIA_4483_CC extends BaseTest {
         followingLiverRelatedConditionCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0016650-QS4623-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
                 .back(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .setDrinks("10")
                 .clickNextButton(followingLiverRelatedConditionCC);
 
         ArrayList<String> conditions = new ArrayList<>();
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = new FollowingToLoseWeightPageCC();
         conditions.add("Alcoholic liver disease");
         conditions.add("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus");
         conditions.add("Hemochromatosis or iron overload (Agent Note: he-mo-chrome-uh-TOE-sus)");
@@ -285,26 +316,37 @@ public class DIA_4483_CC extends BaseTest {
         conditions.add("Primary sclerosing cholangitis or primary biliary cirrhosis (Agent Note: scler-OH-sing, ko-lanj-EYE-tis, BILL-ee-air-ee)");
         conditions.add("Wilson's disease");
         for (String condition : conditions) {
+            System.out.println("Select answer for Q17:QS4624 " + condition);
             followingLiverRelatedConditionCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(condition)
-                    .clickNextButton(followingToLoseWeightPageCC)
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0016651-QS4624-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                     .back();
         }
-        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingLiverRelatedConditionCC
+
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(followingToLoseWeightPageCC)
+                .clickNextButton(new FollowingToLoseWeightPageCC());
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = followingToLoseWeightPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("Prescription weight loss medication",
+                        "Over-the-counter weight loss medication or supplements",
+                        "Weight loss program such as Weight Watchers or Jenny Craig")
                 .clickOnAnswers("No")
                 .clickNextButton(new WeightLossSurgeryPageCC());
 
         PoundsOrMorePageCC poundsOrMorePageCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
+                .clickOnAnswers("Gastric bypass",
+                        "Gastric sleeve or sleeve gastrectomy",
+                        "Duodenal switch",
+                        "Lap band or gastric banding",
+                        "Gastric balloon")
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new PoundsOrMorePageCC());
 
@@ -316,47 +358,19 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(new ProcedureForWeightLossPageCC());
 
 
-
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(poundsOrMorePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(poundsOrMorePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(poundsOrMorePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("1 - 2 years ago")
-                .clickNextButton(poundsOrMorePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
-                .back();
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("More than 2 years ago")
-                .clickNextButton(poundsOrMorePageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
-                .back();
+        List<String> disqualifyQ20 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
+                "1 - 2 years ago", "More than 2 years ago");
+        for (String answer: disqualifyQ20) {
+            System.out.println("Select answer for Q20: " + answer);
+            procedureForWeightLossPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(poundsOrMorePageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
+                    .back();
+        }
         procedureForWeightLossPageCC
                 .waitForPageLoad()
                 .back();
@@ -380,9 +394,12 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(transitionStatementCC);
 
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = transitionStatementCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+        transitionStatementCC
                 .waitForPageLoad(indicationHistroyName)
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer",
                         "Kidney disease",
@@ -399,7 +416,7 @@ public class DIA_4483_CC extends BaseTest {
         HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(otherThanSkinCancerPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
@@ -428,7 +445,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -443,7 +460,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -467,7 +484,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -479,7 +496,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -503,7 +520,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -515,7 +532,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = subquestionExperiencedHeartPageCC
@@ -529,7 +546,6 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
-        DoYouTakeAnyMedicationsControlHypertension_CC doYouTakeAnyMedicationsControlHypertension_cc = new DoYouTakeAnyMedicationsControlHypertension_CC();
         KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
         ArrayList<String> heartProcedurePeriods = new ArrayList<>();
         heartProcedurePeriods.add("Less than 30 days ago");
@@ -541,7 +557,7 @@ public class DIA_4483_CC extends BaseTest {
                     .clickNextButton(kidneyProblemsPage)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015137-QS49-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
                     .back();
         }
 
@@ -556,7 +572,7 @@ public class DIA_4483_CC extends BaseTest {
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
@@ -564,7 +580,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
@@ -578,7 +594,7 @@ public class DIA_4483_CC extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfTheFollowingLiverProblemsPageСС)
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
@@ -592,7 +608,7 @@ public class DIA_4483_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -600,7 +616,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015149-QS53-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
                 .back(followingMentalEmotionalHealthPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -751,7 +767,7 @@ public class DIA_4483_CC extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
 
         approximateHeightPageCC

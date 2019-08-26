@@ -1,37 +1,37 @@
 package com.acurian.selenium.pages.OLS.AS_4319;
 
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class AreYouWheelchairBoundOLS extends MainPageOLS{
+public class ResultsOfMostRecentXrayOrMRIPageOLS extends MainPageOLS {
 
-    public final String titleExpectedOLD = "Are you permanently wheelchair-bound, bedridden, or otherwise completely unable to walk due to your back pain or another medical condition?";
+    public final String titleExpected = "What did your doctor tell you about the results of your most recent x-ray or MRI?";
     
-    public final String titleExpected = "Are you permanently unable to walk due to your medical condition?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public AreYouWheelchairBoundOLS() {
+    public ResultsOfMostRecentXrayOrMRIPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public AreYouWheelchairBoundOLS waitForPageLoad() {
+    public ResultsOfMostRecentXrayOrMRIPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
-    }   
-    
+    }
 
     @Step
-    public AreYouWheelchairBoundOLS clickOnAnswer(String answerText) {
+    public ResultsOfMostRecentXrayOrMRIPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,5 +40,4 @@ public class AreYouWheelchairBoundOLS extends MainPageOLS{
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

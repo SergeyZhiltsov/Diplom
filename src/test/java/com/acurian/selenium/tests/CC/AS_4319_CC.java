@@ -7,9 +7,9 @@ import com.acurian.selenium.pages.CC.pediatric.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.AS_4319.DiagnosedWithAnkylosingSpondylitisCC;
+import com.acurian.selenium.pages.CC.AS_4319.DiagnosedWithAnkylosingSpondylitisPageCC;
 import com.acurian.selenium.pages.CC.AS_4319.FollowingSymptomsMoreThanOnceAWeekCC;
-import com.acurian.selenium.pages.CC.AS_4319.PermanentlyWheelchairBoundCC;
+import com.acurian.selenium.pages.CC.AS_4319.PermanentlyUnableWalkDueToMedicalConditionPageCC;
 import com.acurian.selenium.pages.CC.AS_4319.SacroiliitisPageCC;
 import com.acurian.selenium.pages.CC.AS_4319.SignsOfAnkylosingSpondylitisCC;
 import com.acurian.selenium.pages.CC.closes.*;
@@ -97,12 +97,12 @@ public class AS_4319_CC extends BaseTest {
                 .typeZipCode("19044")
                 .clickNextButton(new GenderPageCC());
 
-        DiagnosedWithAnkylosingSpondylitisCC diagnosedWithAnkylosingSpondylitisCC = genderPageCC
+        DiagnosedWithAnkylosingSpondylitisPageCC diagnosedWithAnkylosingSpondylitisPageCC = genderPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
-                .clickNextButton(new DiagnosedWithAnkylosingSpondylitisCC());
+                .clickNextButton(new DiagnosedWithAnkylosingSpondylitisPageCC());
 
-        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedWithAnkylosingSpondylitisCC
+        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedWithAnkylosingSpondylitisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
@@ -111,7 +111,7 @@ public class AS_4319_CC extends BaseTest {
         debugPageCC.checkProtocolsContainsForQNumber("Q0017176-QS4715-STUDYQUES", protocol1);
         debugPageCC.back();
 
-        DoYouSufferFromLbpPageCC doYouSufferFromLbpPageCC = diagnosedWithAnkylosingSpondylitisCC
+        DoYouSufferFromLbpPageCC doYouSufferFromLbpPageCC = diagnosedWithAnkylosingSpondylitisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DoYouSufferFromLbpPageCC());
@@ -175,26 +175,26 @@ public class AS_4319_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EverTakenXeljanzCC());
 
-        PermanentlyWheelchairBoundCC permanentlyWheelchairBoundCC = everTakenXeljanzCC1
+        PermanentlyUnableWalkDueToMedicalConditionPageCC permanentlyUnableWalkDueToMedicalConditionPageCC = everTakenXeljanzCC1
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I am currently taking it")
-                .clickNextButton(new PermanentlyWheelchairBoundCC());
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0005244-QS4709-STUDYQUES", protocol1);
         debugPageCC.back();
 
         everTakenXeljanzCC1
                 .waitForPageLoad()
                 .clickOnAnswer("No, I have never taken it")
-                .clickNextButton(new PermanentlyWheelchairBoundCC());
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageCC());
 
-        DevicesInYourBodyCC devicesInYourBodyCC = permanentlyWheelchairBoundCC
+        DevicesInYourBodyCC devicesInYourBodyCC = permanentlyUnableWalkDueToMedicalConditionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DevicesInYourBodyCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0014045-QS4710-STUDYQUES", protocol1);
         debugPageCC.back();
 
-        DevicesInYourBodyCC devicesInYourBodyCC1 = permanentlyWheelchairBoundCC
+        DevicesInYourBodyCC devicesInYourBodyCC1 = permanentlyUnableWalkDueToMedicalConditionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new DevicesInYourBodyCC());

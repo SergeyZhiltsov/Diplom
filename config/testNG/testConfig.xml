@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
-
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.CC.DERM_4967_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_7036_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_4825_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_4815_CC_A_S"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_4814_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.KAD_4631_CC"></class>
+            <class name="com.acurian.selenium.tests.CC.CV_4450_CC"></class>
+            <class name="com.acurian.selenium.tests.CC.CV_5034_CC_A_S"></class>
+            <class name="com.acurian.selenium.tests.CC.DIA_4483_CC"></class>
+            <class name="com.acurian.selenium.tests.CC.DIA_5062_CC"></class>
             <class name="com.acurian.selenium.tests.CC.GAST_4357_CC"></class>
 
-            <class name="com.acurian.selenium.tests.OLS.DERM_4967_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_7036_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4825_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4815_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4814_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4631_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.CV_4450_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.CV_5034_OLS_A_S"></class>
+            <class name="com.acurian.selenium.tests.OLS.DIA_4483_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.DIA_5062_OLS"></class>
             <class name="com.acurian.selenium.tests.OLS.GAST_4357_OLS"></class>
         </classes>
     </test>

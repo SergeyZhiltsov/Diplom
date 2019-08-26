@@ -2,7 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.AS_4319.AreYouWheelchairBoundOLS;
+import com.acurian.selenium.pages.OLS.AS_4319.PermanentlyUnableWalkDueToMedicalConditionPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LPS_4442.*;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -55,7 +55,7 @@ public class Lupus_4442_OLS extends BaseTest {
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .typeZipCode("08204")
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         DiagnosedYouWithLupusOLS diagnosedYouWithLupusOLS = genderPageOLS
@@ -140,7 +140,6 @@ public class Lupus_4442_OLS extends BaseTest {
                 .waitForPageLoad();
 
 
-
         BiologicMedications biologicMedications = medicationsCurrentlyTakingToTreatLupusOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -175,33 +174,33 @@ public class Lupus_4442_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EitherOfFollowingMedicationsOLS());
 
-        AreYouWheelchairBoundOLS areYouWheelchairBoundOLS = eitherOfFollowingMedicationsOLS
+        PermanentlyUnableWalkDueToMedicalConditionPageOLS permanentlyUnableWalkDueToMedicalConditionPageOLS = eitherOfFollowingMedicationsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi")
-                .clickNextButton(new AreYouWheelchairBoundOLS())
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageOLS())
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6108", protocol1, protocol2);
         debugPageOLS.back();
         eitherOfFollowingMedicationsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Xeljanz")
-                .clickNextButton(new AreYouWheelchairBoundOLS())
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageOLS())
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6108", protocol1, protocol2);
         debugPageOLS.back();
         eitherOfFollowingMedicationsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new AreYouWheelchairBoundOLS());
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageOLS());
 
-        ExperienceWithYourLupusOLS experienceWithYourLupusOLS = areYouWheelchairBoundOLS
+        ExperienceWithYourLupusOLS experienceWithYourLupusOLS = permanentlyUnableWalkDueToMedicalConditionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ExperienceWithYourLupusOLS())
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6113", protocol1, protocol2);
         debugPageOLS.back();
-        areYouWheelchairBoundOLS
+        permanentlyUnableWalkDueToMedicalConditionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ExperienceWithYourLupusOLS());
