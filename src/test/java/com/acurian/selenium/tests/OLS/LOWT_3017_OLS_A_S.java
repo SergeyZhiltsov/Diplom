@@ -37,11 +37,11 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_LOWT_3017S_Site},
-                {Site.AUT_LOWT_3017_Site}
+                //{Site.AUT_LOWT_3017_Site}
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("LOWT_3017_OLS_A_S")
     public void lowt3017ols(Site site) {
         String phoneNumber = "AUTAMSLOWT";

@@ -92,7 +92,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleDiabetes_4356A_Expected = "Let's get started to see if you qualify for a study for diabetics!\n" +
             "\n" +
             "Those who qualify may receive*:\n" +
-            "Payment up to $750, which varies by study\n" +
+            "Payment up to $600, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 

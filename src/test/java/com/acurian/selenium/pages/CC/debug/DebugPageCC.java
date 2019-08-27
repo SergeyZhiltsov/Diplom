@@ -207,6 +207,7 @@ public class DebugPageCC extends MainPageCC{
     @Step
     public DebugPageCC checkStudyStatusContainsForQNumber(String questionNumber, String expectedStudyStatus) {
         String actualStudyStatus =  getStudyStatusForQuestionNumber(questionNumber);
+        System.out.println("Status Set displayed = " + actualStudyStatus);
         Assert.assertTrue(actualStudyStatus.contains(expectedStudyStatus), "Study status expected "
                 + expectedStudyStatus + " are not included in actual " + actualStudyStatus);
         return this;
