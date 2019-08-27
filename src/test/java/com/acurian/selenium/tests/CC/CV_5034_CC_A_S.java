@@ -169,6 +169,9 @@ public class CV_5034_CC_A_S extends BaseTest {
         WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                //-----------Status set validation:  PATIENT_PRIORITY_YES = 8 14 -------------
+                .getPage(debugPageCC)
+                .checkStudyStatusContainsForQNumber("QS6735", "8-14")
                 .clickNextButton(new WithType1DiabetesPageCC());
         withType1DiabetesPageCC
                 .waitForPageLoad()

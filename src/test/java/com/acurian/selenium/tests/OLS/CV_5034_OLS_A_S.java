@@ -42,7 +42,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
     @DataProvider(name = "5034Sites")
     public static Object[][] getData() {
         return new Object[][]{
-                {Site.AUT_CV_5034A_site},
+                //{Site.AUT_CV_5034A_site},
                 {Site.AUT_CV_5034S_site}
         };
     }
