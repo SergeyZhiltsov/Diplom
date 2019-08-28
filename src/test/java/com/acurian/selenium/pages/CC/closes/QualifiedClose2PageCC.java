@@ -1,10 +1,14 @@
 package com.acurian.selenium.pages.CC.closes;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
+
+import java.util.List;
 
 public class QualifiedClose2PageCC extends MainPageCC{
 
@@ -30,6 +34,9 @@ public class QualifiedClose2PageCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    List<WebElement> radioButtonsList;
+
     public QualifiedClose2PageCC() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -43,6 +50,12 @@ public class QualifiedClose2PageCC extends MainPageCC{
     @Step
     public QualifiedClose2PageCC waitForPageLoadIBD() {
     	waitForPageLoadMain(titleText, titleExpectedIBD);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
