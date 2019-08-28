@@ -33,6 +33,13 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Verity Score')]/..")
     WebElement verity4Field;
 
+    @FindBy(xpath = "(//div[@class='k-window-content k-content']//div/strong[contains(text(),'Status Set ID:')])[1]")
+    WebElement statusSetID;
+
+    @FindBy(xpath = "(//div[@class='k-window-content k-content']//div/strong[contains(text(),'Status Set Member ID:')])[1]")
+    WebElement statusSetMemberID;
+
+
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Design')]/..")
     WebElement themeField;
 
@@ -118,6 +125,14 @@ public class DebugPageOLS extends MainPageOLS{
 
     public String getVerityText(){
         return getTextFromInfoRowByElement(verity4Field);
+    }
+
+    public String getStatusSetID(){
+        return getTextFromInfoRowByElement(statusSetID);
+    }
+
+    public String getStatusSetMemberID(){
+        return getTextFromInfoRowByElement(statusSetMemberID);
     }
 
     public String getThemeText(){

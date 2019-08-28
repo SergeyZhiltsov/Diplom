@@ -641,7 +641,8 @@ public class DERM_4814_OLS extends BaseTest {
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo)
                         .assertGeneratedFul(env, site)
-                        .assertChildDOBIsNull(env, "4814");
+                        .assertChildDOBIsNull(env, "4814")
+                        .childPidFromDbToLog(env, "4814");
                 break;
             case AUT_AD4814S_site: //41C
                 aboutHealthPageOLS
@@ -650,7 +651,8 @@ public class DERM_4814_OLS extends BaseTest {
                         .getRadiantDbToLog(env)
                         .getAnomalyDbToLog(env)
                         .dispoShouldMatch(site.dispo)
-                        .assertChildDOBIsNull(env, "4814");
+                        .assertChildDOBIsNull(env, "4814")
+                        .childPidFromDbToLog(env, "4814");
                 break;
         }
     }
