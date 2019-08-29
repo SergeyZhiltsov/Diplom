@@ -44,7 +44,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("a study for diabetics", "750"), "Title is diff");
+                .getExpectedModifiedTitle("a study for diabetics", "600"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .waitForPageLoad()
