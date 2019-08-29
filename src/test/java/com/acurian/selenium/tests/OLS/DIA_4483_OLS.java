@@ -53,7 +53,7 @@ public class DIA_4483_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"),
+                .getExpectedModifiedTitle("a fatty liver study for diabetics", "600"),
                 "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
