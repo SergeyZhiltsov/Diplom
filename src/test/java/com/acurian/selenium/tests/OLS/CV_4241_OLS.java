@@ -59,7 +59,7 @@ public class CV_4241_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText2Ver(), dateOfBirthPageOLS.
-                getExpectedModifiedTitle("a heart health study", "750"), "Title is diff");
+                getExpectedModifiedTitle("a heart health study", "600"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .waitForPageLoad2Ver()
