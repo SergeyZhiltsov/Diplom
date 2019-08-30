@@ -163,16 +163,27 @@ public class CV_5034_CC_A_S extends BaseTest {
         haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
-                .clickNextButton(whatKindOfDiabetesPageCC);
+                .clickNextButton(new WhatKindOfDiabetesPageCC());
 
         //Q5	What kind of diabetes do you have?
-        WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
+        //WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
+        whatKindOfDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                //-----------Status set validation:  PATIENT_PRIORITY_YES = 8 14 -------------
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)");
+
+        //-----------Status set validation:  PATIENT_PRIORITY_YES = 8 14 -------------
+        if (env.equals("PRD"))
+        {whatKindOfDiabetesPageCC
                 .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("QS6735", "8-14")
+                .checkStudyStatusContainsForQNumber("QS6735", "12-18");}
+        else if (env.equals("STG"))
+        {whatKindOfDiabetesPageCC
+                .getPage(debugPageCC)
+                .checkStudyStatusContainsForQNumber("QS6735", "8-14");}
+
+        WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
                 .clickNextButton(new WithType1DiabetesPageCC());
+
         withType1DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)

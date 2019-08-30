@@ -189,7 +189,7 @@ public class DateOfBirthPageCC extends MainPageCC{
             "\n" +
             "Study medication or placebo, at no-cost to you\n" +
             "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $750 for time and travel, for qualified participants who complete study related visits\n" +
+            "And depending on the study, compensation of up to $600 for time and travel, for qualified participants who complete study related visits\n" +
             "\n" +
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
             "\n" +
