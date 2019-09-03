@@ -557,7 +557,7 @@ public class DERM_7036_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setAll("5", "5", "250")
+                .setAll("5", "5", "144")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()

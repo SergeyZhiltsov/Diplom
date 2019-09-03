@@ -45,7 +45,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
     @Description("LOWT_3017_OLS_A_S")
     public void lowt3017ols(Site site) {
         String phoneNumber = "AUTAMSLOWT";
-        String protocol1 = "M16_100";
+      /*  String protocol1 = "M16_100";*/ //only 3107s is reactivated
         String protocol2 = "M16_100_S";
         //String esperionProtocol = "1002_043"; //Deactivate 3140 Esperion HC & CVD (all protocols: 1002-043_A & 1002-043)
         //String esperionProtocolA = "1002_043_A"; //R74	74.0	6/21/2019 & 6/24/2019
@@ -56,61 +56,120 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
-        //---------------Date of Birth Question-------------------
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
+
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
-
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
+        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
+                .clickOnAnswer("No")
+                .clickNextButton(new LessThan18YearsOldPageOLS());
+        lessThan18YearsOldPage_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8005", protocol2)
+                .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .setDate("09091990")
-                .clickNextButton(new ZipCodePageOLS());
-        zipCodePageOLS
-                .waitForPageLoad();
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-        zipCodePageOLS.getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
-                .back();
-        dateOfBirthPageOLS.waitForPageLoad2Ver()
-                .setDate("09091936")
-                .clickNextButton(new ZipCodePageOLS());
-        zipCodePageOLS
-                .waitForPageLoad();
-        zipCodePageOLS.getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
-                .back();
-        dateOfBirthPageOLS
                 .waitForPageLoad2Ver()
-                .setDate("09091960")
+                .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
-        //---------------ZIP-CODE Question-------------------
-        zipCodePageOLS
-                .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        //---------------GENDER Question-------------------
-        genderPageOLS
-                .waitForPageLoad();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 genderPageOLS
+                .waitForPageLoad()
+                .setDate("09091941")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8009", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QSI8013", protocol2)
+                .back();
+
+        genderPageOLS
+                .setDate("09091981")
+                .clickOnAnswer("Male")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", protocol2)
                 .back();
 
         PersonalQuestionsOLS personalQuestionsOLS = genderPageOLS
-                .waitForPageLoad()
+                .setDate("09091941")
                 .clickOnAnswer("Male")
                 .clickNextButton(new PersonalQuestionsOLS());
+
+
+
+
+
+        //---------------Date of Birth Question-------------------
+//        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+//        dateOfBirthPageOLS
+//                .openPage(env, phoneNumber)
+//                .waitForPageLoad2Ver();
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
+//                dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
+//
+//        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+//                .setDate("09091990")
+//                .clickNextButton(new ZipCodePageOLS());
+//        zipCodePageOLS
+//                .waitForPageLoad();
+//        DebugPageOLS debugPageOLS = new DebugPageOLS();
+//        zipCodePageOLS.getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
+//                .back();
+//        dateOfBirthPageOLS.waitForPageLoad2Ver()
+//                .setDate("09091936")
+//                .clickNextButton(new ZipCodePageOLS());
+//        zipCodePageOLS
+//                .waitForPageLoad();
+//        zipCodePageOLS.getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
+//                .back();
+//        dateOfBirthPageOLS
+//                .waitForPageLoad2Ver()
+//                .setDate("09091960")
+//                .clickNextButton(new ZipCodePageOLS());
+//
+//        //---------------ZIP-CODE Question-------------------
+//        zipCodePageOLS
+//                .waitForPageLoad();
+//        GenderPageOLS genderPageOLS = zipCodePageOLS
+//                .typeZipCode(site.zipCode)
+//                .clickNextButton(new GenderPageOLS());
+
+//        //---------------GENDER Question-------------------
+//        genderPageOLS
+//                .waitForPageLoad();
+//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+//                genderPageOLS
+//                .clickOnAnswer("Female")
+//                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+
+//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QSI8009", protocol1, protocol2)
+//                .back();
+//
+//        PersonalQuestionsOLS personalQuestionsOLS = genderPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Male")
+//                .clickNextButton(new PersonalQuestionsOLS());
 
         ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowing_OLS = personalQuestionsOLS
                 .waitForPageLoad()
@@ -124,10 +183,10 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5616", protocol1, protocol2);
+                .checkProtocolsContainsForQNumber("QS5616", /*protocol1,*/ protocol2);
 
-        //-----------New Switching to CV module logic-----------------------
-        //Check if possible to switch to to CV module logic
+        //-----------NO SWITCH to CV module logic-----------------------
+        //Check if NOT possible to switch to to CV module logic
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS =
                 hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
@@ -138,62 +197,72 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
 
-        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = approximateHeightPageOLS
+        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
-        cholesterolTriglyceridesLipidsPageOLS
+                .clickNextButton(new TransitionalStatementLowtPageOLS());
+        transitionalStatementLowtPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .back();
+                .back(cardiovascularDiseaseThanOthersPageOLS);
 
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(approximateHeightPageOLS);
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
+                .setAll("5", "5", "170")
+                .clickNextButton(transitionalStatementLowtPageOLS);
+        transitionalStatementLowtPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
-                .checkProtocolsContainsForQNumber("QS6703", kowaProtocolA, kowaProtocolS)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .back();
+                .back(cardiovascularDiseaseThanOthersPageOLS);
 
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Diabetes or High Blood Sugar")
-                .clickNextButton(new WhatKindOfDiabetesPageOLS());
+                .clickNextButton(approximateHeightPageOLS);
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .clickNextButton(whatKindOfDiabetesPageOLS)
+                .setAll("5", "5", "170")
+                .clickNextButton(transitionalStatementLowtPageOLS);
+        transitionalStatementLowtPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5632", kowaProtocolA, kowaProtocolS)
-                .back();
+                .back(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .back(cardiovascularDiseaseThanOthersPageOLS);
+
+        cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("High blood pressure or hypertension")
+                .clickNextButton(approximateHeightPageOLS);
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .back();
+                .setAll("5", "5", "170")
+                .clickNextButton(transitionalStatementLowtPageOLS);
+        transitionalStatementLowtPageOLS
+                .waitForPageLoad()
+                .back(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .back(cardiovascularDiseaseThanOthersPageOLS);
 
-        WithType2DiabetesPageOLS withType2DiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .clickNextButton(whatKindOfDiabetesPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new WithType2DiabetesPageOLS());
 
-        withType2DiabetesPageOLS
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
-                .back(whatKindOfDiabetesPageOLS)
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Chronic Kidney Disease")
+                .clickNextButton(approximateHeightPageOLS);
+        approximateHeightPageOLS
+                .waitForPageLoad()
+                .setAll("5", "5", "170")
+                .clickNextButton(transitionalStatementLowtPageOLS);
+        transitionalStatementLowtPageOLS
                 .waitForPageLoad()
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
@@ -287,7 +356,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS());
         haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5622", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS5622", /*protocol1,*/ protocol2);
         debugPageOLS.back();
         subquestionExperiencedHeartPageOLS.waitForPageLoad()
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
@@ -325,14 +394,14 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
         hasDoctorEverDiagnosedYouMedicalCond_OLS
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5624", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS5624", /*protocol1,*/ protocol2);
         debugPageOLS.back();
         receivedHeartProcedurePageOLS.waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
                 .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
         hasDoctorEverDiagnosedYouMedicalCond_OLS
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5624", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS5624", /*protocol1,*/ protocol2);
         debugPageOLS.back();
         receivedHeartProcedurePageOLS.waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
@@ -350,7 +419,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5626", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS5626", /*protocol1,*/ protocol2);
         debugPageOLS.back();
         hasDoctorEverDiagnosedYouMedicalCond_OLS.waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -359,10 +428,10 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()//---Disqualify ("High BMI") if > 50 - Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]
                 .setAll("5", "0", "256")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageOLS)
+                .clickNextButton(transitionalStatementLowtPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5627", protocol1, protocol2)
+                .checkProtocolsContainsForQNumber("QS5627", /*protocol1,*/ protocol2)
                 .back();
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad() //----------Change inches to maje BMI to <50--------------------
@@ -380,8 +449,9 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
             case AUT_LOWT_3017_Site: //1R
                 siteSelectionPageOLS
                         .clickOnFacilityName(site.name)
-                        .clickNextButton(new QualifiedClose2PageOLS())
+                        .clickNextButton(new QualifiedClose1PageOLS())
                         .waitForPageLoad()
+                        .clickOnAnswer("No")
                         .clickNextButton(new SynexusHealthyMindsPageOLS())
                         .waitForPageLoad()
                         .clickOnAnswer("No, I am not interested in receiving information")
