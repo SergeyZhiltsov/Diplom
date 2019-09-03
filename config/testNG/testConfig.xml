@@ -3,17 +3,10 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.CC.CV_4450_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.CV_5034_CC_A_S"></class>
             <class name="com.acurian.selenium.tests.CC.DIA_4483_CC"></class>
             <class name="com.acurian.selenium.tests.CC.DIA_5062_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.GAST_4357_CC"></class>
-
-            <class name="com.acurian.selenium.tests.OLS.CV_4450_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.CV_5034_OLS_A_S"></class>
             <class name="com.acurian.selenium.tests.OLS.DIA_4483_OLS"></class>
             <class name="com.acurian.selenium.tests.OLS.DIA_5062_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.GAST_4357_OLS"></class>
         </classes>
     </test>
 </suite>
