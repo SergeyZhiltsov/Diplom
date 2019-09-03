@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.OLS.closes;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,10 +10,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HS1PageOLS extends MainPageOLS{
+import java.util.concurrent.TimeUnit;
+
+public class HS1PageOLS extends MainPageOLS {
+
+    public final String titleExpected = "If the e-signature form did not appear or if you were unable to complete the Medical Record Release process please do not worry. We will contact you if additional information is needed.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -119,9 +123,12 @@ public class HS1PageOLS extends MainPageOLS{
 
     @Step
     public HS1PageOLS waitToClickNext() {
-    	WebDriverWait wait = new WebDriverWait(getDriver(), 4000);
-    	wait.until(ExpectedConditions.visibilityOf(titleText));
-        return this;
+    	driverWait.getWaitDriver().withTimeout(2, TimeUnit.MINUTES).until(ExpectedConditions
+                .visibilityOf(titleText));
+        waitForAnimation();
+        driverWait.getWaitDriver().withTimeout(15, TimeUnit.SECONDS).until(ExpectedConditions
+                .invisibilityOfElementWithText(By.xpath(Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS), titleExpected));
+    	return this;
     }
     
     
