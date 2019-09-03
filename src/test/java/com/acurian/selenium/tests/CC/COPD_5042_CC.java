@@ -15,8 +15,6 @@ import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPage
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.COPD_5042.WhenWereYouDiagnosedWithCopdOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.EverSmokedCigarettesPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -25,8 +23,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class COPD_5042_CC extends BaseTest {
 
@@ -95,10 +91,6 @@ public class COPD_5042_CC extends BaseTest {
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
                 ("a COPD study", "others"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-//                .setMonth("Sep")
-//                .setDay("9")
-//                .setYear("1940")
-//                .clickOnAnswer("Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
@@ -146,7 +138,7 @@ public class COPD_5042_CC extends BaseTest {
         everSmokedCigarettesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021131-QS7404-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7404", site.activeProtocols)
                 .back(whenWereYouDiagnosedWithCopdCC)
                 .waitForPageLoad()
                 .clickOnAnswer("More than 2 years ago")//"Chronic bronchitis","Emphysema")
@@ -189,7 +181,7 @@ public class COPD_5042_CC extends BaseTest {
         inThePastYearHowManyUrgentMedicalforCopdCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021133-QS7409-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7409", site.activeProtocols)
                 .back(areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC)
                 .waitForPageLoad();
         WhichFollowingInhalersdoYouUseCopdCC whichFollowingInhalersdoYouUseCopdCC = areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdCC
@@ -202,7 +194,7 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021134-QS7410-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7410", site.activeProtocols)
                 .back(whichFollowingInhalersdoYouUseCopdCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Asmanex or Asmanex HFA","Bevespi Aerosphere")
@@ -217,7 +209,7 @@ public class COPD_5042_CC extends BaseTest {
         haveYouEverHadFollowingLungSurgeriesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021136-QS7411-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7411", site.activeProtocols)
                 .back(inThePastYearHowManyUrgentMedicalforCopdCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Twice")
@@ -232,7 +224,7 @@ public class COPD_5042_CC extends BaseTest {
         whenDidYouHaveYourMostRecentLungSurgeryCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021137-QS7412-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7412", site.activeProtocols)
                 .back(haveYouEverHadFollowingLungSurgeriesCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -248,7 +240,7 @@ public class COPD_5042_CC extends BaseTest {
         transitionStatementCC
                 .waitForPageLoadWithTitle(transitionStatementCC.titleCOPDExpected)
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021138-QS7413-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7413", site.activeProtocols)
                 .back(whenDidYouHaveYourMostRecentLungSurgeryCC)
                 .waitForPageLoad()
                 .clickOnAnswer("1 year ago or more")
@@ -278,7 +270,7 @@ public class COPD_5042_CC extends BaseTest {
         youBeenDiagnosedWithCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         otherThanSkinCancerPageCC
                 .waitForPageLoad()
@@ -301,7 +293,7 @@ public class COPD_5042_CC extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -310,7 +302,7 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -319,7 +311,7 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -328,7 +320,7 @@ public class COPD_5042_CC extends BaseTest {
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -374,7 +366,7 @@ public class COPD_5042_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "09/09/1941", "US",
                             "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
-                            "%SYN_SITE_NUM%", "AUT_AMS1_5042S_site", "GSKPPDCOP657")
+                            "AUT_5042S", "AUT_AMS1_5042S_site", "GSKPPDCOP657")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
@@ -382,8 +374,6 @@ public class COPD_5042_CC extends BaseTest {
                         .getRadiantDbToLog(env)
                         .childPidFromDbToLog(env, "5042")
                         .dispoShouldMatch(site.dispo, site.dispo);
-
-
 
                 break;
             case AUT_COPD_5042_Site:
