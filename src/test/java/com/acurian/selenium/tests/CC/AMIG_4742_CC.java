@@ -90,9 +90,17 @@ public class AMIG_4742_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
 
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+        genderPageCC
+                .setYear("1938") //Disqualify ("Age") if >= 81
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
+
         HaveYouBeenDiagnosedWithMigrainesPageCC haveYouBeenDiagnosedWithMigrainesPageCC = genderPageCC
-                .setMonth("Sep")
-                .setDay("9")
                 .setYear("1982")
                 .clickNextButton(new HaveYouBeenDiagnosedWithMigrainesPageCC());
 
@@ -184,14 +192,32 @@ public class AMIG_4742_CC extends BaseTest {
         //Q9 Are you currently taking prescription medications daily to prevent migraines from starting?
         areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС
                 .waitForPageLoad()
-                .clickOnAnswer("Yes, I still take daily medications that my doctor prescribed")
+                .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
-                .back(areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС)
+                .back();
+        PrescriptionMedicationsDailyToPreventMigrainesPageCC prescriptionMedicationsDailyToPreventMigrainesPageCC =
+        areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС
                 .waitForPageLoad()
-                .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them")
+                .clickOnAnswer("Yes, I still take daily medications that my doctor prescribed")
+                .clickNextButton(new PrescriptionMedicationsDailyToPreventMigrainesPageCC());
+
+        //        Q10	How satisfied are you with the prescription medications that you take daily to prevent migraines from starting?
+        List<String> disqualifyQ10 = Arrays.asList("Satisfied", "Somewhat Satisfied");
+        for (String answer: disqualifyQ10) {
+            System.out.println("Select answer for Q10: " + answer);
+            prescriptionMedicationsDailyToPreventMigrainesPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
+                    .back();
+        }
+        prescriptionMedicationsDailyToPreventMigrainesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Dissatisfied")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
 
 
@@ -281,9 +307,9 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickNextButton(transitionStatementCC);
 
 //---------------Q24: Transition Statement - Display for Call Center onl-----
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
+        transitionStatementCC
                 .waitForPageLoad(studyName)
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
 //-----------------GENERAL HEALTH questions-------------------
         WhatKindOfArthritisCC whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -452,6 +478,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .setFirstName("Acurian")
                 .setLastName("Trial")
                 .setPhone("9999999999")
+                .setEmailAddress("qa.acurian@gmail.com")
                 .setZipCode(site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 //----------SITE Selection Page--------------------
