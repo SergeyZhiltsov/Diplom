@@ -3,7 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
+import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
@@ -254,10 +254,10 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new SubquestionsIBD_OLS());
 
-        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = subquestionsIBD_ols
+        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = subquestionsIBD_ols
                 .waitForPageLoad(1, subquestionsIBD_ols.titleExpected3)
                 .clickOnAnswersForSubQuestion(1, "Abdominal pain or cramps")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
 
         HashMap<String, String[]> options = new HashMap<>();
         options.put("History of a bowel resection within the past 3 months", site.activeProtocols);
@@ -266,7 +266,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         options.put("IV (parenteral) nutrition", site.activeProtocols);
         for (Map.Entry<String, String[]> entry : options.entrySet()) {
             System.out.println(entry.getKey());
-            haveAnyOfTheFollowingPageOLS
+            currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
@@ -276,7 +276,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS5733", entry.getValue())
                     .back();
         }
-        haveAnyOfTheFollowingPageOLS
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);

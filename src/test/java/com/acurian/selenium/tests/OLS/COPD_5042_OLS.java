@@ -345,6 +345,7 @@ public class COPD_5042_OLS extends BaseTest {
                         .waitForPageLoad()
                         .clickOkInPopUp()
                         .setSignature()
+                        .waitToClickNext()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .assertGeneratedFul(env, site)

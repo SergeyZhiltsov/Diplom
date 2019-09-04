@@ -1,31 +1,31 @@
 package com.acurian.selenium.tests.OLS;
 
-        import com.acurian.selenium.constants.Site;
-        import com.acurian.selenium.pages.BaseTest;
-        import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-        import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
-        import com.acurian.selenium.pages.OLS.LOWT_3017.*;
-        import com.acurian.selenium.pages.OLS.closes.*;
-        import com.acurian.selenium.pages.OLS.cv_study.*;
-        import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-        import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-        import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
-        import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-        import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-        import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-        import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-        import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
-        import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-        import org.testng.Assert;
-        import org.testng.annotations.AfterMethod;
-        import org.testng.annotations.BeforeMethod;
-        import org.testng.annotations.DataProvider;
-        import org.testng.annotations.Test;
-        import ru.yandex.qatools.allure.annotations.Description;
-
-        import java.util.Arrays;
-        import java.util.List;
-
+import com.acurian.selenium.constants.Site;
+import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.*;
+import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.cv_study.*;
+import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Description;
+import java.util.Arrays;
+import java.util.List;
 
 public class CV_5034_OLS_A_S extends BaseTest {
 
@@ -42,7 +42,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
     @DataProvider(name = "5034Sites")
     public static Object[][] getData() {
         return new Object[][]{
-                {Site.AUT_CV_5034A_site},
+                //{Site.AUT_CV_5034A_site},
                 {Site.AUT_CV_5034S_site}
         };
     }
@@ -145,19 +145,44 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(whatKindOfDiabetesPageOLS);
 
         //Q5	What kind of diabetes do you have?
-        List<String> disqualifyQ5 = Arrays.asList("Type 1 diabetes (sometimes called Juvenile diabetes)",
-                "Gestational diabetes (diabetes only during pregnancy)", "High blood sugar only", "Unsure");
-        for (String answer: disqualifyQ5) {
-            System.out.println("Select answer Q3: " + answer);
-            whatKindOfDiabetesPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                    .back();
-        }
+        WithType1DiabetesPageOLS withType1DiabetesPageCC = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(new WithType1DiabetesPageOLS());
+        withType1DiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                whatKindOfDiabetesPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("High blood sugar only")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+        CurrentlyTreatingYourDiabetesPageOLS сurrentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+        сurrentlyTreatingYourDiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -257,7 +282,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(сurrentlyTreatingYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
@@ -323,7 +348,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS);
 //------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
-
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = new CurrentlyTreatingYourDiabetesPageOLS();
         List<String> options = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis of the liver",
                 "Drug or alcohol abuse within the past year",
@@ -337,7 +362,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry)
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)

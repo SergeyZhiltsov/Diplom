@@ -12,7 +12,10 @@ import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +26,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class DERM_4814_OLS extends BaseTest {
+public class DERM_7193_OLS extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -38,14 +41,14 @@ public class DERM_4814_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
- //               {Site.AUT_AD4814_site},
-                {Site.AUT_AD4814S_site}
+                {Site.AUT_AMS1_7193_Site}
         };
     }
 
+
     @Test(enabled = true, dataProvider = "sites")
-    @Description("DERM_4814_OLS_test")
-    public void derm4814olsTest(final Site site) {
+    @Description("DERM_7193_OLS_test")
+    public void derm7193olsTest(final Site site) {
         String phoneNumber = "AUTAMSDERM";
         String[] protocols = site.activeProtocols;
         String studyName = "an eczema (atopic dermatitis)";
@@ -93,7 +96,7 @@ public class DERM_4814_OLS extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
-        List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months", "1 year");
+        List<String> disqualifyQ3 = Arrays.asList("2 months or less");
         for(String answer: disqualifyQ3) {
             System.out.println(answer);
             howLongHaveYouBeenSufferingFromEczema_ols
@@ -105,7 +108,6 @@ public class DERM_4814_OLS extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                     .back();
         }
-
             howLongHaveYouBeenSufferingFromEczema_ols
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
@@ -197,7 +199,7 @@ public class DERM_4814_OLS extends BaseTest {
         RateAverageItchinessEczemaPageOLS rateAverageItchinessEczemaPageOLS = eczemaSymptomsExperienceOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
+                //.checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
                 .back(howManyDaysHasSkinBeenItchyOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is itchy every day")
@@ -210,14 +212,14 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(eczemaSymptomsExperienceOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5838", protocols)
+                //.checkProtocolsContainsForQNumber("QS5838", protocols)
                 .back(rateAverageItchinessEczemaPageOLS)
                 .waitForPageLoad()
                 .selectFromDropDown("1")
                 .clickNextButton(eczemaSymptomsExperienceOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5838", protocols)
+                //.checkProtocolsContainsForQNumber("QS5838", protocols)
                 .back(rateAverageItchinessEczemaPageOLS)
                 .waitForPageLoad()
                 .selectFromDropDown("2")
@@ -256,8 +258,8 @@ public class DERM_4814_OLS extends BaseTest {
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS());
 
         //-------------------------------------QS31 "biologics" with radiobuttons -------------------------------------
-        CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS =
-        areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS
+        CurrentlyTakingFollowingMedicationsOLS currentlyTakingFollowingMedicationsOLS =  areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS
+        //DupixentInjectionPageOLS dupixentInjectionPageOLS = new DupixentInjectionPageOLS()
                .waitForPageLoad()
                .clickOnAnswer("Yes")
                .clickNextButton(new CurrentlyTakingFollowingMedicationsOLS());
@@ -287,7 +289,7 @@ public class DERM_4814_OLS extends BaseTest {
                     .clickNextButton(dupixentInjectionPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5846", site.activeProtocols)
+                    //.checkProtocolsContainsForQNumber("QS5846", site.activeProtocols)
                     .back();
         }
 
@@ -317,7 +319,7 @@ public class DERM_4814_OLS extends BaseTest {
                     .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
+                    //.checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                     .back();
         }
         eitherOfFollowingMedicationsOLS
@@ -619,7 +621,7 @@ public class DERM_4814_OLS extends BaseTest {
 
         AboutHealthPageOLS aboutHealthPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "250")
+                .setAll("5", "5", "144")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
@@ -635,24 +637,14 @@ public class DERM_4814_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         switch (site) {
-            case AUT_AD4814_site: //1R
+            case AUT_AMS1_7193_Site: //1R
                 aboutHealthPageOLS
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo)
                         .assertGeneratedFul(env, site)
-                        .assertChildDOBIsNull(env, "4814")
-                        .childPidFromDbToLog(env, "4814");
-                break;
-            case AUT_AD4814S_site: //41C
-                aboutHealthPageOLS
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .getAnomalyDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
-                        .assertChildDOBIsNull(env, "4814")
-                        .childPidFromDbToLog(env, "4814");
+                        //.assertChildDOBIsNull(env, "7193")
+                        .childPidFromDbToLog(env, "7193");
                 break;
         }
     }

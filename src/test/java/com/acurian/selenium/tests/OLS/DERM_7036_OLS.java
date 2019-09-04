@@ -276,13 +276,6 @@ public class DERM_7036_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
                 .back(dupixentInjectionPageOLS)
                 .waitForPageLoad()
-                .clickOnAnswer("Yes, took in the past but not now")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols[0])
-                .back(dupixentInjectionPageOLS)
-                .waitForPageLoad()
                 .back(currentlyTakingFollowingMedicationsOLS)
                 .waitForPageLoad()
                 .back(areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS)
@@ -311,19 +304,16 @@ public class DERM_7036_OLS extends BaseTest {
                 .clickOnAnswers("Lupus")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
-
-
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .back();
+
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cancer")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
-                .clickOnAnswers("Kidney disease")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                .clickOnAnswers("Cancer", "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "Kidney disease", "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS heartrelatedMedicalConditionsProceduresPageCC = otherThanSkinCancerPageOLS
@@ -355,6 +345,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
                 .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4);
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
@@ -364,7 +358,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
@@ -375,7 +372,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
@@ -386,7 +386,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
@@ -397,7 +400,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Less than 30 days ago")
@@ -408,7 +414,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"1 - 3 months ago")
@@ -419,7 +428,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
@@ -430,7 +442,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
@@ -441,7 +456,10 @@ public class DERM_7036_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
@@ -539,11 +557,12 @@ public class DERM_7036_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
-                .setAll("5", "5", "250")
+                .setAll("5", "5", "144")
                 .clickNextButton(new IdentificationPageOLS())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
@@ -551,9 +570,6 @@ public class DERM_7036_OLS extends BaseTest {
                 .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-//                .clickNextButton(new SynexusHealthyMindsPageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

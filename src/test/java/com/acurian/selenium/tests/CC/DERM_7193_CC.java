@@ -10,7 +10,7 @@ import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.tests.OLS.DERM_4814_OLS;
+import com.acurian.selenium.tests.OLS.DERM_7193_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -18,9 +18,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
-public class DERM_4814_CC extends BaseTest {
+public class DERM_7193_CC extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -32,9 +33,9 @@ public class DERM_4814_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(enabled = true, dataProvider = "sites", dataProviderClass = DERM_4814_OLS.class)
-    @Description("DERM_4814_CC_Test")
-    public void derm4814ccTest(final Site site) {
+    @Test(enabled = true, dataProvider = "sites", dataProviderClass = DERM_7193_OLS.class)
+    @Description("DERM_7193_CC_Test")
+    public void derm7193ccTest(final Site site) {
         String phoneNumber = "AUTAMSDERM";
         String studyNameForTrans = "eczema, or atopic dermatitis";
         String studyName = "an eczema (atopic dermatitis) study";
@@ -133,7 +134,7 @@ public class DERM_4814_CC extends BaseTest {
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+                    //.checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                     .back();
         }
         howLongHaveYouBeenSufferingFromEczema_cc
@@ -180,7 +181,7 @@ public class DERM_4814_CC extends BaseTest {
         RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = eczemaSymptomsExperienceCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
+//                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
                 .back(howManyDaysHasSkinBeenItchyCC)
                 .waitForPageLoad()
                 .clickOnAnswer("My skin is itchy every day")
@@ -194,7 +195,7 @@ public class DERM_4814_CC extends BaseTest {
                     .selectFromDropDown(answer)
                     .clickNextButton(eczemaSymptomsExperienceCC)
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5838", site.activeProtocols)
+ //                   .checkProtocolsContainsForQNumber("QS5838", site.activeProtocols)
                     .back();
         }
         rateAverageItchinessEczemaPageCC
@@ -232,10 +233,15 @@ public class DERM_4814_CC extends BaseTest {
                 .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC());
 
         //Q31
-        CurrentlyTakingFollowingMedicationsCC currentlyTakingFollowingMedicationsCC =
-                areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC
+        CurrentlyTakingFollowingMedicationsCC currentlyTakingFollowingMedicationsCC = areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes") //Disqualify (“Current biologic use”)
+                .clickNextButton(new CurrentlyTakingFollowingMedicationsCC())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5850", site.activeProtocols)
+                .back(areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC)
+                .clickOnAnswer("No") //Disqualify (“Current biologic use”)
                 .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
 
         //Q32
@@ -275,9 +281,10 @@ public class DERM_4814_CC extends BaseTest {
 
         //Q34
         TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
-        List<String> disqualifyQ34 = Arrays.asList("Jakafi (Agent Note: JAK-uh-fie)",
+
+       /* List<String> disqualifyQ34 = Arrays.asList("Jakafi (Agent Note: JAK-uh-fie)",
                 "Olumiant (Agent Note: oh-LOO-me-ant)",
-                "Xeljanz (Agent Note: ZEL-jans)");
+                "Xeljanz (Agent Note: ZEL-jans)")
         for (String disqualify: disqualifyQ34) {
             System.out.println("Select answer for Q34: " + disqualify);
             haveYouEverTakenEitherAnyOfFollowingMeds_CC
@@ -287,9 +294,9 @@ public class DERM_4814_CC extends BaseTest {
                     .clickNextButton(diagnosedWithPsoriasisCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
+                   // .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                     .back();
-        }
+        } */
         haveYouEverTakenEitherAnyOfFollowingMeds_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -580,36 +587,22 @@ public class DERM_4814_CC extends BaseTest {
                 .getPID();
 
         switch (site) {
-            case AUT_AD4814_site: //1R
+            case AUT_AMS1_7193_Site: //1R
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
+                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo)
                         .assertGeneratedFul(env, site)
-                        .assertChildDOBIsNull(env, "4814");
+                        .assertChildDOBIsNull(env, "7193");
                 break;
-            case AUT_AD4814S_site: //41C
-                siteSelectionPageCC
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "04/05/2000", "US",
-                                "Cincinnati, OH", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "123456a", site.name,
-                                "INCPPDATO303,INCPPDATO304")
-                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .dispoShouldMatch(site.dispo)
-                        .assertChildDOBIsNull(env, "4814");
         }
     }
 }

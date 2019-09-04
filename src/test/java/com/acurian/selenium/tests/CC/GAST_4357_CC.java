@@ -133,18 +133,17 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswer("Yes") //Continue to Q3
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
         //Q3
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        whatKindOfDiabetesPageCC
+        CardiovascularDiseaseThanOthersPageCC сardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Disqualify ("No diagnosis of diabetes")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+        сardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
                 .back(whatKindOfDiabetesPageCC)
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7203", site.activeProtocols)
@@ -156,7 +155,6 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new WithType2DiabetesPageCC());
 
         //Q4
-        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
         List<String> disqualifyQ4 = Arrays.asList("Within the past 2 months",
                 "3 - 6 months ago", "7 - 11 months ago", "1 to less than 5 years ago");
         for (String answer: disqualifyQ4) {
@@ -164,7 +162,7 @@ public class GAST_4357_CC extends BaseTest {
             withType2DiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                    .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -206,7 +204,7 @@ public class GAST_4357_CC extends BaseTest {
             howLongAgoDiagnosedDiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                    .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
@@ -227,22 +225,23 @@ public class GAST_4357_CC extends BaseTest {
         symptomsRegularlyOncePerWeekPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
-                .back(currentlyTreatingYourDiabetesPageCC);
+                .back();
         symptomsRegularlyOncePerWeekPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Nausea or feeling sick to your stomach",
                                 "Bloating")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
                 .back();
 
         SymptomsFirstStartPageCC symptomsFirstStartPageCC = symptomsRegularlyOncePerWeekPageCC
+                .waitForPageLoad()
                 .clickOnAnswers("Vomiting or throwing up",
                                 "Bloating") //Deselect Bloating
                 .clickNextButton(new SymptomsFirstStartPageCC());
@@ -251,7 +250,7 @@ public class GAST_4357_CC extends BaseTest {
         symptomsFirstStartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months ago or less")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)
@@ -313,7 +312,7 @@ public class GAST_4357_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(surgeriesPerformedPageCC);
         //Q13
-        BariatricWeightLossSurgeryPageCC bariatricWeightLossSurgeryPageCC = new BariatricWeightLossSurgeryPageCC();
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = new WeightLossSurgeryPageCC();
         List<String> disqualifyQ13 = Arrays.asList("Gastric pacemaker placement (Agent Note: gas-trik)",
                 "Gastrectomy or removal of part of the stomach (Agent Note: ga-strek-tuh-mee)",
                 "Fundoplication (Agent Note: fun-do-pli-kae-tion)", "Vagotomy (Agent Note: vey-got-uh-mee)");
@@ -323,7 +322,7 @@ public class GAST_4357_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(bariatricWeightLossSurgeryPageCC)
+                    .clickNextButton(weightLossSurgeryPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7213", site.activeProtocols)
@@ -332,10 +331,10 @@ public class GAST_4357_CC extends BaseTest {
         surgeriesPerformedPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(bariatricWeightLossSurgeryPageCC);
+                .clickNextButton(weightLossSurgeryPageCC);
         //Q14
         HashMap<String, List<String>> disqualifyQ14 = new HashMap<>();
-        LastTimeSurgeryMedicalProcedureWeightLossPageCC lastTimeSurgeryMedicalProcedureWeightLossPageCC = new LastTimeSurgeryMedicalProcedureWeightLossPageCC(); //Disqualify ("GI surgery")
+        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = new ProcedureForWeightLossPageCC(); //Disqualify ("GI surgery")
         disqualifyQ14.put("Gastric bypass", Arrays.asList(site.activeProtocols));
         disqualifyQ14.put("Gastric sleeve or sleeve gastrectomy", Arrays.asList(site.activeProtocols));
         disqualifyQ14.put("Duodenal switch", Arrays.asList(site.activeProtocols));
@@ -344,26 +343,28 @@ public class GAST_4357_CC extends BaseTest {
         disqualifyQ14.put("I had a weight loss surgery, but I am unsure which type", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ14.entrySet()) {
             System.out.println(entry.getKey());
-            bariatricWeightLossSurgeryPageCC
+            weightLossSurgeryPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(lastTimeSurgeryMedicalProcedureWeightLossPageCC)
+                    .clickNextButton(procedureForWeightLossPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7214", site.activeProtocols)
-                    .back(bariatricWeightLossSurgeryPageCC);
+                    .back(weightLossSurgeryPageCC);
         }
-
-        bariatricWeightLossSurgeryPageCC
+        TransitionStatementCC transitionStatementCC = weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC()) //Q19
+                .clickNextButton(new TransitionStatementCC()); //Q19
+
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+        transitionStatementCC
                 .waitForPageLoadWithTitle("Thank you for answering these questions about your stomach problems.\n" +
                         "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
                         "Agent Note: If \"no\" to all items in a question, select \"None of the above\"")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
-                .waitForPageLoad();
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
 //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()

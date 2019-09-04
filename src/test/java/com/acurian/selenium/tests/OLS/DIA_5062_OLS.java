@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -34,7 +35,9 @@ public class DIA_5062_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a fatty liver study for diabetics", "1,550"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"),
+                "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
@@ -49,12 +52,13 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad();
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
                 .setDate("09091968")
-                .clickOnAnswer("Female")
+                .clickOnAnswer("Male")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+        diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -68,19 +72,11 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
-        WithType1DiabetesPageOLS withType1DiabetesPageOLS = whatKindOfDiabetesPageOLS
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new WithType1DiabetesPageOLS());
-        withType1DiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
-        whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -88,7 +84,7 @@ public class DIA_5062_OLS extends BaseTest {
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -110,45 +106,10 @@ public class DIA_5062_OLS extends BaseTest {
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 2 months")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
-                .back();
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
-                .back();
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
-                .back();
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
                 .clickOnAnswer("1 to less than 5 years ago")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
-                .back();
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
                 .clickOnAnswer("5 to less than 10 years ago")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS4604", site.activeProtocols)
-                .back();
-        withType2DiabetesPageOLS
-                .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
 
@@ -193,17 +154,15 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswer("Currently taking / have taken within the past month")
                 .clickNextButton(new MetforminMedicationsPageOLS());
 
-        ApartFromMetforminPageOLS apartFromMetforminPageOLS = new ApartFromMetforminPageOLS();
-        metforminMedicationsPageOLS
+        ApartFromMetforminPageOLS apartFromMetforminPageOLS = metforminMedicationsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(apartFromMetforminPageOLS);
+                .clickNextButton(new ApartFromMetforminPageOLS());
 
-        CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = new CurrentlyTakeInsulinPageOLS();
-        apartFromMetforminPageOLS
+        CurrentlyTakeInsulinPageOLS currentlyTakeInsulinPageOLS = apartFromMetforminPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(currentlyTakeInsulinPageOLS);
+                .clickNextButton(new CurrentlyTakeInsulinPageOLS());
 
         InjectableMedicationsForYourDiabetesPageOLS injectableMedicationsForYourDiabetesPageOLS = currentlyTakeInsulinPageOLS
                 .waitForPageLoad()
@@ -252,7 +211,7 @@ public class DIA_5062_OLS extends BaseTest {
 
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
-                .setDrinks("15")
+                .setDrinks("22")
                 .clickNextButton(new LiverRelatedConditionOLS());
         liverRelatedConditionOLS
                 .waitForPageLoad()
@@ -261,10 +220,9 @@ public class DIA_5062_OLS extends BaseTest {
                 .back();
         noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
-                .setDrinks("14")
+                .setDrinks("21")
                 .clickNextButton(liverRelatedConditionOLS);
 
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = new FollowingToLoseWeightPageOLS();
         HashMap<String, List<String>> options = new HashMap<>();
         options.put("Alcoholic liver disease", Arrays.asList(site.activeProtocols));
         options.put("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus", Arrays.asList(site.activeProtocols));
@@ -278,16 +236,16 @@ public class DIA_5062_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(followingToLoseWeightPageOLS)
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS4624", (String[]) entry.getValue().toArray())
                     .back();
         }
-        liverRelatedConditionOLS
+        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(followingToLoseWeightPageOLS);
+                .clickNextButton(new FollowingToLoseWeightPageOLS());
 
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = followingToLoseWeightPageOLS
                 .waitForPageLoad()
@@ -387,6 +345,9 @@ public class DIA_5062_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
@@ -399,6 +360,9 @@ public class DIA_5062_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
@@ -411,6 +375,9 @@ public class DIA_5062_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
@@ -423,6 +390,9 @@ public class DIA_5062_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
@@ -435,6 +405,9 @@ public class DIA_5062_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
@@ -447,6 +420,9 @@ public class DIA_5062_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
@@ -459,6 +435,9 @@ public class DIA_5062_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
@@ -666,24 +645,9 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-//        EthnicBackgroundPageOLS ethnicBackgroundPageOLS = approximateHeightPageOLS
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("4", "9", "140") //BMI > 30
-//                .clickNextButton(new EthnicBackgroundPageOLS());
-//        TransitionStatementCVbeginPageOLS transitionStatementCVbeginPageOLS = ethnicBackgroundPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("Prefer not to answer")
-//                .clickNextButton(new TransitionStatementCVbeginPageOLS());
-//        transitionStatementCVbeginPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS67", site.activeProtocols)
-//                .back();
-//
-//        IdentificationPageOLS identificationPageOLS = ethnicBackgroundPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswers("Asian (Asian Indian, Chinese, Korean, Filipino, Japanese, Vietnamese)")
                 .clickNextButton(new IdentificationPageOLS());
         identificationPageOLS
                 .waitForPageLoad()

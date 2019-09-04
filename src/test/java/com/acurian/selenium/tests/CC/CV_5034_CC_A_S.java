@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.IBD.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
@@ -10,6 +11,7 @@ import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.tests.OLS.CV_5034_OLS_A_S;
 
 import java.util.Arrays;
@@ -161,22 +163,63 @@ public class CV_5034_CC_A_S extends BaseTest {
         haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
-                .clickNextButton(whatKindOfDiabetesPageCC);
+                .clickNextButton(new WhatKindOfDiabetesPageCC());
 
         //Q5	What kind of diabetes do you have?
-        List<String> disqualifyQ5 = Arrays.asList("Type 1 diabetes (sometimes called Juvenile diabetes)",
-                "Gestational diabetes (diabetes only during pregnancy)", "High blood sugar only", "Unsure");
-        for (String answer: disqualifyQ5) {
-            System.out.println("Select answer Q3: " + answer);
+        //WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
+        whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)");
+
+        //-----------Status set validation:  PATIENT_PRIORITY_YES = 8 14 -------------
+        if (env.equals("PRD")) {
             whatKindOfDiabetesPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(transitionStatementCC)
-                    .waitForPageLoadDYS()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                    .back();
+                .getPage(debugPageCC)
+                .checkStudyStatusContainsForQNumber("QS6735", "12-18");
         }
+        else if (env.equals("STG")) {
+            whatKindOfDiabetesPageCC
+                .getPage(debugPageCC)
+                .checkStudyStatusContainsForQNumber("QS6735", "8-14");
+        }
+
+        WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
+                .clickNextButton(new WithType1DiabetesPageCC());
+
+        withType1DiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+        whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+        whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("High blood sugar only")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+        CurrentlyTreatingYourDiabetesPageCC сurrentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
+        сurrentlyTreatingYourDiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+
         WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -276,6 +319,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .setAll("5", "5", "170")
                 .clickNextButton(new HealthcareDiagnosedConditionsPageCC());
 
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
         List<String> options = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis of the liver",
                 "Drug or alcohol abuse within the past year",
@@ -289,8 +333,8 @@ public class CV_5034_CC_A_S extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry)
-                    .clickNextButton(transitionStatementCC)
-                    .waitForPageLoadDYS()
+                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
                     .back();

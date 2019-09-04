@@ -2,7 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
+import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithUlcerativeColitisPageOLS;
@@ -287,11 +287,11 @@ public class IBD_3485_OLS extends BaseTest {
         weightLossSurgeryPageOLS
                 .waitForPageLoad();
         Assert.assertEquals(weightLossSurgeryPageOLS.getTitleText(), weightLossSurgeryPageOLS.titleExpected, "Title is diff");
-        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = weightLossSurgeryPageOLS
+        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = weightLossSurgeryPageOLS
                 //-----SKIP to Q18 if selected "None of the above" in Q16, otherwise goto Q17
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .back();
         weightLossSurgeryPageOLS
@@ -312,8 +312,8 @@ public class IBD_3485_OLS extends BaseTest {
         Assert.assertEquals(procedureForWeightLossPageOLS.getTitleText(), procedureForWeightLossPageOLS.titleExpected, "Title is diff");
         //------------------------DQ for all options in Q17 --------------
         procedureForWeightLossPageOLS.clickOnAnswer("Less than 3 months ago")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5717", protocol1, protocol2)
@@ -322,8 +322,8 @@ public class IBD_3485_OLS extends BaseTest {
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5717", protocol1, protocol2)
@@ -332,8 +332,8 @@ public class IBD_3485_OLS extends BaseTest {
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5717", protocol1, protocol2)
@@ -342,8 +342,8 @@ public class IBD_3485_OLS extends BaseTest {
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 2 years ago")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5717", protocol1, protocol2)
@@ -352,8 +352,8 @@ public class IBD_3485_OLS extends BaseTest {
         procedureForWeightLossPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("More than 2 years ago")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
-        haveAnyOfTheFollowingPageOLS
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5717", protocol1, protocol2)
@@ -365,15 +365,15 @@ public class IBD_3485_OLS extends BaseTest {
                 .waitForPageLoad()
                 //------------------Change Answer in Q16 to "None of the Above"  to qualify and goto Q18
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
 
 
         //----------------Q18 - Do you currently have any of the following? page----------------------
-        haveAnyOfTheFollowingPageOLS
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad();
-        Assert.assertEquals(haveAnyOfTheFollowingPageOLS.getTitleText(), haveAnyOfTheFollowingPageOLS.titleExpected, "Title is diff");
+        Assert.assertEquals(currentlyHaveAnyOffFollowingPageOLS.getTitleText(), currentlyHaveAnyOffFollowingPageOLS.titleExpected, "Title is diff");
         //-----DQ if selected any/all of these options - "Colostomy and/or Colectomy","Ileostomy","Another type of stomach or colon surgery" in Q18 -------
-        haveAnyOfTheFollowingPageOLS
+        currentlyHaveAnyOffFollowingPageOLS
                 .clickOnAnswers("Colostomy and/or Colectomy",
                         "Ileostomy",
                         "Another type of stomach or colon surgery")
@@ -383,7 +383,7 @@ public class IBD_3485_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5718", protocol1, protocol2)
                 .back();
-        haveAnyOfTheFollowingPageOLS
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above",
                         "Feeding tube",

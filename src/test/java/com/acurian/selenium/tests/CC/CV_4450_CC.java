@@ -2,16 +2,16 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.IBD.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartrelatedMedicalProceduresPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
@@ -100,17 +100,18 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
 
         //Q3: QS	Certain conditions are more closely linked to cardiovascular disease than others.
-        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC = cardiovascularDiseaseThanOthersPageCC
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC =
+                cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
                         "High blood pressure or hypertension",
                         "Chronic Kidney Disease")
-                .clickOnAnswers("None of the above") //skip to Q13 (current lipid lowering med use)
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
+                .clickOnAnswers("None of the above") //skip to Q14 (Heart-related events)
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
 
-        //Q13
-        cholesterolTriglyceridesLipidsPageCC
+        //Q14
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .back();
 
@@ -119,10 +120,21 @@ public class CV_4450_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides") //go to Q4 (NEW Q4)
                 .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC());
+
+        //Q4 Have you had a blood test that confirms you have high cholesterol or high triglycerides?
+        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC =
         haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
-                .back(cardiovascularDiseaseThanOthersPageCC);
+                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
+
+        //Q13 Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?
+        cholesterolTriglyceridesLipidsPageCC
+                .waitForPageLoad()
+                .back(haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC)
+                .waitForPageLoad()
+                .back();
+
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -130,30 +142,28 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
 
         //Q5	What kind of diabetes do you have?
-        List<String> disqualifyQ5 = Arrays.asList("Type 1 diabetes (sometimes called Juvenile diabetes)",
-                "Type 2 diabetes (sometimes called Adult-onset diabetes)");
-        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
-        for (String answer: disqualifyQ5) {
-            System.out.println("Select answer Q3: " + answer);
-            whatKindOfDiabetesPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(transitionStatementCC)
-                    .waitForPageLoadDYS()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                    .back();
-        }
-        whatKindOfDiabetesPageCC
+        WithType1DiabetesPageCC withType1DiabetesPageCC = whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(new WithType1DiabetesPageCC());
+        withType1DiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+        WithType2DiabetesPageCC withType2DiabetesPageCC = whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                .clickNextButton(new WithType2DiabetesPageCC());
+        withType2DiabetesPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
+                .back();
+
+        SufferedFollowingHeartRelatedConditionsPageCC sufferedFollowingHeartRelatedConditionsPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Display for Females only
-                .clickOnAnswer("Unsure")
-                .clickNextButton(cholesterolTriglyceridesLipidsPageCC);
-
-        //Q13	Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?
-        SufferedFollowingHeartRelatedConditionsPageCC sufferedFollowingHeartRelatedConditionsPageCC =
-        cholesterolTriglyceridesLipidsPageCC
-                .waitForPageLoad()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageCC());
 
@@ -303,11 +313,12 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(new ApproximateHeightPageCC());
 
 //------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
-        approximateHeightPageCC
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoadDYS()
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
+        currentlyTreatingYourDiabetesPageCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
                 .back(approximateHeightPageCC)
@@ -399,8 +410,8 @@ public class CV_4450_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(transitionStatementCC)
-                    .waitForPageLoadDYS()
+                    .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
                     .back();

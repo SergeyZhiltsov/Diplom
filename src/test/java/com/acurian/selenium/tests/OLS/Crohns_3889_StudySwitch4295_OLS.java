@@ -1,20 +1,16 @@
 package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.debug.DebugPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.OLS.Crohns_3485.*;
 import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.FollowingMedicationsCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.ManageYourCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.ConfigPageOLS;
-import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.pediatric.*;
 import com.acurian.selenium.pages.OLS.shared.*;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
@@ -197,13 +193,13 @@ public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
         		
         weightLossSurgeryPageOLS
         		.waitForPageLoad();
-        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = weightLossSurgeryPageOLS
+        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = weightLossSurgeryPageOLS
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
         
-        haveAnyOfTheFollowingPageOLS
+        currentlyHaveAnyOffFollowingPageOLS
         		.waitForPageLoad();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveAnyOfTheFollowingPageOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());

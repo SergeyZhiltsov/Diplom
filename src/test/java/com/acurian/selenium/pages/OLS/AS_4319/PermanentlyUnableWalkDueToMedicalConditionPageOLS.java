@@ -9,10 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class SacroiliitisPageOLS extends MainPageOLS {
+public class PermanentlyUnableWalkDueToMedicalConditionPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "Did your doctor tell you that your x-ray or MRI showed inflammation of the joints where your lower spine and pelvis connect? This is called sacroiliitis.";    		
+    public final String titleExpectedOLD = "Are you permanently wheelchair-bound, bedridden, or otherwise completely unable to walk due to your back pain or another medical condition?";
     
+    public final String titleExpected = "Are you permanently unable to walk due to your medical condition?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -20,18 +21,19 @@ public class SacroiliitisPageOLS extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public SacroiliitisPageOLS() {
+    public PermanentlyUnableWalkDueToMedicalConditionPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SacroiliitisPageOLS waitForPageLoad() {
+    public PermanentlyUnableWalkDueToMedicalConditionPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
-    }
+    }   
+    
 
     @Step
-    public SacroiliitisPageOLS clickOnAnswer(String answerText) {
+    public PermanentlyUnableWalkDueToMedicalConditionPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,5 +42,4 @@ public class SacroiliitisPageOLS extends MainPageOLS {
     public String getTitleText(){
         return getText(titleText);
     }
-
 }

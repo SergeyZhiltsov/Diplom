@@ -34,6 +34,4 @@ public class LogicDiffSummaryPage extends MainPageSB {
         waitAndClickWebElement(logicPublishBtn);
         return new StudyProjectsListPage();
     }
-
-
 }

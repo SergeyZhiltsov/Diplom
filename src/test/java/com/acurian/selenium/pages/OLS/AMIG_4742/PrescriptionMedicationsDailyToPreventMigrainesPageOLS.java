@@ -1,18 +1,17 @@
-package com.acurian.selenium.pages.OLS.AS_4319;
-
-import java.util.List;
+package com.acurian.selenium.pages.OLS.AMIG_4742;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class SacroiliitisPageOLS extends MainPageOLS {
+import java.util.List;
 
-    public final String titleExpected = "Did your doctor tell you that your x-ray or MRI showed inflammation of the joints where your lower spine and pelvis connect? This is called sacroiliitis.";    		
-    
+public class PrescriptionMedicationsDailyToPreventMigrainesPageOLS extends MainPageOLS {
+
+    public final String titleExpected = "How satisfied are you with the prescription medications that you take daily to prevent migraines from starting?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -20,19 +19,19 @@ public class SacroiliitisPageOLS extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public SacroiliitisPageOLS() {
+    public PrescriptionMedicationsDailyToPreventMigrainesPageOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SacroiliitisPageOLS waitForPageLoad() {
+    public PrescriptionMedicationsDailyToPreventMigrainesPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public SacroiliitisPageOLS clickOnAnswer(String answerText) {
-        clickOnRadioButton(radioButtonsList, answerText);
+    public PrescriptionMedicationsDailyToPreventMigrainesPageOLS clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);;
         return this;
     }
 

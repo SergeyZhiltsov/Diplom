@@ -238,8 +238,8 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageOLS =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                         .waitForPageLoad()
-//                        .getPage(debugPageOLS)
-//                        .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
                         .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS)
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
@@ -278,8 +278,8 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .clickOnAnswer("Yes, currently taking")
                 .clickNextButton(healthcareDiagnosedPsoriasisPageOLS)
                 .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
                 .back(dupixentInjectionPageOLS)
                 .waitForPageLoad()
                 .back(currentlyTakingFollowingMedicationsOLS)
@@ -305,10 +305,10 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers(answer)
-                .clickNextButton(healthcareDiagnosedPsoriasisPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5830", site.activeProtocols)
                 .back();
         }
                 eitherOfFollowingMedicationsOLS

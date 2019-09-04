@@ -41,14 +41,14 @@ public class AS_4319_OLS extends BaseTest {
                 .typeZipCode("19044")
                 .clickNextButton(new GenderPageOLS());
 
-        DiagnosedWithAnkylosingSpondylitisOLS diagnosedWithAnkylosingSpondylitisOLS = genderPageOLS
+        DiagnosedWithAnkylosingSpondylitisPageOLS diagnosedWithAnkylosingSpondylitisPageOLS = genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
-                .clickNextButton(new DiagnosedWithAnkylosingSpondylitisOLS());
+                .clickNextButton(new DiagnosedWithAnkylosingSpondylitisPageOLS());
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedWithAnkylosingSpondylitisOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedWithAnkylosingSpondylitisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -57,7 +57,7 @@ public class AS_4319_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4715", protocol1)
                 .back();
-        DoYouSufferFromLbpPageOLS doYouSufferFromLbpPageOLS = diagnosedWithAnkylosingSpondylitisOLS
+        DoYouSufferFromLbpPageOLS doYouSufferFromLbpPageOLS = diagnosedWithAnkylosingSpondylitisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new DoYouSufferFromLbpPageOLS());
@@ -110,10 +110,10 @@ public class AS_4319_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(takenXeljanz);
 
-        AreYouWheelchairBoundOLS areYouWheelchairBoundOLS = takenXeljanz
+        PermanentlyUnableWalkDueToMedicalConditionPageOLS permanentlyUnableWalkDueToMedicalConditionPageOLS = takenXeljanz
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I am currently taking it")
-                .clickNextButton(new AreYouWheelchairBoundOLS());
+                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageOLS());
         takenXeljanz
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -122,7 +122,7 @@ public class AS_4319_OLS extends BaseTest {
         takenXeljanz
                 .waitForPageLoad()
                 .clickOnAnswer("I took it in the past, but not now")
-                .clickNextButton(areYouWheelchairBoundOLS)
+                .clickNextButton(permanentlyUnableWalkDueToMedicalConditionPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4709", protocol1)
@@ -130,9 +130,9 @@ public class AS_4319_OLS extends BaseTest {
         takenXeljanz
                 .waitForPageLoad()
                 .clickOnAnswer("No, I have never taken it")
-                .clickNextButton(areYouWheelchairBoundOLS);
+                .clickNextButton(permanentlyUnableWalkDueToMedicalConditionPageOLS);
 
-        FollowingDevicesInYourBodyOLS followingDevicesInYourBodyOLS = areYouWheelchairBoundOLS
+        FollowingDevicesInYourBodyOLS followingDevicesInYourBodyOLS = permanentlyUnableWalkDueToMedicalConditionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new FollowingDevicesInYourBodyOLS());
@@ -141,7 +141,7 @@ public class AS_4319_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4710", protocol1)
                 .back();
-        areYouWheelchairBoundOLS
+        permanentlyUnableWalkDueToMedicalConditionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(followingDevicesInYourBodyOLS);

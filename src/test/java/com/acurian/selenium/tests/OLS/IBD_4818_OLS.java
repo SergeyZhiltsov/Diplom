@@ -3,19 +3,16 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
-import com.acurian.selenium.pages.OLS.Crohns_3485.HaveAnyOfTheFollowingPageOLS;
+import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.WhenDiagnosedCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.END_4385.HormonalBirthControlOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
-import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
-import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -304,13 +301,13 @@ public class IBD_4818_OLS extends BaseTest {
                   // .checkStudyStatusContainsForQNumber("QS5730", "2-4"); //TODO
         }
         //Q21.3
-        HaveAnyOfTheFollowingPageOLS haveAnyOfTheFollowingPageOLS = howWouldYouRateOLS
+        CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = howWouldYouRateOLS
                 .clickOnAnswers("Abdominal pain or cramps",
                         "The sensation of increased urgency for bowel movements",
                         "Loss of bowel control",
                         "More frequent loose bowel movements or diarrhea compared to the recent past",
                         "Presence of blood in your stools")
-                .clickNextButton(new HaveAnyOfTheFollowingPageOLS());
+                .clickNextButton(new CurrentlyHaveAnyOffFollowingPageOLS());
 
         //Q24
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
@@ -323,7 +320,7 @@ public class IBD_4818_OLS extends BaseTest {
         disqualifyQ24.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualifyQ24.entrySet()) {
             System.out.println(entry.getKey());
-            haveAnyOfTheFollowingPageOLS
+            currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
@@ -334,7 +331,7 @@ public class IBD_4818_OLS extends BaseTest {
                   //  .checkProtocolsContainsForQNumber("QS5733", site.activeProtocols)//todo
                     .back();
         }
-        haveAnyOfTheFollowingPageOLS
+        currentlyHaveAnyOffFollowingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
@@ -609,6 +606,8 @@ public class IBD_4818_OLS extends BaseTest {
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoadIBD4818()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
