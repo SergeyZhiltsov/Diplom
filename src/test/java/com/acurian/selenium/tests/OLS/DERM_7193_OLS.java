@@ -621,7 +621,7 @@ public class DERM_7193_OLS extends BaseTest {
 
         AboutHealthPageOLS aboutHealthPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "250")
+                .setAll("5", "5", "144")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
@@ -643,7 +643,7 @@ public class DERM_7193_OLS extends BaseTest {
                         .pidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo)
                         .assertGeneratedFul(env, site)
-                        .assertChildDOBIsNull(env, "7193")
+                        //.assertChildDOBIsNull(env, "7193")
                         .childPidFromDbToLog(env, "7193");
                 break;
         }
