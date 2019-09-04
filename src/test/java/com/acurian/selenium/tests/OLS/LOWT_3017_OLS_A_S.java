@@ -62,7 +62,6 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad2Ver();
-        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -110,66 +109,6 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .setDate("09091941")
                 .clickOnAnswer("Male")
                 .clickNextButton(new PersonalQuestionsOLS());
-
-
-
-
-
-        //---------------Date of Birth Question-------------------
-//        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-//        dateOfBirthPageOLS
-//                .openPage(env, phoneNumber)
-//                .waitForPageLoad2Ver();
-//        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
-//                dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
-//
-//        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-//                .setDate("09091990")
-//                .clickNextButton(new ZipCodePageOLS());
-//        zipCodePageOLS
-//                .waitForPageLoad();
-//        DebugPageOLS debugPageOLS = new DebugPageOLS();
-//        zipCodePageOLS.getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
-//                .back();
-//        dateOfBirthPageOLS.waitForPageLoad2Ver()
-//                .setDate("09091936")
-//                .clickNextButton(new ZipCodePageOLS());
-//        zipCodePageOLS
-//                .waitForPageLoad();
-//        zipCodePageOLS.getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
-//                .back();
-//        dateOfBirthPageOLS
-//                .waitForPageLoad2Ver()
-//                .setDate("09091960")
-//                .clickNextButton(new ZipCodePageOLS());
-//
-//        //---------------ZIP-CODE Question-------------------
-//        zipCodePageOLS
-//                .waitForPageLoad();
-//        GenderPageOLS genderPageOLS = zipCodePageOLS
-//                .typeZipCode(site.zipCode)
-//                .clickNextButton(new GenderPageOLS());
-
-//        //---------------GENDER Question-------------------
-//        genderPageOLS
-//                .waitForPageLoad();
-//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-//                genderPageOLS
-//                .clickOnAnswer("Female")
-//                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-
-//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QSI8009", protocol1, protocol2)
-//                .back();
-//
-//        PersonalQuestionsOLS personalQuestionsOLS = genderPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("Male")
-//                .clickNextButton(new PersonalQuestionsOLS());
 
         ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowing_OLS = personalQuestionsOLS
                 .waitForPageLoad()
@@ -251,7 +190,6 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .back(cardiovascularDiseaseThanOthersPageOLS);
-
 
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
@@ -339,17 +277,19 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS.back();
         heartOrBloodVesselPageOLS
                 .waitForPageLoad();
-        SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = heartOrBloodVesselPageOLS
+        WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS =
+                heartOrBloodVesselPageOLS
                 .clickOnAnswers("Heart attack",
                         "Stroke",
                         "TIA or \"Mini-Stroke\"")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+                .clickNextButton(new WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS());
 
 
         //---------------Q9 SubquestionExperiencedHeartPageOLS-------------------
-        subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1);
-        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS = subquestionExperiencedHeartPageOLS
+        whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS
+                .waitForPageLoad(1, whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS.titleExpected1);
+        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS =
+                whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS
                 .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
@@ -358,7 +298,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS5622", /*protocol1,*/ protocol2);
         debugPageOLS.back();
-        subquestionExperiencedHeartPageOLS.waitForPageLoad()
+        whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS.waitForPageLoad()
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
@@ -465,11 +405,16 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_LOWT_3017S_Site: //41C
-                siteSelectionPageOLS
+                SiteSelectionPageOLS siteSelectionPageOLS1 = new SiteSelectionPageOLS();
+                siteSelectionPageOLS1
                         .clickOnFacilityName(site.name)
+                        .clickNextButton(new MedicalRecordsOptionPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
                         .clickNextButton(new DoctorInformationCollectionPageOLS())
                         .waitForPageLoad()
                         .clickNextButton(new HS1PageOLS())
+                        .waitForPageLoad()
                         .clickOkInPopUp()
                         .setSignature()
                         .waitToClickNext()
