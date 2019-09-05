@@ -600,8 +600,8 @@ public class DERM_7193_CC extends BaseTest {
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo)
-                        .assertGeneratedFul(env, site)
-                        .assertChildDOBIsNull(env, "7193");
+                        .assertGeneratedFul(env, site);
+                      //  .assertChildDOBIsNull(env, "7193");
                 break;
         }
     }
