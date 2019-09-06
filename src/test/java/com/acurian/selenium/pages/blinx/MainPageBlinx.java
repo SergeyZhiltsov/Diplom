@@ -61,8 +61,8 @@ public class MainPageBlinx extends BasePage {
                 "expected to click are " + answerTextList + "\n" +
                 "actual on page are " + elementsTextActual);
 
-        checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::startsWith))//answerTextList.contains(el.getText())
-                .forEach(el -> el.click());
+        checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::startsWith))
+                .forEach(el -> scrollToElement(el, true).click());
         waitForAnimation();
     }
 
