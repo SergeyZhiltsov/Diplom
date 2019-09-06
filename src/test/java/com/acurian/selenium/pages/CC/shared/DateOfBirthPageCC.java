@@ -311,6 +311,9 @@ public class DateOfBirthPageCC extends MainPageCC{
         return String.format(titleCommonExpected, compensation, indication);
     }
 
+    public String getExpectedModifiedTitleLowT(String indication, String compensation) {
+        return String.format(titleExpectedLOWT, compensation, indication);
+    }
     @Step
     public String getTitleText2Ver() {
         return getText(titleText2Ver);
