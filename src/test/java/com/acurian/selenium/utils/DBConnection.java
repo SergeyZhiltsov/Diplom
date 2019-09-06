@@ -271,7 +271,7 @@ public class DBConnection {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM/dd/yyyy hh:mm:ss a");
         try {
             stmt = getDbCon(env).createStatement();
-            final String query = String.format("select PATIENT_ID from call where phone_number = '%s' and START_TIME >= to_date('%s','mon/dd/yyyy hh:mi:ss AM');",
+            final String query = String.format("select PATIENT_ID from call where phone_number = '%s' and START_TIME >= to_date('%s','mon/dd/yyyy hh:mi:ss AM')",
                     phoneNumber, formatter.format(date));
             System.out.println("SQL query: " + query);
             rset = stmt.executeQuery(query);
