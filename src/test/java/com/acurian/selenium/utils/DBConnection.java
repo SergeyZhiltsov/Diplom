@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class DBConnection {
@@ -262,6 +264,28 @@ public class DBConnection {
             closeResources();
         }
         return flareStatus;
+    }
+
+    public String getPIDByPhoneNumberAndStartTime(String env, String phoneNumber, Date date) {
+        String patient_id = null;
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM/dd/yyyy hh:mm:ss a");
+        try {
+            stmt = getDbCon(env).createStatement();
+            final String query = String.format("select PATIENT_ID from call where phone_number = '%s' and START_TIME >= to_date('%s','mon/dd/yyyy hh:mi:ss AM');",
+                    phoneNumber, formatter.format(date));
+            System.out.println("SQL query: " + query);
+            rset = stmt.executeQuery(query);
+            while (rset.next()) {
+                patient_id = rset.getString("PATIENT_ID");
+            }
+            System.out.println("DB fetched value of PID: " + patient_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeResources();
+        }
+        return patient_id;
     }
 
     private void closeResources(){

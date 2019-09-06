@@ -3,15 +3,7 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.OLS.DERM_7036_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_4631_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.IBD_4818_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.CV_4450_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.CV_5034_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.AKC_4691_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.AKC_4691_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.LOWT_3017_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.DERM_7193_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.blinx.BlinxGmega"></class>
         </classes>
     </test>
 </suite>
