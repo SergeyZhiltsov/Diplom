@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AMIG_4742_OLS extends BaseTest {
-
+//FULs were stopped on AMS1 R68.2
     @Test()
     public void amig4742ols() {
         String phoneNumberMIG = "AUTAMS1MIG";
