@@ -84,6 +84,7 @@ public abstract class BasePage {
     protected WebElement scrollToElement(WebElement element, boolean isIntoView) {
         ((JavascriptExecutor) driver).executeScript(String.format("arguments[0].scrollIntoView(%b);", isIntoView),
                 element);
+        threadSleep(500);
         return element;
     }
 
