@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.intro;
+package com.acurian.selenium.pages.blinx.gmega.intro;
 
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;

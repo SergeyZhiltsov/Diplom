@@ -1,6 +1,6 @@
-package com.acurian.selenium.pages.blinx;
+package com.acurian.selenium.pages.blinx.gmega;
 
-
+import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,8 +12,6 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s\n" +
             "Please select a doctor and click the \"Next\" button.";
-
-
 
     @FindBy(xpath = "//div[@class='show-in-ols'][contains(., 'Matching You With a Study Doctor...')]")
     WebElement loadingAnimation;
