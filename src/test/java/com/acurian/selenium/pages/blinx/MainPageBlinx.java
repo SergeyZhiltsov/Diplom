@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.blinx;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.utils.PassPID;
+import com.acurian.selenium.utils.db.ChildResult;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -18,6 +20,11 @@ import java.util.stream.Collectors;
 
 public class MainPageBlinx extends BasePage {
 
+    String pid;
+    String childPid;
+    String dispoParent;
+    String dispoChild;
+
     @FindBy(id = "submit")
     WebElement nextButton;
     @FindBy(id = "footerLinksContainer")
@@ -30,10 +37,11 @@ public class MainPageBlinx extends BasePage {
     }
 
     protected void waitForPageLoadMain(WebElement titleText, String titleExpected) {
-        threadSleep(1000);
+        waitForAbsence(By.xpath("//*[@id='questions-form'][contains(@class, 'animated fadeOutUp fast')]"));
+        waitForAbsence(By.xpath("//*[@id='questions-form'][contains(@class, 'animated fadeInUp fast')]"));
         logTextToAllure(this.getClass().getSimpleName() + " class with: ");
         textToAttachment(titleExpected, "Title text expected");
-        waitForVisibility(titleText);
+        driverWait.waitforVisibility(titleText);
         try {
             driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
         } catch (TimeoutException ex) {
@@ -43,15 +51,11 @@ public class MainPageBlinx extends BasePage {
     }
 
     protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {
-        threadSleep(500);
         radioButtonList.stream().filter(el -> el.getText().equals(answerText))
-                .findFirst()
-                .get()
-                .click();
+                .forEach(el -> scrollToElement(el, true).click());
     }
 
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String... answerText) {
-        threadSleep(500);
         List<String> answerTextList = Arrays.asList(answerText);
         List<String> elementsTextActual = checkBoxList.stream().map(el -> el.getText()).collect(Collectors.toList());
         List<String> answersNotIncluded = answerTextList.stream().filter(el -> elementsTextActual.parallelStream()
@@ -77,14 +81,10 @@ public class MainPageBlinx extends BasePage {
             waitAndClickWebElement(nextButton);
         } catch (WebDriverException ex) {
             scrollToElement(nextButton, true);
-            threadSleep(500);
+//            threadSleep(500);
             waitAndClickWebElement(nextButton);
         }
         return (T) page;
-    }
-
-    protected WebElement waitForVisibility(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
     }
 
     protected WebElement waitToBeClickable(WebElement element) {
@@ -106,9 +106,12 @@ public class MainPageBlinx extends BasePage {
         return element;
     }
 
-    protected void waitForAbsence(WebElement element) {
+    public void waitForAbsence(WebElement element) {
         driverWait.getWaitDriver().until(driver -> !isElementPresent(element));
-        waitForAnimation();
+    }
+
+    public void waitForAbsence(By locator) {
+        driverWait.getWaitDriver().until(driver -> !isElementPresent(locator));
     }
 
     protected boolean isElementPresent(WebElement element) {
@@ -118,5 +121,56 @@ public class MainPageBlinx extends BasePage {
         } catch (WebDriverException ignored) {
             return false;
         }
+    }
+
+    public boolean isElementPresent(By locator) {
+        try {
+            WebElement element = getDriver().findElement(locator);
+            element.getTagName();
+            return true;
+        } catch (WebDriverException ignored) {
+            return false;
+        }
+    }
+
+    @Step
+    public <T extends MainPageBlinx> T getPage(T page) {
+        return (T) page;
+    }
+
+    @Step
+    public MainPageBlinx pidFromDbToLog(String env) {
+        pid = PassPID.getInstance().getPidNumber();
+        getDbConnection().dbReadPID(env, pid);
+        dispoParent = getDbConnection().getDispo();
+        logTextToAllure("Parent dispo = " + dispoParent + " for PID " + pid);
+        return this;
+    }
+
+    @Step
+    public MainPageBlinx childPidFromDbToLog(String env, String ...firstPartOfChildPhoneNumber) {
+        ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
+        dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
+        childPid = childResult.getChildPid();
+        logTextToAllure("Child dispo = " + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+                " with child pid = " + childResult.getChildPid());
+        return this;
+    }
+
+    @Step
+    public MainPageBlinx dispoShouldMatch(String expectedParentDispo, String ...expectedChildDispo) {
+        Assert.assertEquals(getDispoParent(), expectedParentDispo, "Dispo for Parent is different");
+        if (expectedChildDispo.length == 1){
+            Assert.assertEquals(getDispoChild(), expectedChildDispo[0], "Dispo for Child is different");
+        }
+        return this;
+    }
+
+    public String getDispoParent() {
+        return dispoParent;
+    }
+
+    public String getDispoChild() {
+        return dispoChild;
     }
 }

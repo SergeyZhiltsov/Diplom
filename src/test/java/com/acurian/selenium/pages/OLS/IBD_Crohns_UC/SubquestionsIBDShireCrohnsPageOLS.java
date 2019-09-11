@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.OLS.IBD_Crohns_UC;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,8 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
-
-import static com.acurian.selenium.pages.BaseTest.getDriver;
 
 public class SubquestionsIBDShireCrohnsPageOLS extends MainPageOLS {
 

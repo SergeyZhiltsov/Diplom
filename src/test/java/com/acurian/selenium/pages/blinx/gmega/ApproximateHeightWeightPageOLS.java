@@ -1,5 +1,6 @@
-package com.acurian.selenium.pages.blinx;
+package com.acurian.selenium.pages.blinx.gmega;
 
+import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

@@ -1,8 +1,8 @@
 package com.acurian.selenium.tests.OLS.blinx;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.*;
-import com.acurian.selenium.pages.blinx.intro.*;
+import com.acurian.selenium.pages.blinx.gmega.*;
+import com.acurian.selenium.pages.blinx.gmega.intro.*;
 import com.acurian.selenium.utils.DBConnection;
 import org.testng.Assert;
 import org.testng.annotations.Test;

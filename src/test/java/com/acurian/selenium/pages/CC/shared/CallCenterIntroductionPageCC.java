@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.CC.shared;
 
 import com.acurian.selenium.constants.URLs;
-import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

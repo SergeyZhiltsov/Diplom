@@ -1,5 +1,6 @@
-package com.acurian.selenium.pages.blinx;
+package com.acurian.selenium.pages.blinx.gmega;
 
+import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +25,7 @@ public class EverDiagnosedFollowingNeurologicalConditionsPageOLS extends MainPag
     }
 
     @Step
-    public EverDiagnosedFollowingNeurologicalConditionsPageOLS clickOnAnswers(String answerText) {
+    public EverDiagnosedFollowingNeurologicalConditionsPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(multipleChoiceButtonsList, answerText);
         return this;
     }

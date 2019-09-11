@@ -4,6 +4,8 @@
     <test name="Regression1">
         <classes>
             <class name="com.acurian.selenium.tests.OLS.blinx.BlinxGmega"></class>
+            <class name="com.acurian.selenium.tests.OLS.blinx.CV_5034_OLSBlinx"></class>
+            <class name="com.acurian.selenium.tests.OLS.blinx.CV_4450_OLSblinx"></class>
         </classes>
     </test>
 </suite>

@@ -33,7 +33,7 @@ public class WebDriverWaitLogged {
         wait.withTimeout(TIMEOUT_30_SECONDS, TimeUnit.SECONDS).until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitforPresence(By locator){
+    public void waitForPresence(By locator){
         wait.withTimeout(TIMEOUT_30_SECONDS, TimeUnit.SECONDS).until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
