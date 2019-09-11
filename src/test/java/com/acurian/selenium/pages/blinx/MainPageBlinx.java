@@ -41,7 +41,7 @@ public class MainPageBlinx extends BasePage {
         waitForAbsence(By.xpath("//*[@id='questions-form'][contains(@class, 'animated fadeInUp fast')]"));
         logTextToAllure(this.getClass().getSimpleName() + " class with: ");
         textToAttachment(titleExpected, "Title text expected");
-        waitForVisibility(titleText);
+        driverWait.waitforVisibility(titleText);
         try {
             driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
         } catch (TimeoutException ex) {
@@ -52,9 +52,7 @@ public class MainPageBlinx extends BasePage {
 
     protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {
         radioButtonList.stream().filter(el -> el.getText().equals(answerText))
-                .findFirst()
-                .get()
-                .click();
+                .forEach(el -> scrollToElement(el, true).click());
     }
 
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String... answerText) {
@@ -89,14 +87,6 @@ public class MainPageBlinx extends BasePage {
         return (T) page;
     }
 
-    protected WebElement waitForVisibility(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public WebElement waitForVisibility(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
     protected WebElement waitToBeClickable(WebElement element) {
         return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -116,9 +106,8 @@ public class MainPageBlinx extends BasePage {
         return element;
     }
 
-    protected void waitForAbsence(WebElement element) {
+    public void waitForAbsence(WebElement element) {
         driverWait.getWaitDriver().until(driver -> !isElementPresent(element));
-        waitForAnimation();
     }
 
     public void waitForAbsence(By locator) {

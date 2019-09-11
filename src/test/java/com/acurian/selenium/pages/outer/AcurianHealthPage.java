@@ -2,15 +2,11 @@ package com.acurian.selenium.pages.outer;
 
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.rpa.RpaMainPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
-
-import java.util.List;
 
 public class AcurianHealthPage extends BasePage {
 

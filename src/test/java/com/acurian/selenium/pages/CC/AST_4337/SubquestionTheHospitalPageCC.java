@@ -1,6 +1,5 @@
 package com.acurian.selenium.pages.CC.AST_4337;
 
-import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionsHumalogPageCC;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

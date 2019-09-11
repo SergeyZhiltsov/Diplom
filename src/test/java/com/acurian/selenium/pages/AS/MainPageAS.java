@@ -9,14 +9,6 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class MainPageAS extends BasePage {
 
-    public WebElement waitForVisibility(WebElement element) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public WebElement waitForVisibility(By locator) {
-        return driverWait.getWaitDriver().until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
     protected WebElement waitToBeClickable(By locator) {
         return driverWait.getWaitDriver().until(ExpectedConditions.elementToBeClickable(locator));
     }
