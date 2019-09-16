@@ -86,7 +86,7 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-             // .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                // .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
@@ -99,13 +99,13 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC =
-        genderPageCC
-                .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("2001")
-                .clickOnAnswer("Female")
-                .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
+                genderPageCC
+                        .waitForPageLoad()
+                        .setMonth("Apr")
+                        .setDay("5")
+                        .setYear("2001")
+                        .clickOnAnswer("Female")
+                        .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
         DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
@@ -118,10 +118,10 @@ public class DERM_4967_CC extends BaseTest {
                 .back();
 
         HowLongHaveYouBeenSufferingFromEczema_CC howLongHaveYouBeenSufferingFromEczema_cc =
-        hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
+                hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
         //Q3
         HowWouldYouDescribeTheEczemaCurrentlyPageCC howWouldYouDescribeTheEczemaCurrentlyPageCC =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
@@ -130,7 +130,7 @@ public class DERM_4967_CC extends BaseTest {
                 "7 - 11 months",
                 "1 year",
                 "2 year");
-        for (String answer: disqualifyQ3) {
+        for (String answer : disqualifyQ3) {
             System.out.println(answer);
             howLongHaveYouBeenSufferingFromEczema_cc
                     .waitForPageLoad()
@@ -151,7 +151,7 @@ public class DERM_4967_CC extends BaseTest {
                 new HaveYouEverHadAnyOfTheFollowingSymptomsPageСС();
         List<String> disqualifyQ24 = Arrays.asList("Minor: Mostly or almost clear",
                 "Mild: Covers a small amount of total skin on my body");
-        for (String answer: disqualifyQ24) {
+        for (String answer : disqualifyQ24) {
             System.out.println("Select answer for Q24: " + answer);
             howWouldYouDescribeTheEczemaCurrentlyPageCC
                     .waitForPageLoad()
@@ -202,15 +202,15 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(eczemaSymptomsExperienceCC);
         //Q28
         HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
-        eczemaSymptomsExperienceCC
-                .waitForPageLoad()
-                .clickOnAnswers("Redness",
-                        "Swelling",
-                        "Oozing/Crusting",
-                        "Dryness",
-                        "Scratch marks",
-                        "Skin thickening")
-                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
+                eczemaSymptomsExperienceCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Redness",
+                                "Swelling",
+                                "Oozing/Crusting",
+                                "Dryness",
+                                "Scratch marks",
+                                "Skin thickening")
+                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
         //Q27
         TransitionStatementCC transitionStatementCC = haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
@@ -238,19 +238,19 @@ public class DERM_4967_CC extends BaseTest {
                 .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
         CurrentlyTakingFollowingMedicationsCC currentlyTakingFollowingMedicationsCC =
                 haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Medications taken by mouth (oral medications)")
-                .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Medications taken by mouth (oral medications)")
+                        .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
         currentlyTakingFollowingMedicationsCC
                 .waitForPageLoad()
                 .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
         AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC =
                 haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Shots or IV infusions (injectable medications)")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC());
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Shots or IV infusions (injectable medications)")
+                        .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC());
         areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC
                 .waitForPageLoad()
                 .back(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC)
@@ -300,39 +300,39 @@ public class DERM_4967_CC extends BaseTest {
         //Q34
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 haveYouEverTakenEitherAnyOfFollowingMeds_CC
-                .waitForPageLoad()
-                .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)",
-                        "Olumiant (Agent Note: oh-LOO-me-ant)",
-                        "Xeljanz (Agent Note: ZEL-jans)")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)",
+                                "Olumiant (Agent Note: oh-LOO-me-ant)",
+                                "Xeljanz (Agent Note: ZEL-jans)")
+                        .clickNextButton(transitionStatementCC)
+                        .waitForPageLoadWithCurvesKAD(studyNameForTrans)
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                "Autism spectrum",
-                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
-                "Cancer",
-                "Diabetes (type 1 or type 2)",
-                "Headaches (migraine, cluster, tension)",
-                "Heart or circulation problems (heart attack, heart failure, stroke)",
-                "High blood pressure or hypertension",
-                "High cholesterol, triglycerides, or lipids",
-                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                "Kidney disease",
-                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                "Lupus",
-                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
-                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                "Sleep problems (insomnia, sleep apnea, narcolepsy)",
-                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                "Women's health issues (endometriosis, uterine fibroids)")
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Cancer",
+                        "Diabetes (type 1 or type 2)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisCC());
         whatKindOfArthritisCC
                 .waitForPageLoad()
@@ -435,23 +435,23 @@ public class DERM_4967_CC extends BaseTest {
         //Q11: QS46
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC =
                 haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
-                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
-						"Heart failure or congestive heart failure (CHF)")
-                .clickNextButton(new SubquestionExperiencedHeartPageCC()); //Display Q12.1: QS47A
+                        .waitForPageLoad()
+                        .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                                "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
+                                "Heart failure or congestive heart failure (CHF)")
+                        .clickNextButton(new SubquestionExperiencedHeartPageCC()); //Display Q12.1: QS47A
         //Q12
         HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC =
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(4, "7 - 12 months ago")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+                subquestionExperiencedHeartPageCC
+                        .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                        .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+                        .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+                        .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
+                        .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                        .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                        .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
+                        .clickOnAnswerForSubQuestion(4, "7 - 12 months ago")
+                        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
         //Q13: QS48
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
@@ -485,12 +485,12 @@ public class DERM_4967_CC extends BaseTest {
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, " +
-                        "Crohn's disease, ulcerative colitis)")
-                .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Intestinal disorders (IBS or irritable bowel syndrome, IBD, " +
+                                "Crohn's disease, ulcerative colitis)")
+                        .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
         //Q4: QS40
         whichOfFollowingDigestiveConditionPageCC
                 .waitForPageLoad()
@@ -500,7 +500,7 @@ public class DERM_4967_CC extends BaseTest {
                         "Gastroparesis, or delayed gastric emptying",
                         "IBS, or irritable bowel syndrome");
         List<String> disqualifyQ4 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
-        for (String answer: disqualifyQ4) {
+        for (String answer : disqualifyQ4) {
             System.out.println(answer);
             whichOfFollowingDigestiveConditionPageCC
                     .waitForPageLoad()
@@ -523,7 +523,7 @@ public class DERM_4967_CC extends BaseTest {
                 .clickOnAnswers("Kidney disease")
                 .clickNextButton(new KidneyProblemsPage());
         List<String> disqualifyQ16 = Arrays.asList("Dialysis", "Kidney transplant");
-        for (String answer: disqualifyQ16) {
+        for (String answer : disqualifyQ16) {
             System.out.println(answer);
             kidneyProblemsPage
                     .waitForPageLoad()
@@ -578,7 +578,7 @@ public class DERM_4967_CC extends BaseTest {
 
         //Q18: QS53
         List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
-        for (String answer: disqualifyQ18) {
+        for (String answer : disqualifyQ18) {
             System.out.println(answer);
             followingMentalEmotionalHealthPageCC
                     .waitForPageLoad()
@@ -671,8 +671,8 @@ public class DERM_4967_CC extends BaseTest {
                         "Multiple sclerosis (MS)",
                         "Neuropathy (nerve damage due to diabetes or another condition)",
                         "Seizure disorder such as epilepsy",
-                        "Schizophrenia",
-                        "None of the above")
+                        "Schizophrenia")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
         //Q28: QS60
         approximateHeightPageCC
@@ -686,7 +686,7 @@ public class DERM_4967_CC extends BaseTest {
                 "Hepatitis B",
                 "Hepatitis C",
                 "HIV or AIDS");
-        for (String answer: disqualifyQ24GH) {
+        for (String answer : disqualifyQ24GH) {
             System.out.println(answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
@@ -695,7 +695,7 @@ public class DERM_4967_CC extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS59" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
@@ -703,7 +703,7 @@ public class DERM_4967_CC extends BaseTest {
         List<String> disqualifyQ24second = Arrays.asList("Kidney disease requiring dialysis",
                 "Schizophrenia",
                 "Multiple sclerosis (MS)");
-        for (String answer: disqualifyQ24second) {
+        for (String answer : disqualifyQ24second) {
             System.out.println(answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()

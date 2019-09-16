@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.PSO_456.*;
+import com.acurian.selenium.pages.CC.PsoriaticArthritis.PsoriaticArthritisConditionPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -33,7 +34,8 @@ public class PSO_4656_CC extends BaseTest {
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -95,7 +97,7 @@ public class PSO_4656_CC extends BaseTest {
         hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019299-QS7002-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7002", site.activeProtocols)
                 .back();
 
         WhenDiagnosedWithPsoriasisCC whenDiagnosedWithPsoriasisCC = diagnosedWithPsoriasisCC
@@ -103,115 +105,93 @@ public class PSO_4656_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhenDiagnosedWithPsoriasisCC());
 
-        WhichTypeOfPsoriasisCC whichTypeOfPsoriasisCC = whenDiagnosedWithPsoriasisCC
+        TypePsoriasisPageCC typePsoriasisPageCC = whenDiagnosedWithPsoriasisCC
                 .waitForPageLoad()
                 .clickOnAnswer("5 months ago or less")
-                .clickNextButton(new WhichTypeOfPsoriasisCC());
-
-        whichTypeOfPsoriasisCC
+                .clickNextButton(new TypePsoriasisPageCC());
+        typePsoriasisPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019300-QS7003-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7003", site.activeProtocols)
                 .back();
 
         whenDiagnosedWithPsoriasisCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 to 11 months ago")
-                .clickNextButton(whichTypeOfPsoriasisCC);
+                .clickNextButton(typePsoriasisPageCC);
 
-        HowMuchPsoriasisOnYourBodyCC howMuchPsoriasisOnYourBodyCC = new HowMuchPsoriasisOnYourBodyCC();
-        ArrayList<String> types = new ArrayList<>();
-        types.add("Guttate - Small, pink-red spots appear on your skin");
-        types.add("Pustular - White blisters surrounded by red, irritated skin");
-        types.add("Erythrodermic - Redness that covers large areas of your skin");
-        types.add("Inverse - Skin redness and irritation occurs in the armpits, groin, and in areas of overlapping skin");
-        for (String type : types) {
-            whichTypeOfPsoriasisCC
+        TransitionStatementCC transitionStatementCC = typePsoriasisPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)")
+                .clickNextButton(new TransitionStatementCC());
+
+        transitionStatementCC
+                .waitForPageLoadPsoriasis()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS7020", site.activeProtocols)
+                .back();
+        HowMuchPsoriasisOnYourBodyCC howMuchPsoriasisOnYourBodyCC = typePsoriasisPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Plaque - Thick, red patches of skin are covered by flaky, silver-white scales. This is the most common type of psoriasis")
+                .clickNextButton(new HowMuchPsoriasisOnYourBodyCC());
+
+
+        TreatYourPsoriasisPageCC treatYourPsoriasisPageCC = new TreatYourPsoriasisPageCC();
+        List<String> disqualifyQ5 = Arrays.asList("0", "1", "21 +");
+        for (String answer : disqualifyQ5) {
+            System.out.println("Select answer from dropdown for Q5: " + answer);
+            howMuchPsoriasisOnYourBodyCC
                     .waitForPageLoad()
-                    .clickOnAnswers("I am not sure")
-                    .clickOnAnswers(type)
-                    .clickNextButton(howMuchPsoriasisOnYourBodyCC)
+                    .selectFromDropDown(answer)
+                    .clickNextButton(treatYourPsoriasisPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0019301-QS7004-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7005", site.activeProtocols)
                     .back();
+
         }
-
-        TreatYourPsoriasisCC treatYourPsoriasisCC = whichTypeOfPsoriasisCC
-                .waitForPageLoad()
-                .clickOnAnswers("I am not sure")
-                .clickNextButton(howMuchPsoriasisOnYourBodyCC)
-                .waitForPageLoad()
-                .selectFromDropDown("0")
-                .clickNextButton(new TreatYourPsoriasisCC());
-
-        treatYourPsoriasisCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019303-QS7005-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howMuchPsoriasisOnYourBodyCC
-                .waitForPageLoad()
-                .selectFromDropDown("1")
-                .clickNextButton(treatYourPsoriasisCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019303-QS7005-STUDYQUES", site.activeProtocols)
-                .back();
-
-        howMuchPsoriasisOnYourBodyCC
-                .waitForPageLoad()
-                .selectFromDropDown("21 +")
-                .clickNextButton(treatYourPsoriasisCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019303-QS7005-STUDYQUES", site.activeProtocols)
-                .back();
-
         howMuchPsoriasisOnYourBodyCC
                 .waitForPageLoad()
                 .selectFromDropDown("4")
-                .clickNextButton(treatYourPsoriasisCC);
+                .clickNextButton(treatYourPsoriasisPageCC);
 
-        HaveYouEverTakenOtezlaCC haveYouEverTakenOtezlaCC = treatYourPsoriasisCC
+        PsoriaticArthritisConditionPageCC psoriaticArthritisConditionPageCC = treatYourPsoriasisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouEverTakenOtezlaCC());
-
-        haveYouEverTakenOtezlaCC
+                .clickNextButton(new PsoriaticArthritisConditionPageCC());
+        psoriaticArthritisConditionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019310-QS7014-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7014", site.activeProtocols)
                 .back();
 
-        TopicalsMedicationsForPsoriasisCC topicalsMedicationsForPsoriasisCC = treatYourPsoriasisCC
+        MedicationsForPsoriasisPageCC medicationsForPsoriasisPageCC = treatYourPsoriasisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Medications taken by mouth (oral medications)")
-                .clickNextButton(new TopicalsMedicationsForPsoriasisCC());
+                .clickNextButton(new MedicationsForPsoriasisPageCC());
 
-        topicalsMedicationsForPsoriasisCC
+        medicationsForPsoriasisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("7 months to 1 year ago")
-                .clickNextButton(haveYouEverTakenOtezlaCC)
+                .clickNextButton(psoriaticArthritisConditionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019310-QS7014-STUDYQUES", site.activeProtocols)
-                .back();
-
-        topicalsMedicationsForPsoriasisCC
+                .checkProtocolsContainsForQNumber("QS7014", site.activeProtocols)
+                .back(medicationsForPsoriasisPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(haveYouEverTakenOtezlaCC)
+                .clickNextButton(psoriaticArthritisConditionPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019310-QS7014-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7014", site.activeProtocols)
                 .back();
 
-        BiologicMedicationsCC biologicMedicationsCC = topicalsMedicationsForPsoriasisCC
+        HaveYouEverTakenOtezlaPageCC haveYouEverTakenOtezlaPageCC = medicationsForPsoriasisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("In the last 6 months")
-                .clickNextButton(haveYouEverTakenOtezlaCC)
+                .clickNextButton(new HaveYouEverTakenOtezlaPageCC());
+
+        BiologicMedicationsCC biologicMedicationsCC = haveYouEverTakenOtezlaPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new BiologicMedicationsCC());
@@ -219,31 +199,30 @@ public class PSO_4656_CC extends BaseTest {
         biologicMedicationsCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0019311-QS7015-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7015", site.activeProtocols)
                 .back();
 
-        haveYouEverTakenOtezlaCC
+        haveYouEverTakenOtezlaPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(biologicMedicationsCC);
 
-        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
         List<String> medications = Arrays.asList(
-//                "Actemra (Agent Note: ac-TEM-ruh)",
-//                "Benlysta (Agent Note: ben-LIST-uh)",
-//                "Cimzia (Agent Note: SIM-zee-uh)",
-//                "Cosentyx (Agent Note: co-SEN-tix)",
-//                "Enbrel (Agent Note: EN-brel)",
-//                "Entyvio (Agent Note: en-TIV-ee-oh)",
-//                "Humira (Agent Note: hue-MAIR-uh)",
-//                "Kineret (Agent Note: KIN-er-et)",
-//                "Orencia (Agent Note: oh-REN-see-uh)",
-//                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
-//                "Raptiva (Agent Note: rap-TEE-vuh)",
-//                "Remicade (Agent Note: REM-ih-cade)",
-//                "Rituxan (Agent Note: rih-TUX-an)",
-//                "Simponi (Agent Note: SIM-po-nee)",
-//                "Stelara (Agent Note: ste-LAHR-uh)",
+                "Actemra (Agent Note: ac-TEM-ruh)",
+                "Benlysta (Agent Note: ben-LIST-uh)",
+                "Cimzia (Agent Note: SIM-zee-uh)",
+                "Cosentyx (Agent Note: co-SEN-tix)",
+                "Enbrel (Agent Note: EN-brel)",
+                "Entyvio (Agent Note: en-TIV-ee-oh)",
+                "Humira (Agent Note: hue-MAIR-uh)",
+                "Kineret (Agent Note: KIN-er-et)",
+                "Orencia (Agent Note: oh-REN-see-uh)",
+                "Prolia or Xgeva (Agent Note: PRO-lee-uh, ex-GEE-vuh)",
+                "Raptiva (Agent Note: rap-TEE-vuh)",
+                "Remicade (Agent Note: REM-ih-cade)",
+                "Rituxan (Agent Note: rih-TUX-an)",
+                "Simponi (Agent Note: SIM-po-nee)",
+                "Stelara (Agent Note: ste-LAHR-uh)",
                 "Taltz (Agent Note: TALTS)",
                 "Tysabri (Agent Note: tie-SAB-ree)"
         );
@@ -252,10 +231,10 @@ public class PSO_4656_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(medication)
-                    .clickNextButton(transitionStatementCC)
-                    .waitForPageLoadPsoriasis()
+                    .clickNextButton(psoriaticArthritisConditionPageCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0005225-QS7016-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS7016", site.activeProtocols)
                     .back();
         }
 
@@ -271,28 +250,30 @@ public class PSO_4656_CC extends BaseTest {
                 .clickOnAnswers("Cancer")
                 .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
-                .waitForPageLoad()
-                .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
-                .back();
-
-         whenDiagnosedWithCancerCC
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =
+                new DoAnyOftheFollowingAdditionalDiagnosesCC();
+        List<String> disqualifyQ6QS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago",
+                "11 or more years ago");
+        for (String answer : disqualifyQ6QS42) {
+            System.out.println("Select answer for Q6QS42: " + answer);
+            whenDiagnosedWithCancerCC
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                    .back();
+        }
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
 
-        List<String> diagnoses = Arrays.asList(
-                "Drug or alcohol abuse within the past year",
+        List<String> diagnoses = Arrays.asList("Drug or alcohol abuse within the past year",
                 "Hepatitis B",
                 "Hepatitis C",
-                "HIV or AIDS"
-        );
+                "HIV or AIDS");
         ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
         for (String diagnose : diagnoses) {
             doAnyOftheFollowingAdditionalDiagnosesCC
@@ -302,7 +283,7 @@ public class PSO_4656_CC extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
@@ -334,7 +315,7 @@ public class PSO_4656_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4656")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }

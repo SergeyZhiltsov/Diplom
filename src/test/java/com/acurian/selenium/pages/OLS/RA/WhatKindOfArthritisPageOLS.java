@@ -10,16 +10,15 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhatKindOfArthritisPageOLS extends MainPageOLS{
+public class WhatKindOfArthritisPageOLS extends MainPageOLS {
 
-    public final String titleExpected = "What kind of arthritis do you have?";
+    public final String titleExpected = "What kind of arthritis do you have?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText1;
-
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_TABLET)
     WebElement titleText2;
-
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS_MOBILE)
     WebElement titleText3;
 
@@ -27,10 +26,8 @@ public class WhatKindOfArthritisPageOLS extends MainPageOLS{
 
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
     List<WebElement> checkBoxList1;
-
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_TABLET)
     List<WebElement> checkBoxList2;
-
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS_MOBILE)
     List<WebElement> checkBoxList3;
 
@@ -61,13 +58,13 @@ public class WhatKindOfArthritisPageOLS extends MainPageOLS{
     }
 
     @Step
-    public WhatKindOfArthritisPageOLS clickOnAnswers(String ...answerText) {
+    public WhatKindOfArthritisPageOLS clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }
