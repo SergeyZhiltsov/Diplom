@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class Radio_ols extends MainPageOLS {
+public class OnAvgHowManyHotFlashesDoYouExperiencePerDayOLS extends MainPageOLS {
 
     public final String titleExpected = "How long ago were you diagnosed with diabetes?";
 
@@ -19,18 +19,18 @@ public class Radio_ols extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public Radio_ols() {
+    public OnAvgHowManyHotFlashesDoYouExperiencePerDayOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public Radio_ols waitForPageLoad() {
+    public OnAvgHowManyHotFlashesDoYouExperiencePerDayOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public Radio_ols clickOnAnswer(String answerText) {
+    public OnAvgHowManyHotFlashesDoYouExperiencePerDayOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

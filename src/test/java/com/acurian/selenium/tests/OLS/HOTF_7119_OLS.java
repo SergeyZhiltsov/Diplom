@@ -47,9 +47,9 @@ public class HOTF_7119_OLS extends BaseTest {
 
 
     @Test(enabled = true, dataProvider = "sites")
-    @Description("DERM_7193_OLS_test")
-    public void derm7193olsTest(final Site site) {
-        String phoneNumber = "AUTAMSDERM";
+    @Description("HOTF_7119_OLS")
+    public void HOTF_7119_OLS(final Site site) {
+        String phoneNumber = "AUTAMS1HOT";
         String[] protocols = site.activeProtocols;
         String studyName = "an eczema (atopic dermatitis)";
 
@@ -60,7 +60,7 @@ public class HOTF_7119_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "Others"),
                 "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
