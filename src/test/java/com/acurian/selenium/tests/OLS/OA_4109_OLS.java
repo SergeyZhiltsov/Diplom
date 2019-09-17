@@ -30,7 +30,8 @@ public class OA_4109_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
 
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
@@ -87,14 +88,14 @@ public class OA_4109_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
                 .clickNextButton(new PrescriptionPainMedicationsForArthritis());
-                
+
 
         HasYourDoctorEverPrescribedOpioidNarcoticOLS hasYourDoctorEverPrescribedOpioidNarcotic_OLS = prescriptionPainMedicationsForArthritis
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasYourDoctorEverPrescribedOpioidNarcoticOLS());
-        
-        
+
+
         AreYouCurrentlyOnPageOLS areYouCurrentlyOnPageOLS = hasYourDoctorEverPrescribedOpioidNarcotic_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, and I have taken an opioid or narcotic for pain")
@@ -103,60 +104,61 @@ public class OA_4109_OLS extends BaseTest {
 
         areYouCurrentlyOnPageOLS
                 .waitForPageLoad()
-        //TreatedPainWithMarijuanaOrCannabis treatedPainWithMarijuanaOrCannabis = areYouCurrentlyOnPageOLS
+                //TreatedPainWithMarijuanaOrCannabis treatedPainWithMarijuanaOrCannabis = areYouCurrentlyOnPageOLS
                 .clickOnAnswer("Yes, for arthritis")
                 .clickOnAnswer("Yes, for another chronic condition")
                 .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
-        		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
-        		.waitForPageLoad();
-		DebugPageOLS debugPageOLS = new DebugPageOLS();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS4513", protocol1);
-        		debugPageOLS.back();
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+                .waitForPageLoad();
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4513", protocol1);
+        debugPageOLS.back();
         areYouCurrentlyOnPageOLS
                 .waitForPageLoad();
         HaveYouEverHadKneeReplacementSurgeryOLS haveYouEverHadKneeReplacementSurgery_OLS = areYouCurrentlyOnPageOLS
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new HaveYouEverHadKneeReplacementSurgeryOLS());
-        
-        
-        
+
+
         //-----------HaveYouEverHadKneeReplacementSurgeryOLS--------------------
         haveYouEverHadKneeReplacementSurgery_OLS
-        		.waitForPageLoad();
-        HaveYouEverReceivedInjectionIntoYourKneeOLS haveYouEverReceivedInjectionIntoYourKnee_OLS = haveYouEverHadKneeReplacementSurgery_OLS
-        		.clickOnAnswer("Yes, both knees have been replaced")
-        		.clickOnAnswer("Yes, one knee has been replaced")
-        		.clickOnAnswer("No")
-        		.clickNextButton(new HaveYouEverReceivedInjectionIntoYourKneeOLS());
-                
-              
+                .waitForPageLoad();
+        HaveYouEverReceivedInjectionIntoYourKneeOLS haveYouEverReceivedInjectionIntoYourKnee_OLS =
+                haveYouEverHadKneeReplacementSurgery_OLS
+                        .clickOnAnswer("Yes, both knees have been replaced")
+                        .clickOnAnswer("Yes, one knee has been replaced")
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HaveYouEverReceivedInjectionIntoYourKneeOLS());
+
+
         //-----------HaveYouEverReceivedInjectionIntoYourKneeOLS--------------------
         haveYouEverReceivedInjectionIntoYourKnee_OLS
-        		.waitForPageLoad();
-        HaveYouReceivedKneeInjectionWithinPast3MonthsOLS haveYouReceivedKneeInjection_WithinPast3Months_OLS = haveYouEverReceivedInjectionIntoYourKnee_OLS
-        		.clickOnAnswer("Yes, a corticosteroid or \"steroid\" injection")
-        		.clickOnAnswer("Yes, a joint fluid supplement injection such as Synvisc or Hyalgan")
-        		.clickNextButton(new HaveYouReceivedKneeInjectionWithinPast3MonthsOLS());
-                
-                
+                .waitForPageLoad();
+        HaveYouReceivedKneeInjectionWithinPast3MonthsOLS haveYouReceivedKneeInjection_WithinPast3Months_OLS =
+                haveYouEverReceivedInjectionIntoYourKnee_OLS
+                        .clickOnAnswer("Yes, a corticosteroid or \"steroid\" injection")
+                        .clickOnAnswer("Yes, a joint fluid supplement injection such as Synvisc or Hyalgan")
+                        .clickNextButton(new HaveYouReceivedKneeInjectionWithinPast3MonthsOLS());
+
+
         //-------------------------HaveYouReceivedKneeInjectionWithinPast3MonthsOLS---------------
         haveYouReceivedKneeInjection_WithinPast3Months_OLS
-				.waitForPageLoad();
+                .waitForPageLoad();
         FollowingDevicesInYourBodyOLS followingDevicesInYourBodyOLS = haveYouReceivedKneeInjection_WithinPast3Months_OLS
-        		.clickOnAnswer("Yes")
-        		.clickOnAnswer("No")        		
-        		.clickNextButton(new FollowingDevicesInYourBodyOLS());
+                .clickOnAnswer("Yes")
+                .clickOnAnswer("No")
+                .clickNextButton(new FollowingDevicesInYourBodyOLS());
 
         //-------------------------FollowingDevicesInYourBodyOLS---------------
         followingDevicesInYourBodyOLS
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("Aneurysm clip")
                 .clickOnAnswer("Artificial heart valve")
                 .clickOnAnswer("Cochlear implant")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad();
-        		debugPageOLS.checkProtocolsContainsForQNumber("QS4514", protocol1);
-        		debugPageOLS.back();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS4514", protocol1);
+        debugPageOLS.back();
         followingDevicesInYourBodyOLS
                 .waitForPageLoad();
         DiagnosedwithCarpalTunnelSyndrome diagnosedwithCarpalTunnelSyndrome = followingDevicesInYourBodyOLS
@@ -165,18 +167,18 @@ public class OA_4109_OLS extends BaseTest {
 
 
         AreYouCurrentlyReceivingWorkersPageOLS areYouCurrentlyReceivingWorkersPage_OLS = diagnosedwithCarpalTunnelSyndrome
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new AreYouCurrentlyReceivingWorkersPageOLS());
-        
-        
-        areYouCurrentlyReceivingWorkersPage_OLS
-        		.waitForPageLoad();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = areYouCurrentlyReceivingWorkersPage_OLS
-        		.clickOnAnswer("No")
-        		.clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-        
+
+        areYouCurrentlyReceivingWorkersPage_OLS
+                .waitForPageLoad();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                areYouCurrentlyReceivingWorkersPage_OLS
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+
 
         //----------*******NEW GENERAL HEALTH Questions********----------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS

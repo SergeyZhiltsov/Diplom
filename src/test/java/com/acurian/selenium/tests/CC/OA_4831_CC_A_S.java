@@ -43,13 +43,15 @@ public class OA_4831_CC_A_S extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
 
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -66,20 +68,19 @@ public class OA_4831_CC_A_S extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
 
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-//                .setMonth("Sep")
-//                .setDay("9")
-//                .setYear("1980")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
@@ -117,10 +118,10 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswers("Spine or shoulders")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoad(studyName);
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004964-QS4504-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .waitForPageLoad(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
+                .back();
         AnyTypeOfMedicationForYourArthritisCC anyTypeOfMedicationForYourArthritisCC = whereYouHaveArthritis
                 .waitForPageLoad()
                 .clickOnAnswers("Spine or shoulders")
@@ -135,9 +136,10 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswer("1 - 2 days per week or less")
                 .clickNextButton(new NSAIDMedicationsForArthritisPainCC());
         nSAIDMedicationsForArthritisPainCC
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0007717-QS4520-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4520", site.activeProtocols)
+                .back();
         anyTypeOfMedicationForYourArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 days per week")
@@ -179,9 +181,10 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswer("No, my doctor never offered me a prescription for opioids or narcotics for pain")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         transitionStatementCC
-                .waitForPageLoad(studyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005279-QS4511-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .waitForPageLoad(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4511", site.activeProtocols)
+                .back();
         AreYouCurrentlyOnPageCC areYouCurrentlyOnPageCC = hasYourDoctorEverPrescribedOpioidNarcotic_CC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, and I have taken an opioid or narcotic for pain")
@@ -194,9 +197,10 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswer("Yes, for another chronic condition")
                 .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
                 .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoad(studyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005281-QS4513-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .waitForPageLoad(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
+                .back();
         areYouCurrentlyOnPageCC
                 .waitForPageLoad();
         HaveYouEverHadKneeReplacementSurgery_CC haveYouEverHadKneeReplacementSurgery_CC = areYouCurrentlyOnPageCC
@@ -287,9 +291,11 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-        doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back();
         whenDiagnosedWithCancerCC.back();
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -302,16 +308,20 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-        doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back();
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-        doAnyOftheFollowingAdditionalDiagnosesCC.waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back();
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
@@ -323,7 +333,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
+//debugPageCC.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -331,7 +341,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswers("Hepatitis B")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
+//debugPageCC.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -339,7 +349,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswers("Hepatitis C")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
+//debugPageCC.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -347,7 +357,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswers("HIV or AIDS")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", protocol1);
+//debugPageCC.checkProtocolsContainsForQNumber("QS59", protocol1);
         debugPageCC.back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -355,7 +365,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswers("Schizophrenia")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES");
+//debugPageCC.checkProtocolsContainsForQNumber("QS61");
         debugPageCC.back();
         LetMeSeePageCC letMeSeePageCC = doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -373,7 +383,8 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickNextButton(new IdentificationPageCC());
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
         //----------SITE Selection Page--------------------
         siteSelectionPageCC

@@ -34,7 +34,8 @@ public class OA_5055_CC_S extends BaseTest {
                 .openPage(env)
                 .waitForPageLoad();
 
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -60,13 +61,11 @@ public class OA_5055_CC_S extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle("an osteoarthritis study", "850"),
+                "Title is diff");
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-//                .setMonth("Sep")
-//                .setDay("9")
-//                .setYear("1980")
-//                .clickOnAnswer("Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
@@ -104,9 +103,10 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickOnAnswers("Spine or shoulders")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoad(transitionStudyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0004964-QS4504-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .waitForPageLoad(transitionStudyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4504", site.activeProtocols)
+                .back();
         AnyTypeOfMedicationForYourArthritisCC anyTypeOfMedicationForYourArthritisCC = whereYouHaveArthritis
                 .waitForPageLoad()
                 .clickOnAnswers("Spine or shoulders")
@@ -121,9 +121,10 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickOnAnswer("1 - 2 days per week or less")
                 .clickNextButton(new NSAIDMedicationsForArthritisPainCC());
         nSAIDMedicationsForArthritisPainCC
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0007717-QS4520-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4520", site.activeProtocols)
+                .back();
         anyTypeOfMedicationForYourArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswer("3 days per week")
@@ -165,9 +166,10 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickOnAnswer("No, my doctor never offered me a prescription for opioids or narcotics for pain")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         transitionStatementCC
-                .waitForPageLoad(transitionStudyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005279-QS4511-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
+                .waitForPageLoad(transitionStudyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4511", site.activeProtocols)
+                .back();
         AreYouCurrentlyOnPageCC areYouCurrentlyOnPageCC = hasYourDoctorEverPrescribedOpioidNarcotic_CC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, and I have taken an opioid or narcotic for pain")
@@ -180,12 +182,12 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickOnAnswer("Yes, for another chronic condition")
                 .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
                 .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoad(transitionStudyName);
-        debugPageCC.checkProtocolsContainsForQNumber("Q0005281-QS4513-STUDYQUES", site.activeProtocols);
-        debugPageCC.back();
-        areYouCurrentlyOnPageCC
-                .waitForPageLoad();
+                .waitForPageLoad(transitionStudyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4513", site.activeProtocols)
+                .back();
         HaveYouEverHadKneeReplacementSurgery_CC haveYouEverHadKneeReplacementSurgery_CC = areYouCurrentlyOnPageCC
+                .waitForPageLoad()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new HaveYouEverHadKneeReplacementSurgery_CC());
 
@@ -252,7 +254,7 @@ public class OA_5055_CC_S extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
         WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -273,7 +275,7 @@ public class OA_5055_CC_S extends BaseTest {
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015115-QS40-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS40", site.activeProtocols)
                 .back();
 
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = whichFollowingBonesJoints_CC
@@ -287,7 +289,7 @@ public class OA_5055_CC_S extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(whenDiagnosedWithCancerCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
@@ -312,21 +314,21 @@ public class OA_5055_CC_S extends BaseTest {
         heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -336,28 +338,28 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "7 - 12 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC);
 
         subquestionExperiencedHeartPageCC
@@ -367,21 +369,21 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "4 - 6 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back();
 
         subquestionExperiencedHeartPageCC
@@ -402,7 +404,7 @@ public class OA_5055_CC_S extends BaseTest {
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
@@ -416,7 +418,7 @@ public class OA_5055_CC_S extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_neurologicalCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfTheFollowingLiverProblemsPageСС)
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
@@ -428,7 +430,7 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015147-QS54-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS54", site.activeProtocols)
                 .back();
 
         whichOfFollowingHaveYouDiagnosedWith_neurologicalCC
@@ -438,7 +440,7 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015147-QS54-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS54", site.activeProtocols)
                 .back();
 
         whichOfFollowingHaveYouDiagnosedWith_neurologicalCC
@@ -455,7 +457,7 @@ public class OA_5055_CC_S extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -467,7 +469,7 @@ public class OA_5055_CC_S extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -479,7 +481,7 @@ public class OA_5055_CC_S extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -491,7 +493,7 @@ public class OA_5055_CC_S extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015156-QS59-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -503,7 +505,7 @@ public class OA_5055_CC_S extends BaseTest {
         approximateHeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015266-QS61-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -519,7 +521,7 @@ public class OA_5055_CC_S extends BaseTest {
         letMeSeePageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004980-QS60-STUDYQUES", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
 
         IdentificationPageCC identificationPageCC = approximateHeightPageCC

@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.CC.PSO_456.WhenDiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.PsoriaticArthritis.*;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -41,7 +42,7 @@ public class PSA_5071_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS1_5071_site},
+                //{Site.AUT_AMS1_5071_site},
                 {Site.AUT_AMS1_5071S_site}
         };
     }
@@ -539,20 +540,39 @@ public class PSA_5071_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC());
         //----------PII (IdentificationPageOLS) Page--------------------
-        identificationPageCC
+        SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
+                .clickNextButton(new SiteSelectionPageCC());
+        siteSelectionPageCC
                 .waitForPageLoad("a psoriatic arthritis study")
                 .getPID()
-                .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose1PageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
+                .clickOnAnswer(site.name);
+        switch (site) {
+            case AUT_AMS1_5071_site:
+                siteSelectionPageCC
+                        .clickNextButton(new QualifiedClose1PageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC);
+                break;
+            case AUT_AMS1_5071S_site:
+                SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC());
+                synexusRadiantDirectScheduleCC
+                        .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "08/09/1980", "US",
+                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", "%SYN_SITE_NUM%", site.name,
+                                "%SYN_PROJECT_CODE%") //TODO
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC);
+                break;
+        }
+        selectActionPageCC
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "5017")
