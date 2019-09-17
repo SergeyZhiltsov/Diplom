@@ -408,8 +408,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
         //Q24: QS59
         ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
         List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
-                "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C",
-                "HIV or AIDS", "Schizophrenia");
+                "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ26) {
             System.out.println("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS

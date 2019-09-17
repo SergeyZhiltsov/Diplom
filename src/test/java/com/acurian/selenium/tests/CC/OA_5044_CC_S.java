@@ -456,8 +456,8 @@ public class OA_5044_CC_S extends BaseTest {
 
 
         ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
-        List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
-                "Drug or alcohol abuse within the past year", "Hepatitis B",  "Hepatitis C", "HIV or AIDS");
+        List<String> disqualifyQ26 = Arrays.asList("Drug or alcohol abuse within the past year", "Hepatitis B",
+                "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ26) {
             System.out.println("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
@@ -470,20 +470,15 @@ public class OA_5044_CC_S extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
-        List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
-                "Neuropathy (nerve damage due to diabetes or another condition)");
-        for (String answer : disqualifyQ26pt2) {
-            System.out.println("Select answer for Q26: " + answer);
-            doAnyOftheFollowingAdditionalDiagnosesCC
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(answer)
-                    .clickNextButton(approximateHeightPageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                    .back();
-        }
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Neuropathy (nerve damage due to diabetes or another condition)")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

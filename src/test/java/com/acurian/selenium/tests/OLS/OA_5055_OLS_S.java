@@ -5,8 +5,12 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
+import com.acurian.selenium.pages.OLS.PsoriaticArthritis.PsoriaticArthritisConditionPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -91,11 +95,12 @@ public class OA_5055_OLS_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS4503", site.activeProtocols)
                 .back();
 
-        whatKindOfArthritisPageOLS
+        PsoriaticArthritisConditionPageOLS psoriaticArthritisConditionPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickOnAnswers("Psoriatic Arthritis")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new PsoriaticArthritisConditionPageOLS());
+        psoriaticArthritisConditionPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4503", site.activeProtocols)
@@ -574,7 +579,7 @@ public class OA_5055_OLS_S extends BaseTest {
 
         ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
         List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
-                "Drug or alcohol abuse within the past year", "Hepatitis B",  "Hepatitis C", "HIV or AIDS");
+                "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
         for (String answer : disqualifyQ26) {
             System.out.println("Select answer for Q26: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
