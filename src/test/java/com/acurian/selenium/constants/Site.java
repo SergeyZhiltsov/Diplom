@@ -126,7 +126,10 @@ public enum Site {
     AUT_GRA_FULm_Site("AUT_GRA_FULm_Site", "60061", "1R", true, true),
     //Dispo sites
     AUT_GMEGA_New("AUT_GMEGA_New", "08204", "1R", true, false), //"AUT_GMEGA_Site";//AUT_GMEGA_01
-    AUT_GRA_43C_Site("AUT_GRA_43C_Site", "73159", "43C", true, false);
+    AUT_GRA_43C_Site("AUT_GRA_43C_Site", "73159", "43C", true, false),
+    AUT_DPN_5096_site("AUT_AMS1_5096_site", "08204", "1R", true, false),
+    AUT_DPN_5096S_site("AUT_AMS1_5096S_site", "19422", "41C", true, false)
+    ;
 
 
 

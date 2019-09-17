@@ -200,11 +200,11 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(rotatingNightShiftPageCC);
         //Q6
-        ElectronicDeviceSleepPageCC electronicDeviceSleepPageCC = rotatingNightShiftPageCC
+        DoYouHaveUpcomingOrRoutineTravelPlansPageCC doYouHaveUpcomingOrRoutineTravelPlansPageCC = rotatingNightShiftPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes") //Disqualify (“Night shift or alternating sleep schedule”)
-                .clickNextButton(new ElectronicDeviceSleepPageCC());
-        electronicDeviceSleepPageCC
+                .clickNextButton(new DoYouHaveUpcomingOrRoutineTravelPlansPageCC());
+        doYouHaveUpcomingOrRoutineTravelPlansPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7306", site.activeProtocols)
@@ -213,12 +213,26 @@ public class Insomnia_5017_CC extends BaseTest{
         rotatingNightShiftPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(electronicDeviceSleepPageCC);
+                .clickNextButton(doYouHaveUpcomingOrRoutineTravelPlansPageCC);
 
-        OvernightVisitsSleepCenterPageCC overnightVisitsSleepCenterPageCC = electronicDeviceSleepPageCC
+        OvernightVisitsSleepCenterPageCC overnightVisitsSleepCenterPageCC = doYouHaveUpcomingOrRoutineTravelPlansPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new OvernightVisitsSleepCenterPageCC());
+
+        overnightVisitsSleepCenterPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS7312", site.activeProtocols)
+                .back(doYouHaveUpcomingOrRoutineTravelPlansPageCC);
+
+        doYouHaveUpcomingOrRoutineTravelPlansPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(overnightVisitsSleepCenterPageCC);
+
+
+
         //Q8
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
         overnightVisitsSleepCenterPageCC

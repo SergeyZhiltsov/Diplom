@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowWouldYouDescribeTheSymptoms_OLS extends MainPageOLS{
 
-    public final String titleExpected = "How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms?\n" + 
+    public final String titleExpected = "How would you describe the symptoms or sensations that you feel?\n" +
 "Please select all that apply.";
     
     		
