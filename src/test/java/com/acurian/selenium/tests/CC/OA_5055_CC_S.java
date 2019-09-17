@@ -15,6 +15,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class OA_5055_CC_S extends BaseTest {
 
     @Test
@@ -448,66 +451,36 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
-        //----------Q23 - Do any of the following additional diagnoses apply to you?--------
-        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(new ApproximateHeightPageCC());
 
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageCC);
-
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageCC);
-
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(approximateHeightPageCC);
-
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Neuropathy (nerve damage due to diabetes or another condition)")
-                .clickNextButton(approximateHeightPageCC);
-
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
-
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+        List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
+                "Drug or alcohol abuse within the past year", "Hepatitis B",  "Hepatitis C", "HIV or AIDS");
+        for (String answer : disqualifyQ26) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
+                "Neuropathy (nerve damage due to diabetes or another condition)");
+        for (String answer : disqualifyQ26pt2) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

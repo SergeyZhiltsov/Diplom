@@ -4,7 +4,10 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
-import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -224,11 +227,44 @@ public class OA_4109CC extends BaseTest {
 
 
         //-------------------New GENERAL HEALTH---------------------------
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
-                //----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        //----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        //Q24: QS59
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+        List<String> disqualifyQ26 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C",
+                "HIV or AIDS");
+        for (String answer : disqualifyQ26) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
+                "Neuropathy (nerve damage due to diabetes or another condition)", "Seizure disorder such as epilepsy");
+        for (String answer : disqualifyQ26pt2) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC())

@@ -36,7 +36,7 @@ public class CV_4450_OLSblinx extends BaseTest {
 
         DateOfBirthAndGenderPageOLS dateOfBirthAndGenderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .setZipCode("19901")
+                .setZipCode(site.zipCode)
                 .clickNextButton(new DateOfBirthAndGenderPageOLS());
 
         CardiovascularDiseasePageOLS cardiovascularDiseasePageOLS = dateOfBirthAndGenderPageOLS

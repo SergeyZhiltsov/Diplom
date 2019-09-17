@@ -2,13 +2,15 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.OA_3138.SubquestionCurrentlyTakingPainMedicationPageOLS;
 import com.acurian.selenium.pages.OLS.OA_3138.SubquestionHowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.OA_3138.SubquestionNSAIDMedicationPageOLS;
+import com.acurian.selenium.pages.OLS.PsoriaticArthritis.PsoriaticArthritisConditionPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.RA.WhenYouDiagnosedWithRaPageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -111,11 +113,12 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS4503", site.activeProtocols)
                 .back();
 
-        whatKindOfArthritisPageOLS
+        PsoriaticArthritisConditionPageOLS psoriaticArthritisConditionPageOLS = whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Psoriatic Arthritis") //Select
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints") //Deselect
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(new PsoriaticArthritisConditionPageOLS());
+        psoriaticArthritisConditionPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4503", site.activeProtocols)
@@ -395,14 +398,48 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //----------*******NEW GENERAL HEALTH Questions**************************----------
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+
+
+        //Q24: QS59
+        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
+        List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
+                "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C",
+                "HIV or AIDS", "Schizophrenia");
+        for (String answer : disqualifyQ26) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
+                "Neuropathy (nerve damage due to diabetes or another condition)");
+        for (String answer : disqualifyQ26pt2) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
+        doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
-                //----------Q23 - Do any of the following additional diagnoses apply to you?--------
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageOLS())
+                .clickNextButton(approximateHeightPageOLS)
                 //----------ProvideHeight-Weight Page--------------------
                 .waitForPageLoad()
                 .setAll("5", "5", "160")

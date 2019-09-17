@@ -4,7 +4,10 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
-import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -14,6 +17,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class OA_4831_CC_A_S extends BaseTest {
 
@@ -266,16 +272,17 @@ public class OA_4831_CC_A_S extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad();
         WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Autism spectrum")
-                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)", "Cancer")
-                .clickOnAnswers("Diabetes (type 1 or type 2)", "High blood pressure or hypertension")
-                .clickOnAnswers("High cholesterol, triglycerides, or lipids", "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)")
-                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)", "Kidney disease")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)", "Lupus")
-                .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)", "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)", "Cancer",
+                        "Diabetes (type 1 or type 2)", "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)", "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)", "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)", "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
                 .clickNextButton(new WhichFollowingBonesJoints_CC());
         whichFollowingBonesJoints_CC
                 .waitForPageLoad()
@@ -327,52 +334,41 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickOnAnswers("Neither")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
 
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+        List<String> disqualifyQ26 = Arrays.asList("Cancer in the past 5 years, except skin cancer",
+                "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
+        for (String answer : disqualifyQ26) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQ26pt2 = Arrays.asList("Multiple sclerosis (MS)",
+                "Neuropathy (nerve damage due to diabetes or another condition)");
+        for (String answer : disqualifyQ26pt2) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(approximateHeightPageCC);
 
-        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageCC.back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageCC.back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageCC.back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("QS59", protocol1);
-        debugPageCC.back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC.waitForPageLoad();
-//debugPageCC.checkProtocolsContainsForQNumber("QS61");
-        debugPageCC.back();
-        LetMeSeePageCC letMeSeePageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(approximateHeightPageCC)
-
-                //----------ProvideHeight-Weight Page--------------------
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new LetMeSeePageCC());

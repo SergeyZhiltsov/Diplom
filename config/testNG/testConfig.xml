@@ -12,7 +12,7 @@
             <class name="com.acurian.selenium.tests.CC.OA_5044_CC_S"></class>
             <class name="com.acurian.selenium.tests.CC.OA_4831_CC_A_S"></class>
             <class name="com.acurian.selenium.tests.CC.OA_4109CC"></class>
-            <class name="com.acurian.selenium.tests.CC.PSA_5071_CC"></class>
+
         </classes>
     </test>
 </suite>
