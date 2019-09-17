@@ -34,7 +34,8 @@ public class DPN_5096_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {Site.AUT_DPN_5096_site}
+                {Site.AUT_DPN_5096_site},
+                {Site.AUT_DPN_5096S_site}
         };
     }
 
@@ -44,8 +45,7 @@ public class DPN_5096_OLS extends BaseTest {
     public void dpn_5096_OLS(Site site) {
 
         String phoneNumber = "AUTAMS1DPN";
-        String protocol = "NYX_2925_2008";
-        String studyName = "a diabetic nerve pain";
+        String studyName = "a study for diabetics"; //todo https://jira.acurian.com/browse/SCREEN-11041
         String env = System.getProperty("acurian.env", "STG");
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -55,7 +55,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
-                            dateOfBirthPageOLS.getExpectedModifiedTitle("a study for diabetics", "300"), //todo recheck
+                            dateOfBirthPageOLS.getExpectedModifiedTitle("a study for diabetics", "300"), //todo https://jira.acurian.com/browse/SCREEN-11041
                         "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -63,7 +63,7 @@ public class DPN_5096_OLS extends BaseTest {
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", protocol)
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad()
@@ -85,7 +85,7 @@ public class DPN_5096_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", protocol)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
 
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
@@ -94,20 +94,19 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
         //------------Q2 Have you been diagnosed with any type of diabetes?---------------
-        diagnosedAnyTypeOfDiabetesPageOLS.waitForPageLoad();
-        Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageOLS.getTitleText(), diagnosedAnyTypeOfDiabetesPageOLS.titleExpected, "Title is diff");
         diagnosedAnyTypeOfDiabetesPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5502", protocol)
+                .checkProtocolsContainsForQNumber("QS5502", site.activeProtocols)
                 .back(diagnosedAnyTypeOfDiabetesPageOLS);
 
-        diagnosedAnyTypeOfDiabetesPageOLS.waitForPageLoad();
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS  //[create NEXT PAGE Object = THIS page object]
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
@@ -140,7 +139,7 @@ public class DPN_5096_OLS extends BaseTest {
 
         cardiovascularDiseaseThanOthersPageOLS .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5504", protocol)
+                .checkProtocolsContainsForQNumber("QS5504", site.activeProtocols)
                 .back(doYouExperienceDPN_OLS);
 
         WhereDoYouExperienceDiabeticNervePain_OLS whereDoYouExperienceDiabeticNervePain_OLS =
@@ -162,7 +161,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5522", protocol)
+                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
          whereDoYouExperienceDiabeticNervePain_OLS
@@ -173,10 +172,10 @@ public class DPN_5096_OLS extends BaseTest {
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5522", protocol)
+                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
-         whereDoYouExperienceDiabeticNervePain_OLS //[create NEXT PAGE Object = THIS page object]
+         whereDoYouExperienceDiabeticNervePain_OLS
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right leg", "Left foot")
                 .clickOnAnswers("Right hand or arm", "Left hand or arm", "Other")
@@ -185,10 +184,10 @@ public class DPN_5096_OLS extends BaseTest {
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5522", protocol)
+                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
-        HowWouldYouDescribeTheSymptoms_OLS howWouldYouDescribeTheSymptoms_OLS = whereDoYouExperienceDiabeticNervePain_OLS //[create NEXT PAGE Object = THIS page object]
+        HowWouldYouDescribeTheSymptoms_OLS howWouldYouDescribeTheSymptoms_OLS = whereDoYouExperienceDiabeticNervePain_OLS
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right foot", "Left foot")
                 .clickNextButton(new HowWouldYouDescribeTheSymptoms_OLS());
@@ -213,7 +212,7 @@ public class DPN_5096_OLS extends BaseTest {
        approxHowlongYouBeenExpSymptomsOLS
                .waitForPageLoad()
                .getPage(debugPageOLS)
-               .checkProtocolsContainsForQNumber("QS5506", protocol)
+               .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
                .back(howWouldYouDescribeTheSymptoms_OLS);
 
        howWouldYouDescribeTheSymptoms_OLS
@@ -222,7 +221,7 @@ public class DPN_5096_OLS extends BaseTest {
                .clickNextButton(approxHowlongYouBeenExpSymptomsOLS)
                .waitForPageLoad()
                .getPage(debugPageOLS)
-               .checkProtocolsContainsForQNumber("QS5506", protocol)
+               .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
                .back(howWouldYouDescribeTheSymptoms_OLS);
 
         howWouldYouDescribeTheSymptoms_OLS
@@ -240,7 +239,7 @@ public class DPN_5096_OLS extends BaseTest {
         howWouldYouRateYourPain_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5509", protocol)
+                .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsOLS);
 
         approxHowlongYouBeenExpSymptomsOLS
@@ -250,7 +249,7 @@ public class DPN_5096_OLS extends BaseTest {
 
         howWouldYouRateYourPain_OLS.waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5509", protocol)
+                .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsOLS);
 
         List<String> qualifyQ9 = Arrays.asList("1 - 3 years",
@@ -269,6 +268,7 @@ public class DPN_5096_OLS extends BaseTest {
         }
 
         approxHowlongYouBeenExpSymptomsOLS
+                .waitForPageLoad()
                 .clickNextButton(howWouldYouRateYourPain_OLS);
 
         //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
@@ -280,7 +280,7 @@ public class DPN_5096_OLS extends BaseTest {
         haveYouHadAnyOfTheFollowingAmputatedPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5510", protocol)
+                .checkProtocolsContainsForQNumber("QS5510", site.activeProtocols)
                 .back(howWouldYouRateYourPain_OLS);
 
         howWouldYouRateYourPain_OLS
@@ -297,7 +297,7 @@ public class DPN_5096_OLS extends BaseTest {
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5523", protocol)
+                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
                 .back(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
 
         haveYouHadAnyOfTheFollowingAmputatedPageOLS
@@ -309,7 +309,7 @@ public class DPN_5096_OLS extends BaseTest {
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5523", protocol)
+                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
                 .back(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
 
         haveYouHadAnyOfTheFollowingAmputatedPageOLS
@@ -356,7 +356,7 @@ public class DPN_5096_OLS extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocol)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back(cancerPage);
 
         cancerPage
@@ -388,7 +388,7 @@ public class DPN_5096_OLS extends BaseTest {
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS47", protocol)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageOLS)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
 
@@ -402,8 +402,6 @@ public class DPN_5096_OLS extends BaseTest {
                  .clickOnAnswers("None of the above")
                  .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad();
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder",
@@ -419,7 +417,7 @@ public class DPN_5096_OLS extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocol)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -432,14 +430,14 @@ public class DPN_5096_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad(studyName)
+                .waitForPageLoad2(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForPageLoad()
+                .waitForSENRPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

@@ -17,23 +17,28 @@ import com.acurian.selenium.pages.CC.shared.*;
 
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class DPN_5096_CC extends BaseTest {
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][] {
+                {Site.AUT_DPN_5096_site},
+                {Site.AUT_DPN_5096S_site}
+        };
+    }
 
-    @Test()
+    @Test(dataProvider = "sites", enabled = true)
     @Description("Diabetic Peripheral Neuropath (DPN)- 5096 CC")
-    public void dpn5096Test() {
-        Site site = Site.AUT_AMS1_4825_site;
+    public void dpn5096Test(Site site) {
         final String phoneNumber = "AUTAMS1DPN";
-        String studyName = "a diabetic nerve pain";
-        String studyNameForTrans = "a diabetic nerve pain";
+        String studyName = "a study for diabetics"; //todo https://jira.acurian.com/browse/SCREEN-11041
         DebugPageCC debugPageCC = new DebugPageCC();
         String env = System.getProperty("acurian.env", "STG");
 
@@ -67,7 +72,7 @@ public class DPN_5096_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                        .getExpectedModifiedTitle("a study for diabetics", "300"),
+                        .getExpectedModifiedTitle("a study for diabetics", "300"), //todo https://jira.acurian.com/browse/SCREEN-11041
                 "Title is diff");
 
         dateOfBirthPageCC
@@ -76,6 +81,7 @@ public class DPN_5096_CC extends BaseTest {
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC);
+
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
@@ -86,7 +92,8 @@ public class DPN_5096_CC extends BaseTest {
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = genderPageCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                genderPageCC
                 .waitForPageLoad()
                 .setMonth("Apr")
                 .setDay("5")
@@ -108,21 +115,26 @@ public class DPN_5096_CC extends BaseTest {
                 .clickOnAnswer("Male")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
 
-        //------------Q2 Have you been diagnosed with any type of diabetes?---------------
-        diagnosedAnyTypeOfDiabetesPageCC.waitForPageLoad();
-        Assert.assertEquals(diagnosedAnyTypeOfDiabetesPageCC.getTitleText(), diagnosedAnyTypeOfDiabetesPageCC.titleExpected, "Title is diff");
-        diagnosedAnyTypeOfDiabetesPageCC
+        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedAnyTypeOfDiabetesPageCC
+                .waitForPageLoad()
                 .clickOnAnswer("No")
+                .clickNextButton(new NonQRtransitionPageCC());
+
+        nonQRtransitionPageCC
+                .waitForPageLoad()
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
+        //------------Q2 Have you been diagnosed with any type of diabetes?---------------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5502", site.activeProtocols)
+                .back(nonQRtransitionPageCC)
+                .waitForPageLoad()
                 .back(diagnosedAnyTypeOfDiabetesPageCC);
 
-        diagnosedAnyTypeOfDiabetesPageCC.waitForPageLoad();
-        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC  //[create NEXT PAGE Object = THIS page object]
+         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
 
@@ -192,7 +204,7 @@ public class DPN_5096_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_CC);
 
-        whereDoYouExperienceDiabeticNervePain_CC //[create NEXT PAGE Object = THIS page object]
+        whereDoYouExperienceDiabeticNervePain_CC
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right leg", "Left foot")
                 .clickOnAnswers("Right hand or arm", "Left hand or arm", "Other")
@@ -204,7 +216,7 @@ public class DPN_5096_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_CC);
 
-        HowWouldYouDescribeTheSymptoms_CC howWouldYouDescribeTheSymptoms_CC = whereDoYouExperienceDiabeticNervePain_CC //[create NEXT PAGE Object = THIS page object]
+        HowWouldYouDescribeTheSymptoms_CC howWouldYouDescribeTheSymptoms_CC = whereDoYouExperienceDiabeticNervePain_CC
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right foot", "Left foot")
                 .clickNextButton(new HowWouldYouDescribeTheSymptoms_CC());
@@ -352,9 +364,13 @@ public class DPN_5096_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5524")
                 .back(currentlyTreatingYourDiabetesPageCC);
 
-        currentlyTreatingYourDiabetesPageCC
+        TransitionStatementCC transitionStatementCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise", "Medication such as metformin or insulin or other diabetes medication")
+                .clickNextButton(new TransitionStatementCC());
+
+        transitionStatementCC
+                .waitForPageLoadDPN()
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         //----------------------GENERAL HEALTH Questions -----------------------------
@@ -436,30 +452,53 @@ public class DPN_5096_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
+        SiteSelectionPageCC siteSelectionPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Hepatitis B", "Hepatitis C", "Neuropathy (nerve damage due to diabetes or another condition)")
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
+                .clickNextButton(new LetMeSeePageCC())
+                .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose1PageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .clickOnAnswer(site.name);
+        switch (site)
+                {case AUT_DPN_5096_site:
+                        siteSelectionPageCC
+                        .clickNextButton(new QualifiedClose1PageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                        break;
+                    case AUT_DPN_5096S_site:
+                        siteSelectionPageCC
+                            .clickOnAnswer(site.name)
+                            .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                            .waitForPageLoadSyn()
+                            .assertVariables("Acurian", "Trial", "04/05/2001", "US",
+                                    "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
+                                    "999 -999-9999", "aut5096cc", site.name,
+                                    "%SYN_PROJECT_CODE%")//todo https://jira.acurian.com/browse/SCREEN-11031
+                            .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                            .clickNextButton(selectActionPageCC)
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .getRadiantDbToLog(env)
+                            .assertGeneratedFul(env, site)
+                            .dispoShouldMatch(site.dispo);
+                }
         ;
     }
 }

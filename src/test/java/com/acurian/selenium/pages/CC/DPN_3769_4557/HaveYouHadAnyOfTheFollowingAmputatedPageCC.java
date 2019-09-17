@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HaveYouHadAnyOfTheFollowingAmputatedPageCC extends MainPageCC{
 
-    public final String titleExpected = "Which of the following types or brands of insulin do you currently take?\n" +
+    public final String titleExpected = "Have you had any of the following amputated, or surgically removed?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
