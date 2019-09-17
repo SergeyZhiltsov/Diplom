@@ -115,6 +115,9 @@ public enum Site {
     //4483
     AUT_NASH4483_site("AUT_AMS1_4483_site", "19901", "1R", false, false, "MGL_3196_11"),
     AUT_NASH4483S_site("AUT_AMS1_4483S_site", "19422", "41C", false, false, "MGL_3196_11"),
+    //Hot Flashes
+    AUT_AMS1_7119_site("AUT_AMS1_7119_site", "08204", "41C", false, false, "2693_CL_0301","2693_CL_0302","2693_CL_0304"),
+
     //Others
     AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java
     //Health check
@@ -124,6 +127,7 @@ public enum Site {
     //Dispo sites
     AUT_GMEGA_New("AUT_GMEGA_New", "08204", "1R", true, false), //"AUT_GMEGA_Site";//AUT_GMEGA_01
     AUT_GRA_43C_Site("AUT_GRA_43C_Site", "73159", "43C", true, false);
+
 
 
 

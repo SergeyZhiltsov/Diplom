@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class Radio_CC extends MainPageCC {
+public class HowWouldYouDescribeYourHotFlashesCC extends MainPageCC {
 
     public final String titleExpected = "How long ago were you diagnosed with diabetes?";
 
@@ -19,18 +19,18 @@ public class Radio_CC extends MainPageCC {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public Radio_CC() {
+    public HowWouldYouDescribeYourHotFlashesCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public Radio_CC waitForPageLoad() {
+    public HowWouldYouDescribeYourHotFlashesCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public Radio_CC clickOnAnswer(String answerText) {
+    public HowWouldYouDescribeYourHotFlashesCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

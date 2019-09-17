@@ -9,9 +9,15 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class Radio_ols extends MainPageOLS {
+public class DoyouExperienceHotFlashesOLS extends MainPageOLS {
 
-    public final String titleExpected = "How long ago were you diagnosed with diabetes?";
+    public final String titleExpected = "A hot flash is a common symptom of menopause, which may cause:\n" +
+            "A sudden feeling of warmth spreading through your face, neck, and chest\n" +
+            "A flushed appearance, with red, blotchy skin\n" +
+            "Sweating, often at night\n" +
+            "Rapid heartbeat\n" +
+            "A chilled feeling as the hot flash lets up\n" +
+            "Do you experience hot flashes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,18 +25,18 @@ public class Radio_ols extends MainPageOLS {
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public Radio_ols() {
+    public DoyouExperienceHotFlashesOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public Radio_ols waitForPageLoad() {
+    public DoyouExperienceHotFlashesOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public Radio_ols clickOnAnswer(String answerText) {
+    public DoyouExperienceHotFlashesOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
