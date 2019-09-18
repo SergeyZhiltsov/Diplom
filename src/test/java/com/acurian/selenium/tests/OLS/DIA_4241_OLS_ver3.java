@@ -314,8 +314,17 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Insulin pump, which delivers insulin continuously")
                 .clickNextButton(new BrandsOfInsulinPageOLS());
+
+        //Q13:QS4630
         brandsOfInsulinPageOLS
                 .waitForPageLoad()
+                .clickOnAnswers("Toujeo (Insulin glargine)")
+                .clickNextButton(injectableMedicationsForYourDiabetesPageOLS)
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4630", site.activeProtocols[1])
+                .back(brandsOfInsulinPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .back();
         TakeYourInsulinInjectionsPageOLS takeYourInsulinInjectionsPageOLS = takeYourInsulinPageOLS
                 .waitForPageLoad()
@@ -391,7 +400,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .back();
         brandsOfInsulinPageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Insulin glargine (Basaglar, Lantus, Toujeo)")
+                .clickOnAnswers("Insulin glargine (Basaglar, Lantus)")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(noOfAlcoholicDrinkOLS);
@@ -500,7 +509,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 //                .clickOnAnswer("Only at meal times (this is called bolus insulin)")
 //                .clickNextButton(brandsOfInsulinPageOLS)
 //                .waitForPageLoad()
-//                .clickOnAnswers("Insulin glargine (Basaglar, Lantus, Toujeo)")
+//                .clickOnAnswers("Insulin glargine (Basaglar, Lantus)")
 //                .clickNextButton(new DyslipidemiaHealthcarePageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("None of the above")

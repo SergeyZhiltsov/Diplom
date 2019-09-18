@@ -33,7 +33,7 @@ public class DPN_5096_OLS extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_DPN_5096_site},
                 {Site.AUT_DPN_5096S_site}
         };
@@ -55,8 +55,8 @@ public class DPN_5096_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
-                            dateOfBirthPageOLS.getExpectedModifiedTitle("a study for diabetics", "300"), //todo https://jira.acurian.com/browse/SCREEN-11041
-                        "Title is diff");
+                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for diabetics", "300"),
+                "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
@@ -113,14 +113,15 @@ public class DPN_5096_OLS extends BaseTest {
         //-----------Q3 -What kind of diabetes do you have?? ---------------
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = new CardiovascularDiseaseThanOthersPageOLS();
         List<String> disqualifyQ3 = Arrays.asList("Type 1 diabetes (sometimes called Juvenile diabetes)",
-                                                  "High blood sugar only",
-                                                  "Unsure");
+                "High blood sugar only",
+                "Unsure");
         for (String answer : disqualifyQ3) {
             System.out.println("Select answer for Q3: " + answer);
             whatKindOfDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
                     .back();
@@ -135,20 +136,21 @@ public class DPN_5096_OLS extends BaseTest {
         doYouExperienceDPN_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No, none of the above")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS );
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
-        cardiovascularDiseaseThanOthersPageOLS .waitForPageLoad()
+        cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5504", site.activeProtocols)
                 .back(doYouExperienceDPN_OLS);
 
         WhereDoYouExperienceDiabeticNervePain_OLS whereDoYouExperienceDiabeticNervePain_OLS =
                 doYouExperienceDPN_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
-                .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+                        .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
 
-         whereDoYouExperienceDiabeticNervePain_OLS
+        whereDoYouExperienceDiabeticNervePain_OLS
                 .waitForPageLoad()
                 .back(doYouExperienceDPN_OLS)
                 .clickOnAnswer("I have not been diagnosed by a healthcare professional, but I do experience these symptoms")
@@ -164,7 +166,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
-         whereDoYouExperienceDiabeticNervePain_OLS
+        whereDoYouExperienceDiabeticNervePain_OLS
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right foot", "Left leg", "Right hand or arm", "Left hand or arm", "Other")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
@@ -175,7 +177,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
-         whereDoYouExperienceDiabeticNervePain_OLS
+        whereDoYouExperienceDiabeticNervePain_OLS
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right leg", "Left foot")
                 .clickOnAnswers("Right hand or arm", "Left hand or arm", "Other")
@@ -205,33 +207,33 @@ public class DPN_5096_OLS extends BaseTest {
         //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
         ApproxHowlongYouBeenExpSymptomsOLS approxHowlongYouBeenExpSymptomsOLS =
                 howWouldYouDescribeTheSymptoms_OLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new ApproxHowlongYouBeenExpSymptomsOLS());
+
+        approxHowlongYouBeenExpSymptomsOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproxHowlongYouBeenExpSymptomsOLS());
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
+                .back(howWouldYouDescribeTheSymptoms_OLS);
 
-       approxHowlongYouBeenExpSymptomsOLS
-               .waitForPageLoad()
-               .getPage(debugPageOLS)
-               .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
-               .back(howWouldYouDescribeTheSymptoms_OLS);
-
-       howWouldYouDescribeTheSymptoms_OLS
-               .waitForPageLoad()
-               .clickOnAnswers("Other")
-               .clickNextButton(approxHowlongYouBeenExpSymptomsOLS)
-               .waitForPageLoad()
-               .getPage(debugPageOLS)
-               .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
-               .back(howWouldYouDescribeTheSymptoms_OLS);
+        howWouldYouDescribeTheSymptoms_OLS
+                .waitForPageLoad()
+                .clickOnAnswers("Other")
+                .clickNextButton(approxHowlongYouBeenExpSymptomsOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
+                .back(howWouldYouDescribeTheSymptoms_OLS);
 
         howWouldYouDescribeTheSymptoms_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Burning", "Painful cold", "Electric", "Tingling", "Pins and needles", "Numbness",
-                                 "Itching", "An increase in these symptoms or sensations when something brushes against your skin")
+                        "Itching", "An increase in these symptoms or sensations when something brushes against your skin")
                 .clickNextButton(approxHowlongYouBeenExpSymptomsOLS);
 
         //----------Q9 -Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?-  Page ---------------
-         HowWouldYouRateYourPain_OLS howWouldYouRateYourPain_OLS = approxHowlongYouBeenExpSymptomsOLS
+        HowWouldYouRateYourPain_OLS howWouldYouRateYourPain_OLS = approxHowlongYouBeenExpSymptomsOLS
                 .waitForPageLoad()
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowWouldYouRateYourPain_OLS());
@@ -247,15 +249,16 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickOnAnswer("6 - 11 months")
                 .clickNextButton(howWouldYouDescribeTheSymptoms_OLS);
 
-        howWouldYouRateYourPain_OLS.waitForPageLoad()
+        howWouldYouRateYourPain_OLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsOLS);
 
         List<String> qualifyQ9 = Arrays.asList("1 - 3 years",
-                                               "4 - 6 years",
-                                               "7 - 10 years",
-                                               "11 or more years");
+                "4 - 6 years",
+                "7 - 10 years",
+                "11 or more years");
 
         for (String answer : qualifyQ9) {
             System.out.println("Select answer for Q9: " + answer);
@@ -343,9 +346,9 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //----------------------GENERAL HEALTH Questions -----------------------------
-         CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Cancer","Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickOnAnswers("Cancer", "Heart or circulation problems (heart attack, heart failure, stroke)")
                 .clickNextButton(new CancerPage());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = cancerPage
@@ -366,11 +369,11 @@ public class DPN_5096_OLS extends BaseTest {
 
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS =
                 haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke",
+                        .waitForPageLoad()
+                        .clickOnAnswers("Heart attack", "Stroke",
                                 "Mini-Stroke or TIA",
                                 "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS());
+                        .clickNextButton(new SubquestionExperiencedHeartPageOLS());
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -398,9 +401,9 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = heartrelatedMedicalProceduresPageOLS
-                 .waitForPageLoad()
-                 .clickOnAnswers("None of the above")
-                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()

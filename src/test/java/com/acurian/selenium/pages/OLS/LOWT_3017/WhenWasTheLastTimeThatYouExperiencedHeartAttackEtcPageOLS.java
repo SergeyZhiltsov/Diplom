@@ -17,16 +17,11 @@ public class WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS extends M
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
-
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]")
     List<WebElement> titlesText;
-
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> checkBoxList;
 
-    public WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS waitForPageLoad() {

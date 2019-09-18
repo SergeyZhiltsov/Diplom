@@ -42,7 +42,7 @@ public class PSA_5071_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                //{Site.AUT_AMS1_5071_site},
+                {Site.AUT_AMS1_5071_site},
                 {Site.AUT_AMS1_5071S_site}
         };
     }
@@ -86,13 +86,14 @@ public class PSA_5071_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle("a psoriatic arthritis study", "others"), "Title is diff");
+                .getExpectedModifiedTitle("a psoriatic arthritis study", "300"),
+                "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 
-        ZipCodePageCC zipCodePageOLS = lessThan18YearsOldPageCC
+        ZipCodePageCC zipCodePageCC = lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
@@ -101,17 +102,35 @@ public class PSA_5071_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
-        GenderPageCC genderPageCC = zipCodePageOLS
+        GenderPageCC genderPageCC = zipCodePageCC
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        PsoriaticArthritisConditionPageCC psoriaticArthritisConditionPageCC = genderPageCC
+        genderPageCC
                 .waitForPageLoad()
                 .setDay("9")
                 .setMonth("Aug")
-                .setYear("1980")
+                .setYear("2002") //Disqualify (“Age < 18 years old”) if <18
                 .clickOnAnswer("Female")
+                .clickNextButton(lessThan18YearsOldPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                genderPageCC
+                .waitForPageLoad()
+                .setYear("1943") //Disqualify ("Age") if >= 76
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
+        PsoriaticArthritisConditionPageCC psoriaticArthritisConditionPageCC = genderPageCC
+                .waitForPageLoad()
+                .setYear("1980")
                 .clickNextButton(new PsoriaticArthritisConditionPageCC());
 
         //Module Psoriatic Arthritis (PsA) started
@@ -321,10 +340,9 @@ public class PSA_5071_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(transitionStatementCC);
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 transitionStatementCC
                         .waitForPageLoadWithCurves(transitionStudyName)
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
 
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -566,8 +584,8 @@ public class PSA_5071_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "08/09/1980", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "%SYN_SITE_NUM%", site.name,
-                                "%SYN_PROJECT_CODE%") //TODO
+                                "999 -999-9999", "aut5071s", site.name,
+                                "GILPPDPSA566")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC);
                 break;
@@ -575,7 +593,7 @@ public class PSA_5071_CC extends BaseTest {
         selectActionPageCC
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "5017")
+                .childPidFromDbToLog(env, "5071")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }

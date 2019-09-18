@@ -240,7 +240,8 @@ public class DIA_4483_OLS extends BaseTest {
         brandsOfInsulinPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Insulin NPH (Humulin N, Novolin N)",
-                        "Insulin glargine (Basaglar, Lantus, Toujeo)",
+                        "Insulin glargine (Basaglar, Lantus)",
+                        "Toujeo (Insulin glargine)",
                         "Insulin detemir (Levemir)",
                         "Insulin degludec (Tresiba)",
                         "Insulin regular (Humulin R, Novolin R)",

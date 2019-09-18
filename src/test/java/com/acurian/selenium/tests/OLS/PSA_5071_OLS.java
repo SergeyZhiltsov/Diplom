@@ -15,11 +15,14 @@ import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.DoYouSufferFromArthritis;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.tests.CC.PSA_5071_CC;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.acurian.selenium.tests.CC.PSA_5071_CC;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +43,7 @@ public class PSA_5071_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, "others "), "Title is diff"); //TODO
+                .getExpectedModifiedTitle(studyName, "300"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -62,10 +65,29 @@ public class PSA_5071_OLS extends BaseTest {
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
+        genderPageOLS
+                .waitForPageLoad()
+                .setDate("09092002") //Disqualify (“Age < 18 years old”) if <18
+                .clickOnAnswer("Male")
+                .clickNextButton(lessThan18YearsOldPage_OLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                genderPageOLS
+                        .waitForPageLoad()
+                        .setDate("09091943")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
+
         PsoriaticArthritisConditionPageOLS psoriaticArthritisConditionPageOLS = genderPageOLS
                 .waitForPageLoad()
                 .setDate("09091980")
-                .clickOnAnswer("Male")
                 .clickNextButton(new PsoriaticArthritisConditionPageOLS());
 
         //Module Psoriatic Arthritis (PsA) started
@@ -153,11 +175,10 @@ public class PSA_5071_OLS extends BaseTest {
                 .clickNextButton(healthcareDiagnosedPsoriasisPageOLS);
 
         //Q8
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                healthcareDiagnosedPsoriasisPageOLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("No")
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        healthcareDiagnosedPsoriasisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
