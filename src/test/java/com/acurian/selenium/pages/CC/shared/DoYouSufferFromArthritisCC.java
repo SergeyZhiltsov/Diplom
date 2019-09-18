@@ -8,7 +8,7 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DoYouSufferFromArthritisCC extends MainPageCC {
+public class DoYouSufferFromArthritisCC extends MainPageCC { //TODO
 
     public final String titleExpected = "Do you suffer from any type of arthritis?";
 

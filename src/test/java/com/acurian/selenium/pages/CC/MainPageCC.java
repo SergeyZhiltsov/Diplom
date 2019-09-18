@@ -226,7 +226,6 @@ public class MainPageCC extends BasePage {
 
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String... answerText) {
         List<String> answerTextList = Arrays.asList(answerText);
-
         List<String> elementsTextActual = checkBoxList.stream().map(el -> el.getText()).collect(Collectors.toList());
         List<String> answersNotIncluded = answerTextList.stream().filter(el -> elementsTextActual.parallelStream()
                 .noneMatch(el2 -> el2.contains(el))).collect(Collectors.toList());

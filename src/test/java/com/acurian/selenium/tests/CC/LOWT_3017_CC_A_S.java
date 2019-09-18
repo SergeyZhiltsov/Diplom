@@ -590,7 +590,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "04/05/1941", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "123456A", site.name, "ABVCOVCAR100")
+                                "999 -999-9999", env.equals("PRD") ? "aut3017test" : "123456A",
+                                site.name, "ABVCOVCAR100")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

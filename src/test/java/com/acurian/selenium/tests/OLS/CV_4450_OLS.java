@@ -2,16 +2,21 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.cv_study.SufferedFollowingHeartRelatedConditionsPageCC;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.*;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.WhatKindOfDiabetesPageOLS;
@@ -40,7 +45,7 @@ public class CV_4450_OLS extends BaseTest {
 
     @DataProvider(name = "sites")
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_CV1_4450S_Syn},
         };
     }
@@ -82,16 +87,16 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("Female")
-                        .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
-                        .clickNextButton(lessThan18YearsOldPageOLS)
-                        .waitForPageLoad()
-                        .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                        .back(genderPageOLS)
-                        .waitForPageLoad()
-                        .setDate("01081975")//"Disqualify (“Age”) if < 45
+                .waitForPageLoad()
+                .clickOnAnswer("Female")
+                .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
+                .clickNextButton(lessThan18YearsOldPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS)
+                .waitForPageLoad()
+                .setDate("01081975")//"Disqualify (“Age”) if < 45
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
 
         cardiovascularDiseaseThanOthersPageOLS
@@ -126,10 +131,10 @@ public class CV_4450_OLS extends BaseTest {
 
         //Q4 Have you had a blood test that confirms you have high cholesterol or high triglycerides?
         CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS =
-        haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
+                haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
+                        .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
 
         //Q13 Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?
         cholesterolTriglyceridesLipidsPageOLS
@@ -208,7 +213,7 @@ public class CV_4450_OLS extends BaseTest {
 
         //Q15.1	When was the last time that you experienced had a heart attack?
         List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
-        for (String answer: disqualifyQ15) {
+        for (String answer : disqualifyQ15) {
             System.out.println("Select answer for Q15.1: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
@@ -228,7 +233,7 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(subquestionHeartPageOLS);
 
         //Q15.2	When was the last time that you experienced had a stroke?
-        for (String answer: disqualifyQ15) {
+        for (String answer : disqualifyQ15) {
             System.out.println("Select answer for Q15.2: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
@@ -248,7 +253,7 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(subquestionHeartPageOLS);
 
         //Q15.3	When was the last time that you experienced had a mini-stroke or TIA?
-        for (String answer: disqualifyQ15) {
+        for (String answer : disqualifyQ15) {
             System.out.println("Select answer for Q15.3: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
@@ -268,7 +273,7 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(subquestionHeartPageOLS);
 
         //Q15.4	When was the last time that you experienced suffered from angina or chest pain that required you to stay in a hospital overnight?
-        for (String answer: disqualifyQ15) {
+        for (String answer : disqualifyQ15) {
             System.out.println("Select answer for Q15.4: " + answer);
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
@@ -298,7 +303,7 @@ public class CV_4450_OLS extends BaseTest {
         AdditionalHeartRelatedConditionsPageOLS additionalHeartRelatedConditionsPageOLS =
                 new AdditionalHeartRelatedConditionsPageOLS();
         List<String> disqualifyQ17 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
-        for (String answer: disqualifyQ17) {
+        for (String answer : disqualifyQ17) {
             System.out.println("Select answer for Q17: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageOLS
                     .waitForPageLoad()
@@ -322,10 +327,10 @@ public class CV_4450_OLS extends BaseTest {
 
 //------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
         CurrentlyTreatingYourDiabetesPageOLS сurrentlyTreatingYourDiabetesPageOLS =
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+                approximateHeightPageOLS
+                        .waitForPageLoad()
+                        .setAll("5", "5", "170")
+                        .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
         сurrentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -414,7 +419,7 @@ public class CV_4450_OLS extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
-        for (String answer: disqualifyQ26) {
+        for (String answer : disqualifyQ26) {
             System.out.println("Select answer for Q26: " + answer);
             healthcareDiagnosedConditionsPageOLS
                     .waitForPageLoad()

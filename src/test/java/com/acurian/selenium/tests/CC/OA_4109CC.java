@@ -4,7 +4,10 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
-import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
+import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -35,7 +38,8 @@ public class OA_4109CC extends BaseTest {
                 .openPage(env)
                 .waitForPageLoad();
 
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -52,14 +56,16 @@ public class OA_4109CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
 
 
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
@@ -126,14 +132,14 @@ public class OA_4109CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("I am unsure")
                 .clickNextButton(new HaveYouEverTakenPrescriptionPainCC());
-                
+
 
         HasYourDoctorEverPrescribedOpioidNarcotic_CC hasYourDoctorEverPrescribedOpioidNarcotic_CC = haveYouEverTakenPrescriptionPainCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HasYourDoctorEverPrescribedOpioidNarcotic_CC());
-        
-        
+
+
         AreYouCurrentlyOnPageCC areYouCurrentlyOnPageCC = hasYourDoctorEverPrescribedOpioidNarcotic_CC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, and I have taken an opioid or narcotic for pain")
@@ -145,89 +151,120 @@ public class OA_4109CC extends BaseTest {
                 .clickOnAnswer("Yes, for arthritis")
                 .clickOnAnswer("Yes, for another chronic condition")
                 .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
-        		.clickNextButton(new TransitionStatementCC())
-        		.waitForPageLoad(studyName);
-		DebugPageCC debugPageCC = new DebugPageCC();
-        		debugPageCC.checkProtocolsContainsForQNumber("Q0005281-QS4513-STUDYQUES", protocol1);
-        		debugPageCC.back();
+                .clickNextButton(new TransitionStatementCC())
+                .waitForPageLoad(studyName);
+        DebugPageCC debugPageCC = new DebugPageCC();
+        debugPageCC.checkProtocolsContainsForQNumber("QS4513", protocol1);
+        debugPageCC.back();
         areYouCurrentlyOnPageCC
                 .waitForPageLoad();
         HaveYouEverHadKneeReplacementSurgery_CC haveYouEverHadKneeReplacementSurgery_CC = areYouCurrentlyOnPageCC
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new HaveYouEverHadKneeReplacementSurgery_CC());
-        
-        
-        
+
+
         //-----------HaveYouEverHadKneeReplacementSurgery_CC--------------------
         haveYouEverHadKneeReplacementSurgery_CC
-        		.waitForPageLoad();
+                .waitForPageLoad();
         HaveYouEverReceivedInjectionIntoYourKnee_CC haveYouEverReceivedInjectionIntoYourKnee_CC = haveYouEverHadKneeReplacementSurgery_CC
-        		.clickOnAnswer("Yes, both knees have been replaced")
-        		.clickOnAnswer("Yes, one knee has been replaced")
-        		.clickOnAnswer("No")
-        		.clickNextButton(new HaveYouEverReceivedInjectionIntoYourKnee_CC());
-                
-              
+                .clickOnAnswer("Yes, both knees have been replaced")
+                .clickOnAnswer("Yes, one knee has been replaced")
+                .clickOnAnswer("No")
+                .clickNextButton(new HaveYouEverReceivedInjectionIntoYourKnee_CC());
+
+
         //-----------HaveYouEverReceivedInjectionIntoYourKnee_CC--------------------
         haveYouEverReceivedInjectionIntoYourKnee_CC
-        		.waitForPageLoad();
+                .waitForPageLoad();
         HaveYouReceivedKneeInjection_CC haveYouReceivedKneeInjection_CC = haveYouEverReceivedInjectionIntoYourKnee_CC
-        		.clickOnAnswers("Yes, a corticosteroid or \"steroid\" injection")
-        		.clickOnAnswers("Yes, a joint fluid supplement injection such as Synvisc or Hyalgan")
-        		.clickNextButton(new HaveYouReceivedKneeInjection_CC());        
-                
-                
+                .clickOnAnswers("Yes, a corticosteroid or \"steroid\" injection")
+                .clickOnAnswers("Yes, a joint fluid supplement injection such as Synvisc or Hyalgan")
+                .clickNextButton(new HaveYouReceivedKneeInjection_CC());
+
+
         //-------------------------HaveYouReceivedKneeInjection_CC---------------
         haveYouReceivedKneeInjection_CC
-				.waitForPageLoad();
+                .waitForPageLoad();
         DevicesInYourBodyCC devicesInYourBodyCC = haveYouReceivedKneeInjection_CC
-        		.clickOnAnswer("Yes")
-        		.clickOnAnswer("No")        		
-        		.clickNextButton(new DevicesInYourBodyCC());
+                .clickOnAnswer("Yes")
+                .clickOnAnswer("No")
+                .clickNextButton(new DevicesInYourBodyCC());
 
         //-------------------------FollowingDevicesInYourBody---------------
         devicesInYourBodyCC
-        		.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswers("Aneurysm clip")
                 .clickOnAnswers("Artificial heart valve")
                 .clickOnAnswers("Cochlear implant")
                 .clickNextButton(new TransitionStatementCC())
                 .waitForPageLoad(studyName);
-        		debugPageCC.checkProtocolsContainsForQNumber("Q0005282-QS4514-STUDYQUES", protocol1);
-        		debugPageCC.back();
+        debugPageCC.checkProtocolsContainsForQNumber("QS4514", protocol1);
+        debugPageCC.back();
         devicesInYourBodyCC
                 .waitForPageLoad();
         CarpalTunnelSyndromeCC carpalTunnelSyndromeCC = devicesInYourBodyCC
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new CarpalTunnelSyndromeCC());
-        
+
 
         carpalTunnelSyndromeCC
                 .waitForPageLoad();
         AreYouCurrentlyReceivingWorkersPageCC areYouCurrentlyReceivingWorkersPageCC = carpalTunnelSyndromeCC
                 .clickOnAnswer("No")
                 .clickNextButton(new AreYouCurrentlyReceivingWorkersPageCC());
-        
-  
+
+
         areYouCurrentlyReceivingWorkersPageCC
-        		.waitForPageLoad();
-        		TransitionStatementCC transitionStatementCC = areYouCurrentlyReceivingWorkersPageCC
-        		.clickOnAnswer("No")
-        		.clickNextButton(new TransitionStatementCC());
+                .waitForPageLoad();
+        TransitionStatementCC transitionStatementCC = areYouCurrentlyReceivingWorkersPageCC
+                .clickOnAnswer("No")
+                .clickNextButton(new TransitionStatementCC());
 
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoad(studyName)
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        
-        
+
         //-------------------New GENERAL HEALTH---------------------------
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
-                //----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        //----------Q23 - Do any of the following additional diagnoses apply to you?--------
+        //Q24: QS59
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+        List<String> disqualifyQ26 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C",
+                "HIV or AIDS");
+        for (String answer : disqualifyQ26) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Multiple sclerosis (MS)",
+                "Neuropathy (nerve damage due to diabetes or another condition)", "Seizure disorder such as epilepsy");
+        for (String answer : disqualifyQ26pt2) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC())

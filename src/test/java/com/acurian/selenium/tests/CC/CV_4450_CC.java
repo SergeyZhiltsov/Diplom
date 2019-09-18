@@ -7,7 +7,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.CurrentlyTreatingYourDiabete
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.IBD.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC;
-import com.acurian.selenium.pages.CC.LOWT.*;
+import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -38,7 +38,7 @@ public class CV_4450_CC extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_CV1_4450S_Syn}
         };
     }
@@ -102,13 +102,13 @@ public class CV_4450_CC extends BaseTest {
         //Q3: QS	Certain conditions are more closely linked to cardiovascular disease than others.
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC =
                 cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Diabetes or High Blood Sugar",
-                        "High cholesterol or high triglycerides",
-                        "High blood pressure or hypertension",
-                        "Chronic Kidney Disease")
-                .clickOnAnswers("None of the above") //skip to Q14 (Heart-related events)
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Diabetes or High Blood Sugar",
+                                "High cholesterol or high triglycerides",
+                                "High blood pressure or hypertension",
+                                "Chronic Kidney Disease")
+                        .clickOnAnswers("None of the above") //skip to Q14 (Heart-related events)
+                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
 
         //Q14
         haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -116,17 +116,17 @@ public class CV_4450_CC extends BaseTest {
                 .back();
 
         HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC =
-        cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("High cholesterol or high triglycerides") //go to Q4 (NEW Q4)
-                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC());
+                cardiovascularDiseaseThanOthersPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("High cholesterol or high triglycerides") //go to Q4 (NEW Q4)
+                        .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC());
 
         //Q4 Have you had a blood test that confirms you have high cholesterol or high triglycerides?
         CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC =
-        haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
+                haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Yes, high cholesterol", "Yes, high triglycerides")
+                        .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
 
         //Q13 Are you currently taking medication to manage high cholesterol, triglycerides, or lipids?
         cholesterolTriglyceridesLipidsPageCC
@@ -168,15 +168,15 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageCC());
 
         HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
-        sufferedFollowingHeartRelatedConditionsPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "Mini-Stroke or TIA",
-                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
-                        "Heart failure or congestive heart failure (CHF)")
-                .clickOnAnswers("None of the above") //Skip to Q16
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+                sufferedFollowingHeartRelatedConditionsPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Heart attack",
+                                "Stroke",
+                                "Mini-Stroke or TIA",
+                                "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
+                                "Heart failure or congestive heart failure (CHF)")
+                        .clickOnAnswers("None of the above") //Skip to Q16
+                        .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
 
         //Q16	Have you ever had any of the following heart-related surgeries or procedures?
         heartrelatedMedicalProceduresPageCC
@@ -204,7 +204,7 @@ public class CV_4450_CC extends BaseTest {
 
         //Q15.1	When was the last time that you experienced had a heart attack?
         List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
-        for (String answer: disqualifyQ15) {
+        for (String answer : disqualifyQ15) {
             System.out.println("Select answer for Q15.1: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
@@ -223,7 +223,7 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(subquestionHeartPageCC);
 
         //Q15.2	When was the last time that you experienced had a stroke?
-        for (String answer: disqualifyQ15) {
+        for (String answer : disqualifyQ15) {
             System.out.println("Select answer for Q15.2: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
@@ -242,7 +242,7 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(subquestionHeartPageCC);
 
         //Q15.3	When was the last time that you experienced had a mini-stroke or TIA?
-        for (String answer: disqualifyQ15) {
+        for (String answer : disqualifyQ15) {
             System.out.println("Select answer for Q15.3: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected3)
@@ -261,7 +261,7 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(subquestionHeartPageCC);
 
         //Q15.4	When was the last time that you experienced suffered from angina or chest pain that required you to stay in a hospital overnight?
-        for (String answer: disqualifyQ15) {
+        for (String answer : disqualifyQ15) {
             System.out.println("Select answer for Q15.4: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected4)
@@ -281,16 +281,16 @@ public class CV_4450_CC extends BaseTest {
 
         //Q16	Have you ever had any of the following heart-related surgeries or procedures?
         MostRecentHeartRelatedSurgeryProcedurePageCC mostRecentHeartRelatedSurgeryProcedurePageCC =
-        heartrelatedMedicalProceduresPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Stent placement in your heart, neck or legs")
-                .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageCC());
+                heartrelatedMedicalProceduresPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("Stent placement in your heart, neck or legs")
+                        .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageCC());
 
         //Q17	When was your most recent heart-related surgery or procedure?
         AdditionalHeartRelatedConditionsPageCC additionalHeartRelatedConditionsPageCC =
                 new AdditionalHeartRelatedConditionsPageCC();
         List<String> disqualifyQ17 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
-        for (String answer: disqualifyQ17) {
+        for (String answer : disqualifyQ17) {
             System.out.println("Select answer for Q17: " + answer);
             mostRecentHeartRelatedSurgeryProcedurePageCC
                     .waitForPageLoad()
@@ -404,7 +404,7 @@ public class CV_4450_CC extends BaseTest {
                 "Hepatitis C",
                 "HIV or AIDS",
                 "Kidney disease requiring dialysis or transplant");
-        for (String answer: disqualifyQ26) {
+        for (String answer : disqualifyQ26) {
             System.out.println("Select answer for Q26: " + answer);
             healthcareDiagnosedConditionsPageCC
                     .waitForPageLoad()
@@ -432,8 +432,8 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
                 .assertVariables("Acurian", "Trial", "09/09/1952", "US",
-                                "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "12345D", site.name, "NNDXXXCAR388")
+                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
+                        "999 -999-9999", "12345D", site.name, "NNDXXXCAR388")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

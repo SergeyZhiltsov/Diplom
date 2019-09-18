@@ -532,87 +532,35 @@ public class DERM_7193_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
-        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Kidney disease requiring dialysis")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", protocols)
-                .back();
+        //Q24: QS59
+        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
+        List<String> disqualifyQ26 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
+        for (String answer : disqualifyQ26) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQ26pt2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
+        for (String answer : disqualifyQ26pt2) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
