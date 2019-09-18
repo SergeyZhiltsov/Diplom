@@ -40,7 +40,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_LOWT_3017S_Site},
                 //{Site.AUT_LOWT_3017_Site}
         };
@@ -95,7 +95,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad2Ver();
 
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(),dateOfBirthPageCC
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC
                 .getExpectedModifiedTitleLowT("a study", "600"), "Title is diff");
 
         dateOfBirthPageCC
@@ -121,7 +121,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC=
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 genderPageCC
                         .waitForPageLoad()
                         .setMonth("Apr")
@@ -133,7 +133,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021159-QSI8013-STUDYQUES", protocol2)
+                .checkProtocolsContainsForQNumber("QSI8013", protocol2)
                 .back(genderPageCC);
 
         genderPageCC
@@ -147,7 +147,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0021159-QSI8013-STUDYQUES", protocol2)
+                .checkProtocolsContainsForQNumber("QSI8013", protocol2)
                 .back(genderPageCC);
 
 
@@ -189,7 +189,6 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 //                .setDay("9")
 //                .setYear("1941")
 //                .clickNextButton(new PersonaQuestionsCC());
-
 
 
 //        DebugPageCC debugPageCC = new DebugPageCC();
@@ -269,57 +268,17 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         diagnosedYouWithLowTestosteroneCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-          //      .checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1, protocol2);
-                .checkProtocolsContainsForQNumber("Q0017019-QS5616-STUDYQUES", protocol2);
+                //      .checkProtocolsEquals("Have you experienced any of the following? Agent Note: Select all that applyHave you experienced any...", protocol1, protocol2);
+                .checkProtocolsContainsForQNumber("QS5616", protocol2);
 
-        //-----------No Switch to CV module logic-----------------------
-        //Check if possible to switch to to CV module logic
-        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = diagnosedYouWithLowTestosteroneCC
+        ApproximateHeightPageCC approximateHeightPageCC = diagnosedYouWithLowTestosteroneCC
                 .clickOnAnswer("Yes")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-
-        ApproximateHeightPageCC approximateHeightPageCC = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
-
-        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(new TransitionalStatementLowtPageCC());
-
-        transitionalStatementLowtPageCC
-                .waitForPageLoad()
-            //    .getPage(debugPageCC)
-           //     .checkProtocolsContainsForQNumber("QS5632", protocol2)
-                .back(approximateHeightPageCC)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageCC);
-
-        cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Diabetes or High Blood Sugar",
-                                "High cholesterol or high triglycerides",
-                                "High blood pressure or hypertension",
-                                "Chronic Kidney Disease")
-                .clickNextButton(approximateHeightPageCC);
-
         approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(new TransitionalStatementLowtPageCC());
-
-        transitionalStatementLowtPageCC
-                .waitForPageLoad()
-           //     .getPage(debugPageCC)
-           //     .checkProtocolsContainsForQNumber("QS5632", protocol2)
-                .back(approximateHeightPageCC)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .back(diagnosedYouWithLowTestosteroneCC)
                 .waitForPageLoad()
-                .back(experiencedAnyOfFollowingCC);
+                .back();
 
 
 //        cardiovascularDiseaseThanOthersPageCC
@@ -384,30 +343,35 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         "Hot flashes")
                 .clickNextButton(diagnosedYouWithLowTestosteroneCC);
 
-        diagnosedYouWithLowTestosteroneCC
+        LevelOrHypogonadismPageСС levelOrHypogonadismPageСС = diagnosedYouWithLowTestosteroneCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
-
-        LevelOrHypogonadismPageСС levelOrHypogonadismPageСС = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
+                .clickNextButton(new LevelOrHypogonadismPageСС());
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+//
+//        LevelOrHypogonadismPageСС levelOrHypogonadismPageСС = cardiovascularDiseaseThanOthersPageCC
+//                .waitForPageLoad()
 //                .clickOnAnswers("Diabetes or High Blood Sugar",
 //                        "High cholesterol or high triglycerides",
 //                        "High blood pressure or hypertension",
 //                        "Chronic Kidney Disease")
-                .clickNextButton(new LevelOrHypogonadismPageСС());
+//                .clickNextButton(new LevelOrHypogonadismPageСС());
 
-        EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = levelOrHypogonadismPageСС
+        //EverSmokedCigarettesPageCC everSmokedCigarettesPageCC = levelOrHypogonadismPageСС
+        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = levelOrHypogonadismPageСС
                 .waitForPageLoad()
-                .clickOnAnswers("AndroGel", "Endoderm patch", "Fortesta gel", "Striant (testosterone buccal system)", "Testim gel", "Other testosterone medication not on this list", "Unsure")
-                .clickOnAnswers("Testosterone injection (Depo-Testosterone, Testosterone enanthate, Testosterone Cypionate, Delatestryl)", "Clomiphene (brand name Serophene) or another anti-estrogen therapy")
+                .clickOnAnswers("AndroGel", "Endoderm patch", "Fortesta gel", "Striant (testosterone buccal system)",
+                        "Testim gel", "Other testosterone medication not on this list", "Unsure")
+                .clickOnAnswers("Testosterone injection (Depo-Testosterone, Testosterone enanthate, Testosterone Cypionate, Delatestryl)",
+                        "Clomiphene (brand name Serophene) or another anti-estrogen therapy")
                 .clickOnAnswers("Axiron gel")
-                .clickNextButton(new EverSmokedCigarettesPageCC());
-
-        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = everSmokedCigarettesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HeartOrBloodVesselPageCC());
+//                .clickNextButton(new EverSmokedCigarettesPageCC());
+//
+//        HeartOrBloodVesselPageCC heartOrBloodVesselPageCC = everSmokedCigarettesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, I never smoked")
+//                .clickNextButton(new HeartOrBloodVesselPageCC());
 
         CardiovascularInterventionsOrSurgeriesPageCC cardiovascularInterventionsOrSurgeriesPageCC = heartOrBloodVesselPageCC
                 .waitForPageLoad()
@@ -423,8 +387,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad();
         WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC =
                 heartOrBloodVesselPageCC
-                .clickOnAnswers("Heart attack")
-                .clickNextButton(new WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC());
+                        .clickOnAnswers("Heart attack")
+                        .clickNextButton(new WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC());
 
         whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC
                 .waitForPageLoad()
@@ -516,45 +480,51 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         receivedHeartProcedurePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5624", protocol2);
-        debugPageCC.back();
+                .clickNextButton(hasDoctorEverDiagnosedMedicalCondDiseases_CC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5624", protocol2)
+                .back();
         receivedHeartProcedurePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("More than 6 months ago")
-                .clickNextButton(new HasDoctorEverDiagnosedMedicalCondDiseases_CC());
+                .clickNextButton(hasDoctorEverDiagnosedMedicalCondDiseases_CC);
 
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .waitForPageLoad()
                 .clickOnAnswers("History of Prostate or Breast Cancer")
-                .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol2);
-        debugPageCC.back();
+                .clickNextButton(approximateHeightPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5626", protocol2)
+                .back();
 
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .clickOnAnswers("Other cancer within the past 2 years (except skin cancer)")
-                .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol2);
-        debugPageCC.back();
+                .clickNextButton(approximateHeightPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5626", protocol2)
+                .back();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .clickOnAnswers("Sleep apnea that is not currently being treated")
-                .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol2);
-        debugPageCC.back();
+                .clickNextButton(approximateHeightPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5626", protocol2)
+                .back();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .clickOnAnswers("Drug, alcohol or steroid abuse in the past 12 months")
-                .clickNextButton(new ApproximateHeightPageCC());
-        debugPageCC.checkProtocolsContainsForQNumber("QS5626", protocol2);
-        debugPageCC.back();
+                .clickNextButton(approximateHeightPageCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5626", protocol2)
+                .back();
         hasDoctorEverDiagnosedMedicalCondDiseases_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageCC());
+                .clickNextButton(approximateHeightPageCC);
 
-        approximateHeightPageCC
+        TransitionalStatementLowtPageCC transitionalStatementLowtPageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("4", "0", "166")
-                .clickNextButton(transitionalStatementLowtPageCC)
+                .clickNextButton(new TransitionalStatementLowtPageCC());
+        transitionalStatementLowtPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5627", protocol2)
@@ -565,7 +535,8 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .setAll("5", "6", "166")
                 .clickNextButton(new IdentificationPageCC())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a men's health study")
                 .getPID();

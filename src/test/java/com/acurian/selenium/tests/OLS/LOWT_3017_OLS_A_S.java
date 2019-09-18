@@ -35,7 +35,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_LOWT_3017S_Site},
                 //{Site.AUT_LOWT_3017_Site}
         };
@@ -45,7 +45,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
     @Description("LOWT_3017_OLS_A_S")
     public void lowt3017ols(Site site) {
         String phoneNumber = "AUTAMSLOWT";
-      /*  String protocol1 = "M16_100";*/ //only 3107s is reactivated
+        /*  String protocol1 = "M16_100";*/ //only 3107s is reactivated
         String protocol2 = "M16_100_S";
         //String esperionProtocol = "1002_043"; //Deactivate 3140 Esperion HC & CVD (all protocols: 1002-043_A & 1002-043)
         //String esperionProtocolA = "1002_043_A"; //R74	74.0	6/21/2019 & 6/24/2019
@@ -83,10 +83,10 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 genderPageOLS
-                .waitForPageLoad()
-                .setDate("09091941")
-                .clickOnAnswer("Female")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .waitForPageLoad()
+                        .setDate("09091941")
+                        .clickOnAnswer("Female")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -116,99 +116,108 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
         HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_OLS =
                 experiencedAnyOfFollowing_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
         hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5616", /*protocol1,*/ protocol2);
 
-        //-----------NO SWITCH to CV module logic-----------------------
-        //Check if NOT possible to switch to to CV module logic
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS =
-                hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        ApproximateHeightPageOLS approximateHeightPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-
-        ApproximateHeightPageOLS approximateHeightPageOLS = cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightPageOLS());
-
-        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(new TransitionalStatementLowtPageOLS());
-        transitionalStatementLowtPageOLS
-                .waitForPageLoad()
-                .back(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageOLS);
-
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(approximateHeightPageOLS);
         approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(transitionalStatementLowtPageOLS);
-        transitionalStatementLowtPageOLS
-                .waitForPageLoad()
-                .back(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageOLS);
-
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Diabetes or High Blood Sugar")
-                .clickNextButton(approximateHeightPageOLS);
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(transitionalStatementLowtPageOLS);
-        transitionalStatementLowtPageOLS
-                .waitForPageLoad()
-                .back(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageOLS);
-
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(approximateHeightPageOLS);
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(transitionalStatementLowtPageOLS);
-        transitionalStatementLowtPageOLS
-                .waitForPageLoad()
-                .back(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageOLS);
-
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Chronic Kidney Disease")
-                .clickNextButton(approximateHeightPageOLS);
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "170")
-                .clickNextButton(transitionalStatementLowtPageOLS);
-        transitionalStatementLowtPageOLS
-                .waitForPageLoad()
-                .back(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .back(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS)
                 .waitForPageLoad()
-                .back(experiencedAnyOfFollowing_OLS);
+                .back();
+
+//        //-----------NO SWITCH to CV module logic-----------------------
+//        //Check if NOT possible to switch to to CV module logic
+//        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS =
+//                hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+//
+//        ApproximateHeightPageOLS approximateHeightPageOLS = cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new ApproximateHeightPageOLS());
+//
+//        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .setAll("5", "5", "170")
+//                .clickNextButton(new TransitionalStatementLowtPageOLS());
+//        transitionalStatementLowtPageOLS
+//                .waitForPageLoad()
+//                .back(approximateHeightPageOLS)
+//                .waitForPageLoad()
+//                .back(cardiovascularDiseaseThanOthersPageOLS);
+//
+//        cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("High cholesterol or high triglycerides")
+//                .clickNextButton(approximateHeightPageOLS);
+//        approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .setAll("5", "5", "170")
+//                .clickNextButton(transitionalStatementLowtPageOLS);
+//        transitionalStatementLowtPageOLS
+//                .waitForPageLoad()
+//                .back(approximateHeightPageOLS)
+//                .waitForPageLoad()
+//                .back(cardiovascularDiseaseThanOthersPageOLS);
+//
+//        cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Diabetes or High Blood Sugar")
+//                .clickNextButton(approximateHeightPageOLS);
+//        approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .setAll("5", "5", "170")
+//                .clickNextButton(transitionalStatementLowtPageOLS);
+//        transitionalStatementLowtPageOLS
+//                .waitForPageLoad()
+//                .back(approximateHeightPageOLS)
+//                .waitForPageLoad()
+//                .back(cardiovascularDiseaseThanOthersPageOLS);
+//
+//        cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("High blood pressure or hypertension")
+//                .clickNextButton(approximateHeightPageOLS);
+//        approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .setAll("5", "5", "170")
+//                .clickNextButton(transitionalStatementLowtPageOLS);
+//        transitionalStatementLowtPageOLS
+//                .waitForPageLoad()
+//                .back(approximateHeightPageOLS)
+//                .waitForPageLoad()
+//                .back(cardiovascularDiseaseThanOthersPageOLS);
+//
+//        cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Chronic Kidney Disease")
+//                .clickNextButton(approximateHeightPageOLS);
+//        approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .setAll("5", "5", "170")
+//                .clickNextButton(transitionalStatementLowtPageOLS);
+//        transitionalStatementLowtPageOLS
+//                .waitForPageLoad()
+//                .back(approximateHeightPageOLS)
+//                .waitForPageLoad()
+//                .back(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .back(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS)
+//                .waitForPageLoad()
+//                .back(experiencedAnyOfFollowing_OLS);
 
         //module started
         experiencedAnyOfFollowing_OLS
@@ -221,29 +230,31 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         "Hot flashes")
                 .clickNextButton(hasDoctorEverDiagnosedYouWithLowTestosterone_OLS);
 
-        hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
+        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
-
-        cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad();
-        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = cardiovascularDiseaseThanOthersPageOLS
-                .clickOnAnswers("Diabetes or High Blood Sugar",
-                        "High cholesterol or high triglycerides",
-                        "High blood pressure or hypertension",
-                        "Chronic Kidney Disease")
                 .clickNextButton(new LevelOrHypogonadismPageOLS());
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+//
+//        cardiovascularDiseaseThanOthersPageOLS
+//                .waitForPageLoad();
+//        LevelOrHypogonadismPageOLS levelOrHypogonadismPageOLS = cardiovascularDiseaseThanOthersPageOLS
+//                .clickOnAnswers("Diabetes or High Blood Sugar",
+//                        "High cholesterol or high triglycerides",
+//                        "High blood pressure or hypertension",
+//                        "Chronic Kidney Disease")
+//                .clickNextButton(new LevelOrHypogonadismPageOLS());
+//        levelOrHypogonadismPageOLS
+//                .waitForPageLoad();
+//        debugPageOLS.back();
+//        cardiovascularDiseaseThanOthersPageOLS.waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new LevelOrHypogonadismPageOLS());
+
         levelOrHypogonadismPageOLS
                 .waitForPageLoad();
-        debugPageOLS.back();
-        cardiovascularDiseaseThanOthersPageOLS.waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new LevelOrHypogonadismPageOLS());
-
-        levelOrHypogonadismPageOLS
-                .waitForPageLoad();
-        EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = levelOrHypogonadismPageOLS
+//        EverSmokedCigarettesPageOLS everSmokedCigarettesPageOLS = levelOrHypogonadismPageOLS
+        HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = levelOrHypogonadismPageOLS
                 .clickOnAnswers("AndroGel",
                         "Endoderm patch",
                         "Axiron gel",
@@ -254,51 +265,51 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         "Clomiphene (brand name Serophene) or another anti-estrogen therapy",
                         "Other testosterone medication not on this list",
                         "Unsure")
-                .clickNextButton(new EverSmokedCigarettesPageOLS());
-
-        everSmokedCigarettesPageOLS
-                .waitForPageLoad();
-        HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = everSmokedCigarettesPageOLS
-                .clickOnAnswer("Yes, I currently smoke")
-                .clickOnAnswer("I used to smoke, but have since quit")
-                .clickOnAnswer("No, I never smoked")
                 .clickNextButton(new HeartOrBloodVesselPageOLS());
+//                .clickNextButton(new EverSmokedCigarettesPageOLS());
+//
+//        everSmokedCigarettesPageOLS
+//                .waitForPageLoad();
+//        HeartOrBloodVesselPageOLS heartOrBloodVesselPageOLS = everSmokedCigarettesPageOLS
+//                .clickOnAnswer("Yes, I currently smoke")
+//                .clickOnAnswer("I used to smoke, but have since quit")
+//                .clickOnAnswer("No, I never smoked")
+//                .clickNextButton(new HeartOrBloodVesselPageOLS());
 
 
         //---------------Q8 HeartOrBloodVesselPageOLS-------------------
-        heartOrBloodVesselPageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(heartOrBloodVesselPageOLS.getTitleText(), heartOrBloodVesselPageOLS.titleExpected, "Title is diff");
-        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS = heartOrBloodVesselPageOLS
-                //---------SKIP to Q11 if selected "None of the above"  or go to Q10--------
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS())
-                .waitForPageLoad();
-        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS.back();
-        heartOrBloodVesselPageOLS
-                .waitForPageLoad();
+        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS =
+                heartOrBloodVesselPageOLS
+                        //---------SKIP to Q11 if selected "None of the above"  or go to Q10--------
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS())
+                        .waitForPageLoad();
+        HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+                .back();
         WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS =
                 heartOrBloodVesselPageOLS
-                .clickOnAnswers("Heart attack",
-                        "Stroke",
-                        "TIA or \"Mini-Stroke\"")
-                .clickNextButton(new WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Heart attack",
+                                "Stroke",
+                                "TIA or \"Mini-Stroke\"")
+                        .clickNextButton(new WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS());
 
 
         //---------------Q9 SubquestionExperiencedHeartPageOLS-------------------
-        whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS
-                .waitForPageLoad(1, whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS.titleExpected1);
         HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS =
                 whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
-                .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS());
+                        .waitForPageLoad(1, whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS.titleExpected1)
+                        .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                        .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                        .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+                        .clickNextButton(new HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS());
         haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5622", /*protocol1,*/ protocol2);
-        debugPageOLS.back();
-        whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS.waitForPageLoad()
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5622", /*protocol1,*/ protocol2)
+                .back();
+        whenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS
+                .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
@@ -306,47 +317,47 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
 
 
         //---------------Q10 HaveYouExperiencedAnyFollowingCardiovascularInterventions_OLS-------------------
-        haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
-                .waitForPageLoad();
-        Assert.assertEquals(haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS.getTitleText(), haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS.titleExpected, "Title is diff");
-        HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_OLS = haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
-                //---------SKIP to Q12 if selected "None of the above"  or go to Q11--------
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS())
-                .waitForPageLoad();
-        hasDoctorEverDiagnosedYouMedicalCond_OLS.back();
-        haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
-                .waitForPageLoad();
-        ReceivedHeartProcedurePageOLS receivedHeartProcedurePageOLS = haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
-                .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
-                        "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
-                        "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
-                        "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
-                .clickNextButton(new ReceivedHeartProcedurePageOLS());
+        HasDoctorEverDiagnosedYouMedicalCond_OLS hasDoctorEverDiagnosedYouMedicalCond_OLS =
+                haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+                        .waitForPageLoad()
+                        //---------SKIP to Q12 if selected "None of the above"  or go to Q11--------
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+        hasDoctorEverDiagnosedYouMedicalCond_OLS
+                .waitForPageLoad()
+                .back();
+        ReceivedHeartProcedurePageOLS receivedHeartProcedurePageOLS =
+                haveYouExperiencedAnyFollowingCardiovascularInterventions_OLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
+                                "Coronary Artery Bypass Graft, also known as CABG, \"cabbage,\" or heart bypass surgery",
+                                "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
+                                "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
+                        .clickNextButton(new ReceivedHeartProcedurePageOLS());
 
 
         //---------------Q11 ReceivedHeartProcedurePageOLS-------------------
         receivedHeartProcedurePageOLS
-                .waitForPageLoad();
-        Assert.assertEquals(receivedHeartProcedurePageOLS.getTitleText(), receivedHeartProcedurePageOLS.titleExpected, "Title is diff");
-        receivedHeartProcedurePageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+                .clickNextButton(hasDoctorEverDiagnosedYouMedicalCond_OLS);
         hasDoctorEverDiagnosedYouMedicalCond_OLS
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5624", /*protocol1,*/ protocol2);
-        debugPageOLS.back();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5624", /*protocol1,*/ protocol2)
+                .back();
         receivedHeartProcedurePageOLS.waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+                .clickNextButton(hasDoctorEverDiagnosedYouMedicalCond_OLS);
         hasDoctorEverDiagnosedYouMedicalCond_OLS
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5624", /*protocol1,*/ protocol2);
-        debugPageOLS.back();
-        receivedHeartProcedurePageOLS.waitForPageLoad()
-                .clickOnAnswer("4 - 6 months ago")
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5624", /*protocol1,*/ protocol2)
+                .back();
+        receivedHeartProcedurePageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("More than 6 months ago")
-                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS());
+                .clickNextButton(hasDoctorEverDiagnosedYouMedicalCond_OLS);
 
 
         //---------------Q13 HasDoctorEverDiagnosedYouMedicalCond_OLS-------------------
@@ -358,17 +369,19 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                         "Drug, alcohol or steroid abuse in the past 12 months")
                 .clickNextButton(new ApproximateHeightPageOLS());
         approximateHeightPageOLS
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS5626", /*protocol1,*/ protocol2);
-        debugPageOLS.back();
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5626", /*protocol1,*/ protocol2)
+                .back();
         hasDoctorEverDiagnosedYouMedicalCond_OLS.waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        approximateHeightPageOLS
+        TransitionalStatementLowtPageOLS transitionalStatementLowtPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()//---Disqualify ("High BMI") if > 50 - Calculate BMI as (X lbs/2.2)/[(X inches/39.37) x (X inches/39.37)]
                 .setAll("5", "0", "256")
-                .clickNextButton(transitionalStatementLowtPageOLS)
+                .clickNextButton(new TransitionalStatementLowtPageOLS());
+        transitionalStatementLowtPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5627", /*protocol1,*/ protocol2)
@@ -377,7 +390,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .waitForPageLoad() //----------Change inches to maje BMI to <50--------------------
                 .setIncheswithClear("5")
                 .clickNextButton(new IdentificationPageOLS());
-                //----------PII (IdentificationPageOLS) Page--------------------
+        //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)

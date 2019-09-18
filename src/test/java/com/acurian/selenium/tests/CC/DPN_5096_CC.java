@@ -28,7 +28,7 @@ import java.util.List;
 public class DPN_5096_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_DPN_5096_site},
                 {Site.AUT_DPN_5096S_site}
         };
@@ -72,7 +72,7 @@ public class DPN_5096_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                        .getExpectedModifiedTitle("a study for diabetics", "300"), //todo https://jira.acurian.com/browse/SCREEN-11041
+                        .getExpectedModifiedTitle("a study for diabetics", "300"),
                 "Title is diff");
 
         dateOfBirthPageCC
@@ -94,12 +94,12 @@ public class DPN_5096_CC extends BaseTest {
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 genderPageCC
-                .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("1943")
-                .clickOnAnswer("Female")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                        .waitForPageLoad()
+                        .setMonth("Apr")
+                        .setDay("5")
+                        .setYear("1943")
+                        .clickOnAnswer("Female")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -133,7 +133,7 @@ public class DPN_5096_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(diagnosedAnyTypeOfDiabetesPageCC);
 
-         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
+        WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
@@ -149,6 +149,7 @@ public class DPN_5096_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
                     .back();
@@ -265,7 +266,8 @@ public class DPN_5096_CC extends BaseTest {
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowWouldYouRateYourPain_CC());
 
-        howWouldYouRateYourPain_CC.waitForPageLoad()
+        howWouldYouRateYourPain_CC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsCC);
@@ -275,7 +277,8 @@ public class DPN_5096_CC extends BaseTest {
                 .clickOnAnswer("6 - 11 months")
                 .clickNextButton(howWouldYouDescribeTheSymptoms_CC);
 
-        howWouldYouRateYourPain_CC.waitForPageLoad()
+        howWouldYouRateYourPain_CC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
                 .back(approxHowlongYouBeenExpSymptomsCC);
@@ -299,10 +302,11 @@ public class DPN_5096_CC extends BaseTest {
                 .clickNextButton(howWouldYouRateYourPain_CC);
 
         //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
-        HaveYouHadAnyOfTheFollowingAmputatedPageCC haveYouHadAnyOfTheFollowingAmputatedPageCC = howWouldYouRateYourPain_CC
-                .waitForPageLoad()
-                .selectPainRating("0")
-                .clickNextButton(new HaveYouHadAnyOfTheFollowingAmputatedPageCC());
+        HaveYouHadAnyOfTheFollowingAmputatedPageCC haveYouHadAnyOfTheFollowingAmputatedPageCC =
+                howWouldYouRateYourPain_CC
+                        .waitForPageLoad()
+                        .selectPainRating("0")
+                        .clickNextButton(new HaveYouHadAnyOfTheFollowingAmputatedPageCC());
 
         haveYouHadAnyOfTheFollowingAmputatedPageCC
                 .waitForPageLoad()
@@ -360,6 +364,7 @@ public class DPN_5096_CC extends BaseTest {
                 .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
 
         cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5524")
                 .back(currentlyTreatingYourDiabetesPageCC);
@@ -468,9 +473,9 @@ public class DPN_5096_CC extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name);
-        switch (site)
-                {case AUT_DPN_5096_site:
-                        siteSelectionPageCC
+        switch (site) {
+            case AUT_DPN_5096_site:
+                siteSelectionPageCC
                         .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("No")
@@ -481,24 +486,23 @@ public class DPN_5096_CC extends BaseTest {
                         .childPidFromDbToLog(env)
                         .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
-                        break;
-                    case AUT_DPN_5096S_site:
-                        siteSelectionPageCC
-                            .clickOnAnswer(site.name)
-                            .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                            .waitForPageLoadSyn()
-                            .assertVariables("Acurian", "Trial", "04/05/2001", "US",
-                                    "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                    "999 -999-9999", "aut5096cc", site.name,
-                                    "%SYN_PROJECT_CODE%")//todo https://jira.acurian.com/browse/SCREEN-11031
-                            .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                            .clickNextButton(selectActionPageCC)
-                            .waitForPageLoad()
-                            .pidFromDbToLog(env)
-                            .getRadiantDbToLog(env)
-                            .assertGeneratedFul(env, site)
-                            .dispoShouldMatch(site.dispo);
-                }
-        ;
+                break;
+            case AUT_DPN_5096S_site:
+                siteSelectionPageCC
+                        .clickOnAnswer(site.name)
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                        .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "04/05/2001", "US",
+                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", "aut5096cc", site.name,
+                                "APTXXXDPN008")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .getRadiantDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo);
+        }
     }
 }

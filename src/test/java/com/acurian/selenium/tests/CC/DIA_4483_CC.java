@@ -269,7 +269,8 @@ public class DIA_4483_CC extends BaseTest {
         TakeYourInsulinInjectionsPageCC takeYourInsulinInjectionsPageCC = brandsOfInsulinPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Insulin NPH, also known as Humulin N or Novolin N",
-                        "Insulin glargine, also known as Basaglar, Lantus, or Toujeo",
+                        "Insulin glargine, Basaglar, or Lantus",
+                        "Toujeo, aslo known as insulin glargine",
                         "Insulin detemir, also known as Levemir",
                         "Insulin degludec, also known as Tresiba",
                         "Insulin regular, also known as Humulin R or Novolin R",

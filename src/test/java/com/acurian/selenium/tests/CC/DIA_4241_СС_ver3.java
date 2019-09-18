@@ -397,7 +397,15 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .back();
         brandsOfInsulinPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Insulin glargine, also known as Basaglar, Lantus, or Toujeo")
+                .clickOnAnswers("Toujeo, aslo known as insulin glargine")
+                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4630", site.activeProtocols[1])
+                .back(brandsOfInsulinPageCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Insulin glargine, Basaglar, or Lantus")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickNextButton(noOfAlcoholicDrinksCC);
