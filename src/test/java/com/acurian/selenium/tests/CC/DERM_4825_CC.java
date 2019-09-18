@@ -26,7 +26,7 @@ public class DERM_4825_CC extends BaseTest {
     @Test()
     @Description("DERM 4825 Genentech Atopic Derm")
     public void derm4825ccGADTest() {
-        Site site = Site.AUT_AMS1_4825_site;
+        Site site = Site.AUT_DPN_5096_site;
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
