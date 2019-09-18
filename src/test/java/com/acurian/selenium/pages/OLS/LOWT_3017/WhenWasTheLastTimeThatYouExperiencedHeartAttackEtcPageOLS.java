@@ -13,7 +13,7 @@ public class WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS extends M
 
     public final String titleExpected1 = "When was the last time that you experienced a heart attack?";
     public final String titleExpected2 = "When was the last time that you experienced a stroke?";
-    public final String titleExpected3 = "When was the last time that you experienced a mini-stroke or TIA?";
+    public final String titleExpected3 = "When was the last time that you experienced a TIA or mini-stroke?";
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]")
     WebElement titleText;

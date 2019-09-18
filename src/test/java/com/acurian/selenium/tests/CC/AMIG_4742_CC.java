@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AMIG_4742_CC extends BaseTest {
-
+    //FULs were stopped on AMS1 R68.2
     @Test(enabled = true)
     public void Amig4742cc() {
         String phoneNumber = "AUTAMS1MIG";
@@ -189,18 +189,34 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickOnAnswer("Yes, daily medications that my doctor prescribed")
                 .clickNextButton(new AreYouCurrentlyTakingPrescriptionMedicationsDailyPageСС());
 
-        //Q9 Are you currently taking prescription medications daily to prevent migraines from starting?
+
+        //--------------Q9 Are you currently taking prescription medications daily to prevent migraines from starting?
         areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС
                 .waitForPageLoad()
                 .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC)
-                .waitForPageLoad()
-                .back();
+                .waitForPageLoad();
+
+        //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
+        if (env.equals("PRD")) {
+            haveYouEverHadBotoxbotulinumtoxin_CC
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("QS6036", "12-18");
+        }
+        else if (env.equals("STG")) {
+            haveYouEverHadBotoxbotulinumtoxin_CC
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("QS6036", "9-16");
+        }
+        haveYouEverHadBotoxbotulinumtoxin_CC.back();
+
         PrescriptionMedicationsDailyToPreventMigrainesPageCC prescriptionMedicationsDailyToPreventMigrainesPageCC =
         areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС
                 .waitForPageLoad()
                 .clickOnAnswer("Yes, I still take daily medications that my doctor prescribed")
                 .clickNextButton(new PrescriptionMedicationsDailyToPreventMigrainesPageCC());
+
+
 
         //        Q10	How satisfied are you with the prescription medications that you take daily to prevent migraines from starting?
         List<String> disqualifyQ10 = Arrays.asList("Satisfied", "Somewhat Satisfied");

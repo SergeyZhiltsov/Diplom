@@ -4,15 +4,12 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.*;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS;
+import com.acurian.selenium.pages.OLS.PsoriaticArthritis.PsoriaticArthritisConditionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS;
@@ -23,9 +20,7 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PS_4656_OLS extends BaseTest {
 
@@ -39,43 +34,42 @@ public class PS_4656_OLS extends BaseTest {
     @Test(enabled = true, dataProvider = "sites")
     @Description("PS 4556 OLS")
     public void ps4556olsTest(Site site) {
-        String phoneNumber = "AUTAMS1PSO";
-        final String[] protocols = site.activeProtocols;
-        String studyName = "a psoriasis";
+        final String phoneNumber = "AUTAMS1PSO";
+        final String studyName = "a psoriasis";
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a psoriasis study", "350"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+                .getExpectedModifiedTitle("a psoriasis study", "350"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
-        zipCodePageOLS
-                .waitForPageLoad();
         GenderPageOLS genderPageOLS = zipCodePageOLS
+                .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
-        genderPageOLS
-                .waitForPageLoad();
         HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS = genderPageOLS
+                .waitForPageLoad()
                 .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
-        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols = healthcareDiagnosedPsoriasisPageOLS
+        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
+                healthcareDiagnosedPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
         hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7002", protocols)
+                .checkProtocolsContainsForQNumber("QS7002", site.activeProtocols)
                 .back();
         HowLongPsoriasisPageOLS howLongPsoriasisPageOLS = healthcareDiagnosedPsoriasisPageOLS
                 .waitForPageLoad()
@@ -89,48 +83,46 @@ public class PS_4656_OLS extends BaseTest {
         typePsoriasisPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7003", protocols)
+                .checkProtocolsContainsForQNumber("QS7003", site.activeProtocols)
                 .back();
         howLongPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 to 11 months ago")
                 .clickNextButton(typePsoriasisPageOLS);
 
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+                typePsoriasisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
-
-        HashMap<String, List<String>> options = new HashMap<>();
-        BodyAffectedPsoriasisPageOLS bodyAffectedPsoriasisPageOLS = new BodyAffectedPsoriasisPageOLS();
-        options.put("Guttate - Small, pink-red spots appear on your skin", Arrays.asList(site.activeProtocols));
-        options.put("Pustular - White blisters surrounded by red, irritated skin", Arrays.asList(site.activeProtocols));
-        options.put("Erythrodermic - Redness that covers large areas of your skin", Arrays.asList(site.activeProtocols));
-        options.put("Inverse - Skin redness and irritation occurs in the armpits, groin, and in areas of overlapping skin", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : options.entrySet()) {
-            System.out.println(entry.getKey());
-            typePsoriasisPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("I am not sure")
-                    .clickOnAnswers(entry.getKey())
-                    .clickNextButton(bodyAffectedPsoriasisPageOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS7004", (String[]) entry.getValue().toArray())
-                    .back();
-        }
-        typePsoriasisPageOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS7020", site.activeProtocols)
+                .back();
+        PartsBodyCurrentlyAffectedByPsoriasisPageOLS partsBodyCurrentlyAffectedByPsoriasisPageOLS = typePsoriasisPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Plaque - Thick, red patches of skin are covered by flaky, silver-white scales. This is the most common type of psoriasis")
+                .clickNextButton(new PartsBodyCurrentlyAffectedByPsoriasisPageOLS());
+        partsBodyCurrentlyAffectedByPsoriasisPageOLS
+                .waitForPageLoad()
+                .back(typePsoriasisPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("I am not sure")
-                .clickNextButton(bodyAffectedPsoriasisPageOLS);
+                .clickNextButton(partsBodyCurrentlyAffectedByPsoriasisPageOLS);
 
-        TreatYourPsoriasisPageOLS treatYourPsoriasisPageOLS = bodyAffectedPsoriasisPageOLS
+
+        TreatYourPsoriasisPageOLS treatYourPsoriasisPageOLS = partsBodyCurrentlyAffectedByPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of these")
                 .clickNextButton(new TreatYourPsoriasisPageOLS());
         treatYourPsoriasisPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7006", protocols)
+                .checkProtocolsContainsForQNumber("QS7006", site.activeProtocols)
                 .back();
-        HeadFaceNeckPsoriasisPageOLS headFaceNeckPsoriasisPageOLS = bodyAffectedPsoriasisPageOLS
+        HeadFaceNeckPsoriasisPageOLS headFaceNeckPsoriasisPageOLS = partsBodyCurrentlyAffectedByPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Head, scalp, face, and neck",
                         "Chest, stomach, and back",
@@ -155,104 +147,79 @@ public class PS_4656_OLS extends BaseTest {
 
         legsFeetPsoriasisPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("A")
-                .clickNextButton(treatYourPsoriasisPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7011", protocols)
-                .back();
-        legsFeetPsoriasisPageOLS
-                .waitForPageLoad()
                 .clickOnAnswer("E")
                 .clickNextButton(treatYourPsoriasisPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7011", protocols)
+                .checkProtocolsContainsForQNumber("QS7011", site.activeProtocols)
                 .back();
         legsFeetPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("D")
                 .clickNextButton(treatYourPsoriasisPageOLS);
 
-        EverTakenOteziaPageOLS everTakenOteziaPageOLS = treatYourPsoriasisPageOLS
+        PsoriaticArthritisConditionPageOLS psoriaticArthritisConditionPageOLS = treatYourPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new EverTakenOteziaPageOLS());
-        everTakenOteziaPageOLS
+                .clickNextButton(new PsoriaticArthritisConditionPageOLS());
+        psoriaticArthritisConditionPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7014", protocols)
+                .checkProtocolsContainsForQNumber("QS7014", site.activeProtocols)
                 .back();
-        LastInjectibleForPsoriasisPageOLS lastInjectibleForPsoriasisPageOLS = treatYourPsoriasisPageOLS
+        MedicationsForPsoriasisPageOLS medicationsForPsoriasisPageOLS = treatYourPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Medications taken by mouth (oral medications)")
-                .clickNextButton(new LastInjectibleForPsoriasisPageOLS());
+                .clickNextButton(new MedicationsForPsoriasisPageOLS());
 
-        lastInjectibleForPsoriasisPageOLS
+        medicationsForPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 months to 1 year ago")
-                .clickNextButton(everTakenOteziaPageOLS)
+                .clickNextButton(psoriaticArthritisConditionPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7014", protocols)
-                .back();
-        lastInjectibleForPsoriasisPageOLS
+                .checkProtocolsContainsForQNumber("QS7014", site.activeProtocols)
+                .back(medicationsForPsoriasisPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(everTakenOteziaPageOLS)
+                .clickNextButton(psoriaticArthritisConditionPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7014", protocols)
+                .checkProtocolsContainsForQNumber("QS7014", site.activeProtocols)
                 .back();
-        lastInjectibleForPsoriasisPageOLS
+        HaveYouEverTakenOtezlaPageOLS haveYouEverTakenOtezlaPageOLS = medicationsForPsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("In the last 6 months")
-                .clickNextButton(everTakenOteziaPageOLS);
+                .clickNextButton(new HaveYouEverTakenOtezlaPageOLS());
 
-        BiologicMedicationsPageOLS biologicMedicationsPageOLS = everTakenOteziaPageOLS
+        BiologicMedicationsPageOLS biologicMedicationsPageOLS = haveYouEverTakenOtezlaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new BiologicMedicationsPageOLS());
         biologicMedicationsPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7015", protocols)
+                .checkProtocolsContainsForQNumber("QS7015", site.activeProtocols)
                 .back();
-        everTakenOteziaPageOLS
+        haveYouEverTakenOtezlaPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(biologicMedicationsPageOLS);
 
 
-
-        HashMap<String, List<String>> options2 = new HashMap<>();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
-        options2.put("Actemra", Arrays.asList(protocols));
-        options2.put("Benlysta", Arrays.asList(protocols));
-        options2.put("Cimzia", Arrays.asList(protocols));
-        options2.put("Enbrel", Arrays.asList(protocols));
-        options2.put("Entyvio", Arrays.asList(protocols));
-        options2.put("Humira", Arrays.asList(protocols));
-        options2.put("Kineret", Arrays.asList(protocols));
-        options2.put("Orencia", Arrays.asList(protocols));
-        options2.put("Prolia or Xgeva", Arrays.asList(protocols));
-        options2.put("Raptiva", Arrays.asList(protocols));
-        options2.put("Remicade", Arrays.asList(protocols));
-        options2.put("Rituxan", Arrays.asList(protocols));
-        options2.put("Simponi", Arrays.asList(protocols));
-        options2.put("Stelara", Arrays.asList(protocols));
-        options2.put("Taltz", Arrays.asList(protocols));
-        options2.put("Tysabri", Arrays.asList(protocols));
-        for (Map.Entry<String, List<String>> entry : options2.entrySet()) {
-            System.out.println(entry.getKey());
+        List<String> disqualifyQ16 = Arrays.asList("Actemra", "Benlysta", "Cimzia", "Enbrel", "Entyvio", "Humira",
+                "Kineret", "Orencia", "Prolia or Xgeva", "Raptiva", "Remicade", "Rituxan", "Simponi", "Stelara",
+                "Taltz", "Tysabri");
+        for (String answer : disqualifyQ16) {
+            System.out.println("Select answer for Q16: " + answer);
             biologicMedicationsPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
-                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                    .clickOnAnswers(answer)
+                    .clickNextButton(psoriaticArthritisConditionPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS7016", (String[]) entry.getValue().toArray())
+                    .checkProtocolsContainsForQNumber("QS7016", site.activeProtocols)
                     .back();
         }
         biologicMedicationsPageOLS
@@ -266,72 +233,42 @@ public class PS_4656_OLS extends BaseTest {
                 .clickOnAnswers("Cancer")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = otherThanSkinCancerPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocols)
-                .back();
-        otherThanSkinCancerPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("6 - 10 years ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocols)
-                .back();
-        otherThanSkinCancerPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("11 or more years ago")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS42", protocols)
-                .back();
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
+                new DoAnyOftheFollowingAdditionalDiagnosesOLS();
+        List<String> disqualifyQ6QS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago",
+                "11 or more years ago");
+        for (String answer : disqualifyQ6QS42) {
+            System.out.println("Select answer for Q6QS42: " + answer);
+            otherThanSkinCancerPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                    .back();
+        }
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
-        ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Drug or alcohol abuse within the past year")
-                .clickNextButton(new ApproximateHeightPageOLS());
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis B")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Hepatitis C")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("HIV or AIDS")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", protocols)
-                .back();
+        //Q24: QS59
+        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
+        List<String> disqualifyQ26 = Arrays.asList("Drug or alcohol abuse within the past year", "Hepatitis B",
+                "Hepatitis C", "HIV or AIDS");
+        for (String answer : disqualifyQ26) {
+            System.out.println("Select answer for Q26: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -355,7 +292,8 @@ public class PS_4656_OLS extends BaseTest {
 //                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
@@ -368,7 +306,7 @@ public class PS_4656_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4656")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }

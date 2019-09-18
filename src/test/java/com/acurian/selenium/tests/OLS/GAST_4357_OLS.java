@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.OLS.ADG_4357.*;
 import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
@@ -124,25 +123,21 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickNextButton(new WithType2DiabetesPageOLS());
 
         //Q4
-        HashMap<String, List<String>> disqualifyQ4 = new HashMap<>();
         CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS =
                 new CurrentlyTreatingYourDiabetesPageOLS();
-        disqualifyQ4.put("Within the past 2 months", Arrays.asList(site.activeProtocols)); //Disqualify ("Diabetes < 5 years")
-        disqualifyQ4.put("3 - 6 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ4.put("7 - 11 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ4.put("1 to less than 5 years ago", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ4.entrySet()) {
-            System.out.println(entry.getKey());
+        List<String> disqualify = Arrays.asList("Within the past 2 months", "3 - 6 months ago", "7 - 11 months ago",
+                "1 to less than 5 years ago");
+        for (String answer : disqualify) {
+            System.out.println("Select answer for Q4: " + answer);
             withType2DiabetesPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer(entry.getKey()) //skip to Q7
+                    .clickOnAnswer(answer) //skip to Q7
                     .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
                     .back(withType2DiabetesPageOLS);
         }
-
         WithType1DiabetesPageOLS withType1DiabetesPageOLS = withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .back(whatKindOfDiabetesPageOLS)
@@ -152,39 +147,28 @@ public class GAST_4357_OLS extends BaseTest {
         //Q5
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS =
                 new CardiovascularDiseaseThanOthersPageOLS();
-        HashMap<String, List<String>> disqualifyQ5 = new HashMap<>();
-        disqualifyQ5.put("Within the past 2 months", Arrays.asList(site.activeProtocols)); //Disqualify ("Diabetes < 5 years")
-        disqualifyQ5.put("3 - 6 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ5.put("7 - 11 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ5.put("1 to less than 5 years ago", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ5.entrySet()) {
-            System.out.println(entry.getKey());
+        for (String answer : disqualify) {
+            System.out.println("Select answer for Q5: " + answer);
             withType1DiabetesPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer(entry.getKey()) //skip to Q7
+                    .clickOnAnswer(answer) //skip to Q7
                     .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7205", site.activeProtocols)
                     .back(withType1DiabetesPageOLS);
         }
-
         HowLongAgoDiagnosedDiabetesPageOLS howLongAgoDiagnosedDiabetesPageOLS = withType1DiabetesPageOLS
                 .waitForPageLoad()
                 .back(whatKindOfDiabetesPageOLS)
                 .clickOnAnswer("Unsure") //If selected "Unsure", go to Q6
                 .clickNextButton(new HowLongAgoDiagnosedDiabetesPageOLS());
         //Q6
-        HashMap<String, List<String>> disqualifyQ6 = new HashMap<>();
-        disqualifyQ6.put("Within the past 2 months", Arrays.asList(site.activeProtocols)); //Disqualify ("Diabetes < 5 years")
-        disqualifyQ6.put("3 - 6 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ6.put("7 - 11 months ago", Arrays.asList(site.activeProtocols));
-        disqualifyQ6.put("1 to less than 5 years ago", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ6.entrySet()) {
-            System.out.println(entry.getKey());
+        for (String answer : disqualify) {
+            System.out.println("Select answer for Q6: " + answer);
             howLongAgoDiagnosedDiabetesPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer(entry.getKey()) //skip to Q7
+                    .clickOnAnswer(answer) //skip to Q7
                     .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
@@ -257,17 +241,16 @@ public class GAST_4357_OLS extends BaseTest {
         }
 
         //Q12
-        HashMap<String, List<String>> disqualifyQ12 = new HashMap<>();
-        SurgeriesPerformedPageOLS surgeriesPerformedPageOLS = new SurgeriesPerformedPageOLS(); //Disqualify ("Parenteral feeding or tube")
-        disqualifyQ12.put("IV nutrition or Parenteral feeding – liquid food provided through a tube into your veins", Arrays.asList(site.activeProtocols));
-        disqualifyQ12.put("Nasogastric tube – a tube that goes in your nose and then enters your stomach to give you food or help with symptoms", Arrays.asList(site.activeProtocols));
-        disqualifyQ12.put("Enterostomy tube – a tube that goes through your skin directly into your stomach to provide you food or help with symptoms", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ12.entrySet()) {
-            System.out.println(entry.getKey());
+        SurgeriesPerformedPageOLS surgeriesPerformedPageOLS = new SurgeriesPerformedPageOLS();
+        List<String> disqualifyQ12 = Arrays.asList("IV nutrition or Parenteral feeding – liquid food provided through a tube into your veins",
+                "Nasogastric tube – a tube that goes in your nose and then enters your stomach to give you food or help with symptoms",
+                "Enterostomy tube – a tube that goes through your skin directly into your stomach to provide you food or help with symptoms");
+        for (String answer : disqualifyQ12) {
+            System.out.println("Select answer for Q12: " + answer);
             currentlyHaveAnyOffFollowingPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
+                    .clickOnAnswers(answer)
                     .clickNextButton(surgeriesPerformedPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
@@ -279,18 +262,15 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(surgeriesPerformedPageOLS);
         //Q13
-        HashMap<String, List<String>> disqualifyQ13 = new HashMap<>();
-        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = new WeightLossSurgeryPageOLS(); //Disqualify ("GI surgery")
-        disqualifyQ13.put("Gastric pacemaker placement", Arrays.asList(site.activeProtocols));
-        disqualifyQ13.put("Gastrectomy or removal of part of the stomach", Arrays.asList(site.activeProtocols));
-        disqualifyQ13.put("Fundoplication", Arrays.asList(site.activeProtocols));
-        disqualifyQ13.put("Vagotomy", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ13.entrySet()) {
-            System.out.println(entry.getKey());
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = new WeightLossSurgeryPageOLS();
+        List<String> disqualifyQ13 = Arrays.asList("Gastric pacemaker placement",
+                "Gastrectomy or removal of part of the stomach", "Fundoplication", "Vagotomy");
+        for (String answer : disqualifyQ13) {
+            System.out.println("Select answer for Q13: " + answer);
             surgeriesPerformedPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
+                    .clickOnAnswers(answer)
                     .clickNextButton(weightLossSurgeryPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
@@ -302,32 +282,28 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(weightLossSurgeryPageOLS);
         //Q14
-        HashMap<String, List<String>> disqualifyQ14 = new HashMap<>();
-        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = new ProcedureForWeightLossPageOLS(); //Disqualify ("GI surgery")
-        disqualifyQ14.put("Gastric bypass", Arrays.asList(site.activeProtocols));
-        disqualifyQ14.put("Gastric sleeve or sleeve gastrectomy", Arrays.asList(site.activeProtocols));
-        disqualifyQ14.put("Duodenal switch", Arrays.asList(site.activeProtocols));
-        disqualifyQ14.put("Lap band or gastric banding", Arrays.asList(site.activeProtocols));
-        disqualifyQ14.put("Gastric balloon", Arrays.asList(site.activeProtocols));
-        disqualifyQ14.put("I had a weight loss surgery, but I am unsure which type", Arrays.asList(site.activeProtocols));
-        for (Map.Entry<String, List<String>> entry : disqualifyQ14.entrySet()) {
-            System.out.println(entry.getKey());
+        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = new ProcedureForWeightLossPageOLS();
+        List<String> disqualifyQ14 = Arrays.asList("Gastric bypass", "Gastric sleeve or sleeve gastrectomy",
+                "Duodenal switch", "Lap band or gastric banding", "Gastric balloon",
+                "I had a weight loss surgery, but I am unsure which type");
+        for (String answer : disqualifyQ14) {
+            System.out.println("Select answer for Q14: " + answer);
             weightLossSurgeryPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
-                    .clickOnAnswers(entry.getKey())
+                    .clickOnAnswers(answer)
                     .clickNextButton(procedureForWeightLossPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7214", site.activeProtocols)
                     .back(weightLossSurgeryPageOLS);
         }
-
         weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad();
+
 //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -419,7 +395,7 @@ public class GAST_4357_OLS extends BaseTest {
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
-                "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS()); //Display Q12.1: QS47A
         //Q12.1 - 12.4:
         subquestionExperiencedHeartPageOLS

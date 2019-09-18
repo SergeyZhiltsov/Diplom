@@ -128,9 +128,8 @@ public class IncongruentSiteSelectionCloseCC extends MainPageCC {
     @Step
     public IncongruentSiteSelectionCloseCC getPID(){
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID="+pidNumber);
+        logTextToAllureAndConsole("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = "+pidNumber);
         return this;
     }
 

@@ -3,8 +3,16 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.OLS.KAD_4631_OLS"></class>
-            <class name="com.acurian.selenium.tests.CC.DERM_7193_CC"></class>
+            <class name="com.acurian.selenium.tests.OLS.OA_5055_OLS_S"></class>
+            <class name="com.acurian.selenium.tests.OLS.OA_5044_OLS_S"></class>
+            <class name="com.acurian.selenium.tests.OLS.OA_4831_OLS_A_S"></class>
+            <class name="com.acurian.selenium.tests.OLS.OA_4109_OLS"></class>
+
+            <class name="com.acurian.selenium.tests.CC.OA_5055_CC_S"></class>
+            <class name="com.acurian.selenium.tests.CC.OA_5044_CC_S"></class>
+            <class name="com.acurian.selenium.tests.CC.OA_4831_CC_A_S"></class>
+            <class name="com.acurian.selenium.tests.CC.OA_4109CC"></class>
+
         </classes>
     </test>
 </suite>

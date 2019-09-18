@@ -7,11 +7,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class DebugPageOLS extends MainPageOLS{
@@ -107,6 +109,8 @@ public class DebugPageOLS extends MainPageOLS{
                 break;
         }
         waitForAnimation();
+//        driverWait.getWaitDriver().withTimeout(15, TimeUnit.SECONDS).until(ExpectedConditions
+//                .attributeToBe(By.xpath("/html/body/div[3]"), "display", "none"));
         return this;
     }
 
@@ -213,7 +217,7 @@ public class DebugPageOLS extends MainPageOLS{
                 .findElements(By.xpath("following-sibling::*[4]//tbody/tr/td"))
                 .stream().map(el -> el.getText()).collect(Collectors.toList());
         closeDebugWindow();
-        logTextToAllure("Protocol="+temp);
+        logTextToAllure("Protocol = "+temp);
         return temp;
     }
 

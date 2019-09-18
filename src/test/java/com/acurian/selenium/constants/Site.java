@@ -31,7 +31,7 @@ public enum Site {
     //7193
     AUT_AMS1_7193_Site("AUT_AMS1_7193_site", "08204", "1R", true, false, "ARQ_151_212"),
     //3889
-    AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19901" , "1R", true, false, "M14_431", "M14_433", "M15_991", "M16_006"),
+    AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19901", "1R", true, false, "M14_431", "M14_433", "M15_991", "M16_006"),
     //3973
     AUT_ROC_3973_site("AUT_ROC_3973_site", "19901", "1R", true, true, "WN39434"),
     //4109
@@ -59,7 +59,7 @@ public enum Site {
     //4556
     AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471006"),//"B7471007"
     AUT_VAC_4556_A("AUT_VAC_4556_A", "19901", "1R", true, true, "B7471007_A"),
-//    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
+    //    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
     //4600
     AUT_AMS1_4600_site("AUT_AMS1_4600_site", "08204", "1R", true, false, "B7451014"),
     //7036
@@ -67,7 +67,7 @@ public enum Site {
     //4605
     AUT_OBS_4605_Site("AUT_OBS_4605_Site", "19901", "1R", true, false, "RM_493_013"),
     //4631
-    AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", true, false,  "KPL_716_C001"),
+    AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", true, false, "KPL_716_C001"),
     //4656
     AUT_PSO4656("AUT_PSO4656", "19901", "1R", true, false, "CC_10004_PSOR_022"),
     //4691
@@ -104,7 +104,7 @@ public enum Site {
     AUT_AMS1_5019_site("AUT_AMS1_5019_site", "19422", "1R", false, false, "BOS_589_201"),
     AUT_AMS1_5019S_site("AUT_AMS1_5019S_site", "08204", "41C", false, false, "BOS_589_201"),
     //5034
-    AUT_CV_5034A_site("AUT_CV_5034A_site", "45205", "1R", true, false, "K_877_302_A"),
+    AUT_CV_5034A_site("AUT_CV_5034A_site", "45206", "1R", true, false, "K_877_302_A"), //45205
     AUT_CV_5034S_site("AUT_CV_5034S_site", "19901", "41C", false, false, "K_877_302_S"),
     //5044
     AUT_OA_5044_S("AUT_OA_5044_S", "19901", "41C", true, false, "R475_OA_1758"),
@@ -112,9 +112,15 @@ public enum Site {
     AUT_OA_5055_S("AUT_OA_5055_S", "19901", "41C", false, false, "R475_PN_1602"),
     //5062
     AUT_NASH5062_site("AUT_NASH5062_site", "19901", "41C", false, false, "3152_301_002"),
+    //5071
+    AUT_AMS1_5071_site("AUT_AMS1_5071_site", "08204", "1R", true, false, "GS_US_431_4566", "GS_US_431_4567"),
+    AUT_AMS1_5071S_site("AUT_AMS1_5071S_site", "19422", "41C", true, false, "GS_US_431_4566", "GS_US_431_4567"),
     //4483
     AUT_NASH4483_site("AUT_AMS1_4483_site", "19901", "1R", false, false, "MGL_3196_11"),
     AUT_NASH4483S_site("AUT_AMS1_4483S_site", "19422", "41C", false, false, "MGL_3196_11"),
+    //Hot Flashes
+    AUT_AMS1_7119_site("AUT_AMS1_7119_site", "08204", "41C", false, false, "2693_CL_0301","2693_CL_0302","2693_CL_0304"),
+
     //Others
     AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java
     //Health check
@@ -123,7 +129,10 @@ public enum Site {
     AUT_GRA_FULm_Site("AUT_GRA_FULm_Site", "60061", "1R", true, true),
     //Dispo sites
     AUT_GMEGA_New("AUT_GMEGA_New", "08204", "1R", true, false), //"AUT_GMEGA_Site";//AUT_GMEGA_01
-    AUT_GRA_43C_Site("AUT_GRA_43C_Site", "73159", "43C", true, false);
+    AUT_GRA_43C_Site("AUT_GRA_43C_Site", "73159", "43C", true, false),
+    AUT_DPN_5096_site("AUT_AMS1_5096_site", "08204", "1R", true, false),
+    AUT_DPN_5096S_site("AUT_AMS1_5096S_site", "19422", "41C", true, false)
+    ;
 
 
 

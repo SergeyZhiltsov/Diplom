@@ -4,7 +4,6 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class NonQRtransitionPageCC extends MainPageCC {
@@ -14,11 +13,6 @@ public class NonQRtransitionPageCC extends MainPageCC {
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
-
-    public NonQRtransitionPageCC() {
-        PageFactory.initElements(getDriver(), this);
-    }
-
     @Step
     public NonQRtransitionPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
@@ -26,7 +20,7 @@ public class NonQRtransitionPageCC extends MainPageCC {
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

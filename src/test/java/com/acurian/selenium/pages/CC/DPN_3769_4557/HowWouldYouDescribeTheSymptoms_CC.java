@@ -14,13 +14,13 @@ import java.util.List;
 
 public class HowWouldYouDescribeTheSymptoms_CC extends MainPageCC{
 
-    public final String titleExpected = "How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms?\n"+
+    public final String titleExpected = "How would you describe the symptoms or sensations that you feel?\n"+
             "Agent Note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
+    @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
     public HowWouldYouDescribeTheSymptoms_CC() {
@@ -29,8 +29,7 @@ public class HowWouldYouDescribeTheSymptoms_CC extends MainPageCC{
 
     @Step
     public HowWouldYouDescribeTheSymptoms_CC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 

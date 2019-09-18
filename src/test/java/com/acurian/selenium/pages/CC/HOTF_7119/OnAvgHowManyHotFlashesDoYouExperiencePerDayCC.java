@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.PSO_456;
+package com.acurian.selenium.pages.CC.HOTF_7119;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
@@ -9,30 +9,29 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichTypeOfPsoriasisCC extends MainPageCC {
-    public final String titleExpected = "Which type(s) of psoriasis do you have?\n" +
-            "Agent Note: Select all that apply";
+public class OnAvgHowManyHotFlashesDoYouExperiencePerDayCC extends MainPageCC {
+
+    public final String titleExpected = "How long ago were you diagnosed with diabetes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
 
-    @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
-    List<WebElement> checkboxList;
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    List<WebElement> radioButtonsList;
 
-    public WhichTypeOfPsoriasisCC() {
+    public OnAvgHowManyHotFlashesDoYouExperiencePerDayCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichTypeOfPsoriasisCC waitForPageLoad() {
-        waitForAnimation();
+    public OnAvgHowManyHotFlashesDoYouExperiencePerDayCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichTypeOfPsoriasisCC clickOnAnswers(String answerText) {
-        clickOnCheckBoxes(checkboxList, answerText);
+    public OnAvgHowManyHotFlashesDoYouExperiencePerDayCC clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 

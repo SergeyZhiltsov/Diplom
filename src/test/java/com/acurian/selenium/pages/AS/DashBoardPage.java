@@ -20,6 +20,10 @@ public class DashBoardPage extends MainPageAS {
     WebElement searchResultsBlockOverlay;
     @FindBy(css = "#tblAuditLog > tbody > tr")
     List<WebElement> searchResultsList;
+    @FindBy(xpath = "//*[@id='apiRequest']/ul/li[contains(., 'patientId:')]/span")
+    WebElement patientIdFromRequestBody;
+    @FindBy(xpath = "//*[@id='apiResponse']//li[contains(., 'code: ')]/span")
+    WebElement codeFromResponseBody;
 
     public DashBoardPage() {
         PageFactory.initElements(getDriver(), this);
@@ -33,14 +37,14 @@ public class DashBoardPage extends MainPageAS {
 
     @Step
     public DashBoardPage setSearchAppFilter(String appName) {
-        waitForVisibility(searchAppList);
+        driverWait.waitforVisibility(searchAppList);
         selectDropDownListOptionByText(searchAppList, appName);
         return this;
     }
 
     @Step
     public DashBoardPage setRequestedByFilter(String requestedBy) {
-        waitForVisibility(searchRequestByList);
+        driverWait.waitforVisibility(searchRequestByList);
         selectDropDownListOptionByText(searchRequestByList, requestedBy);
         return this;
     }
@@ -48,7 +52,7 @@ public class DashBoardPage extends MainPageAS {
     @Step
     public DashBoardPage clickSearchButtonAndWaitResults() {
         waitAndClickWebElement(searchAuditButton);
-        waitForVisibility(searchResultsBlockOverlay);
+        driverWait.waitforVisibility(searchResultsBlockOverlay);
         waitForAbsence(searchResultsBlockOverlay);
         return this;
     }
@@ -61,11 +65,13 @@ public class DashBoardPage extends MainPageAS {
 
     @Step
     public String getPatientIdFromRequestBody() {
-        return waitForVisibility(By.xpath("//*[@id='apiRequest']/ul/li[contains(., 'patientId:')]/span")).getText();
+        driverWait.waitforVisibility(patientIdFromRequestBody);
+        return patientIdFromRequestBody.getText();
     }
 
     @Step
     public String getResponseCodeFromResponseBody() {
-        return waitForVisibility(By.xpath("//*[@id='apiResponse']//li[contains(., 'code: ')]/span")).getText();
+        driverWait.waitforVisibility(codeFromResponseBody);
+        return codeFromResponseBody.getText();
     }
 }

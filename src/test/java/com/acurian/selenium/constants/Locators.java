@@ -13,6 +13,7 @@ public @interface Locators {
     //Base CC
     String BASIC_TITLE_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']";
     String RADIO_BUTTON_LIST_CC = "//div[@class='radio_btns_container']//label";
+    String BASIC_DROPDOWN_LIST_CC = "//div[@class='ddlist_container']//select";
 
     String BASIC_TITLE2_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']//div[@class='show-in-cc']";
     String RADIO_BUTTON_LIST2_CC = "";

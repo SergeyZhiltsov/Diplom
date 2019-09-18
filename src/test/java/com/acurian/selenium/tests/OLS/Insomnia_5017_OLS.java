@@ -163,11 +163,12 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(rotatingNightShiftPageOLS);
         //Q6
-        ElectronicDeviceSleepPageOLS electronicDeviceSleepPageOLS = rotatingNightShiftPageOLS
+        DoYouHaveUpcomingOrRoutineTravelPlansPageOLS doYouHaveUpcomingOrRoutineTravelPlansPageOLS = rotatingNightShiftPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes") //Disqualify (“Night shift or alternating sleep schedule”)
-                .clickNextButton(new ElectronicDeviceSleepPageOLS());
-        electronicDeviceSleepPageOLS
+                .clickNextButton(new DoYouHaveUpcomingOrRoutineTravelPlansPageOLS());
+
+        doYouHaveUpcomingOrRoutineTravelPlansPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7306", site.activeProtocols)
@@ -176,12 +177,23 @@ public class Insomnia_5017_OLS extends BaseTest{
         rotatingNightShiftPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(electronicDeviceSleepPageOLS);
+                .clickNextButton(doYouHaveUpcomingOrRoutineTravelPlansPageOLS);
 
-        OvernightVisitsSleepCenterPageOLS overnightVisitsSleepCenterPageOLS = electronicDeviceSleepPageOLS
+        OvernightVisitsSleepCenterPageOLS overnightVisitsSleepCenterPageOLS = doYouHaveUpcomingOrRoutineTravelPlansPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new OvernightVisitsSleepCenterPageOLS());
+
+        overnightVisitsSleepCenterPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS7312", site.activeProtocols)//todo QS number
+                .back(doYouHaveUpcomingOrRoutineTravelPlansPageOLS);
+
+        doYouHaveUpcomingOrRoutineTravelPlansPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(overnightVisitsSleepCenterPageOLS);
         //Q8
         overnightVisitsSleepCenterPageOLS
                 .waitForPageLoad()
