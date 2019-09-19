@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HowWouldYouDescribeYourHotFlashesCC extends MainPageCC {
 
-    public final String titleExpected = "How long ago were you diagnosed with diabetes?";
+    public final String titleExpected = "How would you describe your hot flashes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
