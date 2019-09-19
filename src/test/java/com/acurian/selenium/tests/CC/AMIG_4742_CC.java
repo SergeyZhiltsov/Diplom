@@ -201,7 +201,7 @@ public class AMIG_4742_CC extends BaseTest {
         if (env.equals("PRD")) {
             haveYouEverHadBotoxbotulinumtoxin_CC
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS6036", "12-18");
+                    .checkStudyStatusContainsForQNumber("QS6036", "13-20");
         }
         else if (env.equals("STG")) {
             haveYouEverHadBotoxbotulinumtoxin_CC
@@ -512,6 +512,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
+                .assertRmgOrderPriority(env, "4742")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

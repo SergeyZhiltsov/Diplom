@@ -32,7 +32,8 @@ public class AMIG_4742_OLS extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumberMIG)
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a migraine study", "400"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+                .getExpectedModifiedTitle("a migraine study", "400"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
