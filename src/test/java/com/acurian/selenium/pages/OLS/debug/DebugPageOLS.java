@@ -20,7 +20,6 @@ public class DebugPageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//a[@id='question-debug-link']/span")
     WebElement questionLink;
-
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//span[text()='Close']")
     WebElement closeButton;
 
@@ -28,26 +27,22 @@ public class DebugPageOLS extends MainPageOLS{
     //info window
     @FindBy(xpath = "//div[contains(@class,'k-widget')][1]//span[text()='Close']")
     WebElement infoCloseButton;
-
     @FindBy(xpath = "//a[@id='info-debug-link']/span")
     WebElement infoButton;
-
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Verity Score')]/..")
     WebElement verity4Field;
-
     @FindBy(xpath = "(//div[@class='k-window-content k-content']//div/strong[contains(text(),'Status Set ID:')])[1]")
     WebElement statusSetID;
-
     @FindBy(xpath = "(//div[@class='k-window-content k-content']//div/strong[contains(text(),'Status Set Member ID:')])[1]")
     WebElement statusSetMemberID;
+    @FindBy(xpath = "(//*[@id='info-debug-window']/div[contains(.,'Study Status Set:')])[2]")
+    WebElement studyStatus;
 
 
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Design')]/..")
     WebElement themeField;
-
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Patient LatLong:')]/..")
     WebElement patientLatLongText;
-
     @FindBy(xpath = "//div[@class='k-window-content k-content']/div/strong[1]")
     WebElement projectInfoNameField;
 
@@ -219,6 +214,20 @@ public class DebugPageOLS extends MainPageOLS{
         closeDebugWindow();
         logTextToAllure("Protocol = "+temp);
         return temp;
+    }
+
+    public DebugPageOLS checkStudyStatusContainsForQNumber(String expectedStudyStatus) {
+        String actualStudyStatus =  getStudyStatus();
+        logTextToAllureAndConsole("Status Set displayed = " + actualStudyStatus);
+        Assert.assertEquals(actualStudyStatus, expectedStudyStatus, "Study status is different!");
+        return this;
+    }
+
+    private String getStudyStatus() {
+        openInfoWindow();
+        String[] statusSetParts = studyStatus.getText().split("\n");
+        closeInfoWindow();
+        return statusSetParts[1].replaceAll("[^0-9]", "") + "-" + statusSetParts[2].replaceAll("[^0-9]", "");
     }
 
 //use checkProtocolsEqualsForQNumber if same questions in debug window

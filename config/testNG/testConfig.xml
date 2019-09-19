@@ -4,6 +4,7 @@
     <test name="Regression1">
         <classes>
             <class name="com.acurian.selenium.tests.CC.AMIG_4742_CC"></class>
+            <class name="com.acurian.selenium.tests.OLS.AMIG_4742_OLS"></class>
         </classes>
     </test>
 </suite>

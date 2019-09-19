@@ -205,6 +205,9 @@ public class AMIG_4742_OLS extends BaseTest {
                 .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them") //Skip to Q11 - Ghost for Preventive Medication Logic
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS)
                 .waitForPageLoad()
+                .getPage(debugPageOLS)
+                //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
+                .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "13-20" : "9-16")
                 .back();
         PrescriptionMedicationsDailyToPreventMigrainesPageOLS prescriptionMedicationsDailyToPreventMigrainesPageOLS =
         areYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS
@@ -540,6 +543,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4742")
                 .assertGeneratedFul(env, site)
+                .assertRmgOrderPriority(env, "4742")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

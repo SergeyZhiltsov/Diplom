@@ -78,6 +78,7 @@ public class MainPageCC extends BasePage {
         return this;
     }
 
+    @Step
     public MainPageCC assertRmgOrderPriority(String env, String projectCode) {
         String studyId = getDbConnection().getStudyIdByProjectCode(env, projectCode);
         List<String> priorityList = getDbConnection().getRmgOrderPriorityList(env);

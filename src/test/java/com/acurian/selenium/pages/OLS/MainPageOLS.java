@@ -151,6 +151,15 @@ public class MainPageOLS extends BasePage {
     }
 
     @Step
+    public MainPageOLS assertRmgOrderPriority(String env, String projectCode) {
+        String studyId = getDbConnection().getStudyIdByProjectCode(env, projectCode);
+        List<String> priorityList = getDbConnection().getRmgOrderPriorityList(env);
+        Assert.assertTrue(priorityList.contains(studyId), String.format("The STUDY_RMG_PRIORITY_CONFIG not contains " +
+                "expected study id. Expected [%s] but found [%s].", studyId, priorityList));
+        return this;
+    }
+
+    @Step
     public MainPageOLS copyRun(String env) {
         getDbConnection().dbCOPYProc(env, pid);
         //dispoParent = getDbConnection().getDispo();
