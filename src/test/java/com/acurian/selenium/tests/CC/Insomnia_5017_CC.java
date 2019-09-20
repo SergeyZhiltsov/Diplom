@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Insomnia_5017_CC extends BaseTest{
+public class Insomnia_5017_CC extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -40,7 +40,6 @@ public class Insomnia_5017_CC extends BaseTest{
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                //{Site.AUT_INS_5017S_site}, //Not required
                 {Site.AUT_INS_5017_site}
         };
     }
@@ -58,7 +57,8 @@ public class Insomnia_5017_CC extends BaseTest{
         loginPageCC
                 .openPage(env)
                 .waitForPageLoad();
-        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:", "Title text is diff");
+        Assert.assertEquals(loginPageCC.getTitleText(), "Please enter your username and password to login:",
+                "Title text is diff");
         SelectActionPageCC selectActionPageCC = loginPageCC
                 .typeUsername(Properties.getUsername())
                 .typePassword(Properties.getPassword())
@@ -75,14 +75,16 @@ public class Insomnia_5017_CC extends BaseTest{
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
                 .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName, "1,450"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+                .getExpectedModifiedTitle(studyName, "1,450"), "Title is diff");
         dateOfBirthPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")//If "No", go to Does Not Give Permission to Proceed Close
@@ -232,53 +234,52 @@ public class Insomnia_5017_CC extends BaseTest{
                 .clickNextButton(overnightVisitsSleepCenterPageCC);
 
 
-
         //Q8
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        overnightVisitsSleepCenterPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoadWithCurves(transitionStatement)
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                overnightVisitsSleepCenterPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(new TransitionStatementCC())
+                        .waitForPageLoadWithCurves(transitionStatement)
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 //-------------------New GENERAL HEALTH---------------------------
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                "Autism spectrum",
-                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
-                "Cancer",
-                "Diabetes (type 1 or type 2)",
-                "Headaches (migraine, cluster, tension)",
-                "Heart or circulation problems (heart attack, heart failure, stroke)",
-                "High blood pressure or hypertension",
-                "High cholesterol, triglycerides, or lipids",
-                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                "Kidney disease",
-                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                "Lupus",
-                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
-                        "schizophrenia)",
-                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                "Women's health issues (endometriosis, uterine fibroids)")
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Cancer",
+                        "Diabetes (type 1 or type 2)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
+                                "schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisCC());
         whatKindOfArthritisCC
                 .waitForPageLoad()
                 .back();
         //Q2: QS38
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //If exclusively selected, skip to Q24)
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //If exclusively selected, skip to Q24)
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         //Check flow logic for Q2
         //Q4: QS40
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -286,22 +287,22 @@ public class Insomnia_5017_CC extends BaseTest{
                 .back();
 
         WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")//Select
-                .clickNextButton(new WhichFollowingBonesJoints_CC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")//Select
+                        .clickNextButton(new WhichFollowingBonesJoints_CC());
 
         whichFollowingBonesJoints_CC
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC); //Back to Q2: QS38
 
         WhichOfTheFollowingBreathingLungPageСС whichOfTheFollowingBreathingLungPageСС =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
+                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
         //Q5: QS41
         whichOfTheFollowingBreathingLungPageСС
                 .waitForPageLoad()
@@ -346,11 +347,11 @@ public class Insomnia_5017_CC extends BaseTest{
                 .back();
 
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
         //Q11: QS46
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
@@ -369,10 +370,10 @@ public class Insomnia_5017_CC extends BaseTest{
 
         //Q11: QS46
         HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC =
-        haveYouEverExperiencedHeartRelatedMedicalCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC()); //Skip to Q13
+                haveYouEverExperiencedHeartRelatedMedicalCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC()); //Skip to Q13
         //Q13: QS48
         haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
@@ -382,22 +383,22 @@ public class Insomnia_5017_CC extends BaseTest{
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         DoYouTakeAnyMedicationsControlHypertension_CC doYouTakeAnyMedicationsControlHypertension_CC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_CC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("High blood pressure or hypertension")
+                        .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_CC());
         //Q15: QS50
         doYouTakeAnyMedicationsControlHypertension_CC
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
-                .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
+                        .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
         //Q8: QS44
         whichOfFollowingDigestiveConditionPageCC
                 .waitForPageLoad()
@@ -433,11 +434,11 @@ public class Insomnia_5017_CC extends BaseTest{
                 .back();
 
         WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
+                        .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
         //Q17: QS52
         whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
@@ -452,11 +453,11 @@ public class Insomnia_5017_CC extends BaseTest{
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                        .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
 
         //Q18: QS53
         followingMentalEmotionalHealthPageCC
@@ -502,23 +503,23 @@ public class Insomnia_5017_CC extends BaseTest{
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC whichOfFollowingHaveYouDiagnosedWith_NeurologicalCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
                                 "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC());
         //Q19: QS54
         whichOfFollowingHaveYouDiagnosedWith_NeurologicalCC
                 .waitForPageLoad()
                 .back();
 
         WhichOfTheFollowingSkinConditionsDoYouSufferСС whichOfTheFollowingSkinConditionsDoYouSufferСС =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)")
-                .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferСС());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)")
+                        .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferСС());
         //Q20: QS55
         whichOfTheFollowingSkinConditionsDoYouSufferСС
                 .waitForPageLoad()
@@ -554,18 +555,18 @@ public class Insomnia_5017_CC extends BaseTest{
         ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("Bipolar disorder",
-                                "Cancer in the past 5 years, except skin cancer",
-                                "Cirrhosis",
-                                "Drug or alcohol abuse within the past year",
-                                "Hepatitis B",
-                                "Hepatitis C",
-                                "HIV or AIDS",
-                                "Kidney disease requiring dialysis",
-                                "Multiple sclerosis (MS)",
-                                "Neuropathy (nerve damage due to diabetes or another condition)",
-                                "Seizure disorder such as epilepsy",
-                                "Schizophrenia",
-                                "None of the above")
+                        "Cancer in the past 5 years, except skin cancer",
+                        "Cirrhosis",
+                        "Drug or alcohol abuse within the past year",
+                        "Hepatitis B",
+                        "Hepatitis C",
+                        "HIV or AIDS",
+                        "Kidney disease requiring dialysis",
+                        "Multiple sclerosis (MS)",
+                        "Neuropathy (nerve damage due to diabetes or another condition)",
+                        "Seizure disorder such as epilepsy",
+                        "Schizophrenia",
+                        "None of the above")
                 .clickNextButton(new ApproximateHeightPageCC());
         //Q28: QS60
         approximateHeightPageCC
@@ -586,7 +587,7 @@ public class Insomnia_5017_CC extends BaseTest{
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS59" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 

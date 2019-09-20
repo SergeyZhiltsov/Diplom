@@ -7,22 +7,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class DebugPageOLS extends MainPageOLS{
+public class DebugPageOLS extends MainPageOLS {
 
     @FindBy(xpath = "//a[@id='question-debug-link']/span")
     WebElement questionLink;
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//span[text()='Close']")
     WebElement closeButton;
-
 
     //info window
     @FindBy(xpath = "//div[contains(@class,'k-widget')][1]//span[text()='Close']")
@@ -38,7 +35,6 @@ public class DebugPageOLS extends MainPageOLS{
     @FindBy(xpath = "(//*[@id='info-debug-window']/div[contains(.,'Study Status Set:')])[2]")
     WebElement studyStatus;
 
-
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Design')]/..")
     WebElement themeField;
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Patient LatLong:')]/..")
@@ -49,18 +45,14 @@ public class DebugPageOLS extends MainPageOLS{
 
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[3]")
     List<WebElement> questionList1;
-
     @FindBy(xpath = "//debug-popup//tbody//tr/td[3]")
     List<WebElement> questionList2;
-
     List<WebElement> questionList;
-    
+
     @FindBy(xpath = "//div[contains(@class,'k-widget')][2]//tbody//tr/td[1]")
     List<WebElement> questionNumberList1;
-
     @FindBy(xpath = "//debug-popup//tbody//tr/td[1]")
     List<WebElement> questionNumberList2;
-
     List<WebElement> questionNumberList;
 
     public DebugPageOLS() {
@@ -81,17 +73,17 @@ public class DebugPageOLS extends MainPageOLS{
         }
     }
 
-    public DebugPageOLS openDebugWindow(){
+    public DebugPageOLS openDebugWindow() {
         questionLink.click();
         return this;
     }
 
-    public DebugPageOLS openInfoWindow(){
+    public DebugPageOLS openInfoWindow() {
         infoButton.click();
         return this;
     }
 
-    public DebugPageOLS closeDebugWindow(){
+    public DebugPageOLS closeDebugWindow() {
         switch (Locators.isEnvWeb) {
             case Platforms.WEB:
                 closeButton.click();
@@ -109,12 +101,12 @@ public class DebugPageOLS extends MainPageOLS{
         return this;
     }
 
-    public DebugPageOLS closeInfoWindow(){
+    public DebugPageOLS closeInfoWindow() {
         infoCloseButton.click();
         return this;
     }
 
-    private String getTextFromInfoRowByElement(WebElement el){
+    private String getTextFromInfoRowByElement(WebElement el) {
         openInfoWindow();
         waitForAnimation();
         String text = getText(el);
@@ -122,87 +114,87 @@ public class DebugPageOLS extends MainPageOLS{
         return text;
     }
 
-    public String getVerityText(){
+    public String getVerityText() {
         return getTextFromInfoRowByElement(verity4Field);
     }
 
-    public String getStatusSetID(){
+    public String getStatusSetID() {
         return getTextFromInfoRowByElement(statusSetID);
     }
 
-    public String getStatusSetMemberID(){
+    public String getStatusSetMemberID() {
         return getTextFromInfoRowByElement(statusSetMemberID);
     }
 
-    public String getThemeText(){
+    public String getThemeText() {
         return getTextFromInfoRowByElement(themeField);
     }
 
-    public String getProjectNameText(){
+    public String getProjectNameText() {
         return getTextFromInfoRowByElement(projectInfoNameField);
     }
 
-    public String getPatientLatLongText(){
+    public String getPatientLatLongText() {
         return getTextFromInfoRowByElement(patientLatLongText);
     }
 
     @Step
-    public String getProtocolForQuestion(String questionText){
+    public String getProtocolForQuestion(String questionText) {
         openDebugWindow();
         waitForAnimation();
         String questionTextMod = questionText.replace("\n", "");
         String temp = questionList.stream()
-                .filter(el -> questionTextMod.contains(el.getText().replace("...","")))
+                .filter(el -> questionTextMod.contains(el.getText().replace("...", "")))
                 .findFirst()
                 .get()
                 .findElement(By.xpath("following-sibling::*[2]//tbody"))
                 .getText();
         closeDebugWindow();
-        logTextToAllure("Protocol="+temp);
+        logTextToAllure("Protocol=" + temp);
         return temp;
     }
 
-    private String getTextFromProtocolColumn(String questionText){
+    private String getTextFromProtocolColumn(String questionText) {
         openDebugWindow();
         waitForAnimation();
         String questionTextMod = questionText.replace("\n", "");
-        Assert.assertTrue(questionList.stream().anyMatch(el -> el.getText().equals(questionTextMod)),"Q Text is not found");
+        Assert.assertTrue(questionList.stream().anyMatch(el -> el.getText().equals(questionTextMod)), "Q Text is not found");
         String temp = questionList.stream()
-                .filter(el -> questionTextMod.contains(el.getText().replace("...","")))
+                .filter(el -> questionTextMod.contains(el.getText().replace("...", "")))
                 .findFirst()
                 .get()
                 .findElement(By.xpath("following-sibling::td[2]"))
                 .getText();
         closeDebugWindow();
-        logTextToAllure("Protocol="+temp);
+        logTextToAllure("Protocol=" + temp);
         return temp;
     }
 
     @Step
-    public List<String> getProtocolsForQuestion(String questionText){
+    public List<String> getProtocolsForQuestion(String questionText) {
         openDebugWindow();
         waitForAnimation();
         String questionTextMod = questionText.replace("\n", "");
         List<String> temp = questionList.stream()
-                .filter(el -> questionTextMod.contains(el.getText().replace("...","")))
+                .filter(el -> questionTextMod.contains(el.getText().replace("...", "")))
                 .findFirst()
                 .get()
                 .findElements(By.xpath("following-sibling::*[2]//tbody/tr/td"))
                 .stream().map(el -> el.getText()).collect(Collectors.toList());
         closeDebugWindow();
-        logTextToAllure("Protocol="+temp);
+        logTextToAllure("Protocol=" + temp);
         return temp;
     }
 
     @Step
-    public DebugPageOLS checkProtocolsEquals(String previousPageTitle, String...expectedProtocols){
-        Object[] actualProtocols =  getProtocolsForQuestion(previousPageTitle).toArray();
+    public DebugPageOLS checkProtocolsEquals(String previousPageTitle, String... expectedProtocols) {
+        Object[] actualProtocols = getProtocolsForQuestion(previousPageTitle).toArray();
         Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
-                + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
+                + Arrays.toString(expectedProtocols) + "not equal in actual " + Arrays.toString(actualProtocols));
         return this;
     }
-    
-    private List<String> getProtocolsForQuestionNumber(String questionNumber){
+
+    private List<String> getProtocolsForQuestionNumber(String questionNumber) {
         openDebugWindow();
         waitForAnimation();
         List<String> temp = questionNumberList.stream()
@@ -212,12 +204,12 @@ public class DebugPageOLS extends MainPageOLS{
                 .findElements(By.xpath("following-sibling::*[4]//tbody/tr/td"))
                 .stream().map(el -> el.getText()).collect(Collectors.toList());
         closeDebugWindow();
-        logTextToAllure("Protocol = "+temp);
+        logTextToAllure("Protocol = " + temp);
         return temp;
     }
 
     public DebugPageOLS checkStudyStatusContainsForQNumber(String expectedStudyStatus) {
-        String actualStudyStatus =  getStudyStatus();
+        String actualStudyStatus = getStudyStatus();
         logTextToAllureAndConsole("Status Set displayed = " + actualStudyStatus);
         Assert.assertEquals(actualStudyStatus, expectedStudyStatus, "Study status is different!");
         return this;
@@ -227,35 +219,36 @@ public class DebugPageOLS extends MainPageOLS{
         openInfoWindow();
         String[] statusSetParts = studyStatus.getText().split("\n");
         closeInfoWindow();
-        return statusSetParts[1].replaceAll("[^0-9]", "") + "-" + statusSetParts[2].replaceAll("[^0-9]", "");
+        return statusSetParts[1].replaceAll("[^0-9]", "") + "-"
+                + statusSetParts[2].replaceAll("[^0-9]", "");
     }
 
-//use checkProtocolsEqualsForQNumber if same questions in debug window
+    //use checkProtocolsEqualsForQNumber if same questions in debug window
     @Step
-    public DebugPageOLS checkProtocolsEqualsForQNumber(String questionNumber, String...expectedProtocols){
-        Object[] actualProtocols =  getProtocolsForQuestionNumber(questionNumber).toArray();
+    public DebugPageOLS checkProtocolsEqualsForQNumber(String questionNumber, String... expectedProtocols) {
+        Object[] actualProtocols = getProtocolsForQuestionNumber(questionNumber).toArray();
         Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
-                + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
+                + Arrays.toString(expectedProtocols) + "not equal in actual " + Arrays.toString(actualProtocols));
         return this;
     }
 
     @Step
-    public DebugPageOLS checkProtocolsContainsForQNumber(String questionNumber, String...expectedProtocols){
-        List<String> actualProtocols =  getProtocolsForQuestionNumber(questionNumber);
+    public DebugPageOLS checkProtocolsContainsForQNumber(String questionNumber, String... expectedProtocols) {
+        List<String> actualProtocols = getProtocolsForQuestionNumber(questionNumber);
         Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
-                + Arrays.toString(expectedProtocols)+" are not included in actual "+actualProtocols.toString());
+                + Arrays.toString(expectedProtocols) + " are not included in actual " + actualProtocols.toString());
         return this;
     }
 
     @Step
-    public DebugPageOLS checkIsNoProtocolsForQuestion(String previousPageTitle){
+    public DebugPageOLS checkIsNoProtocolsForQuestion(String previousPageTitle) {
         String actualText = getTextFromProtocolColumn(previousPageTitle);
-        Assert.assertTrue("".equals(actualText), "Actual text is "+actualText);
+        Assert.assertTrue("".equals(actualText), "Actual text is " + actualText);
         return this;
     }
 
     @Step
-    public DebugPageOLS clickOnQNumber(String questionNumber){
+    public DebugPageOLS clickOnQNumber(String questionNumber) {
         openDebugWindow();
         waitForAnimation();
         questionNumberList.stream()
@@ -267,5 +260,4 @@ public class DebugPageOLS extends MainPageOLS{
         closeDebugWindow();
         return this;
     }
-
 }
