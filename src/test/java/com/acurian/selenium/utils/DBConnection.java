@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class DBConnection {
@@ -49,7 +51,7 @@ public class DBConnection {
         return conn;
     }
 
-    public void dbCOPYProc(String environment, String pidNumber){
+    public void dbCOPYProc(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
             String sql = "DECLARE\n" +
@@ -60,7 +62,7 @@ public class DBConnection {
                     "BEGIN\n" +
                     "    FOR REC IN\n" +
                     "    ( select call_id ,PATIENT_ID,STUDY_ID\n" +
-                    "    from call where patient_id IN ('"+pidNumber+"')-- enter patient id\n" +
+                    "    from call where patient_id IN ('" + pidNumber + "')-- enter patient id\n" +
                     "    ) LOOP\n" +
                     "        BEGIN    \n" +
                     "            select study_group_id INTO v_study_group_id from study_group \n" +
@@ -78,27 +80,25 @@ public class DBConnection {
             //System.out.println("DB parent: dispo = " + dispoCode + applicantStatus +", parent pid =" + pidNumber);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeResources();
         }
     }
 
-    public void dbReadPID(String environment, String pidNumber){
+    public void dbReadPID(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "select * from call where patient_id in ('"+pidNumber+"')";
+            String sql = "select * from call where patient_id in ('" + pidNumber + "')";
             rset = stmt.executeQuery(sql);
             while (rset.next()) {
                 dispoCode = rset.getString("dispo_cd");
                 applicantStatus = rset.getString("applicant_status_cd");
             }
-            System.out.println("DB parent: dispo = " + dispoCode + applicantStatus +", parent pid =" + pidNumber);
+            System.out.println("DB parent: dispo = " + dispoCode + applicantStatus + ", parent pid =" + pidNumber);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
-           closeResources();
+        } finally {
+            closeResources();
         }
     }
 
@@ -132,13 +132,12 @@ public class DBConnection {
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 dobCell = rset.getString("ANSWER_DATE");
-                if(dobCell != null) break;
+                if (dobCell != null) break;
             }
             System.out.println("DB fetched child DOB cell: " + dobCell);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeResources();
         }
         return dobCell;
@@ -156,8 +155,7 @@ public class DBConnection {
             System.out.println("DB fetched value of FUL cell: " + fulCell);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeResources();
         }
         return Objects.requireNonNull(fulCell, "Returned fulCell is NULL!");
@@ -166,7 +164,7 @@ public class DBConnection {
     public RadiantResults dbReadRadiant(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
-            String sql = "select * from S_EXT_CONTACT.CNL_OUTBOUND_LOG where Patient_ID IN(select patient_id from call where old_patient_id ='" +pidNumber+ "')";
+            String sql = "select * from S_EXT_CONTACT.CNL_OUTBOUND_LOG where Patient_ID IN(select patient_id from call where old_patient_id ='" + pidNumber + "')";
             rset = stmt.executeQuery(sql);
 
             RadiantResults radiantResults = null;
@@ -178,26 +176,25 @@ public class DBConnection {
 
             }
             System.out.println("DB Radiant: current status = " + radiantResults.getCurrentStatus() +
-                               ", study reference = " + radiantResults.getStudyReference() +
-                               ", response message = " + radiantResults.getResponseMessage());
+                    ", study reference = " + radiantResults.getStudyReference() +
+                    ", response message = " + radiantResults.getResponseMessage());
             return radiantResults;
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeResources();
         }
         return null;
     }
-    
-    public ChildResult dbReadChildPID(String environment, String pidNumber, String ...firstPartOfChildPhoneNumber) {
+
+    public ChildResult dbReadChildPID(String environment, String pidNumber, String... firstPartOfChildPhoneNumber) {
         try {
             stmt = getDbCon(environment).createStatement();
 
-            String sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'";
-            if(firstPartOfChildPhoneNumber.length == 1){
-                sql = "select * from CALL where old_Patient_ID ='" +pidNumber+ "'" +
-                        " and PHONE_NUMBER like '" +firstPartOfChildPhoneNumber[0]+ "%'";
+            String sql = "select * from CALL where old_Patient_ID ='" + pidNumber + "'";
+            if (firstPartOfChildPhoneNumber.length == 1) {
+                sql = "select * from CALL where old_Patient_ID ='" + pidNumber + "'" +
+                        " and PHONE_NUMBER like '" + firstPartOfChildPhoneNumber[0] + "%'";
             }
 
             rset = stmt.executeQuery(sql);
@@ -216,8 +213,7 @@ public class DBConnection {
             return childResult;
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeResources();
         }
         return null;
@@ -236,12 +232,11 @@ public class DBConnection {
                 anomalyResults.setRequestStatus(rset.getString("request_status_id"));
             }
             System.out.println("DB Anomaly: current status = " + anomalyResults.getCurrentStatus() +
-                               ", request status id = " + anomalyResults.getRequestStatus());
+                    ", request status id = " + anomalyResults.getRequestStatus());
             return anomalyResults;
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeResources();
         }
         return null;
@@ -251,7 +246,7 @@ public class DBConnection {
         String flareStatus = null;
         try {
             stmt = getDbCon(env).createStatement();
-            final String query = "Select patient_id, status_set_member_id from patient_study_secondary_status where patient_id in ("+childPid+")";
+            final String query = "Select patient_id, status_set_member_id from patient_study_secondary_status where patient_id in (" + childPid + ")";
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 flareStatus = rset.getString("status_set_member_id");
@@ -259,8 +254,7 @@ public class DBConnection {
             System.out.println("DB fetched value of FLARE cell: " + flareStatus);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeResources();
         }
         return flareStatus;
@@ -271,7 +265,8 @@ public class DBConnection {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM/dd/yyyy hh:mm:ss a");
         try {
             stmt = getDbCon(env).createStatement();
-            final String query = String.format("select PATIENT_ID from call where phone_number = '%s' and START_TIME >= to_date('%s','mon/dd/yyyy hh:mi:ss AM')",
+            final String query = String.format("select PATIENT_ID from call where phone_number = '%s' " +
+                            "and START_TIME >= to_date('%s','mon/dd/yyyy hh:mi:ss AM')",
                     phoneNumber, formatter.format(date));
             System.out.println("SQL query: " + query);
             rset = stmt.executeQuery(query);
@@ -281,14 +276,49 @@ public class DBConnection {
             System.out.println("DB fetched value of PID: " + patient_id);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             closeResources();
         }
         return patient_id;
     }
 
-    private void closeResources(){
+    public String getStudyIdByProjectCode(String env, String projectCode) {
+        String studyId = null;
+        try {
+            stmt = getDbCon(env).createStatement();
+            final String query = "SELECT study_id FROM study WHERE project_code ='" + projectCode + "'";
+            rset = stmt.executeQuery(query);
+            while (rset.next()) {
+                studyId = rset.getString("study_id");
+            }
+            System.out.println("DB fetched value of STUDY_ID: " + studyId + " for projectCode: " + projectCode);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources();
+        }
+        return Objects.requireNonNull(studyId, "Returned STUDY_ID is NULL!");
+    }
+
+    public List<String> getRmgOrderPriorityList(String env) {
+        List<String> studyId = new LinkedList<>();
+        try {
+            stmt = getDbCon(env).createStatement();
+            final String query = "SELECT study_id from S_STUDY.STUDY_RMG_PRIORITY_CONFIG";
+            rset = stmt.executeQuery(query);
+            while (rset.next()) {
+                studyId.add(rset.getString("study_id"));
+            }
+            System.out.println("DB fetched value(s) for STUDY_RMG_PRIORITY_CONFIG: " + studyId.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeResources();
+        }
+        return Objects.requireNonNull(studyId, "Returned STUDY_ID list is NULL!");
+    }
+
+    private void closeResources() {
         try {
             if (rset != null) rset.close();
             if (stmt != null) stmt.close();
@@ -298,7 +328,7 @@ public class DBConnection {
         }
     }
 
-    private String getUrlByEnv(String environment){
+    private String getUrlByEnv(String environment) {
         switch (environment) {
             case "QA":
                 return qaURL;

@@ -61,7 +61,7 @@ public class AMIG_4742_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
-                                                ("a migraine study", "400"), "Title is diff");
+                ("a migraine study", "400"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
@@ -91,9 +91,9 @@ public class AMIG_4742_CC extends BaseTest {
                 .back();
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-        genderPageCC
-                .setYear("1938") //Disqualify ("Age") if >= 81
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                genderPageCC
+                        .setYear("1938") //Disqualify ("Age") if >= 81
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -135,7 +135,7 @@ public class AMIG_4742_CC extends BaseTest {
 //---------------Q4: For approximately how long have you been suffering from migraine headaches?
         HowManyDaysYouSufferCC howManyDaysYouSufferCC = new HowManyDaysYouSufferCC();
         List<String> disqualifyQ4 = Arrays.asList("5 months or less", "6 - 11 months");
-        for (String answer: disqualifyQ4) {
+        for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howLongSufferingFromMigraineCC
                     .waitForPageLoad()
@@ -155,7 +155,7 @@ public class AMIG_4742_CC extends BaseTest {
         HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС =
                 new HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС();
         List<String> disqualifyQ5 = Arrays.asList("3", "15");
-        for (String answer: disqualifyQ5) {
+        for (String answer : disqualifyQ5) {
             System.out.println("Select answer for Q5: " + answer);
             howManyDaysYouSufferCC
                     .waitForPageLoad()
@@ -174,20 +174,20 @@ public class AMIG_4742_CC extends BaseTest {
 
 //---------------NEW Q8: Have you ever taken any medications to treat your migraine headaches? -----------
         HaveYouEverHadBotoxbotulinumtoxin_CC haveYouEverHadBotoxbotulinumtoxin_CC =
-        haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС
-                .waitForPageLoad()
-                .clickOnAnswer("No, never any daily medications that my doctor prescribed") //skip to QS20
-                .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_CC());
+                haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС
+                        .waitForPageLoad()
+                        .clickOnAnswer("No, never any daily medications that my doctor prescribed") //skip to QS20
+                        .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_CC());
         haveYouEverHadBotoxbotulinumtoxin_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
                 .back();
         AreYouCurrentlyTakingPrescriptionMedicationsDailyPageСС areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС =
-        haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, daily medications that my doctor prescribed")
-                .clickNextButton(new AreYouCurrentlyTakingPrescriptionMedicationsDailyPageСС());
+                haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes, daily medications that my doctor prescribed")
+                        .clickNextButton(new AreYouCurrentlyTakingPrescriptionMedicationsDailyPageСС());
 
 
         //--------------Q9 Are you currently taking prescription medications daily to prevent migraines from starting?
@@ -195,32 +195,22 @@ public class AMIG_4742_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them")
                 .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC)
-                .waitForPageLoad();
-
-        //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
-        if (env.equals("PRD")) {
-            haveYouEverHadBotoxbotulinumtoxin_CC
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS6036", "12-18");
-        }
-        else if (env.equals("STG")) {
-            haveYouEverHadBotoxbotulinumtoxin_CC
-                    .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS6036", "9-16");
-        }
-        haveYouEverHadBotoxbotulinumtoxin_CC.back();
+                .waitForPageLoad()
+                //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
+                .getPage(debugPageCC)
+                .checkStudyStatusContainsForQNumber("QS6036", env.equals("PRD") ? "13-20" : "9-16")
+                .back();
 
         PrescriptionMedicationsDailyToPreventMigrainesPageCC prescriptionMedicationsDailyToPreventMigrainesPageCC =
-        areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, I still take daily medications that my doctor prescribed")
-                .clickNextButton(new PrescriptionMedicationsDailyToPreventMigrainesPageCC());
-
+                areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes, I still take daily medications that my doctor prescribed")
+                        .clickNextButton(new PrescriptionMedicationsDailyToPreventMigrainesPageCC());
 
 
         //        Q10	How satisfied are you with the prescription medications that you take daily to prevent migraines from starting?
         List<String> disqualifyQ10 = Arrays.asList("Satisfied", "Somewhat Satisfied");
-        for (String answer: disqualifyQ10) {
+        for (String answer : disqualifyQ10) {
             System.out.println("Select answer for Q10: " + answer);
             prescriptionMedicationsDailyToPreventMigrainesPageCC
                     .waitForPageLoad()
@@ -240,9 +230,9 @@ public class AMIG_4742_CC extends BaseTest {
         //-------------20: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
         HaveUeverDiagnosedByHealthcareProfesionalCC haveUeverDiagnosedByHealthcareProfesionalCC =
                 haveYouEverHadBotoxbotulinumtoxin_CC
-                .waitForPageLoad()
-                .clickOnAnswers("No") //Skip to Q22
-                .clickNextButton(new HaveUeverDiagnosedByHealthcareProfesionalCC());
+                        .waitForPageLoad()
+                        .clickOnAnswers("No") //Skip to Q22
+                        .clickNextButton(new HaveUeverDiagnosedByHealthcareProfesionalCC());
 
         haveUeverDiagnosedByHealthcareProfesionalCC
                 .waitForPageLoad()
@@ -255,7 +245,7 @@ public class AMIG_4742_CC extends BaseTest {
 
 //---------------Q21	When did you last have a Botox (botulinum toxin) injection?
         List<String> disqualifyQ21 = Arrays.asList("3 months ago or less", "4 - 6 months ago");
-        for (String answer: disqualifyQ21) {
+        for (String answer : disqualifyQ21) {
             System.out.println("Select answer for Q21: " + answer);
             whenYouLastHaveBotoxMigCC
                     .waitForPageLoad()
@@ -275,7 +265,7 @@ public class AMIG_4742_CC extends BaseTest {
         DoYouCurrentlyUseMarijuanaCC doYouCurrentlyUseMarijuanaCC = new DoYouCurrentlyUseMarijuanaCC();
         List<String> disqualifyQ22 = Arrays.asList("Trigeminal Neuralgia - severe pain in the nerves of the face",
                 "Temporomandibular Joint Disorders also known as TMD or TMJ");
-        for (String answer: disqualifyQ22) {
+        for (String answer : disqualifyQ22) {
             System.out.println("Select answer for Q22: " + answer);
             haveUeverDiagnosedByHealthcareProfesionalCC
                     .waitForPageLoad()
@@ -451,7 +441,7 @@ public class AMIG_4742_CC extends BaseTest {
         List<String> disqualifyQ24 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B", "Hepatitis C", "HIV or AIDS");
         ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
-        for (String answer: disqualifyQ24) {
+        for (String answer : disqualifyQ24) {
             System.out.println("Select answer for Q24: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
@@ -465,7 +455,7 @@ public class AMIG_4742_CC extends BaseTest {
         }
         List<String> disqualifyQ24p2 = Arrays.asList("Seizure disorder such as epilepsy",
                 "Kidney disease requiring dialysis", "Multiple sclerosis (MS)", "Schizophrenia");
-        for (String answer: disqualifyQ24p2) {
+        for (String answer : disqualifyQ24p2) {
             System.out.println("Select answer for Q24: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
@@ -512,6 +502,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
+                .assertRmgOrderPriority(env, "4742")
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

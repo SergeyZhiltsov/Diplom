@@ -166,6 +166,7 @@ public class IBD_4818_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new CrohnsDiseaseOrUlcerativeColitisFlarePageOLS());
         SteroidMedicationsForCrohnsOLS steroidMedicationsForCrohnsOLS = crohnsDiseaseOrUlcerativeColitisFlarePageOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5706", site.activeProtocols)
                 .back(manageYourCrohnsPageOLS)
@@ -237,6 +238,7 @@ public class IBD_4818_OLS extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(crohnsDiseaseOrUlcerativeColitisFlarePageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5711", site.activeProtocols)
                     .back();

@@ -79,6 +79,15 @@ public class MainPageCC extends BasePage {
     }
 
     @Step
+    public MainPageCC assertRmgOrderPriority(String env, String projectCode) {
+        String studyId = getDbConnection().getStudyIdByProjectCode(env, projectCode);
+        List<String> priorityList = getDbConnection().getRmgOrderPriorityList(env);
+        Assert.assertTrue(priorityList.contains(studyId), String.format("The STUDY_RMG_PRIORITY_CONFIG not contains " +
+                "expected study id. Expected [%s] but found [%s].", studyId, priorityList));
+        return this;
+    }
+
+    @Step
     public MainPageCC childPidFromDbToLog(String env, String ...firstPartOfChildPhoneNumber) {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();

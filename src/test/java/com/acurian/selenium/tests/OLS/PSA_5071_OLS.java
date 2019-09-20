@@ -31,7 +31,7 @@ public class PSA_5071_OLS extends BaseTest {
 
     @Test(dataProvider = "sites", dataProviderClass = PSA_5071_CC.class)
     @Description("PsA 5071 OLS Gilead Psoriatic Arthritis(PsA)")
-    public void ps4556olsTest(Site site) {
+    public void ps5071olsTest(Site site) {
         String phoneNumber = "AUTAMS1PSA";
         String studyName = "a psoriatic arthritis study";
         String env = System.getProperty("acurian.env", "STG");
