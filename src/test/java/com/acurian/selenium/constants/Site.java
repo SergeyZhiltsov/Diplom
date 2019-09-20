@@ -31,7 +31,7 @@ public enum Site {
     //7193
     AUT_AMS1_7193_Site("AUT_AMS1_7193_site", "08204", "1R", true, false, "ARQ_151_212"),
     //3889
-    AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19901" , "1R", true, false, "M14_431", "M14_433", "M15_991", "M16_006"),
+    AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19901", "1R", true, false, "M14_431", "M14_433", "M15_991", "M16_006"),
     //3973
     AUT_ROC_3973_site("AUT_ROC_3973_site", "19901", "1R", true, true, "WN39434"),
     //4109
@@ -59,7 +59,7 @@ public enum Site {
     //4556
     AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471006"),//"B7471007"
     AUT_VAC_4556_A("AUT_VAC_4556_A", "19901", "1R", true, true, "B7471007_A"),
-//    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
+    //    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
     //4600
     AUT_AMS1_4600_site("AUT_AMS1_4600_site", "08204", "1R", true, false, "B7451014"),
     //7036
@@ -67,7 +67,7 @@ public enum Site {
     //4605
     AUT_OBS_4605_Site("AUT_OBS_4605_Site", "19901", "1R", true, false, "RM_493_013"),
     //4631
-    AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", true, false,  "KPL_716_C001"),
+    AUT_DERM_4631_Site("AUT_DERM_4631_Site", "19901", "1R", true, false, "KPL_716_C001"),
     //4656
     AUT_PSO4656("AUT_PSO4656", "19901", "1R", true, false, "CC_10004_PSOR_022"),
     //4691
@@ -112,6 +112,9 @@ public enum Site {
     AUT_OA_5055_S("AUT_OA_5055_S", "19901", "41C", false, false, "R475_PN_1602"),
     //5062
     AUT_NASH5062_site("AUT_NASH5062_site", "19901", "41C", false, false, "3152_301_002"),
+    //5071
+    AUT_AMS1_5071_site("AUT_AMS1_5071_site", "08204", "1R", true, false, "GS_US_431_4566", "GS_US_431_4567"),
+    AUT_AMS1_5071S_site("AUT_AMS1_5071S_site", "19422", "41C", true, false, "GS_US_431_4566", "GS_US_431_4567"),
     //4483
     AUT_NASH4483_site("AUT_AMS1_4483_site", "19901", "1R", false, false, "MGL_3196_11"),
     AUT_NASH4483S_site("AUT_AMS1_4483S_site", "19422", "41C", false, false, "MGL_3196_11"),
@@ -130,7 +133,6 @@ public enum Site {
     AUT_DPN_5096_site("AUT_AMS1_5096_site", "08204", "1R", true, false),
     AUT_DPN_5096S_site("AUT_AMS1_5096S_site", "19422", "41C", true, false)
     ;
-
 
 
 

@@ -329,6 +329,7 @@ public class COPD_5042_OLS extends BaseTest {
         siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID();
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         switch (site) {
             case AUT_COPD_5042_Site: //1R
                 siteSelectionPageOLS
@@ -345,7 +346,10 @@ public class COPD_5042_OLS extends BaseTest {
                         .waitForPageLoad()
                         .clickOkInPopUp()
                         .setSignature()
-                        .waitToClickNext()
+                        .waitToClickNext();
+                thankYouCloseSimplePageOLS
+                        .waitForPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .assertGeneratedFul(env, site)
@@ -366,8 +370,8 @@ public class COPD_5042_OLS extends BaseTest {
                         .clickNextButton(new HS1PageOLS())
                         .clickOkInPopUp()
                         .setSignature()
-                        .waitToClickNext()
-                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitToClickNext();
+                thankYouCloseSimplePageOLS
                         .waitForPageLoad()
                         .clickNextButton(new AboutHealthPageOLS())
                         .waitForPageLoad()
