@@ -26,14 +26,6 @@ public class ChatFillTest extends BaseTest {
     String env = System.getProperty("acurian.env", "QA");
 
     @Test(dataProvider = "SBUserCredentials", dataProviderClass = DataProviderPool.class)
-    public void chatFillTestRun(String userName, String password) {
-        if (env.equals("PRD")) {
-            System.out.println("Skipped for PRD environment");
-        } else {
-            chatFillTest(userName, password);
-        }
-    }
-
     public void chatFillTest(String userName, String password) {
         String phoneNumber = "GBAN100001";
         //String testUrl = "https://test-screener.acurian.com/questionnaire_test_qa_chartfill/welcome?pn=" + phoneNumber;
@@ -47,8 +39,9 @@ public class ChatFillTest extends BaseTest {
                 .openPage(env, phoneNumber);
 
         letsStartPageOLS
-                    .waitForPageLoadByTitle(letsStartPageOLS.titleExpectedQA)
-                    .clickNextButton(dateOfBirthPageOLS);
+                .waitForPageLoadByTitle(env.equals("PRD") ? letsStartPageOLS.titleExpected :
+                        letsStartPageOLS.titleExpectedQA)
+                .clickNextButton(dateOfBirthPageOLS);
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .waitForPageLoadGBAN()
@@ -62,7 +55,8 @@ public class ChatFillTest extends BaseTest {
 
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999",
                         siteZipCode)
                 .clickNextButton(new GenderPageOLS());
 
@@ -87,14 +81,16 @@ public class ChatFillTest extends BaseTest {
                 .clickNextButton(personalDetails);
 
         SiteSelectionPageOLS siteSelectionPageOLS = personalDetails
-                .waitForPageLoad()
+                .waitForPageLoadByTitle(env.equals("PRD") ? personalDetails.titleExpectedCaregiver :
+                        personalDetails.titleExpected)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         siteSelectionPageOLS
-                .waitForPageLoadGBAN();
+                .waitForPageLoadGBAN()
+                .getPID();
         String screenerPID = siteSelectionPageOLS.getPidNumber();
         HSCrohns2PageOLS hsCrohns2PageOLS = siteSelectionPageOLS
-        .clickOnFacilityName("AUT_GBAN1_2929")
+                .clickOnFacilityName("AUT_GBAN1_2929")
                 .clickNextButton(new HSCrohns2PageOLS());
 
         ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS = hsCrohns2PageOLS

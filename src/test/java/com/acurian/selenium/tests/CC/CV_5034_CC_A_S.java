@@ -381,6 +381,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .getRadiantDbToLog(env)
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
+                        .getRadiantDbToLog(env, "5034")
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
     }

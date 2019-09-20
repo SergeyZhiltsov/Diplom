@@ -106,7 +106,6 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad1(studyNameClose)
                 .clickOnFacilityName(site.name)
                 .getPID();
-        pidNumber = siteSelectionPageOLS.getPidNumber();
         QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .clickNextButton(new QualifiedClose2PageOLS());
 
@@ -119,6 +118,7 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
                 .waitForPageLoad()
+                .pidFromDbToLog(env)
                 .assertGeneratedFul(env, site);
     }
 }

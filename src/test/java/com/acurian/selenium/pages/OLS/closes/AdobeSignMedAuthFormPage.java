@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AdobeSignMedAuthFormPage extends MainPageOLS {
-    final String titleTextExpected = "MedAuthForm";
+    final String titleTextExpected = "Authorization Form";
 
     @FindBy(css = "div.agreement-band-inner span.title")
     WebElement titleText;

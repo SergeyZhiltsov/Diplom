@@ -3,12 +3,12 @@ package com.acurian.selenium.pages.OLS.shared;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class PersonalDetails extends MainPageOLS{
+public class PersonalDetails extends MainPageOLS {
 
     public final String titleExpected = "Personal details (*required fields)";
+    public final String titleExpectedCaregiver = "Patient details (*required fields)";
 
     @FindBy(xpath = "//h2[@id='patient-title']")
     WebElement titleText;
@@ -28,12 +28,14 @@ public class PersonalDetails extends MainPageOLS{
     @FindBy(xpath = "//input[@id='QI16']")
     WebElement zipCodeField;
 
-    public PersonalDetails() {
-        PageFactory.initElements(getDriver(), this);
+    @Step
+    public PersonalDetails waitForPageLoad() {
+        waitForPageLoadMain(titleText, titleExpected);
+        return this;
     }
 
     @Step
-    public PersonalDetails waitForPageLoad() {
+    public PersonalDetails waitForPageLoadByTitle(String titleExpected) {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
@@ -83,6 +85,4 @@ public class PersonalDetails extends MainPageOLS{
         waitForAnimation();
         return this;
     }
-    
-
 }
