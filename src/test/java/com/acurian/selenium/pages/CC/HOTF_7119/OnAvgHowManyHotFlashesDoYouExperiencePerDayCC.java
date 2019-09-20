@@ -11,7 +11,8 @@ import java.util.List;
 
 public class OnAvgHowManyHotFlashesDoYouExperiencePerDayCC extends MainPageCC {
 
-    public final String titleExpected = "How long ago were you diagnosed with diabetes?";
+    public final String titleExpected = "On average, how many hot flashes do you experience per day?\n" +
+            "Please think about a full 24-hour period, including nighttime.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
