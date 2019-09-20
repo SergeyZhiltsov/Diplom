@@ -12,6 +12,7 @@ import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
+import org.openqa.selenium.TimeoutException;
 
 public class HelloSignOls extends BaseTest {
 
@@ -102,9 +103,15 @@ public class HelloSignOls extends BaseTest {
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = hs1PageOLS
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseGmegaOLS());
-        thankYouCloseGmegaOLS
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+
+        try {
+            thankYouCloseGmegaOLS
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS());
+        } catch (TimeoutException ex) {
+            System.out.println("Page ThankYouCloseGmegaOLS was skipped.");
+        }
+        new AboutHealthPageOLS()
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
     }

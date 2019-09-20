@@ -24,8 +24,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
+
 import java.util.Arrays;
 import java.util.List;
+
+import static com.acurian.selenium.constants.Site.AUT_CV_5034S_site;
 
 public class CV_5034_OLS_A_S extends BaseTest {
 
@@ -43,7 +46,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
     public static Object[][] getData() {
         return new Object[][]{
                 {Site.AUT_CV_5034A_site},
-                {Site.AUT_CV_5034S_site}
+                {AUT_CV_5034S_site}
         };
     }
 
@@ -101,7 +104,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         List<String> disqualifyQ3 = Arrays.asList("Diabetes or High Blood Sugar", "High cholesterol or high triglycerides",
                 "High blood pressure or hypertension", "Chronic Kidney Disease");
-        for (String answer: disqualifyQ3) {
+        for (String answer : disqualifyQ3) {
             System.out.println("Select answer for Q3: " + answer);
             cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
@@ -266,10 +269,10 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .back();
 
         AdditionalHeartRelatedConditionsPageOLS additionalHeartRelatedConditionsPageOLS =
-        heartRelatedSurgeriesProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new AdditionalHeartRelatedConditionsPageOLS());
+                heartRelatedSurgeriesProceduresPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new AdditionalHeartRelatedConditionsPageOLS());
 
         //Q18	Have you ever been diagnosed with any of the following additional heart-related conditions?
         ApproximateHeightPageOLS approximateHeightPageOLS = additionalHeartRelatedConditionsPageOLS
@@ -347,6 +350,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .clickNextButton(healthcareDiagnosedConditionsPageOLS);
+
 //------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
         CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = new CurrentlyTreatingYourDiabetesPageOLS();
         List<String> options = Arrays.asList("Cancer in the past 5 years, except skin cancer",
@@ -368,28 +372,36 @@ public class CV_5034_OLS_A_S extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
                     .back();
         }
-        healthcareDiagnosedConditionsPageOLS
+        IdentificationPageOLS identificationPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageOLS());
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
+                .clickNextButton(new SiteSelectionPageOLS());
+        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS());
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose1PageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .getRadiantDbToLog(env)
-                .getAnomalyDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo);
+        if (site == AUT_CV_5034S_site) {
+            aboutHealthPageOLS
+                    .getRadiantDbToLog(env)
+                    .getAnomalyDbToLog(env);
+        }
     }
 }

@@ -591,7 +591,7 @@ public class DERM_4825_OLS extends BaseTest {
                 .back();
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "100")
+                .setLbs("100")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -599,11 +599,12 @@ public class DERM_4825_OLS extends BaseTest {
                 .back();
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "155")
+                .setLbs("155")
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()

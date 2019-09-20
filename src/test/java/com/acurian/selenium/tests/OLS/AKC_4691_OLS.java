@@ -2,8 +2,8 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.ADG_4357.DigestiveConditionsAffectDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
+import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -60,10 +60,10 @@ public class AKC_4691_OLS extends BaseTest {
 
         //--------------Q2: Have you been diagnosed with any type of diabetes?------------
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-        diagnosedAnyTypeOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                diagnosedAnyTypeOfDiabetesPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -153,7 +153,7 @@ public class AKC_4691_OLS extends BaseTest {
         cases.put("2 - 3 months ago", Arrays.asList(site.activeProtocols));
         cases.put("4 - 5 months ago", Arrays.asList(site.activeProtocols));
         cases.put("6 months ago or longer", Arrays.asList(site.activeProtocols));
-        for(Map.Entry<String, List<String>> entry : cases.entrySet()) {
+        for (Map.Entry<String, List<String>> entry : cases.entrySet()) {
             lastTimeYouTookPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey())
@@ -235,7 +235,7 @@ public class AKC_4691_OLS extends BaseTest {
         cases.put("Avandia (rosiglitazone)", Arrays.asList(site.activeProtocols));
         cases.put("Duetact (pioglitazone and glimepiride)", Arrays.asList(site.activeProtocols));
         cases.put("Oseni (alogliptin and pioglitazone)", Arrays.asList(site.activeProtocols));
-        for(Map.Entry<String, List<String>> entry : cases.entrySet()) {
+        for (Map.Entry<String, List<String>> entry : cases.entrySet()) {
             apartFromMetforminPageOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
@@ -615,19 +615,19 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+        DoYouExperienceDPN_OLS doYouExperienceDPN_OLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
-        		.waitForPageLoadNotQ()
-        		.getPage(debugPageOLS)
-        		.checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-        		.back();
+                .clickNextButton(new DoYouExperienceDPN_OLS());
+        doYouExperienceDPN_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .back();
         approximateHeightPageOLS
-				.waitForPageLoad()
-				.setIncheswithClear("9")
-				.setLbs("240")
+                .waitForPageLoad()
+                .setIncheswithClear("9")
+                .setLbs("240")
                 .clickNextButton(new IdentificationPageOLS())
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)

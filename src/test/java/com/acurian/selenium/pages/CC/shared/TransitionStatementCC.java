@@ -94,71 +94,62 @@ public class TransitionStatementCC extends MainPageCC {
 
     @Step
     public TransitionStatementCC waitForPageLoadMCC(String studyName) {
-        waitForAnimation();
         String titleExpected = String.format(titleExpectedMCC, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public TransitionStatementCC waitForPageLoadGERD(String studyName) {
-        waitForAnimation();
         String titleExpected = String.format(titleExpectedGERD, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
 
     @Step
     public TransitionStatementCC waitForPageLoadMDD(String studyName) {
-        waitForAnimation();
         String titleExpected = String.format(titleExpectedMDD, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public TransitionStatementCC waitForPageLoadNew(String studyName) {
-        waitForAnimation();
         String titleExpected = String.format(titleExpectedNew, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public TransitionStatementCC waitForPageLoadWithCurves(String studyName) {
-        waitForAnimation();
         String titleExpectedMod = String.format(titleExpectedWithCurves, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpectedMod));
+        waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
 
     @Step
     public TransitionStatementCC waitForPageLoadWithCurves1(String studyName) {
-        waitForAnimation();
         String titleExpectedMod = String.format(titleExpectedCurves1, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpectedMod));
+        waitForPageLoadMain(titleText, titleExpectedMod);
         return this;
     }
 
     @Step
     public TransitionStatementCC waitForPageLoadWithCurvesKAD(String studyName) {
-        waitForAnimation();
         String titleExpectedkad = String.format(titleExpectedKAD, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpectedkad));
+        waitForPageLoadMain(titleText, titleExpectedkad);
         return this;
     }
 
     @Step
     public TransitionStatementCC waitForPageLoadPsoriasis() {
-        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpectedPsoriasis);
         return this;
     }
 
     @Step
     public TransitionStatementCC waitForPageLoadDPN() {
-        waitForAnimation();
         waitForPageLoadMain(titleText, titleDPNExpected);
         return this;
     }
