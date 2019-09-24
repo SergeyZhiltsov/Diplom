@@ -31,7 +31,7 @@ public class ABRandomnessTest extends BaseTest {
         System.out.println("Skip standard driver quit.");
     }
 
-    @Test(invocationCount = 100, skipFailedInvocations = true, enabled = false)
+    @Test(invocationCount = 100, skipFailedInvocations = true, enabled = true)
     public void abRandomnes() {
         String testURL = "https://test-screener.acurian.com/questionnaire_test_staging_redirector/welcome?pn=800AMS1TST";
 
