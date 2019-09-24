@@ -5,14 +5,13 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.AST_4337.SubquestionSmokedCigarettePageOLS;
 import com.acurian.selenium.pages.OLS.COPD_5042.*;
 import com.acurian.selenium.pages.OLS.ChronicCough.QuitSmokingOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.*;
+import com.acurian.selenium.pages.OLS.LOWT_3017.EverSmokedCigarettesPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
-import com.acurian.selenium.pages.OLS.cv_study.CholesterolTriglyceridesLipidsPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,7 +33,7 @@ public class COPD_5042_OLS extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_COPD_5042S_Site},
                 {Site.AUT_COPD_5042_Site}
         };
@@ -97,7 +96,7 @@ public class COPD_5042_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back(genderPageOLS)
                 .waitForPageLoad();
-        HasHealthcareProfessionalDiagnosedLungCondOLS hasHealthcareProfessionalDiagnosedLungCondOLS =genderPageOLS
+        HasHealthcareProfessionalDiagnosedLungCondOLS hasHealthcareProfessionalDiagnosedLungCondOLS = genderPageOLS
                 .setDate("09091978")
                 .clickNextButton(new HasHealthcareProfessionalDiagnosedLungCondOLS());
 
@@ -138,7 +137,7 @@ public class COPD_5042_OLS extends BaseTest {
                 .clickOnAnswer("Yes, I currently smoke")
                 .clickNextButton(new SubquestionSmokedCigarettePageOLS());
         subquestionSmokedCigarettePageOLS
-                .waitForPageLoad(1,"How many years have you been smoking cigarettes?")
+                .waitForPageLoad(1, "How many years have you been smoking cigarettes?")
                 .back(everSmokedCigarettesPageOLS)
                 .waitForPageLoad();
         QuitSmokingOLS quitSmokingOLS = everSmokedCigarettesPageOLS
@@ -152,8 +151,8 @@ public class COPD_5042_OLS extends BaseTest {
                 .clickOnAnswer("I quit smoking within the past year")
                 .clickNextButton(new SubquestionSmokedCigarettePageOLS());
         subquestionSmokedCigarettePageOLS
-                .waitForPageLoad(1,"How many years did you smoke cigarettes?")
-                .waitForPageLoad(2,"About how many cigarettes per day did you smoke?");
+                .waitForPageLoad(1, "How many years did you smoke cigarettes?")
+                .waitForPageLoad(2, "About how many cigarettes per day did you smoke?");
         AreYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS = subquestionSmokedCigarettePageOLS
                 .setFirst("15")  //---10 for DQ
                 .setSecond("15")
@@ -171,7 +170,8 @@ public class COPD_5042_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS7409", site.activeProtocols)
                 .back(areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS)
                 .waitForPageLoad();
-        WhichFollowingInhalersdoYouUseCopdOLS whichFollowingInhalersdoYouUseCopdOLS = areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS
+        WhichFollowingInhalersdoYouUseCopdOLS whichFollowingInhalersdoYouUseCopdOLS =
+                areYouCurrentlyTakingAnyInhaledNebulizedMedstoCopdOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhichFollowingInhalersdoYouUseCopdOLS());
 
@@ -184,12 +184,13 @@ public class COPD_5042_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS7410", site.activeProtocols)
                 .back(whichFollowingInhalersdoYouUseCopdOLS)
                 .waitForPageLoad()
-                .clickOnAnswers("Asmanex or Asmanex HFA","Bevespi Aerosphere")
+                .clickOnAnswers("Asmanex or Asmanex HFA", "Bevespi Aerosphere")
                 .clickNextButton(new InThePastYearHowManyUrgentMedicalforCopdOLS());
 
 
         //------------InThePastYearHowManyUrgentMedicalforCopdOLS---------
-        HaveYouEverHadFollowingLungSurgeriesOLS haveYouEverHadFollowingLungSurgeriesOLS = inThePastYearHowManyUrgentMedicalforCopdOLS
+        HaveYouEverHadFollowingLungSurgeriesOLS haveYouEverHadFollowingLungSurgeriesOLS =
+                inThePastYearHowManyUrgentMedicalforCopdOLS
                 .waitForPageLoad()
                 .clickOnAnswer("None")
                 .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesOLS());
@@ -203,11 +204,11 @@ public class COPD_5042_OLS extends BaseTest {
                 .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesOLS());
 
 
-
         //------------HaveYouEverHadFollowingLungSurgeriesOLS---------
-        WhenDidYouHaveYourMostRecentLungSurgeryOLS whenDidYouHaveYourMostRecentLungSurgeryOLS = haveYouEverHadFollowingLungSurgeriesOLS
+        WhenDidYouHaveYourMostRecentLungSurgeryOLS whenDidYouHaveYourMostRecentLungSurgeryOLS =
+                haveYouEverHadFollowingLungSurgeriesOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Removal of a whole lung","Lung transplant")
+                .clickOnAnswers("Removal of a whole lung", "Lung transplant")
                 .clickNextButton(new WhenDidYouHaveYourMostRecentLungSurgeryOLS());
         whenDidYouHaveYourMostRecentLungSurgeryOLS
                 .waitForPageLoad()
@@ -241,17 +242,18 @@ public class COPD_5042_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers(//"Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Cancer",
-                       // "Kidney disease",
+                        // "Kidney disease",
                         //"Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                        //"Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                //"Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
         //HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
-        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS = otherThanSkinCancerPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS =
+                otherThanSkinCancerPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("Within the past 5 years")
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -265,9 +267,10 @@ public class COPD_5042_OLS extends BaseTest {
 
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad();
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
-                .clickOnAnswers("Unsure which type of liver disease")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
+                whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
+                        .clickOnAnswers("Unsure which type of liver disease")
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -326,60 +329,44 @@ public class COPD_5042_OLS extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
-        siteSelectionPageOLS
+        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
-                .getPID();
+                .getPID()
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageOLS());
+        HSGeneralPageOLS hsGeneralPageOLS = medicalRecordsOptionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new HSGeneralPageOLS());
+        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = hsGeneralPageOLS
+                .waitForPageLoadEmailNotProvided()
+                .typeEmail("qa.acurian@gmail.com")
+                .clickNextButton(new DoctorInformationCollectionPageOLS());
+        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+                .waitForPageLoad()
+                .clickNextButton(new HS1PageOLS());
+        hs1PageOLS
+                .clickOkInPopUp()
+                .setSignature()
+                .waitToClickNext();
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
         switch (site) {
             case AUT_COPD_5042_Site: //1R
-                siteSelectionPageOLS
-                        .clickOnFacilityName(site.name)
-                        .clickNextButton(new MedicalRecordsOptionPageOLS())
-                        .waitForPageLoad()
-                        .clickOnAnswer("Continue with medical records")
-                        .clickNextButton(new HSGeneralPageOLS())
-                        .waitForPageLoadEmailNotProvided()
-                        .typeEmail("qa.acurian@gmail.com")
-                        .clickNextButton(new DoctorInformationCollectionPageOLS())
-                        .waitForPageLoad()
-                        .clickNextButton(new HS1PageOLS())
-                        .waitForPageLoad()
-                        .clickOkInPopUp()
-                        .setSignature()
-                        .waitToClickNext();
-                thankYouCloseSimplePageOLS
-                        .waitForPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS())
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                aboutHealthPageOLS
+                        .assertGeneratedFul(env, site);
                 break;
             case AUT_COPD_5042S_Site: //41C
-                SiteSelectionPageOLS siteSelectionPageOLS1 = new SiteSelectionPageOLS();
-                siteSelectionPageOLS1
-                        .clickOnFacilityName(site.name)
-                        .clickNextButton(new MedicalRecordsOptionPageOLS())
-                        .waitForPageLoad()
-                        .clickOnAnswer("Continue with medical records")
-                        .clickNextButton(new HSGeneralPageOLS())
-                        .waitForPageLoadEmailNotProvided()
-                        .typeEmail("qa.acurian@gmail.com")
-                        .clickNextButton(new DoctorInformationCollectionPageOLS())
-                        .waitForPageLoad()
-                        .clickNextButton(new HS1PageOLS())
-                        .clickOkInPopUp()
-                        .setSignature()
-                        .waitToClickNext();
-                thankYouCloseSimplePageOLS
-                        .waitForPageLoad()
-                        .clickNextButton(new AboutHealthPageOLS())
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
+                aboutHealthPageOLS
                         .getRadiantDbToLog(env)
-                        .getAnomalyDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .getAnomalyDbToLog(env);
         }
     }
 }

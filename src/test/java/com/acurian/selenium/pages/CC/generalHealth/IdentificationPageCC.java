@@ -4,7 +4,6 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class IdentificationPageCC extends MainPageCC {
@@ -13,7 +12,7 @@ public class IdentificationPageCC extends MainPageCC {
             "\n" +
             "Now, I just want to confirm that your name and contact information were entered correctly.\n" +
             "[Read the name, address and phone number to the caller. Make any corrections noted by the caller.]";
-    
+
     public final String titleExpected1 = "After saying the language above, please abort screening.";
 
     public final String titleExpectedNotQ = "Personal details (*required fields)";
@@ -23,7 +22,7 @@ public class IdentificationPageCC extends MainPageCC {
 
     @FindBy(xpath = "//div[@class='patient_block']/div[@class='question_text']")
     WebElement titleText2;
-    
+
     @FindBy(xpath = "//div[@class='question_container']//div[@class='show-in-cc']/span[@class='agent-note']")
     WebElement titleTextt;
 
@@ -49,15 +48,12 @@ public class IdentificationPageCC extends MainPageCC {
     @Step
     public IdentificationPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
-//        waitForAnimation();
-//        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
-    
+
     @Step
     public IdentificationPageCC waitForPageLoad1() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleTextt.getText().contains(titleExpected1));
+        waitForPageLoadMain(titleTextt, titleExpected1);
         return this;
     }
 
@@ -68,7 +64,7 @@ public class IdentificationPageCC extends MainPageCC {
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 
@@ -117,5 +113,5 @@ public class IdentificationPageCC extends MainPageCC {
         waitForAnimation();
         return this;
     }
-    
+
 }

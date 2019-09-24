@@ -10,6 +10,8 @@ public @interface Locators {
     String LOGIN_INPUT = "input[ng-model='user.Username']";
     String isEnvWeb = System.getProperty("acurian.platform", "web");// web, mobile, tablet
 
+    String BASIC_DROPDOWN_LIST = "//div[contains(@class,'dropdown')]/select";
+
     //Base CC
     String BASIC_TITLE_WITH_RADIO_BUTTON_CC = "//div[@class='question_text']";
     String RADIO_BUTTON_LIST_CC = "//div[@class='radio_btns_container']//label";
