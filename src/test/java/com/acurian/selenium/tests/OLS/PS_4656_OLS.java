@@ -26,7 +26,7 @@ public class PS_4656_OLS extends BaseTest {
 
     @DataProvider
     public Object[][] sites() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_PSO4656},
         };
     }
@@ -63,9 +63,9 @@ public class PS_4656_OLS extends BaseTest {
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
                 healthcareDiagnosedPsoriasisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
         hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -92,71 +92,92 @@ public class PS_4656_OLS extends BaseTest {
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 typePsoriasisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Another type of psoriasis (Guttate, Pustular, Erythtodermic, Inverse)")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7020", site.activeProtocols)
                 .back();
-        PartsBodyCurrentlyAffectedByPsoriasisPageOLS partsBodyCurrentlyAffectedByPsoriasisPageOLS = typePsoriasisPageOLS
+        //PartsBodyCurrentlyAffectedByPsoriasisPageOLS partsBodyCurrentlyAffectedByPsoriasisPageOLS = typePsoriasisPageOLS
+        HowMuchPsoriasisOnYourBodyOLS howMuchPsoriasisOnYourBodyOLS = typePsoriasisPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Plaque - Thick, red patches of skin are covered by flaky, silver-white scales. This is the most common type of psoriasis")
-                .clickNextButton(new PartsBodyCurrentlyAffectedByPsoriasisPageOLS());
-        partsBodyCurrentlyAffectedByPsoriasisPageOLS
-                .waitForPageLoad()
-                .back(typePsoriasisPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("I am not sure")
-                .clickNextButton(partsBodyCurrentlyAffectedByPsoriasisPageOLS);
+                .clickNextButton(new HowMuchPsoriasisOnYourBodyOLS());
 
+        TreatYourPsoriasisPageOLS treatYourPsoriasisPageOLS = new TreatYourPsoriasisPageOLS();
+        List<String> disqualifyQ5 = Arrays.asList("0", "1", "21 +");
+        for (String answer : disqualifyQ5) {
+            System.out.println("Select answer from dropdown for Q5: " + answer);
+            howMuchPsoriasisOnYourBodyOLS
+                    .waitForPageLoad()
+                    .selectFromDropDown(answer)
+                    .clickNextButton(treatYourPsoriasisPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS7005", site.activeProtocols)
+                    .back();
 
-        TreatYourPsoriasisPageOLS treatYourPsoriasisPageOLS = partsBodyCurrentlyAffectedByPsoriasisPageOLS
+        }
+        howMuchPsoriasisOnYourBodyOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of these")
-                .clickNextButton(new TreatYourPsoriasisPageOLS());
-        treatYourPsoriasisPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7006", site.activeProtocols)
-                .back();
-        HeadFaceNeckPsoriasisPageOLS headFaceNeckPsoriasisPageOLS = partsBodyCurrentlyAffectedByPsoriasisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Head, scalp, face, and neck",
-                        "Chest, stomach, and back",
-                        "Arms and hands",
-                        "Legs and feet")
-                .clickNextButton(new HeadFaceNeckPsoriasisPageOLS());
-
-        ChestStomachBackPsoriasisPageOLS chestStomachBackPsoriasisPageOLS = headFaceNeckPsoriasisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("B")
-                .clickNextButton(new ChestStomachBackPsoriasisPageOLS());
-
-        ArmsHandsPsoriasisPageOLS armsHandsPsoriasisPageOLS = chestStomachBackPsoriasisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("A")
-                .clickNextButton(new ArmsHandsPsoriasisPageOLS());
-
-        LegsFeetPsoriasisPageOLS legsFeetPsoriasisPageOLS = armsHandsPsoriasisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("B")
-                .clickNextButton(new LegsFeetPsoriasisPageOLS());
-
-        legsFeetPsoriasisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("E")
-                .clickNextButton(treatYourPsoriasisPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7011", site.activeProtocols)
-                .back();
-        legsFeetPsoriasisPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("D")
+                .selectFromDropDown("4")
                 .clickNextButton(treatYourPsoriasisPageOLS);
+//-----Deactivated BSA images questions in spec R78.3
+//        partsBodyCurrentlyAffectedByPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .back(typePsoriasisPageOLS)
+//                .waitForPageLoad()
+//                .clickOnAnswers("I am not sure")
+//                .clickNextButton(partsBodyCurrentlyAffectedByPsoriasisPageOLS);
+//
+//
+//        TreatYourPsoriasisPageOLS treatYourPsoriasisPageOLS = partsBodyCurrentlyAffectedByPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of these")
+//                .clickNextButton(new TreatYourPsoriasisPageOLS());
+//        treatYourPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7006", site.activeProtocols)
+//                .back();
+//        HeadFaceNeckPsoriasisPageOLS headFaceNeckPsoriasisPageOLS = partsBodyCurrentlyAffectedByPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Head, scalp, face, and neck",
+//                        "Chest, stomach, and back",
+//                        "Arms and hands",
+//                        "Legs and feet")
+//                .clickNextButton(new HeadFaceNeckPsoriasisPageOLS());
+//
+//        ChestStomachBackPsoriasisPageOLS chestStomachBackPsoriasisPageOLS = headFaceNeckPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("B")
+//                .clickNextButton(new ChestStomachBackPsoriasisPageOLS());
+//
+//        ArmsHandsPsoriasisPageOLS armsHandsPsoriasisPageOLS = chestStomachBackPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("A")
+//                .clickNextButton(new ArmsHandsPsoriasisPageOLS());
+//
+//        LegsFeetPsoriasisPageOLS legsFeetPsoriasisPageOLS = armsHandsPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("B")
+//                .clickNextButton(new LegsFeetPsoriasisPageOLS());
+//
+//        legsFeetPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("E")
+//                .clickNextButton(treatYourPsoriasisPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7011", site.activeProtocols)
+//                .back();
+//        legsFeetPsoriasisPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("D")
+//                .clickNextButton(treatYourPsoriasisPageOLS);
 
         PsoriaticArthritisConditionPageOLS psoriaticArthritisConditionPageOLS = treatYourPsoriasisPageOLS
                 .waitForPageLoad()

@@ -26,7 +26,7 @@ public class DERM_4825_CC extends BaseTest {
     @Test()
     @Description("DERM 4825 Genentech Atopic Derm")
     public void derm4825ccGADTest() {
-        Site site = Site.AUT_DPN_5096_site;
+        Site site = Site.AUT_AMS1_4825_site;
         final String phoneNumber = "AUTAMSDERM";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
@@ -63,7 +63,7 @@ public class DERM_4825_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+                        .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
                 "Title is diff");
 
         dateOfBirthPageCC
@@ -113,7 +113,7 @@ public class DERM_4825_CC extends BaseTest {
                 "7 - 11 months",
                 "1 year",
                 "2 year");
-        for (String answer: disqualifyQ3) {
+        for (String answer : disqualifyQ3) {
             System.out.println(answer);
             howLongHaveYouBeenSufferingFromEczema_cc
                     .waitForPageLoad()
@@ -134,7 +134,7 @@ public class DERM_4825_CC extends BaseTest {
                 new HaveYouEverHadAnyOfTheFollowingSymptomsPageСС();
         List<String> disqualifyQ24 = Arrays.asList("Minor: Mostly or almost clear",
                 "Mild: Covers a small amount of total skin on my body");
-        for (String answer: disqualifyQ24) {
+        for (String answer : disqualifyQ24) {
             System.out.println("Select answer for Q24: " + answer);
             howWouldYouDescribeTheEczemaCurrentlyPageCC
                     .waitForPageLoad()
@@ -289,40 +289,40 @@ public class DERM_4825_CC extends BaseTest {
         WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                "Autism spectrum",
-                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
-                "Cancer",
-                "Diabetes (type 1 or type 2)",
-                "Headaches (migraine, cluster, tension)",
-                "Heart or circulation problems (heart attack, heart failure, stroke)",
-                "High blood pressure or hypertension",
-                "High cholesterol, triglycerides, or lipids",
-                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                "Kidney disease",
-                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                "Lupus",
-                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
-                        "schizophrenia)",
-                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                "Sleep problems (insomnia, sleep apnea, narcolepsy)",
-                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                "Women's health issues (endometriosis, uterine fibroids)")
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Cancer",
+                        "Diabetes (type 1 or type 2)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
+                                "schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisCC());
         whatKindOfArthritisCC
                 .waitForPageLoad()
                 .back();
         //Q2: QS38
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //If exclusively selected, skip to Q24)
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //If exclusively selected, skip to Q24)
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         //Check flow logic for Q2
         //Q4: QS40
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -330,7 +330,7 @@ public class DERM_4825_CC extends BaseTest {
                 .back();
 
         WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC =
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC 
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")//Select
@@ -341,11 +341,11 @@ public class DERM_4825_CC extends BaseTest {
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC); //Back to Q2: QS38
 
         WhichOfTheFollowingBreathingLungPageСС whichOfTheFollowingBreathingLungPageСС =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
+                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
         //Q5: QS41
         whichOfTheFollowingBreathingLungPageСС
                 .waitForPageLoad()
@@ -359,13 +359,13 @@ public class DERM_4825_CC extends BaseTest {
 
         //Q6: QS42
         otherThanSkinCancerPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("Within the past 5 years")
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                    .back(otherThanSkinCancerPageOLS);
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back(otherThanSkinCancerPageOLS);
         //Back to haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
         otherThanSkinCancerPageOLS
                 .waitForPageLoad()
@@ -518,11 +518,11 @@ public class DERM_4825_CC extends BaseTest {
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         DoYouTakeAnyMedicationsControlHypertension_CC doYouTakeAnyMedicationsControlHypertension_CC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                 .waitForPageLoad()
-                 .clickOnAnswers("None of the above")
-                 .clickOnAnswers("High blood pressure or hypertension")
-                 .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_CC());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("High blood pressure or hypertension")
+                        .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_CC());
         //Q15: QS50
         doYouTakeAnyMedicationsControlHypertension_CC
                 .waitForPageLoad()
@@ -530,10 +530,10 @@ public class DERM_4825_CC extends BaseTest {
 
         //Q16: QS51
         KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickOnAnswers("Kidney disease")
-                        .clickNextButton(new KidneyProblemsPage());
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Kidney disease")
+                .clickNextButton(new KidneyProblemsPage());
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
@@ -608,12 +608,12 @@ public class DERM_4825_CC extends BaseTest {
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC whichOfFollowingHaveYouDiagnosedWith_NeurologicalCC =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
                                 "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC());
         //Q19: QS54
         whichOfFollowingHaveYouDiagnosedWith_NeurologicalCC
                 .waitForPageLoad()
@@ -685,7 +685,7 @@ public class DERM_4825_CC extends BaseTest {
                 "Hepatitis B",
                 "Hepatitis C",
                 "HIV or AIDS");
-        for (String answer: disqualifyQ24GH) {
+        for (String answer : disqualifyQ24GH) {
             System.out.println(answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
@@ -694,7 +694,7 @@ public class DERM_4825_CC extends BaseTest {
                     .clickNextButton(approximateHeightPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS59" , site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                     .back();
         }
 
