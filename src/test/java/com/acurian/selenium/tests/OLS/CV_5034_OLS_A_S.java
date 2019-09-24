@@ -6,8 +6,11 @@ import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.*;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
@@ -28,8 +31,6 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.acurian.selenium.constants.Site.AUT_CV_5034S_site;
-
 public class CV_5034_OLS_A_S extends BaseTest {
 
     @BeforeMethod
@@ -46,7 +47,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
     public static Object[][] getData() {
         return new Object[][]{
                 {Site.AUT_CV_5034A_site},
-                {AUT_CV_5034S_site}
+                {Site.AUT_CV_5034S_site}
         };
     }
 
@@ -398,7 +399,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo);
-        if (site == AUT_CV_5034S_site) {
+        if (site == Site.AUT_CV_5034S_site) {
             aboutHealthPageOLS
                     .getRadiantDbToLog(env)
                     .getAnomalyDbToLog(env);

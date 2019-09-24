@@ -10,21 +10,20 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.tests.OLS.PS_4656_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class PSO_4656_CC extends BaseTest {
 
-    @Test
+    @Test(dataProvider = "sites", dataProviderClass = PS_4656_OLS.class)
     @Description("PSO_4656_CC")
-    public void psor4656cc() {
-        Site site = Site.AUT_PSO4656;
+    public void psor4656cc(Site site) {
         final String phoneNumber = "AUTAMS1PSO";
         final String studyName = "a psoriasis study";
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -89,10 +88,11 @@ public class PSO_4656_CC extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedWithPsoriasisCC());
 
-        HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc = diagnosedWithPsoriasisCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
+        HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc =
+                diagnosedWithPsoriasisCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
         hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
