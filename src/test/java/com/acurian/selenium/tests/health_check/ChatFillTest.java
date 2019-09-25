@@ -39,8 +39,7 @@ public class ChatFillTest extends BaseTest {
                 .openPage(env, phoneNumber);
 
         letsStartPageOLS
-                .waitForPageLoadByTitle(env.equals("PRD") ? letsStartPageOLS.titleExpected :
-                        letsStartPageOLS.titleExpectedQA)
+                .waitForPageLoadByTitle(letsStartPageOLS.titleExpectedQA)
                 .clickNextButton(dateOfBirthPageOLS);
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -81,8 +80,7 @@ public class ChatFillTest extends BaseTest {
                 .clickNextButton(personalDetails);
 
         SiteSelectionPageOLS siteSelectionPageOLS = personalDetails
-                .waitForPageLoadByTitle(env.equals("PRD") ? personalDetails.titleExpectedCaregiver :
-                        personalDetails.titleExpected)
+                .waitForPageLoadByTitle(personalDetails.titleExpected)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         siteSelectionPageOLS
