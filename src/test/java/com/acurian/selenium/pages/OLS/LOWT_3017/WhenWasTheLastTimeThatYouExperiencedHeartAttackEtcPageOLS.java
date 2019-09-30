@@ -4,12 +4,11 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS extends MainPageOLS{
+public class WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS extends MainPageOLS {
 
     public final String titleExpected1 = "When was the last time that you experienced a heart attack?";
     public final String titleExpected2 = "When was the last time that you experienced a stroke?";
@@ -21,7 +20,6 @@ public class WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS extends M
     List<WebElement> titlesText;
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//span[contains(@class,'visible-md-inline')]")
     List<WebElement> checkBoxList;
-
 
     @Step
     public WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS waitForPageLoad() {
@@ -64,15 +62,15 @@ public class WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS extends M
         });
         return this;
     }
-    
+
     @Step
-    public WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS clickOnAnswers(String ...answerText) {
+    public WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(int titleIndex){
+    public String getTitleText(int titleIndex) {
         return getText(titlesText.get(titleIndex - 1));
     }
 }

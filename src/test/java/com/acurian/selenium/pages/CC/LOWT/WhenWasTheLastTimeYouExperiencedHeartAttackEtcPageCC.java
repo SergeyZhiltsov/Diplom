@@ -4,12 +4,11 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC extends MainPageCC{
+public class WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC extends MainPageCC {
 
     public final String titleExpected1 = "When was the last time that you experienced a heart attack?";
     public final String titleExpected2 = "When was the last time that you experienced a stroke?";
@@ -17,19 +16,10 @@ public class WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC extends MainPa
 
     @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='sub_question_text']")
     WebElement titleText;
-
     @FindBy(xpath = "//div[@class='subquestion']//span[@class='sub_question_text']")
     List<WebElement> titlesText;
-
-    @FindBy(xpath = "")
-    List<WebElement> checkBoxList;
-
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
-
-    public WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC waitForPageLoad() {
@@ -53,7 +43,7 @@ public class WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC extends MainPa
         clickOnRadioButton(checkBoxListFromTitle, answerText);
         return this;
     }
-    
+
     @Step
     public WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
@@ -81,7 +71,7 @@ public class WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC extends MainPa
     }
 
     @Step
-    public String getTitleText(int titleIndex){
+    public String getTitleText(int titleIndex) {
         return getText(titlesText.get(titleIndex - 1));
     }
 }

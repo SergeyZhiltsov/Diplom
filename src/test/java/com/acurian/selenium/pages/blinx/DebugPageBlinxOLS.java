@@ -17,7 +17,7 @@ public class DebugPageBlinxOLS extends MainPageBlinx {
     public DebugPageBlinxOLS getPID(){
         driverWait.waitforVisibility(pid);
         pidNumber = pid.getText().replace("pid: ", "");
-        logTextToAllureAndConsole("PID = " + pidNumber);
+        logTextToAllureAndConsole("PID from page = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
         return this;
     }

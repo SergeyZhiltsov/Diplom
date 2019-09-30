@@ -37,7 +37,7 @@ public class IBD_3889_CC extends BaseTest {
     @DataProvider(name = "Flare status")
     public Object[][] flareStatus() {
         return new Object[][]{
-                {"Not in Flare"},
+              //  {"Not in Flare"},
                 {"In Flare"}
         };
     }
