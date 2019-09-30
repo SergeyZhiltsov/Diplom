@@ -389,7 +389,7 @@ public class HOTF_7119_CC extends BaseTest {
 //                .back();
 //        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
 //                .waitForPageLoad()
-                .setAll("5", "5", "108")
+                .setAll("5", "5", "150")
                 .clickNextButton(new LetMeSeePageCC());
 
 
