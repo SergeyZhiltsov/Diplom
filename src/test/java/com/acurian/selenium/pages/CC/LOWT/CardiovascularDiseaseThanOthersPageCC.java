@@ -3,7 +3,6 @@ package com.acurian.selenium.pages.CC.LOWT;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
@@ -16,13 +15,8 @@ public class CardiovascularDiseaseThanOthersPageCC extends MainPageCC {
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
-
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
     List<WebElement> checkBoxList;
-
-    public CardiovascularDiseaseThanOthersPageCC() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public CardiovascularDiseaseThanOthersPageCC waitForPageLoad() {

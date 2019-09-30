@@ -19,9 +19,12 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     WebElement titleText;
     @FindBy(xpath = "//div[contains(@class,'address2')]")
     List<WebElement> radioButtonsList;
+    @FindBy(id = "expandLocationsCta")
+    WebElement showOthersAdditionalLocations;
 
 
     @Step
+
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {
         driverWait.waitforVisibility(loadingAnimation);
         waitForAbsence(loadingAnimation);
@@ -33,6 +36,9 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
 
     @Step
     public SiteSelectionPageOLS clickOnFacilityName(String facilityName) {
+        if (isElementPresent(showOthersAdditionalLocations)) {
+            waitAndClickWebElement(showOthersAdditionalLocations);
+        }
         waitAndClickWebElement(By.xpath(String
                 .format("//div[contains(@class,'choiceSelectionContainer')][contains(.,'%s')]", facilityName)));
         return this;

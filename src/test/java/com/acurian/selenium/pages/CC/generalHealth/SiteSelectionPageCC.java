@@ -2,7 +2,6 @@ package com.acurian.selenium.pages.CC.generalHealth;
 
 import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.utils.PassPID;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -24,17 +23,17 @@ public class SiteSelectionPageCC extends MainPageCC {
 
     //%s = studyName variable
     public final String titleExpected = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
-    		"\n" +
-    		"[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetic nerve pain\" or \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered:\n" +
-    		"“Based on your answers, you are not an exact match for the study referenced in the letter or ad about specific diabetes complications to which you originally responded. However, you have prequalified for another study for people with diabetes.”]\n" +
-    		"\n" +
-    		"[Offer second closest site if necessary and if reasonable]\n" +
-    		"If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and you can talk to them about the study. Which would you prefer?\"";
-    
-    
+            "\n" +
+            "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetic nerve pain\" or \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered:\n" +
+            "“Based on your answers, you are not an exact match for the study referenced in the letter or ad about specific diabetes complications to which you originally responded. However, you have prequalified for another study for people with diabetes.”]\n" +
+            "\n" +
+            "[Offer second closest site if necessary and if reasonable]\n" +
+            "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and you can talk to them about the study. Which would you prefer?\"";
+
+
     public final String titleExpectedMCC = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
             "\n" +
-            "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetic nerve pain\" or \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered:\n" + 
+            "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetic nerve pain\" or \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered:\n" +
             "“Based on your answers, you are not an exact match for the study referenced in the letter or ad about specific diabetes complications to which you originally responded. However, you have prequalified for another study for people with diabetes.”]\n" +
             "\n" +
             "[Offer second closest site if necessary and if reasonable]\n" +
@@ -53,7 +52,7 @@ public class SiteSelectionPageCC extends MainPageCC {
 
     @FindBy(xpath = "//div[@class='site_selection_container']//span[@class='site_sel_radio_facilityName']")
     List<WebElement> radioButtonsList;
-    
+
     @FindBy(xpath = "//div[@class='site_selection_container']//span[@class='question_helper']")
     List<WebElement> radioButtonsList1;
 
@@ -80,12 +79,12 @@ public class SiteSelectionPageCC extends MainPageCC {
             return this;
         }
     }
-    
+
     @Step
     public SiteSelectionPageCC waitForPageLoadMCC(String studyName) {
         waitForAnimation();
         String titleExpected = String.format(titleExpectedMCC, studyName);
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w -> titleText.getText().contains(titleExpected));
         return this;
     }
 
@@ -126,16 +125,16 @@ public class SiteSelectionPageCC extends MainPageCC {
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 
     @Step
-    public SiteSelectionPageCC getPID(){
+    public SiteSelectionPageCC getPID() {
         pidNumber = getText(pidNumberPath);
-        logTextToAllure("PID="+pidNumber);
+        logTextToAllure("PID = " + pidNumber);
         PassPID.getInstance().setPidNumber(pidNumber);
-        System.out.println("PID = "+pidNumber);
+        System.out.println("PID = " + pidNumber);
         return this;
     }
 
@@ -143,4 +142,4 @@ public class SiteSelectionPageCC extends MainPageCC {
 //    private void logTextToAllure(String text) {
 //        //empty method
 //    }
-    }
+}

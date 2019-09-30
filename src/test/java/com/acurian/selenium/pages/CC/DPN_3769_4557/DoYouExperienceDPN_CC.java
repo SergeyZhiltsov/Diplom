@@ -20,10 +20,6 @@ public class DoYouExperienceDPN_CC extends MainPageCC{
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public DoYouExperienceDPN_CC() {
-        PageFactory.initElements(getDriver(), this);
-    }
-
     @Step
     public DoYouExperienceDPN_CC waitForPageLoad() {
         waitForAnimation();
