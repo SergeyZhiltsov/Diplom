@@ -1,6 +1,8 @@
 package com.acurian.selenium.pages.OLS.LOWT_3017;
 
 import java.util.List;
+
+import com.acurian.selenium.constants.Locators;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,10 +14,10 @@ public class HasDoctorEverDiagnosedYouWithLowTestosterone_OLS extends MainPageOL
 	public final String titleExpected = "Testosterone is the male sex hormone. Levels may drop as men age.\n" +
 			"Has a doctor ever diagnosed you with low testosterone or hypogonadism?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
 
-    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
     public HasDoctorEverDiagnosedYouWithLowTestosterone_OLS() {
@@ -24,18 +26,13 @@ public class HasDoctorEverDiagnosedYouWithLowTestosterone_OLS extends MainPageOL
 
     @Step
     public HasDoctorEverDiagnosedYouWithLowTestosterone_OLS waitForPageLoad() {
-        waitForAnimation();
-        driverWait.waitforVisibility(titleText);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public HasDoctorEverDiagnosedYouWithLowTestosterone_OLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
