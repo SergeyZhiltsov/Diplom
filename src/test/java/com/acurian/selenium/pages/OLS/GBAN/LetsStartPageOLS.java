@@ -5,7 +5,6 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class LetsStartPageOLS extends MainPageOLS {
 
@@ -14,7 +13,6 @@ public class LetsStartPageOLS extends MainPageOLS {
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
-
 
     @Step
     public LetsStartPageOLS waitForPageLoad() {
@@ -29,7 +27,7 @@ public class LetsStartPageOLS extends MainPageOLS {
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

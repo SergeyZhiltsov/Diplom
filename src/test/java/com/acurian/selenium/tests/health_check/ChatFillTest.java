@@ -113,19 +113,21 @@ public class ChatFillTest extends BaseTest {
 
         thanksPageOLS.waitForPageLoad();
 
-        LoginPageAS loginPageAS = new LoginPageAS();
-        loginPageAS
-                .openPage(env)
-                .loginToAs(userName, password)
-                .clickSideMenuLink("Audit Log")
-                .setRequestedByFilter("chartfillAPI, chartfillAPI")
-                .setSearchAppFilter("ChartFill")
-                .clickSearchButtonAndWaitResults()
-                .clickFirstViewButtonFomList();
-        DashBoardPage dashBoardPage = new DashBoardPage();
-        String auditLogPID = dashBoardPage.getPatientIdFromRequestBody();
-        Assert.assertEquals(screenerPID, auditLogPID, "PIDs are different");
-        Assert.assertEquals("200", dashBoardPage.getResponseCodeFromResponseBody(),
-                "Response was not 200 OK");
+        if (env.equals("STG")) {
+            LoginPageAS loginPageAS = new LoginPageAS();
+            loginPageAS
+                    .openPage(env)
+                    .loginToAs(userName, password)
+                    .clickSideMenuLink("Audit Log")
+                    .setRequestedByFilter("chartfillAPI, chartfillAPI")
+                    .setSearchAppFilter("ChartFill")
+                    .clickSearchButtonAndWaitResults()
+                    .clickFirstViewButtonFomList();
+            DashBoardPage dashBoardPage = new DashBoardPage();
+            String auditLogPID = dashBoardPage.getPatientIdFromRequestBody();
+            Assert.assertEquals(screenerPID, auditLogPID, "PIDs are different");
+            Assert.assertEquals("200", dashBoardPage.getResponseCodeFromResponseBody(),
+                    "Response was not 200 OK");
+        }
     }
 }
