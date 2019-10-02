@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.OLS.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.closes.AdobeSignMedAuthFormPage;
+import com.acurian.selenium.pages.OLS.closes.ChatfillMedicalRecordReleaseFormPageOLS;
 import com.acurian.selenium.pages.blinx.DebugPageBlinxOLS;
 import com.acurian.selenium.pages.blinx.ams.*;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
@@ -36,9 +38,21 @@ public class CV_5034_OLSBlinx extends BaseTest {
     public void cv5034olsTest(Site site, String city, String state) {
         DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
         LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();
-        BaseTest.getDriver().navigate()
-                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTAMS1CV1&up[]" +
-                        "=CLIENT_BLINX&testing_key=51fa2780f2430b542923956ac1974bb7&show_debug=1#");
+
+        String env = System.getProperty("acurian.env", "STG");
+
+        String url = null;
+        switch (env) {
+    case "PRD":
+        url = "https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTAMS1CV1&up[]" +
+                        "=CLIENT_BLINX&testing_key=51fa2780f2430b542923956ac1974bb7&show_debug=1#";
+        break;
+    case "STG":
+        url = "https://sf.acu2.aws.blinxsolutions.systems/welcome.do?method=beginCall&phoneNumber=AUTAMS1CV1&up[]" +
+                "=CLIENT_BLINX&testing_key=51fa2780f2430b542923956ac1974bb7&show_debug=1#";
+        break;
+}
+        BaseTest.getDriver().navigate().to(url);
 
         ZipCodePageOLS zipCodePageOLS = letsGetStartedPageOLS
                 .waitForPageLoad("a heart health study that's right for you!", "750")
@@ -126,27 +140,44 @@ public class CV_5034_OLSBlinx extends BaseTest {
                         "9999999999", site.zipCode, city, state)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        QualifiedClosePageOLS qualifiedClosePageOLS = siteSelectionPageOLS
+        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .waitForPageLoad("a heart health study!")
                 .getPage(debugPageBlinxOLS)
                 .getPID()
                 .getPage(siteSelectionPageOLS)
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosePageOLS());
+                .clickNextButton(new MedicalRecordsOptionPageOLS());
 
-        ThankYouClosePageOLS thankYouClosePageOLS = qualifiedClosePageOLS
+        medicalRecordsOptionPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouClosePageOLS());
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(siteSelectionPageOLS); //trick
 
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouClosePageOLS
+        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS =
+                new ChatfillMedicalRecordReleaseFormPageOLS();
+
+        AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
+                .waitForPageLoad()
+                .confirmPatientInformation()
+                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
+                        "2 walnut grove dr.", "HORSHAM", "19901")
+                .clickSignForm(new AdobeSignMedAuthFormPage());
+
+        adobeSignMedAuthFormPage
+                .waitForPageLoad()
+                .setSignature("Acurian Trial")
+                .clickToSignButton(adobeSignMedAuthFormPage); //trick
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
 
         aboutHealthPageOLS
                 .waitForPageLoad()
-                .pidFromDbToLog("PRD")
-                .childPidFromDbToLog("PRD")
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
