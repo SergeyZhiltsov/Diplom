@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.OLS.GERD.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
+import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
@@ -378,46 +379,46 @@ public class GERD_4301_OLS extends BaseTest {
         //----HEIGHT and WEIGHT Question ------------
         approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "160")
-                .clickNextButton(new IdentificationPageOLS())
+                .setAll("5", "5", "160");
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+                .clickNextButton(new IdentificationPageOLS());
                 // ----------PII (IdentificationPageOLS)
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
 
-                //----------SiteSelection Page--------------------
+        identificationPageOLS
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode);
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
+                .clickNextButton(new SiteSelectionPageOLS());
+
+        //----------SiteSelection Page--------------------
+        siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS())
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .setSignature();
+                .clickOnFacilityName(site.name)    ;
+                MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+                .clickNextButton(new MedicalRecordsOptionPageOLS());
 
-/*                //------------HUMAN API Interface in HelloSign----------------
-                .getPage(new HumanAPIOLS())
+        medicalRecordsOptionPageOLS
                 .waitForPageLoad()
-                .connectBTN()
-                .switchToAPI()
-                .waitForProvider()
-                .clickANY()
-                .waitSearchAll()
-                .search("cleveland clinic")
-                .waitProvider()
-                .clickProvider()
-                .typeUserName("democlinical@gmail.com")
-                .typePWD("password")
-                .clickConnect()
+                .clickOnAnswer("Continue with medical records");
+                ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS = medicalRecordsOptionPageOLS
+                        .clickNextButton(new ChatfillMedicalRecordReleaseFormPageOLS());
 
-                .waitToClickNext()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())*/
+//-----------------CHART FILL  form------------------------------
+        AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
+                .waitForPageLoad()
+                .confirmPatientInformation()
+                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
+                        "2 walnut grove dr.", "HORSHAM", "19901")
+                .clickSignForm(new AdobeSignMedAuthFormPage());
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+        adobeSignMedAuthFormPage
+                .waitForPageLoad()
+                .setSignature("Acurian");
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = adobeSignMedAuthFormPage
+                .clickToSignButton(new ThankYouCloseSimplePageOLS());
+
+
         thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

@@ -364,24 +364,6 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
 
 
-//        //---------------Q13 HaveYouEverHadSurgeryOnStomach_CC-------------------
-//        haveYouEverHadSurgeryOnStomach_CC
-//                .waitForPageLoad();
-//        Assert.assertEquals(haveYouEverHadSurgeryOnStomach_CC.getTitleText(),haveYouEverHadSurgeryOnStomach_CC.titleExpected, "Title is diff");
-//        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = haveYouEverHadSurgeryOnStomach_CC
-//                .clickOnAnswer("No")
-//                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC())
-//                .waitForPageLoad();
-//        areYouCurrentlyAbleToSwallowTablets_CC
-//                .back();
-//        haveYouEverHadSurgeryOnStomach_CC
-//                .waitForPageLoad();
-//        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = haveYouEverHadSurgeryOnStomach_CC
-//                .clickOnAnswer("Yes")
-//                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
-
-
-
         //---------------Q14 WhatTypeOfSurgeryDidYouHave_CC-------------------
         whatTypeOfSurgeryDidYouHave_CC
                 .waitForPageLoad();
@@ -517,8 +499,8 @@ public class GERD_4301_CC extends BaseTest {
                 .clickNextButton(new MedicalRecordsOptionPageCC())
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageCC())
-                .waitForPageLoad()
+                //.clickNextButton(new DoctorInformationCollectionPageCC())
+                //.waitForPageLoad()
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageCC())
