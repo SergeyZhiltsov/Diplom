@@ -408,7 +408,8 @@ public class GERD_4301_OLS extends BaseTest {
         AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
                 .waitForPageLoad()
                 .confirmPatientInformation()
-                .setAllDataMedicalRecordReleaseForm("Acurian","PA","9999999999", "2 walnut grove dr.","HORSHAM","19901")
+                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
+                        "2 walnut grove dr.", "HORSHAM", "19901")
                 .clickSignForm(new AdobeSignMedAuthFormPage());
 
         adobeSignMedAuthFormPage
