@@ -95,20 +95,20 @@ public class GmegaToGban extends BaseTest {
         studiesThatAreCurrentlyEnrollingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes");
-        if (!env.equals("PRD")) {
+
             letsStartPageOLS
                     .clickNextButton(letsStartPageOLS)
-                    .waitForPageLoad()
+                    .waitForPageLoadByTitle(letsStartPageOLS.titleExpectedQA)
                     .clickNextButton(dateOfBirthPageOLS);
-        }
+
         studiesThatAreCurrentlyEnrollingPageOLS
                 .clickNextButton(dateOfBirthPageOLS);
 
         dateOfBirthPageOLS
-                .waitForPageLoadGBAN();
+                .waitForPageLoadByTitle(dateOfBirthPageOLS.titleExpectedGBAN1);
         Assert.assertEquals(debugPageOLS.getProjectNameText(), "GBAN1", "Project name is diff");
-        dateOfBirthPageOLS
-                .setDate("09/09/1955")
+        dateOfBirthPageOLS.threadSleep(2000);
+        dateOfBirthPageOLS.setDate("09/09/1955")
                 .clickNextButton(behalfOfSomeoneElsePageOLS);
 
         behalfOfSomeoneElsePageOLS

@@ -84,21 +84,20 @@ public class BlinxGmega extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
 
-//        QualifiedClosePageOLS qualifiedClosePageOLS = siteSelectionPageOLS
-        AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
+        QualifiedClosePageOLS qualifiedClosePageOLS = siteSelectionPageOLS
                 .waitForPageLoad("Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
                 .getPage(debugPageBlinxOLS)
                 .getPID()
                 .getPage(siteSelectionPageOLS)
                 .clickOnFacilityName("AUT_GMEGA_New")
-//                .clickNextButton(new QualifiedClosePageOLS());
-//
-//        ThankYouClosePageOLS thankYouClosePageOLS = qualifiedClosePageOLS
-//                .waitForPageLoad()
-//                .clickNextButton(new ThankYouClosePageOLS());
-//
-//        AboutHealthPageOLS aboutHealthPageOLS = thankYouClosePageOLS
-//                .waitForPageLoad()
+                .clickNextButton(new QualifiedClosePageOLS());
+
+        ThankYouClosePageOLS thankYouClosePageOLS = qualifiedClosePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new ThankYouClosePageOLS());
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouClosePageOLS
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
 
         aboutHealthPageOLS
