@@ -4,10 +4,10 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AdobeSignMedAuthFormPage extends MainPageOLS {
+
     final String titleTextExpected = "Authorization Form";
 
     @FindBy(css = "div.agreement-band-inner span.title")
@@ -22,10 +22,6 @@ public class AdobeSignMedAuthFormPage extends MainPageOLS {
     WebElement applyButton;
     @FindBy(css = "button[class='btn btn-primary click-to-esign ']")
     WebElement clickToSign;
-
-    public AdobeSignMedAuthFormPage() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public AdobeSignMedAuthFormPage waitForPageLoad() {

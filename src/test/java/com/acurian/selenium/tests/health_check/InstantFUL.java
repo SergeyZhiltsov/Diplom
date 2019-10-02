@@ -9,9 +9,12 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.gmega.WhenYouDiagnosedWithRaGmegaPageOLS;
 import com.acurian.selenium.pages.OLS.shared.BehalfOfSomeoneElsePageOLS;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 
@@ -36,15 +39,14 @@ public class InstantFUL extends BaseTest {
     }
 
     private String env = System.getProperty("acurian.env", "QA");
-    private String pidNumber;
 
-    @Test(dataProvider = "sites", priority = -1)
+    @Test(dataProvider = "sites")
     @Description("Test for Instant Follow-Up Letter (FUL) Validation")
     public void instantFUL(Site site) {
         final String phoneNumber = "GMEGA00001";
         final String studyName = "a rheumatoid arthritis (RA)";
         final String studyNameClose = env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA) study!" :
-        "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!";
+                "Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS

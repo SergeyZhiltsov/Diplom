@@ -39,8 +39,7 @@ public class ChatFillTest extends BaseTest {
                 .openPage(env, phoneNumber);
 
         letsStartPageOLS
-                .waitForPageLoadByTitle(env.equals("PRD") ? letsStartPageOLS.titleExpected :
-                        letsStartPageOLS.titleExpectedQA)
+                .waitForPageLoadByTitle(letsStartPageOLS.titleExpectedQA)
                 .clickNextButton(dateOfBirthPageOLS);
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
@@ -81,8 +80,7 @@ public class ChatFillTest extends BaseTest {
                 .clickNextButton(personalDetails);
 
         SiteSelectionPageOLS siteSelectionPageOLS = personalDetails
-                .waitForPageLoadByTitle(env.equals("PRD") ? personalDetails.titleExpectedCaregiver :
-                        personalDetails.titleExpected)
+                .waitForPageLoadByTitle(personalDetails.titleExpected)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         siteSelectionPageOLS
@@ -115,19 +113,21 @@ public class ChatFillTest extends BaseTest {
 
         thanksPageOLS.waitForPageLoad();
 
-        LoginPageAS loginPageAS = new LoginPageAS();
-        loginPageAS
-                .openPage(env)
-                .loginToAs(userName, password)
-                .clickSideMenuLink("Audit Log")
-                .setRequestedByFilter("chartfillAPI, chartfillAPI")
-                .setSearchAppFilter("ChartFill")
-                .clickSearchButtonAndWaitResults()
-                .clickFirstViewButtonFomList();
-        DashBoardPage dashBoardPage = new DashBoardPage();
-        String auditLogPID = dashBoardPage.getPatientIdFromRequestBody();
-        Assert.assertEquals(screenerPID, auditLogPID, "PIDs are different");
-        Assert.assertEquals("200", dashBoardPage.getResponseCodeFromResponseBody(),
-                "Response was not 200 OK");
+        if (env.equals("STG")) {
+            LoginPageAS loginPageAS = new LoginPageAS();
+            loginPageAS
+                    .openPage(env)
+                    .loginToAs(userName, password)
+                    .clickSideMenuLink("Audit Log")
+                    .setRequestedByFilter("chartfillAPI, chartfillAPI")
+                    .setSearchAppFilter("ChartFill")
+                    .clickSearchButtonAndWaitResults()
+                    .clickFirstViewButtonFomList();
+            DashBoardPage dashBoardPage = new DashBoardPage();
+            String auditLogPID = dashBoardPage.getPatientIdFromRequestBody();
+            Assert.assertEquals(screenerPID, auditLogPID, "PIDs are different");
+            Assert.assertEquals("200", dashBoardPage.getResponseCodeFromResponseBody(),
+                    "Response was not 200 OK");
+        }
     }
 }

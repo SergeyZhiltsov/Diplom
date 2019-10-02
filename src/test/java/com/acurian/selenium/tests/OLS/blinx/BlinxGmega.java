@@ -1,8 +1,12 @@
 package com.acurian.selenium.tests.OLS.blinx;
 
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.blinx.DebugPageBlinxOLS;
 import com.acurian.selenium.pages.blinx.gmega.*;
-import com.acurian.selenium.pages.blinx.gmega.intro.*;
+import com.acurian.selenium.pages.blinx.gmega.intro.LetsGetStartedPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.intro.PersonalIdentificationPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.intro.PleaseConfirmYourGenderPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.intro.ProvidingInformationPageOLS;
 import com.acurian.selenium.utils.DBConnection;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -14,11 +18,15 @@ public class BlinxGmega extends BaseTest {
     @Test()
     public void blinxGmegaTest() {
 
-        Date date = new Date();
+        //Date date = new Date();
         LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();
-        System.out.println("Running always on PRD environment!!!");
+        String env = System.getProperty("acurian.env", "STG");
+
         BaseTest.getDriver().navigate()
-                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTGMEGA01&up[]=CLIENT_BLINX");
+                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTGMEGA01&up[]=CLIENT_BLINX" +
+                        "&show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7");
+
+        DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
 
         ProvidingInformationPageOLS providingInformationPageOLS = letsGetStartedPageOLS
                 .waitForPageLoad("a rheumatoid arthritis (RA) study!", "625")
@@ -42,10 +50,10 @@ public class BlinxGmega extends BaseTest {
                 .clickNextButton(new ApproximateHeightWeightPageOLS());
 
         EverDiagnosedFollowingNeurologicalConditionsPageOLS everDiagnosedFollowingNeurologicalConditionsPageOLS =
-        approximateHeightWeightPageOLS
-                .waitForPageLoad()
-                .setAllFields("5", "5", "160")
-                .clickNextButton(new EverDiagnosedFollowingNeurologicalConditionsPageOLS());
+                approximateHeightWeightPageOLS
+                        .waitForPageLoad()
+                        .setAllFields("5", "5", "160")
+                        .clickNextButton(new EverDiagnosedFollowingNeurologicalConditionsPageOLS());
 
         DigestiveConditionsPageOLS digestiveConditionsPageOLS = everDiagnosedFollowingNeurologicalConditionsPageOLS
                 .waitForPageLoad()
@@ -78,6 +86,9 @@ public class BlinxGmega extends BaseTest {
 
         QualifiedClosePageOLS qualifiedClosePageOLS = siteSelectionPageOLS
                 .waitForPageLoad("Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
+                .getPage(debugPageBlinxOLS)
+                .getPID()
+                .getPage(siteSelectionPageOLS)
                 .clickOnFacilityName("AUT_GMEGA_New")
                 .clickNextButton(new QualifiedClosePageOLS());
 
@@ -85,13 +96,18 @@ public class BlinxGmega extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouClosePageOLS());
 
-        thankYouClosePageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouClosePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
 
-        DBConnection dbConnection = new DBConnection();
-        String pid = dbConnection.getPIDByPhoneNumberAndStartTime("PRD", "AUTGMEGA01", date);
-        dbConnection.dbReadPID("PRD", pid);
-        Assert.assertEquals(dbConnection.getDispo(), "1R", "Dispo for Parent is different");
+        aboutHealthPageOLS
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch("1R", "1R");
+
+//        DBConnection dbConnection = new DBConnection();
+//        String pid = dbConnection.getPIDByPhoneNumberAndStartTime("PRD", "AUTGMEGA01", date);
+//        dbConnection.dbReadPID("PRD", pid);
+//        Assert.assertEquals(dbConnection.getDispo(), "1R", "Dispo for Parent is different");
     }
 }

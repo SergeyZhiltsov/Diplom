@@ -347,29 +347,38 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
+                .clickNextButton(new SiteSelectionPageCC());
+        MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
                 .waitForPageLoad(studyName)
-                .getPID();
+                .getPID()
+                .clickOnAnswer(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageCC());
+
+        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = medicalRecordsOptionPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new HSMedicalRecordsPageCC());
+
         switch (site) {
             case AUT_CV_5034A_site: //1R
-                selectionPageCC
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose1PageCC())
+                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = hsMedicalRecordsPageCC
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
-                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .clickNextButton(new ThankYouCloseSimplePageCC());
+
+                thankYouCloseSimplePageCC
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                        .dispoShouldMatch(site.dispo, site.dispo)
+                        .assertGeneratedFul(env, site);
                 break;
             case AUT_CV_5034S_site: //41C
-                selectionPageCC
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = hsMedicalRecordsPageCC
+                        .waitForPageLoad()
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC());
+
+                synexusRadiantDirectScheduleCC
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "08/01/1992", "US",
                                 "Dover, DE", site.zipCode, "qa.acurian@gmail.com",

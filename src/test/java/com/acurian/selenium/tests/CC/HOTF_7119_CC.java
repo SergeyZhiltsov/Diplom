@@ -25,8 +25,8 @@ import java.util.List;
 public class HOTF_7119_CC extends BaseTest {
 
     @Test(enabled = true, dataProvider = "sites", dataProviderClass = HOTF_7119_OLS.class)
-    @Description("HOTF_7119_OLS")
-    public void HOTF_7119_OLS(Site site) {
+    @Description("HOTF_7119_CC")
+    public void HOTF_7119_CC(Site site) {
         String phoneNumber = "AUTAMS1HOT";
         String studyName = "a study for menopausal women with hot flashes";
 
@@ -389,7 +389,7 @@ public class HOTF_7119_CC extends BaseTest {
 //                .back();
 //        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
 //                .waitForPageLoad()
-                .setAll("5", "5", "105")
+                .setAll("5", "5", "150")
                 .clickNextButton(new LetMeSeePageCC());
 
 
@@ -406,7 +406,7 @@ public class HOTF_7119_CC extends BaseTest {
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
                 .assertVariables("Acurian", "Trial", "08/09/1970", "US",
-                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                        "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
                         "aut7119s", site.name, "ASSICNVMS301,ASSICNVMS302,ASSICNVMS304")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)

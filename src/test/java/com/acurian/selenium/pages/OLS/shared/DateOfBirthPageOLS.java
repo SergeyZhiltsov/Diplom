@@ -3,6 +3,7 @@ package com.acurian.selenium.pages.OLS.shared;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.constants.URLs;
+import com.acurian.selenium.pages.OLS.GBAN.LetsStartPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.openqa.selenium.WebElement;
@@ -341,6 +342,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleExpectedGBAN = "The Generation Study is enrolling now.";
 
+    public final String titleExpectedGBAN1 = "Let's start!";
+
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText1;
@@ -503,6 +506,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public DateOfBirthPageOLS waitForPageLoadGBAN() {
         waitForPageLoadMain(titleTextGBAN, titleExpectedGBAN);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadByTitle(String titleExpected) {
+        waitForPageLoadMain(titleTextGBAN, titleExpected);
         return this;
     }
 

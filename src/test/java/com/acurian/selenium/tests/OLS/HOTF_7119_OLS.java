@@ -6,10 +6,7 @@ import com.acurian.selenium.pages.OLS.HOTF_7119.AreYouCurrentlyTreatingYourHotFl
 import com.acurian.selenium.pages.OLS.HOTF_7119.DoyouExperienceHotFlashesOLS;
 import com.acurian.selenium.pages.OLS.HOTF_7119.HowWouldYouDescribeYourHotFlashesOLS;
 import com.acurian.selenium.pages.OLS.HOTF_7119.OnAvgHowManyHotFlashesDoYouExperiencePerDayOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -363,9 +360,12 @@ public class HOTF_7119_OLS extends BaseTest {
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose1PageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
+                .clickNextButton(new SynexusHealthyMindsPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS =  thankYouCloseSimplePageOLS
-                .waitForPageLoad()
+                .waitForSENRPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
                 .waitForPageLoad()
