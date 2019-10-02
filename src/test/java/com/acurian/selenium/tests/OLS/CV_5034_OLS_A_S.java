@@ -7,10 +7,7 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabet
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
@@ -382,27 +379,50 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
-        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
+
+        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS());
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose1PageOLS
+                .clickNextButton(new MedicalRecordsOptionPageOLS());
+
+        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS = medicalRecordsOptionPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new ChatfillMedicalRecordReleaseFormPageOLS());
+
+        AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
+                .waitForPageLoad()
+                .confirmPatientInformation()
+                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
+                        "2 walnut grove dr.", "HORSHAM", "19901")
+                .clickSignForm(new AdobeSignMedAuthFormPage());
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = adobeSignMedAuthFormPage
+                .waitForPageLoad()
+                .setSignature("Acurian Trial")
+                .clickToSignButton(new ThankYouCloseSimplePageOLS());
+
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
+
         aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo);
-        if (site == Site.AUT_CV_5034S_site) {
-            aboutHealthPageOLS
-                    .getRadiantDbToLog(env)
-                    .getAnomalyDbToLog(env);
+
+        switch (site) {
+            case AUT_CV_5034A_site:
+                aboutHealthPageOLS
+                        .assertGeneratedFul(env, site);
+                break;
+            case AUT_CV_5034S_site:
+                aboutHealthPageOLS
+                        .getRadiantDbToLog(env)
+                        .getAnomalyDbToLog(env);
+                break;
         }
     }
 }

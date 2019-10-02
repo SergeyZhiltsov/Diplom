@@ -4,7 +4,6 @@ import com.acurian.selenium.pages.OLS.MainPageOLS;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
@@ -20,18 +19,14 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
     WebElement doctorNameField;
     @FindBy(id = "doctor1State")
     WebElement selectDoctorStateList;
-    @FindBy (id = "doctor1Number")
+    @FindBy(id = "doctor1Number")
     WebElement doctorTelephoneNumber;
     @FindBy(id = "doctor1Address")
     WebElement doctorAddress;
     @FindBy(id = "doctor1City")
     WebElement selectDoctorCityList;
-    @FindBy (id = "doctor1Zip")
+    @FindBy(id = "doctor1Zip")
     WebElement doctorZip;
-
-    public ChatfillMedicalRecordReleaseFormPageOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS waitForPageLoad() {
@@ -39,7 +34,7 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
         try {
             acceptAlert();
             acceptAlert();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             logTextToAllure("Alert was not appeared");
         }
         getDriver().switchTo().frame("chartfill-iframe");
@@ -89,7 +84,8 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
         return this;
     }
 
-    @Step ChatfillMedicalRecordReleaseFormPageOLS typeDoctorZip(String zip) {
+    @Step
+    ChatfillMedicalRecordReleaseFormPageOLS typeDoctorZip(String zip) {
         waitForVisibility(doctorZip);
         typeTextWithoutClear(doctorZip, zip);
         return this;
@@ -103,7 +99,7 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS setAllDataMedicalRecordReleaseForm(String doctorName, String state,
-                                                         String phoneNumber, String address, String city, String zip) {
+                                                                                      String phoneNumber, String address, String city, String zip) {
         typeDoctorName(doctorName);
         selectState(state);
         typeTelephone(phoneNumber);
