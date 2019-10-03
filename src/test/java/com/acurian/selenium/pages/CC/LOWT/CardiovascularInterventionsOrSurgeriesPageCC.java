@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.CC.LOWT;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,9 +13,9 @@ public class CardiovascularInterventionsOrSurgeriesPageCC extends MainPageCC {
     public final String titleExpected = "Have you experienced any of the following cardiovascular interventions or surgeries? \n" +
             "Agent note: Select all that apply";
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
-    @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
+    @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
     @Step
