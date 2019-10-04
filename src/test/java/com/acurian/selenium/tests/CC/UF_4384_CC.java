@@ -102,18 +102,18 @@ public class UF_4384_CC extends BaseTest{
         DebugPageCC debugPageCC = new DebugPageCC();
         debugPageCC.checkProtocolsEquals("Has a healthcare professional ever diagnosed you with any of the following women's health conditions...", protocol1,protocol2);
         debugPageCC.back();
-        HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = followingGynecologicalConditionСС
+        HaveYouGoneThroughMenopauseCC haveYouGoneThroughMenopause_CC = followingGynecologicalConditionСС
                 .waitForPageLoad()
                 .clickOnAnswers("Endometriosis (Agent Note: end-oh-me-tree-OH-sis)","None of the above") //Check this on screener
                 .clickOnAnswers("Uterine fibroids, also known as leiomyomas or myomas (Agent Note: lie-oh-my-OH-muhs, my-OH-muhs)")
-                .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
+                .clickNextButton(new HaveYouGoneThroughMenopauseCC());
 
         //---------------Q3 Have you gone through menopause?-------------------
-        haveYouGoneThroughMenopauseUF_CC
+        haveYouGoneThroughMenopause_CC
                 .waitForPageLoad();
-        Assert.assertEquals(haveYouGoneThroughMenopauseUF_CC.getTitleText(),haveYouGoneThroughMenopauseUF_CC.titleExpected, "Title is diff");
+        Assert.assertEquals(haveYouGoneThroughMenopause_CC.getTitleText(), haveYouGoneThroughMenopause_CC.titleExpected, "Title is diff");
         //----DQ if selected any option other than None of the above-----------
-        HaveYouHadHysterectomyСС haveYouHadHysterectomyСС = haveYouGoneThroughMenopauseUF_CC
+        HaveYouHadHysterectomyСС haveYouHadHysterectomyСС = haveYouGoneThroughMenopause_CC
                 .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
                 .clickNextButton(new HaveYouHadHysterectomyСС());
         haveYouHadHysterectomyСС
@@ -121,7 +121,7 @@ public class UF_4384_CC extends BaseTest{
                 .getPage(debugPageCC)
                 .checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1,protocol2)
                 .back();
-        		haveYouGoneThroughMenopauseUF_CC
+        		haveYouGoneThroughMenopause_CC
         		.waitForPageLoad()
         		.clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
         		.clickNextButton(new HaveYouHadHysterectomyСС());
@@ -130,7 +130,7 @@ public class UF_4384_CC extends BaseTest{
         		.getPage(debugPageCC)
         		.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1,protocol2)
         		.back();        
-				haveYouGoneThroughMenopauseUF_CC
+				haveYouGoneThroughMenopause_CC
 				.waitForPageLoad()
 				.clickOnAnswer("Yes, menopause for another reason, such as premature ovarian failure or exposure to a medical treatment like chemotherapy")
 				.clickNextButton(new HaveYouHadHysterectomyСС());
@@ -139,7 +139,7 @@ public class UF_4384_CC extends BaseTest{
 				.getPage(debugPageCC)
 				.checkProtocolsEquals("Menopause is the period in a woman's life in which menstruation stops permanently and she is no long...", protocol1,protocol2)
 				.back();          
-        		haveYouGoneThroughMenopauseUF_CC
+        		haveYouGoneThroughMenopause_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouHadHysterectomyСС());

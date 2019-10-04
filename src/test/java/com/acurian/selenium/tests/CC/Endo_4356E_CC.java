@@ -115,19 +115,19 @@ public class Endo_4356E_CC extends BaseTest {
                 .clickOnAnswers("Endometriosis (Agent Note: end-oh-me-tree-OH-sis)")
                 .clickNextButton(new DiagnoseYourEndometriosisCC());
 
-        HaveYouGoneThroughMenopauseUF_CC haveYouGoneThroughMenopauseUF_CC = diagnoseYourEndometriosisCC
+        HaveYouGoneThroughMenopauseCC haveYouGoneThroughMenopause_CC = diagnoseYourEndometriosisCC
                 .waitForPageLoad()
                 .clickOnAnswer("11 or more years ago")
-                .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
+                .clickNextButton(new HaveYouGoneThroughMenopauseCC());
         debugPageCC.checkProtocolsEquals("When was your most recent surgery to treat or diagnose your endometriosis performed?", protocol1, protocol2);
         debugPageCC.back();
         diagnoseYourEndometriosisCC.waitForPageLoad()
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(new HaveYouGoneThroughMenopauseUF_CC());
+                .clickNextButton(new HaveYouGoneThroughMenopauseCC());
 
-        haveYouGoneThroughMenopauseUF_CC
+        haveYouGoneThroughMenopause_CC
                 .waitForPageLoad();
-        HaveYouHadHysterectomyСС haveYouHadHysterectomyСС = haveYouGoneThroughMenopauseUF_CC
+        HaveYouHadHysterectomyСС haveYouHadHysterectomyСС = haveYouGoneThroughMenopause_CC
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouHadHysterectomyСС());
 
