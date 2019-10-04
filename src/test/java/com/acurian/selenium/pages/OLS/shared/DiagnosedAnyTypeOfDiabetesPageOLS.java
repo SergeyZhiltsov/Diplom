@@ -15,13 +15,9 @@ public class DiagnosedAnyTypeOfDiabetesPageOLS extends MainPageOLS{
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
-
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public DiagnosedAnyTypeOfDiabetesPageOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public DiagnosedAnyTypeOfDiabetesPageOLS waitForPageLoad() {
