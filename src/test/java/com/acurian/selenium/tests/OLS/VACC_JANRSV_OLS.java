@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
-import com.acurian.selenium.pages.OLS.PsoriaticArthritis.PsoriaticArthritisConditionPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine.AllergicToAnyVaccinesOLS;
 import com.acurian.selenium.pages.OLS.Vaccine.AreYouGenerallyInGoodHealthOLS;
@@ -380,9 +379,9 @@ public class VACC_JANRSV_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
 
         //Q26	Has a healthcare professional ever diagnosed you with any of the following medical conditions?
@@ -423,8 +422,6 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
-
-
 
 
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = approximateHeightPageOLS
