@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.shared;
+package com.acurian.selenium.pages.OLS.Vaccine;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -8,10 +8,10 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HaveYouGoneThroughMenopauseOLS extends MainPageOLS {
+public class AllergicToAnyVaccinesOLS extends MainPageOLS {
 
-    public final String titleExpected = "Menopause is the period in a woman's life in which menstruation stops permanently and she is no longer able to bear children.\n" +
-            "Have you gone through menopause?";
+    public final String titleExpected = "Are you allergic to any vaccines; or have you ever had the severe and potentially life-threatening allergic reaction known as anaphylaxis after receiving a vaccine?\n" +
+            "Anaphylaxis can occur within seconds or minutes of exposure to something you're allergic to and can cause swelling of the mouth and throat, and difficulty breathing.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,13 +19,13 @@ public class HaveYouGoneThroughMenopauseOLS extends MainPageOLS {
     List<WebElement> radioButtonsList;
 
     @Step
-    public HaveYouGoneThroughMenopauseOLS waitForPageLoad() {
+    public AllergicToAnyVaccinesOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HaveYouGoneThroughMenopauseOLS clickOnAnswer(String answerText) {
+    public AllergicToAnyVaccinesOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithA
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
+import com.acurian.selenium.pages.CC.shared.HaveYouGoneThroughMenopauseCC;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;

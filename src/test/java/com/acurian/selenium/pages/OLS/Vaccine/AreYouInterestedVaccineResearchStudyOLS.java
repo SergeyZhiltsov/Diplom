@@ -1,42 +1,37 @@
-package com.acurian.selenium.pages.OLS.Vaccine_4556;
+package com.acurian.selenium.pages.OLS.Vaccine;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class CalledPrevnarPageOLS extends MainPageOLS {
+public class AreYouInterestedVaccineResearchStudyOLS extends MainPageOLS {
 
-    public final String titleExpected = "Have you ever received a pneumococcal vaccine? It is also called Prevnar 13 or Pneumovax 23.";
+    public final String titleExpected = "Are you interested in taking part in a vaccine research study?\n" +
+            "The vaccine is for RSV (respiratory syncytial virus), a virus that can cause respiratory tract infections. It is also the most common cause of pneumonia in older adults.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
-
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
-    public CalledPrevnarPageOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
-
     @Step
-    public CalledPrevnarPageOLS waitForPageLoad() {
+    public AreYouInterestedVaccineResearchStudyOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public CalledPrevnarPageOLS clickOnAnswer(String answerText) {
+    public AreYouInterestedVaccineResearchStudyOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

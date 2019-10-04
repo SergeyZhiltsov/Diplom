@@ -2,9 +2,9 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.VACC_4556_CC.AreYouInterestedInPneumoniaVaccineStudyCC;
-import com.acurian.selenium.pages.CC.VACC_4556_CC.CalledPrevnarPageCC;
-import com.acurian.selenium.pages.CC.VACC_4556_CC.DiagnosedWithAnyOfTheFollowingTypesOfCancerCC;
+import com.acurian.selenium.pages.CC.Vaccine.AreYouInterestedInPneumoniaVaccineStudyCC;
+import com.acurian.selenium.pages.CC.Vaccine.CalledPrevnarPageCC;
+import com.acurian.selenium.pages.CC.Vaccine.DiagnosedWithAnyOfTheFollowingTypesOfCancerCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -193,7 +193,7 @@ public class VACC_4556_CC extends BaseTest {
 
         TransitionStatementCC transitionStatementCC = diagnosedWithAnyOfTheFollowingTypesOfCancerCC
                 .waitForPageLoad()
-                .clickOnAnswer("Leukemia")
+                .clickOnAnswers("Leukemia")
                 .clickNextButton(new TransitionStatementCC());
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoadWithInitialQuestions()
@@ -201,15 +201,15 @@ public class VACC_4556_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0018855-QS6903-STUDYQUES", protocols)
                 .back(diagnosedWithAnyOfTheFollowingTypesOfCancerCC)
                 .waitForPageLoad()
-                .clickOnAnswer("None of the above")
-                .clickOnAnswer("Lymphoma")
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Lymphoma")
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithInitialQuestions()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018855-QS6903-STUDYQUES", protocols)
                 .back(diagnosedWithAnyOfTheFollowingTypesOfCancerCC)
                 .waitForPageLoad()
-                .clickOnAnswer("None of the above")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(transitionStatementCC)
                 .waitForPageLoadWithInitialQuestions()
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());

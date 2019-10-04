@@ -2,9 +2,9 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.AreYouInterestedInPneumoniaVaccineStudyOLS;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.CalledPrevnarPageOLS;
-import com.acurian.selenium.pages.OLS.Vaccine_4556.DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS;
+import com.acurian.selenium.pages.OLS.Vaccine.AreYouInterestedInPneumoniaVaccineStudyOLS;
+import com.acurian.selenium.pages.OLS.Vaccine.CalledPrevnarPageOLS;
+import com.acurian.selenium.pages.OLS.Vaccine.DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;

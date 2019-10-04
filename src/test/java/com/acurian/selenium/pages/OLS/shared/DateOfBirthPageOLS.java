@@ -3,7 +3,6 @@ package com.acurian.selenium.pages.OLS.shared;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.Platforms;
 import com.acurian.selenium.constants.URLs;
-import com.acurian.selenium.pages.OLS.GBAN.LetsStartPageOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.openqa.selenium.WebElement;
@@ -16,6 +15,7 @@ import java.util.List;
 public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleExpected = "Are you age 18 or older?";
+    public final String titleExpected1 = "What is your date of birth?";
 
     public final String titleCommonExpected = "Let's get started to see if there is %2$s that's right for you!\n" +
             "\n" +
@@ -476,6 +476,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public DateOfBirthPageOLS waitForPageLoad() {
         waitForPageLoadMain(questionText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoad1() {
+        waitForPageLoadMain(questionText, titleExpected1);
         return this;
     }
 
