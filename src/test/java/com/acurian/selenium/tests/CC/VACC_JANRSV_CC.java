@@ -484,34 +484,51 @@ public class VACC_JANRSV_CC extends BaseTest {
                 .clickNextButton(new SiteSelectionPageCC());
 
 
-        QualifiedClose1PageCC qualifiedClose1PageCC = siteSelectionPageCC
+        siteSelectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose1PageCC());
+                .clickOnAnswer(site.name);
 
-        SynexusHealthyMindsPageCC synexusHealthyMindsPageCC = qualifiedClose1PageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new SynexusHealthyMindsPageCC());
+        switch (site) {
+            case AUT_AMS_JANRSV:
+                QualifiedClose1PageCC qualifiedClose1PageCC = siteSelectionPageCC
+                        .clickNextButton(new QualifiedClose1PageCC());
+                SynexusHealthyMindsPageCC synexusHealthyMindsPageCC = qualifiedClose1PageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new SynexusHealthyMindsPageCC());
 
-        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
-                .clickNextButton(new ThankYouCloseSimplePageCC());
+                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ThankYouCloseSimplePageCC());
 
-        thankYouCloseSimplePageCC
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC);
+                thankYouCloseSimplePageCC
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC);
 
-        selectActionPageCC
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
-        if (site == Site.AUT_AMS_JANRSV_Syn) {
-            selectActionPageCC
-                    .getRadiantDbToLog(env);
+                selectActionPageCC
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+            case AUT_AMS_JANRSV_Syn:
+                SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC());
+
+                synexusRadiantDirectScheduleCC
+                        .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "01/01/1954", "US",
+                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                                "autJANRSVS", site.name, "JANIQVRSV001")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
         }
     }
 }
