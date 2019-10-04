@@ -25,7 +25,7 @@ public class TreatYourPsoriasisPageCC extends MainPageCC {
     }
 
     @Step
-    public TreatYourPsoriasisPageCC clickOnAnswers(String answerText) {
+    public TreatYourPsoriasisPageCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkboxList, answerText);
         return this;
     }

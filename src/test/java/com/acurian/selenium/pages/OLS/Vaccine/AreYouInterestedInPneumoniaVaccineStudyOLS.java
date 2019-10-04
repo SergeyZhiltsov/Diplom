@@ -1,10 +1,9 @@
-package com.acurian.selenium.pages.OLS.Vaccine_4556;
+package com.acurian.selenium.pages.OLS.Vaccine;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
@@ -15,13 +14,8 @@ public class AreYouInterestedInPneumoniaVaccineStudyOLS extends MainPageOLS {
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     private WebElement titleText;
-
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     private List<WebElement> radioButtonsList;
-
-    public AreYouInterestedInPneumoniaVaccineStudyOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public AreYouInterestedInPneumoniaVaccineStudyOLS waitForPageLoad() {
@@ -39,5 +33,4 @@ public class AreYouInterestedInPneumoniaVaccineStudyOLS extends MainPageOLS {
     public String getTitleText() {
         return getText(titleText);
     }
-
 }
