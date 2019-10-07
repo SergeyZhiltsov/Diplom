@@ -8,23 +8,23 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class AreYouCurrentlyAbleToSwallowTablets_OLS extends MainPageOLS {
+public class TestedForStomachInfectionHelicobacterOLS extends MainPageOLS {
 
-    public final String titleExpected = "Are you currently able to swallow tablets and pills?";
+    public final String titleExpected = "Have you ever been tested for a stomach infection called Helicobacter pylori or H. pylori?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
     @Step
-    public AreYouCurrentlyAbleToSwallowTablets_OLS waitForPageLoad() {
+    public TestedForStomachInfectionHelicobacterOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AreYouCurrentlyAbleToSwallowTablets_OLS clickOnAnswer(String answerText) {
+    public TestedForStomachInfectionHelicobacterOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

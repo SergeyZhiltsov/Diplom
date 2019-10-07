@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.GERD;
+package com.acurian.selenium.pages.CC.Osteoporosis;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
@@ -8,25 +8,26 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhatTypeOfSurgeryDidYouHave_CC extends MainPageCC {
+public class OsteoporosisRelatedFracturesCC extends MainPageCC {
 
-    public final String titleExpected = "Have you ever had any of the following types of surgery?\n" +
+    public final String titleExpected = "Osteoporosis often causes fractures (bone breaks), usually from “low-energy” injuries such as a fall from standing height.\n\n" +
+            "Have you ever had any of the following osteoporosis-related fractures?" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
-    List<WebElement> checkBoxList;
+    List<WebElement> checkBoxesList;
 
     @Step
-    public WhatTypeOfSurgeryDidYouHave_CC waitForPageLoad() {
+    public OsteoporosisRelatedFracturesCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhatTypeOfSurgeryDidYouHave_CC clickOnAnswers(String... answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+    public OsteoporosisRelatedFracturesCC clickOnAnswers(String ...answerText) {
+        clickOnCheckBoxes(checkBoxesList, answerText);
         return this;
     }
 
