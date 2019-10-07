@@ -1,10 +1,9 @@
-package com.acurian.selenium.pages.OLS.Vaccine_4556;
+package com.acurian.selenium.pages.OLS.Vaccine;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
@@ -15,13 +14,8 @@ public class DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS extends MainPageOLS 
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     private WebElement titleText;
-
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
-    private List<WebElement> radioButtonsList;
-
-    public DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
+    private List<WebElement> checkboxList;
 
     @Step
     public DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS waitForPageLoad() {
@@ -30,8 +24,8 @@ public class DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS extends MainPageOLS 
     }
 
     @Step
-    public DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS clickOnAnswer(String answer) {
-        clickOnRadioButton(radioButtonsList, answer);
+    public DiagnosedWithAnyOfTheFollowingTypesOfCancerOLS clickOnAnswer(String... answerText) {
+        clickOnCheckBoxes(checkboxList, answerText);
         return this;
     }
 

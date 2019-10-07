@@ -60,6 +60,9 @@ public enum Site {
     AUT_VAC_4556M("AUT_VAC_4556M", "19901", "1R", true, true, "B7471006"),//"B7471007"
     AUT_VAC_4556_A("AUT_VAC_4556_A", "19901", "1R", true, true, "B7471007_A"),
     //    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
+    AUT_AMS_JANRSV("AUT_JANRSV_site", "19422", "1R", false, false, "VAC18193RSV2001"),
+    AUT_AMS_JANRSV_Syn("AUT_JANRSVS_site", "08204", "41C", false, false, "VAC18193RSV2001"),
+
     //4600
     AUT_AMS1_4600_site("AUT_AMS1_4600_site", "08204", "1R", true, false, "B7451014"),
     //7036
@@ -104,7 +107,7 @@ public enum Site {
     AUT_AMS1_5019_site("AUT_AMS1_5019_site", "19422", "1R", false, false, "BOS_589_201"),
     AUT_AMS1_5019S_site("AUT_AMS1_5019S_site", "08204", "41C", false, false, "BOS_589_201"),
     //5034
-    AUT_CV_5034A_site("AUT_CV_5034A_site", "45206", "1R", true, true, "K_877_302_A"), //45205
+    AUT_CV_5034A_site("AUT_CV_5034A_site", "45206", "1R", true, false, "K_877_302_A"), //45205 //Chartfill with MR receive standard email (MR is present but need to set false for email verification)
     AUT_CV_5034S_site("AUT_CV_5034S_site", "19901", "41C", false, false, "K_877_302_S"),
     //5044
     AUT_OA_5044_S("AUT_OA_5044_S", "19901", "41C", true, false, "R475_OA_1758"),
