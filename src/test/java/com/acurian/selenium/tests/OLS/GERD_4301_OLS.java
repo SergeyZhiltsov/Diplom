@@ -84,11 +84,11 @@ public class GERD_4301_OLS extends BaseTest {
 
 
         //---------------Q3 WhichoOfFollowingMedicationsCurrentlyGERD_OLS-------------------
-        HaveYouEverHadSurgeryOnStomach_OLS haveYouEverHadSurgeryOnStomach_OLS = whichoOfFollowingMedicationsCurrentlyGERD_OLS
+         HasYourDoctorToldYouThatYouHaveErosion_OLS hasYourDoctorToldYouThatYouHaveErosion_OLS= whichoOfFollowingMedicationsCurrentlyGERD_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above") //----DQ if selected any of these options in Q3:  None of the above
-                .clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS());
-        haveYouEverHadSurgeryOnStomach_OLS
+                .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
+        hasYourDoctorToldYouThatYouHaveErosion_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6303", site.activeProtocols)
@@ -97,7 +97,7 @@ public class GERD_4301_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Other")
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS());
-        haveYouEverHadSurgeryOnStomach_OLS
+        hasYourDoctorToldYouThatYouHaveErosion_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6303", site.activeProtocols)
@@ -212,7 +212,7 @@ public class GERD_4301_OLS extends BaseTest {
         despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("No, my symptoms are well-controlled")
-                .clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS())
+                .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6307", site.activeProtocols)
@@ -225,7 +225,7 @@ public class GERD_4301_OLS extends BaseTest {
 
 
         //--------------Q11 ThinkingAboutThePast2Months_OLS ---------------------
-        HasYourDoctorToldYouThatYouHaveErosion_OLS hasYourDoctorToldYouThatYouHaveErosion_OLS =
+        hasYourDoctorToldYouThatYouHaveErosion_OLS =
                 thinkingAboutThePast2Months_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 day per week or less")

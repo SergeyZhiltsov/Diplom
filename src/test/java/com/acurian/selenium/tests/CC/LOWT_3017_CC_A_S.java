@@ -126,7 +126,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                         .waitForPageLoad()
                         .setMonth("Apr")
                         .setDay("5")
-                        .setYear("2000")
+                        .setYear("1960")
                         .clickOnAnswer("Male")
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
@@ -140,7 +140,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .waitForPageLoad()
                 .setMonth("Apr")
                 .setDay("5")
-                .setYear("1941")
+                .setYear("1960")
                 .clickOnAnswer("Female")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
