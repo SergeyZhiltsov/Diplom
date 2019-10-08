@@ -30,7 +30,6 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
 
     @Step
     public ChatfillMedicalRecordReleaseFormPageOLS waitForPageLoad() {
-        waitForAnimation();
         try {
             acceptAlert();
             acceptAlert();

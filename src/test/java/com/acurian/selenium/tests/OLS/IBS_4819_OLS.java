@@ -3,10 +3,14 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhenDidYouHaveAppendixRemoved_OLS;
 import com.acurian.selenium.pages.OLS.IBS.*;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -34,7 +38,7 @@ public class IBS_4819_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.
-                getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"),
+                        getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"),
                 "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
@@ -56,18 +60,18 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickNextButton(new GenderPageOLS());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-        genderPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Female")
-                .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
-                .clickNextButton(lessThan18YearsOldPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back(genderPageOLS)
-                .waitForPageLoad()
-                .setDate("01081947")//Disqualify ("Age") if >= 71
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                genderPageOLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("Female")
+                        .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
+                        .clickNextButton(lessThan18YearsOldPageOLS)
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                        .back(genderPageOLS)
+                        .waitForPageLoad()
+                        .setDate("01081947")//Disqualify ("Age") if >= 71
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         SufferFromIrritablePageOLS sufferFromIrritablePageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -101,9 +105,9 @@ public class IBS_4819_OLS extends BaseTest {
 
         WhichOfTheFollowingExperienceIrritablePageOLS whichOfTheFollowingExperienceIrritablePageOLS =
                 howLongExperiencingIrritablePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Less than 1 month")
-                .clickNextButton(new WhichOfTheFollowingExperienceIrritablePageOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("Less than 1 month")
+                        .clickNextButton(new WhichOfTheFollowingExperienceIrritablePageOLS());
         whichOfTheFollowingExperienceIrritablePageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -124,9 +128,9 @@ public class IBS_4819_OLS extends BaseTest {
 
         AbdominalPainWhenHavingIBSPageOLS abdominalPainWhenHavingIBSPageOLS =
                 whichOfTheFollowingExperienceIrritablePageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Constipation only")
-                .clickNextButton(new AbdominalPainWhenHavingIBSPageOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("Constipation only")
+                        .clickNextButton(new AbdominalPainWhenHavingIBSPageOLS());
         abdominalPainWhenHavingIBSPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -242,16 +246,15 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickOnAnswers("Gastric bypass")
                 .clickNextButton(new ProcedureForWeightLossPageOLS());
 
-        HaveYouEverHadAnyOfFollowingTypesSurgeryPageOLS haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS =
-                new HaveYouEverHadAnyOfFollowingTypesSurgeryPageOLS();
+        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = new WhatTypeOfSurgeryDidYouHave_OLS();
         List<String> disqualifyQ12 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
                 "1 - 2 years ago", "More than 2 years ago");
-        for (String answer: disqualifyQ12) {
+        for (String answer : disqualifyQ12) {
             System.out.println("Select answer for Q12: " + answer);
             procedureForWeightLossPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS)
+                    .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6612", site.activeProtocols)
@@ -262,30 +265,30 @@ public class IBS_4819_OLS extends BaseTest {
                 .back(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS);
+                .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS);
 
         WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS =
-                haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Appendix removed - Appendectomy",
-                        "Gallbladder removed - Cholecystectomy",
-                        "Biopsy – removal of a small piece of tissue for analysis",
-                        "Tonsils removed - Tonsillectomy",
-                        "Hemorrhoids removed - Hemorrhoidectomy",
-                        "Other surgery on my stomach, intestines, colon, or esophagus")
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Appendix removed - Appendectomy",
-                        "Gallbladder removed - Cholecystectomy",
-                        "Hemorrhoids removed - Hemorrhoidectomy",
-                        "Other surgery on my stomach, intestines, colon, or esophagus")
-                .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
+                whatTypeOfSurgeryDidYouHave_OLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("Appendix removed - Appendectomy",
+                                "Gallbladder removed - Cholecystectomy",
+                                "Biopsy – removal of a small piece of tissue for analysis",
+                                "Tonsils removed - Tonsillectomy",
+                                "Hemorrhoids removed - Hemorrhoidectomy",
+                                "Other surgery on my stomach, intestines, colon, or esophagus")
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Appendix removed - Appendectomy",
+                                "Gallbladder removed - Cholecystectomy",
+                                "Hemorrhoids removed - Hemorrhoidectomy",
+                                "Other surgery on my stomach, intestines, colon, or esophagus")
+                        .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
 
         whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
                 .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
                 .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
                 .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
-                .back(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS)
+                .back(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
@@ -293,12 +296,12 @@ public class IBS_4819_OLS extends BaseTest {
         OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer",
-                                "Kidney disease",
-                                "Heart or circulation problems (heart attack, heart failure, stroke)",
-                                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                        "Kidney disease",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
         WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS = otherThanSkinCancerPageOLS
@@ -317,9 +320,9 @@ public class IBS_4819_OLS extends BaseTest {
 
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS =
                 whichOfFollowingDigestiveConditionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Crohn's disease")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Crohn's disease")
+                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -341,9 +344,9 @@ public class IBS_4819_OLS extends BaseTest {
 
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS =
                 haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
                 .back();
@@ -410,15 +413,15 @@ public class IBS_4819_OLS extends BaseTest {
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS =
                 heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
 
         WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS =
                 whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Dialysis")
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
         whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -440,9 +443,9 @@ public class IBS_4819_OLS extends BaseTest {
 
         FollowingMentalEmotionalHealthPageOLS following_mentalEmotionalHealthPageOLS =
                 whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis")
-                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Cirrhosis")
+                        .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
         following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -455,9 +458,9 @@ public class IBS_4819_OLS extends BaseTest {
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
                 following_mentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Bipolar disorder")
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -594,9 +597,9 @@ public class IBS_4819_OLS extends BaseTest {
 
         ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS =
                 approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "270")
-                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+                        .waitForPageLoad()
+                        .setAll("5", "5", "270")
+                        .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
         experienceExcessiveHungerOrIncreasedAppetiteOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

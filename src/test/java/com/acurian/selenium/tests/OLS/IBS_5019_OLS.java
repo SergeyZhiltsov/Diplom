@@ -3,10 +3,14 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhenDidYouHaveAppendixRemoved_OLS;
 import com.acurian.selenium.pages.OLS.IBS.*;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -69,17 +73,17 @@ public class IBS_5019_OLS extends BaseTest {
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 genderPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Male")
-                .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
-                .clickNextButton(lessThan18YearsOldPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back(genderPageOLS)
-                .waitForPageLoad()
-                .setDate("01081950")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("Male")
+                        .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
+                        .clickNextButton(lessThan18YearsOldPageOLS)
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                        .back(genderPageOLS)
+                        .waitForPageLoad()
+                        .setDate("01081950")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         SufferFromIrritablePageOLS sufferFromIrritablePageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -96,18 +100,18 @@ public class IBS_5019_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
         HowLongExperiencingIrritablePageOLS howLongExperiencingIrritablePageOLS =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6602", site.activeProtocols)
-                .back(sufferFromIrritablePageOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("I have been diagnosed with IBS by a healthcare professional")
-                .clickNextButton(new HowLongExperiencingIrritablePageOLS());
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QS6602", site.activeProtocols)
+                        .back(sufferFromIrritablePageOLS)
+                        .waitForPageLoad()
+                        .clickOnAnswer("I have been diagnosed with IBS by a healthcare professional")
+                        .clickNextButton(new HowLongExperiencingIrritablePageOLS());
 
         WhichOfTheFollowingExperienceIrritablePageOLS whichOfTheFollowingExperienceIrritablePageOLS =
                 new WhichOfTheFollowingExperienceIrritablePageOLS();
         List<String> disqualifyQ3 = Arrays.asList("Less than 1 month", "1 - 5 months");
-        for (String answer: disqualifyQ3) {
+        for (String answer : disqualifyQ3) {
             System.out.println("Select answer for Q3: " + answer);
             howLongExperiencingIrritablePageOLS
                     .waitForPageLoad()
@@ -125,7 +129,7 @@ public class IBS_5019_OLS extends BaseTest {
 
         AbdominalPainWhenHavingIBSPageOLS abdominalPainWhenHavingIBSPageOLS = new AbdominalPainWhenHavingIBSPageOLS();
         List<String> disqualifyQ4 = Arrays.asList("Constipation only", "None of the above");
-        for (String answer: disqualifyQ4) {
+        for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             whichOfTheFollowingExperienceIrritablePageOLS
                     .waitForPageLoad()
@@ -169,7 +173,7 @@ public class IBS_5019_OLS extends BaseTest {
 
         AbdominalPainOverPastPageOLS AbdominalPainOverPastPageOLS = new AbdominalPainOverPastPageOLS();
         List<String> disqualifyQ7 = Arrays.asList("1 day a month or less", "2 - 3 days a month");
-        for (String answer: disqualifyQ7) {
+        for (String answer : disqualifyQ7) {
             System.out.println("Select answer for Q7: " + answer);
             howOftenAbdominalPainPageOLS
                     .waitForPageLoad()
@@ -228,16 +232,15 @@ public class IBS_5019_OLS extends BaseTest {
                 .clickOnAnswers("Gastric bypass")
                 .clickNextButton(new ProcedureForWeightLossPageOLS());
 
-        HaveYouEverHadAnyOfFollowingTypesSurgeryPageOLS haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS =
-                new HaveYouEverHadAnyOfFollowingTypesSurgeryPageOLS();
+        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = new WhatTypeOfSurgeryDidYouHave_OLS();
         List<String> disqualifyQ12 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
                 "1 - 2 years ago", "More than 2 years ago");
-        for (String answer: disqualifyQ12) {
+        for (String answer : disqualifyQ12) {
             System.out.println("Select answer for Q12: " + answer);
             procedureForWeightLossPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS)
+                    .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6612", site.activeProtocols)
@@ -248,9 +251,9 @@ public class IBS_5019_OLS extends BaseTest {
                 .back(weightLossSurgeryPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS);
+                .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS);
 
-        WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS = haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS
+        WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("Appendix removed - Appendectomy",
                         "Gallbladder removed - Cholecystectomy",
@@ -270,14 +273,14 @@ public class IBS_5019_OLS extends BaseTest {
                 .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
                 .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
                 .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
-                .back(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS)
+                .back(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Appendix removed - Appendectomy")
                 .clickNextButton(whenDidYouHaveAppendixRemoved_OLS);
 
         List<String> disqualifyQ14 = Arrays.asList("Less than 1 month ago", "1 - 3 months ago");
-        for (String answer: disqualifyQ14) {
+        for (String answer : disqualifyQ14) {
             System.out.println("Select answer for Q14.1: " + answer);
             whenDidYouHaveAppendixRemoved_OLS
                     .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
@@ -290,13 +293,13 @@ public class IBS_5019_OLS extends BaseTest {
         }
         whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
-                .back(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS)
+                .back(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Gallbladder removed - Cholecystectomy")
                 .clickNextButton(whenDidYouHaveAppendixRemoved_OLS);
 
-        for (String answer: disqualifyQ14) {
+        for (String answer : disqualifyQ14) {
             System.out.println("Select answer for Q14.2: " + answer);
             whenDidYouHaveAppendixRemoved_OLS
                     .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
@@ -309,13 +312,13 @@ public class IBS_5019_OLS extends BaseTest {
         }
         whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
-                .back(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS)
+                .back(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Hemorrhoids removed - Hemorrhoidectomy")
                 .clickNextButton(whenDidYouHaveAppendixRemoved_OLS);
 
-        for (String answer: disqualifyQ14) {
+        for (String answer : disqualifyQ14) {
             System.out.println("Select answer for Q14.3: " + answer);
             whenDidYouHaveAppendixRemoved_OLS
                     .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
@@ -328,13 +331,13 @@ public class IBS_5019_OLS extends BaseTest {
         }
         whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
-                .back(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS)
+                .back(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
                 .clickNextButton(whenDidYouHaveAppendixRemoved_OLS);
 
-        for (String answer: disqualifyQ14) {
+        for (String answer : disqualifyQ14) {
             System.out.println("Select answer for Q14.4: " + answer);
             whenDidYouHaveAppendixRemoved_OLS
                     .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
@@ -347,7 +350,7 @@ public class IBS_5019_OLS extends BaseTest {
         }
         whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
-                .back(haveYouEverHadAnyOfFollowingTypesSurgeryPageOLS)
+                .back(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
@@ -401,7 +404,7 @@ public class IBS_5019_OLS extends BaseTest {
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = new
                 HaveYouEverExperiencedHeartRelatedMedicalCondOLS();
         List<String> disqualifyQ8GH = Arrays.asList("Crohn's disease", "Ulcerative colitis");
-        for (String answer: disqualifyQ8GH) {
+        for (String answer : disqualifyQ8GH) {
             System.out.println("Select answer for Q8GH: " + answer);
             whichOfFollowingDigestiveConditionPageOLS
                     .waitForPageLoad()
@@ -443,7 +446,7 @@ public class IBS_5019_OLS extends BaseTest {
                 .clickNextButton(subquestionExperiencedHeartPageOLS);
 
         List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago");
-        for (String answer: disqualifyQ12GH) {
+        for (String answer : disqualifyQ12GH) {
             System.out.println("Select answer for Q12.1GH: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -462,7 +465,7 @@ public class IBS_5019_OLS extends BaseTest {
                 .clickOnAnswers("Stroke")
                 .clickNextButton(subquestionExperiencedHeartPageOLS);
 
-        for (String answer: disqualifyQ12GH) {
+        for (String answer : disqualifyQ12GH) {
             System.out.println("Select answer for Q12.2GH: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
@@ -481,7 +484,7 @@ public class IBS_5019_OLS extends BaseTest {
                 .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(subquestionExperiencedHeartPageOLS);
 
-        for (String answer: disqualifyQ12GH) {
+        for (String answer : disqualifyQ12GH) {
             System.out.println("Select answer for Q12.3GH: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
@@ -500,7 +503,7 @@ public class IBS_5019_OLS extends BaseTest {
                 .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(subquestionExperiencedHeartPageOLS);
 
-        for (String answer: disqualifyQ12GH) {
+        for (String answer : disqualifyQ12GH) {
             System.out.println("Select answer for Q12.4GH: " + answer);
             subquestionExperiencedHeartPageOLS
                     .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
@@ -520,14 +523,14 @@ public class IBS_5019_OLS extends BaseTest {
 
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS =
                 heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
 
         WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS =
                 new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS();
         List<String> disqualifyQ16GH = Arrays.asList("Dialysis", "Kidney transplant");
-        for (String answer: disqualifyQ16GH) {
+        for (String answer : disqualifyQ16GH) {
             System.out.println("Select answer for Q16GH: " + answer);
             whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                     .waitForPageLoad()
@@ -546,21 +549,21 @@ public class IBS_5019_OLS extends BaseTest {
 
         FollowingMentalEmotionalHealthPageOLS followingMentalEmotionalHealthPageOLS =
                 whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Cirrhosis",
-                        "Fatty liver disease",
-                        "NASH (non-alcoholic steatohepatitis)",
-                        "NAFLD (non-alcoholic fatty liver disease)")
-                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Cirrhosis",
+                                "Fatty liver disease",
+                                "NASH (non-alcoholic steatohepatitis)",
+                                "NAFLD (non-alcoholic fatty liver disease)")
+                        .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
                 followingMentalEmotionalHealthPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Generalized anxiety disorder (GAD)",
-                        "Major depressive disorder (MDD) or depression",
-                        "Bipolar disorder",
-                        "Schizophrenia")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("Generalized anxiety disorder (GAD)",
+                                "Major depressive disorder (MDD) or depression",
+                                "Bipolar disorder",
+                                "Schizophrenia")
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -594,7 +597,7 @@ public class IBS_5019_OLS extends BaseTest {
         ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
         List<String> disqualifyQ24GH = Arrays.asList("Cancer in the past 5 years, except skin cancer",
                 "Drug or alcohol abuse within the past year", "HIV or AIDS");
-        for (String answer: disqualifyQ24GH) {
+        for (String answer : disqualifyQ24GH) {
             System.out.println("Select answer for Q24GH: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
@@ -621,9 +624,9 @@ public class IBS_5019_OLS extends BaseTest {
 
         ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS =
                 approximateHeightPageOLS
-                .waitForPageLoad()
-                .setAll("5", "5", "240") //Disqualify ("High BMI") if > 39
-                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+                        .waitForPageLoad()
+                        .setAll("5", "5", "240") //Disqualify ("High BMI") if > 39
+                        .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
         IdentificationPageOLS identificationPageOLS = experienceExcessiveHungerOrIncreasedAppetiteOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

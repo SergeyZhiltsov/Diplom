@@ -4,32 +4,28 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class AreYouCurrentlyAbleToSwallowTablets_CC extends MainPageCC {
+public class DidTakeMedicationToTreatPyloriCC extends MainPageCC {
 
-    public final String titleExpected = "Are you currently able to swallow tablets and pills?";
+    public final String titleExpected = "Did you take medication to treat your H. pylori infection?\n" +
+            "Typical treatment is multiple medications, all taken together for a 2 week period, including two or more antibiotics and a proton pump inhibitor (such as Nexium, Prilosec, or Prevacid).";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public AreYouCurrentlyAbleToSwallowTablets_CC() {
-        PageFactory.initElements(getDriver(), this);
-    }
-
     @Step
-    public AreYouCurrentlyAbleToSwallowTablets_CC waitForPageLoad() {
+    public DidTakeMedicationToTreatPyloriCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AreYouCurrentlyAbleToSwallowTablets_CC clickOnAnswer(String answerText) {
+    public DidTakeMedicationToTreatPyloriCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
