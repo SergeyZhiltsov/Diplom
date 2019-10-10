@@ -11,7 +11,7 @@ import java.util.List;
 public class CurrentlyTakingMedicationsOsteoporosisOLS extends MainPageOLS {
 
     public final String titleExpected = "Are you currently taking any of the following medications to treat your osteoporosis?\n" +
-            "Agent Note: Select all that apply";
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;

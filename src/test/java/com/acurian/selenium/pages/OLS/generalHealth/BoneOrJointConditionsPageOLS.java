@@ -15,6 +15,10 @@ public class BoneOrJointConditionsPageOLS extends MainPageOLS{
     public final String titleExpected = "Do you suffer from any of the following bone or joint conditions?\n" +
             "Please select all that apply.";
 
+    public final String titleExpected2 = "You indicated that you have a condition that affects bones and joints.\n" +
+            "Which of the following specific conditions have you been diagnosed with?\n" +
+            "Please select all that apply.";
+
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
@@ -58,6 +62,12 @@ public class BoneOrJointConditionsPageOLS extends MainPageOLS{
     @Step
     public BoneOrJointConditionsPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public BoneOrJointConditionsPageOLS waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 
