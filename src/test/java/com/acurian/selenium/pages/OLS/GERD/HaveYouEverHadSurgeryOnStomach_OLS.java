@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.OLS.GERD;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,8 +12,7 @@ public class HaveYouEverHadSurgeryOnStomach_OLS extends MainPageOLS {
 
     public final String titleExpected = "Have you ever had surgery on your stomach, intestines, colon, or esophagus?";
 
-
-    @FindBy(xpath = "//div[@class='ng-scope']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
     @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
     List<WebElement> radioButtonsList;

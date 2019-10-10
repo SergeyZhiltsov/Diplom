@@ -1,41 +1,37 @@
 package com.acurian.selenium.pages.OLS.GERD;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhatTypeOfSurgeryDidYouHave_OLS extends MainPageOLS{
+import java.util.List;
 
-	public final String titleExpected = "Have you ever had any of the following types of surgery?\n" +
-			"Please select all that apply.";
-	    		
-	    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
-	    WebElement titleText;
+public class WhatTypeOfSurgeryDidYouHave_OLS extends MainPageOLS {
 
-	    @FindBy(xpath ="//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
-	    List<WebElement> checkBoxList;
+    public final String titleExpected = "Have you ever had any of the following types of surgery?\n" +
+            "Please select all that apply.";
 
-	    public WhatTypeOfSurgeryDidYouHave_OLS() {
-	        PageFactory.initElements(getDriver(), this);
-	    }
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
+    WebElement titleText;
+    @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
+    List<WebElement> checkBoxList;
 
-	    @Step
-	    public WhatTypeOfSurgeryDidYouHave_OLS waitForPageLoad() {
-	        waitForPageLoadMain(titleText, titleExpected);
-	        return this;
-	    }
+    @Step
+    public WhatTypeOfSurgeryDidYouHave_OLS waitForPageLoad() {
+        waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
 
-	    @Step
-	    public WhatTypeOfSurgeryDidYouHave_OLS clickOnAnswers(String ...answerText) {
-	        clickOnCheckBoxes(checkBoxList, answerText);
-	        return this;
-	    }
+    @Step
+    public WhatTypeOfSurgeryDidYouHave_OLS clickOnAnswers(String... answerText) {
+        clickOnCheckBoxes(checkBoxList, answerText);
+        return this;
+    }
 
-	    @Step
-	    public String getTitleText() {
-	        return getText(titleText);
-	    }
-	}
+    @Step
+    public String getTitleText() {
+        return getText(titleText);
+    }
+}

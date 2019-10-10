@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.GERD;
+package com.acurian.selenium.pages.OLS.Osteoporosis;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -8,25 +8,26 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DoYouExperienceAnyOfFollowingSymptoms_OLS extends MainPageOLS {
+public class OsteoporosisRelatedFracturesOLS extends MainPageOLS {
 
-    public final String titleExpected = "Do you experience any of the following conditions or symptoms?\n" +
+    public final String titleExpected = "Osteoporosis often causes fractures (bone breaks), usually from “low-energy” injuries such as a fall from standing height.\n\n" +
+            "Have you ever had any of the following osteoporosis-related fractures?" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
     @FindBy(xpath = Locators.CHEKBOX_LIST_OLS)
-    List<WebElement> checkBoxList;
+    List<WebElement> checkBoxesList;
 
     @Step
-    public DoYouExperienceAnyOfFollowingSymptoms_OLS waitForPageLoad() {
+    public OsteoporosisRelatedFracturesOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DoYouExperienceAnyOfFollowingSymptoms_OLS clickOnAnswers(String... answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+    public OsteoporosisRelatedFracturesOLS clickOnAnswers(String... answerText) {
+        clickOnCheckBoxes(checkBoxesList, answerText);
         return this;
     }
 
