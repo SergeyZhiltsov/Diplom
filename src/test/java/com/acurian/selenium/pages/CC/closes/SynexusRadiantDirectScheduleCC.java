@@ -67,11 +67,6 @@ public class SynexusRadiantDirectScheduleCC extends MainPageCC{
 //    @FindBy(xpath = "")
 //    WebElement studyName;
 
-
-    public SynexusRadiantDirectScheduleCC() {
-        PageFactory.initElements(getDriver(), this);
-    }
-
     @Step
     public SynexusRadiantDirectScheduleCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);

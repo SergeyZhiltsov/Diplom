@@ -6,16 +6,20 @@ import com.acurian.selenium.pages.OLS.Fibromyalgia.AnyFollowingPainfulConditions
 import com.acurian.selenium.pages.OLS.Fibromyalgia.DiagnosedWithFibromyalgiaOLS;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.FirstDiagnosedWithFibromyalgiaOLS;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.TypeOfDoctorDiagnosedWithFibromyalgiaOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.SubquestionHeartPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.AreYouCurrentlyReceivingWorkersPageOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.PersonalDetails;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -24,11 +28,28 @@ import java.util.List;
 
 public class AF_4958_OLS extends BaseTest {
 
-    @Test
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {Site.AUT_AMS1_4958_site},
+                {Site.AUT_AMS1_4958S_site}
+        };
+    }
+
+    @Test(dataProvider = "sites")
     @Description("4958 NYX-2925-2005 Aptinyx Fibromyalgia OLS")
-    public void af4958OLSTest() {
-        Site site = Site.AUT_OA_4109_Site; //todo
-        final String phoneNumber = "800AMS1TST"; //todo
+    public void af4958OLSTest(Site site) {
+        final String phoneNumber = "AUTAMS1FIB";
         final String studyName = "a fibromyalgia study";
         String env = System.getProperty("acurian.env", "STG");
 
@@ -50,15 +71,17 @@ public class AF_4958_OLS extends BaseTest {
                 .back();
 
 
-        PersonalDetails personalDetails = dateOfBirthPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new PersonalDetails());
+                .clickNextButton(new ZipCodePageOLS());
 
-        GenderPageOLS genderPageOLS = personalDetails
+
+        GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
+
 
         genderPageOLS
                 .waitForPageLoad()
@@ -520,30 +543,61 @@ public class AF_4958_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageCC);
 
 
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageCC
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "250") //Disqualify ("High BMI") if > 40
-                .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back(approximateHeightPageCC)
+                .back();
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageCC
                 .waitForPageLoad()
                 .setLbs("150")
-                .clickNextButton(identificationPageOLS);
-
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-//        SiteSelectionPageOLS siteSelectionPageCC = identificationPageOLS
-//                .waitForPageLoad()
-//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-//                        "9999999999", site.zipCode)
-//                .clickNextButton(new SiteSelectionPageOLS());
+                .clickNextButton(new IdentificationPageOLS());
 
 
-        siteSelectionPageOLS
-                .waitForPageLoad(studyName)
+        SiteSelectionPageOLS siteSelectionPageCC = identificationPageOLS
+                .waitForPageLoad()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
+                .clickNextButton(new SiteSelectionPageOLS());
+
+
+        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageCC
+                .waitForPageLoad("a fibromyalgia")
                 .getPID()
-                .clickOnFacilityName(site.name);
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new QualifiedClose1PageOLS());
+
+        SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new SynexusHealthyMindsPageOLS());
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No, I am not interested in receiving information")
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS());
+
+
+        aboutHealthPageOLS
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo)
+                .assertGeneratedFul(env, site);
+
+        if (site == Site.AUT_AMS1_4958S_site) {
+            aboutHealthPageOLS
+                    .getRadiantDbToLog(env)
+                    .getAnomalyDbToLog(env);
+        }
     }
 }

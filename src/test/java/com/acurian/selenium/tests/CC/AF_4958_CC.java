@@ -6,16 +6,18 @@ import com.acurian.selenium.pages.CC.Fibromyalgia.AnyFollowingPainfulConditionsC
 import com.acurian.selenium.pages.CC.Fibromyalgia.DiagnosedWithFibromyalgiaCC;
 import com.acurian.selenium.pages.CC.Fibromyalgia.FirstDiagnosedWithFibromyalgiaCC;
 import com.acurian.selenium.pages.CC.Fibromyalgia.TypeOfDoctorDiagnosedWithFibromyalgiaCC;
-import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
+import com.acurian.selenium.tests.OLS.AF_4958_OLS;
 import com.acurian.selenium.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -23,15 +25,23 @@ import java.util.List;
 
 public class AF_4958_CC extends BaseTest {
 
-    @Test
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @Test(dataProviderClass = AF_4958_OLS.class, dataProvider = "sites")
     @Description("4958 NYX-2925-2005 Aptinyx Fibromyalgia CC")
-    public void af4958CCTest() {
-        Site site = Site.AUT_OA_4109_Site; //todo
-        final String phoneNumber = "800AMS1TST"; //todo
+    public void af4958CCTest(Site site) {
+        final String phoneNumber = "AUTAMS1FIB";
         final String studyName = "a fibromyalgia study";
         final String transitionStudyName = "fibromyalgia";
-
-        String env = System.getProperty("acurian.env", "STG");
+        final String env = System.getProperty("acurian.env", "STG");
 
         LoginPageCC loginPageCC = new LoginPageCC();
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -57,8 +67,8 @@ public class AF_4958_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-//        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), \\todo
-//                callCenterIntroductionPageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(),
+                callCenterIntroductionPageCC.titleExpected, "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
@@ -79,13 +89,20 @@ public class AF_4958_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
-        GenderPageCC genderPageCC = lessThan18YearsOldPageCC
+        lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back(dateOfBirthPageCC)
+                .back();
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickNextButton(new ZipCodePageCC());
+
+
+        GenderPageCC genderPageCC = zipCodePageCC
+                .waitForPageLoad()
+                .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
 
@@ -581,11 +598,57 @@ public class AF_4958_CC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
-
-
         siteSelectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name);
+
+        switch (site) {
+            case AUT_AMS1_4958_site:
+                QualifiedClose1PageCC qualifiedClose1PageCC = siteSelectionPageCC
+                        .clickNextButton(new QualifiedClose1PageCC());
+
+                SynexusHealthyMindsPageCC synexusHealthyMindsPageCC = qualifiedClose1PageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new SynexusHealthyMindsPageCC());
+
+
+                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ThankYouCloseSimplePageCC());
+
+
+                thankYouCloseSimplePageCC
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
+                        .assertGeneratedFul(env, site);
+
+                break;
+            case AUT_AMS1_4958S_site:
+                SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC());
+
+                synexusRadiantDirectScheduleCC
+                        .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "01/01/1960", "US",
+                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", "aut4958s", site.name,
+                                "APTXXXFIB005")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
+                        .assertGeneratedFul(env, site)
+                        .getRadiantDbToLog(env);
+                break;
+        }
     }
 }
