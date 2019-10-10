@@ -106,7 +106,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .back();
 
         PersonalQuestionsOLS personalQuestionsOLS = genderPageOLS
-                .setDate("09091941")
+                .setDate("09091960")
                 .clickOnAnswer("Male")
                 .clickNextButton(new PersonalQuestionsOLS());
 
