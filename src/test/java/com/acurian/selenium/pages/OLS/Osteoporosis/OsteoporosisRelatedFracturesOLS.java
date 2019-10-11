@@ -11,7 +11,7 @@ import java.util.List;
 public class OsteoporosisRelatedFracturesOLS extends MainPageOLS {
 
     public final String titleExpected = "Osteoporosis often causes fractures (bone breaks), usually from “low-energy” injuries such as a fall from standing height.\n\n" +
-            "Have you ever had any of the following osteoporosis-related fractures?" +
+            "Have you ever had any of the following osteoporosis-related fractures?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)

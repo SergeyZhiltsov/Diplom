@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.OLS.Osteoporosis;
+package com.acurian.selenium.pages.OLS.Fibromyalgia;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
@@ -8,9 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class CurrentlyTakingMedicationsOsteoporosisOLS extends MainPageOLS {
+public class AnyFollowingPainfulConditionsOLS extends MainPageOLS {
 
-    public final String titleExpected = "Are you currently taking any of the following medications to treat your osteoporosis?\n" +
+    public final String titleExpected = "Have you been diagnosed with any of the following painful conditions?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
@@ -19,13 +19,13 @@ public class CurrentlyTakingMedicationsOsteoporosisOLS extends MainPageOLS {
     List<WebElement> checkBoxesList;
 
     @Step
-    public CurrentlyTakingMedicationsOsteoporosisOLS waitForPageLoad() {
+    public AnyFollowingPainfulConditionsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public CurrentlyTakingMedicationsOsteoporosisOLS clickOnAnswers(String... answerText) {
+    public AnyFollowingPainfulConditionsOLS clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxesList, answerText);
         return this;
     }

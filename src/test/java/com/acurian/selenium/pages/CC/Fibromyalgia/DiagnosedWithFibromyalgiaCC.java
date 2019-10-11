@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.CC.generalHealth;
+package com.acurian.selenium.pages.CC.Fibromyalgia;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
@@ -8,9 +8,13 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhenDiagnosedWithCancerCC extends MainPageCC {
+public class DiagnosedWithFibromyalgiaCC extends MainPageCC {
 
-    public final String titleExpected = "When were you diagnosed with cancer (other than skin cancer)?";
+    public final String titleExpected = "Fibromyalgia is a common condition causing:\n" +
+            "•Widespread pain in multiple areas of the body\n" +
+            "•Moderate to severe problems with sleep or fatigue\n" +
+            "•Difficulty thinking or paying attention, often described as \"fibro fog\"\n" +
+            "Has a doctor ever diagnosed you with fibromyalgia?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -18,13 +22,13 @@ public class WhenDiagnosedWithCancerCC extends MainPageCC {
     List<WebElement> radioButtonsList;
 
     @Step
-    public WhenDiagnosedWithCancerCC waitForPageLoad() {
+    public DiagnosedWithFibromyalgiaCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhenDiagnosedWithCancerCC clickOnAnswer(String answerText) {
+    public DiagnosedWithFibromyalgiaCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
