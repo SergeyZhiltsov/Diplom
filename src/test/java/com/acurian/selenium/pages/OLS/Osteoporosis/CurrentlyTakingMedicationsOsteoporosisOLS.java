@@ -25,7 +25,7 @@ public class CurrentlyTakingMedicationsOsteoporosisOLS extends MainPageOLS {
     }
 
     @Step
-    public CurrentlyTakingMedicationsOsteoporosisOLS clickOnAnswers(String ...answerText) {
+    public CurrentlyTakingMedicationsOsteoporosisOLS clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxesList, answerText);
         return this;
     }
@@ -34,5 +34,4 @@ public class CurrentlyTakingMedicationsOsteoporosisOLS extends MainPageOLS {
     public String getTitleText() {
         return getText(titleText);
     }
-
 }

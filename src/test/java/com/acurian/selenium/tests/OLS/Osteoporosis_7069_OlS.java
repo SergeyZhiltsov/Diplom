@@ -3,12 +3,10 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
+import com.acurian.selenium.pages.OLS.HOTF_7119.DoyouExperienceHotFlashesOLS;
 import com.acurian.selenium.pages.OLS.Osteoporosis.*;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.cv_study.SubquestionHeartPageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -16,8 +14,6 @@ import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -25,27 +21,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Osteoporosis_7069_OlS extends BaseTest {
-    @BeforeMethod
-    public void setUp() {
-        super.setUp();
-    }
 
-    @AfterMethod
-    public void tearDown() {
-        super.tearDown();
-    }
-
-    @Test()
-    @Description("AUT_AMS1_7069_site_OLS")
-    public void Osteoporosis_7069_OLSTest() {
+    @Test
+    @Description("7069 BA058-05-021 Radius Osteoporosis OLS")
+    public void ro7069OLSTest() {
         final Site site = Site.AUT_AMS1_7069_site;
         final String phoneNumber = "AUTAMS1OST";
-        DebugPageOLS debugPageOLS = new DebugPageOLS();
-
         final String studyName = "an osteoporosis study";
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
@@ -53,10 +39,10 @@ public class Osteoporosis_7069_OlS extends BaseTest {
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle(studyName, "others "), "Title is diff");
 
-        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = new LessThan18YearsOldPageOLS();
-        lessThan18YearsOldPageOLS = dateOfBirthPageOLS
+
+        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(lessThan18YearsOldPageOLS);
+                .clickNextButton(new LessThan18YearsOldPageOLS());
         ZipCodePageOLS zipCodePageOLS = lessThan18YearsOldPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -71,53 +57,56 @@ public class Osteoporosis_7069_OlS extends BaseTest {
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageOLS());
+
+
+        genderPageOLS
+                .waitForPageLoad()
+                .setDate("01012002") //Disqualify (“Age < 18 years old”) if <18
+                .clickOnAnswer("Female")
+                .clickNextButton(lessThan18YearsOldPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
-                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
+                genderPageOLS
+                        .waitForPageLoad()
+                        .setDate("01011970") //Disqualify ("Age") if < 50
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back(genderPageOLS)
+                .waitForPageLoad()
+                .setDate("01011932")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .back();
         EverDiagnosedWithOsteoporosisOLS everDiagnosedWithOsteoporosisOLS = genderPageOLS
                 .waitForPageLoad()
-                .setDate("05051990")
-                .clickOnAnswer("Female")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back(genderPageOLS)
-                .waitForPageLoad()
-                .setDate("05051930")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back(genderPageOLS)
-                .waitForPageLoad()
-                .setDate("05051965")
-                .clickOnAnswer("Male")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back(genderPageOLS)
-                .waitForPageLoad()
-                .setDate("05051965")
-                .clickOnAnswer("Female")
+                .setDate("01011960")
                 .clickNextButton(new EverDiagnosedWithOsteoporosisOLS());
 
         //Q2
-        OsteoporosisRelatedFracturesOLS osteoporosisRelatedFracturesOLS = everDiagnosedWithOsteoporosisOLS
+        everDiagnosedWithOsteoporosisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7702", site.activeProtocols)
-                .back(everDiagnosedWithOsteoporosisOLS)
+                .back();
+        OsteoporosisRelatedFracturesOLS osteoporosisRelatedFracturesOLS = everDiagnosedWithOsteoporosisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new OsteoporosisRelatedFracturesOLS());
 
         //Q3
         HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = osteoporosisRelatedFracturesOLS
-                //.waitForPageLoad()
+                .waitForPageLoad()
                 .clickOnAnswers("Hip fracture",
                         "Spine (vertebral) fracture",
                         "Wrist fracture",
@@ -202,7 +191,7 @@ public class Osteoporosis_7069_OlS extends BaseTest {
                 .clickNextButton(intravenousMedicationOsteoporosisOLS);
 
         //Q8
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = intravenousMedicationOsteoporosisOLS
+        intravenousMedicationOsteoporosisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
@@ -216,7 +205,7 @@ public class Osteoporosis_7069_OlS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //-------------------New GENERAL HEALTH---------------------------
-        BoneOrJointConditionsPageOLS boneOrJointConditionsPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -242,16 +231,220 @@ public class Osteoporosis_7069_OlS extends BaseTest {
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)",
                         "None of the above")
-                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                .clickNextButton(new BoneOrJointConditionsPageOLS());
+                .clickOnAnswers("Cancer")
+                .clickNextButton(new CancerPage());
 
 
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = new DoAnyOftheFollowingAdditionalDiagnosesOLS();
-        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
-        boneOrJointConditionsPageOLS
-                .waitForPageLoad2()
-                .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis", "Gout", "Low back pain", "None of the above")
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
+                new DoAnyOftheFollowingAdditionalDiagnosesOLS();
+        List<String> disqualifyQ6QS42 = Arrays.asList("Within the past 5 years", "6 - 10 years ago",
+                "11 or more years ago");
+        for (String answer : disqualifyQ6QS42) {
+            System.out.println("Select answer for Q6:QS42: " + answer);
+            cancerPage
+                    .waitForPageLoad()
+                    .clickOnAnswer(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                    .back();
+        }
+        cancerPage
+                .waitForPageLoad()
+                .clickOnAnswer("Diagnosed with skin cancer only")
+                .back();
+        WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
+                        .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
+
+
+        List<String> disqualifyQ8QS44 = Arrays.asList("Crohn's disease", "Ulcerative colitis");
+        for (String answer : disqualifyQ8QS44) {
+            System.out.println("Select answer for Q8:QS44: " + answer);
+            whichOfFollowingDigestiveConditionPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
+                    .back();
+        }
+        whichOfFollowingDigestiveConditionPageOLS
+                .waitForPageLoad()
+                .back();
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+
+
+        SubquestionHeartPageOLS subquestionHeartPageOLS = haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionHeartPageOLS());
+
+
+        HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS =
+                new HeartrelatedMedicalProceduresPageOLS();
+        List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
+        for (String answer : disqualifyQ12GH) {
+            System.out.println("Select answer for Q12.1GH: " + answer);
+            subquestionHeartPageOLS
+                    .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected1)
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Stroke")
+                .clickNextButton(subquestionHeartPageOLS);
+
+
+        for (String answer : disqualifyQ12GH) {
+            System.out.println("Select answer for Q12.2GH: " + answer);
+            subquestionHeartPageOLS
+                    .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected2)
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickNextButton(subquestionHeartPageOLS);
+
+
+        for (String answer : disqualifyQ12GH) {
+            System.out.println("Select answer for Q12.3GH: " + answer);
+            subquestionHeartPageOLS
+                    .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected3)
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickNextButton(subquestionHeartPageOLS);
+
+        for (String answer : disqualifyQ12GH) {
+            System.out.println("Select answer for Q12.4GH: " + answer);
+            subquestionHeartPageOLS
+                    .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartrelatedMedicalProceduresPageOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageOLS
+                .waitForPageLoad(1, subquestionHeartPageOLS.titleExpected4)
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
+                .waitForPageLoad()
+                .back();
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Kidney disease")
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+
+
+        List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
+        for (String answer : disqualifyQ6QS51) {
+            System.out.println("Select answer for Q6:QS51: " + answer);
+            kidneyProblemsPage
+                    .waitForPageLoad()
+                    .clickOnAnswers("Neither")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                    .back();
+        }
+        kidneyProblemsPage
+                .waitForPageLoad()
+                .back();
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
+
+
+        whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
+                .back(whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("Fatty liver disease", "NASH (non-alcoholic steatohepatitis)",
+                        "NAFLD (non-alcoholic fatty liver disease)")
+                .clickOnAnswers("Unsure which type of liver disease")
+                .back();
+        FollowingMentalEmotionalHealthPageOLS followingMentalEmotionalHealthPageOLS =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                        .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+
+
+        //Q18: QS53
+        List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
+        for (String answer : disqualifyQ18) {
+            System.out.println("Select answer for Q18:QS53: " + answer);
+            followingMentalEmotionalHealthPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
+                    .back();
+        }
+        followingMentalEmotionalHealthPageOLS
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+
+
+        ApproximateHeightPageOLS approximateHeightPageOLS = new ApproximateHeightPageOLS();
         List<String> disqualifyQ24_QS59 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
                 "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B",
                 "Hepatitis C", "HIV or AIDS");
@@ -260,8 +453,7 @@ public class Osteoporosis_7069_OlS extends BaseTest {
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
-            approximateHeightPageOLS
+                    .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
@@ -273,8 +465,7 @@ public class Osteoporosis_7069_OlS extends BaseTest {
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
-            approximateHeightPageOLS
+                    .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
@@ -283,49 +474,67 @@ public class Osteoporosis_7069_OlS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageOLS());
+                .clickNextButton(approximateHeightPageOLS);
 
-        IdentificationPageOLS identificationPageOLS = new IdentificationPageOLS();
-        approximateHeightPageOLS
+
+        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageOLS
                 .waitForPageLoad()
-                .setAll("5", "5", "250")
-                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS())
+                .setAll("5", "5", "107") //Disqualify ("Low BMI") if < 18
+                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+        doYouExperienceAnyOfFollowingSymptoms_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .back();
+        DoyouExperienceHotFlashesOLS doyouExperienceHotFlashesOLS = approximateHeightPageOLS
+                .waitForPageLoad()
+                .setLbs("220") //Disqualify ("High BMI") if > 33.5
+                .clickNextButton(new DoyouExperienceHotFlashesOLS());
+        IdentificationPageOLS identificationPageOLS = doyouExperienceHotFlashesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .setAll("5", "5", "105")
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back(approximateHeightPageOLS)
-                .setAll("5", "5", "150")
-                .clickNextButton(identificationPageOLS);
+                .setLbs("150")
+                .clickNextButton(new IdentificationPageOLS());
 
 
-        QualifiedClosedPageOLS qualifiedClosedPageOLS = identificationPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new IdentificationPageOLS())
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
+                .clickNextButton(new SiteSelectionPageOLS());
+
+
+        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
                 .waitForPageLoad2(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS());
+                .clickNextButton(new QualifiedClose1PageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        thankYouCloseSimplePageOLS
+        SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
                 .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .clickOnAnswer("No")
+                .clickNextButton(new SynexusHealthyMindsPageOLS());
+
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No, I am not interested in receiving information")
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS());
+
+
+        aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .dispoShouldMatch(site.dispo, site.dispo)
+                .assertGeneratedFul(env, site);
     }
 }

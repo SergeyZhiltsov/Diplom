@@ -1,27 +1,21 @@
 package com.acurian.selenium.pages.OLS.generalHealth;
 
-import java.util.List;
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
-import com.acurian.selenium.pages.OLS.shared.DoYouSufferFromArthritis;
-
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class CancerPage extends MainPageOLS{
+import java.util.List;
+
+public class CancerPage extends MainPageOLS {
 
     public final String titleExpected = "When were you diagnosed with cancer (other than skin cancer)?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
-
-    @FindBy(xpath = "//label[contains(@class,'col-xs-11')]/span[@class='copy']")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
-
-    public CancerPage() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public CancerPage waitForPageLoad() {
@@ -31,17 +25,12 @@ public class CancerPage extends MainPageOLS{
 
     @Step
     public CancerPage clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
-
 }
