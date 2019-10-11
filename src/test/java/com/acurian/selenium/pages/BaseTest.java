@@ -38,7 +38,7 @@ public abstract class BaseTest {
                 : new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser(), Properties.getGridURL()));
 //        driver = new EventFiringWebDriver(DriverFactory.initDriver(Properties.getBrowser()));
         driver.register(new EventHandler());
-        driver.manage().timeouts().setScriptTimeout(50,TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(50, TimeUnit.SECONDS);
 //        driverch.register(new EventHandler());
 //        driver =  new StaleTolerantWebDriver(driverch);
         switch (Locators.isEnvWeb) {
@@ -58,7 +58,7 @@ public abstract class BaseTest {
             AllureUtils.createProperties(getDriver());
             allureCounterRun = true;
         }
-        System.out.println("Browser version "+((RemoteWebDriver)(((EventFiringWebDriver)getDriver()).getWrappedDriver())).getCapabilities().getVersion());
+        System.out.println("Browser version " + ((RemoteWebDriver) (((EventFiringWebDriver) getDriver()).getWrappedDriver())).getCapabilities().getVersion());
     }
 
     @AfterClass
@@ -70,7 +70,6 @@ public abstract class BaseTest {
     }
 
     /**
-     *
      * @return Whether required browser displays content in mobile mode.
      */
     private boolean isMobileTesting(String browser) {

@@ -3,12 +3,9 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.OLS.LOWT_3017_OLS_A_S"></class>
-            <class name="com.acurian.selenium.tests.CC.LOWT_3017_CC_A_S"></class>
-            <class name="com.acurian.selenium.tests.OLS.HOTF_7119_OLS"></class>
-            <class name="com.acurian.selenium.tests.CC.HOTF_7119_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.IBD_3889_CC"></class>
-            <class name="com.acurian.selenium.tests.OLS.DPN_5096_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.AF_4958_OLS"></class>
+            <class name="com.acurian.selenium.tests.CC.AF_4958_CC"></class>
+            <class name="com.acurian.selenium.tests.CC.RO_7069_CC"></class>
         </classes>
     </test>
 </suite>

@@ -1,5 +1,6 @@
-package com.acurian.selenium.pages.CC.shared;
+package com.acurian.selenium.pages.CC.Fibromyalgia;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,23 +8,23 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class AreYouCurrentlyReceivingWorkersPageCC extends MainPageCC {
+public class FirstDiagnosedWithFibromyalgiaCC extends MainPageCC {
 
-    public final String titleExpected = "Are you currently receiving worker's compensation, or involved in litigation or a lawsuit related to your pain?";
+    public final String titleExpected = "When were you first diagnosed with fibromyalgia?";
 
-    @FindBy(xpath = "//div[@class='question_text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
-    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
     @Step
-    public AreYouCurrentlyReceivingWorkersPageCC waitForPageLoad() {
+    public FirstDiagnosedWithFibromyalgiaCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public AreYouCurrentlyReceivingWorkersPageCC clickOnAnswer(String answerText) {
+    public FirstDiagnosedWithFibromyalgiaCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
