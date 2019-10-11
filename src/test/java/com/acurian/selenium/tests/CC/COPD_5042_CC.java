@@ -39,7 +39,7 @@ public class COPD_5042_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][] {
-                {Site.AUT_COPD_5042S_Site},
+                //{Site.AUT_COPD_5042S_Site},
                 {Site.AUT_COPD_5042_Site}
         };
     }
@@ -89,7 +89,7 @@ public class COPD_5042_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
-                ("a COPD study", "others"), "Title is diff");
+                ("a COPD study", "700"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")

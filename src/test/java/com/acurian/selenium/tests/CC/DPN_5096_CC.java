@@ -3,18 +3,18 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.*;
-
 import com.acurian.selenium.pages.CC.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.DiagnosedAnyTypeOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
-
-import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
+import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -274,44 +274,23 @@ public class DPN_5096_CC extends BaseTest {
                 .clickNextButton(approxHowlongYouBeenExpSymptomsCC);
 
         //----------Q9 -Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?-  Page ---------------
-        HowWouldYouRateYourPain_CC howWouldYouRateYourPain_CC = approxHowlongYouBeenExpSymptomsCC
-                .waitForPageLoad()
-                .clickOnAnswer("5 months or less")
-                .clickNextButton(new HowWouldYouRateYourPain_CC());
-
-        howWouldYouRateYourPain_CC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
-                .back(approxHowlongYouBeenExpSymptomsCC);
-
-        approxHowlongYouBeenExpSymptomsCC
-                .waitForPageLoad()
-                .clickOnAnswer("6 - 11 months")
-                .clickNextButton(howWouldYouDescribeTheSymptoms_CC);
-
-        howWouldYouRateYourPain_CC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
-                .back(approxHowlongYouBeenExpSymptomsCC);
-
-        List<String> qualifyQ9 = Arrays.asList("1 - 3 years",
-                "4 - 6 years",
-                "7 - 10 years",
-                "11 or more years");
-
-        for (String answer : qualifyQ9) {
-            System.out.println("Select answer for Q9: " + answer);
+        HowWouldYouRateYourPain_CC howWouldYouRateYourPain_CC = new HowWouldYouRateYourPain_CC();
+        List<String> disqualifyQ9 = Arrays.asList("5 months or less", "6 - 11 months", "1 - 3 years");
+        for (String answer : disqualifyQ9) {
             approxHowlongYouBeenExpSymptomsCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(howWouldYouRateYourPain_CC)
                     .waitForPageLoad()
-                    .back(approxHowlongYouBeenExpSymptomsCC);
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
+                    .back();
         }
-
         approxHowlongYouBeenExpSymptomsCC
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 6 years")
+                .clickOnAnswer("7 - 10 years")
+                .clickOnAnswer("11 or more years")
                 .clickNextButton(howWouldYouRateYourPain_CC);
 
         //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
