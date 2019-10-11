@@ -628,7 +628,6 @@ public class AF_4958_CC extends BaseTest {
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo)
                         .assertGeneratedFul(env, site);
-
                 break;
             case AUT_AMS1_4958S_site:
                 SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
