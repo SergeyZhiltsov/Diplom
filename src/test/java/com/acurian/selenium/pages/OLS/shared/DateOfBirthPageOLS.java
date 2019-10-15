@@ -339,62 +339,18 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
             "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.";
 
+    public final String titlePsoriaticArthritisExpected = "Let's get started to see if there is a psoriatic arthritis study that's right for you!\n" +
+            "\n" +
+            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            "If you attend all required study visits, you may receive*:\n" +
+            "Payment up to $300, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
 
     public final String titleExpectedGBAN = "The Generation Study is enrolling now.";
 
     public final String titleExpectedGBAN1 = "Let's start!";
-
-    //visible-xs-block xs - Extra small devices Phones (<768px)
-    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
-    WebElement questionText1;
-
-    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
-    WebElement questionText2;
-
-    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
-    WebElement questionText3;
-
-    WebElement questionText;
-
-
-    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
-    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[2]")
-    WebElement questionTextGROUP;
-
-
-    @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[3]")
-    WebElement questionText2Ver;
-
-    @FindBy(xpath = "//div[@class='visible-md-block visible-lg-block ng-scope']")
-    WebElement questionTextAH1;
-
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
-    WebElement titleText1;
-
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
-    WebElement titleText2;
-
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
-    WebElement titleText3;
-
-    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
-    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
-    WebElement titleTextGROUP;
-
-    WebElement titleText;
-
-    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
-    WebElement titleText2Ver1;
-
-    WebElement titleText2Ver;
-
-
-    @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
-    WebElement dateField;
-
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
-    List<WebElement> radioButtonsList;
-
     //GH pathes
     public final String titleGHExpected = "This is the first part of the process to match you with a research study.\n" +
             "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
@@ -405,7 +361,38 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study medication\n" +
             "\n" +
             "Let's get started to see if there is a study that's right for you!";
-
+    //visible-xs-block xs - Extra small devices Phones (<768px)
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement questionText1;
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
+    WebElement questionText2;
+    @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement questionText3;
+    WebElement questionText;
+    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[2]")
+    WebElement questionTextGROUP;
+    @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[3]")
+    WebElement questionText2Ver;
+    @FindBy(xpath = "//div[@class='visible-md-block visible-lg-block ng-scope']")
+    WebElement questionTextAH1;
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleText1;
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
+    WebElement titleText2;
+    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
+    WebElement titleText3;
+    //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
+    WebElement titleTextGROUP;
+    WebElement titleText;
+    @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    WebElement titleText2Ver1;
+    WebElement titleText2Ver;
+    @FindBy(xpath = "//input[contains(@class,'text-date-input')]")
+    WebElement dateField;
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
+    List<WebElement> radioButtonsList;
     @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleTextAH;
 
@@ -418,11 +405,13 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement titleTextGH3;
 
+    @FindBy(xpath = "//*[@id='command']/div[1]/div[2]")
+    WebElement titleTextArthritis;
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleTextGBAN;
 
     WebElement titleTextGH;
-
 
 
     public DateOfBirthPageOLS() {
@@ -521,6 +510,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return this;
     }
 
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadPsoariaticArthritis() {
+        waitForPageLoadMain(titleTextArthritis, titlePsoriaticArthritisExpected);
+        return this;
+    }
+
     @Deprecated
     @Step
     public DateOfBirthPageOLS setDate(String date) {
@@ -545,8 +540,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     }
 
 
-    public String getExpectedModifiedTitle(String indication, String compensation, boolean...isVerticalComa) {
-        if (isVerticalComa.length == 1 && isVerticalComa[0]){ //some anti patern for workaround;)
+    public String getExpectedModifiedTitle(String indication, String compensation, boolean... isVerticalComa) {
+        if (isVerticalComa.length == 1 && isVerticalComa[0]) { //some anti patern for workaround;)
             return String.format(titleCommonExpected2, compensation, indication);
         }
         return String.format(titleCommonExpected, compensation, indication);
