@@ -3,18 +3,14 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WithType2DiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.*;
 import com.acurian.selenium.pages.CC.closes.*;
-import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.LOWT_3017.WhenWasTheLastTimeThatYouExperiencedHeartAttackEtcPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -122,36 +118,39 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .clickNextButton(new GenderPageCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-                genderPageCC
-                        .waitForPageLoad()
-                        .setMonth("Apr")
-                        .setDay("5")
-                        .setYear("1960")
-                        .clickOnAnswer("Male")
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        PersonaQuestionsCC personaQuestionsCC = genderPageCC
+                .waitForPageLoad()
+                .setMonth("Apr")
+                .setDay("5")
+                .setYear("1938")
+                .clickOnAnswer("Male")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", protocol2)
-                .back(genderPageCC);
-
-        genderPageCC
+                .back(genderPageCC)
+                .waitForPageLoad()
+                .setMonth("Apr")
+                .setDay("5")
+                .setYear("1975")
+                .clickOnAnswer("Male")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QSI8013", protocol2)
+                .back(genderPageCC)
                 .waitForPageLoad()
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("1960")
                 .clickOnAnswer("Female")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
-
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", protocol2)
-                .back(genderPageCC);
-
-
-        PersonaQuestionsCC personaQuestionsCC = genderPageCC
+                .back(genderPageCC)
                 .waitForPageLoad()
                 .setMonth("Apr")
                 .setDay("5")
@@ -473,9 +472,9 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = cardiovascularInterventionsOrSurgeriesPageCC
                 .clickOnAnswers
                         ("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
-                        "Coronary Artery Bypass Graft, also known as CABG, “cabbage”, or heart bypass surgery",
-                        "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
-                        "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
+                                "Coronary Artery Bypass Graft, also known as CABG, “cabbage”, or heart bypass surgery",
+                                "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
+                                "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
                 .clickNextButton(new ReceivedHeartProcedurePageCC());
 
         receivedHeartProcedurePageCC
