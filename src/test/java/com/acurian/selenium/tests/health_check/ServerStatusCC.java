@@ -31,7 +31,7 @@ public class ServerStatusCC extends BaseTest {
         };
     }
 
-    @Test(invocationCount = 10, dataProvider = "testData")
+    @Test(dataProvider = "testData")
     public void healthCheckConnectivity(String testURL, String serverName) {
         DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
