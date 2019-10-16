@@ -336,6 +336,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
         cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5524")
                 .back(currentlyTreatingYourDiabetesPageOLS);
