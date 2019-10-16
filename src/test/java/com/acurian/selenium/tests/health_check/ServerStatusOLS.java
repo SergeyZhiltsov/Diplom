@@ -39,8 +39,8 @@ public class ServerStatusOLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 
         getDriver().navigate().to(testURL);
-        dateOfBirthPageOLS.
-                waitForPageLoadPsoariaticArthritis();
+        dateOfBirthPageOLS
+                .waitForPageLoadPsoariaticArthritis();
         mainPageOLS
                 .getPage(debugPageOLS)
                 .assertServerConnectivity("Server:" + serverName);

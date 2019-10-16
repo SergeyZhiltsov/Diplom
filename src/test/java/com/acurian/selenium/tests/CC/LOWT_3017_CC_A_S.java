@@ -38,7 +38,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_LOWT_3017S_Site},
-                //{Site.AUT_LOWT_3017_Site}
+                //{Site.AUT_LOWT_3017_Site} //deactivated in R55
         };
     }
 
@@ -117,43 +117,38 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-                new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
 
-        PersonaQuestionsCC personaQuestionsCC = genderPageCC
-                .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("5")
-                .setYear("1938")
-                .clickOnAnswer("Male")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                genderPageCC
+                        .waitForPageLoad()
+                        .setMonth("Apr")
+                        .setDay("5")
+                        .setYear("1938")
+                        .clickOnAnswer("Male")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", protocol2)
                 .back(genderPageCC)
                 .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("5")
                 .setYear("1975")
-                .clickOnAnswer("Male")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", protocol2)
                 .back(genderPageCC)
                 .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("5")
                 .setYear("1960")
                 .clickOnAnswer("Female")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", protocol2)
-                .back(genderPageCC)
+                .back();
+        PersonaQuestionsCC personaQuestionsCC = genderPageCC
                 .waitForPageLoad()
-                .setMonth("Apr")
-                .setDay("5")
                 .setYear("1941")
                 .clickOnAnswer("Male")
                 .clickNextButton(new PersonaQuestionsCC());
@@ -470,11 +465,10 @@ public class LOWT_3017_CC_A_S extends BaseTest {
         cardiovascularInterventionsOrSurgeriesPageCC
                 .waitForPageLoad();
         ReceivedHeartProcedurePageCC receivedHeartProcedurePageCC = cardiovascularInterventionsOrSurgeriesPageCC
-                .clickOnAnswers
-                        ("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
-                                "Coronary Artery Bypass Graft, also known as CABG, “cabbage”, or heart bypass surgery",
-                                "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
-                                "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
+                .clickOnAnswers("Percutaneous Coronary Intervention, or Stent placement (a procedure or surgery to open up blockages in the arteries in your heart)",
+                        "Coronary Artery Bypass Graft, also known as CABG, “cabbage”, or heart bypass surgery",
+                        "Cerebrovascular Revascularization (a procedure or surgery to open up blockages in the arteries in your neck or head), which is a blood vessel graft to restore blood flow to the brain or parts of the brain",
+                        "Peripheral Arterial Revascularization (a procedure or surgery to open up blockages in the arteries in your arms or legs)")
                 .clickNextButton(new ReceivedHeartProcedurePageCC());
 
         receivedHeartProcedurePageCC
