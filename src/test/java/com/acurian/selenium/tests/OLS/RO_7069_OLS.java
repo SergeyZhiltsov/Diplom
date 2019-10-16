@@ -20,7 +20,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class Osteoporosis_7069_OlS extends BaseTest {
+public class RO_7069_OLS extends BaseTest {
 
     @Test
     @Description("7069 BA058-05-021 Radius Osteoporosis OLS")
