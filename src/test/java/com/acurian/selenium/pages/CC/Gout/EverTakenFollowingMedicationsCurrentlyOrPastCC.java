@@ -12,7 +12,10 @@ public class EverTakenFollowingMedicationsCurrentlyOrPastCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever taken the following gout medications, either currently or in the past?\n" +
             "Please select all that apply.\n" +
-            "Agent Note: Select all that apply\n";
+            "Agent Note: Select all that apply";
+
+    public final String titleExpected2 = "Have you ever taken the following gout medications, either currently or in the past?\n" +
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
@@ -22,6 +25,12 @@ public class EverTakenFollowingMedicationsCurrentlyOrPastCC extends MainPageCC {
     @Step
     public EverTakenFollowingMedicationsCurrentlyOrPastCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public EverTakenFollowingMedicationsCurrentlyOrPastCC waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 

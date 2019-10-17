@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class EverTakenMedicationCC extends MainPageCC {
-    public final String titleExpected = "Have you ever taken medication for your gout?\n";
+    public final String titleExpected = "Have you ever taken medication for your gout?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

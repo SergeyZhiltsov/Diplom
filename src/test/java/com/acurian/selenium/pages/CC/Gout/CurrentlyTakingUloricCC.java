@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class CurrentlyTakingUloricCC extends MainPageCC {
-    public final String titleExpected = "Are you currently taking Uloric (febuxostat)?\n";
+    public final String titleExpected = "Are you currently taking Uloric (febuxostat)?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
