@@ -132,8 +132,8 @@ public enum Site {
     //Hot Flashes
     AUT_AMS1_7119_site("AUT_AMS1_7119_site", "08204", "41C", false, false, "2693_CL_0301","2693_CL_0302","2693_CL_0304"),
     //4960
-    AUT_AMS1_4960_site("AUT_AMS1_4960_site", "19422", "1R", true, false, "LG-GDCL002"),
-    AUT_AMS1_4960S_site("AUT_AMS1_4960S_site", "08204", "41C", false, false, "LG-GDCL002"),
+    AUT_AMS1_4960_site("AUT_AMS1_4960_site", "19422", "1R", true, false, "LG_GDCL002"),
+    AUT_AMS1_4960S_site("AUT_AMS1_4960S_site", "08204", "41C", false, false, "LG_GDCL002"),
 
     //Others
     AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java

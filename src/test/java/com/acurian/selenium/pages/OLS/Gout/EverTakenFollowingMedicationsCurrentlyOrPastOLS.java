@@ -11,7 +11,7 @@ import java.util.List;
 public class EverTakenFollowingMedicationsCurrentlyOrPastOLS extends MainPageOLS {
 
     public final String titleExpected = "Have you ever taken the following gout medications, either currently or in the past?\n" +
-            "Please select all that apply.\n";
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;

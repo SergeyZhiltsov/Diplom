@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class EverTakenMedicationOLS extends MainPageOLS {
-    public final String titleExpected = "Have you ever taken medication for your gout?\n";
+    public final String titleExpected = "Have you ever taken medication for your gout?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;

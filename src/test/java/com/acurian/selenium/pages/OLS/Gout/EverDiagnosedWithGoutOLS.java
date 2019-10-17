@@ -9,8 +9,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 
 public class EverDiagnosedWithGoutOLS extends MainPageOLS {
-    public final String titleExpected = "Gout is a type of arthritis in which crystals build up in your joints.  These crystals form when you have high levels of a substance called uric acid in your blood.\n" +
-            "Has a doctor ever diagnosed you with gout?\n";
+    public final String titleExpected = "Gout is a type of arthritis in which crystals build up in your joints. These crystals form when you have high levels of a substance called uric acid in your blood.\n" +
+            "Has a doctor ever diagnosed you with gout?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
