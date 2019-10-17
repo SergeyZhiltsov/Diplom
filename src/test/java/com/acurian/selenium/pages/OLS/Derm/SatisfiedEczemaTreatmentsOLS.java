@@ -8,10 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HowWouldYouDescribeTheEczemaCurrentlyPageOLS extends MainPageOLS {
+public class SatisfiedEczemaTreatmentsOLS extends MainPageOLS {
 
-    public final String titleExpected = "Sometimes eczema comes and goes, flaring up at times and then improving or even clearing completely.\n" +
-            "How would you describe the eczema currently on your body?";
+    public final String titleExpected = "Are you satisfied with your current eczema treatment(s)?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,13 +18,13 @@ public class HowWouldYouDescribeTheEczemaCurrentlyPageOLS extends MainPageOLS {
     List<WebElement> radioButtonsList;
 
     @Step
-    public HowWouldYouDescribeTheEczemaCurrentlyPageOLS waitForPageLoad() {
+    public SatisfiedEczemaTreatmentsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HowWouldYouDescribeTheEczemaCurrentlyPageOLS clickOnAnswer(String answerText) {
+    public SatisfiedEczemaTreatmentsOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
