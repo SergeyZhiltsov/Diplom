@@ -24,7 +24,7 @@ public class DebugPageOLS extends MainPageOLS {
     //info window
     @FindBy(xpath = "//div[contains(@class,'k-widget')][1]//span[text()='Close']")
     WebElement infoCloseButton;
-    @FindBy(xpath = "//a[@id='info-debug-link']/span")
+    @FindBy(xpath = "//a[@id = 'info-debug-link'] | //a[@id = 'debug_toolbar_props_lnk']")
     WebElement infoButton;
     @FindBy(xpath = "//div[@class='k-window-content k-content']//div/strong[contains(text(),'Verity Score')]/..")
     WebElement verity4Field;
@@ -55,6 +55,9 @@ public class DebugPageOLS extends MainPageOLS {
     List<WebElement> questionNumberList2;
     List<WebElement> questionNumberList;
 
+    @FindBy(xpath = "//*[@id='debug_toolbar_props']/div[2]/ul/li[3]/div/div[1]")
+    WebElement server;
+    String env = System.getProperty("acurian.env", "STG");
     public DebugPageOLS() {
         PageFactory.initElements(getDriver(), this);
         switch (Locators.isEnvWeb) {
@@ -260,4 +263,16 @@ public class DebugPageOLS extends MainPageOLS {
         closeDebugWindow();
         return this;
     }
+
+    @Step
+    public DebugPageOLS assertServerConnectivity(String expectedServer) {
+        Assert.assertEquals(getServerName(), expectedServer);
+        return this;
+    }
+
+    private String getServerName() {
+        infoButton.click();
+        return server.getText();
+    }
+
 }

@@ -339,11 +339,18 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
             "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.";
 
+    public final String titlePsoriaticArthritisExpected = "Let's get started to see if there is a psoriatic arthritis study that's right for you!\n" +
+            "\n" +
+            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            "If you attend all required study visits, you may receive*:\n" +
+            "Payment up to $300, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
 
     public final String titleExpectedGBAN = "The Generation Study is enrolling now.";
 
     public final String titleExpectedGBAN1 = "Let's start!";
-
     //GH pathes
     public final String titleGHExpected = "This is the first part of the process to match you with a research study.\n" +
             "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
@@ -426,11 +433,13 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
     WebElement titleTextGH3;
 
+    @FindBy(xpath = "//*[@id='command']/div[1]/div[2]")
+    WebElement titleTextArthritis;
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleTextGBAN;
 
     WebElement titleTextGH;
-
 
 
     public DateOfBirthPageOLS() {
@@ -535,6 +544,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return this;
     }
 
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadPsoariaticArthritis() {
+        waitForPageLoadMain(titleTextArthritis, titlePsoriaticArthritisExpected);
+        return this;
+    }
+
     @Deprecated
     @Step
     public DateOfBirthPageOLS setDate(String date) {
@@ -558,9 +573,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return getText(titleText);
     }
 
-
-    public String getExpectedModifiedTitle(String indication, String compensation, boolean...isVerticalComa) {
-        if (isVerticalComa.length == 1 && isVerticalComa[0]){ //some anti patern for workaround;)
+    public String getExpectedModifiedTitle(String indication, String compensation, boolean... isVerticalComa) {
+        if (isVerticalComa.length == 1 && isVerticalComa[0]) { //some anti patern for workaround;)
             return String.format(titleCommonExpected2, compensation, indication);
         }
         return String.format(titleCommonExpected, compensation, indication);

@@ -144,7 +144,7 @@ public class KAD_4631_OLS extends BaseTest {
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "13-20" : "8-14")
+                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
         howMuchEczemaYouHaveOnYourBody_OLS
@@ -511,12 +511,15 @@ public class KAD_4631_OLS extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back(approximateHeightPageOLS)
+                .back();
+
+        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188") //BMI=47.15, proceed to Obesity module
-                .clickNextButton(doYouExperienceAnyOfFollowingSymptoms_OLS)
+                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+        experienceExcessiveHungerOrIncreasedAppetiteOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
