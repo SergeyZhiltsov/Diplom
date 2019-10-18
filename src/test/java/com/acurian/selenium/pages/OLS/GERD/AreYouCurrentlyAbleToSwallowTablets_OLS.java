@@ -12,7 +12,7 @@ public class AreYouCurrentlyAbleToSwallowTablets_OLS extends MainPageOLS {
 
     public final String titleExpected = "Are you currently able to swallow tablets and pills?";
 
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;

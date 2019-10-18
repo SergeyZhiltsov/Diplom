@@ -214,6 +214,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
+    public final String titleGERD_5098_Expected = "Let's get started to see if you qualify for an indigestion, heartburn, or stomach ulcers study!\n" +
+            "\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment up to $300, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
 
     public final String titleIBD_Expected = "This is the first part of the process to match you with a research study.\n" +
             "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
@@ -356,6 +362,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     WebElement questionText;
 
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[2]")
+    WebElement questionTextGER1;
+
 
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
     @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[2]")
@@ -476,6 +485,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public DateOfBirthPageOLS waitForPageLoad() {
         waitForPageLoadMain(questionText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadGER() {
+        waitForPageLoadMain(questionTextGER1, titleExpected);
         return this;
     }
 

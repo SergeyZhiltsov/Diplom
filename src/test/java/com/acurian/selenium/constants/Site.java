@@ -43,6 +43,9 @@ public enum Site {
     AUT_CV1_4241_NonSynexus_site("AUT_CV1_4241_NonSynexus_site", "45205", "1R", true, false, "EFC14828"),
     //4301
     AUT_GER_4301_Site("AUT_GER_4301_Site", "19901", "1R", true, true, "C3718_301", "C3718_302"),
+    //5098
+    AUT_GER_5098_site("AUT_AMS1_5098_site", "19422", "1R", true, true, "EE_301, HP_301"),
+    AUT_GER_5098S_site("AUT_AMS1_5098S_site", "08204", "41C", true, true, "EE_301, HP_301"),
     //4357
     AUT_GAST4357S_site("AUT_GAST4357S_site", "19901", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
     AUT_GAST4357_site("AUT_GAST4357_site", "08204", "1R", false, true, "RLM_MD_01", "RLM_MD_02"),
