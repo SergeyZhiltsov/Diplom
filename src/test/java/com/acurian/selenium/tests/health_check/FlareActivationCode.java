@@ -80,6 +80,7 @@ public class FlareActivationCode extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
         QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = siteSelectionPageOLS
+                .waitForPageLoad("a Crohn's")
                 .clickOnFacilityName(site.name)
                 .getPID()
                 .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS());

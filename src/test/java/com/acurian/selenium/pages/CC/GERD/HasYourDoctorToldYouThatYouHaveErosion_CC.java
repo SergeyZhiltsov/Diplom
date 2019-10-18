@@ -1,49 +1,37 @@
 package com.acurian.selenium.pages.CC.GERD;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HasYourDoctorToldYouThatYouHaveErosion_CC extends MainPageCC{
+public class HasYourDoctorToldYouThatYouHaveErosion_CC extends MainPageCC {
 
-    public final String titleExpected = "Has your doctor told you that you have an erosion in your esophagus, esophageal erosions or erosive esophagitis?\n" +
-            "This refers to ulceration or \"wearing away\" of the esophageal lining, and is seen on endoscopy.";
+    public final String titleExpected = "Acid irritation and inflammation can damage the esophagus (the tube that connects the throat to the stomach). This can create a condition known as erosive esophagitis, which can be seen by a doctor during an endoscopy.\n" +
+            "Has your doctor diagnosed you with erosive esophagitis or esophageal erosions, or told you there are sores or breaks in the lining of your esophagus?";
 
-    @FindBy(xpath = "//div[@class='question_text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
-
-    @FindBy(xpath = "//div[@class='radio_btns_container']//label")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
-
-    public HasYourDoctorToldYouThatYouHaveErosion_CC() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public HasYourDoctorToldYouThatYouHaveErosion_CC waitForPageLoad() {
-        waitForAnimation();
-        driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public HasYourDoctorToldYouThatYouHaveErosion_CC clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
-
 }

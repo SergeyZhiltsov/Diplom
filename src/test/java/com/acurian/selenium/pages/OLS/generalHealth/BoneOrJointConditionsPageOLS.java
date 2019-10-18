@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class BoneOrJointConditionsPageOLS extends MainPageOLS{
+public class BoneOrJointConditionsPageOLS extends MainPageOLS {
 
     public final String titleExpected = "Do you suffer from any of the following bone or joint conditions?\n" +
             "Please select all that apply.";
@@ -62,13 +62,13 @@ public class BoneOrJointConditionsPageOLS extends MainPageOLS{
     }
 
     @Step
-    public BoneOrJointConditionsPageOLS clickOnAnswers(String ...answerText) {
+    public BoneOrJointConditionsPageOLS clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

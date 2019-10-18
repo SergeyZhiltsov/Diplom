@@ -81,7 +81,6 @@ public class MainPageBlinx extends BasePage {
             waitAndClickWebElement(nextButton);
         } catch (WebDriverException ex) {
             scrollToElement(nextButton, true);
-//            threadSleep(500);
             waitAndClickWebElement(nextButton);
         }
         return (T) page;

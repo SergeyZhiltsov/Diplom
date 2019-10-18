@@ -3,10 +3,9 @@ package com.acurian.selenium.pages.OLS.closes;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class QualifiedClose2PageOLS extends MainPageOLS{
+public class QualifiedClose2PageOLS extends MainPageOLS {
 
     //Qualified Close 2: No Pediatric Study Switch - 35
     public final String titleExpected = "We're glad the location is convenient for you.\n" +
@@ -21,11 +20,11 @@ public class QualifiedClose2PageOLS extends MainPageOLS{
             "Please be assured that your records will be kept confidential and only shared with the research facility.";
 
 
-    public final String titleExpectedIBD4818Stag ="We’re glad the location is convenient for you.\n" +
+    public final String titleExpectedIBD4818Stag = "We’re glad the location is convenient for you.\n" +
             "\n" +
             "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Crohn's Disease, Ulcerative Colitis study.";
 
-    public final String titleExpectedIBD4818Prod ="We’re glad the location is convenient for you.\n" +
+    public final String titleExpectedIBD4818Prod = "We’re glad the location is convenient for you.\n" +
             "\n" +
             "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Ulcerative Colitis, Crohn's Disease study.";
 
@@ -34,9 +33,6 @@ public class QualifiedClose2PageOLS extends MainPageOLS{
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement titleText;
 
-    public QualifiedClose2PageOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Step
     public QualifiedClose2PageOLS waitForPageLoad() {
@@ -57,9 +53,8 @@ public class QualifiedClose2PageOLS extends MainPageOLS{
         return this;
     }
 
-
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

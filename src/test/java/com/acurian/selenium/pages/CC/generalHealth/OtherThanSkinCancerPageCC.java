@@ -4,8 +4,6 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
@@ -16,17 +14,12 @@ public class OtherThanSkinCancerPageCC extends MainPageCC {
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
-
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
 
-    public OtherThanSkinCancerPageCC() {
-        PageFactory.initElements(getDriver(), this);
-    }
-
     @Step
     public OtherThanSkinCancerPageCC waitForPageLoad() {
-        waitForPageLoadMain(titleText,titleExpected);
+        waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
@@ -37,7 +30,7 @@ public class OtherThanSkinCancerPageCC extends MainPageCC {
     }
 
     @Step
-    public String getTitleText(){
+    public String getTitleText() {
         return getText(titleText);
     }
 }

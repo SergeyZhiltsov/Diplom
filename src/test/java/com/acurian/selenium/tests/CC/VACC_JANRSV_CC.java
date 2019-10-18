@@ -72,9 +72,7 @@ public class VACC_JANRSV_CC extends BaseTest {
 
         //-------Date of Birth Page--------
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(studyName, "650"), "Title is diff");
+                .waitForPageLoadJANRSV();
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
@@ -83,13 +81,13 @@ public class VACC_JANRSV_CC extends BaseTest {
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = doesNotGivePermissionToProceedClosePageCC
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC)
-                .waitForPageLoad()
+                .waitForPageLoadJANRSV()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         ZipCodePageCC zipCodePageCC = lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back(dateOfBirthPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")

@@ -344,6 +344,22 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleExpectedGBAN1 = "Let's start!";
 
+    //GH pathes
+    public final String titleGHExpected = "This is the first part of the process to match you with a research study.\n" +
+            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
+            "Payment up to $1,000, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication\n" +
+            "\n" +
+            "Let's get started to see if there is a study that's right for you!";
+
+    public final String titleExpectedJANRSV = "Let's get started to see if there is a vaccine study that's right for you!\n" +
+            "\n" +
+            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.";
+
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText1;
@@ -355,6 +371,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     WebElement questionText3;
 
     WebElement questionText;
+
+    @FindBy(xpath = "(//div[@class = 'visible-md-block visible-lg-block ng-scope']//div[@class = 'show-in-ols'])[2]")
+    WebElement titleTextJANRSV;
 
 
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
@@ -394,17 +413,6 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
-
-    //GH pathes
-    public final String titleGHExpected = "This is the first part of the process to match you with a research study.\n" +
-            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
-            "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
-            "Payment up to $1,000, which varies by study\n" +
-            "No-cost study-related care from doctors\n" +
-            "No-cost study medication\n" +
-            "\n" +
-            "Let's get started to see if there is a study that's right for you!";
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][2]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleTextAH;
@@ -518,6 +526,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public DateOfBirthPageOLS waitForPageLoadByTitle(String titleExpected) {
         waitForPageLoadMain(titleTextGBAN, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadJANRSV() {
+        waitForPageLoadMain(titleTextJANRSV, titleExpectedJANRSV);
         return this;
     }
 

@@ -30,7 +30,8 @@ public class HS1PageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='22']")
     WebElement nameField;
     
-    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-document-signature-field input']/span[text()='Click to sign']")
+    //@FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-document-signature-field input']/span[text()='Click to sign']")
+    @FindBy (xpath = "//div[@class = 'm-signature-document-field signature']")
     WebElement clickToSignButton;
 
     @FindBy(xpath = "//div[@class='m-sign-modal-popup']//div[@class='m-sign-modal--menu']//span[text()='Type it in']")
@@ -47,12 +48,7 @@ public class HS1PageOLS extends MainPageOLS {
 
     @FindBy(xpath = "//div[@id='signer-mobile-application']//button[//text()='I agree']")
     WebElement agreeButton;
-    
 
-
-    public HS1PageOLS() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     private void waitJQuery(){
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) wdriver -> ((JavascriptExecutor) getDriver()).executeScript(
@@ -101,7 +97,6 @@ public class HS1PageOLS extends MainPageOLS {
         waitForAnimation();
         waitJQuery();
         threadSleep(1000);
-        driverWait.waitforVisibility(clickToSignButton);
         clickToSignButton.click();
         waitJQuery();
         waitForAnimation();
@@ -123,7 +118,7 @@ public class HS1PageOLS extends MainPageOLS {
 
     @Step
     public HS1PageOLS waitToClickNext() {
-    	driverWait.getWaitDriver().withTimeout(2, TimeUnit.MINUTES).until(ExpectedConditions
+    	driverWait.getWaitDriver().withTimeout(1, TimeUnit.MINUTES).until(ExpectedConditions
                 .visibilityOf(titleText));
         waitForAnimation();
         driverWait.getWaitDriver().withTimeout(15, TimeUnit.SECONDS).until(ExpectedConditions
