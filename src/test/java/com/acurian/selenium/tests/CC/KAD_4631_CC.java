@@ -174,7 +174,7 @@ public class KAD_4631_CC extends BaseTest {
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "13-20" : "8-14")
+                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
         howMuchEczemaYouHaveOnYOurBody_CC

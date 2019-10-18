@@ -34,7 +34,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data")
+    @Test(dataProvider = "data", enabled = false) //todo turn on after PDV
     public void cv5034olsBlinxTest(Site site, String city, String state) {
         DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
         LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();

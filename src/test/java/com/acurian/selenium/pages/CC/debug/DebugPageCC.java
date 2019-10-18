@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class DebugPageCC extends MainPageCC{
+public class DebugPageCC extends MainPageCC {
 
     @FindBy(id = "debug_toolbar_questions_lnk")
     WebElement questionLink;
@@ -23,32 +23,33 @@ public class DebugPageCC extends MainPageCC{
 
     @FindBy(xpath = "//div[@class='debug_toolbar_content']//tbody//tr/td[@class='question_txt']")
     List<WebElement> questionList;
-    
+
     @FindBy(xpath = "//div[@class='debug_toolbar_content']//tbody//tr/td[@class='question_dq question_pdq_true']")
     WebElement protocolList;
 
     @FindBy(xpath = "//div[@class='debug_toolbar_content']//tbody//tr/td[@class='question_code']")
     List<WebElement> questionNumberList;
-
+    @FindBy(id = "activate_debug")
+    WebElement activateDebugLink;
+    @FindBy(xpath = "//*[@id='debug_toolbar_props']/div[2]/ul/li[3]/div/div[1]")
+    WebElement server;
     @FindBy(id = "debug_toolbar_props_lnk")
     private WebElement propertiesLink;
-
     @FindBy(xpath = "//div[contains(@class,'ui-dialog-titlebar')]//span[contains(text(), 'Properties')]/following-sibling::*[5]")
     private WebElement propertiesCloseButton;
-
     @FindBy(xpath = "//a[@id='study_props']//following-sibling::div/div[2]")
     private WebElement propertiesProjectCode;
 
     public DebugPageCC() {
         PageFactory.initElements(getDriver(), this);
     }
-    
-    public DebugPageCC openDebugWindow(){
+
+    public DebugPageCC openDebugWindow() {
         questionLink.click();
         return this;
     }
 
-    public DebugPageCC closeDebugWindow(){
+    public DebugPageCC closeDebugWindow() {
         closeButton.click();
         waitForAnimation();
         return this;
@@ -65,68 +66,67 @@ public class DebugPageCC extends MainPageCC{
     }
 
     @Step
-    public String getProtocolForQuestion(String questionText){
+    public String getProtocolForQuestion(String questionText) {
         openDebugWindow();
         waitForAnimation();
         String questionTextMod = questionText.replace("\n", "");
         String temp = questionList.stream()
-                .filter(el -> questionTextMod.contains(el.getText().replace("...","")))
+                .filter(el -> questionTextMod.contains(el.getText().replace("...", "")))
                 .findFirst()
                 .get()
                 .findElement(By.xpath("following-sibling::*[3]"))
                 .getText();
         closeDebugWindow();
-        logTextToAllure("Protocol="+temp);
+        logTextToAllure("Protocol=" + temp);
         return temp;
     }
-    
+
     @Step
     public String getProtocol() {
-    	return getText(protocolList);
-    } 
+        return getText(protocolList);
+    }
 
-    private String[] getProtocolsForQuestion(String questionText){
+    private String[] getProtocolsForQuestion(String questionText) {
         openDebugWindow();
         waitForAnimation();
         String questionTextMod = questionText.replace("\n", "");
         String temp = questionList.stream()
-                .filter(el -> questionTextMod.contains(el.getText().replace("...","")))
+                .filter(el -> questionTextMod.contains(el.getText().replace("...", "")))
                 .findFirst()
                 .get()
                 .findElement(By.xpath("following-sibling::*[3]"))
                 .getText();
         String[] tempArr = temp.split("\n");
         closeDebugWindow();
-        logTextToAllure("Protocol(s) got ="+ Arrays.toString(tempArr));
+        logTextToAllure("Protocol(s) got =" + Arrays.toString(tempArr));
         return tempArr;
     }
 
     @Step
-    public DebugPageCC checkProtocolsEquals(String previousPageTitle, String...expectedProtocols){
-        Object[] actualProtocols =  getProtocolsForQuestion(previousPageTitle);
+    public DebugPageCC checkProtocolsEquals(String previousPageTitle, String... expectedProtocols) {
+        Object[] actualProtocols = getProtocolsForQuestion(previousPageTitle);
         Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
-                + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
+                + Arrays.toString(expectedProtocols) + "not equal in actual " + Arrays.toString(actualProtocols));
         return this;
     }
 
     @Step
-    public DebugPageCC checkProtocolsContains(String previousPageTitle, String...expectedProtocols){
-        List<String> actualProtocols =  Arrays.asList(getProtocolsForQuestion(previousPageTitle));
+    public DebugPageCC checkProtocolsContains(String previousPageTitle, String... expectedProtocols) {
+        List<String> actualProtocols = Arrays.asList(getProtocolsForQuestion(previousPageTitle));
         Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
-                + Arrays.toString(expectedProtocols)+" are not included in actual "+actualProtocols.toString());
+                + Arrays.toString(expectedProtocols) + " are not included in actual " + actualProtocols.toString());
         return this;
     }
 
-    private String[] getProtocolsForQuestionNumber(String questionNumber){
+    private String[] getProtocolsForQuestionNumber(String questionNumber) {
         openDebugWindow();
         waitForAnimation();
 
         Predicate<WebElement> predicate;// function block to use QS6401 instead Q0018010-QS6401-STUDYQUES
         if (questionNumber.contains("-")) {
             predicate = (el) -> questionNumber.equals(el.getText());
-        }
-        else {
-            predicate = (el) -> el.getText().contains(questionNumber.replaceFirst("(^.*)(-.*-)(.*$)","$2"));
+        } else {
+            predicate = (el) -> el.getText().contains(questionNumber.replaceFirst("(^.*)(-.*-)(.*$)", "$2"));
         }
 
         String temp = questionNumberList.stream()
@@ -137,29 +137,29 @@ public class DebugPageCC extends MainPageCC{
                 .getText();
         String[] tempArr = temp.split("\n");
         closeDebugWindow();
-        logTextToAllure("Protocol(s) got ="+ Arrays.toString(tempArr));
+        logTextToAllure("Protocol(s) got =" + Arrays.toString(tempArr));
         return tempArr;
     }
 
     //use checkProtocolsEqualsForQNumber if same questions in debug window
     @Step
-    public DebugPageCC checkProtocolsEqualsForQNumber(String questionNumber, String...expectedProtocols){
-        Object[] actualProtocols =  getProtocolsForQuestionNumber(questionNumber);
+    public DebugPageCC checkProtocolsEqualsForQNumber(String questionNumber, String... expectedProtocols) {
+        Object[] actualProtocols = getProtocolsForQuestionNumber(questionNumber);
         Assert.assertEqualsNoOrder(actualProtocols, expectedProtocols, "Protocol expected "
-                + Arrays.toString(expectedProtocols)+"not equal in actual "+Arrays.toString(actualProtocols));
+                + Arrays.toString(expectedProtocols) + "not equal in actual " + Arrays.toString(actualProtocols));
         return this;
     }
 
     @Step
-    public DebugPageCC checkProtocolsContainsForQNumber(String questionNumber, String...expectedProtocols){
-        List<String> actualProtocols =  Arrays.asList(getProtocolsForQuestionNumber(questionNumber));
+    public DebugPageCC checkProtocolsContainsForQNumber(String questionNumber, String... expectedProtocols) {
+        List<String> actualProtocols = Arrays.asList(getProtocolsForQuestionNumber(questionNumber));
         Assert.assertTrue(actualProtocols.containsAll(Arrays.asList(expectedProtocols)), "Protocol expected "
-                + Arrays.toString(expectedProtocols)+" are not included in actual "+actualProtocols.toString());
+                + Arrays.toString(expectedProtocols) + " are not included in actual " + actualProtocols.toString());
         return this;
     }
 
     @Step
-    public DebugPageCC checkIsNoProtocolsForQuestion(String previousPageTitle){
+    public DebugPageCC checkIsNoProtocolsForQuestion(String previousPageTitle) {
         Object[] actualProtocols = getProtocolsForQuestion(previousPageTitle);
         Object[] expected = {"false"};
         Assert.assertEqualsNoOrder(actualProtocols, expected, "Protocols are present ");
@@ -168,7 +168,7 @@ public class DebugPageCC extends MainPageCC{
 
     @Step
     public DebugPageCC checkIsNoSelectedProtocolsForQuestion(String questionNumber, String... expectedNotToSeeProtocols) {
-        List<String> actualProtocols =  Arrays.asList(getProtocolsForQuestionNumber(questionNumber));
+        List<String> actualProtocols = Arrays.asList(getProtocolsForQuestionNumber(questionNumber));
         Assert.assertTrue(Collections.disjoint(actualProtocols, Arrays.asList(expectedNotToSeeProtocols)));
         return this;
     }
@@ -182,15 +182,14 @@ public class DebugPageCC extends MainPageCC{
         return this;
     }
 
-    private String getStudyStatusForQuestionNumber(String questionNumber){
+    private String getStudyStatusForQuestionNumber(String questionNumber) {
         openDebugWindow();
         waitForAnimation();
         Predicate<WebElement> predicate;// function block to use QS6401 instead Q0018010-QS6401-STUDYQUES
         if (questionNumber.contains("-")) {
             predicate = (el) -> questionNumber.equals(el.getText());
-        }
-        else {
-            predicate = (el) -> el.getText().contains(questionNumber.replaceFirst("(^.*)(-.*-)(.*$)","$2"));
+        } else {
+            predicate = (el) -> el.getText().contains(questionNumber.replaceFirst("(^.*)(-.*-)(.*$)", "$2"));
         }
 
         String temp = questionNumberList.stream()
@@ -206,11 +205,22 @@ public class DebugPageCC extends MainPageCC{
 
     @Step
     public DebugPageCC checkStudyStatusContainsForQNumber(String questionNumber, String expectedStudyStatus) {
-        String actualStudyStatus =  getStudyStatusForQuestionNumber(questionNumber);
+        String actualStudyStatus = getStudyStatusForQuestionNumber(questionNumber);
         System.out.println("Status Set displayed = " + actualStudyStatus);
         Assert.assertTrue(actualStudyStatus.contains(expectedStudyStatus), "Study status expected "
                 + expectedStudyStatus + " are not included in actual " + actualStudyStatus);
         return this;
+    }
+
+    @Step
+    public DebugPageCC assertServerConnectivityCC(String expectedServer) {
+        Assert.assertEquals(getServerName(), expectedServer);
+        return this;
+    }
+
+    private String getServerName() {
+        propertiesLink.click();
+        return server.getText();
     }
 
 }

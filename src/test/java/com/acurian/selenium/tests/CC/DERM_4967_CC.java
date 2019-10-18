@@ -8,9 +8,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
-import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -171,7 +169,7 @@ public class DERM_4967_CC extends BaseTest {
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "13-20" : "8-14")
+                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
         howMuchEczemaYouHaveOnYOurBody_CC
@@ -376,33 +374,33 @@ public class DERM_4967_CC extends BaseTest {
         //-------------------New GENERAL HEALTH---------------------------
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                        "Autism spectrum",
-                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
-                        "Cancer",
-                        "Diabetes (type 1 or type 2)",
-                        "Headaches (migraine, cluster, tension)",
-                        "Heart or circulation problems (heart attack, heart failure, stroke)",
-                        "High blood pressure or hypertension",
-                        "High cholesterol, triglycerides, or lipids",
-                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                        "Kidney disease",
-                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Lupus",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
-                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                                "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
-                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                        "Women's health issues (endometriosis, uterine fibroids)")
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Lupus")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+                        .waitForPageLoad()
+                        .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
+                                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                                "Autism spectrum",
+                                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                                "Cancer",
+                                "Diabetes (type 1 or type 2)",
+                                "Headaches (migraine, cluster, tension)",
+                                "Heart or circulation problems (heart attack, heart failure, stroke)",
+                                "High blood pressure or hypertension",
+                                "High cholesterol, triglycerides, or lipids",
+                                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                                "Kidney disease",
+                                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                                "Lupus",
+                                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                                "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                                "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                                "Women's health issues (endometriosis, uterine fibroids)")
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Lupus")
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -410,11 +408,11 @@ public class DERM_4967_CC extends BaseTest {
                 .back();
 
         //Q2: QS38
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //If exclusively selected, skip to Q24)
-                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //If exclusively selected, skip to Q24)
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         //Check flow logic for Q2
         //Q4: QS40
         doAnyOftheFollowingAdditionalDiagnosesCC
@@ -821,19 +819,17 @@ public class DERM_4967_CC extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
-        QualifiedClose1PageCC qualifiedClose1PageCC = selectionPageCC
+        MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose1PageCC());
+                .clickNextButton(new MedicalRecordsOptionPageCC());
 
-        ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = qualifiedClose1PageCC
+
+        medicalRecordsOptionPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageCC());
-
-
-        thankYouCloseSimplePageCC
+                .clickOnAnswer("Continue without medical records")
+                .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
