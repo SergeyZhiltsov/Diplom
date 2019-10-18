@@ -215,6 +215,20 @@ public class DateOfBirthPageCC extends MainPageCC {
             "\n" +
             "If you have any questions, you can contact information@acurian.com.";
 
+    //GH pathes
+    public final String titleGHExpected = "If you qualify and participate in a study, you may receive:\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $1,000 for time and travel, for qualified participants who complete study related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
+
+    public final String titleExpectedJANRSV = "Let's get started to see if there is a vaccine study that's right for you.\n\n" +
+            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
+            "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"";
+
+
     @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
     WebElement questionText;
     @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
@@ -253,14 +267,6 @@ public class DateOfBirthPageCC extends MainPageCC {
     @FindBy(xpath = "//input[@name='year']")
     WebElement yearField;
 
-    //GH pathes
-    public final String titleGHExpected = "If you qualify and participate in a study, you may receive:\n" +
-            "Study medication or placebo, at no-cost to you\n" +
-            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $1,000 for time and travel, for qualified participants who complete study related visits\n" +
-            "\n" +
-            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
-
     @FindBy(xpath = "//div[@class='subquestion'][2]//div[@class='show-in-cc']")
     WebElement questionTextGH;
 
@@ -295,6 +301,15 @@ public class DateOfBirthPageCC extends MainPageCC {
     @Step
     public DateOfBirthPageCC waitForPageLoadPhathom() {
         waitForPageLoadMain(questionText2, titlePhathomExpected);
+        waitForPageLoadMain(questionText, titleExpected2);
+        waitForPageLoadMain(questionText2Ver, titleExpected);
+        return this;
+    }
+
+
+    @Step
+    public DateOfBirthPageCC waitForPageLoadJANRSV() {
+        waitForPageLoadMain(questionText2, titleExpectedJANRSV);
         waitForPageLoadMain(questionText, titleExpected2);
         waitForPageLoadMain(questionText2Ver, titleExpected);
         return this;
