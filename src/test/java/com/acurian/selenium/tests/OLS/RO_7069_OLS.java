@@ -37,7 +37,7 @@ public class RO_7069_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle(studyName, "others "), "Title is diff");
+                dateOfBirthPageOLS.getExpectedModifiedTitle(studyName, "500"), "Title is diff");
 
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
