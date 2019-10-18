@@ -44,7 +44,7 @@ public class DERM_7036_CC extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false) //Deactivated in R79.2
     @Description("DERM 7036 CC Kyowa Atopic Derm")
     public void derm7036ccTest(final Site site) {
         final String phoneNumber = "AUTAMSDERM";

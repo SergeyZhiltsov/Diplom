@@ -17,6 +17,11 @@ public class AboutHealthPageOLS extends MainPageBlinx {
 
     @Step
     public AboutHealthPageOLS waitForPageLoad() {
+        try {
+            acceptAlert();
+        } catch (Exception ex) {
+            logTextToAllureAndConsole("Alert was not appeared.");
+        }
         driverWait.getWaitDriver().withTimeout(60, TimeUnit.SECONDS)
                 .until(ExpectedConditions.visibilityOf(titleText));
         waitForPageLoadMain(titleText, titleExpected);

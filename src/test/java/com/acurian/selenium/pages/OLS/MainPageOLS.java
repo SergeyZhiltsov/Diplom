@@ -201,7 +201,7 @@ public class MainPageOLS extends BasePage {
     }
 
     @Step
-    public MainPageOLS childPidFromDbToLog(String env, String ...firstPartOfChildPhoneNumber) {
+    public MainPageOLS childPidFromDbToLog(String env, String... firstPartOfChildPhoneNumber) {
 //        cpid = PassPID.getInstance().getPidNumber();
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();

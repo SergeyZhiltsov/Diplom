@@ -23,7 +23,7 @@ import java.util.*;
 
 public class DERM_4825_CC extends BaseTest {
 
-    @Test()
+    @Test(enabled = false) //Deactivated in R79.2
     @Description("DERM 4825 Genentech Atopic Derm")
     public void derm4825ccGADTest() {
         Site site = Site.AUT_AMS1_4825_site;

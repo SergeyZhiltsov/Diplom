@@ -3,9 +3,13 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.*;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -233,45 +237,24 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(approxHowlongYouBeenExpSymptomsOLS);
 
         //----------Q9 -Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?-  Page ---------------
-        HowWouldYouRateYourPain_OLS howWouldYouRateYourPain_OLS = approxHowlongYouBeenExpSymptomsOLS
-                .waitForPageLoad()
-                .clickOnAnswer("5 months or less")
-                .clickNextButton(new HowWouldYouRateYourPain_OLS());
-
-        howWouldYouRateYourPain_OLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
-                .back(approxHowlongYouBeenExpSymptomsOLS);
-
-        approxHowlongYouBeenExpSymptomsOLS
-                .waitForPageLoad()
-                .clickOnAnswer("6 - 11 months")
-                .clickNextButton(howWouldYouDescribeTheSymptoms_OLS);
-
-        howWouldYouRateYourPain_OLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
-                .back(approxHowlongYouBeenExpSymptomsOLS);
-
-        List<String> qualifyQ9 = Arrays.asList("1 - 3 years",
-                "4 - 6 years",
-                "7 - 10 years",
-                "11 or more years");
-
-        for (String answer : qualifyQ9) {
+        HowWouldYouRateYourPain_OLS howWouldYouRateYourPain_OLS = new HowWouldYouRateYourPain_OLS();
+        List<String> disqualifyQ9 = Arrays.asList("5 months or less", "6 - 11 months", "1 - 3 years");
+        for (String answer : disqualifyQ9) {
             System.out.println("Select answer for Q9: " + answer);
             approxHowlongYouBeenExpSymptomsOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(howWouldYouRateYourPain_OLS)
                     .waitForPageLoad()
-                    .back(approxHowlongYouBeenExpSymptomsOLS);
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
+                    .back();
         }
-
         approxHowlongYouBeenExpSymptomsOLS
                 .waitForPageLoad()
+                .clickOnAnswer("4 - 6 years")
+                .clickOnAnswer("7 - 10 years")
+                .clickOnAnswer("11 or more years")
                 .clickNextButton(howWouldYouRateYourPain_OLS);
 
         //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
@@ -445,7 +428,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4967")
+                .childPidFromDbToLog(env, "5096")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }

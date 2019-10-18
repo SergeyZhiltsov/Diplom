@@ -32,9 +32,15 @@ public class ChatfillMedicalRecordReleaseFormPageOLS extends MainPageOLS {
     public ChatfillMedicalRecordReleaseFormPageOLS waitForPageLoad() {
         try {
             acceptAlert();
-            acceptAlert();
         } catch (Exception ex) {
-            logTextToAllure("Alert was not appeared");
+            logTextToAllureAndConsole("Alert was not appeared. Retry in 10 seconds");
+            threadSleep(10000);
+            try {
+                acceptAlert();
+            } catch (Exception exeption) {
+                logTextToAllureAndConsole("Alert was not appeared.");
+            }
+
         }
         getDriver().switchTo().frame("chartfill-iframe");
         waitForAnimation();

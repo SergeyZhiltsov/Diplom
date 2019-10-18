@@ -13,7 +13,7 @@ public class HasYourDoctorToldYouThatYouHaveErosion_OLS extends MainPageOLS {
     public final String titleExpected = "Acid irritation and inflammation can damage the esophagus (the tube that connects the throat to the stomach). This can create a condition known as erosive esophagitis, which can be seen by a doctor during an endoscopy.\n" +
             "Has your doctor diagnosed you with erosive esophagitis or esophageal erosions, or told you there are sores or breaks in the lining of your esophagus?";
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;

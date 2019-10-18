@@ -41,7 +41,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false) //Deactivated in R79.2
     @Description("DERM_4815_OLS_A_S")
     public void derm4815Ols(final Site site) {
         final String phoneNumber = "AUTAMSDERM";
