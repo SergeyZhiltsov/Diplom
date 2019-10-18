@@ -40,7 +40,7 @@ public class DERM_7036_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false) //Deactivated in R79.2
     @Description("DERM_7036_OLS")
     public void derm7036ols(final Site site) {
         final String phoneNumber = "AUTAMSDERM";

@@ -1,6 +1,7 @@
-package com.acurian.selenium.pages.OLS.Derm;
+package com.acurian.selenium.pages.OLS.Gout;
 
 import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.OLS.Gout.PastThreeMonthsTakenKrystexxaOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,10 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HowWouldYouDescribeTheEczemaCurrentlyPageOLS extends MainPageOLS {
-
-    public final String titleExpected = "Sometimes eczema comes and goes, flaring up at times and then improving or even clearing completely.\n" +
-            "How would you describe the eczema currently on your body?";
+public class PastThreeMonthsTakenKrystexxaOLS extends MainPageOLS {
+    public final String titleExpected = "In the past 3 months, have you taken Krystexxa (pegloticase)?\n" +
+            "This is a medication given by IV infusion (into a vein)";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -19,13 +19,13 @@ public class HowWouldYouDescribeTheEczemaCurrentlyPageOLS extends MainPageOLS {
     List<WebElement> radioButtonsList;
 
     @Step
-    public HowWouldYouDescribeTheEczemaCurrentlyPageOLS waitForPageLoad() {
+    public PastThreeMonthsTakenKrystexxaOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HowWouldYouDescribeTheEczemaCurrentlyPageOLS clickOnAnswer(String answerText) {
+    public PastThreeMonthsTakenKrystexxaOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

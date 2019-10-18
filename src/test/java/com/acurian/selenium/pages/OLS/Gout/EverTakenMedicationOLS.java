@@ -1,30 +1,29 @@
-package com.acurian.selenium.pages.CC.generalHealth;
+package com.acurian.selenium.pages.OLS.Gout;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.CC.MainPageCC;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class OtherThanSkinCancerPageCC extends MainPageCC {
+public class EverTakenMedicationOLS extends MainPageOLS {
+    public final String titleExpected = "Have you ever taken medication for your gout?";
 
-    public final String titleExpected = "When were you diagnosed with cancer (other than skin cancer)?";
-
-    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
-    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
     @Step
-    public OtherThanSkinCancerPageCC waitForPageLoad() {
+    public EverTakenMedicationOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public OtherThanSkinCancerPageCC clickOnAnswer(String answerText) {
+    public EverTakenMedicationOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

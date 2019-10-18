@@ -319,6 +319,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
         cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5524")
                 .back(currentlyTreatingYourDiabetesPageOLS);
@@ -427,7 +428,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4967")
+                .childPidFromDbToLog(env, "5096")
                 .assertGeneratedFul(env, site)
                 .dispoShouldMatch(site.dispo, site.dispo);
     }

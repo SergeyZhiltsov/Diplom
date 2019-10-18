@@ -617,38 +617,40 @@ public class Insomnia_5017_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
 
-        IdentificationPageCC identificationPageCC = approximateHeightPageCC
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "3", "100")
-                .clickNextButton(new IdentificationPageCC());
-        identificationPageCC
-                .waitForPageLoadNotQ()
+                .clickNextButton(new LetMeSeePageCC());
+        letMeSeePageCC
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageCC); //Disqualify ("Low BMI") if < 18
         approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("3", "5", "100")
-                .clickNextButton(new LetMeSeePageCC())
+                .clickNextButton(letMeSeePageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageCC); //Disqualify ("High BMI") if > 40
-        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+        approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("3", "6", "100")
-                .clickNextButton(new LetMeSeePageCC());
+                .clickNextButton(letMeSeePageCC);
 
-        letMeSeePageCC
+        IdentificationPageCC identificationPageCC =  letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC());
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad(studyName)
                 .getPID();
+
         switch (site) {
             case AUT_INS_5017_site:
                 selectionPageCC

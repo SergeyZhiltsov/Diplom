@@ -35,7 +35,7 @@ public class DERM_4815_CC_A_S extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = DERM_4815_OLS_A_S.class)
+    @Test(dataProvider = "sites", dataProviderClass = DERM_4815_OLS_A_S.class, enabled = false) //Deactivated in R79.2
     @Description("DERM_4815_CC_A_S")
     public void derm4815ccAasTest(Site site) {
         final String phoneNumber = "AUTAMSDERM";

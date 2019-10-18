@@ -12,6 +12,10 @@ public class BoneOrJointConditionsPageCC extends MainPageCC {
     public final String titleExpected = "Do you suffer from any of the following bone or joint conditions?\n" +
             "Agent Note: Select all that apply";
 
+    public final String titleExpected2 = "You indicated that you have a condition that affects bones and joints.\n" +
+            "Which of the following specific conditions have you been diagnosed with?\n" +
+            "Agent Note: Select all that apply";
+
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
     @FindBy(xpath = "//div[@class='checkboxes_container']//span[@class='show-in-cc']")
@@ -20,6 +24,12 @@ public class BoneOrJointConditionsPageCC extends MainPageCC {
     @Step
     public BoneOrJointConditionsPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public BoneOrJointConditionsPageCC waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 

@@ -4,7 +4,6 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.LOWT.CurrentlyTakingFollowingMedicationsCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
@@ -77,7 +76,7 @@ public class KAD_4631_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(studyName, "600"),"Title is diff");
+                .getExpectedModifiedTitle(studyName, "600"), "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
@@ -104,12 +103,12 @@ public class KAD_4631_CC extends BaseTest {
         //-----------GenderPageCC-------------
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC =
                 genderPageCC
-                .waitForPageLoad()
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("1980")
-                .clickOnAnswer("Female")
-                .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
+                        .waitForPageLoad()
+                        .setMonth("Mar")
+                        .setDay("2")
+                        .setYear("1980")
+                        .clickOnAnswer("Female")
+                        .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
         //------------Q2:  hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC----
         DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
@@ -129,17 +128,17 @@ public class KAD_4631_CC extends BaseTest {
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
 
         //Q3
-        HowWouldYouDescribeTheEczemaCurrentlyPageCC howWouldYouDescribeTheEczemaCurrentlyPageCC =
-                new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
+        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_CC =
+                new HowMuchEczemaYouHaveOnYOurBody_CC();
         List<String> disqualifyQ3 = Arrays.asList("2 months or less",
                 "3 - 6 months",
                 "7 - 11 months");
-        for (String answer: disqualifyQ3) {
+        for (String answer : disqualifyQ3) {
             System.out.println(answer);
             howLongHaveYouBeenSufferingFromEczema_CC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
+                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_CC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
@@ -148,110 +147,147 @@ public class KAD_4631_CC extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
-                .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC);
+                .clickNextButton(howMuchEczemaYouHaveOnYOurBody_CC);
 
-        //Q24
-        HaveYouEverHadAnyOfTheFollowingSymptomsPageСС haveYouEverHadAnyOfTheFollowingSymptomsPageСС =
-                new HaveYouEverHadAnyOfTheFollowingSymptomsPageСС();
-        List<String> disqualifyQ24 = Arrays.asList("Minor: Mostly or almost clear",
-                "Mild: Covers a small amount of total skin on my body");
-        for (String answer: disqualifyQ24) {
-            System.out.println("Select answer for Q24: " + answer);
-            howWouldYouDescribeTheEczemaCurrentlyPageCC
+
+        HowWouldYouDescribeTheEczemaCurrentlyPageCC howWouldYouDescribeTheEczemaCurrentlyPageCC =
+                new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        for (String answer : disqualifyQ4) {
+            System.out.println("Select answer for Q4: " + answer);
+            howMuchEczemaYouHaveOnYOurBody_CC
                     .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(haveYouEverHadAnyOfTheFollowingSymptomsPageСС)
+                    .selectFromDropDown(answer)
+                    .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
+                    .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5832", site.activeProtocols)
                     .back();
         }
-        howWouldYouDescribeTheEczemaCurrentlyPageCC
+//-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
+        List<String> studyLevelStatus = Arrays.asList("13", "14", "15", "16", "17", "18", "19", "20");
+        for (String answer : studyLevelStatus) {
+            System.out.println("Select answer to get study level status logic for Q4: " + answer);
+            howMuchEczemaYouHaveOnYOurBody_CC
+                    .waitForPageLoad()
+                    .selectFromDropDown(answer)
+                    .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
+                    .back();
+        }
+        howMuchEczemaYouHaveOnYOurBody_CC
                 .waitForPageLoad()
-                .clickNextButton(haveYouEverHadAnyOfTheFollowingSymptomsPageСС);
-        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = haveYouEverHadAnyOfTheFollowingSymptomsPageСС
+                .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC);
+
+
+        //---------------------------------------------QS24 DQ, Go to QS25---------------------------------------------
+        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = howWouldYouDescribeTheEczemaCurrentlyPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Eczema that covers a medium to large amount of total skin on my body",
-                        "Eczema that looks red or dark red",
-                        "Eczema that feels very or intensely itchy and scratchy")
-                .clickOnAnswers("None of the above")
+                .clickOnAnswer("None: Skin is completely clear / eczema is not active now")
                 .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
-        howManyDaysHasSkinBeenItchyCC         //Q26
+        howManyDaysHasSkinBeenItchyCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5849", site.activeProtocols)
-                .back(haveYouEverHadAnyOfTheFollowingSymptomsPageСС)
+                .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
+                .back();
+
+        howWouldYouDescribeTheEczemaCurrentlyPageCC
                 .waitForPageLoad()
-                .back(howWouldYouDescribeTheEczemaCurrentlyPageCC)
-                .waitForPageLoad()
+                .clickOnAnswer("Minor: Mostly clear or almost clear")
+                .clickOnAnswer("Mild: Covers a small amount of total skin on my body")
+                .clickOnAnswer("Moderate: Covers a medium amount of total skin on my body")
                 .clickOnAnswer("Severe: Covers a large amount of total skin on my body")
                 .clickNextButton(howManyDaysHasSkinBeenItchyCC);
 
-        //Q26
-        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
-                .waitForPageLoad()
-                .clickOnAnswer("My skin is itchy every day")
-                .clickNextButton(new RateAverageItchinessEczemaPageCC());
-        //Q27
-        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = rateAverageItchinessEczemaPageCC
-                .waitForPageLoad()
-                .selectFromDropDown("2")
-                .clickNextButton(new EczemaSymptomsExperienceCC());
-        //Q28
+
         HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
-                eczemaSymptomsExperienceCC
+                howManyDaysHasSkinBeenItchyCC
                         .waitForPageLoad()
-                        .clickOnAnswers("Redness",
-                                "Swelling",
-                                "Oozing/Crusting",
-                                "Dryness",
-                                "Scratch marks",
-                                "Skin thickening")
+                        .clickOnAnswer("1 - 2 days")
+                        .clickOnAnswer("3 - 4 days")
+                        .clickOnAnswer("5 - 6 days")
+                        .clickOnAnswer("My skin is itchy every day")
+                        .clickOnAnswer("My skin is never itchy")
                         .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
+
+//        //Q26
+//        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("My skin is itchy every day")
+//                .clickNextButton(new RateAverageItchinessEczemaPageCC());
+//        //Q27
+//        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = rateAverageItchinessEczemaPageCC
+//                .waitForPageLoad()
+//                .selectFromDropDown("2")
+//                .clickNextButton(new EczemaSymptomsExperienceCC());
+//        //Q28
+//        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
+//                eczemaSymptomsExperienceCC
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("Redness",
+//                                "Swelling",
+//                                "Oozing/Crusting",
+//                                "Dryness",
+//                                "Scratch marks",
+//                                "Skin thickening")
+//                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
         //Q27
-        AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC =
-        haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
+        SatisfiedEczemaTreatmentsCC satisfiedEczemaTreatmentsCC = haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
                         "Medications taken by mouth (oral medications)",
                         "Shots or IV infusions (injectable medications)",
                         "Self-treatment with tanning beds or sunbathing",
                         "Phototherapy (Ultraviolet or UV light treatment)")
-                .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC());
+                .clickNextButton(new SatisfiedEczemaTreatmentsCC());
+
+
+        AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC =
+                satisfiedEczemaTreatmentsCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickOnAnswer("No")
+                        .clickOnAnswer("I am not using any treatments right now")
+                        .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC());
+
         //Q31
-        CurrentlyTakingFollowingMedicationsCC currentlyTakingFollowingMedicationsCC =
-        areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes") //Disqualify (“Current biologic use”)
-                .clickNextButton(new CurrentlyTakingFollowingMedicationsCC());
-        currentlyTakingFollowingMedicationsCC
+        DupixentInjectionPageCC dupixentInjectionPageCC =
+                areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes") //Disqualify (“Current biologic use”)
+                        .clickNextButton(new DupixentInjectionPageCC());
+        dupixentInjectionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5850", site.activeProtocols)
                 .back(areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(currentlyTakingFollowingMedicationsCC);
+                .clickNextButton(dupixentInjectionPageCC);
 
         //Q32
-        DupixentInjectionPageCC dupixentInjectionPageCC = currentlyTakingFollowingMedicationsCC
-                .waitForPageLoad()
-                .clickOnAnswers("Cosentyx (Agent Note: co-SEN-tix)", "Fasenra (Agent Note: fa-SEN-ra)",
-                        "Nucala (Agent Note: new-CA-la)", "Otezla (Agent Note: oh-TEZ-la)")
-                .clickNextButton(new DupixentInjectionPageCC());
+//        DupixentInjectionPageCC dupixentInjectionPageCC = currentlyTakingFollowingMedicationsCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Cosentyx (Agent Note: co-SEN-tix)", "Fasenra (Agent Note: fa-SEN-ra)",
+//                        "Nucala (Agent Note: new-CA-la)", "Otezla (Agent Note: oh-TEZ-la)")
+//                .clickNextButton(new DupixentInjectionPageCC());
 
         //Q33
-        HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC = dupixentInjectionPageCC
+//        HaveYouEverTakenEitherAnyOfFollowingMeds_CC haveYouEverTakenEitherAnyOfFollowingMeds_CC =
+        TransitionStatementCC transitionStatementCC = dupixentInjectionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No, never took")
-                .clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_CC());
-
-        //Q34
-        TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
-                        .waitForPageLoad()
-                        .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)",
-                                "Olumiant (Agent Note: oh-LOO-me-ant)",
-                                "Xeljanz (Agent Note: ZEL-jans)")
-                        .clickNextButton(new TransitionStatementCC());
+//                .clickNextButton(new HaveYouEverTakenEitherAnyOfFollowingMeds_CC());
+//
+//        //Q34
+//        TransitionStatementCC transitionStatementCC = haveYouEverTakenEitherAnyOfFollowingMeds_CC
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)",
+//                                "Olumiant (Agent Note: oh-LOO-me-ant)",
+//                                "Xeljanz (Agent Note: ZEL-jans)")
+                .clickNextButton(new TransitionStatementCC());
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 transitionStatementCC
                         .waitForPageLoadWithCurvesKAD(studyNameForTrans)

@@ -11,7 +11,6 @@ import com.acurian.selenium.pages.CC.cv_study.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.tests.OLS.CV_5034_OLS_A_S;
 
 import java.util.Arrays;
@@ -121,7 +120,7 @@ public class CV_5034_CC_A_S extends BaseTest {
         //-------Q3:  Has a doctor ever diagnosed you with any of the following medical conditions or diseases?----------
         TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
         List<String> disqualifyQ3 = Arrays.asList("Diabetes or High Blood Sugar", "High cholesterol or high triglycerides",
-                "High blood pressure or hypertension", "Chronic Kidney Disease");
+                "High blood pressure or hypertension");
         for (String answer: disqualifyQ3) {
             System.out.println("Select answer for Q3: " + answer);
             cardiovascularDiseaseThanOthersPageCC
@@ -354,14 +353,18 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageCC());
 
-        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = medicalRecordsOptionPageCC
+        DoctorInformationCollectionPageCC doctorInformationCollectionPageCC= medicalRecordsOptionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new HSMedicalRecordsPageCC());
-
+                .clickNextButton(new DoctorInformationCollectionPageCC());
+        HSMedicalRecordsPageCC hSMedicalRecordsPageCC = new HSMedicalRecordsPageCC();
         switch (site) {
             case AUT_CV_5034A_site: //1R
-                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = hsMedicalRecordsPageCC
+                doctorInformationCollectionPageCC
+                        .waitForPageLoad()
+                        .clickNextButton(hSMedicalRecordsPageCC);
+
+                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = hSMedicalRecordsPageCC
                         .waitForPageLoad()
                         .clickNextButton(new ThankYouCloseSimplePageCC());
 
@@ -374,7 +377,12 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .assertGeneratedFul(env, site);
                 break;
             case AUT_CV_5034S_site: //41C
-                SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = hsMedicalRecordsPageCC
+                doctorInformationCollectionPageCC
+                        .waitForPageLoad()
+                        .clickNextButton(new HSMedicalRecordsPageCC());
+
+
+                SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = hSMedicalRecordsPageCC
                         .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC());
 

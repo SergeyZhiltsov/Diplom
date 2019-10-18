@@ -117,6 +117,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -380,7 +381,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
                         site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        /*MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
@@ -423,6 +424,37 @@ public class CV_5034_OLS_A_S extends BaseTest {
                         .getRadiantDbToLog(env)
                         .getAnomalyDbToLog(env);
                 break;
-        }
+        }*/
+
+        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+                .waitForPageLoad(studyName)
+                .getPID()
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageOLS());
+
+        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageOLS());
+
+        HS1PageOLS hS1PageOLS = doctorInformationCollectionPageOLS
+                .waitForPageLoad()
+                .clickNextButton(new HS1PageOLS());
+
+        hS1PageOLS
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature();
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS =new ThankYouCloseSimplePageOLS();
+        thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo, site.dispo);
+
     }
 }
