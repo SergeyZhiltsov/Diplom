@@ -9,10 +9,7 @@ import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -151,7 +148,7 @@ public class DERM_4967_OLS extends BaseTest {
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "13-20" : "8-14")
+                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
         howMuchEczemaYouHaveOnYourBody_OLS
@@ -804,18 +801,23 @@ public class DERM_4967_OLS extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
+        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS());
+                .clickNextButton(new MedicalRecordsOptionPageOLS());
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose1PageOLS
+        medicalRecordsOptionPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
-
-        thankYouCloseSimplePageOLS
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new HS1PageOLS())
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature()
+                .waitToClickNext()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()

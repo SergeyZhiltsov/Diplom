@@ -11,7 +11,6 @@ import java.util.List;
 public class EverTakenFollowingMedicationsCurrentlyOrPastCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever taken the following gout medications, either currently or in the past?\n" +
-            "Please select all that apply.\n" +
             "Agent Note: Select all that apply";
 
     public final String titleExpected2 = "Have you ever taken the following gout medications, either currently or in the past?\n" +

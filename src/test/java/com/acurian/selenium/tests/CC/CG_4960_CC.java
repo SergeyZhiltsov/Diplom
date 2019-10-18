@@ -3,8 +3,9 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Gout.*;
-import com.acurian.selenium.pages.CC.LOWT.WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
+import com.acurian.selenium.pages.CC.cv_study.SufferedFollowingHeartRelatedConditionsPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -15,6 +16,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CG_4960_CC extends BaseTest {
     @BeforeMethod
@@ -38,13 +42,9 @@ public class CG_4960_CC extends BaseTest {
     @Test(dataProvider = "sites")
     @Description("4960 LG-GDCL002 LG Chem Gout CC")
     public void cg4960CCTest(Site site) {
-        EverDiagnosedWithGoutCC everDiagnosedWithGoutCC = new EverDiagnosedWithGoutCC();
-        TransitionStatementCC transitionStatementCC = new TransitionStatementCC();
-        NonQRtransitionPageCC nonQRtransitionPageCC = new NonQRtransitionPageCC();
+
         DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = new DoAnyOftheFollowingAdditionalDiagnosesCC();
 
         final String phoneNumber = "AUTAMSGOUT";
         final String studyName = "a gout study";
@@ -84,10 +84,11 @@ public class CG_4960_CC extends BaseTest {
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
                 .getExpectedModifiedTitle(studyName, "450"), "Title is diff");
-        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
-                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
+        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC =
+                dateOfBirthPageCC
+                        .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
+                        .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
+                        .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
 
         ZipCodePageCC zipCodePageCC = doesNotGivePermissionToProceedClosePageCC
                 .waitForPageLoad()
@@ -114,22 +115,20 @@ public class CG_4960_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
-        genderPageCC
-                .waitForPageLoad()
-                .setMonth("Mar")
-                .setDay("2")
-                .setYear("1943")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                genderPageCC
+                        .waitForPageLoad()
+                        .setYear("1943")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
-        genderPageCC
+        EverDiagnosedWithGoutCC everDiagnosedWithGoutCC = genderPageCC
                 .waitForPageLoad()
-                .setMonth("Mar")
-                .setDay("2")
                 .setYear("1960")
-                .clickNextButton(everDiagnosedWithGoutCC);
+                .clickNextButton(new EverDiagnosedWithGoutCC());
 
 
         //Q2
@@ -179,43 +178,36 @@ public class CG_4960_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new EverTakenFollowingMedicationsCurrentlyOrPastCC());
 
-        PastThreeMonthsTakenKrystexxaCC pastThreeMonthsTakenKrystexxaCC = new PastThreeMonthsTakenKrystexxaCC();
         //Q5,6,7
-        CurrentlyTakingUloricCC currentlyTakingUloriCCC = new CurrentlyTakingUloricCC();
-        everTakenFollowingMedicationsCurrentlyOrPastCC
-                .waitForPageLoad2()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Uloric, also called febuxostat")
-                .clickNextButton(currentlyTakingUloriCCC)
+        CurrentlyTakingUloricCC сurrentlyTakingUloricCC = everTakenFollowingMedicationsCurrentlyOrPastCC
                 .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(pastThreeMonthsTakenKrystexxaCC)
+                .clickOnAnswers("Uloric, also called febuxostat") //continue to Q6
+                .clickNextButton(new CurrentlyTakingUloricCC());
+        PastThreeMonthsTakenKrystexxaCC pastThreeMonthsTakenKrystexxaCC = сurrentlyTakingUloricCC
+                .waitForPageLoad()
+                .clickOnAnswer("No") //Select “Yes” in Q6 (current febuxostat) Otherwise disqualify (“Does not meet medication requirements”)
+                .clickNextButton(new PastThreeMonthsTakenKrystexxaCC());
+        pastThreeMonthsTakenKrystexxaCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7907", site.activeProtocols)
-                .back(currentlyTakingUloriCCC)
-                .back(everTakenFollowingMedicationsCurrentlyOrPastCC)
-                .waitForPageLoad2()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Uloric, also called febuxostat")
-                .clickNextButton(currentlyTakingUloriCCC)
-                .waitForPageLoad()
+                .back(сurrentlyTakingUloricCC)
                 .clickOnAnswer("Unsure")
                 .clickNextButton(pastThreeMonthsTakenKrystexxaCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7907", site.activeProtocols)
-                .back(currentlyTakingUloriCCC)
+                .back(сurrentlyTakingUloricCC)
+                .waitForPageLoad()
                 .back(everTakenFollowingMedicationsCurrentlyOrPastCC)
-                .waitForPageLoad2()
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(pastThreeMonthsTakenKrystexxaCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7907", site.activeProtocols)
                 .back(everTakenFollowingMedicationsCurrentlyOrPastCC)
-                .waitForPageLoad2()
-                .clickOnAnswers("None of the above")
+                .waitForPageLoad()
                 .clickOnAnswers("Allopurinol, also called Aloprim or Zyloprim")
                 .clickNextButton(pastThreeMonthsTakenKrystexxaCC);
 
@@ -226,21 +218,17 @@ public class CG_4960_CC extends BaseTest {
                 .clickNextButton(new NonQRtransitionPageCC())
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7908", site.activeProtocols)
-                .back(pastThreeMonthsTakenKrystexxaCC)
+                .back();
+        TransitionStatementCC transitionStatementCC = pastThreeMonthsTakenKrystexxaCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
                 .waitForPageLoadWithCurves(transitionStudyName)
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+
         //#############General_Health ###########################
-        WhatKindOfArthritisCC whatKindOfArthritisCC = new WhatKindOfArthritisCC();
-        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = new WhenDiagnosedWithCancerCC();
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = new HeartrelatedMedicalProceduresPageCC();
-        WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC = new WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC();
-        KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = new WhichOfTheFollowingLiverProblemsPageСС();
-        BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -265,109 +253,219 @@ public class CG_4960_CC extends BaseTest {
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
                 .clickOnAnswers("None of the above")
-                /*.clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickNextButton(whatKindOfArthritisCC)
+                .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
+                .clickNextButton(new WhatKindOfArthritisCC());
+
+
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whatKindOfArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0004962", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
                 .back(whatKindOfArthritisCC)
                 .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .back();
+        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(whenDiagnosedWithCancerCC)
+                .clickNextButton(new OtherThanSkinCancerPageCC());
+
+
+        otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015116", site.activeProtocols)
-                .back(whenDiagnosedWithCancerCC)
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back(otherThanSkinCancerPageCC)
+                .waitForPageLoad()
+                .back();
+        SufferedFollowingHeartRelatedConditionsPageCC sufferedFollowingHeartRelatedConditionsPageCC =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                        .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageCC());
+
+
+        SubquestionHeartPageCC subquestionHeartPageCC = sufferedFollowingHeartRelatedConditionsPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionHeartPageCC());
+
+        //Q15.1	When was the last time that you experienced had a heart attack?
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
+                new HeartrelatedMedicalProceduresPageCC();
+        List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago",
+                "7 - 12 months ago");
+        for (String answer : disqualifyQ15) {
+            System.out.println("Select answer for Q15.1: " + answer);
+            subquestionHeartPageCC
+                    .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
+                .back(sufferedFollowingHeartRelatedConditionsPageCC)
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .clickOnAnswers("Stroke")
+                .clickNextButton(subquestionHeartPageCC);
+
+        //Q15.2	When was the last time that you experienced had a stroke?
+        for (String answer : disqualifyQ15) {
+            System.out.println("Select answer for Q15.2: " + answer);
+            subquestionHeartPageCC
+                    .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
+                .back(sufferedFollowingHeartRelatedConditionsPageCC)
                 .waitForPageLoad()
-                .clickOnAnswers("Heart attack", "Stroke", "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
-                .clickNextButton(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
-                .clickOnAnswerForAllSubQuestion("Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickNextButton(subquestionHeartPageCC);
+
+        //Q15.4	When was the last time that you experienced suffered from angina or chest pain that required you to stay in a hospital overnight?
+        for (String answer : disqualifyQ15) {
+            System.out.println("Select answer for Q15.4: " + answer);
+            subquestionHeartPageCC
+                    .waitForPageLoad(1, subquestionHeartPageCC.titleExpected4)
+                    .clickOnAnswerForSubQuestion(1, answer)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                    .back();
+        }
+        subquestionHeartPageCC
+                .waitForPageLoad(1, subquestionHeartPageCC.titleExpected4)
+                .back(sufferedFollowingHeartRelatedConditionsPageCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129", site.activeProtocols)
-                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
+                .back();
+        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
-                .clickOnAnswerForAllSubQuestion("1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129", site.activeProtocols)
-                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
-                .waitForPageLoad()
-                .clickOnAnswerForAllSubQuestion("4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129", site.activeProtocols)
-                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
-                .waitForPageLoad()
-                .clickOnAnswerForAllSubQuestion("7 - 12 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129", site.activeProtocols)
-                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
-                .waitForPageLoad()
-                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(kidneyProblemsPage)
+                .clickNextButton(new KidneyProblemsPage());
+        kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015143", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back(kidneyProblemsPage)
                 .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .back();
+        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
+                        .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+
+        whichOfTheFollowingLiverProblemsPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015139", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back(whichOfTheFollowingLiverProblemsPageСС)
                 .waitForPageLoad()
-                .back(doAnyOftheFollowingAdditionalDiagnosesCC)
-                .waitForPageLoad()*/
-                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                .clickNextButton(new BoneOrJointConditionsPageCC());
+                .back();
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC =
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                        .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
 
-        boneOrJointConditionsPageCC
-                .waitForPageLoad2()
+
+        //Q18: QS53
+        List<String> disqualifyQ18 = Arrays.asList("Bipolar disorder", "Schizophrenia");
+        for (String answer : disqualifyQ18) {
+            System.out.println(answer);
+            followingMentalEmotionalHealthPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
+                    .back();
+        }
+        followingMentalEmotionalHealthPageCC
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
-        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
+
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+        List<String> disqualifyQ24_QS59 = Arrays.asList("Bipolar disorder", "Cancer in the past 5 years, except skin cancer",
+                "Cirrhosis", "Drug or alcohol abuse within the past year", "Hepatitis B",
+                "Hepatitis C", "HIV or AIDS");
+        for (String answer : disqualifyQ24_QS59) {
+            System.out.println("Select answer for Q24_QS59: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                    .back();
+        }
+        List<String> disqualifyQ24_QS59p2 = Arrays.asList("Kidney disease requiring dialysis", "Schizophrenia");
+        for (String answer : disqualifyQ24_QS59p2) {
+            System.out.println("Select answer for Q24_QS59p2: " + answer);
+            doAnyOftheFollowingAdditionalDiagnosesCC
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(approximateHeightPageCC)
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                    .back();
+        }
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageCC());
+                .clickNextButton(approximateHeightPageCC);
 
 
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("5", "5", "150")
+                .setAll("5", "5", "252") //Disqualify ("High BMI") if > 42
                 .clickNextButton(new LetMeSeePageCC());
+        letMeSeePageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                .back(approximateHeightPageCC)
+                .setLbs("160")
+                .clickNextButton(letMeSeePageCC);
+
 
         IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
@@ -405,6 +503,8 @@ public class CG_4960_CC extends BaseTest {
             case AUT_AMS1_4960S_site:
                 SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
                         .waitForPageLoad(studyName)
+                        .clickOnAnswer(site.name)
+                        .getPID()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC());
 
                 synexusRadiantDirectScheduleCC
