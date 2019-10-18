@@ -89,7 +89,7 @@ public class Dispo41C extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .assertGeneratedFul(env, site)
-                .dispoShouldMatch("41C")
-                .childPidFromDbToLog(env);
+                .dispoShouldMatch("41C");
+                //.childPidFromDbToLog(env);
     }
 }
