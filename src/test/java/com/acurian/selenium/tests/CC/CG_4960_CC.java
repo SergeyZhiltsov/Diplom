@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Gout.*;
+import com.acurian.selenium.pages.CC.LOWT.WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -233,6 +234,12 @@ public class CG_4960_CC extends BaseTest {
                 .waitForPageLoadWithCurves(transitionStudyName)
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
         //#############General_Health ###########################
+        WhatKindOfArthritisCC whatKindOfArthritisCC = new WhatKindOfArthritisCC();
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = new WhenDiagnosedWithCancerCC();
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = new HeartrelatedMedicalProceduresPageCC();
+        WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC = new WhenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC();
+        KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
+        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = new WhichOfTheFollowingLiverProblemsPageСС();
         BoneOrJointConditionsPageCC boneOrJointConditionsPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
@@ -258,6 +265,91 @@ public class CG_4960_CC extends BaseTest {
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
                 .clickOnAnswers("None of the above")
+                /*.clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
+                .clickNextButton(whatKindOfArthritisCC)
+                .waitForPageLoad()
+                .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0004962", site.activeProtocols)
+                .back(whatKindOfArthritisCC)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Cancer")
+                .clickNextButton(whenDiagnosedWithCancerCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015116", site.activeProtocols)
+                .back(whenDiagnosedWithCancerCC)
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack", "Stroke", "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickNextButton(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
+                .clickOnAnswerForAllSubQuestion("Less than 30 days ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015129", site.activeProtocols)
+                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
+                .waitForPageLoad()
+                .clickOnAnswerForAllSubQuestion("1 - 3 months ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015129", site.activeProtocols)
+                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
+                .waitForPageLoad()
+                .clickOnAnswerForAllSubQuestion("4 - 6 months ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015129", site.activeProtocols)
+                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
+                .waitForPageLoad()
+                .clickOnAnswerForAllSubQuestion("7 - 12 months ago")
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015129", site.activeProtocols)
+                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
+                .waitForPageLoad()
+                .back(whenWasTheLastTimeYouExperiencedHeartAttackEtcPageCC)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Kidney disease")
+                .clickNextButton(kidneyProblemsPage)
+                .waitForPageLoad()
+                .clickOnAnswers("Dialysis")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015143", site.activeProtocols)
+                .back(kidneyProblemsPage)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
+                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .waitForPageLoad()
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("Q0015139", site.activeProtocols)
+                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .waitForPageLoad()
+                .back(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()*/
                 .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
                 .clickNextButton(new BoneOrJointConditionsPageCC());
 
@@ -288,23 +380,48 @@ public class CG_4960_CC extends BaseTest {
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
-        siteSelectionPageCC
-                .waitForPageLoad(studyName)
-                .clickOnAnswer(site.name)
-                .getPID()
-                .clickNextButton(new QualifiedClose1PageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new SynexusHealthyMindsPageCC())
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
-                .clickNextButton(selectActionPageCC)
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+        switch (site) {
+            case AUT_AMS1_4960_site:
+                siteSelectionPageCC
+                        .waitForPageLoad(studyName)
+                        .clickOnAnswer(site.name)
+                        .getPID()
+                        .clickNextButton(new QualifiedClose1PageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new SynexusHealthyMindsPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+
+                break;
+            case AUT_AMS1_4960S_site:
+                SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
+                        .waitForPageLoad(studyName)
+                        .clickNextButton(new SynexusRadiantDirectScheduleCC());
+
+                synexusRadiantDirectScheduleCC
+                        .waitForPageLoadSyn()
+                        .assertVariables("Acurian", "Trial", "03/02/1960", "US",
+                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
+                                "999 -999-9999", "aut4960S", site.name,
+                                "LGLPPDGOU002")
+                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .dispoShouldMatch(site.dispo, site.dispo)
+                        .assertGeneratedFul(env, site)
+                        .getRadiantDbToLog(env);
+                break;
+        }
     }
 }
