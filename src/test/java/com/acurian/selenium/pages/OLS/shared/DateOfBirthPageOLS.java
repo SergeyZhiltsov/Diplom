@@ -354,6 +354,15 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
+    public final String titleHeartBurn= "Let's get started to see if there is a heartburn or reflux study that's right for you!\n" +
+            "\n" +
+            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            "If you attend all required study visits, you may receive*:\n" +
+            "Payment up to $500, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+
     public final String titleExpectedGBAN = "The Generation Study is enrolling now.";
 
     public final String titleExpectedGBAN1 = "Let's start!";
@@ -562,6 +571,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public DateOfBirthPageOLS waitForPageLoadPsoariaticArthritis() {
         waitForPageLoadMain(titleTextArthritis, titlePsoriaticArthritisExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadHeartBurn() {
+        waitForPageLoadMain(titleTextArthritis, titleHeartBurn);
         return this;
     }
 
