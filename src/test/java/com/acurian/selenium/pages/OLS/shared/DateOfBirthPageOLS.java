@@ -457,6 +457,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleTextGBAN;
 
+    @FindBy(xpath = "//*[@id='command']/div[1]/div[2] | //div[@class='question']//div[contains(@class,'visible-md-block')]")
+    WebElement combinedLocator;
+
     WebElement titleTextGH;
 
 
@@ -576,7 +579,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @Step
     public DateOfBirthPageOLS waitForPageLoadHeartBurn() {
-        waitForPageLoadMain(titleTextGBAN, titleHeartBurn);
+        waitForPageLoadMain(combinedLocator, titleHeartBurn);
         return this;
     }
 
