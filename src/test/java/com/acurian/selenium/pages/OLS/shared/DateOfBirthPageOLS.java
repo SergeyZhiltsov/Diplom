@@ -576,7 +576,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     @Step
     public DateOfBirthPageOLS waitForPageLoadHeartBurn() {
-        waitForPageLoadMain(titleTextArthritis, titleHeartBurn);
+        waitForPageLoadMain(titleTextGBAN, titleHeartBurn);
         return this;
     }
 
