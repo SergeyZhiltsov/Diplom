@@ -55,7 +55,7 @@ public class DebugPageOLS extends MainPageOLS {
     List<WebElement> questionNumberList2;
     List<WebElement> questionNumberList;
 
-    @FindBy(xpath = "//*[@id='debug_toolbar_props']/div[2]/ul/li[3]/div/div[1]")
+    @FindBy(xpath = "(//*[@id='server_props']/following-sibling::div/div)[1] | (//*[@id='info-debug-window']/div[contains(., 'SERVER')])[2]")
     WebElement server;
     String env = System.getProperty("acurian.env", "STG");
     public DebugPageOLS() {
