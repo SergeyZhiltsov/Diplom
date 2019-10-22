@@ -479,8 +479,7 @@ public class CG_4960_OLS extends BaseTest {
 
         if (site == Site.AUT_AMS1_4960_site) {
             aboutHealthPageOLS
-                    .getRadiantDbToLog(env)
-                    .getAnomalyDbToLog(env);
+                    .getRadiantDbToLog(env);
         }
     }
 }

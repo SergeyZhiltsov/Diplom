@@ -22,7 +22,7 @@ public class WebDriverWaitLogged {
 
     public WebDriverWaitLogged(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 30);
     }
 
     public WebDriverWait getWaitDriver() {

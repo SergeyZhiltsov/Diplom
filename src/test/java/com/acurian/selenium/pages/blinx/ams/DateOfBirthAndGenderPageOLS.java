@@ -16,7 +16,7 @@ public class DateOfBirthAndGenderPageOLS extends MainPageBlinx {
     WebElement titleTextPart1;
     @FindBy(xpath = "(//div[@class='question-text']/div)[3]")
     WebElement titleTextPart2;
-    @FindBy(xpath = "//input[@class='fallbackDate']")
+    @FindBy(xpath = "//input[contains(@class, 'fallbackDate')]")
     WebElement dateField;
     @FindBy(xpath = "//div[@class='single-choice-answers-container']/button")
     List<WebElement> singleChoiceButtonsList;

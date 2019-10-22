@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.closes.AnotherSuperScrPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.closes.UnqualifiedCloseOLS;
@@ -82,6 +83,8 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
 //                .clickNextButton(new AreYouInterestedInPneumoniaVaccineStudyOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswer("No")
+                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS())
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new PersonalDetails())
                 //----------PII (IdentificationPageOLS) Page--------------------
                 .waitForPageLoad()
@@ -100,10 +103,6 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
                 .clickNextButton(new AnotherSuperScrPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env);
-
-
-
-
 
 //                .clickNextButton(new ConfigPageOLS())
 //                .getPID()
