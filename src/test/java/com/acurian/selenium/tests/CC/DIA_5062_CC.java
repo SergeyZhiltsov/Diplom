@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
+import com.acurian.selenium.pages.CC.IBD.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
@@ -145,20 +146,20 @@ public class DIA_5062_CC extends BaseTest {
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
 
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = withType2DiabetesPageCC
+        withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new NoOfAlcoholicDrinksCC());
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
 
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = noOfAlcoholicDrinksCC
+        LastTimeYouTookPageCC lastTimeYouTookPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .back(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .back(currentlyTreatingYourDiabetesPageCC)
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
@@ -172,7 +173,7 @@ public class DIA_5062_CC extends BaseTest {
             lastTimeYouTookPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(lastTime)
-                    .clickNextButton(noOfAlcoholicDrinksCC)
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                     .waitForPageLoad()
                     .back();
         }
@@ -222,6 +223,7 @@ public class DIA_5062_CC extends BaseTest {
                 .clickOnAnswers("Daily injections")
                 .clickNextButton(new TakeYourInsulinInjectionsPageCC());
 
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
         FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = takeYourInsulinInjectionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Only at meal times (this is called bolus insulin)")
@@ -231,20 +233,24 @@ public class DIA_5062_CC extends BaseTest {
                 .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .waitForPageLoad()
+                .clickOnAnswers("High blood pressure or hypertension")
+                .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .setDrinks("15")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
-
-        followingLiverRelatedConditionCC
+                .clickNextButton(new FollowingLiverRelatedConditionCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
                 .back(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .setDrinks("14")
-                .clickNextButton(followingLiverRelatedConditionCC);
+                .clickNextButton(new FollowingLiverRelatedConditionCC());
 
+        HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC =
+                new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC();
         ArrayList<String> conditions = new ArrayList<>();
         conditions.add("Alcoholic liver disease");
         conditions.add("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus");
@@ -258,10 +264,10 @@ public class DIA_5062_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(condition)
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                    .clickNextButton(haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("Q0016651", site.activeProtocols)
                     .back();
         }
         FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
@@ -303,9 +309,7 @@ public class DIA_5062_CC extends BaseTest {
                         "Kidney disease",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
-                        "High cholesterol, triglycerides, or lipids",
-                        "High blood pressure or hypertension")
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageCC());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = otherThanSkinCancerPageCC
@@ -455,7 +459,7 @@ public class DIA_5062_CC extends BaseTest {
             mostRecentHeartProcedurePageСС
                     .waitForPageLoad()
                     .clickOnAnswer(period)
-                    .clickNextButton(doYouTakeAnyMedicationsControlHypertension_cc)
+                    .clickNextButton(new KidneyProblemsPage())
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
@@ -465,9 +469,6 @@ public class DIA_5062_CC extends BaseTest {
         WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(doYouTakeAnyMedicationsControlHypertension_cc)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
                 .clickNextButton(kidneyProblemsPage)
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
