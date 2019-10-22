@@ -25,10 +25,10 @@ public class ServerStatusOLS extends BaseTest {
     @DataProvider
     public Object[][] testData() {
         return new Object[][]{
-                {"http://ols1.acuriantrials.com/welcome.do?method=beginCall&show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7&phoneNumber=800AMS1UAP", "AHOALAPPV-prod-21"},
+                {"http://ols1.acuriantrials.com/welcome.do?method=beginCall&show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7&phoneNumber=800AMS1UAP", "AHOALAPPV-prod-21"}, //AUTAMS1GEN
                 {"http://ols2.acuriantrials.com/welcome.do?method=beginCall&show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7&phoneNumber=800AMS1UAP", "AHOALAPPV-prod-22"},
-                {"https://acurianhealth.com/questionnaire-direct-api/api3/welcome?show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7&pn=800AMS1UAP", "AHOALAPPV-prod-23"},
-                {"https://acurianhealth.com/questionnaire-direct-api/api4/welcome?show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7&pn=800AMS1UAP", "AHOALAPPV-prod-24"},
+                {"https://acurianhealth.com/questionnaire-direct-api/api3/welcome?show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7&pn=800AMS1UAP", " AHOALAPPV-prod-23"},
+                {"https://acurianhealth.com/questionnaire-direct-api/api4/welcome?show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7&pn=800AMS1UAP", " AHOALAPPV-prod-24"},
         };
     }
 
