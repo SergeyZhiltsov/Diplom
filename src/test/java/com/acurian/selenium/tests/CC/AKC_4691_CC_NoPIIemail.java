@@ -95,11 +95,11 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
 
-        CardiovascularDiseaseThanOthersPageCC сardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-        сardiovascularDiseaseThanOthersPageCC
+        cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -107,8 +107,8 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(сardiovascularDiseaseThanOthersPageCC);
-        сardiovascularDiseaseThanOthersPageCC
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+        cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -116,7 +116,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("High blood sugar only")
-                .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -140,21 +140,28 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC);
 
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = currentlyTreatingYourDiabetesPageCC
+         cardiovascularDiseaseThanOthersPageCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new NoOfAlcoholicDrinksCC());
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
 
-        noOfAlcoholicDrinksCC
+//        noOfAlcoholicDrinksCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
+//                .back();
+
+        cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
                 .back();
 
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
         currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
@@ -168,7 +175,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         lastTimeYouTookPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, site.activeProtocols)
@@ -177,7 +184,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         lastTimeYouTookPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 5 months ago")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, site.activeProtocols)
@@ -186,7 +193,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         lastTimeYouTookPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(lastTimeYouTookPageCC.titleExpected, site.activeProtocols)
@@ -337,7 +344,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Adlyxin (lixisenatide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
@@ -346,7 +353,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bydureon or Byetta (exenatide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
@@ -355,7 +362,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tanzeum (albiglutide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
@@ -364,7 +371,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Trulicity (dulaglutide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
@@ -373,7 +380,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Saxenda or Victoza (liraglutide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
@@ -382,7 +389,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("SymlinPen (pramlintide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
@@ -391,12 +398,17 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Another injectable medication not listed above")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContains(injectableMedicationsForYourDiabetesPageCC.titleExpected, site.activeProtocols)
                 .back();
         injectableMedicationsForYourDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+
+        cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(noOfAlcoholicDrinksCC);
@@ -495,19 +507,21 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer("More than 2 years ago")
                 .clickNextButton(poundsOrMorePageCC);
 
-        poundsOrMorePageCC
+        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(сardiovascularDiseaseThanOthersPageCC);
-        сardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
+                .clickNextButton(new TransitionStatementCC());
+
+        transitionStatementCC
+                .waitForPageLoadDYS()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)
                 .back();
-        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
+
+        poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new TransitionStatementCC());
+                .clickNextButton(transitionStatementCC);
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
         transitionStatementCC
