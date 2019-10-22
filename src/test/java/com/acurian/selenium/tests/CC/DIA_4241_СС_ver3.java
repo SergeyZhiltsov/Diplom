@@ -164,11 +164,12 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC);
 
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = currentlyTreatingYourDiabetesPageCC
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = new CardiovascularDiseaseThanOthersPageCC();
+        currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new NoOfAlcoholicDrinksCC());
-        noOfAlcoholicDrinksCC
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+        cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
@@ -176,7 +177,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
@@ -189,7 +190,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         lastTimeYouTookPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0018436-QS4632-STUDYQUES", protocols)
@@ -197,7 +198,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         lastTimeYouTookPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 5 months ago")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4632", AKC, protocol2, protocol3, protocol4)
@@ -205,7 +206,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         lastTimeYouTookPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4632", AKC, protocol2, protocol3, protocol4)
@@ -342,7 +343,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Adlyxin (lixisenatide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
@@ -351,7 +352,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bydureon or Byetta (exenatide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
@@ -360,7 +361,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tanzeum (albiglutide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
@@ -369,7 +370,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Trulicity (dulaglutide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
@@ -378,20 +379,12 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Saxenda or Victoza (liraglutide)")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4611", AKC, protocol3, protocol2, protocol4)
                 .back();
-        injectableMedicationsForYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("SymlinPen (pramlintide)")
-                .clickNextButton(noOfAlcoholicDrinksCC);
 
-        noOfAlcoholicDrinksCC
-                .waitForPageLoad()
-                .back();
         injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
                 .back();
@@ -406,9 +399,18 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Insulin glargine, Basaglar, or Lantus")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
+                .clickNextButton(injectableMedicationsForYourDiabetesPageCC);
+
+        injectableMedicationsForYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickNextButton(noOfAlcoholicDrinksCC);
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("SymlinPen (pramlintide)")
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = cardiovascularDiseaseThanOthersPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NoOfAlcoholicDrinksCC());
 
         FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
                 .waitForPageLoad()
@@ -479,19 +481,19 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickNextButton(poundsOrMorePageCC);
 
 
-        poundsOrMorePageCC
+        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(сardiovascularDiseaseThanOthersPageCC);
-        сardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
+                .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoadDYS()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4617", protocols)
                 .back();
-        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
+        poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new TransitionStatementCC());
+                .clickNextButton(transitionStatementCC);
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
         transitionStatementCC

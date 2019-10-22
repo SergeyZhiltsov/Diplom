@@ -155,20 +155,20 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
 
-        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = withType2DiabetesPageCC
+        withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
                 .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new NoOfAlcoholicDrinksCC());
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
 
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = noOfAlcoholicDrinksCC
+        LastTimeYouTookPageCC lastTimeYouTookPageCC = cardiovascularDiseaseThanOthersPageCC
                 .waitForPageLoad()
                 .back(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .back(currentlyTreatingYourDiabetesPageCC)
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
@@ -180,7 +180,7 @@ public class DIA_4483_CC extends BaseTest {
             lastTimeYouTookPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(noOfAlcoholicDrinksCC)
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                     .waitForPageLoad()
                     .back();
         }
@@ -286,6 +286,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswers("Daily injections")
                 .clickNextButton(new TakeYourInsulinInjectionsPageCC());
 
+        NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
         FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = takeYourInsulinInjectionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Only at meal times (this is called bolus insulin)")
@@ -295,21 +296,23 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(noOfAlcoholicDrinksCC)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
+                .clickOnAnswers("High blood pressure or hypertension")
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(noOfAlcoholicDrinksCC)
                 .setDrinks("11")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
-
-        followingLiverRelatedConditionCC
+                .clickNextButton(new FollowingLiverRelatedConditionCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
                 .back(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .setDrinks("10")
-                .clickNextButton(followingLiverRelatedConditionCC);
+                .clickNextButton(new FollowingLiverRelatedConditionCC());
 
-        ArrayList<String> conditions = new ArrayList<>();
+
+        /*ArrayList<String> conditions = new ArrayList<>();
         conditions.add("Alcoholic liver disease");
         conditions.add("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus");
         conditions.add("Hemochromatosis or iron overload (Agent Note: he-mo-chrome-uh-TOE-sus)");
@@ -327,7 +330,7 @@ public class DIA_4483_CC extends BaseTest {
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                     .back();
-        }
+        }*/
 
         FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
                 .waitForPageLoad()
@@ -654,7 +657,7 @@ public class DIA_4483_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        /*haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High blood pressure or hypertension")
@@ -681,7 +684,12 @@ public class DIA_4483_CC extends BaseTest {
         doYouTakeAnyMedicationsToControlHighBloodPressureCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);*/
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+
 
         ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
