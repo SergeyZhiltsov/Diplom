@@ -160,7 +160,8 @@ public class GERD_4301_OLS extends BaseTest {
 
 
         //---------------Q7 HowOftenDoYouTake_OLS-------------------
-        OnaTypicalDayWhenDoYouUsually_OLS onaTypicalDayWhenDoYouUsually_OLS = howOftenDoYouTake_OLS
+        DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS =
+                howOftenDoYouTake_OLS
                 .waitForPageLoad(1, howOftenDoYouTake_OLS.titleExpected1)
                 .waitForPageLoad(2, howOftenDoYouTake_OLS.titleExpected2)
                 .waitForPageLoad(3, howOftenDoYouTake_OLS.titleExpected3)
@@ -169,9 +170,9 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "Twice a day")
                 .clickOnAnswerForSubQuestion(3, "Other")
                 .clickOnAnswerForSubQuestion(4, "Other")
-                .clickNextButton(new OnaTypicalDayWhenDoYouUsually_OLS());
-        onaTypicalDayWhenDoYouUsually_OLS
-                .waitForPageLoad(1, onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
+                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
+        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6316", site.activeProtocols)
                 .back();
@@ -181,31 +182,31 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "Only as needed (not regularly)")
                 .clickOnAnswerForSubQuestion(3, "Once a day")
                 .clickOnAnswerForSubQuestion(4, "Once a day")
-                //.clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
-                .clickNextButton(new OnaTypicalDayWhenDoYouUsually_OLS());
+                .clickNextButton(despiteTakingMedicationDoYouStillExperienceSymptoms_OLS);
+                //.clickNextButton(new OnaTypicalDayWhenDoYouUsually_OLS());
 
 
-        //---------------Q9 OnaTypicalDayWhenDoYouUsually_OLS-------------------
-        DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS =
-        onaTypicalDayWhenDoYouUsually_OLS
-                .waitForPageLoad(1, onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
-                .waitForPageLoad(2, onaTypicalDayWhenDoYouUsually_OLS.titleExpected2)
-                .waitForPageLoad(3, onaTypicalDayWhenDoYouUsually_OLS.titleExpected3)
-                .waitForPageLoad(4, onaTypicalDayWhenDoYouUsually_OLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Morning")
-                .clickOnAnswerForSubQuestion(2, "Afternoon")
-                .clickOnAnswerForSubQuestion(3, "Evening")
-                .clickOnAnswerForSubQuestion(4, "Night")
-                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
-        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols)
-                .back();
-        onaTypicalDayWhenDoYouUsually_OLS
-                .waitForPageLoad(1, onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(4, "Morning")
-                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
+//        //---------------Q9 OnaTypicalDayWhenDoYouUsually_OLS-------------------
+//        DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS =
+//        onaTypicalDayWhenDoYouUsually_OLS
+//                .waitForPageLoad(1, onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
+//                .waitForPageLoad(2, onaTypicalDayWhenDoYouUsually_OLS.titleExpected2)
+//                .waitForPageLoad(3, onaTypicalDayWhenDoYouUsually_OLS.titleExpected3)
+//                .waitForPageLoad(4, onaTypicalDayWhenDoYouUsually_OLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "Morning")
+//                .clickOnAnswerForSubQuestion(2, "Afternoon")
+//                .clickOnAnswerForSubQuestion(3, "Evening")
+//                .clickOnAnswerForSubQuestion(4, "Night")
+//                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
+//        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                //.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols)
+//                .back();
+//        onaTypicalDayWhenDoYouUsually_OLS
+//                .waitForPageLoad(1, onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
+//                .clickOnAnswerForSubQuestion(4, "Morning")
+//                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
 
 
         //---------------Q10 DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS-------------------
@@ -225,12 +226,10 @@ public class GERD_4301_OLS extends BaseTest {
 
 
         //--------------Q11 ThinkingAboutThePast2Months_OLS ---------------------
-        hasYourDoctorToldYouThatYouHaveErosion_OLS =
-                thinkingAboutThePast2Months_OLS
+        thinkingAboutThePast2Months_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 day per week or less")
-                .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
-        hasYourDoctorToldYouThatYouHaveErosion_OLS
+                .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
@@ -238,8 +237,7 @@ public class GERD_4301_OLS extends BaseTest {
         thinkingAboutThePast2Months_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 days per week")
-                .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
-        hasYourDoctorToldYouThatYouHaveErosion_OLS
+                .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
@@ -247,43 +245,32 @@ public class GERD_4301_OLS extends BaseTest {
         thinkingAboutThePast2Months_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 5 days per week")
-                .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
+                .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_OLS);
 
 
-        //--------------Q12 HasYourDoctorToldYouThatYouHaveErosion_OLS---------------------
-        hasYourDoctorToldYouThatYouHaveErosion_OLS
-                .waitForPageLoad();
-        Assert.assertEquals(hasYourDoctorToldYouThatYouHaveErosion_OLS.getTitleText(),
-                hasYourDoctorToldYouThatYouHaveErosion_OLS.titleExpected, "Title is diff");
-        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = hasYourDoctorToldYouThatYouHaveErosion_OLS
+//        //--------------Q12 HasYourDoctorToldYouThatYouHaveErosion_OLS---------------------
+        TestedForStomachInfectionHelicobacterOLS testedForStomachInfectionHelicobacterOLS =
+                hasYourDoctorToldYouThatYouHaveErosion_OLS
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS());
-        whatTypeOfSurgeryDidYouHave_OLS
-                .waitForPageLoad()
-                //.getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
-                .back();
+                .clickNextButton(new TestedForStomachInfectionHelicobacterOLS());
 
-        hasYourDoctorToldYouThatYouHaveErosion_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS)
-                .waitForPageLoad()
-                //.getPage(debugPageOLS)
-                //.checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
-                .back();
 
-        hasYourDoctorToldYouThatYouHaveErosion_OLS
+        MembersOfHouseholdBeenDiagnosedPyloriOLS membersOfHouseholdBeenDiagnosedPyloriOLS = testedForStomachInfectionHelicobacterOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
-                .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS);
+                .clickNextButton(new MembersOfHouseholdBeenDiagnosedPyloriOLS());
+
+
+        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = membersOfHouseholdBeenDiagnosedPyloriOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS());
 
         //---------------Q14 WhatTypeOfSurgeryDidYouHave_OLS-------------------
-        whatTypeOfSurgeryDidYouHave_OLS
-                .waitForPageLoad();
-        Assert.assertEquals(whatTypeOfSurgeryDidYouHave_OLS.getTitleText(), whatTypeOfSurgeryDidYouHave_OLS.titleExpected, "Title is diff");
-        //---------SKIP to Q12 if selected "Other surgery on my stomach, intestines, colon, or esophagus"  or go to Q11--------
         WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_OLS
+                .waitForPageLoad()
+        //---------SKIP to Q12 if selected "Other surgery on my stomach, intestines, colon, or esophagus"  or go to Q11--------
                 .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
                 .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
         whenDidYouHaveAppendixRemoved_OLS
@@ -392,7 +379,7 @@ public class GERD_4301_OLS extends BaseTest {
 
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS
-                .waitForPageLoad(studyName)
+                .waitForPageLoad("a heartburn or reflux study, an indigestion, heartburn, or stomach ulcers") //could not DQ with (Phathom EE & HP) to avoid combined indication
                 .getPID()
                 .clickOnFacilityName(site.name)    ;
                 MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS

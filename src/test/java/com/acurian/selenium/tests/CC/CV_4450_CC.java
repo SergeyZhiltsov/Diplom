@@ -105,8 +105,7 @@ public class CV_4450_CC extends BaseTest {
                         .waitForPageLoad()
                         .clickOnAnswers("Diabetes or High Blood Sugar",
                                 "High cholesterol or high triglycerides",
-                                "High blood pressure or hypertension",
-                                "Chronic Kidney Disease")
+                                "High blood pressure or hypertension")
                         .clickOnAnswers("None of the above") //skip to Q14 (Heart-related events)
                         .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
 

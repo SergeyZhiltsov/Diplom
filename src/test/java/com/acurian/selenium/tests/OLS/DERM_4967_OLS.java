@@ -807,17 +807,25 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
 
-        medicalRecordsOptionPageOLS
+        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS())
+                .clickNextButton(new DoctorInformationCollectionPageOLS());
+
+        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
                 .waitForPageLoad()
-                .clickNextButton(new HS1PageOLS())
+                .clickNextButton(new HS1PageOLS());
+
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
                 .waitToClickNext()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+
+
+        thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()

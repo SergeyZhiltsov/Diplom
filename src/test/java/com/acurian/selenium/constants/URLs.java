@@ -20,7 +20,8 @@ public interface URLs {
     String OLS_QA = "https://test-screener.acurian.com/questionnaire_test_qa/welcome?pn=%1$s";
     //String OLS_PROD = "http://acurianhealth.com/questionnaire/welcome?pn=%1$s&show_debug=1&testing_key=%2$s"; //changed to avoid Blinx provider
     String OLS_PROD = "https://acurianhealth.com/questionnaire/patient/welcome?pn=%1$s&show_debug=1&testing_key=%2$s";
-    String AH_PROD = "https://acurianhealth.com/questionnaire/welcome?show_debug=1&testing_key=%2$s&up[]=AHLandingPage&pn=%1$s";
+    //String AH_PROD = "https://acurianhealth.com/questionnaire/welcome?show_debug=1&testing_key=%2$s&up[]=AHLandingPage&pn=%1$s"; //changed to avoid Blinx provider
+    String AH_PROD = "https://acurianhealth.com/questionnaire/patient/welcome?show_debug=1&testing_key=%2$s&up[]=AHLandingPage&pn=%1$s";
     String AH_STG = "https://test-screener.acurian.com/questionnaire_test_staging/welcome?method=beginCall&up[]=AHLandingPage&phoneNumber=%1$s";
 
 

@@ -3,11 +3,13 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.*;
-import com.acurian.selenium.pages.OLS.cv_study.TransitionStatementCVbeginPageOLS;
+import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
+import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.insomnia_5017.*;
@@ -27,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Insomnia_5017_OLS extends BaseTest{
+public class Insomnia_5017_OLS extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -80,9 +82,9 @@ public class Insomnia_5017_OLS extends BaseTest{
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 doYouSufferFromInsomniaPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -204,39 +206,39 @@ public class Insomnia_5017_OLS extends BaseTest{
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
-                "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                "Autism spectrum",
-                "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
-                "Cancer",
-                "Diabetes (type 1 or type 2)",
-                "Headaches (migraine, cluster, tension)",
-                "Heart or circulation problems (heart attack, heart failure, stroke)",
-                "High blood pressure or hypertension",
-                "High cholesterol, triglycerides, or lipids",
-                "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
-                "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
-                "Kidney disease",
-                "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                "Lupus",
-                "Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
-                        "schizophrenia)",
-                "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
-                        "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
-                "Skin problems (eczema or atopic dermatitis, psoriasis)",
-                "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
-                "Women's health issues (endometriosis, uterine fibroids)")
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Cancer",
+                        "Diabetes (type 1 or type 2)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, " +
+                                "schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
         whatKindOfArthritisPageOLS
                 .waitForPageLoad()
                 .back();
         //Q2: QS38
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //If exclusively selected, skip to Q24)
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //If exclusively selected, skip to Q24)
+                        .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
         //Check flow logic for Q2
         //Q4: QS40
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -244,22 +246,22 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .back();
 
         WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")//Select
-                .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")//Select
+                        .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS());
 
         whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS); //Back to Q2: QS38
 
         WhichOfTheFollowingBreathingLungPageOLS whichOfTheFollowingBreathingLungPageOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
-                .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)")
+                        .clickNextButton(new WhichOfTheFollowingBreathingLungPageOLS());
         //Q5: QS41
         whichOfTheFollowingBreathingLungPageOLS
                 .waitForPageLoad()
@@ -304,20 +306,20 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .back();
 
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
-                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
+                        .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
         //Q11: QS46
         SubquestionExperiencedHeartPageOLS subquestionExperiencedHeartPageOLS =
                 haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Heart attack")
-                .clickOnAnswers("Stroke")
-                .clickOnAnswers("Mini-Stroke or TIA")
-                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
-                .clickNextButton(new SubquestionExperiencedHeartPageOLS()); //Display Q12.1: QS47A
+                        .waitForPageLoad()
+                        .clickOnAnswers("Heart attack")
+                        .clickOnAnswers("Stroke")
+                        .clickOnAnswers("Mini-Stroke or TIA")
+                        .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                        .clickNextButton(new SubquestionExperiencedHeartPageOLS()); //Display Q12.1: QS47A
         //Q12.1 - 12.4:
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
@@ -328,10 +330,10 @@ public class Insomnia_5017_OLS extends BaseTest{
 
         //Q11: QS46
         HeartrelatedMedicalProceduresPageOLS haveYouUndergoneAnyOfFollowingHeartRelatedProcCC =
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageOLS()); //Skip to Q13
+                haveYouEverExperiencedHeartRelatedMedicalCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(new HeartrelatedMedicalProceduresPageOLS()); //Skip to Q13
         //Q13: QS48
         haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
@@ -341,22 +343,22 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         DoYouTakeAnyMedicationsControlHypertension_OLS doYouTakeAnyMedicationsControlHypertension_OLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_OLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("High blood pressure or hypertension")
+                        .clickNextButton(new DoYouTakeAnyMedicationsControlHypertension_OLS());
         //Q15: QS50
         doYouTakeAnyMedicationsControlHypertension_OLS
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         WhichOfFollowingDigestiveConditionPageOLS whichOfFollowingDigestiveConditionPageOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
-                .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)")
+                        .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS());
         //Q8: QS44
         whichOfFollowingDigestiveConditionPageOLS
                 .waitForPageLoad()
@@ -365,10 +367,10 @@ public class Insomnia_5017_OLS extends BaseTest{
         //Q16: QS51
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Kidney disease")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Kidney disease")
+                        .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
@@ -393,11 +395,11 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .back();
 
         WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS());
         //Q17: QS52
         whichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS
                 .waitForPageLoad()
@@ -412,11 +414,11 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         FollowingMentalEmotionalHealthPageOLS followingMentalEmotionalHealthPageOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                        .clickNextButton(new FollowingMentalEmotionalHealthPageOLS());
 
         //Q18: QS53
         followingMentalEmotionalHealthPageOLS
@@ -464,23 +466,23 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
                                 "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS());
         //Q19: QS54
         whichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS
                 .waitForPageLoad()
                 .back();
 
         WhichOfTheFollowingSkinConditionsDoYouSufferOLS whichOfTheFollowingSkinConditionsDoYouSufferOLS =
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)")
-                .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferOLS());
+                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers("Skin problems (eczema or atopic dermatitis, psoriasis)")
+                        .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferOLS());
         //Q20: QS55
         whichOfTheFollowingSkinConditionsDoYouSufferOLS
                 .waitForPageLoad()
@@ -578,28 +580,26 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "3", "100")
-                .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
-                .waitForPageLoadNotQ()
+                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+        doYouExperienceAnyOfFollowingSymptoms_OLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back(approximateHeightPageOLS); //Disqualify ("Low BMI") if < 18
-        CardiovascularDiseaseThanOthersPageOLS сardiovascularDiseaseThanOthersPageOLS = approximateHeightPageOLS
+                .back(approximateHeightPageOLS) //Disqualify ("Low BMI") if < 18
                 .waitForPageLoad()
                 .setAll("3", "5", "100")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-        сardiovascularDiseaseThanOthersPageOLS
+                .clickNextButton(doYouExperienceAnyOfFollowingSymptoms_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS); //Disqualify ("High BMI") if > 40
-        approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "6", "100")
-                .clickNextButton(identificationPageOLS);
+                .clickNextButton(new IdentificationPageOLS());
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
@@ -622,7 +622,7 @@ public class Insomnia_5017_OLS extends BaseTest{
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "5017")
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo);
+                .dispoShouldMatch(site.dispo, site.dispo)
+                .assertGeneratedFul(env, site);
     }
 }
