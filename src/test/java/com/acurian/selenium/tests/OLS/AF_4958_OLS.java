@@ -131,6 +131,7 @@ public class AF_4958_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(typeOfDoctorDiagnosedWithFibromyalgiaOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7803", site.activeProtocols)
                     .back();
@@ -165,6 +166,7 @@ public class AF_4958_OLS extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
                     .clickNextButton(areYouCurrentlyReceivingWorkersPageOLS)
+                    .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7805", site.activeProtocols)
                     .back();

@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhenDidYouHaveAppendixRemoved_OLS;
 import com.acurian.selenium.pages.OLS.IBS.*;
@@ -622,27 +623,27 @@ public class IBS_5019_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS =
+        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS =
                 approximateHeightPageOLS
                         .waitForPageLoad()
                         .setAll("5", "5", "240") //Disqualify ("High BMI") if > 39
-                        .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
-        IdentificationPageOLS identificationPageOLS = experienceExcessiveHungerOrIncreasedAppetiteOLS
+                        .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+          doYouExperienceAnyOfFollowingSymptoms_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setLbs("95") //Disqualify (""Low BMI"") if < 16"
-                .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
-                .waitForPageLoadNotQ()
+                .clickNextButton(doYouExperienceAnyOfFollowingSymptoms_OLS);
+        IdentificationPageOLS identificationPageOLS = doYouExperienceAnyOfFollowingSymptoms_OLS
+                .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setLbs("120")
-                .clickNextButton(identificationPageOLS);
+                .clickNextButton(new IdentificationPageOLS());
 
         identificationPageOLS
                 .waitForPageLoad()

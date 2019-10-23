@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouSufferFromOAB_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
@@ -493,17 +494,17 @@ public class OAB_BPH_4867_OLS extends BaseTest {
         }
 
         //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-        UnqualifiedCloseOLS unqualifiedCloseOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .setAll("5", "5", "90") //BMI <15
-                .clickNextButton(new UnqualifiedCloseOLS());
+                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
 //                .clickNextButton(new EthnicBackgroundPageOLS());
 //
 //        ethnicBackgroundPageOLS
-        unqualifiedCloseOLS
+        doYouExperienceAnyOfFollowingSymptoms_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

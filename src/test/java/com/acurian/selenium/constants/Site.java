@@ -64,7 +64,7 @@ public enum Site {
     AUT_VAC_4556_A("AUT_VAC_4556_A", "19901", "1R", true, true, "B7471007_A"),
     //    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
     AUT_AMS_JANRSV("AUT_JANRSV_site", "19422", "1R", false, false, "VAC18193RSV2001"),
-    AUT_AMS_JANRSV_Syn("AUT_JANRSVS_site", "08204", "41C", false, false, "VAC18193RSV2001"),
+    AUT_AMS_JANRSV_Syn("AUT_JANRSVS_site", "19422", "41C", false, false, "VAC18193RSV2001"),
 
     //4600
     AUT_AMS1_4600_site("AUT_AMS1_4600_site", "08204", "1R", true, false, "B7451014"),
@@ -102,7 +102,7 @@ public enum Site {
     //4867
     AUT_OAB_4867("AUT_OAB4867_site", "08204", "41C", false, false, "URO_901_1001"),
     //4958
-    AUT_AMS1_4958_site("AUT_AMS1_4958_site", "19422", "1R", true, false, "NYX_2925_2005"),
+    AUT_AMS1_4958_site("AUT_AMS1_4958_site", "08204", "1R", true, false, "NYX_2925_2005"),
     AUT_AMS1_4958S_site("AUT_AMS1_4958S_site", "08204", "41C", false, false, "NYX_2925_2005"),
     //4967
     AUT_AMS1_4967_site("AUT_AMS1_4967_site", "08204", "1R", false, false, "R3500_AD_1798", "R3500_AD_1805"),

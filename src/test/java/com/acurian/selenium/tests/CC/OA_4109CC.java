@@ -278,7 +278,7 @@ public class OA_4109CC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                //----------SITE Selection Page--------------------
+                //----------SITE Selection Page--------------------wlpOlsWsTest
                 .waitForPageLoad(studyName1)
                 .getPID()
                 .clickOnAnswer(site.name)

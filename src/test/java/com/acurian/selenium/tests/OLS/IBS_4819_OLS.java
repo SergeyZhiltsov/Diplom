@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhenDidYouHaveAppendixRemoved_OLS;
 import com.acurian.selenium.pages.OLS.IBS.*;
@@ -595,12 +596,12 @@ public class IBS_4819_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS =
+        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS =
                 approximateHeightPageOLS
                         .waitForPageLoad()
                         .setAll("5", "5", "270")
-                        .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
-        experienceExcessiveHungerOrIncreasedAppetiteOLS
+                        .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+        doYouExperienceAnyOfFollowingSymptoms_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
