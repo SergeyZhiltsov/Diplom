@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNSAIDOLS;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.PsoriaticArthritis.PsoriaticArthritisConditionPageOLS;
@@ -607,11 +608,11 @@ public class OA_5055_OLS_S extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS);
 
         //----------ProvideHeight-Weight Page--------------------
-        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
+        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
-                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
-        experienceExcessiveHungerOrIncreasedAppetiteOLS
+                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+        doYouExperienceAnyOfFollowingSymptoms_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

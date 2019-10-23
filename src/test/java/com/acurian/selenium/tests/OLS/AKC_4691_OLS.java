@@ -124,11 +124,11 @@ public class AKC_4691_OLS extends BaseTest {
 
 
         //--------------Q5: How are you currently treating your diabetes? -----------
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinksOLS = currentlyTreatingYourDiabetesPageOLS
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        noOfAlcoholicDrinksOLS
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
@@ -137,7 +137,7 @@ public class AKC_4691_OLS extends BaseTest {
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinksOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4631", site.activeProtocols)
@@ -157,7 +157,7 @@ public class AKC_4691_OLS extends BaseTest {
             lastTimeYouTookPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(noOfAlcoholicDrinksOLS)
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS4632", (String[]) entry.getValue().toArray())
@@ -346,7 +346,7 @@ public class AKC_4691_OLS extends BaseTest {
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Adlyxin (lixisenatide)")
-                .clickNextButton(noOfAlcoholicDrinksOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
@@ -355,7 +355,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bydureon or Byetta (exenatide)")
-                .clickNextButton(noOfAlcoholicDrinksOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
@@ -364,7 +364,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tanzeum (albiglutide)")
-                .clickNextButton(noOfAlcoholicDrinksOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
@@ -373,7 +373,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Trulicity (dulaglutide)")
-                .clickNextButton(noOfAlcoholicDrinksOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
@@ -382,7 +382,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Saxenda or Victoza (liraglutide)")
-                .clickNextButton(noOfAlcoholicDrinksOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
@@ -391,7 +391,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("SymlinPen (pramlintide)")
-                .clickNextButton(noOfAlcoholicDrinksOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
@@ -400,7 +400,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Another injectable medication not listed above")
-                .clickNextButton(noOfAlcoholicDrinksOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4611", site.activeProtocols)
@@ -408,7 +408,7 @@ public class AKC_4691_OLS extends BaseTest {
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(noOfAlcoholicDrinksOLS);
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
 
 //        //-------Q13:  Overall, how long have you been taking your current diabetes medication(s), either by themselves, or in combination with each other?  --------
@@ -419,11 +419,15 @@ public class AKC_4691_OLS extends BaseTest {
 //                .clickOnAnswer("1 month or less")
 //                .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
+        NoOfAlcoholicDrinkOLS NoOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
         //-------Q15:  About how many alcoholic drinks do you have in a typical week? --------
-        noOfAlcoholicDrinksOLS
+        NoOfAlcoholicDrinkOLS
                 .waitForPageLoad();
-        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinksOLS
+        LiverRelatedConditionOLS liverRelatedConditionOLS = NoOfAlcoholicDrinkOLS
                 .setDrinks("4")
                 .clickNextButton(new LiverRelatedConditionOLS());
 
@@ -434,8 +438,8 @@ public class AKC_4691_OLS extends BaseTest {
         liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Alcoholic liver disease")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
-        cardiovascularDiseaseThanOthersPageOLS
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -444,7 +448,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -453,7 +457,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Hemochromatosis or iron overload")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -462,7 +466,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Liver cancer or hepatocellular carcinoma")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -471,7 +475,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Primary sclerosing cholangitis or primary biliary cirrhosis")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -480,7 +484,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Wilson's disease")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -536,7 +540,7 @@ public class AKC_4691_OLS extends BaseTest {
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)

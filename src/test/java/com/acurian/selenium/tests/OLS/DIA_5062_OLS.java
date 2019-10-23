@@ -5,7 +5,9 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HaveDoctorEverDiagnosedYou_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -51,6 +53,7 @@ public class DIA_5062_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
         DiagnosedAnyTypeOfDiabetesPageOLS diagnosedAnyTypeOfDiabetesPageOLS = genderPageOLS
+                .waitForPageLoad()
                 .setDate("09091968")
                 .clickOnAnswer("Male")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
@@ -113,17 +116,18 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswer("10 years ago or more")
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = currentlyTreatingYourDiabetesPageOLS
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = new NoOfAlcoholicDrinkOLS();
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        noOfAlcoholicDrinkOLS
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .back();
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back();
         LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
@@ -134,19 +138,19 @@ public class DIA_5062_OLS extends BaseTest {
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back();
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 5 months ago")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back();
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back();
         MetforminMedicationsPageOLS metforminMedicationsPageOLS = lastTimeYouTookPageOLS
@@ -209,20 +213,23 @@ public class DIA_5062_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(noOfAlcoholicDrinkOLS);
 
-        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+        LiverRelatedConditionOLS liverRelatedConditionOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
-                .setDrinks("22")
-                .clickNextButton(new LiverRelatedConditionOLS());
-        liverRelatedConditionOLS
+                .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
+                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .waitForPageLoad()
+                .setDrinks("26")
+                .clickNextButton(new LiverRelatedConditionOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
-                .back();
-        noOfAlcoholicDrinkOLS
+                .back(noOfAlcoholicDrinkOLS)
                 .waitForPageLoad()
-                .setDrinks("21")
-                .clickNextButton(liverRelatedConditionOLS);
+                .setDrinks("15")
+                .clickNextButton(new LiverRelatedConditionOLS());
 
+        HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS =
+                new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS();
         HashMap<String, List<String>> options = new HashMap<>();
         options.put("Alcoholic liver disease", Arrays.asList(site.activeProtocols));
         options.put("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus", Arrays.asList(site.activeProtocols));
@@ -236,7 +243,7 @@ public class DIA_5062_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                    .clickNextButton(haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS4624", (String[]) entry.getValue().toArray())
@@ -280,9 +287,7 @@ public class DIA_5062_OLS extends BaseTest {
                         "Kidney disease",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
-                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
-                        "High cholesterol, triglycerides, or lipids",
-                        "High blood pressure or hypertension")
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new OtherThanSkinCancerPageOLS());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
@@ -453,7 +458,7 @@ public class DIA_5062_OLS extends BaseTest {
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS)
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
@@ -461,21 +466,21 @@ public class DIA_5062_OLS extends BaseTest {
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS)
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
                 .back();
 
-        mostRecentHeartProcedurePageOLS
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 12 months ago")
-                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS);
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
 
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = doYouTakeAnyMedicationsToControlHighBloodPressureOLS
+       /* WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS = doYouTakeAnyMedicationsToControlHighBloodPressureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS());*/
 
         WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseOLS whichOfFollowingHaveYouDiagnosedWith_liverDiseaseOLS = whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
@@ -540,9 +545,6 @@ public class DIA_5062_OLS extends BaseTest {
         whichOfTheFollowingHaveRequiredForKidneyDiseaseOLS
                 .waitForPageLoad()
                 .back();
-        doYouTakeAnyMedicationsToControlHighBloodPressureOLS
-                .waitForPageLoad()
-                .back();
         mostRecentHeartProcedurePageOLS
                 .waitForPageLoad()
                 .back();
@@ -561,10 +563,10 @@ public class DIA_5062_OLS extends BaseTest {
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("High blood pressure or hypertension",
-                        "High cholesterol, triglycerides, or lipids")
-                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS)
-                .waitForPageLoad()
+//                .clickOnAnswers("High blood pressure or hypertension",
+//                        "High cholesterol, triglycerides, or lipids")
+//                .clickNextButton(doYouTakeAnyMedicationsToControlHighBloodPressureOLS)
+//                .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
 
