@@ -61,7 +61,7 @@ public class RO_7069_CC extends BaseTest {
         dateOfBirthPageCC
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(studyName, "others"), "Title is diff");
+                .getExpectedModifiedTitle(studyName, "500"), "Title is diff");
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")

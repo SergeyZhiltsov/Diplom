@@ -7,8 +7,10 @@ import com.acurian.selenium.pages.OLS.common_elements.MoreAboutPage;
 import com.acurian.selenium.pages.OLS.common_elements.PrivacyPolicyPage;
 import com.acurian.selenium.pages.OLS.common_elements.TermOfUsePage;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
+import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
+import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -21,11 +23,11 @@ public class AHLandingPage_OLS extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
-        if (env.equals("STG"))
-        {env = "AH_STG";}
-        else
-        if (env.equals("PRD"))
-        {env = "AH_PROD";}
+        if (env.equals("STG")) {
+            env = "AH_STG";
+        } else if (env.equals("PRD")) {
+            env = "AH_PROD";
+        }
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
@@ -92,7 +94,7 @@ public class AHLandingPage_OLS extends BaseTest {
         Assert.assertEquals(genderPageOLS.getTitleText(), genderPageOLS.titleExpected, "Title is diff");
 
 
-                //----------SiteSelection Page--------------------
+        //----------SiteSelection Page--------------------
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS()
                 .getPID();
     }

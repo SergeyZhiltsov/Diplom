@@ -6,34 +6,52 @@ import com.acurian.selenium.pages.OLS.GERD.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.gmega.ThankYouCloseGmegaOLS;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-public class GERD_4301_OLS extends BaseTest {
+public class GERD_5098_OLS extends BaseTest {
 
-    @Test
-    @Description("GERD_4301_OLS")
-    public void gerd4301ols() {
-        Site site = Site.AUT_GER_4301_Site;
-        String phoneNumber = "AUTAMSGERD";
-        String studyName = "a heartburn or reflux";
-        String site_Indication = "Gastroesophageal Reflux Disease (GERD)";
+    @BeforeMethod
+    public void setUp() {
+        super.setUp();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        super.tearDown();
+    }
+
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {Site.AUT_AMS1_5098_site},
+                //{Site.AUT_AMS1_5098S_site}
+        };
+    }
+
+    @Test(dataProvider = "sites")
+    @Description("GERD_5098_OLS")
+    public void gerd5098ols(Site site) {
+        final String phoneNumber = "AUTAMSGER1";
+        final String studyName = "an indigestion, heartburn, or stomach ulcers";
 
         String env = System.getProperty("acurian.env", "STG");
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         //---------------Date of Birth Question-------------------
-        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
+        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS()
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName + " study", "500"), "Title is diff");
+                .waitForPageLoadGER();
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+        //        .getExpectedModifiedTitle(studyName + " study", "300"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName + " study", "300"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -42,10 +60,10 @@ public class GERD_4301_OLS extends BaseTest {
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
@@ -90,8 +108,6 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
         hasYourDoctorToldYouThatYouHaveErosion_OLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6303", site.activeProtocols)
                 .back();
         whichoOfFollowingMedicationsCurrentlyGERD_OLS
                 .waitForPageLoad()
@@ -99,8 +115,6 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickNextButton(new HaveYouEverHadSurgeryOnStomach_OLS());
         hasYourDoctorToldYouThatYouHaveErosion_OLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6303", site.activeProtocols)
                 .back();
         HowLongHaveYouBeenTaking_OLS howLongHaveYouBeenTaking_OLS = whichoOfFollowingMedicationsCurrentlyGERD_OLS
                 .waitForPageLoad()
@@ -150,8 +164,6 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickNextButton(new HowOftenDoYouTake_OLS());
         howOftenDoYouTake_OLS
                 .waitForPageLoad(1, howDoYouBuyFollowingMedications_OLS.titleExpected1)
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6306", site.activeProtocols)
                 .back();
         howLongHaveYouBeenTaking_OLS
                 .waitForPageLoad(1, howDoYouBuyFollowingMedications_OLS.titleExpected1)
@@ -160,53 +172,16 @@ public class GERD_4301_OLS extends BaseTest {
 
 
         //---------------Q7 HowOftenDoYouTake_OLS-------------------
-        DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS =
-                howOftenDoYouTake_OLS
+        DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS = howOftenDoYouTake_OLS
                 .waitForPageLoad(1, howOftenDoYouTake_OLS.titleExpected1)
                 .waitForPageLoad(2, howOftenDoYouTake_OLS.titleExpected2)
                 .waitForPageLoad(3, howOftenDoYouTake_OLS.titleExpected3)
                 .waitForPageLoad(4, howOftenDoYouTake_OLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Twice a day")
-                .clickOnAnswerForSubQuestion(2, "Twice a day")
-                .clickOnAnswerForSubQuestion(3, "Other")
-                .clickOnAnswerForSubQuestion(4, "Other")
-                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
-        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6316", site.activeProtocols)
-                .back();
-        howOftenDoYouTake_OLS
-                .waitForPageLoad(1, howOftenDoYouTake_OLS.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "Only as needed (not regularly)")
                 .clickOnAnswerForSubQuestion(2, "Only as needed (not regularly)")
                 .clickOnAnswerForSubQuestion(3, "Once a day")
                 .clickOnAnswerForSubQuestion(4, "Once a day")
-                .clickNextButton(despiteTakingMedicationDoYouStillExperienceSymptoms_OLS);
-                //.clickNextButton(new OnaTypicalDayWhenDoYouUsually_OLS());
-
-
-//        //---------------Q9 OnaTypicalDayWhenDoYouUsually_OLS-------------------
-//        DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS despiteTakingMedicationDoYouStillExperienceSymptoms_OLS =
-//        onaTypicalDayWhenDoYouUsually_OLS
-//                .waitForPageLoad(1, onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
-//                .waitForPageLoad(2, onaTypicalDayWhenDoYouUsually_OLS.titleExpected2)
-//                .waitForPageLoad(3, onaTypicalDayWhenDoYouUsually_OLS.titleExpected3)
-//                .waitForPageLoad(4, onaTypicalDayWhenDoYouUsually_OLS.titleExpected4)
-//                .clickOnAnswerForSubQuestion(1, "Morning")
-//                .clickOnAnswerForSubQuestion(2, "Afternoon")
-//                .clickOnAnswerForSubQuestion(3, "Evening")
-//                .clickOnAnswerForSubQuestion(4, "Night")
-//                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
-//        despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                //.checkProtocolsContainsForQNumber("QS6306", site.activeProtocols)
-//                .back();
-//        onaTypicalDayWhenDoYouUsually_OLS
-//                .waitForPageLoad(1, onaTypicalDayWhenDoYouUsually_OLS.titleExpected1)
-//                .clickOnAnswerForSubQuestion(4, "Morning")
-//                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
+                .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
 
 
         //---------------Q10 DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS-------------------
@@ -215,8 +190,6 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickOnAnswer("No, my symptoms are well-controlled")
                 .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_OLS)
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6307", site.activeProtocols)
                 .back();
         ThinkingAboutThePast2Months_OLS thinkingAboutThePast2Months_OLS =
                 despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
@@ -226,102 +199,120 @@ public class GERD_4301_OLS extends BaseTest {
 
 
         //--------------Q11 ThinkingAboutThePast2Months_OLS ---------------------
-        thinkingAboutThePast2Months_OLS
+        hasYourDoctorToldYouThatYouHaveErosion_OLS =
+                thinkingAboutThePast2Months_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 day per week or less")
-                .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_OLS)
+                .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
+        hasYourDoctorToldYouThatYouHaveErosion_OLS
                 .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
-                .back();
-        thinkingAboutThePast2Months_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("2 - 3 days per week")
-                .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_OLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6308", site.activeProtocols)
                 .back();
         thinkingAboutThePast2Months_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 5 days per week")
-                .clickNextButton(hasYourDoctorToldYouThatYouHaveErosion_OLS);
+                .clickNextButton(new HasYourDoctorToldYouThatYouHaveErosion_OLS());
 
 
-//        //--------------Q12 HasYourDoctorToldYouThatYouHaveErosion_OLS---------------------
+
+        //--------------Q12 HasYourDoctorToldYouThatYouHaveErosion_OLS---------------------
         TestedForStomachInfectionHelicobacterOLS testedForStomachInfectionHelicobacterOLS =
                 hasYourDoctorToldYouThatYouHaveErosion_OLS
+                        .waitForPageLoad()
+                        .clickOnAnswer("Unsure")
+                        .clickOnAnswer("No")
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(new TestedForStomachInfectionHelicobacterOLS());
+
+        //----Q13	Have you ever been tested for a stomach infection called Helicobacter pylori or H. pylori?-----
+        DidTestPositivePyloriOLS didTestPositivePyloriOLS = testedForStomachInfectionHelicobacterOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes") //Continue to Q14
+                .clickNextButton(new DidTestPositivePyloriOLS());
+
+        //Q15	Did you take medication to treat your H. pylori infection?
+        DidTakeMedicationToTreatPyloriOLS didTakeMedicationToTreatPyloriOLS = didTestPositivePyloriOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes") //Continue to Q15
+                .clickNextButton(new DidTakeMedicationToTreatPyloriOLS());
+        MembersOfHouseholdBeenDiagnosedPyloriOLS membersOfHouseholdBeenDiagnosedPyloriOLS = didTakeMedicationToTreatPyloriOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new TestedForStomachInfectionHelicobacterOLS());
-
-
-        MembersOfHouseholdBeenDiagnosedPyloriOLS membersOfHouseholdBeenDiagnosedPyloriOLS = testedForStomachInfectionHelicobacterOLS
+                .clickNextButton(new MembersOfHouseholdBeenDiagnosedPyloriOLS());
+        membersOfHouseholdBeenDiagnosedPyloriOLS
                 .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6323", site.activeProtocols[1])
+                .back(didTakeMedicationToTreatPyloriOLS)
+                .clickOnAnswer("No")
+                .clickOnAnswer("Unsure")
+                .back();
+        didTestPositivePyloriOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No, I tested negative")
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new MembersOfHouseholdBeenDiagnosedPyloriOLS());
+        membersOfHouseholdBeenDiagnosedPyloriOLS
+                .waitForPageLoad()
+                .back(didTestPositivePyloriOLS)
+                .waitForPageLoad()
+                .back(testedForStomachInfectionHelicobacterOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickOnAnswer("Unsure")
+                .clickNextButton(membersOfHouseholdBeenDiagnosedPyloriOLS);
 
-
+//--------Q16	Have any members of your household (meaning people you live with) been diagnosed with H. pylori infection?
         WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = membersOfHouseholdBeenDiagnosedPyloriOLS
                 .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickOnAnswer("No")
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS());
 
+
         //---------------Q14 WhatTypeOfSurgeryDidYouHave_OLS-------------------
-        WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_OLS
+        AreYouCurrentlyAbleToSwallowTablets_OLS areYouCurrentlyAbleToSwallowTablets_OLS = whatTypeOfSurgeryDidYouHave_OLS
                 .waitForPageLoad()
-        //---------SKIP to Q12 if selected "Other surgery on my stomach, intestines, colon, or esophagus"  or go to Q11--------
-                .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
-                .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
-        whenDidYouHaveAppendixRemoved_OLS
-                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
+                .clickOnAnswers("None of the above") //Skip to Q20
+                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS());
+        areYouCurrentlyAbleToSwallowTablets_OLS
+                .waitForPageLoad()
+                .back(whatTypeOfSurgeryDidYouHave_OLS)
+                .waitForPageLoad()
+                .clickOnAnswers("Biopsy (Agent Note: BY-op-see) – removal of a small piece of tissue for analysis",
+                        "Tonsils removed - Tonsillectomy (Agent Note: tahn-sil-LECK-toe-mee)")
+                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_OLS)
+                .waitForPageLoad()
                 .back();
-        whatTypeOfSurgeryDidYouHave_OLS
+        WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Appendix removed - Appendectomy",
                         "Gallbladder removed - Cholecystectomy",
-                        "Biopsy – removal of a small piece of tissue for analysis",
-                        "Tonsils removed - Tonsillectomy",
-                        "Hemorrhoids removed - Hemorrhoidectomy")
+                        "Hemorrhoids removed - Hemorrhoidectomy",
+                        "Other surgery on my stomach, intestines, colon, or esophagus")
                 .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
 
 
-        //---------------Q15 WhenDidYouHaveAppendixRemoved_OLS-------------------
+        //-----Q19.1	When did you have your appendix removed (appendectomy)? --------------
         whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
                 .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
-                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3);
-        whenDidYouHaveAppendixRemoved_OLS
-                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(3, "Less than 1 month ago")
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6311", site.activeProtocols)
-                .back();
-        AreYouCurrentlyAbleToSwallowTablets_OLS areYouCurrentlyAbleToSwallowTablets_OLS = whenDidYouHaveAppendixRemoved_OLS
-                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
-                .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS());
+                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
+                .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "Less than 1 month ago")
+                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(4, "More than 6 months ago")
+                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_OLS);
 
 
-        //---------------Q16 AreYouCurrentlyAbleToSwallowTablets_OLS-------------------
-        areYouCurrentlyAbleToSwallowTablets_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6312", site.activeProtocols)
-                .back();
+        //---------------Q20 AreYouCurrentlyAbleToSwallowTablets_OLS-------------------
         areYouCurrentlyAbleToSwallowTablets_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+
 
 
         //----------------------GENERAL HEALTH Questions -----------------------------
@@ -379,35 +370,14 @@ public class GERD_4301_OLS extends BaseTest {
 
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS
-                .waitForPageLoad("a heartburn or reflux study, an indigestion, heartburn, or stomach ulcers") //could not DQ with (Phathom EE & HP) to avoid combined indication
+                .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName(site.name)    ;
-                MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
-
-        medicalRecordsOptionPageOLS
+                .clickOnFacilityName(site.name)
+                .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records");
-                ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS = medicalRecordsOptionPageOLS
-                        .clickNextButton(new ChatfillMedicalRecordReleaseFormPageOLS());
-
-//-----------------CHART FILL  form------------------------------
-        AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
-                .waitForPageLoad()
-                .confirmPatientInformation()
-                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
-                        "2 walnut grove dr.", "HORSHAM", "19901")
-                .clickSignForm(new AdobeSignMedAuthFormPage());
-
-        adobeSignMedAuthFormPage
-                .waitForPageLoad()
-                .setSignature("Acurian");
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = adobeSignMedAuthFormPage
-                .clickToSignButton(new ThankYouCloseSimplePageOLS());
-
-
-        thankYouCloseSimplePageOLS
-                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForSENRPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

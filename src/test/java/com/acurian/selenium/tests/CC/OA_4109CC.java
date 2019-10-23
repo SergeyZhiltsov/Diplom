@@ -32,6 +32,7 @@ public class OA_4109CC extends BaseTest {
 
         String env = System.getProperty("acurian.env", "STG");
 
+        DebugPageCC debugPageCC = new DebugPageCC();
         LoginPageCC loginPageCC = new LoginPageCC();
 
         loginPageCC
@@ -152,13 +153,12 @@ public class OA_4109CC extends BaseTest {
                 .clickOnAnswer("Yes, for another chronic condition")
                 .clickOnAnswer("I am currently taking a short course of steroids (10 days or less)")
                 .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoad(studyName);
-        DebugPageCC debugPageCC = new DebugPageCC();
-        debugPageCC.checkProtocolsContainsForQNumber("QS4513", protocol1);
-        debugPageCC.back();
-        areYouCurrentlyOnPageCC
-                .waitForPageLoad();
+                .waitForPageLoad(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4513", protocol1)
+                .back();
         HaveYouEverHadKneeReplacementSurgery_CC haveYouEverHadKneeReplacementSurgery_CC = areYouCurrentlyOnPageCC
+                .waitForPageLoad()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new HaveYouEverHadKneeReplacementSurgery_CC());
 
@@ -197,26 +197,24 @@ public class OA_4109CC extends BaseTest {
                 .clickOnAnswers("Artificial heart valve")
                 .clickOnAnswers("Cochlear implant")
                 .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoad(studyName);
-        debugPageCC.checkProtocolsContainsForQNumber("QS4514", protocol1);
-        debugPageCC.back();
-        devicesInYourBodyCC
-                .waitForPageLoad();
+                .waitForPageLoad(studyName)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4514", protocol1)
+                .back();
         CarpalTunnelSyndromeCC carpalTunnelSyndromeCC = devicesInYourBodyCC
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new CarpalTunnelSyndromeCC());
 
 
-        carpalTunnelSyndromeCC
-                .waitForPageLoad();
         AreYouCurrentlyReceivingWorkersPageCC areYouCurrentlyReceivingWorkersPageCC = carpalTunnelSyndromeCC
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new AreYouCurrentlyReceivingWorkersPageCC());
 
 
-        areYouCurrentlyReceivingWorkersPageCC
-                .waitForPageLoad();
         TransitionStatementCC transitionStatementCC = areYouCurrentlyReceivingWorkersPageCC
+                .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
 

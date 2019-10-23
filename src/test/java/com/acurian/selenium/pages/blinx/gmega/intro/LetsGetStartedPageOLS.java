@@ -19,7 +19,7 @@ public class LetsGetStartedPageOLS extends MainPageBlinx {
     WebElement titleTextPart1;
     @FindBy(xpath = "(//div[@class='question-text']/div)[2]")
     WebElement titleTextPart2;
-    @FindBy(xpath = "//input[@class='fallbackDate']")
+    @FindBy(xpath = "//input[contains(@class, 'fallbackDate')]")
     WebElement dateField;
 
     @Step

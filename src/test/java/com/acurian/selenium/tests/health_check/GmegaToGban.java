@@ -101,8 +101,8 @@ public class GmegaToGban extends BaseTest {
                     .waitForPageLoadByTitle(letsStartPageOLS.titleExpectedQA)
                     .clickNextButton(dateOfBirthPageOLS);
 
-        studiesThatAreCurrentlyEnrollingPageOLS
-                .clickNextButton(dateOfBirthPageOLS);
+//        studiesThatAreCurrentlyEnrollingPageOLS
+//                .clickNextButton(dateOfBirthPageOLS);
 
         dateOfBirthPageOLS
                 .waitForPageLoadByTitle(dateOfBirthPageOLS.titleExpectedGBAN1);

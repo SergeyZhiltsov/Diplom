@@ -89,7 +89,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back(dateOfBirthPageCC)
-                .waitForPageLoad()
+                .waitForPageLoadJANRSV()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
