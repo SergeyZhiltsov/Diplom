@@ -519,14 +519,15 @@ public class GERD_5098_CC extends BaseTest {
                         .clickNextButton(new QualifiedClose1PageCC());
 
 
-                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = qualifiedClose1PageCC
+                qualifiedClose1PageCC
                         .waitForPageLoad()
                         .clickOnAnswer("No")
-                        .clickNextButton(new ThankYouCloseSimplePageCC());
-
-
-                thankYouCloseSimplePageCC
+                        .clickNextButton(new Regular_WarmTransfer1())
                         .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new Regular_WarmTransfer4())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Successful transfer made to site")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)

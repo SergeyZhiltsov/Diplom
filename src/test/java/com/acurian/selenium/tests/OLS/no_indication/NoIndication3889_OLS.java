@@ -414,7 +414,10 @@ public class NoIndication3889_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
-                .clickNextButton(approximateHeightPageOLS);
+                .clickNextButton(approximateHeightPageOLS)
+                .waitForPageLoad()
+                .clickNextButton(doYouExperienceAnyOfFollowingSymptoms_OLS);
+
 
         CrohnsDiseaseDoctorOrNursePageOLS crohnsDiseaseDoctorOrNursePageOLS = doYouExperienceAnyOfFollowingSymptoms_OLS
                 .waitForPageLoad()
