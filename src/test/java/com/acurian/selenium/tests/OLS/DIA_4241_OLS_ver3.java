@@ -154,11 +154,11 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = currentlyTreatingYourDiabetesPageOLS
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        noOfAlcoholicDrinkOLS
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
@@ -166,7 +166,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS4631", AKC, protocol2, protocol3, protocol4)
@@ -179,7 +179,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 - 3 months ago")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, protocols)
@@ -187,7 +187,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 5 months ago")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, AKC, protocol2, protocol3, protocol4)
@@ -195,7 +195,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         lastTimeYouTookPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 months ago or longer")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(lastTimeYouTookPageOLS.titleExpected, AKC, protocol2, protocol3, protocol4)
@@ -342,7 +342,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Adlyxin (lixisenatide)")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
@@ -351,7 +351,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bydureon or Byetta (exenatide)")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
@@ -360,7 +360,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Tanzeum (albiglutide)")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
@@ -369,7 +369,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Trulicity (dulaglutide)")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
@@ -378,7 +378,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Saxenda or Victoza (liraglutide)")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol3, protocol2, protocol4)
@@ -387,9 +387,9 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("SymlinPen (pramlintide)")
-                .clickNextButton(noOfAlcoholicDrinkOLS);
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
-        noOfAlcoholicDrinkOLS
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEquals(injectableMedicationsForYourDiabetesPageOLS.titleExpected, AKC, protocol2, protocol4)
@@ -403,7 +403,12 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .clickOnAnswers("Insulin glargine (Basaglar, Lantus)")
                 .clickNextButton(injectableMedicationsForYourDiabetesPageOLS)
                 .waitForPageLoad()
-                .clickNextButton(noOfAlcoholicDrinkOLS);
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
@@ -477,7 +482,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
         poundsOrMorePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4617", protocols)

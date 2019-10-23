@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -125,17 +126,17 @@ public class DIA_4483_OLS extends BaseTest {
                 .clickOnAnswer("10 years ago or more")
                 .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Diet and exercise")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-        noOfAlcoholicDrinkOLS
-                .waitForPageLoad()
-                .back();
+//        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Diet and exercise")
+//                .clickNextButton(new NoOfAlcoholicDrinkOLS());
+//        noOfAlcoholicDrinkOLS
+//                .waitForPageLoad()
+//                .back();
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(noOfAlcoholicDrinkOLS)
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .back();
         LastTimeYouTookPageOLS lastTimeYouTookPageOLS = currentlyTreatingYourDiabetesPageOLS
@@ -149,7 +150,7 @@ public class DIA_4483_OLS extends BaseTest {
             lastTimeYouTookPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("2 - 3 months ago")
-                    .clickNextButton(noOfAlcoholicDrinkOLS)
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
                     .waitForPageLoad()
                     .back();
         }
@@ -269,7 +270,23 @@ public class DIA_4483_OLS extends BaseTest {
         injectableMedicationsForYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(noOfAlcoholicDrinkOLS);
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+
+        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("High cholesterol or high triglycerides")
+                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS())
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
+                .back(cardiovascularDiseaseThanOthersPageOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS())
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
+                .back(cardiovascularDiseaseThanOthersPageOLS)
+                .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
+                .clickNextButton(new NoOfAlcoholicDrinkOLS());
 
         LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
                 .waitForPageLoad()
@@ -295,7 +312,7 @@ public class DIA_4483_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                    .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -658,11 +675,11 @@ public class DIA_4483_OLS extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        /*haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("High blood pressure or hypertension")
-                .clickNextButton(new DoYouTakeAnyMedicationsToControlHighBloodPressureOLS())
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
@@ -675,17 +692,17 @@ public class DIA_4483_OLS extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
-                .back();
-        DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .back();*/
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("High blood pressure or hypertension",
-                        "High cholesterol, triglycerides, or lipids")
-                .clickNextButton(new DoYouTakeAnyMedicationsToControlHighBloodPressureOLS());
-        doYouTakeAnyMedicationsToControlHighBloodPressureOLS
+                /*.clickOnAnswers("High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids")*/
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+        /*doYouTakeAnyMedicationsToControlHighBloodPressureOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);*/
 
         ApproximateHeightPageOLS approximateHeightPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
