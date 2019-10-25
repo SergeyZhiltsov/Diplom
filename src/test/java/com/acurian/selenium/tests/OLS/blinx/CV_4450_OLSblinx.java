@@ -22,7 +22,7 @@ public class CV_4450_OLSblinx extends BaseTest {
     }
 
     @Test(dataProvider = "data")
-    public void cv4450olsTest(Site site, String city, String state) {
+    public void cv4450olsBlinxTest(Site site, String city, String state) {
         DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
         LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();
         BaseTest.getDriver().navigate()
