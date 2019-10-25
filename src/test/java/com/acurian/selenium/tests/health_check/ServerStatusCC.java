@@ -26,8 +26,8 @@ public class ServerStatusCC extends BaseTest {
     @DataProvider
     public Object[][] testData() {
         return new Object[][]{
-                {"https://cc1.acuriancalls.com", "AHOALAPPV-prod-17"},
-                {"https://cc2.acuriancalls.com", "AHOALAPPV-prod-18"},
+                {"https://cc1.acuriancalls.com", "Server:AHOALAPPV-prod-17"},
+                {"https://cc2.acuriancalls.com", "Server:AHOALAPPV-prod-18"},
         };
     }
 
@@ -38,7 +38,7 @@ public class ServerStatusCC extends BaseTest {
         CallCenterIntroductionPageCC callCenterIntroductionPageCC = new CallCenterIntroductionPageCC();
         SelectActionPageCC selectActionPageCC = new SelectActionPageCC();
 
-        final String phoneNumber = "800AMS1UAP";
+        final String phoneNumber = "AUTAMS1GEN";
         String env = System.getProperty("acurian.env", "PRD");
 
         getDriver().navigate().to(testURL);
@@ -64,8 +64,8 @@ public class ServerStatusCC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad2Ver()
                 .getPage(debugPageCC)
-                .assertServerConnectivityCC("Server:" + serverName);
+                .assertServerConnectivityCC(serverName);
     }
 }

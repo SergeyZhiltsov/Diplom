@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.GERD.DoYouExperienceAnyOfFollowingSymptoms_CC;
+import com.acurian.selenium.pages.CC.HOTF_7119.DoyouExperienceHotFlashesCC;
 import com.acurian.selenium.pages.CC.Vaccine.AllergicToAnyVaccinesCC;
 import com.acurian.selenium.pages.CC.Vaccine.AreYouGenerallyInGoodHealthCC;
 import com.acurian.selenium.pages.CC.Vaccine.AreYouInterestedVaccineResearchStudyCC;
@@ -20,6 +22,9 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static com.acurian.selenium.constants.Site.AUT_AMS_JANRSV;
+import static com.acurian.selenium.constants.Site.AUT_AMS_JANRSV_Syn;
 
 public class VACC_JANRSV_CC extends BaseTest {
 
@@ -468,11 +473,29 @@ public class VACC_JANRSV_CC extends BaseTest {
                 .waitForPageLoad()
                 .setLbs("150")
                 .clickNextButton(new LetMeSeePageCC());
+        IdentificationPageCC identificationPageCC = new IdentificationPageCC();
 
+//        if(site == AUT_AMS_JANRSV_Syn) {
+//            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = letMeSeePageCC
+//                    .waitForPageLoad()
+//                    .clickNextButton(new DoyouExperienceHotFlashesCC());
+//
+//            doyouExperienceHotFlashesCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No")
+//                    .clickNextButton(new NonQRtransitionPageCC())
+//                    .waitForPageLoad()
+//                    .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC())
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickNextButton(identificationPageCC);
+//        }
 
-        IdentificationPageCC identificationPageCC = letMeSeePageCC
+//        if(site == AUT_AMS_JANRSV) {
+            letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new IdentificationPageCC());
+                .clickNextButton(identificationPageCC);
+//        }
 
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
@@ -480,7 +503,6 @@ public class VACC_JANRSV_CC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
-
 
         siteSelectionPageCC
                 .waitForPageLoad(studyName)
@@ -518,7 +540,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                 synexusRadiantDirectScheduleCC
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "01/01/1954", "US",
-                                "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
                                 "autJANRSVS", site.name, "JANIQVRSV001")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
