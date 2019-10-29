@@ -55,7 +55,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
         BaseTest.getDriver().navigate().to(url);
 
         ZipCodePageOLS zipCodePageOLS = letsGetStartedPageOLS
-                .waitForPageLoad("a heart health study that's right for you!", "750")
+                .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

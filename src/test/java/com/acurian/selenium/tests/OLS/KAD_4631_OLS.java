@@ -559,7 +559,6 @@ public class KAD_4631_OLS extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4631")
                 .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site)
-                .assertRmgOrderPriority(env, "4631");
+                .assertGeneratedFul(env, site);
     }
 }
