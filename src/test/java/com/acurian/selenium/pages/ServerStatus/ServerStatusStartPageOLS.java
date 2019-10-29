@@ -19,10 +19,10 @@ public class ServerStatusStartPageOLS extends MainPageOLS {
     @FindBy(xpath = "//*[@id='command']/div[2]/span[1]/div[2] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[1]/div[2]") //TODO need to fix
     WebElement titleText;
 
-    @FindBy(xpath = "//*[@id='command']/div[3]/div/div[1]/label")
+    @FindBy(xpath = "//*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[2]/question/div/div/div/div/ul/li[1]/label")
     WebElement yesButton;
 
-    @FindBy(xpath = "//*[@id='command']/div[4]/a")
+    @FindBy(xpath = "//*[@id='submit']")
     WebElement nextButton;
     @Step
     public ServerStatusStartPageOLS waitForPageLoad() {
