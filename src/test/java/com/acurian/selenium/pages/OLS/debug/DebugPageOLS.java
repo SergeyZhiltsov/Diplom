@@ -55,6 +55,11 @@ public class DebugPageOLS extends MainPageOLS {
     List<WebElement> questionNumberList2;
     List<WebElement> questionNumberList;
 
+    @FindBy(xpath = "//*[@id='debug_toolbar_props_lnk'] | //*[@id='info-debug-link']/span")
+    WebElement questionLink2;
+    @FindBy(xpath = "(//*[contains(@class, 'ui-icon-close')])[1] | (//*[contains(@class, 'k-i-close')])[1]")
+    WebElement questionLink2Close;
+
     @FindBy(xpath = "(//*[@id='server_props']/following-sibling::div/div)[1] | (//*[@id='info-debug-window']/div[contains(., 'SERVER')])[2]")
     WebElement server;
     String env = System.getProperty("acurian.env", "STG");
@@ -263,15 +268,39 @@ public class DebugPageOLS extends MainPageOLS {
         closeDebugWindow();
         return this;
     }
+    @Step
+    public DebugPageOLS openDebugWindow2() {
+        questionLink2.click();
+        return this;
+    }
+    @Step
+    public DebugPageOLS closeDebugWindow2() {
+        switch (Locators.isEnvWeb) {
+            case Platforms.WEB:
+                questionLink2Close.click();
+                break;
+            case Platforms.TABLET:
+                questionLink2Close.click();
+                break;
+            case Platforms.MOBILE:
+                openDebugWindow();
+                break;
+        }
+        waitForAnimation();
+//        driverWait.getWaitDriver().withTimeout(15, TimeUnit.SECONDS).until(ExpectedConditions
+//                .attributeToBe(By.xpath("/html/body/div[3]"), "display", "none"));
+        return this;
+    }
 
     @Step
     public DebugPageOLS assertServerConnectivity(String expectedServer) {
+        openDebugWindow2();
         Assert.assertEquals(getServerName(), expectedServer);
+        closeDebugWindow2();
         return this;
     }
 
     private String getServerName() {
-        infoButton.click();
         return server.getText();
     }
 
