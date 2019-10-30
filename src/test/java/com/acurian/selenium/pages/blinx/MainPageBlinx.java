@@ -52,7 +52,13 @@ public class MainPageBlinx extends BasePage {
 
     protected void clickOnRadioButton(List<WebElement> radioButtonList, String answerText) {
         radioButtonList.stream().filter(el -> el.getText().equals(answerText))
-                .forEach(el -> scrollToElement(el, true).click());
+                .forEach(el -> {
+                    try {
+                        el.click();
+                    } catch (WebDriverException ex) {
+                        scrollToElement(el, true).click();
+                    }
+                });
     }
 
     protected void clickOnCheckBoxes(List<WebElement> checkBoxList, String... answerText) {
