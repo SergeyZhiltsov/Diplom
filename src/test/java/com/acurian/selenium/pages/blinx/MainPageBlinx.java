@@ -65,13 +65,19 @@ public class MainPageBlinx extends BasePage {
                 "expected to click are " + answerTextList + "\n" +
                 "actual on page are " + elementsTextActual);
 
-        checkBoxList.stream().filter(el -> answerTextList.parallelStream().anyMatch(el.getText()::startsWith))
-                .forEach(el -> scrollToElement(el, true).click());
+        checkBoxList.stream().filter(el -> answerTextList.stream().anyMatch(el.getText()::startsWith))
+                .forEach(el -> {
+                    try {
+                        el.click();
+                    } catch (WebDriverException ex) {
+                        scrollToElement(el, true).click();
+                    }
+                });
         waitForAnimation();
     }
 
     @Step
-    public void clickPreviousQuestion(){
+    public void clickPreviousQuestion() {
         waitAndClickWebElement(previousQuestion);
     }
 
@@ -147,7 +153,7 @@ public class MainPageBlinx extends BasePage {
     }
 
     @Step
-    public MainPageBlinx childPidFromDbToLog(String env, String ...firstPartOfChildPhoneNumber) {
+    public MainPageBlinx childPidFromDbToLog(String env, String... firstPartOfChildPhoneNumber) {
         ChildResult childResult = getDbConnection().dbReadChildPID(env, pid, firstPartOfChildPhoneNumber);
         dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
         childPid = childResult.getChildPid();
@@ -157,9 +163,9 @@ public class MainPageBlinx extends BasePage {
     }
 
     @Step
-    public MainPageBlinx dispoShouldMatch(String expectedParentDispo, String ...expectedChildDispo) {
+    public MainPageBlinx dispoShouldMatch(String expectedParentDispo, String... expectedChildDispo) {
         Assert.assertEquals(getDispoParent(), expectedParentDispo, "Dispo for Parent is different");
-        if (expectedChildDispo.length == 1){
+        if (expectedChildDispo.length == 1) {
             Assert.assertEquals(getDispoChild(), expectedChildDispo[0], "Dispo for Child is different");
         }
         return this;
