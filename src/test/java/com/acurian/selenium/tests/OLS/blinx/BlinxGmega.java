@@ -23,7 +23,7 @@ public class BlinxGmega extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         BaseTest.getDriver().navigate()
-                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTGMEGA01&up[]=CLIENT_BLINX" +
+                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=GRA1OBXEKS&up[]=CLIENT_BLINX" +
                         "&show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7");
 
         DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
