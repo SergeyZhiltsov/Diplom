@@ -275,20 +275,8 @@ public class DebugPageOLS extends MainPageOLS {
     }
     @Step
     public DebugPageOLS closeDebugWindow2() {
-        switch (Locators.isEnvWeb) {
-            case Platforms.WEB:
-                questionLink2Close.click();
-                break;
-            case Platforms.TABLET:
-                questionLink2Close.click();
-                break;
-            case Platforms.MOBILE:
-                openDebugWindow();
-                break;
-        }
+        questionLink2Close.click();
         waitForAnimation();
-//        driverWait.getWaitDriver().withTimeout(15, TimeUnit.SECONDS).until(ExpectedConditions
-//                .attributeToBe(By.xpath("/html/body/div[3]"), "display", "none"));
         return this;
     }
 
