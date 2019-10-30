@@ -1,4 +1,4 @@
-package com.acurian.selenium.tests.OLS;
+package com.acurian.selenium.tests.Randomness;
 
 import com.acurian.selenium.listeners.TestListener;
 import com.acurian.selenium.pages.BaseTest;
@@ -31,7 +31,7 @@ public class ABRandomnessTest extends BaseTest {
         System.out.println("Skip standard driver quit.");
     }
 
-    @Test(invocationCount = 200, skipFailedInvocations = true, enabled = false)
+    @Test(invocationCount = 100, skipFailedInvocations = true, enabled = true)
     public void abRandomnes() {
         //String testURL = "https://test-screener.acurian.com/questionnaire_test_staging_redirector/welcome?pn=800AMS1TST&show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7";
         String testURL = "https://acurianhealth.com/questionnaire/welcome?pn=800AMS1TST";

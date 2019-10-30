@@ -3,7 +3,7 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.OLS.blinx.BlinxGmega"></class>
+            <class name="com.acurian.selenium.tests.health_check.BlinxGmega"></class>
             <class name="com.acurian.selenium.tests.OLS.blinx.CV_4450_OLSblinx"></class>
         </classes>
     </test>
