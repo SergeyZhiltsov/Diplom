@@ -3,7 +3,15 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.health_check.ServerStatusOLS"></class>
+            <class name="com.acurian.selenium.tests.health_check.WLPvalidation"></class>
+            <class name="com.acurian.selenium.tests.OLS.HFL_4722_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.AF_4958_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.KAD_4631_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.GERD_5098_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.GERD_4301_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.DERM_4967_OLS"></class>
+            <class name="com.acurian.selenium.tests.OLS.blinx.BlinxGmega"></class>
+            <class name="com.acurian.selenium.tests.OLS.blinx.CV_4450_OLSblinx"></class>
         </classes>
     </test>
 </suite>

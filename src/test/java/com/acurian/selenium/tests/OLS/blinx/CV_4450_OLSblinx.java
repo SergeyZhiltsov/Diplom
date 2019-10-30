@@ -22,7 +22,7 @@ public class CV_4450_OLSblinx extends BaseTest {
     }
 
     @Test(dataProvider = "data")
-    public void cv4450olsTest(Site site, String city, String state) {
+    public void cv4450olsBlinxTest(Site site, String city, String state) {
         DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
         LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();
         BaseTest.getDriver().navigate()
@@ -30,7 +30,7 @@ public class CV_4450_OLSblinx extends BaseTest {
                         "=CLIENT_BLINX&testing_key=51fa2780f2430b542923956ac1974bb7&show_debug=1#");
 
         ZipCodePageOLS zipCodePageOLS = letsGetStartedPageOLS
-                .waitForPageLoad("a heart health study that's right for you!", "750")
+                .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

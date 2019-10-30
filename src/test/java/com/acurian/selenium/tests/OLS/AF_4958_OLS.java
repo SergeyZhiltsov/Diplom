@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.OLS.Fibromyalgia.AnyFollowingPainfulConditions
 import com.acurian.selenium.pages.OLS.Fibromyalgia.DiagnosedWithFibromyalgiaOLS;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.FirstDiagnosedWithFibromyalgiaOLS;
 import com.acurian.selenium.pages.OLS.Fibromyalgia.TypeOfDoctorDiagnosedWithFibromyalgiaOLS;
+import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -545,11 +546,11 @@ public class AF_4958_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageCC);
 
 
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = approximateHeightPageCC
+        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "5", "250") //Disqualify ("High BMI") if > 40
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-        cardiovascularDiseaseThanOthersPageOLS
+                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+        doYouExperienceAnyOfFollowingSymptoms_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
