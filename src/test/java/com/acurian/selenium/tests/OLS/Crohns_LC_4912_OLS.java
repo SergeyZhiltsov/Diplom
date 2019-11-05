@@ -460,7 +460,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageOLS
-                        .waitForPageLoad("Crohn's")
+                        .waitForPageLoad(" a Crohn's")
                         .getPID()
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new MedicalRecordsOptionPageOLS())
