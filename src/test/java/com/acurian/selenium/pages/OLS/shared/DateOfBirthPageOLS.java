@@ -382,6 +382,14 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
             "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.";
 
+    public final String titleExpectedCrohns = "Let's get started to see if there is a Crohn's study that's right for you!\n" +
+            "\n" +
+            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            "If you attend all required study visits, you may receive*:\n" +
+            "Payment up to $700, which varies by study\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
     //visible-xs-block xs - Extra small devices Phones (<768px)
     @FindBy(xpath = "//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement questionText1;
@@ -412,10 +420,13 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[@class='visible-md-block visible-lg-block ng-scope']")
     WebElement questionTextAH1;
 
+    @FindBy(xpath = "(//div[@class='visible-md-block visible-lg-block ng-scope'])[2]")
+    WebElement questionTextCrohns;
+
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText1;
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-sm-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "(//div[@class='visible-md-block visible-lg-block ng-scope'])[1]")
     WebElement titleText2;
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-xs-block')]/div[@class='show-in-ols']")
@@ -514,6 +525,13 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @Step
     public DateOfBirthPageOLS waitForPageLoad() {
         waitForPageLoadMain(questionText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoad2() {
+        waitForPageLoadMain(questionTextCrohns, titleExpected);
+        waitForPageLoadMain(titleText2, titleExpectedCrohns);
         return this;
     }
 
