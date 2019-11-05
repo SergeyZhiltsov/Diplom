@@ -499,9 +499,10 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageCC
-                        .clickOnAnswer(site.name)
+                        //.clickOnDebugSiteName(site.name)
                         .clickNextButton(new MedicalRecordsOptionPageCC())
                         .waitForPageLoad()
+                        .clickOnAnswer("Continue without medical records")
                         .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
                         .waitForPageLoad()
                         .getActivationCode()
