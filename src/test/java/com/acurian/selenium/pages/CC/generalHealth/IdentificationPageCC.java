@@ -26,6 +26,9 @@ public class IdentificationPageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='question_container']//div[@class='show-in-cc']/span[@class='agent-note']")
     WebElement titleTextt;
 
+    @FindBy(xpath = "//*[@id='contact_info_form']/div[2]/div[1]")
+    WebElement titleText3;
+
     @FindBy(xpath = "//input[contains(@class,'input-text-first-name')]")
     WebElement firstNameField;
 
@@ -60,6 +63,12 @@ public class IdentificationPageCC extends MainPageCC {
     @Step
     public IdentificationPageCC waitForPageLoadNotQ() {
         waitForPageLoadMain(titleText2, titleExpectedNotQ);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageCC waitForPageLoadNotQCrohn() {
+        waitForPageLoadMain(titleText3, titleExpectedNotQ);
         return this;
     }
 

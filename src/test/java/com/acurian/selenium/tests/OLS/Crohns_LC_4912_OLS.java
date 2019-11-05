@@ -2,11 +2,10 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.closes.QualifiedFlareMonitoringAppClosePageCC;
 import com.acurian.selenium.pages.OLS.Crohns.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.BiologicMedications;
@@ -39,7 +38,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_AMS1_4912_site},
-                {Site.AUT_AMS1_4912S_site}
+                //{Site.AUT_AMS1_4912S_site}
         };
     }
 
@@ -199,8 +198,40 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS8109", site.activeProtocols)
                 .back(biologicMedications)
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(previousDayGeneralWellBeingOLS);
 
+        //in flare
+        previousDayGeneralWellBeingOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Very poor")
+                .clickNextButton(previousDayAbdominalPainOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Severe")
+                .clickNextButton(previousDayDiarrheaOrLiquidStoolOLS)
+                .waitForPageLoad()
+                .setStools("3")
+                .clickNextButton(experiensingAnyPainInJointsOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveUlcersOrSoresOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveAnyFollowingOLS);
+        //.flareCodeShouldMatch(env, "11");
+
+        //back
+        currentlyHaveAnyFollowingOLS
+                .waitForPageLoad()
+                .back(currentlyHaveUlcersOrSoresOLS)
+                .waitForPageLoad()
+                .back(experiensingAnyPainInJointsOLS)
+                .waitForPageLoad()
+                .back(previousDayDiarrheaOrLiquidStoolOLS)
+                .waitForPageLoad()
+                .back(previousDayAbdominalPainOLS)
+                .waitForPageLoad()
+                .back(previousDayGeneralWellBeingOLS);
 
         //not in flare
         previousDayGeneralWellBeingOLS
@@ -222,37 +253,8 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .waitForPageLoad();
         //        .flareCodeShouldMatch(env, "3");
 
-        //back
-        currentlyHaveAnyFollowingOLS
-                .waitForPageLoad()
-                .back(currentlyHaveUlcersOrSoresOLS)
-                .waitForPageLoad()
-                .back(experiensingAnyPainInJointsOLS)
-                .waitForPageLoad()
-                .back(previousDayDiarrheaOrLiquidStoolOLS)
-                .waitForPageLoad()
-                .back(previousDayAbdominalPainOLS)
-                .waitForPageLoad()
-                .back(previousDayGeneralWellBeingOLS);
 
-        //in flare
-        previousDayGeneralWellBeingOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Very poor")
-                .clickNextButton(previousDayAbdominalPainOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Severe")
-                .clickNextButton(previousDayDiarrheaOrLiquidStoolOLS)
-                .waitForPageLoad()
-                .setStools("3")
-                .clickNextButton(experiensingAnyPainInJointsOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveUlcersOrSoresOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingOLS);
-        //.flareCodeShouldMatch(env, "11");
+
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
@@ -405,20 +407,11 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Substance abuse")
-                .clickNextButton(approximateHeightPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+              //  .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -427,7 +420,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+               // .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -437,7 +430,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+             //   .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -446,7 +439,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+              //  .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -461,29 +454,31 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
-        siteSelectionPageOLS
-                .waitForPageLoad("Crohn's")
-                .getPID()
-                .clickOnFacilityName("QSC9004_4818_QAV_4818")
-                .clickNextButton(new QualifiedClosedPageOLS())
-                .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad();
 
-//        HSMedicalRecordsPageOLS hsMedicalRecordsPageOLS  = letMeSeePageOLS
-//                .waitForPageLoad()
-//                .clickNextButton(identificationPageOLS)
-//                .waitForPageLoad()
-//                .clickNextButton(new SiteSelectionPageOLS())
-//                .waitForPageLoad("a Crohn's study")
-//                .getPID()
-//                .clickOnAnswer(site.name)
-//                .clickNextButton(new MedicalRecordsOptionPageOLS())
-//                .waitForPageLoad()
-//                .clickOnAnswer("Continue with medical records")
-//                .clickNextButton(new DoctorInformationCollectionPageOLS())
-//                .waitForPageLoadIBD("Crohn's Disease")
-//                .clickNextButton(new HSMedicalRecordsPageOLS())
-//                .waitForPageLoad();
+        switch (site) {
+            case AUT_AMS1_4912S_site:
+                break;
+            case AUT_AMS1_4912_site:
+                siteSelectionPageOLS
+                        .waitForPageLoad("Crohn's")
+                        .getPID()
+                        .clickOnFacilityName(site.name)
+                        .clickNextButton(new MedicalRecordsOptionPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue without medical records")
+                        .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
+                        .waitForPageLoad()
+                        .getActivationCode()
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
+                break;
+        }
+
     }
 }

@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns.*;
+import com.acurian.selenium.pages.CC.IBS.AbdominalPainOverPastPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -36,7 +37,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_AMS1_4912_site},
-                {Site.AUT_AMS1_4912S_site}
+                //{Site.AUT_AMS1_4912S_site}
         };
     }
 
@@ -102,7 +103,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoad1()
+                .waitForPageLoadNotQCrohn()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
@@ -222,6 +223,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         CurrentlyHaveAnyFollowingCC currentlyHaveAnyFollowingCC = new CurrentlyHaveAnyFollowingCC();
         biologicMedicationsCC
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Stelara (Agent Note: ste-LAHR-uh)")
                 .clickNextButton(previousDayGeneralWellBeingCC)
                 .waitForPageLoad()
@@ -229,7 +231,40 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS8109", site.activeProtocols)
                 .back(biologicMedicationsCC)
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(previousDayGeneralWellBeingCC);
+
+        //in flare
+        previousDayGeneralWellBeingCC
+                .waitForPageLoad()
+                .clickOnAnswer("Very poor")
+                .clickNextButton(previousDayAbdominalPainCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Severe")
+                .clickNextButton(previousDayDiarrheaOrLiquidStoolCC)
+                .waitForPageLoad()
+                .setStools("3")
+                .clickNextButton(experiensingAnyPainInJointsCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveUlcersOrSoresCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(currentlyHaveAnyFollowingCC);
+        //.flareCodeShouldMatch(env, "11");
+
+        //back
+        currentlyHaveAnyFollowingCC
+                .waitForPageLoad()
+                .back(currentlyHaveUlcersOrSoresCC)
+                .waitForPageLoad()
+                .back(experiensingAnyPainInJointsCC)
+                .waitForPageLoad()
+                .back(previousDayDiarrheaOrLiquidStoolCC)
+                .waitForPageLoad()
+                .back(previousDayAbdominalPainCC)
+                .waitForPageLoad()
+                .back(previousDayGeneralWellBeingCC);
 
         //not in flare
         previousDayGeneralWellBeingCC
@@ -251,37 +286,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .waitForPageLoad();
         //        .flareCodeShouldMatch(env, "3");
 
-        //back
-        currentlyHaveAnyFollowingCC
-                .waitForPageLoad()
-                .back(currentlyHaveUlcersOrSoresCC)
-                .waitForPageLoad()
-                .back(experiensingAnyPainInJointsCC)
-                .waitForPageLoad()
-                .back(previousDayDiarrheaOrLiquidStoolCC)
-                .waitForPageLoad()
-                .back(previousDayAbdominalPainCC)
-                .waitForPageLoad()
-                .back(previousDayGeneralWellBeingCC);
 
-        //in flare
-        previousDayGeneralWellBeingCC
-                .waitForPageLoad()
-                .clickOnAnswer("Very poor")
-                .clickNextButton(previousDayAbdominalPainCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Severe")
-                .clickNextButton(previousDayDiarrheaOrLiquidStoolCC)
-                .waitForPageLoad()
-                .setStools("3")
-                .clickNextButton(experiensingAnyPainInJointsCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveUlcersOrSoresCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC);
-                //.flareCodeShouldMatch(env, "11");
+
+
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
         disqualify.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols));
@@ -437,15 +444,6 @@ public class Crohns_LC_4912_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Substance abuse")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bipolar disorder")
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
@@ -498,53 +496,21 @@ public class Crohns_LC_4912_CC extends BaseTest {
 
         switch (site) {
             case AUT_AMS1_4912S_site: //41C
-                siteSelectionPageCC
-                        .clickOnAnswer(site.name)
-//                        .clickNextButton(new HSGeneralCC())
-//                        .waitForPageLoad(siteIndication)
-//                        .clickNextButton(new DoctorInformationCollectionPageCC())
-//                        .waitForPageLoad()
-//                        .clickNextButton(new HSMedicalRecordsPageCC())
-//                        .waitForPageLoad()
-                        .clickNextButton(new MedicalRecordsOptionPageCC())
-                        .waitForPageLoad()
-                        .clickOnAnswer("Continue with medical records")
-                        .clickNextButton(new DoctorInformationCollectionPageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(new HSMedicalRecordsPageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "04/05/1941", "US",
-                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", env.equals("PRD") ? "aut3017test" : "123456A",
-                                site.name, env.equals("PRD") ? "ABVCOVCAR100H,ABVCOVCAR100" : "ABVCOVCAR100")
-                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env, "3017")
-                        .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
-//                        .clickNextButton(new HSGeneralCC())
-//                        .waitForPageLoad(siteIndication)
-                        .clickNextButton(new QualifiedClose2PageCC())
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
                         .waitForPageLoad()
-//                        .clickNextButton(new HSMedicalRecordsPageCC())
-//                        .waitForPageLoad()
-                        .clickNextButton(new SynexusHealthyMindsPageCC())
+                        .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        .getActivationCode()
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
-                        .clickNextButton(selectActionPageCC)
+                        .clickNextButton(new SelectActionPageCC())
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env, "3017")
+                        .childPidFromDbToLog(env)
                         .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }

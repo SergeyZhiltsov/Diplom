@@ -27,6 +27,10 @@ public class QualifiedClose2PageCC extends MainPageCC {
             "\n" +
             "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Ulcerative Colitis, Crohn's Disease study.";
 
+    public final String titleExpectedCrohns= "We’re glad the location is convenient for you.\n" +
+            "\n" +
+            "We will forward your contact information to the doctor’s office that you selected so they may contact you about a Crohn's Disease, Ulcerative Colitis study.";
+
     String env = System.getProperty("acurian.env", "STG");
 
     @FindBy(xpath = "//div[@class='question_text']")
@@ -37,6 +41,12 @@ public class QualifiedClose2PageCC extends MainPageCC {
     @Step
     public QualifiedClose2PageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageCC waitForPageLoadCrohns() {
+        waitForPageLoadMain(titleText, titleExpectedCrohns);
         return this;
     }
 
