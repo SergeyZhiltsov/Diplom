@@ -137,7 +137,9 @@ public enum Site {
     //4960
     AUT_AMS1_4960_site("AUT_AMS1_4960_site", "19422", "1R", true, false, "LG_GDCL002"),
     AUT_AMS1_4960S_site("AUT_AMS1_4960S_site", "08204", "41C", false, false, "LG_GDCL002"),
-
+    //4912
+    AUT_AMS1_4912_site("AUT_AMS1_4912_site", "19422", "1R", true, true, "I6T_MC_AMAM"),
+    AUT_AMS1_4912S_site("AUT_AMS1_4912_site", "08204", "41C", true, true, "I6T_MC_AMAM"),
     //Others
     AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java
     //Health check
