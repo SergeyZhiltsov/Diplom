@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns.*;
-import com.acurian.selenium.pages.CC.IBS.AbdominalPainOverPastPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -36,8 +35,8 @@ public class Crohns_LC_4912_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS1_4912_site},
-                //{Site.AUT_AMS1_4912S_site}
+               // {Site.AUT_AMS1_4912_site},
+                {Site.AUT_AMS1_4912S_site}
         };
     }
 
@@ -253,7 +252,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(currentlyHaveAnyFollowingCC);
         //.flareCodeShouldMatch(env, "11");
 
-        //back
+        //backflareCodeShouldMatch
         currentlyHaveAnyFollowingCC
                 .waitForPageLoad()
                 .back(currentlyHaveUlcersOrSoresCC)
@@ -282,8 +281,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC)
-                .waitForPageLoad();
+                .clickNextButton(currentlyHaveAnyFollowingCC);
         //        .flareCodeShouldMatch(env, "3");
 
 
@@ -381,7 +379,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
-            //    .getPage(debugPageCC)
+                .getPage(debugPageCC)
            //     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         kidneyProblemsPage
@@ -493,13 +491,39 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageCC());
-
+        QualifiedFlareMonitoringAppClosePageCC qualifiedFlareMonitoringAppClosePageCC = new QualifiedFlareMonitoringAppClosePageCC();
         switch (site) {
-            case AUT_AMS1_4912S_site: //41C
+            case AUT_AMS1_4912S_site:
+                siteSelectionPageCC
+                        .waitForPageLoad("a Crohn's")
+                        .clickOnAnswer(site.name)
+                        .getPID()
+                        .clickNextButton(new MedicalRecordsOptionPageCC())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageCC())
+                        .waitForPageLoadIBD("Crohn's Disease")
+                        .clickNextButton(new HSMedicalRecordsPageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC());
+
+                qualifiedFlareMonitoringAppClosePageCC
+                        .waitForPageLoad()
+                        .getActivationCode()
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad()
+                        .clickNextButton(selectActionPageCC)
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageCC
-                        //.clickOnDebugSiteName(site.name)
+                        .waitForPageLoad("a Crohn's")
+                        .clickOnAnswer(site.name)
+                        .getPID()
                         .clickNextButton(new MedicalRecordsOptionPageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("Continue without medical records")
@@ -515,16 +539,5 @@ public class Crohns_LC_4912_CC extends BaseTest {
                         .assertGeneratedFul(env, site)
                         .dispoShouldMatch(site.dispo, site.dispo);
         }
-
-//                .waitForPageLoad("a Crohn's study")
-//                .getPID()
-//                .clickOnAnswer(site.name)
-//                .clickNextButton(new MedicalRecordsOptionPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("Continue with medical records")
-//                .clickNextButton(new DoctorInformationCollectionPageCC())
-//                .waitForPageLoadIBD("Crohn's Disease")
-//                .clickNextButton(hsMedicalRecordsPageCC)
-//                .waitForPageLoad();
     }
 }

@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.closes.QualifiedFlareMonitoringAppClosePageCC;
 import com.acurian.selenium.pages.OLS.Crohns.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -37,8 +36,8 @@ public class Crohns_LC_4912_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS1_4912_site},
-                //{Site.AUT_AMS1_4912S_site}
+          //      {Site.AUT_AMS1_4912_site},
+                {Site.AUT_AMS1_4912S_site}
         };
     }
 
@@ -411,7 +410,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-              //  .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -420,7 +419,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-               // .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
@@ -430,7 +429,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-             //   .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -439,7 +438,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickNextButton(approximateHeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-              //  .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
@@ -454,9 +453,33 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
-
+        QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
         switch (site) {
             case AUT_AMS1_4912S_site:
+                siteSelectionPageOLS
+                        .waitForPageLoad("a Crohn's")
+                        .getPID()
+                        .clickOnFacilityName(site.name)
+                        .clickNextButton(new MedicalRecordsOptionPageOLS())
+                        .waitForPageLoad()
+                        .clickOnAnswer("Continue with medical records")
+                        .clickNextButton(new DoctorInformationCollectionPageOLS())
+                        .waitForPageLoadIBD("Crohn's Disease")
+                        .clickNextButton(new HS1PageOLS())
+                        .waitForPageLoad()
+                        .clickOkInPopUp()
+                        .setSignature();
+                qualifiedFlareMonitoringAppClosePageOLS
+                        .waitForPageLoad()
+                        .getActivationCode()
+                        .clickNextButton(new ThankYouCloseSimplePageOLS())
+                        .waitForPageLoad()
+                        .clickNextButton(new AboutHealthPageOLS())
+                        .waitForPageLoad()
+                        .pidFromDbToLog(env)
+                        .childPidFromDbToLog(env)
+                        .assertGeneratedFul(env, site)
+                        .dispoShouldMatch(site.dispo, site.dispo);
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageOLS
@@ -480,6 +503,5 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
         }
-
     }
 }
