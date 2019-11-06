@@ -41,7 +41,7 @@ public class IBD_3264_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "flare")
+    @Test(dataProvider = "flare", enabled = false)
     @Description("IBD_3264_OLS")
     public void ibd3264olsTest(boolean inFlare) {
         Site site = Site.AUT_IBD_3264_Site;

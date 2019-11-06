@@ -38,7 +38,7 @@ public class IBD_Short extends BaseTest{
         };
     }
 
-    @Test(dataProvider = "flareStatus")
+    @Test(dataProvider = "flareStatus", enabled = false)
     @Description("IBD 3485 SHORT CC")
     public void IBD3264ccTest_Short(String flareStatus) {
         String phoneNumber = "AUTAMSCRSH";

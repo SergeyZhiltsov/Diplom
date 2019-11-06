@@ -17,7 +17,7 @@ import java.util.*;
 
 public class IBD_3264_CC_NoPIIemail extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @Description("IBD 3264 for CC")
     public void ibd3264ccHsNoEmailAtPII() {
         Site site = Site.AUT_IBD_3264_Site;
