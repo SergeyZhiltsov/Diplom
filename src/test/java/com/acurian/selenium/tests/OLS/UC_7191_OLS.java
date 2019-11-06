@@ -5,12 +5,10 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns_3485.BiologicMedicationsPageOLS;
 import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS;
+import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsPageOLS;
 import com.acurian.selenium.pages.OLS.UC.*;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -23,7 +21,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.*;
 
-public class UC_4818_OLS extends BaseTest {
+public class UC_7191_OLS extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -36,17 +34,18 @@ public class UC_4818_OLS extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] flare() {
+    public Object[][] sites() {
         return new Object[][]{
-                {true},
-                {false}
+                {Site.AUT_AMS1_7191_site},
+                {Site.AUT_AMS1_7191S_site}
         };
     }
 
-    @Test(dataProvider = "flare")
-    @Description("4818UC")
-    public void uc4818OlsTest(boolean flare) {
-        Site site = Site.AUT_AMS1_4818_Site;
+
+    @Test(enabled = true, dataProvider = "sites")
+    @Description("7191UC")
+    public void uc7191OlsTest(final Site site) {
+
         String phoneNumber = "AUTAMS1UC1";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -82,13 +81,13 @@ public class UC_4818_OLS extends BaseTest {
 
         genderPageOLS
                 .waitForPageLoad();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+        HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS =
                 genderPageOLS
-                        .setDate("09091937")
+                        .setDate("09091944")
                         .clickOnAnswer("Female")
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+                        .clickNextButton(new HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS());
 
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols[0])
@@ -97,16 +96,16 @@ public class UC_4818_OLS extends BaseTest {
         genderPageOLS
                 .waitForPageLoad();
 
-        HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS = genderPageOLS
+        genderPageOLS
                 .setDate("09091980")
                 .clickOnAnswer("Female")
                 .clickNextButton(new HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS());
 
 //Q2	Have you ever been officially diagnosed by a doctor with any of the following digestive conditions?
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouEverBeenOfficiallyDiagnosedByDoctor_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
@@ -211,7 +210,26 @@ public class UC_4818_OLS extends BaseTest {
                 .clickNextButton(new HaveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageOLS());
 
 //Q8    Have you ever treated your ulcerative colitis with any of the following medications that suppress your immune system?
-        BiologicMedicationsPageOLS biologicMedicationsPageOLS = haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageOLS
+        BiologicMedicationsPageOLS biologicMedicationsPageOLS = new BiologicMedicationsPageOLS();
+
+        HashMap<String, List<String>> disqualifyQ8 = new HashMap<>();
+        disqualifyQ8.put("Jakafi (ruxolitinib)", Arrays.asList(site.activeProtocols[0])); //Disqualify (“Crohn’s complication or surgery”)
+        disqualifyQ8.put("Xeljanz (tofacitinib)", Arrays.asList(site.activeProtocols[0]));
+
+        for (Map.Entry<String, List<String>> entry : disqualifyQ8.entrySet()) {
+            System.out.println(entry.getKey());
+            haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(entry.getKey());
+            haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageOLS
+                    .waitForPageLoad()
+                    .clickNextButton(biologicMedicationsPageOLS)
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS8208", site.activeProtocols[0])
+                    .back(); }
+
+        haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Astagraf, Envarsus, or Prograf, also known as tacrolimus",
                         "Azasan or Imuran, also known as azathioprine",
@@ -283,7 +301,7 @@ public class UC_4818_OLS extends BaseTest {
 
         //QS11-QS16 + QS17 Ghost Question - UC Flare Logic
         CurrentlyHaveAnyOffFollowingPageOLS currentlyHaveAnyOffFollowingPageOLS = new CurrentlyHaveAnyOffFollowingPageOLS();
-        if (flare) {
+      //flare
             howManyBowelMovementsDidYouHaveDuringTheDayPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("4 to 6")
@@ -303,49 +321,22 @@ public class UC_4818_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswer("Yes")
                     .clickNextButton(currentlyHaveAnyOffFollowingPageOLS);
-
+//not in flare
             currentlyHaveAnyOffFollowingPageOLS
-                    .getPage(debugPageOLS);
-            // .checkStudyStatusContainsForQNumber("2-3"); //todo
-        } else {
-           howManyBowelMovementsDidYouHaveDuringTheDayPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer("4 to 6")
-                    .clickNextButton(new HowManyBowelMovementsDidYouHaveAtNightPageOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("4 or more")
-                    .clickNextButton(new HowMuchUrgencyDidYouFeelToHaveABowelMovementPageOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("I had to hurry to the bathroom")
-                    .clickNextButton(new DidYouHaveBloodInYourStoolPageOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("No blood")
-                    .clickNextButton(new HowWouldYouRateYourGeneralWellBeingPageOLS())
-                    .waitForPageLoad()
-                    .clickOnAnswer("Poor")
-                    .clickNextButton(new AreYouExperiencingAnyPainInYourJointsPageOLS())
+                    .getPage(debugPageOLS)
+                    .back(new AreYouExperiencingAnyPainInYourJointsPageOLS())
                     .waitForPageLoad()
                     .clickOnAnswer("No")
                     .clickNextButton(currentlyHaveAnyOffFollowingPageOLS);
-
-            currentlyHaveAnyOffFollowingPageOLS
-                    .getPage(debugPageOLS);
-                  // .checkStudyStatusContainsForQNumber("QS5730", "2-4"); //TODO*/
-        }
+            // .checkStudyStatusContainsForQNumber("2-3"); //todo
 
 //Q18 - Do you currently have any of the following?
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         HashMap<String, List<String>> disqualifyQ18 = new HashMap<>();
-        disqualifyQ18.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols[0])); //Disqualify (“Crohn’s complication or surgery”)
+        disqualifyQ18.put("Partial or Total colectomy", Arrays.asList(site.activeProtocols[0])); //Disqualify (“Crohn’s complication or surgery”)
         disqualifyQ18.put("Colostomy", Arrays.asList(site.activeProtocols[0]));
         disqualifyQ18.put("Ileostomy", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("Feeding tube", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols[0]));
-
-        HashSet<String> disqualify7191 = new HashSet<>(); //options that cause DQ 7191->skip to end of module
-        disqualify7191.add("Partial or Total colectomy");
-        disqualify7191.add("Colostomy");
-        disqualify7191.add("Ileostomy");
 
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = new WeightLossSurgeryPageOLS();
 
@@ -355,20 +346,13 @@ public class UC_4818_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey());
-            if (disqualify7191.contains(entry.getKey())) {
-                currentlyHaveAnyOffFollowingPageOLS
+
+                      currentlyHaveAnyOffFollowingPageOLS
                         .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols[0])
-                        .back();
-            } else {
-                currentlyHaveAnyOffFollowingPageOLS
-                        .clickNextButton(weightLossSurgeryPageOLS)
-                        .waitForPageLoad()
-                        .getPage(debugPageOLS)
-                        .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols[0])
-                        .back();
+                        .back(); }
 
                 currentlyHaveAnyOffFollowingPageOLS
                         .waitForPageLoad()
@@ -395,7 +379,7 @@ public class UC_4818_OLS extends BaseTest {
                         .clickOnAnswers("None of the above")
                         .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                         .waitForPageLoad();
-            }
+
 
 //GH
             CancerPage whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -449,8 +433,6 @@ public class UC_4818_OLS extends BaseTest {
                     .clickOnAnswer("11 or more years ago")
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                     .back();
 
             whenDiagnosedWithCancerOLS
@@ -657,7 +639,7 @@ public class UC_4818_OLS extends BaseTest {
 
             doAnyOftheFollowingAdditionalDiagnosesOLS
                     .waitForPageLoad()
-                    .clickOnAnswers("Multiple sclerosis (MS)")
+                    .clickOnAnswers("Schizophrenia")
                     .clickNextButton(approximateHeightPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
@@ -673,27 +655,46 @@ public class UC_4818_OLS extends BaseTest {
                     .setAll("5", "7", "170")
                     .clickNextButton(new IdentificationPageOLS());
 
-            identificationPageOLS
+            SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                     .waitForPageLoad()
                     .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                             "9999999999", site.zipCode)
-                    .clickNextButton(new SiteSelectionPageOLS())
+                    .clickNextButton(new SiteSelectionPageOLS());
+
+            siteSelectionPageOLS
                     .waitForPageLoad("a colitis")
-                    .getPID()
-                    .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClose2PageOLS())
-                    .waitForPageLoadIBD4818()
-                    .clickNextButton(new ThankYouCloseSimplePageOLS())
-                    .waitForPageLoad()
-                    .clickNextButton(new AboutHealthPageOLS())
-                    .waitForPageLoad()
-                    .pidFromDbToLog(env)
-                    .childPidFromDbToLog(env)
-                    .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
+                    .getPID();
+            AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+
+        QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = siteSelectionPageOLS
+                     .clickOnFacilityName(site.name)
+                     .clickNextButton(new MedicalRecordsOptionPageOLS())
+                     .waitForPageLoad()
+                     .clickOnAnswer("Continue with medical records")
+                     .clickNextButton(new DoctorInformationCollectionPageOLS())
+                     .waitForPageLoad()
+                     .clickNextButton(new HS1PageOLS())
+                     .waitForPageLoad()
+                     .clickOkInPopUp()
+                     .setSignature()
+                     .clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS());
+
+        qualifiedFlareMonitoringAppClosePageOLS
+                //.waitForPageLoad()//todo uncomment after close is updated
+                .getActivationCode()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS())
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo, site.dispo)
+                .assertChildDOBIsNull(env, "7191");
+
+            aboutHealthPageOLS.flareCodeShouldMatch(env, false ? "3" : "4");
         }
     }
-}
 
 
 
