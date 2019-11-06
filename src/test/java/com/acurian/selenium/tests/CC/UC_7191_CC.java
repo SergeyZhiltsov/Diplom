@@ -3,18 +3,15 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ADG_4357.CurrentlyHaveAnyOffFollowingPageCC;
-import com.acurian.selenium.pages.CC.Crohns_3485.*;
+import com.acurian.selenium.pages.CC.Crohns_3485.BiologicMedicationsPageCC;
+import com.acurian.selenium.pages.CC.Crohns_3485.DiagnosedWithCrohnsPageCC;
+import com.acurian.selenium.pages.CC.Crohns_3485.WhenDiagnosedCrohnsPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.IBD.*;
 import com.acurian.selenium.pages.CC.UC.*;
-import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -25,7 +22,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.*;
 
-public class UC_4818_CC extends BaseTest {
+public class UC_7191_CC extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -38,17 +35,18 @@ public class UC_4818_CC extends BaseTest {
     }
 
     @DataProvider
-    public Object[][] flare() {
+    public Object[][] sites() {
         return new Object[][]{
-                {true},
-                {false}
+                {Site.AUT_AMS1_7191_site},
+                {Site.AUT_AMS1_7191S_site}
         };
     }
 
-    @Test(dataProvider = "flare")
-    @Description("4818UC")
-    public void uc4818CCTest(boolean flare) {
-        Site site = Site.AUT_AMS1_4818_Site;
+
+    @Test(enabled = true, dataProvider = "sites")
+    @Description("7191UC")
+    public void uc7191CCTest(final Site site) {
+
         String phoneNumber = "AUTAMS1UC1";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -125,17 +123,17 @@ public class UC_4818_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols[0])
                 .back();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+        DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC =
                 genderPageCC
                 .waitForPageLoad()
-                .setYear("1937") //Disqualify ("Age") if >= 81
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .setYear("1944") //Disqualify ("Age") if >= 75
+                .clickNextButton(new DiagnosedWithCrohnsPageCC());
+        diagnosedWithCrohnsPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols[0])
                 .back(genderPageCC);
-        DiagnosedWithCrohnsPageCC diagnosedWithCrohnsPageCC = genderPageCC
+        genderPageCC
                 .waitForPageLoad()
                 .setYear("1990")
                 .clickNextButton(new DiagnosedWithCrohnsPageCC());
@@ -144,11 +142,13 @@ public class UC_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NonQRtransitionPageCC());
+
         nonQRtransitionPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS8202", site.activeProtocols[0])
                 .back();
+
         WhenDiagnosedCrohnsPageCC whenDiagnosedCrohnsPageCC = diagnosedWithCrohnsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Crohn's disease")
@@ -246,7 +246,27 @@ public class UC_4818_CC extends BaseTest {
                         .clickNextButton(new HaveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC());
 
 //Q8    Have you ever treated your ulcerative colitis with any of the following medications that suppress your immune system?
-        BiologicMedicationsPageCC biologicMedicationsPageCC = haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC
+        BiologicMedicationsPageCC biologicMedicationsPageCC = new BiologicMedicationsPageCC();
+
+        HashMap<String, List<String>> disqualifyQ8 = new HashMap<>();
+        disqualifyQ8.put("Jakafi (Agent Note: JAK-uh-fie)", Arrays.asList(site.activeProtocols[0])); //Disqualify (“Crohn’s complication or surgery”)
+        disqualifyQ8.put("Xeljanz (Agent Note: ZEL-jans)", Arrays.asList(site.activeProtocols[0]));
+
+        for (Map.Entry<String, List<String>> entry : disqualifyQ8.entrySet()) {
+            System.out.println(entry.getKey());
+            haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(entry.getKey());
+            haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC
+                    .waitForPageLoad()
+                    .clickNextButton(biologicMedicationsPageCC)
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS8208", site.activeProtocols[0])
+                    .back(); }
+
+
+        haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Astagraf, Envarsus, or Prograf, also known as tacrolimus (Agent Note: tah-CRO-li-mus)",
                         "Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)",
@@ -260,7 +280,7 @@ public class UC_4818_CC extends BaseTest {
                         "Xeljanz (Agent Note: ZEL-jans)",
                         "Unsure")
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new BiologicMedicationsPageCC());
+                .clickNextButton(biologicMedicationsPageCC);
 
 //Q9	"Biologics" are medications that affect the body's immune system. They are usually given as an infusion (into a vein) or a shot (injection)..
         List<String> disqualifyQ9 = Arrays.asList("Actemra",
@@ -305,20 +325,17 @@ public class UC_4818_CC extends BaseTest {
                 .getPage(debugPageCC)//Ghost Question -  IBD Module Full Flow Treatment History Requirement Logic
                 .checkProtocolsContainsForQNumber("QS8210", site.activeProtocols[0])
                 .back(biologicMedicationsPageCC)
-                .waitForPageLoad()
-                .back(haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC);
+                .waitForPageLoad();
 
-        //Q - QS8 one of the listed medications
-        haveYouEverTreatedYourUCWithMedsThatSuppressYourImmuneSystemPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Azasan or Imuran, also known as azathioprine (Agent Note: AY-zuh-san, IM-you-ran, ay-zuh-THI-o-prin)")
-                .clickNextButton(biologicMedicationsPageCC)
-                .waitForPageLoad()
+
+        //Q - QS9 one of the listed medications
+        biologicMedicationsPageCC
+                .clickOnAnswers("Benlysta (Agent Note: ben-LIST-uh)")
                 .clickNextButton(howManyBowelMovementsDidYouHaveDuringTheDayPageCC);
 
         //QS11-QS16 + QS17 Ghost Question - UC Flare Logic
         CurrentlyHaveAnyOffFollowingPageCC currentlyHaveAnyOffFollowingPageCC = new CurrentlyHaveAnyOffFollowingPageCC();
-        if (flare) {
+        //flare
             howManyBowelMovementsDidYouHaveDuringTheDayPageCC
                     .waitForPageLoad()
                     .clickOnAnswer("4 to 6")
@@ -340,46 +357,30 @@ public class UC_4818_CC extends BaseTest {
                     .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
 
             currentlyHaveAnyOffFollowingPageCC
+                    .waitForPageLoad()
                     .getPage(debugPageCC);
             // .checkStudyStatusContainsForQNumber("2-3"); //todo
-        } else {
-            howManyBowelMovementsDidYouHaveDuringTheDayPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer("4 to 6")
-                    .clickNextButton(new HowManyBowelMovementsDidYouHaveAtNightPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("4 or more")
-                    .clickNextButton(new HowMuchUrgencyDidYouFeelToHaveABowelMovementPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("I had to hurry to the bathroom")
-                    .clickNextButton(new DidYouHaveBloodInYourStoolPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("No blood")
-                    .clickNextButton(new HowWouldYouRateYourGeneralWellBeingPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("Poor")
-                    .clickNextButton(new AreYouExperiencingAnyPainInYourJointsPageCC())
-                    .waitForPageLoad()
-                    .clickOnAnswer("No")
-                    .clickNextButton(currentlyHaveAnyOffFollowingPageCC);
+
+        //not in flare
+        currentlyHaveAnyOffFollowingPageCC
+                .back(new AreYouExperiencingAnyPainInYourJointsPageCC())
+                .clickOnAnswer("No")
+                .clickNextButton(currentlyHaveAnyOffFollowingPageCC);;
+
+
+        //no in flare
 
             currentlyHaveAnyOffFollowingPageCC
                     .getPage(debugPageCC);
             // .checkStudyStatusContainsForQNumber("QS5730", "2-4"); //TODO*/
-        }
+
 
 //Q18 - Do you currently have any of the following?
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
-        HashMap<String, List<String>> disqualifyQ18 = new HashMap<>();
-        disqualifyQ18.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols[0])); //Disqualify (“Crohn’s complication or surgery”)
-        disqualifyQ18.put("Ileostomy", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("Feeding tube", Arrays.asList(site.activeProtocols[0]));
-        disqualifyQ18.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols[0]));
 
-        HashSet<String> disqualify7191 = new HashSet<>(); //options that cause DQ 7191->skip to end of module
-        disqualify7191.add("Partial or Total colectomy");
-        disqualify7191.add("Colostomy");
-        disqualify7191.add("Ileostomy");
+        HashMap<String, List<String>> disqualifyQ18 = new HashMap<>();
+        disqualifyQ18.put("Partial or Total colectomy", Arrays.asList(site.activeProtocols[0])); //Disqualify (“Crohn’s complication or surgery”)
+        disqualifyQ18.put("Colostomy", Arrays.asList(site.activeProtocols[0]));
+        disqualifyQ18.put("Ileostomy", Arrays.asList(site.activeProtocols[0]));
 
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = new WeightLossSurgeryPageCC();
 
@@ -391,22 +392,13 @@ public class UC_4818_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey());
-            if (disqualify7191.contains(entry.getKey())) {
-                currentlyHaveAnyOffFollowingPageCC
+
+                     currentlyHaveAnyOffFollowingPageCC
                         .clickNextButton(transitionStatementCC)
                         .waitForPageLoadWithCurves("colitis")
                         .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols[0])
-                        .back();
-            } else {
-                currentlyHaveAnyOffFollowingPageCC
-                        .clickNextButton(weightLossSurgeryPageCC)
-                        .waitForPageLoad()
-                        .getPage(debugPageCC)
-                        .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols[0])
-                        .back();
-            }
-        }
+                        .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols[0])
+                        .back();}
 
                 currentlyHaveAnyOffFollowingPageCC
                         .waitForPageLoad()
@@ -435,9 +427,10 @@ public class UC_4818_CC extends BaseTest {
                         .waitForPageLoadWithCurves("colitis");
 
 
-            transitionStatementCC
-                .waitForPageLoadWithCurves("colitis")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
+                transitionStatementCC
+                 .waitForPageLoadWithCurves("colitis")
+                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
             
 //GH            
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -472,7 +465,6 @@ public class UC_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -483,15 +475,15 @@ public class UC_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
                 .back();
+
         //debugPageCC.checkProtocolsContainsForQNumber("QS42", site.activeProtocols[0]);
         whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("11 or more years ago")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols[0])
                 .back();
         whenDiagnosedWithCancerCC
                 .back();
@@ -662,7 +654,8 @@ public class UC_4818_CC extends BaseTest {
                 "Drug or alcohol abuse within the past year",
                 "Hepatitis B",
                 "Hepatitis C",
-                "HIV or AIDS"); //Kidney disease requiring dialysis is not displayed
+                "HIV or AIDS",
+                "Bipolar disorder"); //Kidney disease requiring dialysis is not displayed
         for (String answer: disqualifyQS59) {
             System.out.println("Select answer for QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
@@ -675,9 +668,10 @@ public class UC_4818_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols[0])
                     .back();
         }
+
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
-                .clickOnAnswers("Multiple sclerosis (MS)")
+                .clickOnAnswers("Schizophrenia")
                 .clickNextButton(approximateHeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -693,23 +687,34 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC());
-             identificationPageCC
+        SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                              "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC())
+                .clickNextButton(new SiteSelectionPageCC());
+     //the same flow for SYnexus and non Synexus for  now
+                siteSelectionPageCC
                 .waitForPageLoad("a colitis study")
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoadIBD4818()
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoadIBD("Ulcerative Colitis")
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
+          //      .waitForPageLoad() //todo uncomment after close is updated
+                .getActivationCode()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .assertGeneratedFul(env, site)
-                .dispoShouldMatch(site.dispo, site.dispo, "4818");
+              //  .assertGeneratedFul(env, site) todo
+                .dispoShouldMatch(site.dispo, site.dispo)
+                .assertChildDOBIsNull(env, "7191");
+              //  selectActionPageCC.flareCodeShouldMatch(env, false ? "3" : "4"); //todo
     }
-}
+ }
