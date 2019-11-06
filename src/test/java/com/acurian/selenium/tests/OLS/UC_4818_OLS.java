@@ -369,6 +369,7 @@ public class UC_4818_OLS extends BaseTest {
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols[0])
                         .back();
+            }
 
                 currentlyHaveAnyOffFollowingPageOLS
                         .waitForPageLoad()
@@ -693,7 +694,6 @@ public class UC_4818_OLS extends BaseTest {
                     .dispoShouldMatch(site.dispo, site.dispo, "4818");
         }
     }
-}
 
 
 
