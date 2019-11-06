@@ -357,6 +357,7 @@ public class UC_4818_OLS extends BaseTest {
                     .clickOnAnswers(entry.getKey());
             if (disqualify7191.contains(entry.getKey())) {
                 currentlyHaveAnyOffFollowingPageOLS
+                        .waitForPageLoad()
                         .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
@@ -364,12 +365,14 @@ public class UC_4818_OLS extends BaseTest {
                         .back();
             } else {
                 currentlyHaveAnyOffFollowingPageOLS
+                        .waitForPageLoad()
                         .clickNextButton(weightLossSurgeryPageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QS8218", site.activeProtocols[0])
                         .back();
             }
+        }
 
                 currentlyHaveAnyOffFollowingPageOLS
                         .waitForPageLoad()
@@ -396,7 +399,7 @@ public class UC_4818_OLS extends BaseTest {
                         .clickOnAnswers("None of the above")
                         .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                         .waitForPageLoad();
-            }
+
 
 //GH
             CancerPage whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
