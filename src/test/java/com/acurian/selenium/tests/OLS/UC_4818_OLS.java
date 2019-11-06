@@ -690,7 +690,7 @@ public class UC_4818_OLS extends BaseTest {
                     .pidFromDbToLog(env)
                     .childPidFromDbToLog(env)
                     .assertGeneratedFul(env, site)
-                    .dispoShouldMatch(site.dispo, site.dispo);
+                    .dispoShouldMatch(site.dispo, site.dispo, "4818");
         }
     }
 }
