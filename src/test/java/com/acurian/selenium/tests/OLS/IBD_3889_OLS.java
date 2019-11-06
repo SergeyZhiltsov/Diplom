@@ -45,7 +45,7 @@ public class IBD_3889_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "flare")
+    @Test(dataProvider = "flare", enabled = false)
     @Description("IBD_3889_OLS")
     public void ibd3889CrohnsOlsTest(boolean inFlare) {
         Site site = Site.AUT_CRN_3889_HS;

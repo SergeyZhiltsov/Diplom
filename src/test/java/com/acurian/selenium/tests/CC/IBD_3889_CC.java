@@ -42,7 +42,7 @@ public class IBD_3889_CC extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "Flare status")
+    @Test(dataProvider = "Flare status", enabled = false)
     @Description("IBD 3485 for CC")
     public void IBD_3889_CCTest(String flareStatus) {
         Site site = Site.AUT_CRN_3889_HS;

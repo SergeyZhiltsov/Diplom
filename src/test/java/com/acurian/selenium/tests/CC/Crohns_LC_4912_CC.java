@@ -35,7 +35,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-               // {Site.AUT_AMS1_4912_site},
+                {Site.AUT_AMS1_4912_site},
                 {Site.AUT_AMS1_4912S_site}
         };
     }
@@ -76,7 +76,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
 
         dateOfBirthPageCC
                 .waitForPageLoadCrohns();
-       // Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCrons, "Title is diff");
+        // Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCrons, "Title is diff");
 
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -88,7 +88,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-               // .waitForPageLoad2Ver()
+                // .waitForPageLoad2Ver()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
@@ -97,7 +97,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-               // .waitForPageLoad2Ver()
+                // .waitForPageLoad2Ver()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 
@@ -249,8 +249,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC);
-        //.flareCodeShouldMatch(env, "11");
+                .clickNextButton(currentlyHaveAnyFollowingCC)
+                .waitForPageLoad()
+                .flareCodeShouldMatch(env, "11");
 
         //backflareCodeShouldMatch
         currentlyHaveAnyFollowingCC
@@ -281,11 +282,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC);
-        //        .flareCodeShouldMatch(env, "3");
-
-
-
+                .clickNextButton(currentlyHaveAnyFollowingCC)
+                .waitForPageLoad()
+                .flareCodeShouldMatch(env, "3");
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
@@ -315,7 +314,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         transitionStatementCC
                 .waitForPageLoadWithCurves("Crohn's")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
-        DoAnyOftheFollowingAdditionalDiagnosesCC  doAnyOftheFollowingAdditionalDiagnosesCC = new DoAnyOftheFollowingAdditionalDiagnosesCC();
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = new DoAnyOftheFollowingAdditionalDiagnosesCC();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -380,7 +379,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-           //     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                //     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
@@ -388,8 +387,8 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
-            //    .getPage(debugPageCC)
-            //    .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                //    .getPage(debugPageCC)
+                //    .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
 
         kidneyProblemsPage
@@ -485,8 +484,8 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "7", "170")
                 .clickNextButton(new LetMeSeePageCC());
-        HSMedicalRecordsPageCC hsMedicalRecordsPageCC  = new HSMedicalRecordsPageCC();
-        SiteSelectionPageCC siteSelectionPageCC =  letMeSeePageCC
+        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = new HSMedicalRecordsPageCC();
+        SiteSelectionPageCC siteSelectionPageCC = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
@@ -495,7 +494,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         switch (site) {
             case AUT_AMS1_4912S_site:
                 siteSelectionPageCC
-                        .waitForPageLoad("a Crohn's")
+                        .waitForPageLoad("a Crohn's study")
                         .clickOnAnswer(site.name)
                         .getPID()
                         .clickNextButton(new MedicalRecordsOptionPageCC())

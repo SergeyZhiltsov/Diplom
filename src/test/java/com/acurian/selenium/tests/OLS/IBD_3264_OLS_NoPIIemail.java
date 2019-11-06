@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class IBD_3264_OLS_NoPIIemail extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("IBD_3264_OLS")
     public void ibd3264OlsHsNoEmailAtPII() {
         Site site = Site.AUT_IBD_3264_Site;

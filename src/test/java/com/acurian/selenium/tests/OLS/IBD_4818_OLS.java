@@ -45,7 +45,7 @@ public class IBD_4818_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "flare")
+    @Test(dataProvider = "flare", enabled = false)
     @Description("IBD_3889_OLS")
     public void ibd4818OlsTest(boolean flare) {
         Site site = Site.AUT_AMS1_4818_Site;

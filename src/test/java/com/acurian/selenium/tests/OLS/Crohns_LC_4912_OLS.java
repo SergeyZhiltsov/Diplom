@@ -36,7 +36,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-          //      {Site.AUT_AMS1_4912_site},
+                {Site.AUT_AMS1_4912_site},
                 {Site.AUT_AMS1_4912S_site}
         };
     }
@@ -216,8 +216,9 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresOLS)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingOLS);
-        //.flareCodeShouldMatch(env, "11");
+                .clickNextButton(currentlyHaveAnyFollowingOLS)
+                .waitForPageLoad()
+                .flareCodeShouldMatch(env, "11");
 
         //back
         currentlyHaveAnyFollowingOLS
@@ -249,8 +250,8 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
-                .waitForPageLoad();
-        //        .flareCodeShouldMatch(env, "3");
+                .waitForPageLoad()
+                .flareCodeShouldMatch(env, "3");
 
 
 
@@ -470,7 +471,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                         .clickOkInPopUp()
                         .setSignature();
                 qualifiedFlareMonitoringAppClosePageOLS
-                        .waitForPageLoad()
+                        .waitForPageLoadCrohns()
                         .getActivationCode()
                         .clickNextButton(new ThankYouCloseSimplePageOLS())
                         .waitForPageLoad()
@@ -483,7 +484,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageOLS
-                        .waitForPageLoad("a Crohn's")
+                        .waitForPageLoad("a Crohn's study")
                         .getPID()
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new MedicalRecordsOptionPageOLS())

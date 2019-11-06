@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class IBD_3264_CC_HS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @Description("IBD 3264 for CC")
     public void IBD3264ccHS() {
         Site site = Site.AUT_IBD_3264_Site;
