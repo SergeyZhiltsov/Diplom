@@ -696,7 +696,7 @@ public class UC_7191_OLS extends BaseTest {
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
            //     .assertGeneratedFul(env, site) todo
-                .dispoShouldMatch(site.dispo, site.dispo)
+                .dispoShouldMatch(site.dispo, site.dispo, "7191")
                 .assertChildDOBIsNull(env, "7191");
 
            // aboutHealthPageOLS.flareCodeShouldMatch(env, false ? "3" : "4"); //todo
