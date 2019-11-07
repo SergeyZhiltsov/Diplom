@@ -42,7 +42,7 @@ public class UC_7191_OLS extends BaseTest {
     }
 
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = false, dataProvider = "sites")
     @Description("7191UC")
     public void uc7191OlsTest(final Site site) {
 

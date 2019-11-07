@@ -3,8 +3,10 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns.*;
+import com.acurian.selenium.pages.CC.Crohns_3485.*;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
+import com.acurian.selenium.pages.CC.IBD.*;
 import com.acurian.selenium.pages.CC.closes.*;
-import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -21,7 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Crohns_LC_4912_CC extends BaseTest {
+public class Crohns_3889_CC extends BaseTest {
+
     @BeforeMethod
     public void setUp() {
         super.setUp();
@@ -32,18 +35,22 @@ public class Crohns_LC_4912_CC extends BaseTest {
         super.tearDown();
     }
 
-    @DataProvider
-    public Object[][] sites() {
+    @DataProvider(name = "Flare status")
+    public Object[][] flareStatus() {
         return new Object[][]{
-                {Site.AUT_AMS1_4912_site},
-                {Site.AUT_AMS1_4912S_site}
+                //  {"Not in Flare"},
+                {"In Flare"}
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
-    @Description("Crohns 4912 for CC Allergan UC")
-    public void Crohns_LC_4912_CC(Site site) {
-        String phoneNumber = "AUTAMS1CRN";
+    @Test(dataProvider = "Flare status")
+    @Description("Crohns 3485 for CC")
+    public void Crohns_3889_CC(String flareStatus) {
+        Site site = Site.AUT_CRN_3889_HS;
+        String phoneNumber = "AUTAMS1IBD";
+
+        String studyName = "Crohn's or colitis";
+        String studyIndication = "a Ulcerative Colitis";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -75,77 +82,41 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoadCrohns();
-        // Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCrons, "Title is diff");
+                .waitForPageLoad2Ver();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
 
-        DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
-                .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
-        doesNotGivePermissionToProceedClosePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
-                .back();
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                // .waitForPageLoad2Ver()
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                // .waitForPageLoad2Ver()
+                .waitForPageLoad2Ver()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoadNotQCrohn()
+                .waitForPageLoadNotQ()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        genderPageCC
-                .waitForPageLoad()
-                .setMonth("Jul")
-                .setDay("1")
-                .setYear("2003") //Disqualify (“Age < 18 years old”) if <18
-                .clickOnAnswer("Female")
-                .clickNextButton(lessThan18YearsOldPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-                genderPageCC
-                        .waitForPageLoad()
-                        .setYear("1937") //Disqualify ("Age") if >= 81
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .back(genderPageCC);
         EverDiagnosedWithFollowingConditionsСС everDiagnosedWithFollowingConditionsСС = genderPageCC
                 .waitForPageLoad()
-                .setYear("1990")
+                .setMonth("Mar")
+                .setDay("2")
+                .setYear("1980")
+                .clickOnAnswer("Female")
                 .clickNextButton(new EverDiagnosedWithFollowingConditionsСС());
 
-
-        NonQRtransitionPageCC nonQRtransitionPageCC = everDiagnosedWithFollowingConditionsСС
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new NonQRtransitionPageCC());
-        nonQRtransitionPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols)
-                .back();
         WhenDiagnosedWithCronsDiseaseCC whenDiagnosedWithCronsDiseaseCC = everDiagnosedWithFollowingConditionsСС
                 .waitForPageLoad()
                 .clickOnAnswers("Crohn's disease")
+                .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseCC());
         AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresCC asPartOfYourCronsDiseaseDiagnosisFollowingProceduresCC = whenDiagnosedWithCronsDiseaseCC
                 .waitForPageLoad()
@@ -213,7 +184,24 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(everTreatedYourCronsCC);
         everTreatedYourCronsCC
                 .waitForPageLoad()
-                .clickNextButton(new BiologicMedicationsCC());
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
+                .clickNextButton(biologicMedicationsCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS8108", site.activeProtocols[0], site.activeProtocols[1])
+                .back(everTreatedYourCronsCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
+                .clickNextButton(biologicMedicationsCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS8108", site.activeProtocols[0], site.activeProtocols[1])
+                .back(everTreatedYourCronsCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(biologicMedicationsCC);
         PreviousDayGeneralWellBeingCC previousDayGeneralWellBeingCC = new PreviousDayGeneralWellBeingCC();
         PreviousDayAbdominalPainCC previousDayAbdominalPainCC = new PreviousDayAbdominalPainCC();
         PreviousDayDiarrheaOrLiquidStoolCC previousDayDiarrheaOrLiquidStoolCC = new PreviousDayDiarrheaOrLiquidStoolCC();
@@ -221,16 +209,8 @@ public class Crohns_LC_4912_CC extends BaseTest {
         CurrentlyHaveUlcersOrSoresCC currentlyHaveUlcersOrSoresCC = new CurrentlyHaveUlcersOrSoresCC();
         CurrentlyHaveAnyFollowingCC currentlyHaveAnyFollowingCC = new CurrentlyHaveAnyFollowingCC();
         biologicMedicationsCC
+                .clickOnAnswers("Cimzia (Agent Note: SIM-zee-uh)")
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Stelara (Agent Note: ste-LAHR-uh)")
-                .clickNextButton(previousDayGeneralWellBeingCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS8109", site.activeProtocols)
-                .back(biologicMedicationsCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickNextButton(previousDayGeneralWellBeingCC);
 
         //in flare
@@ -249,9 +229,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC)
-                .waitForPageLoad()
-                .flareCodeShouldMatch(env, "11");
+                .clickNextButton(currentlyHaveAnyFollowingCC);
+        //.waitForPageLoad()
+        //.flareCodeShouldMatch(env, "11");
 
         //backflareCodeShouldMatch
         currentlyHaveAnyFollowingCC
@@ -282,9 +262,12 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickNextButton(currentlyHaveUlcersOrSoresCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(currentlyHaveAnyFollowingCC)
-                .waitForPageLoad()
-                .flareCodeShouldMatch(env, "3");
+                .clickNextButton(currentlyHaveAnyFollowingCC);
+        //.waitForPageLoad()
+        //        .flareCodeShouldMatch(env, "3");
+
+
+
 
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
@@ -294,6 +277,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         disqualify.put("An abscess in your abdomen or pelvic region (an inflamed area with collection of pus)", Arrays.asList(site.activeProtocols));
         disqualify.put("Feeding tube", Arrays.asList(site.activeProtocols));
         disqualify.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols));
+        disqualify.put("A planned or scheduled surgery for Crohn’s disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : disqualify.entrySet()) {
             System.out.println(entry.getKey());
             currentlyHaveAnyFollowingCC
@@ -306,67 +290,209 @@ public class Crohns_LC_4912_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS8117", site.activeProtocols)
                     .back();
         }
-        TransitionStatementCC transitionStatementCC = currentlyHaveAnyFollowingCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCC());
 
-        transitionStatementCC
-                .waitForPageLoadWithCurves("Crohn's")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = new DoAnyOftheFollowingAdditionalDiagnosesCC();
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = currentlyHaveAnyFollowingCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
-        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
-        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = new HaveYouEverExperiencedHeartRelatedMedicalCondCC();
-        SubquestionHeartPageCC subquestionHeartPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
+                .clickNextButton(new ThankYouCrohnsPage_CC())
                 .waitForPageLoad()
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
+                        "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough",
+                        "Cancer",
+                        "Diabetes (type 1 or type 2)",
+                        "Headaches (migraine, cluster, tension)",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "High blood pressure or hypertension",
+                        "High cholesterol, triglycerides, or lipids",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)",
+                        "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Kidney disease",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Lupus",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)",
+                        "Sleep problems (insomnia, sleep apnea, narcolepsy)",
+                        "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Women's health issues (endometriosis, uterine fibroids)")
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
-                .clickNextButton(approximateHeightPageCC)
+                .clickOnAnswers("Cancer")
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
+
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whenDiagnosedWithCancerCC
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back();
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back();
+        whenDiagnosedWithCancerCC
+                .waitForPageLoad()
+                .clickOnAnswer("6 - 10 years ago")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .back();
+        //debugPageCC.checkProtocolsContainsForQNumber("QS42", site.activeProtocols);
+        whenDiagnosedWithCancerCC
+                .waitForPageLoad()
+                .clickOnAnswer("11 or more years ago")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back();
+        whenDiagnosedWithCancerCC
+                .back();
+
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart or circulation problems (heart attack, heart failure, stroke)")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
+
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
-                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
-                .clickNextButton(new SubquestionHeartPageCC())
-                .waitForPageLoad();
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = new HeartrelatedMedicalProceduresPageCC();
-        List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago");
-        for (String answer : disqualifyQ12GH) {
-            System.out.println("Select answer for Q12.1GH: " + answer);
-            subquestionHeartPageCC
-                    .waitForPageLoad()
-                    .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
-                    .clickOnAnswerForSubQuestion(1, answer)
-                    .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
-                    .clickOnAnswerForSubQuestion(2, answer)
-                    .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
-                    .clickOnAnswerForSubQuestion(3, answer)
-                    .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
-                    .clickOnAnswerForSubQuestion(4, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                    .back();
-        }
-        KidneyProblemsPage kidneyProblemsPage = subquestionHeartPageCC
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+
+        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
-                .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
                 .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("1 - 3 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC.back();
+
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Stroke")
+                .clickOnAnswers("Heart attack")
+                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
+                .clickOnAnswer("1 - 3 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC.back();
+
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickOnAnswers("Stroke")
+                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
+                .clickOnAnswer("1 - 3 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC.back();
+
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickOnAnswers("Mini-Stroke or TIA")
+                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .clickOnAnswer("1 - 3 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
+                .clickOnAnswer("4 - 6 months ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+                .back();
+        subquestionExperiencedHeartPageCC.back();
+        haveYouEverExperiencedHeartRelatedMedicalCondCC.back();
+
+        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
@@ -374,54 +500,28 @@ public class Crohns_LC_4912_CC extends BaseTest {
 
         kidneyProblemsPage
                 .waitForPageLoad()
-                .clickOnAnswers("Neither")
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                //     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0], site.activeProtocols[1])
+                .back();
+        kidneyProblemsPage
+                .waitForPageLoad()
+                .clickOnAnswers("Kidney transplant")
+                .clickOnAnswers("Dialysis")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols[0], site.activeProtocols[1])
                 .back();
         kidneyProblemsPage
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickOnAnswers("Kidney transplant")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
-                .waitForPageLoad()
-                //    .getPage(debugPageCC)
-                //    .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back();
-
-        kidneyProblemsPage
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new FollowingMentalEmotionalHealthPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back(new FollowingMentalEmotionalHealthPageCC())
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back(new FollowingMentalEmotionalHealthPageCC())
-                .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
-                .clickOnAnswers("None of the above")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
-        doAnyOftheFollowingAdditionalDiagnosesCC
+        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new ApproximateHeightPageCC());
         approximateHeightPageCC
@@ -480,63 +580,43 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
 
+
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
                 .setAll("5", "7", "170")
                 .clickNextButton(new LetMeSeePageCC());
-        HSMedicalRecordsPageCC hsMedicalRecordsPageCC = new HSMedicalRecordsPageCC();
-        SiteSelectionPageCC siteSelectionPageCC = letMeSeePageCC
+        HSMedicalRecordsPageCC hsMedicalRecordsPageCC  = letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(identificationPageCC)
                 .waitForPageLoad()
-                .clickNextButton(new SiteSelectionPageCC());
-        QualifiedFlareMonitoringAppClosePageCC qualifiedFlareMonitoringAppClosePageCC = new QualifiedFlareMonitoringAppClosePageCC();
-        switch (site) {
-            case AUT_AMS1_4912S_site:
-                siteSelectionPageCC
-                        .waitForPageLoad("a Crohn's study")
-                        .clickOnAnswer(site.name)
-                        .getPID()
-                        .clickNextButton(new MedicalRecordsOptionPageCC())
-                        .waitForPageLoad()
-                        .clickOnAnswer("Continue with medical records")
-                        .clickNextButton(new DoctorInformationCollectionPageCC())
-                        .waitForPageLoadIBD("Crohn's Disease")
-                        .clickNextButton(new HSMedicalRecordsPageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC());
-
-                qualifiedFlareMonitoringAppClosePageCC
-                        .waitForPageLoad()
-                        .getActivationCode()
-                        .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
-                break;
-            case AUT_AMS1_4912_site:
-                siteSelectionPageCC
-                        .waitForPageLoad("a Crohn's")
-                        .clickOnAnswer(site.name)
-                        .getPID()
-                        .clickNextButton(new MedicalRecordsOptionPageCC())
-                        .waitForPageLoad()
-                        .clickOnAnswer("Continue without medical records")
-                        .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
-                        .waitForPageLoad()
-                        .getActivationCode()
-                        .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(new SelectActionPageCC())
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .childPidFromDbToLog(env)
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
+                .clickNextButton(new SiteSelectionPageCC())
+                .waitForPageLoad("a Crohn's study")
+                .getPID()
+                .clickOnAnswer(site.name)
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoadIBD("Crohn's Disease")
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad();
+        if(flareStatus.equals("Not in Flare")) {
+            hsMedicalRecordsPageCC
+                    .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
+                    .waitForPageLoad()
+                    .getActivationCode();
         }
+        hsMedicalRecordsPageCC
+                .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
+                .waitForPageLoadCrohns()
+                .getActivationCode()
+                .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad()
+                .clickNextButton(selectActionPageCC)
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .assertGeneratedFul(env, site)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

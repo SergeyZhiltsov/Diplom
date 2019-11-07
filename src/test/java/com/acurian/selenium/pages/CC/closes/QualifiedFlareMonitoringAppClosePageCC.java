@@ -19,9 +19,14 @@ public class QualifiedFlareMonitoringAppClosePageCC extends MainPageCC{
     		"\n" +
     		"You will need to provide us with an email address to start this process. What email address should we use:";
 
+    public final String titleExpectedCrohns ="Once you download and activate the MyColo app, take time to answer the 3 daily questions. This will measure your disease activity and alert you when you are experiencing active disease (also known as flare). Once the app alerts you to being in flare, you will be prompted to call us so we can connect you to your study site staff who will discuss your qualifications for the study and next steps.";
+
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
-    
+
+    @FindBy(xpath = "//*[contains(@class, 'sub_question_text')]")
+    WebElement titleText2;
+
     @FindBy(xpath = "//div[contains(@class,'question_text')]//u")
     WebElement activationCodePath;
     
@@ -38,6 +43,12 @@ public class QualifiedFlareMonitoringAppClosePageCC extends MainPageCC{
     @Step
     public QualifiedFlareMonitoringAppClosePageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public QualifiedFlareMonitoringAppClosePageCC waitForPageLoadCrohns() {
+        waitForPageLoadMain(titleText2, titleExpectedCrohns);
         return this;
     }
     
