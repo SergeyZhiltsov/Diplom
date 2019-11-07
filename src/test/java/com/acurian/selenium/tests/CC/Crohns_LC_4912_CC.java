@@ -40,7 +40,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("Crohns 4912 for CC Allergan UC")
     public void Crohns_LC_4912_CC(Site site) {
         String phoneNumber = "AUTAMS1CRN";

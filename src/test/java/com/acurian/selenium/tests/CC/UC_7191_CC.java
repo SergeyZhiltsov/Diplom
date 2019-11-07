@@ -43,7 +43,7 @@ public class UC_7191_CC extends BaseTest {
     }
 
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = false, dataProvider = "sites")
     @Description("7191UC")
     public void uc7191CCTest(final Site site) {
 

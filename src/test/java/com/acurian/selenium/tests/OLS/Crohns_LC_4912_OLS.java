@@ -41,7 +41,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("Crohns 4912 for OLS Allergan UC")
     public void Crohns_LC_4912_OLS(Site site) {
         String phoneNumber = "AUTAMS1CRN";
