@@ -16,6 +16,7 @@ public class ProvidingInformationPageOLS extends MainPageBlinx {
     @FindBy(xpath = "//div[@class='single-choice-answers-container']/button")
     List<WebElement> singleChoiceButtonsList;
 
+
     @Step
     public ProvidingInformationPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
