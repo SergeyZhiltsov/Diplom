@@ -94,13 +94,13 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
-        EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsСС = genderPageOLS
+        EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsOLS = genderPageOLS
                 .waitForPageLoad()
                 .setDate("07011990")
                 .clickOnAnswer("Male")
                 .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = everDiagnosedWithFollowingConditionsСС
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
@@ -109,7 +109,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols)
                 .back();
-        WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsСС
+        WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseOLS());

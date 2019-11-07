@@ -273,15 +273,6 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-       currentlyHaveAnyFollowingOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new ThankYouCrohnsPage_OLS())
-                .waitForPageLoad()
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-
-
-
 
         //----------****************NEW GENERAL HEALTH Questions************************----------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
