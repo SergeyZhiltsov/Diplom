@@ -40,7 +40,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_OA_4831_Syn},
+           //     {Site.AUT_OA_4831_Syn},
                 {Site.AUT_OA_4831_site}
         };
     }

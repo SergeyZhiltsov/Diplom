@@ -3,10 +3,8 @@
 <suite name="All" verbose="4" parallel="classes" thread-count="5">
     <test name="Regression1">
         <classes>
-            <class name="com.acurian.selenium.tests.OLS.UC_7191_OLS"></class>
-            <class name="com.acurian.selenium.tests.OLS.UC_4818_OLS"></class>
-            <class name="com.acurian.selenium.tests.CC.UC_7191_CC"></class>
-            <class name="com.acurian.selenium.tests.CC.UC_4818_CC"></class>
+            <class name="com.acurian.selenium.tests.OLS.OA_4831_OLS_A_S"></class>
+
         </classes>
     </test>
-</suite>
+<
