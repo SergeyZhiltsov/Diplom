@@ -39,7 +39,7 @@ public class UC_4818_OLS extends BaseTest {
     public Object[][] flare() {
         return new Object[][]{
                 {true},
-                {false}
+         //       {false}
         };
     }
 
@@ -343,9 +343,9 @@ public class UC_4818_OLS extends BaseTest {
         disqualifyQ18.put("IV (parenteral) nutrition", Arrays.asList(site.activeProtocols[0]));
 
         HashSet<String> disqualify7191 = new HashSet<>(); //options that cause DQ 7191->skip to end of module
-        disqualify7191.add("Partial or Total colectomy");
-        disqualify7191.add("Colostomy");
-        disqualify7191.add("Ileostomy");
+//        disqualify7191.add("Partial or Total colectomy");
+//        disqualify7191.add("Colostomy");
+//        disqualify7191.add("Ileostomy");
 
         WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = new WeightLossSurgeryPageOLS();
 
