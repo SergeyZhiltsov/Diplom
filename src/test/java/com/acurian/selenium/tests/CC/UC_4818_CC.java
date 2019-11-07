@@ -377,9 +377,9 @@ public class UC_4818_CC extends BaseTest {
         disqualifyQ18.put("IV (parenteral) nutrition (Agent Note: puh-REN-ter-ul)", Arrays.asList(site.activeProtocols[0]));
 
         HashSet<String> disqualify7191 = new HashSet<>(); //options that cause DQ 7191->skip to end of module
-//        disqualify7191.add("Partial or Total colectomy");
-//        disqualify7191.add("Colostomy");
-//        disqualify7191.add("Ileostomy");
+        disqualify7191.add("Partial or Total colectomy");
+        disqualify7191.add("Colostomy");
+        disqualify7191.add("Ileostomy");
 
         WeightLossSurgeryPageCC weightLossSurgeryPageCC = new WeightLossSurgeryPageCC();
 
@@ -391,7 +391,7 @@ public class UC_4818_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey());
-            if (disqualify7191.contains(entry.getKey())) {
+            if (/*disqualify7191.contains(entry.getKey())**/true ) { //todo after 7191 activation
                 currentlyHaveAnyOffFollowingPageCC
                         .clickNextButton(transitionStatementCC)
                         .waitForPageLoadWithCurves("colitis")
@@ -408,7 +408,7 @@ public class UC_4818_CC extends BaseTest {
             }
         }
 
-                currentlyHaveAnyOffFollowingPageCC
+ /*               currentlyHaveAnyOffFollowingPageCC //todo after 7191 activation
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickNextButton(weightLossSurgeryPageCC);
@@ -433,7 +433,12 @@ public class UC_4818_CC extends BaseTest {
                         .clickOnAnswers("None of the above")
                         .clickNextButton(transitionStatementCC)
                         .waitForPageLoadWithCurves("colitis");
+*/
 
+            currentlyHaveAnyOffFollowingPageCC //todo after 7191 activation
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(transitionStatementCC);
 
             transitionStatementCC
                 .waitForPageLoadWithCurves("colitis")
