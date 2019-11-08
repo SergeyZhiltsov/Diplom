@@ -135,7 +135,7 @@ public enum Site {
     //Hot Flashes
     AUT_AMS1_7119_site("AUT_AMS1_7119_site", "08204", "41C", false, false, "2693_CL_0301","2693_CL_0302","2693_CL_0304"),
     //4960
-    AUT_AMS1_4960_site("AUT_AMS1_4960_site", "19422", "1R", true, false, "LG_GDCL002"),
+    AUT_AMS1_4960_site("AUT_AMS1_4960_site", "08204", "1R", true, false, "LG_GDCL002"),
     AUT_AMS1_4960S_site("AUT_AMS1_4960S_site", "08204", "41C", false, false, "LG_GDCL002"),
     //4912
     AUT_AMS1_4912_site("AUT_AMS1_4912_site", "19422", "1R", true, true, "I6T_MC_AMAM"),

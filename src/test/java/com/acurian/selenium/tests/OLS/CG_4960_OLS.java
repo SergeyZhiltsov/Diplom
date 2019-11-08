@@ -441,6 +441,7 @@ public class CG_4960_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
         IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+                .waitForPageLoad()
                 .setLbs("160")
                 .clickNextButton(new IdentificationPageOLS());
 

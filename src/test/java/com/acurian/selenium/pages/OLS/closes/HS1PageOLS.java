@@ -24,17 +24,17 @@ public class HS1PageOLS extends MainPageOLS {
     @FindBy(xpath = "//div[@id='signer-mobile-application']//button[span/text()='OK']")
     WebElement popButtonOk;
 
-    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='1']")
+    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='1'] | //*[@id='page-0']/div[1]/div/div[1]/div/textarea")
     WebElement firstNameField;
 
-    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='22']")
+    @FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-signature-document-field--component']/div[contains(@class,'m-document-text-input-field')]/textarea[@tabindex='22'] | //*[@id='page-1']/div[5]/div/div[1]/div/textarea")
     WebElement nameField;
     
     //@FindBy(xpath = "//div[@id='signer-mobile-application']//div[@class='m-document-signature-field input']/span[text()='Click to sign']")
-    @FindBy (xpath = "//div[@class = 'm-signature-document-field signature']")
+    @FindBy (xpath = "//div[@class = 'm-signature-document-field signature'] | //*[@id='page-1']/div[6]/div/div[1]")
     WebElement clickToSignButton;
 
-    @FindBy(xpath = "//div[@class='m-sign-modal-popup']//div[@class='m-sign-modal--menu']//span[text()='Type it in']")
+    @FindBy(xpath = "//div[@class='m-sign-modal-popup']//div[@class='m-sign-modal--menu']//span[text()='Type it in'] | //*[@id='signer-mobile-body']/div[4]/div/div/div/div[1]/div[3]/span[2]")
     WebElement typeItInButton;
 
     @FindBy(xpath = "//button[@id='insertButton']")
