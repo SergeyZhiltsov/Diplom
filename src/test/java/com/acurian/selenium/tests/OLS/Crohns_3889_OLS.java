@@ -591,6 +591,7 @@ public class Crohns_3889_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS())
                 .waitForPageLoad()
                 .clickOkInPopUp()
+                .waitForPageLoad()
                 .setSignature();
 
 /*                //------------HUMAN API Interface in HelloSign----------------
@@ -626,7 +627,7 @@ public class Crohns_3889_OLS extends BaseTest {
         } else {
             QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
             qualifiedFlareMonitoringAppClosePageOLS
-                    .waitForPageLoad()
+                    .waitForPageLoadCrohns()
                     .getActivationCode()
                     .clickNextButton(thankYouCloseSimplePageOLS)
                     .waitForPageLoad()

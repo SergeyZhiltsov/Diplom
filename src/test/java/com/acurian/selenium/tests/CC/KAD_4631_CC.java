@@ -95,7 +95,7 @@ public class KAD_4631_CC extends BaseTest {
 
         //------------PII Question------------
         GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoad1()
+                .waitForPageLoadNotQCrohn()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
                 .clickNextButton(new GenderPageCC());
