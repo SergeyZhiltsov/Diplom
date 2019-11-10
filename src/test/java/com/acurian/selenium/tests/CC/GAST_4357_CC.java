@@ -160,9 +160,11 @@ public class GAST_4357_CC extends BaseTest {
         for (String answer: disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             withType2DiabetesPageCC
-                    .waitForPageLoad()
+                    .waitForPageLoad();
+            CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = withType2DiabetesPageCC
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
+                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
+            currentlyTreatingYourDiabetesPageCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -204,7 +206,7 @@ public class GAST_4357_CC extends BaseTest {
             howLongAgoDiagnosedDiabetesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(сardiovascularDiseaseThanOthersPageCC)
+                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC())
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)

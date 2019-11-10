@@ -637,7 +637,7 @@ public class AF_4958_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "01/01/1960", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "aut4958s", site.name,
+                                "999-999-9999", "aut4958s", site.name,
                                 "APTXXXFIB005")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

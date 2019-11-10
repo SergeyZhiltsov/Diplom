@@ -112,7 +112,7 @@ public enum Site {
     //AUT_INS_5017S_site("AUT_INS_5017S_site", "19901", "41C", false, false, "ID_078A301", "ID_078A302"), //Not required in spec
     AUT_INS_5017_site("AUT_INS_5017_site", "08204", "1R", true, false, "ID_078A301", "ID_078A302"),
     //5019
-    AUT_AMS1_5019_site("AUT_AMS1_5019_site", "19422", "1R", false, false, "BOS_589_201"),
+    AUT_AMS1_5019_site("AUT_AMS1_5019_site", "08204", "1R", false, false, "BOS_589_201"),
     AUT_AMS1_5019S_site("AUT_AMS1_5019S_site", "08204", "41C", false, false, "BOS_589_201"),
     //5034
     AUT_CV_5034A_site("AUT_CV_5034A_site", "45206", "1R", true, false, "K_877_302_A"), //45205 //Chartfill with MR receive standard email (MR is present but need to set false for email verification)
