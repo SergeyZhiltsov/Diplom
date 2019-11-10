@@ -132,7 +132,7 @@ public class GAST_4357_OLS extends BaseTest {
             withType2DiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
+                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
@@ -152,7 +152,8 @@ public class GAST_4357_OLS extends BaseTest {
             withType1DiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                    //.clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7205", site.activeProtocols)
@@ -215,7 +216,8 @@ public class GAST_4357_OLS extends BaseTest {
         symptomsFirstStartPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("2 months ago or less")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                //.clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)

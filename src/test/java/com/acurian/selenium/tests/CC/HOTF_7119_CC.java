@@ -406,7 +406,7 @@ public class HOTF_7119_CC extends BaseTest {
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
                 .assertVariables("Acurian", "Trial", "08/09/1970", "US",
-                        "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                        "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                         "aut7119s", site.name, "ASSICNVMS301,ASSICNVMS302,ASSICNVMS304")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)

@@ -49,7 +49,7 @@ public class PSA_5071_CC extends BaseTest {
 
     @Test(dataProvider = "sites")
     @Description("PsA 5071 OLS Gilead Psoriatic Arthritis(PsA)")
-    public void psor5071cc(Site site) {
+    public void psar5071cc(Site site) {
         final String phoneNumber = "AUTAMS1PSA";
         final String transitionStudyName = "psoriatic arthritis";
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -584,7 +584,7 @@ public class PSA_5071_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "08/09/1980", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "aut5071s", site.name,
+                                "999-999-9999", "aut5071s", site.name,
                                 "GILPPDPSA566")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC);

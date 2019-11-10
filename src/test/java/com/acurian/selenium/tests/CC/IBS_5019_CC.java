@@ -37,7 +37,7 @@ public class IBS_5019_CC extends BaseTest {
     public Object[][] sites() {
         return new Object[][] {
                 {Site.AUT_AMS1_5019_site},
- //               {Site.AUT_AMS1_5019S_site}
+                {Site.AUT_AMS1_5019S_site}
         };
     }
 
