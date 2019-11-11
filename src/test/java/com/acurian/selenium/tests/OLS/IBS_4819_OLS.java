@@ -71,7 +71,7 @@ public class IBS_4819_OLS extends BaseTest {
                         .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                         .back(genderPageOLS)
                         .waitForPageLoad()
-                        .setDate("01081947")//Disqualify ("Age") if >= 71
+                        .setDate("01081940")//Disqualify ("Age") if >= 71
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         SufferFromIrritablePageOLS sufferFromIrritablePageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
