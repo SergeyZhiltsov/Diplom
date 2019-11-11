@@ -83,7 +83,7 @@ public class IBS_5019_OLS extends BaseTest {
                         .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                         .back(genderPageOLS)
                         .waitForPageLoad()
-                        .setDate("01081950")
+                        .setDate("01081940")
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 
         SufferFromIrritablePageOLS sufferFromIrritablePageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
