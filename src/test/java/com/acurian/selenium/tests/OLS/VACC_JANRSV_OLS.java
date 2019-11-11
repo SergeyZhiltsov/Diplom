@@ -47,7 +47,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites")
+    @Test(dataProvider = "sites", enabled = false)
     @Description("VACC_4556_OLS")
     public void vaccJANRSVOlsTest(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
