@@ -101,14 +101,14 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
-        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
+        IfYouUseYourHandToCoverAllOfTheEczema_OLS ifYouUseYourHandToCoverAllOfTheEczema_OLS = new IfYouUseYourHandToCoverAllOfTheEczema_OLS();
         List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months");
         for (String answer: disqualifyQ3) {
             System.out.println("Select answer for Q3: " + answer);
             howLongHaveYouBeenSufferingFromEczema_OLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
+                    .clickNextButton(ifYouUseYourHandToCoverAllOfTheEczema_OLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
@@ -117,15 +117,14 @@ public class KAD_4631_OLS extends BaseTest {
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
-                .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS);
-
+                .clickNextButton(ifYouUseYourHandToCoverAllOfTheEczema_OLS);
 
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
         List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
-            howMuchEczemaYouHaveOnYourBody_OLS
+            ifYouUseYourHandToCoverAllOfTheEczema_OLS
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageOLS)
@@ -138,7 +137,7 @@ public class KAD_4631_OLS extends BaseTest {
         List<String> studyLevelStatus = Arrays.asList("13", "14", "15", "16", "17", "18", "19", "20");
         for (String answer : studyLevelStatus) {
             System.out.println("Select answer to get study level status logic for Q4: " + answer);
-            howMuchEczemaYouHaveOnYourBody_OLS
+            ifYouUseYourHandToCoverAllOfTheEczema_OLS
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageOLS)
@@ -147,7 +146,8 @@ public class KAD_4631_OLS extends BaseTest {
                     .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
-        howMuchEczemaYouHaveOnYourBody_OLS
+
+        ifYouUseYourHandToCoverAllOfTheEczema_OLS
                 .waitForPageLoad()
                 .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageOLS);
 
@@ -513,13 +513,13 @@ public class KAD_4631_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back();
 
-        approximateHeightPageOLS
+        ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setFeatwithClear("4")
                 .setIncheswithClear("5")
                 .setLbs("188") //BMI=47.15, proceed to Obesity module
-                .clickNextButton(doYouExperienceAnyOfFollowingSymptoms_OLS);
-        doYouExperienceAnyOfFollowingSymptoms_OLS
+                .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+        experienceExcessiveHungerOrIncreasedAppetiteOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

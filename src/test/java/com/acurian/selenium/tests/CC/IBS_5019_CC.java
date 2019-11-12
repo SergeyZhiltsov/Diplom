@@ -36,7 +36,7 @@ public class IBS_5019_CC extends BaseTest {
     @DataProvider(name = "sites")
     public Object[][] sites() {
         return new Object[][] {
-                {Site.AUT_AMS1_5019_site},
+              //  {Site.AUT_AMS1_5019_site},
                 {Site.AUT_AMS1_5019S_site}
         };
     }
@@ -717,7 +717,7 @@ public class IBS_5019_CC extends BaseTest {
                         .assertVariables("Acurian", "Trial", "08/01/1990", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", "%SYN_SITE_NUM%", site.name,
-                                            env.equals("STG") ? "BOSPPDIBS201" : "%SYN_PROJECT_CODE%")//TODO correct after bug is fixed
+                                            "BOSPPDIBS201")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

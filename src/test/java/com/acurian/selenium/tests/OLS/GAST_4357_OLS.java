@@ -152,8 +152,8 @@ public class GAST_4357_OLS extends BaseTest {
             withType1DiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    //.clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
+                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+            //        .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7205", site.activeProtocols)
@@ -165,12 +165,13 @@ public class GAST_4357_OLS extends BaseTest {
                 .clickOnAnswer("Unsure") //If selected "Unsure", go to Q6
                 .clickNextButton(new HowLongAgoDiagnosedDiabetesPageOLS());
         //Q6
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS1 = new CurrentlyTreatingYourDiabetesPageOLS();
         for (String answer : disqualify) {
             System.out.println("Select answer for Q6: " + answer);
             howLongAgoDiagnosedDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
-                    .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
+                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS1)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS7206", site.activeProtocols)
@@ -191,7 +192,7 @@ public class GAST_4357_OLS extends BaseTest {
         symptomsRegularlyOncePerWeekPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above") //Will DQ in Q9 //Skip to Q11
-                .clickNextButton(сardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS1)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
