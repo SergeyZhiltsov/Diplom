@@ -544,7 +544,7 @@ public class GERD_5098_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "01/01/1990", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "aut5098S", site.name,
+                                "999-999-9999", "aut5098S", site.name,
                                 "PHMPPDEOE301,PHMPPDPYL301")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

@@ -21,7 +21,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data")
+    @Test(dataProvider = "data", enabled = false)
     public void cv4450olsBlinxTest(Site site, String city, String state) {
         DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
         LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();

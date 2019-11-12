@@ -542,7 +542,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                 synexusRadiantDirectScheduleCC
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "01/01/1954", "US",
-                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                                 "autJANRSVS", site.name, "JANIQVRSV001")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

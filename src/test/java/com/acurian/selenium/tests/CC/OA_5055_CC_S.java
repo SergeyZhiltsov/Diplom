@@ -512,7 +512,7 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
                 .assertVariables("Acurian", "Trial", "09/09/1980", "US",
-                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                         "aut5055test", "AUT_OA_5055_Syn", "REGICNOSA602")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
