@@ -6,7 +6,6 @@ import com.acurian.selenium.pages.CC.HFL_4722.HeartTransplantPageCC;
 import com.acurian.selenium.pages.CC.HFL_4722.SymptomsOfHeartFailurePageCC;
 import com.acurian.selenium.pages.CC.HFL_4722.TreatYourHeartFailurePageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusHealthyMindsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;

@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.OLS;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
-import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine.*;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -12,10 +11,6 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -43,12 +38,12 @@ public class VACC_JANRSV_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 //{Site.AUT_AMS_JANRSV},
-                {Site.AUT_AMS_JANRSV_Syn},
-               // {Site.AUT_AMS_JANRDS_Syn}
+                //{Site.AUT_AMS_JANRSV_Syn}
+                {Site.AUT_AMS_JANRDS_Syn}
         };
     }
 
-    @Test(dataProvider = "sites", enabled = true)
+    @Test(dataProvider = "sites")
     @Description("VACC_4556_OLS")
     public void vaccJANRSVOlsTest(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
@@ -514,12 +509,11 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS);
 
 
-            //CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = approximateHeightPageOLS
-            ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
+            CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = approximateHeightPageOLS
                     .waitForPageLoad()
                     .setAll("5", "5", "250")
-                    .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
-            experienceExcessiveHungerOrIncreasedAppetiteOLS
+                    .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+            cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)

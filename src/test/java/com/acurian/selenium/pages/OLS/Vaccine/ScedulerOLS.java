@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.OLS.Vaccine;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.WebDriverWaitLogged;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -10,10 +11,15 @@ public class ScedulerOLS extends MainPageOLS {
 
     public final String titleExpected = "Time";
 
+    public final String titleExpectedClientDetailsMain = "Please, confirm details";
+
     public final String titleExpected2 = "Client details";
 
-    @FindBy(xpath = "//*[@id='sb_dateview_container']/div/div/div[1]/div/div[2]/div/div")
+    @FindBy(xpath = "(//*[@class='title-small'])[1]")
     WebElement titleText;
+
+    @FindBy(xpath = "//*[@class='sb-widget-iframe']")
+    WebElement frame;
 
     @FindBy(xpath = "(//*[@class='title-small'])[2]")
     WebElement titleText2;
@@ -56,25 +62,32 @@ public class ScedulerOLS extends MainPageOLS {
 
     @Step
     public ScedulerOLS waitForPageLoadClientDetails() {
-        waitForPageLoadMain(titleTextClientDetailsMain, titleExpected);
+        waitForPageLoadMain(titleTextClientDetailsMain, titleExpectedClientDetailsMain);
         return this;
     }
 
     @Step
     public ScedulerOLS waitForPageLoad() {
+        getDriver().switchTo().frame(frame);
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
     public ScedulerOLS clickOnDay() {
+        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
+        webDriverWaitLogged.waitforVisibility(dayBtn);
         dayBtn.click();
+        waitForAnimation();
         return this;
     }
 
     @Step
     public ScedulerOLS clickOnTime() {
+        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
+        webDriverWaitLogged.waitforVisibility(timeBtn);
         timeBtn.click();
+        waitForAnimation();
         return this;
     }
 

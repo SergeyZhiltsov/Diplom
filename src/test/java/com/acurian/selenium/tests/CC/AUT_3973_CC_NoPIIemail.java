@@ -31,9 +31,7 @@ import com.acurian.selenium.pages.CC.shared.NonQRtransitionPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementAUTISM_CC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
-import com.acurian.selenium.utils.DataProviderPool;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 public class AUT_3973_CC_NoPIIemail extends BaseTest {
 
