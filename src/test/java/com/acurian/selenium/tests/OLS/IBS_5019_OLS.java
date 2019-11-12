@@ -7,7 +7,6 @@ import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms
 import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhenDidYouHaveAppendixRemoved_OLS;
 import com.acurian.selenium.pages.OLS.IBS.*;
-import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;

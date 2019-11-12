@@ -5,7 +5,6 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LOWT.CurrentlyTakingFollowingMedicationsCC;
-import com.acurian.selenium.pages.CC.LPS_4442.EitherOfTheFollowingMedicationsCC;
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -20,7 +19,6 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class DERM_4815_CC_A_S extends BaseTest {

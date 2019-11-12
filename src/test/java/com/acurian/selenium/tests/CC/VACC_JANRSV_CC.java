@@ -2,8 +2,6 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.GERD.DoYouExperienceAnyOfFollowingSymptoms_CC;
-import com.acurian.selenium.pages.CC.HOTF_7119.DoyouExperienceHotFlashesCC;
 import com.acurian.selenium.pages.CC.Vaccine.AllergicToAnyVaccinesCC;
 import com.acurian.selenium.pages.CC.Vaccine.AreYouGenerallyInGoodHealthCC;
 import com.acurian.selenium.pages.CC.Vaccine.AreYouInterestedVaccineResearchStudyCC;
@@ -22,9 +20,6 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static com.acurian.selenium.constants.Site.AUT_AMS_JANRSV;
-import static com.acurian.selenium.constants.Site.AUT_AMS_JANRSV_Syn;
 
 public class VACC_JANRSV_CC extends BaseTest {
 
