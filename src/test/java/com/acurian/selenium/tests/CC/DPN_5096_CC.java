@@ -2,12 +2,11 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.*;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.DiagnosedAnyTypeOfDiabetesPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
+import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
+import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedMedicalCondDiseases_CC;
 import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
@@ -15,6 +14,8 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -150,36 +151,46 @@ public class DPN_5096_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
-
-        //-----------Q3 -What kind of diabetes do you have?? ---------------
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = new CardiovascularDiseaseThanOthersPageCC();
-        List<String> disqualifyQ3 = Arrays.asList("Type 1 diabetes (sometimes called Juvenile diabetes)",
-                "High blood sugar only",
-                "Unsure");
-        for (String answer : disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
-            whatKindOfDiabetesPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
-                    .back();
-        }
+        //-----------Q3 -What kind of diabetes do you have?? ---------------
+        WithType1DiabetesPageCC withType1DiabetesPageOLS = new WithType1DiabetesPageCC();
+        whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(withType1DiabetesPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
+                .back();
+        whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("High blood sugar only")
+                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
+                .back();
+
+        whatKindOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
+                .back();
 
         DoYouExperienceDPN_CC doYouExperienceDPN_CC = whatKindOfDiabetesPageCC.waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new DoYouExperienceDPN_CC())
                 .waitForPageLoad();
-
         //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------
         doYouExperienceDPN_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No, none of the above")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
-
-        cardiovascularDiseaseThanOthersPageCC
+        WithType2DiabetesPageCC withType2DiabetesPageCC = new WithType2DiabetesPageCC();
+        withType2DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5504", site.activeProtocols)
@@ -201,7 +212,7 @@ public class DPN_5096_CC extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(withType2DiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
@@ -210,9 +221,9 @@ public class DPN_5096_CC extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_CC
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right foot", "Left leg", "Right hand or arm", "Left hand or arm", "Other")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+                .clickNextButton(withType2DiabetesPageCC);
 
-        cardiovascularDiseaseThanOthersPageCC
+        withType2DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
@@ -222,9 +233,9 @@ public class DPN_5096_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right leg", "Left foot")
                 .clickOnAnswers("Right hand or arm", "Left hand or arm", "Other")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+                .clickNextButton(withType2DiabetesPageCC);
 
-        cardiovascularDiseaseThanOthersPageCC
+        withType2DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
@@ -353,9 +364,9 @@ public class DPN_5096_CC extends BaseTest {
         currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+                .clickNextButton(withType2DiabetesPageCC);
 
-        cardiovascularDiseaseThanOthersPageCC
+        withType2DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5524")
@@ -486,7 +497,7 @@ public class DPN_5096_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "04/05/2001", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", "aut5096cc", site.name,
+                                "999-999-9999", "aut5096cc", site.name,
                                 "APTXXXDPN008")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

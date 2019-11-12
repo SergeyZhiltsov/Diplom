@@ -30,7 +30,7 @@ public class ScedulerOLS extends MainPageOLS {
     @FindBy(xpath = "(//*[@class='day-off'])[16]")
     WebElement dayBtn;
 
-    @FindBy(xpath = "(//*[contains(@class, 'sb-cell')])[40]")
+    @FindBy(xpath = "(//*[contains(@class, 'free')])[3]")
     WebElement timeBtn;
 
     @FindBy(xpath = "(//*[@class='info'])[1]")
@@ -41,6 +41,9 @@ public class ScedulerOLS extends MainPageOLS {
 
     @FindBy(xpath = "(//*[@class='info'])[3]")
     WebElement serviceProvider;
+
+    @FindBy(xpath = "(//*[@class='custom-checkbox'])[1]")
+    WebElement agreeBtn;
 
     @Step
     public ScedulerOLS dateCheck() {
@@ -69,6 +72,11 @@ public class ScedulerOLS extends MainPageOLS {
     @Step
     public ScedulerOLS waitForPageLoad() {
         getDriver().switchTo().frame(frame);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
@@ -87,6 +95,15 @@ public class ScedulerOLS extends MainPageOLS {
         WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
         webDriverWaitLogged.waitforVisibility(timeBtn);
         timeBtn.click();
+        waitForAnimation();
+        return this;
+    }
+
+    @Step
+    public ScedulerOLS clickOnAgree() {
+        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
+        webDriverWaitLogged.waitforVisibility(agreeBtn);
+        agreeBtn.click();
         waitForAnimation();
         return this;
     }

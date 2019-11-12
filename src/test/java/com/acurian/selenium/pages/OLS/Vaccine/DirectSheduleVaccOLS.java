@@ -16,6 +16,9 @@ public class DirectSheduleVaccOLS extends MainPageOLS {
             "Click below to schedule your appointment. This will open a new window with available dates and times at the site you have selected.\n" +
             "After you select an appointment date and time, please return to this window and click \"next\" to complete the next steps.";
 
+    public final String titleExpectedSTG = "Click below to schedule your appointment. After the appointment confirmation, please return to this window and click \"next\" to complete the process.\n" +
+            "If you are not able schedule now, you will be contacted by the study doctor's office to schedule your appointment.";
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
     @FindBy(xpath = "(//*[contains(@class, 'btn')])[1]")
@@ -24,6 +27,12 @@ public class DirectSheduleVaccOLS extends MainPageOLS {
     @Step
     public DirectSheduleVaccOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public DirectSheduleVaccOLS waitForPageLoadSTG() {
+        waitForPageLoadMain(titleText, titleExpectedSTG);
         return this;
     }
 

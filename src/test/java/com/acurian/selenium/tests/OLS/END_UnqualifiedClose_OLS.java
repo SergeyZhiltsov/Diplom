@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 public class END_UnqualifiedClose_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     public void endUnqualifiedCloseOLS() {
         Site site = Site.AUT_END_4385;
         String phoneNumberRA = "AUTAMS1END";

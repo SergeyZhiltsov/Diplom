@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
@@ -100,12 +101,12 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
-
+        WithType1DiabetesPageCC withType1DiabetesPageCC = new WithType1DiabetesPageCC();
         CardiovascularDiseaseThanOthersPageCC сardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new  CardiovascularDiseaseThanOthersPageCC());
-        сardiovascularDiseaseThanOthersPageCC
+        withType1DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", protocols)
@@ -524,7 +525,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         		.clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
                 .assertVariables("Acurian", "Trial", "09/09/1980", "US",
-                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                         env.equals("STG") ? "010151" : "TA4722S", site.name, "SANPPDDIA893")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                
                 .clickNextButton(selectActionPageCC)

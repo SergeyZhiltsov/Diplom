@@ -16,7 +16,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 
 public class END_4385_OLS extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     @Description("a cluster headache study 3237 - OLS")
     public void end4385ols() {
         Site site = Site.AUT_END_4385;

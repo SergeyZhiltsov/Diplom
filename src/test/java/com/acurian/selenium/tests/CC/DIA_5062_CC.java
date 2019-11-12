@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.DigestiveConditionsAffectDiabetesPageCC;
+import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.IBD.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC;
@@ -106,12 +108,12 @@ public class DIA_5062_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
-
+        WithType1DiabetesPageCC withType1DiabetesPageCC = new WithType1DiabetesPageCC();
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-        cardiovascularDiseaseThanOthersPageCC
+        withType1DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -263,7 +265,7 @@ public class DIA_5062_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(condition)
-                    .clickNextButton(haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC)
+                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageCC())
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0016651", site.activeProtocols)
@@ -574,7 +576,7 @@ public class DIA_5062_CC extends BaseTest {
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
                 .assertVariables("Acurian", "Trial", "09/09/1960", "US",
-                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999 -999-9999",
+                        "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                         "12345a", site.name, "ALLSYHNAH002")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)

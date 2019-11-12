@@ -37,8 +37,8 @@ public class VACC_JANRSV_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                //{Site.AUT_AMS_JANRSV},
-                //{Site.AUT_AMS_JANRSV_Syn}
+                {Site.AUT_AMS_JANRSV},
+                {Site.AUT_AMS_JANRSV_Syn},
                 {Site.AUT_AMS_JANRDS_Syn}
         };
     }
@@ -103,8 +103,16 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .waitForPageLoad1(studyName + "!")
                     .getPID()
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(directSheduleVaccOLS)
-                    .waitForPageLoad()
+                    .clickNextButton(directSheduleVaccOLS);
+            if(env.equals("PRD")){
+                directSheduleVaccOLS
+                        .waitForPageLoad();
+            }
+            if(env.equals("STG")){
+                directSheduleVaccOLS
+                        .waitForPageLoadSTG();
+            }
+            directSheduleVaccOLS
                     .clickSheduleBtn(scedulerOLS);
             ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
             getDriver().switchTo().window(tabs.get(1));
@@ -115,12 +123,19 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .waitForPageLoadClientDetails()
                     .dateCheck()
                     .startsAtCheck()
-                    .serviceProviderCheck();
-
+                    .serviceProviderCheck()
+                    .clickOnAgree();
             getDriver().switchTo().window(tabs.get(0));
             QualifiedClose1PageOLS qualifiedClose1PageOLS = new QualifiedClose1PageOLS();
+            if(env.equals("PRD")){
+                directSheduleVaccOLS
+                        .waitForPageLoad();
+            }
+            if(env.equals("STG")){
+                directSheduleVaccOLS
+                        .waitForPageLoadSTG();
+            }
             directSheduleVaccOLS
-                    .waitForPageLoad()
                     .clickNextButton(qualifiedClose1PageOLS);
             SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
                     .waitForPageLoad()
