@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
@@ -118,12 +119,12 @@ public class DIA_4483_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
-
+        WithType1DiabetesPageCC withType1DiabetesPageCC = new WithType1DiabetesPageCC();
         CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-        cardiovascularDiseaseThanOthersPageCC
+        withType1DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)

@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class End_4385_CC extends BaseTest {
 
-    @Test()
+    @Test(enabled = false)
     public void end4385cc() {
         Site site = Site.AUT_END_4385;
         String phoneNumber = "AUTAMS1END";

@@ -2,10 +2,13 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DPN_3769_4557.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
@@ -115,21 +118,32 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
         //-----------Q3 -What kind of diabetes do you have?? ---------------
+        WithType1DiabetesPageOLS withType1DiabetesPageOLS = new WithType1DiabetesPageOLS();
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(withType1DiabetesPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
+                .back();
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("High blood sugar only")
+                .clickNextButton(new HasDoctorEverDiagnosedYouMedicalCond_OLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
+                .back();
         CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = new CardiovascularDiseaseThanOthersPageOLS();
-        List<String> disqualifyQ3 = Arrays.asList("Type 1 diabetes (sometimes called Juvenile diabetes)",
-                "High blood sugar only",
-                "Unsure");
-        for (String answer : disqualifyQ3) {
-            System.out.println("Select answer for Q3: " + answer);
             whatKindOfDiabetesPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                    .clickOnAnswer("Unsure")
+                    .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
                     .back();
-        }
 
         DoYouExperienceDPN_OLS doYouExperienceDPN_OLS = whatKindOfDiabetesPageOLS.waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -141,8 +155,8 @@ public class DPN_5096_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No, none of the above")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
-
-        cardiovascularDiseaseThanOthersPageOLS
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = new WithType2DiabetesPageOLS();
+        withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5504", site.activeProtocols)
@@ -164,7 +178,7 @@ public class DPN_5096_OLS extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(withType2DiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
@@ -173,9 +187,9 @@ public class DPN_5096_OLS extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_OLS
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right foot", "Left leg", "Right hand or arm", "Left hand or arm", "Other")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+                .clickNextButton(withType2DiabetesPageOLS);
 
-        cardiovascularDiseaseThanOthersPageOLS
+        withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
@@ -185,9 +199,9 @@ public class DPN_5096_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right leg", "Left foot")
                 .clickOnAnswers("Right hand or arm", "Left hand or arm", "Other")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+                .clickNextButton(withType2DiabetesPageOLS);
 
-        cardiovascularDiseaseThanOthersPageOLS
+        withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
@@ -316,9 +330,9 @@ public class DPN_5096_OLS extends BaseTest {
         currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
+                .clickNextButton(withType2DiabetesPageOLS);
 
-        cardiovascularDiseaseThanOthersPageOLS
+        withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5524")
