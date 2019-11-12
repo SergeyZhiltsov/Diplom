@@ -38,8 +38,8 @@ public class UC_4818_OLS extends BaseTest {
     @DataProvider
     public Object[][] flare() {
         return new Object[][]{
-         //       {true},
-                {false}
+                {true},
+        //        {false}
         };
     }
 
