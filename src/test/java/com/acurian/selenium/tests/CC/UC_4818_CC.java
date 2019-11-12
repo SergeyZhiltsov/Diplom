@@ -391,6 +391,7 @@ public class UC_4818_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey());
+            if (/*disqualify7191.contains(entry.getKey())**/true ) { //todo after 7191 activation
 
                 currentlyHaveAnyOffFollowingPageCC
                         .clickNextButton(transitionStatementCC)
@@ -398,9 +399,44 @@ public class UC_4818_CC extends BaseTest {
                         .getPage(debugPageCC)
                         .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols[0])
                         .back();
+            } else {
+                currentlyHaveAnyOffFollowingPageCC
+                        .clickNextButton(weightLossSurgeryPageCC)
+                        .waitForPageLoad()
+                        .getPage(debugPageCC)
+                        .checkProtocolsContainsForQNumber("Q0020441-QS8218-STUDYQUES", site.activeProtocols[0])
+                        .back();
+            }
         }
 
+ /*               currentlyHaveAnyOffFollowingPageCC //todo after 7191 activation
                 currentlyHaveAnyOffFollowingPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(weightLossSurgeryPageCC);
+//QS19 - Have you ever had any of the following types of bariatric or weight loss surgery?
+                ProcedureForWeightLossPageCC procedureForWeightLossPageCC = weightLossSurgeryPageCC
+                        .clickOnAnswers("Gastric bypass", "Gastric sleeve or sleeve gastrectomy", "Duodenal switch",
+                                "Lap band or gastric banding", "Gastric balloon")
+                        .clickNextButton(new ProcedureForWeightLossPageCC());
+
+//QS20 - When was the last time that you had a surgery or medical procedure for weight loss?
+                        .waitForPageLoadWithCurves("colitis")
+                        .back(procedureForWeightLossPageCC)
+                        .waitForPageLoad()
+                        .back(weightLossSurgeryPageCC);
+
+                weightLossSurgeryPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickNextButton(transitionStatementCC)
+                        .waitForPageLoadWithCurves("colitis");
+*/
+
+ /*     currentlyHaveAnyOffFollowingPageCC //todo after 7191 activation
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(transitionStatementCC);
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickNextButton(weightLossSurgeryPageCC);
@@ -426,6 +462,12 @@ public class UC_4818_CC extends BaseTest {
                         .clickNextButton(transitionStatementCC)
                         .waitForPageLoadWithCurves("colitis");
 
+*/
+
+        currentlyHaveAnyOffFollowingPageCC //todo after 7191 activation
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(transitionStatementCC);
 
             transitionStatementCC
                 .waitForPageLoadWithCurves("colitis")
