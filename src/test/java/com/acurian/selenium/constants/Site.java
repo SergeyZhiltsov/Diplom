@@ -65,6 +65,7 @@ public enum Site {
     //    AUT_VAC_4556_Site("AUT_VAC_4556_Site", "60061", "1R", true, false, "B7471008"),//"B7471007"
     AUT_AMS_JANRSV("AUT_JANRSV_site", "19422", "1R", false, false, "VAC18193RSV2001"),
     AUT_AMS_JANRSV_Syn("AUT_JANRSVS_site", "19422", "41C", false, false, "VAC18193RSV2001"),
+    AUT_AMS_JANRDS_Syn("Synexus - 301010 : Chicago", "60602", "41C", false, false, "VAC18193RSV2001"),
 
     //4600
     AUT_AMS1_4600_site("AUT_AMS1_4600_site", "08204", "1R", true, false, "B7451014"),
