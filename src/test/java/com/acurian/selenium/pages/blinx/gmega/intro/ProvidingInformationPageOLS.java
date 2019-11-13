@@ -13,19 +13,21 @@ public class ProvidingInformationPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//div[@class='question-text']")
     WebElement titleText;
-    @FindBy(xpath = "//div[@class='single-choice-answers-container']/button")
+    @FindBy(xpath = "//div[@class='single-choice-answers-container']/button | //div[@class='answer-text']")
     List<WebElement> singleChoiceButtonsList;
 
 
     @Step
     public ProvidingInformationPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        waitForAnimation();
         return this;
     }
 
     @Step()
     public ProvidingInformationPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(singleChoiceButtonsList, answerText);
+        waitForAnimation();
         return this;
     }
 }

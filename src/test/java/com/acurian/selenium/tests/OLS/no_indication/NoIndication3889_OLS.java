@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class NoIndication3889_OLS extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     @Description("No Indication 3889 OLS")
     public void ibd_3889_OLS_NI() {
         Site site = Site.AUT_CRN_3889_HS;

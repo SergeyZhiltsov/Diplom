@@ -12,6 +12,7 @@ public class PersonalIdentificationPageOLS extends MainPageBlinx {
             "Enrollment is limited. Please complete the following information so that we may match you with a study doctor.";
     private final String titleExpectedPart2 = "Personal details (*required fields)";
     private final String titleExpectedPart3 = "Your privacy is important to us. By clicking \"Next,\" you agree to our Privacy Policy and Terms of Use, and agree that we may share your information with personnel involved in conducting the study and we or our affiliates may contact you by phone using automated technology or pre-recorded voicemail or other means regarding research studies.";
+    private final String titleExpectedPart4 = "Your privacy is important to us. By clicking \"Next,\" you agree to our Privacy Policy and Terms of Use, and agree that we may share your information with personnel involved in conducting the study, or otherwise as described in the Acurian Privacy Policy, and we or our affiliates may contact you by phone using automated technology or pre-recorded voicemail or other means regarding research studies.";
 
     @FindBy(xpath = "(//div[@class='question-text'])[1]")
     WebElement titleTextPart1;
@@ -38,6 +39,13 @@ public class PersonalIdentificationPageOLS extends MainPageBlinx {
     public PersonalIdentificationPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
         waitForPageLoadMain(titleTextPart3, titleExpectedPart3);
+        return this;
+    }
+
+    @Step
+    public PersonalIdentificationPageOLS waitForPageLoad2() {
+        waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
+        waitForPageLoadMain(titleTextPart3, titleExpectedPart4);
         return this;
     }
 
