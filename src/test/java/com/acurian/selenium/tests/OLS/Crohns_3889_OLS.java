@@ -617,7 +617,7 @@ public class Crohns_3889_OLS extends BaseTest {
         QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
         if(inFlare) {
             qualifiedFlareMonitoringAppClosePageOLS
-                    .waitForPageLoad()
+                    .waitForPageLoadCrohns()
                     .getActivationCode()
                     .clickNextButton(thankYouCloseSimplePageOLS)
                     .waitForPageLoad()
