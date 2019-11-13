@@ -197,11 +197,13 @@ public class GAST_4357_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
                 .back();
+
+
         symptomsRegularlyOncePerWeekPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Nausea or feeling sick to your stomach",
                         "Bloating")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS )
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
