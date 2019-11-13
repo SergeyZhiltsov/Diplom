@@ -11,10 +11,11 @@ import java.util.List;
 public class DirectSheduleVaccOLS extends MainPageOLS {
 
 
-    public final String titleExpected = "You can schedule an appointment now, or click \"next\" to complete next steps and have the study doctor's team reach back out to you.\n" +
+    public final String titleExpected = "Click below to schedule your appointment. After the appointment confirmation, please return to this window and click \"next\" to complete the process.\n" +
+            "If you are not able to schedule now, you will be contacted by the study doctor's office to schedule your appointment.\n" +
             "\n" +
-            "Click below to schedule your appointment. This will open a new window with available dates and times at the site you have selected.\n" +
-            "After you select an appointment date and time, please return to this window and click \"next\" to complete the next steps.";
+            "\n" +
+            "SCHEDULE APPOINTMENT NOW";
 
     public final String titleExpectedSTG = "Click below to schedule your appointment. After the appointment confirmation, please return to this window and click \"next\" to complete the process.\n" +
             "If you are not able schedule now, you will be contacted by the study doctor's office to schedule your appointment.";

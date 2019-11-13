@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.HFL_4722.HeartTransplantPageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.SymptomsOfHeartFailurePageOLS;
 import com.acurian.selenium.pages.OLS.HFL_4722.TreatYourHeartFailurePageOLS;
+import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine.AreYouInterestedVaccineResearchStudyOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -122,7 +123,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .clickNextButton(new ApproximateHeightPageOLS())
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(new AreYouInterestedVaccineResearchStudyOLS())
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsEqualsForQNumber("QS66", site.activeProtocols)

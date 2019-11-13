@@ -181,6 +181,7 @@ public class Crohns_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new PreviousDayGeneralWellBeingCC())
+                .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS8105", site.activeProtocols[1])
                 .back(everTakenAnyMedicationCC)

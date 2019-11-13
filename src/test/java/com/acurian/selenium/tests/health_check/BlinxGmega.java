@@ -39,7 +39,7 @@ public class BlinxGmega extends BaseTest {
                 .clickNextButton(new PersonalIdentificationPageOLS());
 
         PleaseConfirmYourGenderPageOLS pleaseConfirmYourGenderPageOLS = personalIdentificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", "08204", "Cape May", "New Jersey")
                 .clickNextButton(new PleaseConfirmYourGenderPageOLS());
@@ -81,7 +81,7 @@ public class BlinxGmega extends BaseTest {
                 .clickNextButton(personalIdentificationPageOLS);
 
         SiteSelectionPageOLS siteSelectionPageOLS = personalIdentificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS());
 
         QualifiedClosePageOLS qualifiedClosePageOLS = siteSelectionPageOLS

@@ -823,7 +823,7 @@ public class DIA_4483_CC extends BaseTest {
                     .waitForPageLoadSyn()
                     .assertVariables("Acurian", "Trial", "09/09/1960", "US",
                             "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                            "999 -999-9999", "aut4483", site.name, "MADPRANAH611")
+                            "999-999-9999", "aut4483", site.name, "MADPRANAH611")
                     .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                     .clickNextButton(selectActionPageCC)
                     .waitForPageLoad()

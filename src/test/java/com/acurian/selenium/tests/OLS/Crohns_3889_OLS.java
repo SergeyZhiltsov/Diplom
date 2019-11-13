@@ -614,9 +614,12 @@ public class Crohns_3889_OLS extends BaseTest {
 
 
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-
+        QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
         if(inFlare) {
-            thankYouCloseSimplePageOLS
+            qualifiedFlareMonitoringAppClosePageOLS
+                    .waitForPageLoad()
+                    .getActivationCode()
+                    .clickNextButton(thankYouCloseSimplePageOLS)
                     .waitForPageLoad()
                     .clickNextButton(new AboutHealthPageOLS())
                     .waitForPageLoad()
@@ -625,7 +628,6 @@ public class Crohns_3889_OLS extends BaseTest {
                     .assertGeneratedFul(env, site)
                     .dispoShouldMatch(site.dispo, site.dispo);
         } else {
-            QualifiedFlareMonitoringAppClosePageOLS qualifiedFlareMonitoringAppClosePageOLS = new QualifiedFlareMonitoringAppClosePageOLS();
             qualifiedFlareMonitoringAppClosePageOLS
                     .waitForPageLoadCrohns()
                     .getActivationCode()
