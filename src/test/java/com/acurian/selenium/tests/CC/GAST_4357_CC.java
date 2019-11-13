@@ -157,18 +157,21 @@ public class GAST_4357_CC extends BaseTest {
         //Q4
         List<String> disqualifyQ4 = Arrays.asList("Within the past 2 months",
                 "3 - 6 months ago", "7 - 11 months ago", "1 to less than 5 years ago");
+
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
+
         for (String answer: disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             withType2DiabetesPageCC
-                    .waitForPageLoad();
-            CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = withType2DiabetesPageCC
+                    .waitForPageLoad()
                     .clickOnAnswer(answer) //skip to Q7
                     .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
             currentlyTreatingYourDiabetesPageCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS7204", site.activeProtocols)
-                    .back(withType2DiabetesPageCC);
+                    .back(withType2DiabetesPageCC)
+            ;
         }
         WithType1DiabetesPageCC withType1DiabetesPageCC = withType2DiabetesPageCC
                 .waitForPageLoad()
@@ -227,7 +230,7 @@ public class GAST_4357_CC extends BaseTest {
         symptomsRegularlyOncePerWeekPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
@@ -236,7 +239,7 @@ public class GAST_4357_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Nausea or feeling sick to your stomach",
                                 "Bloating")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7209", site.activeProtocols)
@@ -252,7 +255,7 @@ public class GAST_4357_CC extends BaseTest {
         symptomsFirstStartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("2 months ago or less")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7210", site.activeProtocols)
