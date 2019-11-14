@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.GERD.DoYouExperienceAnyOfFollowingSymptoms_CC;
+import com.acurian.selenium.pages.CC.HOTF_7119.DoyouExperienceHotFlashesCC;
 import com.acurian.selenium.pages.CC.Vaccine.AllergicToAnyVaccinesCC;
 import com.acurian.selenium.pages.CC.Vaccine.AreYouGenerallyInGoodHealthCC;
 import com.acurian.selenium.pages.CC.Vaccine.AreYouInterestedVaccineResearchStudyCC;
@@ -489,11 +491,20 @@ public class VACC_JANRSV_CC extends BaseTest {
 //        }
 
 //        if(site == AUT_AMS_JANRSV) {
-            letMeSeePageCC
+        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC = letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(identificationPageCC);
+                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC());
 //        }
 
+            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = doYouExperienceAnyOfFollowingSymptoms_CC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickNextButton(new DoyouExperienceHotFlashesCC());
+
+            doyouExperienceHotFlashesCC
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(identificationPageCC);
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()

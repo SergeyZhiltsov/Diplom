@@ -2,7 +2,10 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
+import com.acurian.selenium.pages.OLS.HOTF_7119.DoyouExperienceHotFlashesOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
+import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.Vaccine.*;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -524,20 +527,29 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickNextButton(approximateHeightPageOLS);
 
 
-            CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = approximateHeightPageOLS
+            ExperienceExcessiveHungerOrIncreasedAppetiteOLS experienceExcessiveHungerOrIncreasedAppetiteOLS = approximateHeightPageOLS
                     .waitForPageLoad()
                     .setAll("5", "5", "250")
-                    .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-            cardiovascularDiseaseThanOthersPageOLS
+                    .clickNextButton(new ExperienceExcessiveHungerOrIncreasedAppetiteOLS());
+            experienceExcessiveHungerOrIncreasedAppetiteOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                     .back();
-            IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+            DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageOLS
                     .waitForPageLoad()
                     .setLbs("150")
-                    .clickNextButton(new IdentificationPageOLS());
+                    .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
 
+            DoyouExperienceHotFlashesOLS doyouExperienceHotFlashesOLS = doYouExperienceAnyOfFollowingSymptoms_OLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickNextButton(new DoyouExperienceHotFlashesOLS());
+
+            IdentificationPageOLS identificationPageOLS = doyouExperienceHotFlashesOLS
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(new IdentificationPageOLS());
 
             SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                     .waitForPageLoad()
