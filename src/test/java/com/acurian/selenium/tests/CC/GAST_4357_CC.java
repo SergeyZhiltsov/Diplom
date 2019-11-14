@@ -808,7 +808,7 @@ public class GAST_4357_CC extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariables("Acurian", "Trial", "04/19/2001", "US",
                                 "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
-                                "999 -999-9999", env.equals("STG") ? "4357synexus" : "4357S",
+                                "999-999-9999", env.equals("STG") ? "4357synexus" : "4357S",
                                 site.name, env.equals("STG") ? "ALLXXXDGP01,ALLXXXDGP02" : "ALLXXXDGPD01,ALLXXXDGPD02")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

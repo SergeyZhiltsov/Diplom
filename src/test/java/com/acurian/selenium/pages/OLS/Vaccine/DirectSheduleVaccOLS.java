@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.List;
-
 public class DirectSheduleVaccOLS extends MainPageOLS {
 
 
