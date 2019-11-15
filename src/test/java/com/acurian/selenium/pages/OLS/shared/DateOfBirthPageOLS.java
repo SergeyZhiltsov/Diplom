@@ -19,8 +19,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleCommonExpected = "Let's get started to see if there is %2$s that's right for you!\n" +
             "\n" +
-            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            //"First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $%1$s, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -28,8 +28,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleCommonExpected2 = "Let's get started to see if there is %2$s that's right for you!\n" +
             "\n" +
-            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
-            "Then, if there is a study right for you, you'll schedule an in person visit at the study doctor's office.\n" +
+            //"First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            //"Then, if there is a study right for you, you'll schedule an in person visit at the study doctor's office.\n" +
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $%1$s, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -98,8 +98,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study medication";
 
     public final String titleAKC_4691_Expected = "This is the first part of the process to match you with a research study.\n" +
-            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            //"First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $750, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -198,8 +198,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study medication";
 
     public final String titleLOWT_3017_Expected = "This is the first part of the process to match you with a research study.\n" +
-            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            //"First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $600, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -222,8 +222,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study medication";
 
     public final String titleIBD_Expected = "This is the first part of the process to match you with a research study.\n" +
-            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            //"First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $700, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -287,8 +287,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study medication";
 
     public final String titleCVExpected = "This is the first part of the process to match you with a research study.\n" +
-            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            //"First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $750, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -311,8 +311,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "No-cost study medication";
 
     public final String titleObesityExpected = "This is the first part of the process to match you with a research study.\n" +
-            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            //"First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $25 per visit, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -347,8 +347,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titlePsoriaticArthritisExpected = "Let's get started to see if there is a psoriatic arthritis study that's right for you!\n" +
             "\n" +
-            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            //"First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $300, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -356,8 +356,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleHeartBurn= "Let's get started to see if there is a heartburn or reflux study that's right for you!\n" +
             "\n" +
-            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            //"First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $500, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -368,8 +368,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleExpectedGBAN1 = "Let's start!";
     //GH pathes
     public final String titleGHExpected = "This is the first part of the process to match you with a research study.\n" +
-            "First, please complete this questionnaire to see if there is a study that's right for you.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
+            //"First, please complete this questionnaire to see if there is a study that's right for you.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
             "Finally, if the study doctor confirms you are a match for the study, and you attend all required study visits, you may receive*:\n" +
             "Payment up to $1,000, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
@@ -384,8 +384,8 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     public final String titleExpectedCrohns = "Let's get started to see if there is a Crohn's study that's right for you!\n" +
             "\n" +
-            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            //"First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $700, which varies by study\n" +
             "No-cost study-related care from doctors\n" +

@@ -10,9 +10,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class IdentificationPageOLS extends MainPageOLS{
 
-    public final String titleExpected = "Congratulations, you have prequalified!\n" +
+    public final String titleExpected = "Thank you for answering these questions.\n" +
             "\n" +
-            "Enrollment is limited. Please complete the following information so that we may match you with a study doctor.";
+            "Please complete the following information so that we can match you with a study doctor in your area.";
 
     public final String titleExpectedNotQ = "Personal details (*required fields)";
     public final String titleExpectedCaregiver = "Patient details (*required fields)";
