@@ -81,9 +81,9 @@ public class CG_4960_CC extends BaseTest {
 
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(studyName, "450"), "Title is diff");
+                .waitForPageLoad(studyName, "450");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle(studyName, "450"), "Title is diff");
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC =
                 dateOfBirthPageCC
                         .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -95,7 +95,7 @@ public class CG_4960_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0004925", site.activeProtocols)
                 .back(dateOfBirthPageCC)
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "450")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());

@@ -60,10 +60,10 @@ public class DERM_4825_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                        .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
-                "Title is diff");
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                        .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+//                "Title is diff");
 
         dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
@@ -72,7 +72,7 @@ public class DERM_4825_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC);
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

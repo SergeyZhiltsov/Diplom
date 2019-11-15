@@ -58,8 +58,8 @@ public class DERM_4600_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "400");
+        //Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
 
         dateOfBirthPageCC
                 .setMonth("Apr")
@@ -71,7 +71,7 @@ public class DERM_4600_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "400")
                 .setMonth("Apr")
                 .setDay("5")
                 .setYear("2001")

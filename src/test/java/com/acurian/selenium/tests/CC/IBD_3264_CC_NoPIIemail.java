@@ -55,8 +55,8 @@ public class IBD_3264_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-        dateOfBirthPageCC
-                .waitForPageLoad();
+//        dateOfBirthPageCC
+//                .waitForPageLoad();
         //Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
 
 

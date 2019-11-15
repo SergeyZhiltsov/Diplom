@@ -62,22 +62,19 @@ public class OA_4109CC extends BaseTest {
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
-
-        dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
 
 
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("an osteoarthritis study", "850")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC());
         ZipCodePageCC zipCodePageCC = doesNotGivePermissionToProceedClosePageCC
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC)
-                .waitForPageLoad()
+                .waitForPageLoad("an osteoarthritis study", "850")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

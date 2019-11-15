@@ -58,9 +58,9 @@ public class PSO_4656_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle("a psoriasis study", "350"), "Title is diff");
+                .waitForPageLoad("a psoriasis study", "350");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle("a psoriasis study", "350"), "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
@@ -71,7 +71,7 @@ public class PSO_4656_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC)
-                .waitForPageLoad()
+                .waitForPageLoad("a psoriasis study", "350")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

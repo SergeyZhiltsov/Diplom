@@ -74,9 +74,9 @@ public class KAD_4631_CC extends BaseTest {
 
 //------------dateOfBirthPageCC----------------
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(studyName, "600"), "Title is diff");
+                .waitForPageLoad(studyName, "600");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle(studyName, "600"), "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
@@ -89,7 +89,7 @@ public class KAD_4631_CC extends BaseTest {
                 .back();
 
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 

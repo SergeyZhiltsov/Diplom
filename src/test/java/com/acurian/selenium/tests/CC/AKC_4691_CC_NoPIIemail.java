@@ -58,9 +58,9 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
-                ("Diabetes – Type 2", "600"), "Title is diff");
+                .waitForPageLoad("Diabetes – Type 2", "600");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
+//                ("Diabetes – Type 2", "600"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")

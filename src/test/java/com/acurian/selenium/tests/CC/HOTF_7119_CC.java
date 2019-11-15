@@ -61,10 +61,10 @@ public class HOTF_7119_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle("a study for menopausal women with hot flashes",
-                        "750"), "Title is diff");
+                .waitForPageLoad("a study for menopausal women with hot flashes", "750");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle("a study for menopausal women with hot flashes",
+//                        "750"), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")

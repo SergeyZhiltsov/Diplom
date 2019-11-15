@@ -72,8 +72,8 @@ public class DIA_4356A_CC extends BaseTest{
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-        dateOfBirthPageCC
-                .waitForPageLoad();
+//        dateOfBirthPageCC
+//                .waitForPageLoad();
         //Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleExpectedDiabetes_4356, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")

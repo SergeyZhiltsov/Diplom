@@ -76,7 +76,7 @@ public class GERD_5098_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("Erosive Esophagitis & H. pylori", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No") //If "No", go to Does Not Give Permission to Proceed Close
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
@@ -84,7 +84,7 @@ public class GERD_5098_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("Erosive Esophagitis & H. pylori", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

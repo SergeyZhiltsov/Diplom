@@ -72,9 +72,9 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"), "Title is diff");
+                .waitForPageLoad("a fatty liver study for diabetics", "750");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle("a fatty liver study for diabetics", "750"), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -89,7 +89,7 @@ public class DIA_4483_CC extends BaseTest {
 
 
         GenderPageCC genderPageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("a fatty liver study for diabetics", "750")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC())
                 .waitForPageLoad()

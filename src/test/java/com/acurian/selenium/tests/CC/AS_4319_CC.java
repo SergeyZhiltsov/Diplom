@@ -79,8 +79,8 @@ public class AS_4319_CC extends BaseTest {
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-        dateOfBirthPageCC
-                .waitForPageLoad();
+//        dateOfBirthPageCC
+//                .waitForPageLoad();
 
         //Assert.assertEquals(dateOfBirthPageCC.getQuestionText(), "May I have your date of birth?", "Question text is diff");
         // Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedOA, "Title is diff");

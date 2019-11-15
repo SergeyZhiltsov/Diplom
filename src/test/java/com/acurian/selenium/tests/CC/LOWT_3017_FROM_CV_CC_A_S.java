@@ -83,11 +83,11 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
-        dateOfBirthPageCC
-                .waitForPageLoad();
+        //dateOfBirthPageCC
+               // .waitForPageLoad();
         //Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                //.waitForPageLoad()
 //                .setMonth("Jun")
 //                .setDay("5")
 //                .setYear("1960")

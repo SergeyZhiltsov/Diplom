@@ -56,7 +56,7 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("Lupus", "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
@@ -68,7 +68,7 @@ public class Lupus_4442_CC extends BaseTest {
                 .back();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("Lupus", "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

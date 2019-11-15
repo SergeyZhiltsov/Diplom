@@ -84,10 +84,10 @@ public class DPN_5096_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                        .getExpectedModifiedTitle("a study for diabetics", "300"),
-                "Title is diff");
+                .waitForPageLoad("a study for diabetics", "300");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                        .getExpectedModifiedTitle("a study for diabetics", "300"),
+//                "Title is diff");
 
         dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
@@ -97,7 +97,7 @@ public class DPN_5096_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("a study for diabetics", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

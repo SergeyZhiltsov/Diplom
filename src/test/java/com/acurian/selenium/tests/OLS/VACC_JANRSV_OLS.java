@@ -40,8 +40,8 @@ public class VACC_JANRSV_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS_JANRSV},
-                {Site.AUT_AMS_JANRSV_Syn},
+                //{Site.AUT_AMS_JANRSV},
+                //{Site.AUT_AMS_JANRSV_Syn},
                 {Site.AUT_AMS_JANRDS_Syn}
         };
     }
@@ -58,9 +58,10 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, "650"), "Title is diff");
+        .threadSleep(3000);
+ //               .waitForPageLoadJANRSV();
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+//                .getExpectedModifiedTitle(studyName, "650"), "Title is diff");
 
         if (site == Site.AUT_AMS_JANRDS_Syn) {
             HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
@@ -68,13 +69,17 @@ public class VACC_JANRSV_OLS extends BaseTest {
             ScedulerOLS scedulerOLS = new ScedulerOLS();
             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
             dateOfBirthPageOLS
-                    .waitForPageLoad()
+                   // .waitForPageLoadJANRSV()
+                    .threadSleep(3000);
+            dateOfBirthPageOLS
                     .clickOnAnswer("Yes")
                     .clickNextButton(new ZipCodePageOLS())
                     .waitForPageLoad()
                     .typeZipCode(site.zipCode)
                     .clickNextButton(dateOfBirthPageOLS)
-                    .waitForPageLoad()
+                    //.waitForPageLoad()
+                    .threadSleep(3000);
+            dateOfBirthPageOLS
                     .clickOnAnswer("Female")
                     .setDate("01011954")
                     .clickNextButton(new AreYouInterestedVaccineResearchStudyOLS())
@@ -99,7 +104,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .waitForPageLoad()
                     .setAll("5", "5", "150")
                     .clickNextButton(new IdentificationPageOLS())
-                    .waitForPageLoad()
+                    .waitForPageLoad2()
                     .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                             "9999999999", site.zipCode)
                     .clickNextButton(new SiteSelectionPageOLS())

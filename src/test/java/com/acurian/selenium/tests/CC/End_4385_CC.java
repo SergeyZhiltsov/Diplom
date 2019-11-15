@@ -61,8 +61,8 @@ public class End_4385_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an endometriosis study", "1775"), "Title is diff");
+                .waitForPageLoad("an endometriosis study", "1775");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an endometriosis study", "1775"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
 //                .setMonth("Sep")
 //                .setDay("9")

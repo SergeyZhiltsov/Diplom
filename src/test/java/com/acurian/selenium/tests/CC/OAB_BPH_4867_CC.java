@@ -56,11 +56,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         //------------dateOfBirthPageCC----------------
-        dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an overactive bladder study", "300"), "Title is diff");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("an overactive bladder study", "300"), "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("an overactive bladder study", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
@@ -72,7 +70,7 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .back();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("an overactive bladder study", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

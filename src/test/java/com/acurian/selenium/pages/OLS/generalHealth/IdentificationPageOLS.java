@@ -20,6 +20,9 @@ public class IdentificationPageOLS extends MainPageOLS{
     public final String titleExpected_SB = "Congratulations, you have prequalified for the study!  \n" +
             "Enrollment is limited. Please confirm your contact information below to reserve your space.";
 
+    public final String titleExpected2 ="Thank you for answering these questions.\n" +
+            "\n" +
+            "Please complete the following information so that we can match you with a study doctor in your area.";
     @FindBy(xpath = "//h2[@id='patient-title']")
     WebElement titleTextNotQ;
 
@@ -67,6 +70,12 @@ public class IdentificationPageOLS extends MainPageOLS{
     @Step
     public IdentificationPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageOLS waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 

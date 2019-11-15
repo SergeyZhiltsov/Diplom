@@ -81,9 +81,9 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
+                .waitForPageLoad("an osteoarthritis study", "850");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
 
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
