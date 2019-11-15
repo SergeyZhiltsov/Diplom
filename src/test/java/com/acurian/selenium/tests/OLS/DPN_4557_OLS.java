@@ -43,7 +43,7 @@ public class DPN_4557_OLS extends BaseTest {
                 .openPage(env, phoneNumberDPN)
                 .waitForPageLoad();
         //Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDPNExpected, "Title is diff");
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDPNExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091982")
                 .clickNextButton(new ZipCodePageOLS());

@@ -54,8 +54,8 @@ public class IBD_3264_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");// old because of coma
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
@@ -80,7 +80,7 @@ public class IBD_3264_OLS extends BaseTest {
 //                //.checkProtocolsContainsForQNumber("QSI8005", protocol1)
 //                .back();
         PersonalDetails personalDetails =  dateOfBirthPageOLS
-                .waitForPageLoad2Ver()
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
 //                .setDate("09091980")
                 .clickNextButton(new PersonalDetails());

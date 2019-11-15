@@ -81,8 +81,8 @@ public class IBD_3889_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
+                .waitForPageLoad();
+        //Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff"); //because upper coma
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -94,7 +94,7 @@ public class IBD_3889_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .waitForPageLoad2Ver()
+                .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 

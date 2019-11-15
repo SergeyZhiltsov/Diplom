@@ -51,7 +51,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoad2();
+                .waitForPageLoad();
       //  Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
        //        dateOfBirthPageOLS.getExpectedModifiedTitle("Crohn's study", "700"), "Title is diff");
 

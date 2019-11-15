@@ -93,8 +93,8 @@ public class IBD_3485_CC extends BaseTest {
      /*   dateOfBirthPageCC
                 .waitForPageLoadIBD();*/
         dateOfBirthPageCC.threadSleep(2000);
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextIBD(), "May I have your date of birth?", "Question text is diff");
-        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextIBD(), dateOfBirthPageCC.titleIBD3264, "Title is diff");
+        //Assert.assertEquals(dateOfBirthPageCC.getTitleTextIBD(), "May I have your date of birth?", "Question text is diff");
+        //Assert.assertEquals(dateOfBirthPageCC.getQuestionTextIBD(), dateOfBirthPageCC.titleIBD3264, "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("Mar")

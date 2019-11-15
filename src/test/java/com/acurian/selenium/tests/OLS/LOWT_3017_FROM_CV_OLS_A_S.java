@@ -59,12 +59,12 @@ public class LOWT_3017_FROM_CV_OLS_A_S extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750"), "Title is diff");
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad2Ver()
+                .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

@@ -57,8 +57,9 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageGHLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextGH(), dateOfBirthPageCC.titleGHExpected, "Title is diff");
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
+                ("a Crohn's study", "700"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
                 .setDay("9")

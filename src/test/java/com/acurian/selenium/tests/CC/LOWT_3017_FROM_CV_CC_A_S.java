@@ -84,10 +84,10 @@ public class LOWT_3017_FROM_CV_CC_A_S extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
+                .waitForPageLoad();
+        //Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleCVExpected, "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad2Ver()
+                .waitForPageLoad()
 //                .setMonth("Jun")
 //                .setDay("5")
 //                .setYear("1960")
