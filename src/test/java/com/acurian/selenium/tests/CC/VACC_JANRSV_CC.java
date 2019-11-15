@@ -489,20 +489,20 @@ public class VACC_JANRSV_CC extends BaseTest {
 //        }
 
 //        if(site == AUT_AMS_JANRSV) {
-        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC = letMeSeePageCC
+letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC());
+                .clickNextButton(identificationPageCC);
 //        }
 
-            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = doYouExperienceAnyOfFollowingSymptoms_CC
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickNextButton(new DoyouExperienceHotFlashesCC());
-
-            doyouExperienceHotFlashesCC
-                    .waitForPageLoad()
-                    .clickOnAnswer("No")
-                    .clickNextButton(identificationPageCC);
+//            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = doYouExperienceAnyOfFollowingSymptoms_CC
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickNextButton(new DoyouExperienceHotFlashesCC());
+//
+//            doyouExperienceHotFlashesCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No")
+//                    .clickNextButton(identificationPageCC);
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()

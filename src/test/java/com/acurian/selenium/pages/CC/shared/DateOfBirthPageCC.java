@@ -28,6 +28,18 @@ public class DateOfBirthPageCC extends MainPageCC {
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n"+
                     "\n"+
                     "If you have any questions, you can contact information@acurian.com.";
+
+    public final String titleCommonExpectedCrohns = "Let's get started to see if there is %2$s that's right for you.\n"+
+            "\n"+
+            "If you attend all required study visits, you may receive:\n"+
+            "\n"+
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $%1$s for time and travel, for qualified participants who complete study related visits\n"+
+            "\n"+
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n"+
+            "\n"+
+            "If you have any questions, you can contact information@acurian.com.";
 //            "\n" +
 //            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
 //            "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
@@ -283,6 +295,9 @@ public class DateOfBirthPageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
 
+    @FindBy(xpath = "//*[@id=\"command\"]/div[2]/span[1]/div[1] ")
+    WebElement titleTextCrohns;
+
     @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
     WebElement titleText2Ver;
 
@@ -320,8 +335,14 @@ public class DateOfBirthPageCC extends MainPageCC {
     List<WebElement> titlesText;
 
     @Step
-    public DateOfBirthPageCC waitForPageLoad(String indication, String compensation) {
-        waitForPageLoadMain(titleText, getExpectedModifiedTitle(indication, compensation));
+        public DateOfBirthPageCC waitForPageLoad(String indication, String compensation) {
+            waitForPageLoadMain(titleText, getExpectedModifiedTitle(indication, compensation));
+            return this;
+    }
+
+    @Step
+    public DateOfBirthPageCC waitForPageLoadCrohns(String indication, String compensation) {
+        waitForPageLoadMain(titleTextCrohns, getExpectedModifiedTitleCrohns(indication, compensation));
         return this;
     }
 //    @Step
@@ -389,6 +410,9 @@ public class DateOfBirthPageCC extends MainPageCC {
 
    public String getExpectedModifiedTitle(String indication, String compensation) {
         return String.format(titleCommonExpected, compensation, indication);
+    }
+    public String getExpectedModifiedTitleCrohns(String indication, String compensation) {
+        return String.format(titleCommonExpectedCrohns, compensation, indication);
     }
 
 //    public String getExpectedModifiedTitleLowT(String indication, String compensation) {

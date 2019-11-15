@@ -8,7 +8,12 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class IdentificationPageCC extends MainPageCC {
 
-    public final String titleExpected = "Good news! You have prequalified for a study. The next step is to select a doctor's office in your area so that they can contact you.\n" +
+    public final String titleExpected2 = "Good news! You have prequalified for a study. The next step is to select a doctor's office in your area so that they can contact you.\n" +
+            "\n" +
+            "Now, I just want to confirm that your name and contact information were entered correctly.\n" +
+            "[Read the name, address and phone number to the caller. Make any corrections noted by the caller.]";
+
+    public final String titleExpected = "Thank you for answering these questions. The next step is to match you with a study doctor in your area.\n" +
             "\n" +
             "Now, I just want to confirm that your name and contact information were entered correctly.\n" +
             "[Read the name, address and phone number to the caller. Make any corrections noted by the caller.]";
@@ -51,6 +56,12 @@ public class IdentificationPageCC extends MainPageCC {
     @Step
     public IdentificationPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageCC waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 

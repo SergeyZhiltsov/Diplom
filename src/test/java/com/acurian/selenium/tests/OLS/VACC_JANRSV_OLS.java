@@ -40,8 +40,8 @@ public class VACC_JANRSV_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                //{Site.AUT_AMS_JANRSV},
-                //{Site.AUT_AMS_JANRSV_Syn},
+                {Site.AUT_AMS_JANRSV},
+                {Site.AUT_AMS_JANRSV_Syn},
                 {Site.AUT_AMS_JANRDS_Syn}
         };
     }
@@ -576,7 +576,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
             ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer("No, I am not interested in receiving information")
+                    .clickOnAnswer("No")
                     .clickNextButton(new ThankYouCloseSimplePageOLS());
 
             AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
