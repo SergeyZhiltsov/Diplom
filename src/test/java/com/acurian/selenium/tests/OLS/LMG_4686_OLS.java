@@ -34,7 +34,7 @@ public class LMG_4686_OLS extends BaseTest {
                 .openPage(env, phoneNumberMIG)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(), dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleLMGExpected, "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091982")
                 .clickNextButton(new ZipCodePageOLS());

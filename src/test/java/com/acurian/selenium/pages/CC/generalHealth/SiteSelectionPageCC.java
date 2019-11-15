@@ -22,15 +22,21 @@ public class SiteSelectionPageCC extends MainPageCC {
     private final String unstableTitleText = "//div[@class='question_text']//div[@class='show-in-cc']";
 
     //%s = studyName variable
-    public final String titleExpected = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
+    public final String titleExpected2 = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
             "\n" +
             "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetic nerve pain\" or \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered:\n" +
             "“Based on your answers, you are not an exact match for the study referenced in the letter or ad about specific diabetes complications to which you originally responded. However, you have prequalified for another study for people with diabetes.”]\n" +
             "\n" +
             "[Offer second closest site if necessary and if reasonable]\n" +
-            "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these sites are convenient. We can either make a note to contact you if a more convenient site becomes available, or I can send your information over to a site and you can talk to them about the study. Which would you prefer?\"";
+            "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these locations are convenient. We can either make a note to contact you if a more convenient location becomes available, or I can send your information over to a study doctor's office and you can talk to them about the study. Which would you prefer?\"";
 
-
+    public final String titleExpected = "The closest doctor's office available for an irritable bowel syndrome (IBS) study is located at [name of street and city]. Is that convenient for you?\n" +
+            "\n" +
+            "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetic nerve pain\" or \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered:\n" +
+            "“Based on your answers, you are not an exact match for the study referenced in the letter or ad about specific diabetes complications to which you originally responded. However, you have prequalified for another study for people with diabetes.”]\n" +
+            "\n" +
+            "[Offer second closest site if necessary and if reasonable]\n" +
+            "If respondent indicates that no site offered is convenient, read the following: \"I'm sorry that none of these locations are convenient. We can either make a note to contact you if a more convenient location becomes available, or I can send your information over to a study doctor's office and you can talk to them about the study. Which would you prefer?\"";
     public final String titleExpectedMCC = "The closest doctor's office available for %s is located at [name of street and city]. Is that convenient for you?\n" +
             "\n" +
             "[Agent Note: The patient may have responded to outreach for a specific type of study within a broader indication, such as \"diabetic nerve pain\" or \"diabetics with foot ulcer\" or \"diabetics with stomach problems,\" and are referring for (for example) a different diabetes complication study or for a general diabetes study. If there is confusion about which study they are being referred for, the following type of clarification can be offered:\n" +
@@ -70,7 +76,7 @@ public class SiteSelectionPageCC extends MainPageCC {
     public SiteSelectionPageCC waitForPageLoad(String studyName) {
         waitForAnimation();
         attachPageScreenshot();    //--Take Screenshot of Site selection page
-        String titleExpectedMod = String.format(titleExpected, studyName);
+        String titleExpectedMod = String.format(titleExpected2, studyName);
         try {
             waitForPageLoadMain(titleText, titleExpectedMod);
             return this;

@@ -81,8 +81,9 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC.titleIBD3264, "Title is diff");
+                .waitForPageLoadCrohns("a Crohn's or colitis study", "700");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
+//                ("a Crohn's study", "700"), "Title is diff");
 
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -94,8 +95,9 @@ public class Crohns_4818_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols[1])
                 .back();
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .waitForPageLoad2Ver()
+                .waitForPageLoadCrohns("a Crohn's or colitis study", "700")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
+                .waitForPageLoadCrohns("a Crohn's or colitis study", "700")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
                 .waitForPageLoad()
@@ -103,7 +105,7 @@ public class Crohns_4818_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols[1])
                 .back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .waitForPageLoad2Ver()
+                .waitForPageLoadCrohns("a Crohn's or colitis study", "700")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 

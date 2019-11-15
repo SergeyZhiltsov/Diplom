@@ -79,10 +79,10 @@ public class IBS_5019_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-        .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"),
-                "Title is diff");
+        .waitForPageLoad("an irritable bowel syndrome (IBS) study", "300");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"),
+//                "Title is diff");
 
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -91,7 +91,7 @@ public class IBS_5019_CC extends BaseTest {
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = doesNotGivePermissionToProceedClosePageCC
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC)
-                .waitForPageLoad()
+                .waitForPageLoad("an irritable bowel syndrome (IBS) study", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         ZipCodePageCC zipCodePageCC = lessThan18YearsOldPageCC

@@ -59,8 +59,8 @@ public class IBD_4818_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.
                 getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
 
@@ -74,7 +74,7 @@ public class IBD_4818_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad2Ver();
+                .waitForPageLoad();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());

@@ -55,9 +55,9 @@ public class HFL_4722_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.
-                getExpectedModifiedTitle("a heart failure study", "500"), "Title is diff");
+                .waitForPageLoad("a heart failure study", "500");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.
+//                getExpectedModifiedTitle("a heart failure study", "500"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")

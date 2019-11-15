@@ -69,9 +69,9 @@ public class DERM_7193_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),dateOfBirthPageCC
-                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"), "Title is diff");
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),dateOfBirthPageCC
+//                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"), "Title is diff");
 
         dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
@@ -81,13 +81,13 @@ public class DERM_7193_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         dateOfBirthPageCC //Disqualify (“Age < 18 years old”) if <18
-                .waitForPageLoad()
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
                 .back();
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

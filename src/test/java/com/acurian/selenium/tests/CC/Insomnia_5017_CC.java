@@ -81,12 +81,10 @@ public class Insomnia_5017_CC extends BaseTest {
                 .clickOnAnswer("Learn more about matching to clinical trials")
                 .clickNextButton(new DateOfBirthPageCC());
 
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle(studyName, "1,450"), "Title is diff");
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(studyName, "1,450"), "Title is diff");
-        dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "1,450")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")//If "No", go to Does Not Give Permission to Proceed Close
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new DoesNotGivePermissionToProceedClosePageCC())
@@ -94,7 +92,7 @@ public class Insomnia_5017_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "1,450")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 //                .setMonth("Apr")

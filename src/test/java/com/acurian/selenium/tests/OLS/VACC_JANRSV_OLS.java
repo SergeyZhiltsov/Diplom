@@ -58,9 +58,10 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, "650"), "Title is diff");
+        .threadSleep(3000);
+ //               .waitForPageLoadJANRSV();
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+//                .getExpectedModifiedTitle(studyName, "650"), "Title is diff");
 
         if (site == Site.AUT_AMS_JANRDS_Syn) {
             HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
@@ -68,13 +69,17 @@ public class VACC_JANRSV_OLS extends BaseTest {
             ScedulerOLS scedulerOLS = new ScedulerOLS();
             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
             dateOfBirthPageOLS
-                    .waitForPageLoad()
+                   // .waitForPageLoadJANRSV()
+                    .threadSleep(3000);
+            dateOfBirthPageOLS
                     .clickOnAnswer("Yes")
                     .clickNextButton(new ZipCodePageOLS())
                     .waitForPageLoad()
                     .typeZipCode(site.zipCode)
                     .clickNextButton(dateOfBirthPageOLS)
-                    .waitForPageLoad1()
+                    //.waitForPageLoad()
+                    .threadSleep(3000);
+            dateOfBirthPageOLS
                     .clickOnAnswer("Female")
                     .setDate("01011954")
                     .clickNextButton(new AreYouInterestedVaccineResearchStudyOLS())
@@ -99,7 +104,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .waitForPageLoad()
                     .setAll("5", "5", "150")
                     .clickNextButton(new IdentificationPageOLS())
-                    .waitForPageLoad()
+                    .waitForPageLoad2()
                     .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                             "9999999999", site.zipCode)
                     .clickNextButton(new SiteSelectionPageOLS())
@@ -181,7 +186,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(dateOfBirthPageOLS)
-                .waitForPageLoad1()
+                .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .setDate("01012002")
                 .clickNextButton(lessThan18YearsOldPageOLS);
@@ -192,7 +197,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .back();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 dateOfBirthPageOLS
-                        .waitForPageLoad1()
+                        .waitForPageLoad()
                         .setDate("01011955")
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -201,7 +206,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
         AreYouInterestedVaccineResearchStudyOLS areYouInterestedVaccineResearchStudyOLS = dateOfBirthPageOLS
-                .waitForPageLoad1()
+                .waitForPageLoad()
                 .setDate("01011954")
                 .clickNextButton(new AreYouInterestedVaccineResearchStudyOLS());
 
@@ -571,7 +576,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
             ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer("No, I am not interested in receiving information")
+                    .clickOnAnswer("No")
                     .clickNextButton(new ThankYouCloseSimplePageOLS());
 
             AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS

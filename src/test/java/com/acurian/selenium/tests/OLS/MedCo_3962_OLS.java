@@ -34,7 +34,7 @@ public class MedCo_3962_OLS extends BaseTest {
 		dateOfBirthPageOLS.openPage(env, phoneNumber)		           
 		           .waitForPageGHLoad()
 		           .maximizePage();
-		Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(),dateOfBirthPageOLS.titleMEDExpected, "Title is diff");
+		//Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(),dateOfBirthPageOLS.titleMEDExpected, "Title is diff");
 		
 		PersonalDetails personalDetails = dateOfBirthPageOLS
 		           .setDate("10/10/1980")

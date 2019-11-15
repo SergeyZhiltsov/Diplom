@@ -89,10 +89,10 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 
 
         dateOfBirthPageCC
-                .waitForPageLoad2Ver();
+                .waitForPageLoad("a study", "600");
 
-        Assert.assertEquals(dateOfBirthPageCC.getTitleTextVer3(), dateOfBirthPageCC
-                .getExpectedModifiedTitleLowT("a study", "600"), "Title is diff");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle("a study", "600"), "Title is diff");
 
         dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "No")
@@ -102,13 +102,13 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         dateOfBirthPageCC //Disqualify (“Age < 18 years old”) if <18
-                .waitForPageLoad2Ver()
+                .waitForPageLoad("a study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
                 .back();
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad2Ver()
+                .waitForPageLoad("a study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

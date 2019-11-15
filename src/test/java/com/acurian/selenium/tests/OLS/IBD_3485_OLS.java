@@ -43,8 +43,8 @@ public class IBD_3485_OLS extends BaseTest {
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoad2Ver();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGROUP(), dateOfBirthPageOLS.titleIBD_Expected, "Title is diff");
+                .waitForPageLoad();
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleExpected, "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------

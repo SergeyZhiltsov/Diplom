@@ -76,8 +76,8 @@ public class IBD_Short extends BaseTest{
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a Crohn's study", "700"), "Title is diff");
+                .waitForPageLoad("a Crohn's study", "700");
+        //Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a Crohn's study", "700"), "Title is diff");
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
@@ -89,7 +89,7 @@ public class IBD_Short extends BaseTest{
                 .checkProtocolsContainsForQNumber("QSI8004", protocol1)
                 .back(dateOfBirthPageCC);
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("a Crohn's study", "700")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 //        IdentificationPageCC identificationPageCC = dateOfBirthPageCC

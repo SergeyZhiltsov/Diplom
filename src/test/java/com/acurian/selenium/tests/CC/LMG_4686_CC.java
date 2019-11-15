@@ -87,10 +87,9 @@ public class LMG_4686_CC extends BaseTest{
         .clickOnAnswer("Learn more about matching to clinical trials")
         .clickNextButton(new DateOfBirthPageCC());
        
-       dateOfBirthPageCC
-       			.waitForPageLoad();
-
-       Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
+//       dateOfBirthPageCC
+//       			.waitForPageLoad();
+       //Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
       // Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.titleExpectedOA, "Title is diff");
 
        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
@@ -106,7 +105,7 @@ public class LMG_4686_CC extends BaseTest{
        debugPageCC.back();
        
        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-    		   .waitForPageLoad()
+    		//   .waitForPageLoad()
                .setYear("1942")
                .clickNextButton(new ZipCodePageCC());
        
@@ -114,7 +113,7 @@ public class LMG_4686_CC extends BaseTest{
        debugPageCC.checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocol1);
        debugPageCC.back();
        dateOfBirthPageCC
-       		.waitForPageLoad()
+       	//.waitForPageLoad()
        		.setYear("1980")
        		.clickNextButton(new ZipCodePageCC());
        

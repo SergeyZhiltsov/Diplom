@@ -48,10 +48,10 @@ public class GERD_5098_OLS extends BaseTest {
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS()
                 .openPage(env, phoneNumber)
-                .waitForPageLoadGER();
+                .waitForPageLoad();
         //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
         //        .getExpectedModifiedTitle(studyName + " study", "300"), "Title is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName + " study", "300"), "Title is diff");
+        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName + " study", "300"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")

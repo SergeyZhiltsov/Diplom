@@ -39,7 +39,7 @@ public class UF_4384_OLS extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(), dateOfBirthPageOLS.titleExpected, "Question is diff");
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleUF_4384_Expected, "Title is diff");
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleUF_4384_Expected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091982")
                 .clickNextButton(new ZipCodePageOLS());
