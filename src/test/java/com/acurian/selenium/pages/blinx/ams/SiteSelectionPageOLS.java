@@ -11,7 +11,8 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s\n" +
             "Please select a doctor and click the \"Next\" button.";
 
-    @FindBy(xpath = "//div[@class='show-in-ols'][contains(., 'Searching for a Study …')]")
+    //@FindBy(xpath = "//div[@class='show-in-ols'][contains(., 'Searching for a Study …')]")
+    @FindBy(xpath = "//div[@class='show-in-ols'][contains(., 'Searching for a study doctor in your area  …')]")
     WebElement loadingAnimation;
     @FindBy(xpath = "//div[@class='question-text']")
     WebElement titleText;

@@ -14,7 +14,8 @@ import java.util.List;
 public class QualifiedClose1PageOLS extends MainPageOLS {
 
     public final String titleExpected = "We're glad the location is convenient for you.\n" +
-            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
+            "\n" +
+            "We will forward your contact information to the doctor's office that you selected so they can contact you.";
 
     public final String titleExpected1 = "We are also enrolling children and teens between the ages of 12-17 in eczema studies going on around the world.\n" +
             "\n" +
