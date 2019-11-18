@@ -37,9 +37,9 @@ public class DPN_3769_OLS extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumberDPN)
-                .waitForPageLoad();
+//        dateOfBirthPageOLS
+//                .openPage(env, phoneNumberDPN)
+//                .waitForPageLoad();
         //Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
         //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDPNExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

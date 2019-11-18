@@ -292,7 +292,7 @@ public class DateOfBirthPageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='subquestion'][1]//span[@class='sub_question_text']/div[@class='show-in-cc']")
     WebElement questionTextIBD;
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = ".//*[contains(@class, 'show-in-cc')][contains(text(), \"Let's get started\")]")
     WebElement titleText;
 
     @FindBy(xpath = "//*[@id=\"command\"]/div[2]/span[1]/div[1] ")
@@ -301,7 +301,7 @@ public class DateOfBirthPageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='subquestion'][1]//div[@class='show-in-cc']")
     WebElement titleText2Ver;
 
-    @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
+    @FindBy(xpath = "(.//*[contains(@class, 'show-in-cc')][contains(text(), \"Let's get started\")])[1]")
     WebElement titleText1;
 
     @FindBy(xpath = "//div[@class='subquestion'][2]//span[@class='sub_question_text']/div[@class='show-in-cc']")

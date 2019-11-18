@@ -44,9 +44,9 @@ public class Gmega1 extends BaseTest{
         if (env == null) env = "STG";
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoad();
+//        dateOfBirthPageOLS
+//                .openPage(env, phoneNumber)
+//                .waitForPageLoad();
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleTextGH(), dateOfBirthPageOLS.titleExpected, "Question is diff");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleGmegaExpected, "Title is diff");
         PersonalDetails personalDetails = dateOfBirthPageOLS

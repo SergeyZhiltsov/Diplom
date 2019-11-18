@@ -44,8 +44,8 @@ public class HTN_4356D_OLS extends BaseTest{
 
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
 		dateOfBirthPageOLS
-		.openPage(env, phoneNumber)
-		.waitForPageLoad();
+		.openPage(env, phoneNumber);
+//		.waitForPageLoad();
 //		Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
 //		Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleHTNExpected, "Title is diff");
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

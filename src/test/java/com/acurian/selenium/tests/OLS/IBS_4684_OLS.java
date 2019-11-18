@@ -35,14 +35,14 @@ public class IBS_4684_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad("an irritable bowel syndrome (IBS) study", "300");
 
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"), "Title is diff");
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an irritable bowel syndrome (IBS) study", "300"), "Title is diff");
         // --------------DOB Question------------
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 // ------------Disqualify (“Age < 18 years old”) if <18
                 // -----------------------------------------
-                .waitForPageLoad()
+                .waitForPageLoad("an irritable bowel syndrome (IBS) study", "300")
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
@@ -51,7 +51,7 @@ public class IBS_4684_OLS extends BaseTest {
         lessThan18YearsOldPage_OLS
                 .getPage(debugPageOLS).checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols).back();
         dateOfBirthPageOLS
-                .waitForPageLoad();
+                .waitForPageLoad("an irritable bowel syndrome (IBS) study", "300");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS.clickOnAnswer("Yes").clickNextButton(new ZipCodePageOLS());
 
         // --------------ZIP_CODE Question------------

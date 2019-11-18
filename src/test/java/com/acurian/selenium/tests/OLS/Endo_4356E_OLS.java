@@ -82,10 +82,10 @@ public class Endo_4356E_OLS extends BaseTest {
         if (env == null) env = "STG";
 		
 		DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-		dateOfBirthPageOLS.openPage(env, phoneNumberRA)		           
-		           .waitForPageLoad()
-		           .maximizePage();
-		Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for an endometriosis study!"), true);
+//		dateOfBirthPageOLS.openPage(env, phoneNumberRA)
+//		           .waitForPageLoad();
+//		           .maximizePage();
+//		Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for an endometriosis study!"), true);
 		ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
 		           .setDate("10/10/1980")
 		           .clickNextButton(new ZipCodePageOLS());

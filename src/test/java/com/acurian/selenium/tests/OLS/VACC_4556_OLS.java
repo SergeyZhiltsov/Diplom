@@ -45,8 +45,8 @@ public class VACC_4556_OLS extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a pneumonia vaccine study", "170"), "Title is diff");
+                .waitForPageLoad("a pneumonia vaccine study", "170");
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a pneumonia vaccine study", "170"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .setDate("05052005")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
@@ -59,14 +59,14 @@ public class VACC_4556_OLS extends BaseTest {
         switch (site) {
             case AUT_VAC_4556M:
                 dateOfBirthPageOLS
-                        .waitForPageLoad()
+                        //.waitForPageLoad()
                         .setDate("05011959")//65
                         .clickNextButton(zipCodePageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QSI8004", protocols)
                         .back(dateOfBirthPageOLS)
-                        .waitForPageLoad()
+                        //.waitForPageLoad()
                         .setDate("05011954")//65
                         .clickNextButton(zipCodePageOLS);
                 break;
@@ -85,14 +85,14 @@ public class VACC_4556_OLS extends BaseTest {
 //                break;
             case AUT_VAC_4556_A:
                 dateOfBirthPageOLS
-                        .waitForPageLoad()
+                        //.waitForPageLoad()
                         .setDate("05011940")//<80
                         .clickNextButton(zipCodePageOLS)
                         .waitForPageLoad()
                         .getPage(debugPageOLS)
                         .checkProtocolsContainsForQNumber("QSI8004", protocols)
                         .back(dateOfBirthPageOLS)
-                        .waitForPageLoad()
+                        //.waitForPageLoad()
                         .setDate("05011939")//>=80
                         .clickNextButton(zipCodePageOLS);
         }

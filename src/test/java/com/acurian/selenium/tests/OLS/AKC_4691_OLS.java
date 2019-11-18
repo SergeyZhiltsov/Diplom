@@ -34,9 +34,9 @@ public class AKC_4691_OLS extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for people with diabetes and related health conditions", "750"), "Title is diff");
+                .waitForPageLoad("a study for people with diabetes and related health conditions", "750");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
+//                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for people with diabetes and related health conditions", "750"), "Title is diff");
 
         //--------------DOB Question------------
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

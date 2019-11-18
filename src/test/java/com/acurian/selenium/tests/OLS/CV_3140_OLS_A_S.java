@@ -62,7 +62,7 @@ public class CV_3140_OLS_A_S extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad("a heart health study", "750");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
 //                dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750", true), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

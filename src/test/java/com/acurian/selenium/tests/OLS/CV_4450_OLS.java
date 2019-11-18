@@ -62,13 +62,13 @@ public class CV_4450_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad("a heart health study", "750");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("a heart health study", "750"),
                 "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
 
@@ -77,7 +77,7 @@ public class CV_4450_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

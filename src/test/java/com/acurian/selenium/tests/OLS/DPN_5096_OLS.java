@@ -60,10 +60,10 @@ public class DPN_5096_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for diabetics", "300"),
-                "Title is diff");
+                .waitForPageLoad("a study for diabetics", "300");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
+//                dateOfBirthPageOLS.getExpectedModifiedTitle("a study for diabetics", "300"),
+//                "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
@@ -73,7 +73,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a study for diabetics", "300")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

@@ -72,7 +72,7 @@ public class WLPvalidation extends BaseTest {
         if (title.equals("Acurian Clinical Screener")) { //OLS-WS
             DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
             dateOfBirthPageOLS.logTextToAllureAndConsole("OLS-WS");
-            dateOfBirthPageOLS.waitForPageLoad();
+            dateOfBirthPageOLS.waitForPageLoad2();
             Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.
                     getExpectedModifiedTitle("a study", "1,000"), "Title is diff");
         } else if (title.equals("Screener")) { //BLINX

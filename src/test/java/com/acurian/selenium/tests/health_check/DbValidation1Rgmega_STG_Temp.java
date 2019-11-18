@@ -28,7 +28,7 @@ public class DbValidation1Rgmega_STG_Temp extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad2();
         //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleRA2821Expected, "Title is diff");
 
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS

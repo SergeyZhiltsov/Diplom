@@ -54,10 +54,10 @@ public class KAD_4631_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
-                "Title is diff");
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+//                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+//                "Title is diff");
 
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -66,7 +66,7 @@ public class KAD_4631_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 

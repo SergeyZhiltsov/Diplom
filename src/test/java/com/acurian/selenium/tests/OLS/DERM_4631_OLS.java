@@ -51,10 +51,10 @@ public class DERM_4631_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
-                "Title is diff");
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+//                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+//                "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -67,7 +67,7 @@ public class DERM_4631_OLS extends BaseTest {
                 .back();
 
         PersonalDetails personalDetails = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 

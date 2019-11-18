@@ -57,10 +57,10 @@ public class Crohns_4818_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
-                dateOfBirthPageOLS.
-                        getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
+                .waitForPageLoad("a Crohn's or colitis study", "700");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
+//                dateOfBirthPageOLS.
+//                        getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -72,7 +72,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols[1])
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad();
+                .waitForPageLoad("a Crohn's or colitis study", "700");
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());

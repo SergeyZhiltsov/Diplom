@@ -26,8 +26,8 @@ public class RA_2821_OLS extends BaseTest {
 
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, phoneNumberRA)
-                .waitForPageLoad();
+//        dateOfBirthPageOLS.openPage(env, phoneNumberRA)
+//                .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a rheumatoid arthritis (RA) study!"), true);
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("10/10/1980")
