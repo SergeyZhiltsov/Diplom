@@ -493,16 +493,17 @@ letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(identificationPageCC);
 //        }
+        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC =
+                new DoYouExperienceAnyOfFollowingSymptoms_CC();
+            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = doYouExperienceAnyOfFollowingSymptoms_CC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickNextButton(new DoyouExperienceHotFlashesCC());
 
-//            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = doYouExperienceAnyOfFollowingSymptoms_CC
-//                    .waitForPageLoad()
-//                    .clickOnAnswers("None of the above")
-//                    .clickNextButton(new DoyouExperienceHotFlashesCC());
-//
-//            doyouExperienceHotFlashesCC
-//                    .waitForPageLoad()
-//                    .clickOnAnswer("No")
-//                    .clickNextButton(identificationPageCC);
+            doyouExperienceHotFlashesCC
+                    .waitForPageLoad()
+                    .clickOnAnswer("No")
+                    .clickNextButton(identificationPageCC);
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
