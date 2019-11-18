@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.blinx.ams.DateOfBirthAndGenderPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -77,7 +78,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .waitForPageLoad()
                     .typeZipCode(site.zipCode)
                     .clickNextButton(dateOfBirthPageOLS)
-                    //.waitForPageLoad()
+                    .waitForPageLoad1()
                     .threadSleep(3000);
             dateOfBirthPageOLS
                     .clickOnAnswer("Female")
@@ -178,7 +179,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad("a vaccin study", "650")
+                .waitForPageLoad("a vaccine study", "650")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
@@ -186,7 +187,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(dateOfBirthPageOLS)
-                .waitForPageLoad("a vaccin study", "650")
+                .waitForPageLoad1()
                 .clickOnAnswer("Female")
                 .setDate("01012002")
                 .clickNextButton(lessThan18YearsOldPageOLS);
@@ -197,7 +198,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .back();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 dateOfBirthPageOLS
-                        .waitForPageLoad("a vaccin study", "650")
+                        .waitForPageLoad1()
                         .setDate("01011955")
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -206,7 +207,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
         AreYouInterestedVaccineResearchStudyOLS areYouInterestedVaccineResearchStudyOLS = dateOfBirthPageOLS
-                .waitForPageLoad("a vaccin study", "650")
+                .waitForPageLoad1()
                 .setDate("01011954")
                 .clickNextButton(new AreYouInterestedVaccineResearchStudyOLS());
 
@@ -564,7 +565,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
 
             QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
-                    .waitForPageLoad1(studyName + "!")
+                    .waitForPageLoad(studyName + "!")
                     .getPID()
                     .clickOnFacilityName(site.name)
                     .clickNextButton(new QualifiedClose1PageOLS());

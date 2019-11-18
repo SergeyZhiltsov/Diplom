@@ -18,6 +18,7 @@ import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -35,7 +36,14 @@ public class VACC_JANRSV_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = VACC_JANRSV_OLS.class)
+    @DataProvider
+    public Object[][] sites() {
+        return new Object[][]{
+                {Site.AUT_AMS_JANRSV},
+                {Site.AUT_AMS_JANRSV_Syn}
+        };
+    }
+    @Test(dataProvider = "sites")
     @Description("VACC_4556_OLS")
     public void vaccJANRSVccTest(Site site) {
         String phoneNumber = "AUTAMS1VAC";
@@ -491,20 +499,31 @@ public class VACC_JANRSV_CC extends BaseTest {
 //        if(site == AUT_AMS_JANRSV) {
 letMeSeePageCC
                 .waitForPageLoad()
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NonQRtransitionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new DoyouExperienceHotFlashesCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(identificationPageCC);
+
 //        }
-        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC =
-                new DoYouExperienceAnyOfFollowingSymptoms_CC();
-            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = doYouExperienceAnyOfFollowingSymptoms_CC
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickNextButton(new DoyouExperienceHotFlashesCC());
+//        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC =
+//                new DoYouExperienceAnyOfFollowingSymptoms_CC();
+//            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = doYouExperienceAnyOfFollowingSymptoms_CC
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickNextButton(new DoyouExperienceHotFlashesCC());
 
-            doyouExperienceHotFlashesCC
-                    .waitForPageLoad()
-                    .clickOnAnswer("No")
-                    .clickNextButton(identificationPageCC);
-
+//            doyouExperienceHotFlashesCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No")
+//                    .clickNextButton(identificationPageCC);
+//
+//    CallCenterIntroductionPageCC
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
