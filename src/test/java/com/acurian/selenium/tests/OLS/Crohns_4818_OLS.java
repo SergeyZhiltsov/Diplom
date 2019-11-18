@@ -47,7 +47,7 @@ public class Crohns_4818_OLS extends BaseTest {
     @Description("Crohns_4818_OLS")
     public void Crohns_4818_OLS(boolean flare) {
         Site site = Site.AUT_AMS1_4818_Site;
-        String phoneNumber = "AUTAMS1IBD";
+        String phoneNumber = "AUTAMS1CRN";
         String studyName = "a Crohn's";
         String site_Indication = "a Crohn's or colitis";
         String indication = "a Crohn's Disease";
@@ -57,7 +57,7 @@ public class Crohns_4818_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a Crohn's or colitis study", "700");
+                .waitForPageLoad("a Crohn's study", "700");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
 //                dateOfBirthPageOLS.
 //                        getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
@@ -72,7 +72,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols[1])
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad("a Crohn's or colitis study", "700");
+                .waitForPageLoad("a Crohn's study", "700");
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
