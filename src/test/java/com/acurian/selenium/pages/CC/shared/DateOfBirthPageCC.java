@@ -430,11 +430,11 @@ public class DateOfBirthPageCC extends MainPageCC {
 //    }
 //
 //    //GH methods
-//
-//    @Step
-//    public String getQuestionTextGH() {
-//        return getText(questionTextGH);
-//    }
+////
+////    @Step
+////    public String getQuestionTextGH() {
+////        return getText(questionTextGH);
+////    }
 //
 //    @Step
 //    public String getTitleTextGH() {

@@ -69,7 +69,7 @@ public class Crohns_4818_OLS extends BaseTest {
                 .waitForPageLoad();
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols[1])
+                .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[1])
                 .back();
         dateOfBirthPageOLS
                 .waitForPageLoad("a Crohn's study", "700");

@@ -26,7 +26,7 @@ public class QualifiedClose2PageCC extends MainPageCC {
 
     public final String titleExpectedIBD4818Prod = "We’re glad the location is convenient for you.\n" +
             "\n" +
-            "We will forward your contact information to the doctor’s office that you selected so they can contact you about a Crohn's Disease, Ulcerative Colitis study.";
+            "We will forward your contact information to the doctor’s office that you selected so they can contact you about a Ulcerative Colitis, Crohn's Disease study.";
 
     public final String titleExpectedCrohns= "We’re glad the location is convenient for you.\n" +
             "\n" +

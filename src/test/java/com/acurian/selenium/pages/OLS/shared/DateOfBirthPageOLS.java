@@ -576,11 +576,11 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 //        return this;
 //    }
 //
-//    @Step
-//    public DateOfBirthPageOLS waitForPageLoad1() {
-//        waitForPageLoadMain(questionText, titleExpected1);
-//        return this;
-//    }
+    @Step
+    public DateOfBirthPageOLS waitForPageLoad1() {
+        waitForPageLoadMain(questionText, titleExpected1);
+        return this;
+    }
 
 //    @Step
 //    public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
