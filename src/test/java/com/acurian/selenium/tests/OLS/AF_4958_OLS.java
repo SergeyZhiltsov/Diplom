@@ -42,7 +42,7 @@ public class AF_4958_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_AMS1_4958_site},
-                {Site.AUT_AMS1_4958S_site}
+               // {Site.AUT_AMS1_4958S_site}
         };
     }
 

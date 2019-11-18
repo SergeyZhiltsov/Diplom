@@ -101,7 +101,7 @@ public class InstantFUL extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS());
 
         siteSelectionPageOLS

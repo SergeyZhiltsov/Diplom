@@ -90,7 +90,7 @@ public class HelloSignCC extends BaseTest {
                 .clickNextButton(identificationPageCC);
 
         SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageCC());
 
         HSCrohns2PageCC hsCrohns2PageCC = siteSelectionPageCC
