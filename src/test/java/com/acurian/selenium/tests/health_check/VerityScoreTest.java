@@ -71,7 +71,7 @@ public class VerityScoreTest extends BaseTest {
                 .clickNextButton(identificationPageOLS);
 
         identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()

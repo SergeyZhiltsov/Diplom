@@ -20,6 +20,10 @@ public class IdentificationPageOLS extends MainPageOLS{
     public final String titleExpected_SB = "Congratulations, you have prequalified for the study!  \n" +
             "Enrollment is limited. Please confirm your contact information below to reserve your space.";
 
+    public final String titleExpected_GMEGA = "Congratulations, you have prequalified!\n" +
+            "\n" +
+            "Enrollment is limited. Please complete the following information so that we may match you with a study doctor.";
+
     public final String titleExpected ="Thank you for answering these questions.\n" +
             "\n" +
             "Please complete the following information so that we can match you with a study doctor in your area.";
@@ -82,6 +86,12 @@ public class IdentificationPageOLS extends MainPageOLS{
     @Step
     public IdentificationPageOLS waitForPageLoadSB() {
         waitForPageLoadMain(titleText, titleExpected_SB);
+        return this;
+    }
+
+    @Step
+    public IdentificationPageOLS waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleText, titleExpected_GMEGA);
         return this;
     }
 

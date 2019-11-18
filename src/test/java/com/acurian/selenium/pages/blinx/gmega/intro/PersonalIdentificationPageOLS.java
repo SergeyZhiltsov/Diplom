@@ -8,9 +8,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class PersonalIdentificationPageOLS extends MainPageBlinx {
 
-    private final String titleExpectedPart1 = "Congratulations, you have prequalified!\n\n" +
-            "Enrollment is limited. Please complete the following information so that we may match you with a study doctor.";
-    private final String titleExpectedPartNew = "Thank you for answering these questions.\n" +
+    /*private final String titleExpectedPart1 = "Congratulations, you have prequalified!\n\n" +
+            "Enrollment is limited. Please complete the following information so that we may match you with a study doctor."; */
+
+    private final String titleExpectedPart1 = "Thank you for answering these questions. \n" +
             "\n" +
             "Please complete the following information so that we can match you with a study doctor in your area.";
 

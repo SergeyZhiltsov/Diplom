@@ -63,7 +63,7 @@ public class HelloSignOls extends BaseTest {
                 .clickNextButton(identificationPageOLS);
 
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad1(studyName)
                 .getPID()
