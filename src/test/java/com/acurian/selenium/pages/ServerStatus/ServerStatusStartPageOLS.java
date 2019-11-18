@@ -9,8 +9,8 @@ public class ServerStatusStartPageOLS extends MainPageOLS {
 
     public final String titleExpected = "Let's get started to see if there is a study that's right for you!\n" +
             "\n" +
-            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
-            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+            //"First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+            //"Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $1,000, which varies by study\n" +
             "No-cost study-related care from doctors\n" +

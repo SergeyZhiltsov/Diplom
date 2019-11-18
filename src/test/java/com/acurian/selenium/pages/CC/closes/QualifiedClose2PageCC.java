@@ -13,7 +13,8 @@ public class QualifiedClose2PageCC extends MainPageCC {
     //Qualified Close 2: No Pediatric Study Switch - 35_number
 
     public final String titleExpected = "We're glad the location is convenient for you.\n" +
-            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
+            "\n" +
+            "We will forward your contact information to the doctor's office that you selected so they can contact you.";
 
     public final String titleExpectedIBD = "We’re glad the location is convenient for you.\n" +
             "\n" +

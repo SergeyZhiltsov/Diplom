@@ -101,7 +101,7 @@ public class RadiantWTtest extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageCC)
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoadGmega(studyName)
                 .getPID()

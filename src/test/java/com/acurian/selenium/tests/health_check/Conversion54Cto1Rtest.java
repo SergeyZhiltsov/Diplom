@@ -63,7 +63,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
                 .clickNextButton(identificationPageOLS);
 
         HSGeneralPageOLS hsGeneralPageOLS = identificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
