@@ -31,9 +31,9 @@ public class OA_4109_OLS extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
+                .waitForPageLoad("an osteoarthritis study", "850");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+//                .getExpectedModifiedTitle("an osteoarthritis study", "850"), "Title is diff");
 
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

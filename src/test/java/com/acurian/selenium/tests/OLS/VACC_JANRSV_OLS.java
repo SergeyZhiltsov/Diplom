@@ -178,7 +178,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a vaccin study", "650")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
@@ -186,7 +186,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .waitForPageLoad()
                 .typeZipCode(site.zipCode)
                 .clickNextButton(dateOfBirthPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoad("a vaccin study", "650")
                 .clickOnAnswer("Female")
                 .setDate("01012002")
                 .clickNextButton(lessThan18YearsOldPageOLS);
@@ -197,7 +197,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .back();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                 dateOfBirthPageOLS
-                        .waitForPageLoad()
+                        .waitForPageLoad("a vaccin study", "650")
                         .setDate("01011955")
                         .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -206,7 +206,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
         AreYouInterestedVaccineResearchStudyOLS areYouInterestedVaccineResearchStudyOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a vaccin study", "650")
                 .setDate("01011954")
                 .clickNextButton(new AreYouInterestedVaccineResearchStudyOLS());
 

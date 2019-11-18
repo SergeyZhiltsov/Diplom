@@ -29,7 +29,7 @@ public class OA_3138_OLS extends BaseTest {
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumberDY)
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .maximizePage();
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

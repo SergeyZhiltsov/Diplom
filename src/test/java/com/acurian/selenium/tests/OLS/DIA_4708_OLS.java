@@ -36,8 +36,8 @@ public class DIA_4708_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a fatty liver study for diabetics", "1,550"), "Title is diff");
+                .waitForPageLoad("a fatty liver study for diabetics", "1,550");
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a fatty liver study for diabetics", "1,550"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .setDate("09091969")//1969 and 1942 //1968
                 .clickNextButton(new ZipCodePageOLS());
@@ -47,7 +47,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a fatty liver study for diabetics", "1,550")
                 .setDate("09091942")
                 .clickNextButton(zipCodePageOLS)
                 .waitForPageLoad()
@@ -55,7 +55,7 @@ public class DIA_4708_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a fatty liver study for diabetics", "1,550")
                 .setDate("09091968")
                 .clickNextButton(zipCodePageOLS);
 

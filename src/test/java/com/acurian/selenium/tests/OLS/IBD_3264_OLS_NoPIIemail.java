@@ -34,9 +34,9 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
-                dateOfBirthPageOLS.getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
+                .waitForPageLoad("a Crohn's or colitis study", "700");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
+//                dateOfBirthPageOLS.getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 //------------Disqualify (“Age < 18 years old”) if <18 -----------------------------------------
@@ -60,7 +60,7 @@ public class IBD_3264_OLS_NoPIIemail extends BaseTest {
 //                //.checkProtocolsContainsForQNumber("QSI8005", protocol1)
 //                .back();
         PersonalDetails personalDetails = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a Crohn's or colitis study", "700")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 

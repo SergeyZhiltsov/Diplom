@@ -18,10 +18,23 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     public final String titleExpected1 = "What is your date of birth?";
 
     public final String titleCommonExpected = "Let's get started to see if there is %2$s that's right for you!\n" +
+            "\n"+
             "If you attend all required study visits, you may receive*:\n" +
             "Payment up to $%1$s, which varies by study\n" +
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
+
+    public final String titleCommonExpectedCrohns = "Let's get started to see if there is %2$s that's right for you.\n"+
+            "\n"+
+            "If you attend all required study visits, you may receive:\n"+
+            "\n"+
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $%1$s for time and travel, for qualified participants who complete study related visits\n"+
+            "\n"+
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n"+
+            "\n"+
+            "If you have any questions, you can contact information@acurian.com.";
 
 //    public final String titleCommonExpected2 = "Let's get started to see if there is %2$s that's right for you!\n" +
 //            "\n" +
@@ -434,7 +447,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     WebElement titleText3;
 
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
-    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[2]/div[2]")
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[2]/div[2] | (//*[@class=\"show-in-ols\"])[3]")
    //WebElement titleTextGROUP;
      WebElement titleText;
 
@@ -471,6 +484,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "//*[@id='command']/div[1]/div[2] | //div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement combinedLocator;
 
+    @FindBy(xpath = "//*[@id=\"command\"]/div[2]/span[1]/div[1] ")
+    WebElement titleTextCrohns;
+
     WebElement titleTextGH;
 
 
@@ -478,21 +494,21 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         PageFactory.initElements(getDriver(), this);
         switch (Locators.isEnvWeb) {
             case Platforms.WEB:
-                questionText = questionText1;
-                titleText = titleText1;
-                titleTextGH = titleTextGH1;
-                titleTextAH = questionTextAH1;
-                titleText2Ver = titleText2Ver1;
+//                questionText = questionText1;
+//                titleText = titleText1;
+//                titleTextGH = titleTextGH1;
+//                titleTextAH = questionTextAH1;
+//                titleText2Ver = titleText2Ver1;
                 break;
             case Platforms.TABLET:
-                titleText = titleText2;
-                questionText = questionText2;
-                titleTextGH = titleTextGH2;
+//                titleText = titleText2;
+//                questionText = questionText2;
+//                titleTextGH = titleTextGH2;
                 break;
             case Platforms.MOBILE:
-                titleText = titleText3;
-                questionText = questionText3;
-                titleTextGH = titleTextGH3;
+//                titleText = titleText3;
+//                questionText = questionText3;
+//                titleTextGH = titleTextGH3;
                 break;
         }
     }
@@ -523,9 +539,28 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     }
 
     @Step
-    public DateOfBirthPageOLS waitForPageLoad() {
+    public DateOfBirthPageOLS waitForPageLoad2() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
+        waitForPageLoadMain(titleText, getExpectedModifiedTitle(indication, compensation));
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadCrohns(String indication, String compensation) {
+        waitForPageLoadMain(titleTextCrohns, getExpectedModifiedTitleCrohns(indication, compensation));
+        return this;
+    }
+
+    public String getExpectedModifiedTitle(String indication, String compensation) {
+        return String.format(titleCommonExpected, compensation, indication);
+    }
+    public String getExpectedModifiedTitleCrohns(String indication, String compensation) {
+        return String.format(titleCommonExpectedCrohns, compensation, indication);
     }
 
 //    @Step
@@ -547,11 +582,11 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 //        return this;
 //    }
 
-    @Step
-    public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
-        waitForPageLoadMain(titleText, String.format(titleCommonExpected, indication, compensation));
-        return this;
-    }
+//    @Step
+//    public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
+//        waitForPageLoadMain(titleText, String.format(titleCommonExpected, indication, compensation));
+//        return this;
+//    }
 
 //    @Step
 //    public DateOfBirthPageOLS waitForPageLoad2Ver() {
@@ -624,12 +659,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return getText(titleText);
     }
 
-    public String getExpectedModifiedTitle(String indication, String compensation/*, boolean... isVerticalComa*/) {
-//        if (isVerticalComa.length == 1 && isVerticalComa[0]) { //some anti patern for workaround;)
-//            return String.format(titleCommonExpected2, compensation, indication);
-//        }
-        return String.format(titleCommonExpected, compensation, indication);
-    }
+//    public String getExpectedModifiedTitle(String indication, String compensation/*, boolean... isVerticalComa*/) {
+////        if (isVerticalComa.length == 1 && isVerticalComa[0]) { //some anti patern for workaround;)
+////            return String.format(titleCommonExpected2, compensation, indication);
+////        }
+//        return String.format(titleCommonExpected, compensation, indication);
+//    }
 
     //GH methods
 //    @Step

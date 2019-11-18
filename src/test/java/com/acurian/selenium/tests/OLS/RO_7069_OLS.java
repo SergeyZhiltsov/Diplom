@@ -35,7 +35,7 @@ public class RO_7069_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad(studyName, "500");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle(studyName, "500"), "Title is diff");
 
@@ -48,7 +48,7 @@ public class RO_7069_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "500")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

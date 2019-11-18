@@ -59,8 +59,8 @@ public class GAST_4357_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName, "500"), "Title is diff");
+                .waitForPageLoad(studyName, "500");
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle(studyName, "500"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
@@ -70,7 +70,7 @@ public class GAST_4357_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         PersonalDetails personalDetails = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "500")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
 

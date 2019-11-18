@@ -57,8 +57,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
+                .waitForPageLoad("a study", "600");
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("a study", "600"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
@@ -68,7 +68,7 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", protocol2)
                 .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a study", "600")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

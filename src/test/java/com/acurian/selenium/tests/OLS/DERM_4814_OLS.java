@@ -55,10 +55,10 @@ public class DERM_4814_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
-                "Title is diff");
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+//                .getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "600"),
+//                "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());

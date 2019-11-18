@@ -51,7 +51,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad("Crohn's study", "700");
       //  Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
        //        dateOfBirthPageOLS.getExpectedModifiedTitle("Crohn's study", "700"), "Title is diff");
 
@@ -65,7 +65,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad();
+                .waitForPageLoad("Crohn's study", "700");
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());

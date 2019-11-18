@@ -37,7 +37,7 @@ public class OAB_BPH_4867_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad("an overactive bladder study", "300");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
                 dateOfBirthPageOLS.getExpectedModifiedTitle("an overactive bladder study", "300"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
@@ -50,7 +50,7 @@ public class OAB_BPH_4867_OLS extends BaseTest {
                 .back();
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("an overactive bladder study", "300")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

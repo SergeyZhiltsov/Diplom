@@ -42,12 +42,12 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad("a study for diabetics", "600");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
                 .getExpectedModifiedTitle("a study for diabetics", "600"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("a study for diabetics", "600")
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
 
@@ -56,7 +56,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoad("a study for diabetics", "600")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

@@ -42,8 +42,8 @@ public class IBD_3485_OLS extends BaseTest {
 
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoad();
+//        dateOfBirthPageOLS.openPage(env, phoneNumber)
+//                .waitForPageLoad();
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleExpected, "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
@@ -57,8 +57,8 @@ public class IBD_3485_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
                 .back();
         //------------Disqualify (“Age”) if >= 76 years -----------------------------------------
-        dateOfBirthPageOLS
-                .waitForPageLoad();
+        //dateOfBirthPageOLS
+            //    .waitForPageLoad();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .setDate("09091941")
                 .clickNextButton(new PersonalDetails());
@@ -68,7 +68,7 @@ public class IBD_3485_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", protocol1, protocol2)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .setDate("09091980")
                 .clickNextButton(new PersonalDetails());
 

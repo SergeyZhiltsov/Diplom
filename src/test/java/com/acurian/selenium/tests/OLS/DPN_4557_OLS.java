@@ -39,9 +39,9 @@ public class DPN_4557_OLS extends BaseTest {
 
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumberDPN)
-                .waitForPageLoad();
+//        dateOfBirthPageOLS
+//                .openPage(env, phoneNumberDPN)
+//                .waitForPageLoad();
         //Assert.assertEquals(dateOfBirthPageOLS.getQuestionText(),dateOfBirthPageOLS.titleExpected, "Question is diff");
         //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.titleDPNExpected, "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

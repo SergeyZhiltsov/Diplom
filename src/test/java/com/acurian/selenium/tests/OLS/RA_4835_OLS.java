@@ -33,8 +33,8 @@ public class RA_4835_OLS extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, phoneNumberRA)
-                .waitForPageLoad();
+//        dateOfBirthPageOLS.openPage(env, phoneNumberRA)
+//                .waitForPageLoad();
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText().contains("Let's get started to see if you qualify for a rheumatoid arthritis (RA) study!"), true);
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .setDate("03/21/2002") //Disqualify (“Age < 18 years old”) if <18
@@ -44,7 +44,7 @@ public class RA_4835_OLS extends BaseTest {
                 .back();
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+               // .waitForPageLoad()
                 .setDate("03/21/2001")
                 .clickNextButton(new ZipCodePageOLS());
 

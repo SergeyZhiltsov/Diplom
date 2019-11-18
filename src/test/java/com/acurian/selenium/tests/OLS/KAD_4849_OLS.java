@@ -37,8 +37,8 @@ public class KAD_4849_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumberMIG)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "400");
+        //Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.getExpectedModifiedTitle("an eczema (atopic dermatitis) study", "400"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .setDate("09092003")
@@ -49,7 +49,7 @@ public class KAD_4849_OLS extends BaseTest {
                 .back();
 
         PersonalDetails personalDetails = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "400")
                 .setDate("09091942")
                 .clickNextButton(new PersonalDetails());
         personalDetails
@@ -58,7 +58,7 @@ public class KAD_4849_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "400")
                 .setDate("09091980")
                 .clickNextButton(personalDetails);
 

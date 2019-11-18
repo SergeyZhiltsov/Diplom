@@ -32,8 +32,8 @@ public class IBD_3839_OLS extends BaseTest {
 
         //---------------Date of Birth Question-------------------
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoad();
+//        dateOfBirthPageOLS.openPage(env, phoneNumber)
+//                .waitForPageLoad();
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
 //                dateOfBirthPageOLS.getExpectedModifiedTitle("a Crohn's or colitis study", "700", true), "Title is diff");
 
@@ -47,8 +47,8 @@ public class IBD_3839_OLS extends BaseTest {
         lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
-        dateOfBirthPageOLS
-                .waitForPageLoad();
+//        dateOfBirthPageOLS
+//                .waitForPageLoad();
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .setDate("09091980")
                 .clickNextButton(new PersonalDetails());

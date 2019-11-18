@@ -55,10 +55,10 @@ public class UC_4818_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
-                dateOfBirthPageOLS.
-                        getExpectedModifiedTitle("a colitis study", "300"), "Title is diff");
+                .waitForPageLoad("a colitis study", "300");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
+//                dateOfBirthPageOLS.
+//                        getExpectedModifiedTitle("a colitis study", "300"), "Title is diff");
 
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
@@ -70,7 +70,7 @@ public class UC_4818_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[0])
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad();
+                .waitForPageLoad("a colitis study", "300");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());

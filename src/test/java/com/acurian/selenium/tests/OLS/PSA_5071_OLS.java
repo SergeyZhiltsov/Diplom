@@ -41,7 +41,7 @@ public class PSA_5071_OLS extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad(studyName, "300");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
                 .getExpectedModifiedTitle(studyName, "300"), "Title is diff");
 
@@ -56,7 +56,7 @@ public class PSA_5071_OLS extends BaseTest {
                 .back();
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "300")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

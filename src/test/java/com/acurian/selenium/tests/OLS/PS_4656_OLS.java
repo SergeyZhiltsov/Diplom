@@ -41,7 +41,7 @@ public class PS_4656_OLS extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
+                .waitForPageLoad("a psoriasis study", "350");
         Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
                 .getExpectedModifiedTitle("a psoriasis study", "350"), "Title is diff");
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS

@@ -58,9 +58,9 @@ public class AF_4958_OLS extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
-                .getExpectedModifiedTitle(studyName, "350"), "Title is diff");
+                .waitForPageLoad(studyName, "350");
+//        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
+//                .getExpectedModifiedTitle(studyName, "350"), "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
                 .clickNextButton(new LessThan18YearsOldPageOLS());
@@ -72,7 +72,7 @@ public class AF_4958_OLS extends BaseTest {
 
 
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "350")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
@@ -104,7 +104,7 @@ public class AF_4958_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
         DiagnosedWithFibromyalgiaOLS diagnosedWithFibromyalgiaOLS = dateOfBirthPageOLS
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "350")
                 .setDate("01011960")
                 .clickNextButton(new DiagnosedWithFibromyalgiaOLS());
 

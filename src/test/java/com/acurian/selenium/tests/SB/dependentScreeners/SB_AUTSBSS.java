@@ -31,7 +31,7 @@ public class SB_AUTSBSS extends BaseTest{
 
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .setDate("09091980")
                 .clickNextButton(new PersonalDetails());
 
