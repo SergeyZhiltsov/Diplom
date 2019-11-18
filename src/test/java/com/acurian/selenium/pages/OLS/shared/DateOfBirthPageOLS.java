@@ -437,7 +437,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "(//div[@class='visible-md-block visible-lg-block ng-scope'])[2]")
     WebElement questionTextCrohns;
 
-    @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
+    @FindBy(xpath = "(.//*[contains(@class, 'show-in-ols')][contains(text(), \"Let's get started\")])[1]")
     WebElement titleText1;
 
     @FindBy(xpath = "(//div[@class='visible-md-block visible-lg-block ng-scope'])[1]")
@@ -447,9 +447,9 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     WebElement titleText3;
 
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
-    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[2]/div[2] | (//*[@class=\"show-in-ols\"])[3]")
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
+    WebElement titleText;
    //WebElement titleTextGROUP;
-     WebElement titleText;
 
     @FindBy(xpath = "//div[contains(@class,'subquestion')][1]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText2Ver1;
@@ -484,7 +484,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "//*[@id='command']/div[1]/div[2] | //div[@class='question']//div[contains(@class,'visible-md-block')]")
     WebElement combinedLocator;
 
-    @FindBy(xpath = "//*[@id=\"command\"]/div[2]/span[1]/div[1] ")
+    @FindBy(xpath = "//*[@id='command']/div[2]/span[1]/div[1] ")
     WebElement titleTextCrohns;
 
     WebElement titleTextGH;
@@ -494,21 +494,21 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         PageFactory.initElements(getDriver(), this);
         switch (Locators.isEnvWeb) {
             case Platforms.WEB:
-//                questionText = questionText1;
-//                titleText = titleText1;
-//                titleTextGH = titleTextGH1;
-//                titleTextAH = questionTextAH1;
-//                titleText2Ver = titleText2Ver1;
+                questionText = questionText1;
+                titleText = titleText1;
+                titleTextGH = titleTextGH1;
+                titleTextAH = questionTextAH1;
+                titleText2Ver = titleText2Ver1;
                 break;
             case Platforms.TABLET:
-//                titleText = titleText2;
-//                questionText = questionText2;
-//                titleTextGH = titleTextGH2;
+                titleText = titleText2;
+                questionText = questionText2;
+                titleTextGH = titleTextGH2;
                 break;
             case Platforms.MOBILE:
-//                titleText = titleText3;
-//                questionText = questionText3;
-//                titleTextGH = titleTextGH3;
+                titleText = titleText3;
+                questionText = questionText3;
+                titleTextGH = titleTextGH3;
                 break;
         }
     }
