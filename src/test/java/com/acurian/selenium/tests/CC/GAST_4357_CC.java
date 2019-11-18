@@ -83,9 +83,9 @@ public class GAST_4357_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
-                .getExpectedModifiedTitle(studyName, "500"), "Title is diff");
+                .waitForPageLoad(studyName, "500");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
+//                .getExpectedModifiedTitle(studyName, "500"), "Title is diff");
 
         dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
@@ -95,7 +95,7 @@ public class GAST_4357_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC())
@@ -103,7 +103,7 @@ public class GAST_4357_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC)
-                .waitForPageLoad()
+                .waitForPageLoad(studyName, "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new IdentificationPageCC());

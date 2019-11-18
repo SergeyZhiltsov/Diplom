@@ -76,8 +76,8 @@ public class VACC_4556_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a pneumonia vaccine study", "170"), "Title is diff");
+                .waitForPageLoad("a pneumonia vaccine study", "170");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a pneumonia vaccine study", "170"), "Title is diff");
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
                 .setMonth("May")
                 .setDay("1")
@@ -93,14 +93,14 @@ public class VACC_4556_CC extends BaseTest {
         switch (site) {
             case AUT_VAC_4556M:
                 dateOfBirthPageCC
-                        .waitForPageLoad()
+                        .waitForPageLoad("a pneumonia vaccine study", "170")
                         .setYear("1959")//64
                         .clickNextButton(zipCodePageCC)
                         .waitForPageLoad()
                         .getPage(debugPageCC)
                         .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols[0])
                         .back(dateOfBirthPageCC)
-                        .waitForPageLoad()
+                        .waitForPageLoad("a pneumonia vaccine study", "170")
                         .setYear("1954")//65
                         .clickNextButton(zipCodePageCC);
                 break;
@@ -119,14 +119,14 @@ public class VACC_4556_CC extends BaseTest {
 //                break;
             case AUT_VAC_4556_A:
                 dateOfBirthPageCC
-                        .waitForPageLoad()
+                        .waitForPageLoad("a pneumonia vaccine study", "170")
                         .setYear("1940")//<80
                         .clickNextButton(zipCodePageCC)
                         .waitForPageLoad()
                         .getPage(debugPageCC)
                         .checkProtocolsContainsForQNumber("Q0004925-QSI8004-STUDYQUES", protocols)
                         .back(dateOfBirthPageCC)
-                        .waitForPageLoad()
+                        .waitForPageLoad("a pneumonia vaccine study", "170")
                         .setYear("1939")//>=80
                         .clickNextButton(zipCodePageCC);
         }

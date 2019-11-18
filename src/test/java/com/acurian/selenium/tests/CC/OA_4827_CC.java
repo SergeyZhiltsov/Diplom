@@ -53,10 +53,9 @@ public class OA_4827_CC extends BaseTest {
                 .clickOnAnswer("Call Back")
                 .clickNextButton(new DateOfBirthPageCC());
 
-        dateOfBirthPageCC
-                .waitForPageLoad();
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+                .waitForPageLoad("Osteoarthritis", "850")
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1975")

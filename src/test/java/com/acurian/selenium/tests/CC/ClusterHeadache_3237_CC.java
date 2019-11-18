@@ -55,8 +55,8 @@ public class ClusterHeadache_3237_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a cluster headache study", "300"), "Title is diff");
+                .waitForPageLoad("a cluster headache study", "300");
+        //Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle("a cluster headache study", "300"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
                 .setMonth("Aug")
                 .setDay("1")

@@ -13,7 +13,8 @@ import java.util.List;
 public class QualifiedClose1PageCC extends MainPageCC {
 
     public final String titleExpected = "We're glad the location is convenient for you.\n" +
-            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
+            "\n" +
+            "We will forward your contact information to the doctor's office that you selected so they can contact you.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;

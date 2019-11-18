@@ -374,11 +374,15 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "\n" +
             "Let's get started to see if there is a study that's right for you!";
 //
-//    public final String titleExpectedJANRSV = "Let's get started to see if there is a vaccine study that's right for you!\n" +
-//            "\n" +
-//            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
-//            "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.";
-//
+    public final String titleExpectedJANRSV = "Let's get started to see if there is a vaccine study that's right for you!\n" +
+        "\n" +
+        "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
+        "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor's office.\n" +
+        "If you attend all required study visits, you may receive*:\n" +
+        "Payment up to $650, which varies by study\n" +
+        "No-cost study-related care from doctors\n" +
+        "No-cost study medication";
+
 //    public final String titleExpectedCrohns = "Let's get started to see if there is a Crohn's study that's right for you!\n" +
 //            "\n" +
 //            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
@@ -399,7 +403,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 
     WebElement questionText;
 
-    @FindBy(xpath = "(//div[@class = 'visible-md-block visible-lg-block ng-scope']//div[@class = 'show-in-ols'])[2]")
+    @FindBy(xpath = "//*[@id=\"question_view\"]/div[1]/div/form/div/div[1]/div[1]/question/div/div/div/div/div/div/h4/div[1]/div[2]")
     WebElement titleTextJANRSV;
 
     @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[2]")
@@ -430,7 +434,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     WebElement titleText3;
 
     //--------------WorkAround for IBD due to Rel.52 dev changes in Xpath of Question and title Texts--------
-    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1]")
+    @FindBy(xpath = "(//div[contains(@class,'subquestion')]//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols'])[1] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[2]/div[2]")
    //WebElement titleTextGROUP;
      WebElement titleText;
 
@@ -579,12 +583,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         return this;
     }
 
-//    @Step
-//    public DateOfBirthPageOLS waitForPageLoadJANRSV() {
-//        waitForPageLoadMain(titleTextJANRSV, titleExpectedJANRSV);
-//        return this;
-//    }
-//
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadJANRSV() {
+        waitForPageLoadMain(titleTextJANRSV, titleExpectedJANRSV);
+        return this;
+    }
+
 //    @Step
 //    public DateOfBirthPageOLS waitForPageLoadPsoariaticArthritis() {
 //        waitForPageLoadMain(titleTextArthritis, titlePsoriaticArthritisExpected);

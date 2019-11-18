@@ -79,10 +79,10 @@ public class UC_7191_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),
-                dateOfBirthPageCC.getExpectedModifiedTitle("a colitis study","300"),
-                "Title is diff");
+                .waitForPageLoad("a colitis study","300");
+//        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),
+//                dateOfBirthPageCC.getExpectedModifiedTitle("a colitis study","300"),
+//                "Title is diff");
 
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -94,7 +94,7 @@ public class UC_7191_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[0])
                 .back();
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("a colitis study","300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
@@ -103,7 +103,7 @@ public class UC_7191_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[0])
                 .back();
        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad()
+                .waitForPageLoad("a colitis study","300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

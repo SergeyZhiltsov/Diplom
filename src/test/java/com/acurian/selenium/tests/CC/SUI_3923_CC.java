@@ -66,8 +66,8 @@ public class SUI_3923_CC extends BaseTest{
                 .clickNextButton(new DateOfBirthPageCC());
         
         //------------DOB Page---------------    
-        dateOfBirthPageCC   	
-        		.waitForPageLoad();
+//        dateOfBirthPageCC
+//        		.waitForPageLoad();
         //Assert.assertEquals(dateOfBirthPageCC.getQuestionText(),"May I have your date of birth?","Question text is diff");
         //Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleExpectedSUI_3923, "Title is diff");
        
