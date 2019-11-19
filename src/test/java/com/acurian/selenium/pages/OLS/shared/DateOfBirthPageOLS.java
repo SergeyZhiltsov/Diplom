@@ -36,6 +36,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
             "\n"+
             "If you have any questions, you can contact information@acurian.com.";
 
+    public final String titleCommonExpectedGMEGA = "Let's get started to see if you qualify for %2$s study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $%1$s\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+
 //    public final String titleCommonExpected2 = "Let's get started to see if there is %2$s that's right for you!\n" +
 //            "\n" +
 //            "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
@@ -551,11 +557,19 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     }
 
     @Step
+    public DateOfBirthPageOLS waitForPageLoadGMEGA(String indication, String compensation) {
+        waitForPageLoadMain(titleText, getExpectedModifiedTitleGMEGA(indication, compensation));
+        return this;
+    }
+
+    @Step
     public DateOfBirthPageOLS waitForPageLoadCrohns(String indication, String compensation) {
         waitForPageLoadMain(titleTextCrohns, getExpectedModifiedTitleCrohns(indication, compensation));
         return this;
     }
-
+    public String getExpectedModifiedTitleGMEGA(String indication, String compensation) {
+        return String.format(titleCommonExpectedGMEGA, compensation, indication);
+    }
     public String getExpectedModifiedTitle(String indication, String compensation) {
         return String.format(titleCommonExpected, compensation, indication);
     }
