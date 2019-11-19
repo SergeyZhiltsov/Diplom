@@ -10,8 +10,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class IdentificationPageOLS extends MainPageOLS{
 
-    public final String titleExpected2 = "Thank you for answering these questions. \n" +
-            "\n" +
+    public final String titleExpected2 = "Thank you for answering these questions.\n"+
+            "\n"+
             "Please complete the following information so that we can match you with a study doctor in your area.";
 
     public final String titleExpectedNotQ = "Personal details (*required fields)";

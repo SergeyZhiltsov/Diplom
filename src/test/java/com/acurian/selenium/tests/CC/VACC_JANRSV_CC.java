@@ -12,7 +12,6 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
-import com.acurian.selenium.tests.OLS.VACC_JANRSV_OLS;
 import com.acurian.selenium.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.Assert;

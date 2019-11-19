@@ -509,10 +509,10 @@ public class CG_4960_CC extends BaseTest {
 
                 synexusRadiantDirectScheduleCC
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "03/02/1960", "US",
+                        .assertVariablesNew("Acurian", "Trial", "03/02/1960", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", "aut4960S", site.name,
-                                "LGLPPDGOU002")
+                                "999-999-9999", " aut4960S ", " "+site.name,
+                                "LGLPPDGOU002 - LG Gout")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

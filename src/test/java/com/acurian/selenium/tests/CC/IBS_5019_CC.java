@@ -714,10 +714,10 @@ public class IBS_5019_CC extends BaseTest {
                 siteSelectionPageCC
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "08/01/1990", "US",
+                        .assertVariablesNew("Acurian", "Trial", "08/01/1990", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", "%SYN_SITE_NUM%", site.name,
-                                            "BOSPPDIBS201")
+                                "999-999-9999", " %SYN_SITE_NUM% ", " "+site.name,
+                                            "BOSPPDIBS201 - Boston Pharmaceuticals IBS-D")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

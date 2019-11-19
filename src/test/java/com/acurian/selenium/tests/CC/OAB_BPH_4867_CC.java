@@ -602,9 +602,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
-				.assertVariables("Acurian", "Trial", "09/09/1978", "US",
+				.assertVariablesNew("Acurian", "Trial", "09/09/1978", "US",
                         "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        "123456a", site.name, "UROPPDOAB001")
+                        " 123456a ", " "+site.name, "UROPPDOAB001 - Urovant Overactive Bladder (OAB)")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

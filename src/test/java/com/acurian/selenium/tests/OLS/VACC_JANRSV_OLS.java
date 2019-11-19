@@ -51,7 +51,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
     @Description("VACC_4556_OLS")
     public void vaccJANRSVOlsTest(Site site) {
         final String phoneNumber = "AUTAMS1VAC";
-        final String studyName = "a vaccine study";
+        final String studyName = "a vaccine";
         String env = System.getProperty("acurian.env", "STG");
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -59,8 +59,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-        .threadSleep(3000);
- //               .waitForPageLoadJANRSV();
+                .waitForPageLoad("a vaccine study", "650");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
 //                .getExpectedModifiedTitle(studyName, "650"), "Title is diff");
 
@@ -70,17 +69,13 @@ public class VACC_JANRSV_OLS extends BaseTest {
             ScedulerOLS scedulerOLS = new ScedulerOLS();
             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
             dateOfBirthPageOLS
-                   // .waitForPageLoadJANRSV()
-                    .threadSleep(3000);
-            dateOfBirthPageOLS
+                    .waitForPageLoad("a vaccine study", "650")
                     .clickOnAnswer("Yes")
                     .clickNextButton(new ZipCodePageOLS())
                     .waitForPageLoad()
                     .typeZipCode(site.zipCode)
                     .clickNextButton(dateOfBirthPageOLS)
                     .waitForPageLoad1()
-                    .threadSleep(3000);
-            dateOfBirthPageOLS
                     .clickOnAnswer("Female")
                     .setDate("01011954")
                     .clickNextButton(new AreYouInterestedVaccineResearchStudyOLS())
@@ -109,7 +104,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                             "9999999999", site.zipCode)
                     .clickNextButton(new SiteSelectionPageOLS())
-                    .waitForPageLoad1(studyName + "!")
+                    .waitForPageLoad1("a vaccine study!")
                     .getPID()
                     .clickOnFacilityName(site.name)
                     .clickNextButton(directSheduleVaccOLS);
@@ -542,20 +537,20 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                     .back();
-            DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageOLS
+            /*DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS*/ IdentificationPageOLS identificationPageOLS= approximateHeightPageOLS
                     .waitForPageLoad()
                     .setLbs("150")
-                    .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+                    .clickNextButton(new /*DoYouExperienceAnyOfFollowingSymptoms_OLS*/IdentificationPageOLS());
 
-            DoyouExperienceHotFlashesOLS doyouExperienceHotFlashesOLS = doYouExperienceAnyOfFollowingSymptoms_OLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickNextButton(new DoyouExperienceHotFlashesOLS());
+//            DoyouExperienceHotFlashesOLS doyouExperienceHotFlashesOLS = doYouExperienceAnyOfFollowingSymptoms_OLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickNextButton(new DoyouExperienceHotFlashesOLS());
 
-            IdentificationPageOLS identificationPageOLS = doyouExperienceHotFlashesOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("No")
-                    .clickNextButton(new IdentificationPageOLS());
+//            IdentificationPageOLS identificationPageOLS = doyouExperienceHotFlashesOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No")
+//                    .clickNextButton(new IdentificationPageOLS());
 
             SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                     .waitForPageLoad()
@@ -565,7 +560,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 
 
             QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
-                    .waitForPageLoad(studyName + "!")
+                    .waitForPageLoad(studyName)
                     .getPID()
                     .clickOnFacilityName(site.name)
                     .clickNextButton(new QualifiedClose1PageOLS());

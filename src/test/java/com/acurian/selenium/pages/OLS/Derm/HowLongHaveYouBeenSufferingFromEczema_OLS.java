@@ -12,7 +12,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HowLongHaveYouBeenSufferingFromEczema_OLS extends MainPageOLS {
 
-	public final String titleExpected = "How long have you been suffering from eczema (atopic dermatitis)?";
+	public final String titleExpected = "How long have you had eczema (atopic dermatitis)?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
