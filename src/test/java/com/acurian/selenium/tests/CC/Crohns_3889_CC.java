@@ -45,7 +45,7 @@ public class Crohns_3889_CC extends BaseTest {
     @Description("Crohns 3485 for CC")
     public void Crohns_3889_CC(String flareStatus) {
         Site site = Site.AUT_CRN_3889_HS;
-        String phoneNumber = "AUTAMS1IBD";
+        String phoneNumber = "AUTAMS1CRN";
 
         String studyName = "Crohn's or colitis";
         String studyIndication = "a Ulcerative Colitis";

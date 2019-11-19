@@ -56,7 +56,7 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .waitForPageLoad("a lupus study", "500")
+                .waitForPageLoad2("a lupus study", "500")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
