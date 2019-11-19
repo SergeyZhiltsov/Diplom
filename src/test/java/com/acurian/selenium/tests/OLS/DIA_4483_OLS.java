@@ -38,8 +38,8 @@ public class DIA_4483_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_NASH4483_site},
-                {Site.AUT_NASH4483S_site}
+               {Site.AUT_NASH4483_site},
+               {Site.AUT_NASH4483S_site}
         };
     }
 
@@ -48,6 +48,7 @@ public class DIA_4483_OLS extends BaseTest {
     public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";
         String studyName = "a fatty liver study for diabetics!";//"a NASH";
+        String studyName1 = "a fatty liver study for diabetics, a study for diabetics!";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -277,14 +278,14 @@ public class DIA_4483_OLS extends BaseTest {
         NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS())
+                .clickNextButton(new NoOfAlcoholicDrinkOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
                 .back(cardiovascularDiseaseThanOthersPageOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS())
+                .clickNextButton(new NoOfAlcoholicDrinkOLS())
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
@@ -316,7 +317,7 @@ public class DIA_4483_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
+                    .clickNextButton(new ToLoseWeightPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -789,20 +790,27 @@ public class DIA_4483_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "5", "190") //BMI > 30
                 .clickNextButton(new IdentificationPageOLS());
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
+
+        identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
-                        site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
-                .waitForPageLoad1(studyName)
-                .getPID()
-                .clickOnFacilityName(site.name)
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+                .clickNextButton(new SiteSelectionPageOLS());
+
+        if (site == Site.AUT_NASH4483S_site) {
+            new SiteSelectionPageOLS().waitForPageLoad1(studyName1)
+                    .getPID();}
+                    else{
+            new SiteSelectionPageOLS().waitForPageLoad1(studyName)
+                    .getPID();}
+
+        new SiteSelectionPageOLS().clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information")
+                .clickOnAnswer("No, I am not interested in receiving information");
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
