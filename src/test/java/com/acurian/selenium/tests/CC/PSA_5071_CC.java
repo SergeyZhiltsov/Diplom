@@ -582,10 +582,10 @@ public class PSA_5071_CC extends BaseTest {
                         .clickNextButton(new SynexusRadiantDirectScheduleCC());
                 synexusRadiantDirectScheduleCC
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "08/09/1980", "US",
+                        .assertVariablesNew("Acurian", "Trial", "08/09/1980", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", "aut5071s", site.name,
-                                "GILPPDPSA566")
+                                "999-999-9999", " aut5071s ", " "+site.name,
+                                "GILPPDPSA566 - Gilead Psoriatic Arthritis")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC);
                 break;

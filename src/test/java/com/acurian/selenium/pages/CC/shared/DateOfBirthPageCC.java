@@ -82,18 +82,16 @@ public class DateOfBirthPageCC extends MainPageCC {
 //            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 //
     public final String titleExpectedAkc_4691 = "Let's get started to see if there is a study for people with diabetes and related health conditions that's right for you.\n" +
-            "\n" +
-            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
-            "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
-            "If you attend all required study visits, you may receive:\n" +
-            "\n" +
-            "Study medication or placebo, at no-cost to you\n" +
-            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
-            "And depending on the study, compensation of up to $750 for time and travel, for qualified participants who complete study related visits\n" +
-            "\n" +
-            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
-            "\n" +
-            "If you have any questions, you can contact information@acurian.com.";
+        "\n" +
+        "If you attend all required study visits, you may receive:\n" +
+        "\n" +
+        "Study medication or placebo, at no-cost to you\n" +
+        "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+        "And depending on the study, compensation of up to $750 for time and travel, for qualified participants who complete study related visits\n" +
+        "\n" +
+        "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n" +
+        "\n" +
+        "If you have any questions, you can contact information@acurian.com.";
 //
 //    public final String titleExpectedOA3138 = "If you qualify and participate in an osteoarthritis study, you may receive:\n" +
 //            "Study medication or placebo, at no-cost to you\n" +

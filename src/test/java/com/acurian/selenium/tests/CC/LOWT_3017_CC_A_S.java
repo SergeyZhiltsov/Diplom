@@ -102,13 +102,13 @@ public class LOWT_3017_CC_A_S extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         dateOfBirthPageCC //Disqualify (“Age < 18 years old”) if <18
-                .waitForPageLoad("a study", "600")
+                .waitForPageLoad2("a study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC())
                 .waitForPageLoad()
                 .back();
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad("a study", "600")
+                .waitForPageLoad2("a study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 

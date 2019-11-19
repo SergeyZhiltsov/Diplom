@@ -75,7 +75,7 @@ public class CV_5034_CC_A_S extends BaseTest {
 
         //-------Date of Birth Page--------
         dateOfBirthPageCC
-                .waitForPageLoad2("Cardiovascular Disease", "750");
+                .waitForPageLoad2("a heart health study", "750");
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
 //                ("Cardiovascular Disease", "750"), "Title is diff");
 
@@ -87,7 +87,7 @@ public class CV_5034_CC_A_S extends BaseTest {
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = doesNotGivePermissionToProceedClosePageCC
                 .waitForPageLoad()
                 .back(dateOfBirthPageCC)
-                .waitForPageLoad("Cardiovascular Disease", "750")
+                .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
 

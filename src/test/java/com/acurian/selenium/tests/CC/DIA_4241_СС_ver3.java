@@ -485,7 +485,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoadDYS()
+                .waitForPageLoad("diabetes")
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4617", protocols)
                 .back();
@@ -524,7 +524,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
         		.clickOnAnswer(site.name)
         		.clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
-                .assertVariables("Acurian", "Trial", "09/09/1980", "US",
+                .assertVariablesNew("Acurian", "Trial", "09/09/1980", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
                         env.equals("STG") ? "010151" : "TA4722S", site.name, "SANPPDDIA893")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")                

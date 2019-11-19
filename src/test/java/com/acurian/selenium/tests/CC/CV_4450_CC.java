@@ -79,7 +79,7 @@ public class CV_4450_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad2("Cardiovascular Disease", "750");
+                .waitForPageLoad2("a heart health study", "750");
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
 //                ("Cardiovascular Disease", "750"), "Title is diff");
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC

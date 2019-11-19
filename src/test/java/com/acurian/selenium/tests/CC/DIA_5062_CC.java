@@ -265,7 +265,7 @@ public class DIA_5062_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(condition)
-                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageCC())
+                    .clickNextButton(new FollowingToLoseWeightPageCC())
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0016651", site.activeProtocols)
@@ -575,9 +575,9 @@ public class DIA_5062_CC extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new SynexusRadiantDirectScheduleCC())
                 .waitForPageLoadSyn()
-                .assertVariables("Acurian", "Trial", "09/09/1960", "US",
+                .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
                         "Dover, DE", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                        "12345a", site.name, "ALLSYHNAH002")
+                        " 12345a ", " "+site.name, "ALLSYHNAH002 - Allergan NASH")
                 .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

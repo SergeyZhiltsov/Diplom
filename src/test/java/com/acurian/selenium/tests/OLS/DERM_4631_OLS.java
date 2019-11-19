@@ -42,7 +42,7 @@ public class DERM_4631_OLS extends BaseTest {
 
     @Test(dataProvider = "sites")
     @Description("4631 Kiniksa Atopic Derm for OLS")
-    public void kad4631ols(Site site) {
+    public void DERM_4631_OLS(Site site) {
         String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis)";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
