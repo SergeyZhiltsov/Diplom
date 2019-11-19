@@ -27,7 +27,7 @@ public class Dispo2InoSiteConv extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a rheumatoid arthritis (RA)", "625")
+                .waitForPageLoadGMEGA("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -76,7 +76,7 @@ public class Dispo2InoSiteConv extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
                         "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
