@@ -12,6 +12,9 @@ public class QualifiedClose2PageOLS extends MainPageOLS {
             "\n" +
             "We will forward your contact information to the doctor's office that you selected so they can contact you.";
 
+    public final String titleExpectedGMEGA = "We're glad the location is convenient for you.\n" +
+            "We will forward your contact information to the doctor's office that you selected so they may contact you.";
+
     public final String titleExpected_SB = "We're glad the location is convenient for you. We will forward your contact information to the doctor's office that you selected so they may contact you.\n" +
             "\n" +
             "To ensure that you are a good candidate for the study, the research physician will need to review your medical records related to your RA history. In order to make this process easier for you, we have a free service that can obtain these records on your behalf.\n" +
@@ -38,6 +41,12 @@ public class QualifiedClose2PageOLS extends MainPageOLS {
     @Step
     public QualifiedClose2PageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageOLS waitForPageLoadGMEGA() {
+        waitForPageLoadMain(titleText, titleExpectedGMEGA);
         return this;
     }
 

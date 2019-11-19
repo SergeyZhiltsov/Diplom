@@ -24,7 +24,7 @@ public class Dispo54C extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a rheumatoid arthritis (RA)", "625")
+                .waitForPageLoadGMEGA("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
@@ -73,14 +73,14 @@ public class Dispo54C extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("7 - 11 months ago")
                 .clickNextButton(identificationPageOLS)
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(env.equals("QA") ? "Arthritis,a low back pain study,a rheumatoid arthritis (RA)" :
                         "Arthritis, a low back pain study, a rheumatoid arthritis (RA)")
                 .getPID()
                 .clickOnFacilityName(siteName)
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch("54C");
     }
