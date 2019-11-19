@@ -357,7 +357,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 //            "No-cost study-related care from doctors\n" +
 //            "No-cost study medication";
 //
-    public final String titleAHExpected = "Let's get started to see if there is a study that’s right for you!\n"; /*+
+    public final String titleAHExpected = "Let's get started to see if there is a study that’s right for you!"; /*+
             "First, please complete this questionnaire. Your information will only be used for this purpose.\n" +
             "Then, if there is a study right for you, you’ll schedule an in person visit at the study doctor’s office.";*/
 //
@@ -437,7 +437,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     @FindBy(xpath = "(//div[contains(@class,'visible-md-block')]//div[contains(@class,'show-in-ols')])[3]")
     WebElement questionText2Ver;
 
-    @FindBy(xpath = "//div[@class='visible-md-block visible-lg-block ng-scope']")
+    @FindBy(xpath = "(//div[@class='visible-md-block visible-lg-block ng-scope'])[1]")
     WebElement questionTextAH1;
 
     @FindBy(xpath = "(//div[@class='visible-md-block visible-lg-block ng-scope'])[2]")

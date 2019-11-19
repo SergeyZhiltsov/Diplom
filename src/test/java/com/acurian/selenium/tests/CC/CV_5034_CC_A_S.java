@@ -75,7 +75,7 @@ public class CV_5034_CC_A_S extends BaseTest {
 
         //-------Date of Birth Page--------
         dateOfBirthPageCC
-                .waitForPageLoad("Cardiovascular Disease", "750");
+                .waitForPageLoad2("Cardiovascular Disease", "750");
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
 //                ("Cardiovascular Disease", "750"), "Title is diff");
 

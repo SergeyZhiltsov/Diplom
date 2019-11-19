@@ -89,7 +89,7 @@ public class LOWT_3017_CC_A_S extends BaseTest {
 
 
         dateOfBirthPageCC
-                .waitForPageLoad("a study", "600");
+                .waitForPageLoad2("a study", "600");
 
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC
 //                .getExpectedModifiedTitle("a study", "600"), "Title is diff");
