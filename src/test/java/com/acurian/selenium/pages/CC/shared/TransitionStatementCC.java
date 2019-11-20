@@ -98,7 +98,7 @@ public class TransitionStatementCC extends MainPageCC {
     }
 
     @Step
-    public TransitionStatementCC waitForPageLoadWithTitleDIA(String titleExpected) {
+    public TransitionStatementCC waitForPageLoadWithTitleDIA() {
         waitForPageLoadMain(titleText, titleExpectedDIA);
         return this;
     }

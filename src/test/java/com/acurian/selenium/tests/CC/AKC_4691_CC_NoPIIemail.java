@@ -515,7 +515,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new TransitionStatementCC());
 
         transitionStatementCC
-                .waitForPageLoadDYS()
+                .waitForPageLoadWithTitleDIA()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)
                 .back();

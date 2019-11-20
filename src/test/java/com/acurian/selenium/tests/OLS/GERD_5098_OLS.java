@@ -63,7 +63,7 @@ public class GERD_5098_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
                 .back();
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
-                //.waitForPageLoad()
+                .waitForPageLoad(studyName + " study", "300")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 

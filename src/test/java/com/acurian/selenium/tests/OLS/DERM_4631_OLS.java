@@ -100,15 +100,15 @@ public class DERM_4631_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
-
+        HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS = new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
         List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months");
         for(String answer: disqualifyQ3) {
             System.out.println(answer);
-            howLongHaveYouBeenSufferingFromEczema_OLS
+                    howLongHaveYouBeenSufferingFromEczema_OLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageOLS)
+                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
@@ -118,13 +118,18 @@ public class DERM_4631_OLS extends BaseTest {
                 howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
-                .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageOLS);
+                .clickNextButton(/*howWouldYouDescribeTheEczemaCurrentlyPageOLS*/howMuchEczemaYouHaveOnYourBody_OLS);
+
+        howMuchEczemaYouHaveOnYourBody_OLS
+                .waitForPageLoad()
+                .selectFromDropDown("10")
+                .clickNextButton(new HaveYouEverHadAnyOfTheFollowingSymptomsPageOLS());
 
 //---------------------------------------------QS24 DQ, Go to QS25---------------------------------------------
         HaveYouEverHadAnyOfTheFollowingSymptomsPageOLS haveYouEverHadAnyOfTheFollowingSymptomsPageOLS =
                 howWouldYouDescribeTheEczemaCurrentlyPageOLS
                         .waitForPageLoad()
-                        .clickOnAnswer("Minor: Mostly or almost clear")
+                        .clickOnAnswer("Minor: Mostly clear or almost clear")
                         .clickNextButton(new HaveYouEverHadAnyOfTheFollowingSymptomsPageOLS());
 
         haveYouEverHadAnyOfTheFollowingSymptomsPageOLS
