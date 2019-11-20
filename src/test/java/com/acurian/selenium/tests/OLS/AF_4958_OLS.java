@@ -104,7 +104,7 @@ public class AF_4958_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
         DiagnosedWithFibromyalgiaOLS diagnosedWithFibromyalgiaOLS = dateOfBirthPageOLS
-                .waitForPageLoad(studyName, "350")
+                .waitForPageLoad1()
                 .setDate("01011960")
                 .clickNextButton(new DiagnosedWithFibromyalgiaOLS());
 

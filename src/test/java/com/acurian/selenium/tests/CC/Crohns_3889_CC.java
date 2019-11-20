@@ -84,18 +84,18 @@ public class Crohns_3889_CC extends BaseTest {
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
 //                ("a Crohn's study", "700"), "Title is diff");
 
-        LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
-                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
-                .clickNextButton(new LessThan18YearsOldPageCC());
-        lessThan18YearsOldPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
-                .back();
         IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .waitForPageLoad("a Crohn's study", "700")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
+                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
+//                .clickNextButton(new LessThan18YearsOldPageCC());
+//        lessThan18YearsOldPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
+//                .back();
+//        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
+//                .waitForPageLoad("a Crohn's study", "700")
+//                .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC
