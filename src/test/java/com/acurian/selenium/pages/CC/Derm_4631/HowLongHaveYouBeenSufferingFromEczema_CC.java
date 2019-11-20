@@ -11,7 +11,7 @@ import com.acurian.selenium.pages.CC.MainPageCC;
 
 public class HowLongHaveYouBeenSufferingFromEczema_CC extends MainPageCC{
 
-    public final String titleExpected = "How long have you had eczema (atopic dermatitis)?";
+    public final String titleExpected = "How long have you had eczema (atopic dermatitis)? (Agent Note: EGG-zih-muh, ay-TOP-ick der-muh-TIE-tis)";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
