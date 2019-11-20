@@ -2,19 +2,15 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.Derm_4631.HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC;
 import com.acurian.selenium.pages.OLS.Derm.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.CurrentlyTakingFollowingMedicationsOLS;
-import com.acurian.selenium.pages.OLS.LPS_4442.EitherOfFollowingMedicationsOLS;
 import com.acurian.selenium.pages.OLS.Obesity_4605.ExperienceExcessiveHungerOrIncreasedAppetiteOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.HealthcareDiagnosedPsoriasisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -38,7 +34,7 @@ public class DERM_4631_OLS extends BaseTest {
 
     @DataProvider(name = "sites")
     public Object[][] getData() {
-        return new Object[][] {
+        return new Object[][]{
                 {Site.AUT_DERM_4631_Site}
         };
     }
@@ -88,9 +84,9 @@ public class DERM_4631_OLS extends BaseTest {
 
         HealthcareDiagnosedPsoriasisPageOLS healthcareDiagnosedPsoriasisPageOLS =
                 hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("No")
+                        .clickNextButton(new HealthcareDiagnosedPsoriasisPageOLS());
 
         healthcareDiagnosedPsoriasisPageOLS
                 .waitForPageLoad()
@@ -100,15 +96,15 @@ public class DERM_4631_OLS extends BaseTest {
 
         HowLongHaveYouBeenSufferingFromEczema_OLS howLongHaveYouBeenSufferingFromEczema_OLS =
                 hasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
+                        .waitForPageLoad()
+                        .clickOnAnswer("Yes")
+                        .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
         HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS = new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
         List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months");
-        for(String answer: disqualifyQ3) {
+        for (String answer : disqualifyQ3) {
             System.out.println(answer);
-                    howLongHaveYouBeenSufferingFromEczema_OLS
+            howLongHaveYouBeenSufferingFromEczema_OLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
@@ -118,7 +114,7 @@ public class DERM_4631_OLS extends BaseTest {
                     .back();
         }
 
-                howLongHaveYouBeenSufferingFromEczema_OLS
+        howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
                 .clickNextButton(/*howWouldYouDescribeTheEczemaCurrentlyPageOLS*/howMuchEczemaYouHaveOnYourBody_OLS);
@@ -466,10 +462,10 @@ public class DERM_4631_OLS extends BaseTest {
                 .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
                 .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4);
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
@@ -478,10 +474,10 @@ public class DERM_4631_OLS extends BaseTest {
                 .back();
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         heartrelatedMedicalProceduresPageOLS
@@ -492,10 +488,10 @@ public class DERM_4631_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         heartrelatedMedicalProceduresPageOLS
@@ -506,10 +502,10 @@ public class DERM_4631_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         heartrelatedMedicalProceduresPageOLS
@@ -520,10 +516,10 @@ public class DERM_4631_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         heartrelatedMedicalProceduresPageOLS
@@ -534,10 +530,10 @@ public class DERM_4631_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         heartrelatedMedicalProceduresPageOLS
@@ -548,10 +544,10 @@ public class DERM_4631_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "Less than 30 days ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         heartrelatedMedicalProceduresPageOLS
@@ -562,10 +558,10 @@ public class DERM_4631_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "1 - 3 months ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
 
         heartrelatedMedicalProceduresPageOLS
@@ -576,10 +572,10 @@ public class DERM_4631_OLS extends BaseTest {
 
         subquestionExperiencedHeartPageOLS
                 .waitForPageLoad()
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3,"More than 1 year ago")
-                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4,"More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageOLS.titleExpected4, "More than 1 year ago")
                 .clickNextButton(heartrelatedMedicalProceduresPageOLS);
         heartrelatedMedicalProceduresPageOLS
                 .waitForPageLoad()
@@ -696,7 +692,7 @@ public class DERM_4631_OLS extends BaseTest {
                 .setFeatwithClear("5")
                 .setLbs("160")
                 .clickNextButton(new IdentificationPageOLS());
-                //----------PII (IdentificationPageOLS) Page--------------------
+        //----------PII (IdentificationPageOLS) Page--------------------
         identificationPageOLS
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS())
