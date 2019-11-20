@@ -84,7 +84,7 @@ public class GERD_5098_CC extends BaseTest {
                 .back(dateOfBirthPageCC);
 
         ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad("Erosive Esophagitis & H. pylori", "300")
+                .waitForPageLoad2("an indigestion, heartburn, or stomach ulcers study", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
