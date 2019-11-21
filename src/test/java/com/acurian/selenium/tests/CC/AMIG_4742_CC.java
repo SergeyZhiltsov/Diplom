@@ -173,13 +173,13 @@ public class AMIG_4742_CC extends BaseTest {
 
 
 //---------------NEW Q8: Have you ever taken any medications to treat your migraine headaches? -----------
-        HaveYouEverHadBotoxbotulinumtoxin_CC haveYouEverHadBotoxbotulinumtoxin_CC =
+        TransitionStatementCC transitionStatementCC =
                 haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС
                         .waitForPageLoad()
                         .clickOnAnswer("No, never any daily medications that my doctor prescribed") //skip to QS20
-                        .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_CC());
-        haveYouEverHadBotoxbotulinumtoxin_CC
-                .waitForPageLoad()
+                        .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoad("migraine")
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols) //QS10 Ghost QS - DISQUALIFY
                 .back();
@@ -194,11 +194,11 @@ public class AMIG_4742_CC extends BaseTest {
         areYouCurrentlyTakingPrescriptionMedicationsDailyPageСС
                 .waitForPageLoad()
                 .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them")
-                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC)
-                .waitForPageLoad()
+                .clickNextButton(transitionStatementCC)
+                .waitForPageLoad("migraine")
                 //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
-                .getPage(debugPageCC)
-                .checkStudyStatusContainsForQNumber("QS6036", env.equals("PRD") ? "13-20" : "9-16")
+               // .getPage(debugPageCC)
+               // .checkStudyStatusContainsForQNumber("QS6036", env.equals("PRD") ? "13-20" : "9-16")
                 .back();
 
         PrescriptionMedicationsDailyToPreventMigrainesPageCC prescriptionMedicationsDailyToPreventMigrainesPageCC =
@@ -215,8 +215,8 @@ public class AMIG_4742_CC extends BaseTest {
             prescriptionMedicationsDailyToPreventMigrainesPageCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC)
-                    .waitForPageLoad()
+                    .clickNextButton(transitionStatementCC)
+                    .waitForPageLoad("migraine")
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
                     .back();
@@ -224,94 +224,94 @@ public class AMIG_4742_CC extends BaseTest {
         prescriptionMedicationsDailyToPreventMigrainesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Dissatisfied")
-                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_CC);
-
-
-        //-------------20: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
-        HaveUeverDiagnosedByHealthcareProfesionalCC haveUeverDiagnosedByHealthcareProfesionalCC =
-                haveYouEverHadBotoxbotulinumtoxin_CC
-                        .waitForPageLoad()
-                        .clickOnAnswers("No") //Skip to Q22
-                        .clickNextButton(new HaveUeverDiagnosedByHealthcareProfesionalCC());
-
-        haveUeverDiagnosedByHealthcareProfesionalCC
-                .waitForPageLoad()
-                .back();
-
-        WhenYouLastHaveBotoxMigCC whenYouLastHaveBotoxMigCC = haveYouEverHadBotoxbotulinumtoxin_CC
-                .waitForPageLoad()
-                .clickOnAnswers("Yes, to treat migraines", "Yes, as a cosmetic treatment for lines on the face")
-                .clickNextButton(new WhenYouLastHaveBotoxMigCC());
-
-//---------------Q21	When did you last have a Botox (botulinum toxin) injection?
-        List<String> disqualifyQ21 = Arrays.asList("3 months ago or less", "4 - 6 months ago");
-        for (String answer : disqualifyQ21) {
-            System.out.println("Select answer for Q21: " + answer);
-            whenYouLastHaveBotoxMigCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(haveUeverDiagnosedByHealthcareProfesionalCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS6026", site.activeProtocols)
-                    .back();
-        }
-        whenYouLastHaveBotoxMigCC
-                .waitForPageLoad()
-                .clickOnAnswer("7 months - 1 year ago")
-                .clickNextButton(haveUeverDiagnosedByHealthcareProfesionalCC);
-
-//---------------Q22: HaveYouEverDiagnosedByHealthcareProfCC-----
-        DoYouCurrentlyUseMarijuanaCC doYouCurrentlyUseMarijuanaCC = new DoYouCurrentlyUseMarijuanaCC();
-        List<String> disqualifyQ22 = Arrays.asList("Trigeminal Neuralgia - severe pain in the nerves of the face",
-                "Temporomandibular Joint Disorders also known as TMD or TMJ");
-        for (String answer : disqualifyQ22) {
-            System.out.println("Select answer for Q22: " + answer);
-            haveUeverDiagnosedByHealthcareProfesionalCC
-                    .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(answer)
-                    .clickNextButton(doYouCurrentlyUseMarijuanaCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS6027", site.activeProtocols)
-                    .back();
-        }
-        haveUeverDiagnosedByHealthcareProfesionalCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(doYouCurrentlyUseMarijuanaCC);
-
-//---------------Q23: DoYouCurrentlyUseMarijuanaCC-----
-        TransitionStatementCC transitionStatementCC = doYouCurrentlyUseMarijuanaCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new TransitionStatementCC());
-
-        transitionStatementCC
-                .waitForPageLoad(studyName)
-                .back();
-
-        IfYouQualifyForStudyWillingtoStopCC ifYouQualifyForStudyWillingtoStopCC = doYouCurrentlyUseMarijuanaCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new IfYouQualifyForStudyWillingtoStopCC());
-
-//---------------Q24: IfYouQualifyForStudyWillingtoStopCC-----
-        ifYouQualifyForStudyWillingtoStopCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoad(studyName)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6029", site.activeProtocols)
-                .back();
-
-        ifYouQualifyForStudyWillingtoStopCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
                 .clickNextButton(transitionStatementCC);
 
+
+//        //-------------20: Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck? -----------
+//        HaveUeverDiagnosedByHealthcareProfesionalCC haveUeverDiagnosedByHealthcareProfesionalCC =
+//                transitionStatementCC
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("No") //Skip to Q22
+//                        .clickNextButton(new HaveUeverDiagnosedByHealthcareProfesionalCC());
+//
+//        haveUeverDiagnosedByHealthcareProfesionalCC
+//                .waitForPageLoad()
+//                .back();
+//
+//        WhenYouLastHaveBotoxMigCC whenYouLastHaveBotoxMigCC = haveYouEverHadBotoxbotulinumtoxin_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Yes, to treat migraines", "Yes, as a cosmetic treatment for lines on the face")
+//                .clickNextButton(new WhenYouLastHaveBotoxMigCC());
+//
+////---------------Q21	When did you last have a Botox (botulinum toxin) injection?
+//        List<String> disqualifyQ21 = Arrays.asList("3 months ago or less", "4 - 6 months ago");
+//        for (String answer : disqualifyQ21) {
+//            System.out.println("Select answer for Q21: " + answer);
+//            whenYouLastHaveBotoxMigCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(haveUeverDiagnosedByHealthcareProfesionalCC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS6026", site.activeProtocols)
+//                    .back();
+//        }
+//        whenYouLastHaveBotoxMigCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("7 months - 1 year ago")
+//                .clickNextButton(haveUeverDiagnosedByHealthcareProfesionalCC);
+//
+////---------------Q22: HaveYouEverDiagnosedByHealthcareProfCC-----
+//        DoYouCurrentlyUseMarijuanaCC doYouCurrentlyUseMarijuanaCC = new DoYouCurrentlyUseMarijuanaCC();
+//        List<String> disqualifyQ22 = Arrays.asList("Trigeminal Neuralgia - severe pain in the nerves of the face",
+//                "Temporomandibular Joint Disorders also known as TMD or TMJ");
+//        for (String answer : disqualifyQ22) {
+//            System.out.println("Select answer for Q22: " + answer);
+//            haveUeverDiagnosedByHealthcareProfesionalCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None of the above")
+//                    .clickOnAnswers(answer)
+//                    .clickNextButton(doYouCurrentlyUseMarijuanaCC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS6027", site.activeProtocols)
+//                    .back();
+//        }
+//        haveUeverDiagnosedByHealthcareProfesionalCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(doYouCurrentlyUseMarijuanaCC);
+//
+////---------------Q23: DoYouCurrentlyUseMarijuanaCC-----
+//        TransitionStatementCC transitionStatementCC = doYouCurrentlyUseMarijuanaCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new TransitionStatementCC());
+//
+//        transitionStatementCC
+//                .waitForPageLoad(studyName)
+//                .back();
+//
+//        IfYouQualifyForStudyWillingtoStopCC ifYouQualifyForStudyWillingtoStopCC = doYouCurrentlyUseMarijuanaCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new IfYouQualifyForStudyWillingtoStopCC());
+//
+////---------------Q24: IfYouQualifyForStudyWillingtoStopCC-----
+//        ifYouQualifyForStudyWillingtoStopCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(transitionStatementCC)
+//                .waitForPageLoad(studyName)
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS6029", site.activeProtocols)
+//                .back();
+//
+//        ifYouQualifyForStudyWillingtoStopCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(transitionStatementCC);
+//
 //---------------Q24: Transition Statement - Display for Call Center onl-----
         transitionStatementCC
                 .waitForPageLoad(studyName)

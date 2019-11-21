@@ -283,49 +283,85 @@ public class GERD_5098_CC extends BaseTest {
                 .clickOnAnswer("Unsure")
                 .clickNextButton(membersOfHouseholdBeenDiagnosedPyloriCC);
 
-
-        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = membersOfHouseholdBeenDiagnosedPyloriCC
+        DoYouHaveZollingerEllisonSyndrome_CC doYouHaveZollingerEllisonSyndrome_CC = membersOfHouseholdBeenDiagnosedPyloriCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickOnAnswer("No")
                 .clickOnAnswer("Unsure")
+                .clickNextButton(new DoYouHaveZollingerEllisonSyndrome_CC());
+
+        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = doYouHaveZollingerEllisonSyndrome_CC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC())
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS6326", site.activeProtocols)
+                .back(doYouHaveZollingerEllisonSyndrome_CC)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
-
-
         //---------------Q14 WhatTypeOfSurgeryDidYouHave_OLS-------------------
-        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = whatTypeOfSurgeryDidYouHave_CC
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = whatTypeOfSurgeryDidYouHave_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above") //Skip to Q20
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC());
-        areYouCurrentlyAbleToSwallowTablets_CC
-                .waitForPageLoad()
-                .back(whatTypeOfSurgeryDidYouHave_CC)
-                .waitForPageLoad()
-                .clickOnAnswers("Biopsy (Agent Note: BY-op-see) – removal of a small piece of tissue for analysis",
-                        "Tonsils removed - Tonsillectomy (Agent Note: tahn-sil-LECK-toe-mee)")
-                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_CC)
-                .waitForPageLoad()
-                .back();
-        WhenDidYouHaveAppendixRemoved_CC whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_CC
+                .clickNextButton(new WeightLossSurgeryPageCC());
+
+        List<String> disqualify = Arrays.asList("Gastric bypass",
+                "Gastric sleeve or sleeve gastrectomy",
+                "Duodenal switch",
+                "Lap band or gastric banding",
+                "Gastric balloon", "I had a weight loss surgery, but I am unsure which type");
+        for (String answer : disqualify) {
+            System.out.println(answer);
+            weightLossSurgeryPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(new ProcedureForWeightLossPageCC())
+                    .waitForPageLoad()
+                    .getPage(debugPageCC)
+                    .checkProtocolsContainsForQNumber("QS6327", site.activeProtocols)
+                    .back();
+        }
+
+        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Appendix removed - Appendectomy (Agent Note: app-en-DECK-toe-mee)",
-                        "Gallbladder removed - Cholecystectomy (Agent Note: cole-leh-sis-TECK-toe-mee)",
-                        "Hemorrhoids removed - Hemorrhoidectomy (Agent Note, HEM-roids, hem-roy-DECK-toe-mee)",
-                        "Other surgery on my stomach, intestines, colon, or esophagus")
-                .clickNextButton(new WhenDidYouHaveAppendixRemoved_CC());
+                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC());
 
 
-        whenDidYouHaveAppendixRemoved_OLS
-                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
-                .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
-                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
-                .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 1 month ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(4, "More than 6 months ago")
-                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_CC);
+//        areYouCurrentlyAbleToSwallowTablets_CC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton()
+//                .back(haveYouEverHadAnyOfBatriatic_CC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Biopsy (Agent Note: BY-op-see) – removal of a small piece of tissue for analysis",
+//                        "Tonsils removed - Tonsillectomy (Agent Note: tahn-sil-LECK-toe-mee)")
+//                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_CC)
+//                .waitForPageLoad()
+//                .back();
+//        WhenDidYouHaveAppendixRemoved_CC whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Appendix removed - Appendectomy (Agent Note: app-en-DECK-toe-mee)",
+//                        "Gallbladder removed - Cholecystectomy (Agent Note: cole-leh-sis-TECK-toe-mee)",
+//                        "Hemorrhoids removed - Hemorrhoidectomy (Agent Note, HEM-roids, hem-roy-DECK-toe-mee)",
+//                        "Other surgery on my stomach, intestines, colon, or esophagus")
+//                .clickNextButton(new WhenDidYouHaveAppendixRemoved_CC());
+//
+//
+//        whenDidYouHaveAppendixRemoved_OLS
+//                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
+//                .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
+//                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
+//                .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "Less than 1 month ago")
+//                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 6 months ago")
+//                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_CC);
 
 
         //---------------Q16 AreYouCurrentlyAbleToSwallowTablets_OLS-------------------
@@ -509,7 +545,7 @@ public class GERD_5098_CC extends BaseTest {
 
 
         siteSelectionPageCC
-                .waitForPageLoad(studyName)
+                .waitForPageLoad("a heartburn or reflux study, an indigestion, heartburn, or stomach ulcers study")
                 .getPID()
                 .clickOnAnswer(site.name);
 
@@ -545,7 +581,7 @@ public class GERD_5098_CC extends BaseTest {
                         .assertVariablesNew("Acurian", "Trial", "01/01/1990", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", " aut5098S ", " "+site.name,
-                                "PHMPPDEOE301,PHMPPDPYL301 - Phathom Phalcon")
+                                "PHMPPDPYL301 - Phathom Phalcon")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

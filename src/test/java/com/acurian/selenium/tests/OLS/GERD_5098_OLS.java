@@ -6,15 +6,16 @@ import com.acurian.selenium.pages.OLS.GERD.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.OLS.shared.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class GERD_5098_OLS extends BaseTest {
 
@@ -262,49 +263,84 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickNextButton(membersOfHouseholdBeenDiagnosedPyloriOLS);
 
 //--------Q16	Have any members of your household (meaning people you live with) been diagnosed with H. pylori infection?
-        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = membersOfHouseholdBeenDiagnosedPyloriOLS
+        DoYouHaveZollingerEllisonSyndrome_OLS doYouHaveZollingerEllisonSyndrome_OLS = membersOfHouseholdBeenDiagnosedPyloriOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickOnAnswer("No")
                 .clickOnAnswer("Unsure")
+                .clickNextButton(new DoYouHaveZollingerEllisonSyndrome_OLS());
+
+        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = doYouHaveZollingerEllisonSyndrome_OLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS())
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS6326", site.activeProtocols)
+                .back(doYouHaveZollingerEllisonSyndrome_OLS)
+                .waitForPageLoad()
+                .clickOnAnswer("No")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS());
-
-
         //---------------Q14 WhatTypeOfSurgeryDidYouHave_OLS-------------------
-        AreYouCurrentlyAbleToSwallowTablets_OLS areYouCurrentlyAbleToSwallowTablets_OLS = whatTypeOfSurgeryDidYouHave_OLS
+        WeightLossSurgeryPageOLS weightLossSurgeryPageOLS = whatTypeOfSurgeryDidYouHave_OLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above") //Skip to Q20
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS());
-        areYouCurrentlyAbleToSwallowTablets_OLS
-                .waitForPageLoad()
-                .back(whatTypeOfSurgeryDidYouHave_OLS)
-                .waitForPageLoad()
-                .clickOnAnswers("Biopsy (Agent Note: BY-op-see) – removal of a small piece of tissue for analysis",
-                        "Tonsils removed - Tonsillectomy (Agent Note: tahn-sil-LECK-toe-mee)")
-                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_OLS)
-                .waitForPageLoad()
-                .back();
-        WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_OLS
+                .clickNextButton(new WeightLossSurgeryPageOLS());
+
+        List<String> disqualify = Arrays.asList("Gastric bypass",
+                "Gastric sleeve or sleeve gastrectomy",
+                "Duodenal switch",
+                "Lap band or gastric banding",
+                "Gastric balloon", "I had a weight loss surgery, but I am unsure which type");
+        for (String answer : disqualify) {
+            System.out.println(answer);
+            weightLossSurgeryPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickOnAnswers(answer)
+                    .clickNextButton(new ProcedureForWeightLossPageOLS())
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS6327", site.activeProtocols)
+                    .back();
+        }
+
+        AreYouCurrentlyAbleToSwallowTablets_OLS areYouCurrentlyAbleToSwallowTablets_OLS = weightLossSurgeryPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Appendix removed - Appendectomy",
-                        "Gallbladder removed - Cholecystectomy",
-                        "Hemorrhoids removed - Hemorrhoidectomy",
-                        "Other surgery on my stomach, intestines, colon, or esophagus")
-                .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
+                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS());
 
 
-        //-----Q19.1	When did you have your appendix removed (appendectomy)? --------------
-        whenDidYouHaveAppendixRemoved_OLS
-                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
-                .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
-                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
-                .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 1 month ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(4, "More than 6 months ago")
-                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_OLS);
+//        areYouCurrentlyAbleToSwallowTablets_OLS
+//                .waitForPageLoad()
+//                .back(whatTypeOfSurgeryDidYouHave_OLS)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Biopsy (Agent Note: BY-op-see) – removal of a small piece of tissue for analysis",
+//                        "Tonsils removed - Tonsillectomy (Agent Note: tahn-sil-LECK-toe-mee)")
+//                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_OLS)
+//                .waitForPageLoad()
+//                .back();
+//        WhenDidYouHaveAppendixRemoved_OLS whenDidYouHaveAppendixRemoved_OLS = whatTypeOfSurgeryDidYouHave_OLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Appendix removed - Appendectomy",
+//                        "Gallbladder removed - Cholecystectomy",
+//                        "Hemorrhoids removed - Hemorrhoidectomy",
+//                        "Other surgery on my stomach, intestines, colon, or esophagus")
+//                .clickNextButton(new WhenDidYouHaveAppendixRemoved_OLS());
+//
+//
+//        //-----Q19.1	When did you have your appendix removed (appendectomy)? --------------
+//        whenDidYouHaveAppendixRemoved_OLS
+//                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
+//                .waitForPageLoad(2, whenDidYouHaveAppendixRemoved_OLS.titleExpected2)
+//                .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_OLS.titleExpected3)
+//                .waitForPageLoad(4, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "Less than 1 month ago")
+//                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 6 months ago")
+//                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_OLS);
 
 
         //---------------Q20 AreYouCurrentlyAbleToSwallowTablets_OLS-------------------
@@ -370,7 +406,7 @@ public class GERD_5098_OLS extends BaseTest {
 
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS
-                .waitForPageLoad(studyName)
+                .waitForPageLoad("a heartburn or reflux study")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())

@@ -343,16 +343,21 @@ public class GERD_4301_CC extends BaseTest {
                         .clickOnAnswer("Yes")
                         .clickNextButton(new TestedForStomachInfectionHelicobacterCC());
 
-
-        MembersOfHouseholdBeenDiagnosedPyloriCC membersOfHouseholdBeenDiagnosedPyloriOLS = testedForStomachInfectionHelicobacterCC
+        MembersOfHouseholdBeenDiagnosedPyloriCC membersOfHouseholdBeenDiagnosedPyloriCC = testedForStomachInfectionHelicobacterCC
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new MembersOfHouseholdBeenDiagnosedPyloriCC());
 
-
-        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = membersOfHouseholdBeenDiagnosedPyloriOLS
+        DoYouHaveZollingerEllisonSyndrome_CC doYouHaveZollingerEllisonSyndrome_CC = membersOfHouseholdBeenDiagnosedPyloriCC
                 .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickOnAnswer("No")
                 .clickOnAnswer("Unsure")
+                .clickNextButton(new DoYouHaveZollingerEllisonSyndrome_CC());
+
+        WhatTypeOfSurgeryDidYouHave_CC whatTypeOfSurgeryDidYouHave_CC = doYouHaveZollingerEllisonSyndrome_CC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_CC());
 
 
@@ -384,12 +389,12 @@ public class GERD_4301_CC extends BaseTest {
                 .waitForPageLoad(3, whenDidYouHaveAppendixRemoved_CC.titleExpected3);
         Assert.assertEquals(whenDidYouHaveAppendixRemoved_CC
                 .getTitleText(1), whenDidYouHaveAppendixRemoved_CC.titleExpected1, "Title is diff");
-        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = whenDidYouHaveAppendixRemoved_CC
+        WeightLossSurgeryPageCC weightLossSurgeryPageCC = whenDidYouHaveAppendixRemoved_CC
                 .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
-                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC());
-        areYouCurrentlyAbleToSwallowTablets_CC
+                .clickNextButton(new WeightLossSurgeryPageCC());
+        weightLossSurgeryPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6311", site.activeProtocols)
@@ -399,7 +404,12 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
-                .clickNextButton(areYouCurrentlyAbleToSwallowTablets_CC);
+                .clickNextButton(weightLossSurgeryPageCC);
+
+        AreYouCurrentlyAbleToSwallowTablets_CC areYouCurrentlyAbleToSwallowTablets_CC = weightLossSurgeryPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_CC());
 
 
         //---------------Q16 AreYouCurrentlyAbleToSwallowTablets_CC-------------------
@@ -485,7 +495,7 @@ public class GERD_4301_CC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
-                .waitForPageLoad("a heartburn or reflux study, an indigestion, heartburn, or stomach ulcers study") //could not DQ with (Phathom EE & HP) to avoid combined indication
+                .waitForPageLoad("a heartburn or reflux study") //could not DQ with (Phathom EE & HP) to avoid combined indication
                 .getPID()
                 .clickOnAnswer(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageCC())
