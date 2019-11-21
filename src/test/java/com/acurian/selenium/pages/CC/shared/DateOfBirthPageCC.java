@@ -40,6 +40,13 @@ public class DateOfBirthPageCC extends MainPageCC {
             "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If there is a study that's right for you, I’ll let you know which study doctor’s offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we’ll send the study doctor's office your information, so they can get in touch with you to continue the process to make sure you are a match for the study.\"\n"+
             "\n"+
             "If you have any questions, you can contact information@acurian.com.";
+
+    public final String titleExpectedGmemga="If you qualify and participate in %2$s, you may receive:\n" +
+            "Study medication or placebo, at no-cost to you\n" +
+            "Study-related care from a local doctor for the length of the study, at no-cost to you\n" +
+            "And depending on the study, compensation of up to $%1$s for time and travel, for qualified participants who complete study-related visits\n" +
+            "\n" +
+            "Agent Note: If caller has questions about the process, or availability of sites in their area, read: \"If you qualify, I'll let you know which research doctor's offices in your area are participating in the study, and you can select the one that is most convenient for you. Then we'll send them your information, so they can get in touch with you to continue the screening process.\"";
 //            "\n" +
 //            "You'll first complete this questionnaire with me right now. Your participation is voluntary. Your answers will be recorded, but your information will only be used to see if there is a study that's right for you.\n" +
 //            "Then, if there is a study that's right for you, you’ll schedule an in person visit at the study doctor’s office.\n" +
@@ -293,6 +300,9 @@ public class DateOfBirthPageCC extends MainPageCC {
     @FindBy(xpath = ".//*[contains(@class, 'show-in-cc')][contains(text(), \"Let's get started\")]")
     WebElement titleText;
 
+    @FindBy(xpath = ".//*[contains(@class, 'show-in-cc')][contains(text(), \"If you qualify\")]")
+    WebElement titleTextGmega;
+
     @FindBy(xpath = "//*[@id=\"command\"]/div[2]/span[1]/div[1] ")
     WebElement titleTextCrohns;
 
@@ -355,6 +365,12 @@ public class DateOfBirthPageCC extends MainPageCC {
         return this;
     }
 
+    @Step
+    public DateOfBirthPageCC waitForPageLoadGmega(String indication, String compensation) {
+        waitForPageLoadMain(titleTextGmega, getExpectedModifiedTitleGmega(indication, compensation));
+        return this;
+    }
+
 //    @Step
 //    public DateOfBirthPageCC waitForPageLoad2Ver() {
 //        waitForPageLoadMain(questionText2Ver, titleExpected);
@@ -410,6 +426,10 @@ public class DateOfBirthPageCC extends MainPageCC {
     }
     public String getExpectedModifiedTitle2(String indication, String compensation) {
         return String.format(titleCommonExpected2, compensation, indication);
+    }
+
+    public String getExpectedModifiedTitleGmega(String indication, String compensation) {
+        return String.format(titleExpectedGmemga, compensation, indication);
     }
 
 //    public String getExpectedModifiedTitleLowT(String indication, String compensation) {

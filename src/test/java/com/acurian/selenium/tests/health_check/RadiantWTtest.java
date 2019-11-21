@@ -45,8 +45,8 @@ public class RadiantWTtest extends BaseTest {
 
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
-                .waitForPageLoadGmega();
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
+                .waitForPageLoadGmega(studyName, "625");
+        //Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
 
         BehalfOfSomeoneElsePageCC behalfOfSomeoneElsePageCC = dateOfBirthPageCC
                 .setMonth("Sep")

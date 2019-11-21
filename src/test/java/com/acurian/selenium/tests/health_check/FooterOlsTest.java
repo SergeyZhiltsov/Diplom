@@ -23,9 +23,9 @@ public class FooterOlsTest extends BaseTest {
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber);
             if (env.equals("QA")) {
-                dateOfBirthPageOLS.waitForPageLoad("a Migraine", "1,150"); //"a migraine study is absent in QA Gembs
+                dateOfBirthPageOLS.waitForPageLoad("migraine study", "400"); //"a migraine study is absent in QA Gembs
             } else {
-                dateOfBirthPageOLS.waitForPageLoad("a Migraine", "1,150");
+                dateOfBirthPageOLS.waitForPageLoad("a migraine study", "400");
             }
 
         FooterPageOls footerPageOls = new FooterPageOls();

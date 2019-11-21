@@ -498,8 +498,8 @@ public class VACC_JANRSV_CC extends BaseTest {
 //        if(site == AUT_AMS_JANRSV) {
 letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
-        doAnyOftheFollowingAdditionalDiagnosesCC
+                .clickNextButton(/*doAnyOftheFollowingAdditionalDiagnosesCC*/identificationPageCC);
+/*        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NonQRtransitionPageCC())
@@ -507,7 +507,7 @@ letMeSeePageCC
                 .clickNextButton(new DoyouExperienceHotFlashesCC())
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(identificationPageCC);
+                .clickNextButton(identificationPageCC);*/
 
 //        }
 //        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC =
@@ -564,9 +564,9 @@ letMeSeePageCC
 
                 synexusRadiantDirectScheduleCC
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "01/01/1954", "US",
+                        .assertVariablesNew("Acurian", "Trial", "01/01/1954", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                                "autJANRSVS", site.name, "JANIQVRSV001")
+                                " autJANRSVS ", " "+site.name, "JANIQVRSV001 - Janssen RSV Vaccine")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

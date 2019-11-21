@@ -51,7 +51,7 @@ public class InstantFUL extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad(studyName, "625")
+                .waitForPageLoadGMEGA(studyName, "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 
