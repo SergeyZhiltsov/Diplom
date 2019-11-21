@@ -263,7 +263,7 @@ public class GERD_4301_CC extends BaseTest {
         despiteTakingMedicationDoYouStillExperienceSymptoms_CC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS6316", site.activeProtocols)
+                //.checkProtocolsContainsForQNumber("QS6316", site.activeProtocols)
                 .back();
         howOftenDoYouTake_CC
                 .waitForPageLoad(1, howOftenDoYouTake_CC.titleExpected1)
@@ -271,8 +271,6 @@ public class GERD_4301_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "Only as needed (not regularly)")
                 .clickOnAnswerForSubQuestion(3, "Once a day")
                 .clickOnAnswerForSubQuestion(4, "Once a day")
-                //.clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_CC());
-                //.clickNextButton(new OnaTypicalDayWhenDoYouUsually_CC());
                 .clickNextButton(despiteTakingMedicationDoYouStillExperienceSymptoms_CC);
 
 

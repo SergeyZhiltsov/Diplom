@@ -173,7 +173,7 @@ public class GERD_4301_OLS extends BaseTest {
         despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6316", site.activeProtocols)
+                //.checkProtocolsContainsForQNumber("QS6316", site.activeProtocols)
                 .back();
         howOftenDoYouTake_OLS
                 .waitForPageLoad(1, howOftenDoYouTake_OLS.titleExpected1)
@@ -182,7 +182,6 @@ public class GERD_4301_OLS extends BaseTest {
                 .clickOnAnswerForSubQuestion(3, "Once a day")
                 .clickOnAnswerForSubQuestion(4, "Once a day")
                 .clickNextButton(despiteTakingMedicationDoYouStillExperienceSymptoms_OLS);
-                //.clickNextButton(new OnaTypicalDayWhenDoYouUsually_OLS());
 
 
 //        //---------------Q9 OnaTypicalDayWhenDoYouUsually_OLS-------------------

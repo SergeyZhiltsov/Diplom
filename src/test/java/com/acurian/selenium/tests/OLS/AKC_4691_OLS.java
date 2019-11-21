@@ -437,11 +437,11 @@ public class AKC_4691_OLS extends BaseTest {
         //-------Q16:  Has a healthcare professional ever diagnosed you with any of the following liver-related conditions?--------
         liverRelatedConditionOLS
                 .waitForPageLoad();
-        liverRelatedConditionOLS
+        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Alcoholic liver disease")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickNextButton(new FollowingToLoseWeightPageOLS());
+        followingToLoseWeightPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -450,7 +450,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -459,7 +459,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Hemochromatosis or iron overload")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -468,7 +468,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Liver cancer or hepatocellular carcinoma")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -477,7 +477,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Primary sclerosing cholangitis or primary biliary cirrhosis")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -486,15 +486,15 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Wilson's disease")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .clickNextButton(followingToLoseWeightPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
                 .back();
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+        liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
+                .clickNextButton(followingToLoseWeightPageOLS);
 
 
         //-------Q17:  Are you currently using any of the following to lose weight?--------
