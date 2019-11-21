@@ -31,7 +31,7 @@ public class VerityScoreTest extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a rheumatoid arthritis (RA)", "625");
+                .waitForPageLoadGMEGA("a rheumatoid arthritis (RA)", "625");
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
                 .setDate("09091980")

@@ -2,6 +2,8 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.GERD.DoYouExperienceAnyOfFollowingSymptoms_CC;
+import com.acurian.selenium.pages.CC.HOTF_7119.DoyouExperienceHotFlashesCC;
 import com.acurian.selenium.pages.CC.Vaccine.AllergicToAnyVaccinesCC;
 import com.acurian.selenium.pages.CC.Vaccine.AreYouGenerallyInGoodHealthCC;
 import com.acurian.selenium.pages.CC.Vaccine.AreYouInterestedVaccineResearchStudyCC;
@@ -475,6 +477,8 @@ public class VACC_JANRSV_CC extends BaseTest {
                 .waitForPageLoad()
                 .setLbs("150")
                 .clickNextButton(new LetMeSeePageCC());
+        IdentificationPageCC identificationPageCC = new IdentificationPageCC();
+
 //        if(site == AUT_AMS_JANRSV_Syn) {
 //            DoyouExperienceHotFlashesCC doyouExperienceHotFlashesCC = letMeSeePageCC
 //                    .waitForPageLoad()
@@ -492,18 +496,18 @@ public class VACC_JANRSV_CC extends BaseTest {
 //        }
 
 //        if(site == AUT_AMS_JANRSV) {
-        IdentificationPageCC  identificationPageCC = letMeSeePageCC
+letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new IdentificationPageCC());
-//        doAnyOftheFollowingAdditionalDiagnosesCC
-//                .waitForPageLoad()
-//                .clickOnAnswers("None of the above")
-//                .clickNextButton(new NonQRtransitionPageCC())
-//                .waitForPageLoad()
-//                .clickNextButton(new DoyouExperienceHotFlashesCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(identificationPageCC);
+                .clickNextButton(/*doAnyOftheFollowingAdditionalDiagnosesCC*/identificationPageCC);
+/*        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NonQRtransitionPageCC())
+                .waitForPageLoad()
+                .clickNextButton(new DoyouExperienceHotFlashesCC())
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(identificationPageCC);*/
 
 //        }
 //        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC =
@@ -560,9 +564,9 @@ public class VACC_JANRSV_CC extends BaseTest {
 
                 synexusRadiantDirectScheduleCC
                         .waitForPageLoadSyn()
-                        .assertVariables("Acurian", "Trial", "01/01/1954", "US",
+                        .assertVariablesNew("Acurian", "Trial", "01/01/1954", "US",
                                 "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com", "999-999-9999",
-                                "autJANRSVS", site.name, "JANIQVRSV001")
+                                " autJANRSVS ", " "+site.name, "JANIQVRSV001 - Janssen RSV Vaccine")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

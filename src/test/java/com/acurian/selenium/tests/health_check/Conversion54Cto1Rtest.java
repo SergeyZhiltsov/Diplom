@@ -28,7 +28,7 @@ public class Conversion54Cto1Rtest extends BaseTest {
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS =  dateOfBirthPageOLS
                 .openPage(env, phoneNumber)
-                .waitForPageLoad("a rheumatoid arthritis (RA)", "625")
+                .waitForPageLoadGMEGA("a rheumatoid arthritis (RA)", "625")
                 .setDate("09091980")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 

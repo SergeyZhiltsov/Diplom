@@ -391,7 +391,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "08/01/1992", "US",
                                 "Dover, DE", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " 034SAUT ", " AUT_CV_5034S_site",
+                                "999-999-9999", " 5034SAUT ", " AUT_CV_5034S_site",
                                 "KOWQUICAR302 - Kowa type 2 diabetes and cardiovascular disease")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)

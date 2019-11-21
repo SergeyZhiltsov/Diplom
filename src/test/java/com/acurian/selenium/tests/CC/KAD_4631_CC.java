@@ -38,7 +38,7 @@ public class KAD_4631_CC extends BaseTest {
     @Test(dataProvider = "sites", dataProviderClass = KAD_4631_OLS.class)
     @Description("KAD 4631 Kiniksa Atopic Derm for CC")
     public void kad4631_CCTest(Site site) {
-        String phoneNumber = "AUTAMS1KAD";
+        String phoneNumber = "800AMS1CPA";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
         String env = System.getProperty("acurian.env", "STG");
@@ -161,7 +161,7 @@ public class KAD_4631_CC extends BaseTest {
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS5832", site.activeProtocols)
                     .back();
         }
 //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
