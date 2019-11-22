@@ -46,7 +46,7 @@ public class DERM_7157_OLS extends BaseTest {
     @Test(dataProvider = "sites")
     @Description("DERM 7157 Glenmark Atopic Derm")
     public void DERM_7157_OLS(Site site) {
-        final String phoneNumber = "800AMS1SEN";
+        final String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis) study";
         String env = System.getProperty("acurian.env", "STG");
 
@@ -67,14 +67,15 @@ public class DERM_7157_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
-                .clickNextButton(new ZipCodePageOLS());
+                .clickNextButton(new IdentificationPageOLS());
 
-        GenderPageOLS genderPageOLS = zipCodePageOLS
-                .waitForPageLoad()
-                .typeZipCode(site.zipCode)
+        GenderPageOLS genderPageOLS = identificationPageOLS
+                .waitForPageLoadNotQ()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
@@ -125,7 +126,7 @@ public class DERM_7157_OLS extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYourBody_OLS
@@ -786,16 +787,16 @@ public class DERM_7157_OLS extends BaseTest {
                 //.getPage(debugPageOLS)
                // .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS);
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "2", "33")
                 //----------PII (IdentificationPageOLS) Page--------------------
-                .clickNextButton(new IdentificationPageOLS());
+                .clickNextButton(identificationPageOLS);
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS

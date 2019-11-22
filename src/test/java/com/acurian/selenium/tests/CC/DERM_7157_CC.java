@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.tests.OLS.DERM_7157_OLS;
 import com.acurian.selenium.utils.Properties;
@@ -41,7 +42,7 @@ public class DERM_7157_CC extends BaseTest {
     @Test(dataProvider = "sites", dataProviderClass = DERM_7157_OLS.class)
     @Description("DERM 7157 Glenmark Atopic Derm")
     public void DERM_7157_CC(Site site) {
-        final String phoneNumber = "800AMS1SEN";
+        final String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
         String env = System.getProperty("acurian.env", "STG");
@@ -69,7 +70,7 @@ public class DERM_7157_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected,
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS,
                 "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
@@ -88,14 +89,15 @@ public class DERM_7157_CC extends BaseTest {
                 .getPage(debugPageCC)
                 // .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
-        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+        IdentificationPageCC identificationPageCC= dateOfBirthPageCC
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
-                .clickNextButton(new ZipCodePageCC());
+                .clickNextButton(new IdentificationPageCC());
 
-        GenderPageCC genderPageCC = zipCodePageCC
-                .waitForPageLoad()
-                .typeZipCode(site.zipCode)
+        GenderPageCC genderPageCC = identificationPageCC
+                .waitForPageLoadNotQCrohn()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC =
@@ -148,7 +150,7 @@ public class DERM_7157_CC extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageCC howWouldYouDescribeTheEczemaCurrentlyPageCC =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
@@ -656,7 +658,8 @@ public class DERM_7157_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+            doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
@@ -809,15 +812,15 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(letMeSeePageCC);
 
 
-        IdentificationPageCC identificationPageCC = letMeSeePageCC
+       letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new IdentificationPageCC());
+                .clickNextButton(identificationPageCC);
 
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
         MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
