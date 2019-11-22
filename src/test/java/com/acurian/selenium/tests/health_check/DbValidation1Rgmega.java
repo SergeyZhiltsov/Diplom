@@ -85,7 +85,7 @@ public class DbValidation1Rgmega extends BaseTest {
                 .clickOnFacilityName(siteName)
                 //.clickNextButton(new QualifiedFlareMonitoringAppClosePageOLS())
                 .clickNextButton(new QualifiedClose2PageOLS())
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

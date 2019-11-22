@@ -44,10 +44,10 @@ public class SiteIndicatorTest extends BaseTest {
 
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
-                .waitForPageLoadGmega(studyName, "625");
+                .waitForPageLoadGmega("a rheumatoid arthritis (RA) study", "625");
 
-        Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected,
-                "Title is diff");
+//        Assert.assertEquals(dateOfBirthPageCC.getQuestionTextIBD(), dateOfBirthPageCC.titleExpectedGmemga,
+//                "Title is diff");
 
         BehalfOfSomeoneElsePageCC behalfOfSomeoneElsePageCC = dateOfBirthPageCC
                 .setMonth("Sep")
