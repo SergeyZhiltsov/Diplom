@@ -10,6 +10,7 @@ import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHype
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
 import com.acurian.selenium.pages.CC.closes.MedicalRecordsOptionPageCC;
+import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -830,6 +831,7 @@ public class DERM_7157_CC extends BaseTest {
                 .clickNextButton(new MedicalRecordsOptionPageCC());
 
 
+        if(site.name.equals("AUT_AMS1_7157_site"))
         medicalRecordsOptionPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Continue without medical records")
@@ -842,5 +844,24 @@ public class DERM_7157_CC extends BaseTest {
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
                 .assertRmgOrderPriority(env, "7157");
+
+        if(site.name.equals("AUT_AMS1_7157S_site"))
+            medicalRecordsOptionPageCC
+                    .waitForPageLoad()
+                    .clickOnAnswer("Continue without medical records")
+                    .clickNextButton(new SynexusRadiantDirectScheduleCC())
+                    .waitForPageLoadSyn()
+                    .assertVariablesNew("Acurian", "Trial", "04/05/2001", "US",
+                            "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
+                            "999-999-9999", " 7157_AUT_AMS1_7157S ", " "+site.name, "GLNXXXATO204 - Glenmark Pharmaceuticals Atopic Dermatitis")
+                    .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                    .clickNextButton(selectActionPageCC)
+                    .waitForPageLoad()
+                    .pidFromDbToLog(env)
+                    .childPidFromDbToLog(env, "7157")
+                    .dispoShouldMatch(site.dispo, site.dispo)
+                    .assertGeneratedFul(env, site)
+                    .assertRmgOrderPriority(env, "7157");
     }
+
 }

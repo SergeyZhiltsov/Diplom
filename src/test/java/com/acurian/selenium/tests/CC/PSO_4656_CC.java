@@ -309,7 +309,6 @@ public class PSO_4656_CC extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)

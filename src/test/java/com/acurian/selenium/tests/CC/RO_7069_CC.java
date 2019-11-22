@@ -553,7 +553,7 @@ public class RO_7069_CC extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose2PageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+               // .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageCC())
                 .clickOnAnswer("No")
                 .waitForPageLoad()

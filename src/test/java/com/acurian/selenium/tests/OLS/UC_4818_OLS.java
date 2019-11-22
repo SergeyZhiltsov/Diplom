@@ -7,10 +7,7 @@ import com.acurian.selenium.pages.OLS.Crohns_3485.CurrentlyHaveAnyOffFollowingPa
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.*;
 import com.acurian.selenium.pages.OLS.UC.*;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -692,9 +689,15 @@ public class UC_4818_OLS extends BaseTest {
                     .waitForPageLoad("a colitis")
                     .getPID()
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClose2PageOLS())
-                    .waitForPageLoadIBD4818()
-                    .clickNextButton(new ThankYouCloseSimplePageOLS())
+                    .clickNextButton(new MedicalRecordsOptionPageOLS())
+                    .waitForPageLoad()
+                    .clickOnAnswer("Continue with medical records")
+                    .clickNextButton(new DoctorInformationCollectionPageOLS())
+                    .waitForPageLoadIBD("Ulcerative Colitis")
+                    // .clickOkInPopUp()
+                    //    .setSignature()
+                    //    .waitToClickNext()
+                    .getPage(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()
                     .clickNextButton(new AboutHealthPageOLS())
                     .waitForPageLoad()

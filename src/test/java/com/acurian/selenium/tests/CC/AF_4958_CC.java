@@ -610,7 +610,7 @@ public class AF_4958_CC extends BaseTest {
 
                 SynexusHealthyMindsPageCC synexusHealthyMindsPageCC = qualifiedClose1PageCC
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        //.clickOnAnswer("No")
                         .clickNextButton(new SynexusHealthyMindsPageCC());
 
 

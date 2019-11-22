@@ -564,7 +564,7 @@ public class GERD_5098_CC extends BaseTest {
 
                 qualifiedClose1PageCC
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        //.clickOnAnswer("No")
                         .clickNextButton(new Regular_WarmTransfer1())
                         .waitForPageLoad()
                         .clickOnAnswer("No")

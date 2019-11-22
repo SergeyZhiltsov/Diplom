@@ -540,7 +540,7 @@ letMeSeePageCC
                         .clickNextButton(new QualifiedClose1PageCC());
                 SynexusHealthyMindsPageCC synexusHealthyMindsPageCC = qualifiedClose1PageCC
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        //.clickOnAnswer("No")
                         .clickNextButton(new SynexusHealthyMindsPageCC());
 
                 ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
