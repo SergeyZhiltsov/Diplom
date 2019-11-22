@@ -830,7 +830,7 @@ public class DERM_4967_OLS extends BaseTest {
         aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4967")
+                .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
                 .assertRmgOrderPriority(env, "4967");
