@@ -495,7 +495,7 @@ public class PSA_5071_OLS extends BaseTest {
                 .waitForPageLoad("a psoriatic arthritis")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForSENRPageLoad()

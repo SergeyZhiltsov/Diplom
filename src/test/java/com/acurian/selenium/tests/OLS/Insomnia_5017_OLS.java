@@ -607,7 +607,7 @@ public class Insomnia_5017_OLS extends BaseTest {
                 .getPID();
         siteSelectionPageOLS
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()

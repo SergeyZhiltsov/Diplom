@@ -137,7 +137,7 @@ public class HFL_4722_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()

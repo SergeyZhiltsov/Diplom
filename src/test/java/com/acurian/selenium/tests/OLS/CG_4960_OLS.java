@@ -450,14 +450,14 @@ public class CG_4960_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
 
-        QualifiedClosedPageOLS qualifiedClosedPageOLS = siteSelectionPageCC
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageCC
                 .waitForPageLoad("a gout")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS());
+                .clickNextButton(new QualifiedClose2PageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClosedPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
 

@@ -559,13 +559,13 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickNextButton(new SiteSelectionPageOLS());
 
 
-            QualifiedClosedPageOLS qualifiedClosedPageOLS = siteSelectionPageOLS
+            QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                     .waitForPageLoad(studyName)
                     .getPID()
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClosedPageOLS());
+                    .clickNextButton(new QualifiedClose2PageOLS());
 
-            SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClosedPageOLS
+            SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose2PageOLS
                     .waitForPageLoad()
                     .clickNextButton(new SynexusHealthyMindsPageOLS());
 

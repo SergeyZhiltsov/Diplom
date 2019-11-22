@@ -659,7 +659,7 @@ public class DIA_5062_OLS extends BaseTest {
                 .waitForPageLoad1(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()

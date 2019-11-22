@@ -352,12 +352,12 @@ public class HOTF_7119_OLS extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
-        QualifiedClosedPageOLS qualifiedClosedPageOLS = siteSelectionPageOLS
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad1(studyName + "!") //todo
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS());
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClosedPageOLS
+                .clickNextButton(new QualifiedClose2PageOLS());
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()

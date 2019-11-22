@@ -649,7 +649,7 @@ public class IBS_5019_OLS extends BaseTest {
                 .waitForPageLoad("an irritable bowel syndrome (IBS)")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()

@@ -539,7 +539,7 @@ public class DIA_4241_OLS_ver3 extends BaseTest {
                 .waitForPageLoadAKC()
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosedPageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
