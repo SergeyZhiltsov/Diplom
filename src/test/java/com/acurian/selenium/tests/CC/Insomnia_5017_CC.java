@@ -655,7 +655,7 @@ public class Insomnia_5017_CC extends BaseTest {
                         .clickOnAnswer(site.name)
                         .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        //.clickOnAnswer("No")
                         .clickNextButton(new SynexusHealthyMindsPageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("No")

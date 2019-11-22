@@ -130,7 +130,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .serviceProviderCheck()
                     .clickOnAgree();
             getDriver().switchTo().window(tabs.get(0));
-            QualifiedClose1PageOLS qualifiedClose1PageOLS = new QualifiedClose1PageOLS();
+            QualifiedClose2PageOLS qualifiedClose2PageOLS = new QualifiedClose2PageOLS();
             if(env.equals("PRD")){
                 directSheduleVaccOLS
                         .waitForPageLoad();
@@ -140,10 +140,9 @@ public class VACC_JANRSV_OLS extends BaseTest {
                         .waitForPageLoadSTG();
             }
             directSheduleVaccOLS
-                    .clickNextButton(qualifiedClose1PageOLS);
-            SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
-                    //.waitForPageLoad()
-                    .clickOnAnswer("No")
+                    .clickNextButton(qualifiedClose2PageOLS);
+            SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose2PageOLS
+                    .waitForPageLoad()
                     .clickNextButton(new SynexusHealthyMindsPageOLS());
 
             ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS

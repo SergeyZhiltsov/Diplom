@@ -481,7 +481,7 @@ public class DPN_5096_CC extends BaseTest {
                 siteSelectionPageCC
                         .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        //.clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

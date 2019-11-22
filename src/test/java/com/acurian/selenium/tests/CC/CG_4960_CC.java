@@ -486,7 +486,7 @@ public class CG_4960_CC extends BaseTest {
                         .getPID()
                         .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                      //  .clickOnAnswer("No")
                         .clickNextButton(new SynexusHealthyMindsPageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("No")

@@ -281,7 +281,7 @@ public class OA_4109CC extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+               // .clickOnAnswer("No")
                 .clickNextButton(new Regular_WarmTransfer1())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

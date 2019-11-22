@@ -179,7 +179,7 @@ public class OBS_4605_CC extends BaseTest {
                 .clickOnAnswer(site.name)
                 .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
+                //.clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)

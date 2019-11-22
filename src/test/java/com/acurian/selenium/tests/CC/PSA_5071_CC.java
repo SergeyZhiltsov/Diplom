@@ -572,7 +572,7 @@ public class PSA_5071_CC extends BaseTest {
                 siteSelectionPageCC
                         .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        //.clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC);

@@ -535,16 +535,15 @@ public class KAD_4631_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
 
-        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS());
+                .clickNextButton(new QualifiedClose2PageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose1PageOLS
-                //.waitForPageLoad()
-                .clickOnAnswer("No")
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
+                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
 
 
