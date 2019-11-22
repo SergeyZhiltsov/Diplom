@@ -45,7 +45,7 @@ public class RadiantWTtest extends BaseTest {
 
         DateOfBirthPageCC dateOfBirthPageCC = new DateOfBirthPageCC();
         dateOfBirthPageCC
-                .waitForPageLoadGmega(studyName, "625");
+                .waitForPageLoadGmega("a rheumatoid arthritis (RA) study", "625");
         //Assert.assertEquals(dateOfBirthPageCC.getTitleText1(), dateOfBirthPageCC.titleGmega3RAexpected, "Title is diff");
 
         BehalfOfSomeoneElsePageCC behalfOfSomeoneElsePageCC = dateOfBirthPageCC
@@ -107,7 +107,7 @@ public class RadiantWTtest extends BaseTest {
                 .getPID()
                 .clickOnAnswer(siteName)
                 .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickNextButton(new Regular_WarmTransfer1())
                 .waitForPageLoad()
                 .clickOnAnswer("No")

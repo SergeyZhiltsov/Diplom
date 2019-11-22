@@ -464,15 +464,15 @@ public class DateOfBirthPageCC extends MainPageCC {
         return getText(titleText1);
     }
 //
-//    @Step
-//    public String getQuestionTextIBD() {
-//        return getText(questionTextIBD);
-//    }
+    @Step
+    public String getQuestionTextIBD() {
+        return getText(questionTextIBD);
+    }
 //
-//    @Step
-//    public String getTitleTextIBD() {
-//        return getText(titleTextIBD);
-//    }
+    @Step
+    public String getTitleTextIBD() {
+        return getText(titleTextIBD);
+    }
 
     @Deprecated
     @Step
