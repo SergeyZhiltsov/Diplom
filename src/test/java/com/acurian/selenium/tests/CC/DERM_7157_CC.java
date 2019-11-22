@@ -658,7 +658,8 @@ public class DERM_7157_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+            doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
@@ -818,8 +819,8 @@ public class DERM_7157_CC extends BaseTest {
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
         MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC

@@ -795,8 +795,8 @@ public class DERM_7157_OLS extends BaseTest {
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
