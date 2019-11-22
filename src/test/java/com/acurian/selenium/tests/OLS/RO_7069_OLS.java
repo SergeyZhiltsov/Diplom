@@ -506,16 +506,15 @@ public class RO_7069_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
 
-        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
+        QualifiedClosedPageOLS qualifiedClosedPageOLS = siteSelectionPageOLS
                 .waitForPageLoad2(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS());
+                .clickNextButton(new QualifiedClosedPageOLS());
 
 
-        SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
+        SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClosedPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageOLS());
 
 

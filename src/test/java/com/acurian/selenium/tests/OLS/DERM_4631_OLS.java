@@ -699,9 +699,8 @@ public class DERM_4631_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClosedPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad();
         AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();

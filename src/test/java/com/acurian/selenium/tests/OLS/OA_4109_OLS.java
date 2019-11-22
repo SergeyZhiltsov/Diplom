@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.OLS.OA_3138.HowManyTotalDaysYouTakeFollowingNS
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -240,9 +241,8 @@ public class OA_4109_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClosedPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForSENRPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

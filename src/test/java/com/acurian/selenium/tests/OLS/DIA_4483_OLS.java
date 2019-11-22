@@ -804,9 +804,8 @@ public class DIA_4483_OLS extends BaseTest {
                     .getPID();}
 
         new SiteSelectionPageOLS().clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClosedPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not interested in receiving information");

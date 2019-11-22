@@ -732,7 +732,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()

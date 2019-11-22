@@ -398,9 +398,8 @@ public class LOWT_3017_OLS_A_S extends BaseTest {
             case AUT_LOWT_3017_Site: //1R
                 siteSelectionPageOLS
                         .clickOnFacilityName(site.name)
-                        .clickNextButton(new QualifiedClose1PageOLS())
+                        .clickNextButton(new QualifiedClosedPageOLS())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
                         .clickNextButton(new SynexusHealthyMindsPageOLS())
                         .waitForPageLoad()
                         .clickOnAnswer("No, I am not interested in receiving information")

@@ -244,7 +244,7 @@ public class Crohns_3889_StudySwitch4295_OLS extends BaseTest{
 		.waitForPageLoad()
         .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", zipCode)
         .clickNextButton(new UnqualifiedCloseOLS())
-        .waitForPageLoad()
+        //.waitForPageLoad()
 		//.clickOnAnswer("Yes")-----------?
 		.clickNextButton(new StandAlone4295SwitchOLS())
 		

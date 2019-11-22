@@ -142,7 +142,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
             directSheduleVaccOLS
                     .clickNextButton(qualifiedClose1PageOLS);
             SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
-                    .waitForPageLoad()
+                    //.waitForPageLoad()
                     .clickOnAnswer("No")
                     .clickNextButton(new SynexusHealthyMindsPageOLS());
 
@@ -559,15 +559,14 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickNextButton(new SiteSelectionPageOLS());
 
 
-            QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
+            QualifiedClosedPageOLS qualifiedClosedPageOLS = siteSelectionPageOLS
                     .waitForPageLoad(studyName)
                     .getPID()
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClose1PageOLS());
+                    .clickNextButton(new QualifiedClosedPageOLS());
 
-            SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
+            SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClosedPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswer("No")
                     .clickNextButton(new SynexusHealthyMindsPageOLS());
 
             ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS

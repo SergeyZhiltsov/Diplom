@@ -9,10 +9,7 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeart
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -434,9 +431,8 @@ public class DPN_5096_OLS extends BaseTest {
                 .waitForPageLoad2(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClosedPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForSENRPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

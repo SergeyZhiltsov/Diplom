@@ -16,20 +16,20 @@ public class UnqualifiedCloseOLS extends MainPageOLS{
     //Pediatric module
     public final String titleExpected = "Unfortunately, from the information you have provided, you would not be a candidate at this time. We appreciate your interest in participating.";
 
-    public final String titleExpected2 = "We are also enrolling children and teens between the ages of 12-17 in eczema studies going on around the world.\n" +
-            "\n" +
-            "If your child has eczema, you know it can make your child feel physically uncomfortable and self-conscious. Plus, your child’s current lotions, creams or medications may not be helping.\n" +
-            "\n" +
-            "Eczema researchers around the world are studying medications that are not available from your child’s current doctors.\n" +
-            "These research studies:\n" +
-            "• May offer payment up to $400, varies by study\n" +
-            "• Provide your teen with close attention from the study doctor who is focused on eczema care\n" +
-            "• Ensure your teen’s health is carefully monitored and his or her safety is protected throughout the study\n" +
-            "• May help you and your teen learn more about his or her eczema\n" +
-            "\n" +
-            "Remember, if you join a clinical study, your child will still be able to see his/her normal healthcare provider.\n" +
-            "\n" +
-            "Your teen’s participation can make a difference. Would you like to see if there is study that's right for your child?";
+//    public final String titleExpected2 = "We are also enrolling children and teens between the ages of 12-17 in eczema studies going on around the world.\n" +
+//            "\n" +
+//            "If your child has eczema, you know it can make your child feel physically uncomfortable and self-conscious. Plus, your child’s current lotions, creams or medications may not be helping.\n" +
+//            "\n" +
+//            "Eczema researchers around the world are studying medications that are not available from your child’s current doctors.\n" +
+//            "These research studies:\n" +
+//            "• May offer payment up to $400, varies by study\n" +
+//            "• Provide your teen with close attention from the study doctor who is focused on eczema care\n" +
+//            "• Ensure your teen’s health is carefully monitored and his or her safety is protected throughout the study\n" +
+//            "• May help you and your teen learn more about his or her eczema\n" +
+//            "\n" +
+//            "Remember, if you join a clinical study, your child will still be able to see his/her normal healthcare provider.\n" +
+//            "\n" +
+//            "Your teen’s participation can make a difference. Would you like to see if there is study that's right for your child?";
 
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]")
@@ -68,7 +68,7 @@ public class UnqualifiedCloseOLS extends MainPageOLS{
     @Step
     public UnqualifiedCloseOLS waitForPageLoad() {
         waitForPageLoadMain(titleTextFirstPart, titleExpected);
-        Assert.assertEquals(getText(titleTextSecondPart), titleExpected2, "Second title is diff");
+        Assert.assertEquals(getText(titleTextSecondPart), titleExpected, "Second title is diff");
         return this;
     }
 

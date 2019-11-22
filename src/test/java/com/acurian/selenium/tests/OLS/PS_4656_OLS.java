@@ -7,6 +7,7 @@ import com.acurian.selenium.pages.OLS.PS_4656.*;
 import com.acurian.selenium.pages.OLS.PsoriaticArthritis.PsoriaticArthritisConditionPageOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
+import com.acurian.selenium.pages.OLS.closes.QualifiedClosedPageOLS;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -319,9 +320,8 @@ public class PS_4656_OLS extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClosedPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

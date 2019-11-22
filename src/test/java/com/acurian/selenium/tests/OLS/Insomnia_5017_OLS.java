@@ -6,10 +6,7 @@ import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeart
 import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_OLS;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.SynexusHealthyMindsPageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.insomnia_5017.*;
@@ -610,9 +607,8 @@ public class Insomnia_5017_OLS extends BaseTest {
                 .getPID();
         siteSelectionPageOLS
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClosedPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("No, I am not interested in receiving information")

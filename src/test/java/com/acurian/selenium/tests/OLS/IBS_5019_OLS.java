@@ -7,10 +7,7 @@ import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms
 import com.acurian.selenium.pages.OLS.GERD.WhatTypeOfSurgeryDidYouHave_OLS;
 import com.acurian.selenium.pages.OLS.GERD.WhenDidYouHaveAppendixRemoved_OLS;
 import com.acurian.selenium.pages.OLS.IBS.*;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -652,9 +649,8 @@ public class IBS_5019_OLS extends BaseTest {
                 .waitForPageLoad("an irritable bowel syndrome (IBS)")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClosedPageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
