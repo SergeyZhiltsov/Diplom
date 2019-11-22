@@ -307,11 +307,16 @@ public class GERD_4301_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6311", site.activeProtocols)
                 .back(new WeightLossSurgeryPageOLS());
-        AreYouCurrentlyAbleToSwallowTablets_OLS areYouCurrentlyAbleToSwallowTablets_OLS = whenDidYouHaveAppendixRemoved_OLS
+         whenDidYouHaveAppendixRemoved_OLS
                 .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected1)
                 .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(2, "More than 6 months ago")
                 .clickOnAnswerForSubQuestion(3, "More than 6 months ago")
+                .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS());
+
+        AreYouCurrentlyAbleToSwallowTablets_OLS areYouCurrentlyAbleToSwallowTablets_OLS = weightLossSurgeryPageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new AreYouCurrentlyAbleToSwallowTablets_OLS());
 
 

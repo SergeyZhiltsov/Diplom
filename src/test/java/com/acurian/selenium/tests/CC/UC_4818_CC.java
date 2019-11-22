@@ -3,18 +3,15 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.ADG_4357.CurrentlyHaveAnyOffFollowingPageCC;
-import com.acurian.selenium.pages.CC.Crohns_3485.*;
+import com.acurian.selenium.pages.CC.Crohns_3485.BiologicMedicationsPageCC;
+import com.acurian.selenium.pages.CC.Crohns_3485.DiagnosedWithCrohnsPageCC;
+import com.acurian.selenium.pages.CC.Crohns_3485.WhenDiagnosedCrohnsPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
-import com.acurian.selenium.pages.CC.IBD.*;
 import com.acurian.selenium.pages.CC.UC.*;
-import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
-import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.WhenWereYouDiagnosedWithCrohnsPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -81,10 +78,10 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad("a colitis study","300");
+                .waitForPageLoad("a colitis study", "300");
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(),
 //                dateOfBirthPageCC.getExpectedModifiedTitle("a colitis study","300"),
-  //              "Title is diff");
+        //              "Title is diff");
 //
         DoesNotGivePermissionToProceedClosePageCC doesNotGivePermissionToProceedClosePageCC = dateOfBirthPageCC
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "No")
@@ -96,7 +93,7 @@ public class UC_4818_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[0])
                 .back();
         LessThan18YearsOldPageCC lessThan18YearsOldPageCC = dateOfBirthPageCC
-                .waitForPageLoad("a colitis study","300")
+                .waitForPageLoad("a colitis study", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new LessThan18YearsOldPageCC());
         lessThan18YearsOldPageCC
@@ -104,8 +101,8 @@ public class UC_4818_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[0])
                 .back();
-       ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
-                .waitForPageLoad("a colitis study","300")
+        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+                .waitForPageLoad("a colitis study", "300")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new ZipCodePageCC());
 
@@ -127,9 +124,9 @@ public class UC_4818_CC extends BaseTest {
                 .back();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 genderPageCC
-                .waitForPageLoad()
-                .setYear("1937") //Disqualify ("Age") if >= 81
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                        .waitForPageLoad()
+                        .setYear("1937") //Disqualify ("Age") if >= 81
+                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
@@ -164,7 +161,7 @@ public class UC_4818_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Ulcerative colitis")
-                .clickNextButton( new WhenWereYouDiagnosedWithUCPageCC());
+                .clickNextButton(new WhenWereYouDiagnosedWithUCPageCC());
 
 //Q3	When were you diagnosed with ulcerative colitis?
         AsPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageCC asPartOfYourUCDiagnosisHaveYouHadFollowingProceduresDonePageCC =
@@ -391,7 +388,7 @@ public class UC_4818_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey());
-            if (/*disqualify7191.contains(entry.getKey())**/true ) { //todo after 7191 activation
+            if (/*disqualify7191.contains(entry.getKey())**/true) { //todo after 7191 activation
 
                 currentlyHaveAnyOffFollowingPageCC
                         .clickNextButton(transitionStatementCC)
@@ -469,10 +466,10 @@ public class UC_4818_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(transitionStatementCC);
 
-            transitionStatementCC
+        transitionStatementCC
                 .waitForPageLoadWithCurves("colitis")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
-            
+
 //GH            
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -697,7 +694,7 @@ public class UC_4818_CC extends BaseTest {
                 "Hepatitis B",
                 "Hepatitis C",
                 "HIV or AIDS"); //Kidney disease requiring dialysis is not displayed
-        for (String answer: disqualifyQS59) {
+        for (String answer : disqualifyQS59) {
             System.out.println("Select answer for QS59: " + answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
@@ -727,16 +724,21 @@ public class UC_4818_CC extends BaseTest {
                 .clickNextButton(new LetMeSeePageCC())
                 .waitForPageLoad()
                 .clickNextButton(new IdentificationPageCC());
-             identificationPageCC
+        identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                             "9999999999", site.zipCode)
+                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC())
                 .waitForPageLoad("a colitis study")
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoadIBD4818()
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoadIBD("Ulcerative Colitis")
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
