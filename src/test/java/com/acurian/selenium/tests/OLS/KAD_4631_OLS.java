@@ -543,7 +543,7 @@ public class KAD_4631_OLS extends BaseTest {
 
 
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose1PageOLS
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
 

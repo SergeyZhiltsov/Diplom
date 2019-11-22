@@ -415,7 +415,7 @@ public class GERD_5098_OLS extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForSENRPageLoad()
