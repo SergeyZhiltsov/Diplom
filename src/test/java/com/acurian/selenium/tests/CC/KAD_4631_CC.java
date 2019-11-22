@@ -6,6 +6,7 @@ import com.acurian.selenium.pages.CC.Derm_4631.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
+import com.acurian.selenium.pages.CC.PsoriaticArthritis.EverReceivedAnyBiologicMedicationsPageCC;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -38,7 +39,7 @@ public class KAD_4631_CC extends BaseTest {
     @Test(dataProvider = "sites", dataProviderClass = KAD_4631_OLS.class)
     @Description("KAD 4631 Kiniksa Atopic Derm for CC")
     public void kad4631_CCTest(Site site) {
-        String phoneNumber = "800AMS1CPA";
+        String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
         String env = System.getProperty("acurian.env", "STG");
@@ -92,6 +93,7 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad(studyName, "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected, "Yes")
                 .clickNextButton(new IdentificationPageCC());
+
 
         //------------PII Question------------
         GenderPageCC genderPageCC = identificationPageCC
@@ -152,7 +154,7 @@ public class KAD_4631_CC extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageCC howWouldYouDescribeTheEczemaCurrentlyPageCC =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
@@ -183,11 +185,11 @@ public class KAD_4631_CC extends BaseTest {
 
 
         //---------------------------------------------QS24 DQ, Go to QS25---------------------------------------------
-        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = howWouldYouDescribeTheEczemaCurrentlyPageCC
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC = howWouldYouDescribeTheEczemaCurrentlyPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("None: Skin is completely clear / eczema is not active now")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
-        howManyDaysHasSkinBeenItchyCC
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
+        haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
@@ -199,18 +201,18 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswer("Mild: Covers a small amount of total skin on my body")
                 .clickOnAnswer("Moderate: Covers a medium amount of total skin on my body")
                 .clickOnAnswer("Severe: Covers a large amount of total skin on my body")
-                .clickNextButton(howManyDaysHasSkinBeenItchyCC);
+                .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
 
 
-        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
-                howManyDaysHasSkinBeenItchyCC
-                        .waitForPageLoad()
-                        .clickOnAnswer("1 - 2 days")
-                        .clickOnAnswer("3 - 4 days")
-                        .clickOnAnswer("5 - 6 days")
-                        .clickOnAnswer("My skin is itchy every day")
-                        .clickOnAnswer("My skin is never itchy")
-                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
+//        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
+//                howManyDaysHasSkinBeenItchyCC
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("1 - 2 days")
+//                        .clickOnAnswer("3 - 4 days")
+//                        .clickOnAnswer("5 - 6 days")
+//                        .clickOnAnswer("My skin is itchy every day")
+//                        .clickOnAnswer("My skin is never itchy")
+//                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
 
 //        //Q26
 //        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = howManyDaysHasSkinBeenItchyCC
@@ -252,7 +254,7 @@ public class KAD_4631_CC extends BaseTest {
                         .clickOnAnswer("I am not using any treatments right now")
                         .clickNextButton(new AreYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC());
 
-        //Q31
+        //Q31F
         DupixentInjectionPageCC dupixentInjectionPageCC =
                 areYouCurrentlyReceivingRegularDosesOfAnyBiologicMedsPageCC
                         .waitForPageLoad()

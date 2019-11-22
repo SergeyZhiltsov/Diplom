@@ -143,6 +143,9 @@ public enum Site {
     //4912
     AUT_AMS1_4912_site("AUT_AMS1_4912_site", "19422", "1R", true, true, "I6T_MC_AMAM"),
     AUT_AMS1_4912S_site("AUT_AMS1_4912S_site", "08204", "41C", true, true, "I6T_MC_AMAM"),
+    //7157
+    AUT_AMS1_7157_site("AUT_AMS1_7157_site", "19901", "1R", true, true, "GBR_830_204"),
+    AUT_AMS1_7157S_site("AUT_AMS1_7157S_site", "08204", "41C", true, true, "GBR_830_204"),
     //Others
     AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java
     //Health check

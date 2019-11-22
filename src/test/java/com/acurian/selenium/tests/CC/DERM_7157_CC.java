@@ -8,12 +8,15 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
 import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
-import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
+import com.acurian.selenium.pages.CC.closes.MedicalRecordsOptionPageCC;
+import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
-import com.acurian.selenium.tests.OLS.DERM_4967_OLS;
+import com.acurian.selenium.tests.OLS.DERM_7157_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -24,7 +27,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import java.util.Arrays;
 import java.util.List;
 
-public class DERM_4967_CC extends BaseTest {
+public class DERM_7157_CC extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -36,9 +39,9 @@ public class DERM_4967_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = DERM_4967_OLS.class)
-    @Description("DERM 4967 Regeneron Atopic Dermatitis")
-    public void derm4967ccRADtest(Site site) {
+    @Test(dataProvider = "sites", dataProviderClass = DERM_7157_OLS.class)
+    @Description("DERM 7157 Glenmark Atopic Derm")
+    public void DERM_7157_CC(Site site) {
         final String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
@@ -74,7 +77,7 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad(studyName, "600");
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600");
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle(studyName,
 //                "600"), "Title is diff");
 
@@ -86,13 +89,13 @@ public class DERM_4967_CC extends BaseTest {
                 .getPage(debugPageCC)
                 // .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
-        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
-                .waitForPageLoad(studyName, "600")
+        IdentificationPageCC identificationPageCC= dateOfBirthPageCC
+                .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
                 .clickNextButton(new IdentificationPageCC());
 
         GenderPageCC genderPageCC = identificationPageCC
-                .waitForPageLoadNotQ()
+                .waitForPageLoadNotQCrohn()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
@@ -126,9 +129,7 @@ public class DERM_4967_CC extends BaseTest {
                 new HowMuchEczemaYouHaveOnYOurBody_CC();
         List<String> disqualifyQ3 = Arrays.asList("2 months or less",
                 "3 - 6 months",
-                "7 - 11 months",
-                "1 year",
-                "2 year");
+                "7 - 11 months");
         for (String answer : disqualifyQ3) {
             System.out.println(answer);
             howLongHaveYouBeenSufferingFromEczema_cc
@@ -140,6 +141,7 @@ public class DERM_4967_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
                     .back();
         }
+
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
@@ -167,8 +169,7 @@ public class DERM_4967_CC extends BaseTest {
             howMuchEczemaYouHaveOnYOurBody_CC
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
-                    .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC);
-            howWouldYouDescribeTheEczemaCurrentlyPageCC
+                    .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
@@ -176,29 +177,36 @@ public class DERM_4967_CC extends BaseTest {
         }
         howMuchEczemaYouHaveOnYOurBody_CC
                 .waitForPageLoad()
-                //.selectFromDropDown("21+")
-                .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC);
+                .selectFromDropDown("21+")
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
+
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
+                howWouldYouDescribeTheEczemaCurrentlyPageCC
+                        .waitForPageLoad()
+                        .clickOnAnswer("Minor: Mostly clear or almost clear")
+                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
 
         //---------------------------------------------QS24 DQ, Go to QS25---------------------------------------------
-        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC = howWouldYouDescribeTheEczemaCurrentlyPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("None: Skin is completely clear / eczema is not active now")
-                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
-        haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
-                .back();
+//        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = howWouldYouDescribeTheEczemaCurrentlyPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("None: Skin is completely clear / eczema is not active now")
+//                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
+//
+//        howManyDaysHasSkinBeenItchyCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
+//                .back();
+//
+//        howWouldYouDescribeTheEczemaCurrentlyPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Minor: Mostly clear or almost clear")
+//                .clickOnAnswer("Mild: Covers a small amount of total skin on my body")
+//                .clickOnAnswer("Moderate: Covers a medium amount of total skin on my body")
+//                .clickOnAnswer("Severe: Covers a large amount of total skin on my body")
+//                .clickNextButton(howManyDaysHasSkinBeenItchyCC);
 
-        howWouldYouDescribeTheEczemaCurrentlyPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Minor: Mostly clear or almost clear")
-                .clickOnAnswer("Mild: Covers a small amount of total skin on my body")
-                .clickOnAnswer("Moderate: Covers a medium amount of total skin on my body")
-                .clickOnAnswer("Severe: Covers a large amount of total skin on my body")
-                .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
-
-
+//
 //        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
 //                howManyDaysHasSkinBeenItchyCC
 //                        .waitForPageLoad()
@@ -215,37 +223,38 @@ public class DERM_4967_CC extends BaseTest {
 //                .waitForPageLoad()
 //                .clickOnAnswer("My skin is itchy every day")
 //                .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
-
-//        //Q26
-//        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = howManyDaysHasSkinBeenItchyCC
-//                .waitForPageLoad()
-//                .clickOnAnswer("My skin is never itchy") //Disqualify ("No pruritus")
-//                .clickNextButton(new EczemaSymptomsExperienceCC());
-//        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = eczemaSymptomsExperienceCC
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
-//                .back(howManyDaysHasSkinBeenItchyCC)
-//                .waitForPageLoad()
-//                .clickOnAnswer("My skin is itchy every day")
-//                .clickNextButton(new RateAverageItchinessEczemaPageCC());
+//
+////        //Q26
+////        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = howManyDaysHasSkinBeenItchyCC
+////                .waitForPageLoad()
+////                .clickOnAnswer("My skin is never itchy") //Disqualify ("No pruritus")
+////                .clickNextButton(new EczemaSymptomsExperienceCC());
+////        RateAverageItchinessEczemaPageCC rateAverageItchinessEczemaPageCC = eczemaSymptomsExperienceCC
+////                .waitForPageLoad()
+////                .getPage(debugPageCC)
+////                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
+////                .back(howManyDaysHasSkinBeenItchyCC)
+////                .waitForPageLoad()
+////                .clickOnAnswer("My skin is itchy every day")
+////                .clickNextButton(new RateAverageItchinessEczemaPageCC());
+////        //Q27
+////        rateAverageItchinessEczemaPageCC
+////                .waitForPageLoad()
+////                .selectFromDropDown("2")
+////                .clickNextButton(eczemaSymptomsExperienceCC);
+////        //Q28
+////        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
+////                eczemaSymptomsExperienceCC
+////                        .waitForPageLoad()
+////                        .clickOnAnswers("Redness",
+////                                "Swelling",
+////                                "Oozing/Crusting",
+////                                "Dryness",
+////                                "Scratch marks",
+////                                "Skin thickening")
+////                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
 //        //Q27
-//        rateAverageItchinessEczemaPageCC
-//                .waitForPageLoad()
-//                .selectFromDropDown("2")
-//                .clickNextButton(eczemaSymptomsExperienceCC);
-//        //Q28
-//        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
-//                eczemaSymptomsExperienceCC
-//                        .waitForPageLoad()
-//                        .clickOnAnswers("Redness",
-//                                "Swelling",
-//                                "Oozing/Crusting",
-//                                "Dryness",
-//                                "Scratch marks",
-//                                "Skin thickening")
-//                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
-        //Q27
+//        SatisfiedEczemaTreatmentsCC satisfiedEczemaTreatmentsCC =
         SatisfiedEczemaTreatmentsCC satisfiedEczemaTreatmentsCC = haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Creams, ointments, or sprays applied directly to the skin (topical treatments)",
@@ -319,8 +328,8 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(new DupixentInjectionPageCC());
         dupixentInjectionPageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5850", site.activeProtocols)
+              //  .getPage(debugPageCC)
+            //    .checkProtocolsContainsForQNumber("QS5850", site.activeProtocols)
                 .back();
 
 
@@ -345,13 +354,6 @@ public class DERM_4967_CC extends BaseTest {
                 .waitForPageLoadWithCurvesKAD(studyNameForTrans)
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols)
-                .back(dupixentInjectionPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes, took in the past but not now")
-                .clickNextButton(transitionStatementCC)
-                .waitForPageLoadWithCurvesKAD(studyNameForTrans)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5847", site.activeProtocols[0])
                 .back(dupixentInjectionPageCC)
                 .waitForPageLoad()
                 .clickOnAnswer("No, never took")
@@ -431,8 +433,8 @@ public class DERM_4967_CC extends BaseTest {
                         "system attacking your joints")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
+             //   .getPage(debugPageCC)
+             //   .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
                 .back(whatKindOfArthritisCC)
                 .waitForPageLoad()
                 .back();
@@ -564,7 +566,7 @@ public class DERM_4967_CC extends BaseTest {
                                 "Crohn's disease, ulcerative colitis)")
                         .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
         //Q4: QS40
-        whichOfFollowingDigestiveConditionPageCC
+/*        whichOfFollowingDigestiveConditionPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Acid reflux, heartburn, or GERD (gastroesophageal reflux disease)",
                         "Crohn's disease",
@@ -583,7 +585,7 @@ public class DERM_4967_CC extends BaseTest {
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS44", site.activeProtocols)
                     .back();
-        }
+        }*/
         whichOfFollowingDigestiveConditionPageCC
                 .waitForPageLoad()
                 .back();
@@ -656,7 +658,8 @@ public class DERM_4967_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+                    .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+            doAnyOftheFollowingAdditionalDiagnosesCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
@@ -686,8 +689,8 @@ public class DERM_4967_CC extends BaseTest {
                 .clickOnAnswers("Multiple sclerosis (MS)")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS54", site.activeProtocols)
+//                .getPage(debugPageCC)
+////                .checkProtocolsContainsForQNumber("QS54", site.activeProtocols)
                 .back(whichOfFollowingHaveYouDiagnosedWith_NeurologicalCC)
                 .waitForPageLoad()
                 .back();
@@ -773,8 +776,7 @@ public class DERM_4967_CC extends BaseTest {
 
         //Q24: QS59
         List<String> disqualifyQ24second = Arrays.asList("Kidney disease requiring dialysis",
-                "Schizophrenia",
-                "Multiple sclerosis (MS)");
+                "Schizophrenia");
         for (String answer : disqualifyQ24second) {
             System.out.println(answer);
             doAnyOftheFollowingAdditionalDiagnosesCC
@@ -801,8 +803,8 @@ public class DERM_4967_CC extends BaseTest {
 
         letMeSeePageCC
                 .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+                //.getPage(debugPageCC)
+                //.checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageCC);
         approximateHeightPageCC
                 .waitForPageLoad()
@@ -810,7 +812,7 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(letMeSeePageCC);
 
 
-        letMeSeePageCC
+       letMeSeePageCC
                 .waitForPageLoad()
                 .clickNextButton(identificationPageCC);
 
@@ -836,9 +838,9 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env, "4967")
+                .childPidFromDbToLog(env, "7157")
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
-                .assertRmgOrderPriority(env, "4967");
+                .assertRmgOrderPriority(env, "7157");
     }
 }
