@@ -172,13 +172,12 @@ public class AMIG_4742_OLS extends BaseTest {
 
         //---------------NEW Q8: Have you ever taken prescription medications daily to keep migraines from starting?
         //----------------------------------------- + GHOST QS11----------------------------------------------------
-        HaveYouEverHadBotoxbotulinumtoxin_OLS haveYouEverHadBotoxbotulinumtoxin_OLS =
                 haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No, never any daily medications that my doctor prescribed")
-                .clickNextButton(new HaveYouEverHadBotoxbotulinumtoxin_OLS());
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
-        haveYouEverHadBotoxbotulinumtoxin_OLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
@@ -188,7 +187,7 @@ public class AMIG_4742_OLS extends BaseTest {
         haveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No, never any daily medications that my doctor prescribed") //Skip to Q11 - Ghost for Preventive Medication Logic
-                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
@@ -203,7 +202,7 @@ public class AMIG_4742_OLS extends BaseTest {
         areYouCurrentlyTakingPrescriptionMedicationsDailyPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No, I used to take daily medications that my doctor prescribed, but I stopped taking them") //Skip to Q11 - Ghost for Preventive Medication Logic
-                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 //-----------STATUS SET validation:  PATIENT_PRIORITY_YES = 8 14 -------------
@@ -222,7 +221,7 @@ public class AMIG_4742_OLS extends BaseTest {
             prescriptionMedicationsDailyToPreventMigrainesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS)
+                    .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6033", site.activeProtocols)
@@ -231,89 +230,89 @@ public class AMIG_4742_OLS extends BaseTest {
         prescriptionMedicationsDailyToPreventMigrainesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Dissatisfied")
-                .clickNextButton(haveYouEverHadBotoxbotulinumtoxin_OLS);
-
-        //        Q20	Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck?
-        HaveYouEverDiagnosedByHealthcareProfOLS haveYouEverDiagnosedByHealthcareProfOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("Yes, to treat migraines", "Yes, as a cosmetic treatment for lines on the face")
-                .clickOnAnswers("No") //Skip to Q22
-                .clickNextButton(new HaveYouEverDiagnosedByHealthcareProfOLS());
-        haveYouEverDiagnosedByHealthcareProfOLS
-                .waitForPageLoad()
-                .back();
-        WhenDidYouLastHaveBotoxInjectionOLS whenDidYouLastHaveBotoxInjectionOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("Yes, to treat migraines")
-                .clickNextButton(new WhenDidYouLastHaveBotoxInjectionOLS());
-
-
-        //      Q21	When did you last have a Botox (botulinum toxin) injection?
-        List<String> disqualifyQ21 = Arrays.asList("3 months ago or less", "4 - 6 months ago");
-        for (String answer: disqualifyQ21) {
-            System.out.println("Select answer for Q21: " + answer);
-            whenDidYouLastHaveBotoxInjectionOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(haveYouEverDiagnosedByHealthcareProfOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS6026", site.activeProtocols)
-                    .back();
-        }
-        whenDidYouLastHaveBotoxInjectionOLS
-                .waitForPageLoad()
-                .clickOnAnswer("7 months - 1 year ago")
-                .clickNextButton(haveYouEverDiagnosedByHealthcareProfOLS);
-
-
-        //      Q22	Have you ever been diagnosed by a healthcare professional with any of the following pain conditions?
-        DoYouCurrentlyUseMarijuanaOLS doYouCurrentlyUseMarijuanaOLS = new DoYouCurrentlyUseMarijuanaOLS();
-        List<String> disqualifyQ22 = Arrays.asList("Trigeminal Neuralgia - severe pain in the nerves of the face",
-                "Temporomandibular Joint Disorders also known as TMD or TMJ");
-        for (String answer: disqualifyQ22) {
-            System.out.println("Select answer for Q22: " + answer);
-            haveYouEverDiagnosedByHealthcareProfOLS
-                    .waitForPageLoad()
-                    .clickOnAnswers("None 4742of the above")
-                    .clickOnAnswers(answer)
-                    .clickNextButton(doYouCurrentlyUseMarijuanaOLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS6027", site.activeProtocols)
-                    .back();
-        }
-        haveYouEverDiagnosedByHealthcareProfOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(doYouCurrentlyUseMarijuanaOLS);
-
-
-        //      Q23	 Do you currently use marijuana (cannabis) or any products that contain it, including CBD oil? 
-        doYouCurrentlyUseMarijuanaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No") //Continue to Q24
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .back();
-        IfYouQualifyForStudyWillingtoStopOLS ifYouQualifyForStudyWillingtoStopOLS = doYouCurrentlyUseMarijuanaOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new IfYouQualifyForStudyWillingtoStopOLS());
-
-        //      Q24	If you qualify for a study, are you willing to stop using marijuana (cannabis) during your participation?
-        ifYouQualifyForStudyWillingtoStopOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6029", site.activeProtocols)
-                .back(ifYouQualifyForStudyWillingtoStopOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+
+//        //        Q20	Have you ever had a Botox (botulinum toxin) injection to your face, head, or neck?
+//        HaveYouEverDiagnosedByHealthcareProfOLS haveYouEverDiagnosedByHealthcareProfOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Yes, to treat migraines", "Yes, as a cosmetic treatment for lines on the face")
+//                .clickOnAnswers("No") //Skip to Q22
+//                .clickNextButton(new HaveYouEverDiagnosedByHealthcareProfOLS());
+//        haveYouEverDiagnosedByHealthcareProfOLS
+//                .waitForPageLoad()
+//                .back();
+//        WhenDidYouLastHaveBotoxInjectionOLS whenDidYouLastHaveBotoxInjectionOLS = haveYouEverHadBotoxbotulinumtoxin_OLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Yes, to treat migraines")
+//                .clickNextButton(new WhenDidYouLastHaveBotoxInjectionOLS());
+//
+//
+//        //      Q21	When did you last have a Botox (botulinum toxin) injection?
+//        List<String> disqualifyQ21 = Arrays.asList("3 months ago or less", "4 - 6 months ago");
+//        for (String answer: disqualifyQ21) {
+//            System.out.println("Select answer for Q21: " + answer);
+//            whenDidYouLastHaveBotoxInjectionOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(haveYouEverDiagnosedByHealthcareProfOLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS6026", site.activeProtocols)
+//                    .back();
+//        }
+//        whenDidYouLastHaveBotoxInjectionOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("7 months - 1 year ago")
+//                .clickNextButton(haveYouEverDiagnosedByHealthcareProfOLS);
+//
+//
+//        //      Q22	Have you ever been diagnosed by a healthcare professional with any of the following pain conditions?
+//        DoYouCurrentlyUseMarijuanaOLS doYouCurrentlyUseMarijuanaOLS = new DoYouCurrentlyUseMarijuanaOLS();
+//        List<String> disqualifyQ22 = Arrays.asList("Trigeminal Neuralgia - severe pain in the nerves of the face",
+//                "Temporomandibular Joint Disorders also known as TMD or TMJ");
+//        for (String answer: disqualifyQ22) {
+//            System.out.println("Select answer for Q22: " + answer);
+//            haveYouEverDiagnosedByHealthcareProfOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswers("None 4742of the above")
+//                    .clickOnAnswers(answer)
+//                    .clickNextButton(doYouCurrentlyUseMarijuanaOLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS6027", site.activeProtocols)
+//                    .back();
+//        }
+//        haveYouEverDiagnosedByHealthcareProfOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(doYouCurrentlyUseMarijuanaOLS);
+//
+//
+//        //      Q23	 Do you currently use marijuana (cannabis) or any products that contain it, including CBD oil? 
+//        doYouCurrentlyUseMarijuanaOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("No") //Continue to Q24
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .back();
+//        IfYouQualifyForStudyWillingtoStopOLS ifYouQualifyForStudyWillingtoStopOLS = doYouCurrentlyUseMarijuanaOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new IfYouQualifyForStudyWillingtoStopOLS());
+//
+//        //      Q24	If you qualify for a study, are you willing to stop using marijuana (cannabis) during your participation?
+//        ifYouQualifyForStudyWillingtoStopOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS6029", site.activeProtocols)
+//                .back(ifYouQualifyForStudyWillingtoStopOLS)
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //-----------------GENERAL HEALTH questions-------------------
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -534,7 +533,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
