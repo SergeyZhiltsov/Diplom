@@ -119,7 +119,8 @@ public class KAD_4631_OLS extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+//        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             ifYouUseYourHandToCoverAllOfTheEczema_OLS
@@ -161,24 +162,24 @@ public class KAD_4631_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
                 .back();
 
-        howWouldYouDescribeTheEczemaCurrentlyPageOLS
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS = howWouldYouDescribeTheEczemaCurrentlyPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Minor: Mostly clear or almost clear")
                 .clickOnAnswer("Mild: Covers a small amount of total skin on my body")
                 .clickOnAnswer("Moderate: Covers a medium amount of total skin on my body")
                 .clickOnAnswer("Severe: Covers a large amount of total skin on my body")
-                .clickNextButton(howManyDaysHasSkinBeenItchyOLS);
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
 
-        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS =
-                howManyDaysHasSkinBeenItchyOLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("1 - 2 days")
-                        .clickOnAnswer("3 - 4 days")
-                        .clickOnAnswer("5 - 6 days")
-                        .clickOnAnswer("My skin is itchy every day")
-                        .clickOnAnswer("My skin is never itchy")
-                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
+//        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS =
+//                howManyDaysHasSkinBeenItchyOLS
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("1 - 2 days")
+//                        .clickOnAnswer("3 - 4 days")
+//                        .clickOnAnswer("5 - 6 days")
+//                        .clickOnAnswer("My skin is itchy every day")
+//                        .clickOnAnswer("My skin is never itchy")
+//                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
 //        //------------------------------------------------------QS25----------------------------------------------------
 //        HowManyDaysHasSkinBeenItchyOLS howManyDaysHasSkinBeenItchyOLS = haveYouEverHadAnyOfTheFollowingSymptomsPageOLS

@@ -39,7 +39,7 @@ public class DERM_4967_CC extends BaseTest {
     @Test(dataProvider = "sites", dataProviderClass = DERM_4967_OLS.class)
     @Description("DERM 4967 Regeneron Atopic Dermatitis")
     public void derm4967ccRADtest(Site site) {
-        final String phoneNumber = "AUTAMS4967";
+        final String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis) study";
         String studyNameForTrans = "eczema, or atopic dermatitis";
         String env = System.getProperty("acurian.env", "STG");
@@ -67,7 +67,7 @@ public class DERM_4967_CC extends BaseTest {
         callCenterIntroductionPageCC
                 .waitForPageLoad()
                 .activateDebugOnProd(env);
-        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpected,
+        Assert.assertEquals(callCenterIntroductionPageCC.getTitleText(), callCenterIntroductionPageCC.titleExpectedDYS,
                 "Title is diff");
         DateOfBirthPageCC dateOfBirthPageCC = callCenterIntroductionPageCC
                 .clickOnAnswer("Learn more about matching to clinical trials")
@@ -86,14 +86,15 @@ public class DERM_4967_CC extends BaseTest {
                 .getPage(debugPageCC)
                 // .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back(dateOfBirthPageCC);
-        ZipCodePageCC zipCodePageCC = dateOfBirthPageCC
+        IdentificationPageCC identificationPageCC = dateOfBirthPageCC
                 .waitForPageLoad(studyName, "600")
                 .clickOnAnswerForSubQuestion(dateOfBirthPageCC.titleExpected2, "Yes")
-                .clickNextButton(new ZipCodePageCC());
+                .clickNextButton(new IdentificationPageCC());
 
-        GenderPageCC genderPageCC = zipCodePageCC
-                .waitForPageLoad()
-                .typeZipCode(site.zipCode)
+        GenderPageCC genderPageCC = identificationPageCC
+                .waitForPageLoadNotQ()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC =
@@ -147,7 +148,7 @@ public class DERM_4967_CC extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageCC howWouldYouDescribeTheEczemaCurrentlyPageCC =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
@@ -166,7 +167,8 @@ public class DERM_4967_CC extends BaseTest {
             howMuchEczemaYouHaveOnYOurBody_CC
                     .waitForPageLoad()
                     .selectFromDropDown(answer)
-                    .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
+                    .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC);
+            howWouldYouDescribeTheEczemaCurrentlyPageCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
@@ -178,11 +180,11 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC);
 
         //---------------------------------------------QS24 DQ, Go to QS25---------------------------------------------
-        HowManyDaysHasSkinBeenItchyCC howManyDaysHasSkinBeenItchyCC = howWouldYouDescribeTheEczemaCurrentlyPageCC
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC = howWouldYouDescribeTheEczemaCurrentlyPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("None: Skin is completely clear / eczema is not active now")
-                .clickNextButton(new HowManyDaysHasSkinBeenItchyCC());
-        howManyDaysHasSkinBeenItchyCC
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
+        haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
@@ -194,25 +196,25 @@ public class DERM_4967_CC extends BaseTest {
                 .clickOnAnswer("Mild: Covers a small amount of total skin on my body")
                 .clickOnAnswer("Moderate: Covers a medium amount of total skin on my body")
                 .clickOnAnswer("Severe: Covers a large amount of total skin on my body")
-                .clickNextButton(howManyDaysHasSkinBeenItchyCC);
-
-
-        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
-                howManyDaysHasSkinBeenItchyCC
-                        .waitForPageLoad()
-                        .clickOnAnswer("1 - 2 days")
-                        .clickOnAnswer("3 - 4 days")
-                        .clickOnAnswer("5 - 6 days")
-                        .clickOnAnswer("My skin is never itchy")
-                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
-        haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
-                .back(howManyDaysHasSkinBeenItchyCC)
-                .waitForPageLoad()
-                .clickOnAnswer("My skin is itchy every day")
                 .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
+
+
+//        HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC haveYouTriedAnyFollowingTreatmentsForEczemaPageCC =
+//                howManyDaysHasSkinBeenItchyCC
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("1 - 2 days")
+//                        .clickOnAnswer("3 - 4 days")
+//                        .clickOnAnswer("5 - 6 days")
+//                        .clickOnAnswer("My skin is never itchy")
+//                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageCC());
+//        haveYouTriedAnyFollowingTreatmentsForEczemaPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
+//                .back(howManyDaysHasSkinBeenItchyCC)
+//                .waitForPageLoad()
+//                .clickOnAnswer("My skin is itchy every day")
+//                .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageCC);
 
 //        //Q26
 //        EczemaSymptomsExperienceCC eczemaSymptomsExperienceCC = howManyDaysHasSkinBeenItchyCC
@@ -808,15 +810,15 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(letMeSeePageCC);
 
 
-        IdentificationPageCC identificationPageCC = letMeSeePageCC
+        letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new IdentificationPageCC());
+                .clickNextButton(identificationPageCC);
 
         //----------PII (IdentificationPageOLS) Page--------------------
         SiteSelectionPageCC selectionPageCC = identificationPageCC
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
 
         MedicalRecordsOptionPageCC medicalRecordsOptionPageCC = selectionPageCC
