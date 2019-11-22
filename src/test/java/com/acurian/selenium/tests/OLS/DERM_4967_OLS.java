@@ -45,7 +45,7 @@ public class DERM_4967_OLS extends BaseTest {
     @Test(dataProvider = "sites")
     @Description("DERM 4967 Regeneron Atopic Derm")
     public void derm4967Ols(Site site) {
-        final String phoneNumber = "AUTAMS4967";
+        final String phoneNumber = "AUTAMS1KAD";
         String studyName = "an eczema (atopic dermatitis)";
         String env = System.getProperty("acurian.env", "STG");
 
@@ -66,14 +66,15 @@ public class DERM_4967_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
 
-        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
+        IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .waitForPageLoad("an eczema (atopic dermatitis) study", "600")
-                .clickNextButton(new ZipCodePageOLS());
+                .clickNextButton(new IdentificationPageOLS());
 
-        GenderPageOLS genderPageOLS = zipCodePageOLS
-                .waitForPageLoad()
-                .typeZipCode(site.zipCode)
+        GenderPageOLS genderPageOLS = identificationPageOLS
+                .waitForPageLoadNotQ()
+                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+                        "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageOLS());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
@@ -126,7 +127,7 @@ public class DERM_4967_OLS extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYourBody_OLS
@@ -167,31 +168,31 @@ public class DERM_4967_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5848", site.activeProtocols)
                 .back();
 
-        howWouldYouDescribeTheEczemaCurrentlyPageOLS
+        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS = howWouldYouDescribeTheEczemaCurrentlyPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Minor: Mostly clear or almost clear")
                 .clickOnAnswer("Mild: Covers a small amount of total skin on my body")
                 .clickOnAnswer("Moderate: Covers a medium amount of total skin on my body")
                 .clickOnAnswer("Severe: Covers a large amount of total skin on my body")
-                .clickNextButton(howManyDaysHasSkinBeenItchyOLS);
+                .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
 
 
-        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS =
-                howManyDaysHasSkinBeenItchyOLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("1 - 2 days")
-                        .clickOnAnswer("3 - 4 days")
-                        .clickOnAnswer("5 - 6 days")
-                        .clickOnAnswer("My skin is never itchy")
-                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
-        haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
-                .back(howManyDaysHasSkinBeenItchyOLS)
-                .waitForPageLoad()
-                .clickOnAnswer("My skin is itchy every day")
-                .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS);
+//        HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS =
+//                howManyDaysHasSkinBeenItchyOLS
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("1 - 2 days")
+//                        .clickOnAnswer("3 - 4 days")
+//                        .clickOnAnswer("5 - 6 days")
+//                        .clickOnAnswer("My skin is never itchy")
+//                        .clickNextButton(new HaveYouTriedAnyFollowingTreatmentsForEczemaPageOLS());
+//        haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5837", site.activeProtocols)
+//                .back(howManyDaysHasSkinBeenItchyOLS)
+//                .waitForPageLoad()
+//                .clickOnAnswer("My skin is itchy every day")
+//                .clickNextButton(haveYouTriedAnyFollowingTreatmentsForEczemaPageOLS);
 
 //
 //        //------------------------------------------------------QS25----------------------------------------------------
@@ -752,7 +753,8 @@ public class DERM_4967_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(approximateHeightPageOLS)
+                    .clickNextButton(approximateHeightPageOLS);
+            approximateHeightPageOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
@@ -789,16 +791,16 @@ public class DERM_4967_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
                 .back(approximateHeightPageOLS);
-        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "2", "33")
                 //----------PII (IdentificationPageOLS) Page--------------------
-                .clickNextButton(new IdentificationPageOLS());
+                .clickNextButton(identificationPageOLS);
 
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
-                        "9999999999", site.zipCode)
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
+//                        "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
@@ -817,17 +819,15 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = hs1PageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
                 .waitToClickNext()
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
+                .clickNextButton(new AboutHealthPageOLS());
 
 
-        thankYouCloseSimplePageOLS
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+        aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env, "4967")
