@@ -269,7 +269,7 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickOnAnswer("No")
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new DoYouHaveZollingerEllisonSyndrome_OLS());
-
+//Element <ul class="radio-group radio-checkbox-group m_choices">...</ul> is not clickable at point (691, 192). Other element would receive the click: <div class="radio-question row ng-scope">...</div>
         WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = doYouHaveZollingerEllisonSyndrome_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")

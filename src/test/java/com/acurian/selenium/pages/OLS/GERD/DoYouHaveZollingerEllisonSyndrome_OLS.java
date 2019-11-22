@@ -1,5 +1,7 @@
 package com.acurian.selenium.pages.OLS.GERD;
 
+import com.acurian.selenium.constants.Locators;
+import com.acurian.selenium.pages.OLS.ChronicCough.DoYouStillHaveCoughOLS;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,10 +15,9 @@ public class DoYouHaveZollingerEllisonSyndrome_OLS extends MainPageOLS {
 
     public final String titleExpected = "Do you have Zollinger-Ellison syndrome, a condition that causes the stomach to produce too much acid?";
 
-    @FindBy(xpath = "(//*[contains(@class, 'visible-md-block')])[1]")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
-
-    @FindBy(xpath = "//*[contains(@class, 'choice')]")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> radioButtonsList;
 
     public DoYouHaveZollingerEllisonSyndrome_OLS() {
@@ -31,11 +32,7 @@ public class DoYouHaveZollingerEllisonSyndrome_OLS extends MainPageOLS {
 
     @Step
     public DoYouHaveZollingerEllisonSyndrome_OLS clickOnAnswer(String answerText) {
-        radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
-                .findFirst()
-                .get()
-                .click();
-        waitForAnimation();
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
 
