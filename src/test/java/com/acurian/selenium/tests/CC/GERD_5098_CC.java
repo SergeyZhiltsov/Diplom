@@ -403,6 +403,13 @@ public class GERD_5098_CC extends BaseTest {
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Men's health issues (prostate enlargement or BPH, low testosterone)")
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Lupus")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
                 .clickNextButton(new OtherThanSkinCancerPageCC());
 

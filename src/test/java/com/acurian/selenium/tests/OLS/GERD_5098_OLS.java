@@ -357,6 +357,11 @@ public class GERD_5098_OLS extends BaseTest {
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Lupus")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS())
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
 
@@ -406,7 +411,7 @@ public class GERD_5098_OLS extends BaseTest {
 
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS
-                .waitForPageLoad("a heartburn or reflux study")
+                .waitForPageLoad("a heartburn or reflux study, "+studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())
