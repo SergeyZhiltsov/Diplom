@@ -90,7 +90,7 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new UnqualifiedCloseOLS())
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .clickOnAnswer("No");
         SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
         siteSelectionPageOLS
@@ -98,7 +98,7 @@ public class END_UnqualifiedClose_OLS extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .back(new UnqualifiedCloseOLS())
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new AnotherSuperScrPageOLS())
                 .waitForPageLoad()

@@ -629,7 +629,7 @@ public class DERM_4814_OLS extends BaseTest {
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose1PageOLS())
-                .waitForPageLoad()
+                //.waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()

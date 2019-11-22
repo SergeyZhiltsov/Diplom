@@ -9,10 +9,7 @@ import com.acurian.selenium.pages.OLS.PS_4656.HowLongPsoriasisPageOLS;
 import com.acurian.selenium.pages.OLS.PS_4656.TypePsoriasisPageOLS;
 import com.acurian.selenium.pages.OLS.PsoriaticArthritis.*;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
@@ -498,9 +495,8 @@ public class PSA_5071_OLS extends BaseTest {
                 .waitForPageLoad("a psoriatic arthritis")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForSENRPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

@@ -567,15 +567,14 @@ public class AF_4958_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
 
-        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageCC
+        QualifiedClosedPageOLS qualifiedClosedPageOLS = siteSelectionPageCC
                 .waitForPageLoad("a fibromyalgia")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS());
+                .clickNextButton(new QualifiedClosedPageOLS());
 
-        SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
+        SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClosedPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new SynexusHealthyMindsPageOLS());
 
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS

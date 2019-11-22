@@ -596,7 +596,7 @@ public class NoIndication3889_OLS extends BaseTest {
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
                     .clickNextButton(unqualifiedCloseOLS)
-                    .waitForPageLoad()
+                    //.waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS5733", entry.getValue())
                     .clickOnQNumber("QS5733");

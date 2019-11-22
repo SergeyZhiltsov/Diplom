@@ -5,10 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
 import com.acurian.selenium.pages.OLS.Gout.*;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
-import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
-import com.acurian.selenium.pages.OLS.closes.LessThan18YearsOldPageOLS;
-import com.acurian.selenium.pages.OLS.closes.QualifiedClose1PageOLS;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
+import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.cv_study.HeartRelatedSurgeriesProceduresPageOLS;
 import com.acurian.selenium.pages.OLS.cv_study.SubquestionHeartPageOLS;
 import com.acurian.selenium.pages.OLS.cv_study.SufferedFollowingHeartRelatedConditionsPageOLS;
@@ -453,16 +450,15 @@ public class CG_4960_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
 
-        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageCC
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageCC
                 .waitForPageLoad("a gout")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS());
+                .clickNextButton(new QualifiedClose2PageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose1PageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
 
 

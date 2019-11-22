@@ -724,9 +724,8 @@ public class GAST_4357_OLS extends BaseTest {
         if (inFlare) {
             siteSelectionPageOLS
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClose1PageOLS())
+                    .clickNextButton(new QualifiedClosedPageOLS())
                     .waitForPageLoad()
-                    .clickOnAnswer("No")
                     .clickNextButton(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()
                     .clickNextButton(aboutHealthPageOLS);
