@@ -724,7 +724,7 @@ public class GAST_4357_OLS extends BaseTest {
         if (inFlare) {
             siteSelectionPageOLS
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClose2PageOLS())
+                    .clickNextButton(new QualifiedCloseGastroPageOLS())
                     .waitForPageLoad()
                     .clickNextButton(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()
@@ -732,7 +732,7 @@ public class GAST_4357_OLS extends BaseTest {
         } else {
             siteSelectionPageOLS
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new QualifiedClose2PageOLS())
+                    .clickNextButton(new QualifiedCloseGastroPageOLS())
                     .waitForPageLoad()
                     .clickNextButton(new ThankYouCloseSimplePageOLS())
                     .waitForPageLoad()
