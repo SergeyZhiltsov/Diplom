@@ -43,7 +43,7 @@ public class ChatFillTest extends BaseTest {
                 .clickNextButton(dateOfBirthPageOLS);
 
         BehalfOfSomeoneElsePageOLS behalfOfSomeoneElsePageOLS = dateOfBirthPageOLS
-                .waitForPageLoad2()
+                .waitForPageLoad1()
                 .setDate("01011950")
                 .clickNextButton(new BehalfOfSomeoneElsePageOLS());
 

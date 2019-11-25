@@ -11,7 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class HaveYouEverBeenOfficiallyDiagnosedByDoctor_OLS extends MainPageOLS {
 
-    public final String titleExpected = "Have you ever been officially diagnosed with any of the following digestive conditions? \n" +
+    public final String titleExpected = "Have you ever been officially diagnosed with any of the following digestive conditions?\n" +
             "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)

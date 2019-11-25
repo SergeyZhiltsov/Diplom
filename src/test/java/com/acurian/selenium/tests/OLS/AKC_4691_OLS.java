@@ -621,11 +621,11 @@ public class AKC_4691_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        DoYouExperienceDPN_OLS doYouExperienceDPN_OLS = approximateHeightPageOLS
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
-                .clickNextButton(new DoYouExperienceDPN_OLS());
-        doYouExperienceDPN_OLS
+                .clickNextButton(new IdentificationPageOLS());
+        identificationPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -634,7 +634,8 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setIncheswithClear("9")
                 .setLbs("240")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(identificationPageOLS);
+        identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS())

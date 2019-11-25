@@ -782,11 +782,11 @@ public class DERM_4967_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
-        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_OLS = approximateHeightPageOLS
+        approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("3", "2", "32")  //Disqualify (Low BMI) if < 16
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
-        doYouExperienceAnyOfFollowingSymptoms_OLS
+                .clickNextButton(identificationPageOLS);
+        identificationPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
@@ -819,11 +819,15 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS());
 
 
-        AboutHealthPageOLS aboutHealthPageOLS = hs1PageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
                 .waitToClickNext()
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
 
 

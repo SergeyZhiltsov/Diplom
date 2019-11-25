@@ -803,7 +803,10 @@ public class DIA_4483_OLS extends BaseTest {
             new SiteSelectionPageOLS().waitForPageLoad1(studyName)
                     .getPID();}
 
-        new SiteSelectionPageOLS().clickOnFacilityName(site.name)
+                    SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
+        siteSelectionPageOLS.clickOnFacilityName(site.name)
+                .waitForAnimation();
+        siteSelectionPageOLS
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new SynexusHealthyMindsPageOLS())
