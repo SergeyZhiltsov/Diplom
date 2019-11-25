@@ -41,9 +41,9 @@ public class VACC_JANRSV_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
+                {Site.AUT_AMS_JANRDS_Syn},
                 {Site.AUT_AMS_JANRSV},
-                {Site.AUT_AMS_JANRSV_Syn},
-                {Site.AUT_AMS_JANRDS_Syn}
+                {Site.AUT_AMS_JANRSV_Syn}
         };
     }
 

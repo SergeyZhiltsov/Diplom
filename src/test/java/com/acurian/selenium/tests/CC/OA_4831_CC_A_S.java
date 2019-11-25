@@ -4,10 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.OA_3138.AreYouCurrentlyTakingCC;
 import com.acurian.selenium.pages.CC.OA_3138.HowManyTotalDaysCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
-import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer1;
-import com.acurian.selenium.pages.CC.closes.Regular_WarmTransfer4;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
@@ -407,9 +404,9 @@ public class OA_4831_CC_A_S extends BaseTest {
             case AUT_OA_4831_site: //1R
                 siteSelectionPageCC
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose1PageCC())
+                        .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        //.clickOnAnswer("No")
                         //*******************Regular WARM TRANSFER (non-synexus)*******************
                         .clickNextButton(new Regular_WarmTransfer1())
                         .waitForPageLoad()

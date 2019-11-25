@@ -836,7 +836,7 @@ public class DERM_4967_CC extends BaseTest {
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
+                .childPidFromDbToLog(env, "4967")
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
                 .assertRmgOrderPriority(env, "4967");
