@@ -681,25 +681,34 @@ public class UC_4818_OLS extends BaseTest {
                     .setAll("5", "7", "170")
                     .clickNextButton(new IdentificationPageOLS());
 
-            identificationPageOLS
+            SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                     .waitForPageLoad()
                     .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                             "9999999999", site.zipCode)
-                    .clickNextButton(new SiteSelectionPageOLS())
+                    .clickNextButton(new SiteSelectionPageOLS());
+            MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
                     .waitForPageLoad("a colitis")
                     .getPID()
                     .clickOnFacilityName(site.name)
-                    .clickNextButton(new MedicalRecordsOptionPageOLS())
+                    .clickNextButton(new MedicalRecordsOptionPageOLS());
+            DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("Continue with medical records")
-                    .clickNextButton(new DoctorInformationCollectionPageOLS())
+                    .clickNextButton(new DoctorInformationCollectionPageOLS());
+            HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
                     .waitForPageLoadIBD("Ulcerative Colitis")
-                    // .clickOkInPopUp()
-                    //    .setSignature()
-                    //    .waitToClickNext()
-                    .getPage(new ThankYouCloseSimplePageOLS())
+                    .clickNextButton(new HS1PageOLS());
+            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = hs1PageOLS
                     .waitForPageLoad()
-                    .clickNextButton(new AboutHealthPageOLS())
+                    .clickOkInPopUp()
+                    .waitForPageLoad()
+                    .setSignature()
+                    .waitToClickNext()
+                    .getPage(new ThankYouCloseSimplePageOLS());
+            AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                    .waitForPageLoad()
+                    .clickNextButton(new AboutHealthPageOLS());
+            aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
                     .childPidFromDbToLog(env)

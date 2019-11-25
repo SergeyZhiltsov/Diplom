@@ -824,12 +824,10 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickOkInPopUp()
                 .setSignature()
                 .waitToClickNext()
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
-
+                .getPage(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
-
 
         aboutHealthPageOLS
                 .waitForPageLoad()
