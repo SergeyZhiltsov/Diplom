@@ -390,7 +390,7 @@ public class GERD_4301_OLS extends BaseTest {
 
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS
-                .waitForPageLoad("a heartburn or reflux study") //could not DQ with (Phathom EE & HP) to avoid combined indication
+                .waitForPageLoad("a heartburn or reflux") //could not DQ with (Phathom EE & HP) to avoid combined indication
                 .getPID()
                 .clickOnFacilityName(site.name)    ;
                 MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS

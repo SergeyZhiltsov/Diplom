@@ -112,7 +112,7 @@ public class InstantFUL extends BaseTest {
                 .clickNextButton(new QualifiedClose2PageOLS());
 
         ThankYouCloseGmegaOLS thankYouCloseGmegaOLS = qualifiedClose2PageOLS
-                .waitForPageLoad()
+                .waitForPageLoadGMEGA()
                 .clickNextButton(new ThankYouCloseGmegaOLS());
 
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseGmegaOLS
