@@ -708,9 +708,9 @@ public class IBS_4684_CC extends BaseTest {
                 .clickOnAnswer(site.name);
 
                 siteSelectionPageCC
-                        .clickNextButton(new QualifiedClose1PageCC())
+                        .clickNextButton(new QualifiedClose2PageCC())
                         .waitForPageLoad()
-                        .clickOnAnswer("No")
+                        //.clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
