@@ -1,13 +1,13 @@
-package com.acurian.selenium.pages.OLS.Vaccine;
+package com.acurian.selenium.pages.CC.Vaccine;
 
 import com.acurian.selenium.constants.Locators;
-import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.CC.MainPageCC;
 import com.acurian.selenium.pages.WebDriverWaitLogged;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ScedulerOLS extends MainPageOLS {
+public class ScedulerCC extends MainPageCC {
 
     public final String titleExpected = "Time";
 
@@ -46,31 +46,31 @@ public class ScedulerOLS extends MainPageOLS {
     WebElement agreeBtn;
 
     @Step
-    public ScedulerOLS dateCheck() {
+    public ScedulerCC dateCheck() {
         logTextToAllureAndConsole(date.getText());
         return this;
     }
 
     @Step
-    public ScedulerOLS startsAtCheck() {
+    public ScedulerCC startsAtCheck() {
         logTextToAllureAndConsole(startAt.getText());
         return this;
     }
 
     @Step
-    public ScedulerOLS serviceProviderCheck() {
+    public ScedulerCC serviceProviderCheck() {
         logTextToAllureAndConsole(serviceProvider.getText());
         return this;
     }
 
     @Step
-    public ScedulerOLS waitForPageLoadClientDetails() {
+    public ScedulerCC waitForPageLoadClientDetails() {
         waitForPageLoadMain(titleTextClientDetailsMain, titleExpectedClientDetailsMain);
         return this;
     }
 
     @Step
-    public ScedulerOLS waitForPageLoad() {
+    public ScedulerCC waitForPageLoad() {
         getDriver().switchTo().frame(frame);
         try {
             Thread.sleep(3000);
@@ -82,7 +82,7 @@ public class ScedulerOLS extends MainPageOLS {
     }
 
     @Step
-    public ScedulerOLS clickOnDay() {
+    public ScedulerCC clickOnDay() {
         WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
         webDriverWaitLogged.waitforVisibility(dayBtn);
         dayBtn.click();
@@ -91,7 +91,7 @@ public class ScedulerOLS extends MainPageOLS {
     }
 
     @Step
-    public ScedulerOLS clickOnTime() {
+    public ScedulerCC clickOnTime() {
         WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
         webDriverWaitLogged.waitforVisibility(timeBtn);
         timeBtn.click();
@@ -100,7 +100,7 @@ public class ScedulerOLS extends MainPageOLS {
     }
 
     @Step
-    public ScedulerOLS clickOnAgree() {
+    public ScedulerCC clickOnAgree() {
         WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
         webDriverWaitLogged.waitforVisibility(agreeBtn);
         agreeBtn.click();

@@ -62,7 +62,7 @@ public class TransitionStatementCC extends MainPageCC {
 
     public final String titleExpectedVaccine = "Thank you for answering these initial questions.\n" +
             "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me \"yes\" or \"no,\" and I will check off each condition that you do have.\n" +
-            "Agent note: If \"no\" to all items in a question, select \"None of the above\"\n";
+            "Agent Note: If \"no\" to all items in a question, select \"None of the above\"";
 
     public final String titleExpectedPsoriasis = "Thank you for answering the questions about your psoriasis.\n" +
             "I am going to ask you several questions about your general medical history which are important for us to know to match you with a study. After each item on the list, please simply tell me “yes” or “no,” and I will check off each condition that you do have.\n" +
@@ -100,6 +100,12 @@ public class TransitionStatementCC extends MainPageCC {
     @Step
     public TransitionStatementCC waitForPageLoadWithTitleDIA() {
         waitForPageLoadMain(titleText, titleExpectedDIA);
+        return this;
+    }
+
+    @Step
+    public TransitionStatementCC waitForPageLoadVacc() {
+        waitForPageLoadMain(titleText, titleExpectedVaccine);
         return this;
     }
 
