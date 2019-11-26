@@ -453,7 +453,7 @@ public class OA_4831_OLS_A_S extends BaseTest {
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad();
+                .waitForPageLoad2();
         AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
         aboutHealthPageOLS
                 .clickNextButton(new AboutHealthPageOLS())

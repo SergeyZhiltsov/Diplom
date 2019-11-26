@@ -212,6 +212,17 @@ public class MainPageOLS extends BasePage {
     }
 
     @Step
+    public MainPageOLS childPidFromDbToLogWithCopy(String env, String... firstPartOfChildPhoneNumber) {
+//        cpid = PassPID.getInstance().getPidNumber();
+        ChildResult childResult = getDbConnection().dbReadChildPIDWithCopy(env, pid, firstPartOfChildPhoneNumber);
+        dispoChild = childResult.getDispoCd() + childResult.getApplicantStatus();
+        childPid = childResult.getChildPid();
+        logTextToAllure("Child dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() + " for PID " + pid +
+                " with child pid = "+ childResult.getChildPid());
+        return this;
+    }
+
+    @Step
     public MainPageOLS convert54Cto1R(String env) {
         getDbConnection().convert54Cto1R(env, pid);
         logTextToAllure("54 to 1R conversion completed");

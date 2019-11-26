@@ -813,7 +813,6 @@ public class DERM_7157_OLS extends BaseTest {
                 .waitToClickNext()
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
 
-
         thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())

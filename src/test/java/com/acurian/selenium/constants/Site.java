@@ -49,6 +49,7 @@ public enum Site {
     //4357
     AUT_GAST4357S_site("AUT_GAST4357S_site", "19901", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
     AUT_GAST4357_site("AUT_GAST4357_site", "08204", "1R", false, true, "RLM_MD_01", "RLM_MD_02"),
+    AUT_GAS4357ds("Synexus - 010110 : East Valley Family Physicians", "85244", "41C", false, true, "RLM_MD_01", "RLM_MD_02"),
     //4385
     AUT_END_4385("AUT_END_4385", "19901", "1R", true, true, "MVT_601_3101", "MVT_601_3102"),
     //4442
