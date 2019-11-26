@@ -218,31 +218,37 @@ public class OA_4109_OLS extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
                     .back();
         }
-        doAnyOftheFollowingAdditionalDiagnosesOLS
+        ApproximateHeightPageOLS approximateHeightPageOLS1 = doAnyOftheFollowingAdditionalDiagnosesOLS
                 //----------Q23 - Do any of the following additional diagnoses apply to you?--------
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageOLS())
+                .clickNextButton(new ApproximateHeightPageOLS());
                 //----------ProvideHeight-Weight Page--------------------
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
 //                .clickNextButton(new EthnicBackgroundPageOLS())
 //                .waitForPageLoad()
 //                .clickOnAnswers("Prefer not to answer")
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageOLS());
                 //----------PII (IdentificationPageOLS) Page--------------------
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
+                .clickNextButton(new SiteSelectionPageOLS());
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose2PageOLS())
+                .clickNextButton(new QualifiedClose2PageOLS());
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad()
-                .clickNextButton(new AboutHealthPageOLS())
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad2()
+                .clickNextButton(new AboutHealthPageOLS());
+        aboutHealthPageOLS
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)

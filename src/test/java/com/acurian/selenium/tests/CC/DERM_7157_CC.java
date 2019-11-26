@@ -836,7 +836,7 @@ public class DERM_7157_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Continue without medical records")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

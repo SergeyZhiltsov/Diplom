@@ -501,7 +501,8 @@ public class GAST_4357_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
                     .clickOnAnswerForSubQuestion(2, entry.getKey())
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC);
+            heartrelatedMedicalProceduresPageCC
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47" , site.activeProtocols)

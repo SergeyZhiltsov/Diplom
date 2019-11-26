@@ -12,6 +12,8 @@ public class ThankYouCloseSimplePageOLS extends MainPageOLS {
     //Thank You Close - SEN-R - 66
     public final String titleExpected_OA3138 = "Thank you again for contacting Acurian's Research Information Center. Goodbye.";
 
+    public final String titleExpected2 = "Thank you again for contacting Acurian's Research Information Center.";
+
 
     @FindBy(xpath = "//div[@class='question']//div[contains(@class,'visible-md-block')]/div[@class='show-in-ols']")
     WebElement titleText;
@@ -29,6 +31,17 @@ public class ThankYouCloseSimplePageOLS extends MainPageOLS {
     @Step
     public ThankYouCloseSimplePageOLS waitForSENRPageLoad() {
         waitForPageLoadMain(titleText_OA3138, titleExpected_OA3138);
+        return this;
+    }
+
+    /**
+     * Created on 26.11.2019 by Ivan
+     * @return
+     */
+    @Step
+    public ThankYouCloseSimplePageOLS waitForPageLoad2() {
+        waitForPageLoadMain(titleText_OA3138, titleExpected2);
+        attachPageScreenshot();
         return this;
     }
 

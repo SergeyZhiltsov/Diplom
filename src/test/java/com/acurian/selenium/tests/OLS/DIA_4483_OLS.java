@@ -806,13 +806,13 @@ public class DIA_4483_OLS extends BaseTest {
                     SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
         siteSelectionPageOLS.clickOnFacilityName(site.name)
                 .waitForAnimation();
-        siteSelectionPageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
-                .waitForPageLoad()
-                .clickOnAnswer("No, I am not interested in receiving information");
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
+//                .clickNextButton(new SynexusHealthyMindsPageOLS())
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, I am not interested in receiving information");
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
