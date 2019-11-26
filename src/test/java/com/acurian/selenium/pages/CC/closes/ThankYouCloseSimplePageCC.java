@@ -15,6 +15,11 @@ public class ThankYouCloseSimplePageCC extends MainPageCC{
 
     public final String titleExpectedV2 = "Thank you again for contacting Acurian's Research Information Center.  Goodbye.";
 
+    /**
+     * Created on 26.11.2019 by Ivan Lipskyi
+     */
+    public final String titleExpected3 = "Thank you again for contacting Acurian's Research Information Center.";
+
     @FindBy(xpath = Locators.BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
@@ -32,6 +37,16 @@ public class ThankYouCloseSimplePageCC extends MainPageCC{
     @Step
     public ThankYouCloseSimplePageCC waitForPageLoadV2() {
         waitForPageLoadMain(titleText, titleExpectedV2);
+        return this;
+    }
+
+    /**
+     * created on 26.11.2019 by Ivan Lipskyi
+     * @return
+     */
+    @Step
+    public ThankYouCloseSimplePageCC waitForPageLoad3(){
+        waitForPageLoadMain(titleText, titleExpected3);
         return this;
     }
 

@@ -629,7 +629,7 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad()
                 //.clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
