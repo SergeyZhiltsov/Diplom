@@ -463,7 +463,7 @@ public class CG_4960_OLS extends BaseTest {
 
 
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                .waitForSENRPageLoad()
+                .waitForPageLoad2()
                 .clickNextButton(new AboutHealthPageOLS());
 
 

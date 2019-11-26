@@ -42,8 +42,8 @@ public class VACC_JANRSV_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_AMS_JANRDS_Syn},
-                {Site.AUT_AMS_JANRSV},
-                {Site.AUT_AMS_JANRSV_Syn}
+                {Site.AUT_AMS_JANRSV_Syn},
+                {Site.AUT_AMS_JANRSV}
         };
     }
 
@@ -141,17 +141,17 @@ public class VACC_JANRSV_OLS extends BaseTest {
             }
             directSheduleVaccOLS
                     .clickNextButton(qualifiedClose2PageOLS);
-            SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose2PageOLS
+            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                     .waitForPageLoad()
-                    .clickNextButton(new SynexusHealthyMindsPageOLS());
-
-            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("No, I am not interested in receiving information")
                     .clickNextButton(new ThankYouCloseSimplePageOLS());
 
+//            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No, I am not interested in receiving information")
+//                    .clickNextButton(new ThankYouCloseSimplePageOLS());
+
             AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                    .waitForSENRPageLoad()
+                    .waitForPageLoad2()
                     .clickNextButton(new AboutHealthPageOLS());
 
             aboutHealthPageOLS
@@ -574,7 +574,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickNextButton(new ThankYouCloseSimplePageOLS());
 
             AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                    .waitForSENRPageLoad()
+                    .waitForPageLoad2()
                     .clickNextButton(new AboutHealthPageOLS());
 
             aboutHealthPageOLS

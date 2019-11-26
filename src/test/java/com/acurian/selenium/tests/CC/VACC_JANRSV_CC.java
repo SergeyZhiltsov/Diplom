@@ -632,22 +632,23 @@ public class VACC_JANRSV_CC extends BaseTest {
 
             siteSelectionPageCC
                     .waitForPageLoad(studyName)
-                    .getPID()
-                    .clickOnAnswer(site.name);
+                    .getPID();
 
             switch (site) {
                 case AUT_AMS_JANRSV:
+                    siteSelectionPageCC
+                            .clickOnAnswer(site.name);
                     QualifiedClose1PageCC qualifiedClose1PageCC = siteSelectionPageCC
                             .clickNextButton(new QualifiedClose1PageCC());
-                    SynexusHealthyMindsPageCC synexusHealthyMindsPageCC = qualifiedClose1PageCC
+                    ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = qualifiedClose1PageCC
                             .waitForPageLoad()
                             //.clickOnAnswer("No")
-                            .clickNextButton(new SynexusHealthyMindsPageCC());
-
-                    ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
-                            .waitForPageLoad()
-                            .clickOnAnswer("No")
                             .clickNextButton(new ThankYouCloseSimplePageCC());
+
+//                    ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
+//                            .waitForPageLoad()
+//                            .clickOnAnswer("No")
+//                            .clickNextButton(new ThankYouCloseSimplePageCC());
 
                     thankYouCloseSimplePageCC
                             .waitForPageLoad()
@@ -660,6 +661,8 @@ public class VACC_JANRSV_CC extends BaseTest {
                             .dispoShouldMatch(site.dispo, site.dispo);
                     break;
                 case AUT_AMS_JANRSV_Syn:
+                    siteSelectionPageCC
+                            .clickOnAnswer(site.name);
                     SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = siteSelectionPageCC
                             .clickNextButton(new SynexusRadiantDirectScheduleCC());
 

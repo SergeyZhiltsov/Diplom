@@ -587,7 +587,7 @@ public class Crohns_4818_CC extends BaseTest {
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(new SelectActionPageCC())
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)

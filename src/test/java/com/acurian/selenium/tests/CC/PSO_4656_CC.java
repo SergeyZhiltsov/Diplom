@@ -310,7 +310,7 @@ public class PSO_4656_CC extends BaseTest {
                 .clickNextButton(new QualifiedClose1PageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

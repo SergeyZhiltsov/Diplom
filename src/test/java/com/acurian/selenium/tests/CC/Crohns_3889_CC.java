@@ -610,7 +610,7 @@ public class Crohns_3889_CC extends BaseTest {
                 .waitForPageLoadCrohns()
                 .getActivationCode()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

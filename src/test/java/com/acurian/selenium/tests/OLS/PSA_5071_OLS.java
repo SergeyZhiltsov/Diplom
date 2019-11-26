@@ -498,7 +498,7 @@ public class PSA_5071_OLS extends BaseTest {
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad()
+                .waitForPageLoad2()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

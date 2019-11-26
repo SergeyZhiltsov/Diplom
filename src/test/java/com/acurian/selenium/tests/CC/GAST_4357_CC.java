@@ -7,6 +7,8 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
+import com.acurian.selenium.pages.CC.Vaccine.DirectSheduleVaccCC;
+import com.acurian.selenium.pages.CC.Vaccine.ScedulerCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -20,10 +22,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GAST_4357_CC extends BaseTest {
 
@@ -40,6 +39,7 @@ public class GAST_4357_CC extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
+                {Site.AUT_GAS4357ds, true},
                 {Site.AUT_GAST4357S_site, true},
                 {Site.AUT_GAST4357_site, false}
         };
@@ -795,13 +795,77 @@ public class GAST_4357_CC extends BaseTest {
 //                        .waitForPageLoad()
 //                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad()
+                        .waitForPageLoad3()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
+                case AUT_GAS4357ds:
+                    ScedulerCC scedulerCC = new ScedulerCC();
+                    DirectSheduleVaccCC directSheduleVaccCC = new DirectSheduleVaccCC();
+                    selectionPageCC
+                            .clickOnAnswer(site.name)
+                            .clickNextButton(directSheduleVaccCC);
+                    if (env.equals("PRD")) {
+                        directSheduleVaccCC
+                                .waitForPageLoad();
+                    }
+                    if (env.equals("STG")) {
+                        directSheduleVaccCC
+                                .waitForPageLoadSTG();
+                    }
+                    directSheduleVaccCC
+                            .clickSheduleBtn(scedulerCC);
+                    ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+                    getDriver().switchTo().window(tabs.get(1));
+                    scedulerCC
+                            .waitForPageLoad()
+                            .clickOnDay()
+                            .clickOnTime()
+                            .waitForPageLoadClientDetails()
+                            .dateCheck()
+                            .startsAtCheck()
+                            .serviceProviderCheck()
+                            .clickOnAgree();
+                    getDriver().switchTo().window(tabs.get(0));
+                    QualifiedClose1PageCC qualifiedClose1PageCC = new QualifiedClose1PageCC();
+                    if (env.equals("PRD")) {
+                        directSheduleVaccCC
+                                .waitForPageLoad();
+                    }
+                    if (env.equals("STG")) {
+                        directSheduleVaccCC
+                                .waitForPageLoadSTG();
+                    }
+                    directSheduleVaccCC
+                            .clickNextButton(qualifiedClose1PageCC);
+                    /*SynexusHealthyMindsPageCC synexusHealthyMindsPageCC*/
+                    SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = qualifiedClose1PageCC
+                            .waitForPageLoad()
+                            .clickNextButton(new SynexusRadiantDirectScheduleCC()/*SynexusHealthyMindsPageCC()*/);
+
+//                    ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
+//                            .waitForPageLoad()
+//                            .clickOnAnswer("No")
+//                            .clickNextButton(new ThankYouCloseSimplePageCC());
+                    synexusRadiantDirectScheduleCC
+                            .waitForPageLoadSyn()
+                            .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                            .clickNextButton(selectActionPageCC);
+//                    thankYouCloseSimplePageCC
+//                            .waitForPageLoad()
+//                            .clickNextButton(selectActionPageCC);
+
+                    selectActionPageCC
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo, site.dispo);
+
+
+                    break;
             case AUT_GAST4357S_site: //41C
                 selectionPageCC
                         .clickOnAnswer(site.name)

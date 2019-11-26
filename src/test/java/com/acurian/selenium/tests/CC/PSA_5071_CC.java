@@ -43,7 +43,7 @@ public class PSA_5071_CC extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_AMS1_5071_site},
-                {Site.AUT_AMS1_5071S_site}
+                //{Site.AUT_AMS1_5071S_site}
         };
     }
 
@@ -574,7 +574,7 @@ public class PSA_5071_CC extends BaseTest {
                         .waitForPageLoad()
                         //.clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad()
+                        .waitForPageLoad3()
                         .clickNextButton(selectActionPageCC);
                 break;
             case AUT_AMS1_5071S_site:

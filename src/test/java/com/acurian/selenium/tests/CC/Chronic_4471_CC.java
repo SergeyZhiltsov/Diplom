@@ -392,7 +392,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

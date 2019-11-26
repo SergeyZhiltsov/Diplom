@@ -370,7 +370,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                         .clickNextButton(new ThankYouCloseSimplePageCC());
 
                 thankYouCloseSimplePageCC
-                        .waitForPageLoad()
+                        .waitForPageLoad3()
                         .clickNextButton(selectActionPageCC)
                         .pidFromDbToLog(env)
                         .childPidFromDbToLog(env)

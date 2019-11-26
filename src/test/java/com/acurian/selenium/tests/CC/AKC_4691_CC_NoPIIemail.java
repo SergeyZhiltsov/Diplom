@@ -558,7 +558,7 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickNextButton(new HSMedicalRecordsPageCC())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

@@ -48,7 +48,7 @@ public class DIA_4483_OLS extends BaseTest {
     public void dia4483olsTest(Site site) {
         String phoneNumber = "AUTAMSNASH";
         String studyName = "a fatty liver study for diabetics!";//"a NASH";
-        String studyName1 = "a fatty liver study for diabetics, a study for diabetics!";
+        //String studyName1 = "a fatty liver study for diabetics, a study for diabetics!";
 
         String env = System.getProperty("acurian.env", "STG");
 
@@ -797,7 +797,7 @@ public class DIA_4483_OLS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
         if (site == Site.AUT_NASH4483S_site) {
-            new SiteSelectionPageOLS().waitForPageLoad1(studyName1)
+            new SiteSelectionPageOLS().waitForPageLoad1(studyName)
                     .getPID();}
                     else{
             new SiteSelectionPageOLS().waitForPageLoad1(studyName)
