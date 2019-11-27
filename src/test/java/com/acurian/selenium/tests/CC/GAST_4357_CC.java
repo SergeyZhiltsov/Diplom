@@ -831,6 +831,7 @@ public class GAST_4357_CC extends BaseTest {
                             .clickOnAgree();
                     getDriver().switchTo().window(tabs.get(0));
                     QualifiedClose1PageCC qualifiedClose1PageCC = new QualifiedClose1PageCC();
+                    SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
                     if (env.equals("PRD")) {
                         directSheduleVaccCC
                                 .waitForPageLoad();
@@ -840,11 +841,11 @@ public class GAST_4357_CC extends BaseTest {
                                 .waitForPageLoadSTG();
                     }
                     directSheduleVaccCC
-                            .clickNextButton(qualifiedClose1PageCC);
+                            .clickNextButton(synexusRadiantDirectScheduleCC);
                     /*SynexusHealthyMindsPageCC synexusHealthyMindsPageCC*/
-                    SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = qualifiedClose1PageCC
-                            .waitForPageLoad()
-                            .clickNextButton(new SynexusRadiantDirectScheduleCC()/*SynexusHealthyMindsPageCC()*/);
+//                    SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = qualifiedClose1PageCC
+//                            .waitForPageLoad()
+//                            .clickNextButton(new SynexusRadiantDirectScheduleCC()/*SynexusHealthyMindsPageCC()*/);
 
 //                    ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
 //                            .waitForPageLoad()

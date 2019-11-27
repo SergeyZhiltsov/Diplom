@@ -150,10 +150,12 @@ public class VACC_JANRSV_OLS extends BaseTest {
 //                    .clickOnAnswer("No, I am not interested in receiving information")
 //                    .clickNextButton(new ThankYouCloseSimplePageOLS());
 
-            AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+            AlzheimerClosePageOLS alzheimerClosePageOLS = thankYouCloseSimplePageOLS
                     .waitForPageLoad2()
+                    .clickNextButton(new AlzheimerClosePageOLS());
+            AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
+                    .waitForPageLoad()
                     .clickNextButton(new AboutHealthPageOLS());
-
             aboutHealthPageOLS
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
@@ -564,14 +566,14 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickOnFacilityName(site.name)
                     .clickNextButton(new QualifiedClose2PageOLS());
 
-            SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose2PageOLS
+            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                     .waitForPageLoad()
-                    .clickNextButton(new SynexusHealthyMindsPageOLS());
-
-            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer("No")
                     .clickNextButton(new ThankYouCloseSimplePageOLS());
+
+//            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No")
+//                    .clickNextButton(new ThankYouCloseSimplePageOLS());
 
             AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                     .waitForPageLoad2()

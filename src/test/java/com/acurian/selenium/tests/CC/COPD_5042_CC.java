@@ -385,10 +385,12 @@ public class COPD_5042_CC extends BaseTest {
 //                        .clickNextButton(new HSMedicalRecordsPageCC())
 //                        .waitForPageLoad()*/
 //                        .clickNextButton(new SynexusHealthyMindsPageCC())
-//                        .waitForPageLoad()
+//                        .waitForPageLoad()3
 //                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
                         .waitForPageLoad3()
+                        .clickNextButton(new AlzheimerClosePageCC())
+                        .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)

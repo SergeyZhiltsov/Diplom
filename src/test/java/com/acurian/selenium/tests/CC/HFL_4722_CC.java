@@ -5,6 +5,7 @@ import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.HFL_4722.HeartTransplantPageCC;
 import com.acurian.selenium.pages.CC.HFL_4722.SymptomsOfHeartFailurePageCC;
 import com.acurian.selenium.pages.CC.HFL_4722.TreatYourHeartFailurePageCC;
+import com.acurian.selenium.pages.CC.closes.AlzheimerClosePageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusHealthyMindsPageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
@@ -171,6 +172,8 @@ public class HFL_4722_CC extends BaseTest {
 //                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
+                .clickNextButton(new AlzheimerClosePageCC())
+                .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

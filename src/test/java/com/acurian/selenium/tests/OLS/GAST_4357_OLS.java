@@ -772,6 +772,7 @@ public class GAST_4357_OLS extends BaseTest {
                             .clickNextButton(new ThankYouCloseSimplePageOLS())
                             .waitForPageLoad()
                             .clickNextButton(aboutHealthPageOLS);
+                    aboutHealthPageOLS.flareCodeShouldMatch(env, inFlare ? "3" : "4");
                 }
 
             switch (site) {
@@ -792,6 +793,5 @@ public class GAST_4357_OLS extends BaseTest {
                             .dispoShouldMatch(site.dispo, site.dispo);
                     break;
             }
-            aboutHealthPageOLS.flareCodeShouldMatch(env, inFlare ? "3" : "4");
         }
     }
