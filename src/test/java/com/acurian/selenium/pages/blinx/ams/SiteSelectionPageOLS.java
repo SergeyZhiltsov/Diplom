@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.blinx.ams;
 
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -18,6 +19,20 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     WebElement titleText;
     @FindBy(id = "expandLocationsCta")
     WebElement showOthersAdditionalLocations;
+
+    @Step
+    public SiteSelectionPageOLS waitForPageLoad5(String studyName) {
+        waitForAnimation();
+        attachPageScreenshot();
+        String titleExpectedMod = String.format(titleExpected, studyName);
+        try {
+            waitForPageLoadMain(titleText, titleExpectedMod);
+            return this;
+        } catch (StaleElementReferenceException e) {
+            waitForPageLoadMain(titleText, titleExpectedMod);
+            return this;
+        }
+    }
 
     @Step
     public SiteSelectionPageOLS waitForPageLoad(String studyName) {

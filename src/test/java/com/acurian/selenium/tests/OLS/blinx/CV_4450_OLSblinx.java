@@ -21,7 +21,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data", enabled = false)
+    @Test(dataProvider = "data")
     public void cv4450olsBlinxTest(Site site, String city, String state) {
         DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
         LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();
@@ -64,8 +64,8 @@ public class CV_4450_OLSblinx extends BaseTest {
         HeartRelatedSurgeriesOrProceduresPageOLS heartRelatedSurgeriesOrProceduresPageOLS = subquestionHeartPageOLS
                 .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected1())
                 .waitForPageLoad(2, subquestionHeartPageOLS.getTitleExpected2())
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickNextButton(new HeartRelatedSurgeriesOrProceduresPageOLS());
 
         AdditionalHeartrelatedConditionsPageOLS additionalHeartrelatedConditionsPageOLS =
@@ -90,13 +90,13 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .clickNextButton(new PersonalIdentificationPageOLS());
 
         SiteSelectionPageOLS siteSelectionPageOLS = personalIdentificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadPrequalified()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode, city, state)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         QualifiedClosePageOLS qualifiedClosePageOLS = siteSelectionPageOLS
-                .waitForPageLoad("a heart health study!")
+                .waitForPageLoad5("a heart health study!")
                 .getPage(debugPageBlinxOLS)
                 .getPID()
                 .getPage(siteSelectionPageOLS)
@@ -104,7 +104,7 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .clickNextButton(new QualifiedClosePageOLS());
 
         ThankYouClosePageOLS thankYouClosePageOLS = qualifiedClosePageOLS
-                .waitForPageLoad()
+                .waitForPageLoad3()
                 .clickOnAnswer("No")
                 .clickNextButton(new ThankYouClosePageOLS());
 

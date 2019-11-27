@@ -9,6 +9,7 @@ import com.acurian.selenium.pages.blinx.ams.*;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.PersonalIdentificationPageOLS;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -34,7 +35,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data", enabled = false) //todo turn on after PDV
+    @Test(dataProvider = "data") //todo turn on after PDV
     public void cv5034olsBlinxTest(Site site, String city, String state) {
         DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
         LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();
@@ -109,8 +110,8 @@ public class CV_5034_OLSBlinx extends BaseTest {
         HeartRelatedSurgeriesOrProceduresPageOLS heartRelatedSurgeriesOrProceduresPageOLS = subquestionHeartPageOLS
                 .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected1())
                 .waitForPageLoad(2, subquestionHeartPageOLS.getTitleExpected2())
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickNextButton(new HeartRelatedSurgeriesOrProceduresPageOLS());
 
         AdditionalHeartrelatedConditionsPageOLS additionalHeartrelatedConditionsPageOLS =
@@ -135,49 +136,57 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .clickNextButton(new PersonalIdentificationPageOLS());
 
         SiteSelectionPageOLS siteSelectionPageOLS = personalIdentificationPageOLS
-                .waitForPageLoad()
+                .waitForPageLoadPrequalified()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode, city, state)
                 .clickNextButton(new SiteSelectionPageOLS());
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                .waitForPageLoad("a heart health study!")
+                .waitForPageLoad5("a heart health study!")
                 .getPage(debugPageBlinxOLS)
                 .getPID()
                 .getPage(siteSelectionPageOLS)
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
 
-        medicalRecordsOptionPageOLS
+        DoctorInformationCollectionPageOLSBlinx doctorInformationCollectionPageOLSBlinx = medicalRecordsOptionPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
-                .clickNextButton(siteSelectionPageOLS); //trick
-
-        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS =
-                new ChatfillMedicalRecordReleaseFormPageOLS();
-
-        AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
+                .clickNextButton(new DoctorInformationCollectionPageOLSBlinx()); //trick
+        doctorInformationCollectionPageOLSBlinx
                 .waitForPageLoad()
-                .confirmPatientInformation()
-                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
-                        "2 walnut grove dr.", "HORSHAM", "19901")
-                .clickSignForm(new AdobeSignMedAuthFormPage());
+                .clickNextButton(siteSelectionPageOLS);
 
-        adobeSignMedAuthFormPage
-                .waitForPageLoad()
-                .setSignature("Acurian Trial")
-                .clickToSignButton(adobeSignMedAuthFormPage); //trick
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
 
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                .waitForPageLoad()
-                .clickNextButton(new AboutHealthPageOLS());
 
-        aboutHealthPageOLS
-                .waitForPageLoad()
-                .pidFromDbToLog(env)
-                .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo);
+//        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS =
+//                new ChatfillMedicalRecordReleaseFormPageOLS();
+
+//        AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
+//        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS1 = doctorInformationCollectionPageOLSBlinx
+//                .waitForPageLoad()
+//                .clickNextButton(new ChatfillMedicalRecordReleaseFormPageOLS());
+//                .confirmPatientInformation()
+//                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
+//                        "2 walnut grove dr.", "HORSHAM", "19901")
+//                .clickSignForm(new AdobeSignMedAuthFormPage());
+//
+//        adobeSignMedAuthFormPage
+//                .waitForPageLoad()
+//                .setSignature("Acurian Trial")
+//                .clickToSignButton(adobeSignMedAuthFormPage); //trick
+//
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+//
+//        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+//                .waitForPageLoad()
+//                .clickNextButton(new AboutHealthPageOLS());
+//
+//        aboutHealthPageOLS
+//                .waitForPageLoad()
+//                .pidFromDbToLog(env)
+//                .childPidFromDbToLog(env)
+//                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.blinx.ams;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,7 @@ public class CholesterolTriglyceridesLipidsPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//div[@class='question-text']")
     WebElement titleText;
-    @FindBy(xpath = "//div[@class='single-choice-answers-container']/button")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;
 
     @Step

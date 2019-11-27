@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.blinx.ams;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -18,7 +19,7 @@ public class DateOfBirthAndGenderPageOLS extends MainPageBlinx {
     WebElement titleTextPart2;
     @FindBy(xpath = "//input[contains(@class, 'fallbackDate')]")
     WebElement dateField;
-    @FindBy(xpath = "//div[@class='single-choice-answers-container']/button")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;
 
     @Step
@@ -39,4 +40,5 @@ public class DateOfBirthAndGenderPageOLS extends MainPageBlinx {
         clickOnRadioButton(singleChoiceButtonsList, answerText);
         return this;
     }
+
 }

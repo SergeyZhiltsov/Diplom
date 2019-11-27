@@ -11,7 +11,7 @@ public class PersonalIdentificationPageOLS extends MainPageBlinx {
     /*private final String titleExpectedPart1 = "Congratulations, you have prequalified!\n\n" +
             "Enrollment is limited. Please complete the following information so that we may match you with a study doctor."; */
 
-    private final String titleExpectedPart1 = "Thank you for answering these questions. \n" +
+    private final String titleExpectedPart1 = "Thank you for answering these questions.\n" +
             "\n" +
             "Please complete the following information so that we can match you with a study doctor in your area.";
 
@@ -58,7 +58,7 @@ public class PersonalIdentificationPageOLS extends MainPageBlinx {
     public PersonalIdentificationPageOLS waitForPageLoadPrequalified() {
         waitForPageLoadMain(titleTextPart1, titleExpectedPart1);
         waitForPageLoadMain(titleTextPart2, titleExpectedPart2);
-        waitForPageLoadMain(titleTextPart3, titleExpectedPart3);
+        waitForPageLoadMain(titleTextPart3, titleExpectedPart4);
         return this;
     }
 
