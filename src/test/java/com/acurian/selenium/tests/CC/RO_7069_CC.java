@@ -558,6 +558,8 @@ public class RO_7069_CC extends BaseTest {
 //                .clickOnAnswer("No")
 //                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
+                .waitForPageLoad3()
+                .clickNextButton(new AlzheimerClosePageCC())
                 .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()

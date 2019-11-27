@@ -631,7 +631,7 @@ public class OA_5044_OLS_S extends BaseTest {
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
-                .waitForSENRPageLoad()
+                .waitForPageLoad2()
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
                 .waitForPageLoad()

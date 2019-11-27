@@ -608,19 +608,21 @@ public class AF_4958_CC extends BaseTest {
                 QualifiedClose1PageCC qualifiedClose1PageCC = siteSelectionPageCC
                         .clickNextButton(new QualifiedClose1PageCC());
 
-                SynexusHealthyMindsPageCC synexusHealthyMindsPageCC = qualifiedClose1PageCC
+                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = qualifiedClose1PageCC
                         .waitForPageLoad()
                         //.clickOnAnswer("No")
-                        .clickNextButton(new SynexusHealthyMindsPageCC());
-
-
-                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
-                        .waitForPageLoad()
-                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC());
 
 
+//                ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("No")
+//                        .clickNextButton(new ThankYouCloseSimplePageCC());
+
+
                 thankYouCloseSimplePageCC
+                        .waitForPageLoad3()
+                        .clickNextButton(new AlzheimerClosePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
