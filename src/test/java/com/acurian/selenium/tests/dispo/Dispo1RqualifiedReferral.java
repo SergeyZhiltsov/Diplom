@@ -89,6 +89,6 @@ public class Dispo1RqualifiedReferral extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo)
-                .childPidFromDbToLogWithCopy(env);
+                .childPidFromDbToLogWithCopy(env, "4835");
     }
 }

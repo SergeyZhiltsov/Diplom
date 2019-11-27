@@ -365,6 +365,8 @@ public class HOTF_7119_OLS extends BaseTest {
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS =  thankYouCloseSimplePageOLS
                 .waitForPageLoad2()
+                .clickNextButton(new AlzheimerClosePageOLS())
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
                 .waitForPageLoad()

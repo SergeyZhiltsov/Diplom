@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.closes.AlzheimerClosePageCC;
 import com.acurian.selenium.pages.OLS.ADG_4357.DigestiveConditionsAffectDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
@@ -815,6 +816,8 @@ public class DIA_4483_OLS extends BaseTest {
 //        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AlzheimerClosePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS

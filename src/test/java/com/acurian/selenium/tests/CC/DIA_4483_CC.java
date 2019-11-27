@@ -806,6 +806,8 @@ public class DIA_4483_CC extends BaseTest {
 //                    .clickOnAnswer("No")
                     .clickNextButton(new ThankYouCloseSimplePageCC())
                     .waitForPageLoad3()
+                        .clickNextButton(new AlzheimerClosePageCC())
+                        .waitForPageLoad()
                     .clickNextButton(selectActionPageCC)
                     .waitForPageLoad()
                     .pidFromDbToLog(env)
