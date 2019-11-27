@@ -491,6 +491,8 @@ public class CG_4960_CC extends BaseTest {
 //                        .waitForPageLoad()
 //                        .clickOnAnswer("No")
                         .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad3()
+                        .clickNextButton(new AlzheimerClosePageCC())
                         .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
