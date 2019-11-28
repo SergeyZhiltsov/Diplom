@@ -666,6 +666,8 @@ public class DIA_5062_OLS extends BaseTest {
 //                .clickOnAnswer("No, I am not interested in receiving information")
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
+                .clickNextButton(new AlzheimerClosePageOLS())
+                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

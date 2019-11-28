@@ -173,7 +173,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .serviceProviderCheck()
                     .clickOnAgree();
             getDriver().switchTo().window(tabs.get(0));
-            QualifiedClose1PageCC qualifiedClose1PageCC = new QualifiedClose1PageCC();
+            SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
             if (env.equals("PRD")) {
                 directSheduleVaccCC
                         .waitForPageLoad();
@@ -183,14 +183,16 @@ public class VACC_JANRSV_CC extends BaseTest {
                         .waitForPageLoadSTG();
             }
             directSheduleVaccCC
-                    .clickNextButton(qualifiedClose1PageCC);
-            SynexusHealthyMindsPageCC synexusHealthyMindsPageCC  = qualifiedClose1PageCC
-                    .waitForPageLoad()
-                    .clickNextButton(new SynexusHealthyMindsPageCC());
+                    .clickNextButton(synexusRadiantDirectScheduleCC);
+//            SynexusHealthyMindsPageCC synexusHealthyMindsPageCC  = qualifiedClose1PageCC
+//                    .waitForPageLoad()
+//                    .clickNextButton(new SynexusHealthyMindsPageCC());
 
-            ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
+//            ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer("No")
+            ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusRadiantDirectScheduleCC
                     .waitForPageLoad()
-                    .clickOnAnswer("No")
                     .clickNextButton(new ThankYouCloseSimplePageCC());
 
             thankYouCloseSimplePageCC
