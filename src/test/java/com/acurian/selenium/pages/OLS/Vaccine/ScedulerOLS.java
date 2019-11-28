@@ -72,11 +72,8 @@ public class ScedulerOLS extends MainPageOLS {
     @Step
     public ScedulerOLS waitForPageLoad() {
         getDriver().switchTo().frame(frame);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        threadSleep(10000);
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

@@ -575,8 +575,12 @@ public class VACC_JANRSV_OLS extends BaseTest {
 //                    .clickOnAnswer("No")
 //                    .clickNextButton(new ThankYouCloseSimplePageOLS());
 
-            AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+            AlzheimerClosePageOLS alzheimerClosePageOLS = thankYouCloseSimplePageOLS
                     .waitForPageLoad2()
+                    .clickNextButton(new AlzheimerClosePageOLS());
+
+            AboutHealthPageOLS aboutHealthPageOLS = alzheimerClosePageOLS
+                    .waitForPageLoad()
                     .clickNextButton(new AboutHealthPageOLS());
 
             aboutHealthPageOLS

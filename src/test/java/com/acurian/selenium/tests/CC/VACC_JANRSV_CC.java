@@ -151,15 +151,16 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .getPID()
                     .clickOnAnswer(site.name)
                     .clickNextButton(directSheduleVaccCC);
-            if (env.equals("PRD")) {
-                directSheduleVaccCC
-                        .waitForPageLoad();
-            }
-            if (env.equals("STG")) {
-                directSheduleVaccCC
-                        .waitForPageLoadSTG();
-            }
+//            if (env.equals("PRD")) {
+//                directSheduleVaccCC
+//                        .waitForPageLoad();
+//            }
+//            if (env.equals("STG")) {
+//                directSheduleVaccCC
+//                        .waitForPageLoadSTG();
+//            }
             directSheduleVaccCC
+                    .waitForPageLoad()
                     .clickSheduleBtn(scedulerCC);
             ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
             getDriver().switchTo().window(tabs.get(1));
@@ -174,15 +175,16 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .clickOnAgree();
             getDriver().switchTo().window(tabs.get(0));
             SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
-            if (env.equals("PRD")) {
-                directSheduleVaccCC
-                        .waitForPageLoad();
-            }
-            if (env.equals("STG")) {
-                directSheduleVaccCC
-                        .waitForPageLoadSTG();
-            }
+//            if (env.equals("PRD")) {
+//                directSheduleVaccCC
+//                        .waitForPageLoad();
+//            }
+//            if (env.equals("STG")) {
+//                directSheduleVaccCC
+//                        .waitForPageLoadSTG();
+//            }
             directSheduleVaccCC
+                    .waitForPageLoad()
                     .clickNextButton(synexusRadiantDirectScheduleCC);
 //            SynexusHealthyMindsPageCC synexusHealthyMindsPageCC  = qualifiedClose1PageCC
 //                    .waitForPageLoad()
@@ -191,13 +193,14 @@ public class VACC_JANRSV_CC extends BaseTest {
 //            ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusHealthyMindsPageCC
 //                    .waitForPageLoad()
 //                    .clickOnAnswer("No")
-            ThankYouCloseSimplePageCC thankYouCloseSimplePageCC = synexusRadiantDirectScheduleCC
-                    .waitForPageLoad()
-                    .clickNextButton(new ThankYouCloseSimplePageCC());
-
-            thankYouCloseSimplePageCC
-                    .waitForPageLoad()
+            synexusRadiantDirectScheduleCC
+                    .waitForPageLoadSyn()
+                    .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                     .clickNextButton(selectActionPageCC);
+
+//            thankYouCloseSimplePageCC
+//                    .waitForPageLoad()
+//                    .clickNextButton(selectActionPageCC);
 
             selectActionPageCC
                     .waitForPageLoad()
@@ -652,7 +655,11 @@ public class VACC_JANRSV_CC extends BaseTest {
 //                            .clickOnAnswer("No")
 //                            .clickNextButton(new ThankYouCloseSimplePageCC());
 
-                    thankYouCloseSimplePageCC
+                    AlzheimerClosePageCC alzheimerClosePageCC = thankYouCloseSimplePageCC
+                            .waitForPageLoad3()
+                            .clickNextButton(new AlzheimerClosePageCC());
+
+                    alzheimerClosePageCC
                             .waitForPageLoad()
                             .clickNextButton(selectActionPageCC);
 
