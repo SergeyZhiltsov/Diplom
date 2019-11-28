@@ -29,6 +29,17 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTAMS1CV1&up[]" +
                         "=CLIENT_BLINX&testing_key=51fa2780f2430b542923956ac1974bb7&show_debug=1#");
 
+        LessThan18YearsOldPageOLSBlinx lessThan18YearsOldPageOLSBlinx = letsGetStartedPageOLS
+                .waitForPageLoad("a heart health study", "750")
+                .clickOnAnswer("No")
+                .clickNextButton(new LessThan18YearsOldPageOLSBlinx());
+
+        lessThan18YearsOldPageOLSBlinx
+                .waitForPageLoad()
+                .getPage(debugPageBlinxOLS)
+                .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
+                .clickPreviousQuestion();
+
         ZipCodePageOLS zipCodePageOLS = letsGetStartedPageOLS
                 .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("Yes")
@@ -39,22 +50,51 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .setZipCode(site.zipCode)
                 .clickNextButton(new DateOfBirthAndGenderPageOLS());
 
+        dateOfBirthAndGenderPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Female")
+                .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
+                .clickNextButton(lessThan18YearsOldPageOLSBlinx)
+                .waitForPageLoad()
+                .getPage(debugPageBlinxOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .clickPreviousQuestion();
         CardiovascularDiseasePageOLS cardiovascularDiseasePageOLS = dateOfBirthAndGenderPageOLS
                 .waitForPageLoad()
-                .setDate("01081970")
-                .clickOnAnswer("Female")
+                .setDate("01081975")//"Disqualify (“Age”) if < 45
                 .clickNextButton(new CardiovascularDiseasePageOLS());
-
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseasePageOLS
+        cardiovascularDiseasePageOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Diabetes or High Blood Sugar")
-                .clickNextButton(new WhatKindOfDiabetesPageOLS());
-
-        HeartRelatedEventsOrConditionsPageOLS heartRelatedEventsOrConditionsPageOLS =
-        whatKindOfDiabetesPageOLS
+                .getPage(debugPageBlinxOLS)
+                .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
+                .clickPreviousQuestion();
+        dateOfBirthAndGenderPageOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Unsure")
+                .setDate("01081970")
+                .clickNextButton(cardiovascularDiseasePageOLS);
+
+//        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseasePageOLS
+        HeartRelatedEventsOrConditionsPageOLS heartRelatedEventsOrConditionsPageOLS = cardiovascularDiseasePageOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Diabetes or High Blood Sugar",
+                        "High cholesterol or high triglycerides",
+                        "High blood pressure or hypertension",
+                        "Chronic Kidney Disease")
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new HeartRelatedEventsOrConditionsPageOLS());
+        heartRelatedEventsOrConditionsPageOLS
+                .waitForPageLoad()
+                .clickPreviousQuestion();
+
+//        cardiovascularDiseasePageOLS // TODO Доделать DQ!!!
+//                .waitForPageLoad()
+//                .clickOnAnswers()
+
+//        HeartRelatedEventsOrConditionsPageOLS heartRelatedEventsOrConditionsPageOLS =
+//        whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(new HeartRelatedEventsOrConditionsPageOLS());
 
         SubquestionHeartPageOLS subquestionHeartPageOLS = heartRelatedEventsOrConditionsPageOLS
                 .waitForPageLoad()

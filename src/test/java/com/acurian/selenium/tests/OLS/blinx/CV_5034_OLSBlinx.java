@@ -153,9 +153,9 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Continue with medical records")
                 .clickNextButton(new DoctorInformationCollectionPageOLSBlinx()); //trick
-        doctorInformationCollectionPageOLSBlinx
+        HS1PageOLSBlinx hs1PageOLSBlinx = doctorInformationCollectionPageOLSBlinx
                 .waitForPageLoad()
-                .clickNextButton(siteSelectionPageOLS);
+                .clickNextButton(new HS1PageOLSBlinx());
 
 
 
@@ -163,30 +163,31 @@ public class CV_5034_OLSBlinx extends BaseTest {
 //        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS =
 //                new ChatfillMedicalRecordReleaseFormPageOLS();
 
-//        AdobeSignMedAuthFormPage adobeSignMedAuthFormPage = chatfillMedicalRecordReleaseFormPageOLS
-//        ChatfillMedicalRecordReleaseFormPageOLS chatfillMedicalRecordReleaseFormPageOLS1 = doctorInformationCollectionPageOLSBlinx
-//                .waitForPageLoad()
-//                .clickNextButton(new ChatfillMedicalRecordReleaseFormPageOLS());
-//                .confirmPatientInformation()
+        hs1PageOLSBlinx
+                .waitForPageLoad()
+                .clickOkInPopUp()
+                .setSignature();
+//                .waitToClickNext()
+//                .getPage(new AdobeSignMedAuthFormPageBlinx());
 //                .setAllDataMedicalRecordReleaseForm("Acurian", "PA", "9999999999",
 //                        "2 walnut grove dr.", "HORSHAM", "19901")
-//                .clickSignForm(new AdobeSignMedAuthFormPage());
-//
-//        adobeSignMedAuthFormPage
+//                .clickSignForm(new AdobeSignMedAuthFormPageBlinx());
+
+//        adobeSignMedAuthFormPageBlinx
 //                .waitForPageLoad()
 //                .setSignature("Acurian Trial")
-//                .clickToSignButton(adobeSignMedAuthFormPage); //trick
-//
-//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-//
-//        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-//                .waitForPageLoad()
-//                .clickNextButton(new AboutHealthPageOLS());
-//
-//        aboutHealthPageOLS
-//                .waitForPageLoad()
-//                .pidFromDbToLog(env)
-//                .childPidFromDbToLog(env)
-//                .dispoShouldMatch(site.dispo, site.dispo);
+//                .clickToSignButton(adobeSignMedAuthFormPageBlinx); //trick
+
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS());
+
+        aboutHealthPageOLS
+                .waitForPageLoad()
+                .pidFromDbToLog(env)
+                .childPidFromDbToLog(env)
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }

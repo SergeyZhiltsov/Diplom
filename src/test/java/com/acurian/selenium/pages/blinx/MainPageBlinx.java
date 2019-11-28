@@ -1,6 +1,7 @@
 package com.acurian.selenium.pages.blinx;
 
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.ChildResult;
 import io.qameta.allure.Step;
@@ -86,6 +87,12 @@ public class MainPageBlinx extends BasePage {
     public void clickPreviousQuestion() {
         waitAndClickWebElement(previousQuestion);
     }
+    @Step
+    public <T extends MainPageBlinx> T clickPreviousQuestion(T page) {
+        back();
+        return (T) page;
+    }
+
 
     @Step
     public <T extends MainPageBlinx> T clickNextButton(T page) {
