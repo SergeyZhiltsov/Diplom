@@ -347,6 +347,7 @@ public class COPD_5042_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS());
         hs1PageOLS
+                .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
                 .waitToClickNext();
