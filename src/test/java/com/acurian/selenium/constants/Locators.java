@@ -28,6 +28,7 @@ public @interface Locators {
 
     //basic OLS
     String BASIC_TITLE_WITH_RADIO_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]";
+
     String BASIC_TITLE_WITH_RADIO_BUTTON_OLS_TABLET = "//div[@class='question']//div[contains(@class,'visible-sm-block')]";
     String BASIC_TITLE_WITH_RADIO_BUTTON_OLS_MOBILE = "//div[@class='question']//div[contains(@class,'visible-xs-block')]";
     String RADIO_BUTTON_LIST_OLS = "//span[contains(@class,'visible-md-inline')]/ancestor::label | //div[@class='answer-text']";
@@ -44,4 +45,8 @@ public @interface Locators {
 
     String BASIC_TITLE2_WITH_CHECKBOXES_BUTTON_OLS = "//div[@class='question']//div[contains(@class,'visible-md-block')]";
     String CHEKBOX_LIST2_OLS = "//span[contains(@class,'visible-md-inline')]";
+
+
+    String BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX = "//div[@class='mt-2 mt-sm-4']//div[contains(@class,'question-text')]";
+
 }

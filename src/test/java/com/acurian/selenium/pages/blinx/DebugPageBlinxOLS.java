@@ -28,13 +28,13 @@ public class DebugPageBlinxOLS extends MainPageBlinx {
     @FindBy(xpath = "//div[@id='studyInfo']//a[@role='button']/i[@class='fa fa-times-circle']")
     WebElement infoCloseButton;
 
+    // TODO Use more flexible locator
     @FindBy(xpath = "//div[contains(@class,'p-1')][1]//tbody//tr/td[1]|//div[contains(@class,'p-1')][1]//tbody//tr/td/div/div")
     List<WebElement> questionNumberList;
-    List<WebElement> toBeDeletedNumber;
 
     @FindBy(xpath = "//table[@id='questionHistoryTable']/tbody/tr[1]/td[3]")
     List<WebElement> questionList;
-    List<WebElement> toBeDeleted;
+
 
 
 
@@ -105,6 +105,19 @@ public class DebugPageBlinxOLS extends MainPageBlinx {
         return this;
     }
 
+    @Step
+    public DebugPageBlinxOLS clickOnQNumber(String questionNumber) {
+        openDebugWindow();
+        waitForAnimation();
+        questionNumberList.stream()
+                .filter(el -> questionNumber.equals(el.getText()))
+                .findFirst()
+                .get()
+                .findElement(By.xpath(".//a"))
+                .click();
+        closeDebugWindow();
+        return this;
+    }
 
 
 }
