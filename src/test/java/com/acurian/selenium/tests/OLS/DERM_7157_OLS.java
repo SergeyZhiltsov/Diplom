@@ -806,15 +806,11 @@ public class DERM_7157_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = hs1PageOLS
+        hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
                 .waitToClickNext()
-                .clickNextButton(new ThankYouCloseSimplePageOLS());
-
-        thankYouCloseSimplePageOLS
-                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
