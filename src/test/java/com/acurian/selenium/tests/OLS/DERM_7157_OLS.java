@@ -20,8 +20,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
+import java.beans.Visibility;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 public class DERM_7157_OLS extends BaseTest {
 
@@ -806,13 +808,25 @@ public class DERM_7157_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS());
 
 
-        hs1PageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
+                hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
                 .setSignature()
                 .waitToClickNext()
-                .clickNextButton(new AboutHealthPageOLS())
-                .waitForPageLoad()
+                .clickNextButton(thankYouCloseSimplePageOLS);
+                try {
+                    thankYouCloseSimplePageOLS
+                            .waitForPageLoad()
+                            .clickNextButton(new AboutHealthPageOLS())
+                            .waitForPageLoad();
+                }
+                catch (Exception t){
+                    aboutHealthPageOLS
+                            .waitForPageLoad();
+        }
+        aboutHealthPageOLS
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
