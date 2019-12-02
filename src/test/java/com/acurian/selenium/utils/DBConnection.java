@@ -219,55 +219,6 @@ public class DBConnection {
         return null;
     }
 
-    public ChildResult dbReadChildPIDWithCopy(String environment, String pidNumber, String... firstPartOfChildPhoneNumber) {
-        try {
-            stmt = getDbCon(environment).createStatement();
-            String sqlCopy = "DECLARE\n" +
-                    "    v_user_id  NUMBER :=5953; \n" +
-                    "    v_study_id NUMBER;\n" +
-                    "    v_call_id NUMBER;\n" +
-                    "    v_study_group_id NUMBER;    \n" +
-                    "BEGIN\n" +
-                    "    FOR REC IN\n" +
-                    "    ( select call_id ,PATIENT_ID,STUDY_ID\n" +
-                    "    from call where patient_id IN ("+pidNumber+")-- enter patient id\n" +
-                    "    ) LOOP\n" +
-                    "        BEGIN    \n" +
-                    "            select study_group_id INTO v_study_group_id from study_group \n" +
-                    "            where STUDY_GROUP_TYPE = 'SU' and GENERAL_STUDY_ID = REC.STUDY_ID;\n" +
-                    "            cc_dev.mega_study.process_call(v_study_group_id,REC.CALL_ID, v_user_id);\n" +
-                    "            COMMIT;\n" +
-                    "        END ;  \n" +
-                    "    END LOOP;\n" +
-                    "END; ";
-            String sql = "select * from CALL where old_Patient_ID ='" + pidNumber + "'";
-            if (firstPartOfChildPhoneNumber.length == 1) {
-                sql = "select * from CALL where old_Patient_ID ='" + pidNumber + "'" +
-                        " and PHONE_NUMBER like '" + firstPartOfChildPhoneNumber[0] + "%'";
-            }
-            rset = stmt.executeQuery(sqlCopy);
-            rset = stmt.executeQuery(sql);
-
-            ChildResult childResult = null;
-            while (rset.next()) {
-                childResult = new ChildResult();
-                childResult.setDispoCd(rset.getString("dispo_cd"));
-                childResult.setApplicantStatus(rset.getString("applicant_status_cd"));
-                childResult.setPhoneNumber(rset.getString("phone_number"));
-                childResult.setChildPid(rset.getString("patient_id"));
-            }
-            System.out.println("DB Child: dispo =" + childResult.getDispoCd() + childResult.getApplicantStatus() +
-                    ", phone number = " + childResult.getPhoneNumber() +
-                    ", child PID = " + childResult.getChildPid());
-            return childResult;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeResources();
-        }
-        return null;
-    }
-
     public AnomalyResults dbReadAnomaly(String environment, String pidNumber) {
         try {
             stmt = getDbCon(environment).createStatement();

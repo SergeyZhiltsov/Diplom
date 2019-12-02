@@ -763,17 +763,26 @@ public class GAST_4357_OLS extends BaseTest {
                                 .waitForPageLoad()
                                 .clickNextButton(new ThankYouCloseSimplePageOLS())
                                 .waitForPageLoad()
-                                .clickNextButton(aboutHealthPageOLS);
+                                .clickNextButton(aboutHealthPageOLS)
+                                .waitForPageLoad()
+                                .pidFromDbToLog(env)
+                                .childPidFromDbToLog(env)
+                                .dispoShouldMatch(site.dispo, site.dispo);
                     }
                     }else {
                     siteSelectionPageOLS
-                            .clickNextButton(new QualifiedClose2PageOLS())
+                            .clickNextButton(new QualifiedCloseGastroPageOLS())
                             .waitForPageLoad()
                             .clickNextButton(new ThankYouCloseSimplePageOLS())
                             .waitForPageLoad()
                             .clickNextButton(aboutHealthPageOLS);
-                    aboutHealthPageOLS.flareCodeShouldMatch(env, inFlare ? "3" : "4");
-                }
+                    aboutHealthPageOLS
+                            .waitForPageLoad()
+                            .pidFromDbToLog(env)
+                            .childPidFromDbToLog(env)
+                            .dispoShouldMatch(site.dispo, site.dispo)
+                            .flareCodeShouldMatch(env, inFlare ? "3" : "4");
+
 
             switch (site) {
                 case AUT_GAST4357_site: //1R
@@ -792,6 +801,7 @@ public class GAST_4357_OLS extends BaseTest {
                             .childPidFromDbToLog(env)
                             .dispoShouldMatch(site.dispo, site.dispo);
                     break;
+            }
             }
         }
     }

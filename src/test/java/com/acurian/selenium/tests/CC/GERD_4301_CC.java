@@ -510,6 +510,8 @@ public class GERD_4301_CC extends BaseTest {
 ////                .clickOnAnswer("No")
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
+                .clickNextButton(new AlzheimerClosePageCC())
+                .waitForPageLoad()
                 .clickNextButton(selectActionPageCC)
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
