@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams;
+package com.acurian.selenium.pages.blinx.ams.cv_study;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -8,10 +8,10 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class ConfirmsHighCholesterolTriglyceridesPageOLS extends MainPageBlinx {
+public class HeartRelatedSurgeriesProceduresPageOLS extends MainPageBlinx {
 
-    private final String titleExpected = "Have you had a blood test that confirms you have high cholesterol or high triglycerides?\n" +
-            "Please select all that apply:";
+    private final String titleExpected = "Have you ever had any of the following heart-related surgeries or procedures?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
@@ -19,13 +19,13 @@ public class ConfirmsHighCholesterolTriglyceridesPageOLS extends MainPageBlinx {
     List<WebElement> multipleChoiceButtonsList;
 
     @Step
-    public ConfirmsHighCholesterolTriglyceridesPageOLS waitForPageLoad() {
+    public HeartRelatedSurgeriesProceduresPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ConfirmsHighCholesterolTriglyceridesPageOLS clickOnAnswers(String ...answerText) {
+    public HeartRelatedSurgeriesProceduresPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(multipleChoiceButtonsList, answerText);
         return this;
     }

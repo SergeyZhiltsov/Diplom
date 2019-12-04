@@ -2,30 +2,34 @@ package com.acurian.selenium.pages.blinx.ams;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WithType2diabetesPageOLS extends MainPageBlinx {
-
-    private final String titleExpected = "How long ago were you diagnosed with type 2 diabetes?";
+public class WithType1DiabetesPageOLS extends MainPageBlinx {
+    public final String titleExpected = "How long ago were you diagnosed with type 1 diabetes?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
-    List<WebElement> singleChoiceButtonsList;
+    List<WebElement> radioButtonsList;
 
     @Step
-    public WithType2diabetesPageOLS waitForPageLoad() {
+    public WithType1DiabetesPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WithType2diabetesPageOLS clickOnAnswer(String answerText) {
-        clickOnRadioButton(singleChoiceButtonsList, answerText);
+    public WithType1DiabetesPageOLS clickOnAnswer(String answerText) {
+        clickOnRadioButton(radioButtonsList, answerText);
         return this;
+    }
+
+    @Step
+    public String getTitleText() {
+        return getText(titleText);
     }
 }

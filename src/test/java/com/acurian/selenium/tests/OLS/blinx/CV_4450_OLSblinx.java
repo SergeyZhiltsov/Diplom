@@ -2,13 +2,18 @@ package com.acurian.selenium.tests.OLS.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.DebugPageBlinxOLS;
+import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.ams.*;
+import com.acurian.selenium.pages.blinx.ams.closes.LessThan18YearsOldPageOLS;
+import com.acurian.selenium.pages.blinx.ams.cv_study.*;
+import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.WhatKindOfDiabetesPageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
-import com.acurian.selenium.pages.blinx.ams.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.blinx.ams.QualifiedClosePageOLS;
-import com.acurian.selenium.pages.blinx.gmega.intro.PersonalIdentificationPageOLS;
+import com.acurian.selenium.pages.blinx.ams.generalHealth.SiteSelectionPageOLS;
+import com.acurian.selenium.pages.blinx.ams.closes.QualifiedClose2PageOLS;
+import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -24,71 +29,75 @@ public class CV_4450_OLSblinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data")
+    @Test(dataProvider = "data", enabled = false)
     public void cv4450olsBlinxTest(Site site, String city, String state) {
-        DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
-        LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();
-        BaseTest.getDriver().navigate()
-                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTAMS1CV1&up[]" +
-                        "=CLIENT_BLINX&testing_key=51fa2780f2430b542923956ac1974bb7&show_debug=1#");
+        String phoneNumber = "AUTAMS1CV1";
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
+        String env = System.getProperty("acurian.env", "STG");
 
-        LessThan18YearsOldPageOLSBlinx lessThan18YearsOldPageOLSBlinx = letsGetStartedPageOLS
+        DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+//        BaseTest.getDriver().navigate()
+//                .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTAMS1CV1&up[]" +
+//                        "=CLIENT_BLINX&testing_key=51fa2780f2430b542923956ac1974bb7&show_debug=1#");
+
+        LessThan18YearsOldPageOLS lessThan18YearsOldPageOLS = dateOfBirthPageOLS
+                .openPage(env, phoneNumber)
                 .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("No")
-                .clickNextButton(new LessThan18YearsOldPageOLSBlinx());
+                .clickNextButton(new LessThan18YearsOldPageOLS());
 
-        lessThan18YearsOldPageOLSBlinx
+        lessThan18YearsOldPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageBlinxOLS)
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8005", site.activeProtocols)
-                .clickPreviousQuestion();
+                .back(dateOfBirthPageOLS);
 
-        ZipCodePageOLS zipCodePageOLS = letsGetStartedPageOLS
+        ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("Yes")
                 .clickNextButton(new ZipCodePageOLS());
 
-        DateOfBirthAndGenderPageOLS dateOfBirthAndGenderPageOLS = zipCodePageOLS
+        GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
                 .setZipCode(site.zipCode)
-                .clickNextButton(new DateOfBirthAndGenderPageOLS());
+                .clickNextButton(new GenderPageOLS());
 
-        dateOfBirthAndGenderPageOLS
+        genderPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Female")
                 .setDate("01082005") //Disqualify (“Age < 18 years old”) if <18
-                .clickNextButton(lessThan18YearsOldPageOLSBlinx)
+                .clickNextButton(lessThan18YearsOldPageOLS)
                 .waitForPageLoad()
-                .getPage(debugPageBlinxOLS)
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .clickPreviousQuestion();
-        CardiovascularDiseasePageOLS cardiovascularDiseasePageOLS = dateOfBirthAndGenderPageOLS
+                .back(genderPageOLS);
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = genderPageOLS
                 .waitForPageLoad()
                 .setDate("01081975")//"Disqualify (“Age”) if < 45
-                .clickNextButton(new CardiovascularDiseasePageOLS());
-        cardiovascularDiseasePageOLS
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+        cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageBlinxOLS)
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
-                .clickPreviousQuestion();
-        dateOfBirthAndGenderPageOLS
+                .back(genderPageOLS);
+        genderPageOLS
                 .waitForPageLoad()
                 .setDate("01081970")
-                .clickNextButton(cardiovascularDiseasePageOLS);
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
 //        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseasePageOLS
-        HeartRelatedEventsOrConditionsPageOLS heartRelatedEventsOrConditionsPageOLS = cardiovascularDiseasePageOLS
+        SufferedFollowingHeartRelatedConditionsPageOLS sufferedFollowingHeartRelatedConditionsPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Diabetes or High Blood Sugar",
                         "High cholesterol or high triglycerides",
                         "High blood pressure or hypertension")
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartRelatedEventsOrConditionsPageOLS());
-        heartRelatedEventsOrConditionsPageOLS
+                .clickNextButton(new SufferedFollowingHeartRelatedConditionsPageOLS());
+        sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
+                .back(cardiovascularDiseaseThanOthersPageOLS);
 
-        ConfirmsHighCholesterolTriglyceridesPageOLS confirmsHighCholesterolTriglyceridesPageOLS = cardiovascularDiseasePageOLS
+        ConfirmsHighCholesterolTriglyceridesPageOLS confirmsHighCholesterolTriglyceridesPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(new ConfirmsHighCholesterolTriglyceridesPageOLS());
@@ -100,42 +109,42 @@ public class CV_4450_OLSblinx extends BaseTest {
 
         cholesterolTriglyceridesLipidsPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
+                .back(confirmsHighCholesterolTriglyceridesPageOLS);
         confirmsHighCholesterolTriglyceridesPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
+                .back(cardiovascularDiseaseThanOthersPageOLS);
 
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseasePageOLS
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = cardiovascularDiseaseThanOthersPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Diabetes or High Blood Sugar")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 
-        WithType1DiabetesPageOLSBlinx withType1DiabetesPageOLSBlinx = whatKindOfDiabetesPageOLS
+        WithType1DiabetesPageOLS withType1DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new WithType1DiabetesPageOLSBlinx());
-        withType1DiabetesPageOLSBlinx
+                .clickNextButton(new WithType1DiabetesPageOLS());
+        withType1DiabetesPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageBlinxOLS)
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                .clickPreviousQuestion();
+                .back(whatKindOfDiabetesPageOLS);
         WithType2diabetesPageOLS withType2diabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2diabetesPageOLS());
         withType2diabetesPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageBlinxOLS)
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
-                .clickPreviousQuestion();
+                .back(whatKindOfDiabetesPageOLS);
         whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)") //Display for Females only
                 .clickOnAnswer("Unsure")
-                .clickNextButton(heartRelatedEventsOrConditionsPageOLS);
+                .clickNextButton(sufferedFollowingHeartRelatedConditionsPageOLS);
 
-        HeartRelatedSurgeriesOrProceduresPageOLS heartRelatedSurgeriesOrProceduresPageOLS = heartRelatedEventsOrConditionsPageOLS
+        HeartRelatedSurgeriesProceduresPageOLS heartRelatedSurgeriesProceduresPageOLS = sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack",
                         "Stroke",
@@ -143,13 +152,13 @@ public class CV_4450_OLSblinx extends BaseTest {
                         "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
                         "Heart failure or congestive heart failure (CHF)")
                 .clickOnAnswers("None of the above") //Skip to Q16
-                .clickNextButton(new HeartRelatedSurgeriesOrProceduresPageOLS());
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageOLS());
 
-        heartRelatedSurgeriesOrProceduresPageOLS
+        heartRelatedSurgeriesProceduresPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS);
 
-        SubquestionHeartPageOLS subquestionHeartPageOLS = heartRelatedEventsOrConditionsPageOLS
+        SubquestionHeartPageOLS subquestionHeartPageOLS = sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack",
                         "Stroke",
@@ -162,8 +171,8 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .waitForPageLoad(2, subquestionHeartPageOLS.getTitleExpected2())
                 .waitForPageLoad(3, subquestionHeartPageOLS.getTitleExpected3())
                 .waitForPageLoad(4, subquestionHeartPageOLS.getTitleExpected4())
-                .clickPreviousQuestion();
-        heartRelatedEventsOrConditionsPageOLS
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS);
+        sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart attack")
@@ -175,16 +184,16 @@ public class CV_4450_OLSblinx extends BaseTest {
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected1())
                     .clickOnAnswerForSubQuestion(2, answer)
-                    .clickNextButton(heartRelatedSurgeriesOrProceduresPageOLS)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageBlinxOLS)
+                    .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
-                    .clickPreviousQuestion();
+                    .back(subquestionHeartPageOLS);
         }
         subquestionHeartPageOLS
                 .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected1())
-                .clickPreviousQuestion();
-        heartRelatedEventsOrConditionsPageOLS
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS);
+        sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Stroke")
@@ -196,16 +205,16 @@ public class CV_4450_OLSblinx extends BaseTest {
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected2())
                     .clickOnAnswerForSubQuestion(2, answer)
-                    .clickNextButton(heartRelatedSurgeriesOrProceduresPageOLS)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageBlinxOLS)
+                    .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
-                    .clickPreviousQuestion();
+                    .back(subquestionHeartPageOLS);
         }
         subquestionHeartPageOLS
                 .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected2())
-                .clickPreviousQuestion();
-        heartRelatedEventsOrConditionsPageOLS
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS);
+        sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Mini-Stroke or TIA")
@@ -216,16 +225,16 @@ public class CV_4450_OLSblinx extends BaseTest {
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected3())
                     .clickOnAnswerForSubQuestion(2, answer)
-                    .clickNextButton(heartRelatedSurgeriesOrProceduresPageOLS)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageBlinxOLS)
+                    .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
-                    .clickPreviousQuestion();
+                    .back(subquestionHeartPageOLS);
         }
         subquestionHeartPageOLS
                 .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected3())
-                .clickPreviousQuestion();
-        heartRelatedEventsOrConditionsPageOLS
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS);
+        sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
@@ -237,72 +246,72 @@ public class CV_4450_OLSblinx extends BaseTest {
             subquestionHeartPageOLS
                     .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected4())
                     .clickOnAnswerForSubQuestion(2, answer)
-                    .clickNextButton(heartRelatedSurgeriesOrProceduresPageOLS)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageBlinxOLS)
+                    .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6737", site.activeProtocols)
-                    .clickPreviousQuestion();
+                    .back(subquestionHeartPageOLS);
         }
         subquestionHeartPageOLS
                 .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected4())
-                .clickPreviousQuestion();
-        heartRelatedEventsOrConditionsPageOLS
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS);
+        sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart failure or congestive heart failure (CHF)")
-                .clickNextButton(heartRelatedSurgeriesOrProceduresPageOLS);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageOLS);
 
-        MostRecentHeartRelatedSurgeryProcedurePageOLSBlinx mostRecentHeartRelatedSurgeryProcedurePageOLSBlinx = heartRelatedSurgeriesOrProceduresPageOLS
+        MostRecentHeartRelatedSurgeryProcedurePageOLS mostRecentHeartRelatedSurgeryProcedurePageOLS = heartRelatedSurgeriesProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
-                .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageOLSBlinx());
+                .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageOLS());
 
-        AdditionalHeartrelatedConditionsPageOLS additionalHeartrelatedConditionsPageOLS = new AdditionalHeartrelatedConditionsPageOLS();
+        AdditionalHeartRelatedConditionsPageOLS additionalHeartRelatedConditionsPageOLS = new AdditionalHeartRelatedConditionsPageOLS();
         List<String> disqualifyQ17 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQ17) {
             System.out.println("Select answer for Q17: " + answer);
-            mostRecentHeartRelatedSurgeryProcedurePageOLSBlinx
+            mostRecentHeartRelatedSurgeryProcedurePageOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
-                    .clickNextButton(additionalHeartrelatedConditionsPageOLS)
+                    .clickNextButton(additionalHeartRelatedConditionsPageOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageBlinxOLS)
+                    .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6739", site.activeProtocols)
-                    .clickPreviousQuestion();
+                    .back(mostRecentHeartRelatedSurgeryProcedurePageOLS);
         }
-        mostRecentHeartRelatedSurgeryProcedurePageOLSBlinx
+        mostRecentHeartRelatedSurgeryProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(additionalHeartrelatedConditionsPageOLS);
+                .clickNextButton(additionalHeartRelatedConditionsPageOLS);
 
-        ApproximateHeightWeightPageOLS approximateHeightWeightPageOLS = additionalHeartrelatedConditionsPageOLS
+        ApproximateHeightWeightPageOLS approximateHeightWeightPageOLS = additionalHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ApproximateHeightWeightPageOLS());
 
-        CurrentlyTreatingYourDiabetesPageOLSBlinx currentlyTreatingYourDiabetesPageOLSBlinx = approximateHeightWeightPageOLS
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = approximateHeightWeightPageOLS
                 .waitForPageLoad()
                 .setAllFields("5", "5", "170")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLSBlinx());
-        currentlyTreatingYourDiabetesPageOLSBlinx
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
-                .getPage(debugPageBlinxOLS)
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
-                .clickPreviousQuestion();
+                .back(approximateHeightWeightPageOLS);
         approximateHeightWeightPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
-        additionalHeartrelatedConditionsPageOLS
+                .back(additionalHeartRelatedConditionsPageOLS);
+        additionalHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers()
-                .clickPreviousQuestion();
-        mostRecentHeartRelatedSurgeryProcedurePageOLSBlinx
+                .back(mostRecentHeartRelatedSurgeryProcedurePageOLS);
+        mostRecentHeartRelatedSurgeryProcedurePageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
-        heartRelatedSurgeriesOrProceduresPageOLS
+                .back(heartRelatedSurgeriesProceduresPageOLS);
+        heartRelatedSurgeriesProceduresPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
-        heartRelatedEventsOrConditionsPageOLS
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS);
+        sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart attack", "Stroke") //Qualifying answer Ghost Question
@@ -312,12 +321,12 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .waitForPageLoad(2, subquestionHeartPageOLS.getTitleExpected2())
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickNextButton(heartRelatedSurgeriesOrProceduresPageOLS);
-        heartRelatedSurgeriesOrProceduresPageOLS
+                .clickNextButton(heartRelatedSurgeriesProceduresPageOLS);
+        heartRelatedSurgeriesProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(additionalHeartrelatedConditionsPageOLS);
-        additionalHeartrelatedConditionsPageOLS
+                .clickNextButton(additionalHeartRelatedConditionsPageOLS);
+        additionalHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightWeightPageOLS);
@@ -328,34 +337,34 @@ public class CV_4450_OLSblinx extends BaseTest {
 
         healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
+                .back(approximateHeightWeightPageOLS);
         approximateHeightWeightPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
-        additionalHeartrelatedConditionsPageOLS
+                .back(additionalHeartRelatedConditionsPageOLS);
+        additionalHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
-        heartRelatedSurgeriesOrProceduresPageOLS
+                .back(heartRelatedSurgeriesProceduresPageOLS);
+        heartRelatedSurgeriesProceduresPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
+                .back(subquestionHeartPageOLS);
         subquestionHeartPageOLS
                 .waitForPageLoad(1, subquestionHeartPageOLS.getTitleExpected1())
                 .waitForPageLoad(2, subquestionHeartPageOLS.getTitleExpected2())
-                .clickPreviousQuestion();
-        heartRelatedEventsOrConditionsPageOLS
+                .back(sufferedFollowingHeartRelatedConditionsPageOLS);
+        sufferedFollowingHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(heartRelatedSurgeriesOrProceduresPageOLS);
-        heartRelatedSurgeriesOrProceduresPageOLS
+                .clickNextButton(heartRelatedSurgeriesProceduresPageOLS);
+        heartRelatedSurgeriesProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Any other surgery on the arteries in your legs, neck or heart")
-                .clickNextButton(mostRecentHeartRelatedSurgeryProcedurePageOLSBlinx);
-        mostRecentHeartRelatedSurgeryProcedurePageOLSBlinx
+                .clickNextButton(mostRecentHeartRelatedSurgeryProcedurePageOLS);
+        mostRecentHeartRelatedSurgeryProcedurePageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(additionalHeartrelatedConditionsPageOLS);
-        additionalHeartrelatedConditionsPageOLS
+                .clickNextButton(additionalHeartRelatedConditionsPageOLS);
+        additionalHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightWeightPageOLS);
@@ -366,21 +375,21 @@ public class CV_4450_OLSblinx extends BaseTest {
 
         healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
+                .back(approximateHeightWeightPageOLS);
         approximateHeightWeightPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
-        additionalHeartrelatedConditionsPageOLS
+                .back(additionalHeartRelatedConditionsPageOLS);
+        additionalHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
-        mostRecentHeartRelatedSurgeryProcedurePageOLSBlinx
+                .back(mostRecentHeartRelatedSurgeryProcedurePageOLS);
+        mostRecentHeartRelatedSurgeryProcedurePageOLS
                 .waitForPageLoad()
-                .clickPreviousQuestion();
-        heartRelatedSurgeriesOrProceduresPageOLS
+                .back(heartRelatedSurgeriesProceduresPageOLS);
+        heartRelatedSurgeriesProceduresPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(additionalHeartrelatedConditionsPageOLS);
-        additionalHeartrelatedConditionsPageOLS
+                .clickNextButton(additionalHeartRelatedConditionsPageOLS);
+        additionalHeartRelatedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Peripheral Artery Disease or PAD (blockage in the arteries in your legs or poor circulation in legs)") //Qualifying answer Ghost Question
@@ -404,36 +413,36 @@ public class CV_4450_OLSblinx extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(currentlyTreatingYourDiabetesPageOLSBlinx)
+                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                     .waitForPageLoad()
-                    .getPage(debugPageBlinxOLS)
+                    .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)
-                    .clickPreviousQuestion();
+                    .back(healthcareDiagnosedConditionsPageOLS);
         }
-        PersonalIdentificationPageOLS personalIdentificationPageOLS = healthcareDiagnosedConditionsPageOLS
+        IdentificationPageOLS identificationPageOLS = healthcareDiagnosedConditionsPageOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new PersonalIdentificationPageOLS());
-        SiteSelectionPageOLS siteSelectionPageOLS = personalIdentificationPageOLS
+                .clickNextButton(new IdentificationPageOLS());
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoadPrequalified()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", site.zipCode, city, state)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        QualifiedClosePageOLS qualifiedClosePageOLS = siteSelectionPageOLS
+        QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
                 .waitForPageLoad5("a heart health study!")
-                .getPage(debugPageBlinxOLS)
+                .getPage(debugPageOLS)
                 .getPID()
                 .getPage(siteSelectionPageOLS)
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClosePageOLS());
+                .clickNextButton(new QualifiedClose2PageOLS());
 
-        ThankYouClosePageOLS thankYouClosePageOLS = qualifiedClosePageOLS
+        ThankYouClosePageBlinx thankYouClosePageBlinx = qualifiedClose2PageOLS
                 .waitForPageLoad3()
                 .clickOnAnswer("No")
-                .clickNextButton(new ThankYouClosePageOLS());
+                .clickNextButton(new ThankYouClosePageBlinx());
 
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouClosePageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouClosePageBlinx
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
 

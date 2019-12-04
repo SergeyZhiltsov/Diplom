@@ -1,4 +1,4 @@
-package com.acurian.selenium.pages.blinx.ams;
+package com.acurian.selenium.pages.blinx.ams.shared;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
@@ -8,9 +8,9 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class WithType2diabetesPageOLS extends MainPageBlinx {
+public class WhatKindOfDiabetesPageOLS extends MainPageBlinx {
 
-    private final String titleExpected = "How long ago were you diagnosed with type 2 diabetes?";
+    private final String titleExpected = "What kind of diabetes do you have?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
@@ -18,13 +18,13 @@ public class WithType2diabetesPageOLS extends MainPageBlinx {
     List<WebElement> singleChoiceButtonsList;
 
     @Step
-    public WithType2diabetesPageOLS waitForPageLoad() {
+    public WhatKindOfDiabetesPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WithType2diabetesPageOLS clickOnAnswer(String answerText) {
+    public WhatKindOfDiabetesPageOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(singleChoiceButtonsList, answerText);
         return this;
     }

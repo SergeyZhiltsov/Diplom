@@ -1,5 +1,7 @@
 package com.acurian.selenium.pages.blinx;
 
+import com.acurian.selenium.constants.FULType;
+import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.PassPID;
@@ -88,8 +90,8 @@ public class MainPageBlinx extends BasePage {
         waitAndClickWebElement(previousQuestion);
     }
     @Step
-    public <T extends MainPageBlinx> T clickPreviousQuestion(T page) {
-        back();
+    public <T extends MainPageBlinx> T back(T page) {
+        waitAndClickWebElement(previousQuestion);
         return (T) page;
     }
 
@@ -183,6 +185,33 @@ public class MainPageBlinx extends BasePage {
         }
         return this;
     }
+
+    @Step
+    public MainPageBlinx assertGeneratedFul(String env, Site site) {
+        if (site.hasFul) {
+            String fulValueField = getDbConnection().dbReadFulValue(env, pid);
+            logTextToAllureAndConsole("Fetched DB value of FUL cell: " + fulValueField);
+            Assert.assertNotEquals(fulValueField, "", "FUL VALUE is empty string!");
+            Assert.assertNotEquals(fulValueField.toLowerCase(), "null", "FUL VALUE is null string!");
+            if (site.withMedicalRecords) {
+                Assert.assertTrue(fulValueField.contains(FULType.MEDICAL_RECORD.toString()),
+                        String.format("FUL VALUE contains different string. Expected [%s] but found [%s]",
+                                FULType.MEDICAL_RECORD.toString(), fulValueField));
+            }
+        }
+        return this;
+    }
+
+    @Step
+    public MainPageBlinx assertRmgOrderPriority(String env, String projectCode) {
+        String studyId = getDbConnection().getStudyIdByProjectCode(env, projectCode);
+        List<String> priorityList = getDbConnection().getRmgOrderPriorityList(env);
+        Assert.assertTrue(priorityList.contains(studyId), String.format("The STUDY_RMG_PRIORITY_CONFIG not contains " +
+                "expected study id. Expected [%s] but found [%s].", studyId, priorityList));
+        return this;
+    }
+
+
 
     public String getDispoParent() {
         return dispoParent;

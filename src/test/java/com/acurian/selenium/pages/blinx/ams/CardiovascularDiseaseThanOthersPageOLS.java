@@ -8,9 +8,10 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class ConfirmsHighCholesterolTriglyceridesPageOLS extends MainPageBlinx {
+public class CardiovascularDiseaseThanOthersPageOLS extends MainPageBlinx {
 
-    private final String titleExpected = "Have you had a blood test that confirms you have high cholesterol or high triglycerides?\n" +
+    private final String titleExpected = "Certain conditions are more closely linked to cardiovascular disease than others.\n" +
+            "Has a doctor ever diagnosed you with any of the following medical conditions or diseases?\n" +
             "Please select all that apply:";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
@@ -19,13 +20,13 @@ public class ConfirmsHighCholesterolTriglyceridesPageOLS extends MainPageBlinx {
     List<WebElement> multipleChoiceButtonsList;
 
     @Step
-    public ConfirmsHighCholesterolTriglyceridesPageOLS waitForPageLoad() {
+    public CardiovascularDiseaseThanOthersPageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ConfirmsHighCholesterolTriglyceridesPageOLS clickOnAnswers(String ...answerText) {
+    public CardiovascularDiseaseThanOthersPageOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(multipleChoiceButtonsList, answerText);
         return this;
     }

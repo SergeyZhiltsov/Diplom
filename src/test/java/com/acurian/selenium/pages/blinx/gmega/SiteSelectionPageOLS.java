@@ -1,15 +1,20 @@
 package com.acurian.selenium.pages.blinx.gmega;
 
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
+import com.acurian.selenium.utils.PassPID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Parameter;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
 public class SiteSelectionPageOLS extends MainPageBlinx {
+
+    @Parameter("My PID OLS")
+    public String pidNumber;
 
     public final String titleExpected = "Good news! You have been matched with the doctor(s) below for %s\n" +
             "Please select a doctor and click the \"Next\" button.";
@@ -22,6 +27,9 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
     List<WebElement> radioButtonsList;
     @FindBy(id = "expandLocationsCta")
     WebElement showOthersAdditionalLocations;
+
+    @FindBy(xpath = "//div[@id='debugCollapsed']/div[1]/div[1]")
+    WebElement pidNumberPath;
 
 
     @Step
@@ -51,4 +59,15 @@ public class SiteSelectionPageOLS extends MainPageBlinx {
         }
         return this;
     }
+
+    @Step
+    public SiteSelectionPageOLS getPID(){
+        pidNumber = getText(pidNumberPath);
+        logTextToAllure("PID = " + pidNumber);
+        PassPID.getInstance().setPidNumber(pidNumber);
+        System.out.println("PID = " + pidNumber);
+        return this;
+    }
+
+
 }

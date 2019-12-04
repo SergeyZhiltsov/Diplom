@@ -2,6 +2,7 @@ package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.Vaccine.DirectSheduleVaccOLS;
 import com.acurian.selenium.pages.OLS.closes.AboutHealthPageOLS;
 import com.acurian.selenium.pages.OLS.closes.QualifiedClose2PageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -82,6 +83,8 @@ public class AnomalyTest extends BaseTest {
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(siteName)
+//                .clickNextButton(new DirectSheduleVaccOLS())
+//                .waitForPageLoad()
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoadGMEGA()
                 .clickNextButton(new ThankYouCloseGmegaOLS())
