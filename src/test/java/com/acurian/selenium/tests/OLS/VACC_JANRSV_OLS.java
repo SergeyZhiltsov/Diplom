@@ -14,7 +14,6 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-import com.acurian.selenium.pages.blinx.ams.DateOfBirthAndGenderPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
