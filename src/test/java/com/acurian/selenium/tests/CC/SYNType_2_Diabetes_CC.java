@@ -2,20 +2,18 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.ADG_4357.DigestiveConditionsAffectDiabetesPageCC;
-import com.acurian.selenium.pages.CC.ADG_4357.SymptomsRegularlyOncePerWeekPageCC;
 import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
-import com.acurian.selenium.pages.CC.IBD.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
+import com.acurian.selenium.pages.CC.Vaccine.DirectSheduleVaccCC;
 import com.acurian.selenium.pages.CC.closes.*;
-import com.acurian.selenium.pages.CC.cv_study.AdditionalHeartRelatedConditionsPageCC;
-import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPageCC;
+import com.acurian.selenium.pages.CC.cv_study.MostRecentHeartRelatedSurgeryProcedurePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.tests.OLS.SYNType_2_Diabetes_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
@@ -36,9 +34,9 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
     }
 
     @Test(dataProvider = "sites", dataProviderClass = SYNType_2_Diabetes_OLS.class)
-    public void dia4483ccTest(Site site) {
+    public void SYNType_2_Diabetes_CC(Site site) {
         final String phoneNumber = "AUTAMS1DIA";
-        final String studyName = "a fatty liver study for diabetics"; //"a NASH study";
+        final String studyName = "a study for diabetics"; //"a NASH study";
         final String indicationHistroyName = "diabetes";
 
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -102,7 +100,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .setMonth("Sep")
                 .setDay("9")
                 .setYear("1960")
-                .clickOnAnswer("Female")
+                .clickOnAnswer("Male")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
 
         NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedAnyTypeOfDiabetesPageCC
@@ -126,13 +124,6 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
                 .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
         withType1DiabetesPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Gestational diabetes (diabetes only during pregnancy)")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
@@ -758,7 +749,64 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .waitForPageLoad()
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum", "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)", "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Headaches (migraine, cluster, tension)", "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)", "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Lupus", "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)", "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)", "Sleep problems (insomnia, sleep apnea, narcolepsy)", "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Men's health issues (prostate enlargement or BPH, low testosterone)")
+                .clickNextButton(new WhatKindOfArthritisCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging",
+                        "Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints",
+                        "Psoriatic Arthritis")
+                .clickNextButton(new WhichFollowingBonesJoints_CC())
+                .waitForPageLoad()
+                .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis","Gout","Low back pain","Osteoporosis")
+                .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС())
+                .waitForPageLoad()
+                .clickOnAnswers("Asthma","Chronic cough","Chronic bronchitis","COPD","Emphysema")
+                .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Acid reflux, heartburn, or GERD (gastroesophageal reflux disease)", "Crohn's disease", "Ulcerative colitis", "Gastroparesis, or delayed gastric emptying",
+                        "IBS, or irritable bowel syndrome")
+                .clickNextButton(new WhichTypeOfHeadacheCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Migraine", "Cluster headache", "Tension headache")
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA", "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
+                        "Heart failure or congestive heart failure (CHF)")
+                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Stent placement in your heart, neck or legs", "Heart bypass surgery or Coronary Artery Bypass Graft (CABG)",
+                        "Any other surgery on the arteries in your legs, neck or heart")
+                .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(new FollowingMentalEmotionalHealthPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Generalized anxiety disorder (GAD)","Major depressive disorder (MDD) or depression","Bipolar disorder","Schizophrenia")
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Alzheimer's disease","Memory loss","Parkinson's disease","Multiple sclerosis (MS)","Seizure disorder, such as epilepsy","Fibromyalgia")
+                .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferСС())
+                .waitForPageLoad()
+                .clickOnAnswers("Eczema or atopic dermatitis")
+                .clickOnAnswers("Psoriasis")
+                .clickOnAnswers("Skin cancer")
+                .clickNextButton(new WhichOfTheFollowingSleepRelatedConditionsDiagnosedPageCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Narcolepsy", "Sleep apnea", "Insomnia")
+                .clickNextButton(new FollowingMensHealthConditionsCC())
+                .waitForPageLoad()
+                .clickOnAnswers("Enlarged prostate or BPH", "Low testosterone", "Overactive bladder (OAB)")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
 //                .clickOnAnswers("None of the above")
@@ -888,11 +936,12 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                         .waitForPageLoad(studyName)
                         .getPID()
                         .clickOnAnswer(site.name)
+                        .clickNextButton(new DirectSheduleVaccCC())
+                        .waitForPageLoad()
                         .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .waitForPageLoadSyn()
                         .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
-                                "Blue Bell, PA", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " aut4483 ", " "+site.name, "MADPRANAH611 - Madrigal NASH")
+                                "Chandler, AZ", site.zipCode, "qa.acurian@gmail.com",
+                                "999-999-9999", " 010110 : Synexus - 010110 ", " East Valley Family Physicians", "AESXXXDIA001 - SYNType_2_Diabetes (SYNT2DM)")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()

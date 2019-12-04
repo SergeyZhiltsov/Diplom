@@ -2,22 +2,15 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.ADG_4357.DigestiveConditionsAffectDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.ADG_4357.SymptomsRegularlyOncePerWeekPageOLS;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
-import com.acurian.selenium.pages.OLS.DPN_3769_4557.DoYouExperienceDPN_OLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
-import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms_OLS;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.ExperiencedAnyOfFollowingOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
+import com.acurian.selenium.pages.OLS.RA.WhatKindOfArthritisPageOLS;
+import com.acurian.selenium.pages.OLS.Vaccine.DirectSheduleVaccOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
-import com.acurian.selenium.pages.OLS.cv_study.AdditionalHeartRelatedConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.CholesterolTriglyceridesLipidsPageOLS;
-import com.acurian.selenium.pages.OLS.cv_study.TransitionStatementCVbeginPageOLS;
+import com.acurian.selenium.pages.OLS.cv_study.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
@@ -48,11 +41,11 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
     }
 
     @Test(enabled = true, dataProvider = "sites")
-    @Description("NASH study 4483 OLS")
+    @Description("SYNType_2_Diabetes_OLS")
     public void SYNType_2_Diabetes_OLS(Site site) {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String phoneNumber = "AUTAMS1DIA";
-        String studyName = "a fatty liver study for diabetics!";//"a NASH";
+        String studyName = "a study for diabetics!";//"a NASH";
         //String studyName1 = "a fatty liver study for diabetics, a study for diabetics!";
 
         String env = System.getProperty("acurian.env", "STG");
@@ -789,7 +782,64 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
+                .back(doAnyOftheFollowingAdditionalDiagnosesOLS)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
+                .waitForPageLoad()
+                .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
+                        "Autism spectrum", "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)", "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
+                        "Headaches (migraine, cluster, tension)", "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "Intestinal disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis)", "Stomach problems (Acid reflux, heartburn or GERD, Gastroparesis or delayed gastric emptying)",
+                        "Lupus", "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)", "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Skin problems (eczema or atopic dermatitis, psoriasis)", "Sleep problems (insomnia, sleep apnea, narcolepsy)", "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
+                        "Men's health issues (prostate enlargement or BPH, low testosterone)")
+                .clickNextButton(new WhatKindOfArthritisPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging",
+                        "Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints",
+                        "Psoriatic Arthritis")
+                .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_OLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis","Gout","Low back pain","Osteoporosis")
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWithOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Asthma","Chronic cough","Chronic bronchitis","COPD","Emphysema")
+                .clickNextButton(new WhichOfFollowingDigestiveConditionPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Acid reflux, heartburn, or GERD (gastroesophageal reflux disease)", "Crohn's disease", "Ulcerative colitis", "Gastroparesis, or delayed gastric emptying",
+                        "IBS, or irritable bowel syndrome")
+                .clickNextButton(new WhichTypeOfHeadacheDoYouGetOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Migraine", "Cluster headache", "Tension headache")
+                .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA", "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
+                        "Heart failure or congestive heart failure (CHF)")
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Stent placement in your heart, neck or legs", "Heart bypass surgery or Coronary Artery Bypass Graft (CABG)",
+                        "Any other surgery on the arteries in your legs, neck or heart")
+                .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageOLS())
+                .waitForPageLoad()
+                .clickOnAnswer("Less than 30 days ago")
+                .clickNextButton(new FollowingMentalEmotionalHealthPageOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Generalized anxiety disorder (GAD)","Major depressive disorder (MDD) or depression","Bipolar disorder","Schizophrenia")
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Alzheimer's disease","Memory loss","Parkinson's disease","Multiple sclerosis (MS)","Seizure disorder, such as epilepsy","Fibromyalgia")
+                .clickNextButton(new WhichOfTheFollowingSkinConditionsDoYouSufferOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Eczema or atopic dermatitis")
+                .clickOnAnswers("Psoriasis")
+                .clickOnAnswers("Skin cancer")
+                .clickNextButton(new WhichOfTheFollowingSleepRelatedConditionsDiagnosedOLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Narcolepsy", "Sleep apnea", "Insomnia")
+                .clickNextButton(new WhichOfTheFollowingMensHealthConditions_OLS())
+                .waitForPageLoad()
+                .clickOnAnswers("Enlarged prostate or BPH", "Low testosterone", "Overactive bladder (OAB)")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 //        doAnyOftheFollowingAdditionalDiagnosesOLS
 //                .waitForPageLoad()
 //                .clickOnAnswers("None of the above")
@@ -886,6 +936,9 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
                 .clickOnFacilityName(site.name)
                 .waitForAnimation();
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
+                .clickNextButton(new DirectSheduleVaccOLS())
+                .waitForPageLoad()
+
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad()
 //                .clickNextButton(new SynexusHealthyMindsPageOLS())
@@ -894,8 +947,6 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
 //        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = identificationPageOLS
                 .clickNextButton(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                .waitForPageLoad()
-                .clickNextButton(new AlzheimerClosePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
