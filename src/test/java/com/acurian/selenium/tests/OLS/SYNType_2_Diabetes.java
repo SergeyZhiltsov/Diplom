@@ -50,7 +50,7 @@ public class SYNType_2_Diabetes extends BaseTest {
         };
     }
 
-    @Test(enabled = true, dataProvider = "sites")
+    @Test(enabled = false, dataProvider = "sites")
     @Description("NASH study 4483 OLS")
     public void dia4483olsTest(Site site) {                 // TODO rename!!!
         DebugPageOLS debugPageOLS = new DebugPageOLS();

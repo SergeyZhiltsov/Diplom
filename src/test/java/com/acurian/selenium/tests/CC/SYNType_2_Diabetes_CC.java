@@ -34,7 +34,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = DIA_4483_OLS.class)
+    @Test(dataProvider = "sites", dataProviderClass = DIA_4483_OLS.class, enabled = false)
     public void dia4483ccTest(Site site) {
         final String phoneNumber = "AUTAMS1DIA";
         final String studyName = "a fatty liver study for diabetics"; //"a NASH study";
