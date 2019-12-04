@@ -2,25 +2,26 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
+import com.acurian.selenium.pages.CC.ADG_4357.DigestiveConditionsAffectDiabetesPageCC;
+import com.acurian.selenium.pages.CC.ADG_4357.SymptomsRegularlyOncePerWeekPageCC;
 import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
+import com.acurian.selenium.pages.CC.IBD.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.closes.*;
+import com.acurian.selenium.pages.CC.cv_study.AdditionalHeartRelatedConditionsPageCC;
+import com.acurian.selenium.pages.CC.cv_study.CholesterolTriglyceridesLipidsPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.tests.OLS.DIA_4483_OLS;
+import com.acurian.selenium.tests.OLS.SYNType_2_Diabetes_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class SYNType_2_Diabetes_CC extends BaseTest {
 
@@ -34,7 +35,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(dataProvider = "sites", dataProviderClass = DIA_4483_OLS.class, enabled = false)
+    @Test(dataProvider = "sites", dataProviderClass = SYNType_2_Diabetes_OLS.class)
     public void dia4483ccTest(Site site) {
         final String phoneNumber = "AUTAMS1DIA";
         final String studyName = "a fatty liver study for diabetics"; //"a NASH study";
@@ -104,16 +105,16 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageCC());
 
-//        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedAnyTypeOfDiabetesPageCC
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new NonQRtransitionPageCC());
-//
-//        nonQRtransitionPageCC
-//                .waitForPageLoad()
-//                .getPage(debugPageCC)
-//                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
-//                .back();
+        NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedAnyTypeOfDiabetesPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new NonQRtransitionPageCC());
+
+        nonQRtransitionPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
+                .back();
 
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
                 .waitForPageLoad()
@@ -159,32 +160,34 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC)
+                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
+        LastTimeYouTookPageCC lastTimeYouTookPageCC = currentlyTreatingYourDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Diet and exercise")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
-
-        LastTimeYouTookPageCC lastTimeYouTookPageCC = cardiovascularDiseaseThanOthersPageCC
-                .waitForPageLoad()
-                .back(currentlyTreatingYourDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .back(currentlyTreatingYourDiabetesPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Diet and exercise")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+//
+//        LastTimeYouTookPageCC lastTimeYouTookPageCC = cardiovascularDiseaseThanOthersPageCC
+//                .waitForPageLoad()
+//                .back(currentlyTreatingYourDiabetesPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("I am not currently treating my diabetes")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .back(currentlyTreatingYourDiabetesPageCC)
                 .clickOnAnswers("Medication such as metformin or insulin or other diabetes medication")
                 .clickNextButton(new LastTimeYouTookPageCC());
 
-        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
-        for (String answer : disqualify) {
-            System.out.println("Select answer for Q6: " + answer);
-            lastTimeYouTookPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                    .waitForPageLoad()
-                    .back();
-        }
+//        List<String> disqualify = Arrays.asList("2 - 3 months ago", "4 - 5 months ago", "6 months ago or longer");
+//        for (String answer : disqualify) {
+//            System.out.println("Select answer for Q6: " + answer);
+//            lastTimeYouTookPageCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                    .waitForPageLoad()
+//                    .back();
+//        }
         MetforminMedicationsPageCC metforminMedicationsPageCC = lastTimeYouTookPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Currently taking / have taken within the past month")
@@ -258,11 +261,11 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 
         BrandsOfInsulinPageCC brandsOfInsulinPageCC = takeYourInsulinPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Inhaled insulin (Afrezza)")
-                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
-                .waitForPageLoad()
-                .back(takeYourInsulinPageCC)
-                .waitForPageLoad()
+//                .clickOnAnswers("Inhaled insulin (Afrezza)")
+//                .clickNextButton(injectableMedicationsForYourDiabetesPageCC)
+//                .waitForPageLoad()
+//                .back(takeYourInsulinPageCC)
+//                .waitForPageLoad()
                 .clickOnAnswers("Inhaled insulin (Afrezza)")
                 .clickOnAnswers("Insulin pump, which delivers insulin continuously")
                 .clickNextButton(new BrandsOfInsulinPageCC());
@@ -287,6 +290,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswers("Daily injections")
                 .clickNextButton(new TakeYourInsulinInjectionsPageCC());
 
+//        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = new CardiovascularDiseaseThanOthersPageCC();
         NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
         FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = takeYourInsulinInjectionsPageCC
                 .waitForPageLoad()
@@ -302,12 +306,12 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswers("High blood pressure or hypertension")
                 .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(noOfAlcoholicDrinksCC)
-                .setDrinks("11")
-                .clickNextButton(new FollowingLiverRelatedConditionCC())
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
-                .back(noOfAlcoholicDrinksCC)
+//                .setDrinks("11")
+//                .clickNextButton(new FollowingLiverRelatedConditionCC())
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
+//                .back(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .setDrinks("10")
                 .clickNextButton(new FollowingLiverRelatedConditionCC());
@@ -355,49 +359,49 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new PoundsOrMorePageCC());
 
-        ProcedureForWeightLossPageCC procedureForWeightLossPageCC = poundsOrMorePageCC
-                .waitForPageLoad()
-                .back(weightLossSurgeryPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("Gastric bypass")
-                .clickNextButton(new ProcedureForWeightLossPageCC());
-
-
-        List<String> disqualifyQ20 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
-                "1 - 2 years ago", "More than 2 years ago");
-        for (String answer: disqualifyQ20) {
-            System.out.println("Select answer for Q20: " + answer);
-            procedureForWeightLossPageCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(poundsOrMorePageCC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
-                    .back();
-        }
-        procedureForWeightLossPageCC
-                .waitForPageLoad()
-                .back();
-
-        weightLossSurgeryPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(poundsOrMorePageCC);
-
         TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new TransitionStatementCC());
-        transitionStatementCC
-                .waitForPageLoad(indicationHistroyName)
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)
-                .back();
-        poundsOrMorePageCC
+//                .waitForPageLoad()
+//                .back(weightLossSurgeryPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("Gastric bypass")
+//                .clickNextButton(new ProcedureForWeightLossPageCC());
+//
+//
+//        List<String> disqualifyQ20 = Arrays.asList("Less than 3 months ago", "3 - 6 months ago", "7 - 11 months ago",
+//                "1 - 2 years ago", "More than 2 years ago");
+//        for (String answer: disqualifyQ20) {
+//            System.out.println("Select answer for Q20: " + answer);
+//            procedureForWeightLossPageCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(poundsOrMorePageCC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS4616", site.activeProtocols)
+//                    .back();
+//        }
+//        procedureForWeightLossPageCC
+//                .waitForPageLoad()
+//                .back();
+//
+//        weightLossSurgeryPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(poundsOrMorePageCC);
+//
+//        TransitionStatementCC transitionStatementCC = poundsOrMorePageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Yes")
+//                .clickNextButton(new TransitionStatementCC());
+//        transitionStatementCC
+//                .waitForPageLoad(indicationHistroyName)
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4617", site.activeProtocols)
+//                .back();
+//        poundsOrMorePageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(transitionStatementCC);
+                .clickNextButton(new TransitionStatementCC());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 transitionStatementCC
@@ -438,107 +442,107 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                         "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
-                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
-
-        subquestionExperiencedHeartPageCC
-                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
-                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
-                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
-                .back();
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
+//                .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
+//                .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4)
+//                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "Less than 30 days ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
+//                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+//                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
+//                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
+//
+//        subquestionExperiencedHeartPageCC
+//                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+//                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+//                .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
+//                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
+//                .back();
 
         MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
@@ -552,19 +556,19 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
         KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
-        ArrayList<String> heartProcedurePeriods = new ArrayList<>();
-        heartProcedurePeriods.add("Less than 30 days ago");
-        heartProcedurePeriods.add("1 - 3 months ago");
-        for (String period : heartProcedurePeriods) {
-            mostRecentHeartProcedurePageСС
-                    .waitForPageLoad()
-                    .clickOnAnswer(period)
-                    .clickNextButton(kidneyProblemsPage)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
-                    .back();
-        }
+//        ArrayList<String> heartProcedurePeriods = new ArrayList<>();
+//        heartProcedurePeriods.add("Less than 30 days ago");
+//        heartProcedurePeriods.add("1 - 3 months ago");
+//        for (String period : heartProcedurePeriods) {
+//            mostRecentHeartProcedurePageСС
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(period)
+//                    .clickNextButton(kidneyProblemsPage)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
+//                    .back();
+//        }
 
         WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
@@ -607,25 +611,25 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
-                .clickOnAnswers("Bipolar disorder")
+//                .clickOnAnswers("Bipolar disorder")
+//                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+//
+//        doAnyOftheFollowingAdditionalDiagnosesCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
+//                .back(followingMentalEmotionalHealthPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Schizophrenia")
+//                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
+//                .back(followingMentalEmotionalHealthPageCC)
+//                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
-
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back(followingMentalEmotionalHealthPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS53", site.activeProtocols)
-                .back(followingMentalEmotionalHealthPageCC)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
@@ -692,15 +696,15 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
 
 
-        ApproximateHeightPageCC approximateHeightPageCC = doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
-                .clickOnAnswers("Bipolar disorder")
-                .clickNextButton(new ApproximateHeightPageCC());
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
-                .back();
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+//                .waitForPageLoad()
+//                .clickOnAnswers("Bipolar disorder")
+//                .clickNextButton(new ApproximateHeightPageCC());
+//        approximateHeightPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+//                .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
@@ -757,33 +761,96 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .back();
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Schizophrenia")
-                .clickNextButton(approximateHeightPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
-                .back();
-        doAnyOftheFollowingAdditionalDiagnosesCC
-                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Schizophrenia")
+//                .clickNextButton(approximateHeightPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+//                .back();
+//        doAnyOftheFollowingAdditionalDiagnosesCC
+//                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageCC);
 
         LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
                 .waitForPageLoad()
-                .setAll("4", "9", "138")
+//                .setAll("4", "9", "138")
+//                .clickNextButton(new LetMeSeePageCC());
+//
+//        letMeSeePageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+//                .back();
+//
+//        approximateHeightPageCC
+//                .waitForPageLoad()
+                .setAll("4", "10", "180")
                 .clickNextButton(new LetMeSeePageCC());
 
-        letMeSeePageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back();
+//        DigestiveConditionsAffectDiabetesPageCC digestiveConditionsAffectDiabetesPageCC = letMeSeePageCC
+//                .waitForPageLoad()
+//                .clickNextButton(new DigestiveConditionsAffectDiabetesPageCC());
+//
+//        SymptomsRegularlyOncePerWeekPageCC symptomsRegularlyOncePerWeekPageCC = digestiveConditionsAffectDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new SymptomsRegularlyOncePerWeekPageCC());
+//
+//        HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC = symptomsRegularlyOncePerWeekPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC());
+//
+//        CholesterolTriglyceridesLipidsPageCC cholesterolTriglyceridesLipidsPageCC = haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Unsure")
+//                .clickNextButton(new CholesterolTriglyceridesLipidsPageCC());
+//
+//        cholesterolTriglyceridesLipidsPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
+//
+//        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+//
+//        AdditionalHeartRelatedConditionsPageCC additionalHeartRelatedConditionsPageCC =  heartrelatedMedicalProceduresPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new AdditionalHeartRelatedConditionsPageCC());
+//
+//        IdentificationPageCC identificationPageCC = additionalHeartRelatedConditionsPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new IdentificationPageCC());
 
-        approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("4", "10", "180")
-                .clickNextButton(letMeSeePageCC);
+//        DoYouExperienceAnyOfFollowingSymptoms_CC doYouExperienceAnyOfFollowingSymptoms_CC = doYouExperienceDPN_CC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, none of the above")
+//                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_CC());
+//
+//        TransitionStatementCVbeginPageCC transitionStatementCVbeginPageCC = doYouExperienceAnyOfFollowingSymptoms_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new TransitionStatementCVbeginPageCC());
+//
+//        ExperiencedAnyOfFollowingCC experiencedAnyOfFollowingCC = transitionStatementCVbeginPageCC
+//                .waitForPageLoad()
+//                .clickNextButton(new ExperiencedAnyOfFollowingCC());
+//
+//        HasDoctorEverDiagnosedYouWithLowTestosterone_CC hasDoctorEverDiagnosedYouWithLowTestosterone_CC = experiencedAnyOfFollowingCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_CC());
+//
+//        IdentificationPageCC identificationPageCC = hasDoctorEverDiagnosedYouWithLowTestosterone_CC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new IdentificationPageCC());
 
         SiteSelectionPageCC siteSelectionPageCC = letMeSeePageCC
                 .waitForPageLoad()
@@ -793,30 +860,30 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                         site.zipCode)
                 .clickNextButton(new SiteSelectionPageCC());
         switch (site) {
-            case AUT_NASH4483_site: //1R
-                siteSelectionPageCC
-                        .waitForPageLoad(studyName)
-                        .getPID()
-                        .clickOnAnswer(site.name)
-                        .clickNextButton(new QualifiedClose1PageCC())
-                        .waitForPageLoad()
-                        // .clickOnAnswer("No")
-//                    .clickNextButton(new SynexusHealthyMindsPageCC())
-//                    .waitForPageLoad()
-//                    .clickOnAnswer("No")
-                        .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad3()
-                        .clickNextButton(new AlzheimerClosePageCC())
-                        .waitForPageLoad()
-                        .clickNextButton(selectActionPageCC)
-                        .waitForPageLoad()
-                        .pidFromDbToLog(env)
-                        .getRadiantDbToLog(env)
-                        .childPidFromDbToLog(env, "4483")
-                        .assertGeneratedFul(env, site)
-                        .dispoShouldMatch(site.dispo, site.dispo);
-                break;
-            case AUT_NASH4483S_site: //41C
+//            case AUT_NASH4483_site: //1R
+//                siteSelectionPageCC
+//                        .waitForPageLoad(studyName)
+//                        .getPID()
+//                        .clickOnAnswer(site.name)
+//                        .clickNextButton(new QualifiedClose1PageCC())
+//                        .waitForPageLoad()
+//                        // .clickOnAnswer("No")
+////                    .clickNextButton(new SynexusHealthyMindsPageCC())
+////                    .waitForPageLoad()
+////                    .clickOnAnswer("No")
+//                        .clickNextButton(new ThankYouCloseSimplePageCC())
+//                        .waitForPageLoad3()
+//                        .clickNextButton(new AlzheimerClosePageCC())
+//                        .waitForPageLoad()
+//                        .clickNextButton(selectActionPageCC)
+//                        .waitForPageLoad()
+//                        .pidFromDbToLog(env)
+//                        .getRadiantDbToLog(env)
+//                        .childPidFromDbToLog(env, "4483")
+//                        .assertGeneratedFul(env, site)
+//                        .dispoShouldMatch(site.dispo, site.dispo);
+//                break;
+            case AUT_AMS1_DIABS_site: //41C
                 siteSelectionPageCC
                         .waitForPageLoad(studyName)
                         .getPID()
