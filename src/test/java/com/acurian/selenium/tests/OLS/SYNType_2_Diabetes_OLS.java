@@ -12,7 +12,6 @@ import com.acurian.selenium.pages.OLS.GERD.DoYouExperienceAnyOfFollowingSymptoms
 import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.ExperiencedAnyOfFollowingOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouWithLowTestosterone_OLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -28,10 +27,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import java.util.Arrays;
-import java.util.List;
 
-public class SYNType_2_Diabetes extends BaseTest {
+public class SYNType_2_Diabetes_OLS extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
@@ -50,9 +47,9 @@ public class SYNType_2_Diabetes extends BaseTest {
         };
     }
 
-    @Test(enabled = false, dataProvider = "sites")
+    @Test(enabled = true, dataProvider = "sites")
     @Description("NASH study 4483 OLS")
-    public void dia4483olsTest(Site site) {                 // TODO rename!!!
+    public void SYNType_2_Diabetes_OLS(Site site) {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String phoneNumber = "AUTAMS1DIA";
         String studyName = "a fatty liver study for diabetics!";//"a NASH";
@@ -95,52 +92,50 @@ public class SYNType_2_Diabetes extends BaseTest {
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
 
-// TODO Flow will change later
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
-//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("No")
-//                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
-//                .back();
+//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
+                .back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
         WithType1DiabetesPageOLS withType1DiabetesPageOLS = new WithType1DiabetesPageOLS();
 
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = new CardiovascularDiseaseThanOthersPageOLS();
-        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = new CurrentlyTreatingYourDiabetesPageOLS();
-//        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-//                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-//        withType1DiabetesPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-//                .back();
-//        whatKindOfDiabetesPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("High blood sugar only")
-//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-//                .back();
-//
-//        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
-//                .waitForPageLoad()
-//                .clickOnAnswer("Unsure")
-//                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
-//        currentlyTreatingYourDiabetesPageOLS
-//                .waitForPageLoad()
-//                .getPage(debugPageOLS)
-//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-//                .back();
+
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+        withType1DiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+                .back();
+        whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("High blood sugar only")
+                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+                .back();
+
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Unsure")
+                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+        currentlyTreatingYourDiabetesPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+                .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
@@ -809,85 +804,86 @@ public class SYNType_2_Diabetes extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(approximateHeightPageOLS);
 
-        DigestiveConditionsAffectDiabetesPageOLS digestiveConditionsAffectDiabetesPageOLS = approximateHeightPageOLS
+
+//        DigestiveConditionsAffectDiabetesPageOLS digestiveConditionsAffectDiabetesPageOLS = approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .setAll("5", "5", "190") //BMI > 30
+//                .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS());
+//
+//        SymptomsRegularlyOncePerWeekPageOLS symptomsRegularlyOncePerWeekPageOLS = digestiveConditionsAffectDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new SymptomsRegularlyOncePerWeekPageOLS());
+//
+//        HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS = symptomsRegularlyOncePerWeekPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS());
+//
+//        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Unsure")
+//                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
+//
+//        cholesterolTriglyceridesLipidsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
+//
+//        haveYouEverExperiencedHeartRelatedMedicalCondOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
+//
+//        AdditionalHeartRelatedConditionsPageOLS additionalHeartRelatedConditionsPageOLS =  heartrelatedMedicalProceduresPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new AdditionalHeartRelatedConditionsPageOLS());
+//
+//        DoYouExperienceDPN_OLS doYouExperienceDPN_ols = additionalHeartRelatedConditionsPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new DoYouExperienceDPN_OLS());
+//
+//        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_ols = doYouExperienceDPN_ols
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, none of the above")
+//                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
+//
+//        TransitionStatementCVbeginPageOLS transitionStatementCVbeginPageOLS = doYouExperienceAnyOfFollowingSymptoms_ols
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new TransitionStatementCVbeginPageOLS());
+//
+//        ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowingOLS = transitionStatementCVbeginPageOLS
+//                .waitForPageLoad()
+//                .clickNextButton(new ExperiencedAnyOfFollowingOLS());
+//
+//        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_ols = experiencedAnyOfFollowingOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
+//
+//        IdentificationPageOLS identificationPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_ols
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new IdentificationPageOLS());
+
+
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "190") //BMI > 30
-                .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS());
-
-        SymptomsRegularlyOncePerWeekPageOLS symptomsRegularlyOncePerWeekPageOLS = digestiveConditionsAffectDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new SymptomsRegularlyOncePerWeekPageOLS());
-
-        HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS = symptomsRegularlyOncePerWeekPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS());
-
-        CholesterolTriglyceridesLipidsPageOLS cholesterolTriglyceridesLipidsPageOLS = haveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Unsure")
-                .clickNextButton(new CholesterolTriglyceridesLipidsPageOLS());
-
-        cholesterolTriglyceridesLipidsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
-
-        haveYouEverExperiencedHeartRelatedMedicalCondOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(heartrelatedMedicalProceduresPageOLS);
-
-        AdditionalHeartRelatedConditionsPageOLS additionalHeartRelatedConditionsPageOLS =  heartrelatedMedicalProceduresPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new AdditionalHeartRelatedConditionsPageOLS());
-
-        DoYouExperienceDPN_OLS doYouExperienceDPN_ols = additionalHeartRelatedConditionsPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new DoYouExperienceDPN_OLS());
-
-        DoYouExperienceAnyOfFollowingSymptoms_OLS doYouExperienceAnyOfFollowingSymptoms_ols = doYouExperienceDPN_ols
-                .waitForPageLoad()
-                .clickOnAnswer("No, none of the above")
-                .clickNextButton(new DoYouExperienceAnyOfFollowingSymptoms_OLS());
-
-        TransitionStatementCVbeginPageOLS transitionStatementCVbeginPageOLS = doYouExperienceAnyOfFollowingSymptoms_ols
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new TransitionStatementCVbeginPageOLS());
-
-        ExperiencedAnyOfFollowingOLS experiencedAnyOfFollowingOLS = transitionStatementCVbeginPageOLS
-                .waitForPageLoad()
-                .clickNextButton(new ExperiencedAnyOfFollowingOLS());
-
-        HasDoctorEverDiagnosedYouWithLowTestosterone_OLS hasDoctorEverDiagnosedYouWithLowTestosterone_ols = experiencedAnyOfFollowingOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new HasDoctorEverDiagnosedYouWithLowTestosterone_OLS());
-
-        IdentificationPageOLS identificationPageOLS = hasDoctorEverDiagnosedYouWithLowTestosterone_ols
-                .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new IdentificationPageOLS());
 
-
-        identificationPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new SiteSelectionPageOLS());
 
-        if (site == Site.AUT_AMS1_DIABS_site) {
-            new SiteSelectionPageOLS().waitForPageLoad1(studyName)
-                    .getPID();}
-        else{
-            new SiteSelectionPageOLS().waitForPageLoad1(studyName)
-                    .getPID();}
-
-        SiteSelectionPageOLS siteSelectionPageOLS = new SiteSelectionPageOLS();
-        siteSelectionPageOLS.clickOnFacilityName(site.name)
+        siteSelectionPageOLS
+                .waitForPageLoad1(studyName)
+                .getPID()
+                .clickOnFacilityName(site.name)
                 .waitForAnimation();
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = siteSelectionPageOLS
                 .clickNextButton(new QualifiedClose2PageOLS())
