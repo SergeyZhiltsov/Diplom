@@ -1,5 +1,6 @@
 package com.acurian.selenium.pages.blinx.ams;
 
+import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -11,9 +12,9 @@ public class WithType2diabetesPageOLS extends MainPageBlinx {
 
     private final String titleExpected = "How long ago were you diagnosed with type 2 diabetes?";
 
-    @FindBy(xpath = "//div[@class='question-text']")
+    @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS_BLINX)
     WebElement titleText;
-    @FindBy(xpath = "//div[@class='single-choice-answers-container']/button")
+    @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;
 
     @Step

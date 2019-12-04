@@ -379,7 +379,7 @@ public class DateOfBirthPageOLS extends MainPageOLS {
 //            "No-cost study-related care from doctors\n" +
 //            "No-cost study medication";
 //
-//    public final String titleExpectedGBAN = "The Generation Study is enrolling now.";
+    public final String titleExpectedGBAN = "The Generation Study is enrolling now.";
 //
     public final String titleExpectedGBAN1 = "Let's start!";
 //    //GH pathes
@@ -619,12 +619,12 @@ public class DateOfBirthPageOLS extends MainPageOLS {
         waitForPageLoadMain(questionTextAH1, titleAHExpected);
         return this;
     }
-//
-//    @Step
-//    public DateOfBirthPageOLS waitForPageLoadGBAN() {
-//        waitForPageLoadMain(titleTextGBAN, titleExpectedGBAN);
-//        return this;
-//    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoadGBAN() {
+        waitForPageLoadMain(titleTextGBAN, titleExpectedGBAN);
+        return this;
+    }
 
     @Step
     public DateOfBirthPageOLS waitForPageLoadByTitle(String titleExpected) {

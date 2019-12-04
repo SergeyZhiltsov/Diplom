@@ -1,8 +1,7 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
-import com.acurian.selenium.pages.blinx.ams.LetsGetStartedPageOLS;
+import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.outer.AcurianHealthPage;
 import com.acurian.selenium.pages.outer.OlsLegacyDateOfBirthPage;
 import com.acurian.selenium.pages.outer.OlsLegacyNumberPage;
@@ -70,15 +69,15 @@ public class WLPvalidation extends BaseTest {
         String title = getDriver().getTitle();
 
         if (title.equals("Acurian Clinical Screener")) { //OLS-WS
-            DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+            com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS dateOfBirthPageOLS = new com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS();
             dateOfBirthPageOLS.logTextToAllureAndConsole("OLS-WS");
-            dateOfBirthPageOLS.waitForPageLoad2();
+            dateOfBirthPageOLS.waitForPageLoad("a study", "1,000");
             Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS.
                     getExpectedModifiedTitle("a study", "1,000"), "Title is diff");
         } else if (title.equals("Screener")) { //BLINX
-            LetsGetStartedPageOLS letsGetStartedPageOLS = new LetsGetStartedPageOLS();
-            letsGetStartedPageOLS.logTextToAllureAndConsole("BLINX");
-            letsGetStartedPageOLS.waitForPageLoad("a study", "1,000");
+            DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
+            dateOfBirthPageOLS.logTextToAllureAndConsole("BLINX");
+            dateOfBirthPageOLS.waitForPageLoad("a study", "1,000");
         } else {
             Assert.assertTrue(false, "Nor OLS-WS, nor BLINX");
         }

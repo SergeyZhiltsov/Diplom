@@ -1,10 +1,10 @@
 package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.blinx.DebugPageBlinxOLS;
+import com.acurian.selenium.pages.blinx.ams.debug.DebugPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.*;
 import com.acurian.selenium.pages.blinx.gmega.intro.LetsGetStartedPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.intro.PersonalIdentificationPageOLS;
+import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.PleaseConfirmYourGenderPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.ProvidingInformationPageOLS;
 import org.testng.annotations.Test;
@@ -22,7 +22,7 @@ public class BlinxGmega extends BaseTest {
                 .to("https://screener.acurianhealth.com/welcome.do?method=beginCall&phoneNumber=AUTGMEGA01&up[]=CLIENT_BLINX" +
                         "&show_debug=1&testing_key=51fa2780f2430b542923956ac1974bb7");
 
-        DebugPageBlinxOLS debugPageBlinxOLS = new DebugPageBlinxOLS();
+        DebugPageOLS debugPageOLS = new DebugPageOLS();
 
         ProvidingInformationPageOLS providingInformationPageOLS = letsGetStartedPageOLS
                 .waitForPageLoad("a rheumatoid arthritis (RA) study!", "625")
@@ -31,19 +31,19 @@ public class BlinxGmega extends BaseTest {
         letsGetStartedPageOLS
                 .waitForAnimation();
 
-        PersonalIdentificationPageOLS personalIdentificationPageOLS = providingInformationPageOLS
+        IdentificationPageOLS identificationPageOLS = providingInformationPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Self")
-                .clickNextButton(new PersonalIdentificationPageOLS());
+                .clickNextButton(new IdentificationPageOLS());
         providingInformationPageOLS
                 .waitForAnimation();
 
-        PleaseConfirmYourGenderPageOLS pleaseConfirmYourGenderPageOLS = personalIdentificationPageOLS
+        PleaseConfirmYourGenderPageOLS pleaseConfirmYourGenderPageOLS = identificationPageOLS
                 .waitForPageLoad2()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com",
                         "9999999999", "08204", "Cape May", "New Jersey")
                 .clickNextButton(new PleaseConfirmYourGenderPageOLS());
-        personalIdentificationPageOLS
+        identificationPageOLS
                 .waitForAnimation();
 
         ApproximateHeightWeightPageOLS approximateHeightWeightPageOLS = pleaseConfirmYourGenderPageOLS
@@ -92,19 +92,19 @@ public class BlinxGmega extends BaseTest {
         diagnosedWithRAPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 - 6 months ago")
-                .clickNextButton(personalIdentificationPageOLS);
+                .clickNextButton(identificationPageOLS);
         diagnosedWithRAPageOLS
                 .waitForAnimation();
 
-        SiteSelectionPageOLS siteSelectionPageOLS = personalIdentificationPageOLS
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS());
-        personalIdentificationPageOLS
+        identificationPageOLS
                 .waitForAnimation();
 
         QualifiedClosePageOLS qualifiedClosePageOLS = siteSelectionPageOLS
                 .waitForPageLoad("Arthritis, a low back pain study, a rheumatoid arthritis (RA) study!")
-                .getPage(debugPageBlinxOLS)
+                .getPage(debugPageOLS)
                 .getPID()
                 .getPage(siteSelectionPageOLS)
                 .clickOnFacilityName("AUT_GMEGA_New")
