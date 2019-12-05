@@ -25,9 +25,17 @@ public class DoAnyOftheFollowingAdditionalDiagnosesOLS extends MainPageBlinx {
         return this;
     }
 
+//    @Step
+//    public DoAnyOftheFollowingAdditionalDiagnosesOLS clickOnAnswers(String... answerText) {
+//        clickOnCheckBoxes(checkBoxList, answerText);
+//        return this;
+//    }
+
+    // Checkboxes are covered by the debug window panel, so, we use this method to scroll to the top, and then click on checkboxes.
     @Step
     public DoAnyOftheFollowingAdditionalDiagnosesOLS clickOnAnswers(String... answerText) {
-        clickOnCheckBoxes(checkBoxList, answerText);
+        waitForAnimation();
+        clickOnCheckBoxesBlinx(checkBoxList, answerText);
         return this;
     }
 

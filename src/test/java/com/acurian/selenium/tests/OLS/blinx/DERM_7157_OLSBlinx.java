@@ -14,7 +14,6 @@ import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.WhatKindOfDiabetesPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
-import com.acurian.selenium.pages.blinx.gmega.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -46,7 +45,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("DERM 7157 Glenmark Atopic Derm")
     public void DERM_7157_OLS(Site site) {
         final String phoneNumber = "AUTAMS1KAD";
@@ -151,7 +150,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
 //                    .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
-//                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
+                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
                     .back(howMuchEczemaYouHaveOnYourBody_OLS);
         }
         howMuchEczemaYouHaveOnYourBody_OLS
@@ -231,10 +230,11 @@ public class DERM_7157_OLSBlinx extends BaseTest {
 
         WhatKindOfArthritisPageOLS whatKindOfArthritisPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
+                .clickOnAnswers("Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
+                .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                        "Autism spectrum",
-                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
                         "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
@@ -257,10 +257,11 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .clickNextButton(new WhatKindOfArthritisPageOLS());
         whatKindOfArthritisPageOLS
                 .waitForPageLoad()
-                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickPreviousQuestion();
         //Q2: QS38
+
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
-                haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("ADHD or attention deficit hyperactivity disorder") //skip to Q24
@@ -621,7 +622,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS());
 
         MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
-                .waitForPageLoad("an eczema (atopic dermatitis)")
+                .waitForPageLoad5("an eczema (atopic dermatitis) study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new MedicalRecordsOptionPageOLS());
@@ -635,33 +636,20 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .waitForPageLoad()
                 .clickNextButton(new HS1PageOLS());
 
-
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        AboutHealthPageOLS aboutHealthPageOLS = new AboutHealthPageOLS();
         hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
-                .setSignature()
-                .waitToClickNext()
-                .clickNextButton(thankYouCloseSimplePageOLS);
-        try {
-            thankYouCloseSimplePageOLS
-                    .waitForPageLoad()
-                    .clickNextButton(new AboutHealthPageOLS())
-                    .waitForPageLoad();
-        }
-        catch (Exception t){
-            aboutHealthPageOLS
-                    .waitForPageLoad();
-        }
+                .setSignature();
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+                .waitForPageLoad()
+                .clickNextButton(new AboutHealthPageOLS());
+
         aboutHealthPageOLS
+                .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .childPidFromDbToLog(env)
-                .dispoShouldMatch(site.dispo, site.dispo)
-                .assertGeneratedFul(env, site)
-                .assertRmgOrderPriority(env, "7157");
-
-
-
+                .dispoShouldMatch(site.dispo, site.dispo);
     }
 }
