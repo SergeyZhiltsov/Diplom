@@ -30,7 +30,7 @@ public class CV_4450_OLSblinx extends BaseTest {
     }
 
     @Test(dataProvider = "data", enabled = false)
-    public void cv4450olsBlinxTest(Site site, String city, String state) {
+    public void CV_4450_Blinx(Site site, String city, String state) {
         String phoneNumber = "AUTAMS1CV1";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");

@@ -45,9 +45,9 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = true)
+    @Test(dataProvider = "sites", enabled = false)
     @Description("DERM 7157 Glenmark Atopic Derm")
-    public void DERM_7157_OLS(Site site) {
+    public void DERM_7157_Blinx(Site site) {
         final String phoneNumber = "AUTAMS1KAD";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String studyName = "an eczema (atopic dermatitis) study";
