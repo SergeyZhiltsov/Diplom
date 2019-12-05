@@ -43,7 +43,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
     }
 
     @Test(dataProvider = "data", enabled = false) //todo turn on after PDV
-    public void cv5034olsBlinxTest(Site site, String city, String state) {
+    public void CV_5034_Blinx(Site site, String city, String state) {
         String phoneNumber = "AUTAMS1CV1";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         String env = System.getProperty("acurian.env", "STG");

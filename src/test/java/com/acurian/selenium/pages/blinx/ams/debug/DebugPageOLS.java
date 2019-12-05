@@ -32,7 +32,8 @@ public class DebugPageOLS extends MainPageBlinx {
     @FindBy(xpath = "//table[@id='questionHistoryTable']/tbody/tr[1]/td[3]")
     List<WebElement> questionList;
 
-
+    @FindBy(xpath = "(//*[@id='info-debug-window']/div[contains(.,'Study Status Set:')])[2]")
+    WebElement studyStatus;
 
 
 
@@ -123,19 +124,19 @@ public class DebugPageOLS extends MainPageBlinx {
 
 
 
-//    public DebugPageOLS checkStudyStatusContainsForQNumber(String expectedStudyStatus) {
-//        String actualStudyStatus = getStudyStatus();
-//        logTextToAllureAndConsole("Status Set displayed = " + actualStudyStatus);
-//        Assert.assertEquals(actualStudyStatus, expectedStudyStatus, "Study status is different!");
-//        return this;
-//    }
-//
-//    private String getStudyStatus() {
-//        openInfoWindow();
-//        String[] statusSetParts = studyStatus.getText().split("\n");
-//        closeInfoWindow();
-//        return statusSetParts[1].replaceAll("[^0-9]", "") + "-"
-//                + statusSetParts[2].replaceAll("[^0-9]", "");
-//    }
+    public DebugPageOLS checkStudyStatusContainsForQNumber(String expectedStudyStatus) {
+        String actualStudyStatus = getStudyStatus();
+        logTextToAllureAndConsole("Status Set displayed = " + actualStudyStatus);
+        Assert.assertEquals(actualStudyStatus, expectedStudyStatus, "Study status is different!");
+        return this;
+    }
+
+    private String getStudyStatus() {
+        openInfoWindow();
+        String[] statusSetParts = studyStatus.getText().split("\n");
+        closeInfoWindow();
+        return statusSetParts[1].replaceAll("[^0-9]", "") + "-"
+                + statusSetParts[2].replaceAll("[^0-9]", "");
+    }
 
 }

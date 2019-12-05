@@ -25,10 +25,18 @@ public class HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS extends Mai
         return this;
     }
 
+//    @Step
+//    public HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS clickOnAnswers(String... answerText) {
+//        waitForAnimation();
+//        clickOnCheckBoxes(checkBoxList, answerText);
+//        return this;
+//    }
+
+    // Checkboxes are covered by the debug window panel, so, we use this method to scroll to the top, and then click on checkboxes.
     @Step
     public HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS clickOnAnswers(String... answerText) {
         waitForAnimation();
-        clickOnCheckBoxes(checkBoxList, answerText);
+        clickOnCheckBoxesBlinx(checkBoxList, answerText);
         return this;
     }
 

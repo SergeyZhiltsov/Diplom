@@ -77,6 +77,7 @@ public class MainPageBlinx extends BasePage {
         checkBoxList.stream().filter(el -> answerTextList.stream().anyMatch(el.getText()::startsWith))
                 .forEach(el -> {
                     try {
+                        waitForAnimation();
                         el.click();
                     } catch (WebDriverException ex) {
                         scrollToElement(el, true).click();
@@ -84,6 +85,39 @@ public class MainPageBlinx extends BasePage {
                 });
         waitForAnimation();
     }
+
+    /**
+     * Use this method only for pages    HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS    and    DoAnyOftheFollowingAdditionalDiagnosesOLS
+     * @param checkBoxList
+     * @param answerText
+     */
+    protected void clickOnCheckBoxesBlinx(List<WebElement> checkBoxList, String... answerText) {
+        List<String> answerTextList = Arrays.asList(answerText);
+        List<String> elementsTextActual = checkBoxList.stream().map(el -> el.getText()).collect(Collectors.toList());
+        List<String> answersNotIncluded = answerTextList.stream().filter(el -> elementsTextActual.parallelStream()
+                .noneMatch(el2 -> el2.contains(el))).collect(Collectors.toList());
+        Assert.assertFalse(answersNotIncluded.size() > 0, "Some answers are not correct " +
+                answersNotIncluded + "\n" +
+                "expected to click are " + answerTextList + "\n" +
+                "actual on page are " + elementsTextActual);
+
+        checkBoxList.stream().filter(el -> answerTextList.stream().anyMatch(el.getText()::startsWith))
+                .forEach(el -> {
+                    try { // TODO make method more flexible!
+                        waitForAnimation();
+                        el.click();
+                    } catch (WebDriverException ex) {
+                        try {
+                            scrollToElement(el, true).click();
+                        }catch (WebDriverException ex1){
+                            scrollToTop();
+                            el.click();
+                        }
+                    }
+                });
+        waitForAnimation();
+    }
+
 
     @Step
     public void clickPreviousQuestion() {
