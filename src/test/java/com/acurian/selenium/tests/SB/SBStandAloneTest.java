@@ -73,7 +73,7 @@ public class SBStandAloneTest extends BaseTest {
         studyEditPage
                 .clickDashboard()
                 .clickPublishStudySetup(studyName, StudyProjectsListPage.SetupEnv.valueOf(env))
-                .checkAddedTherapeutic(therapeuticName)
+               // .checkAddedTherapeutic(therapeuticName)
                 .checkDeletedIndication(indicationName)
                 .clickSaveAndPublish()
                 .clickConfirmPublishOnPopUp();
@@ -195,7 +195,7 @@ public class SBStandAloneTest extends BaseTest {
     private void setEnvData(String env) {
         switch (env) {
             case "PRD":
-                studyId = "";
+                studyId = "8628";
                 alertMessage = "PROD";
                 break;
             case "STG":
