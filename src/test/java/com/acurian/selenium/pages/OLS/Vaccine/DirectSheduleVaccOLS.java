@@ -2,6 +2,7 @@ package com.acurian.selenium.pages.OLS.Vaccine;
 
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
+import com.acurian.selenium.pages.blinx.MainPageBlinx;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -36,6 +37,12 @@ public class DirectSheduleVaccOLS extends MainPageOLS {
 
     @Step
     public <T extends MainPageOLS> T clickSheduleBtn(T page) {
+        sheduleBtn.click();
+        return (T) page;
+    }
+
+    @Step
+    public <T extends MainPageBlinx> T clickSheduleBtnBlinx(T page) {
         sheduleBtn.click();
         return (T) page;
     }
