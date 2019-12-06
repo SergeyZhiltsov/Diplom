@@ -2,19 +2,16 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.closes.AlzheimerClosePageCC;
 import com.acurian.selenium.pages.OLS.ADG_4357.DigestiveConditionsAffectDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.ADG_4357.WithType1DiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.DIA_4241.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.*;
-import com.acurian.selenium.pages.OLS.IBD_Crohns_UC.HaveYouHadBloodTestConfirmsHighCholesterolTriglyceridesPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.MDD_3159.MostRecentHeartProcedurePageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -276,54 +273,57 @@ public class DIA_4483_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
 
-        NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("High cholesterol or high triglycerides")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
-                .back(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS())
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
-                .back(cardiovascularDiseaseThanOthersPageOLS)
-                .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
-                .clickNextButton(new NoOfAlcoholicDrinkOLS());
-
-        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
-                .waitForPageLoad()
-                .setDrinks("15")
-                .clickNextButton(new LiverRelatedConditionOLS());
-        liverRelatedConditionOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
-                .back();
-        noOfAlcoholicDrinkOLS
-                .waitForPageLoad()
-                .setDrinks("14")
-                .clickNextButton(liverRelatedConditionOLS);
-
-        List<String> options = Arrays.asList("Alcoholic liver disease",
-                "Autoimmune hepatitis, which is not the same as hepatitis caused by a virus",
-//                "Hemochromatosis or iron overload ", "Liver cancer or hepatocellular carcinoma ", //this answer sometimes gives another pages (think because of cash)
-                "Primary sclerosing cholangitis or primary biliary cirrhosis", "Wilson's disease");
-        for (String answer : options) {
-            System.out.println("Select answer for Q17: QS4624 " + answer);
-            liverRelatedConditionOLS
+            cardiovascularDiseaseThanOthersPageOLS
                     .waitForPageLoad()
-                    .clickOnAnswers("None of the above")
-                    .clickOnAnswers(answer)
-                    .clickNextButton(new ToLoseWeightPageOLS())
+                    .clickOnAnswers("High cholesterol or high triglycerides")
+                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
+                    .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
+                    .back(cardiovascularDiseaseThanOthersPageOLS)
+                    .waitForPageLoad()
+                    .clickOnAnswers("None of the above")
+                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS4636", site.activeProtocols)
+                    .back(cardiovascularDiseaseThanOthersPageOLS);
+            NoOfAlcoholicDrinkOLS noOfAlcoholicDrinkOLS = cardiovascularDiseaseThanOthersPageOLS
+                    .waitForPageLoad()
+                    .clickOnAnswers("High cholesterol or high triglycerides", "High blood pressure or hypertension")
+                    .clickNextButton(new NoOfAlcoholicDrinkOLS());
+
+        LiverRelatedConditionOLS liverRelatedConditionOLS = noOfAlcoholicDrinkOLS
+                    .waitForPageLoad()
+                    .setDrinks("15")
+                    .clickNextButton(new LiverRelatedConditionOLS());
+            liverRelatedConditionOLS
+                    .waitForPageLoad()
+                    .getPage(debugPageOLS)
+                    .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
                     .back();
-        }
+            noOfAlcoholicDrinkOLS
+                    .waitForPageLoad()
+                    .setDrinks("14")
+                    .clickNextButton(liverRelatedConditionOLS);
+
+            List<String> options = Arrays.asList("Alcoholic liver disease",
+                    "Autoimmune hepatitis, which is not the same as hepatitis caused by a virus",
+//                "Hemochromatosis or iron overload ", "Liver cancer or hepatocellular carcinoma ", //this answer sometimes gives another pages (think because of cash)
+                    "Primary sclerosing cholangitis or primary biliary cirrhosis", "Wilson's disease");
+            for (String answer : options) {
+                System.out.println("Select answer for Q17: QS4624 " + answer);
+                liverRelatedConditionOLS
+                        .waitForPageLoad()
+                        .clickOnAnswers("None of the above")
+                        .clickOnAnswers(answer)
+                        .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS())
+                        .waitForPageLoad()
+                        .getPage(debugPageOLS)
+                        .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
+                        .back();
+            }
+
         FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

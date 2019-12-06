@@ -265,7 +265,7 @@ public class DIA_5062_CC extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(condition)
-                    .clickNextButton(new FollowingToLoseWeightPageCC())
+                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageCC())
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0016651", site.activeProtocols)

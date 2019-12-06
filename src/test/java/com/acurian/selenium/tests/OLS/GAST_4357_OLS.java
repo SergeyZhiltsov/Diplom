@@ -40,7 +40,7 @@ public class GAST_4357_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_GAS4357ds, true},
+//                {Site.AUT_GAS4357ds, true},
                 {Site.AUT_GAST4357_site, false},
                 {Site.AUT_GAST4357_site, true},
                 {Site.AUT_GAST4357S_site, true}
@@ -723,53 +723,74 @@ public class GAST_4357_OLS extends BaseTest {
                 if (inFlare) {
                     siteSelectionPageOLS
                             .clickOnFacilityName(site.name);
-                    if(site.equals(Site.AUT_GAS4357ds)) {
-                        DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
-                        ScedulerOLS scedulerOLS = new ScedulerOLS();
-                        siteSelectionPageOLS
-                                .clickNextButton(directSheduleVaccOLS);
-                        if (env.equals("PRD")) {
+                    switch (site) {
+                        case AUT_GAST4357_site: //1R
+                            aboutHealthPageOLS
+                                    .waitForPageLoad()
+                                    .pidFromDbToLog(env)
+                                    .childPidFromDbToLog(env)
+                                    .dispoShouldMatch(site.dispo, site.dispo);
+                            break;
+                        case AUT_GAST4357S_site: //41C
+                            aboutHealthPageOLS
+                                    .waitForPageLoad()
+                                    .pidFromDbToLog(env)
+                                    .getRadiantDbToLog(env)
+                                    .getAnomalyDbToLog(env)
+                                    .childPidFromDbToLog(env)
+                                    .dispoShouldMatch(site.dispo, site.dispo);
+                            break;
+
+                        case AUT_GAS4357ds: {
+                            DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
+                            ScedulerOLS scedulerOLS = new ScedulerOLS();
+                            siteSelectionPageOLS
+                                    .clickNextButton(directSheduleVaccOLS);
+                            if (env.equals("PRD")) {
+                                directSheduleVaccOLS
+                                        .waitForPageLoad();
+                            }
+                            if (env.equals("STG")) {
+                                directSheduleVaccOLS
+                                        .waitForPageLoadSTG();
+                            }
                             directSheduleVaccOLS
-                                    .waitForPageLoad();
-                        }
-                        if (env.equals("STG")) {
+                                    .clickSheduleBtn(scedulerOLS);
+                            ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+                            getDriver().switchTo().window(tabs.get(1));
+                            scedulerOLS
+                                    .waitForPageLoad()
+                                    .clickOnDay()
+                                    .clickOnTime()
+                                    .waitForPageLoadClientDetails()
+                                    .dateCheck()
+                                    .startsAtCheck()
+                                    .serviceProviderCheck()
+                                    .clickOnAgree();
+                            getDriver().switchTo().window(tabs.get(0));
+                            if (env.equals("PRD")) {
+                                directSheduleVaccOLS
+                                        .waitForPageLoad();
+                            }
+                            if (env.equals("STG")) {
+                                directSheduleVaccOLS
+                                        .waitForPageLoadSTG();
+                            }
                             directSheduleVaccOLS
-                                    .waitForPageLoadSTG();
+                                    .clickNextButton(new QualifiedClose2PageOLS())
+                                    .waitForPageLoad()
+                                    .clickNextButton(new ThankYouCloseSimplePageOLS())
+                                    .waitForPageLoad()
+                                    .clickNextButton(aboutHealthPageOLS)
+                                    .waitForPageLoad()
+                                    .pidFromDbToLog(env)
+                                    .childPidFromDbToLog(env)
+                                    .dispoShouldMatch(site.dispo, site.dispo);
                         }
-                        directSheduleVaccOLS
-                                .clickSheduleBtn(scedulerOLS);
-                        ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
-                        getDriver().switchTo().window(tabs.get(1));
-                        scedulerOLS
-                                .waitForPageLoad()
-                                .clickOnDay()
-                                .clickOnTime()
-                                .waitForPageLoadClientDetails()
-                                .dateCheck()
-                                .startsAtCheck()
-                                .serviceProviderCheck()
-                                .clickOnAgree();
-                        getDriver().switchTo().window(tabs.get(0));
-                        if (env.equals("PRD")) {
-                            directSheduleVaccOLS
-                                    .waitForPageLoad();
-                        }
-                        if (env.equals("STG")) {
-                            directSheduleVaccOLS
-                                    .waitForPageLoadSTG();
-                        }
-                        directSheduleVaccOLS
-                                .clickNextButton(new QualifiedClose2PageOLS())
-                                .waitForPageLoad()
-                                .clickNextButton(new ThankYouCloseSimplePageOLS())
-                                .waitForPageLoad()
-                                .clickNextButton(aboutHealthPageOLS)
-                                .waitForPageLoad()
-                                .pidFromDbToLog(env)
-                                .childPidFromDbToLog(env)
-                                .dispoShouldMatch(site.dispo, site.dispo);
                     }
                     }else {
+
+
                     siteSelectionPageOLS
                             .clickNextButton(new QualifiedCloseGastroPageOLS())
                             .waitForPageLoad()
@@ -782,26 +803,6 @@ public class GAST_4357_OLS extends BaseTest {
                             .childPidFromDbToLog(env)
                             .dispoShouldMatch(site.dispo, site.dispo)
                             .flareCodeShouldMatch(env, inFlare ? "3" : "4");
-
-
-            switch (site) {
-                case AUT_GAST4357_site: //1R
-                    aboutHealthPageOLS
-                            .waitForPageLoad()
-                            .pidFromDbToLog(env)
-                            .childPidFromDbToLog(env)
-                            .dispoShouldMatch(site.dispo, site.dispo);
-                    break;
-                case AUT_GAST4357S_site: //41C
-                    aboutHealthPageOLS
-                            .waitForPageLoad()
-                            .pidFromDbToLog(env)
-                            .getRadiantDbToLog(env)
-                            .getAnomalyDbToLog(env)
-                            .childPidFromDbToLog(env)
-                            .dispoShouldMatch(site.dispo, site.dispo);
-                    break;
-            }
             }
         }
     }

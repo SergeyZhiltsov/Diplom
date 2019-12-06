@@ -64,7 +64,7 @@ public class ServerStatusCC extends BaseTest {
                 .clickNextButton(new DateOfBirthPageCC());
 
         dateOfBirthPageCC
-                .waitForPageLoad2("a study", "1,000");
+                .waitForPageLoadServer();
 //        Assert.assertEquals(dateOfBirthPageCC.getTitleText(), dateOfBirthPageCC.getExpectedModifiedTitle
 //                ("a Crohn's study", "700"), "Title is diff");
         dateOfBirthPageCC

@@ -16,6 +16,11 @@ public class ServerStatusStartPageOLS extends MainPageOLS {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
+    public final String titleExpectedServer = "Are you age 18 or older?";
+
+    @FindBy(xpath = "//form[@id='command']/div[3]/span[@class='sub_question_text']/div[@class='show-in-ols'] | (//div[@class='show-in-ols'])[5]")
+    WebElement titleTextServer;
+
     @FindBy(xpath = "//*[@id='command']/div[2]/span[1]/div[2] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[1]/div[2]") //TODO need to fix
     WebElement titleText;
 
@@ -41,4 +46,11 @@ public class ServerStatusStartPageOLS extends MainPageOLS {
         nextButton.click();
         return (T) page;
     }
+
+    @Step
+    public ServerStatusStartPageOLS waitForPageLoadServer() {
+        waitForPageLoadMain(titleTextServer, titleExpectedServer);
+        return this;
+    }
+
 }
