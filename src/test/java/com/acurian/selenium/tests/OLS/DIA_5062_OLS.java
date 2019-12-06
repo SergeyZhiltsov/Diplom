@@ -239,12 +239,12 @@ public class DIA_5062_OLS extends BaseTest {
         options.put("Wilson's disease", Arrays.asList(site.activeProtocols));
         for (Map.Entry<String, List<String>> entry : options.entrySet()) {
             System.out.println(entry.getKey());
-            FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+            DigestiveConditionsAffectDiabetesPageOLS digestiveConditionsAffectDiabetesPageOLS = liverRelatedConditionOLS
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(entry.getKey())
-                    .clickNextButton(new FollowingToLoseWeightPageOLS());
-            followingToLoseWeightPageOLS
+                    .clickNextButton(new DigestiveConditionsAffectDiabetesPageOLS());
+            digestiveConditionsAffectDiabetesPageOLS
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS4624", (String[]) entry.getValue().toArray())

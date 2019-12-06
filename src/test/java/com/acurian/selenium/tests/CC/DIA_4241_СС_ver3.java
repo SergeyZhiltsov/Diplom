@@ -485,7 +485,7 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickOnAnswer("Yes")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC
-                .waitForPageLoad("diabetes")
+                .waitForPageLoadDYS()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4617", protocols)
                 .back();

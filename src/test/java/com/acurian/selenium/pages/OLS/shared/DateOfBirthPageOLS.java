@@ -551,6 +551,13 @@ public class DateOfBirthPageOLS extends MainPageOLS {
     }
 
     @Step
+    public DateOfBirthPageOLS waitForPageLoadServer() {
+        waitForPageLoadMain(questionText1, titleExpected);
+        return this;
+    }
+
+
+    @Step
     public DateOfBirthPageOLS waitForPageLoad(String indication, String compensation) {
         waitForPageLoadMain(titleText, getExpectedModifiedTitle(indication, compensation));
         return this;

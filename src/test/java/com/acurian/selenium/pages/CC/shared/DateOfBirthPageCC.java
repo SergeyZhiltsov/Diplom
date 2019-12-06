@@ -288,6 +288,9 @@ public class DateOfBirthPageCC extends MainPageCC {
 //    @FindBy(xpath = "//div[@class='subquestion'][3]//div[@class='show-in-cc']")
 //    WebElement questionText2Ver;
 
+    @FindBy(xpath = "//div[@class='subquestion'][3]//div[@class='show-in-cc']")
+    WebElement titleTextServer;
+
     @FindBy(xpath = "//div[@class='subquestion']//div[@class='show-in-cc']")
     WebElement questionTextGmega;
 
@@ -346,6 +349,12 @@ public class DateOfBirthPageCC extends MainPageCC {
         public DateOfBirthPageCC waitForPageLoad(String indication, String compensation) {
             waitForPageLoadMain(titleText, getExpectedModifiedTitle(indication, compensation));
             return this;
+    }
+
+    @Step
+    public DateOfBirthPageCC waitForPageLoadServer() {
+        waitForPageLoadMain(titleTextServer, titleExpected);
+        return this;
     }
 
     @Step

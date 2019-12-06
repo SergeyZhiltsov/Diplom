@@ -41,7 +41,7 @@ public class ServerStatusOLS extends BaseTest {
 
         getDriver().navigate().to(testURL);
         serverStatusStartPageOLS
-                .waitForPageLoad();
+                .waitForPageLoadServer();
         mainPageOLS
                 .getPage(debugPageOLS)
                 .assertServerConnectivity(serverName);
