@@ -743,7 +743,7 @@ public class GAST_4357_OLS extends BaseTest {
 
                         case AUT_GAS4357ds: {
                             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
-                            ScedulerOLS scedulerOLS = new ScedulerOLS();
+                            DRSOLS scedulerOLS = new DRSOLS();
                             siteSelectionPageOLS
                                     .clickNextButton(directSheduleVaccOLS);
                             if (env.equals("PRD")) {

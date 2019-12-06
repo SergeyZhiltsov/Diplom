@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class ScedulerOLS extends MainPageOLS {
+public class DRSOLS extends MainPageOLS {
 
     public final String titleExpected = "Time";
 
@@ -46,31 +46,31 @@ public class ScedulerOLS extends MainPageOLS {
     WebElement agreeBtn;
 
     @Step
-    public ScedulerOLS dateCheck() {
+    public DRSOLS dateCheck() {
         logTextToAllureAndConsole(date.getText());
         return this;
     }
 
     @Step
-    public ScedulerOLS startsAtCheck() {
+    public DRSOLS startsAtCheck() {
         logTextToAllureAndConsole(startAt.getText());
         return this;
     }
 
     @Step
-    public ScedulerOLS serviceProviderCheck() {
+    public DRSOLS serviceProviderCheck() {
         logTextToAllureAndConsole(serviceProvider.getText());
         return this;
     }
 
     @Step
-    public ScedulerOLS waitForPageLoadClientDetails() {
+    public DRSOLS waitForPageLoadClientDetails() {
         waitForPageLoadMain(titleTextClientDetailsMain, titleExpectedClientDetailsMain);
         return this;
     }
 
     @Step
-    public ScedulerOLS waitForPageLoad() {
+    public DRSOLS waitForPageLoad() {
         getDriver().switchTo().frame(frame);
         threadSleep(10000);
         waitForAnimation();
@@ -79,7 +79,7 @@ public class ScedulerOLS extends MainPageOLS {
     }
 
     @Step
-    public ScedulerOLS clickOnDay() {
+    public DRSOLS clickOnDay() {
         WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
         webDriverWaitLogged.waitforVisibility(dayBtn);
         dayBtn.click();
@@ -88,7 +88,7 @@ public class ScedulerOLS extends MainPageOLS {
     }
 
     @Step
-    public ScedulerOLS clickOnTime() {
+    public DRSOLS clickOnTime() {
         WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
         webDriverWaitLogged.waitforVisibility(timeBtn);
         timeBtn.click();
@@ -97,7 +97,7 @@ public class ScedulerOLS extends MainPageOLS {
     }
 
     @Step
-    public ScedulerOLS clickOnAgree() {
+    public DRSOLS clickOnAgree() {
         WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
         webDriverWaitLogged.waitforVisibility(agreeBtn);
         agreeBtn.click();

@@ -65,7 +65,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
         if (site == Site.AUT_AMS_JANRDS_Syn) {
             HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                     new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
-            ScedulerOLS scedulerOLS = new ScedulerOLS();
+            DRSOLS drsols = new DRSOLS();
             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
             dateOfBirthPageOLS
                     .waitForPageLoad("a vaccine study", "650")
@@ -116,10 +116,10 @@ public class VACC_JANRSV_OLS extends BaseTest {
                         .waitForPageLoadSTG();
             }
             directSheduleVaccOLS
-                    .clickSheduleBtn(scedulerOLS);
+                    .clickSheduleBtn(drsols);
             ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
             getDriver().switchTo().window(tabs.get(1));
-            scedulerOLS
+            drsols
                     .waitForPageLoad()
                     .clickOnDay()
                     .clickOnTime()
