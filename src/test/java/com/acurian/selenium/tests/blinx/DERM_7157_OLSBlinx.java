@@ -1,4 +1,4 @@
-package com.acurian.selenium.tests.OLS.blinx;
+package com.acurian.selenium.tests.blinx;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;

@@ -91,11 +91,10 @@ public class AMIG_4742_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-                genderPageCC
+        HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc = genderPageCC
                         .setYear("1938") //Disqualify ("Age") if >= 81
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                        .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
+        hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
@@ -314,9 +313,9 @@ public class AMIG_4742_CC extends BaseTest {
 //                .clickNextButton(transitionStatementCC);
 //
 //---------------Q24: Transition Statement - Display for Call Center onl-----
-        transitionStatementCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = transitionStatementCC
                 .waitForPageLoad(studyName)
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 //-----------------GENERAL HEALTH questions-------------------
         WhatKindOfArthritisCC whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
