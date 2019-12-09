@@ -437,11 +437,12 @@ public class AKC_4691_OLS extends BaseTest {
         //-------Q16:  Has a healthcare professional ever diagnosed you with any of the following liver-related conditions?--------
         liverRelatedConditionOLS
                 .waitForPageLoad();
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
+        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = new FollowingToLoseWeightPageOLS();
+        liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Alcoholic liver disease")
-                .clickNextButton(new FollowingToLoseWeightPageOLS());
-        followingToLoseWeightPageOLS
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -450,7 +451,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -459,7 +460,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Hemochromatosis or iron overload")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -468,7 +469,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Liver cancer or hepatocellular carcinoma")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -477,7 +478,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Primary sclerosing cholangitis or primary biliary cirrhosis")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
@@ -486,7 +487,7 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Wilson's disease")
-                .clickNextButton(followingToLoseWeightPageOLS)
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS4624", site.activeProtocols)
