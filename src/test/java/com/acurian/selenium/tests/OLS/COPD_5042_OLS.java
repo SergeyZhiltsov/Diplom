@@ -349,8 +349,8 @@ public class COPD_5042_OLS extends BaseTest {
         hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
-                .setSignature()
-                .waitToClickNext();
+                .setSignature();
+//                .waitToClickNext();
         ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()

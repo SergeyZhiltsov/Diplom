@@ -59,11 +59,11 @@ public class AMIG_4742_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
                 .back();
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
+        HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols =
         genderPageOLS
                 .setDate("09091938") //Disqualify ("Age") if >= 81
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_OLS());
+        hasHealthcareProfessionalEverDiagnosedYouWithEczema_ols
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8013", site.activeProtocols)
@@ -91,9 +91,9 @@ public class AMIG_4742_OLS extends BaseTest {
 //                .clickNextButton(new AgeWhenDiagnosedWithMigOLS());
 
         //QS2
-        haveYouBeenDiagnosedWithMigrainesOLS
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = haveYouBeenDiagnosedWithMigrainesOLS
                 .clickOnAnswer("No")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
