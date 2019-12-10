@@ -18,7 +18,7 @@ public class ServerStatusStartPageOLS extends MainPageOLS {
 
     public final String titleExpectedServer = "Are you age 18 or older?";
 
-    @FindBy(xpath = "//form[@id='command']/div[3]/span[@class='sub_question_text']/div[@class='show-in-ols'] | (//div[@class='show-in-ols'])[5]")
+    @FindBy(xpath = "//div[@class='subquestion']//span[@class='question_wrap']//span[@class='sub_question_text'] | (//div[@class='show-in-ols'])[5]")
     WebElement titleTextServer;
 
     @FindBy(xpath = "//*[@id='command']/div[2]/span[1]/div[2] | //*[@id='question_view']/div[1]/div/form/div/div[1]/div[2]/div[1]/question/div/div/div/div/div/div/h4/div[1]/div[2]") //TODO need to fix

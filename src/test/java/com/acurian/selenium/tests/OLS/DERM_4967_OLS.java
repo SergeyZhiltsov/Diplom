@@ -103,22 +103,22 @@ public class DERM_4967_OLS extends BaseTest {
                         .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
         HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
-        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
-                "3 - 6 months",
-                "7 - 11 months",
-                "1 year",
-                "2 year");
-        for (String answer : disqualifyQ3) {
-            System.out.println(answer);
-            howLongHaveYouBeenSufferingFromEczema_OLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-                    .back();
-        }
+//        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
+//                "3 - 6 months",
+//                "7 - 11 months",
+//                "1 year",
+//                "2 year");
+//        for (String answer : disqualifyQ3) {
+//            System.out.println(answer);
+//            howLongHaveYouBeenSufferingFromEczema_OLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+//                    .back();
+//        }
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
@@ -127,7 +127,7 @@ public class DERM_4967_OLS extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYourBody_OLS
@@ -819,12 +819,13 @@ public class DERM_4967_OLS extends BaseTest {
                 .clickNextButton(new HS1PageOLS());
 
 
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = hs1PageOLS
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+        hs1PageOLS
                 .waitForPageLoad()
                 .clickOkInPopUp()
-                .setSignature()
-                .waitToClickNext()
-                .getPage(new ThankYouCloseSimplePageOLS());
+                .setSignature();
+//                .waitToClickNext()
+//                .getPage(new ThankYouCloseSimplePageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());

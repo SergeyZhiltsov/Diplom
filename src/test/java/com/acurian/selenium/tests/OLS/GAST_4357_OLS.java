@@ -725,6 +725,14 @@ public class GAST_4357_OLS extends BaseTest {
                             .clickOnFacilityName(site.name);
                     switch (site) {
                         case AUT_GAST4357_site: //1R
+                            QualifiedClose2PageOLS qualifiedClose2PageOLS = siteSelectionPageOLS
+                                    .clickNextButton(new QualifiedClose2PageOLS());
+                            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
+                                    .waitForPageLoad()
+                                    .clickNextButton(new ThankYouCloseSimplePageOLS());
+                            thankYouCloseSimplePageOLS
+                                    .waitForPageLoad()
+                                    .clickNextButton(aboutHealthPageOLS);
                             aboutHealthPageOLS
                                     .waitForPageLoad()
                                     .pidFromDbToLog(env)
@@ -732,6 +740,14 @@ public class GAST_4357_OLS extends BaseTest {
                                     .dispoShouldMatch(site.dispo, site.dispo);
                             break;
                         case AUT_GAST4357S_site: //41C
+                            QualifiedClose2PageOLS qualifiedClose2PageOLS2 = siteSelectionPageOLS
+                                    .clickNextButton(new QualifiedClose2PageOLS());
+                            ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS2 = qualifiedClose2PageOLS2
+                                    .waitForPageLoad()
+                                    .clickNextButton(new ThankYouCloseSimplePageOLS());
+                            thankYouCloseSimplePageOLS2
+                                    .waitForPageLoad()
+                                    .clickNextButton(aboutHealthPageOLS);
                             aboutHealthPageOLS
                                     .waitForPageLoad()
                                     .pidFromDbToLog(env)

@@ -280,11 +280,12 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
         CancerPage whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
+                .clickOnAnswers("Autism spectrum",
+                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
+                .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
-                        "Autism spectrum",
-                        "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
-                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough",
+                        "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)",
                         "Cancer",
                         "Diabetes (type 1 or type 2)",
                         "Headaches (migraine, cluster, tension)",
@@ -297,7 +298,8 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Lupus",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
-                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
+                        "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, " +
+                                "Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Sleep problems (insomnia, sleep apnea, narcolepsy)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
@@ -317,7 +319,6 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .back(whenDiagnosedWithCancerOLS);
         whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
