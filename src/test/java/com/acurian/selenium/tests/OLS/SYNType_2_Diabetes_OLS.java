@@ -40,7 +40,7 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
         };
     }
 
-    @Test(enabled = false, dataProvider = "sites")
+    @Test(enabled = true, dataProvider = "sites")
     @Description("SYNType_2_Diabetes_OLS")
     public void SYNType_2_Diabetes_OLS(Site site) {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
