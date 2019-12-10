@@ -33,7 +33,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
         super.tearDown();
     }
 
-    @Test(enabled = false, dataProvider = "sites", dataProviderClass = SYNType_2_Diabetes_OLS.class)
+    @Test(dataProvider = "sites", dataProviderClass = SYNType_2_Diabetes_OLS.class)
     public void SYNType_2_Diabetes_CC(Site site) {
         final String phoneNumber = "AUTAMS1DIA";
         final String studyName = "a study for diabetics"; //"a NASH study";
@@ -108,10 +108,24 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
 
-        nonQRtransitionPageCC
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = nonQRtransitionPageCC
+                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
+//                .back();
+                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+        doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
+                .back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .back();
+        nonQRtransitionPageCC
                 .back();
 
         WhatKindOfDiabetesPageCC whatKindOfDiabetesPageCC = diagnosedAnyTypeOfDiabetesPageCC
@@ -119,31 +133,35 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatKindOfDiabetesPageCC());
         WithType1DiabetesPageCC withType1DiabetesPageCC = new WithType1DiabetesPageCC();
-        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
-        withType1DiabetesPageCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back(whatKindOfDiabetesPageCC)
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
+//        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = whatKindOfDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+//                .clickNextButton(new CardiovascularDiseaseThanOthersPageCC());
+//        withType1DiabetesPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back(whatKindOfDiabetesPageCC)
+//                .waitForPageLoad()
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
+//
+//        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
 
-        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = whatKindOfDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
-
-        WithType2DiabetesPageCC withType2DiabetesPageCC = currentlyTreatingYourDiabetesPageCC
-                .waitForPageLoad()
-                .back(whatKindOfDiabetesPageCC)
+        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = new CurrentlyTreatingYourDiabetesPageCC();
+        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = new CardiovascularDiseaseThanOthersPageCC();
+        WithType2DiabetesPageCC withType2DiabetesPageCC = new WithType2DiabetesPageCC();
+//        WithType2DiabetesPageCC withType2DiabetesPageCC = currentlyTreatingYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .back(whatKindOfDiabetesPageCC)
+        whatKindOfDiabetesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageCC());
@@ -394,10 +412,9 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
 
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
                 transitionStatementCC
                         .waitForPageLoad(indicationHistroyName)
-                        .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
+                        .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -600,7 +617,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealthPageCC);
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = followingMentalEmotionalHealthPageCC
+        followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
 //                .clickOnAnswers("Bipolar disorder")
 //                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
@@ -620,7 +637,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 //                .back(followingMentalEmotionalHealthPageCC)
 //                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
 
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()

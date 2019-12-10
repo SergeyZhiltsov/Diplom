@@ -85,16 +85,27 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
                 .clickNextButton(new DiagnosedAnyTypeOfDiabetesPageOLS());
 
 
-//        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
-        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+        doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+                .back();
+
+//        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4602", site.activeProtocols)
+//                .back();
         WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = diagnosedAnyTypeOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
@@ -102,38 +113,40 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
         WithType1DiabetesPageOLS withType1DiabetesPageOLS = new WithType1DiabetesPageOLS();
 
 
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
-                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
-        withType1DiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
-        whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("High blood sugar only")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
-
-        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Unsure")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
-        currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
-                .back();
+//        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Type 1 diabetes (sometimes called Juvenile diabetes)")
+//                .clickNextButton(new CardiovascularDiseaseThanOthersPageOLS());
+//        withType1DiabetesPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
+//        whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("High blood sugar only")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
+//
+//        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Unsure")
+//                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS4603", site.activeProtocols)
+//                .back();
         WithType2DiabetesPageOLS withType2DiabetesPageOLS = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
                 .clickNextButton(new WithType2DiabetesPageOLS());
 
+        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = new CardiovascularDiseaseThanOthersPageOLS();
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = new CurrentlyTreatingYourDiabetesPageOLS();
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("10 years ago or more")
@@ -636,7 +649,7 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(following_mentalEmotionalHealthPageOLS);
 
-        DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = following_mentalEmotionalHealthPageOLS
+        following_mentalEmotionalHealthPageOLS
                 .waitForPageLoad()
 //                .clickOnAnswers("Bipolar disorder")
 //                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
@@ -657,7 +670,7 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
 //        following_mentalEmotionalHealthPageOLS
 //                .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesOLS());
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);
 
         doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()

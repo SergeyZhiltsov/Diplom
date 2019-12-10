@@ -101,18 +101,18 @@ public class DERM_4631_OLS extends BaseTest {
                         .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
         HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS = new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
-        List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months");
-        for (String answer : disqualifyQ3) {
-            System.out.println(answer);
-            howLongHaveYouBeenSufferingFromEczema_OLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-                    .back();
-        }
+//        List<String> disqualifyQ3 = Arrays.asList("2 months or less", "3 - 6 months", "7 - 11 months");
+//        for (String answer : disqualifyQ3) {
+//            System.out.println(answer);
+//            howLongHaveYouBeenSufferingFromEczema_OLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+//                    .back();
+//        }
 
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()

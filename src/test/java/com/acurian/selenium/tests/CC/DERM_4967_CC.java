@@ -124,22 +124,22 @@ public class DERM_4967_CC extends BaseTest {
         //Q3
         HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_CC =
                 new HowMuchEczemaYouHaveOnYOurBody_CC();
-        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
-                "3 - 6 months",
-                "7 - 11 months",
-                "1 year",
-                "2 year");
-        for (String answer : disqualifyQ3) {
-            System.out.println(answer);
-            howLongHaveYouBeenSufferingFromEczema_cc
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_CC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-                    .back();
-        }
+//        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
+//                "3 - 6 months",
+//                "7 - 11 months",
+//                "1 year",
+//                "2 year");
+//        for (String answer : disqualifyQ3) {
+//            System.out.println(answer);
+//            howLongHaveYouBeenSufferingFromEczema_cc
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_CC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+//                    .back();
+//        }
         howLongHaveYouBeenSufferingFromEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
@@ -148,7 +148,7 @@ public class DERM_4967_CC extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageCC howWouldYouDescribeTheEczemaCurrentlyPageCC =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
