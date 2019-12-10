@@ -103,6 +103,11 @@ public class AnomalyTestDRS extends BaseTest {
         getDriver().switchTo().window(tabs.get(1));
         dRSBlinx
                 .waitForPageLoadBlinx()
+                .clickOnBtnNoApp()
+                .waitForUnf()
+                .clickOnBtnPrev()
+                .waitForPageLoadBlinx()
+                .waitForPageLoadBlinx()
                 .clickOnDay()
                 .clickOnTime()
                 .clickOnNext()
@@ -110,7 +115,15 @@ public class AnomalyTestDRS extends BaseTest {
                 .dateCheck()
                 .startsAtCheck()
                 .serviceProviderCheck()
-                .clickOnAgree();
+                .clickOnAgree()
+                .clickOnSendSMS()
+                //.assertClientData("qa.acurian@gmail.com", "9999999999")
+                .clickBook()
+                .waitForPageLoadSuccess()
+                .clickOnBtnNext()
+                .waitForThankYou();
+
+
         getDriver().switchTo().window(tabs.get(0));
         if(env.equals("PRD")){
             directSheduleBlinx

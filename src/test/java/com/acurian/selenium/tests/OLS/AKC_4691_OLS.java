@@ -437,11 +437,10 @@ public class AKC_4691_OLS extends BaseTest {
         //-------Q16:  Has a healthcare professional ever diagnosed you with any of the following liver-related conditions?--------
         liverRelatedConditionOLS
                 .waitForPageLoad();
-        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = new FollowingToLoseWeightPageOLS();
-        liverRelatedConditionOLS
+        FollowingToLoseWeightPageOLS followingToLoseWeightPageOLS = liverRelatedConditionOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Alcoholic liver disease")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+                .clickNextButton(new FollowingToLoseWeightPageOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)

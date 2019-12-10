@@ -128,24 +128,24 @@ public class KAD_4631_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
-
+        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_CC = new HowMuchEczemaYouHaveOnYOurBody_CC();
         //Q3
-        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_CC =
-                new HowMuchEczemaYouHaveOnYOurBody_CC();
-        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
-                "3 - 6 months",
-                "7 - 11 months");
-        for (String answer : disqualifyQ3) {
-            System.out.println(answer);
-            howLongHaveYouBeenSufferingFromEczema_CC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_CC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-                    .back();
-        }
+//        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_CC =
+//                new HowMuchEczemaYouHaveOnYOurBody_CC();
+//        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
+//                "3 - 6 months",
+//                "7 - 11 months");
+//        for (String answer : disqualifyQ3) {
+//            System.out.println(answer);
+//            howLongHaveYouBeenSufferingFromEczema_CC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_CC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    //.checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+//                    .back();
+//        }
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
@@ -154,7 +154,7 @@ public class KAD_4631_CC extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageCC howWouldYouDescribeTheEczemaCurrentlyPageCC =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageCC();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYOurBody_CC
@@ -176,7 +176,7 @@ public class KAD_4631_CC extends BaseTest {
                     .clickNextButton(howWouldYouDescribeTheEczemaCurrentlyPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
-                    .checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
+                    //.checkStudyStatusContainsForQNumber("QS5832", env.equals("PRD") ? "12-18" : "8-14")
                     .back();
         }
         howMuchEczemaYouHaveOnYOurBody_CC
