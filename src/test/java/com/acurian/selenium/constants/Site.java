@@ -147,8 +147,10 @@ public enum Site {
     //7157
     AUT_AMS1_7157_site("AUT_AMS1_7157_site", "08204", "1R", true, true, "GBR_830_204"),
     AUT_AMS1_7157S_site("AUT_AMS1_7157S_site", "08204", "41C", true, true, "GBR_830_204"),
-    //diab type 2
+    //SynDiab type 2
     AUT_AMS1_DIABS_site("Synexus - 010110 : East Valley Family Physicians", "85224", "41C", false, false, "SYNType_2_Diabetes"),
+    //SynMigrn
+    AUT_AMS1_MIGRS_site("AUT_AMS1_MIGRS_site", "85224", "1R", false, false, "SYNMigraine"),
     //Others
     AUT_GFLR1_site("AUT_GFLR1_site", "92586", "", false, false), //FlareActivationCode.java
     //Health check

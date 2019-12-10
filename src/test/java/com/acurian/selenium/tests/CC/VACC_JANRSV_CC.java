@@ -11,6 +11,7 @@ import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
+import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.selenium.utils.Properties;
 import io.qameta.allure.Description;
 import org.testng.Assert;
@@ -108,6 +109,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                     new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC();
             ScedulerCC scedulerCC = new ScedulerCC();
             DirectSheduleVaccCC directSheduleVaccCC = new DirectSheduleVaccCC();
+            DRSBlinx dRSBlinx = new DRSBlinx();
             zipCodePageCC
                     .waitForPageLoad()
                     .typeZipCode(site.zipCode)
@@ -151,28 +153,49 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .getPID()
                     .clickOnAnswer(site.name)
                     .clickNextButton(directSheduleVaccCC);
-//            if (env.equals("PRD")) {
-//                directSheduleVaccCC
-//                        .waitForPageLoad();
-//            }
-//            if (env.equals("STG")) {
-//                directSheduleVaccCC
-//                        .waitForPageLoadSTG();
-//            }
+            if(env.equals("PRD")){
+                directSheduleVaccCC
+                        .waitForPageLoad();
+            }
+            if(env.equals("STG")){
+                directSheduleVaccCC
+                        .waitForPageLoadSTG();
+            }
             directSheduleVaccCC
+                    .clickSheduleBtnBlinx(dRSBlinx);
+            dRSBlinx
                     .waitForPageLoad()
-                    .clickSheduleBtn(scedulerCC);
-            ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
-            getDriver().switchTo().window(tabs.get(1));
-            scedulerCC
-                    .waitForPageLoad()
+                    .clickOnBtnNoApp()
+                    .waitForUnf()
+                    .clickOnBtnPrev()
+                    .waitForPageLoadBlinx()
+                    .waitForPageLoadBlinx()
                     .clickOnDay()
                     .clickOnTime()
+                    .clickOnNext()
                     .waitForPageLoadClientDetails()
                     .dateCheck()
                     .startsAtCheck()
                     .serviceProviderCheck()
-                    .clickOnAgree();
+                    .clickOnAgree()
+                    .clickOnSendSMS()
+                    //.assertClientData("qa.acurian@gmail.com", "9999999999")
+                    .clickBook()
+                    .waitForPageLoadSuccess()
+                    .clickOnBtnNext()
+                    .waitForThankYou();
+//            if(env.equals("PRD")){
+//                directSheduleVaccOLS
+//                        .waitForPageLoad();
+//            }
+//            if(env.equals("STG")){
+//                directSheduleVaccOLS
+//                        .waitForPageLoadSTG();
+//            }
+//            directSheduleVaccOLS
+//                    .clickSheduleBtn(drsols);
+            ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+            getDriver().switchTo().window(tabs.get(1));
             getDriver().switchTo().window(tabs.get(0));
             SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
 //            if (env.equals("PRD")) {
