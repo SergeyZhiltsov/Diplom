@@ -129,23 +129,23 @@ public class KAD_4631_CC extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_CC());
         HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_CC = new HowMuchEczemaYouHaveOnYOurBody_CC();
-        //Q3
-//        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_CC =
-//                new HowMuchEczemaYouHaveOnYOurBody_CC();
-//        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
-//                "3 - 6 months",
-//                "7 - 11 months");
-//        for (String answer : disqualifyQ3) {
-//            System.out.println(answer);
-//            howLongHaveYouBeenSufferingFromEczema_CC
-//                    .waitForPageLoad()
-//                    .clickOnAnswer(answer)
-//                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_CC)
-//                    .waitForPageLoad()
-//                    .getPage(debugPageCC)
-//                    //.checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-//                    .back();
-//        }
+//        //Q3
+////        HowMuchEczemaYouHaveOnYOurBody_CC howMuchEczemaYouHaveOnYOurBody_CC =
+////                new HowMuchEczemaYouHaveOnYOurBody_CC();
+////        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
+////                "3 - 6 months",
+////                "7 - 11 months");
+////        for (String answer : disqualifyQ3) {
+////            System.out.println(answer);
+////            howLongHaveYouBeenSufferingFromEczema_CC
+////                    .waitForPageLoad()
+////                    .clickOnAnswer(answer)
+////                    .clickNextButton(howMuchEczemaYouHaveOnYOurBody_CC)
+////                    .waitForPageLoad()
+////                    .getPage(debugPageCC)
+////                    //.checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+////                    .back();
+////        }
         howLongHaveYouBeenSufferingFromEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")

@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.HaveYouGoneThroughMenopauseOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
+import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -67,6 +68,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
             DRSOLS drsols = new DRSOLS();
             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
+            DRSBlinx dRSBlinx = new DRSBlinx();
             dateOfBirthPageOLS
                     .waitForPageLoad("a vaccine study", "650")
                     .clickOnAnswer("Yes")
@@ -116,30 +118,73 @@ public class VACC_JANRSV_OLS extends BaseTest {
                         .waitForPageLoadSTG();
             }
             directSheduleVaccOLS
-                    .clickSheduleBtn(drsols);
-            ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
-            getDriver().switchTo().window(tabs.get(1));
-            drsols
+                    .clickSheduleBtnBlinx(dRSBlinx);
+            dRSBlinx
                     .waitForPageLoad()
+                    .clickOnBtnNoApp()
+                    .waitForUnf()
+                    .clickOnBtnPrev()
+                    .waitForPageLoadBlinx()
+                    .waitForPageLoadBlinx()
                     .clickOnDay()
                     .clickOnTime()
+                    .clickOnNext()
                     .waitForPageLoadClientDetails()
                     .dateCheck()
                     .startsAtCheck()
                     .serviceProviderCheck()
-                    .clickOnAgree();
+                    .clickOnAgree()
+                    .clickOnSendSMS()
+                    //.assertClientData("qa.acurian@gmail.com", "9999999999")
+                    .clickBook()
+                    .waitForPageLoadSuccess()
+                    .clickOnBtnNext()
+                    .waitForThankYou();
+//            if(env.equals("PRD")){
+//                directSheduleVaccOLS
+//                        .waitForPageLoad();
+//            }
+//            if(env.equals("STG")){
+//                directSheduleVaccOLS
+//                        .waitForPageLoadSTG();
+//            }
+//            directSheduleVaccOLS
+//                    .clickSheduleBtn(drsols);
+            ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+            getDriver().switchTo().window(tabs.get(1));
+//            drsols
+//                    .waitForPageLoad()
+//                    .clickOnDay()
+//                    .clickOnTime()
+//                    .waitForPageLoadClientDetails()
+//                    .dateCheck()
+//                    .startsAtCheck()
+//                    .serviceProviderCheck()
+//                    .clickOnAgree();
+//            getDriver().switchTo().window(tabs.get(0));
+//            QualifiedClose2PageOLS qualifiedClose2PageOLS = new QualifiedClose2PageOLS();
+//            if(env.equals("PRD")){
+//                directSheduleVaccOLS
+//                        .waitForPageLoad();
+//            }
+//            if(env.equals("STG")){
+//                directSheduleVaccOLS
+//                        .waitForPageLoadSTG();
+//            }
+//            directSheduleVaccOLS
+//                    .clickNextButton(qualifiedClose2PageOLS);
             getDriver().switchTo().window(tabs.get(0));
-            QualifiedClose2PageOLS qualifiedClose2PageOLS = new QualifiedClose2PageOLS();
+            DirectSheduleVaccOLS directSheduleBlinx = new DirectSheduleVaccOLS();
             if(env.equals("PRD")){
-                directSheduleVaccOLS
+                directSheduleBlinx
                         .waitForPageLoad();
             }
             if(env.equals("STG")){
-                directSheduleVaccOLS
+                directSheduleBlinx
                         .waitForPageLoadSTG();
             }
-            directSheduleVaccOLS
-                    .clickNextButton(qualifiedClose2PageOLS);
+            QualifiedClose2PageOLS qualifiedClose2PageOLS = directSheduleBlinx
+                    .clickNextButton(new QualifiedClose2PageOLS());
             ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = qualifiedClose2PageOLS
                     .waitForPageLoad()
                     .clickNextButton(new ThankYouCloseSimplePageOLS());
