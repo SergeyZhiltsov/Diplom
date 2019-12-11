@@ -14,6 +14,7 @@ import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
+import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -803,6 +804,7 @@ public class GAST_4357_CC extends BaseTest {
                         .dispoShouldMatch(site.dispo, site.dispo);
                 break;
                 case AUT_GAS4357ds:
+                    DRSBlinx dRSBlinx = new DRSBlinx();
                     ScedulerCC scedulerCC = new ScedulerCC();
                     DirectSheduleVaccCC directSheduleVaccCC = new DirectSheduleVaccCC();
                     selectionPageCC
@@ -817,18 +819,25 @@ public class GAST_4357_CC extends BaseTest {
                                 .waitForPageLoadSTG();
                     }
                     directSheduleVaccCC
-                            .clickSheduleBtn(scedulerCC);
+                            .clickSheduleBtnBlinx(dRSBlinx);
                     ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
                     getDriver().switchTo().window(tabs.get(1));
-                    scedulerCC
-                            .waitForPageLoad()
+                    dRSBlinx
+                            .waitForPageLoadBlinx()
+                            .clickOnBtnNoApp()
+                            .waitForUnf()
+                            .clickOnBtnPrev()
+                            .waitForPageLoadBlinx()
+                            .waitForPageLoadBlinx()
                             .clickOnDay()
                             .clickOnTime()
+                            .clickOnNext()
                             .waitForPageLoadClientDetails()
                             .dateCheck()
                             .startsAtCheck()
                             .serviceProviderCheck()
-                            .clickOnAgree();
+                            .clickOnAgree()
+                            .clickOnSendSMS();
                     getDriver().switchTo().window(tabs.get(0));
                     QualifiedClose1PageCC qualifiedClose1PageCC = new QualifiedClose1PageCC();
                     SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();

@@ -66,7 +66,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
         if (site == Site.AUT_AMS_JANRDS_Syn) {
             HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                     new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
-            DRSOLS drsols = new DRSOLS();
+            //DRSOLS drsols = new DRSOLS();
             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
             DRSBlinx dRSBlinx = new DRSBlinx();
             dateOfBirthPageOLS

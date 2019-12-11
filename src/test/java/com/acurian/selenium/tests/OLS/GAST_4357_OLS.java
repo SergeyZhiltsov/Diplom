@@ -16,6 +16,7 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
+import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -40,7 +41,7 @@ public class GAST_4357_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-//                {Site.AUT_GAS4357ds, true},
+                {Site.AUT_GAS4357ds, true},
                 {Site.AUT_GAST4357_site, false},
                 {Site.AUT_GAST4357_site, true},
                 {Site.AUT_GAST4357S_site, true}
@@ -742,6 +743,7 @@ public class GAST_4357_OLS extends BaseTest {
                             break;
 
                         case AUT_GAS4357ds: {
+                            DRSBlinx dRSBlinx = new DRSBlinx();
                             DirectSheduleVaccOLS directSheduleVaccOLS = new DirectSheduleVaccOLS();
                             DRSOLS scedulerOLS = new DRSOLS();
                             siteSelectionPageOLS
@@ -755,18 +757,25 @@ public class GAST_4357_OLS extends BaseTest {
                                         .waitForPageLoadSTG();
                             }
                             directSheduleVaccOLS
-                                    .clickSheduleBtn(scedulerOLS);
+                                    .clickSheduleBtnBlinx(dRSBlinx);
                             ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
                             getDriver().switchTo().window(tabs.get(1));
-                            scedulerOLS
-                                    .waitForPageLoad()
+                            dRSBlinx
+                                    .waitForPageLoadBlinx()
+                                    .clickOnBtnNoApp()
+                                    .waitForUnf()
+                                    .clickOnBtnPrev()
+                                    .waitForPageLoadBlinx()
+                                    .waitForPageLoadBlinx()
                                     .clickOnDay()
                                     .clickOnTime()
+                                    .clickOnNext()
                                     .waitForPageLoadClientDetails()
                                     .dateCheck()
                                     .startsAtCheck()
                                     .serviceProviderCheck()
-                                    .clickOnAgree();
+                                    .clickOnAgree()
+                                    .clickOnSendSMS();
                             getDriver().switchTo().window(tabs.get(0));
                             if (env.equals("PRD")) {
                                 directSheduleVaccOLS
