@@ -11,12 +11,12 @@ import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.Migraine.HaveYouBeenDiagnosedWithMigrainesPageCC;
 import com.acurian.selenium.pages.CC.Migraine.HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС;
 import com.acurian.selenium.pages.CC.Vaccine.DirectSheduleVaccCC;
-import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
+import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.MostRecentHeartRelatedSurgeryProcedurePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
+import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.tests.OLS.SYNTMigraine_OLS;
 import com.acurian.selenium.utils.Properties;
@@ -40,7 +40,7 @@ public class SYNTMigraine_CC extends BaseTest {
     @Test(enabled = true, dataProvider = "sites", dataProviderClass = SYNTMigraine_OLS.class)
     public void SYNTMigraine_CC(Site site) {
         final String phoneNumber = "AUTAMS1MIG";
-        final String studyName = "a migraine study!"; //"a NASH study";
+        final String studyName = "a migraine study"; //"a NASH study";
         final String indicationHistroyName = "migraines";
 
         DebugPageCC debugPageCC = new DebugPageCC();
@@ -109,9 +109,12 @@ public class SYNTMigraine_CC extends BaseTest {
 
 
 //        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
-        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = haveYouBeenDiagnosedWithMigrainesPageCC
+        NonQRtransitionPageCC nonQRtransitionPageCC = haveYouBeenDiagnosedWithMigrainesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
+                .clickNextButton(new NonQRtransitionPageCC());
+        HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC = nonQRtransitionPageCC
+                .waitForPageLoad()
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
@@ -138,8 +141,12 @@ public class SYNTMigraine_CC extends BaseTest {
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
+                .back(nonQRtransitionPageCC)
+                .waitForPageLoad()
                 .back();
-        ApproximateHeightPageCC approximateHeightPageCC = haveYouBeenDiagnosedWithMigrainesPageCC
+
+
+        haveYouBeenDiagnosedWithMigrainesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HowOldWereYouMigHeadachePageCC())
@@ -154,18 +161,219 @@ public class SYNTMigraine_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС())
                 .waitForPageLoad()
                 .clickOnAnswer("No, never any daily medications that my doctor prescribed")
-                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .clickNextButton(new TransitionStatementCC())
+                .waitForPageLoad("migraine")
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+
+        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("Cancer",
+                        "Kidney disease",
+                        "Heart or circulation problems (heart attack, heart failure, stroke)",
+                        "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
+                        "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
+                .clickNextButton(new OtherThanSkinCancerPageCC());
+
+        otherThanSkinCancerPageCC
+                .waitForPageLoad()
+                .clickOnAnswer("Within the past 5 years")
+                .clickNextButton(whichTypeOfHeadacheCC);
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = new HaveYouEverExperiencedHeartRelatedMedicalCondCC();
+
+        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = whichTypeOfHeadacheCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
+                .back(otherThanSkinCancerPageCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Diagnosed with skin cancer only")
+                .clickNextButton(whichTypeOfHeadacheCC)
+                .waitForPageLoad()
+                .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                .waitForPageLoad()
+                .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
+                .waitForPageLoad()
+                .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA",
+                        "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
+                .clickNextButton(new SubquestionExperiencedHeartPageCC());
+
+        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .clickOnAnswerForSubQuestion(1, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
+                .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
+                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .waitForPageLoad()
+                .clickOnAnswers("Stent placement in your heart, neck or legs")
+                .clickNextButton(new MostRecentHeartProcedurePageСС());
+
+        KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
+
+        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = mostRecentHeartProcedurePageСС
+                .waitForPageLoad()
+                .clickOnAnswer("More than 1 year ago")
+                .clickNextButton(kidneyProblemsPage)
+                .waitForPageLoad()
+                .clickOnAnswers("Dialysis")
+                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+
+        whichOfTheFollowingLiverProblemsPageСС
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back(kidneyProblemsPage)
+                .waitForPageLoad()
+                .clickOnAnswers("Neither")
+                .clickOnAnswers("Kidney transplant")
+                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
+                .back(kidneyProblemsPage)
+                .waitForPageLoad()
+                .clickOnAnswers("Neither")
+                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = new DoAnyOftheFollowingAdditionalDiagnosesCC();
+
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfTheFollowingLiverProblemsPageСС
+                .waitForPageLoad()
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
+
+        followingMentalEmotionalHealthPageCC
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
+                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .waitForPageLoad()
+                .clickOnAnswers("Unsure which type of liver disease")
+                .clickNextButton(followingMentalEmotionalHealthPageCC);
+
+        followingMentalEmotionalHealthPageCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
+
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .back();
+        followingMentalEmotionalHealthPageCC
+                .waitForPageLoad()
+                .back();
+        whichOfTheFollowingLiverProblemsPageСС
+                .waitForPageLoad()
+                .back();
+        kidneyProblemsPage
+                .waitForPageLoad()
+                .back();
+        mostRecentHeartProcedurePageСС
+                .waitForPageLoad()
+                .back();
+        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                .waitForPageLoad()
+                .back();
+        subquestionExperiencedHeartPageCC
+                .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
+                .back();
+        haveYouEverExperiencedHeartRelatedMedicalCondCC
+                .waitForPageLoad()
+                .back();
+        whichTypeOfHeadacheCC
+                .waitForPageLoad()
+                .back();
+        otherThanSkinCancerPageCC
+                .waitForPageLoad()
+                .back();
+        haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
+
+
+        ApproximateHeightPageCC approximateHeightPageCC = new ApproximateHeightPageCC();
+
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Cancer in the past 5 years, except skin cancer")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Cirrhosis")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Drug or alcohol abuse within the past year")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Hepatitis B")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("HIV or AIDS")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS59", site.activeProtocols)
+                .back();
+        doAnyOftheFollowingAdditionalDiagnosesCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickOnAnswers("Kidney disease requiring dialysis")
+                .clickNextButton(approximateHeightPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS61", site.activeProtocols)
+                .back(doAnyOftheFollowingAdditionalDiagnosesCC)
+                .waitForPageLoad()
+                .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
+                .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new ApproximateHeightPageCC());
+                .clickNextButton(approximateHeightPageCC);
 
-        IdentificationPageCC identificationPageOLS = approximateHeightPageCC
-                .waitForPageLoad()
-                .setAll("5", "5", "190") //BMI > 30
-                .clickNextButton(new IdentificationPageCC());
+
+//        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+//                .waitForPageLoad()
+//                .setAll("5", "5", "190") //BMI > 30
+//                .clickNextButton(new LetMeSeePageCC());
+//        IdentificationPageOLS identificationPageOLS = letMeSeePageCC
+//                .waitForPageLoad()
+//                .clickNextButton(new IdentificationPageOLS());
 //                .waitForPageLoad()
 //                .clickOnAnswers("None of the above")
 //                .clickNextButton(new TransitionalStatementLowtPageOLS())
@@ -186,14 +394,14 @@ public class SYNTMigraine_CC extends BaseTest {
 //                .waitForPageLoad()
 //                .clickOnAnswers("None of the above")
 //                .clickNextButton(new IdentificationPageOLS());
-
-        SiteSelectionPageCC siteSelectionPageCC = identificationPageOLS
-                .waitForPageLoad()
-                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
-                .clickNextButton(new SiteSelectionPageCC());
-
-        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
-                .waitForPageLoad()
+//
+//        SiteSelectionPageCC siteSelectionPageCC = identificationPageOLS
+//                .waitForPageLoad()
+//                .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
+//                .clickNextButton(new SiteSelectionPageCC());
+//
+//        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+//                .waitForPageLoad()
 //                .setAll("4", "9", "138")
 //                .clickNextButton(new LetMeSeePageCC());
 //
@@ -203,8 +411,8 @@ public class SYNTMigraine_CC extends BaseTest {
 //                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
 //                .back();
 //
-//        approximateHeightPageCC
-//                .waitForPageLoad()
+        LetMeSeePageCC letMeSeePageCC = approximateHeightPageCC
+                .waitForPageLoad()
                 .setAll("4", "10", "180")
                 .clickNextButton(new LetMeSeePageCC());
 
@@ -271,13 +479,14 @@ public class SYNTMigraine_CC extends BaseTest {
 //                .clickOnAnswer("No")
 //                .clickNextButton(new IdentificationPageCC());
 
-        letMeSeePageCC
+        IdentificationPageCC identificationPageCC = letMeSeePageCC
                 .waitForPageLoad()
-                .clickNextButton(new IdentificationPageCC())
+                .clickNextButton(new IdentificationPageCC());
+        SiteSelectionPageCC siteSelectionPageCC = identificationPageCC
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
-                .clickNextButton(siteSelectionPageCC);
+                .clickNextButton(new SiteSelectionPageCC());
         switch (site) {
 //            case AUT_NASH4483_site: //1R
 //                siteSelectionPageCC
@@ -302,18 +511,17 @@ public class SYNTMigraine_CC extends BaseTest {
 //                        .assertGeneratedFul(env, site)
 //                        .dispoShouldMatch(site.dispo, site.dispo);
 //                break;
-            case AUT_AMS1_DIABS_site: //41C
+            case AUT_AMS1_MIGRS_site: //41C
                 siteSelectionPageCC
                         .waitForPageLoad(studyName)
                         .getPID()
                         .clickOnAnswer(site.name)
-                        .clickNextButton(new DirectSheduleVaccCC())
+                        .clickNextButton(new QualifiedClose1PageCC())
                         .waitForPageLoad()
-                        .clickNextButton(new SynexusRadiantDirectScheduleCC())
-                        .assertVariablesNew("Acurian", "Trial", "09/09/1960", "US",
-                                "Chandler, AZ", site.zipCode, "qa.acurian@gmail.com",
-                                "999-999-9999", " 010110 : Synexus - 010110 ", " East Valley Family Physicians", "AESXXXDIA001 - SYNType_2_Diabetes (SYNT2DM)")
-                        .clickOnAnswer("[Successful direct schedule in clinical conductor]")
+                        .clickNextButton(new ThankYouCloseSimplePageCC())
+                        .waitForPageLoad3()
+                        .clickNextButton(new AlzheimerClosePageCC())
+                        .waitForPageLoad()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)

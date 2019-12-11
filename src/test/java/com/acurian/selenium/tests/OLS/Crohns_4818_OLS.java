@@ -540,29 +540,33 @@ public class Crohns_4818_OLS extends BaseTest {
         SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .clickNextButton(new SiteSelectionPageOLS());
-        MedicalRecordsOptionPageOLS medicalRecordsOptionPageOLS = siteSelectionPageOLS
+        AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
                 .waitForPageLoad("a Crohn's")
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new MedicalRecordsOptionPageOLS());
-        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+                .clickNextButton(new QualifiedClose2PageOLS())
+                .waitForPageLoadCrohns4818()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
-                .clickOnAnswer("Continue with medical records")
-                .clickNextButton(new DoctorInformationCollectionPageOLS());
-
-        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
-                .waitForPageLoadIBD("Ulcerative Colitis")
-                .clickNextButton(new HS1PageOLS());
-
-
-        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
-        hs1PageOLS
-                .waitForPageLoad()
-                .clickOkInPopUp()
-                .waitForPageLoad()
-                .setSignature();
-        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
-                .waitForPageLoad()
+//                .clickNextButton(new MedicalRecordsOptionPageOLS());
+//        DoctorInformationCollectionPageOLS doctorInformationCollectionPageOLS = medicalRecordsOptionPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("Continue with medical records")
+//                .clickNextButton(new DoctorInformationCollectionPageOLS());
+//
+//        HS1PageOLS hs1PageOLS = doctorInformationCollectionPageOLS
+//                .waitForPageLoadIBD("Ulcerative Colitis")
+//                .clickNextButton(new HS1PageOLS());
+//
+//
+//        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = new ThankYouCloseSimplePageOLS();
+//        hs1PageOLS
+//                .waitForPageLoad()
+//                .clickOkInPopUp()
+//                .waitForPageLoad()
+//                .setSignature();
+//        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
+//                .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         aboutHealthPageOLS
                 .waitForPageLoad()

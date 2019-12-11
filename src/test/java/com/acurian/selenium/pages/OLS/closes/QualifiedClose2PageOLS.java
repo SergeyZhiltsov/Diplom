@@ -28,6 +28,10 @@ public class QualifiedClose2PageOLS extends MainPageOLS {
             "\n" +
             "We will forward your contact information to the doctor’s office that you selected so they can contact you about a Ulcerative Colitis, Crohn's Disease study.";
 
+    public final String titleExpectedCrohns4818 = "We’re glad the location is convenient for you.\n" +
+            "\n" +
+            "We will forward your contact information to the doctor’s office that you selected so they can contact you about a Ulcerative Colitis study.";
+
     public final String titleExpectedIBD4818Prod = "We’re glad the location is convenient for you.\n" +
             "\n" +
             "We will forward your contact information to the doctor’s office that you selected so they can contact you about a Ulcerative Colitis, Crohn's Disease study.";
@@ -41,6 +45,12 @@ public class QualifiedClose2PageOLS extends MainPageOLS {
     @Step
     public QualifiedClose2PageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public QualifiedClose2PageOLS waitForPageLoadCrohns4818() {
+        waitForPageLoadMain(titleText, titleExpectedCrohns4818);
         return this;
     }
 
