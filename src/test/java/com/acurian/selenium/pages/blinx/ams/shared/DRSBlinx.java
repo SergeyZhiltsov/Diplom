@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 public class DRSBlinx extends MainPageBlinx {
 
-    public final String titleExpected = "Select a date and time for your appointment:";
+    public final String titleExpected = "The next step is to get you scheduled for an appointment with the study doctor's team. During this visit, the study doctor's team will further discuss the study requirements and answer any questions you may have.";
 
     public final String modalTitleExpected = "Your appointment has been successfully booked!";
 

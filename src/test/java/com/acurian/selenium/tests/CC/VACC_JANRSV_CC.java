@@ -163,8 +163,10 @@ public class VACC_JANRSV_CC extends BaseTest {
             }
             directSheduleVaccCC
                     .clickSheduleBtnBlinx(dRSBlinx);
+            ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+            getDriver().switchTo().window(tabs.get(1));
             dRSBlinx
-                    .waitForPageLoad()
+                    .waitForPageLoadBlinx()
                     .clickOnBtnNoApp()
                     .waitForUnf()
                     .clickOnBtnPrev()
@@ -178,12 +180,12 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .startsAtCheck()
                     .serviceProviderCheck()
                     .clickOnAgree()
-                    .clickOnSendSMS()
+                    .clickOnSendSMS();
                     //.assertClientData("qa.acurian@gmail.com", "9999999999")
-                    .clickBook()
-                    .waitForPageLoadSuccess()
-                    .clickOnBtnNext()
-                    .waitForThankYou();
+//                    .clickBook()
+//                    .waitForPageLoadSuccess()
+//                    .clickOnBtnNext()
+//                    .waitForThankYou();
 //            if(env.equals("PRD")){
 //                directSheduleVaccOLS
 //                        .waitForPageLoad();
@@ -194,8 +196,6 @@ public class VACC_JANRSV_CC extends BaseTest {
 //            }
 //            directSheduleVaccOLS
 //                    .clickSheduleBtn(drsols);
-            ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
-            getDriver().switchTo().window(tabs.get(1));
             getDriver().switchTo().window(tabs.get(0));
             SynexusRadiantDirectScheduleCC synexusRadiantDirectScheduleCC = new SynexusRadiantDirectScheduleCC();
 //            if (env.equals("PRD")) {

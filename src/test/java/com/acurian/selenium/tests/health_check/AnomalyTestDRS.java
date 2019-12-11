@@ -87,7 +87,7 @@ public class AnomalyTestDRS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName("GRA1_1234")
+                .clickOnFacilityName("AUT_GEMGA_01A")
                 .clickNextButton(new DirectSheduleVaccOLS());
         if(env.equals("PRD")){
             directSheduleBlinx
@@ -116,12 +116,12 @@ public class AnomalyTestDRS extends BaseTest {
                 .startsAtCheck()
                 .serviceProviderCheck()
                 .clickOnAgree()
-                .clickOnSendSMS()
+                .clickOnSendSMS();
                 //.assertClientData("qa.acurian@gmail.com", "9999999999")
-                .clickBook()
-                .waitForPageLoadSuccess()
-                .clickOnBtnNext()
-                .waitForThankYou();
+//                .clickBook()
+//                .waitForPageLoadSuccess();
+//                .clickOnBtnNext()
+//                .waitForThankYou();
 
 
         getDriver().switchTo().window(tabs.get(0));
