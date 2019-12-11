@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class AnomalyTestDRS extends BaseTest {
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     @Description("Test for 41C Anomaly DRS")
     public void anomalyTestDRS() {
         String phoneNumber = "AUTGMEG41C";
