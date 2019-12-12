@@ -15,6 +15,9 @@ public class WhichoOfFollowingMedicationsCurrentlyGERD_CC extends MainPageCC{
     		"These medications may be prescribed by your doctor and filled at a pharmacy counter, or you may purchase them yourself as \"over-the-counter\" or non-prescription medications.\n" +
     		"Agent Note: Select all that apply";
 
+    public final String titleExpected2 = "Do you currently take any of the following \"over-the-counter\", or non-prescription, medications to treat your heartburn, reflux, or GERD?\n" +
+            "Agent Note: Select all that apply";
+
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
 
@@ -31,6 +34,13 @@ public class WhichoOfFollowingMedicationsCurrentlyGERD_CC extends MainPageCC{
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
+
+    @Step
+    public WhichoOfFollowingMedicationsCurrentlyGERD_CC waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
+        return this;
+    }
+
 
     @Step
     public WhichoOfFollowingMedicationsCurrentlyGERD_CC clickOnAnswers(String ...answerText) {

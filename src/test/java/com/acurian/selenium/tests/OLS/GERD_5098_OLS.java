@@ -216,7 +216,7 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS6323", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS6323", site.activeProtocols[1])
                 .back();
 
         didTakeMedicationToTreatPyloriOLS
@@ -225,20 +225,24 @@ public class GERD_5098_OLS extends BaseTest {
                 .clickNextButton(whatTypeOfSurgeryDidYouHave_OLS)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
+                .clickOnAnswers("Other surgery on my stomach, intestines, colon, or esophagus")
+                .clickNextButton(whenDidYouHaveAppendixRemoved_OLS)
+                .waitForPageLoad(1, whenDidYouHaveAppendixRemoved_OLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "More than 6 months ago")
                 .clickNextButton(weightLossSurgeryPageOLS);
 //        ProcedureForWeightLossPageOLS procedureForWeightLossPageOLS = weightLossSurgeryPageOLS
-////                .waitForPageLoad()
-////                .clickOnAnswers("Gastric bypass",
-////                        "Gastric sleeve or sleeve gastrectomy",
-////                        "Duodenal switch",
-////                        "Lap band or gastric banding",
-////                        "Gastric balloon")
-////                .clickOnAnswers("I had a weight loss surgery, but I am unsure which type")
-////                .clickNextButton(new ProcedureForWeightLossPageOLS());
-////        procedureForWeightLossPageOLS
-////                .waitForPageLoad()
-////                .clickOnAnswer("More than 2 years ago")
-////                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+//                .waitForPageLoad()
+//                .clickOnAnswers("Gastric bypass",
+//                        "Gastric sleeve or sleeve gastrectomy",
+//                        "Duodenal switch",
+//                        "Lap band or gastric banding",
+//                        "Gastric balloon")
+//                .clickOnAnswers("I had a weight loss surgery, but I am unsure which type")
+//                .clickNextButton(new ProcedureForWeightLossPageOLS());
+//        procedureForWeightLossPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("More than 2 years ago")
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
         List<String> disqualifyQ26pt2 = Arrays.asList("Gastric bypass", "Gastric sleeve or sleeve gastrectomy",
                         "Duodenal switch", "Lap band or gastric banding",
                         "Gastric balloon", "I had a weight loss surgery, but I am unsure which type");
@@ -509,6 +513,9 @@ public class GERD_5098_OLS extends BaseTest {
 //                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
 //
 //
+//
+
+
 //
         //----------------------GENERAL HEALTH Questions -----------------------------
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
