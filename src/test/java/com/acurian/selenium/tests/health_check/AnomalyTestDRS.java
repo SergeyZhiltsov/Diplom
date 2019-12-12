@@ -87,7 +87,7 @@ public class AnomalyTestDRS extends BaseTest {
                 .clickNextButton(new SiteSelectionPageOLS())
                 .waitForPageLoad(studyName)
                 .getPID()
-                .clickOnFacilityName("AUT_GEMGA_01A")
+                .clickOnFacilityName("GRA1_1234")
                 .clickNextButton(new DirectSheduleVaccOLS());
         if(env.equals("PRD")){
             directSheduleBlinx
