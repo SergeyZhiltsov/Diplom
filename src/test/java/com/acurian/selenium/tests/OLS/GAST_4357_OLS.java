@@ -42,7 +42,7 @@ public class GAST_4357_OLS extends BaseTest {
     public Object[][] sites() {
         return new Object[][]{
                 {Site.AUT_GAS4357ds, true},
-                {Site.AUT_GAST4357_site, false},//dfsd
+                {Site.AUT_GAST4357_site, false},
                 {Site.AUT_GAST4357_site, true},
                 {Site.AUT_GAST4357S_site, true}
         };
