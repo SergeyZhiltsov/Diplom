@@ -3,6 +3,7 @@ package com.acurian.selenium.pages.blinx.ams;
 import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.constants.URLs;
 import com.acurian.selenium.pages.blinx.MainPageBlinx;
+import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.utils.Properties;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,12 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
             "No-cost study-related care from doctors\n" +
             "No-cost study medication";
 
+    public final String titleExpected2 = "Let's get started to see if you qualify for %s study!\n" +
+            "Those who qualify may receive*:\n" +
+            "Payment which varies by study up to $%s\n" +
+            "No-cost study-related care from doctors\n" +
+            "No-cost study medication";
+
     public final String titleExpected = "Let's get started to see if there is %2$s that's right for you!\n" +
             "\n"+
             "If you attend all required study visits, you may receive*:\n" +
@@ -32,14 +39,16 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 
     @FindBy(xpath = "//div[@id='questions']/div[1]//div[@class='show-in-ols']")
     WebElement titleTextPart;
-
+    @FindBy(xpath = "//input[contains(@class, 'fallbackDate')]")
+    WebElement dateField;
     @FindBy(xpath = "(//div[@class='question-text']/div)[2]")
     WebElement titleTextPart1;
     @FindBy(xpath = "(//div[@class='question-text']/div)[3]")
     WebElement titleTextPart2;
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> singleChoiceButtonsList;
-
+    @FindBy(xpath = "//*[@id='QSI8002']/div/div")
+    WebElement titleText;
     @Step
     public DateOfBirthPageOLS waitForPageLoad0(String indication, String compensation) {
         waitForPageLoadMain(titleTextPart, getExpectedModifiedTitle(indication, compensation));
@@ -49,6 +58,12 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
     @Step
     public DateOfBirthPageOLS waitForPageLoadCrohns(String indication, String compensation) {
         waitForPageLoadMain(titleTextPart, getExpectedModifiedTitle(indication, compensation));
+        return this;
+    }
+
+    @Step
+    public DateOfBirthPageOLS waitForPageLoad2(String indication, String compensation) {
+        waitForPageLoadMain(titleText, getExpectedModifiedTitle2(indication, compensation));
         return this;
     }
 
@@ -88,6 +103,16 @@ public class DateOfBirthPageOLS extends MainPageBlinx {
 
     public String getExpectedModifiedTitle(String indication, String compensation) {
         return String.format(titleExpected, compensation, indication);
+    }
+
+    public String getExpectedModifiedTitle2(String indication, String compensation) {
+        return String.format(titleExpected2, indication, compensation);
+    }
+
+    @Step
+    public DateOfBirthPageOLS setDate(String date) {
+        typeText(dateField, date);
+        return this;
     }
 
 }

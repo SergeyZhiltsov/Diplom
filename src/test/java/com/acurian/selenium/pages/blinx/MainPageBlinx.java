@@ -5,6 +5,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.PassPID;
+import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -129,6 +130,19 @@ public class MainPageBlinx extends BasePage {
         return (T) page;
     }
 
+    @Step
+    public MainPageBlinx getAnomalyDbToLog(String env) {
+        AnomalyResults anomalyResults = getDbConnection().dbReadAnomaly(env, pid);
+        logTextToAllure("Anomaly : current status = " + anomalyResults.getCurrentStatus() +
+                ", request status id = " + anomalyResults.getRequestStatus() + " for PID " + pid);
+        Assert.assertEquals(anomalyResults.getCurrentStatus(), "SENT", "Current status is not SENT");
+        if (env.equals("STG")) {
+            Assert.assertEquals(anomalyResults.getRequestStatus(), "2", "Request status is not 2");
+        } else {
+            Assert.assertEquals(anomalyResults.getRequestStatus(), "3", "Request status is not 3");
+        }
+        return this;
+    }
 
     @Step
     public <T extends MainPageBlinx> T clickNextButton(T page) {
