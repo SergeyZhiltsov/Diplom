@@ -24,6 +24,9 @@ public class DRSBlinx extends MainPageBlinx {
     @FindBy(xpath = "//*[@id='siteScheduler']/div[1]/div/div[1]")
     WebElement titleText;
 
+    @FindBy(xpath = "//*[@id='noAppointmentsSubmit']")
+    WebElement unfNextBtn;
+
     @FindBy(xpath = "//*[@class='sb-widget-iframe']")
     WebElement frame;
 
@@ -226,6 +229,15 @@ public class DRSBlinx extends MainPageBlinx {
         WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
         webDriverWaitLogged.waitforVisibility(noAppTime);
         noAppTime.click();
+        waitForAnimation();
+        return this;
+    }
+
+    @Step
+    public DRSBlinx clickOnUnfNext() {
+        WebDriverWaitLogged webDriverWaitLogged = new WebDriverWaitLogged(getDriver());
+        webDriverWaitLogged.waitforVisibility(unfNextBtn);
+        unfNextBtn.click();
         waitForAnimation();
         return this;
     }
