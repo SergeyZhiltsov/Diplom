@@ -30,9 +30,6 @@ public class DRSBlinx extends MainPageBlinx {
     @FindBy(xpath = "//*[@class='sb-widget-iframe']")
     WebElement frame;
 
-    @FindBy(xpath = "//*[@id='siteSchedule']")
-    WebElement frameBlinx;
-
     @FindBy(xpath = "//*[@id='confirmationPage']/div[1]/span")
     WebElement titleText2;
 
@@ -126,15 +123,6 @@ public class DRSBlinx extends MainPageBlinx {
     @Step
     public DRSBlinx waitForPageLoadBlinx() {
         threadSleep(10000);
-        waitForAnimation();
-        waitForPageLoadMain(titleText, titleExpected);
-        return this;
-    }
-
-    @Step
-    public DRSBlinx waitForPageLoadBlinxFrame() {
-        threadSleep(10000);
-        getDriver().switchTo().frame(frameBlinx);
         waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;

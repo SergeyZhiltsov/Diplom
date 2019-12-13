@@ -19,7 +19,6 @@ public class DiagnosedWithRAPageOLS extends MainPageBlinx {
 
     @Step
     public DiagnosedWithRAPageOLS waitForPageLoad() {
-        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
