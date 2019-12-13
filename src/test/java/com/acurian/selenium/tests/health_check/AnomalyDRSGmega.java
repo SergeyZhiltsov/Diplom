@@ -1,4 +1,4 @@
-package com.acurian.selenium.tests.blinx;
+package com.acurian.selenium.tests.health_check;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.blinx.ams.DateOfBirthPageOLS;
@@ -102,7 +102,6 @@ public class AnomalyDRSGmega extends BaseTest
             QualifiedClosePageOLS qualifiedClosePageOLS = new QualifiedClosePageOLS();
             qualifiedClosePageOLS
                 .waitForPageLoad()
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
