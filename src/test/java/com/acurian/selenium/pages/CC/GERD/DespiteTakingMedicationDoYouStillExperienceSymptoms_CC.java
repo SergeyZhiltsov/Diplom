@@ -13,6 +13,9 @@ public class DespiteTakingMedicationDoYouStillExperienceSymptoms_CC extends Main
 
     public final String titleExpected = "Despite taking medication, do you still experience symptoms of heartburn, reflux, or GERD?";
 
+    public final String titleExpected2 = "Despite taking medication, about how many days per week do you have symptoms of heartburn, reflux, or GERD?\n" +
+            "Please think about the past 2 months.";
+
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
 
@@ -27,6 +30,12 @@ public class DespiteTakingMedicationDoYouStillExperienceSymptoms_CC extends Main
     public DespiteTakingMedicationDoYouStillExperienceSymptoms_CC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        return this;
+    }
+
+    @Step
+    public DespiteTakingMedicationDoYouStillExperienceSymptoms_CC waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 
