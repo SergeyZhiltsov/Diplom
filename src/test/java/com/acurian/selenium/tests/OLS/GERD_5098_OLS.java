@@ -577,7 +577,7 @@ public class GERD_5098_OLS extends BaseTest {
 
         //----------SiteSelection Page--------------------
         siteSelectionPageOLS
-                .waitForPageLoad("a heartburn or reflux study, "+studyName)
+                .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())

@@ -200,14 +200,14 @@ public class COPD_5042_CC extends BaseTest {
         //------------InThePastYearHowManyUrgentMedicalforCopdCC---------
         HaveYouEverHadFollowingLungSurgeriesCC haveYouEverHadFollowingLungSurgeriesCC = inThePastYearHowManyUrgentMedicalforCopdCC
                 .waitForPageLoad()
-                .clickOnAnswer("None")
-                .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesCC());
-        haveYouEverHadFollowingLungSurgeriesCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7411", site.activeProtocols)
-                .back(inThePastYearHowManyUrgentMedicalforCopdCC)
-                .waitForPageLoad()
+//                .clickOnAnswer("None")
+//                .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesCC());
+//        haveYouEverHadFollowingLungSurgeriesCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS7411", site.activeProtocols)
+//                .back(inThePastYearHowManyUrgentMedicalforCopdCC)
+//                .waitForPageLoad()
                 .clickOnAnswer("Twice")
                 .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesCC());
 

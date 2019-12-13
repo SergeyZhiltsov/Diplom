@@ -144,7 +144,7 @@ public class Crohns_4818_CC extends BaseTest {
 
 
         NonQRtransitionPageCC nonQRtransitionPageCC = everDiagnosedWithFollowingConditionsСС
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC
@@ -153,7 +153,7 @@ public class Crohns_4818_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols[1])
                 .back();
         WhenDiagnosedWithCronsDiseaseCC whenDiagnosedWithCronsDiseaseCC = everDiagnosedWithFollowingConditionsСС
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswers("Crohn's disease")
                 .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseCC());
@@ -579,15 +579,15 @@ public class Crohns_4818_CC extends BaseTest {
                 .waitForPageLoad("a Crohn's study")
                 .getPID()
                 .clickOnAnswer(site.name)
-                .clickNextButton(new QualifiedClose2PageCC())
-                .waitForPageLoadCrohns4818()
-//                .clickNextButton(new MedicalRecordsOptionPageCC())
-//                .waitForPageLoad()
-//                .clickOnAnswer("Continue with medical records")
-//                .clickNextButton(new DoctorInformationCollectionPageCC())
-//                .waitForPageLoadIBD("Ulcerative Colitis")
-//                .clickNextButton(new HSMedicalRecordsPageCC())
-//                .waitForPageLoad()
+//                .clickNextButton(new QualifiedClose2PageCC())
+//                .waitForPageLoadCrohns4818()
+                .clickNextButton(new MedicalRecordsOptionPageCC())
+                .waitForPageLoad()
+                .clickOnAnswer("Continue with medical records")
+                .clickNextButton(new DoctorInformationCollectionPageCC())
+                .waitForPageLoadIBD("Ulcerative Colitis")
+                .clickNextButton(new HSMedicalRecordsPageCC())
+                .waitForPageLoad()
                 .clickNextButton(new ThankYouCloseSimplePageCC())
                 .waitForPageLoad3()
                 .clickNextButton(new SelectActionPageCC())

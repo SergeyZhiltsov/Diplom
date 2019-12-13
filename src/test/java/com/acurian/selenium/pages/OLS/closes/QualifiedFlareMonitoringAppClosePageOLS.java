@@ -25,8 +25,14 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
     @FindBy(xpath = "(//*[contains(@class, 'visible-md-block')])[2]")
     WebElement titleText2;
 
+    @FindBy(xpath = "(//*[contains(@class, 'visible-xs-block')])[2]")
+    WebElement titleText5;
+
     @FindBy(xpath = "//div[contains(@class,'visible-md-block')]//u")
     WebElement activationCodePath;
+
+    @FindBy(xpath = "//div[contains(@class,'visible-xs-block')]//u")
+    WebElement activationCodePath5;
     
     @FindBy(xpath = "//input[@type='email']")
     WebElement emailidField;
@@ -42,6 +48,12 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
     }
 
     @Step
+    public QualifiedFlareMonitoringAppClosePageOLS waitForPageLoadCrohns5() {
+        waitForPageLoadMain(titleText5, titleExpectedCrohns);
+        return this;
+    }
+
+    @Step
     public QualifiedFlareMonitoringAppClosePageOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
@@ -50,6 +62,14 @@ public class QualifiedFlareMonitoringAppClosePageOLS extends MainPageOLS{
     @Step
     public QualifiedFlareMonitoringAppClosePageOLS waitForPageLoadHealthCheck() {
         waitForPageLoadMain(titleText, titleExpectedHealthCheck);
+        return this;
+    }
+
+    @Step
+    public QualifiedFlareMonitoringAppClosePageOLS getActivationCodeCrohns(){
+        activationCode = getText(activationCodePath5);
+        logTextToAllure("Activation Code " + activationCode);
+        System.out.println("Activation Code = " + activationCode);
         return this;
     }
     

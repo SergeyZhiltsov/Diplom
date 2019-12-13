@@ -687,7 +687,7 @@ public class GERD_5098_CC extends BaseTest {
 
 
         siteSelectionPageCC
-                .waitForPageLoad("a heartburn or reflux study, an indigestion, heartburn, or stomach ulcers study")
+                .waitForPageLoad("an indigestion, heartburn, or stomach ulcers study")
                 .getPID()
                 .clickOnAnswer(site.name);
 
