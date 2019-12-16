@@ -4,6 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.OLS.Crohns.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
+import com.acurian.selenium.pages.OLS.UC.WhenWereYouDiagnosedWithUCPageOLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
@@ -41,7 +42,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites")
     @Description("Crohns 4912 for OLS Allergan UC")
     public void Crohns_LC_4912_OLS(Site site) {
         String phoneNumber = "AUTAMS1CRN";
@@ -51,7 +52,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
         DebugPageOLS debugPageOLS = new DebugPageOLS();
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
         dateOfBirthPageOLS.openPage(env, phoneNumber)
-                .waitForPageLoad("Crohn's study", "700");
+                .waitForPageLoad("a Crohn's study", "700");
       //  Assert.assertEquals(dateOfBirthPageOLS.getTitleTextVer3(),
        //        dateOfBirthPageOLS.getExpectedModifiedTitle("Crohn's study", "700"), "Title is diff");
 
@@ -65,7 +66,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols)
                 .back();
         dateOfBirthPageOLS
-                .waitForPageLoad("Crohn's study", "700");
+                .waitForPageLoad("a Crohn's study", "700");
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
                 .clickNextButton(new PersonalDetails());
@@ -109,8 +110,21 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols)
                 .back();
+
+        WhenWereYouDiagnosedWithUCPageOLS whenWereYouDiagnosedWithUCPageOLS = everDiagnosedWithFollowingConditionsOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Ulcerative colitis")
+                .clickNextButton(new WhenWereYouDiagnosedWithUCPageOLS());
+
+        whenWereYouDiagnosedWithUCPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols)
+                .back();
+
         WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseOLS());
         AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS asPartOfYourCronsDiseaseDiagnosisFollowingProceduresOLS = whenDiagnosedWithCronsDiseaseOLS
@@ -472,7 +486,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                         .setSignature();
                 qualifiedFlareMonitoringAppClosePageOLS
                         .waitForPageLoadCrohns()
-                        .getActivationCode()
+                        .getActivationCodeCrohns()
                         .clickNextButton(new ThankYouCloseSimplePageOLS())
                         .waitForPageLoad()
                         .clickNextButton(new AboutHealthPageOLS())
@@ -484,7 +498,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageOLS
-                        .waitForPageLoad("a Crohn's study")
+                        .waitForPageLoad("a Crohn's")
                         .getPID()
                         .clickOnFacilityName(site.name)
                         .clickNextButton(new MedicalRecordsOptionPageOLS())

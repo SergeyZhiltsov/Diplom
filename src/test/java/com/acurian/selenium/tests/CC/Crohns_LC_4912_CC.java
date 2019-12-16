@@ -3,6 +3,7 @@ package com.acurian.selenium.tests.CC;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns.*;
+import com.acurian.selenium.pages.CC.UC.WhenWereYouDiagnosedWithUCPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.cv_study.SubquestionHeartPageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -40,7 +41,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("Crohns 4912 for CC Allergan UC")
     public void Crohns_LC_4912_CC(Site site) {
         String phoneNumber = "AUTAMS1CRN";
@@ -137,7 +138,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
 
 
         NonQRtransitionPageCC nonQRtransitionPageCC = everDiagnosedWithFollowingConditionsСС
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC
@@ -145,8 +146,22 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols)
                 .back();
-        WhenDiagnosedWithCronsDiseaseCC whenDiagnosedWithCronsDiseaseCC = everDiagnosedWithFollowingConditionsСС
+
+        WhenWereYouDiagnosedWithUCPageCC whenWereYouDiagnosedWithUCPageCC = everDiagnosedWithFollowingConditionsСС
+                .waitForPageLoad2()
+                .clickOnAnswers("Ulcerative colitis")
+                .clickNextButton(new WhenWereYouDiagnosedWithUCPageCC());
+
+        whenWereYouDiagnosedWithUCPageCC
                 .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols)
+                .back();
+
+
+        WhenDiagnosedWithCronsDiseaseCC whenDiagnosedWithCronsDiseaseCC = everDiagnosedWithFollowingConditionsСС
+                .waitForPageLoad2()
+                .clickOnAnswers("None of the above")
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseCC());
         AsPartOfYourCronsDiseaseDiagnosisFollowingProceduresCC asPartOfYourCronsDiseaseDiagnosisFollowingProceduresCC = whenDiagnosedWithCronsDiseaseCC
@@ -509,10 +524,10 @@ public class Crohns_LC_4912_CC extends BaseTest {
                         .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC());
 
                 qualifiedFlareMonitoringAppClosePageCC
-                        .waitForPageLoad()
+                        .waitForPageLoadCrohns()
                         .getActivationCode()
                         .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad()
+                        .waitForPageLoad3()
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
@@ -522,17 +537,17 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 break;
             case AUT_AMS1_4912_site:
                 siteSelectionPageCC
-                        .waitForPageLoad("a Crohn's")
+                        .waitForPageLoad("a Crohn's study")
                         .clickOnAnswer(site.name)
                         .getPID()
                         .clickNextButton(new MedicalRecordsOptionPageCC())
                         .waitForPageLoad()
                         .clickOnAnswer("Continue without medical records")
                         .clickNextButton(new QualifiedFlareMonitoringAppClosePageCC())
-                        .waitForPageLoad()
+                        .waitForPageLoadCrohns()
                         .getActivationCode()
                         .clickNextButton(new ThankYouCloseSimplePageCC())
-                        .waitForPageLoad()
+                        .waitForPageLoad3()
                         .clickNextButton(new SelectActionPageCC())
                         .waitForPageLoad()
                         .pidFromDbToLog(env)
