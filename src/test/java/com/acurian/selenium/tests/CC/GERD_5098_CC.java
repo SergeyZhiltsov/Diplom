@@ -723,7 +723,7 @@ public class GERD_5098_CC extends BaseTest {
                         .assertVariablesNew("Acurian", "Trial", "01/01/1990", "US",
                                 "Cape May, NJ", site.zipCode, "qa.acurian@gmail.com",
                                 "999-999-9999", " aut5098S ", " "+site.name,
-                                "PHMPPDPYL301 - Phathom Phalcon")
+                                "PHMPPDEOE301,PHMPPDPYL301 - Phathom Phalcon")
                         .clickOnAnswer("[Successful direct schedule in clinical conductor]")
                         .clickNextButton(selectActionPageCC)
                         .waitForPageLoad()
