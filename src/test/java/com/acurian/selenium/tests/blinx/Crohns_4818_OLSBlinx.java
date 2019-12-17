@@ -58,20 +58,20 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         String env = System.getProperty("acurian.env", "STG");
 
         DateOfBirthPageOLS dateOfBirthPageOLS = new DateOfBirthPageOLS();
-        dateOfBirthPageOLS
-                .openPage(env, phoneNumber)
-                .waitForPageLoadCrohns("a Crohn's study", "700");
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(),
 //                dateOfBirthPageOLS.
 //                        getExpectedModifiedTitle("a Crohn's or colitis study", "700"), "Title is diff");
 
-        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
-                .clickOnAnswer("No")
-                .clickNextButton(new LessThan18YearsOldPageOLS());
-        lessThan18YearsOldPage_OLS
-                .waitForPageLoad();
+        LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = new LessThan18YearsOldPageOLS();
+        dateOfBirthPageOLS
+                .openPage(env, phoneNumber)
+                .waitForPageLoadCrohns("a Crohn's study", "700")
+                .clickOnAnswer("No");
+//                .clickNextButton(new LessThan18YearsOldPageOLS());
         DebugPageOLS debugPageOLS = new DebugPageOLS();
-        lessThan18YearsOldPage_OLS.getPage(debugPageOLS)
+        lessThan18YearsOldPage_OLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QSI8004", site.activeProtocols[1])
                 .back(dateOfBirthPageOLS);
         dateOfBirthPageOLS
