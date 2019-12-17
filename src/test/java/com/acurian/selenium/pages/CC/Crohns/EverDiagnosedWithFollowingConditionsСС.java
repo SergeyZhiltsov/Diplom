@@ -13,6 +13,9 @@ public class EverDiagnosedWithFollowingConditionsСС extends MainPageCC {
     public final String titleExpected = "Have you ever been diagnosed with any of the following conditions?\n" +
             "Agent Note: Select all that apply";
 
+    public final String titleExpected2 = "Have you ever been officially diagnosed with any of the following digestive conditions?\n" +
+            "Agent Note: Select all that apply";
+
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
     WebElement titleText;
 
@@ -26,6 +29,12 @@ public class EverDiagnosedWithFollowingConditionsСС extends MainPageCC {
     @Step
     public EverDiagnosedWithFollowingConditionsСС waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public EverDiagnosedWithFollowingConditionsСС waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 

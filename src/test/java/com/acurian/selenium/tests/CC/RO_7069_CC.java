@@ -124,45 +124,72 @@ public class RO_7069_CC extends BaseTest {
                 .clickNextButton(new EverDiagnosedWithOsteoporosisCC());
 
         //Q2
-        NonQRtransitionPageCC nonQRtransitionPageCC = everDiagnosedWithOsteoporosisCC
+        OsteoporosisRelatedFracturesCC osteoporosisRelatedFracturesСС = everDiagnosedWithOsteoporosisCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new NonQRtransitionPageCC());
-        OsteoporosisRelatedFracturesCC osteoporosisRelatedFracturesCC = nonQRtransitionPageCC
+                .clickNextButton(new OsteoporosisRelatedFracturesCC());
+        osteoporosisRelatedFracturesСС
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(new NonQRtransitionPageCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS7702", site.activeProtocols)
-                .back(everDiagnosedWithOsteoporosisCC)
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new OsteoporosisRelatedFracturesCC());
-
-        //Q3
-        HaveYouGoneThroughMenopauseCC haveYouGoneThroughMenopauseCC = osteoporosisRelatedFracturesCC
+                .checkProtocolsContainsForQNumber("QS7703", site.activeProtocols)
+                .back();
+        HaveYouGoneThroughMenopauseCC haveYouGoneThroughMenopauseCC = osteoporosisRelatedFracturesСС
                 .waitForPageLoad()
                 .clickOnAnswers("Hip fracture",
                         "Spine (vertebral) fracture",
                         "Wrist fracture",
                         "Pelvic fracture",
                         "Other fracture")
-                .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouGoneThroughMenopauseCC());
 
-        //Q4
-        HowLongAgoReachMenopauseCC howLongAgoReachMenopauseCC = haveYouGoneThroughMenopauseCC
+        TransitionStatementCC transitionStatementCC = haveYouGoneThroughMenopauseCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HowLongAgoReachMenopauseCC());
-        howLongAgoReachMenopauseCC
-                .waitForPageLoad()
+                .clickNextButton(new TransitionStatementCC());
+        transitionStatementCC
+                .waitForPageLoadWithTitle(transitionStatementCC.titleROExpected)
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7704", site.activeProtocols)
                 .back(haveYouGoneThroughMenopauseCC)
                 .waitForPageLoad()
+                .back(osteoporosisRelatedFracturesСС)
+                .waitForPageLoad()
+                .back(everDiagnosedWithOsteoporosisCC);
+
+        everDiagnosedWithOsteoporosisCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(osteoporosisRelatedFracturesСС);
+
+        //Q3
+        osteoporosisRelatedFracturesСС
+                .waitForPageLoad()
+//                .clickOnAnswers("Hip fracture",
+//                        "Spine (vertebral) fracture",
+//                        "Wrist fracture",
+//                        "Pelvic fracture",
+//                        "Other fracture")
+                .clickOnAnswers("None of the above")
+                .clickNextButton(haveYouGoneThroughMenopauseCC);
+
+        //Q4
+        HowLongAgoReachMenopauseCC howLongAgoReachMenopauseCC = haveYouGoneThroughMenopauseCC
+                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new HowLongAgoReachMenopauseOLS());
+//        howLongAgoReachMenopauseOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7704", site.activeProtocols)
+//                .back(haveYouGoneThroughMenopauseOLS)
+//                .waitForPageLoad()
                 .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
                 .clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
                 .clickOnAnswer("Yes, menopause for another reason, such as premature ovarian failure or exposure to a medical treatment like chemotherapy")
-                .clickNextButton(howLongAgoReachMenopauseCC);
+                .clickNextButton(new HowLongAgoReachMenopauseCC());
 
         //Q5
         CurrentlyTakingMedicationsOsteoporosisCC currentlyTakingMedicationsOsteoporosisCC =
@@ -224,10 +251,10 @@ public class RO_7069_CC extends BaseTest {
                 .clickNextButton(intravenousMedicationOsteoporosisCC);
 
         //Q8
-        TransitionStatementCC transitionStatementCC = intravenousMedicationOsteoporosisCC
+        intravenousMedicationOsteoporosisCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new TransitionStatementCC());
+                .clickNextButton(transitionStatementCC);
         transitionStatementCC
                 .waitForPageLoadWithTitle(transitionStatementCC.titleROExpected)
                 .getPage(debugPageCC)

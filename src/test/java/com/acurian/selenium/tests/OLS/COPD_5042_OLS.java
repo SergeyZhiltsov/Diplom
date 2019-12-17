@@ -193,14 +193,14 @@ public class COPD_5042_OLS extends BaseTest {
         HaveYouEverHadFollowingLungSurgeriesOLS haveYouEverHadFollowingLungSurgeriesOLS =
                 inThePastYearHowManyUrgentMedicalforCopdOLS
                 .waitForPageLoad()
-                .clickOnAnswer("None")
-                .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesOLS());
-        haveYouEverHadFollowingLungSurgeriesOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7411", site.activeProtocols)
-                .back(inThePastYearHowManyUrgentMedicalforCopdOLS)
-                .waitForPageLoad()
+//                .clickOnAnswer("None")
+//                .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesOLS());
+//        haveYouEverHadFollowingLungSurgeriesOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7411", site.activeProtocols)
+//                .back(inThePastYearHowManyUrgentMedicalforCopdOLS)
+//                .waitForPageLoad()
                 .clickOnAnswer("Twice")
                 .clickNextButton(new HaveYouEverHadFollowingLungSurgeriesOLS());
 

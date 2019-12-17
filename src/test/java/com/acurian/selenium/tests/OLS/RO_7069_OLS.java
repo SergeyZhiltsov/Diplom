@@ -91,20 +91,18 @@ public class RO_7069_OLS extends BaseTest {
                 .clickNextButton(new EverDiagnosedWithOsteoporosisOLS());
 
         //Q2
-        everDiagnosedWithOsteoporosisOLS
+        OsteoporosisRelatedFracturesOLS osteoporosisRelatedFracturesOLS = everDiagnosedWithOsteoporosisOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
+                .clickNextButton(new OsteoporosisRelatedFracturesOLS());
+        osteoporosisRelatedFracturesOLS
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS7702", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS7703", site.activeProtocols)
                 .back();
-        OsteoporosisRelatedFracturesOLS osteoporosisRelatedFracturesOLS = everDiagnosedWithOsteoporosisOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Yes")
-                .clickNextButton(new OsteoporosisRelatedFracturesOLS());
-
-        //Q3
         HaveYouGoneThroughMenopauseOLS haveYouGoneThroughMenopauseOLS = osteoporosisRelatedFracturesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Hip fracture",
@@ -112,24 +110,52 @@ public class RO_7069_OLS extends BaseTest {
                         "Wrist fracture",
                         "Pelvic fracture",
                         "Other fracture")
-                .clickOnAnswers("None of the above")
                 .clickNextButton(new HaveYouGoneThroughMenopauseOLS());
 
-        //Q4
-        HowLongAgoReachMenopauseOLS howLongAgoReachMenopauseOLS = haveYouGoneThroughMenopauseOLS
+        haveYouGoneThroughMenopauseOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new HowLongAgoReachMenopauseOLS());
-        howLongAgoReachMenopauseOLS
+                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS7704", site.activeProtocols)
                 .back(haveYouGoneThroughMenopauseOLS)
                 .waitForPageLoad()
+                .back(osteoporosisRelatedFracturesOLS)
+                .waitForPageLoad()
+                .back(everDiagnosedWithOsteoporosisOLS);
+
+        everDiagnosedWithOsteoporosisOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(osteoporosisRelatedFracturesOLS);
+
+        //Q3
+        osteoporosisRelatedFracturesOLS
+                .waitForPageLoad()
+//                .clickOnAnswers("Hip fracture",
+//                        "Spine (vertebral) fracture",
+//                        "Wrist fracture",
+//                        "Pelvic fracture",
+//                        "Other fracture")
+                .clickOnAnswers("None of the above")
+                .clickNextButton(haveYouGoneThroughMenopauseOLS);
+
+        //Q4
+        HowLongAgoReachMenopauseOLS howLongAgoReachMenopauseOLS = haveYouGoneThroughMenopauseOLS
+                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new HowLongAgoReachMenopauseOLS());
+//        howLongAgoReachMenopauseOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS7704", site.activeProtocols)
+//                .back(haveYouGoneThroughMenopauseOLS)
+//                .waitForPageLoad()
                 .clickOnAnswer("Yes, natural menopause (meaning that you have not had a menstrual period for at least 12 consecutive months, due to the natural aging process)")
                 .clickOnAnswer("Yes, surgical menopause (meaning that both of your ovaries were surgically removed)")
                 .clickOnAnswer("Yes, menopause for another reason, such as premature ovarian failure or exposure to a medical treatment like chemotherapy")
-                .clickNextButton(howLongAgoReachMenopauseOLS);
+                .clickNextButton(new HowLongAgoReachMenopauseOLS());
 
         //Q5
         CurrentlyTakingMedicationsOsteoporosisOLS currentlyTakingMedicationsOsteoporosisOLS =
