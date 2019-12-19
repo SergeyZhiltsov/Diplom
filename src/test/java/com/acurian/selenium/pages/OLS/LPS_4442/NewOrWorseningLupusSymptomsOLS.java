@@ -9,12 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS extends MainPageOLS{
+public class NewOrWorseningLupusSymptomsOLS extends MainPageOLS {
 
-    public final String titleExpected = "What type of doctor(s) do you currently see to help manage your lupus?\n" +
-            "Please select all that apply.";
-    public final String titleExpected2 = "Do you currently see a healthcare professional for your lupus symptoms?";
-
+    public final String titleExpected = "Are you experiencing new or worsening lupus symptoms?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -22,24 +19,18 @@ public class TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS extends MainPageOL
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_OLS)
     List<WebElement> checkBoxList;
 
-    public TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS() {
+    public NewOrWorseningLupusSymptomsOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS waitForPageLoad() {
+    public NewOrWorseningLupusSymptomsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS waitForPageLoad2() {
-        waitForPageLoadMain(titleText, titleExpected2);
-        return this;
-    }
-
-    @Step
-    public TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS clickOnAnswer(String answerText) {
+    public NewOrWorseningLupusSymptomsOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(checkBoxList, answerText);
         return this;
     }

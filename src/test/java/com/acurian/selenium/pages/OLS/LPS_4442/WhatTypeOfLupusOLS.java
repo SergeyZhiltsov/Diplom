@@ -11,6 +11,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class WhatTypeOfLupusOLS extends MainPageOLS{
 
     public final String titleExpected = "What type of lupus were you diagnosed with?";
+    public final String titleExpected2 = "Which type of lupus do you have?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -25,6 +26,12 @@ public class WhatTypeOfLupusOLS extends MainPageOLS{
     @Step
     public WhatTypeOfLupusOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public WhatTypeOfLupusOLS waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 
