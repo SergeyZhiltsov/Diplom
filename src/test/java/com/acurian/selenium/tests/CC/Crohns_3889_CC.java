@@ -42,7 +42,7 @@ public class Crohns_3889_CC extends BaseTest {
     }
 
     @Test(dataProvider = "Flare status")
-    @Description("Crohns 3485 for CC")
+    @Description("Crohns 3889 for CC")
     public void Crohns_3889_CC(String flareStatus) {
         Site site = Site.AUT_CRN_3889_HS;
         String phoneNumber = "AUTAMS1CRN";
@@ -113,7 +113,7 @@ public class Crohns_3889_CC extends BaseTest {
                 .clickNextButton(new EverDiagnosedWithFollowingConditionsСС());
 
         WhenDiagnosedWithCronsDiseaseCC whenDiagnosedWithCronsDiseaseCC = everDiagnosedWithFollowingConditionsСС
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswers("Crohn's disease")
                 .clickOnAnswers("Ulcerative colitis")
                 .clickNextButton(new WhenDiagnosedWithCronsDiseaseCC());
