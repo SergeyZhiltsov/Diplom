@@ -2,7 +2,6 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.AS_4319.PermanentlyUnableWalkDueToMedicalConditionPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.LPS_4442.*;
 import com.acurian.selenium.pages.OLS.closes.*;
@@ -12,7 +11,6 @@ import com.acurian.selenium.pages.OLS.shared.BiologicMedications;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -65,7 +63,7 @@ public class Lupus_4442_OLS extends BaseTest {
                 .clickNextButton(new DiagnosedYouWithLupusOLS());
 
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS = diagnosedYouWithLupusOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("No")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS());
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
@@ -74,81 +72,105 @@ public class Lupus_4442_OLS extends BaseTest {
         debugPageOLS.back();
 
         WhatTypeOfLupusOLS whatTypeOfLupusOLS = diagnosedYouWithLupusOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatTypeOfLupusOLS());
 
         whatTypeOfLupusOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Cutaneous lupus - a form of lupus which affects the skin only")
                 .clickNextButton(new WhenWereYouDiagnosedOLS())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6103", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6116", protocol1, protocol2);
         debugPageOLS.back();
         whatTypeOfLupusOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Drug-induced lupus - a form of lupus caused by certain prescription medications")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6103", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6116", protocol1, protocol2);
         debugPageOLS.back();
+//        whatTypeOfLupusOLS
+//                .waitForPageLoad2()
+//                .clickOnAnswer("Neonatal lupus - a form of lupus that affects newborn infants")
+//                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
+//                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS6103", protocol1, protocol2);
+//        debugPageOLS.back();
         whatTypeOfLupusOLS
-                .waitForPageLoad()
-                .clickOnAnswer("Neonatal lupus - a form of lupus that affects newborn infants")
-                .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6103", protocol1, protocol2);
-        debugPageOLS.back();
-        whatTypeOfLupusOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new WhenWereYouDiagnosedOLS())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6103", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6116", protocol1, protocol2);
         debugPageOLS.back();
         WhenWereYouDiagnosedOLS whenWereYouDiagnosedOLS = whatTypeOfLupusOLS
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Systemic lupus (SLE) - the most common form of lupus, which may affect multiple organs and tissues in the body")
                 .clickNextButton(new WhenWereYouDiagnosedOLS());
 
 
         TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS typeOfDoctorCurrentlySeeToHelpManageYourLupusOLS = whenWereYouDiagnosedOLS
                 .waitForPageLoad()
-                .clickOnAnswer("Less than 6 months ago")
+                .clickOnAnswer("Less than 1 month ago")
                 .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS())
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6104", protocol1, protocol2);
+                .waitForPageLoad2();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6117", protocol1, protocol2);
         debugPageOLS.back();
         whenWereYouDiagnosedOLS
                 .waitForPageLoad()
-                .clickOnAnswer("1 - 2 years ago")
+                .clickOnAnswer("1 - 2 months ago")
                 .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS())
-                .waitForPageLoad();
-
-
-        MedicationsCurrentlyTakingToTreatLupusOLS medicationsCurrentlyTakingToTreatLupusOLS = typeOfDoctorCurrentlySeeToHelpManageYourLupusOLS
+                .waitForPageLoad2();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6117", protocol1, protocol2);
+        debugPageOLS.back();
+        whenWereYouDiagnosedOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above - I do not currently see a doctor for my lupus")
-                .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusOLS())
+                .clickOnAnswer("3 - 4 months ago")
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS())
+                .waitForPageLoad2();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6117", protocol1, protocol2);
+        debugPageOLS.back();
+        whenWereYouDiagnosedOLS
+                .waitForPageLoad()
+                .clickOnAnswer("5 - 6 months ago")
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusOLS())
+                .waitForPageLoad2();
+
+
+        CurrentlyTakingPrescriptionMedicationsOLS currentlyTakingPrescriptionMedicationsOLS = typeOfDoctorCurrentlySeeToHelpManageYourLupusOLS
+                .waitForPageLoad2()
+                .clickOnAnswer("No")
+                .clickNextButton(new CurrentlyTakingPrescriptionMedicationsOLS())
                 .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6115", protocol1, protocol2);
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6118", protocol1, protocol2);
         debugPageOLS.back();
         typeOfDoctorCurrentlySeeToHelpManageYourLupusOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Primary care physician or general practitioner","Rheumatologist","Other specialist")
-                .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusOLS())
-                .waitForPageLoad();
+                .waitForPageLoad2()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CurrentlyTakingPrescriptionMedicationsOLS());
 
+        NewOrWorseningLupusSymptomsOLS newOrWorseningLupusSymptomsOLS = currentlyTakingPrescriptionMedicationsOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new NewOrWorseningLupusSymptomsOLS())
+                .waitForPageLoad();
+        debugPageOLS.checkProtocolsContainsForQNumber("QS6119", protocol1, protocol2);
+        debugPageOLS.back();
+        MedicationsCurrentlyTakingToTreatLupusOLS medicationsCurrentlyTakingToTreatLupusOLS = currentlyTakingPrescriptionMedicationsOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusOLS());
 
         BiologicMedications biologicMedications = medicationsCurrentlyTakingToTreatLupusOLS
                 .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(new BiologicMedications())
-                .waitForPageLoadKAD();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6106", protocol1, protocol2);
-        debugPageOLS.back();
-        medicationsCurrentlyTakingToTreatLupusOLS
-                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new BiologicMedications())
+//                .waitForPageLoadKAD();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS6106", protocol1, protocol2);
+//        debugPageOLS.back();
+//        medicationsCurrentlyTakingToTreatLupusOLS
+//                .waitForPageLoad()
                 .clickOnAnswers("Arava (leflunomide)", "Astagraf, Envarsus, or Prograf (tacrolimus)", "Azasan or Imuran (azathioprine)", "Azulfidine (sulfasalazine)")
                 .clickOnAnswers("CellCept or Myfortic (mycophenolate)", "Chloroquine", "Corticosteroid taken by mouth, such as prednisone")
                 .clickOnAnswers("Methotrexate (Otrexup, Rasuvo, or Trexall)", "Plaquenil (hydroxychloroquine)")
@@ -174,42 +196,43 @@ public class Lupus_4442_OLS extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EitherOfFollowingMedicationsOLS());
 
-        PermanentlyUnableWalkDueToMedicalConditionPageOLS permanentlyUnableWalkDueToMedicalConditionPageOLS = eitherOfFollowingMedicationsOLS
+        eitherOfFollowingMedicationsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi")
-                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageOLS())
+                .clickNextButton(newOrWorseningLupusSymptomsOLS)
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6108", protocol1, protocol2);
         debugPageOLS.back();
         eitherOfFollowingMedicationsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Xeljanz")
-                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageOLS())
+                .clickNextButton(newOrWorseningLupusSymptomsOLS)
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6108", protocol1, protocol2);
         debugPageOLS.back();
         eitherOfFollowingMedicationsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageOLS());
+                .clickNextButton(newOrWorseningLupusSymptomsOLS);
 
-        ExperienceWithYourLupusOLS experienceWithYourLupusOLS = permanentlyUnableWalkDueToMedicalConditionPageOLS
+        ExperienceWithYourLupusOLS experienceWithYourLupusOLS = newOrWorseningLupusSymptomsOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new ExperienceWithYourLupusOLS())
-                .waitForPageLoad();
-        debugPageOLS.checkProtocolsContainsForQNumber("QS6113", protocol1, protocol2);
-        debugPageOLS.back();
-        permanentlyUnableWalkDueToMedicalConditionPageOLS
-                .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ExperienceWithYourLupusOLS());
+//                .waitForPageLoad();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS6113", protocol1, protocol2);
+//        debugPageOLS.back();
+//        permanentlyUnableWalkDueToMedicalConditionPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("No")
+//                .clickNextButton(new ExperienceWithYourLupusOLS());
 
         experienceWithYourLupusOLS
                 .waitForPageLoad()
-                .clickOnAnswers("Fatigue", "Fever", "Joint pain, stiffness and swelling", "Skin lesions that appear or worsen with sun exposure", "Shortness of breath")
+                .clickOnAnswers("Prolonged or extreme fatigue", "Unexplained fever", "Joint pain, stiffness and swelling", "Skin lesions that appear or worsen with sun exposure", "Shortness of breath")
                 .clickOnAnswers("Butterfly-shaped rash on the face that covers the cheeks and bridge of the nose or rashes elsewhere on the body", "Headaches, confusion, or memory loss")
-                .clickOnAnswers("Fingers and toes that turn white or blue when exposed to cold or during stressful periods", "Chest pain", "Dry eyes")
+                .clickOnAnswers("Sensitivity to sun and/or other light", "Mouth sores or ulcers", "Chest pain", "Dry eyes")
+                .clickOnAnswers("Difficulty swallowing", "Pale or purple fingers or toes from cold or stress", "Hair loss")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS())
                 .waitForPageLoad();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS.back();

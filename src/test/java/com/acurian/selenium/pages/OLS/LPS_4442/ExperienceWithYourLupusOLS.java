@@ -10,7 +10,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class ExperienceWithYourLupusOLS extends MainPageOLS{
 
-    public final String titleExpected = "Which of the following do you experience with your lupus?\n" +
+    public final String titleExpected = "Which of the following are you experiencing?\n" +
     		"Please select all that apply.";
             
 

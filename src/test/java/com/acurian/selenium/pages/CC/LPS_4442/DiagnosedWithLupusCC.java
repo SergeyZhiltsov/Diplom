@@ -12,6 +12,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 public class DiagnosedWithLupusCC extends MainPageCC{
 
     public final String titleExpected = "Has a healthcare professional ever diagnosed you with lupus? (Agent Note: LOOP-us)";
+    public final String titleExpected2 = "Has a healthcare professional diagnosed you with lupus? (Agent Note: LOOP-us)";
 
     @FindBy(xpath = "//div[@class='question_text']/div[@class='show-in-cc']")
     WebElement titleText;    
@@ -27,6 +28,12 @@ public class DiagnosedWithLupusCC extends MainPageCC{
     public DiagnosedWithLupusCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
+        return this;
+    }
+
+    @Step
+    public DiagnosedWithLupusCC waitForPageLoad2() {
+        waitForPageLoadMain(titleText, titleExpected2);
         return this;
     }
 

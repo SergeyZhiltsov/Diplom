@@ -86,7 +86,7 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickNextButton(new DiagnosedWithLupusCC());
 
         NonQRtransitionPageCC nonQRtransitionPageCC = diagnosedWithLupusCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("No")
                 .clickNextButton(new NonQRtransitionPageCC());
         nonQRtransitionPageCC.waitForPageLoad();
@@ -94,68 +94,103 @@ public class Lupus_4442_CC extends BaseTest {
         debugPageCC.back();
 
         WhatTypeOfLupusCC whatTypeOfLupusCC = diagnosedWithLupusCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhatTypeOfLupusCC());
 
         TransitionStatementCC transitionStatementCC = whatTypeOfLupusCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Drug-induced lupus - a form of lupus caused by certain prescription medications")
                 .clickNextButton(new TransitionStatementCC());
         transitionStatementCC.waitForPageLoadNew("lupus");
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017448-QS6103-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0022611-QS6116-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        whatTypeOfLupusCC
-                .waitForPageLoad()
-                .clickOnAnswer("Neonatal lupus (Agent Note: nee-oh-NAY-tal LOOP-us) - a form of lupus that affects newborn infants")
-                .clickNextButton(new TransitionStatementCC())
-                .waitForPageLoadNew("lupus");
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017448-QS6103-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
+//        whatTypeOfLupusCC
+//                .waitForPageLoad2()
+//                .clickOnAnswer("Neonatal lupus (Agent Note: nee-oh-NAY-tal LOOP-us) - a form of lupus that affects newborn infants")
+//                .clickNextButton(new TransitionStatementCC())
+//                .waitForPageLoadNew("lupus");
+//        debugPageCC.checkProtocolsContainsForQNumber("Q0017448-QS6103-STUDYQUES", protocol1, protocol2);
+//        debugPageCC.back();
         WhenDiagnosedWithLupusCC whenDiagnosedWithLupusCC = whatTypeOfLupusCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Cutaneous lupus (Agent Note: cu-TAY-nee-uhs LOOP-us) - a form of lupus which affects the skin only")
                 .clickNextButton(new WhenDiagnosedWithLupusCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017448-QS6103-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0022611-QS6116-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         whatTypeOfLupusCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new WhenDiagnosedWithLupusCC())
                 .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017448-QS6103-STUDYQUES", protocol1, protocol2);
+        debugPageCC.checkProtocolsContainsForQNumber("Q0022611-QS6116-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         whatTypeOfLupusCC
-                .waitForPageLoad()
+                .waitForPageLoad2()
                 .clickOnAnswer("Systemic lupus (SLE) (Agent Note: sis-STEM-ic LOOP-us) - the most common form of lupus, which may affect multiple organs and tissues in the body")
                 .clickNextButton(new WhenDiagnosedWithLupusCC());
 
 
-        TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC typeOfDoctorCurrentlySeeToHelpManageYourLupusCC = whenDiagnosedWithLupusCC
+        TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC typeOfDoctorCurrentlySeeToHelpManageYourLupusСС = whenDiagnosedWithLupusCC
                 .waitForPageLoad()
-                .clickOnAnswer("Less than 6 months ago")
+                .clickOnAnswer("Less than 1 month ago")
                 .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017449-QS6104-STUDYQUES", protocol1, protocol2);
+                .waitForPageLoad2();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0022612-QS6117-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         whenDiagnosedWithLupusCC
                 .waitForPageLoad()
-                .clickOnAnswer("1 - 2 years ago")
-                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC());
-
-
-        MedicationsCurrentlyTakingToTreatLupusCC medicationsCurrentlyTakingToTreatLupusCC = typeOfDoctorCurrentlySeeToHelpManageYourLupusCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above - I do not currently see a doctor for my lupus")
-                .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0020566-QS6115-STUDYQUES", protocol1, protocol2);
+                .clickOnAnswer("1 - 2 months ago")
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC())
+                .waitForPageLoad2();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0022612-QS6117-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        typeOfDoctorCurrentlySeeToHelpManageYourLupusCC
+        whenDiagnosedWithLupusCC
                 .waitForPageLoad()
-                .clickOnAnswers("Primary care physician or general practitioner","Rheumatologist","Other specialist")
+                .clickOnAnswer("3 - 4 months ago")
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC())
+                .waitForPageLoad2();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0022612-QS6117-STUDYQUES", protocol1, protocol2);
+        debugPageCC.back();
+        whenDiagnosedWithLupusCC
+                .waitForPageLoad()
+                .clickOnAnswer("5 - 6 months ago")
+                .clickNextButton(new TypeOfDoctorCurrentlySeeToHelpManageYourLupusCC())
+                .waitForPageLoad2();
+
+
+        CurrentlyTakingPrescriptionMedicationsCC currentlyTakingPrescriptionMedicationsCC = typeOfDoctorCurrentlySeeToHelpManageYourLupusСС
+                .waitForPageLoad2()
+                .clickOnAnswer("No")
+                .clickNextButton(new CurrentlyTakingPrescriptionMedicationsCC())
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0022613-QS6118-STUDYQUES", protocol1, protocol2);
+        debugPageCC.back();
+        typeOfDoctorCurrentlySeeToHelpManageYourLupusСС
+                .waitForPageLoad2()
+                .clickOnAnswer("Yes")
+                .clickNextButton(new CurrentlyTakingPrescriptionMedicationsCC());
+
+        NewOrWorseningLupusSymptomsCC newOrWorseningLupusSymptomsCC = currentlyTakingPrescriptionMedicationsCC
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new NewOrWorseningLupusSymptomsCC())
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0022614-QS6119-STUDYQUES", protocol1, protocol2);
+        debugPageCC.back();
+        MedicationsCurrentlyTakingToTreatLupusCC medicationsCurrentlyTakingToTreatLupusCC = currentlyTakingPrescriptionMedicationsCC
+                .waitForPageLoad()
+                .clickOnAnswer("Yes")
                 .clickNextButton(new MedicationsCurrentlyTakingToTreatLupusCC());
+
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(new BiologicMedications())
+//                .waitForPageLoadKAD();
+//        debugPageOLS.checkProtocolsContainsForQNumber("QS6106", protocol1, protocol2);
+//        debugPageOLS.back();
+//        medicationsCurrentlyTakingToTreatLupusOLS
+//                .waitForPageLoad()
 
 
         BiologicMedicationsCC biologicMedicationsCC = medicationsCurrentlyTakingToTreatLupusCC
@@ -194,43 +229,36 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new EitherOfTheFollowingMedicationsCC());
 
-        PermanentlyUnableWalkDueToMedicalConditionPageCC permanentlyUnableWalkDueToMedicalConditionPageCC = eitherOfTheFollowingMedicationsCC
-                .waitForPageLoad()
-                .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
-                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0017453-QS6108-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
         eitherOfTheFollowingMedicationsCC
                 .waitForPageLoad()
                 .clickOnAnswers("Jakafi (Agent Note: JAK-uh-fie)")
-                .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
-                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageCC())
+                .clickNextButton(newOrWorseningLupusSymptomsCC)
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017453-QS6108-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         eitherOfTheFollowingMedicationsCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new PermanentlyUnableWalkDueToMedicalConditionPageCC());
+                .clickOnAnswers("Xeljanz (Agent Note: ZEL-jans)")
+                .clickNextButton(newOrWorseningLupusSymptomsCC)
+                .waitForPageLoad();
+        debugPageCC.checkProtocolsContainsForQNumber("Q0017453-QS6108-STUDYQUES", protocol1, protocol2);
+        debugPageCC.back();
+        eitherOfTheFollowingMedicationsCC
+                .waitForPageLoad()
+                .clickOnAnswers("None of the above")
+                .clickNextButton(newOrWorseningLupusSymptomsCC);
 
-        ExperienceWithYourLupusCC experienceWithYourLupusCC = permanentlyUnableWalkDueToMedicalConditionPageCC
+        ExperienceWithYourLupusCC experienceWithYourLupusCC = newOrWorseningLupusSymptomsCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new ExperienceWithYourLupusCC())
-                .waitForPageLoad();
-        debugPageCC.checkProtocolsContainsForQNumber("Q0014045-QS6113-STUDYQUES", protocol1, protocol2);
-        debugPageCC.back();
-        permanentlyUnableWalkDueToMedicalConditionPageCC
-                .waitForPageLoad()
-                .clickOnAnswer("No")
                 .clickNextButton(new ExperienceWithYourLupusCC());
 
         experienceWithYourLupusCC
                 .waitForPageLoad()
-                .clickOnAnswers("Fatigue", "Fever", "Joint pain, stiffness and swelling", "Butterfly-shaped rash on the face that covers the cheeks and bridge of the nose or rashes elsewhere on the body")
-                .clickOnAnswers("Skin lesions that appear or worsen with sun exposure", "Fingers and toes that turn white or blue when exposed to cold or during stressful periods")
-                .clickOnAnswers("Shortness of breath", "Chest pain", "Dry eyes", "Headaches, confusion, or memory loss")
+                .clickOnAnswers("Prolonged or extreme fatigue", "Unexplained fever", "Joint pain, stiffness and swelling", "Butterfly-shaped rash on the face that covers the cheeks and bridge of the nose or rashes elsewhere on the body")
+                .clickOnAnswers("Skin lesions that appear or worsen with sun exposure", "Sensitivity to sun and/or other light", "Mouth sores or ulcers", "Difficulty swallowing")
+                .clickOnAnswers("Pale or purple fingers or toes from cold or stress", "Shortness of breath", "Chest pain", "Dry eyes", "Headaches, confusion, or memory loss", "Hair loss")
                 .clickNextButton(new TransitionStatementCC())
                 .waitForPageLoadNew("lupus")
                 .back();

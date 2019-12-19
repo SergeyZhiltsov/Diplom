@@ -13,7 +13,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class ExperienceWithYourLupusCC extends MainPageCC{
 
-    public final String titleExpected = "Which of the following do you experience with your lupus?\n" +            
+    public final String titleExpected = "Which of the following are you experiencing?\n" +
             "Agent Note: Select all that apply";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_CC)
