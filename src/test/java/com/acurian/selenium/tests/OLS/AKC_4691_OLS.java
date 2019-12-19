@@ -625,16 +625,16 @@ public class AKC_4691_OLS extends BaseTest {
                 .waitForPageLoad()
                 .setAll("5", "5", "160")
                 .clickNextButton(new IdentificationPageOLS());
-        identificationPageOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
-                .back();
-        approximateHeightPageOLS
-                .waitForPageLoad()
-                .setIncheswithClear("9")
-                .setLbs("240")
-                .clickNextButton(identificationPageOLS);
+//        doYouExperienceDPN_OLS
+//                . waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS60", site.activeProtocols)
+//                .back();
+//        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
+//                .waitForPageLoad()
+//                .setIncheswithClear("9")
+//                .setLbs("240")
+//                .clickNextButton(new IdentificationPageOLS());
         identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "", "9999999999", site.zipCode)
