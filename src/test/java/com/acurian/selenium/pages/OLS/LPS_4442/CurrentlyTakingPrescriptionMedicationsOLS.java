@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CurrentlyTakingPrescriptionMedicationsOLS extends MainPageOLS {
 
-    public final String titleExpected = "Are you currently taking any prescription medication(s) to treat your Lupus symptoms?";
+    public final String titleExpected = "Are you currently taking any prescription medication(s) to treat your lupus symptoms?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;

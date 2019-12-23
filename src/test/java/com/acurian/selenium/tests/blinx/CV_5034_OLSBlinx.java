@@ -42,7 +42,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data", enabled = false) //todo turn on after PDV
+    @Test(dataProvider = "data", enabled = true) //todo turn on after PDV
     public void CV_5034_Blinx(Site site, String city, String state) {
         String phoneNumber = "AUTAMS1CV1";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -53,7 +53,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("No")
-                .clickNextButton(new LessThan18YearsOldPageOLS());
+                .getPage(new LessThan18YearsOldPageOLS());
 
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()
@@ -64,7 +64,7 @@ public class CV_5034_OLSBlinx extends BaseTest {
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("Yes")
-                .clickNextButton(new ZipCodePageOLS());
+                .getPage(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()

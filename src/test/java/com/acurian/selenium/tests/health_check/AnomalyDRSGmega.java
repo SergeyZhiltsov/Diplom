@@ -83,7 +83,7 @@ public class AnomalyDRSGmega extends BaseTest
                 .clickOnFacilityName("Acurian-1234")
                 .clickNextButton(new DRSBlinx());
         dRSBlinx
-                .waitForPageLoadBlinx()
+                .waitForPageLoad2()
                 .clickOnBtnNoApp()
                 .waitForUnf()
                 .clickOnUnfNext();
@@ -102,7 +102,8 @@ public class AnomalyDRSGmega extends BaseTest
             QualifiedClosePageOLS qualifiedClosePageOLS = new QualifiedClosePageOLS();
             qualifiedClosePageOLS
                 .waitForPageLoad()
-                .waitForPageLoad()
+                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .waitForPageLoad2()
                 .clickNextButton(new AboutHealthPageOLS())
                 .waitForPageLoad()
                 .pidFromDbToLog(env)

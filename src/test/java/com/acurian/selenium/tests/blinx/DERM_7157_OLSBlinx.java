@@ -45,7 +45,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sites", enabled = false)
+    @Test(dataProvider = "sites", enabled = true)
     @Description("DERM 7157 Glenmark Atopic Derm")
     public void DERM_7157_Blinx(Site site) {
         final String phoneNumber = "AUTAMS1KAD";
@@ -62,7 +62,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 "Title is diff");
         LessThan18YearsOldPageOLS lessThan18YearsOldPage_OLS = dateOfBirthPageOLS
                 .clickOnAnswer("No")
-                .clickNextButton(new LessThan18YearsOldPageOLS());
+                .getPage(new LessThan18YearsOldPageOLS());
         lessThan18YearsOldPage_OLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
@@ -72,7 +72,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
         IdentificationPageOLS identificationPageOLS = dateOfBirthPageOLS
                 .waitForPageLoad0("an eczema (atopic dermatitis) study", "600")
                 .clickOnAnswer("Yes")
-                .clickNextButton(new IdentificationPageOLS());
+                .getPage(new IdentificationPageOLS());
 
         GenderPageOLS genderPageOLS = identificationPageOLS
                 .waitForPageLoadNotQ()
@@ -106,20 +106,20 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                         .clickNextButton(new HowLongHaveYouBeenSufferingFromEczema_OLS());
 
         HowMuchEczemaYouHaveOnYourBody_OLS howMuchEczemaYouHaveOnYourBody_OLS = new HowMuchEczemaYouHaveOnYourBody_OLS();
-        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
-                "3 - 6 months",
-                "7 - 11 months");
-        for (String answer : disqualifyQ3) {
-            System.out.println(answer);
-            howLongHaveYouBeenSufferingFromEczema_OLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
-                    .back(howLongHaveYouBeenSufferingFromEczema_OLS);
-        }
+//        List<String> disqualifyQ3 = Arrays.asList("2 months or less",
+//                "3 - 6 months",
+//                "7 - 11 months");
+//        for (String answer : disqualifyQ3) {
+//            System.out.println(answer);
+//            howLongHaveYouBeenSufferingFromEczema_OLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(howMuchEczemaYouHaveOnYourBody_OLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS5831", site.activeProtocols)
+//                    .back(howLongHaveYouBeenSufferingFromEczema_OLS);
+//        }
         howLongHaveYouBeenSufferingFromEczema_OLS
                 .waitForPageLoad()
                 .clickOnAnswer("3 years or more")
@@ -127,7 +127,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
 
         HowWouldYouDescribeTheEczemaCurrentlyPageOLS howWouldYouDescribeTheEczemaCurrentlyPageOLS =
                 new HowWouldYouDescribeTheEczemaCurrentlyPageOLS();
-        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5", "6");
+        List<String> disqualifyQ4 = Arrays.asList("0", "1", "2", "3", "4", "5");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
             howMuchEczemaYouHaveOnYourBody_OLS
@@ -150,7 +150,7 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
 //                    .checkProtocolsContainsForQNumber("QS5845", site.activeProtocols)
-                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
+//                    .checkStudyStatusContainsForQNumber(env.equals("PRD") ? "12-18" : "8-14")
                     .back(howMuchEczemaYouHaveOnYourBody_OLS);
         }
         howMuchEczemaYouHaveOnYourBody_OLS
@@ -363,14 +363,14 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                         .clickNextButton(new SubquestionExperiencedHeartPageOLS()); //Display Q12.1: QS47A
         //Q12
         HeartrelatedMedicalProceduresPageOLS heartrelatedMedicalProceduresPageOLS = subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(5, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
-                .clickOnAnswerForSubQuestion(3, "1 - 3 months ago")
-                .clickOnAnswerForSubQuestion(4, "4 - 6 months ago")
-                .clickOnAnswerForSubQuestion(5, "7 - 12 months ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
+                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
+                .clickOnAnswerForSubQuestion(4, "7 - 12 months ago")
                 .clickNextButton(new HeartrelatedMedicalProceduresPageOLS());
         //Q13: QS48
         MostRecentHeartProcedurePageOLS mostRecentHeartProcedurePageOLS = heartrelatedMedicalProceduresPageOLS
@@ -385,10 +385,10 @@ public class DERM_7157_OLSBlinx extends BaseTest {
                 .back(heartrelatedMedicalProceduresPageOLS)
                 .waitForPageLoad()
                 .back(subquestionExperiencedHeartPageOLS)
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected1)
-                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .waitForPageLoad(5, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected1)
+                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(3, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(4, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS)
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);

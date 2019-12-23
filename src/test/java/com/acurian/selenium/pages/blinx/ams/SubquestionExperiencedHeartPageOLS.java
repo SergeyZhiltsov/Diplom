@@ -41,13 +41,13 @@ public class SubquestionExperiencedHeartPageOLS extends MainPageBlinx {
     public SubquestionExperiencedHeartPageOLS waitForPageLoad(int actualTitleIndex, String expectedTitle) {
         waitForAnimation();
         driverWait.waitforVisibility(titleText);
-        waitForPageLoadMain(titlesText.get(actualTitleIndex - 1), expectedTitle);
+        waitForPageLoadMain(titlesText.get(actualTitleIndex), expectedTitle);
         return this;
     }
 
     @Step
     public SubquestionExperiencedHeartPageOLS clickOnAnswerForSubQuestion(int questionNumber, String answerText) {
-        List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber - 1)
+        List<WebElement> checkBoxListFromTitle = titlesText.get(questionNumber)
                 .findElements(By.xpath("following-sibling::div[@class='answers-container']" +
                         "//div[@class='single-choice-answers-container w-100']/button"));
         clickOnRadioButton(checkBoxListFromTitle, answerText);
