@@ -31,7 +31,7 @@ public enum Site {
     //7193
     AUT_AMS1_7193_Site("AUT_AMS1_7193_site", "08204", "1R", true, false, "ARQ_151_212"),
     //3889
-    AUT_CRN_3889_HS("AUT_CRN_3889_HS", "19901", "1R", true, false, "M14_431", "M14_433", "M15_991", "M16_006"),
+    AUT_CRN_3889_HS("AUT_CRN_3889_HS", "08326", "1R", true, false, "M14_431", "M14_433", "M15_991", "M16_006"),
     //3973
     AUT_ROC_3973_site("AUT_ROC_3973_site", "19901", "1R", true, true, "WN39434"),
     //4109
