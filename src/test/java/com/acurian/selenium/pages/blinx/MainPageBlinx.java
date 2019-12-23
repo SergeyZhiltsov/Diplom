@@ -3,10 +3,12 @@ package com.acurian.selenium.pages.blinx;
 import com.acurian.selenium.constants.FULType;
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BasePage;
+import com.acurian.selenium.pages.FUL_Letters.FollowupLetter;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import com.acurian.selenium.utils.PassPID;
 import com.acurian.selenium.utils.db.AnomalyResults;
 import com.acurian.selenium.utils.db.ChildResult;
+import com.acurian.selenium.utils.db.RadiantResults;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -18,6 +20,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -257,6 +260,60 @@ public class MainPageBlinx extends BasePage {
         Assert.assertTrue(priorityList.contains(studyId), String.format("The STUDY_RMG_PRIORITY_CONFIG not contains " +
                 "expected study id. Expected [%s] but found [%s].", studyId, priorityList));
         return this;
+    }
+
+    @Step
+    public MainPageBlinx getRadiantDbToLog(String env, String ... assertStudyReference) {
+        if(env.equals("QA")) {
+            RadiantResults radiantResults = getDbConnection().dbReadRadiant(env, pid);
+            logTextToAllure("Radiant : current status = " + radiantResults.getCurrentStatus() +
+                    ", response message = " + radiantResults.getResponseMessage() +
+                    ", study reference = " + radiantResults.getStudyReference() +
+                    " for PID " + pid);
+            Assert.assertEquals(radiantResults.getCurrentStatus(), "SENT", "Current status is not SENT");
+            Assert.assertEquals(radiantResults.getResponseMessage(), "Success", "Response message is not Success");
+            Assert.assertNotNull(radiantResults.getStudyReference(), "Study reference is NULL");
+            List<String> studyReference = Arrays.asList(radiantResults.getStudyReference().split(":"));
+            Assert.assertFalse(studyReference.size() < 2, "Study reference response is not full");
+            Assert.assertFalse(studyReference.get(0).isEmpty() || studyReference.get(0).contentEquals("null"),
+                    "First part is empty or null");
+            Assert.assertFalse(studyReference.get(1).isEmpty() || studyReference.get(1).contentEquals("null"),
+                    "Second part is empty or null");
+            if (assertStudyReference.length == 1) {
+                Assert.assertNotNull(radiantResults.getStudyReference(), "Study reference is NULL");
+                Assert.assertEquals(radiantResults.getStudyReference(), assertStudyReference[0], "Study reference is not matched!");
+            }
+        }
+        return this;
+    }
+
+
+    @Step
+    public synchronized void queueSiteForFULCheck(String siteName) {
+        FollowupLetter ful = new FollowupLetter();
+        String stringQuery = pid + "," + siteName;
+        StringBuilder sb = new StringBuilder();
+        String line;
+
+        if(ful.getFulsToBeVerifiedFile().exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(ful.getFulsToBeVerifiedFile()))) {
+                while ((line = br.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
+                System.out.println("Rewriting existing data from file:");
+                System.out.println(sb);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ful.getFulsToBeVerifiedFile()))) {
+            bw.write(sb.toString());
+            System.out.println("Queued new site for FUL validation to file: " + stringQuery);
+            bw.write(stringQuery);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

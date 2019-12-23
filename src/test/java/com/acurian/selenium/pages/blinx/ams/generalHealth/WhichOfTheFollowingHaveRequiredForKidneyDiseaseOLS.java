@@ -21,6 +21,7 @@ public class WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS extends MainPage
 
     @Step
     public WhichOfTheFollowingHaveRequiredForKidneyDiseaseOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

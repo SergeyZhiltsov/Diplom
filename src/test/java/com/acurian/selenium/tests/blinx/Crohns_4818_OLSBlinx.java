@@ -13,6 +13,7 @@ import com.acurian.selenium.pages.blinx.ams.generalHealth.*;
 import com.acurian.selenium.pages.blinx.ams.shared.BiologicMedications;
 import com.acurian.selenium.pages.blinx.ams.shared.GenderPageOLS;
 import com.acurian.selenium.pages.blinx.ams.shared.PersonalDetails;
+import com.acurian.selenium.pages.blinx.ams.uc.WhenWereYouDiagnosedWithUCPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.AboutHealthPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.ApproximateHeightWeightPageOLS;
 import com.acurian.selenium.pages.blinx.gmega.intro.IdentificationPageOLS;
@@ -47,7 +48,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "flare", enabled = false)
+    @Test(dataProvider = "flare", enabled = true)
     @Description("Crohns_4818_OLSBlinx")
     public void Crohns_4818_OLS(boolean flare) {
         Site site = Site.AUT_AMS1_4818_Site;
@@ -78,7 +79,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .waitForPageLoadCrohns("a Crohn's study", "700");
         PersonalDetails personalDetails = dateOfBirthPageOLS
                 .clickOnAnswer("Yes")
-                .clickNextButton(new PersonalDetails());
+                .getPage(new PersonalDetails());
 
         GenderPageOLS genderPageOLS = personalDetails
                 .waitForPageLoad()
@@ -116,6 +117,16 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols[1])
                 .back(everDiagnosedWithFollowingConditionsOLS);
+        WhenWereYouDiagnosedWithUCPageOLS whenWereYouDiagnosedWithUCPageOLS = everDiagnosedWithFollowingConditionsOLS
+                .waitForPageLoad()
+                .clickOnAnswers("Ulcerative colitis")
+                .clickNextButton(new WhenWereYouDiagnosedWithUCPageOLS());
+        whenWereYouDiagnosedWithUCPageOLS
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS8102", site.activeProtocols[1])
+                .back(everDiagnosedWithFollowingConditionsOLS);
+
         WhenDiagnosedWithCronsDiseaseOLS whenDiagnosedWithCronsDiseaseOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Crohn's disease")
@@ -394,31 +405,31 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
-                .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected2)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected2)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
 
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
@@ -427,31 +438,31 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .clickOnAnswers("Stroke")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(2,"Less than 30 days ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .clickOnAnswerForSubQuestion(1,"Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected3)
-                .clickOnAnswerForSubQuestion(2, "4 - 6 months ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .clickOnAnswerForSubQuestion(1, "4 - 6 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected3)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected3)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
 
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
@@ -460,31 +471,31 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .clickOnAnswers("Mini-Stroke or TIA")
                 .clickNextButton(new SubquestionExperiencedHeartPageOLS());
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1, "1 - 3 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected4)
-                .clickOnAnswerForSubQuestion(2,"4 - 6 months ago")
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .clickOnAnswerForSubQuestion(1,"4 - 6 months ago")
                 .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[1])
                 .back(subquestionExperiencedHeartPageOLS);
         subquestionExperiencedHeartPageOLS
-                .waitForPageLoad(2, subquestionExperiencedHeartPageOLS.titleExpected4)
+                .waitForPageLoad(1, subquestionExperiencedHeartPageOLS.titleExpected4)
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondOLS);
         haveYouEverExperiencedHeartRelatedMedicalCondOLS
                 .waitForPageLoad()
@@ -558,7 +569,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
                 .waitForPageLoad2()
                 .clickNextButton(new SiteSelectionPageOLS());
         AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
-                .waitForPageLoad("a Crohn's")
+                .waitForPageLoad5("a Crohn's study!")
                 .getPID()
                 .clickOnFacilityName(site.name)
                 .clickNextButton(new QualifiedClose2PageOLS())
