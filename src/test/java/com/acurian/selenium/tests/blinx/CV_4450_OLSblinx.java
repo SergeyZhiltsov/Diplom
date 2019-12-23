@@ -29,7 +29,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "data", enabled = false)
+    @Test(dataProvider = "data", enabled = true)
     public void CV_4450_Blinx(Site site, String city, String state) {
         String phoneNumber = "AUTAMS1CV1";
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -44,7 +44,7 @@ public class CV_4450_OLSblinx extends BaseTest {
                 .openPage(env, phoneNumber)
                 .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("No")
-                .clickNextButton(new LessThan18YearsOldPageOLS());
+                .getPage(new LessThan18YearsOldPageOLS());
 
         lessThan18YearsOldPageOLS
                 .waitForPageLoad()
@@ -55,7 +55,7 @@ public class CV_4450_OLSblinx extends BaseTest {
         ZipCodePageOLS zipCodePageOLS = dateOfBirthPageOLS
                 .waitForPageLoad("a heart health study", "750")
                 .clickOnAnswer("Yes")
-                .clickNextButton(new ZipCodePageOLS());
+                .getPage(new ZipCodePageOLS());
 
         GenderPageOLS genderPageOLS = zipCodePageOLS
                 .waitForPageLoad()
