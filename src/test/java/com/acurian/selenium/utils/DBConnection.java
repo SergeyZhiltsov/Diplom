@@ -246,7 +246,7 @@ public class DBConnection {
         String flareStatus = null;
         try {
             stmt = getDbCon(env).createStatement();
-            final String query = "Select patient_id, status_set_member_id from patient_study_secondary_status where patient_id in (" + childPid + ")";
+            final String query = "select * from patient_study_secondary_status where patient_id = "+childPid;
             rset = stmt.executeQuery(query);
             while (rset.next()) {
                 flareStatus = rset.getString("status_set_member_id");
