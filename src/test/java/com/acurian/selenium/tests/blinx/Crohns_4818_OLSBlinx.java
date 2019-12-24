@@ -571,7 +571,7 @@ public class Crohns_4818_OLSBlinx extends BaseTest {
         AboutHealthPageOLS aboutHealthPageOLS = siteSelectionPageOLS
                 .waitForPageLoad5("a Crohn's study!")
                 .getPID()
-                .clickOnFacilityName(site.name)
+                .clickOnFacilityName(site.name) //TODO NO SITE FOR THIS TEST. IN OLS AND CC YOU CAN SEE PROPER SITES. BUT IN BLINX WE HAVE PROBLEMS
                 .clickNextButton(new QualifiedClose2PageOLS())
                 .waitForPageLoad3()
                 .clickNextButton(new ThankYouCloseSimplePageOLS())
