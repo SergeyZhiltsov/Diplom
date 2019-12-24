@@ -23,7 +23,7 @@ import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverExperiencedHeartRelatedMedicalCondCC;
-import com.acurian.selenium.pages.CC.generalHealth.HeartrelatedMedicalProceduresPageCC;
+import com.acurian.selenium.pages.CC.generalHealth.HeartRelatedSurgeriesProceduresPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
@@ -33,12 +33,12 @@ import com.acurian.selenium.pages.CC.shared.DoYouSufferFromMigPageCC;
 import com.acurian.selenium.pages.CC.shared.GenderPageCC;
 import com.acurian.selenium.pages.CC.shared.HasDoctorDiagnosedYouWithClusterHeadache_CC;
 import com.acurian.selenium.pages.CC.shared.HaveUeverDiagnosedByHealthcareProfesionalCC;
-import com.acurian.selenium.pages.CC.shared.HowLongSufferingFromMigraineCC;
-import com.acurian.selenium.pages.CC.shared.HowOldWereYouMigHeadachePageCC;
+import com.acurian.selenium.pages.CC.shared.ApproxHowLongSufferingFromMIGСС;
+import com.acurian.selenium.pages.CC.shared.AgeWhenDiagnosedWithMigСС;
 import com.acurian.selenium.pages.CC.shared.LoginPageCC;
 import com.acurian.selenium.pages.CC.shared.SelectActionPageCC;
 import com.acurian.selenium.pages.CC.shared.TransitionStatementCC;
-import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisCC;
+import com.acurian.selenium.pages.CC.shared.WhatKindOfArthritisPageCC;
 import com.acurian.selenium.pages.CC.shared.WhenYouLastHaveBotoxMigCC;
 import com.acurian.selenium.pages.CC.shared.ZipCodePageCC;
 import com.acurian.selenium.utils.DataProviderPool;
@@ -136,34 +136,34 @@ public class LMG_4686_CC extends BaseTest{
        debugPageCC.checkProtocolsContainsForQNumber("Q0005097-QS6002-STUDYQUES", protocol1);
        debugPageCC.back();
        
-       HowOldWereYouMigHeadachePageCC howOldWereYouMigHeadachePageCC = doYouSufferFromMigPageCC
+       AgeWhenDiagnosedWithMigСС ageWhenDiagnosedWithMigСС = doYouSufferFromMigPageCC
                .waitForPageLoad()
                .clickOnAnswer("Yes")
-               .clickNextButton(new HowOldWereYouMigHeadachePageCC());
+               .clickNextButton(new AgeWhenDiagnosedWithMigСС());
        
-       HowLongSufferingFromMigraineCC howLongSufferingFromMigraineCC = howOldWereYouMigHeadachePageCC 
+       ApproxHowLongSufferingFromMIGСС approxHowLongSufferingFromMIGСС = ageWhenDiagnosedWithMigСС
                .typeAge("50")
-               .clickNextButton(new HowLongSufferingFromMigraineCC())
+               .clickNextButton(new ApproxHowLongSufferingFromMIGСС())
                .waitForPageLoad();
        debugPageCC.checkProtocolsContainsForQNumber("Q0005098-QS6003-STUDYQUES", protocol1);
        debugPageCC.back();       
-       howOldWereYouMigHeadachePageCC 
+       ageWhenDiagnosedWithMigСС
        			.typeAge("37")
-       			.clickNextButton(new HowLongSufferingFromMigraineCC())
+       			.clickNextButton(new ApproxHowLongSufferingFromMIGСС())
        			.waitForPageLoad();
        
-       HowManyDaysYouSufferCC howManyDaysYouSufferCC = howLongSufferingFromMigraineCC
+       HowManyDaysYouSufferCC howManyDaysYouSufferCC = approxHowLongSufferingFromMIGСС
        			.clickOnAnswer("5 months or less")
        			.clickNextButton(new HowManyDaysYouSufferCC());
        debugPageCC.checkProtocolsContainsForQNumber("Q0005099-QS6004-STUDYQUES", protocol1);
        debugPageCC.back();
        
-       howLongSufferingFromMigraineCC
+       approxHowLongSufferingFromMIGСС
 			     .clickOnAnswer("6 - 11 months")
 			     .clickNextButton(new HowManyDaysYouSufferCC());
        debugPageCC.checkProtocolsContainsForQNumber("Q0005099-QS6004-STUDYQUES", protocol1);
        debugPageCC.back();
-       howLongSufferingFromMigraineCC
+       approxHowLongSufferingFromMIGСС
 				 .clickOnAnswer("1 year or more")
 				 .clickNextButton(new HowManyDaysYouSufferCC());
        
@@ -321,7 +321,7 @@ public class LMG_4686_CC extends BaseTest{
 
 
        //-----------------GENERAL HEALTH questions-------------------
-       WhatKindOfArthritisCC whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+       WhatKindOfArthritisPageCC whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
               .waitForPageLoad()
               .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                       "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -343,7 +343,7 @@ public class LMG_4686_CC extends BaseTest{
                       "Skin problems (eczema or atopic dermatitis, psoriasis)",
                       "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                       "Women's health issues (endometriosis, uterine fibroids)")
-              .clickNextButton(new WhatKindOfArthritisCC());
+              .clickNextButton(new WhatKindOfArthritisPageCC());
        whatKindOfArthritisPage.waitForPageLoad();
        whatKindOfArthritisPage.back();
        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -376,23 +376,23 @@ public class LMG_4686_CC extends BaseTest{
               .clickOnAnswers("Heart attack")
               .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-       HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
+       HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = subquestionExperiencedHeartPageCC
               .waitForPageLoad()
               .clickOnAnswer("Less than 30 days ago")
-              .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+              .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
               .waitForPageLoad()
               .clickOnAnswer("1 - 3 months ago")
-              .clickNextButton(heartrelatedMedicalProceduresPageCC);
+              .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1);
        debugPageCC.back();
 
        subquestionExperiencedHeartPageCC
               .waitForPageLoad()
               .clickOnAnswer("4 - 6 months ago")
-              .clickNextButton(heartrelatedMedicalProceduresPageCC);
+              .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
@@ -405,19 +405,19 @@ public class LMG_4686_CC extends BaseTest{
        subquestionExperiencedHeartPageCC
               .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
               .clickOnAnswer("Less than 30 days ago")
-              .clickNextButton(heartrelatedMedicalProceduresPageCC);
+              .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
               .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
               .clickOnAnswer("1 - 3 months ago")
-              .clickNextButton(heartrelatedMedicalProceduresPageCC);
+              .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC
               .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
               .clickOnAnswer("4 - 6 months ago")
-              .clickNextButton(heartrelatedMedicalProceduresPageCC);
+              .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
        debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1);
        debugPageCC.back();
        subquestionExperiencedHeartPageCC.back();
@@ -431,9 +431,9 @@ public class LMG_4686_CC extends BaseTest{
        subquestionExperiencedHeartPageCC
               .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
               .clickOnAnswer("More than 1 year ago")
-              .clickNextButton(heartrelatedMedicalProceduresPageCC);
+              .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-       DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = heartrelatedMedicalProceduresPageCC
+       DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = heartRelatedSurgeriesProceduresPageCC
               .waitForPageLoad()
               .clickOnAnswers("None of the above")
               .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC()); 

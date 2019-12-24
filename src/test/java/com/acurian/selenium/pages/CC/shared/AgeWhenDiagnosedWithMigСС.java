@@ -8,9 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import java.util.List;
-
-public class HowOldWereYouMigHeadachePageCC extends MainPageCC{
+public class AgeWhenDiagnosedWithMigСС extends MainPageCC{
 
     public final String titleExpected = "Approximately how old were you when you were diagnosed with migraine headaches?";
 
@@ -23,19 +21,19 @@ public class HowOldWereYouMigHeadachePageCC extends MainPageCC{
     @FindBy(xpath = "//input[contains(@class,'input-text')]")
     WebElement ageMig;
     
-    public HowOldWereYouMigHeadachePageCC() {
+    public AgeWhenDiagnosedWithMigСС() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HowOldWereYouMigHeadachePageCC waitForPageLoad() {
+    public AgeWhenDiagnosedWithMigСС waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public HowOldWereYouMigHeadachePageCC typeAge(String text) {
+    public AgeWhenDiagnosedWithMigСС typeAge(String text) {
         //typeTextWithoutClear(ageMig, text);
         typeText(ageMig, text);
         return this;

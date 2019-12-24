@@ -69,12 +69,12 @@ public class HelloSignCC extends BaseTest {
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999", site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        WhatKindOfArthritisCC whatKindOfArthritisCC = genderPageCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = genderPageCC
                 .waitForPageLoadByTitle(genderPageCC.titleExpected)
                 .clickOnAnswer("Female")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
-        WhenYouDiagnosedWithRaGmegaPageCC whenYouDiagnosedWithRaGmegaPageCC = whatKindOfArthritisCC
+        WhenYouDiagnosedWithRaGmegaPageCC whenYouDiagnosedWithRaGmegaPageCC = whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageCC());

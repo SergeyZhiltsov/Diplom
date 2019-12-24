@@ -228,7 +228,7 @@ public class CG_4960_CC extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         //#############General_Health ###########################
-        WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -254,10 +254,10 @@ public class CG_4960_CC extends BaseTest {
                         "Women's health issues (endometriosis, uterine fibroids)")
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whatKindOfArthritisCC
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
@@ -265,7 +265,7 @@ public class CG_4960_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
-                .back(whatKindOfArthritisCC)
+                .back(whatKindOfArthritisPageCC)
                 .waitForPageLoad()
                 .back();
         OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -299,8 +299,8 @@ public class CG_4960_CC extends BaseTest {
                 .clickNextButton(new SubquestionHeartPageCC());
 
         //Q15.1	When was the last time that you experienced had a heart attack?
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
-                new HeartrelatedMedicalProceduresPageCC();
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC =
+                new HeartRelatedSurgeriesProceduresPageCC();
         List<String> disqualifyQ15 = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago",
                 "7 - 12 months ago");
         for (String answer : disqualifyQ15) {
@@ -308,7 +308,7 @@ public class CG_4960_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -328,7 +328,7 @@ public class CG_4960_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -348,7 +348,7 @@ public class CG_4960_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -359,36 +359,36 @@ public class CG_4960_CC extends BaseTest {
                 .back(sufferedFollowingHeartRelatedConditionsPageCC)
                 .waitForPageLoad()
                 .back();
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
-        kidneyProblemsPage
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(kidneyProblemsPage)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .back();
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                        .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .back();
         FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC =

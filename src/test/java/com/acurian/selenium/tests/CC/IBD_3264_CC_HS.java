@@ -388,13 +388,13 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
@@ -402,7 +402,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
@@ -410,7 +410,7 @@ public class IBD_3264_CC_HS extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());

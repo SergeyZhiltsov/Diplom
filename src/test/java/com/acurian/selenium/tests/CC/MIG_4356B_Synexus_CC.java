@@ -2,16 +2,10 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.CC.END_4385.HormonalBirthControlCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.pediatric.ChildrenUnderPageCC;
-import com.acurian.selenium.pages.CC.pediatric.EthnicBackgroundPageCC;
-import com.acurian.selenium.pages.CC.pediatric.HouseholdHavePageCC;
 import com.acurian.selenium.pages.CC.pediatric.TheStudySitePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatMedicalCoveragePageCC;
-import com.acurian.selenium.pages.CC.pediatric.WhatSortPageCC;
-import com.acurian.selenium.pages.CC.pediatric.WouldYouUsePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
@@ -120,58 +114,58 @@ public class MIG_4356B_Synexus_CC extends BaseTest{
         Assert.assertTrue(debugPageCC.getProtocolForQuestion(doYouSufferFromMigPageCC.titleExpected).contains(protocol7));
         debugPageCC.back();   
         //------------ Change your answer to correct option in DoYouSufferFromMigPageCC---------------          
-        HowOldWereYouMigHeadachePageCC howOldWereYouMigHeadachePageCC = doYouSufferFromMigPageCC  //[create NEXT PAGE Object = THIS page object] 
+        AgeWhenDiagnosedWithMigСС ageWhenDiagnosedWithMigСС = doYouSufferFromMigPageCC  //[create NEXT PAGE Object = THIS page object]
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HowOldWereYouMigHeadachePageCC());
+                .clickNextButton(new AgeWhenDiagnosedWithMigСС());
 
         
         
         //-----------Q3 -How Old Were You when you were diagnosed with Migraine Headache Page ---------------   
-        howOldWereYouMigHeadachePageCC
+        ageWhenDiagnosedWithMigСС
         		.waitForPageLoad();
-        Assert.assertEquals(howOldWereYouMigHeadachePageCC.getTitleText(), howOldWereYouMigHeadachePageCC.titleExpected, "Title is diff");
+        Assert.assertEquals(ageWhenDiagnosedWithMigСС.getTitleText(), ageWhenDiagnosedWithMigСС.titleExpected, "Title is diff");
       
-        HowLongSufferingFromMigraineCC howLongSufferingFromMigraineCC = howOldWereYouMigHeadachePageCC  //[create NEXT PAGE Object = THIS page object] 
+        ApproxHowLongSufferingFromMIGСС approxHowLongSufferingFromMIGСС = ageWhenDiagnosedWithMigСС  //[create NEXT PAGE Object = THIS page object]
                 .typeAge("50")
-                .clickNextButton(new HowLongSufferingFromMigraineCC())
+                .clickNextButton(new ApproxHowLongSufferingFromMIGСС())
                 .waitForPageLoad();
         //********Validate Question History for DQ and then click BACK button
         //System.out.println("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol1));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol2));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol3));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol4));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol5));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol6));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected).contains(protocol7));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol1));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol2));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol3));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol4));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol5));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol6));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(ageWhenDiagnosedWithMigСС.titleExpected).contains(protocol7));
         debugPageCC.back();
         //------------ Change your answer to correct QR age in howOldWereYouMigHeadachePageCC---------------   
-        howOldWereYouMigHeadachePageCC        
+        ageWhenDiagnosedWithMigСС
         .typeAge("35")
-        .clickNextButton(new HowLongSufferingFromMigraineCC())
+        .clickNextButton(new ApproxHowLongSufferingFromMIGСС())
         .waitForPageLoad();
         
         
         //----------Q4 For approximately how long have you been suffering from migraine headaches? -  Page ---------------   
-        howLongSufferingFromMigraineCC
+        approxHowLongSufferingFromMIGСС
         		.waitForPageLoad();
-        Assert.assertEquals(howLongSufferingFromMigraineCC.getTitleText(), howLongSufferingFromMigraineCC.titleExpected, "Title is diff");
+        Assert.assertEquals(approxHowLongSufferingFromMIGСС.getTitleText(), approxHowLongSufferingFromMIGСС.titleExpected, "Title is diff");
         //System.out.println("see there="+debugPageCC.getProtocolForQuestion(howOldWereYouMigHeadachePageCC.titleExpected));       
-        howLongSufferingFromMigraineCC
+        approxHowLongSufferingFromMIGСС
         .clickOnAnswer("5 months or less")
         .clickNextButton(new StudyQuestionMigPageCC()); // Click NEXT button and wait for the NEXT page
         //********Validate Question History for DQ and then click BACK button            
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol1));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol2));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol3));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol4));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol5));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol6));
-        Assert.assertTrue(debugPageCC.getProtocolForQuestion(howLongSufferingFromMigraineCC.titleExpected).contains(protocol7));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(approxHowLongSufferingFromMIGСС.titleExpected).contains(protocol1));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(approxHowLongSufferingFromMIGСС.titleExpected).contains(protocol2));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(approxHowLongSufferingFromMIGСС.titleExpected).contains(protocol3));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(approxHowLongSufferingFromMIGСС.titleExpected).contains(protocol4));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(approxHowLongSufferingFromMIGСС.titleExpected).contains(protocol5));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(approxHowLongSufferingFromMIGСС.titleExpected).contains(protocol6));
+        Assert.assertTrue(debugPageCC.getProtocolForQuestion(approxHowLongSufferingFromMIGСС.titleExpected).contains(protocol7));
         debugPageCC.back();
         //------------ Change your answer to correct QR age in 'howOldWereYouMigHeadachePageCC'---------------   
-        StudyQuestionMigPageCC studyQuestionMigPageCC = howLongSufferingFromMigraineCC //[create NEXT PAGE Object = THIS page object]      
+        StudyQuestionMigPageCC studyQuestionMigPageCC = approxHowLongSufferingFromMIGСС //[create NEXT PAGE Object = THIS page object]
         .clickOnAnswer("1 year or more")
         .clickNextButton(new StudyQuestionMigPageCC())
         .waitForPageLoad();

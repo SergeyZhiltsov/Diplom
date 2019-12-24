@@ -6,7 +6,6 @@ import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
 import com.acurian.selenium.pages.CC.DPN_3769_4557.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
-import com.acurian.selenium.pages.CC.LOWT.HasDoctorEverDiagnosedMedicalCondDiseases_CC;
 import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
@@ -14,8 +13,6 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -23,9 +20,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 public class DPN_5096_CC extends BaseTest {
@@ -563,14 +557,14 @@ public class DPN_5096_CC extends BaseTest {
                 .waitForPageLoad(3, subquestionExperiencedHeartPageCC.titleExpected3)
                 .waitForPageLoad(4, subquestionExperiencedHeartPageCC.titleExpected4);
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = subquestionExperiencedHeartPageCC
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected3, "4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "4 - 6 months ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -580,9 +574,9 @@ public class DPN_5096_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = heartrelatedMedicalProceduresPageCC
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());

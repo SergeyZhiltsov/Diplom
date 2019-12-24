@@ -69,31 +69,31 @@ public class LMG_4686_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new AgeWhenDiagnosedWithMigOLS());
 
-        ApproxHowLongSufferingFromMIG approxHowLongSufferingFromMIG = ageWhenDiagnosedWithMigOLS
+        ApproxHowLongSufferingFromMIGOLS approxHowLongSufferingFromMIGOLS = ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("51")
-                .clickNextButton(new ApproxHowLongSufferingFromMIG());
+                .clickNextButton(new ApproxHowLongSufferingFromMIGOLS());
         debugPageOLS.checkProtocolsContainsForQNumber("QS6003", protocol1);
         debugPageOLS.back();
         ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("37")
-                .clickNextButton(new ApproxHowLongSufferingFromMIG());
+                .clickNextButton(new ApproxHowLongSufferingFromMIGOLS());
 
-        HowManyDaysYouSufferOLS howManyDaysYouSufferOLS = approxHowLongSufferingFromMIG
+        HowManyDaysYouSufferOLS howManyDaysYouSufferOLS = approxHowLongSufferingFromMIGOLS
                 .waitForPageLoad()
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
         debugPageOLS.checkProtocolsContainsForQNumber("QS6004", protocol1);
         debugPageOLS.back();
 
-        approxHowLongSufferingFromMIG
+        approxHowLongSufferingFromMIGOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 11 months")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
         debugPageOLS.checkProtocolsContainsForQNumber("QS6004", protocol1);
         debugPageOLS.back();
-        approxHowLongSufferingFromMIG
+        approxHowLongSufferingFromMIGOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(new HowManyDaysYouSufferOLS());

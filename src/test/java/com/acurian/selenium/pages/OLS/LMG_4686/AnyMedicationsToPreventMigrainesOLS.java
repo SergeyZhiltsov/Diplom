@@ -1,7 +1,6 @@
 package com.acurian.selenium.pages.OLS.LMG_4686;
 
 import com.acurian.selenium.pages.OLS.MainPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ApproxHowLongSufferingFromMIG;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;

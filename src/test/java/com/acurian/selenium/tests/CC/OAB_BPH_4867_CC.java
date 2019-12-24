@@ -225,7 +225,7 @@ public class OAB_BPH_4867_CC extends BaseTest {
                         "Heart failure or congestive heart failure (CHF)")
                 .clickNextButton(new SubquestionHeartPageCC());
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionHeartPageCC
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = subquestionHeartPageCC
                 .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
                 .waitForPageLoad(2, subquestionHeartPageCC.titleExpected2)
                 .waitForPageLoad(3, subquestionHeartPageCC.titleExpected3)
@@ -234,8 +234,8 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-        heartrelatedMedicalProceduresPageCC
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -249,9 +249,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -266,9 +266,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -283,9 +283,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -300,9 +300,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -317,9 +317,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -334,9 +334,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -351,9 +351,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -368,9 +368,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"4 - 6 months ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -385,9 +385,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -402,9 +402,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -419,9 +419,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -436,19 +436,19 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
+        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
-        KidneyProblemsPage kidneyProblemsPage = mostRecentHeartProcedurePageСС
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
@@ -457,9 +457,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
         mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
@@ -468,9 +468,9 @@ public class OAB_BPH_4867_CC extends BaseTest {
         mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
@@ -478,28 +478,28 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(kidneyProblemsPage);
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC);
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfTheFollowingLiverProblemsPageСС
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
@@ -510,7 +510,7 @@ public class OAB_BPH_4867_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealthPageCC);

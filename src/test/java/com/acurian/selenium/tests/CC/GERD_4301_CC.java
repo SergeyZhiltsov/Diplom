@@ -598,7 +598,7 @@ public class GERD_4301_CC extends BaseTest {
 
 
         //------------------General Health--------------------------
-        WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -619,7 +619,7 @@ public class GERD_4301_CC extends BaseTest {
                         "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC.back();
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =

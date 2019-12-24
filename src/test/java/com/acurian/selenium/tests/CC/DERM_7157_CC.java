@@ -15,7 +15,6 @@ import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.tests.OLS.DERM_7157_OLS;
 import com.acurian.selenium.utils.Properties;
@@ -423,12 +422,12 @@ public class DERM_7157_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .back();
-        WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickNextButton(new WhatKindOfArthritisCC());
-        whatKindOfArthritisCC
+                .clickNextButton(new WhatKindOfArthritisPageCC());
+        whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune " +
                         "system attacking your joints")
@@ -436,18 +435,18 @@ public class DERM_7157_CC extends BaseTest {
                 .waitForPageLoad()
              //   .getPage(debugPageCC)
              //   .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
-                .back(whatKindOfArthritisCC)
+                .back(whatKindOfArthritisPageCC)
                 .waitForPageLoad()
                 .back();
 
-        WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC =
+        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                        .clickNextButton(new WhichFollowingBonesJoints_CC());
+                        .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC());
 
-        whichFollowingBonesJoints_CC
+        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC); //Back to Q2: QS38
 
@@ -592,15 +591,15 @@ public class DERM_7157_CC extends BaseTest {
                 .back();
 
         //Q16: QS51
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
         List<String> disqualifyQ16 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ16) {
             System.out.println(answer);
-            kidneyProblemsPage
+            whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
                     .clickOnAnswers(answer)
@@ -610,26 +609,26 @@ public class DERM_7157_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                     .back();
         }
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                        .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
         //Q17: QS52
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС);
-        whichOfTheFollowingLiverProblemsPageСС
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 

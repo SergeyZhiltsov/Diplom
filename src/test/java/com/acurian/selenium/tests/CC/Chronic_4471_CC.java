@@ -261,12 +261,12 @@ public class Chronic_4471_CC extends BaseTest {
                 .waitForPageLoadMCC("chronic cough")
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = kidneyProblemsPage
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
@@ -275,7 +275,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney transplant")
                 .clickOnAnswers("Dialysis")
@@ -283,7 +283,7 @@ public class Chronic_4471_CC extends BaseTest {
         doAnyOftheFollowingAdditionalDiagnosesCC
                 .waitForPageLoad()
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());

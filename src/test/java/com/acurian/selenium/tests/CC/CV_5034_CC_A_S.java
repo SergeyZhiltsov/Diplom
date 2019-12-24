@@ -255,7 +255,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .clickNextButton(sufferedFollowingHeartRelatedConditionsPageCC);
 
         //Q15
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC =
                 sufferedFollowingHeartRelatedConditionsPageCC
                         .waitForPageLoad()
                         .clickOnAnswers("Heart attack",
@@ -264,10 +264,10 @@ public class CV_5034_CC_A_S extends BaseTest {
                                 "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
                                 "Heart failure or congestive heart failure (CHF)")
                         .clickOnAnswers("None of the above") //Skip to Q16
-                        .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+                        .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
 
         //Q16	Have you ever had any of the following heart-related surgeries or procedures?
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .back();
 
@@ -292,7 +292,7 @@ public class CV_5034_CC_A_S extends BaseTest {
 
         //Q16	Have you ever had any of the following heart-related surgeries or procedures?
         MostRecentHeartRelatedSurgeryProcedurePageCC mostRecentHeartRelatedSurgeryProcedurePageCC =
-                heartrelatedMedicalProceduresPageCC
+                heartRelatedSurgeriesProceduresPageCC
                         .waitForPageLoad()
                         .clickOnAnswers("Stent placement in your heart, neck or legs")
                         .clickNextButton(new MostRecentHeartRelatedSurgeryProcedurePageCC());
@@ -303,7 +303,7 @@ public class CV_5034_CC_A_S extends BaseTest {
                 .back();
 
         AdditionalHeartRelatedConditionsPageCC additionalHeartRelatedConditionsPageCC =
-                heartrelatedMedicalProceduresPageCC
+                heartRelatedSurgeriesProceduresPageCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickNextButton(new AdditionalHeartRelatedConditionsPageCC());

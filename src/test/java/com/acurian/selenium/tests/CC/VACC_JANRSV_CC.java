@@ -2,14 +2,11 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.GERD.DoYouExperienceAnyOfFollowingSymptoms_CC;
-import com.acurian.selenium.pages.CC.HOTF_7119.DoyouExperienceHotFlashesCC;
 import com.acurian.selenium.pages.CC.Vaccine.*;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.closes.ThankYouCloseSimplePageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.pages.blinx.ams.shared.DRSBlinx;
 import com.acurian.selenium.utils.Properties;
@@ -365,14 +362,14 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                     .back();
-            WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+            WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                    .clickNextButton(new WhatKindOfArthritisCC());
+                    .clickNextButton(new WhatKindOfArthritisPageCC());
 
 
-            whatKindOfArthritisCC
+            whatKindOfArthritisPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
@@ -381,7 +378,7 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
                     .back();
 
-            whatKindOfArthritisCC
+            whatKindOfArthritisPageCC
                     .waitForPageLoad()
                     .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                     .clickOnAnswers("Psoriatic Arthritis")
@@ -389,27 +386,27 @@ public class VACC_JANRSV_CC extends BaseTest {
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
-                    .back(whatKindOfArthritisCC)
+                    .back(whatKindOfArthritisPageCC)
                     .waitForPageLoad()
                     .clickOnAnswers("Psoriatic Arthritis") //deselect
                     .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
                     .back();
-            WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC =
+            WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC =
                     haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                             .waitForPageLoad()
                             .clickOnAnswers("None of the above")
                             .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                            .clickNextButton(new WhichFollowingBonesJoints_CC());
+                            .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC());
 
 
-            whichFollowingBonesJoints_CC
+            whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                     .waitForPageLoad()
                     .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis")
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS40", site.activeProtocols)
-                    .back(whichFollowingBonesJoints_CC)
+                    .back(whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC)
                     .waitForPageLoad()
                     .clickOnAnswers("Gout", "Low back pain", "Osteoporosis") //deselect
                     .clickOnAnswers("None of the above")
@@ -455,17 +452,17 @@ public class VACC_JANRSV_CC extends BaseTest {
             whichOfFollowingDigestiveConditionPageCC
                     .waitForPageLoad()
                     .back();
-            KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+            WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers("Kidney disease")
-                    .clickNextButton(new KidneyProblemsPage());
+                    .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
 
             List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
             for (String answer : disqualifyQ6QS51) {
                 System.out.println("Select answer for Q6:QS51: " + answer);
-                kidneyProblemsPage
+                whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                         .waitForPageLoad()
                         .clickOnAnswers("Neither")
                         .clickOnAnswers(answer)
@@ -475,25 +472,25 @@ public class VACC_JANRSV_CC extends BaseTest {
                         .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                         .back();
             }
-            kidneyProblemsPage
+            whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .back();
-            WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
+            WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC =
                     haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                             .waitForPageLoad()
                             .clickOnAnswers("None of the above")
                             .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                            .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                            .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
 
-            whichOfTheFollowingLiverProblemsPageСС
+            whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Cirrhosis")
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                    .back(whichOfTheFollowingLiverProblemsPageСС)
+                    .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                     .waitForPageLoad()
                     .clickOnAnswers("Fatty liver disease", "NASH (non-alcoholic steatohepatitis)",
                             "NAFLD (non-alcoholic fatty liver disease)")

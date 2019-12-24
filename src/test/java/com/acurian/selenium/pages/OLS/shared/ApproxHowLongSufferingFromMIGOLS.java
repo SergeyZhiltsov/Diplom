@@ -7,7 +7,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class ApproxHowLongSufferingFromMIG extends MainPageOLS {
+public class ApproxHowLongSufferingFromMIGOLS extends MainPageOLS {
 
     public final String titleExpected = "For approximately how long have you been suffering from migraine headaches?";
 
@@ -17,13 +17,13 @@ public class ApproxHowLongSufferingFromMIG extends MainPageOLS {
     List<WebElement> radioButtonsList;
 
     @Step
-    public ApproxHowLongSufferingFromMIG waitForPageLoad() {
+    public ApproxHowLongSufferingFromMIGOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ApproxHowLongSufferingFromMIG clickOnAnswer(String answerText) {
+    public ApproxHowLongSufferingFromMIGOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }

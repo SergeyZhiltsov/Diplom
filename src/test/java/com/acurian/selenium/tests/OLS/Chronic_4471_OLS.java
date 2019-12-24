@@ -9,7 +9,6 @@ import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
@@ -79,12 +78,12 @@ public class Chronic_4471_OLS extends BaseTest {
                 .clickOnAnswer("1 year or longer")
                 .clickNextButton(new TreatingYourChronicCoughOLS());
 
-        HaveYouSmokedCigarettes haveYouSmokedCigarettes = treatingYourChronicCoughOLS
+        HaveYouSmokedCigarettesOLS haveYouSmokedCigarettesOLS = treatingYourChronicCoughOLS
                 .waitForPageLoad()
                 .clickOnAnswers("No, have not treated")
-                .clickNextButton(new HaveYouSmokedCigarettes())
+                .clickNextButton(new HaveYouSmokedCigarettesOLS())
                 .waitForPageLoadNew();
-        haveYouSmokedCigarettes.back();
+        haveYouSmokedCigarettesOLS.back();
 
         DoYouStillHaveCoughOLS doYouStillHaveCoughOLS = treatingYourChronicCoughOLS
                 .waitForPageLoad()
@@ -94,16 +93,16 @@ public class Chronic_4471_OLS extends BaseTest {
         doYouStillHaveCoughOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HaveYouSmokedCigarettes());
+                .clickNextButton(new HaveYouSmokedCigarettesOLS());
 
-        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettes
+        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("No, I never smoked")
                 .clickNextButton(new DiagnosedWithFollowingConditionsOLS())
                 .waitForPageLoad();
         diagnosedWithFollowingConditionsOLS.back();
 
-        HowManyCigarettesOLS howManyCigarettesOLS = haveYouSmokedCigarettes
+        HowManyCigarettesOLS howManyCigarettesOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("Yes, I currently smoke")
                 .clickNextButton(new HowManyCigarettesOLS())
@@ -111,7 +110,7 @@ public class Chronic_4471_OLS extends BaseTest {
         debugPageOLS.checkProtocolsContainsForQNumber("QS6206", site.activeProtocols);
         debugPageOLS.back();
 
-        QuitSmokingOLS quitSmokingOLS = haveYouSmokedCigarettes
+        QuitSmokingOLS quitSmokingOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("I used to smoke, but have since quit")
                 .clickNextButton(new QuitSmokingOLS());

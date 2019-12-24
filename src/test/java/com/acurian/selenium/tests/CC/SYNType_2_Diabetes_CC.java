@@ -301,7 +301,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 
 //        CardiovascularDiseaseThanOthersPageCC cardiovascularDiseaseThanOthersPageCC = new CardiovascularDiseaseThanOthersPageCC();
         NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
-        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = takeYourInsulinInjectionsPageCC
+        LiverRelatedConditionCC liverRelatedConditionCC = takeYourInsulinInjectionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Only at meal times (this is called bolus insulin)")
                 .clickNextButton(brandsOfInsulinPageCC)
@@ -323,7 +323,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 //                .back(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .setDrinks("10")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
+                .clickNextButton(new LiverRelatedConditionCC());
 
 
         /*ArrayList<String> conditions = new ArrayList<>();
@@ -346,7 +346,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                     .back();
         }*/
 
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new FollowingToLoseWeightPageCC());
@@ -563,7 +563,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
-        KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC();
 //        ArrayList<String> heartProcedurePeriods = new ArrayList<>();
 //        heartProcedurePeriods.add("Less than 30 days ago");
 //        heartProcedurePeriods.add("1 - 3 months ago");
@@ -578,32 +578,32 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
 //                    .back();
 //        }
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = mostRecentHeartProcedurePageСС
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(kidneyProblemsPage)
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(kidneyProblemsPage)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(kidneyProblemsPage)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfTheFollowingLiverProblemsPageСС
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
@@ -612,7 +612,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealthPageCC);
@@ -645,10 +645,10 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
 //        doYouTakeAnyMedicationsToControlHighBloodPressureOLS
@@ -777,12 +777,12 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                         "Lupus", "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)", "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
                         "Skin problems (eczema or atopic dermatitis, psoriasis)", "Sleep problems (insomnia, sleep apnea, narcolepsy)", "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Men's health issues (prostate enlargement or BPH, low testosterone)")
-                .clickNextButton(new WhatKindOfArthritisCC())
+                .clickNextButton(new WhatKindOfArthritisPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging",
                         "Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints",
                         "Psoriatic Arthritis")
-                .clickNextButton(new WhichFollowingBonesJoints_CC())
+                .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC())
                 .waitForPageLoad()
                 .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis","Gout","Low back pain","Osteoporosis")
                 .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС())

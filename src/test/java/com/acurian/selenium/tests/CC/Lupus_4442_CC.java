@@ -302,20 +302,20 @@ public class Lupus_4442_CC extends BaseTest {
         debugPageCC.back();
         whenDiagnosedWithCancerCC.back();
 
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol2);
         debugPageCC.back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
 
@@ -330,12 +330,12 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickOnAnswers("Heart attack", "Stroke", "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "Less than 30 days ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol2);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
@@ -343,7 +343,7 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "1 - 3 months ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "1 - 3 months ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol2);
         debugPageCC.back();
         subquestionExperiencedHeartPageCC
@@ -352,9 +352,9 @@ public class Lupus_4442_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());

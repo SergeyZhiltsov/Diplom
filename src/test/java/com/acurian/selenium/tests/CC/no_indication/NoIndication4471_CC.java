@@ -104,11 +104,11 @@ public class NoIndication4471_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES",protocol1,protocol2)
                 .back();
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
-        kidneyProblemsPage
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES", protocol1, protocol2)
@@ -157,7 +157,7 @@ public class NoIndication4471_CC extends BaseTest {
         otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(kidneyProblemsPage)
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2)
@@ -165,32 +165,32 @@ public class NoIndication4471_CC extends BaseTest {
         otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
-                .clickNextButton(kidneyProblemsPage);
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC);
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
-        whichOfTheFollowingLiverProblemsPageСС
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealth_Page_cc = whichOfTheFollowingLiverProblemsPageСС
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealth_Page_cc = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
@@ -199,7 +199,7 @@ public class NoIndication4471_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1, protocol2)
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealth_Page_cc);
@@ -231,10 +231,10 @@ public class NoIndication4471_CC extends BaseTest {
         followingMentalEmotionalHealth_Page_cc
                 .waitForPageLoad()
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
         otherThanSkinCancerPageCC

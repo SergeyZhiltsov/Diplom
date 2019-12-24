@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhatKindOfArthritisCC extends MainPageCC {
+public class WhatKindOfArthritisPageCC extends MainPageCC {
 
     public final String titleExpected = "What kind of arthritis do you have?\n" +
             "Agent Note: Select all that apply";
@@ -19,13 +19,13 @@ public class WhatKindOfArthritisCC extends MainPageCC {
     List<WebElement> checkBoxList;
 
     @Step
-    public WhatKindOfArthritisCC waitForPageLoad() {
+    public WhatKindOfArthritisPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhatKindOfArthritisCC clickOnAnswers(String... answerText) {
+    public WhatKindOfArthritisPageCC clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

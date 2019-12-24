@@ -342,11 +342,11 @@ public class NoIndication4471_OLS extends BaseTest {
                 .clickOnAnswer("1 year or longer")
                 .clickNextButton(treatingYourChronicCoughOLS);
 
-        HaveYouSmokedCigarettes haveYouSmokedCigarettes = treatingYourChronicCoughOLS
+        HaveYouSmokedCigarettesOLS haveYouSmokedCigarettesOLS = treatingYourChronicCoughOLS
                 .waitForPageLoad()
                 .clickOnAnswers("No, have not treated")
-                .clickNextButton(new HaveYouSmokedCigarettes());
-        haveYouSmokedCigarettes
+                .clickNextButton(new HaveYouSmokedCigarettesOLS());
+        haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .back();
         DoYouStillHaveCoughOLS doYouStillHaveCoughOLS = treatingYourChronicCoughOLS
@@ -357,16 +357,16 @@ public class NoIndication4471_OLS extends BaseTest {
         doYouStillHaveCoughOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(haveYouSmokedCigarettes);
+                .clickNextButton(haveYouSmokedCigarettesOLS);
 
-        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettes
+        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("No, I never smoked")
                 .clickNextButton(new DiagnosedWithFollowingConditionsOLS())
                 .waitForPageLoad();
         diagnosedWithFollowingConditionsOLS.back();
 
-        HowManyCigarettesOLS howManyCigarettesOLS = haveYouSmokedCigarettes
+        HowManyCigarettesOLS howManyCigarettesOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("Yes, I currently smoke")
                 .clickNextButton(new HowManyCigarettesOLS())
@@ -374,7 +374,7 @@ public class NoIndication4471_OLS extends BaseTest {
         debugPageOLS.checkProtocolsContainsForQNumber("QS6206", protocol1, protocol2);
         debugPageOLS.back();
 
-        QuitSmokingOLS quitSmokingOLS = haveYouSmokedCigarettes
+        QuitSmokingOLS quitSmokingOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("I used to smoke, but have since quit")
                 .clickNextButton(new QuitSmokingOLS());

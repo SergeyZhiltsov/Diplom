@@ -86,12 +86,12 @@ public class SiteIndicatorTest extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BoneOrJointConditionsPageCC());
 
-        WhatKindOfArthritisCC whatKindOfArthritisCC = boneOrJointConditionsPageCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = boneOrJointConditionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Any type of arthritis")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
-        WhenYouDiagnosedWithRaGmegaPageCC whenYouDiagnosedWithRaGmegaPageCC = whatKindOfArthritisCC
+        WhenYouDiagnosedWithRaGmegaPageCC whenYouDiagnosedWithRaGmegaPageCC = whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaGmegaPageCC());

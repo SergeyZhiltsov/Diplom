@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import java.util.List;
 import com.acurian.selenium.pages.CC.MainPageCC;
 
-public class HowLongSufferingFromMigraineCC extends MainPageCC{
+public class ApproxHowLongSufferingFromMIGСС extends MainPageCC{
 
     public final String titleExpected = "For approximately how long have you been suffering from migraine headaches?";
 
@@ -19,19 +19,19 @@ public class HowLongSufferingFromMigraineCC extends MainPageCC{
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public HowLongSufferingFromMigraineCC() {
+    public ApproxHowLongSufferingFromMIGСС() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HowLongSufferingFromMigraineCC waitForPageLoad() {
+    public ApproxHowLongSufferingFromMIGСС waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public HowLongSufferingFromMigraineCC clickOnAnswer(String answerText) {
+    public ApproxHowLongSufferingFromMIGСС clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

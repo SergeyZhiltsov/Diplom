@@ -354,11 +354,11 @@ public class DERM_7193_CC extends BaseTest {
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-        heartrelatedMedicalProceduresPageCC
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .back();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -376,7 +376,7 @@ public class DERM_7193_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4,"More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -387,7 +387,7 @@ public class DERM_7193_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -398,7 +398,7 @@ public class DERM_7193_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -409,7 +409,7 @@ public class DERM_7193_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -420,37 +420,37 @@ public class DERM_7193_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        KidneyProblemsPage kidneyProblemsPage = heartrelatedMedicalProceduresPageCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
-        whichOfTheFollowingLiverProblemsPageСС
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfTheFollowingLiverProblemsPageСС
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
@@ -459,7 +459,7 @@ public class DERM_7193_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealthPageCC);
@@ -510,13 +510,13 @@ public class DERM_7193_CC extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .back();
         haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -535,7 +535,7 @@ public class DERM_7193_CC extends BaseTest {
                 .clickNextButton(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswerForSubQuestion(1, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
         //Q24: QS59

@@ -560,16 +560,16 @@ public class GERD_5098_CC extends BaseTest {
                 .back(otherThanSkinCancerPageCC)
                 .waitForPageLoad()
                 .back();
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
         List<String> disqualifyQS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQS51) {
             System.out.println("Select answer for QS51: " + answer);
-            kidneyProblemsPage
+            whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
                     .clickOnAnswers(answer)
@@ -579,24 +579,24 @@ public class GERD_5098_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                     .back();
         }
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                        .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
         //Q17: QS52
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .back();
         FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC =

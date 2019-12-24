@@ -27,7 +27,7 @@ import com.acurian.selenium.pages.CC.generalHealth.ApproximateHeightPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
+import com.acurian.selenium.pages.CC.generalHealth.WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.WhenDiagnosedWithCancerCC;
@@ -346,26 +346,26 @@ public class IBD_3485_CC extends BaseTest {
         debugPageCC.back();
         whenDiagnosedWithCancerCC.back();
 
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney transplant")
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
         //debugPageCC.checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());

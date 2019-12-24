@@ -27,7 +27,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
 public class DPN_4557_CC extends BaseTest {
@@ -320,13 +319,13 @@ public class DPN_4557_CC extends BaseTest {
                 .clickNextButton(new NoOfAlcoholicDrinksCC());
 
 
-        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
+        LiverRelatedConditionCC liverRelatedConditionCC = noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .setDrinks("4")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
+                .clickNextButton(new LiverRelatedConditionCC());
 
 
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new FollowingToLoseWeightPageCC());

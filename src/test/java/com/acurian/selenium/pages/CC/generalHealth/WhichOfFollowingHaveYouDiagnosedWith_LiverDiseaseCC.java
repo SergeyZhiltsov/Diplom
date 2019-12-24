@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichOfTheFollowingLiverProblemsPageСС extends MainPageCC {
+public class WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC extends MainPageCC {
 
     public final String titleExpected = "You reported that you have liver problems.\n" +
             "Which of the following have you been diagnosed with?\n" +
@@ -20,13 +20,13 @@ public class WhichOfTheFollowingLiverProblemsPageСС extends MainPageCC {
     List<WebElement> checkBoxList;
 
     @Step
-    public WhichOfTheFollowingLiverProblemsPageСС waitForPageLoad() {
+    public WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichOfTheFollowingLiverProblemsPageСС clickOnAnswers(String... answerText) {
+    public WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
