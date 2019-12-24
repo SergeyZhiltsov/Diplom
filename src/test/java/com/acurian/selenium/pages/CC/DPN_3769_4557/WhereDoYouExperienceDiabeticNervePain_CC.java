@@ -11,6 +11,8 @@ public class WhereDoYouExperienceDiabeticNervePain_CC extends MainPageCC {
 
     public final String titleExpected = "Where do you experience diabetic nerve pain symptoms or sensations?\n" +
             "Agent Note: Select all that apply";
+    public final String titleExpectedDPN = "Where do you experience pain?\n" +
+            "Agent Note: Select all that apply";
 
     @FindBy(xpath = "//div[@class='question_text']//div[@class='show-in-cc']")
     WebElement titleText;
@@ -20,6 +22,12 @@ public class WhereDoYouExperienceDiabeticNervePain_CC extends MainPageCC {
     @Step
     public WhereDoYouExperienceDiabeticNervePain_CC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public WhereDoYouExperienceDiabeticNervePain_CC waitForPageLoadDPN() {
+        waitForPageLoadMain(titleText, titleExpectedDPN);
         return this;
     }
 

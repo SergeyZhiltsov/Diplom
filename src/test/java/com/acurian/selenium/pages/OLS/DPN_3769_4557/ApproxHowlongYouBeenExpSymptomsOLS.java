@@ -11,6 +11,7 @@ import java.util.List;
 public class ApproxHowlongYouBeenExpSymptomsOLS extends MainPageOLS {
 
     public final String titleExpected = "Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?";
+    public final String getTitleExpectedDPN = "Approximately how long have you been experiencing diabetic nerve pain?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_OLS)
     WebElement titleText;
@@ -20,6 +21,12 @@ public class ApproxHowlongYouBeenExpSymptomsOLS extends MainPageOLS {
     @Step
     public ApproxHowlongYouBeenExpSymptomsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public ApproxHowlongYouBeenExpSymptomsOLS waitForPageLoadDPN() {
+        waitForPageLoadMain(titleText, getTitleExpectedDPN);
         return this;
     }
 

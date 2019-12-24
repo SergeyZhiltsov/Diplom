@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class PreviousDayDiarrheaOrLiquidStoolOLS extends MainPageBlinx { //TODO FIX THIS!
+public class PreviousDayDiarrheaOrLiquidStoolOLS extends MainPageBlinx {
 
     public final String titleExpected = "Thinking about your Crohn's disease symptoms…\n" +
             "Over the previous day, how many times did you have diarrhea or liquid stool?";

@@ -107,7 +107,7 @@ public class MainPageBlinx extends BasePage {
 
         checkBoxList.stream().filter(el -> answerTextList.stream().anyMatch(el.getText()::startsWith))
                 .forEach(el -> {
-                    try { // TODO make method more flexible!
+                    try {
                         waitForAnimation();
                         el.click();
                     } catch (WebDriverException ex) {

@@ -180,206 +180,352 @@ public class DPN_5096_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
                 .back();
 
-        DoYouExperienceDPN_CC doYouExperienceDPN_CC = whatKindOfDiabetesPageCC.waitForPageLoad()
-                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new DoYouExperienceDPN_CC())
-                .waitForPageLoad();
-        //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------
-        doYouExperienceDPN_CC
+        DoYouExperienceDPN_CC doYouExperienceDPN_CC = whatKindOfDiabetesPageCC
                 .waitForPageLoad()
-                .clickOnAnswer("No, none of the above")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
-        WithType2DiabetesPageCC withType2DiabetesPageCC = new WithType2DiabetesPageCC();
+                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+                .clickNextButton(new DoYouExperienceDPN_CC());
+
+        //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------
+        WithType2DiabetesPageCC withType2DiabetesPageCC = doYouExperienceDPN_CC
+                .waitForPageLoadDPN()
+                .clickOnAnswer("No")
+                .clickNextButton(new WithType2DiabetesPageCC());
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5504", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5526", site.activeProtocols)
                 .back(doYouExperienceDPN_CC);
 
         WhereDoYouExperienceDiabeticNervePain_CC whereDoYouExperienceDiabeticNervePain_CC =
                 doYouExperienceDPN_CC
-                        .waitForPageLoad()
-                        .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+                        .waitForPageLoadDPN()
+                        .clickOnAnswer("Yes")
                         .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_CC());
 
-        whereDoYouExperienceDiabeticNervePain_CC
-                .waitForPageLoad()
-                .back(doYouExperienceDPN_CC)
-                .clickOnAnswer("I have not been diagnosed by a healthcare professional, but I do experience these symptoms")
-                .clickNextButton(whereDoYouExperienceDiabeticNervePain_CC);
+//        whereDoYouExperienceDiabeticNervePain_OLS
+//                .waitForPageLoadDPN()
+//                .back(doYouExperienceDPN_OLS)
+//                .clickOnAnswer("I have not been diagnosed by a healthcare professional, but I do experience these symptoms")
+//                .clickNextButton(whereDoYouExperienceDiabeticNervePain_OLS);
 
         //----------Q5 - "Where do you experience diabetic nerve pain symptoms or sensations?" Page ---------------
         whereDoYouExperienceDiabeticNervePain_CC
-                .waitForPageLoad()
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(withType2DiabetesPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_CC);
 
         whereDoYouExperienceDiabeticNervePain_CC
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right foot", "Left leg", "Right hand or arm", "Left hand or arm", "Other")
+                .clickOnAnswers("Right foot", "Right hand or arm", "Left hand or arm") //TODO probably will fall
                 .clickNextButton(withType2DiabetesPageCC);
 
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_CC);
 
         whereDoYouExperienceDiabeticNervePain_CC
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right leg", "Left foot")
-                .clickOnAnswers("Right hand or arm", "Left hand or arm", "Other")
+//                .clickOnAnswers("Right leg", "Left foot")
+                .clickOnAnswers("Right hand or arm", "Left hand or arm")
                 .clickNextButton(withType2DiabetesPageCC);
 
         withType2DiabetesPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_CC);
 
-        HowWouldYouDescribeTheSymptoms_CC howWouldYouDescribeTheSymptoms_CC = whereDoYouExperienceDiabeticNervePain_CC
+        ApproxHowlongYouBeenExpSymptomsCC approxHowlongYouBeenExpSymptomsCC = whereDoYouExperienceDiabeticNervePain_CC
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right foot", "Left foot")
-                .clickNextButton(new HowWouldYouDescribeTheSymptoms_CC());
+                .clickNextButton(new ApproxHowlongYouBeenExpSymptomsCC());
 
-        howWouldYouDescribeTheSymptoms_CC
-                .waitForPageLoad()
+        approxHowlongYouBeenExpSymptomsCC
+                .waitForPageLoadDPN()
                 .back(whereDoYouExperienceDiabeticNervePain_CC);
 
         whereDoYouExperienceDiabeticNervePain_CC
-                .waitForPageLoad()
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right leg", "Left leg", "Left foot", "Right hand or arm", "Left hand or arm", "Other")
-                .clickNextButton(howWouldYouDescribeTheSymptoms_CC);
-
-        //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
-        ApproxHowlongYouBeenExpSymptomsCC approxHowlongYouBeenExpSymptomsCC =
-                howWouldYouDescribeTheSymptoms_CC
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickNextButton(new ApproxHowlongYouBeenExpSymptomsCC());
-
-        approxHowlongYouBeenExpSymptomsCC
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
-                .back(howWouldYouDescribeTheSymptoms_CC);
-
-        howWouldYouDescribeTheSymptoms_CC
-                .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(approxHowlongYouBeenExpSymptomsCC)
-                .waitForPageLoad()
-                .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
-                .back(howWouldYouDescribeTheSymptoms_CC);
-
-        howWouldYouDescribeTheSymptoms_CC
-                .waitForPageLoad()
-                .clickOnAnswers("Burning", "Painful cold", "Electric", "Tingling", "Pins and needles", "Numbness",
-                        "Itching", "An increase in these symptoms or sensations when something brushes against your skin")
+                .clickOnAnswers("Right leg", "Left leg", "Left foot", "Right hand or arm", "Left hand or arm")
                 .clickNextButton(approxHowlongYouBeenExpSymptomsCC);
 
-        //----------Q9 -Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?-  Page ---------------
-        HowWouldYouRateYourPain_CC howWouldYouRateYourPain_CC = new HowWouldYouRateYourPain_CC();
-        List<String> disqualifyQ9 = Arrays.asList("5 months or less", "6 - 11 months", "1 - 3 years");
-        for (String answer : disqualifyQ9) {
-            approxHowlongYouBeenExpSymptomsCC
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(howWouldYouRateYourPain_CC)
-                    .waitForPageLoad()
-                    .getPage(debugPageCC)
-                    .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
-                    .back();
-        }
-        approxHowlongYouBeenExpSymptomsCC
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 6 years")
-                .clickOnAnswer("7 - 10 years")
-                .clickOnAnswer("11 or more years")
-                .clickNextButton(howWouldYouRateYourPain_CC);
+        //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
+        WhichBestDescribesYourDiabeticNervePainCC whichBestDescribesYourDiabeticNervePainCC = approxHowlongYouBeenExpSymptomsCC
+                .waitForPageLoadDPN()
+                .clickOnAnswer("6 - 11 months")
+                .clickNextButton(new WhichBestDescribesYourDiabeticNervePainCC());
 
-        //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
-        HaveYouHadAnyOfTheFollowingAmputatedPageCC haveYouHadAnyOfTheFollowingAmputatedPageCC =
-                howWouldYouRateYourPain_CC
-                        .waitForPageLoad()
-                        .selectPainRating("0")
-                        .clickNextButton(new HaveYouHadAnyOfTheFollowingAmputatedPageCC());
-
-        haveYouHadAnyOfTheFollowingAmputatedPageCC
+        whichBestDescribesYourDiabeticNervePainCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5510", site.activeProtocols)
-                .back(howWouldYouRateYourPain_CC);
-
-        howWouldYouRateYourPain_CC
-                .waitForPageLoad()
-                .selectPainRating("5")
-                .clickNextButton(haveYouHadAnyOfTheFollowingAmputatedPageCC);
-
-        //----------Q14 -Which of the following have you had amputated or surgically removed because of your diabetes?-  Page ---------------
-        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = haveYouHadAnyOfTheFollowingAmputatedPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("Leg")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
-
-        currentlyTreatingYourDiabetesPageCC
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsCC)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("1 year")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
-                .back(haveYouHadAnyOfTheFollowingAmputatedPageCC);
-
-        haveYouHadAnyOfTheFollowingAmputatedPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Foot")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
-
-        currentlyTreatingYourDiabetesPageCC
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsCC)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("2 years")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
-                .back(haveYouHadAnyOfTheFollowingAmputatedPageCC);
-
-        haveYouHadAnyOfTheFollowingAmputatedPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Toe", "Other")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
-
-        currentlyTreatingYourDiabetesPageCC
-                .waitForPageLoad()
-                .back(haveYouHadAnyOfTheFollowingAmputatedPageCC);
-
-        haveYouHadAnyOfTheFollowingAmputatedPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
-
-        currentlyTreatingYourDiabetesPageCC
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(withType2DiabetesPageCC);
-
-        withType2DiabetesPageCC
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsCC)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("3 years")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContainsForQNumber("QS5524")
-                .back(currentlyTreatingYourDiabetesPageCC);
-
-        TransitionStatementCC transitionStatementCC = currentlyTreatingYourDiabetesPageCC
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsCC)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("Less than 6 months")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC)
                 .waitForPageLoad()
-                .clickOnAnswers("Diet and exercise", "Medication such as metformin or insulin or other diabetes medication")
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsCC)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("4 or more years")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainCC);
+
+        whichBestDescribesYourDiabeticNervePainCC
+                .waitForPageLoad()
+                .clickOnAnswer("Pain does not limit my daily activities")
+                .clickNextButton(withType2DiabetesPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
+                .back(whichBestDescribesYourDiabeticNervePainCC)
+                .waitForPageLoad()
+                .clickOnAnswer("Constant pain. Need assistance with daily activities")
+                .clickNextButton(withType2DiabetesPageCC)
+                .waitForPageLoad()
+                .getPage(debugPageCC)
+                .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
+                .back(whichBestDescribesYourDiabeticNervePainCC);
+        TransitionStatementCC transitionStatementCC = whichBestDescribesYourDiabeticNervePainCC
+                .waitForPageLoad()
+                .clickOnAnswer("Noticeable dicomfort, but does not limit my activities")
                 .clickNextButton(new TransitionStatementCC());
 
         transitionStatementCC
                 .waitForPageLoadDPN()
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
+
+//        DoYouExperienceDPN_CC doYouExperienceDPN_CC = whatKindOfDiabetesPageCC.waitForPageLoad()
+//                .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
+//                .clickNextButton(new DoYouExperienceDPN_CC())
+//                .waitForPageLoad();
+//        //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------
+//        doYouExperienceDPN_CC
+//                .waitForPageLoad()
+//                .clickOnAnswer("No, none of the above")
+//                .clickNextButton(cardiovascularDiseaseThanOthersPageCC);
+//        WithType2DiabetesPageCC withType2DiabetesPageCC = new WithType2DiabetesPageCC();
+//        withType2DiabetesPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5504", site.activeProtocols)
+//                .back(doYouExperienceDPN_CC);
+//
+//        WhereDoYouExperienceDiabeticNervePain_CC whereDoYouExperienceDiabeticNervePain_CC =
+//                doYouExperienceDPN_CC
+//                        .waitForPageLoad()
+//                        .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+//                        .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_CC());
+//
+//        whereDoYouExperienceDiabeticNervePain_CC
+//                .waitForPageLoad()
+//                .back(doYouExperienceDPN_CC)
+//                .clickOnAnswer("I have not been diagnosed by a healthcare professional, but I do experience these symptoms")
+//                .clickNextButton(whereDoYouExperienceDiabeticNervePain_CC);
+//
+//        //----------Q5 - "Where do you experience diabetic nerve pain symptoms or sensations?" Page ---------------
+//        whereDoYouExperienceDiabeticNervePain_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(withType2DiabetesPageCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+//                .back(whereDoYouExperienceDiabeticNervePain_CC);
+//
+//        whereDoYouExperienceDiabeticNervePain_CC
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Right foot", "Left leg", "Right hand or arm", "Left hand or arm", "Other")
+//                .clickNextButton(withType2DiabetesPageCC);
+//
+//        withType2DiabetesPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+//                .back(whereDoYouExperienceDiabeticNervePain_CC);
+//
+//        whereDoYouExperienceDiabeticNervePain_CC
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Right leg", "Left foot")
+//                .clickOnAnswers("Right hand or arm", "Left hand or arm", "Other")
+//                .clickNextButton(withType2DiabetesPageCC);
+//
+//        withType2DiabetesPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+//                .back(whereDoYouExperienceDiabeticNervePain_CC);
+//
+//        HowWouldYouDescribeTheSymptoms_CC howWouldYouDescribeTheSymptoms_CC = whereDoYouExperienceDiabeticNervePain_CC
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Right foot", "Left foot")
+//                .clickNextButton(new HowWouldYouDescribeTheSymptoms_CC());
+//
+//        howWouldYouDescribeTheSymptoms_CC
+//                .waitForPageLoad()
+//                .back(whereDoYouExperienceDiabeticNervePain_CC);
+//
+//        whereDoYouExperienceDiabeticNervePain_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Right leg", "Left leg", "Left foot", "Right hand or arm", "Left hand or arm", "Other")
+//                .clickNextButton(howWouldYouDescribeTheSymptoms_CC);
+//
+//        //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
+//        ApproxHowlongYouBeenExpSymptomsCC approxHowlongYouBeenExpSymptomsCC =
+//                howWouldYouDescribeTheSymptoms_CC
+//                        .waitForPageLoad()
+//                        .clickOnAnswers("None of the above")
+//                        .clickNextButton(new ApproxHowlongYouBeenExpSymptomsCC());
+//
+//        approxHowlongYouBeenExpSymptomsCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
+//                .back(howWouldYouDescribeTheSymptoms_CC);
+//
+//        howWouldYouDescribeTheSymptoms_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Other")
+//                .clickNextButton(approxHowlongYouBeenExpSymptomsCC)
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
+//                .back(howWouldYouDescribeTheSymptoms_CC);
+//
+//        howWouldYouDescribeTheSymptoms_CC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Burning", "Painful cold", "Electric", "Tingling", "Pins and needles", "Numbness",
+//                        "Itching", "An increase in these symptoms or sensations when something brushes against your skin")
+//                .clickNextButton(approxHowlongYouBeenExpSymptomsCC);
+//
+//        //----------Q9 -Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?-  Page ---------------
+//        HowWouldYouRateYourPain_CC howWouldYouRateYourPain_CC = new HowWouldYouRateYourPain_CC();
+//        List<String> disqualifyQ9 = Arrays.asList("5 months or less", "6 - 11 months", "1 - 3 years");
+//        for (String answer : disqualifyQ9) {
+//            approxHowlongYouBeenExpSymptomsCC
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(howWouldYouRateYourPain_CC)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageCC)
+//                    .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
+//                    .back();
+//        }
+//        approxHowlongYouBeenExpSymptomsCC
+//                .waitForPageLoad()
+//                .clickOnAnswer("4 - 6 years")
+//                .clickOnAnswer("7 - 10 years")
+//                .clickOnAnswer("11 or more years")
+//                .clickNextButton(howWouldYouRateYourPain_CC);
+//
+//        //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
+//        HaveYouHadAnyOfTheFollowingAmputatedPageCC haveYouHadAnyOfTheFollowingAmputatedPageCC =
+//                howWouldYouRateYourPain_CC
+//                        .waitForPageLoad()
+//                        .selectPainRating("0")
+//                        .clickNextButton(new HaveYouHadAnyOfTheFollowingAmputatedPageCC());
+//
+//        haveYouHadAnyOfTheFollowingAmputatedPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5510", site.activeProtocols)
+//                .back(howWouldYouRateYourPain_CC);
+//
+//        howWouldYouRateYourPain_CC
+//                .waitForPageLoad()
+//                .selectPainRating("5")
+//                .clickNextButton(haveYouHadAnyOfTheFollowingAmputatedPageCC);
+//
+//        //----------Q14 -Which of the following have you had amputated or surgically removed because of your diabetes?-  Page ---------------
+//        CurrentlyTreatingYourDiabetesPageCC currentlyTreatingYourDiabetesPageCC = haveYouHadAnyOfTheFollowingAmputatedPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Leg")
+//                .clickNextButton(new CurrentlyTreatingYourDiabetesPageCC());
+//
+//        currentlyTreatingYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
+//                .back(haveYouHadAnyOfTheFollowingAmputatedPageCC);
+//
+//        haveYouHadAnyOfTheFollowingAmputatedPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Foot")
+//                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
+//
+//        currentlyTreatingYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
+//                .back(haveYouHadAnyOfTheFollowingAmputatedPageCC);
+//
+//        haveYouHadAnyOfTheFollowingAmputatedPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Toe", "Other")
+//                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
+//
+//        currentlyTreatingYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .back(haveYouHadAnyOfTheFollowingAmputatedPageCC);
+//
+//        haveYouHadAnyOfTheFollowingAmputatedPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(currentlyTreatingYourDiabetesPageCC);
+//
+//        currentlyTreatingYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("I am not currently treating my diabetes")
+//                .clickNextButton(withType2DiabetesPageCC);
+//
+//        withType2DiabetesPageCC
+//                .waitForPageLoad()
+//                .getPage(debugPageCC)
+//                .checkProtocolsContainsForQNumber("QS5524")
+//                .back(currentlyTreatingYourDiabetesPageCC);
+//
+//        TransitionStatementCC transitionStatementCC = currentlyTreatingYourDiabetesPageCC
+//                .waitForPageLoad()
+//                .clickOnAnswers("Diet and exercise", "Medication such as metformin or insulin or other diabetes medication")
+//                .clickNextButton(new TransitionStatementCC());
+//
+//        transitionStatementCC
+//                .waitForPageLoadDPN()
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
         //----------------------GENERAL HEALTH Questions -----------------------------
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
