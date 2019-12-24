@@ -253,7 +253,7 @@ public class DBConnection {
                     ResultSet.CONCUR_READ_ONLY
             );
             rset = stmt.executeQuery(query);
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + rset.first());
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + rset.first()+" "+childPid);
                 rset.first();
                 flareStatus = rset.getString("STATUS_SET_MEMBER_ID");
 
