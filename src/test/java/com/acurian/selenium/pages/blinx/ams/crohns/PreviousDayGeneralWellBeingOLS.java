@@ -21,6 +21,7 @@ public class PreviousDayGeneralWellBeingOLS extends MainPageBlinx {
 
     @Step
     public PreviousDayGeneralWellBeingOLS waitForPageLoad() {
+        waitForAnimation();
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }

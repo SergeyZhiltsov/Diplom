@@ -8,10 +8,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class ApproxHowlongYouBeenExpSymptomsCC extends MainPageCC {
+public class WhichBestDescribesYourDiabeticNervePainCC extends MainPageCC {
 
-    public final String titleExpected = "Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?";
-    public final String getTitleExpectedDPN = "Approximately how long have you been experiencing diabetic nerve pain?";
+    private final String titleExpected = "Which best describes how your diabetic nerve pain affects your daily living?";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_RADIO_BUTTON_CC)
     WebElement titleText;
@@ -19,19 +18,13 @@ public class ApproxHowlongYouBeenExpSymptomsCC extends MainPageCC {
     List<WebElement> radioButtonsList;
 
     @Step
-    public ApproxHowlongYouBeenExpSymptomsCC waitForPageLoad() {
+    public WhichBestDescribesYourDiabeticNervePainCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public ApproxHowlongYouBeenExpSymptomsCC waitForPageLoadDPN() {
-        waitForPageLoadMain(titleText, getTitleExpectedDPN);
-        return this;
-    }
-
-    @Step
-    public ApproxHowlongYouBeenExpSymptomsCC clickOnAnswer(String answerText) {
+    public WhichBestDescribesYourDiabeticNervePainCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
@@ -40,4 +33,5 @@ public class ApproxHowlongYouBeenExpSymptomsCC extends MainPageCC {
     public String getTitleText() {
         return getText(titleText);
     }
+
 }

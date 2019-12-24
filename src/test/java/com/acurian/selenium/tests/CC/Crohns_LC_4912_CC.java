@@ -379,7 +379,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                     .back();
         }
-        KidneyProblemsPage kidneyProblemsPage = subquestionHeartPageCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = subquestionHeartPageCC
                 .waitForPageLoad()
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
@@ -387,9 +387,9 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Dialysis")
@@ -398,7 +398,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 .getPage(debugPageCC)
                 //     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
@@ -408,7 +408,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                 //    .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()

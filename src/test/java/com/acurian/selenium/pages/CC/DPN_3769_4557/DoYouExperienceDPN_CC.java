@@ -13,6 +13,8 @@ public class DoYouExperienceDPN_CC extends MainPageCC{
 
     public final String titleExpected = "Do you experience diabetic peripheral neuropathy or diabetic nerve pain?\n" +
     		"This condition can cause pain, tingling, or numbness in your feet, legs, hands, or arms.";
+    public final String titleExpectedDPN = "Do you experience diabetic peripheral neuropathy (DPN) or diabetic nerve pain?\n" +
+            "This condition can cause pain, tingling, or numbness in your feet, legs, hands, or arms.";
 
     @FindBy(xpath = "//div[@class='question_text']")
     WebElement titleText;
@@ -26,6 +28,14 @@ public class DoYouExperienceDPN_CC extends MainPageCC{
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
+
+
+    @Step
+    public DoYouExperienceDPN_CC waitForPageLoadDPN() {
+        waitForPageLoadMain(titleText, titleExpectedDPN);
+        return this;
+    }
+
 
     @Step
     public DoYouExperienceDPN_CC clickOnAnswer(String answerText) {

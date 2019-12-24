@@ -12,6 +12,8 @@ public class WhereDoYouExperienceDiabeticNervePain_OLS extends MainPageOLS {
 
     public final String titleExpected = "Where do you experience diabetic nerve pain symptoms or sensations?\n" +
             "Please select all that apply.";
+    public final String titleExpectedDPN = "Where do you experience pain?\n" +
+            "Please select all that apply.";
 
     @FindBy(xpath = Locators.BASIC_TITLE_WITH_CHECKBOXES_BUTTON_OLS)
     WebElement titleText;
@@ -21,6 +23,12 @@ public class WhereDoYouExperienceDiabeticNervePain_OLS extends MainPageOLS {
     @Step
     public WhereDoYouExperienceDiabeticNervePain_OLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
+        return this;
+    }
+
+    @Step
+    public WhereDoYouExperienceDiabeticNervePain_OLS waitForPageLoadDPN() {
+        waitForPageLoadMain(titleText, titleExpectedDPN);
         return this;
     }
 

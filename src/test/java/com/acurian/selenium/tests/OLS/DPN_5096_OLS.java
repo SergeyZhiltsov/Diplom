@@ -49,7 +49,7 @@ public class DPN_5096_OLS extends BaseTest {
     public void dpn_5096_OLS(Site site) {
 
         String phoneNumber = "AUTAMS1DPN";
-        String studyName = "a study for diabetics"; //todo https://jira.acurian.com/browse/SCREEN-11041
+        String studyName = "a study for diabetics";
         String env = System.getProperty("acurian.env", "STG");
 
         DebugPageOLS debugPageOLS = new DebugPageOLS();
@@ -142,203 +142,261 @@ public class DPN_5096_OLS extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
                     .back();
 
-        DoYouExperienceDPN_OLS doYouExperienceDPN_OLS = whatKindOfDiabetesPageOLS.waitForPageLoad()
+        DoYouExperienceDPN_OLS doYouExperienceDPN_OLS = whatKindOfDiabetesPageOLS
+                .waitForPageLoad()
                 .clickOnAnswer("Type 2 diabetes (sometimes called Adult-onset diabetes)")
-                .clickNextButton(new DoYouExperienceDPN_OLS())
-                .waitForPageLoad();
+                .clickNextButton(new DoYouExperienceDPN_OLS());
 
         //----------Q4 - Do you experience diabetic peripheral neuropathy or diabetic nerve pain? -  Page ---------------
-        doYouExperienceDPN_OLS
-                .waitForPageLoad()
-                .clickOnAnswer("No, none of the above")
-                .clickNextButton(cardiovascularDiseaseThanOthersPageOLS);
-        WithType2DiabetesPageOLS withType2DiabetesPageOLS = new WithType2DiabetesPageOLS();
+        WithType2DiabetesPageOLS withType2DiabetesPageOLS = doYouExperienceDPN_OLS
+                .waitForPageLoadDPN()
+                .clickOnAnswer("No")
+                .clickNextButton(new WithType2DiabetesPageOLS());
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5504", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5526", site.activeProtocols)
                 .back(doYouExperienceDPN_OLS);
 
         WhereDoYouExperienceDiabeticNervePain_OLS whereDoYouExperienceDiabeticNervePain_OLS =
                 doYouExperienceDPN_OLS
-                        .waitForPageLoad()
-                        .clickOnAnswer("Yes, and I have been diagnosed by a healthcare professional")
+                        .waitForPageLoadDPN()
+                        .clickOnAnswer("Yes")
                         .clickNextButton(new WhereDoYouExperienceDiabeticNervePain_OLS());
 
-        whereDoYouExperienceDiabeticNervePain_OLS
-                .waitForPageLoad()
-                .back(doYouExperienceDPN_OLS)
-                .clickOnAnswer("I have not been diagnosed by a healthcare professional, but I do experience these symptoms")
-                .clickNextButton(whereDoYouExperienceDiabeticNervePain_OLS);
+//        whereDoYouExperienceDiabeticNervePain_OLS
+//                .waitForPageLoadDPN()
+//                .back(doYouExperienceDPN_OLS)
+//                .clickOnAnswer("I have not been diagnosed by a healthcare professional, but I do experience these symptoms")
+//                .clickNextButton(whereDoYouExperienceDiabeticNervePain_OLS);
 
         //----------Q5 - "Where do you experience diabetic nerve pain symptoms or sensations?" Page ---------------
         whereDoYouExperienceDiabeticNervePain_OLS
-                .waitForPageLoad()
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(withType2DiabetesPageOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
         whereDoYouExperienceDiabeticNervePain_OLS
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right foot", "Left leg", "Right hand or arm", "Left hand or arm", "Other")
+                .clickOnAnswers("Right foot", "Right hand or arm", "Left hand or arm") //TODO probably will fall
                 .clickNextButton(withType2DiabetesPageOLS);
 
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
         whereDoYouExperienceDiabeticNervePain_OLS
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right leg", "Left foot")
-                .clickOnAnswers("Right hand or arm", "Left hand or arm", "Other")
+//                .clickOnAnswers("Right leg", "Left foot")
+                .clickOnAnswers("Right hand or arm", "Left hand or arm")
                 .clickNextButton(withType2DiabetesPageOLS);
 
         withType2DiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5522", site.activeProtocols)
+                .checkProtocolsContainsForQNumber("QS5527", site.activeProtocols)
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
-        HowWouldYouDescribeTheSymptoms_OLS howWouldYouDescribeTheSymptoms_OLS = whereDoYouExperienceDiabeticNervePain_OLS
+        ApproxHowlongYouBeenExpSymptomsOLS approxHowlongYouBeenExpSymptomsOLS = whereDoYouExperienceDiabeticNervePain_OLS
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Right foot", "Left foot")
-                .clickNextButton(new HowWouldYouDescribeTheSymptoms_OLS());
+                .clickNextButton(new ApproxHowlongYouBeenExpSymptomsOLS());
 
-        howWouldYouDescribeTheSymptoms_OLS
-                .waitForPageLoad()
+        approxHowlongYouBeenExpSymptomsOLS
+                .waitForPageLoadDPN()
                 .back(whereDoYouExperienceDiabeticNervePain_OLS);
 
         whereDoYouExperienceDiabeticNervePain_OLS
-                .waitForPageLoad()
+                .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right leg", "Left leg", "Left foot", "Right hand or arm", "Left hand or arm", "Other")
-                .clickNextButton(howWouldYouDescribeTheSymptoms_OLS);
-
-        //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
-        ApproxHowlongYouBeenExpSymptomsOLS approxHowlongYouBeenExpSymptomsOLS =
-                howWouldYouDescribeTheSymptoms_OLS
-                        .waitForPageLoad()
-                        .clickOnAnswers("None of the above")
-                        .clickNextButton(new ApproxHowlongYouBeenExpSymptomsOLS());
-
-        approxHowlongYouBeenExpSymptomsOLS
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
-                .back(howWouldYouDescribeTheSymptoms_OLS);
-
-        howWouldYouDescribeTheSymptoms_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("Other")
-                .clickNextButton(approxHowlongYouBeenExpSymptomsOLS)
-                .waitForPageLoad()
-                .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
-                .back(howWouldYouDescribeTheSymptoms_OLS);
-
-        howWouldYouDescribeTheSymptoms_OLS
-                .waitForPageLoad()
-                .clickOnAnswers("Burning", "Painful cold", "Electric", "Tingling", "Pins and needles", "Numbness",
-                        "Itching", "An increase in these symptoms or sensations when something brushes against your skin")
+                .clickOnAnswers("Right leg", "Left leg", "Left foot", "Right hand or arm", "Left hand or arm")
                 .clickNextButton(approxHowlongYouBeenExpSymptomsOLS);
 
-        //----------Q9 -Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?-  Page ---------------
-        HowWouldYouRateYourPain_OLS howWouldYouRateYourPain_OLS = new HowWouldYouRateYourPain_OLS();
-        List<String> disqualifyQ9 = Arrays.asList("5 months or less", "6 - 11 months", "1 - 3 years");
-        for (String answer : disqualifyQ9) {
-            System.out.println("Select answer for Q9: " + answer);
-            approxHowlongYouBeenExpSymptomsOLS
-                    .waitForPageLoad()
-                    .clickOnAnswer(answer)
-                    .clickNextButton(howWouldYouRateYourPain_OLS)
-                    .waitForPageLoad()
-                    .getPage(debugPageOLS)
-                    .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
-                    .back();
-        }
-        approxHowlongYouBeenExpSymptomsOLS
-                .waitForPageLoad()
-                .clickOnAnswer("4 - 6 years")
-                .clickOnAnswer("7 - 10 years")
-                .clickOnAnswer("11 or more years")
-                .clickNextButton(howWouldYouRateYourPain_OLS);
+        //----------Q6 - How would you describe the symptoms or sensations you feel in your feet, legs, hands, or arms? ---------
+        WhichBestDescribesYourDiabeticNervePainOLS whichBestDescribesYourDiabeticNervePainOLS = approxHowlongYouBeenExpSymptomsOLS
+                        .waitForPageLoadDPN()
+                        .clickOnAnswer("6 - 11 months")
+                        .clickNextButton(new WhichBestDescribesYourDiabeticNervePainOLS());
 
-        //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
-        HaveYouHadAnyOfTheFollowingAmputatedPageOLS haveYouHadAnyOfTheFollowingAmputatedPageOLS = howWouldYouRateYourPain_OLS
-                .waitForPageLoad()
-                .selectPainRating("0")
-                .clickNextButton(new HaveYouHadAnyOfTheFollowingAmputatedPageOLS());
-
-        haveYouHadAnyOfTheFollowingAmputatedPageOLS
+        whichBestDescribesYourDiabeticNervePainOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5510", site.activeProtocols)
-                .back(howWouldYouRateYourPain_OLS);
-
-        howWouldYouRateYourPain_OLS
-                .waitForPageLoad()
-                .selectPainRating("5")
-                .clickNextButton(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
-
-        //----------Q14 -Which of the following have you had amputated or surgically removed because of your diabetes?-  Page ---------------
-        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = haveYouHadAnyOfTheFollowingAmputatedPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("Leg")
-                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
-
-        currentlyTreatingYourDiabetesPageOLS
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsOLS)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("1 year")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
-                .back(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
-
-        haveYouHadAnyOfTheFollowingAmputatedPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Foot")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
-
-        currentlyTreatingYourDiabetesPageOLS
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsOLS)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("2 years")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
-                .back(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
-
-        haveYouHadAnyOfTheFollowingAmputatedPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickOnAnswers("Toe", "Other")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
-
-        currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .back(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
-
-        haveYouHadAnyOfTheFollowingAmputatedPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("None of the above")
-                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
-
-        currentlyTreatingYourDiabetesPageOLS
-                .waitForPageLoad()
-                .clickOnAnswers("I am not currently treating my diabetes")
-                .clickNextButton(withType2DiabetesPageOLS);
-
-        withType2DiabetesPageOLS
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsOLS)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("3 years")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
-                .checkProtocolsContainsForQNumber("QS5524")
-                .back(currentlyTreatingYourDiabetesPageOLS);
-
-        currentlyTreatingYourDiabetesPageOLS
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsOLS)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("Less than 6 months")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS)
                 .waitForPageLoad()
-                .clickOnAnswers("Diet and exercise", "Medication such as metformin or insulin or other diabetes medication")
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5528", site.activeProtocols)
+                .back(approxHowlongYouBeenExpSymptomsOLS)
+                .waitForPageLoadDPN()
+                .clickOnAnswer("4 or more years")
+                .clickNextButton(whichBestDescribesYourDiabeticNervePainOLS);
+
+        whichBestDescribesYourDiabeticNervePainOLS
+                .waitForPageLoad()
+                .clickOnAnswer("Pain does not limit my daily activities")
+                .clickNextButton(withType2DiabetesPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
+                .back(whichBestDescribesYourDiabeticNervePainOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Constant pain. Need assistance with daily activities")
+                .clickNextButton(withType2DiabetesPageOLS)
+                .waitForPageLoad()
+                .getPage(debugPageOLS)
+                .checkProtocolsContainsForQNumber("QS5529", site.activeProtocols)
+                .back(whichBestDescribesYourDiabeticNervePainOLS)
+                .waitForPageLoad()
+                .clickOnAnswer("Noticeable dicomfort, but does not limit my activities")
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
+
+
+//        approxHowlongYouBeenExpSymptomsOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
+//                .back(howWouldYouDescribeTheSymptoms_OLS);
+//
+//        howWouldYouDescribeTheSymptoms_OLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Other")
+//                .clickNextButton(approxHowlongYouBeenExpSymptomsOLS)
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5506", site.activeProtocols)
+//                .back(howWouldYouDescribeTheSymptoms_OLS);
+//
+//        howWouldYouDescribeTheSymptoms_OLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Burning", "Painful cold", "Electric", "Tingling", "Pins and needles", "Numbness",
+//                        "Itching", "An increase in these symptoms or sensations when something brushes against your skin")
+//                .clickNextButton(approxHowlongYouBeenExpSymptomsOLS);
+
+        //----------Q9 -Approximately how long have you been experiencing symptoms or sensations of diabetic nerve pain?-  Page ---------------
+//        HowWouldYouRateYourPain_OLS howWouldYouRateYourPain_OLS = new HowWouldYouRateYourPain_OLS();
+//        List<String> disqualifyQ9 = Arrays.asList("5 months or less", "6 - 11 months", "1 - 3 years");
+//        for (String answer : disqualifyQ9) {
+//            System.out.println("Select answer for Q9: " + answer);
+//            approxHowlongYouBeenExpSymptomsOLS
+//                    .waitForPageLoad()
+//                    .clickOnAnswer(answer)
+//                    .clickNextButton(howWouldYouRateYourPain_OLS)
+//                    .waitForPageLoad()
+//                    .getPage(debugPageOLS)
+//                    .checkProtocolsContainsForQNumber("QS5509", site.activeProtocols)
+//                    .back();
+//        }
+//        approxHowlongYouBeenExpSymptomsOLS
+//                .waitForPageLoad()
+//                .clickOnAnswer("4 - 6 years")
+//                .clickOnAnswer("7 - 10 years")
+//                .clickOnAnswer("11 or more years")
+//                .clickNextButton(howWouldYouRateYourPain_OLS);
+//
+//        //----------Q10 - How would you rate your pain or discomfort on a scale of 0 to 10? - page
+//        HaveYouHadAnyOfTheFollowingAmputatedPageOLS haveYouHadAnyOfTheFollowingAmputatedPageOLS = howWouldYouRateYourPain_OLS
+//                .waitForPageLoad()
+//                .selectPainRating("0")
+//                .clickNextButton(new HaveYouHadAnyOfTheFollowingAmputatedPageOLS());
+//
+//        haveYouHadAnyOfTheFollowingAmputatedPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5510", site.activeProtocols)
+//                .back(howWouldYouRateYourPain_OLS);
+//
+//        howWouldYouRateYourPain_OLS
+//                .waitForPageLoad()
+//                .selectPainRating("5")
+//                .clickNextButton(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
+//
+//        //----------Q14 -Which of the following have you had amputated or surgically removed because of your diabetes?-  Page ---------------
+//        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS = haveYouHadAnyOfTheFollowingAmputatedPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Leg")
+//                .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
+//
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
+//                .back(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
+//
+//        haveYouHadAnyOfTheFollowingAmputatedPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Foot")
+//                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+//
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5523", site.activeProtocols)
+//                .back(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
+//
+//        haveYouHadAnyOfTheFollowingAmputatedPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickOnAnswers("Toe", "Other")
+//                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+//
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .back(haveYouHadAnyOfTheFollowingAmputatedPageOLS);
+//
+//        haveYouHadAnyOfTheFollowingAmputatedPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("None of the above")
+//                .clickNextButton(currentlyTreatingYourDiabetesPageOLS);
+//
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("I am not currently treating my diabetes")
+//                .clickNextButton(withType2DiabetesPageOLS);
+//
+//        withType2DiabetesPageOLS
+//                .waitForPageLoad()
+//                .getPage(debugPageOLS)
+//                .checkProtocolsContainsForQNumber("QS5524")
+//                .back(currentlyTreatingYourDiabetesPageOLS);
+//
+//        currentlyTreatingYourDiabetesPageOLS
+//                .waitForPageLoad()
+//                .clickOnAnswers("Diet and exercise", "Medication such as metformin or insulin or other diabetes medication")
+//                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //----------------------GENERAL HEALTH Questions -----------------------------
         CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS

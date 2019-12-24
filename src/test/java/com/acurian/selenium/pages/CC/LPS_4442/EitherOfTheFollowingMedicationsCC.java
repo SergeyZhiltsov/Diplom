@@ -8,7 +8,7 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class EitherOfTheFollowingMedicationsCC extends MainPageCC { //todo chek same pages
+public class EitherOfTheFollowingMedicationsCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever taken any of the following medications?\n" +
             "Agent Note: Select all that apply";
