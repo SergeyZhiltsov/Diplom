@@ -3,7 +3,6 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.AS_4319.PermanentlyUnableWalkDueToMedicalConditionPageCC;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartPageCC;
 import com.acurian.selenium.pages.CC.LPS_4442.*;
 import com.acurian.selenium.pages.CC.closes.*;
@@ -273,19 +272,19 @@ public class Lupus_4442_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 //--------------------
-        WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whatKindOfArthritisCC
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0004962-QS39-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        whatKindOfArthritisCC.back();
+        whatKindOfArthritisPageCC.back();
 
 
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
