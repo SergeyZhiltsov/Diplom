@@ -249,11 +249,11 @@ public class DBConnection {
             final String query = "select * from patient_study_secondary_status where patient_id = "+childPid;
             rset = stmt.executeQuery(query);
             while (rset.next()) {
-                Thread.sleep(20000);
                 flareStatus = rset.getString("STATUS_SET_MEMBER_ID");
+                System.out.println(flareStatus);
             }
             System.out.println("DB fetched value of FLARE cell: " + flareStatus);
-        } catch (SQLException | InterruptedException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeResources();
