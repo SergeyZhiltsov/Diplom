@@ -91,12 +91,12 @@ public class OA_4109CC extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new DoYouSufferFromArthritisCC());
 
-        WhatKindOfArthritisCC whatKindOfArthritisCC = doYouSufferFromArthritisCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = doYouSufferFromArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
-        WhereYouHaveArthritisCC whereYouHaveArthritisCC = whatKindOfArthritisCC
+        WhereYouHaveArthritisCC whereYouHaveArthritisCC = whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
                 .clickNextButton(new WhereYouHaveArthritisCC());

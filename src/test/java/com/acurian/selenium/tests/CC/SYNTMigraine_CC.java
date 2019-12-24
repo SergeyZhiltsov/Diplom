@@ -2,22 +2,15 @@ package com.acurian.selenium.tests.CC;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.CC.ADG_4357.WithType1DiabetesPageCC;
-import com.acurian.selenium.pages.CC.DIA_4241.*;
 import com.acurian.selenium.pages.CC.Diabetes_4356A.*;
 import com.acurian.selenium.pages.CC.LMG_4686.HowManyDaysYouSufferCC;
-import com.acurian.selenium.pages.CC.LOWT.CardiovascularDiseaseThanOthersPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.Migraine.HaveYouBeenDiagnosedWithMigrainesPageCC;
 import com.acurian.selenium.pages.CC.Migraine.HaveYouEverTakenPrescriptionMedsToPreventMigrainesFromStartingPageСС;
-import com.acurian.selenium.pages.CC.Vaccine.DirectSheduleVaccCC;
 import com.acurian.selenium.pages.CC.closes.*;
-import com.acurian.selenium.pages.CC.cv_study.MostRecentHeartRelatedSurgeryProcedurePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
 import com.acurian.selenium.pages.CC.shared.*;
-import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC;
 import com.acurian.selenium.tests.OLS.SYNTMigraine_OLS;
 import com.acurian.selenium.utils.Properties;
 import org.testng.Assert;
@@ -149,10 +142,10 @@ public class SYNTMigraine_CC extends BaseTest {
         haveYouBeenDiagnosedWithMigrainesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HowOldWereYouMigHeadachePageCC())
+                .clickNextButton(new AgeWhenDiagnosedWithMigСС())
                 .waitForPageLoad()
                 .typeAge("60")
-                .clickNextButton(new HowLongSufferingFromMigraineCC())
+                .clickNextButton(new ApproxHowLongSufferingFromMIGСС())
                 .waitForPageLoad()
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowManyDaysYouSufferCC())
@@ -219,35 +212,35 @@ public class SYNTMigraine_CC extends BaseTest {
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
-        KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC();
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = mostRecentHeartProcedurePageСС
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(kidneyProblemsPage)
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(kidneyProblemsPage)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(kidneyProblemsPage)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = new DoAnyOftheFollowingAdditionalDiagnosesCC();
 
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfTheFollowingLiverProblemsPageСС
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
@@ -256,7 +249,7 @@ public class SYNTMigraine_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealthPageCC);
@@ -272,10 +265,10 @@ public class SYNTMigraine_CC extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
         mostRecentHeartProcedurePageСС

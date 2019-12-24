@@ -16,7 +16,6 @@ import com.acurian.selenium.utils.DataProviderPool;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 
 public class DPN_3769_CC extends BaseTest {
@@ -334,9 +333,9 @@ public class DPN_3769_CC extends BaseTest {
         noOfAlcoholicDrinksCC
                 .waitForPageLoad();
         Assert.assertEquals(noOfAlcoholicDrinksCC.getTitleText(), noOfAlcoholicDrinksCC.titleExpected, "Title is diff");
-        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
+        LiverRelatedConditionCC liverRelatedConditionCC = noOfAlcoholicDrinksCC
                 .setDrinks("4")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
+                .clickNextButton(new LiverRelatedConditionCC());
                 
            /*     NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = lastTimeYouTookPageCC
                 		.waitForPageLoad()
@@ -348,7 +347,7 @@ public class DPN_3769_CC extends BaseTest {
                 		.enterNoOfDrinks("4")
                 		.clickNextButton(new FollowingLiverRelatedConditionCC()); */
 
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new FollowingToLoseWeightPageCC());

@@ -415,66 +415,66 @@ public class AKC_4691_CC_NoPIIemail extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(noOfAlcoholicDrinksCC);
 
-        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
+        LiverRelatedConditionCC liverRelatedConditionCC = noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .setDrinks("4")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
+                .clickNextButton(new LiverRelatedConditionCC());
 
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("Alcoholic liver disease")
                 .clickNextButton(new FollowingToLoseWeightPageCC());
         followingToLoseWeightPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContains(liverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
-        followingLiverRelatedConditionCC
+        liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Autoimmune hepatitis, which is not the same as hepatitis caused by a virus")
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContains(liverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
-        followingLiverRelatedConditionCC
+        liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Hemochromatosis or iron overload (Agent Note: he-mo-chrome-uh-TOE-sus)")
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContains(liverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
-        followingLiverRelatedConditionCC
+        liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Liver cancer or hepatocellular carcinoma (Agent Note: hih-pat-oh-CELL-u-lar car-sih-NO-ma)")
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContains(liverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
-        followingLiverRelatedConditionCC
+        liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Primary sclerosing cholangitis or primary biliary cirrhosis (Agent Note: scler-OH-sing, ko-lanj-EYE-tis, BILL-ee-air-ee)")
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContains(liverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
-        followingLiverRelatedConditionCC
+        liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Wilson's disease")
                 .clickNextButton(followingToLoseWeightPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
-                .checkProtocolsContains(followingLiverRelatedConditionCC.titleExpected, site.activeProtocols)
+                .checkProtocolsContains(liverRelatedConditionCC.titleExpected, site.activeProtocols)
                 .back();
-        followingLiverRelatedConditionCC
+        liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(followingToLoseWeightPageCC);

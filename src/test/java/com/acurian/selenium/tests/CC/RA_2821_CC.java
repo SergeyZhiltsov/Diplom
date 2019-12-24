@@ -86,12 +86,12 @@ public class RA_2821_CC extends BaseTest {
         debugPageCC.checkProtocolsEquals(doYouSufferFromArthritisCC.titleExpected, site.activeProtocols);
         debugPageCC.back();
 
-        WhatKindOfArthritisCC whatKindOfArthritisCC = doYouSufferFromArthritisCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = doYouSufferFromArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
-        WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisCC
+        WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(new WhenYouDiagnosedWithRaPageCC());

@@ -288,7 +288,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickNextButton(new TakeYourInsulinInjectionsPageCC());
 
         NoOfAlcoholicDrinksCC noOfAlcoholicDrinksCC = new NoOfAlcoholicDrinksCC();
-        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = takeYourInsulinInjectionsPageCC
+        LiverRelatedConditionCC liverRelatedConditionCC = takeYourInsulinInjectionsPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Only at meal times (this is called bolus insulin)")
                 .clickNextButton(brandsOfInsulinPageCC)
@@ -303,14 +303,14 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswers("High cholesterol or high triglycerides")
                 .clickNextButton(noOfAlcoholicDrinksCC)
                 .setDrinks("11")
-                .clickNextButton(new FollowingLiverRelatedConditionCC())
+                .clickNextButton(new LiverRelatedConditionCC())
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS4623", site.activeProtocols)
                 .back(noOfAlcoholicDrinksCC)
                 .waitForPageLoad()
                 .setDrinks("10")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
+                .clickNextButton(new LiverRelatedConditionCC());
 
 
         /*ArrayList<String> conditions = new ArrayList<>();
@@ -333,7 +333,7 @@ public class DIA_4483_CC extends BaseTest {
                     .back();
         }*/
 
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new FollowingToLoseWeightPageCC());
@@ -551,7 +551,7 @@ public class DIA_4483_CC extends BaseTest {
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
 
-        KidneyProblemsPage kidneyProblemsPage = new KidneyProblemsPage();
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC();
         ArrayList<String> heartProcedurePeriods = new ArrayList<>();
         heartProcedurePeriods.add("Less than 30 days ago");
         heartProcedurePeriods.add("1 - 3 months ago");
@@ -559,39 +559,39 @@ public class DIA_4483_CC extends BaseTest {
             mostRecentHeartProcedurePageСС
                     .waitForPageLoad()
                     .clickOnAnswer(period)
-                    .clickNextButton(kidneyProblemsPage)
+                    .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS49", site.activeProtocols)
                     .back();
         }
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = mostRecentHeartProcedurePageСС
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(kidneyProblemsPage)
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(kidneyProblemsPage)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(kidneyProblemsPage)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfTheFollowingLiverProblemsPageСС
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
@@ -600,7 +600,7 @@ public class DIA_4483_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealthPageCC);
@@ -633,10 +633,10 @@ public class DIA_4483_CC extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
 //        doYouTakeAnyMedicationsToControlHighBloodPressureOLS

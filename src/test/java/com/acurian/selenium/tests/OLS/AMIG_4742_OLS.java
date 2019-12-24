@@ -106,11 +106,11 @@ public class AMIG_4742_OLS extends BaseTest {
 
 
         //--------Q3:  Approximately how old were you when you were diagnosed with migraine headaches?
-        ApproxHowLongSufferingFromMIG approxHowLongSufferingFromMIG = ageWhenDiagnosedWithMigOLS
+        ApproxHowLongSufferingFromMIGOLS approxHowLongSufferingFromMIGOLS = ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("51")
-                .clickNextButton(new ApproxHowLongSufferingFromMIG());
-        approxHowLongSufferingFromMIG
+                .clickNextButton(new ApproxHowLongSufferingFromMIGOLS());
+        approxHowLongSufferingFromMIGOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6003", site.activeProtocols)
@@ -118,11 +118,11 @@ public class AMIG_4742_OLS extends BaseTest {
         ageWhenDiagnosedWithMigOLS
                 .waitForPageLoad()
                 .setAge("37")
-                .clickNextButton(approxHowLongSufferingFromMIG);
+                .clickNextButton(approxHowLongSufferingFromMIGOLS);
 
 
         //---------------Q4: For approximately how long have you been suffering from migraine headaches?
-        HowManyDaysYouSufferOLS howManyDaysYouSufferOLS = approxHowLongSufferingFromMIG
+        HowManyDaysYouSufferOLS howManyDaysYouSufferOLS = approxHowLongSufferingFromMIGOLS
                 .waitForPageLoad()
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowManyDaysYouSufferOLS());
@@ -131,7 +131,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6004", site.activeProtocols)
                 .back();
-        approxHowLongSufferingFromMIG
+        approxHowLongSufferingFromMIGOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 11 months")
                 .clickNextButton(howManyDaysYouSufferOLS)
@@ -139,7 +139,7 @@ public class AMIG_4742_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6004", site.activeProtocols)
                 .back();
-        approxHowLongSufferingFromMIG
+        approxHowLongSufferingFromMIGOLS
                 .waitForPageLoad()
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(howManyDaysYouSufferOLS);

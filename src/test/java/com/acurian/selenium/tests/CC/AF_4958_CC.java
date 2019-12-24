@@ -256,21 +256,21 @@ public class AF_4958_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
-        WhatKindOfArthritisCC whatKindOfArthritisCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
 
-        whatKindOfArthritisCC
+        whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
-                .back(whatKindOfArthritisCC)
+                .back(whatKindOfArthritisPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints")
                 .clickOnAnswers("Psoriatic Arthritis")
@@ -278,23 +278,23 @@ public class AF_4958_CC extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS39", site.activeProtocols)
-                .back(whatKindOfArthritisCC)
+                .back(whatKindOfArthritisPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Psoriatic Arthritis") //deselect
                 .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging")
                 .back();
-        WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC =
+        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                        .clickNextButton(new WhichFollowingBonesJoints_CC());
+                        .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC());
 
 
         List<String> disqualifyQ4QS40 = Arrays.asList("Ankylosing spondylitis or axial spondyloarthritis", "Gout");
         for (String answer : disqualifyQ4QS40) {
             System.out.println("Select answer for Q4QS40: " + answer);
-            whichFollowingBonesJoints_CC
+            whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
@@ -304,7 +304,7 @@ public class AF_4958_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS40", site.activeProtocols)
                     .back();
         }
-        whichFollowingBonesJoints_CC
+        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .clickOnAnswers("Low back pain", "Osteoporosis")
                 .back();
@@ -375,8 +375,8 @@ public class AF_4958_CC extends BaseTest {
                 .clickNextButton(subquestionHeartPageCC);
 
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
-                new HeartrelatedMedicalProceduresPageCC();
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC =
+                new HeartRelatedSurgeriesProceduresPageCC();
         List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago",
                 "7 - 12 months ago");
         for (String answer : disqualifyQ12GH) {
@@ -384,7 +384,7 @@ public class AF_4958_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -404,7 +404,7 @@ public class AF_4958_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected3)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -423,7 +423,7 @@ public class AF_4958_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -434,17 +434,17 @@ public class AF_4958_CC extends BaseTest {
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .back();
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
 
         List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ6QS51) {
             System.out.println("Select answer for Q6:QS51: " + answer);
-            kidneyProblemsPage
+            whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
                     .clickOnAnswers(answer)
@@ -454,25 +454,25 @@ public class AF_4958_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                     .back();
         }
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                        .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Fatty liver disease", "NASH (non-alcoholic steatohepatitis)",
                         "NAFLD (non-alcoholic fatty liver disease)")

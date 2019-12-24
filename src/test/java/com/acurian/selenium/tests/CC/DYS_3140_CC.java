@@ -252,19 +252,19 @@ public class DYS_3140_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverBeenDiagnosedAdditionalHeartRelatedCC);
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = haveYouEverBeenDiagnosedAdditionalHeartRelatedCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
 
-        BeforeAge60PageСС beforeAge60PageСС = heartrelatedMedicalProceduresPageCC
+        BeforeAge60PageСС beforeAge60PageСС = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new BeforeAge60PageСС());
         beforeAge60PageСС
                 .waitForPageLoad()
                 .back();
-        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
+        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
@@ -288,7 +288,7 @@ public class DYS_3140_CC extends BaseTest {
         mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .back();
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(beforeAge60PageСС);
@@ -398,11 +398,11 @@ public class DYS_3140_CC extends BaseTest {
                 .clickOnAnswers("Cancer", "Kidney disease", "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
                 .clickNextButton(new OtherThanSkinCancerPageCC());
 
-        KidneyProblemsPage kidneyProblemsPage = otherThanSkinCancerPageCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(new KidneyProblemsPage());
-        kidneyProblemsPage
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1)
@@ -410,32 +410,32 @@ public class DYS_3140_CC extends BaseTest {
         otherThanSkinCancerPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
-                .clickNextButton(kidneyProblemsPage);
+                .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC);
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
-        whichOfTheFollowingLiverProblemsPageСС
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whichOfTheFollowingLiverProblemsPageСС
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
@@ -444,7 +444,7 @@ public class DYS_3140_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1)
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);

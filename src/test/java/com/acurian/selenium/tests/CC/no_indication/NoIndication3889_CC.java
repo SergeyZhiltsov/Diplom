@@ -156,11 +156,11 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswers("Crohn's disease")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-        heartrelatedMedicalProceduresPageCC
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .back();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -178,7 +178,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
@@ -189,7 +189,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
@@ -200,7 +200,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
@@ -211,7 +211,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
@@ -222,37 +222,37 @@ public class NoIndication3889_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3,"More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        KidneyProblemsPage kidneyProblemsPage = heartrelatedMedicalProceduresPageCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
-        whichOfTheFollowingLiverProblemsPageСС
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickOnAnswers("Kidney transplant")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealth_Page_cc = whichOfTheFollowingLiverProblemsPageСС
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealth_Page_cc = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
@@ -261,7 +261,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015139-QS52-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(followingMentalEmotionalHealth_Page_cc);
@@ -294,13 +294,13 @@ public class NoIndication3889_CC extends BaseTest {
         followingMentalEmotionalHealth_Page_cc
                 .waitForPageLoad()
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageCC

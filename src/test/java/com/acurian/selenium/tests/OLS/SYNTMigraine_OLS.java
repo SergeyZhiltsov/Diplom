@@ -119,7 +119,7 @@ public class SYNTMigraine_OLS extends BaseTest {
                 .clickNextButton(new AgeWhenDiagnosedWithMigOLS())
                 .waitForPageLoad()
                 .setAge("60")
-                .clickNextButton(new ApproxHowLongSufferingFromMIG())
+                .clickNextButton(new ApproxHowLongSufferingFromMIGOLS())
                 .waitForPageLoad()
                 .clickOnAnswer("5 months or less")
                 .clickNextButton(new HowManyDaysYouSufferOLS())

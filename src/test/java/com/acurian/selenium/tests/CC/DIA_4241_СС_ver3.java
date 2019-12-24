@@ -411,12 +411,12 @@ public class DIA_4241_СС_ver3 extends BaseTest{
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new NoOfAlcoholicDrinksCC());
 
-        FollowingLiverRelatedConditionCC followingLiverRelatedConditionCC = noOfAlcoholicDrinksCC
+        LiverRelatedConditionCC liverRelatedConditionCC = noOfAlcoholicDrinksCC
                 .waitForPageLoad()
                 .setDrinks("4")
-                .clickNextButton(new FollowingLiverRelatedConditionCC());
+                .clickNextButton(new LiverRelatedConditionCC());
 
-        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = followingLiverRelatedConditionCC
+        FollowingToLoseWeightPageCC followingToLoseWeightPageCC = liverRelatedConditionCC
                 .waitForPageLoad()
                 .clickOnAnswers("Alcoholic liver disease")
                 .clickNextButton(new FollowingToLoseWeightPageCC());

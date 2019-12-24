@@ -89,10 +89,10 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickNextButton(new DoYouSufferFromArthritisCC());
 
 
-        WhatKindOfArthritisCC whatKindOfArthritisPage = doYouSufferFromArthritisCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPage = doYouSufferFromArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
 
         WhereYouHaveArthritisCC whereYouHaveArthritis = whatKindOfArthritisPage
@@ -259,7 +259,7 @@ public class OA_5055_CC_S extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
-        WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
@@ -268,9 +268,9 @@ public class OA_5055_CC_S extends BaseTest {
                 .clickOnAnswers("Kidney disease")
                 .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
                 .clickOnAnswers("Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)")
-                .clickNextButton(new WhichFollowingBonesJoints_CC());
+                .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC());
 
-        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = whichFollowingBonesJoints_CC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis")
                 .clickNextButton(new WhenDiagnosedWithCancerCC());
@@ -281,7 +281,7 @@ public class OA_5055_CC_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS40", site.activeProtocols)
                 .back();
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = whichFollowingBonesJoints_CC
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(whenDiagnosedWithCancerCC)
@@ -308,27 +308,27 @@ public class OA_5055_CC_S extends BaseTest {
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(1), subquestionExperiencedHeartPageCC.titleExpected1, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(2), subquestionExperiencedHeartPageCC.titleExpected2, "Title is diff");
         Assert.assertEquals(subquestionExperiencedHeartPageCC.getTitleText(3), subquestionExperiencedHeartPageCC.titleExpected4, "Title is diff");
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = subquestionExperiencedHeartPageCC
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "More than 1 year ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
 
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -338,28 +338,28 @@ public class OA_5055_CC_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected1, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "7 - 12 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -369,21 +369,21 @@ public class OA_5055_CC_S extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -392,28 +392,28 @@ public class OA_5055_CC_S extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswerForSubQuestion(subquestionExperiencedHeartPageCC.titleExpected4, "More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        KidneyProblemsPage kidneyProblemsPage = heartrelatedMedicalProceduresPageCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
-                .back(kidneyProblemsPage)
+                .back(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
-        WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC whichOfFollowingHaveYouDiagnosedWith_neurologicalCC = whichOfTheFollowingLiverProblemsPageСС
+        WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC whichOfFollowingHaveYouDiagnosedWith_neurologicalCC = whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_NeurologicalCC());
@@ -422,7 +422,7 @@ public class OA_5055_CC_S extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure which type of liver disease")
                 .clickNextButton(whichOfFollowingHaveYouDiagnosedWith_neurologicalCC);

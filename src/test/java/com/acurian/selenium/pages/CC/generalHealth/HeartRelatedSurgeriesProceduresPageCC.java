@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class HeartrelatedMedicalProceduresPageCC extends MainPageCC {
+public class HeartRelatedSurgeriesProceduresPageCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever had any of the following heart-related surgeries or procedures?\n" +
             "Agent Note: Select all that apply";
@@ -19,13 +19,13 @@ public class HeartrelatedMedicalProceduresPageCC extends MainPageCC {
     List<WebElement> checkBoxList;
 
     @Step
-    public HeartrelatedMedicalProceduresPageCC waitForPageLoad() {
+    public HeartRelatedSurgeriesProceduresPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public HeartrelatedMedicalProceduresPageCC clickOnAnswers(String... answerText) {
+    public HeartRelatedSurgeriesProceduresPageCC clickOnAnswers(String... answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

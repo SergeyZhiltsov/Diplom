@@ -10,35 +10,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
-import com.acurian.selenium.pages.OLS.generalHealth.AffectYourLungsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.AffectingYourMetabolismPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.ApproximateHeightPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.BoneOrJointConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.CongestiveHeartFailurePageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.DigestiveConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.DoAnyOftheFollowingAdditionalDiagnosesOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.FollowingNeurologicalConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProceduresPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.HistoryOfDrugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.MentalHealthPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.OtherThanSkinCancerPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SkinConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SleepRelatedConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.SmokedCigarettesPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.ViralConditionsPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.WomensHealthPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.ChildrenUnderPageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.EthnicBackgroundPageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.HouseholdHavePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.TheStudySitePageOLS;
 import com.acurian.selenium.pages.OLS.pediatric.WhatMedicalCoveragePageOLS;
-import com.acurian.selenium.pages.OLS.pediatric.WhatSortPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ChildrenUnderTheAge;
 import com.acurian.selenium.pages.OLS.shared.DateOfBirthPageOLS;
 import com.acurian.selenium.pages.OLS.shared.GenderPageOLS;
-import com.acurian.selenium.pages.OLS.shared.ProvideHeightWeight;
 import com.acurian.selenium.pages.OLS.shared.ZipCodePageOLS;
 import com.acurian.selenium.pages.OLS.shared.MIGAttackFrequencyOLS;
 
@@ -118,35 +99,35 @@ public class MIG_4356B_Synexus_OLS extends BaseTest{
         //------------Approximately how old were you when you were diagnosed with Migraine headaches? - question---------------   
         ageWhenDiagnosedWithMigOLS.waitForPageLoad();
         //Assert.assertEquals(ageWhenDiagnosedWithMigOLS.getTitleText(),ageWhenDiagnosedWithMigOLS.titleExpected, "Title is diff");
-        ApproxHowLongSufferingFromMIG approxHowLongSufferingFromMIG = ageWhenDiagnosedWithMigOLS  //[create NEXT PAGE Object = THIS page object] 
+        ApproxHowLongSufferingFromMIGOLS approxHowLongSufferingFromMIGOLS = ageWhenDiagnosedWithMigOLS  //[create NEXT PAGE Object = THIS page object]
         .setAge("50")
-        .clickNextButton(new ApproxHowLongSufferingFromMIG());
+        .clickNextButton(new ApproxHowLongSufferingFromMIGOLS());
         //------Validate protocol DQs in debug window----------
-        approxHowLongSufferingFromMIG
+        approxHowLongSufferingFromMIGOLS
         .waitForPageLoad();
         debugPageOLS.checkProtocolsEquals(ageWhenDiagnosedWithMigOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6,protocol7);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
         ageWhenDiagnosedWithMigOLS.waitForPageLoad();
         ageWhenDiagnosedWithMigOLS.setAge("35")
-        .clickNextButton(new ApproxHowLongSufferingFromMIG());
+        .clickNextButton(new ApproxHowLongSufferingFromMIGOLS());
         
         
         //------------For approximately how long have you been suffering from Migraine headaches? - question---------------   
-        approxHowLongSufferingFromMIG
+        approxHowLongSufferingFromMIGOLS
         .waitForPageLoad();
-        Assert.assertEquals(approxHowLongSufferingFromMIG.getTitleText(),approxHowLongSufferingFromMIG.titleExpected, "Title is diff");
-        MIGAttackFrequencyOLS mIGAttackFrequencyOLS = approxHowLongSufferingFromMIG  //[create NEXT PAGE Object = THIS page object] 
+        Assert.assertEquals(approxHowLongSufferingFromMIGOLS.getTitleText(), approxHowLongSufferingFromMIGOLS.titleExpected, "Title is diff");
+        MIGAttackFrequencyOLS mIGAttackFrequencyOLS = approxHowLongSufferingFromMIGOLS  //[create NEXT PAGE Object = THIS page object]
         .clickOnAnswer("5 months or less")
         .clickNextButton(new MIGAttackFrequencyOLS());
         //------Validate protocol DQs in debug window----------
         mIGAttackFrequencyOLS
         .waitForPageLoad();
-        debugPageOLS.checkProtocolsEquals(approxHowLongSufferingFromMIG.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6,protocol7);
+        debugPageOLS.checkProtocolsEquals(approxHowLongSufferingFromMIGOLS.titleExpected, protocol5, protocol1, protocol2, protocol3, protocol4, protocol6,protocol7);
         //------Go BACK and change your answer to QR answer - to qualify----------
         debugPageOLS.back();
-        approxHowLongSufferingFromMIG.waitForPageLoad();
-        approxHowLongSufferingFromMIG.clickOnAnswer("1 year or more")
+        approxHowLongSufferingFromMIGOLS.waitForPageLoad();
+        approxHowLongSufferingFromMIGOLS.clickOnAnswer("1 year or more")
         .clickNextButton(new MIGAttackFrequencyOLS());       
         
 

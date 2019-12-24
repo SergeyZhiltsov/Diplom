@@ -357,15 +357,15 @@ public class RO_7069_CC extends BaseTest {
                 .clickNextButton(new SubquestionHeartPageCC());
 
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
-                new HeartrelatedMedicalProceduresPageCC();
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC =
+                new HeartRelatedSurgeriesProceduresPageCC();
         List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago");
         for (String answer : disqualifyQ12GH) {
             System.out.println("Select answer for Q12.1GH: " + answer);
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -385,7 +385,7 @@ public class RO_7069_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -405,7 +405,7 @@ public class RO_7069_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected3)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -424,7 +424,7 @@ public class RO_7069_CC extends BaseTest {
             subquestionHeartPageCC
                     .waitForPageLoad(1, subquestionHeartPageCC.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -435,17 +435,17 @@ public class RO_7069_CC extends BaseTest {
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .back();
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Kidney disease")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
 
         List<String> disqualifyQ6QS51 = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ6QS51) {
             System.out.println("Select answer for Q6:QS51: " + answer);
-            kidneyProblemsPage
+            whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
                     .clickOnAnswers(answer)
@@ -455,25 +455,25 @@ public class RO_7069_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                     .back();
         }
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                        .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                        .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
 
 
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cirrhosis")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS52", site.activeProtocols)
-                .back(whichOfTheFollowingLiverProblemsPageСС)
+                .back(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Fatty liver disease", "NASH (non-alcoholic steatohepatitis)",
                         "NAFLD (non-alcoholic fatty liver disease)")

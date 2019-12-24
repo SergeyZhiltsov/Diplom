@@ -359,7 +359,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                         "Angina, or heart-related chest pain, that required you to stay in a hospital overnight")
                 .clickNextButton(new SubquestionHeartPageCC())
                 .waitForPageLoad();
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = new HeartrelatedMedicalProceduresPageCC();
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = new HeartRelatedSurgeriesProceduresPageCC();
         List<String> disqualifyQ12GH = Arrays.asList("Less than 30 days ago", "1 - 3 months ago", "4 - 6 months ago");
         for (String answer : disqualifyQ12GH) {
             System.out.println("Select answer for Q12.1GH: " + answer);
@@ -373,7 +373,7 @@ public class Crohns_LC_4912_CC extends BaseTest {
                     .clickOnAnswerForSubQuestion(3, answer)
                     .waitForPageLoad(4, subquestionHeartPageCC.titleExpected4)
                     .clickOnAnswerForSubQuestion(4, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)

@@ -18,7 +18,7 @@ import com.acurian.selenium.pages.CC.generalHealth.DoAnyOftheFollowingAdditional
 import com.acurian.selenium.pages.CC.generalHealth.FollowingMentalHealthPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC;
 import com.acurian.selenium.pages.CC.generalHealth.IdentificationPageCC;
-import com.acurian.selenium.pages.CC.generalHealth.KidneyProblemsPage;
+import com.acurian.selenium.pages.CC.generalHealth.WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC;
 import com.acurian.selenium.pages.CC.generalHealth.LetMeSeePageCC;
 import com.acurian.selenium.pages.CC.generalHealth.OtherThanSkinCancerPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.SiteSelectionPageCC;
@@ -254,15 +254,15 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad();
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .clickOnAnswers("Cancer") // Un-Check 'Cancer'
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
 
         //----KIDNEY DQ Check----------
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad();
-        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealth_Page_CC = kidneyProblemsPage
+        FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealth_Page_CC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 // ---DQ if selected "Dialysis"-----
                 .clickOnAnswers("Dialysis", "Kidney transplant")
                 .clickNextButton(new FollowingMentalEmotionalHealthPageCC());
@@ -271,7 +271,7 @@ public class AUT_3973_CC_NoPIIemail extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(new FollowingMentalHealthPageCC());

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class HaveYouSmokedCigarettes extends MainPageOLS{
+public class HaveYouSmokedCigarettesOLS extends MainPageOLS{
 
     public final String titleExpected = "Have you ever smoked cigarettes, cigars, or e-cigarettes?";
     
@@ -21,24 +21,24 @@ public class HaveYouSmokedCigarettes extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]")
     List<WebElement> checkBoxList;
 
-    public HaveYouSmokedCigarettes() {
+    public HaveYouSmokedCigarettesOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public HaveYouSmokedCigarettes waitForPageLoad() {
+    public HaveYouSmokedCigarettesOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
     
     @Step
-    public HaveYouSmokedCigarettes waitForPageLoadNew() {
+    public HaveYouSmokedCigarettesOLS waitForPageLoadNew() {
         waitForPageLoadMain(titleText, titleExpectedNew);
         return this;
     }
 
     @Step
-    public HaveYouSmokedCigarettes clickOnAnswers(String answerText) {
+    public HaveYouSmokedCigarettesOLS clickOnAnswers(String answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
 //        List<String> answerTextList = Arrays.asList(answerText);
 //        checkBoxList.stream().filter(el -> answerTextList.contains(el.getText()))

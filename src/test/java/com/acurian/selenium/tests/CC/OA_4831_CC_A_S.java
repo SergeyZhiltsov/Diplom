@@ -104,10 +104,10 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .clickNextButton(new DoYouSufferFromArthritisCC());
 
 
-        WhatKindOfArthritisCC whatKindOfArthritisPage = doYouSufferFromArthritisCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPage = doYouSufferFromArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
 
         WhereYouHaveArthritisCC whereYouHaveArthritis = whatKindOfArthritisPage
@@ -268,7 +268,7 @@ public class OA_4831_CC_A_S extends BaseTest {
 //----------*******NEW GENERAL HEALTH Questions**************************----------      
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad();
-        WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder", "Autism spectrum",
                         "Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)",
                         "Breathing, respiratory, or lung problems (COPD, asthma, chronic cough)", "Cancer",
@@ -280,8 +280,8 @@ public class OA_4831_CC_A_S extends BaseTest {
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
                         "Neurological issues (Alzheimer's disease, memory loss, multiple sclerosis or MS, Parkinson's disease, seizure disorder or epilepsy, fibromyalgia)",
                         "Skin problems (eczema or atopic dermatitis, psoriasis)", "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)")
-                .clickNextButton(new WhichFollowingBonesJoints_CC());
-        whichFollowingBonesJoints_CC
+                .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC());
+        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .back();
         WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -301,14 +301,14 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
         whenDiagnosedWithCancerCC.back();
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
 
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
@@ -317,7 +317,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney transplant")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());
@@ -326,7 +326,7 @@ public class OA_4831_CC_A_S extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
                 .clickNextButton(new DoAnyOftheFollowingAdditionalDiagnosesCC());

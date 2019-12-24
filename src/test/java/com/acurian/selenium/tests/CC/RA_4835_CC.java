@@ -104,14 +104,14 @@ public class RA_4835_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0005578-QS7102-STUDYQUES", site.activeProtocols)
                 .back();
 
-        WhatKindOfArthritisCC whatKindOfArthritisCC = doYouSufferFromArthritisCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPageCC = doYouSufferFromArthritisCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
 
         //Q3 Check if all checkbox option are available
         HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC =
-                whatKindOfArthritisCC
+                whatKindOfArthritisPageCC
                         .waitForPageLoad()
                         .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging",
                                 "Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints",
@@ -124,7 +124,7 @@ public class RA_4835_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0004962-QS7103-STUDYQUES", site.activeProtocols)
                 .back();
 
-        WhereYouHaveArthritisCC whereYouHaveArthritisCC = whatKindOfArthritisCC
+        WhereYouHaveArthritisCC whereYouHaveArthritisCC = whatKindOfArthritisPageCC
                 .waitForPageLoad()
                 // Disqualify (“Psoriatic arthritis”)
                 .clickOnAnswers("Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints",
@@ -137,7 +137,7 @@ public class RA_4835_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0004962-QS7103-STUDYQUES", site.activeProtocols)
                 .back();
 
-        WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisCC
+        WhenYouDiagnosedWithRaPageCC whenYouDiagnosedWithRaPageCC = whatKindOfArthritisPageCC
                         .waitForPageLoad()
                         .clickOnAnswers("Osteoarthritis, the most common form of arthritis, caused by wear and tear on the joints due to aging",
                                 "Rheumatoid arthritis, a serious medical condition caused by your immune system attacking your joints") //Check QR //If selected "RA", continue to Q4
@@ -438,7 +438,7 @@ public class RA_4835_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 //-------------------New GENERAL HEALTH---------------------------
-        WhichFollowingBonesJoints_CC whichFollowingBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers(//Select all values to check it presence in the page
                         "ADHD or attention deficit hyperactivity disorder",
@@ -463,10 +463,10 @@ public class RA_4835_CC extends BaseTest {
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
-                .clickNextButton(new WhichFollowingBonesJoints_CC());
+                .clickNextButton(new WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC());
         //Check flow logic for Q2
         //Q4: QS40
-        whichFollowingBonesJoints_CC
+        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .back();
 
@@ -557,30 +557,30 @@ public class RA_4835_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        KidneyProblemsPage kidneyProblemsPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("High blood pressure or hypertension") //Deselect
-                        .clickNextButton(new KidneyProblemsPage());
+                        .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
         //Q16: QS51
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС = kidneyProblemsPage
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC = whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Dialysis")
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
-        whichOfTheFollowingLiverProblemsPageСС
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015143-QS51-STUDYQUES", site.activeProtocols)
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
 
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Kidney disease") //Deselect
-                .clickNextButton(new WhichOfTheFollowingLiverProblemsPageСС());
+                .clickNextButton(new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC());
         //Q17: QS52
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back();
 
@@ -662,10 +662,10 @@ public class RA_4835_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Bone or joint problems (gout, osteoporosis, back pain, ankylosing spondylitis)")
-                .clickNextButton(whichFollowingBonesJoints_CC);
+                .clickNextButton(whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC);
 
         //Q4: QS40
-        whichFollowingBonesJoints_CC
+        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .clickOnAnswers("Ankylosing spondylitis or axial spondyloarthritis") //Disqualify ("Ankylosing spondylitis") if selected this option OR "Yes" in AS Q2
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC);
@@ -677,7 +677,7 @@ public class RA_4835_CC extends BaseTest {
                 .back();
 
         //Q4: QS40
-                whichFollowingBonesJoints_CC
+                whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Gout") //Disqualify ("Gout")
@@ -689,7 +689,7 @@ public class RA_4835_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015115-QS40-STUDYQUES", site.activeProtocols)
                 .back();
 
-        whichFollowingBonesJoints_CC
+        whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC
                 .waitForPageLoad()
                 .back();
 

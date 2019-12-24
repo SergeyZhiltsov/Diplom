@@ -6,7 +6,6 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartP
 import com.acurian.selenium.pages.CC.LMG_4686.*;
 import com.acurian.selenium.pages.CC.Migraine.*;
 import com.acurian.selenium.pages.CC.closes.LessThan18YearsOldPageCC;
-import com.acurian.selenium.pages.CC.closes.QualifiedClose1PageCC;
 import com.acurian.selenium.pages.CC.closes.QualifiedClose2PageCC;
 import com.acurian.selenium.pages.CC.closes.ThankYouCloseSimplePageCC;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
@@ -115,21 +114,21 @@ public class AMIG_4742_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6034", site.activeProtocols)
                 .back();
 
-        HowOldWereYouMigHeadachePageCC howOldWereYouMigHeadachePageCC = haveYouBeenDiagnosedWithMigrainesPageCC
+        AgeWhenDiagnosedWithMigСС ageWhenDiagnosedWithMigСС = haveYouBeenDiagnosedWithMigrainesPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
-                .clickNextButton(new HowOldWereYouMigHeadachePageCC());
+                .clickNextButton(new AgeWhenDiagnosedWithMigСС());
 
-        HowLongSufferingFromMigraineCC howLongSufferingFromMigraineCC = howOldWereYouMigHeadachePageCC
+        ApproxHowLongSufferingFromMIGСС approxHowLongSufferingFromMIGСС = ageWhenDiagnosedWithMigСС
                 .typeAge("50")
-                .clickNextButton(new HowLongSufferingFromMigraineCC());
-        howLongSufferingFromMigraineCC
+                .clickNextButton(new ApproxHowLongSufferingFromMIGСС());
+        approxHowLongSufferingFromMIGСС
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6003", site.activeProtocols)
-                .back(howOldWereYouMigHeadachePageCC)
+                .back(ageWhenDiagnosedWithMigСС)
                 .typeAge("40")
-                .clickNextButton(howLongSufferingFromMigraineCC);
+                .clickNextButton(approxHowLongSufferingFromMIGСС);
 
 
 //---------------Q4: For approximately how long have you been suffering from migraine headaches?
@@ -137,7 +136,7 @@ public class AMIG_4742_CC extends BaseTest {
         List<String> disqualifyQ4 = Arrays.asList("5 months or less", "6 - 11 months");
         for (String answer : disqualifyQ4) {
             System.out.println("Select answer for Q4: " + answer);
-            howLongSufferingFromMigraineCC
+            approxHowLongSufferingFromMIGСС
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(howManyDaysYouSufferCC)
@@ -146,7 +145,7 @@ public class AMIG_4742_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS6004", site.activeProtocols)
                     .back();
         }
-        howLongSufferingFromMigraineCC
+        approxHowLongSufferingFromMIGСС
                 .waitForPageLoad()
                 .clickOnAnswer("1 year or more")
                 .clickNextButton(howManyDaysYouSufferCC);
@@ -318,7 +317,7 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 //-----------------GENERAL HEALTH questions-------------------
-        WhatKindOfArthritisCC whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhatKindOfArthritisPageCC whatKindOfArthritisPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -341,7 +340,7 @@ public class AMIG_4742_CC extends BaseTest {
                         "Skin problems (eczema or atopic dermatitis, psoriasis)",
                         "Urinary or bladder problems (overactive bladder, urinary leakage or incontinence)",
                         "Women's health issues (endometriosis, uterine fibroids)")
-                .clickNextButton(new WhatKindOfArthritisCC());
+                .clickNextButton(new WhatKindOfArthritisPageCC());
         whatKindOfArthritisPage.waitForPageLoad();
         whatKindOfArthritisPage.back();
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
@@ -355,11 +354,11 @@ public class AMIG_4742_CC extends BaseTest {
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC = subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-        heartrelatedMedicalProceduresPageCC
+                .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -367,7 +366,7 @@ public class AMIG_4742_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -376,7 +375,7 @@ public class AMIG_4742_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -391,7 +390,7 @@ public class AMIG_4742_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -399,7 +398,7 @@ public class AMIG_4742_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -407,7 +406,7 @@ public class AMIG_4742_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -423,9 +422,9 @@ public class AMIG_4742_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("More than 1 year ago")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = heartrelatedMedicalProceduresPageCC
+        DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC = heartRelatedSurgeriesProceduresPageCC
 //WomenHealthConditionsCC womenHealthConditionsCC = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")

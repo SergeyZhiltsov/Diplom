@@ -480,12 +480,12 @@ public class IBS_4684_CC extends BaseTest {
                 .clickOnAnswers("None of the above")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC);
 
-        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
+        HeartRelatedSurgeriesProceduresPageCC heartRelatedSurgeriesProceduresPageCC =
                 haveYouEverExperiencedHeartRelatedMedicalCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
-                        .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
-        heartrelatedMedicalProceduresPageCC
+                        .clickNextButton(new HeartRelatedSurgeriesProceduresPageCC());
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .back();
         SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC =
@@ -512,7 +512,7 @@ public class IBS_4684_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                   //  .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -531,7 +531,7 @@ public class IBS_4684_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                  //   .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -550,7 +550,7 @@ public class IBS_4684_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                  //   .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -569,7 +569,7 @@ public class IBS_4684_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                     .clickOnAnswerForSubQuestion(1, answer)
-                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
+                    .clickNextButton(heartRelatedSurgeriesProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                  //   .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -580,35 +580,35 @@ public class IBS_4684_CC extends BaseTest {
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(heartrelatedMedicalProceduresPageCC);
+                .clickNextButton(heartRelatedSurgeriesProceduresPageCC);
 
-        KidneyProblemsPage kidneyProblemsPage = heartrelatedMedicalProceduresPageCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new KidneyProblemsPage());
+                .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
 
-        WhichOfTheFollowingLiverProblemsPageСС whichOfTheFollowingLiverProblemsPageСС =
-                new WhichOfTheFollowingLiverProblemsPageСС();
+        WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC =
+                new WhichOfFollowingHaveYouDiagnosedWith_LiverDiseaseCC();
         List<String> disqualifyQ16GH = Arrays.asList("Dialysis", "Kidney transplant");
         for (String answer : disqualifyQ16GH) {
             System.out.println("Select answer for Q16GH: " + answer);
-            kidneyProblemsPage
+            whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                     .waitForPageLoad()
                     .clickOnAnswers("Neither")
                     .clickOnAnswers(answer)
-                    .clickNextButton(whichOfTheFollowingLiverProblemsPageСС)
+                    .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                  //   .checkProtocolsContainsForQNumber("QS51", site.activeProtocols)
                     .back();
         }
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .clickOnAnswers("Neither")
-                .clickNextButton(whichOfTheFollowingLiverProblemsPageСС);
+                .clickNextButton(whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC);
 
         FollowingMentalEmotionalHealthPageCC followingMentalEmotionalHealthPageCC =
-                whichOfTheFollowingLiverProblemsPageСС
+                whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                         .waitForPageLoad()
                         .clickOnAnswers("Cirrhosis",
                                 "Fatty liver disease",
@@ -638,13 +638,13 @@ public class IBS_4684_CC extends BaseTest {
         followingMentalEmotionalHealthPageCC
                 .waitForPageLoad()
                 .back();
-        whichOfTheFollowingLiverProblemsPageСС
+        whichOfFollowingHaveYouDiagnosedWithLiverDiseaseCC
                 .waitForPageLoad()
                 .back();
-        kidneyProblemsPage
+        whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
-        heartrelatedMedicalProceduresPageCC
+        heartRelatedSurgeriesProceduresPageCC
                 .waitForPageLoad()
                 .back();
         haveYouEverExperiencedHeartRelatedMedicalCondCC

@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class WhichFollowingBonesJoints_CC extends MainPageCC{
+public class WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC extends MainPageCC{
 
     public final String titleExpected = "You indicated that you have a condition that affects bones and joints.\n" +
     		"Which of the following specific conditions have you been diagnosed with?\n" +
@@ -21,18 +21,18 @@ public class WhichFollowingBonesJoints_CC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public WhichFollowingBonesJoints_CC() {
+    public WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichFollowingBonesJoints_CC waitForPageLoad() {
+    public WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichFollowingBonesJoints_CC clickOnAnswers(String ...answerText) {
+    public WhichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_CC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }
