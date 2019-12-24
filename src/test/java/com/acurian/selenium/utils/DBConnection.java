@@ -245,18 +245,12 @@ public class DBConnection {
     public String dbGetStatusFlare(String env, String childPid) {
         String flareStatus = null;
         try {
-            Connection con = getDbCon(env);
-            //stmt = getDbCon(env).createStatement();
+            stmt = getDbCon(env).createStatement();
             final String query = "select * from patient_study_secondary_status where patient_id = "+childPid;
-            Statement stmt = con.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY
-            );
             rset = stmt.executeQuery(query);
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + rset.first()+" "+childPid);
-                rset.first();
+            while (rset.next()) {
                 flareStatus = rset.getString("STATUS_SET_MEMBER_ID");
-
+            }
             System.out.println("DB fetched value of FLARE cell: " + flareStatus);
         } catch (SQLException e) {
             e.printStackTrace();
