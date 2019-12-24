@@ -248,11 +248,9 @@ public class DBConnection {
             stmt = getDbCon(env).createStatement();
             final String query = "select * from patient_study_secondary_status where patient_id = "+childPid;
             rset = stmt.executeQuery(query);
-            System.out.println("****************"+rset+"         "+rset==null);
-            while (rset.next()) {
+
                 flareStatus = rset.getString("STATUS_SET_MEMBER_ID");
-                System.out.println("_______________________"+flareStatus);
-            }
+
             System.out.println("DB fetched value of FLARE cell: " + flareStatus);
         } catch (SQLException e) {
             e.printStackTrace();
