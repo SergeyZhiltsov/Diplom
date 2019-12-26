@@ -232,8 +232,7 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
                 .waitForPageLoad()
-                .threadSleep(360000);
-        currentlyHaveAnyFollowingOLS
+                .getPID()
                 .pidFromDbToLog(env)
                 .flareCodeShouldMatch(env, "11");
 
@@ -268,14 +267,9 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
                 .waitForPageLoad()
-                .threadSleep(360000);
-        currentlyHaveAnyFollowingOLS
+                .getPID()
                 .pidFromDbToLog(env)
                 .flareCodeShouldMatch(env, "3");
-
-
-
-
 
         HashMap<String, List<String>> disqualify = new HashMap<>();
         disqualify.put("History of a bowel resection within the past 3 months", Arrays.asList(site.activeProtocols));
