@@ -268,21 +268,21 @@ public class CG_4960_CC extends BaseTest {
                 .back(whatKindOfArthritisPageCC)
                 .waitForPageLoad()
                 .back();
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
 
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(otherThanSkinCancerPageCC)
+                .back(whenDiagnosedWithCancerCC)
                 .waitForPageLoad()
                 .back();
         SufferedFollowingHeartRelatedConditionsPageCC sufferedFollowingHeartRelatedConditionsPageCC =

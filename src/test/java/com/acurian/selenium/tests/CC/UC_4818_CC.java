@@ -538,11 +538,11 @@ public class UC_4818_CC extends BaseTest {
                 .clickOnAnswers("Heart attack")
                 .clickNextButton(new SubquestionExperiencedHeartPageCC());
 
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = subquestionExperiencedHeartPageCC
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -550,7 +550,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -558,7 +558,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -573,7 +573,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -581,7 +581,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -589,7 +589,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -604,7 +604,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -612,7 +612,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -620,7 +620,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -635,7 +635,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("Less than 30 days ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -643,7 +643,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("1 - 3 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])
@@ -651,7 +651,7 @@ public class UC_4818_CC extends BaseTest {
         subquestionExperiencedHeartPageCC
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                 .clickOnAnswer("4 - 6 months ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS47", site.activeProtocols[0])

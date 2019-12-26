@@ -461,7 +461,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer",
@@ -469,10 +469,10 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 "Kidney disease",
                 "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                 "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
         HaveYouEverExperiencedHeartRelatedMedicalCondOLS heartrelatedMedicalConditionsProceduresPageCC =
-                otherThanSkinCancerPageOLS
+                whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
@@ -483,7 +483,7 @@ public class DERM_4815_OLS_A_S extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
 
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(heartrelatedMedicalConditionsProceduresPageCC);
@@ -711,10 +711,11 @@ public class DERM_4815_OLS_A_S extends BaseTest {
         }
 
         //EthnicBackgroundPageOLS ethnicBackgroundPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
-        AboutHealthPageOLS aboutHealthPageOLS = doAnyOftheFollowingAdditionalDiagnosesOLS
+        doAnyOftheFollowingAdditionalDiagnosesOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(approximateHeightPageOLS)
+                .clickNextButton(approximateHeightPageOLS);
+        IdentificationPageOLS identificationPageOLS = approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "250")
                 /* .clickNextButton(new EthnicBackgroundPageOLS());
@@ -722,22 +723,28 @@ public class DERM_4815_OLS_A_S extends BaseTest {
          ethnicBackgroundPageOLS
                  .waitForPageLoad()
                  .clickOnAnswers("Prefer not to answer")*/
-                .clickNextButton(new IdentificationPageOLS())
+                .clickNextButton(new IdentificationPageOLS());
                 //----------PII (IdentificationPageOLS) Page--------------------
+        SiteSelectionPageOLS siteSelectionPageOLS = identificationPageOLS
                 .waitForPageLoad()
                 .setAllFields("Acurian", "Trial", "qa.acurian@gmail.com", "9999999999",
                         site.zipCode)
-                .clickNextButton(new SiteSelectionPageOLS())
+                .clickNextButton(new SiteSelectionPageOLS());
+
+        QualifiedClose1PageOLS qualifiedClose1PageOLS = siteSelectionPageOLS
                 .waitForPageLoad(studyName)
                 .getPID()
                 .clickOnFacilityName(site.name)
-                .clickNextButton(new QualifiedClose1PageOLS())
-                //.waitForPageLoad()
-                .clickOnAnswer("No")
-                .clickNextButton(new SynexusHealthyMindsPageOLS())
+                .clickNextButton(new QualifiedClose1PageOLS());
+        SynexusHealthyMindsPageOLS synexusHealthyMindsPageOLS = qualifiedClose1PageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new ThankYouCloseSimplePageOLS())
+                .clickNextButton(new SynexusHealthyMindsPageOLS());
+        ThankYouCloseSimplePageOLS thankYouCloseSimplePageOLS = synexusHealthyMindsPageOLS
+                .waitForPageLoad()
+                .clickOnAnswer("No")
+                .clickNextButton(new ThankYouCloseSimplePageOLS());
+        AboutHealthPageOLS aboutHealthPageOLS = thankYouCloseSimplePageOLS
                 .waitForPageLoad()
                 .clickNextButton(new AboutHealthPageOLS());
         switch (site) {

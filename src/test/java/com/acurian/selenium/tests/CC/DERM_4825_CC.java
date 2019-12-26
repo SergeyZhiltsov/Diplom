@@ -7,7 +7,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartP
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.LOWT.CurrentlyTakingFollowingMedicationsCC;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
-import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
+import com.acurian.selenium.pages.CC.PSO_456.HealthcareDiagnosedPsoriasisPageCC;
 import com.acurian.selenium.pages.CC.closes.*;
 import com.acurian.selenium.pages.CC.debug.DebugPageCC;
 import com.acurian.selenium.pages.CC.generalHealth.*;
@@ -89,12 +89,12 @@ public class DERM_4825_CC extends BaseTest {
                 .clickOnAnswer("Female")
                 .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
-        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
+        HealthcareDiagnosedPsoriasisPageCC healthcareDiagnosedPsoriasisPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Disqualify ("No atopic dermatitis")
-                .clickNextButton(new DiagnosedWithPsoriasisCC());
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageCC());
 
-        diagnosedWithPsoriasisCC
+        healthcareDiagnosedPsoriasisPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -380,13 +380,13 @@ public class DERM_4825_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        WhichTypeOfHeadacheCC whichTypeOfHeadacheCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichTypeOfHeadacheDoYouGetCC whichTypeOfHeadacheDoYouGetCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Headaches (migraine, cluster, tension)") //Select
-                .clickNextButton(new WhichTypeOfHeadacheCC());
+                .clickNextButton(new WhichTypeOfHeadacheDoYouGetCC());
         //Q10: QS45
-        whichTypeOfHeadacheCC
+        whichTypeOfHeadacheDoYouGetCC
                 .waitForPageLoad()
                 .back();
 
@@ -407,14 +407,14 @@ public class DERM_4825_CC extends BaseTest {
         disqualifyQ121.put("1 - 3 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 12")
         disqualifyQ121.put("4 - 6 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 9")
         disqualifyQ121.put("7 - 12 months ago", Arrays.asList(site.activeProtocols)); //Disqualify ("Recent MI - Temp 6")
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC =
-                new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC();
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
+                new HeartrelatedMedicalProceduresPageCC();
         for (Map.Entry<String, List<String>> entry : disqualifyQ121.entrySet()) {
             System.out.println(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -440,7 +440,7 @@ public class DERM_4825_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -467,7 +467,7 @@ public class DERM_4825_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected3)
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -494,7 +494,7 @@ public class DERM_4825_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("QS47", site.activeProtocols)
@@ -507,9 +507,9 @@ public class DERM_4825_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC); //Skip to Q13
+                .clickNextButton(heartrelatedMedicalProceduresPageCC); //Skip to Q13
         //Q13: QS48
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
         haveYouEverExperiencedHeartRelatedMedicalCondCC

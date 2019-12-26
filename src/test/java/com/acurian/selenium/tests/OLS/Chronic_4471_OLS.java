@@ -95,12 +95,12 @@ public class Chronic_4471_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(new HaveYouSmokedCigarettesOLS());
 
-        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettesOLS
+        EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
                 .clickOnAnswers("No, I never smoked")
-                .clickNextButton(new DiagnosedWithFollowingConditionsOLS())
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
                 .waitForPageLoad();
-        diagnosedWithFollowingConditionsOLS.back();
+        everDiagnosedWithFollowingConditionsOLS.back();
 
         HowManyCigarettesOLS howManyCigarettesOLS = haveYouSmokedCigarettesOLS
                 .waitForPageLoadNew()
@@ -131,22 +131,22 @@ public class Chronic_4471_OLS extends BaseTest {
                 .waitForPageLoad1()
                 .enterYears("20")
                 .howManyCigarettes("21")
-                .clickNextButton(new DiagnosedWithFollowingConditionsOLS())
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS())
                 .waitForPageLoad();
         debugPageOLS.checkProtocolsContainsForQNumber("QS6209", site.activeProtocols);
         debugPageOLS.back();
         howManyCigarettesOLS
                 .waitForPageLoad1()
                 .enterYears("15")
-                .clickNextButton(new DiagnosedWithFollowingConditionsOLS());
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
 
-        ACEInhibitorsLS aCEInhibitorsLS = diagnosedWithFollowingConditionsOLS
+        ACEInhibitorsLS aCEInhibitorsLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Post-Nasal Drip (Upper Airway Cough Syndrome)", "Lung Cancer", "Tuberculosis (TB)")
                 .clickNextButton(new ACEInhibitorsLS())
                 .waitForPageLoad();
         aCEInhibitorsLS.back();
-        diagnosedWithFollowingConditionsOLS
+        everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickNextButton(new ACEInhibitorsLS());

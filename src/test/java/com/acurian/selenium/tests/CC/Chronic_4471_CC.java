@@ -136,34 +136,34 @@ public class Chronic_4471_CC extends BaseTest {
                 .clickOnAnswer("1 year or longer")
                 .clickNextButton(new TreatingYourChronicCoughCC());
 
-        SmokedCigarettesPageCC smokedCigarettesPageCC = treatingYourChronicCoughCC
+        HaveYouSmokedCigarettesCC haveYouSmokedCigarettesCC = treatingYourChronicCoughCC
                 .waitForPageLoad()
                 .clickOnAnswers("(QS6217_C)") //No, have not treated
-                .clickNextButton(new SmokedCigarettesPageCC())
+                .clickNextButton(new HaveYouSmokedCigarettesCC())
                 .waitForPageLoadNew();
-        smokedCigarettesPageCC.back();
+        haveYouSmokedCigarettesCC.back();
 
-        StillHaveYourCoughCC stillHaveYourCoughCC = treatingYourChronicCoughCC
+        DoYouStillHaveCoughCC doYouStillHaveCoughCC = treatingYourChronicCoughCC
                 .waitForPageLoad()
                 .clickOnAnswers("(QS6217_B)", "(QS6217_A)")    //A. Yes, with prescription and B. Yes, with over the counter
-                .clickNextButton(new StillHaveYourCoughCC());
+                .clickNextButton(new DoYouStillHaveCoughCC());
 
-        stillHaveYourCoughCC
+        doYouStillHaveCoughCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new SmokedCigarettesPageCC());
+                .clickNextButton(new HaveYouSmokedCigarettesCC());
 
-        HowManyYearsYouSmokeCC howManyYearsYouSmokeCC = smokedCigarettesPageCC
+        HowManyCigarettesCC howManyCigarettesCC = haveYouSmokedCigarettesCC
                 .waitForPageLoadNew()
                 .clickOnAnswer("Yes, I currently smoke")
-                .clickNextButton(new HowManyYearsYouSmokeCC());
-        howManyYearsYouSmokeCC
+                .clickNextButton(new HowManyCigarettesCC());
+        howManyCigarettesCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6206", site.activeProtocols)
                 .back();
 
-        QuitSmokingCC quitSmokingCC = smokedCigarettesPageCC
+        QuitSmokingCC quitSmokingCC = haveYouSmokedCigarettesCC
                 .waitForPageLoadNew()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new QuitSmokingCC());
@@ -171,16 +171,16 @@ public class Chronic_4471_CC extends BaseTest {
         quitSmokingCC
                 .waitForPageLoad()
                 .clickOnAnswer("I quit smoking within the past year")
-                .clickNextButton(new HowManyYearsYouSmokeCC())
+                .clickNextButton(new HowManyCigarettesCC())
                 .waitForPageLoad1()
                 .getPage(debugPageCC).checkProtocolsContainsForQNumber("QS6207", site.activeProtocols)
                 .back();
         quitSmokingCC
                 .waitForPageLoad()
                 .clickOnAnswer("I quit smoking more than a year ago")
-                .clickNextButton(new HowManyYearsYouSmokeCC());
+                .clickNextButton(new HowManyCigarettesCC());
 
-        FollowingConditionsCC followingConditionsCC = howManyYearsYouSmokeCC
+        FollowingConditionsCC followingConditionsCC = howManyCigarettesCC
                 .waitForPageLoad1()
                 .enterYears("20")
                 .enterCigrettes("21")
@@ -190,7 +190,7 @@ public class Chronic_4471_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS6209", site.activeProtocols)
                 .back();
-        howManyYearsYouSmokeCC
+        howManyCigarettesCC
                 .waitForPageLoad1()
                 .enterCigrettes("10")
                 .clickNextButton(new FollowingConditionsCC());

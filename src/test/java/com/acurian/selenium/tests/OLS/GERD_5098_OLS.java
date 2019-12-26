@@ -2,7 +2,7 @@ package com.acurian.selenium.tests.OLS;
 
 import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
-import com.acurian.selenium.pages.OLS.ChronicCough.DiagnosedWithFollowingConditionsOLS;
+import com.acurian.selenium.pages.OLS.ChronicCough.EverDiagnosedWithFollowingConditionsOLS;
 import com.acurian.selenium.pages.OLS.GERD.*;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
@@ -133,11 +133,11 @@ public class GERD_5098_OLS extends BaseTest {
                         "Prilosec",
                         "Zegerid")
                 .clickNextButton(new DespiteTakingMedicationDoYouStillExperienceSymptoms_OLS());
-        DiagnosedWithFollowingConditionsOLS diagnosedWithFollowingConditionsOLS = despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
+        EverDiagnosedWithFollowingConditionsOLS everDiagnosedWithFollowingConditionsOLS = despiteTakingMedicationDoYouStillExperienceSymptoms_OLS
                 .waitForPageLoad2()
                 .clickOnAnswer("4 - 5 days per week")
-                .clickNextButton(new DiagnosedWithFollowingConditionsOLS());
-        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = diagnosedWithFollowingConditionsOLS
+                .clickNextButton(new EverDiagnosedWithFollowingConditionsOLS());
+        WhatTypeOfSurgeryDidYouHave_OLS whatTypeOfSurgeryDidYouHave_OLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Erosive esophagitis or esophageal erosions, sores or breaks in the lining of the esophagus")
                 .clickNextButton(new WhatTypeOfSurgeryDidYouHave_OLS());
@@ -195,7 +195,7 @@ public class GERD_5098_OLS extends BaseTest {
         whatTypeOfSurgeryDidYouHave_OLS
                 .back();
 
-        diagnosedWithFollowingConditionsOLS
+        everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Zollinger-Ellison syndrome, a condition that causes the stomach to produce too much acid")
@@ -205,7 +205,7 @@ public class GERD_5098_OLS extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS6332", site.activeProtocols)
                 .back();
 
-        DidTakeMedicationToTreatPyloriOLS didTakeMedicationToTreatPyloriOLS = diagnosedWithFollowingConditionsOLS
+        DidTakeMedicationToTreatPyloriOLS didTakeMedicationToTreatPyloriOLS = everDiagnosedWithFollowingConditionsOLS
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Helicobacter pylori or H. pylori infection")

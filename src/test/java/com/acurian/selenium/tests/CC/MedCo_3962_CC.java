@@ -140,7 +140,7 @@ public class MedCo_3962_CC extends BaseTest {
                 //-----------HaveYouEverBeenDiagnosedAdditionalHeartRelatedOLS-----------
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC())
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC())
                 //-----------HaveYouUndergoneAnyOfFollowingHeartRelatedProcOLS-----------
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")

@@ -278,22 +278,22 @@ public class AF_4958_OLS extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Low back pain", "Osteoporosis")
                 .back();
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS =
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Cancer")
-                        .clickNextButton(new OtherThanSkinCancerPageOLS());
+                        .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
 
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(otherThanSkinCancerPageOLS)
+                .back(whenDiagnosedWithCancerOLS)
                 .clickOnAnswer("6 - 10 years ago")
                 .clickOnAnswer("11 or more years ago")
                 .clickOnAnswer("Diagnosed with skin cancer only")

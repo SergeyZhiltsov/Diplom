@@ -7,7 +7,7 @@ import com.acurian.selenium.pages.CC.Diabetes_4356A.SubquestionExperiencedHeartP
 import com.acurian.selenium.pages.CC.Diabetes_4356A.WhatKindOfDiabetesPageCC;
 import com.acurian.selenium.pages.CC.MDD_3159.MostRecentHeartProcedurePageСС;
 import com.acurian.selenium.pages.CC.OAB_4867.DoYouTakeAnyMedicationsControlHypertension_CC;
-import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
+import com.acurian.selenium.pages.CC.PSO_456.HealthcareDiagnosedPsoriasisPageCC;
 import com.acurian.selenium.pages.CC.closes.DoesNotGivePermissionToProceedClosePageCC;
 import com.acurian.selenium.pages.CC.closes.MedicalRecordsOptionPageCC;
 import com.acurian.selenium.pages.CC.closes.SynexusRadiantDirectScheduleCC;
@@ -109,11 +109,11 @@ public class DERM_7157_CC extends BaseTest {
                         .clickOnAnswer("Female")
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
 
-        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
+        HealthcareDiagnosedPsoriasisPageCC healthcareDiagnosedPsoriasisPageCC = hasHealthcareProfessionalEverDiagnosedYouWithEczema_CC
                 .waitForPageLoad()
                 .clickOnAnswer("No") //Disqualify ("No atopic dermatitis")
-                .clickNextButton(new DiagnosedWithPsoriasisCC());
-        diagnosedWithPsoriasisCC
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageCC());
+        healthcareDiagnosedPsoriasisPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS5802", site.activeProtocols)
@@ -490,13 +490,13 @@ public class DERM_7157_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        WhichTypeOfHeadacheCC whichTypeOfHeadacheCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichTypeOfHeadacheDoYouGetCC whichTypeOfHeadacheDoYouGetCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Headaches (migraine, cluster, tension)")
-                .clickNextButton(new WhichTypeOfHeadacheCC());
+                .clickNextButton(new WhichTypeOfHeadacheDoYouGetCC());
         //Q10: QS45
-        whichTypeOfHeadacheCC
+        whichTypeOfHeadacheDoYouGetCC
                 .waitForPageLoad()
                 .back();
 
@@ -515,7 +515,7 @@ public class DERM_7157_CC extends BaseTest {
                                 "Heart failure or congestive heart failure (CHF)")
                         .clickNextButton(new SubquestionExperiencedHeartPageCC()); //Display Q12.1: QS47A
         //Q12
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC =
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
                 subquestionExperiencedHeartPageCC
                         .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                         .waitForPageLoad(2, subquestionExperiencedHeartPageCC.titleExpected2)
@@ -525,9 +525,9 @@ public class DERM_7157_CC extends BaseTest {
                         .clickOnAnswerForSubQuestion(2, "1 - 3 months ago")
                         .clickOnAnswerForSubQuestion(3, "4 - 6 months ago")
                         .clickOnAnswerForSubQuestion(4, "7 - 12 months ago")
-                        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+                        .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
         //Q13: QS48
-        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs",
                         "Heart bypass surgery or Coronary Artery Bypass Graft (CABG)",
@@ -536,7 +536,7 @@ public class DERM_7157_CC extends BaseTest {
         //Q14: QS49
         mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
-                .back(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .back(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .back(subquestionExperiencedHeartPageCC)
                 .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)

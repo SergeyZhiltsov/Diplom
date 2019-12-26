@@ -334,13 +334,13 @@ public class Insomnia_5017_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        WhichTypeOfHeadacheCC whichTypeOfHeadacheCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichTypeOfHeadacheDoYouGetCC whichTypeOfHeadacheDoYouGetCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Headaches (migraine, cluster, tension)")
-                .clickNextButton(new WhichTypeOfHeadacheCC());
+                .clickNextButton(new WhichTypeOfHeadacheDoYouGetCC());
         //Q10: QS45
-        whichTypeOfHeadacheCC
+        whichTypeOfHeadacheDoYouGetCC
                 .waitForPageLoad()
                 .back();
 
@@ -367,13 +367,13 @@ public class Insomnia_5017_CC extends BaseTest {
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
 
         //Q11: QS46
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC =
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
                 haveYouEverExperiencedHeartRelatedMedicalCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
-                        .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC()); //Skip to Q13
+                        .clickNextButton(new HeartrelatedMedicalProceduresPageCC()); //Skip to Q13
         //Q13: QS48
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC);
         haveYouEverExperiencedHeartRelatedMedicalCondCC

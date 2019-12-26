@@ -247,10 +247,10 @@ public class PS_4656_OLS extends BaseTest {
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
         DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS =
                 new DoAnyOftheFollowingAdditionalDiagnosesOLS();
@@ -258,7 +258,7 @@ public class PS_4656_OLS extends BaseTest {
                 "11 or more years ago");
         for (String answer : disqualifyQ6QS42) {
             System.out.println("Select answer for Q6QS42: " + answer);
-            otherThanSkinCancerPageOLS
+            whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
@@ -267,7 +267,7 @@ public class PS_4656_OLS extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                     .back();
         }
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS);

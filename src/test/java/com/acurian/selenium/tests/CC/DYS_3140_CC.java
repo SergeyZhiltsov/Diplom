@@ -393,12 +393,12 @@ public class DYS_3140_CC extends BaseTest {
                 .clickNextButton(new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC());
 
 
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer", "Kidney disease", "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = otherThanSkinCancerPageCC
+        WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC());
@@ -407,7 +407,7 @@ public class DYS_3140_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1)
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC);

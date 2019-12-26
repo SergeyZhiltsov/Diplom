@@ -102,7 +102,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015111-QS38-STUDYQUES",protocol1,protocol2,protocol3,protocol4)
                 .back();
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Digestive disorders (IBS or irritable bowel syndrome, IBD, Crohn's disease, ulcerative colitis, heartburn or GERD)",
                         "Cancer",
@@ -110,9 +110,9 @@ public class NoIndication3889_CC extends BaseTest {
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC = otherThanSkinCancerPageCC
+        WhichOfFollowingDigestiveConditionPageCC whichOfFollowingDigestiveConditionPageCC = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new WhichOfFollowingDigestiveConditionPageCC());
@@ -121,7 +121,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(whichOfFollowingDigestiveConditionPageCC)
@@ -129,7 +129,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("11 or more years ago")
                 .clickNextButton(whichOfFollowingDigestiveConditionPageCC)
@@ -137,7 +137,7 @@ public class NoIndication3889_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2, protocol3, protocol4)
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(whichOfFollowingDigestiveConditionPageCC);
@@ -312,7 +312,7 @@ public class NoIndication3889_CC extends BaseTest {
         whichOfFollowingDigestiveConditionPageCC
                 .waitForPageLoad()
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC

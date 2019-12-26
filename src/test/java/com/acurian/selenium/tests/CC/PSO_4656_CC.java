@@ -80,16 +80,16 @@ public class PSO_4656_CC extends BaseTest {
                 .typeZipCode(site.zipCode)
                 .clickNextButton(new GenderPageCC());
 
-        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = genderPageCC
+        HealthcareDiagnosedPsoriasisPageCC healthcareDiagnosedPsoriasisPageCC = genderPageCC
                 .waitForPageLoad()
                 .setMonth("Sep")
                 .setDay("15")
                 .setYear("1980")
                 .clickOnAnswer("Female")
-                .clickNextButton(new DiagnosedWithPsoriasisCC());
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageCC());
 
         HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC hasHealthcareProfessionalEverDiagnosedYouWithEczema_cc =
-                diagnosedWithPsoriasisCC
+                healthcareDiagnosedPsoriasisPageCC
                         .waitForPageLoad()
                         .clickOnAnswer("No")
                         .clickNextButton(new HasHealthcareProfessionalEverDiagnosedYouWithEczema_CC());
@@ -100,7 +100,7 @@ public class PSO_4656_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS7002", site.activeProtocols)
                 .back();
 
-        WhenDiagnosedWithPsoriasisCC whenDiagnosedWithPsoriasisCC = diagnosedWithPsoriasisCC
+        WhenDiagnosedWithPsoriasisCC whenDiagnosedWithPsoriasisCC = healthcareDiagnosedPsoriasisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes")
                 .clickNextButton(new WhenDiagnosedWithPsoriasisCC());

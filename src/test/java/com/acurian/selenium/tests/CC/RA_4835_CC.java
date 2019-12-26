@@ -527,13 +527,13 @@ public class RA_4835_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        WhichTypeOfHeadacheCC whichTypeOfHeadacheCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichTypeOfHeadacheDoYouGetCC whichTypeOfHeadacheDoYouGetCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("Digestive disorders (IBS or irritable bowel syndrome, IBD," +
                                 " Crohn's disease, ulcerative colitis, heartburn or GERD)") //Deselect
-                        .clickNextButton(new WhichTypeOfHeadacheCC());
+                        .clickNextButton(new WhichTypeOfHeadacheDoYouGetCC());
         //Q10: QS45
-        whichTypeOfHeadacheCC
+        whichTypeOfHeadacheDoYouGetCC
                 .waitForPageLoad()
                 .back();
 

@@ -382,11 +382,11 @@ public class END_4385_OLS extends BaseTest {
                 .clickOnAnswers("Unsure")
                 .clickNextButton(whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols);
 
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
                 .waitForPageLoad()
                 .clickOnAnswers("Osteoporosis")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
-        otherThanSkinCancerPageOLS
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS40", site.activeProtocols)
@@ -394,9 +394,9 @@ public class END_4385_OLS extends BaseTest {
         whichOfTheFollowingHaveYouBeenDiagnosedBonesJoints_ols
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(otherThanSkinCancerPageOLS);
+                .clickNextButton(whenDiagnosedWithCancerOLS);
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = otherThanSkinCancerPageOLS
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
@@ -405,7 +405,7 @@ public class END_4385_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                 .back();
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);

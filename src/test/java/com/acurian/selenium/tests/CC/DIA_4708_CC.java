@@ -316,7 +316,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
 
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = transitionStatementCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = transitionStatementCC
                 .waitForPageLoad(indicationHistroyName)
                 .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
@@ -327,26 +327,26 @@ public class DIA_4708_CC extends BaseTest {
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)",
                         "High blood pressure or hypertension",
                         "High cholesterol, triglycerides, or lipids")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = otherThanSkinCancerPageCC
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
 
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", site.activeProtocols)
-                .back(otherThanSkinCancerPageCC)
+                .back(whenDiagnosedWithCancerCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
 
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
@@ -363,7 +363,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
@@ -375,7 +375,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "Less than 30 days ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
@@ -387,7 +387,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "Less than 30 days ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
@@ -399,7 +399,7 @@ public class DIA_4708_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());

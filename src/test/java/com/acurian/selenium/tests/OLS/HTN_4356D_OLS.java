@@ -100,11 +100,12 @@ public class HTN_4356D_OLS extends BaseTest{
 		.waitForPageLoad();
 		Assert.assertEquals(whichOfFollowingHaveYouDiagnosedWith_BreathingOLS.getTitleText(),whichOfFollowingHaveYouDiagnosedWith_BreathingOLS.titleExpected, "Title is diff");
 		//DoYouTakeAnyMedicationsToControlHighBloodPressureOLS doYouTakeAnyMedicationsToControlHighBloodPressureOLS = otherThanSkinCancerPageOLS
-		OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfFollowingHaveYouDiagnosedWith_BreathingOLS
+		WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = whichOfFollowingHaveYouDiagnosedWith_BreathingOLS
 		.clickOnAnswers("None of the above")
-				.clickNextButton(new OtherThanSkinCancerPageOLS());
-		otherThanSkinCancerPageOLS.waitForPageLoad();
-		WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = otherThanSkinCancerPageOLS
+				.clickNextButton(new WhenDiagnosedWithCancerOLS());
+		whenDiagnosedWithCancerOLS //TODO fix this (waitforpageload() is too early)
+				.waitForPageLoad();
+		WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = whenDiagnosedWithCancerOLS
 		.clickOnAnswer("Within the past 5 years")
 		.clickNextButton(new WhatKindOfDiabetesPageOLS());
 		//----------------------------------------------------
@@ -113,7 +114,7 @@ public class HTN_4356D_OLS extends BaseTest{
 		.getPage(debugPageOLS)
 		.checkProtocolsContainsForQNumber("QS42", protocol1)
 		.back();
-		otherThanSkinCancerPageOLS
+		whenDiagnosedWithCancerOLS
 		.waitForPageLoad()
 		.clickOnAnswer("6 - 10 years ago")
 		.clickNextButton(whatKindOfDiabetesPageOLS);

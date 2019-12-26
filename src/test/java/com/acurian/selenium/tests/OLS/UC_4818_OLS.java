@@ -11,7 +11,6 @@ import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -406,7 +405,7 @@ public class UC_4818_OLS extends BaseTest {
 
 
 //GH
-            CancerPage whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+            WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                     .waitForPageLoad()
                     .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                             "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -432,7 +431,7 @@ public class UC_4818_OLS extends BaseTest {
                             "Women's health issues (endometriosis, uterine fibroids)")
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers("Cancer")
-                    .clickNextButton(new CancerPage());
+                    .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
             DoAnyOftheFollowingAdditionalDiagnosesOLS doAnyOftheFollowingAdditionalDiagnosesOLS = whenDiagnosedWithCancerOLS
                     .waitForPageLoad()

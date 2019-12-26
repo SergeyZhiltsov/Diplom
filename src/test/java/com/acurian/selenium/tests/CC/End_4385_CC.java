@@ -423,13 +423,13 @@ public class End_4385_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        WhichTypeOfHeadacheCC whichTypeOfHeadacheCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhichTypeOfHeadacheDoYouGetCC whichTypeOfHeadacheDoYouGetCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Headaches (migraine, cluster, tension)") //Select
-                .clickNextButton(new WhichTypeOfHeadacheCC());
+                .clickNextButton(new WhichTypeOfHeadacheDoYouGetCC());
         //Q10: QS45
-        whichTypeOfHeadacheCC
+        whichTypeOfHeadacheDoYouGetCC
                 .waitForPageLoad()
                 .back();
 
@@ -451,14 +451,14 @@ public class End_4385_CC extends BaseTest {
         disqualifyQ121.put("4 - 6 months ago", Arrays.asList(site.activeProtocols));
         disqualifyQ121.put("7 - 12 months ago", Arrays.asList(site.activeProtocols));
         disqualifyQ121.put("More than 1 year ago", Arrays.asList(site.activeProtocols));
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC =
-                new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC();
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC =
+                new HeartrelatedMedicalProceduresPageCC();
         for (Map.Entry<String, List<String>> entry : disqualifyQ121.entrySet()) {
             System.out.println(entry.getKey());
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected1)
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
@@ -485,7 +485,7 @@ public class End_4385_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected2)
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
@@ -511,11 +511,11 @@ public class End_4385_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Heart failure or congestive heart failure (CHF)")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC) //Disqualify ("CHF") if selected "CHF" here, OR in Heart Failure Q2 selected "Yes"
+                .clickNextButton(heartrelatedMedicalProceduresPageCC) //Disqualify ("CHF") if selected "CHF" here, OR in Heart Failure Q2 selected "Yes"
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015128-QS46-STUDYQUES", site.activeProtocols)
-                .back(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC);
+                .back(heartrelatedMedicalProceduresPageCC);
 
         //Q11: QS46
         haveYouEverExperiencedHeartRelatedMedicalCondCC
@@ -535,7 +535,7 @@ public class End_4385_CC extends BaseTest {
             subquestionExperiencedHeartPageCC
                     .waitForPageLoad(1, subquestionExperiencedHeartPageCC.titleExpected4)
                     .clickOnAnswer(entry.getKey())
-                    .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                    .clickNextButton(heartrelatedMedicalProceduresPageCC)
                     .waitForPageLoad()
                     .getPage(debugPageCC)
                     .checkProtocolsContainsForQNumber("Q0015129-QS47-STUDYQUES", site.activeProtocols)
@@ -548,9 +548,9 @@ public class End_4385_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC); //Skip to Q13
+                .clickNextButton(heartrelatedMedicalProceduresPageCC); //Skip to Q13
         //Q13: QS48
-        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        MostRecentHeartProcedurePageСС mostRecentHeartProcedurePageСС = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
@@ -564,8 +564,8 @@ public class End_4385_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("Q0015137-QS49-STUDYQUES", site.activeProtocols)
                 .back(mostRecentHeartProcedurePageСС)
                 .waitForPageLoad()
-                .back(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC);
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+                .back(heartrelatedMedicalProceduresPageCC);
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
         haveYouEverExperiencedHeartRelatedMedicalCondCC

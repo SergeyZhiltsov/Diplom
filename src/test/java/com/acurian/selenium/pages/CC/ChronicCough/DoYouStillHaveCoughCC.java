@@ -9,7 +9,7 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class StillHaveYourCoughCC extends MainPageCC{
+public class DoYouStillHaveCoughCC extends MainPageCC{
 
     public final String titleExpected = "Do you still have your cough when you have taken medication for it?";
 
@@ -19,19 +19,19 @@ public class StillHaveYourCoughCC extends MainPageCC{
     @FindBy(xpath = Locators.RADIO_BUTTON_LIST_CC)
     List<WebElement> radioButtonsList;
     
-    public StillHaveYourCoughCC() {
+    public DoYouStillHaveCoughCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public StillHaveYourCoughCC waitForPageLoad() {
+    public DoYouStillHaveCoughCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
 
     @Step
-    public StillHaveYourCoughCC clickOnAnswer(String answerText) {
+    public DoYouStillHaveCoughCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
