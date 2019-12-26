@@ -30,7 +30,7 @@ public class MainPageOLS extends BasePage {
     @FindBy(xpath = "//img[starts-with(@src,'http')]")
     private List<WebElement> images;
 
-    @FindBy(xpath = "//div[@id='debugCollapsed']/div[1]/div[1]")
+    @FindBy(xpath = "//*[@id='debug_pid']")
     WebElement pidNumberPath;
 
     String pid;
