@@ -275,6 +275,7 @@ public class MainPageOLS extends BasePage {
 
     @Step
     public MainPageOLS flareCodeShouldMatch(String env, String statusCode) {
+        System.out.println(pid);
         String flareStatus = getDbConnection().dbGetStatusFlare(env, pid);
         logTextToAllure("Flare : current status = "+ flareStatus + " for childPID " + pid);
         Assert.assertEquals(flareStatus, statusCode, "Current status for Flare is diff");
