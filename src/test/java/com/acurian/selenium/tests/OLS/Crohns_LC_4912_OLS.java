@@ -232,6 +232,8 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
                 .waitForPageLoad()
+                .threadSleep(360000);
+        currentlyHaveAnyFollowingOLS
                 .pidFromDbToLog(env)
                 .flareCodeShouldMatch(env, "11");
 
@@ -266,6 +268,8 @@ public class Crohns_LC_4912_OLS extends BaseTest {
                 .clickOnAnswer("Yes")
                 .clickNextButton(currentlyHaveAnyFollowingOLS)
                 .waitForPageLoad()
+                .threadSleep(360000);
+        currentlyHaveAnyFollowingOLS
                 .pidFromDbToLog(env)
                 .flareCodeShouldMatch(env, "3");
 
