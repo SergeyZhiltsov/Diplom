@@ -308,22 +308,22 @@ public class AF_4958_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Low back pain", "Osteoporosis")
                 .back();
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC =
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC =
                 haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                         .waitForPageLoad()
                         .clickOnAnswers("None of the above")
                         .clickOnAnswers("Cancer")
-                        .clickNextButton(new OtherThanSkinCancerPageCC());
+                        .clickNextButton(new WhenDiagnosedWithCancerCC());
 
 
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(otherThanSkinCancerPageCC)
+                .back(whenDiagnosedWithCancerCC)
                 .clickOnAnswer("6 - 10 years ago")
                 .clickOnAnswer("11 or more years ago")
                 .clickOnAnswer("Diagnosed with skin cancer only")

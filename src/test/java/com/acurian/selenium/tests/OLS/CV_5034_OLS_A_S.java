@@ -175,11 +175,11 @@ public class CV_5034_OLS_A_S extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
                 .back();
-        CurrentlyTreatingYourDiabetesPageOLS сurrentlyTreatingYourDiabetesPageOLS = whatKindOfDiabetesPageOLS
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS1 = whatKindOfDiabetesPageOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Unsure")
                 .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
-        сurrentlyTreatingYourDiabetesPageOLS
+        currentlyTreatingYourDiabetesPageOLS1
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6704", site.activeProtocols)
@@ -284,7 +284,7 @@ public class CV_5034_OLS_A_S extends BaseTest {
         approximateHeightPageOLS
                 .waitForPageLoad()
                 .setAll("5", "5", "170")
-                .clickNextButton(сurrentlyTreatingYourDiabetesPageOLS)
+                .clickNextButton(currentlyTreatingYourDiabetesPageOLS1)
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)

@@ -392,20 +392,20 @@ public class VACC_JANRSV_OLS extends BaseTest {
                     .clickOnAnswers("Gout", "Low back pain", "Osteoporosis") //deselect
                     .clickOnAnswers("None of the above")
                     .back();
-            OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS =
+            WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS =
                     haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                             .waitForPageLoad()
                             .clickOnAnswers("None of the above")
                             .clickOnAnswers("Cancer")
-                            .clickNextButton(new OtherThanSkinCancerPageOLS());
-            otherThanSkinCancerPageOLS
+                            .clickNextButton(new WhenDiagnosedWithCancerOLS());
+            whenDiagnosedWithCancerOLS
                     .waitForPageLoad()
                     .clickOnAnswer("Within the past 5 years")
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                    .back(otherThanSkinCancerPageOLS)
+                    .back(whenDiagnosedWithCancerOLS)
                     .clickOnAnswer("6 - 10 years ago")
                     .clickOnAnswer("11 or more years ago")
                     .clickOnAnswer("Diagnosed with skin cancer only")

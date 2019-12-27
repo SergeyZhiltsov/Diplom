@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.acurian.selenium.pages.OLS.MainPageOLS;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class DiagnosedWithFollowingConditionsOLS extends MainPageOLS{
+public class EverDiagnosedWithFollowingConditionsOLS extends MainPageOLS{
 
     public final String titleExpected ="Have you ever been diagnosed with any of the following conditions?\n" +
     		"Please select all that apply."; 
@@ -19,19 +19,19 @@ public class DiagnosedWithFollowingConditionsOLS extends MainPageOLS{
     @FindBy(xpath = "//span[contains(@class,'visible-md-inline')]/span[@class='show-in-ols']")
     List<WebElement> checkBoxList;
 
-    public DiagnosedWithFollowingConditionsOLS() {
+    public EverDiagnosedWithFollowingConditionsOLS() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public DiagnosedWithFollowingConditionsOLS waitForPageLoad() {
+    public EverDiagnosedWithFollowingConditionsOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
     
 
     @Step
-    public DiagnosedWithFollowingConditionsOLS clickOnAnswers(String ...answerText) {
+    public EverDiagnosedWithFollowingConditionsOLS clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

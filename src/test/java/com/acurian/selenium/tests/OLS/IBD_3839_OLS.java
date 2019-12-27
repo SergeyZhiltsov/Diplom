@@ -350,21 +350,21 @@ public class IBD_3839_OLS extends BaseTest {
         whichOfFollowingHaveYouDiagnosedWithOLS
                 .waitForPageLoad();
         Assert.assertEquals(whichOfFollowingHaveYouDiagnosedWithOLS.getTitleText(), whichOfFollowingHaveYouDiagnosedWithOLS.titleExpected, "Title is diff");
-        OtherThanSkinCancerPageOLS otherThanSkinCancerPageOLS = whichOfFollowingHaveYouDiagnosedWithOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = whichOfFollowingHaveYouDiagnosedWithOLS
                 .clickOnAnswers(
                         "Asthma",
                         "Chronic cough",
                         "Chronic bronchitis",
                         "COPD",
                         "Emphysema")
-                .clickNextButton(new OtherThanSkinCancerPageOLS());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
 
         //----------Q6 - When were you diagnosed with cancer (other than skin cancer)? --------------------
-        otherThanSkinCancerPageOLS
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad();
-        Assert.assertEquals(otherThanSkinCancerPageOLS.getTitleText(), otherThanSkinCancerPageOLS.titleExpected, "Title is diff");
-        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = otherThanSkinCancerPageOLS
+        Assert.assertEquals(whenDiagnosedWithCancerOLS.getTitleText(), whenDiagnosedWithCancerOLS.titleExpected, "Title is diff");
+        WhatKindOfDiabetesPageOLS whatKindOfDiabetesPageOLS = whenDiagnosedWithCancerOLS
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new WhatKindOfDiabetesPageOLS());
 

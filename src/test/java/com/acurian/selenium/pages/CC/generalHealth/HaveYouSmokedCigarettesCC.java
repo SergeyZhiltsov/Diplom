@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class SmokedCigarettesPageCC extends MainPageCC {
+public class HaveYouSmokedCigarettesCC extends MainPageCC {
 
     public final String titleExpected = "Have you ever smoked cigarettes, cigars, or e-cigarettes?";
     
@@ -21,26 +21,26 @@ public class SmokedCigarettesPageCC extends MainPageCC {
     @FindBy(xpath = "//div[@class='radio_btns_container']//label")
     List<WebElement> radioButtonsList;
 
-    public SmokedCigarettesPageCC() {
+    public HaveYouSmokedCigarettesCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public SmokedCigarettesPageCC waitForPageLoad() {
+    public HaveYouSmokedCigarettesCC waitForPageLoad() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected));
         return this;
     }
     
     @Step
-    public SmokedCigarettesPageCC waitForPageLoadNew() {
+    public HaveYouSmokedCigarettesCC waitForPageLoadNew() {
         waitForAnimation();
         driverWait.getWaitDriver().until((ExpectedCondition<Boolean>) w-> titleText.getText().contains(titleExpected1));
         return this;
     }
 
     @Step
-    public SmokedCigarettesPageCC clickOnAnswer(String answerText) {
+    public HaveYouSmokedCigarettesCC clickOnAnswer(String answerText) {
         radioButtonsList.stream().filter(el -> el.getText().contains(answerText))
                 .findFirst()
                 .get()

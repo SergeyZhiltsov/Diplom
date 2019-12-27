@@ -7,21 +7,16 @@ import com.acurian.selenium.pages.OLS.DPN_3769_4557.*;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.CurrentlyTreatingYourDiabetesPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.SubquestionExperiencedHeartPageOLS;
 import com.acurian.selenium.pages.OLS.Diabetes_4356A.WithType2DiabetesPageOLS;
-import com.acurian.selenium.pages.OLS.LOWT_3017.CardiovascularDiseaseThanOthersPageOLS;
 import com.acurian.selenium.pages.OLS.LOWT_3017.HasDoctorEverDiagnosedYouMedicalCond_OLS;
 import com.acurian.selenium.pages.OLS.closes.*;
 import com.acurian.selenium.pages.OLS.debug.DebugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.*;
 import com.acurian.selenium.pages.OLS.shared.*;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Description;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class DPN_5096_OLS extends BaseTest {
 
@@ -132,7 +127,7 @@ public class DPN_5096_OLS extends BaseTest {
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS5503", site.activeProtocols)
                 .back();
-        CardiovascularDiseaseThanOthersPageOLS cardiovascularDiseaseThanOthersPageOLS = new CardiovascularDiseaseThanOthersPageOLS();
+
             whatKindOfDiabetesPageOLS
                     .waitForPageLoad()
                     .clickOnAnswer("Unsure")
@@ -183,7 +178,7 @@ public class DPN_5096_OLS extends BaseTest {
         whereDoYouExperienceDiabeticNervePain_OLS
                 .waitForPageLoadDPN()
                 .clickOnAnswers("None of the above")
-                .clickOnAnswers("Right foot", "Right hand or arm", "Left hand or arm") //TODO probably will fall
+                .clickOnAnswers("Right foot", "Right hand or arm", "Left hand or arm")
                 .clickNextButton(withType2DiabetesPageOLS);
 
         withType2DiabetesPageOLS
@@ -399,12 +394,12 @@ public class DPN_5096_OLS extends BaseTest {
 //                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS);
 
         //----------------------GENERAL HEALTH Questions -----------------------------
-        CancerPage cancerPage = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
+        WhenDiagnosedWithCancerOLS whenDiagnosedWithCancerOLS = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer", "Heart or circulation problems (heart attack, heart failure, stroke)")
-                .clickNextButton(new CancerPage());
+                .clickNextButton(new WhenDiagnosedWithCancerOLS());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = cancerPage
+        HaveYouEverExperiencedHeartRelatedMedicalCondOLS haveYouEverExperiencedHeartRelatedMedicalCondOLS = whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondOLS());
@@ -413,9 +408,9 @@ public class DPN_5096_OLS extends BaseTest {
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(cancerPage);
+                .back(whenDiagnosedWithCancerOLS);
 
-        cancerPage
+        whenDiagnosedWithCancerOLS
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondOLS);

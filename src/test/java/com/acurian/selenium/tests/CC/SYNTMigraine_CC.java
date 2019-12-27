@@ -118,19 +118,19 @@ public class SYNTMigraine_CC extends BaseTest {
                 .checkProtocolsContainsForQNumber("QS38", site.activeProtocols)
                 .back();
 
-        WhichTypeOfHeadacheCC whichTypeOfHeadacheCC = new WhichTypeOfHeadacheCC();
+        WhichTypeOfHeadacheDoYouGetCC whichTypeOfHeadacheDoYouGetCC = new WhichTypeOfHeadacheDoYouGetCC();
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesOLS = new DoAnyOftheFollowingAdditionalDiagnosesCC();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Headaches (migraine, cluster, tension)")
-                .clickNextButton(whichTypeOfHeadacheCC)
+                .clickNextButton(whichTypeOfHeadacheDoYouGetCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Unsure")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesOLS)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS45", site.activeProtocols)
-                .back(whichTypeOfHeadacheCC)
+                .back(whichTypeOfHeadacheDoYouGetCC)
                 .waitForPageLoad()
                 .back(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC)
                 .waitForPageLoad()
@@ -164,36 +164,36 @@ public class SYNTMigraine_CC extends BaseTest {
 //                .clickOnAnswers("None of the above")
 //                .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer",
                         "Kidney disease",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
-                .clickNextButton(whichTypeOfHeadacheCC);
+                .clickNextButton(whichTypeOfHeadacheDoYouGetCC);
         HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = new HaveYouEverExperiencedHeartRelatedMedicalCondCC();
 
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = whichTypeOfHeadacheCC
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = whichTypeOfHeadacheDoYouGetCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(otherThanSkinCancerPageCC)
+                .back(whenDiagnosedWithCancerCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
-                .clickNextButton(whichTypeOfHeadacheCC)
+                .clickNextButton(whichTypeOfHeadacheDoYouGetCC)
                 .waitForPageLoad()
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
 
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
@@ -207,7 +207,7 @@ public class SYNTMigraine_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
@@ -274,7 +274,7 @@ public class SYNTMigraine_CC extends BaseTest {
         mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .back();
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageCC
@@ -283,10 +283,10 @@ public class SYNTMigraine_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .back();
-        whichTypeOfHeadacheCC
+        whichTypeOfHeadacheDoYouGetCC
                 .waitForPageLoad()
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .back();
         haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC

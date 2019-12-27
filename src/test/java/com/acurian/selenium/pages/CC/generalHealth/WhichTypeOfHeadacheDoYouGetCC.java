@@ -8,7 +8,7 @@ import com.acurian.selenium.constants.Locators;
 import com.acurian.selenium.pages.CC.MainPageCC;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class WhichTypeOfHeadacheCC extends MainPageCC{
+public class WhichTypeOfHeadacheDoYouGetCC extends MainPageCC{
 
     public final String titleExpected = "You reported that you suffer from headaches.\n" + 
             "Which type of headache do you typically get?\n" +
@@ -20,18 +20,18 @@ public class WhichTypeOfHeadacheCC extends MainPageCC{
     @FindBy(xpath = Locators.CHEKBOX_LIST_CC)
     List<WebElement> checkBoxList;
 
-    public WhichTypeOfHeadacheCC() {
+    public WhichTypeOfHeadacheDoYouGetCC() {
         PageFactory.initElements(getDriver(), this);
     }
 
     @Step
-    public WhichTypeOfHeadacheCC waitForPageLoad() {
+    public WhichTypeOfHeadacheDoYouGetCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public WhichTypeOfHeadacheCC clickOnAnswers(String ...answerText) {
+    public WhichTypeOfHeadacheDoYouGetCC clickOnAnswers(String ...answerText) {
         clickOnCheckBoxes(checkBoxList, answerText);
         return this;
     }

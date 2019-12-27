@@ -38,7 +38,6 @@ import com.acurian.selenium.pages.OLS.generalHealth.HeartrelatedMedicalProcedure
 import com.acurian.selenium.pages.OLS.generalHealth.HistoryOfDrugPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.IdentificationPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.MentalHealthPageOLS;
-import com.acurian.selenium.pages.OLS.generalHealth.OtherThanSkinCancerPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SiteSelectionPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SkinConditionsPageOLS;
 import com.acurian.selenium.pages.OLS.generalHealth.SleepRelatedConditionsPageOLS;

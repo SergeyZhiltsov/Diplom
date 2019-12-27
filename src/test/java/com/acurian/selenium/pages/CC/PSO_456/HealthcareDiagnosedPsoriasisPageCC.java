@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class DiagnosedWithPsoriasisCC extends MainPageCC { //todo refactor class name
+public class HealthcareDiagnosedPsoriasisPageCC extends MainPageCC {
 
     public final String titleExpected = "Has a healthcare professional ever diagnosed you with psoriasis? (Agent Note: suh-rahy-uh-sis)\n" +
             "Psoriasis is an autoimmune condition that causes too many skin cells. Your skin forms raised, red plaques covered with silvery scales, " +
@@ -20,13 +20,13 @@ public class DiagnosedWithPsoriasisCC extends MainPageCC { //todo refactor class
     List<WebElement> radioButtonList;
 
     @Step
-    public DiagnosedWithPsoriasisCC waitForPageLoad() {
+    public HealthcareDiagnosedPsoriasisPageCC waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public DiagnosedWithPsoriasisCC clickOnAnswer(String answerText) {
+    public HealthcareDiagnosedPsoriasisPageCC clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonList, answerText);
         return this;
     }

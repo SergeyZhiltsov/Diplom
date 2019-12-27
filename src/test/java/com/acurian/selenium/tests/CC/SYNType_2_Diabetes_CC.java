@@ -416,33 +416,33 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                         .waitForPageLoad(indicationHistroyName)
                         .clickNextButton(haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC);
 
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("Cancer",
                         "Kidney disease",
                         "Heart or circulation problems (heart attack, heart failure, stroke)",
                         "Liver disease (fatty liver disease, NASH, NAFLD, cirrhosis)",
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
-        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = otherThanSkinCancerPageCC
+        HaveYouEverExperiencedHeartRelatedMedicalCondCC haveYouEverExperiencedHeartRelatedMedicalCondCC = whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC());
 
-        HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC haveYouUndergoneAnyOfFollowingHeartRelatedProcCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
+        HeartrelatedMedicalProceduresPageCC heartrelatedMedicalProceduresPageCC = haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(otherThanSkinCancerPageCC)
+                .back(whenDiagnosedWithCancerCC)
                 .waitForPageLoad()
                 .clickOnAnswer("Diagnosed with skin cancer only")
                 .clickNextButton(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC());
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC());
 
-        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        SubquestionExperiencedHeartPageCC subquestionExperiencedHeartPageCC = heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back(haveYouEverExperiencedHeartRelatedMedicalCondCC)
                 .waitForPageLoad()
@@ -558,7 +558,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .clickOnAnswerForSubQuestion(2, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(3, "More than 1 year ago")
                 .clickOnAnswerForSubQuestion(4, "More than 1 year ago")
-                .clickNextButton(haveYouUndergoneAnyOfFollowingHeartRelatedProcCC)
+                .clickNextButton(heartrelatedMedicalProceduresPageCC)
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs")
                 .clickNextButton(new MostRecentHeartProcedurePageСС());
@@ -657,7 +657,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
         mostRecentHeartProcedurePageСС
                 .waitForPageLoad()
                 .back();
-        haveYouUndergoneAnyOfFollowingHeartRelatedProcCC
+        heartrelatedMedicalProceduresPageCC
                 .waitForPageLoad()
                 .back();
         subquestionExperiencedHeartPageCC
@@ -666,7 +666,7 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
         haveYouEverExperiencedHeartRelatedMedicalCondCC
                 .waitForPageLoad()
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .back();
 
@@ -792,14 +792,14 @@ public class SYNType_2_Diabetes_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("Acid reflux, heartburn, or GERD (gastroesophageal reflux disease)", "Crohn's disease", "Ulcerative colitis", "Gastroparesis, or delayed gastric emptying",
                         "IBS, or irritable bowel syndrome")
-                .clickNextButton(new WhichTypeOfHeadacheCC())
+                .clickNextButton(new WhichTypeOfHeadacheDoYouGetCC())
                 .waitForPageLoad()
                 .clickOnAnswers("Migraine", "Cluster headache", "Tension headache")
                 .clickNextButton(new HaveYouEverExperiencedHeartRelatedMedicalCondCC())
                 .waitForPageLoad()
                 .clickOnAnswers("Heart attack", "Stroke", "Mini-Stroke or TIA", "Angina, or heart-related chest pain, that required you to stay in a hospital overnight",
                         "Heart failure or congestive heart failure (CHF)")
-                .clickNextButton(new HaveYouUndergoneAnyOfFollowingHeartRelatedProcCC())
+                .clickNextButton(new HeartrelatedMedicalProceduresPageCC())
                 .waitForPageLoad()
                 .clickOnAnswers("Stent placement in your heart, neck or legs", "Heart bypass surgery or Coronary Artery Bypass Graft (CABG)",
                         "Any other surgery on the arteries in your legs, neck or heart")

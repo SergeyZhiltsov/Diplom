@@ -4,7 +4,7 @@ import com.acurian.selenium.constants.Site;
 import com.acurian.selenium.pages.BaseTest;
 import com.acurian.selenium.pages.CC.Crohns_3485.BiologicMedicationsPageCC;
 import com.acurian.selenium.pages.CC.LPS_4442.EitherOfTheFollowingMedicationsCC;
-import com.acurian.selenium.pages.CC.PSO_456.DiagnosedWithPsoriasisCC;
+import com.acurian.selenium.pages.CC.PSO_456.HealthcareDiagnosedPsoriasisPageCC;
 import com.acurian.selenium.pages.CC.PSO_456.TypePsoriasisPageCC;
 import com.acurian.selenium.pages.CC.PSO_456.WhenDiagnosedWithPsoriasisCC;
 import com.acurian.selenium.pages.CC.PsoriaticArthritis.*;
@@ -195,11 +195,11 @@ public class PSA_5071_CC extends BaseTest {
                 .clickNextButton(currentlyHaveSoreTenderPainfulPsoriaticArthritisPageCC);
 
         //Q6
-        DiagnosedWithPsoriasisCC diagnosedWithPsoriasisCC = currentlyHaveSoreTenderPainfulPsoriaticArthritisPageCC
+        HealthcareDiagnosedPsoriasisPageCC healthcareDiagnosedPsoriasisPageCC = currentlyHaveSoreTenderPainfulPsoriaticArthritisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No") //skip to Q8
-                .clickNextButton(new DiagnosedWithPsoriasisCC());
-        diagnosedWithPsoriasisCC
+                .clickNextButton(new HealthcareDiagnosedPsoriasisPageCC());
+        healthcareDiagnosedPsoriasisPageCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7506", site.activeProtocols)
@@ -214,10 +214,10 @@ public class PSA_5071_CC extends BaseTest {
         howManyJointsAreSoreTenderPainfulPageCC
                 .waitForPageLoad()
                 .setJointsPainful("1")
-                .clickNextButton(diagnosedWithPsoriasisCC);
+                .clickNextButton(healthcareDiagnosedPsoriasisPageCC);
 
         //Q8
-        TransitionStatementCC transitionStatementCC = diagnosedWithPsoriasisCC
+        TransitionStatementCC transitionStatementCC = healthcareDiagnosedPsoriasisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
                 .clickNextButton(new TransitionStatementCC());
@@ -226,7 +226,7 @@ public class PSA_5071_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS7508", site.activeProtocols)
                 .back();
-        TypePsoriasisPageCC typePsoriasisPageCC = diagnosedWithPsoriasisCC
+        TypePsoriasisPageCC typePsoriasisPageCC = healthcareDiagnosedPsoriasisPageCC
                 .waitForPageLoad()
                 .clickOnAnswer("Yes") //continue to Q9
                 .clickNextButton(new TypePsoriasisPageCC());
@@ -380,19 +380,19 @@ public class PSA_5071_CC extends BaseTest {
                 .waitForPageLoad()
                 .back();
 
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
-        otherThanSkinCancerPageCC
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
-                .back(otherThanSkinCancerPageCC)
+                .back(whenDiagnosedWithCancerCC)
                 .waitForPageLoad()
                 .back();
 

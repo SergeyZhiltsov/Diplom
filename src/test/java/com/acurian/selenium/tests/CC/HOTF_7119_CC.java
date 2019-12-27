@@ -215,7 +215,7 @@ public class HOTF_7119_CC extends BaseTest {
 
 
 //#############General_Health ###########################
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC
                 .waitForPageLoad()
                 .clickOnAnswers("ADHD or attention deficit hyperactivity disorder",
                         "Arthritis (osteoarthritis, rheumatoid arthritis or RA, psoriatic arthritis)",
@@ -241,7 +241,7 @@ public class HOTF_7119_CC extends BaseTest {
                         "Women's health issues (endometriosis, uterine fibroids)")
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Cancer")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
 
 
         DoAnyOftheFollowingAdditionalDiagnosesCC doAnyOftheFollowingAdditionalDiagnosesCC =
@@ -250,7 +250,7 @@ public class HOTF_7119_CC extends BaseTest {
                 "11 or more years ago");
         for (String answer : disqualifyQ6QS42) {
             System.out.println("Select answer for QS42: " + answer);
-            otherThanSkinCancerPageCC
+            whenDiagnosedWithCancerCC
                     .waitForPageLoad()
                     .clickOnAnswer(answer)
                     .clickNextButton(doAnyOftheFollowingAdditionalDiagnosesCC)
@@ -259,7 +259,7 @@ public class HOTF_7119_CC extends BaseTest {
                     .checkProtocolsContainsForQNumber("QS42", site.activeProtocols)
                     .back();
         }
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .back();
         WhichOfTheFollowingHaveRequiredForKidneyDiseaseCC whichOfTheFollowingHaveRequiredForKidneyDiseaseCC = haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondCC

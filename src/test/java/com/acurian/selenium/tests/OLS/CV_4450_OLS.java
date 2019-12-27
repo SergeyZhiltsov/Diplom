@@ -323,12 +323,12 @@ public class CV_4450_OLS extends BaseTest {
                 .clickNextButton(new ApproximateHeightPageOLS());
 
 //------------------------Ghost Question - Cardiovascular Disease / Risk Qualifying Logic check-------------------------
-        CurrentlyTreatingYourDiabetesPageOLS сurrentlyTreatingYourDiabetesPageOLS =
+        CurrentlyTreatingYourDiabetesPageOLS currentlyTreatingYourDiabetesPageOLS =
                 approximateHeightPageOLS
                         .waitForPageLoad()
                         .setAll("5", "5", "170")
                         .clickNextButton(new CurrentlyTreatingYourDiabetesPageOLS());
-        сurrentlyTreatingYourDiabetesPageOLS
+        currentlyTreatingYourDiabetesPageOLS
                 .waitForPageLoad()
                 .getPage(debugPageOLS)
                 .checkProtocolsContainsForQNumber("QS6722", site.activeProtocols)
@@ -422,7 +422,7 @@ public class CV_4450_OLS extends BaseTest {
                     .waitForPageLoad()
                     .clickOnAnswers("None of the above")
                     .clickOnAnswers(answer)
-                    .clickNextButton(сurrentlyTreatingYourDiabetesPageOLS)
+                    .clickNextButton(currentlyTreatingYourDiabetesPageOLS)
                     .waitForPageLoad()
                     .getPage(debugPageOLS)
                     .checkProtocolsContainsForQNumber("QS6725", site.activeProtocols)

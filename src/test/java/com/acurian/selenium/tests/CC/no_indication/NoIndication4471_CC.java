@@ -123,11 +123,11 @@ public class NoIndication4471_CC extends BaseTest {
                         "Mental or emotional health conditions (anxiety, bipolar disorder, depression, schizophrenia)")
                 .clickNextButton(new WhichOfTheFollowingBreathingLungPageСС());
 
-        OtherThanSkinCancerPageCC otherThanSkinCancerPageCC = whichOfTheFollowingBreathingLungPageСС
+        WhenDiagnosedWithCancerCC whenDiagnosedWithCancerCC = whichOfTheFollowingBreathingLungPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Asthma")
-                .clickNextButton(new OtherThanSkinCancerPageCC());
-        otherThanSkinCancerPageCC
+                .clickNextButton(new WhenDiagnosedWithCancerCC());
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES", protocol1, protocol2)
@@ -135,7 +135,7 @@ public class NoIndication4471_CC extends BaseTest {
         whichOfTheFollowingBreathingLungPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
-                .clickNextButton(otherThanSkinCancerPageCC)
+                .clickNextButton(whenDiagnosedWithCancerCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES", protocol1, protocol2)
@@ -143,7 +143,7 @@ public class NoIndication4471_CC extends BaseTest {
         whichOfTheFollowingBreathingLungPageСС
                 .waitForPageLoad()
                 .clickOnAnswers("Chronic bronchitis")
-                .clickNextButton(otherThanSkinCancerPageCC)
+                .clickNextButton(whenDiagnosedWithCancerCC)
                 .waitForPageLoad()
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015113-QS41-STUDYQUES", protocol1, protocol2)
@@ -152,9 +152,9 @@ public class NoIndication4471_CC extends BaseTest {
                 .waitForPageLoad()
                 .clickOnAnswers("None of the above")
                 .clickOnAnswers("Chronic cough")
-                .clickNextButton(otherThanSkinCancerPageCC);
+                .clickNextButton(whenDiagnosedWithCancerCC);
 
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("Within the past 5 years")
                 .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC)
@@ -162,7 +162,7 @@ public class NoIndication4471_CC extends BaseTest {
                 .getPage(debugPageCC)
                 .checkProtocolsContainsForQNumber("Q0015116-QS42-STUDYQUES", protocol1, protocol2)
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .clickOnAnswer("6 - 10 years ago")
                 .clickNextButton(whichOfTheFollowingHaveRequiredForKidneyDiseaseCC);
@@ -237,7 +237,7 @@ public class NoIndication4471_CC extends BaseTest {
         whichOfTheFollowingHaveRequiredForKidneyDiseaseCC
                 .waitForPageLoad()
                 .back();
-        otherThanSkinCancerPageCC
+        whenDiagnosedWithCancerCC
                 .waitForPageLoad()
                 .back();
         whichOfTheFollowingBreathingLungPageСС
@@ -363,32 +363,32 @@ public class NoIndication4471_CC extends BaseTest {
                 .clickOnAnswer("1 year or longer")
                 .clickNextButton(new TreatingYourChronicCoughCC());
 
-        SmokedCigarettesPageCC smokedCigarettesPageCC = treatingYourChronicCoughCC
+        HaveYouSmokedCigarettesCC haveYouSmokedCigarettesCC = treatingYourChronicCoughCC
                 .waitForPageLoad()
                 .clickOnAnswers("(QS6217_C)") //No, have not treated
-                .clickNextButton(new SmokedCigarettesPageCC())
+                .clickNextButton(new HaveYouSmokedCigarettesCC())
                 .waitForPageLoadNew();
-        smokedCigarettesPageCC.back();
+        haveYouSmokedCigarettesCC.back();
 
-        StillHaveYourCoughCC stillHaveYourCoughCC = treatingYourChronicCoughCC
+        DoYouStillHaveCoughCC doYouStillHaveCoughCC = treatingYourChronicCoughCC
                 .waitForPageLoad()
                 .clickOnAnswers("(QS6217_B)", "(QS6217_A)")    //A. Yes, with prescription and B. Yes, with over the counter
-                .clickNextButton(new StillHaveYourCoughCC());
+                .clickNextButton(new DoYouStillHaveCoughCC());
 
-        stillHaveYourCoughCC
+        doYouStillHaveCoughCC
                 .waitForPageLoad()
                 .clickOnAnswer("No")
-                .clickNextButton(new SmokedCigarettesPageCC());
+                .clickNextButton(new HaveYouSmokedCigarettesCC());
 
-        HowManyYearsYouSmokeCC howManyYearsYouSmokeCC = smokedCigarettesPageCC
+        HowManyCigarettesCC howManyCigarettesCC = haveYouSmokedCigarettesCC
                 .waitForPageLoadNew()
                 .clickOnAnswer("Yes, I currently smoke")
-                .clickNextButton(new HowManyYearsYouSmokeCC())
+                .clickNextButton(new HowManyCigarettesCC())
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017025-QS6206-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
 
-        QuitSmokingCC quitSmokingCC = smokedCigarettesPageCC
+        QuitSmokingCC quitSmokingCC = haveYouSmokedCigarettesCC
                 .waitForPageLoadNew()
                 .clickOnAnswer("I used to smoke, but have since quit")
                 .clickNextButton(new QuitSmokingCC());
@@ -396,16 +396,16 @@ public class NoIndication4471_CC extends BaseTest {
         quitSmokingCC
                 .waitForPageLoad()
                 .clickOnAnswer("I quit smoking within the past year")
-                .clickNextButton(new HowManyYearsYouSmokeCC())
+                .clickNextButton(new HowManyCigarettesCC())
                 .waitForPageLoad1();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017651-QS6207-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
         quitSmokingCC
                 .waitForPageLoad()
                 .clickOnAnswer("I quit smoking more than a year ago")
-                .clickNextButton(new HowManyYearsYouSmokeCC());
+                .clickNextButton(new HowManyCigarettesCC());
 
-        FollowingConditionsCC followingConditionsCC = howManyYearsYouSmokeCC
+        FollowingConditionsCC followingConditionsCC = howManyCigarettesCC
                 .waitForPageLoad1()
                 .enterYears("20")
                 .enterCigrettes("21")
@@ -413,7 +413,7 @@ public class NoIndication4471_CC extends BaseTest {
                 .waitForPageLoad();
         debugPageCC.checkProtocolsContainsForQNumber("Q0017642-QS6209-STUDYQUES", protocol1, protocol2);
         debugPageCC.back();
-        howManyYearsYouSmokeCC
+        howManyCigarettesCC
                 .waitForPageLoad1()
                 .enterCigrettes("10")
                 .clickNextButton(new FollowingConditionsCC());

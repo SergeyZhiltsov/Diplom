@@ -8,7 +8,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
-public class CancerPage extends MainPageOLS {
+public class WhenDiagnosedWithCancerOLS extends MainPageOLS {
 
     public final String titleExpected = "When were you diagnosed with cancer (other than skin cancer)?";
 
@@ -18,13 +18,13 @@ public class CancerPage extends MainPageOLS {
     List<WebElement> radioButtonsList;
 
     @Step
-    public CancerPage waitForPageLoad() {
+    public WhenDiagnosedWithCancerOLS waitForPageLoad() {
         waitForPageLoadMain(titleText, titleExpected);
         return this;
     }
 
     @Step
-    public CancerPage clickOnAnswer(String answerText) {
+    public WhenDiagnosedWithCancerOLS clickOnAnswer(String answerText) {
         clickOnRadioButton(radioButtonsList, answerText);
         return this;
     }
