@@ -966,7 +966,7 @@ public class SYNType_2_Diabetes_OLS extends BaseTest {
                 .waitForPageLoad()
                 .pidFromDbToLog(env)
                 .getRadiantDbToLog(env)
-                .childPidFromDbToLog(env, "4483")
+                .childPidFromDbToLog(env)
                 .dispoShouldMatch(site.dispo, site.dispo)
                 .assertGeneratedFul(env, site)
                 .queueSiteForFULCheck(site.name);
