@@ -41,7 +41,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
     @DataProvider
     public Object[][] sites() {
         return new Object[][]{
-                {Site.AUT_AMS_JANRDS_Syn},
+                {Site.JANRSV_AUT_JANDS},
                 {Site.AUT_AMS_JANRSV_Syn},
                 {Site.AUT_AMS_JANRSV}
         };
@@ -63,7 +63,7 @@ public class VACC_JANRSV_OLS extends BaseTest {
 //        Assert.assertEquals(dateOfBirthPageOLS.getTitleText(), dateOfBirthPageOLS
 //                .getExpectedModifiedTitle(studyName, "650"), "Title is diff");
 
-        if (site == Site.AUT_AMS_JANRDS_Syn) {
+        if (site == Site.JANRSV_AUT_JANDS) {
             HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS haveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS =
                     new HaveYouEverBeenDiagnosedWithAnyOfFollowingHealthCondOLS();
             //DRSOLS drsols = new DRSOLS();
